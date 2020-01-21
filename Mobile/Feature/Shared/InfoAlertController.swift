@@ -27,13 +27,27 @@ class InfoAlertController: UIViewController {
     private var ctaButton: PrimaryButton?
     
     private let titleString: String
-    private let message: String
+    private let message: String?
+    private let attributedMessage: NSAttributedString?
     private let icon: UIImage?
     private let action: InfoAlertAction?
     
     init(title: String, message: String, icon: UIImage? = nil, action: InfoAlertAction? = nil) {
         self.titleString = title
         self.message = message
+        self.attributedMessage = nil
+        self.icon = icon
+        self.action = action
+        super.init(nibName: nil, bundle: nil)
+        
+        modalPresentationStyle = .overCurrentContext
+        modalTransitionStyle = .crossDissolve
+    }
+    
+    init(title: String, attributedMessage: NSAttributedString, icon: UIImage? = nil, action: InfoAlertAction? = nil) {
+        self.titleString = title
+        self.message = nil
+        self.attributedMessage = attributedMessage
         self.icon = icon
         self.action = action
         super.init(nibName: nil, bundle: nil)
@@ -126,7 +140,13 @@ class InfoAlertController: UIViewController {
     
     private func populateViews() {
         titleLabel.text = titleString
-        messageLabel.text = message
+        
+        if let message = self.message {
+            messageLabel.text = message
+        } else if let attributedMessage = self.attributedMessage {
+            messageLabel.attributedText = attributedMessage
+        }
+        
         if let action = action {
             ctaButton?.setTitle(action.ctaText, for: .normal)
         }

@@ -13,6 +13,7 @@ import AppCenterCrashes
 import RxSwift
 import UserNotifications
 import PDTSimpleCalendar
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -72,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //printFonts()
         
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
+        _ = GameTaskStore.shared.tasks // Triggers the loading of GameTasks.json into memory
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnFailedAccountsFetch), name: .didReceiveAccountListError, object: nil)
@@ -106,6 +108,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    // MARK: - Push Notifications
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
@@ -168,6 +172,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    // MARK: - Local Notifications
+    
+    /* Gamification reminder notifications. When tapped, store the tip ID in memory (tipIdWaitingToBeShown).
+     * If app already alive in background with user logged in, resets the root view controller to Home.
+     * Then (plus in all other scenarios), when GameHomeViewController loads, tipIdWaitingToBeShown != nil
+     * indicates to present the tip. */
+    
+    var tipIdWaitingToBeShown: String? = nil
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        tipIdWaitingToBeShown = response.notification.request.identifier
+        
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome) // So app launches into Game experience
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+            guard let window = window else { return }
+            if let root = window.rootViewController, let _ = root.presentedViewController {
+                root.dismiss(animated: false) { [weak window] in
+                    guard let window = window else { return }
+                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let newTabBarController = mainStoryboard.instantiateInitialViewController()
+                    window.rootViewController = newTabBarController
+                }
+            } else {
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newTabBarController = mainStoryboard.instantiateInitialViewController()
+                window.rootViewController = newTabBarController
+            }
+        }
+    }
+    
+    // MARK: - Deep Links
+    
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
             return false
@@ -204,8 +241,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return nil
     }
     
-    
-    
     //MARK: - Watch Helper
     private func setupWatchConnectivity() {
         // Watch Connectivity
@@ -222,7 +257,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userDefaults.register(defaults: [
             UserDefaultKeys.shouldPromptToEnableBiometrics: true,
             UserDefaultKeys.paymentDetailsDictionary: [String: NSDictionary](),
-            UserDefaultKeys.usernamesRegisteredForPushNotifications: [String]()
+            UserDefaultKeys.usernamesRegisteredForPushNotifications: [String](),
+            UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference: true,
+            UserDefaultKeys.gameStreakCount: 1
         ])
         
         userDefaults.set(false, forKey: UserDefaultKeys.inMainApp)
@@ -503,6 +540,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.shortcutItems = [reportOutageShortcut]
         }
         
+    }
+    
+    // MARK: - Core Data stack
+
+    lazy var persistentContainer: NSPersistentContainer = {
+        /*
+         The persistent container for the application. This implementation
+         creates and returns a container, having loaded the store for the
+         application to it. This property is optional since there are legitimate
+         error conditions that could cause the creation of the store to fail.
+        */
+        let container = NSPersistentContainer(name: "GameCoreDataModel")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                 
+                /*
+                 Typical reasons for an error here include:
+                 * The parent directory does not exist, cannot be created, or disallows writing.
+                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+                 * The device is out of space.
+                 * The store could not be migrated to the current model version.
+                 Check the error message to determine what the actual problem was.
+                 */
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+
+    // MARK: - Core Data Saving support
+
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
 }
 

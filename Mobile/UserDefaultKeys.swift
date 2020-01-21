@@ -45,4 +45,20 @@ struct UserDefaultKeys {
     static let isKeepMeSignedInChecked = "kIsKeepMeSignedInChecked"
     
     static let doNotShowIOS9VersionWarningAgain = "kdoNotShowIOS9VersionWarningAgain" // True if iOS 9 user selects "Don't warn me again" on alert
+    
+    // Gamification
+    static let prefersGameHome = "kPrefersGameHome"
+    static let gameAccountNumber = "kGamificationAccountNumber"
+    static let gameOptedOutLocal = "kGameOptedOutLocal"
+    static let gameOnboardingCompleteLocal = "kGameOnboardingCompleteLocal"
+    static let gamePointsLocal = "kGamePointsLocal"
+    static let gameSelectedBackground = "kGameSelectedBackground"
+    static let gameSelectedHat = "kGameSelectedHat"
+    static let gameSelectedAccessory = "kGameSelectedAccessory"
+    static let gameLastTaskDate = "kGameLastTaskDate"
+    static let gameEnergyBuddyUpdatesAlertPreference = "kGameEnergyBuddyUpdatesAlertPref"
+    static let gameSurvey1Complete = "kGameSurvey1Complete"
+    static let gameSurvey2Complete = "kGameSurvey2Complete"
+    static let gameStreakDateTracker = "kGameStreakDateTracker"
+    static let gameStreakCount = "kGameStreakCount"
 }
