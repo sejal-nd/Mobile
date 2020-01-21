@@ -105,51 +105,39 @@ class ReportOutageViewModelTests: XCTestCase {
     }
     
     func testShouldPingMeterActiveOutage() {
-        if Environment.shared.opco != .comEd {
-            XCTAssertFalse(viewModel.shouldPingMeter)
-        } else {
-            MockUser.current = MockUser(globalKeys: .outagePowerOut)
-            MockAccountService.loadAccountsSync()
-            do {
-                let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .outagePowerOut)
-                viewModel.outageStatus = outageStatus
-            } catch {
-                XCTFail()
-            }
-            XCTAssertFalse(viewModel.shouldPingMeter)
+        MockUser.current = MockUser(globalKeys: .outagePowerOut)
+        MockAccountService.loadAccountsSync()
+        do {
+            let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .outagePowerOut)
+            viewModel.outageStatus = outageStatus
+        } catch {
+            XCTFail()
         }
+        XCTAssertFalse(viewModel.shouldPingMeter)
     }
     
     func testShouldPingMeterNoSmartMeter() {
-        if Environment.shared.opco != .comEd {
-            XCTAssertFalse(viewModel.shouldPingMeter)
-        } else {
-            MockUser.current = MockUser(globalKeys: .default)
-            MockAccountService.loadAccountsSync()
-            do {
-                let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .default)
-                viewModel.outageStatus = outageStatus
-            } catch {
-                XCTFail()
-            }
-            XCTAssertFalse(viewModel.shouldPingMeter)
+        MockUser.current = MockUser(globalKeys: .default)
+        MockAccountService.loadAccountsSync()
+        do {
+            let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .default)
+            viewModel.outageStatus = outageStatus
+        } catch {
+            XCTFail()
         }
+        XCTAssertFalse(viewModel.shouldPingMeter)
     }
     
     func testShouldPingMeterTrue() {
-        if Environment.shared.opco != .comEd {
-            XCTAssertFalse(viewModel.shouldPingMeter)
-        } else {
-            MockUser.current = MockUser(globalKeys: .outageSmartMeter)
-            MockAccountService.loadAccountsSync()
-            do {
-                let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .outageSmartMeter)
-                viewModel.outageStatus = outageStatus
-            } catch {
-                XCTFail()
-            }
-            XCTAssertTrue(viewModel.shouldPingMeter)
+        MockUser.current = MockUser(globalKeys: .outageSmartMeter)
+        MockAccountService.loadAccountsSync()
+        do {
+            let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .outageSmartMeter)
+            viewModel.outageStatus = outageStatus
+        } catch {
+            XCTFail()
         }
+        XCTAssertTrue(viewModel.shouldPingMeter)
     }
     
     func testMeterPingSuccess() {
