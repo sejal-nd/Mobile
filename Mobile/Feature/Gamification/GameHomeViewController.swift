@@ -488,7 +488,7 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         // Season will either be "WINTER", "SUMMER", or nil. Winter tips should only be displayed
-        // in Feb/March, while Summer tips should only be displayed in June/July
+        // in October - March, while Summer tips should only be displayed in April - September
         var taskSeason: String?
         if let tip = task.tip, let tipSeason = tip.season?.uppercased() {
             taskSeason = tipSeason
@@ -749,7 +749,7 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
     }
 }
 
-// MARK - GameSurveyViewControllerDelegate
+// MARK: - GameSurveyViewControllerDelegate
 extension GameHomeViewController: GameSurveyViewControllerDelegate {
     
     func gameSurveyViewControllerDidFinish(_ viewController: GameSurveyViewController, surveyComplete: Bool) {
@@ -767,7 +767,7 @@ extension GameHomeViewController: GameSurveyViewControllerDelegate {
     }
 }
 
-// MARK - GameCheckInViewControllerDelegate
+// MARK: - GameCheckInViewControllerDelegate
 extension GameHomeViewController: GameCheckInViewControllerDelegate {
     
     func gameCheckInViewController(_ gameCheckInViewController: GameCheckInViewController, selectedResponse: String) {
@@ -787,7 +787,7 @@ extension GameHomeViewController: GameCheckInViewControllerDelegate {
     }
 }
 
-// MARK - WeeklyInsightViewControllerDelegate
+// MARK: - WeeklyInsightViewControllerDelegate
 extension GameHomeViewController: WeeklyInsightViewControllerDelegate {
     
     func weeklyInsightViewControllerWillDisappear(_ weeklyInsightViewController: WeeklyInsightViewController) {
