@@ -86,7 +86,7 @@ class OutageViewModelTests: XCTestCase {
         let mockOutageService = MockOutageService()
         let mockAccountService = MockAccountService()
         viewModel = OutageViewModel(accountService: mockAccountService, outageService: mockOutageService, authService: MockAuthenticationService())
-        let reportViewModel = ReportOutageViewModel(outageService: mockAccountService, accountService: mockAccountService)
+        let reportViewModel = ReportOutageViewModel(outageService: mockOutageService, accountService: mockAccountService)
         
         reportViewModel.reportOutage(onSuccess: {
             XCTAssertNotNil(self.viewModel.reportedOutage, "Expected a Reported Outage Result.")
