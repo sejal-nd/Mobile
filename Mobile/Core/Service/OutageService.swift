@@ -19,12 +19,6 @@ protocol OutageService {
     ///   - account: the account to fetch outage status for
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus>
     
-    /// Fetch the meter data for a given Account.
-    ///
-    /// - Parameters:
-    ///   - account: the account to fetch outage status for
-    func pingMeter(account: Account) -> Observable<MeterPingInfo>
-    
     /// Fetch the meter data for a given Account and premise
     ///
     /// - Parameters:
