@@ -11,7 +11,7 @@
 		<key>com.exelon.mobile.bge.watchkitapp</key>
 		<string>BGE Watchkit App Store</string>
 		<key>com.exelon.mobile.bge.watchkitapp.watchkitextension</key>
-		<string>BGE WatchkitExtension App Store</string>
+		<string>BGE Watchkit Extension App Store</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>320b2a1634549d319c6ae8e159586d5be17b442a</string>

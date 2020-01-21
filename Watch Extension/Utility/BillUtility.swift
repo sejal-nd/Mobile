@@ -152,7 +152,7 @@ class BillUtility {
             restorationAmount > 0 &&
                 accountDetails.isCutOutNonPay &&
                 Environment.shared.opco != .bge {
-            return String.localizedStringWithFormat("%@ is due immediately to restore service.", billingInfo.netDueAmount?.currencyString ?? "--")
+            return String.localizedStringWithFormat("%@ is due immediately to restore service.", restorationAmount.currencyString ?? "--")
         }
         
         // Avoid Shutoff
