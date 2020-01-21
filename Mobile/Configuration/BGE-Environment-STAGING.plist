@@ -9,7 +9,7 @@
 	<key>appName</key>
 	<string>BGE_STAGE</string>
 	<key>mcsInstanceName</key>
-	<string>Stage-bgeMBE</string>
+	<string>Stage</string>
 	<key>myAccountUrl</key>
 	<string>https://azstg.bge.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
