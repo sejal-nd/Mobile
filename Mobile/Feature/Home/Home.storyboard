@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -781,7 +781,7 @@
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YwV-bN-j38" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="723" width="414" height="85"/>
+                                <rect key="frame" x="0.0" y="723" width="414" height="119"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVL-zv-6aa" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
@@ -805,15 +805,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="YwV-bN-j38" secondAttribute="bottom" id="4A3-de-Vdf"/>
                             <constraint firstItem="wrg-RC-Urp" firstAttribute="leading" secondItem="bB9-IB-WIF" secondAttribute="leading" id="AK2-CR-KWz"/>
                             <constraint firstItem="YwV-bN-j38" firstAttribute="leading" secondItem="bB9-IB-WIF" secondAttribute="leading" id="BVs-2B-PjC"/>
-                            <constraint firstItem="Dqq-1a-lJA" firstAttribute="top" secondItem="YwV-bN-j38" secondAttribute="bottom" id="Moq-MP-Ew5"/>
                             <constraint firstItem="Sx1-DX-5IR" firstAttribute="centerY" secondItem="bB9-IB-WIF" secondAttribute="centerY" id="NaX-MN-tGp"/>
                             <constraint firstItem="Sx1-DX-5IR" firstAttribute="centerX" secondItem="bB9-IB-WIF" secondAttribute="centerX" id="WUa-4q-NHB"/>
                             <constraint firstAttribute="trailing" secondItem="wrg-RC-Urp" secondAttribute="trailing" id="Zfa-f3-td8"/>
                             <constraint firstItem="wrg-RC-Urp" firstAttribute="bottom" secondItem="YwV-bN-j38" secondAttribute="top" id="ep2-LX-tTj"/>
                             <constraint firstAttribute="trailing" secondItem="YwV-bN-j38" secondAttribute="trailing" id="vIv-rC-Dhh"/>
-                            <constraint firstItem="wrg-RC-Urp" firstAttribute="top" secondItem="pa1-8u-pKd" secondAttribute="bottom" id="y7t-ex-UxH"/>
+                            <constraint firstItem="wrg-RC-Urp" firstAttribute="top" secondItem="q7A-6F-Ya3" secondAttribute="top" id="yjf-0s-9gR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q7A-6F-Ya3"/>
                     </view>
@@ -831,7 +831,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xH0-tF-N6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="720" y="-1729"/>
+            <point key="canvasLocation" x="718.84057971014499" y="-1729.0178571428571"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="GIZ-Ee-jsd">
