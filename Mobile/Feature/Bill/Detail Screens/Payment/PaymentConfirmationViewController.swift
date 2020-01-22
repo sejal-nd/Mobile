@@ -140,7 +140,7 @@ class PaymentConfirmationViewController: UIViewController {
                     presentingNavController.setNavigationBarHidden(true, animated: true) // Fixes bad dismiss animation
                     break
                 } else if let dest = vc as? StormModeBillViewController {
-                    dest.viewModel.fetchData.onNext(.switchAccount)
+                    dest.viewModel.fetchData.onNext(())
                     presentingNavController.popToViewController(dest, animated: false)
                     break
                 }
