@@ -652,7 +652,11 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
 extension GameHomeViewController: GameTipViewControllerDelegate {
     
     func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController, withQuizPoints quizPoints: Double) {
-        awardPoints(3 + quizPoints, advanceTaskIndex: true)
+        if quizPoints > 0 { // Pressed "View Tip" after answering a quiz question
+            awardPoints(quizPoints, advanceTaskIndex: true)
+        } else {
+            awardPoints(3, advanceTaskIndex: true)
+        }
     }
 }
 
