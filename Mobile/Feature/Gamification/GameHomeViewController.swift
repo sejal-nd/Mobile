@@ -54,7 +54,6 @@ class GameHomeViewController: AccountPickerViewController {
     var layoutSubviewsComplete = false
     var welcomedUser = false
     var loadedInitialGameUser = false
-    var isVisible = false
     var didGoToHomeProfile = false
     var viewDidAppear = false
     
@@ -64,25 +63,7 @@ class GameHomeViewController: AccountPickerViewController {
         super.viewDidLoad()
         
         FirebaseUtility.trackScreenWithName(self.className, className: self.className)
-        
-        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                self?.energyBuddyView.stopAnimations()
-            }).disposed(by: bag)
-        
-        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                // If the app is foregrounded when on a different screen (i.e. Gifts), this would
-                // still fire and the buddy bounce animation would freeze
-                if self.isVisible {
-                    self.energyBuddyView.updateBuddy()
-                    self.energyBuddyView.playDefaultAnimations()
-                }
-            }).disposed(by: bag)
-                
+                                
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -139,6 +120,20 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.fetchData()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if !layoutSubviewsComplete {
+            layoutSubviewsComplete = true
+            
+            energyBuddyView.layoutIfNeeded()
+            energyBuddyView.playDefaultAnimations()
+            
+            progressBar.layoutIfNeeded()
+            _ = progressBar.setPoints(viewModel.points, animated: false)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -148,7 +143,8 @@ class GameHomeViewController: AccountPickerViewController {
         
         energyBuddyView.updateBuddy()
         
-        isVisible = true
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -161,8 +157,8 @@ class GameHomeViewController: AccountPickerViewController {
             "selected_hat": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none",
             "selected_acc": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
         ])
-                
-        if viewDidAppear { // Only do this on repeat `viewDidAppear`s. The initial play is done in `viewDidLayoutSubviews`
+
+        if viewDidAppear { // Only do this on the 2nd `viewDidAppear` and beyond. The initial play is done in `viewDidLayoutSubviews`
             energyBuddyView.playDefaultAnimations()
         }
         
@@ -198,27 +194,22 @@ class GameHomeViewController: AccountPickerViewController {
         
         viewDidAppear = true
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
-        if !layoutSubviewsComplete {
-            layoutSubviewsComplete = true
-            
-            energyBuddyView.layoutIfNeeded()
-            energyBuddyView.playDefaultAnimations()
-            
-            progressBar.layoutIfNeeded()
-            _ = progressBar.setPoints(viewModel.points, animated: false)
-        }
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         energyBuddyView.stopAnimations()
         
-        isVisible = false
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func willResignActive() {
+        energyBuddyView.stopAnimations()
+    }
+    
+    @objc private func didBecomeActive() {
+       energyBuddyView.updateBuddy()
+       energyBuddyView.playDefaultAnimations()
     }
     
     private func bindViewModel() {
