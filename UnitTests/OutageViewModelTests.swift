@@ -65,8 +65,9 @@ class OutageViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
         
         let mockOutageService = MockOutageService()
+        let mockAccountService = MockAccountService()
         viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
-        let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
+        let reportViewModel = ReportOutageViewModel(outageService: mockOutageService, accountService: mockAccountService)
         
         let testEtr = Date.now
         let testEtrString = DateFormatter.outageOpcoDateFormatter.string(from: testEtr)
@@ -83,8 +84,9 @@ class OutageViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
         
         let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
-        let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
+        let mockAccountService = MockAccountService()
+        viewModel = OutageViewModel(accountService: mockAccountService, outageService: mockOutageService, authService: MockAuthenticationService())
+        let reportViewModel = ReportOutageViewModel(outageService: mockOutageService, accountService: mockAccountService)
         
         reportViewModel.reportOutage(onSuccess: {
             XCTAssertNotNil(self.viewModel.reportedOutage, "Expected a Reported Outage Result.")
@@ -105,8 +107,9 @@ class OutageViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
         
         let mockOutageService = MockOutageService()
+        let mockAccountService = MockAccountService()
         viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
-        let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
+        let reportViewModel = ReportOutageViewModel(outageService: mockOutageService, accountService: mockAccountService)
         
         let testDate = Date.now
         let testDateString = DateFormatter.outageOpcoDateFormatter.string(from: testDate)
