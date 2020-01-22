@@ -5,7 +5,7 @@
         {
             "id": "123456",
             "startDate": "2019-01-01T12:00:00-05:00",
-            "stopDate": "2019-01-01T13:00:00-05:00",
+            "timeSlot": "AM",
             "status": "Confirmed"
         }
     ],
@@ -13,7 +13,7 @@
         {
             "id": "123456",
             "startDate": "2019-01-02T12:00:00-05:00",
-            "stopDate": "2019-01-02T13:00:00-05:00",
+            "timeSlot": "AM",
             "status": "Confirmed"
         }
     ],
@@ -21,7 +21,7 @@
         {
             "id": "123456",
             "startDate": "2019-01-06T12:00:00-05:00",
-            "stopDate": "2019-01-06T13:00:00-05:00",
+            "timeSlot": "PM",
             "status": "Confirmed"
         }
     ],
@@ -208,22 +208,6 @@
             "id": "123456",
             "startDate": "2019-03-04T12:00:00-05:00",
             "stopDate": "2019-03-04T13:00:00-05:00",
-            "status": "Confirmed"
-        }
-    ],
-    "apptHalfHourRoundUp": [
-        {
-            "id": "123456",
-            "startDate": "2019-01-02T12:30:00-05:00",
-            "stopDate": "2019-01-02T13:30:00-05:00",
-            "status": "Confirmed"
-        }
-    ],
-    "apptHalfHourRoundDown": [
-        {
-            "id": "123456",
-            "startDate": "2019-01-13T09:15:00-05:00",
-            "stopDate": "2019-01-13T11:15:00-05:00",
             "status": "Confirmed"
         }
     ],

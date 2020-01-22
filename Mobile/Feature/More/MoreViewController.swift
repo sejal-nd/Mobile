@@ -84,6 +84,10 @@ class MoreViewController: UIViewController {
         if AccountsStore.shared.accounts == nil {
             fetchAccounts()
         }
+        
+        // Edge case: if user navigates to More before game data loads, we want the
+        // Energy Buddy row to appear the next time they come back
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -186,11 +190,12 @@ class MoreViewController: UIViewController {
             vc.delegate = self
         case let vc as SetDefaultAccountViewController:
             vc.delegate = self
+        case let vc as GameOptInOutViewController:
+            vc.delegate = self
         default:
             break
         }
     }
-    
 }
 
 extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
@@ -202,9 +207,9 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 2
+            return 3
         case 1:
-            return 5
+            return 6
         case 2:
             return 3
         default:
@@ -237,6 +242,9 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 return Environment.shared.opco == .peco ? 60 : 0
             case 4:
                 return Environment.shared.opco == .bge ? 60 : 0
+            case 5:
+                let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
+                return isGameUser ? 60 : 0
             default:
                 return 60
             }
@@ -266,6 +274,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
                 cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
+            case 2:
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreappointments"), text: NSLocalizedString("Appointments", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -285,6 +295,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""))
             case 4:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morechoiceid"), text: NSLocalizedString("Choice ID", comment: ""))
+            case 5:
+                cell.configure(image: #imageLiteral(resourceName: "ic_more_gamification"), text: NSLocalizedString("Energy Buddy", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -317,6 +329,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 performSegue(withIdentifier: "alertsSegue", sender: nil)
             case 1:
                 performSegue(withIdentifier: "updatesSegue", sender: nil)
+            case 2:
+                performSegue(withIdentifier: "appointmentsSegue", sender: nil)
             default:
                 break
             }
@@ -330,6 +344,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 performSegue(withIdentifier: "releaseOfInfoSegue", sender: nil)
             case 4:
                 performSegue(withIdentifier: "choiceIdSegue", sender: nil)
+            case 5:
+                performSegue(withIdentifier: "energyBuddySegue", sender: nil)
             default:
                 break
             }
@@ -409,12 +425,26 @@ extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
     
 }
 
+// MARK: - Set Default Account
+
 extension MoreViewController: SetDefaultAccountViewControllerDelegate {
     
     func setDefaultAccountViewControllerDidFinish(_ setDefaultAccountViewController: SetDefaultAccountViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Default account changed", comment: ""))
             FirebaseUtility.logEvent(.more, parameters: [.init(parameterName: .action, value: .set_default_account_complete)])
+        })
+    }
+}
+
+// MARK: - Game Opt In/Out
+
+extension MoreViewController: GameOptInOutViewControllerDelegate {
+    
+    func gameOptInOutViewController(_ gameOptInOutViewController: GameOptInOutViewController, didOptOut: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            let toastString = String.localizedStringWithFormat("The feature has been turned %@", didOptOut ? "off" : "on")
+            self.view.showToast(toastString)
         })
     }
 }

@@ -21,6 +21,7 @@ class HomeViewModel {
     private let outageService: OutageService
     private let alertsService: AlertsService
     private let appointmentService: AppointmentService
+    private let gameService: GameService
     
     let fetchData = PublishSubject<FetchingAccountState>()
     let fetchDataObservable: Observable<FetchingAccountState>
@@ -29,6 +30,7 @@ class HomeViewModel {
     
     // A tracker for each card that loads data
     private let appointmentTracker = ActivityTracker()
+    private let gameTracker = ActivityTracker()
     private let billTracker = ActivityTracker()
     private let usageTracker = ActivityTracker()
     private let accountDetailTracker = ActivityTracker()
@@ -47,7 +49,8 @@ class HomeViewModel {
                   authService: AuthenticationService,
                   outageService: OutageService,
                   alertsService: AlertsService,
-                  appointmentService: AppointmentService) {
+                  appointmentService: AppointmentService,
+                  gameService: GameService) {
         self.fetchDataObservable = fetchData.share()
         self.accountService = accountService
         self.weatherService = weatherService
@@ -59,6 +62,7 @@ class HomeViewModel {
         self.outageService = outageService
         self.alertsService = alertsService
         self.appointmentService = appointmentService
+        self.gameService = gameService
     }
     
     private(set) lazy var appointmentCardViewModel =
@@ -133,7 +137,7 @@ class HomeViewModel {
             case .refresh:
                 return [this.refreshFetchTracker]
             case .switchAccount:
-                return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
+                return [this.appointmentTracker, this.gameTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
             }
         }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
@@ -141,7 +145,7 @@ class HomeViewModel {
         .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTrackers: { [weak self] in
             guard let this = self else { return nil }
-            return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
+            return [this.appointmentTracker, this.gameTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
         }, requestSelector: { [weak self] _ in
             guard let self = self else { return .empty() }
             return self.authService.getMaintenanceMode()
@@ -249,25 +253,66 @@ class HomeViewModel {
             case .switchAccount:
                 return [self.appointmentTracker]
             }
-            }, requestSelector: { [weak self] (accountDetail, _) -> Observable<[Appointment]> in
-                guard let self = self,
-                    let premiseNumber = accountDetail.premiseNumber else {
-                    return .empty()
-                }
-                
-                return self.appointmentService
-                    .fetchAppointments(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-                                       premiseNumber: premiseNumber)
+        }, requestSelector: { [weak self] (accountDetail, _) -> Observable<[Appointment]> in
+            guard let self = self,
+                let premiseNumber = accountDetail.premiseNumber else {
+                return .empty()
+            }
+            
+            return self.appointmentService
+                .fetchAppointments(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+                                   premiseNumber: premiseNumber)
         })
         .share(replay: 1, scope: .forever)
     
     private(set) lazy var appointments = Observable.merge(appointmentEvents.elements(), appointmentsUpdates)
     
-    private(set) lazy var showAppointmentCard = Observable
-        .merge(appointmentEvents.map { !($0.element?.isEmpty ?? true) },
-               appointmentsUpdates.map { !$0.isEmpty },
-               appointmentTracker.asObservable().filter { $0 }.not())
-        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var showAppointmentCard = Observable.just(Environment.shared.opco == .peco)
+        .flatMap { shouldShow -> Observable<Bool> in
+            if shouldShow {
+                return Observable
+                    .merge(self.appointmentEvents.map { !($0.element?.isEmpty ?? true) },
+                           self.appointmentsUpdates.map { !$0.isEmpty },
+                           self.appointmentTracker.asObservable().filter { $0 }.not())
+            }
+            else {
+                return Observable.just(false)
+            }
+    }.asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var gameUserEvents = accountDetailEvents
+        .elements()
+        .withLatestFrom(fetchTrigger) { ($0, $1) }
+        .toAsyncRequest(activityTrackers: { [weak self] (_, state) in
+            guard let self = self else { return nil }
+            switch state {
+            case .refresh:
+                return [self.refreshFetchTracker]
+            case .switchAccount:
+                return [self.gameTracker]
+            }
+        }, requestSelector: { [weak self] (accountDetail, _) -> Observable<GameUser?> in
+            guard let self = self,
+                Environment.shared.opco == .bge,
+                AccountsStore.shared.currentAccount.isMultipremise == false,
+                accountDetail.premiseNumber != nil,
+                accountDetail.isAMIAccount,
+                UI_USER_INTERFACE_IDIOM() != .pad else {
+                return .just(nil)
+            }
+            
+            return self.gameService.fetchGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        })
+        .share(replay: 1, scope: .forever)
+    
+    private(set) lazy var showGameOnboardingCard = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { user -> Bool in
+        guard let gameUser = user else { return false }
+        
+        if gameUser.onboardingComplete && !gameUser.optedOut {
+            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
+        }
+        return !gameUser.onboardingComplete && !gameUser.optedOut
+    }
     
     private lazy var prepaidStatus = accountDetailEvents.elements()
         .mapAt(\.prepaidStatus)

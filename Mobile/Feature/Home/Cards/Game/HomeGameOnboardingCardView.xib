@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="HomeGameOnboardingCardView" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2b-V5-tbA">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_card_coin" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Q-rK-EYk">
+                            <rect key="frame" x="79.5" y="20" width="255" height="79"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Unlock data and insights to help you save money and the environment at the same time!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LE5-ao-dmz">
+                            <rect key="frame" x="15" y="119" width="384" height="41"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8si-QM-sBm">
+                            <rect key="frame" x="176.5" y="170" width="61" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="oNt-74-6cF"/>
+                            </constraints>
+                            <state key="normal" title="Let's Go!">
+                                <color key="titleColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="LE5-ao-dmz" firstAttribute="top" secondItem="Z9Q-rK-EYk" secondAttribute="bottom" constant="20" id="2Ui-5f-Lab"/>
+                        <constraint firstAttribute="trailing" secondItem="LE5-ao-dmz" secondAttribute="trailing" constant="15" id="Gh6-oj-fbC"/>
+                        <constraint firstAttribute="bottom" secondItem="8si-QM-sBm" secondAttribute="bottom" id="YVf-3N-82n"/>
+                        <constraint firstItem="Z9Q-rK-EYk" firstAttribute="centerX" secondItem="s2b-V5-tbA" secondAttribute="centerX" id="car-LT-K2t"/>
+                        <constraint firstItem="LE5-ao-dmz" firstAttribute="leading" secondItem="s2b-V5-tbA" secondAttribute="leading" constant="15" id="ijd-F3-KXF"/>
+                        <constraint firstItem="8si-QM-sBm" firstAttribute="top" secondItem="LE5-ao-dmz" secondAttribute="bottom" constant="10" id="lop-8h-EBq"/>
+                        <constraint firstItem="8si-QM-sBm" firstAttribute="centerX" secondItem="s2b-V5-tbA" secondAttribute="centerX" id="szJ-7a-oT5"/>
+                        <constraint firstItem="Z9Q-rK-EYk" firstAttribute="top" secondItem="s2b-V5-tbA" secondAttribute="top" constant="20" id="wnZ-Ab-edr"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="s2b-V5-tbA" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="79b-mX-jWa"/>
+                <constraint firstItem="s2b-V5-tbA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IKy-3M-mbN"/>
+                <constraint firstItem="s2b-V5-tbA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fUT-Q5-RjM"/>
+                <constraint firstAttribute="bottom" secondItem="s2b-V5-tbA" secondAttribute="bottom" id="w6K-7a-hoD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="clippingView" destination="s2b-V5-tbA" id="ikz-MR-XE1"/>
+                <outlet property="imageView" destination="Z9Q-rK-EYk" id="Inr-j3-f9p"/>
+                <outlet property="label" destination="LE5-ao-dmz" id="Vef-u7-bTU"/>
+                <outlet property="letsGoButton" destination="8si-QM-sBm" id="8YW-0s-AnQ"/>
+            </connections>
+            <point key="canvasLocation" x="147.82608695652175" y="-78.348214285714278"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="onboarding_card_coin" width="255" height="62"/>
+    </resources>
+</document>

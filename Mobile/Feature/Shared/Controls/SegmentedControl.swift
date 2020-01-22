@@ -119,7 +119,7 @@ class SegmentedControl: UIControl {
     
     @objc func onButtonTap(sender: UIButton) {
         let index = sender.tag
-        selectIndex(index)
+        selectedIndex.value = index
     }
     
     func selectIndex(_ index: Int, animated: Bool = true, postAccessibilityNotification: Bool = true) {
