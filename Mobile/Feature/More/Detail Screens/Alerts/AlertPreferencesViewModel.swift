@@ -98,7 +98,7 @@ class AlertPreferencesViewModel {
                     ]
                     let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
                     if isGameUser {
-                        self.sections.append((NSLocalizedString("Energy Buddy", comment: ""), [.energyBuddyUpdates]))
+                        self.sections.append((NSLocalizedString("Lumi's World", comment: ""), [.energyBuddyUpdates]))
                     }
                 case .comEd, .peco:
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
@@ -341,7 +341,7 @@ class AlertPreferencesViewModel {
             case .forYourInformation:
                 return NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
-                return NSLocalizedString("Energy Buddy Updates", comment: "")
+                return NSLocalizedString("Lumi Updates", comment: "")
             }
         }
         
@@ -415,7 +415,7 @@ class AlertPreferencesViewModel {
                 
             // Energy Buddy
             case (.energyBuddyUpdates, _):
-                return NSLocalizedString("Receive a notification when your Energy Buddy has new data, tips, and insights to help you save energy and money.", comment: "")
+                return NSLocalizedString("Receive a notification when Lumi has new data, tips, and insights to help you save energy and money.", comment: "")
             }
         }
     }
