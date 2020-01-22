@@ -256,6 +256,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         loadingLottieAnimation.frame = CGRect(x: 0, y: 0, width: loadingAnimationView.frame.size.width, height: loadingAnimationView.frame.size.height)
         loadingLottieAnimation.loopMode = .loop
+        loadingLottieAnimation.backgroundBehavior = .pauseAndRestore
         loadingLottieAnimation.contentMode = .scaleAspectFill
         loadingAnimationView.addSubview(loadingLottieAnimation)
         loadingLottieAnimation.play()

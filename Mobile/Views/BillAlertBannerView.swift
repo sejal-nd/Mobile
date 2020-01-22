@@ -38,6 +38,7 @@ class BillAlertBannerView: UIView {
         alertLottieAnimation = AnimationView(name: "alert_icon")
         alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: animationView.frame.width, height: animationView.frame.height)
         alertLottieAnimation.contentMode = .scaleAspectFill
+        alertLottieAnimation.backgroundBehavior = .pauseAndRestore
         animationView.addSubview(self.alertLottieAnimation)
         alertLottieAnimation.play()
     }
