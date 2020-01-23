@@ -61,10 +61,7 @@ class GameSurveyViewController: UIViewController {
         
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        let detailText = survey.surveyNumber == 1 ?
-            NSLocalizedString("We appreciate your time, so we’ll keep it short!", comment: "") :
-            NSLocalizedString("Thank you for participating in the experience! Now that it’s been a while, we’d love to hear more from you.", comment: "")
-        detailLabel.text = detailText
+        detailLabel.text = NSLocalizedString("Thank you for participating in BGE's Lumi's World pilot program. What do you think of the new energy saving features added to our mobile app? Take this quick survey and let us know!", comment: "")
         
         let takeSurveyButtonTitle = survey.surveyNumber == 1 ?
             NSLocalizedString("Take Survey", comment: "") :
@@ -98,7 +95,7 @@ class GameSurveyViewController: UIViewController {
     }
         
     @IBAction func onTakeSurveyPress() {
-        let surveyHash = survey.surveyNumber == 1 ? "NYLFJP3" : "NYLFJP3" // TODO: Final survey hashes
+        let surveyHash = survey.surveyNumber == 1 ? "Q9M87WC" : "Q9ZMCRY"
         surveyManager.presentSurvey(withHash: surveyHash, from: self) { [weak self] in
             guard let self = self else { return }
             self.setSurveyComplete()
