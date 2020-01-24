@@ -37,6 +37,19 @@ struct Appointment: Mappable, Equatable {
                 return "8AM - 2PM"
             }
         }
+        
+        var formattedEndHour: String {
+            switch self {
+            case .am:
+                return "12PM"
+            case .pm:
+                return "5PM"
+            case .pmSaturday:
+                return "3PM"
+            case .anytime:
+                return "2PM"
+            }
+        }
     }
     
     let id: String

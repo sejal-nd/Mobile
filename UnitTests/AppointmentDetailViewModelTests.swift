@@ -74,7 +74,7 @@ class AppointmentDetailViewModelTests: XCTestCase {
         
         // In Progress
         viewModel.appointment = getAppointment(forKey: .apptInProgress)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your appointment is in progress.")
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your appointment is in progress. Estimated time of completion is 2PM.")
         
         // Complete
         viewModel.appointment = getAppointment(forKey: .apptComplete)
