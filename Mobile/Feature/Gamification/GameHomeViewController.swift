@@ -239,7 +239,7 @@ class GameHomeViewController: AccountPickerViewController {
             self.viewModel.currentTaskIndex = gameUser.taskIndex
             
             // Reconcile points with what's on the server
-            if self.viewModel.points != gameUser.points {
+            if self.viewModel.points != gameUser.points && self.viewModel.debouncedCoinQueue.isEmpty {
                 _ = self.progressBar.setPoints(gameUser.points, animated: false)
                 self.viewModel.points = gameUser.points
             }
