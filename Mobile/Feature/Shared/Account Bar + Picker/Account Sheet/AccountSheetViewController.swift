@@ -240,7 +240,7 @@ class AccountSheetViewController: UIViewController {
         let accountListCell = UINib(nibName: AccountListRow.className, bundle: nil)
         tableView.register(accountListCell, forCellReuseIdentifier: AccountListRow.className)
         
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView() // To hide empty row separators
         
         // Determine selected indexPath
         guard let row = accounts.firstIndex(of: AccountsStore.shared.currentAccount) else { return }

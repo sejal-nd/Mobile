@@ -20,7 +20,6 @@ class HomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var colorBackgroundView: UIView!
     @IBOutlet weak var colorBackgroundHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var accountDisallowView: UIView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
@@ -33,6 +32,7 @@ class HomeViewController: AccountPickerViewController {
     
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
+    var gameOnboardingCardView: HomeGameOnboardingCardView?
     var appointmentCardView: HomeAppointmentCardView?
     var prepaidPendingCardView: HomePrepaidCardView?
     var prepaidActiveCardView: HomePrepaidCardView?
@@ -57,7 +57,8 @@ class HomeViewController: AccountPickerViewController {
                                   authService: ServiceFactory.createAuthenticationService(),
                                   outageService: ServiceFactory.createOutageService(),
                                   alertsService: ServiceFactory.createAlertsService(),
-                                  appointmentService: ServiceFactory.createAppointmentService())
+                                  appointmentService: ServiceFactory.createAppointmentService(),
+                                  gameService: ServiceFactory.createGameService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -65,6 +66,8 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FirebaseUtility.trackScreenWithName(self.className, className: self.className)
         
         colorBackgroundHeightConstraint.constant = colorBackgroundViewHeight
         
@@ -189,6 +192,37 @@ class HomeViewController: AccountPickerViewController {
                 let index = self.topPersonalizeButton != nil ? 1 : 0
                 self.contentStackView.insertArrangedSubview(appointmentCardView, at: index)
                 self.appointmentCardView = appointmentCardView
+            })
+            .disposed(by: bag)
+        
+        viewModel.showGameOnboardingCard
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] showCard in
+                guard let self = self else { return }
+                
+                guard showCard else {
+                    self.gameOnboardingCardView?.removeFromSuperview()
+                    self.gameOnboardingCardView = nil
+                    return
+                }
+
+                let gameOnboardingCardView = HomeGameOnboardingCardView.create()
+                
+                gameOnboardingCardView.letsGoButton.rx.touchUpInside.asDriver()
+                    .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+                    .drive(onNext: { [weak self] in
+                        guard let self = self else { return }
+                        let sb = UIStoryboard(name: "Game", bundle: nil)
+                        if let navController = sb.instantiateViewController(withIdentifier: "GameOnboarding") as? UINavigationController,
+                            let vc = navController.viewControllers.first as? GameOnboardingIntroViewController {
+                            vc.accountDetail = $0
+                            self.present(navController, animated: true, completion: nil)
+                        }
+                    }).disposed(by: self.bag)
+                
+                let index = self.topPersonalizeButton != nil ? 1 : 0
+                self.contentStackView.insertArrangedSubview(gameOnboardingCardView, at: index)
+                self.gameOnboardingCardView = gameOnboardingCardView
             })
             .disposed(by: bag)
         
@@ -528,8 +562,7 @@ class HomeViewController: AccountPickerViewController {
         
         Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
                      usageCardView.viewCommercialUsageButton.rx.touchUpInside.asDriver())
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
-                .asDriver(onErrorDriveWith: .empty()))
+            .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
                 let residentialAMIString = String(format: "%@%@", $0.isResidential ? "Residential/" : "Commercial/", $0.isAMIAccount ? "AMI" : "Non-AMI")
                 
@@ -544,8 +577,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: usageCardView.disposeBag)
         
         usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.usageCardViewModel.serResultEvents.elements()
-                .asDriver(onErrorDriveWith: .empty()))
+            .withLatestFrom(viewModel.usageCardViewModel.serResultEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
                 GoogleAnalytics.log(event: .allSavingsSmartEnergy)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
@@ -585,7 +617,7 @@ class HomeViewController: AccountPickerViewController {
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             let alertViewController = InfoAlertController(title: NSLocalizedString("Estimated Amount", comment: ""),
-            message: NSLocalizedString("This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: ""))
+                                                          message: NSLocalizedString("This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: ""))
             self?.present(alertViewController, animated: true, completion: nil)
         }).disposed(by: projectedBillCardView.disposeBag)
     }
@@ -731,6 +763,21 @@ extension HomeViewController: AccountPickerDelegate {
         // enable refresh control once accounts list loads
         setRefreshControlEnabled(enabled: true)
         viewModel.fetchData.onNext(.switchAccount)
+
+        let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
+        let prefersGameHome = UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome)
+        let onboardingCompleteLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
+        let optedOutLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOptedOutLocal)
+        
+        if AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber &&
+            !optedOutLocal && onboardingCompleteLocal && UI_USER_INTERFACE_IDIOM() != .pad {
+            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
+            if prefersGameHome {
+                NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
+            }
+        } else {
+            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
+        }
     }
 }
 

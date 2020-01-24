@@ -34,6 +34,7 @@ class AlertPreferencesViewModel {
     let budgetBilling = Variable(false)
     let appointmentTracking = Variable(false)
     let forYourInfo = Variable(false)
+    let energyBuddyUpdates = Variable(false)
     let english = Variable(true) // Language selection. False = Spanish
     
     var hasPreferencesChanged = Variable(false)
@@ -43,6 +44,7 @@ class AlertPreferencesViewModel {
     
     var initialBillReadyValue = false
     var initialEnglishValue = true
+    var initialEnergyBuddyUpdatesValue = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference)
     
     var shouldEnrollPaperlessEBill: Bool {
         if Environment.shared.opco == .bge { return false }
@@ -94,6 +96,10 @@ class AlertPreferencesViewModel {
                         (NSLocalizedString("News", comment: ""),
                          [.forYourInformation])
                     ]
+                    let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
+                    if isGameUser {
+                        self.sections.append((NSLocalizedString("Energy Buddy", comment: ""), [.energyBuddyUpdates]))
+                    }
                 case .comEd, .peco:
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                                       [.outage, .severeWeather])]
@@ -150,6 +156,7 @@ class AlertPreferencesViewModel {
                 self.budgetBilling.value = alertPrefs.budgetBilling
                 self.appointmentTracking.value = alertPrefs.appointmentTracking
                 self.forYourInfo.value = alertPrefs.forYourInfo
+                self.energyBuddyUpdates.value = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference)
             })
             .mapTo(())
     }
@@ -172,6 +179,12 @@ class AlertPreferencesViewModel {
         
         if shouldEnrollPaperlessEBill {
             observables.append(enrollPaperlessEBill())
+        }
+        
+        UserDefaults.standard.set(energyBuddyUpdates.value, forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference)
+        if !energyBuddyUpdates.value {
+            FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .push_opt_out)])
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
         }
         
         Observable.zip(observables)
@@ -218,9 +231,12 @@ class AlertPreferencesViewModel {
     private lazy var languagePrefChanged = english.asObservable()
         .map { [weak self] in $0 != self?.initialEnglishValue ?? false }
     
+    private lazy var energyBuddyUpdatesPrefChanged = energyBuddyUpdates.asObservable()
+        .map { [weak self] in $0 != self?.initialEnergyBuddyUpdatesValue ?? false }
+    
     private(set) lazy var prefsChanged = Observable
-        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, languagePrefChanged)
-        { $0 || $1 || $2 }
+        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, languagePrefChanged, energyBuddyUpdatesPrefChanged)
+        { $0 || $1 || $2 || $3 }
         .startWith(false)
         .share(replay: 1, scope: .forever)
     
@@ -299,6 +315,8 @@ class AlertPreferencesViewModel {
         case appointmentTracking
         // News
         case forYourInformation
+        // Energy Buddy
+        case energyBuddyUpdates
         
         var titleText: String {
             switch self {
@@ -322,6 +340,8 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Appointment Tracking", comment: "")
             case .forYourInformation:
                 return NSLocalizedString("For Your Information", comment: "")
+            case .energyBuddyUpdates:
+                return NSLocalizedString("Energy Buddy Updates", comment: "")
             }
         }
         
@@ -392,6 +412,10 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Occasionally, ComEd may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
             case (.forYourInformation, .peco):
                 return NSLocalizedString("Occasionally, PECO may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
+                
+            // Energy Buddy
+            case (.energyBuddyUpdates, _):
+                return NSLocalizedString("Receive a notification when your Energy Buddy has new data, tips, and insights to help you save energy and money.", comment: "")
             }
         }
     }
