@@ -54,7 +54,6 @@ class GameHomeViewController: AccountPickerViewController {
     var layoutSubviewsComplete = false
     var welcomedUser = false
     var loadedInitialGameUser = false
-    var isVisible = false
     var didGoToHomeProfile = false
     var viewDidAppear = false
     
@@ -64,25 +63,7 @@ class GameHomeViewController: AccountPickerViewController {
         super.viewDidLoad()
         
         FirebaseUtility.trackScreenWithName(self.className, className: self.className)
-        
-        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                self?.energyBuddyView.stopAnimations()
-            }).disposed(by: bag)
-        
-        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                // If the app is foregrounded when on a different screen (i.e. Gifts), this would
-                // still fire and the buddy bounce animation would freeze
-                if self.isVisible {
-                    self.energyBuddyView.updateBuddy()
-                    self.energyBuddyView.playDefaultAnimations()
-                }
-            }).disposed(by: bag)
-                
+                                
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -139,6 +120,20 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.fetchData()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if !layoutSubviewsComplete {
+            layoutSubviewsComplete = true
+            
+            energyBuddyView.layoutIfNeeded()
+            energyBuddyView.playDefaultAnimations()
+            
+            progressBar.layoutIfNeeded()
+            _ = progressBar.setPoints(viewModel.points, animated: false)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -148,7 +143,8 @@ class GameHomeViewController: AccountPickerViewController {
         
         energyBuddyView.updateBuddy()
         
-        isVisible = true
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -161,8 +157,8 @@ class GameHomeViewController: AccountPickerViewController {
             "selected_hat": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none",
             "selected_acc": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
         ])
-                
-        if viewDidAppear { // Only do this on repeat `viewDidAppear`s. The initial play is done in `viewDidLayoutSubviews`
+
+        if viewDidAppear { // Only do this on the 2nd `viewDidAppear` and beyond. The initial play is done in `viewDidLayoutSubviews`
             energyBuddyView.playDefaultAnimations()
         }
         
@@ -198,27 +194,22 @@ class GameHomeViewController: AccountPickerViewController {
         
         viewDidAppear = true
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
-        if !layoutSubviewsComplete {
-            layoutSubviewsComplete = true
-            
-            energyBuddyView.layoutIfNeeded()
-            energyBuddyView.playDefaultAnimations()
-            
-            progressBar.layoutIfNeeded()
-            _ = progressBar.setPoints(viewModel.points, animated: false)
-        }
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         energyBuddyView.stopAnimations()
         
-        isVisible = false
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func willResignActive() {
+        energyBuddyView.stopAnimations()
+    }
+    
+    @objc private func didBecomeActive() {
+       energyBuddyView.updateBuddy()
+       energyBuddyView.playDefaultAnimations()
     }
     
     private func bindViewModel() {
@@ -248,7 +239,7 @@ class GameHomeViewController: AccountPickerViewController {
             self.viewModel.currentTaskIndex = gameUser.taskIndex
             
             // Reconcile points with what's on the server
-            if self.viewModel.points != gameUser.points {
+            if self.viewModel.points != gameUser.points && self.viewModel.debouncedCoinQueue.isEmpty {
                 _ = self.progressBar.setPoints(gameUser.points, animated: false)
                 self.viewModel.points = gameUser.points
             }
@@ -352,7 +343,7 @@ class GameHomeViewController: AccountPickerViewController {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
         
         let content = UNMutableNotificationContent()
-        content.title = "Energy Buddy Misses You!"
+        content.title = "Lumi Misses You!"
         content.body = "Check out new data, tips, and insights to help you save energy and money."
         content.sound = UNNotificationSound.default
         
@@ -488,7 +479,7 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         // Season will either be "WINTER", "SUMMER", or nil. Winter tips should only be displayed
-        // in Feb/March, while Summer tips should only be displayed in June/July
+        // in October - March, while Summer tips should only be displayed in April - September
         var taskSeason: String?
         if let tip = task.tip, let tipSeason = tip.season?.uppercased() {
             taskSeason = tipSeason
@@ -510,7 +501,7 @@ class GameHomeViewController: AccountPickerViewController {
     private func showEnergyBuddyTooltip() {
         FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .viewed_task_empty_state)])
         
-        let message = NSMutableAttributedString(string: NSLocalizedString("I’m your Energy Buddy!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nAlong the way, you’ll be awarded with points for checking your daily and weekly insights as well as any tips, quizzes, or other challenges I might have for you! With those points, you can unlock backgrounds, hats, and accessories.", comment: ""))
+        let message = NSMutableAttributedString(string: NSLocalizedString("I’m Lumi!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nAlong the way, you’ll be awarded with points for checking your daily and weekly insights as well as any tips, quizzes, or other challenges I might have for you! With those points, you can unlock backgrounds, hats, and accessories.", comment: ""))
         if let taskTimeStr = viewModel.nextAvaiableTaskTimeString {
             let attrString = NSMutableAttributedString(string: "\n\n\(taskTimeStr)", attributes: [
                 .foregroundColor: UIColor.primaryColor,
@@ -661,7 +652,11 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
 extension GameHomeViewController: GameTipViewControllerDelegate {
     
     func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController, withQuizPoints quizPoints: Double) {
-        awardPoints(3 + quizPoints, advanceTaskIndex: true)
+        if quizPoints > 0 { // Pressed "View Tip" after answering a quiz question
+            awardPoints(quizPoints, advanceTaskIndex: true)
+        } else {
+            awardPoints(3, advanceTaskIndex: true)
+        }
     }
 }
 
@@ -749,7 +744,7 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
     }
 }
 
-// MARK - GameSurveyViewControllerDelegate
+// MARK: - GameSurveyViewControllerDelegate
 extension GameHomeViewController: GameSurveyViewControllerDelegate {
     
     func gameSurveyViewControllerDidFinish(_ viewController: GameSurveyViewController, surveyComplete: Bool) {
@@ -767,7 +762,7 @@ extension GameHomeViewController: GameSurveyViewControllerDelegate {
     }
 }
 
-// MARK - GameCheckInViewControllerDelegate
+// MARK: - GameCheckInViewControllerDelegate
 extension GameHomeViewController: GameCheckInViewControllerDelegate {
     
     func gameCheckInViewController(_ gameCheckInViewController: GameCheckInViewController, selectedResponse: String) {
@@ -787,7 +782,7 @@ extension GameHomeViewController: GameCheckInViewControllerDelegate {
     }
 }
 
-// MARK - WeeklyInsightViewControllerDelegate
+// MARK: - WeeklyInsightViewControllerDelegate
 extension GameHomeViewController: WeeklyInsightViewControllerDelegate {
     
     func weeklyInsightViewControllerWillDisappear(_ weeklyInsightViewController: WeeklyInsightViewController) {

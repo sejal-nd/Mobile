@@ -134,6 +134,7 @@ class EnergyBuddyView: UIView {
         confettiAnimation!.frame.size = confettiLottieView.frame.size
         confettiAnimation!.contentMode = .scaleAspectFit
         confettiAnimation!.loopMode = .loop
+        confettiAnimation!.backgroundBehavior = .pauseAndRestore
         confettiLottieView.addSubview(confettiAnimation!)
         confettiAnimation!.play()
     }
@@ -299,6 +300,7 @@ class EnergyBuddyView: UIView {
         taskIndicatorAnimation!.frame.size = taskIndicatorLottieView.frame.size
         taskIndicatorAnimation!.contentMode = .scaleAspectFit
         taskIndicatorAnimation!.loopMode = .loop
+        taskIndicatorAnimation!.backgroundBehavior = .pauseAndRestore
         taskIndicatorLottieView.addSubview(taskIndicatorAnimation!)
         taskIndicatorAnimation!.play()
         

@@ -45,18 +45,6 @@ class LoadingIndicator: UIView {
         
         // Triggers Initial DidSet
         isStormMode = false
-                
-        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                self?.lottieAnimationView?.stop()
-            }).disposed(by: bag)
-        
-        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                self?.playAnimation()
-            }).disposed(by: bag)
     }
     
     override var intrinsicContentSize: CGSize {
@@ -88,6 +76,7 @@ class LoadingIndicator: UIView {
 
         lottieAnimationView!.frame.size = CGSize(width: 60, height: 12)
         lottieAnimationView!.loopMode = .loop
+        lottieAnimationView!.backgroundBehavior = .pauseAndRestore
         lottieAnimationView!.play()
         
         addSubview(lottieAnimationView!)

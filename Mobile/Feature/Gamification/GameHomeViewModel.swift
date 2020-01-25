@@ -28,6 +28,7 @@ class GameHomeViewModel {
     let selectedCoinView = BehaviorRelay<DailyInsightCoinView?>(value: nil)
     
     var debouncedCoinQueue = [(Date, Bool)]()
+    var inFlightCoins = [(Date, Bool)]()
     let debouncedPoints = BehaviorRelay<Double?>(value: nil)
     
     var fetchDisposable: Disposable?
@@ -65,18 +66,24 @@ class GameHomeViewModel {
             .subscribe(onNext: { [weak self] points in
                 guard let self = self, let accountDetail = self.accountDetail.value else { return }
 
+                self.inFlightCoins.append(contentsOf: self.debouncedCoinQueue)
                 let params = ["points": points!]
                 self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { [weak self] gameUser in
-                        self?.debouncedCoinQueue.removeAll()
-                        self?.gameUser.accept(gameUser)
+                        guard let self = self else { return }
+                        for tuple in self.inFlightCoins {
+                           self.debouncedCoinQueue.removeAll(where: { $0 == tuple })
+                        }
+                        self.inFlightCoins.removeAll()
+                        self.gameUser.accept(gameUser)
                     }, onError: { [weak self] _ in
                         guard let self = self else { return }
-                        for tuple in self.debouncedCoinQueue {
+                        for tuple in self.inFlightCoins {
+                            self.debouncedCoinQueue.removeAll(where: { $0 == tuple })
                             self.coreDataManager.removeCollectedCoin(accountNumber: accountDetail.accountNumber, date: tuple.0, gas: tuple.1)
                         }
-                        self.debouncedCoinQueue.removeAll()
+                        self.inFlightCoins.removeAll()
                         self.gameUser.accept(self.gameUser.value) // To trigger point reconciliation
                         self.usageData.accept(self.usageData.value) // To trigger `layoutCoinViews`
                     }).disposed(by: self.bag)

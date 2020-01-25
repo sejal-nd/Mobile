@@ -38,6 +38,8 @@ class StormModeBillViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never // Large title doesn't play well with UIRefreshControl
+        
         view.backgroundColor = .stormModeBlack
         
         accountPicker.delegate = self
@@ -70,6 +72,8 @@ class StormModeBillViewController: AccountPickerViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        setRefreshControlEnabled(enabled: true)
     }
 
     @objc func setRefreshControlEnabled(enabled: Bool) {
@@ -93,18 +97,14 @@ class StormModeBillViewController: AccountPickerViewController {
     }
     
     @objc func onPullToRefresh() {
-        viewModel.fetchData.onNext(.refresh)
+        viewModel.fetchData.onNext(())
+        UIAccessibility.post(notification: .screenChanged, argument: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     func bindViewStates() {
-        viewModel.didFinishRefresh
-            .drive(onNext: { [weak self] in self?.refreshControl?.endRefreshing() })
-            .disposed(by: disposeBag)
-        
-        viewModel.isSwitchingAccounts
-            .drive(onNext: { [weak self] in self?.setRefreshControlEnabled(enabled: !$0) })
-            .disposed(by: disposeBag)
-        
         viewModel.showBillCard.not().drive(billCardView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showButtonStack.not().drive(buttonStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showPrepaidCard.not().drive(prepaidView.rx.isHidden).disposed(by: disposeBag)
@@ -160,7 +160,7 @@ class StormModeBillViewController: AccountPickerViewController {
         
         Observable.merge(noNetworkConnectionView.reload)
             .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] in self?.viewModel.fetchData.onNext(.switchAccount) })
+            .drive(onNext: { [weak self] in self?.viewModel.fetchData.onNext(()) })
             .disposed(by: disposeBag)
     }
     
@@ -168,7 +168,6 @@ class StormModeBillViewController: AccountPickerViewController {
         guard let billCardView = billCardView else { return }
         
         billCardView.oneTouchPayFinished
-            .map { FetchingAccountState.switchAccount }
             .bind(to: viewModel.fetchData)
             .disposed(by: billCardView.bag)
         
@@ -216,6 +215,6 @@ class StormModeBillViewController: AccountPickerViewController {
 
 extension StormModeBillViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        viewModel.fetchData.onNext(.switchAccount)
+        viewModel.fetchData.onNext(())
     }
 }

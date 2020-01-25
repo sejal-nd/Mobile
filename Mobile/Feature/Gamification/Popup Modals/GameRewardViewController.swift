@@ -81,7 +81,7 @@ class GameRewardViewController: UIViewController {
                 self.titleLabelTopConstraint.constant = 51
                 
                 let giftTypeString = self.gift.type.rawValue as String
-                self.titleLabel.text = String.localizedStringWithFormat("You received a new %@ for your Energy Buddy!", giftTypeString)
+                self.titleLabel.text = String.localizedStringWithFormat("You received a new %@ for Lumi!", giftTypeString)
                 UIView.performWithoutAnimation { // Prevents ugly setTitle animation
                     self.button.setTitle(NSLocalizedString("Set as \(giftTypeString.capitalized)", comment: ""), for: .normal)
                     self.button.layoutIfNeeded()

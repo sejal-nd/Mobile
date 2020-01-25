@@ -133,6 +133,7 @@ class HomeBillCardView: UIView {
         alertAnimation.translatesAutoresizingMaskIntoConstraints = false
         alertAnimation.frame = headerAlertAnimationContainer.bounds
         alertAnimation.contentMode = .scaleAspectFit
+        alertAnimation.backgroundBehavior = .pauseAndRestore
         headerAlertAnimationContainer.addSubview(alertAnimation)
         alertAnimation.centerXAnchor.constraint(equalTo: headerAlertAnimationContainer.centerXAnchor).isActive = true
         alertAnimation.centerYAnchor.constraint(equalTo: headerAlertAnimationContainer.centerYAnchor).isActive = true
