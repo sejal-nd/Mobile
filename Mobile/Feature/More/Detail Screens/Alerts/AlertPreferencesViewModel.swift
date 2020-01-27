@@ -98,7 +98,7 @@ class AlertPreferencesViewModel {
                     ]
                     let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
                     if isGameUser {
-                        self.sections.append((NSLocalizedString("Lumi's World", comment: ""), [.energyBuddyUpdates]))
+                        self.sections.append((NSLocalizedString("BGE's Play-n-Save Pilot", comment: ""), [.energyBuddyUpdates]))
                     }
                 case .comEd, .peco:
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
