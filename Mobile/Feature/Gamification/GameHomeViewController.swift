@@ -208,8 +208,8 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     @objc private func didBecomeActive() {
-       energyBuddyView.updateBuddy()
-       energyBuddyView.playDefaultAnimations()
+        energyBuddyView.updateBuddy()
+        energyBuddyView.playDefaultAnimations()
     }
     
     private func bindViewModel() {
@@ -227,6 +227,9 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.refreshing.asDriver().drive(onNext: { [weak self] refreshing in
             if !refreshing {
                 self?.refreshControl?.endRefreshing()
+                if self?.energyBuddyView.bodyAnimation?.isAnimationPlaying == false {
+                    self?.didBecomeActive()
+                }
             }
         }).disposed(by: bag)
         viewModel.shouldShowError.not().drive(errorView.rx.isHidden).disposed(by: bag)

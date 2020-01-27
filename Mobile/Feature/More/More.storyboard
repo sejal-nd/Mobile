@@ -1106,7 +1106,7 @@
             </objects>
             <point key="canvasLocation" x="3296.8000000000002" y="1838.6806596701651"/>
         </scene>
-        <!--Lumi's World-->
+        <!--BGE's Play-n-Save Pilot-->
         <scene sceneID="Wze-xw-ck4">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="UIb-7z-3ok" customClass="GameOptInOutViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
@@ -1330,7 +1330,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5bJ-N8-jsI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Lumi's World" id="jNe-cp-7KF"/>
+                    <navigationItem key="navigationItem" title="BGE's Play-n-Save Pilot" id="jNe-cp-7KF"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="4gy-fg-Knx" id="Ns0-96-VaI"/>

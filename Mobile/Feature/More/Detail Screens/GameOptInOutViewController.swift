@@ -34,7 +34,7 @@ class GameOptInOutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Lumi's World", comment: "")
+        title = NSLocalizedString("BGE's Play-n-Save Pilot", comment: "")
 
         for bullet in bulletPoints {
             bullet.backgroundColor = .primaryColor

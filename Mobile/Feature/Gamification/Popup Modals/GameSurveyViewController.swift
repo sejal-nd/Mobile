@@ -61,7 +61,7 @@ class GameSurveyViewController: UIViewController {
         
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        detailLabel.text = NSLocalizedString("Thank you for participating in BGE's Lumi's World pilot program. What do you think of the new energy saving features added to our mobile app? Take this quick survey and let us know!", comment: "")
+        detailLabel.text = NSLocalizedString("Thank you for participating in BGE's Play-n-Save pilot program. What do you think of the new energy saving features added to our mobile app? Take this quick survey and let us know!", comment: "")
         
         let takeSurveyButtonTitle = survey.surveyNumber == 1 ?
             NSLocalizedString("Take Survey", comment: "") :
