@@ -18,10 +18,10 @@ class MCSGameService: GameService {
                 }
                 
                 FirebaseUtility.setUserProperty(.gamificationGroup, value: gameUser.pilotGroup)
+                FirebaseUtility.setUserProperty(.gamificationCluster, value: gameUser.cluster)
                 FirebaseUtility.setUserProperty(.gamificationIsOptedOut, value: gameUser.optedOut ? "true" : "false")
                 FirebaseUtility.setUserProperty(.gamificationIsOnboarded, value: gameUser.onboardingComplete ? "true" : "false")
-                FirebaseUtility.setUserProperty(.gamificationIsClusterTwo, value: gameUser.isClusterTwo ? "true" : "false")
-                
+
                 GiftInventory.shared.auditUserDefaults(userPoints: gameUser.points)
                 
                 // Streak calculation
