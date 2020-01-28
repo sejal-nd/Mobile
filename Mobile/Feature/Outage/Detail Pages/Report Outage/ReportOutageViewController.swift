@@ -306,6 +306,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         self.lottieAnimationView = AnimationView(name: name)
         self.lottieAnimationView?.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         self.lottieAnimationView?.loopMode = shouldLoop ? .loop : .playOnce
+        self.lottieAnimationView?.backgroundBehavior = .pauseAndRestore
         self.lottieAnimationView?.contentMode = .scaleAspectFit
         if let animationView = self.lottieAnimationView {
             self.meterPingCurrentStatusAnimationView.addSubview(animationView)

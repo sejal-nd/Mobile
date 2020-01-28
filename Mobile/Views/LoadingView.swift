@@ -22,6 +22,7 @@ class LoadingView: UIView {
         
         loadingAnimationView.frame.size = CGSize(width: 72, height: 72)
         loadingAnimationView.loopMode = .loop
+        loadingAnimationView.backgroundBehavior = .pauseAndRestore
         loadingAnimationView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(loadingAnimationView)

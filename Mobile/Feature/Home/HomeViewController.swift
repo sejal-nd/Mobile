@@ -106,7 +106,7 @@ class HomeViewController: AccountPickerViewController {
         NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOff)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                self?.viewModel.fetchData.onNext(.switchAccount)
+                self?.viewModel.fetchData.onNext(())
             })
             .disposed(by: bag)
     }
@@ -124,7 +124,7 @@ class HomeViewController: AccountPickerViewController {
                 
                 // Refresh if not first load and new card(s) added
                 if !oldCards.isEmpty && !Set(newCards).subtracting(oldCards).isEmpty {
-                    self.viewModel.fetchData.onNext(.switchAccount)
+                    self.viewModel.fetchData.onNext(())
                 }
             })
             .disposed(by: bag)
@@ -511,7 +511,6 @@ class HomeViewController: AccountPickerViewController {
         guard let billCardView = billCardView else { return }
         
         billCardView.oneTouchPayFinished
-            .map { FetchingAccountState.switchAccount }
             .bind(to: viewModel.fetchData)
             .disposed(by: billCardView.bag)
         
@@ -659,20 +658,15 @@ class HomeViewController: AccountPickerViewController {
     }
     
     @objc func onPullToRefresh() {
-        viewModel.fetchData.onNext(.refresh)
-        
+        viewModel.fetchData.onNext(())
         RemoteConfigUtility.shared.fetchCloudValues()
+        UIAccessibility.post(notification: .screenChanged, argument: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.refreshControl?.endRefreshing()
+        }
     }
 
     func bindLoadingStates() {
-        viewModel.refreshFetchTracker.asObservable()
-            .subscribe(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
-            .disposed(by: bag)
-        
-        viewModel.refreshFetchTracker.asDriver().filter(!)
-            .drive(onNext: { [weak self] _ in
-                self?.refreshControl?.endRefreshing()
-            }).disposed(by: bag)
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
         viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
         
@@ -692,7 +686,6 @@ class HomeViewController: AccountPickerViewController {
         }).disposed(by:bag)
         
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
-            .mapTo(FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchData)
             .disposed(by: bag)
         
@@ -762,7 +755,7 @@ extension HomeViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         // enable refresh control once accounts list loads
         setRefreshControlEnabled(enabled: true)
-        viewModel.fetchData.onNext(.switchAccount)
+        viewModel.fetchData.onNext(())
 
         let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
         let prefersGameHome = UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome)

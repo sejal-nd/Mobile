@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xNU-PN-Pey">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xNU-PN-Pey">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1106,7 +1106,7 @@
             </objects>
             <point key="canvasLocation" x="3296.8000000000002" y="1838.6806596701651"/>
         </scene>
-        <!--Energy Buddy-->
+        <!--BGE's Play-n-Save Pilot-->
         <scene sceneID="Wze-xw-ck4">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="UIb-7z-3ok" customClass="GameOptInOutViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
@@ -1118,16 +1118,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AY3-vS-Oof">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="308.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="288.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Energy Buddy teaches you how to make small changes that lead to big impacts. This feature includes:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvf-P2-4pq">
-                                                <rect key="frame" x="20" y="30" width="374" height="61"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lumi teaches you how to make small changes that lead to big impacts. This feature includes:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvf-P2-4pq">
+                                                <rect key="frame" x="20" y="30" width="374" height="41"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="84D-dL-r1l">
-                                                <rect key="frame" x="20" y="111" width="374" height="167.5"/>
+                                                <rect key="frame" x="20" y="91" width="374" height="167.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rQ9-hG-cBf">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -1178,7 +1178,7 @@
                                                                     <constraint firstAttribute="height" constant="5" id="LK5-MB-zQd"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Energy Buddy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzL-BU-B0w">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lumi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzL-BU-B0w">
                                                                 <rect key="frame" x="15" y="0.0" width="359" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -1330,7 +1330,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5bJ-N8-jsI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Energy Buddy" id="jNe-cp-7KF"/>
+                    <navigationItem key="navigationItem" title="BGE's Play-n-Save Pilot" id="jNe-cp-7KF"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="4gy-fg-Knx" id="Ns0-96-VaI"/>
