@@ -123,7 +123,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             viewModel.reportFormHidden.value = false
         }
         
-        if opco != .comEd {
+        if opco == .bge {
             commentView.isHidden = true
         }
         
