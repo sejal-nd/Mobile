@@ -228,7 +228,9 @@ class GameHomeViewController: AccountPickerViewController {
             if !refreshing {
                 self?.refreshControl?.endRefreshing()
                 if self?.energyBuddyView.bodyAnimation?.isAnimationPlaying == false {
-                    self?.didBecomeActive()
+                    self?.energyBuddyView.stopAnimations()
+                    self?.energyBuddyView.updateBuddy()
+                    self?.energyBuddyView.playDefaultAnimations()
                 }
             }
         }).disposed(by: bag)
