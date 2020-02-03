@@ -121,7 +121,7 @@ class LoginUITests: ExelonUITestCase {
         tapButton(buttonText: "Continue as Guest")
         
         let tableView = app.tables.matching(identifier: "guestTableView")
-        let cell = tableView.cells.element(matching: .cell, identifier: "contactUsCell")
+        let cell = tableView.cells.element(matching: .cell, identifier: "Contact Us")
         cell.tap()
         
         checkExistenceOfElements([

@@ -176,7 +176,6 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             case 1:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
-                cell.accessibilityLabel = "contactUsCell"
             case 2:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morevideo.pdf"), text: NSLocalizedString("Billing Videos", comment: ""))
             case 3:

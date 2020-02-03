@@ -3972,11 +3972,11 @@
 				82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */,
 				9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */,
 				E8F353A1200963B600883CEA /* TabNavigationUITests.swift */,
+				B0EE78E122120E4F00F53C56 /* MaintenanceUITests.swift */,
+				B0EE78E522132B2000F53C56 /* ScreenshotsUITests.swift */,
 				E8F353B5200D19E100883CEA /* UITestExtensions.swift */,
 				B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */,
 				0E863D8520DD4703004D77EC /* TestHelper.swift */,
-				B0EE78E122120E4F00F53C56 /* MaintenanceUITests.swift */,
-				B0EE78E522132B2000F53C56 /* ScreenshotsUITests.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
