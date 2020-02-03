@@ -49,6 +49,8 @@ class TitleTableViewCell: UITableViewCell {
         titleLabel.text = text
         detailLabel.text = detailText
         
+        accessibilityLabel = text
+        
         detailLabel.isHidden = detailText != nil ? false : true
         
         disclosureImageView.isHidden = shouldHideDisclosure

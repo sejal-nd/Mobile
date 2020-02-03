@@ -61,6 +61,7 @@ class MoreViewController: UIViewController {
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
         tableView.register(UINib(nibName: ToggleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ToggleTableViewCell.className)
+        tableView.accessibilityLabel = "moreTableView"
         
         // Constraint stuff: In Storm Mode, we want the tableView top constrained to superview top
         // for smooth large title nav collapsing. Outside of Storm Mode there is no nav bar, so we
