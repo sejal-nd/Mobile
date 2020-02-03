@@ -88,6 +88,13 @@ class ExelonUITestCase: XCTestCase {
         } else {
             XCTAssertTrue(tabButtonElement(withText: "Home").exists)
         }
+        
+        // Handle Commercial Usage
+        let closeButton = app.buttons["Close"]
+        
+        if closeButton.exists {
+            closeButton.tap()
+        }
     }
 }
 
