@@ -43,9 +43,6 @@ class PECOReleaseOfInfoViewController: UIViewController {
 
         title = NSLocalizedString("Release of Info", comment: "")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        navigationItem.leftBarButtonItem = cancelButton
-        
         submitButton.rx.tap.asDriver().drive(onNext: { _ in
             self.onSubmitPress()
         }).disposed(by: disposeBag)
@@ -72,10 +69,6 @@ class PECOReleaseOfInfoViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         GoogleAnalytics.log(event: .releaseInfoOffer)
-    }
-    
-    @objc func onCancelPress() {
-        navigationController?.popViewController(animated: true)
     }
     
     @objc func onSubmitPress() {
