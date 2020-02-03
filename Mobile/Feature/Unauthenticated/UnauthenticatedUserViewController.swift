@@ -127,6 +127,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     private func configureTableView() {
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
+        tableView.accessibilityLabel = "guestTableView"
         
         RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
             self?.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
@@ -175,6 +176,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             case 1:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
+                cell.accessibilityLabel = "contactUsCell"
             case 2:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morevideo.pdf"), text: NSLocalizedString("Billing Videos", comment: ""))
             case 3:
