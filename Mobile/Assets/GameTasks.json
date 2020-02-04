@@ -72,7 +72,7 @@
                 { "answer": "TRUE", "correct": false },
                 { "answer": "FALSE", "correct": true }
             ],
-            "answerDescription": "FALSE! Do not block your heaters. Move furniture and other objects in the way of heaters to save you money and enhance comfort.",
+            "answerDescription": "FALSE! Do not block your heaters. Move furniture and other objects out of the way of heaters to save you money and enhance comfort.",
             "tipId": "tip043_improve_baseboard_efficiency",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN",
