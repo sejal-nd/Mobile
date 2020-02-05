@@ -24,7 +24,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    @IBOutlet weak var accountInfoBar: AccountInfoBar!
+    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
@@ -141,7 +141,8 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] _ in
                     guard let self = self else { return }
-                    self.accountInfoBar.update()
+                    let currentAccount = AccountsStore.shared.currentAccount
+                    self.accountInfoBar.configure(accountNumberText: currentAccount.accountNumber, addressText: currentAccount.address)
                     fetchReleaseOfInfo()
                 }, onError: { [weak self] error in
                     guard let self = self else { return }

@@ -2386,9 +2386,6 @@
 		E8C453151EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
 		E8C453161EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
 		E8C453171EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
-		E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
-		E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
-		E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
 		E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */; };
 		E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */; };
 		E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */; };
@@ -3753,7 +3750,6 @@
 		E8C29C771F630FC100DB73FC /* OutageStatusButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutageStatusButton.xib; sourceTree = "<group>"; };
 		E8C29C7B1F630FD200DB73FC /* OutageStatusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusButton.swift; sourceTree = "<group>"; };
 		E8C453141EF3293600F5C781 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
-		E8C453181EF4154000F5C781 /* AccountInfoBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
 		E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewController.swift; sourceTree = "<group>"; };
 		E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewController.swift; sourceTree = "<group>"; };
 		E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPaySettingsViewController.swift; sourceTree = "<group>"; };
@@ -4956,7 +4952,6 @@
 		35CEB02A230D8DC400366440 /* Account Info Bar */ = {
 			isa = PBXGroup;
 			children = (
-				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
 			);
 			path = "Account Info Bar";
 			sourceTree = "<group>";
@@ -8384,7 +8379,6 @@
 				E80CBD0F1F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				B0882C9F210B925000EB756B /* UsageToolCardView.swift in Sources */,
-				E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				35277AFD210266BF00411297 /* UsageTool.swift in Sources */,
 				9CEE412523722B8A005A4AD3 /* Weekday.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -8796,7 +8790,6 @@
 				35277AFB2102325100411297 /* UsageViewModel.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
-				E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				B068DB6020D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7022121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
@@ -9223,7 +9216,6 @@
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
-				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */,
 				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				9CD742C0237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */,
