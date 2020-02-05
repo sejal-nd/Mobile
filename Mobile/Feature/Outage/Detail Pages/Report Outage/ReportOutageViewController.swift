@@ -19,7 +19,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!

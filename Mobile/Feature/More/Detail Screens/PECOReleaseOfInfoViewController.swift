@@ -24,7 +24,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!

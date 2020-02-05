@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountInfoBarNew: UIView {
+class AccountInfoBar: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -26,7 +26,7 @@ class AccountInfoBarNew: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed(AccountInfoBarNew.className, owner: self, options: nil)
+        Bundle.main.loadNibNamed(AccountInfoBar.className, owner: self, options: nil)
         
         self.frame = contentView.frame
         addSubview(contentView)
@@ -49,7 +49,7 @@ class AccountInfoBarNew: UIView {
 
 // MARK: - Public API
 
-extension AccountInfoBarNew {
+extension AccountInfoBar {
     public func configure(accountNumberText: String, addressText: String?) {
         accountNumberLabel.text = NSLocalizedString("ACCOUNT \(accountNumberText)", comment: "")
         accountNumberLabel.accessibilityLabel = "Account number: \(accountNumberText)"
