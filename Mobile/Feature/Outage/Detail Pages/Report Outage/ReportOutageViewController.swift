@@ -19,7 +19,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
@@ -59,7 +59,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     private var lottieAnimationView: AnimationView?
     
     var delegate: ReportOutageDelegate?
-    let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
+    let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService(), accountService: ServiceFactory.createAccountService())
     let opco = Environment.shared.opco
     
     let disposeBag = DisposeBag()
@@ -123,6 +123,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             viewModel.reportFormHidden.value = false
         }
         
+        // show comment view for ComEd only
         if opco != .comEd {
             commentView.isHidden = true
         }
@@ -165,6 +166,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self
         
+        // show phone extension for ComEd and PECO
         if opco == .bge {
             phoneExtensionContainerView.isHidden = true
         }
@@ -246,7 +248,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     self.viewModel.reportFormHidden.value = false
                 } else {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("No Problems Found", comment: "")
-                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Our status check verified your property's meter is operational and ComEd electrical service is being delivered to your home.", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Our status check verified your property's meter is operational and \(Environment.shared.opco.displayString) electrical service is being delivered to your home.", comment: "")
                     
                     self.meterPingFuseBoxView.isHidden = false
                 }
@@ -306,6 +308,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         self.lottieAnimationView = AnimationView(name: name)
         self.lottieAnimationView?.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         self.lottieAnimationView?.loopMode = shouldLoop ? .loop : .playOnce
+        self.lottieAnimationView?.backgroundBehavior = .pauseAndRestore
         self.lottieAnimationView?.contentMode = .scaleAspectFit
         if let animationView = self.lottieAnimationView {
             self.meterPingCurrentStatusAnimationView.addSubview(animationView)

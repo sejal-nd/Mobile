@@ -14,6 +14,7 @@ class ReportOutageViewModel {
     let disposeBag = DisposeBag()
     
     private var outageService: OutageService
+    private var accountService: AccountService
     
     var accountNumber: String? // Passed from UnauthenticatedOutageStatusViewController
     var outageStatus: OutageStatus! // Passed from OutageViewController/UnauthenticatedOutageStatusViewController
@@ -23,8 +24,9 @@ class ReportOutageViewModel {
     var comments = Variable("")
     var reportFormHidden = Variable(false)
     
-    required init(outageService: OutageService) {
+    required init(outageService: OutageService, accountService: AccountService) {
         self.outageService = outageService
+        self.accountService = accountService
     }
     
     private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
@@ -75,8 +77,7 @@ class ReportOutageViewModel {
     }
     
     lazy var shouldPingMeter: Bool = {
-        return Environment.shared.opco == .comEd &&
-            outageStatus.activeOutage == false &&
+        return outageStatus.activeOutage == false &&
             outageStatus.smartMeterStatus == true
     }()
     
@@ -136,14 +137,23 @@ class ReportOutageViewModel {
     }
     
     func meterPingGetStatus(onComplete: @escaping (MeterPingInfo) -> Void, onError: @escaping () -> Void) {
-        outageService.pingMeter(account: AccountsStore.shared.currentAccount)
-            .observeOn(MainScheduler.instance)
+        currentPremiseNumber.flatMap { self.outageService.pingMeter(account: AccountsStore.shared.currentAccount, premiseNumber: $0) }.observeOn(MainScheduler.instance)
             .asObservable()
             .subscribe(onNext: { meterPingInfo in
                 onComplete(meterPingInfo)
             }, onError: { _ in
                 onError()
             }).disposed(by: disposeBag)
+    }
+    
+    private lazy var currentPremiseNumber: Observable<String?> = Observable.just(AccountsStore.shared.currentAccount)
+        .flatMap { account -> Observable<String?> in
+            if let premiseNumber = account.currentPremise?.premiseNumber {
+                return Observable.just(premiseNumber)
+            }
+            else {
+                return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount).map { return $0.premiseNumber }
+            }
     }
     
     private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()

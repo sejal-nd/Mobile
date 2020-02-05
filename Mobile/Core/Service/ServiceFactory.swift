@@ -126,4 +126,13 @@ struct ServiceFactory {
             return MCSAppointmentService()
         }
     }
+    
+    static func createGameService() -> GameService {
+        switch Environment.shared.environmentName {
+        case .aut:
+            return MockGameService()
+        default:
+            return MCSGameService()
+        }
+    }
 }

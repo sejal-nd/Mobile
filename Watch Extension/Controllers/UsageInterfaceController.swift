@@ -433,8 +433,9 @@ extension UsageInterfaceController {
         
         clearAllMenuItems()
         
-        guard accounts.count > 1 else { return }
-        addMenuItem(withImageNamed: AppImage.residentialMenuItem.name, title: "Select Account", action: #selector(presentAccountList))
+        if accounts.count > 1 {
+            addMenuItem(withImageNamed: AppImage.residentialMenuItem.name, title: "Select Account", action: #selector(presentAccountList))
+        }
 
         // Set electric image. gas / electric menu items
         if let serviceType = accountDetails.serviceType {
