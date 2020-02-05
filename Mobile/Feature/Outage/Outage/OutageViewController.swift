@@ -25,7 +25,7 @@ class OutageViewController: AccountPickerViewController {
         case unavailable
     }
     
-    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     @IBOutlet weak var maintenanceModeContainerView: UIView!
     @IBOutlet weak var noNetworkConnectionContainerView: UIView!
     @IBOutlet weak var loadingContainerView: UIView!
