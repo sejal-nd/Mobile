@@ -25,10 +25,10 @@ class PaymentUITests: ExelonUITestCase {
         tapButton(buttonText: "Make a Payment")
 
         checkExistenceOfElement(.navigationBar, "Make a Payment")
-        XCTAssertFalse(app.navigationBars.buttons["Next"].isEnabled, "Next button should be disabed initially")
 
         checkExistenceOfElements([
-            (.staticText, "Account number: 1234567890, Street address: 573 Elm Street"),
+            (.staticText, "Account number: 1234567890"),
+            (.staticText, "Street address: 573 Elm Street"),
             (.staticText, "Total Amount Due"),
             (.staticText, "$200.00"),
             (.staticText, "Due Date"),
@@ -44,14 +44,13 @@ class PaymentUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
 
-        let nextButton = buttonElement(withText: "Next")
+        let nextButton = buttonElement(withText: "Continue")
         sleep(1) // Button becomes enabled asynchronously
         XCTAssertTrue(nextButton.isEnabled, "Next button should be immediately enabled in this scenario")
-        checkExistenceOfElement(.staticText, "Payment Method")
 
-        tapButton(buttonText: "Bank account, Test Nickname, Account number ending in, 1234")
-        checkExistenceOfElement(.navigationBar, "Select Payment Method")
-        tapButton(buttonText: "Back")
+        tapButton(buttonText: "Bank account, Test Bank, Account number ending in, 1234")
+        checkExistenceOfElement(.staticText, "Select Payment Method")
+        app.otherElements["Back"].tap()
 
         checkExistenceOfElements([
             (.staticText, "Total Amount Due"),
@@ -65,7 +64,7 @@ class PaymentUITests: ExelonUITestCase {
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
         XCTAssertEqual(paymentAmountTextField.value as? String, "$5,000.00", "Payment amount value entry should default to the amount due")
 
-        tapButton(buttonText: "01/01/2019")
+        tapButton(buttonText: "01/11/2019")
         checkExistenceOfElement(.navigationBar, "Select Payment Date")
         tapButton(buttonText: "Back")
     }
@@ -104,10 +103,13 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardWithDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
-        tapButton(buttonText: "Bank account, Test Nickname, Account number ending in, 1234")
-        checkExistenceOfElement(.navigationBar, "Select Payment Method")
+        tapButton(buttonText: "Bank account, Test Bank, Account number ending in, 1234")
+        checkExistenceOfElement(.staticText, "Select Payment Method")
 
-        tapButton(buttonText: "Add Bank Account")
+        let tableView = app.tables.matching(identifier: "miniWalletTableView")
+        let cell = tableView.cells.element(matching: .cell, identifier: "Add Bank Account")
+        cell.tap()
+        
         checkExistenceOfElements([
             (.sheet, "Add Bank Account"),
             (.button, "Save to My Wallet"),
@@ -116,7 +118,12 @@ class PaymentUITests: ExelonUITestCase {
         ])
 
         tapButton(buttonText: "Cancel")
-        tapButton(buttonText: "Add Credit/Debit Card")
+        
+        tapButton(buttonText: "Bank account, Test Bank, Account number ending in, 1234")
+        
+        let cell2 = tableView.cells.element(matching: .cell, identifier: "Add Credit/Debit Card")
+        cell2.tap()
+        
         checkExistenceOfElements([
             (.sheet, "Add Credit/Debit Card"),
             (.button, "Save to My Wallet"),
@@ -131,12 +138,12 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardWithDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
-        let nextButton = buttonElement(withText: "Next")
+        let nextButton = buttonElement(withText: "Continue")
         sleep(1) // Button becomes enabled asynchronously
         XCTAssertTrue(nextButton.isEnabled)
         nextButton.tap()
 
-        XCTAssertTrue(app.scrollViews.otherElements["Bank account, Test Nickname, Account number ending in, 1234"].exists)
+        XCTAssertTrue(app.scrollViews.otherElements["Bank account, Test Bank, Account number ending in, 1234"].exists)
 
         checkExistenceOfElements([
             (.navigationBar, "Review Payment"),
@@ -147,10 +154,10 @@ class PaymentUITests: ExelonUITestCase {
             (.staticText, "Payment Date"),
             (.staticText, "Total Payment"),
             (.staticText, "$5,000.00"),
-            (.staticText, "01/01/2019")
+            (.staticText, "01/11/2019")
         ])
 
-        let submitButton = app.navigationBars.buttons["Submit"]
+        let submitButton = app.buttons["Submit Payment"]
         if appOpCo == .bge {
             XCTAssertTrue(submitButton.isEnabled, "BGE does not need to agree to terms so submit should be immediately enabled")
         } else {
@@ -162,27 +169,26 @@ class PaymentUITests: ExelonUITestCase {
 
             tapButton(buttonText: "Close")
 
-            let termsSwitch = element(ofType: .switch, withText: "Yes, I have read, understand, and agree to the terms and conditions provided below:")
-            XCTAssertEqual(termsSwitch.value as? String, "0", "Terms switch should be OFF by default")
-
+            let termsCheckbox = XCUIApplication().otherElements[String(format: NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:, Checkbox, Unchecked", comment: ""), appOpCo.rawValue)]
             XCTAssertFalse(submitButton.isEnabled, "ComEd/PECO needs to agree to terms first so submit should be initially disabled")
-            termsSwitch.tap()
+            termsCheckbox.tap()
+            
             XCTAssertTrue(submitButton.isEnabled)
         }
         submitButton.tap()
 
-        let thankyouText = appOpCo == .bge
-            ? "Thank you for your payment."
-            : "Thank you for your payment. A confirmation email will be sent to you shortly."
-
         checkExistenceOfElements([
-            (.staticText, thankyouText),
-            (.staticText, "Payment Confirmation"),
+            (.staticText, "Thank you for your payment"),
+            (.staticText, "Confirmation Number"),
             (.staticText, "Payment Date"),
-            (.staticText, "01/01/2019"),
+            (.staticText, "01/11/2019"),
             (.staticText, "Amount Paid"),
             (.staticText, "$5,000.00"),
         ])
+        
+        if appOpCo != .bge {
+            checkExistenceOfElement(.staticText, "A confirmation email will be sent to you shortly.")
+        }
 
         tapButton(buttonText: "Close")
 
