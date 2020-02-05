@@ -246,7 +246,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     self.viewModel.reportFormHidden.value = false
                 } else {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("No Problems Found", comment: "")
-                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Our status check verified your property's meter is operational and ComEd electrical service is being delivered to your home.", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Our status check verified your property's meter is operational and \(Environment.shared.opco.displayString) electrical service is being delivered to your home.", comment: "")
                     
                     self.meterPingFuseBoxView.isHidden = false
                 }
