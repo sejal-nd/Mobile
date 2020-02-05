@@ -100,8 +100,11 @@ class AlertPreferencesViewModel {
                          [.forYourInformation])
                     ]
                 case .comEd, .peco:
-                    self.sections = [(NSLocalizedString("Outage", comment: ""),
-                                      [.outage, .severeWeather])]
+                    self.sections = [
+                        (NSLocalizedString("Usage", comment: ""),
+                         [.highUsage]),
+                        (NSLocalizedString("Outage", comment: ""),
+                         [.outage, .severeWeather])]
                     
                     if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
@@ -193,30 +196,20 @@ class AlertPreferencesViewModel {
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0 != $1.paymentDueDaysBefore }
     
-    private lazy var booleanPrefsChanged = Observable
-        .combineLatest([outage.asObservable(),
-                       scheduledMaint.asObservable(),
-                       severeWeather.asObservable(),
-                       billReady.asObservable(),
-                       paymentDue.asObservable(),
-                       paymentPosted.asObservable(),
-                       paymentPastDue.asObservable(),
-                       budgetBilling.asObservable(),
-                       appointmentTracking.asObservable(),
-                       forYourInfo.asObservable()])
-        .map { prefs in
-            AlertPreferences(outage: prefs[0],
-                             scheduledMaint: prefs[1],
-                             severeWeather: prefs[2],
-                             billReady: prefs[3],
-                             paymentDue: prefs[4],
-                             paymentDueDaysBefore: 0,
-                             paymentPosted: prefs[5],
-                             paymentPastDue: prefs[6],
-                             budgetBilling: prefs[7],
-                             appointmentTracking: prefs[8],
-                             forYourInfo: prefs[9])
-        }
+    private lazy var booleanPrefsChanged = Observable.just(
+        AlertPreferences(outage: outage.value,
+                         scheduledMaint: scheduledMaint.value,
+                         severeWeather: severeWeather.value,
+                         billReady: billReady.value,
+                         paymentDue: paymentDue.value,
+                         paymentDueDaysBefore: paymentDueDaysBefore.value,
+                         paymentPosted: paymentPosted.value,
+                         paymentPastDue: paymentPastDue.value,
+                         budgetBilling: budgetBilling.value,
+                         appointmentTracking: appointmentTracking.value,
+                         forYourInfo: forYourInfo.value,
+                         usage: highUsage.value,
+                         alertThreshold: Int(billThreshold.value)))
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0.isDifferent(fromOriginal: $1) }
     
@@ -240,7 +233,9 @@ class AlertPreferencesViewModel {
                                                 paymentPastDue: paymentPastDue.value,
                                                 budgetBilling: budgetBilling.value,
                                                 appointmentTracking: appointmentTracking.value,
-                                                forYourInfo: forYourInfo.value)
+                                                forYourInfo: forYourInfo.value,
+                                                usage: highUsage.value,
+                                                alertThreshold: Int(billThreshold.value))
         return alertsService
             .setAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
                                  alertPreferences: alertPreferences)
@@ -339,10 +334,9 @@ class AlertPreferencesViewModel {
                 
                 // Usage
             case (.highUsage, .bge): fallthrough
+            case(.highUsage, .peco): fallthrough
             case (.highUsage, .comEd):
-                return NSLocalizedString("Receive an alert if you are headed towards a bill that is higher than usual. This alert gives you time to reduce your usage before your next bill and helps to prevent billing surprises. You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month.", comment: "")
-            case(.highUsage, .peco):
-                return ""
+                return NSLocalizedString("Receive an alert if you are headed towards a bill that is higher than usual. This alert gives you time to reduce your usage before your next bill and helps to prevent billing surprises. \n\nYou can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month.", comment: "")
             // Outage
             case (.outage, .bge):
                 return NSLocalizedString("Receive updates on unplanned outages due to storms.", comment: "")

@@ -9,6 +9,8 @@
 import Mapper
 
 struct AlertPreferences {
+    var usage = false
+    var alertThreshold: Int?
     var outage = false
     var scheduledMaint = false // BGE only
     var severeWeather = false
@@ -64,7 +66,9 @@ struct AlertPreferences {
          paymentPastDue: Bool,
          budgetBilling: Bool,
          appointmentTracking: Bool,
-         forYourInfo: Bool) {
+         forYourInfo: Bool,
+         usage: Bool,
+         alertThreshold: Int? = nil) {
         self.outage = outage
         self.scheduledMaint = scheduledMaint
         self.severeWeather = severeWeather
@@ -76,6 +80,8 @@ struct AlertPreferences {
         self.budgetBilling = budgetBilling
         self.appointmentTracking = appointmentTracking
         self.forYourInfo = forYourInfo
+        self.usage = usage
+        self.alertThreshold = alertThreshold
     }
     
     // Used by the setAlertPreferences web service call
