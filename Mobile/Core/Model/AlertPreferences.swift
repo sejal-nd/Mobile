@@ -106,8 +106,7 @@ struct AlertPreferences {
             ["programName": "Payment Past Due", "type": "push", "isActive": paymentPastDue],
             ["programName": "Budget Billing", "type": "push", "isActive": budgetBilling],
             ["programName": "Customer Appointments", "type": "push", "isActive": appointmentTracking],
-            ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo],
-            highUsageProgram
+            ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo]
         ]
         return array
     }

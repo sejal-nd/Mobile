@@ -74,16 +74,15 @@ class AlertPreferencesTableViewCell: UITableViewCell {
                     .subscribe(onNext: { [weak self] entry in
                         guard let self = self else { return }
                         
-                        let amount: Double
+                        let amount: Double?
                         let textStr = String(entry.filter { "0123456789".contains($0) })
-                        if let intVal = Double(textStr) {
-                            amount = intVal / 100
+                        if let intVal = Double(textStr), intVal >= 1 {
+                            amount = intVal
                         } else {
-                            amount = 0
+                            amount = nil
                         }
                         
-                        self.textField.textField.text = amount.currencyString
-                        //                        self.viewModel.paymentAmount.value = amount
+                        self.textField.textField.text = amount?.currencyNoDecimalString ?? nil
                     })
                     .disposed(by: disposeBag)
             }

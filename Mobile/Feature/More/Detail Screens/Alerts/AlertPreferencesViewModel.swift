@@ -370,7 +370,7 @@ class AlertPreferencesViewModel {
                 
                 // Usage
             case (.highUsage, .bge): fallthrough
-            case(.highUsage, .peco): fallthrough
+            case (.highUsage, .peco): fallthrough
             case (.highUsage, .comEd):
                 return NSLocalizedString("Receive an alert if you are headed towards a bill that is higher than usual. This alert gives you time to reduce your usage before your next bill and helps to prevent billing surprises. \n\nYou can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month.", comment: "")
             // Outage
