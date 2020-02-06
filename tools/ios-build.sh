@@ -26,7 +26,8 @@ Usage:
                             
                             or
 
---build-branch              refs/heads/test
+--build-branch              refs/heads/develop
+                            refs/heads/test
                             refs/heads/stage
                             refs/heads/prodbeta
                             refs/heads/hotfix
