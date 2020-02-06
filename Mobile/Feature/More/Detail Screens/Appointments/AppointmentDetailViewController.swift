@@ -285,6 +285,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         
         topAnimation = AnimationView(name: animationName)
         topAnimation.loopMode = loop ? .loop : .playOnce
+        topAnimation.backgroundBehavior = .pauseAndRestore
         topAnimation.translatesAutoresizingMaskIntoConstraints = false
         topAnimation.contentMode = .scaleAspectFill
         

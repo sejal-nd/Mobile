@@ -391,11 +391,11 @@ class HomeUsageCardView: UIView {
         // --- Bill Comparison ---
         
         // Loading/Error/Content States
-        viewModel.loadingTracker.asDriver().not()
+        viewModel.billComparisonTracker.asDriver().not()
             .drive(comparisonLoadingView.rx.isHidden)
             .disposed(by: disposeBag)
         
-        viewModel.loadingTracker.asDriver()
+        viewModel.billComparisonTracker.asDriver()
             .filter { $0 }
             .drive(onNext: { [weak self] _ in
                 self?.billComparisonContentView.isHidden = true

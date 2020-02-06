@@ -69,7 +69,8 @@ class AppointmentDetailViewModel {
                 .attributedString(textAlignment: .center,
                                   otherAttributes: standardAttributes)
         case .inProgress:
-            let regularText = NSLocalizedString("Your appointment is in progress.", comment: "")
+            let boldText = String.localizedStringWithFormat("Estimated time of completion is %@.", appointment.timeslot.formattedEndHour)
+            let regularText = String.localizedStringWithFormat("Your appointment is in progress. %@", boldText)
             
             let attributedText = NSMutableAttributedString(string: regularText)
             attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
@@ -81,6 +82,7 @@ class AppointmentDetailViewModel {
             style.alignment = .center
             attributedText.addAttribute(.paragraphStyle, value: style,
                                         range: NSMakeRange(0, attributedText.string.count))
+            attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline), range: (regularText as NSString).range(of: boldText))
             
             return attributedText
         case .complete:

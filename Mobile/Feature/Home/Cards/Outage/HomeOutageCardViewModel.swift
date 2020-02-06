@@ -14,22 +14,19 @@ class HomeOutageCardViewModel {
     
     private let outageService: OutageService
     private let maintenanceModeEvents: Observable<Event<Maintenance>>
-    private let fetchDataObservable: Observable<FetchingAccountState>
-    private let refreshFetchTracker: ActivityTracker
-    private let switchAccountFetchTracker: ActivityTracker
+    private let fetchDataObservable: Observable<Void>
+    private let fetchTracker: ActivityTracker
     
     // MARK: - Init
     
     required init(outageService: OutageService,
                   maintenanceModeEvents: Observable<Event<Maintenance>>,
-                  fetchDataObservable: Observable<FetchingAccountState>,
-                  refreshFetchTracker: ActivityTracker,
-                  switchAccountFetchTracker: ActivityTracker) {
+                  fetchDataObservable: Observable<Void>,
+                  fetchTracker: ActivityTracker) {
         self.outageService = outageService
         self.maintenanceModeEvents = maintenanceModeEvents
         self.fetchDataObservable = fetchDataObservable
-        self.refreshFetchTracker = refreshFetchTracker
-        self.switchAccountFetchTracker = switchAccountFetchTracker
+        self.fetchTracker = fetchTracker
     }
     
     // MARK: - Retrieve Outage Status
@@ -40,7 +37,7 @@ class HomeOutageCardViewModel {
             return !maint.allStatus && !maint.outageStatus && !maint.homeStatus
         }
         .withLatestFrom(self.fetchDataObservable)
-        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0 )},
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                         requestSelector: { [unowned self] _ in self.retrieveOutageStatus() })
     
     // MARK: - Variables
@@ -87,7 +84,7 @@ class HomeOutageCardViewModel {
     
     // MARK: - Show/Hide Views
     
-    private(set) lazy var showLoadingState: Driver<Void> = switchAccountFetchTracker
+    private(set) lazy var showLoadingState: Driver<Void> = fetchTracker
         .asDriver().filter { $0 }.mapTo(())
     
     private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents.elements()
@@ -204,16 +201,7 @@ class HomeOutageCardViewModel {
                 }
         }
     }
-    
-    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
-        switch state {
-        case .refresh:
-            return refreshFetchTracker
-        case .switchAccount:
-            return switchAccountFetchTracker
-        }
-    }
-    
+        
 }
 
 fileprivate extension OutageStatus {

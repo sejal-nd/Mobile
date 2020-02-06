@@ -296,7 +296,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 4:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morechoiceid"), text: NSLocalizedString("Choice ID", comment: ""))
             case 5:
-                cell.configure(image: #imageLiteral(resourceName: "ic_more_gamification"), text: NSLocalizedString("Energy Buddy", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_more_gamification"), text: NSLocalizedString("BGE's Play-n-Save Pilot", comment: ""))
             default:
                 return UITableViewCell()
             }

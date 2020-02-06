@@ -96,9 +96,9 @@ struct FirebaseUtility {
         
         // Gamification
         case gamificationGroup
+        case gamificationCluster
         case gamificationIsOptedOut
         case gamificationIsOnboarded
-        case gamificationIsClusterTwo
     }
     
     /// This method should only be called once from App Delegate: Configures Firebase
