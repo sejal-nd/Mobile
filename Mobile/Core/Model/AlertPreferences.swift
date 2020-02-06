@@ -89,6 +89,13 @@ struct AlertPreferences {
         let billReadyProgramName = Environment.shared.opco == .bge ? "Bill is Ready" : "Paperless Billing"
         let paymentDueProgramName = Environment.shared.opco == .bge ? "Payment Reminder" : "Payment Reminders"
         let forYourInfoProgramName = Environment.shared.opco == .bge ? "Marketing" : "News"
+        let highUsageProgramName = Environment.shared.opco == .comEd ? "High Usage Electric" : "High Usage Electric Alerts"
+        
+        var highUsageProgram = ["programName": highUsageProgramName, "type": "push", "isActive": usage] as [String : Any]
+        if let billThreshold = alertThreshold {
+            highUsageProgram["alertThreshold"] = billThreshold
+        }
+        
         let array = [
             ["programName": "Outage Notifications", "type": "push", "isActive": outage],
             ["programName": "Planned Outage", "type": "push", "isActive": scheduledMaint],
@@ -99,7 +106,8 @@ struct AlertPreferences {
             ["programName": "Payment Past Due", "type": "push", "isActive": paymentPastDue],
             ["programName": "Budget Billing", "type": "push", "isActive": budgetBilling],
             ["programName": "Customer Appointments", "type": "push", "isActive": appointmentTracking],
-            ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo]
+            ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo],
+            highUsageProgram
         ]
         return array
     }
@@ -116,7 +124,8 @@ struct AlertPreferences {
             paymentPastDue != originalPrefs.paymentPastDue ||
             budgetBilling != originalPrefs.budgetBilling ||
             appointmentTracking != originalPrefs.appointmentTracking ||
-            forYourInfo != originalPrefs.forYourInfo
+            forYourInfo != originalPrefs.forYourInfo ||
+            usage != originalPrefs.usage
     }
 }
 

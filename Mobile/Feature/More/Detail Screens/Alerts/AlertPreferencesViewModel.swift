@@ -152,6 +152,7 @@ class AlertPreferencesViewModel {
                 guard let self = self else { return }
                 
                 self.alertPrefs.value = alertPrefs
+                self.highUsage.value = alertPrefs.usage
                 self.outage.value = alertPrefs.outage
                 self.scheduledMaint.value = alertPrefs.scheduledMaint
                 self.severeWeather.value = alertPrefs.severeWeather
@@ -209,22 +210,37 @@ class AlertPreferencesViewModel {
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0 != $1.paymentDueDaysBefore }
     
-    private lazy var booleanPrefsChanged = Observable.just(
-        AlertPreferences(outage: outage.value,
-                         scheduledMaint: scheduledMaint.value,
-                         severeWeather: severeWeather.value,
-                         billReady: billReady.value,
-                         paymentDue: paymentDue.value,
-                         paymentDueDaysBefore: paymentDueDaysBefore.value,
-                         paymentPosted: paymentPosted.value,
-                         paymentPastDue: paymentPastDue.value,
-                         budgetBilling: budgetBilling.value,
-                         appointmentTracking: appointmentTracking.value,
-                         forYourInfo: forYourInfo.value,
-                         usage: highUsage.value,
-                         alertThreshold: Int(billThreshold.value)))
-        .withLatestFrom(alertPrefs.asObservable().unwrap())
-        { $0.isDifferent(fromOriginal: $1) }
+    private lazy var booleanPrefsChanged = Observable<Bool>
+        .combineLatest([outage.asObservable(),
+                        scheduledMaint.asObservable(),
+                        severeWeather.asObservable(),
+                        billReady.asObservable(),
+                        paymentDue.asObservable(),
+                        paymentPosted.asObservable(),
+                        paymentPastDue.asObservable(),
+                        budgetBilling.asObservable(),
+                        appointmentTracking.asObservable(),
+                        forYourInfo.asObservable(),
+                        highUsage.asObservable()])
+        .map { prefs in
+            AlertPreferences(outage: prefs[0],
+                             scheduledMaint: prefs[1],
+                             severeWeather: prefs[2],
+                             billReady: prefs[3],
+                             paymentDue: prefs[4],
+                             paymentDueDaysBefore: 0,
+                             paymentPosted: prefs[5],
+                             paymentPastDue: prefs[6],
+                             budgetBilling: prefs[7],
+                             appointmentTracking: prefs[8],
+                             forYourInfo: prefs[9],
+                             usage: prefs[10])
+    }
+    .withLatestFrom(alertPrefs.asObservable().unwrap())
+    { $0.isDifferent(fromOriginal: $1) }
+    
+    private lazy var billThresholdPrefChanged = billThreshold.asObservable()
+        .map { [weak self] in Int($0) != self?.alertPrefs.value?.alertThreshold }
     
     private lazy var languagePrefChanged = english.asObservable()
         .map { [weak self] in $0 != self?.initialEnglishValue ?? false }
