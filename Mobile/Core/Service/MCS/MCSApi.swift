@@ -173,6 +173,7 @@ class MCSApi {
         tokenKeychain[TOKEN_KEYCHAIN_KEY] = nil
         #endif
         accessToken = nil
+        UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameAccountNumber)
     }
 
     func isAuthenticated() -> Bool {

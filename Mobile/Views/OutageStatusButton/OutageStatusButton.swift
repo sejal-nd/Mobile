@@ -123,6 +123,7 @@ class OutageStatusButton: UIView {
             
             onLottieAnimation?.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
             onLottieAnimation?.loopMode = .loop
+            onLottieAnimation?.backgroundBehavior = .pauseAndRestore
             onLottieAnimation?.contentMode = .scaleAspectFill
             
             guard let onLottieAnimation = onLottieAnimation else { return }

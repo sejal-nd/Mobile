@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StateView" customModule="BGE" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="oSf-ua-IRw" id="Hn3-SW-d0R"/>
+                <outlet property="stateImageView" destination="bej-Xh-Yab" id="8uX-TJ-x0T"/>
+                <outlet property="stateLabel" destination="5Rt-q9-W2y" id="VPd-lv-tbL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSf-ua-IRw">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rt-q9-W2y">
+                    <rect key="frame" x="166" y="437.5" width="82" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alerts_empty" translatesAutoresizingMaskIntoConstraints="NO" id="bej-Xh-Yab">
+                    <rect key="frame" x="157" y="327.5" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="HXe-tS-mjL"/>
+                        <constraint firstAttribute="height" constant="100" id="JbT-jd-nsU"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="S8b-4w-nzr"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="Ztx-oz-wkr"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bej-Xh-Yab" firstAttribute="centerX" secondItem="oSf-ua-IRw" secondAttribute="centerX" id="2th-o6-plB"/>
+                <constraint firstItem="5Rt-q9-W2y" firstAttribute="centerX" secondItem="oSf-ua-IRw" secondAttribute="centerX" id="8oL-pj-nlK"/>
+                <constraint firstItem="5Rt-q9-W2y" firstAttribute="top" secondItem="bej-Xh-Yab" secondAttribute="bottom" constant="10" id="PYH-cE-hey"/>
+                <constraint firstItem="5Rt-q9-W2y" firstAttribute="centerY" secondItem="oSf-ua-IRw" secondAttribute="centerY" id="t1m-9n-eYP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="gdK-Wi-q6C"/>
+            <point key="canvasLocation" x="124.6376811594203" y="370.3125"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_alerts_empty" width="100" height="100"/>
+    </resources>
+</document>

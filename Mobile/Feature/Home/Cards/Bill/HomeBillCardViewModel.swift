@@ -23,29 +23,20 @@ class HomeBillCardViewModel {
 
     let submitOneTouchPay = PublishSubject<Void>()
 
-    let fetchData: Observable<FetchingAccountState>
+    let fetchData: Observable<Void>
 
-    private let refreshFetchTracker: ActivityTracker
-    private let switchAccountFetchTracker: ActivityTracker
-
-    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
-        switch state {
-        case .refresh: return refreshFetchTracker
-        case .switchAccount: return switchAccountFetchTracker
-        }
-    }
+    private let fetchTracker: ActivityTracker
 
     let paymentTracker = ActivityTracker()
 
-    required init(fetchData: Observable<FetchingAccountState>,
+    required init(fetchData: Observable<Void>,
                   fetchDataMMEvents: Observable<Event<Maintenance>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   scheduledPaymentEvents: Observable<Event<PaymentItem?>>,
                   walletService: WalletService,
                   paymentService: PaymentService,
                   authService: AuthenticationService,
-                  refreshFetchTracker: ActivityTracker,
-                  switchAccountFetchTracker: ActivityTracker) {
+                  fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.fetchDataMMEvents = fetchDataMMEvents
         self.accountDetailEvents = accountDetailEvents
@@ -53,8 +44,7 @@ class HomeBillCardViewModel {
         self.walletService = walletService
         self.paymentService = paymentService
         self.authService = authService
-        self.refreshFetchTracker = refreshFetchTracker
-        self.switchAccountFetchTracker = switchAccountFetchTracker
+        self.fetchTracker = fetchTracker
 
         oneTouchPayResult
             .withLatestFrom(walletItem.unwrap()) { ($0, $1) }
@@ -76,12 +66,12 @@ class HomeBillCardViewModel {
     }
 
     private lazy var fetchTrigger = Observable
-        .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated.mapTo(FetchingAccountState.switchAccount))
+        .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated)
 
     // Awful maintenance mode check
     private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
-        .toAsyncRequest(activityTracker: { [weak self] _ in self?.fetchTracker(forState: .switchAccount) },
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                         requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
 
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> =
@@ -93,7 +83,7 @@ class HomeBillCardViewModel {
             return !maint.allStatus && !maint.billStatus && !maint.homeStatus
         }
         .withLatestFrom(fetchTrigger)
-        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                         requestSelector: { [weak self] _ in
                             guard let this = self else { return .empty() }
                             return this.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
@@ -163,7 +153,7 @@ class HomeBillCardViewModel {
 
     private lazy var walletItemDriver: Driver<WalletItem?> = walletItem.asDriver(onErrorDriveWith: .empty())
 
-    private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
+    private(set) lazy var showLoadingState: Driver<Bool> = fetchTracker.asDriver()
         .skip(1)
         .startWith(true)
         .distinctUntilChanged()
@@ -392,8 +382,7 @@ class HomeBillCardViewModel {
         return $0.isPrecariousBillSituation
     }
 
-    private(set) lazy var resetAlertAnimation: Driver<Void> = Driver.merge(refreshFetchTracker.asDriver(),
-                                                                           switchAccountFetchTracker.asDriver())
+    private(set) lazy var resetAlertAnimation: Driver<Void> = fetchTracker.asDriver()
         .filter(!)
         .mapTo(())
 

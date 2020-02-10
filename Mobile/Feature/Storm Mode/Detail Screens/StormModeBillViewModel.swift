@@ -11,16 +11,15 @@ import RxCocoa
 
 class StormModeBillViewModel {
 
-    let fetchData = PublishSubject<FetchingAccountState>()
-    let fetchDataObservable: Observable<FetchingAccountState>
+    let fetchData = PublishSubject<Void>()
+    let fetchDataObservable: Observable<Void>
 
     private let accountService: AccountService
     private let walletService: WalletService
     private let paymentService: PaymentService
     private let authService: AuthenticationService
 
-    private let refreshTracker = ActivityTracker()
-    private let switchAccountTracker = ActivityTracker()
+    private let fetchTracker = ActivityTracker()
 
     required init(accountService: AccountService,
                   walletService: WalletService,
@@ -41,51 +40,27 @@ class StormModeBillViewModel {
                               walletService: walletService,
                               paymentService: paymentService,
                               authService: authService,
-                              refreshFetchTracker: refreshTracker,
-                              switchAccountFetchTracker: switchAccountTracker)
+                              fetchTracker: fetchTracker)
 
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = fetchData
-        .toAsyncRequest(activityTrackers: { [weak self] state in
-            guard let self = self else { return nil }
-            switch state {
-            case .refresh:
-                return [self.refreshTracker]
-            case .switchAccount:
-                return [self.switchAccountTracker]
-            }
-        }, requestSelector: { [weak self] _ in
-            guard let self = self else { return .empty() }
-            return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-        })
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
+                        requestSelector: { [weak self] _ in
+                            guard let self = self else { return .empty() }
+                            return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                        })
 
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = fetchData
-        .toAsyncRequest(activityTrackers: { [weak self] state in
-            guard let this = self else { return nil }
-            switch state {
-            case .refresh:
-                return [this.refreshTracker]
-            case .switchAccount:
-                return [this.switchAccountTracker]
-            }
-        }, requestSelector: { [weak self] _ in
-            guard let this = self else { return .empty() }
-            return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
-        })
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
+                        requestSelector: { [weak self] _ in
+                            guard let this = self else { return .empty() }
+                            return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
+                        })
 
     private lazy var accountDetail = accountDetailEvents.elements()
     private lazy var scheduledPayment = scheduledPaymentEvents.elements()
 
-    private(set) lazy var didFinishRefresh: Driver<Void> = refreshTracker
-        .asDriver()
-        .filter(!)
-        .mapTo(())
-
-    private(set) lazy var isSwitchingAccounts: Driver<Bool> = switchAccountTracker
-        .asDriver()
-        .distinctUntilChanged()
-
     private(set) lazy var showBillCard: Driver<Bool> = Observable
-        .combineLatest(switchAccountTracker.asObservable(),
+        .combineLatest(fetchTracker.asObservable(),
                        accountDetailEvents)
         { isLoading, accountDetailEvent in
             isLoading || accountDetailEvent.element?.prepaidStatus != .active
@@ -95,7 +70,7 @@ class StormModeBillViewModel {
         .asDriver(onErrorDriveWith: .empty())
 
     private(set) lazy var showButtonStack: Driver<Bool> = Observable
-        .combineLatest(switchAccountTracker.asObservable(),
+        .combineLatest(fetchTracker.asObservable(),
                        accountDetailEvents)
         { isLoading, accountDetailEvent in
             accountDetailEvent.error == nil && !isLoading &&
@@ -106,7 +81,7 @@ class StormModeBillViewModel {
         .asDriver(onErrorDriveWith: .empty())
 
     private(set) lazy var showPrepaidCard: Driver<Bool> = Observable
-        .combineLatest(switchAccountTracker.asObservable(),
+        .combineLatest(fetchTracker.asObservable(),
                        accountDetailEvents)
         { isLoading, accountDetailEvent in
             !isLoading && accountDetailEvent.element?.prepaidStatus == .active

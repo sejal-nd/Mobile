@@ -113,6 +113,7 @@ class SplashViewController: UIViewController{
             loadingAnimationView = AnimationView(name: "full_screen_loading")
             loadingAnimationView!.frame.size = loadingAnimationContainer.frame.size
             loadingAnimationView!.loopMode = .loop
+            loadingAnimationView!.backgroundBehavior = .pauseAndRestore
             loadingAnimationContainer.addSubview(loadingAnimationView!)
             loadingAnimationView!.play()
         }

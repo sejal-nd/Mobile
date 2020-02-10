@@ -23,15 +23,21 @@ struct WeatherItem: Mappable {
             return array
         }
         
-        guard let temp = periods.first?["temperature"] as? Int,
-        let iconString = periods.first?["icon"] as? String,
-        let isDaytime = periods.first?["isDaytime"] as? Bool else {
+        if let temp = periods.first?["temperature"] as? Int {
+            self.temperature = temp
+        } else if let tempStr = periods.first?["temperature"] as? String, let temp = Int(tempStr) {
+            self.temperature = temp
+        } else {
+            throw  MapperError.convertibleError(value: map, type: WeatherItem.self)
+        }
+        
+        guard let iconString = periods.first?["icon"] as? String,
+            let isDaytime = periods.first?["isDaytime"] as? Bool else {
             throw MapperError.convertibleError(value: map, type: WeatherItem.self)
         }
         
         let forecastData = WeatherItem.forecastData(iconString: iconString, isDaytime: isDaytime)
         
-        self.temperature = temp
         self.iconName = forecastData.0
         self.accessibilityName = forecastData.1
     }

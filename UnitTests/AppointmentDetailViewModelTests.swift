@@ -55,36 +55,17 @@ class AppointmentDetailViewModelTests: XCTestCase {
     func testAppointmentDescriptionText() {
         // Scheduled today
         viewModel.appointment = getAppointment(forKey: .apptToday)
-        var expectedDescription: String
-        switch Environment.shared.opco {
-        case .bge, .peco:
-            expectedDescription = "Your appointment is today between 12PM - 1PM."
-        case .comEd:
-            expectedDescription = "Your appointment is today between 11AM - 12PM."
-        }
-        
+        var expectedDescription = "Your appointment is today between 8AM - 12PM."
         XCTAssertEqual(viewModel.appointmentDescriptionText.string, expectedDescription)
         
-        // Scheduled tomorrow (also tests half hour round ups)
-        viewModel.appointment = getAppointment(forKey: .apptHalfHourRoundUp)
-        switch Environment.shared.opco {
-        case .bge, .peco:
-            expectedDescription = "Your appointment is tomorrow between 1PM - 2PM."
-        case .comEd:
-            expectedDescription = "Your appointment is tomorrow between 12PM - 1PM."
-        }
-        
+        // Scheduled tomorrow
+        viewModel.appointment = getAppointment(forKey: .apptTomorrow)
+        expectedDescription = "Your appointment is tomorrow between 8AM - 12PM."
         XCTAssertEqual(viewModel.appointmentDescriptionText.string, expectedDescription)
         
-        // Scheduled beyond tomorrow (also tests half hour round downs)
-        viewModel.appointment = getAppointment(forKey: .apptHalfHourRoundDown)
-        switch Environment.shared.opco {
-        case .bge, .peco:
-            expectedDescription = "Your appointment is scheduled for Sunday, Jan 13th between 9AM - 11AM."
-        case .comEd:
-            expectedDescription = "Your appointment is scheduled for Sunday, Jan 13th between 8AM - 10AM."
-        }
-        
+        // Scheduled beyond tomorrow
+        viewModel.appointment = getAppointment(forKey: .apptScheduled)
+        expectedDescription = "Your appointment is scheduled for Sunday, Jan 6th between 12PM - 5PM."
         XCTAssertEqual(viewModel.appointmentDescriptionText.string, expectedDescription)
         
         // En Route
@@ -93,13 +74,7 @@ class AppointmentDetailViewModelTests: XCTestCase {
         
         // In Progress
         viewModel.appointment = getAppointment(forKey: .apptInProgress)
-        switch Environment.shared.opco {
-        case .bge, .peco:
-            expectedDescription = "Your appointment is in progress. Estimated time of completion is 1PM."
-        case .comEd:
-            expectedDescription = "Your appointment is in progress. Estimated time of completion is 12PM."
-        }
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, expectedDescription)
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your appointment is in progress. Estimated time of completion is 2PM.")
         
         // Complete
         viewModel.appointment = getAppointment(forKey: .apptComplete)
@@ -114,9 +89,8 @@ class AppointmentDetailViewModelTests: XCTestCase {
         MockUser.current = MockUser(globalKeys: .residential)
         MockAccountService.loadAccountsSync()
         
-        // Using gmt time zone to generate expected dates instead of `opCo`, which will be different for ComEd
-        let expectedStartDate = Calendar.gmt.date(bySettingHour: 17, minute: 0, second: 0, of: .now)!
-        let expectedStopDate = Calendar.gmt.date(bySettingHour: 18, minute: 0, second: 0, of: .now)!
+        let expectedStartDate = Calendar.opCo.date(bySettingHour: 8, minute: 0, second: 0, of: .now)!
+        let expectedStopDate = Calendar.opCo.date(bySettingHour: 12, minute: 0, second: 0, of: .now)!
         
         viewModel.appointment = getAppointments(forKeys: .apptToday).first!
         
