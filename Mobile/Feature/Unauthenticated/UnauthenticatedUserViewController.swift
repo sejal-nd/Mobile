@@ -127,6 +127,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     private func configureTableView() {
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
+        tableView.accessibilityLabel = "guestTableView"
         
         RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
             self?.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)

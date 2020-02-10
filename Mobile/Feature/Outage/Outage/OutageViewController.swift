@@ -138,6 +138,7 @@ class OutageViewController: AccountPickerViewController {
     private func configureTableView() {
         let titleDetailCell = UINib(nibName: TitleSubTitleRow.className, bundle: nil)
         tableView.register(titleDetailCell, forCellReuseIdentifier: TitleSubTitleRow.className)
+        tableView.accessibilityLabel = "outageTableView"
         tableView.reloadData()
         
         RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in

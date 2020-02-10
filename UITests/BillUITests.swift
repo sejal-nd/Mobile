@@ -19,7 +19,7 @@ class BillUITests: ExelonUITestCase {
         doLogin(username: "scheduledPayment")
         selectTab(tabName: "Bill")
 
-        let buttonText = "Thank you for scheduling your $82.00 payment for 01/11/2019"
+        let buttonText = "Thank you for scheduling your $82.00 payment for 01/01/2019"
         checkExistenceOfElement(.button, buttonText)
     }
     
@@ -27,7 +27,7 @@ class BillUITests: ExelonUITestCase {
         doLogin(username: "thankYouForPayment")
         selectTab(tabName: "Bill")
 
-        let buttonText = "Thank you for $200.00 payment on 01/01/2019"
+        let buttonText = "Thank you for $200.00 payment on 01/11/2019"
         checkExistenceOfElement(.button, buttonText)
     }
     
@@ -80,18 +80,6 @@ class BillUITests: ExelonUITestCase {
         XCTAssertTrue(alert.waitForExistence(timeout: 2))
         let okButton = alertsQuery.buttons["OK"]
         okButton.tap()
-        
-        // TODO - Remove this `if` when BGE goes to Paymentus
-        if appOpCo == .bge {
-            let expiredCardCell = app.tables.cells.containing(NSPredicate(format: "label CONTAINS 'Saved Visa, EXPIRED CARD, Account number ending in, 1 2 3 4, Default payment method, expired'"))
-            let editButton = expiredCardCell.buttons["Edit payment method"]
-            
-            editButton.tap()
-            
-            checkExistenceOfElement(.staticText, "Expired")
-            let cancelButton = app.navigationBars["Edit Card"].buttons["Cancel"]
-            cancelButton.tap()
-        }
     }
     
 }

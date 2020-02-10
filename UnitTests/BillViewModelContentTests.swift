@@ -66,14 +66,13 @@ class BillViewModelContentTests: BillViewModelTests {
             "$100.00 of the total must be paid by 01/09/2019 to avoid shutoff.",
             nil
         ]
-        
         simulateAccountSwitches(at: switchAccountEventTimes)
         
         let observer = scheduler.createObserver(String?.self)
         viewModel.alertBannerText.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
-        
+       
         XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
@@ -235,7 +234,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         scheduler.start()
         
-        XCTAssertRecordedElements(observer.events, ["Payment Date 01/01/2019", nil])
+        XCTAssertRecordedElements(observer.events, ["Payment Date 01/11/2019", nil])
     }
     
     // Tests changes in the `hasBillBreakdownData` value after switching
@@ -275,8 +274,8 @@ class BillViewModelContentTests: BillViewModelTests {
         let expectedValues: [String?] = [
             firstExpectedValue,
             "You are enrolled in AutoPay",
-            "Thank you for scheduling your $82.00 payment for 01/11/2019",
-            "Thank you for $200.00 payment on 01/01/2019",
+            "Thank you for scheduling your $82.00 payment for 01/01/2019",
+            "Thank you for $200.00 payment on 01/11/2019",
             nil
         ]
         
@@ -307,7 +306,7 @@ You currently have automatic payments set up. To avoid a duplicate payment, plea
 """
         
         let scheduledPaymentText = """
-You have a payment of $82.00 scheduled for 01/11/2019. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?
+You have a payment of $82.00 scheduled for 01/01/2019. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?
 """
         
         let expectedValues: [(String?, String?)] = [

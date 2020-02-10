@@ -166,7 +166,7 @@ class OneTouchSlider: UIControl {
         accessibilityButton.backgroundColor = .clear
         accessibilityButton.isAccessibilityElement = true
         accessibilityButton.accessibilityLabel = accessibilityText
-        
+        accessibilityLabel = accessibilityText
         accessibilityButton.rx.tap.asDriver().drive(didFinishSwipeSubject).disposed(by: bag)
         
         addSubview(accessibilityButton)
@@ -180,7 +180,6 @@ class OneTouchSlider: UIControl {
         
         accessibilityButton.isHidden = !UIAccessibility.isVoiceOverRunning && !UIAccessibility.isSwitchControlRunning
         isAccessibilityElement = !UIAccessibility.isVoiceOverRunning && !UIAccessibility.isSwitchControlRunning
-        accessibilityLabel = sliderText
         
         Observable.merge(NotificationCenter.default.rx.notification(UIAccessibility.switchControlStatusDidChangeNotification, object: nil),
                          NotificationCenter.default.rx.notification(UIAccessibility.voiceOverStatusDidChangeNotification, object: nil))
