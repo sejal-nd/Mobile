@@ -339,7 +339,7 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.dueDate.asObservable().take(1).subscribe(onNext: { dueDate in
-            XCTAssertEqual(dueDate, "01/01/2019")
+            XCTAssertEqual(dueDate, "01/11/2019")
         }).disposed(by: disposeBag)
 
         viewModel.accountDetail.value = .default

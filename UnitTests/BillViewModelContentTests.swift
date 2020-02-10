@@ -61,19 +61,18 @@ class BillViewModelContentTests: BillViewModelTests {
         // Catch Up and Restore Service don't apply to BGE, but the mock accounts still have past due amounts.
         let expectedValues: [String?] = [
             Environment.shared.opco == .bge ? "$200.00 of the total is due immediately." : "$200.00 of the total must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.",
-            Environment.shared.opco == .bge ? "$200.00 of the total is due immediately." : "$100.00 of the total must be paid by 01/01/2019 to catch up on your DPA.",
+            Environment.shared.opco == .bge ? "$200.00 of the total is due immediately." : "$100.00 of the total must be paid by 01/11/2019 to catch up on your DPA.",
             "$100.00 of the total must be paid immediately to avoid shutoff.",
             "$100.00 of the total must be paid by 01/09/2019 to avoid shutoff.",
             nil
         ]
-        
         simulateAccountSwitches(at: switchAccountEventTimes)
         
         let observer = scheduler.createObserver(String?.self)
         viewModel.alertBannerText.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
-        
+       
         XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
@@ -116,7 +115,7 @@ class BillViewModelContentTests: BillViewModelTests {
         let expectedValues: [String] = [
             "Total Amount Due Immediately",
             "Total Amount Due By --",
-            "Total Amount Due By 01/01/2019",
+            "Total Amount Due By 01/11/2019",
             "Total Amount Due By --"
         ]
         
@@ -235,7 +234,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         scheduler.start()
         
-        XCTAssertRecordedElements(observer.events, ["Payment Date 01/01/2019", nil])
+        XCTAssertRecordedElements(observer.events, ["Payment Date 01/11/2019", nil])
     }
     
     // Tests changes in the `hasBillBreakdownData` value after switching
@@ -276,7 +275,7 @@ class BillViewModelContentTests: BillViewModelTests {
             firstExpectedValue,
             "You are enrolled in AutoPay",
             "Thank you for scheduling your $82.00 payment for 01/01/2019",
-            "Thank you for $200.00 payment on 01/01/2019",
+            "Thank you for $200.00 payment on 01/11/2019",
             nil
         ]
         
