@@ -58,6 +58,7 @@ class TitleTableViewCell: UITableViewCell {
         accessibilityLabel = text
         
         contentView.accessibilityLabel = "\(text ?? ""). \(detailText ?? "")"
+        accessibilityLabel = text
     }
     
 }

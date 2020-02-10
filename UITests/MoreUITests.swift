@@ -42,10 +42,14 @@ class MoreUITests: ExelonUITestCase {
             XCTAssertFalse(app.cells.staticTexts["Touch ID"].isHittable)
         }
         
+        let tableView = app.tables.matching(identifier: "moreTableView")
+        
         if appOpCo == .bge {
-            XCTAssertTrue(buttonElement(withText: "Set Default Account").isHittable)
+            let cell = tableView.cells.element(matching: .cell, identifier: "Set Default Account")
+            XCTAssertTrue(cell.isHittable)
         } else if appOpCo == .peco {
-            XCTAssertTrue(buttonElement(withText: "Release of Info").isHittable)
+            let cell = tableView.cells.element(matching: .cell, identifier: "Release of Info")
+            XCTAssertTrue(cell.isHittable)
         }
     }
 

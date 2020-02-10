@@ -48,6 +48,16 @@
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "087630DD1E72F5D000FA7020"
+               BuildableName = "BGEUITests.xctest"
+               BlueprintName = "BGEUITests"
+               ReferencedContainer = "container:Mobile.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -96,7 +96,6 @@ class LoginUITests: ExelonUITestCase {
         tapButton(buttonText: "Sign In")
 
         checkExistenceOfElement(.alert, "Sign In Error")
-
     }
     
     func testInvalidPassword() {

@@ -285,8 +285,8 @@
         "BillingInfo": {
             "netDueAmount": 0,
             "lastPaymentAmount": 200,
-            "lastPaymentDate": "2019-01-01T00:00:00",
-            "dueByDate": "2019-01-01T00:00:00",
+            "lastPaymentDate": "2019-01-11T00:00:00",
+            "dueByDate": "2019-01-11T00:00:00",
             "billDate": "2018-12-31T00:00:00",
             "minimumPaymentAmount": 5,
             "maximumPaymentAmount": 5000,

@@ -61,7 +61,7 @@ class BillViewModelContentTests: BillViewModelTests {
         // Catch Up and Restore Service don't apply to BGE, but the mock accounts still have past due amounts.
         let expectedValues: [String?] = [
             Environment.shared.opco == .bge ? "$200.00 of the total is due immediately." : "$200.00 of the total must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.",
-            Environment.shared.opco == .bge ? "$200.00 of the total is due immediately." : "$100.00 of the total must be paid by 01/11/2019 to catch up on your DPA.",
+            Environment.shared.opco == .bge ? "$200.00 of the total is due immediately." : "$100.00 of the total must be paid by 01/01/2019 to catch up on your DPA.",
             "$100.00 of the total must be paid immediately to avoid shutoff.",
             "$100.00 of the total must be paid by 01/09/2019 to avoid shutoff.",
             nil
@@ -116,7 +116,7 @@ class BillViewModelContentTests: BillViewModelTests {
         let expectedValues: [String] = [
             "Total Amount Due Immediately",
             "Total Amount Due By --",
-            "Total Amount Due By 01/11/2019",
+            "Total Amount Due By 01/01/2019",
             "Total Amount Due By --"
         ]
         
@@ -275,7 +275,7 @@ class BillViewModelContentTests: BillViewModelTests {
         let expectedValues: [String?] = [
             firstExpectedValue,
             "You are enrolled in AutoPay",
-            "Thank you for scheduling your $82.00 payment for 01/11/2019",
+            "Thank you for scheduling your $82.00 payment for 01/01/2019",
             "Thank you for $200.00 payment on 01/01/2019",
             nil
         ]
@@ -307,7 +307,7 @@ You currently have automatic payments set up. To avoid a duplicate payment, plea
 """
         
         let scheduledPaymentText = """
-You have a payment of $82.00 scheduled for 01/11/2019. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?
+You have a payment of $82.00 scheduled for 01/01/2019. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?
 """
         
         let expectedValues: [(String?, String?)] = [
