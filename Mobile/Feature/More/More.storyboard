@@ -707,7 +707,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ieR-AG-WNl">
-                                <rect key="frame" x="0.0" y="94" width="414" height="802"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="XAZ-dM-tS3"/>
@@ -718,22 +718,48 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-dm-UwW" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="177" y="489" width="60" height="12"/>
+                                <rect key="frame" x="177" y="429.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEG-UV-87v">
-                                <rect key="frame" x="29" y="485" width="356" height="20.5"/>
+                                <rect key="frame" x="29" y="425.5" width="356" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjA-OG-Ig4" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="777" width="414" height="85"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-vr-7qF" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="28" y="15" width="358" height="55"/>
+                                        <accessibility key="accessibilityConfiguration" label="Save Password"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Jlo-es-wtb"/>
+                                            <constraint firstAttribute="height" constant="55" id="nnI-uM-TPV"/>
+                                        </constraints>
+                                        <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="submitButtonPress:" destination="9Ug-ji-Hni" eventType="touchUpInside" id="DCw-R6-S0P"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="hr8-vr-7qF" secondAttribute="trailing" priority="999" constant="20" id="59T-ZO-ai3"/>
+                                    <constraint firstItem="hr8-vr-7qF" firstAttribute="top" secondItem="5xW-1b-Z06" secondAttribute="top" constant="15" id="IGz-b9-tMs"/>
+                                    <constraint firstItem="hr8-vr-7qF" firstAttribute="centerX" secondItem="5xW-1b-Z06" secondAttribute="centerX" id="apv-E6-yhe"/>
+                                    <constraint firstItem="hr8-vr-7qF" firstAttribute="leading" secondItem="fjA-OG-Ig4" secondAttribute="leadingMargin" priority="999" constant="20" id="elu-0u-ORq"/>
+                                    <constraint firstItem="5xW-1b-Z06" firstAttribute="bottom" secondItem="hr8-vr-7qF" secondAttribute="bottom" constant="15" id="gOb-vz-lqw"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="5xW-1b-Z06"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LEG-UV-87v" firstAttribute="leading" secondItem="xrc-ww-sfp" secondAttribute="leading" constant="29" id="Aoi-eO-Ie0"/>
                             <constraint firstItem="xrc-ww-sfp" firstAttribute="trailing" secondItem="RG6-dl-PMp" secondAttribute="trailing" id="FtO-iQ-ue3"/>
+                            <constraint firstItem="fjA-OG-Ig4" firstAttribute="leading" secondItem="xrc-ww-sfp" secondAttribute="leading" id="Jns-Uy-irr"/>
                             <constraint firstItem="ieR-AG-WNl" firstAttribute="leading" secondItem="xrc-ww-sfp" secondAttribute="leading" priority="999" id="OU7-yJ-yrr"/>
-                            <constraint firstAttribute="bottom" secondItem="ieR-AG-WNl" secondAttribute="bottom" id="OgA-TY-ofS"/>
+                            <constraint firstItem="xrc-ww-sfp" firstAttribute="bottom" secondItem="fjA-OG-Ig4" secondAttribute="bottom" id="RWK-b1-08A"/>
                             <constraint firstItem="LEG-UV-87v" firstAttribute="centerX" secondItem="ieR-AG-WNl" secondAttribute="centerX" id="aWn-Gw-xBu"/>
                             <constraint firstItem="ieR-AG-WNl" firstAttribute="centerX" secondItem="xrc-ww-sfp" secondAttribute="centerX" id="bCA-xg-bXr"/>
                             <constraint firstItem="dvR-dm-UwW" firstAttribute="centerX" secondItem="ieR-AG-WNl" secondAttribute="centerX" id="fCj-Ra-utR"/>
@@ -741,8 +767,10 @@
                             <constraint firstItem="xrc-ww-sfp" firstAttribute="trailing" secondItem="ieR-AG-WNl" secondAttribute="trailing" priority="999" id="h0p-VO-kQK"/>
                             <constraint firstItem="RG6-dl-PMp" firstAttribute="top" secondItem="xrc-ww-sfp" secondAttribute="top" id="h8T-ga-O9H"/>
                             <constraint firstItem="ieR-AG-WNl" firstAttribute="top" secondItem="RG6-dl-PMp" secondAttribute="bottom" id="lI5-GX-t5s"/>
+                            <constraint firstItem="fjA-OG-Ig4" firstAttribute="top" secondItem="ieR-AG-WNl" secondAttribute="bottom" id="qNP-jd-5sl"/>
                             <constraint firstItem="RG6-dl-PMp" firstAttribute="leading" secondItem="xrc-ww-sfp" secondAttribute="leading" id="x9x-DM-jf1"/>
                             <constraint firstItem="xrc-ww-sfp" firstAttribute="trailing" secondItem="LEG-UV-87v" secondAttribute="trailing" constant="29" id="y72-Wp-QHk"/>
+                            <constraint firstItem="xrc-ww-sfp" firstAttribute="trailing" secondItem="fjA-OG-Ig4" secondAttribute="trailing" id="ycL-FW-Dva"/>
                             <constraint firstItem="LEG-UV-87v" firstAttribute="centerY" secondItem="ieR-AG-WNl" secondAttribute="centerY" id="znm-Nh-ljf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xrc-ww-sfp"/>
@@ -752,12 +780,13 @@
                         <outlet property="accountInfoBar" destination="RG6-dl-PMp" id="n9c-T5-nQe"/>
                         <outlet property="errorLabel" destination="LEG-UV-87v" id="hds-1t-0Tn"/>
                         <outlet property="loadingIndicator" destination="dvR-dm-UwW" id="dUb-cU-I7p"/>
+                        <outlet property="submitButton" destination="hr8-vr-7qF" id="mrA-mA-IQy"/>
                         <outlet property="tableView" destination="ieR-AG-WNl" id="1ce-me-mmg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XLF-n9-Uls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3297" y="3593"/>
+            <point key="canvasLocation" x="3295.652173913044" y="3592.6339285714284"/>
         </scene>
         <!--Change Password-->
         <scene sceneID="9e3-Th-Q4n">

@@ -376,12 +376,12 @@
 		359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
 		359BDB8422DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
 		359BDB8522DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
-		359BDBA822E09D80007002B0 /* AccountInfoBarNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */; };
-		359BDBA922E09D80007002B0 /* AccountInfoBarNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */; };
-		359BDBAA22E09D80007002B0 /* AccountInfoBarNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */; };
-		359BDBAC22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */; };
-		359BDBAD22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */; };
-		359BDBAE22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */; };
+		359BDBA822E09D80007002B0 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBar.swift */; };
+		359BDBA922E09D80007002B0 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBar.swift */; };
+		359BDBAA22E09D80007002B0 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBar.swift */; };
+		359BDBAC22E09D93007002B0 /* AccountInfoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBar.xib */; };
+		359BDBAD22E09D93007002B0 /* AccountInfoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBar.xib */; };
+		359BDBAE22E09D93007002B0 /* AccountInfoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBar.xib */; };
 		359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */; };
 		359BDBB222E0E6E4007002B0 /* smallcircleload_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */; };
 		359BDBB322E0E6E4007002B0 /* smallcircleload_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */; };
@@ -2390,9 +2390,6 @@
 		E8C453151EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
 		E8C453161EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
 		E8C453171EF3293600F5C781 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453141EF3293600F5C781 /* ToastView.swift */; };
-		E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
-		E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
-		E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C453181EF4154000F5C781 /* AccountInfoBar.swift */; };
 		E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */; };
 		E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */; };
 		E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */; };
@@ -3041,8 +3038,8 @@
 		359BDB7422D8F9B2007002B0 /* outage_on.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_on.json; sourceTree = "<group>"; };
 		359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageViewModel.swift; sourceTree = "<group>"; };
 		359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasOnlyViewController.swift; sourceTree = "<group>"; };
-		359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoBarNew.swift; sourceTree = "<group>"; };
-		359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoBarNew.xib; sourceTree = "<group>"; };
+		359BDBA722E09D80007002B0 /* AccountInfoBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
+		359BDBAB22E09D93007002B0 /* AccountInfoBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoBar.xib; sourceTree = "<group>"; };
 		359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = smallcircleload_blue.json; sourceTree = "<group>"; };
 		359BDBB422E0E6EA007002B0 /* checkmark_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark_blue.json; sourceTree = "<group>"; };
 		35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPayBGE.storyboard; sourceTree = "<group>"; };
@@ -3778,7 +3775,6 @@
 		E8C29C771F630FC100DB73FC /* OutageStatusButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutageStatusButton.xib; sourceTree = "<group>"; };
 		E8C29C7B1F630FD200DB73FC /* OutageStatusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusButton.swift; sourceTree = "<group>"; };
 		E8C453141EF3293600F5C781 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
-		E8C453181EF4154000F5C781 /* AccountInfoBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
 		E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewController.swift; sourceTree = "<group>"; };
 		E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewController.swift; sourceTree = "<group>"; };
 		E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPaySettingsViewController.swift; sourceTree = "<group>"; };
@@ -4174,7 +4170,6 @@
 		351241EB22B3DB7600E8BD25 /* Account Bar + Picker */ = {
 			isa = PBXGroup;
 			children = (
-				35CEB02A230D8DC400366440 /* Account Info Bar */,
 				3575233122C53AC700A0AFAC /* Account Picker */,
 				3575233022C53ABF00A0AFAC /* Account Sheet */,
 				E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */,
@@ -4751,8 +4746,8 @@
 		359BDBA622E09D64007002B0 /* Account Info Bar */ = {
 			isa = PBXGroup;
 			children = (
-				359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */,
-				359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */,
+				359BDBA722E09D80007002B0 /* AccountInfoBar.swift */,
+				359BDBAB22E09D93007002B0 /* AccountInfoBar.xib */,
 			);
 			path = "Account Info Bar";
 			sourceTree = "<group>";
@@ -5002,14 +4997,6 @@
 				B0DB2755215EBEE600CD703B /* AlertPreferencesLanguageCell.swift */,
 			);
 			path = "Table View Cells";
-			sourceTree = "<group>";
-		};
-		35CEB02A230D8DC400366440 /* Account Info Bar */ = {
-			isa = PBXGroup;
-			children = (
-				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
-			);
-			path = "Account Info Bar";
 			sourceTree = "<group>";
 		};
 		35CEB02C230D8E4A00366440 /* Table View Cells */ = {
@@ -6920,7 +6907,7 @@
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
-				359BDBAC22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
+				359BDBAC22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				B08957262217496D00A97965 /* bill_pdf.json in Resources */,
 				359BDB6622D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
@@ -7094,7 +7081,7 @@
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				9C2C601123C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
-				359BDBAE22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
+				359BDBAE22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				359BDB6822D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				9CABF6BF239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
@@ -7260,7 +7247,7 @@
 				3559C8B72301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				9C2C601023C91E3D0033785E /* coin_bonus_point.json in Resources */,
-				359BDBAD22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
+				359BDBAD22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				359BDB6722D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
@@ -8568,7 +8555,7 @@
 				358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */,
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
-				359BDBA822E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
+				359BDBA822E09D80007002B0 /* AccountInfoBar.swift in Sources */,
 				E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */,
@@ -8642,7 +8629,6 @@
 				E80CBD0F1F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				B0882C9F210B925000EB756B /* UsageToolCardView.swift in Sources */,
-				E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				35277AFD210266BF00411297 /* UsageTool.swift in Sources */,
 				9CEE412523722B8A005A4AD3 /* Weekday.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -9054,7 +9040,6 @@
 				35277AFB2102325100411297 /* UsageViewModel.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
-				E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				B068DB6020D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7022121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
@@ -9108,7 +9093,7 @@
 				5492E0211EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				2F51B4971F26E20100550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
-				359BDBAA22E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
+				359BDBAA22E09D80007002B0 /* AccountInfoBar.swift in Sources */,
 				9C19983723A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35376C6A20F8FFD1007E50F7 /* BillImpactView.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
@@ -9398,7 +9383,7 @@
 				82AC2A1F1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
 				54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */,
 				E857C5221F269FF6002A8E94 /* TemplateCardView.swift in Sources */,
-				359BDBA922E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
+				359BDBA922E09D80007002B0 /* AccountInfoBar.swift in Sources */,
 				E87C413F1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
@@ -9481,7 +9466,6 @@
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
-				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */,
 				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				9CD742C0237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */,
@@ -14599,6 +14583,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.staging;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -14607,7 +14592,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "26d3c4f4-431d-4400-a26d-910b8601a452";
 				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging Enterprise Dist";
-				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
