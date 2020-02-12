@@ -13,6 +13,7 @@ final class RemoteConfigUtility {
     enum RemoteConfigKey: String {
         case outageMapURL
         case streetlightMapURL
+        case billingVideoURL
     }
     
     static let shared = RemoteConfigUtility()
@@ -28,7 +29,8 @@ final class RemoteConfigUtility {
     private func loadDefaultValues() {
         let appDefaults: [String: Any?] = [
             RemoteConfigKey.outageMapURL.rawValue : "",
-            RemoteConfigKey.streetlightMapURL.rawValue : ""
+            RemoteConfigKey.streetlightMapURL.rawValue : "",
+            RemoteConfigKey.billingVideoURL.rawValue : ""
         ]
         RemoteConfig.remoteConfig().setDefaults(appDefaults as? [String: NSObject])
     }

@@ -45,15 +45,8 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         }
     }
     
-    let billingVideosUrl: URL = {
-        switch Environment.shared.opco {
-        case .bge:
-            return URL(string: "https://www.youtube.com/playlist?list=PLqZel3RCfgtuTtDFCBmFQ1xNLzI7H6J4m")!
-        case .peco:
-            return URL(string: "https://www.youtube.com/playlist?list=PLyIWX4qmx-oyOoGkxaU8A-ye-oQ0vrzi-")!
-        case .comEd:
-            return URL(string: "https://www.youtube.com/playlist?list=PL-PMuxD2q_DJFPh156UmI43FMbwQFIQ-N")!
-        }
+    let billingVideosUrl: URL? = {
+        return URL(string: RemoteConfigUtility.shared.string(forKey: .billingVideoURL))
     }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
