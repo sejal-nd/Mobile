@@ -585,17 +585,13 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
         rm -r build/Mobile.build
 
         set -e
-
+        
         # rm -rf "DerivedData"
         echo "----------------------------------- Build-for-testing -------------------------------"
         xcrun xcodebuild \
             -configuration Automation \
             -workspace $PROJECT \
-            -sdk iphoneos \
             -scheme "$OPCO-AUT-UITest" \
-            ONLY_ACTIVE_ARCH=NO \
-            ARCH="armv7 armv7s arm64" \
-            VALID_ARCHS="armv7 armv7s arm64" \
             build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty
 
         check_errs $? "Build for testing exited with a non-zero status"
