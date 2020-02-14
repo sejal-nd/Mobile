@@ -139,6 +139,8 @@ class MoreUITests: ExelonUITestCase {
         let cell = tableView.cells.element(matching: .cell, identifier: "Change Password")
         cell.tap()
 
+        sleep(2)
+        
         let saveButton = app.buttons["Save Password"]
 
         let elementsQuery = app.scrollViews.otherElements
@@ -147,17 +149,23 @@ class MoreUITests: ExelonUITestCase {
         XCTAssertFalse(elementsQuery.images["ic_check"].exists)
         elementsQuery.secureTextFields["New Password"].clearAndEnterText("pass")
 
+        sleep(2)
+        
         // Password strength view shown, criteria not yet met
         XCTAssertTrue(elementsQuery.staticTexts["Password strength weak"].exists)
         XCTAssertFalse(elementsQuery.images["Minimum password criteria met"].exists)
         elementsQuery.secureTextFields["New Password"].typeText("word1A")
 
+        sleep(2)
+        
         // Password strength view shown, criteria met
         XCTAssertTrue(elementsQuery.staticTexts["Password strength weak"].exists)
         XCTAssertTrue(elementsQuery.images["Minimum password criteria met"].exists)
 
         elementsQuery.secureTextFields["Confirm Password"].clearAndEnterText("password1A")
 
+        sleep(2)
+        
         // Submit still disabled
         XCTAssertFalse(saveButton.isEnabled)
 
@@ -166,7 +174,7 @@ class MoreUITests: ExelonUITestCase {
         // Fields all entered, submit now enabled
         XCTAssertTrue(saveButton.isEnabled)
 
-        sleep(3)
+        sleep(2)
         
         saveButton.tap()
 
