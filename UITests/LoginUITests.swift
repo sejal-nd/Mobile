@@ -123,6 +123,8 @@ class LoginUITests: ExelonUITestCase {
         let cell = tableView.cells.element(matching: .cell, identifier: "Contact Us")
         cell.tap()
         
+        sleep(3) // test may be needed for azure ui tests
+        
         checkExistenceOfElements([
             (.navigationBar, "Contact Us"),
             (.button, "Back"),

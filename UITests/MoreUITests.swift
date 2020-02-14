@@ -166,8 +166,12 @@ class MoreUITests: ExelonUITestCase {
         // Fields all entered, submit now enabled
         XCTAssertTrue(saveButton.isEnabled)
 
+        sleep(3)
+        
         saveButton.tap()
 
+        sleep(3)
+        
         // "Password changed" toast shown
         checkExistenceOfElement(.staticText, "Password changed")
     }
