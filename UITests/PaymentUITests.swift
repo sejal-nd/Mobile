@@ -94,10 +94,12 @@ class PaymentUITests: ExelonUITestCase {
         
         sleep(2)
         
-        tapButton(buttonText: "Add credit/debit card") // fails here due to sheet not sdhowing
+        tapButton(buttonText: "Add credit/debit card")
 
+        sleep(2)
+        
         checkExistenceOfElements([
-            (.sheet, "Add Credit/Debit Card"),
+            (.staticText, "Add Credit/Debit Card"),
             (.button, "Save to My Wallet"),
             (.button, "Don't Save to My Wallet"),
             (.button, "Cancel")
@@ -135,8 +137,10 @@ class PaymentUITests: ExelonUITestCase {
         let cell2 = tableView.cells.element(matching: .cell, identifier: "Add Credit/Debit Card")
         cell2.tap()
         
+        sleep(2)
+        
         checkExistenceOfElements([
-            (.sheet, "Add Credit/Debit Card"),
+            (.staticText, "Add Credit/Debit Card"),
             (.button, "Save to My Wallet"),
             (.button, "Don't Save to My Wallet"),
             (.button, "Cancel")
