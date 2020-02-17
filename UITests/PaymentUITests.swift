@@ -77,12 +77,8 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardNoDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
-        
-        sleep(3)
-        
+                
         app.buttons["Add bank account"].tap()
-
-        sleep(3)
         
         checkExistenceOfElements([
             (.button, "Save to My Wallet"),
@@ -91,9 +87,7 @@ class PaymentUITests: ExelonUITestCase {
         ])
 
         tapButton(buttonText: "Cancel")
-        
-        sleep(2)
-        
+                
         tapButton(buttonText: "Add credit/debit card")
 
         sleep(2)
@@ -110,20 +104,14 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardWithDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
-        
-        sleep(3)
-        
+            
         tapButton(buttonText: "Bank account, Test Bank, Account number ending in, 1234")
         checkExistenceOfElement(.staticText, "Select Payment Method")
-
-        sleep(3)
         
         let tableView = app.tables.matching(identifier: "miniWalletTableView")
         let cell = tableView.cells.element(matching: .cell, identifier: "Add Bank Account")
         cell.tap()
-        
-        sleep(2)
-        
+                
         checkExistenceOfElements([
             (.button, "Save to My Wallet"),
             (.button, "Don't Save to My Wallet"),
