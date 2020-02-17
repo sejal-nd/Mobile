@@ -169,6 +169,7 @@ class MoreUITests: ExelonUITestCase {
         // Submit still disabled
         XCTAssertFalse(saveButton.isEnabled)
 
+        elementsQuery.secureTextFields["Current Password"].tap()
         elementsQuery.secureTextFields["Current Password"].clearAndEnterText("Password1")
 
         // Fields all entered, submit now enabled
