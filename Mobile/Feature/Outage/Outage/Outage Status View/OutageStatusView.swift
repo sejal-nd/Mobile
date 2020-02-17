@@ -218,6 +218,7 @@ extension OutageStatusView {
         
         lottieAnimationView?.frame = CGRect(x: 0, y: 1, width: animationContentView.frame.size.width, height: animationContentView.frame.size.height)
         lottieAnimationView?.loopMode = .loop
+        lottieAnimationView?.backgroundBehavior = .pauseAndRestore
         lottieAnimationView?.contentMode = .scaleAspectFill
         
         guard let lottieAnimationView = lottieAnimationView else { return }

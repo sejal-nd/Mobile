@@ -60,6 +60,19 @@ extension Date {
         return DateFormatter.apiFormatter.string(from: self)
     }
     
+    @nonobjc var gameShortString: String {
+        return DateFormatter.gameShortDateFormatter.string(from: self)
+    }
+    
+    @nonobjc var gameLongString: String {
+        return DateFormatter.gameLongDateFormatter.string(from: self) +
+            ordinal(forCalendar: DateFormatter.gameLongDateFormatter.calendar)
+    }
+    
+    @nonobjc var gameReminderString: String {
+        return DateFormatter.gameReminderDateFormatter.string(from: self)
+    }
+    
     @nonobjc var localizedGreeting: String {
         let components = Calendar.current.dateComponents([.hour], from: self)
         guard let hour = components.hour else { return "Greetings" }
@@ -71,9 +84,8 @@ extension Date {
         } else {
             return NSLocalizedString("Good Evening", comment: "")
         }
-        
     }
-    
+            
     @nonobjc var paymentFormatString: String {
         if isInToday(calendar: .opCo) {
             return DateFormatter.apiFormatterGMT.string(from: self)
@@ -82,10 +94,9 @@ extension Date {
         }
     }
     
-    func interval(ofComponent comp: Calendar.Component, fromDate date: Date) -> Int {
-        let currentCalendar = Calendar.opCo
-        guard let start = currentCalendar.ordinality(of: comp, in: .era, for: date) else { return 0 }
-        guard let end = currentCalendar.ordinality(of: comp, in: .era, for: self) else { return 0 }
+    func interval(ofComponent comp: Calendar.Component, fromDate date: Date, usingCalendar calendar: Calendar = Calendar.opCo) -> Int {
+        guard let start = calendar.ordinality(of: comp, in: .era, for: date) else { return 0 }
+        guard let end = calendar.ordinality(of: comp, in: .era, for: self) else { return 0 }
         return end - start
     }
     
@@ -96,6 +107,14 @@ extension Date {
         case 3, 23: return "rd"
         default: return "th"
         }
+    }
+    
+    @nonobjc var weekday: Weekday {
+        guard let weekdayInt = Calendar.gmt.dateComponents([.weekday], from: self).weekday,
+            let weekday = Weekday(rawValue: weekdayInt) else {
+            fatalError("Could not compute weekday from Date")
+        }
+        return weekday
     }
 }
 
@@ -286,6 +305,29 @@ extension DateFormatter {
         }
         return formatter
     }()
+    
+    @nonobjc static let gameShortDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .gmt
+        dateFormatter.timeZone = .gmt
+        dateFormatter.dateFormat = "M/d"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let gameLongDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .gmt
+        dateFormatter.timeZone = .gmt
+        dateFormatter.dateFormat = "EEEE, MMMM d"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let gameReminderDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy h:mm a"
+        return dateFormatter
+    }()
+    
 }
 
 extension String {

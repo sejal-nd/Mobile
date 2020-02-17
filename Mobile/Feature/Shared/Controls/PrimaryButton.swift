@@ -111,6 +111,7 @@ class PrimaryButton: UIButton {
         
         loadingAnimationView.frame = animationRect
         loadingAnimationView.loopMode = .loop
+        loadingAnimationView.backgroundBehavior = .pauseAndRestore
         addSubview(loadingAnimationView)
         loadingAnimationView.play()
     }

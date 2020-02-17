@@ -17,40 +17,29 @@ class HomeProjectedBillCardViewModel {
     let accountDetailEvents: Observable<Event<AccountDetail>>
     private let usageService: UsageService
     
-    private let fetchData: Observable<FetchingAccountState>
+    private let fetchData: Observable<Void>
     
-    let refreshFetchTracker: ActivityTracker
-    let switchAccountFetchTracker: ActivityTracker
-    let loadingTracker = ActivityTracker()
+    let fetchTracker: ActivityTracker
     
     let electricGasSelectedSegmentIndex = Variable(0)
     let electricForecast = Variable<BillForecast?>(nil)
     let gasForecast = Variable<BillForecast?>(nil)
     
-    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
-        switch state {
-        case .refresh: return refreshFetchTracker
-        case .switchAccount: return switchAccountFetchTracker
-        }
-    }
-    
-    required init(fetchData: Observable<FetchingAccountState>,
+    required init(fetchData: Observable<Void>,
                   maintenanceModeEvents: Observable<Event<Maintenance>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   usageService: UsageService,
-                  refreshFetchTracker: ActivityTracker,
-                  switchAccountFetchTracker: ActivityTracker) {
+                  fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
         self.usageService = usageService
-        self.refreshFetchTracker = refreshFetchTracker
-        self.switchAccountFetchTracker = switchAccountFetchTracker
+        self.fetchTracker = fetchTracker
     }
     
     // MARK: - Show States
     
-    private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
+    private(set) lazy var showLoadingState: Driver<Bool> = fetchTracker.asDriver()
         .skip(1)
         .startWith(true)
         .distinctUntilChanged()
@@ -100,11 +89,11 @@ class HomeProjectedBillCardViewModel {
         .filter { $0.isEligibleForUsageData && !$1 }
         .withLatestFrom(fetchData) { ($0.0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] pair -> ActivityTracker? in
-            return self?.fetchTracker(forState: pair.1) },
-                        requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
-                            guard let this = self else { return .empty() }
-                            return this.usageService.fetchBillForecast(accountNumber: pair.0.accountNumber,
-                                                                       premiseNumber: pair.0.premiseNumber!)
+            return self?.fetchTracker
+        }, requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
+            guard let this = self else { return .empty() }
+            return this.usageService.fetchBillForecast(accountNumber: pair.0.accountNumber,
+                                                       premiseNumber: pair.0.premiseNumber!)
         })
     
     // MARK: - View Content

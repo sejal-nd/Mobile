@@ -18,18 +18,10 @@ class HomeUsageCardViewModel {
     private let accountService: AccountService
     private let usageService: UsageService
     
-    private let fetchData: Observable<FetchingAccountState>
+    private let fetchData: Observable<Void>
     
-    let refreshFetchTracker: ActivityTracker
-    let switchAccountFetchTracker: ActivityTracker
-    let loadingTracker = ActivityTracker()
-    
-    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
-        switch state {
-        case .refresh: return refreshFetchTracker
-        case .switchAccount: return switchAccountFetchTracker
-        }
-    }
+    let fetchTracker: ActivityTracker
+    let billComparisonTracker = ActivityTracker()
     
     let electricGasSelectedSegmentIndex = Variable<Int>(0)
     
@@ -40,23 +32,21 @@ class HomeUsageCardViewModel {
      */
     let barGraphSelectionStates = Variable([Variable(false), Variable(false), Variable(true)])
     
-    required init(fetchData: Observable<FetchingAccountState>,
+    required init(fetchData: Observable<Void>,
                   maintenanceModeEvents: Observable<Event<Maintenance>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   accountService: AccountService,
                   usageService: UsageService,
-                  refreshFetchTracker: ActivityTracker,
-                  switchAccountFetchTracker: ActivityTracker) {
+                  fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
         self.accountService = accountService
         self.usageService = usageService
-        self.refreshFetchTracker = refreshFetchTracker
-        self.switchAccountFetchTracker = switchAccountFetchTracker
+        self.fetchTracker = fetchTracker
     }
     
-    private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
+    private(set) lazy var showLoadingState: Driver<Bool> = fetchTracker.asDriver()
         .skip(1)
         .startWith(true)
         .distinctUntilChanged()
@@ -66,8 +56,8 @@ class HomeUsageCardViewModel {
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
         .filter { !$1 }
         .withLatestFrom(fetchData) { ($0.0, $1) }
-        .toAsyncRequest(activityTracker: { [weak self] _, fetchingState in
-            self?.fetchTracker(forState: fetchingState)
+        .toAsyncRequest(activityTracker: { [weak self] _ in
+            return self?.fetchTracker
         }, requestSelector: { [weak self] accountDetail, _ in
             guard let self = self else { return .empty() }
             guard accountDetail.isBGEControlGroup && accountDetail.isSERAccount else {
@@ -97,9 +87,9 @@ class HomeUsageCardViewModel {
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
         .filter { !$1 }
         .withLatestFrom(Observable.combineLatest(fetchData, electricGasSelectedSegmentIndex.asObservable()))
-        { ($0.0, $1.0, $1.1) }
+        { ($0.0, $1.1) }
         .toAsyncRequest { [weak self] data -> Observable<BillComparison> in
-            let (accountDetail, fetchState, segmentIndex) = data
+            let (accountDetail, segmentIndex) = data
             guard let self = self else { return .empty() }
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
 
@@ -111,7 +101,7 @@ class HomeUsageCardViewModel {
             }
             
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
-                .trackActivity(self.fetchTracker(forState: fetchState))
+                .trackActivity(self.fetchTracker)
         }
     
     private(set) lazy var segmentedControlChanged = self.electricGasSelectedSegmentIndex.asObservable()
@@ -130,7 +120,7 @@ class HomeUsageCardViewModel {
             }
             
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
-                .trackActivity(self.loadingTracker)
+                .trackActivity(self.billComparisonTracker)
         }
     
     private(set) lazy var billComparisonDriver: Driver<BillComparison> = self.billComparisonEvents.elements().asDriver(onErrorDriveWith: .empty())

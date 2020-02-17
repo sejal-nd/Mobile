@@ -512,6 +512,8 @@
 		35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35D6B62D231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
+		35E18A8F2379B95A00384614 /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
+		35E18A902379B95A00384614 /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
 		35E7C79C21907EA400BA13C6 /* PECO-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35E7C79B21907EA300BA13C6 /* PECO-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E7C7A921907EA400BA13C6 /* PECO-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO-Watch.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -1049,12 +1051,45 @@
 		8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
+		9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
+		9C0A2C3723A042DC002C4B8E /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
+		9C0A2C3823A042DC002C4B8E /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
+		9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
+		9C0A2C3A23A042DC002C4B8E /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
+		9C0A2C3B23A042DC002C4B8E /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
+		9C0A2C3C23A042DC002C4B8E /* message_bubble_unique.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */; };
+		9C0A2C3D23A042DC002C4B8E /* message_bubble_unique.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */; };
+		9C0A2C3E23A042DC002C4B8E /* message_bubble_unique.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */; };
 		9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
 		9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
 		9C0E1C962333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
 		9C0E1C972333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */; };
 		9C0E1C982333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */; };
 		9C0E1C992333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */; };
+		9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */; };
+		9C0EA5A5237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */; };
+		9C0EA5A6237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */; };
+		9C0EA5A8237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */; };
+		9C0EA5A9237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */; };
+		9C0EA5AA237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */; };
+		9C0EA5B2237DAD2900D1E18F /* buddy_body.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AC237DAD2800D1E18F /* buddy_body.json */; };
+		9C0EA5B3237DAD2900D1E18F /* buddy_body.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AC237DAD2800D1E18F /* buddy_body.json */; };
+		9C0EA5B4237DAD2900D1E18F /* buddy_body.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AC237DAD2800D1E18F /* buddy_body.json */; };
+		9C0EA5B5237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */; };
+		9C0EA5B6237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */; };
+		9C0EA5B7237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */; };
+		9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */; };
+		9C0EA5B9237DAD2900D1E18F /* buddy_face_happy.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */; };
+		9C0EA5BA237DAD2900D1E18F /* buddy_face_happy.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */; };
+		9C0EA5BB237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
+		9C0EA5BC237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
+		9C0EA5BD237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
+		9C0EA5BE237DAD2900D1E18F /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
+		9C0EA5BF237DAD2900D1E18F /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
+		9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
+		9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */; };
+		9C0EA5C2237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */; };
+		9C0EA5C3237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */; };
 		9C10B4D322DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
 		9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
 		9C10B4D522DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
@@ -1079,6 +1114,12 @@
 		9C153DC922E8F6CE002DA062 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C153DC822E8F6CE002DA062 /* Checkbox.swift */; };
 		9C153DCA22E8F6CE002DA062 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C153DC822E8F6CE002DA062 /* Checkbox.swift */; };
 		9C153DCB22E8F6CE002DA062 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C153DC822E8F6CE002DA062 /* Checkbox.swift */; };
+		9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19983423A9614900250417 /* GameEnrollmentViewController.swift */; };
+		9C19983623A9614900250417 /* GameEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19983423A9614900250417 /* GameEnrollmentViewController.swift */; };
+		9C19983723A9614900250417 /* GameEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19983423A9614900250417 /* GameEnrollmentViewController.swift */; };
+		9C2876AD23C7C97700A334DA /* GameCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */; };
+		9C2876AE23C7C97700A334DA /* GameCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */; };
+		9C2876AF23C7C97700A334DA /* GameCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */; };
 		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
@@ -1089,6 +1130,20 @@
 		9C28D39C2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
 		9C28D39D2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
 		9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
+		9C2C600F23C91E3D0033785E /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
+		9C2C601023C91E3D0033785E /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
+		9C2C601123C91E3D0033785E /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
+		9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C34D745239EE92400DF7FE2 /* GameTasks.json */; };
+		9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
+		9C34D749239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
+		9C34D74A239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
+		9C34D74C239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
+		9C34D74E239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
+		9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
+		9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
+		9C37BA932388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
+		9C3DD83823A4105800AF75B6 /* GameTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C34D745239EE92400DF7FE2 /* GameTasks.json */; };
+		9C3DD83923A4105900AF75B6 /* GameTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C34D745239EE92400DF7FE2 /* GameTasks.json */; };
 		9C46B12B221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12C221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12D221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
@@ -1098,9 +1153,21 @@
 		9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
+		9C48830523834F2700321E6B /* GameTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48830423834F2700321E6B /* GameTipViewController.swift */; };
+		9C48830623834F2700321E6B /* GameTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48830423834F2700321E6B /* GameTipViewController.swift */; };
+		9C48830723834F2700321E6B /* GameTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48830423834F2700321E6B /* GameTipViewController.swift */; };
+		9C48856323D2671F00E107C6 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9C48856423D2671F00E107C6 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9C48856523D2672000E107C6 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
+		9C5F096B23A801E100B73049 /* Array+OptionalLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */; };
+		9C5F096C23A801E100B73049 /* Array+OptionalLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */; };
+		9C5F096D23A801E100B73049 /* Array+OptionalLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */; };
+		9C5F096F23A8339F00B73049 /* GameTryFabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */; };
+		9C5F097023A8339F00B73049 /* GameTryFabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */; };
+		9C5F097123A8339F00B73049 /* GameTryFabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */; };
 		9C5F786322F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
 		9C5F786422F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
 		9C5F786522F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
@@ -1137,6 +1204,15 @@
 		9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
+		9C7774822368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
+		9C7774832368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
+		9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
+		9C7774862368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
+		9C7774872368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
+		9C7C902723B55F3100E40D1E /* GameSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */; };
+		9C7C902823B55F3100E40D1E /* GameSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */; };
+		9C7C902923B55F3100E40D1E /* GameSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */; };
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
@@ -1145,6 +1221,9 @@
 		9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButton.swift */; };
 		9C8775B522A082CD0087F0BA /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */; };
 		9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */; };
+		9C88942223C39F2B002E46A7 /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C88942123C39F2B002E46A7 /* confetti.json */; };
+		9C88942323C39F2B002E46A7 /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C88942123C39F2B002E46A7 /* confetti.json */; };
+		9C88942423C39F2B002E46A7 /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C88942123C39F2B002E46A7 /* confetti.json */; };
 		9C9204CC2310327400B0B89F /* SmartThermostatPeriodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */; };
 		9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
 		9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
@@ -1155,19 +1234,86 @@
 		9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
+		9CA1381D238C2D010023248D /* WeeklyInsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */; };
+		9CA1381E238C2D010023248D /* WeeklyInsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */; };
+		9CA1381F238C2D010023248D /* WeeklyInsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */; };
+		9CA411DB2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */; };
+		9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */; };
+		9CA411DD2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */; };
+		9CA411DF2384972D00C0B602 /* GameCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */; };
+		9CA411E02384972D00C0B602 /* GameCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */; };
+		9CA411E12384972D00C0B602 /* GameCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */; };
+		9CA4FA602385A2B900E33E7C /* GameProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */; };
+		9CA4FA612385A2B900E33E7C /* GameProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */; };
+		9CA4FA622385A2B900E33E7C /* GameProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */; };
+		9CA4FA652385BFC700E33E7C /* GiftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */; };
+		9CA4FA662385BFC700E33E7C /* GiftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */; };
+		9CA4FA672385BFC700E33E7C /* GiftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */; };
+		9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */; };
+		9CA4FA6A2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */; };
+		9CA4FA6B2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */; };
 		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
+		9CAA4D58239FEDCC00283095 /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */; };
+		9CAA4D59239FEDCC00283095 /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */; };
+		9CAA4D5A239FEDCC00283095 /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */; };
+		9CABF6B52397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
+		9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
+		9CABF6B72397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
+		9CABF6B9239719CE00B07B01 /* QuizAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */; };
+		9CABF6BA239719CE00B07B01 /* QuizAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */; };
+		9CABF6BB239719CE00B07B01 /* QuizAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */; };
+		9CABF6BD239719DB00B07B01 /* QuizAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */; };
+		9CABF6BE239719DB00B07B01 /* QuizAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */; };
+		9CABF6BF239719DB00B07B01 /* QuizAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */; };
+		9CAC5952239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
+		9CAC5953239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
+		9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
 		9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
 		9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
 		9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
+		9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
+		9CB7E8DE23980BA4001FBAB9 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
+		9CB7E8DF23980BA4001FBAB9 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
 		9CB8A5ED21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		9CB8A5EE21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		9CB8A5EF21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		9CB8A5F121DEC22200880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
+		9CBCE75723D5EEF400DA4BF8 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
+		9CBE9E26237473C200E14222 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9CBE9E27237473C400E14222 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9CBE9E28237473C400E14222 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9CBE9E2A2374988100E14222 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E292374988100E14222 /* GameService.swift */; };
+		9CBE9E2B2374988100E14222 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E292374988100E14222 /* GameService.swift */; };
+		9CBE9E2C2374988100E14222 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E292374988100E14222 /* GameService.swift */; };
+		9CBE9E2E23749B9900E14222 /* MCSGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E2D23749B9900E14222 /* MCSGameService.swift */; };
+		9CBE9E2F23749B9900E14222 /* MCSGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E2D23749B9900E14222 /* MCSGameService.swift */; };
+		9CBE9E3023749B9900E14222 /* MCSGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E2D23749B9900E14222 /* MCSGameService.swift */; };
+		9CBE9E322374A25E00E14222 /* GameHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */; };
+		9CBE9E332374A25E00E14222 /* GameHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */; };
+		9CBE9E342374A25E00E14222 /* GameHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */; };
+		9CBE9E362374AC5100E14222 /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E352374AC5100E14222 /* MockGameService.swift */; };
+		9CBE9E372374AC5100E14222 /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E352374AC5100E14222 /* MockGameService.swift */; };
+		9CBE9E382374AC5100E14222 /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E352374AC5100E14222 /* MockGameService.swift */; };
 		9CC48011220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48012220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48013220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
+		9CC87B1B23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */; };
+		9CC87B1C23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */; };
+		9CC87B1D23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */; };
+		9CC99785237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
+		9CC99786237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
+		9CC99787237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
+		9CC9978A237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */; };
+		9CC9978B237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */; };
+		9CC9978C237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */; };
+		9CC9978E237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC9978D237B4A0200C68300 /* HomeGameOnboardingCardView.swift */; };
+		9CC9978F237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC9978D237B4A0200C68300 /* HomeGameOnboardingCardView.swift */; };
+		9CC99790237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC9978D237B4A0200C68300 /* HomeGameOnboardingCardView.swift */; };
+		9CC99793237B6A9300C68300 /* GameOnboardingIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99792237B6A9300C68300 /* GameOnboardingIntroViewController.swift */; };
+		9CC99794237B6A9300C68300 /* GameOnboardingIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99792237B6A9300C68300 /* GameOnboardingIntroViewController.swift */; };
+		9CC99795237B6A9300C68300 /* GameOnboardingIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99792237B6A9300C68300 /* GameOnboardingIntroViewController.swift */; };
 		9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
@@ -1199,8 +1345,20 @@
 		9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		9CD3533A22CABDBE00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
+		9CD742BB237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */; };
+		9CD742BC237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */; };
+		9CD742BD237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */; };
+		9CD742BF237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BE237CA94600915334 /* GameOnboardingStep2ViewController.swift */; };
+		9CD742C0237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BE237CA94600915334 /* GameOnboardingStep2ViewController.swift */; };
+		9CD742C1237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BE237CA94600915334 /* GameOnboardingStep2ViewController.swift */; };
+		9CDB5E782399AE1300976BB2 /* GiftInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDB5E772399AE1300976BB2 /* GiftInventory.swift */; };
+		9CDB5E792399AE1300976BB2 /* GiftInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDB5E772399AE1300976BB2 /* GiftInventory.swift */; };
+		9CDB5E7A2399AE1300976BB2 /* GiftInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDB5E772399AE1300976BB2 /* GiftInventory.swift */; };
 		9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
 		9CE2276822DE1D7E003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
+		9CE549712399941300025BD5 /* GameRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE549702399941300025BD5 /* GameRewardViewController.swift */; };
+		9CE549722399941300025BD5 /* GameRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE549702399941300025BD5 /* GameRewardViewController.swift */; };
+		9CE549732399941300025BD5 /* GameRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE549702399941300025BD5 /* GameRewardViewController.swift */; };
 		9CE700AB2318657300191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
 		9CE700AD2318657400191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
 		9CE700AE2318657400191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
@@ -1211,6 +1369,27 @@
 		9CE700B3231865B500191C05 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
 		9CE700B4231865B500191C05 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
 		9CE83BAB22D9201C0094C34C /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
+		9CEE411923722444005A4AD3 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411823722444005A4AD3 /* Game.storyboard */; };
+		9CEE411A23722444005A4AD3 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411823722444005A4AD3 /* Game.storyboard */; };
+		9CEE411B23722444005A4AD3 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411823722444005A4AD3 /* Game.storyboard */; };
+		9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
+		9CEE411E23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
+		9CEE411F23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
+		9CEE412123722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */; };
+		9CEE412223722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */; };
+		9CEE412323722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */; };
+		9CEE412523722B8A005A4AD3 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9CEE412623722B8A005A4AD3 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9CEE412723722B8A005A4AD3 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
+		9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
+		9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
+		9CF0E06823BA650100C151F5 /* SurveyMonkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */; };
+		9CF0E06923BA650100C151F5 /* SurveyMonkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */; };
+		9CF0E06A23BA650100C151F5 /* SurveyMonkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */; };
+		9CF5369E23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */; };
+		9CF5369F23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */; };
+		9CF536A023A1A4C60006576E /* GiftCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */; };
 		9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
@@ -1830,6 +2009,13 @@
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
 		B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */; };
 		C35630934D9C14C670A6E89D /* Pods_BGE_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56989091D306CA58F4B7F0BC /* Pods_BGE_Watch.framework */; };
+		C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
+		C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
+		C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */; };
+		C364A87E2375DD7400C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
+		C364A87F2375DD7600C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
+		C364A8802375DD8100C7D51B /* EmptyChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */; };
+		C364A8812375DD8200C7D51B /* EmptyChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -3115,21 +3301,42 @@
 		93B2F085877AB30A8F88D00C /* Pods-Watch Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.testing.xcconfig"; sourceTree = "<group>"; };
 		99C898A9F3F572B258B68313 /* Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		9B6E69B6B5E99DA331F2FCB6 /* Pods-BGE-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch/Pods-BGE-Watch.release.xcconfig"; sourceTree = "<group>"; };
+		9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message_bubble_quiz.json; sourceTree = "<group>"; };
+		9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message_bubble_tip.json; sourceTree = "<group>"; };
+		9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message_bubble_unique.json; sourceTree = "<group>"; };
 		9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultPaymentMethodTutorialViewController.swift; sourceTree = "<group>"; };
 		9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDefaultPaymentMethodTutorialViewController.xib; sourceTree = "<group>"; };
+		9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyBuddyView.xib; sourceTree = "<group>"; };
+		9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyBuddyView.swift; sourceTree = "<group>"; };
+		9C0EA5AC237DAD2800D1E18F /* buddy_body.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_body.json; sourceTree = "<group>"; };
+		9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_face_happy_bounce.json; sourceTree = "<group>"; };
+		9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_face_happy.json; sourceTree = "<group>"; };
+		9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_particles_sparkles.json; sourceTree = "<group>"; };
+		9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_face_normal.json; sourceTree = "<group>"; };
+		9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_particles_hearts.json; sourceTree = "<group>"; };
 		9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingStickyFooterViewController.swift; sourceTree = "<group>"; };
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C153DC822E8F6CE002DA062 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		9C19983423A9614900250417 /* GameEnrollmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnrollmentViewController.swift; sourceTree = "<group>"; };
+		9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCheckInViewController.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
 		9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewController.swift; sourceTree = "<group>"; };
 		9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
 		9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewModel.swift; sourceTree = "<group>"; };
+		9C2C600E23C91E3D0033785E /* coin_bonus_point.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coin_bonus_point.json; sourceTree = "<group>"; };
+		9C34D745239EE92400DF7FE2 /* GameTasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameTasks.json; sourceTree = "<group>"; };
+		9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTaskStore.swift; sourceTree = "<group>"; };
+		9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedTipTableViewCell.swift; sourceTree = "<group>"; };
+		9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptInOutViewController.swift; sourceTree = "<group>"; };
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		9C48830423834F2700321E6B /* GameTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTipViewController.swift; sourceTree = "<group>"; };
 		9C50EBD222B971D500A89DBF /* AccountPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountPicker.xib; sourceTree = "<group>"; };
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+OptionalLookup.swift"; sourceTree = "<group>"; };
+		9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTryFabViewController.swift; sourceTree = "<group>"; };
 		9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetBillingReasonForStoppingViewController.swift; sourceTree = "<group>"; };
 		9C62445522C1624900F14DA0 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		9C62445A22C171C800F14DA0 /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextField.xib; sourceTree = "<group>"; };
@@ -3140,26 +3347,63 @@
 		9C62447322C5617D00F14DA0 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
+		9C7774802368C630009AF0F0 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
+		9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeViewController.swift; sourceTree = "<group>"; };
+		9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyViewController.swift; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
 		9C7FFD1922C1251800092987 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		9C88942123C39F2B002E46A7 /* confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = confetti.json; sourceTree = "<group>"; };
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
+		9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyInsightViewController.swift; sourceTree = "<group>"; };
+		9CA411DA2384806800C0B602 /* GameCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreDataManager.swift; sourceTree = "<group>"; };
+		9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProgressBar.swift; sourceTree = "<group>"; };
+		9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftsViewController.swift; sourceTree = "<group>"; };
+		9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedTipsViewController.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
+		9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetReminderViewController.swift; sourceTree = "<group>"; };
+		9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuizViewController.swift; sourceTree = "<group>"; };
+		9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerView.swift; sourceTree = "<group>"; };
+		9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizAnswerView.xib; sourceTree = "<group>"; };
+		9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyInsightViewModel.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
+		9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTask.swift; sourceTree = "<group>"; };
 		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		9CBE9E292374988100E14222 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
+		9CBE9E2D23749B9900E14222 /* MCSGameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSGameService.swift; sourceTree = "<group>"; };
+		9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeViewModel.swift; sourceTree = "<group>"; };
+		9CBE9E352374AC5100E14222 /* MockGameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGameService.swift; sourceTree = "<group>"; };
 		9CC48010220A142900393CC7 /* outage_status.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_status.json; sourceTree = "<group>"; };
 		9CC48017220A442900393CC7 /* meter_ping_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = meter_ping_info.json; sourceTree = "<group>"; };
+		9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewCell.swift; sourceTree = "<group>"; };
+		9CC99784237B43E800C68300 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
+		9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameOnboardingCardView.xib; sourceTree = "<group>"; };
+		9CC9978D237B4A0200C68300 /* HomeGameOnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameOnboardingCardView.swift; sourceTree = "<group>"; };
+		9CC99792237B6A9300C68300 /* GameOnboardingIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOnboardingIntroViewController.swift; sourceTree = "<group>"; };
 		9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+SaveToWallet.swift"; sourceTree = "<group>"; };
 		9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+PaymentusErrors.swift"; sourceTree = "<group>"; };
 		9CD3531C22CABBB700165F87 /* DataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDetectorTextView.swift; sourceTree = "<group>"; };
 		9CD3531D22CABBB700165F87 /* ZeroInsetDataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroInsetDataDetectorTextView.swift; sourceTree = "<group>"; };
 		9CD3532522CABC0900165F87 /* PrepaidCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepaidCardView.xib; sourceTree = "<group>"; };
 		9CD3532622CABC0900165F87 /* PrepaidCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepaidCardView.swift; sourceTree = "<group>"; };
+		9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOnboardingStep1ViewController.swift; sourceTree = "<group>"; };
+		9CD742BE237CA94600915334 /* GameOnboardingStep2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOnboardingStep2ViewController.swift; sourceTree = "<group>"; };
+		9CDB5E772399AE1300976BB2 /* GiftInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftInventory.swift; sourceTree = "<group>"; };
+		9CE549702399941300025BD5 /* GameRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRewardViewController.swift; sourceTree = "<group>"; };
 		9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountTableViewCell.swift; sourceTree = "<group>"; };
 		9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEB30E12261310000DD725C /* PECO-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		9CEE411823722444005A4AD3 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
+		9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyInsightCoinView.xib; sourceTree = "<group>"; };
+		9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyInsightCoinView.swift; sourceTree = "<group>"; };
+		9CEE412423722B8A005A4AD3 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
+		9CEE412823722CA8005A4AD3 /* DailyUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
+		9CF0E06623BA650100C151F5 /* SurveyMonkeyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyMonkeyManager.h; sourceTree = "<group>"; };
+		9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurveyMonkeyManager.m; sourceTree = "<group>"; };
+		9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewController.swift; sourceTree = "<group>"; };
 		9E85585C63DC708EE8610105 /* Pods-PECO-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		9F3ABBB099DD192791B67AE3 /* Pods-PECOApp-PECOUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		9FF2522B35DFFA1287C17144 /* Pods-BGEApp-BGEUITests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.develop-test.xcconfig"; sourceTree = "<group>"; };
@@ -3359,6 +3603,9 @@
 		B9C2CDC8EAF0A302CCFCA131 /* Pods-PECO_WatchOS Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
 		BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
+		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
+		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
+		C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyChildViewController.swift; sourceTree = "<group>"; };
 		C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C55AF9BA52D8B1D3E432E4D2 /* Pods_PECOApp_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3861,6 +4108,7 @@
 				352B8D9D230D748D007F8CEE /* Shared */,
 				35CEB01D230D851800366440 /* Main */,
 				352B8D9B230D7432007F8CEE /* Authentication */,
+				9CEE411723722222005A4AD3 /* Gamification */,
 				352B8D8C230D7263007F8CEE /* Unauthenticated */,
 				352B8D84230D7214007F8CEE /* Storm Mode */,
 				3559C89722F4929500481A87 /* Home */,
@@ -3919,6 +4167,7 @@
 		352B8D72230D70BD007F8CEE /* Detail Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3559C89A22F9C54000481A87 /* Appointments */,
 				352B8D71230D70B5007F8CEE /* Alerts */,
 				35A6C6DC211CC0A300C2A58F /* Updates */,
 				9CE83BAD22D93C870094C34C /* Set Default Account */,
@@ -3927,6 +4176,7 @@
 				352B8D74230D70EF007F8CEE /* Terms And Policys */,
 				352B8D73230D70CF007F8CEE /* Contact Us */,
 				E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */,
+				9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */,
 			);
 			path = "Detail Screens";
 			sourceTree = "<group>";
@@ -4075,6 +4325,7 @@
 				351241EB22B3DB7600E8BD25 /* Account Bar + Picker */,
 				35CEB027230D8C1A00366440 /* No Network Connection */,
 				352B8DAC230D76CE007F8CEE /* Maintenance Mode */,
+				C364A8772375DC7B00C7D51B /* State View */,
 				352B8DAB230D762B007F8CEE /* Web View Modal */,
 				352B8D9E230D7491007F8CEE /* Info Modal */,
 				35C9138F22E9E96E009DD71A /* Mini Wallet */,
@@ -4198,6 +4449,7 @@
 			isa = PBXGroup;
 			children = (
 				E8B4F4BE1E5C9A200031D934 /* Home.storyboard */,
+				9C7774802368C630009AF0F0 /* HomeContentViewController.swift */,
 				2FA5D8631F17D88500A8B16B /* HomeViewController.swift */,
 				825171B41F1D25130020A6CA /* HomeViewModel.swift */,
 				3559C89822F9C51400481A87 /* Cards */,
@@ -4210,6 +4462,7 @@
 		3559C89822F9C51400481A87 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				9CC99788237B479200C68300 /* Game */,
 				3559C8A122F9C5F200481A87 /* Updates */,
 				3559C89E22F9C5B200481A87 /* Weather */,
 				3559C89B22F9C56300481A87 /* Bill */,
@@ -4227,7 +4480,6 @@
 			isa = PBXGroup;
 			children = (
 				B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */,
-				3559C89A22F9C54000481A87 /* Appointments */,
 			);
 			path = "Detail Pages";
 			sourceTree = "<group>";
@@ -4235,6 +4487,7 @@
 		3559C89A22F9C54000481A87 /* Appointments */ = {
 			isa = PBXGroup;
 			children = (
+				C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */,
 				B0B083AE216FA79100B1C632 /* AppointmentsViewController.swift */,
 				B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */,
 				22EF55962170507700070C13 /* AppointmentDetailViewController.swift */,
@@ -5094,6 +5347,7 @@
 				E8FE30AD1E7875E5009D28B7 /* BGE */,
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
+				9C0EA5AB237DAD1200D1E18F /* Gamification */,
 				8FD5AE981E54EAB8003F640D /* checkmark.json */,
 				82D599501EC3A00900DDB380 /* alert_icon.json */,
 				8FD5AE991E54EAB8003F640D /* loading.json */,
@@ -5147,8 +5401,27 @@
 				351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */,
 				359BDB2722D398F0007002B0 /* UIColor+Image.swift */,
 				359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */,
+				9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C0EA5AB237DAD1200D1E18F /* Gamification */ = {
+			isa = PBXGroup;
+			children = (
+				9C2C600E23C91E3D0033785E /* coin_bonus_point.json */,
+				9C88942123C39F2B002E46A7 /* confetti.json */,
+				9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */,
+				9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */,
+				9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */,
+				9C0EA5AC237DAD2800D1E18F /* buddy_body.json */,
+				9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */,
+				9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */,
+				9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */,
+				9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */,
+				9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */,
+			);
+			path = Gamification;
 			sourceTree = "<group>";
 		};
 		9C10B4D622E215F800B0851B /* Forgot Password */ = {
@@ -5243,6 +5516,31 @@
 			path = A0SimpleKeychain;
 			sourceTree = "<group>";
 		};
+		9CA411D823847FDC00C0B602 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */,
+				9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		9CA4FA632385B8AB00E33E7C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */,
+				9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */,
+				9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */,
+				9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */,
+				9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */,
+				9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */,
+				9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */,
+				9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */,
+				9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9CB4346C230F203400094BC3 /* PeakRewards */ = {
 			isa = PBXGroup;
 			children = (
@@ -5268,6 +5566,25 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		9CC99788237B479200C68300 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				9CC9978D237B4A0200C68300 /* HomeGameOnboardingCardView.swift */,
+				9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		9CC99791237B63C500C68300 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				9CC99792237B6A9300C68300 /* GameOnboardingIntroViewController.swift */,
+				9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */,
+				9CD742BE237CA94600915334 /* GameOnboardingStep2ViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		9CD3531B22CABBB700165F87 /* DataDetectorTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5275,6 +5592,20 @@
 				9CD3531D22CABBB700165F87 /* ZeroInsetDataDetectorTextView.swift */,
 			);
 			path = DataDetectorTextView;
+			sourceTree = "<group>";
+		};
+		9CE549742399942200025BD5 /* Popup Modals */ = {
+			isa = PBXGroup;
+			children = (
+				9C48830423834F2700321E6B /* GameTipViewController.swift */,
+				9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */,
+				9CE549702399941300025BD5 /* GameRewardViewController.swift */,
+				9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */,
+				9C19983423A9614900250417 /* GameEnrollmentViewController.swift */,
+				9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */,
+				9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */,
+			);
+			path = "Popup Modals";
 			sourceTree = "<group>";
 		};
 		9CE83BAD22D93C870094C34C /* Set Default Account */ = {
@@ -5285,6 +5616,25 @@
 				9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */,
 			);
 			path = "Set Default Account";
+			sourceTree = "<group>";
+		};
+		9CEE411723722222005A4AD3 /* Gamification */ = {
+			isa = PBXGroup;
+			children = (
+				9CEE411823722444005A4AD3 /* Game.storyboard */,
+				9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */,
+				9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */,
+				9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */,
+				9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */,
+				9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */,
+				9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */,
+				9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */,
+				9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */,
+				9CC99791237B63C500C68300 /* Onboarding */,
+				9CE549742399942200025BD5 /* Popup Modals */,
+				9CA4FA632385B8AB00E33E7C /* Views */,
+			);
+			path = Gamification;
 			sourceTree = "<group>";
 		};
 		B04DDF822200D44800594ACF /* Mock JSON */ = {
@@ -5410,6 +5760,7 @@
 				B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */,
 				B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */,
 				B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */,
+				9CBE9E352374AC5100E14222 /* MockGameService.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -5546,6 +5897,7 @@
 				B574BACE1E7360F4001E8A44 /* ErrorMessages.strings */,
 				384F86A11F310B8600A85557 /* TermPolicies.html */,
 				9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */,
+				9C34D745239EE92400DF7FE2 /* GameTasks.json */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -5587,6 +5939,7 @@
 		B5AC06E21E522E7A00BBA4ED /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				9CA411D823847FDC00C0B602 /* Core Data */,
 				B5AC06ED1E52766A00BBA4ED /* Model */,
 				B5AC06E41E5269D700BBA4ED /* Service */,
 				E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */,
@@ -5603,6 +5956,8 @@
 				B04DDF5A21FA800C00594ACF /* Date+Now.swift */,
 				B0D7860C2285C3F4007C551F /* CommercialUsageAlertStore.swift */,
 				35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */,
+				9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */,
+				9CDB5E772399AE1300976BB2 /* GiftInventory.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -5631,6 +5986,7 @@
 				2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */,
 				82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */,
 				B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */,
+				9CBE9E292374988100E14222 /* GameService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -5670,8 +6026,21 @@
 				B08BBFBA21C8284A00A899FC /* Payments.swift */,
 				B08BBFC221C8539000A899FC /* SERResult.swift */,
 				B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */,
+				9CEE412423722B8A005A4AD3 /* Weekday.swift */,
+				9CEE412823722CA8005A4AD3 /* DailyUsage.swift */,
+				9CC99784237B43E800C68300 /* GameUser.swift */,
+				9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C364A8772375DC7B00C7D51B /* State View */ = {
+			isa = PBXGroup;
+			children = (
+				C364A8782375DC7B00C7D51B /* StateView.swift */,
+				C364A8792375DC7B00C7D51B /* StateView.xib */,
+			);
+			path = "State View";
 			sourceTree = "<group>";
 		};
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
@@ -5706,6 +6075,7 @@
 				54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */,
 				82AC2A291FAB78E700EACB3B /* MCSPeakRewardsService.swift */,
 				B0336FE521751FB700751430 /* MCSAppointmentService.swift */,
+				9CBE9E2D23749B9900E14222 /* MCSGameService.swift */,
 			);
 			path = MCS;
 			sourceTree = "<group>";
@@ -5771,6 +6141,8 @@
 			children = (
 				9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */,
 				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
+				9CF0E06623BA650100C151F5 /* SurveyMonkeyManager.h */,
+				9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -6408,9 +6780,11 @@
 				0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				22EF559B2170507700070C13 /* AppointmentDetailViewController.xib in Resources */,
 				B07E18042211D31700B6E3C7 /* outage_status.json in Resources */,
+				9C0EA5B5237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */,
 				358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */,
 				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
+				C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532722CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
@@ -6444,6 +6818,7 @@
 				B0EE78EA221353E700F53C56 /* report_outage.json in Resources */,
 				224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
@@ -6454,6 +6829,7 @@
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */,
 				9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
+				9CABF6BD239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */,
 				359BB2792148349200FBAD83 /* outage.json in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
@@ -6463,6 +6839,7 @@
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
 				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
@@ -6470,6 +6847,7 @@
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
+				9C2C600F23C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B0B083F821710CDB00B1C632 /* Appt_Canceled.json in Resources */,
 				B0B083F921710CDB00B1C632 /* Appt_Inprogress.json in Resources */,
@@ -6477,6 +6855,7 @@
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
+				9CC9978A237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
@@ -6495,13 +6874,16 @@
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
+				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */,
+				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
+				9C0A2C3C23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				B017488E2135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */,
 				E8494F3F1EBBCB3A0047D6BE /* outage_loading.json in Resources */,
@@ -6512,6 +6894,7 @@
 				359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
 				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
+				9C88942223C39F2B002E46A7 /* confetti.json in Resources */,
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				35C9139F22E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
@@ -6519,6 +6902,7 @@
 				B07E17EA2209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				E8C29C781F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
+				9C0EA5B2237DAD2900D1E18F /* buddy_body.json in Resources */,
 				0EF60FD020EE7AE7006ABC18 /* Assets.xcassets in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
@@ -6529,16 +6913,22 @@
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
 				0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */,
+				9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
+				9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
+				9C0EA5BB237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				359BB27F2148517F00FBAD83 /* sm_outage_loading.json in Resources */,
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
+				9C0EA5BE237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				B0EE78F12214766700F53C56 /* appointments.json in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
+				9CEE411923722444005A4AD3 /* Game.storyboard in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
+				9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */,
@@ -6562,6 +6952,11 @@
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
 				358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */,
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
+				35E18A902379B95A00384614 /* StateView.xib in Resources */,
+				9CC9978C237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
+				9C0EA5B7237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
+				9C0EA5C3237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
+				9C0A2C3B23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -6569,6 +6964,7 @@
 				B07E17DB2209F0C900B6E3C7 /* bill_comparison.json in Resources */,
 				B08957212217455200A97965 /* account_lookup.json in Resources */,
 				B0B0840521710D1500B1C632 /* Appt_Confirmed.json in Resources */,
+				9C0EA5BA237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -6592,6 +6988,7 @@
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B01FF0B1221DFC77008CA222 /* autopay_info.json in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				9C3DD83923A4105900AF75B6 /* GameTasks.json in Resources */,
 				B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B0EE78EC221353E700F53C56 /* report_outage.json in Resources */,
@@ -6621,28 +7018,33 @@
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */,
+				9C0EA5A6237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B08956FB2215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				B0B0840221710D1500B1C632 /* Appt_Canceled.json in Resources */,
 				B0B0840321710D1500B1C632 /* Appt_Inprogress.json in Resources */,
+				9CEE411F23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				359BB27D214834BA00FBAD83 /* outage.json in Resources */,
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				CEA215271F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				3559C8B82301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				9C2C601123C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				359BDBAE22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				359BDB6822D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
+				9CABF6BF239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				E87926D81F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				35A5DCC52305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				B08957282217496D00A97965 /* bill_pdf.json in Resources */,
 				9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */,
 				35A6C6D6211C8F1300C2A58F /* TitleTableViewHeaderView.xib in Resources */,
+				9C88942423C39F2B002E46A7 /* confetti.json in Resources */,
 				82D626161FE1AD6B00B09F00 /* landing_video.mp4 in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				B066281C2252953B0060A89F /* ser_results.json in Resources */,
@@ -6657,6 +7059,7 @@
 				B01748902135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
+				9CEE411B23722444005A4AD3 /* Game.storyboard in Resources */,
 				E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				B07E17DD2209F0C900B6E3C7 /* maintenance.json in Resources */,
 				356C7FAC2190D940003E8A90 /* environment.plist in Resources */,
@@ -6668,9 +7071,12 @@
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
+				9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
+				9C0EA5BD237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B8C84A1F9E3590005828B0 /* SERPTSGraphView.xib in Resources */,
 				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
+				9C0A2C3823A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				0EF60FD120EE7AE8006ABC18 /* Assets.xcassets in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B0DB2750215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
@@ -6681,6 +7087,7 @@
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
 				B07E17DA2209F0C900B6E3C7 /* account_details.json in Resources */,
 				35AE569F214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
+				9C0A2C3E23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
 				352B8D9A230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */,
@@ -6693,6 +7100,7 @@
 				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
 				359BDB7722D8F9B2007002B0 /* outage_off.json in Resources */,
+				9C0EA5B4237DAD2900D1E18F /* buddy_body.json in Resources */,
 				B07D247920C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232F22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				359BDB7D22D8F9B2007002B0 /* outage_on.json in Resources */,
@@ -6711,6 +7119,11 @@
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
 				358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */,
 				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
+				35E18A8F2379B95A00384614 /* StateView.xib in Resources */,
+				9CC9978B237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
+				9C0EA5B6237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
+				9C0EA5C2237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
+				9C0A2C3A23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -6718,6 +7131,7 @@
 				B07E17E22209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
 				B08957202217455200A97965 /* account_lookup.json in Resources */,
 				B0B083F121710C8900B1C632 /* Appt_Confirmed.json in Resources */,
+				9C0EA5B9237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
@@ -6741,6 +7155,7 @@
 				E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
+				9C3DD83823A4105800AF75B6 /* GameTasks.json in Resources */,
 				B0EE78EB221353E700F53C56 /* report_outage.json in Resources */,
 				B0B083F221710C8900B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1D216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
@@ -6770,28 +7185,33 @@
 				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				B07E17E52209F0CA00B6E3C7 /* payments.json in Resources */,
 				B08956FA2215D11B00A97965 /* energy_tips.json in Resources */,
+				9C0EA5A5237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				35A6C6D1211C8F0700C2A58F /* TitleTableViewCell.xib in Resources */,
 				B0B083EE21710C8900B1C632 /* Appt_Canceled.json in Resources */,
 				B0B083EF21710C8900B1C632 /* Appt_Inprogress.json in Resources */,
 				82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
+				9CEE411E23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				3559C8B72301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
+				9C2C601023C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				359BDBAD22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				359BDB6722D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
+				9CABF6BE239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				B08957272217496D00A97965 /* bill_pdf.json in Resources */,
 				9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */,
 				35A5DCC42305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				35A6C6D5211C8F1200C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				82E22B621F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
+				9C88942323C39F2B002E46A7 /* confetti.json in Resources */,
 				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
 				B066281B2252953B0060A89F /* ser_results.json in Resources */,
 				35B9609A22B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
@@ -6806,6 +7226,7 @@
 				9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */,
 				B017488F2135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
+				9CEE411A23722444005A4AD3 /* Game.storyboard in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				B07E17E42209F0CA00B6E3C7 /* maintenance.json in Resources */,
@@ -6817,9 +7238,12 @@
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
+				9C0EA5BF237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
+				9C0EA5BC237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				B07E17E32209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				54DF4BDF1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				E8B8C8491F9E358F005828B0 /* SERPTSGraphView.xib in Resources */,
+				9C0A2C3723A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */,
 				0EF60FD220EE7AE8006ABC18 /* Assets.xcassets in Resources */,
 				359BB2692146F06D00FBAD83 /* sm_outage.json in Resources */,
@@ -6830,6 +7254,7 @@
 				35ACCB4C20EA7ABF0022907F /* HomeOutageCardView.xib in Resources */,
 				B0030D0D2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
+				9C0A2C3D23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				B07E17E12209F0CA00B6E3C7 /* account_details.json in Resources */,
 				352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
@@ -6842,6 +7267,7 @@
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
 				359BDB7622D8F9B2007002B0 /* outage_off.json in Resources */,
+				9C0EA5B3237DAD2900D1E18F /* buddy_body.json in Resources */,
 				B07D247820C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232E22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				359BDB7C22D8F9B2007002B0 /* outage_on.json in Resources */,
@@ -7695,6 +8121,7 @@
 				356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */,
 				356C7F8A21909F89003E8A90 /* PecoColor.swift in Sources */,
 				356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */,
+				9CBE9E26237473C200E14222 /* Weekday.swift in Sources */,
 				356C7F8321909E7E003E8A90 /* NumberFormatter.swift in Sources */,
 				355B10492369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
 				35E7C7FA2190805500BA13C6 /* ExtensionDelegate.swift in Sources */,
@@ -7767,6 +8194,7 @@
 				35F9DD9E2333D86600AAA2B2 /* SSOData.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				35F9DDAF2333D8C300AAA2B2 /* MCSApi.swift in Sources */,
+				9CBE9E27237473C400E14222 /* Weekday.swift in Sources */,
 				35F9DDAB2333D8A900AAA2B2 /* OutageService.swift in Sources */,
 				355B104A2369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
 				35F9DD952333D84700AAA2B2 /* ProfileStatus.swift in Sources */,
@@ -7839,6 +8267,7 @@
 				35F9DE0E23353A5700AAA2B2 /* ExtensionDelegate.swift in Sources */,
 				35F9DE4223353D5F00AAA2B2 /* KeychainManager.swift in Sources */,
 				35F9DE0B23353A5300AAA2B2 /* OutageInterfaceController.swift in Sources */,
+				9CBE9E28237473C400E14222 /* Weekday.swift in Sources */,
 				35F9DE3D23353D3800AAA2B2 /* PecoColor.swift in Sources */,
 				355B104B2369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
 				35F9DE2523353C9C00AAA2B2 /* SERResult.swift in Sources */,
@@ -7871,6 +8300,7 @@
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				B068DB5A20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
+				9C48830523834F2700321E6B /* GameTipViewController.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A1E1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -7892,8 +8322,11 @@
 				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2752215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
+				9CF0E06823BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
+				9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
+				C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */,
 				355B10412369E4820038EAD3 /* KeychainManager.swift in Sources */,
 				0EF60FD320EE8104006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
 				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
@@ -7906,9 +8339,11 @@
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
 				9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
+				9CBE9E2A2374988100E14222 /* GameService.swift in Sources */,
 				E807A9E52022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				359BDB2822D398F0007002B0 /* UIColor+Image.swift in Sources */,
 				35A6C6C3211C7ADE00C2A58F /* TitleTableViewCell.swift in Sources */,
+				9CA411DF2384972D00C0B602 /* GameCoreDataManager.swift in Sources */,
 				9CD3532A22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				E8CFB8AA1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
@@ -7930,6 +8365,7 @@
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				355B103B2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
+				9CBE9E2E23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				B04DDF7521FFB0A800594ACF /* MockUser.swift in Sources */,
@@ -7950,12 +8386,16 @@
 				B0882C9F210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				35277AFD210266BF00411297 /* UsageTool.swift in Sources */,
+				9CEE412523722B8A005A4AD3 /* Weekday.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
+				9CABF6B52397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
 				351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
+				9CA411DB2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */,
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
+				9CD742BF237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */,
 				54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				E80D2E171E721668002626C9 /* MaskedString.swift in Sources */,
 				E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */,
@@ -7983,6 +8423,8 @@
 				9CB8A5ED21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				35C9139B22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
 				9C28D39C2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
+				9CBE9E322374A25E00E14222 /* GameHomeViewModel.swift in Sources */,
+				9CABF6B9239719CE00B07B01 /* QuizAnswerView.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
 				9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				224EFF18216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
@@ -7994,14 +8436,17 @@
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E893993D1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
+				9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
+				9CA4FA652385BFC700E33E7C /* GiftsViewController.swift in Sources */,
 				B039DB79225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				82E9B60E1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF55982170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
+				9CDB5E782399AE1300976BB2 /* GiftInventory.swift in Sources */,
 				9C72424C21E5061800E5946B /* GovWeatherService.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				B0B0839A216F970800B1C632 /* Appointment.swift in Sources */,
@@ -8018,9 +8463,11 @@
 				B04DDF5B21FA800C00594ACF /* Date+Now.swift in Sources */,
 				54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
+				9CE549712399941300025BD5 /* GameRewardViewController.swift in Sources */,
 				E83F02751FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				E8039FF11EFB0405004DB789 /* PaymentService.swift in Sources */,
+				9C5F096F23A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
 				B0DB2757215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				54EDD2DF1ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
 				54AE06991ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
@@ -8028,11 +8475,13 @@
 				35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */,
 				355B10462369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
+				9CC99793237B6A9300C68300 /* GameOnboardingIntroViewController.swift in Sources */,
 				35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */,
 				E873DA751EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				E8BCB9BA1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
 				822BBBA11EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */,
+				9CEE412123722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				B05E9D13217F688A0003FAB8 /* Application.swift in Sources */,
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
@@ -8053,18 +8502,24 @@
 				E83F02701FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
+				9CA4FA602385A2B900E33E7C /* GameProgressBar.swift in Sources */,
 				E8127B261EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				B0649A5F214834380041B299 /* StormModeStatus.swift in Sources */,
 				8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
+				9CD742BB237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				82AC2A2A1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
+				9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
+				9CBE9E362374AC5100E14222 /* MockGameService.swift in Sources */,
+				9CAC5952239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
+				9CAA4D58239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				B0D84D4422023FD900C70A6F /* MockJSONManager.swift in Sources */,
@@ -8082,6 +8537,7 @@
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				9C5F786322F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
+				9C2876AD23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				359BDB4022D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				35A6C6FE2121D9D600C2A58F /* MoreViewModel.swift in Sources */,
@@ -8092,6 +8548,8 @@
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
+				9C0EA5A8237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
+				9C5F096B23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				B0B083AF216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				359BDB5022D77073007002B0 /* FirebaseUtility.swift in Sources */,
@@ -8103,8 +8561,11 @@
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
+				9CC99785237B43E800C68300 /* GameUser.swift in Sources */,
 				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				358BD21920F8FDAE00DA2012 /* BillImpactView.swift in Sources */,
+				C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */,
+				9C34D74C239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */,
 				9C28D388227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
@@ -8116,11 +8577,13 @@
 				35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */,
 				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				2249C037216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
+				9CF5369E23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
 				826773411FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				8267733D1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				E89983E11F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				E835D1C91FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027A1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
+				9CC87B1B23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				B068DB5620D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				B094A34D20D9442400E81303 /* HomeCard.swift in Sources */,
@@ -8128,6 +8591,7 @@
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
 				E8B956E21F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
+				9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -8152,9 +8616,11 @@
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* BiometricsService.swift in Sources */,
+				9C7C902723B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				2F036CF01F1EA7D5000DECBE /* WeatherService.swift in Sources */,
+				9CC9978E237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */,
 				B07D247B20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				B0A830892146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,
@@ -8164,15 +8630,18 @@
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				9C62445622C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
+				9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				82AEF2DF1F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				224EFF20216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				9C62447022C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				35C913A322EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
+				9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */,
+				9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				B08BBFC321C8539000A899FC /* SERResult.swift in Sources */,
 				54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
@@ -8195,6 +8664,7 @@
 				B0EA71BF2090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
+				9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				E867A8FF1F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
@@ -8228,6 +8698,7 @@
 				E87C41301FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				359BDB3822D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				B0A79B0720E2BD1100E04DD8 /* Version.swift in Sources */,
+				9CA1381D238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 				359BDB6222D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */,
@@ -8244,6 +8715,7 @@
 				35B9609F22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
+				9C48830723834F2700321E6B /* GameTipViewController.swift in Sources */,
 				35A6C6E9211DE8D500C2A58F /* UpdatesViewModel.swift in Sources */,
 				B068DB5C20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
@@ -8265,22 +8737,28 @@
 				9C10B4DD22E23A9A00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B0DB2754215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
+				9CF0E06A23BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
+				9CA4FA6B2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				9C62447222C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
+				C364A8812375DD8200C7D51B /* EmptyChildViewController.swift in Sources */,
 				0EF60FD920EE8105006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
 				359BDB3A22D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				82EAB33E1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
 				E807A9E72022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				35A6C7002121DAE600C2A58F /* MoreViewModel.swift in Sources */,
+				9CBE9E2C2374988100E14222 /* GameService.swift in Sources */,
 				E8CFB8AC1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
+				9CA411E12384972D00C0B602 /* GameCoreDataManager.swift in Sources */,
 				35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
@@ -8302,6 +8780,7 @@
 				B0DB2762215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
 				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				82DE610C1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
+				9CBE9E3023749B9900E14222 /* MCSGameService.swift in Sources */,
 				E83F026D1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				B0472B2B2111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E80CBD111F98EC930039D9E7 /* SSOData.swift in Sources */,
@@ -8324,11 +8803,14 @@
 				B0728E42215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
+				9CABF6B72397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
+				9CA411DD2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				359BDB7122D8DCF6007002B0 /* OutageStatusView.swift in Sources */,
 				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
+				9CD742C1237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */,
 				B06B08842226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				825171B71F1D25130020A6CA /* HomeViewModel.swift in Sources */,
 				E8FF085C1F7EDC250030F1BF /* BillingHistoryViewModel.swift in Sources */,
@@ -8356,6 +8838,9 @@
 				82E9B6101FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF559A2170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
+				9CBE9E342374A25E00E14222 /* GameHomeViewModel.swift in Sources */,
+				9CABF6BB239719CE00B07B01 /* QuizAnswerView.swift in Sources */,
+				9C7774832368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				9C9204CC2310327400B0B89F /* SmartThermostatPeriodCard.swift in Sources */,
 				2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
@@ -8366,14 +8851,17 @@
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				2F51B4971F26E20100550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
 				359BDBAA22E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
+				9C19983723A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35376C6A20F8FFD1007E50F7 /* BillImpactView.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
+				9CA4FA672385BFC700E33E7C /* GiftsViewController.swift in Sources */,
 				359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */,
 				54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				82A18E641EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E83F02771FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
+				9CDB5E7A2399AE1300976BB2 /* GiftInventory.swift in Sources */,
 				B0CB1C212270DE250081F99B /* MockPeakRewardsService.swift in Sources */,
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				B07E17C02208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
@@ -8390,9 +8878,11 @@
 				54C1DEFA1F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */,
 				9C62446522C28A4600F14DA0 /* InsetTextField.swift in Sources */,
+				9CE549732399941300025BD5 /* GameRewardViewController.swift in Sources */,
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994D1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
+				9C5F097123A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
 				B05E9D15217F688A0003FAB8 /* Application.swift in Sources */,
 				B0B083B8216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				B039DB7B225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
@@ -8400,6 +8890,7 @@
 				E881B1551F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				355B10482369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
+				9CC99795237B6A9300C68300 /* GameOnboardingIntroViewController.swift in Sources */,
 				B08BBFC521C8539000A899FC /* SERResult.swift in Sources */,
 				E873DA771EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				82E9B6141FA2401A00556C94 /* HomeProfile.swift in Sources */,
@@ -8426,18 +8917,24 @@
 				B52CA0B11F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B281EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
+				9CA4FA622385A2B900E33E7C /* GameProgressBar.swift in Sources */,
 				9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
+				9CD742BD237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				82EAB3361F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				9CB7E8DF23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				35C9139822E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				9C28D38A227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
+				9CBE9E382374AC5100E14222 /* MockGameService.swift in Sources */,
+				9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
+				9CAA4D5A239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
@@ -8455,6 +8952,7 @@
 				54C1DF081F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				B0CB1C80227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
 				35277B03210794B400411297 /* UnavailableView.swift in Sources */,
+				9C2876AF23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -8465,6 +8963,8 @@
 				E82FF1F41F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
+				9C0EA5AA237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
+				9C5F096D23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				829E058D1FA7928E00697633 /* Fillable.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				0EF60FDA20EE8105006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
@@ -8476,8 +8976,11 @@
 				35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
 				35C9139D22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
+				9CC99787237B43E800C68300 /* GameUser.swift in Sources */,
 				9CD3532322CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				C364A87F2375DD7600C7D51B /* StateView.swift in Sources */,
+				9C34D74E239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */,
 				826773431FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				8267733F1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
@@ -8489,11 +8992,13 @@
 				B068DB5820D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				B094A34F20D9442400E81303 /* HomeCard.swift in Sources */,
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
+				9CF536A023A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */,
 				359BDB4222D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				E8B956E41F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
+				9CC87B1D23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				35C913AF22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
 				E8B8C84E1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */,
@@ -8501,6 +9006,7 @@
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
+				9C34D74A239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
 				9C62446122C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
@@ -8525,9 +9031,11 @@
 				B0CB1C8D227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */,
 				B07D247D20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				B0D84D4222023FD800C70A6F /* MockJSONManager.swift in Sources */,
+				9C7C902923B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				2F036CF21F1EA7D5000DECBE /* WeatherService.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				2FA7B9FC1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
+				9CC99790237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */,
 				B0A8308B2146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
@@ -8543,6 +9051,7 @@
 				35ACCB4B20EA7ABD0022907F /* HomeOutageCardView.swift in Sources */,
 				82837D161F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				E8C453291EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
+				9C37BA932388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */,
 				0EF60FDB20EE8105006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F92025160F00A749A3 /* MockRegistrationService.swift in Sources */,
@@ -8578,11 +9087,13 @@
 				3559C8BC23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
 				9CD3532C22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				9CEE412323722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				357757572114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				9C62445822C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				82E22B5A1F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
 				821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
+				9CEE412723722B8A005A4AD3 /* Weekday.swift in Sources */,
 				B596062C1F7C1F4A00515B72 /* AppRating.swift in Sources */,
 				826DCCEB1F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */,
 				225FF85C1EC56B480079010C /* Date.swift in Sources */,
@@ -8602,8 +9113,10 @@
 				B0E9EFFD21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */,
+				9CA1381F238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				9CD3532022CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				B07E17D62209F0A000B6E3C7 /* MockAuthenticationService.swift in Sources */,
+				9C7774872368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 			);
@@ -8617,6 +9130,7 @@
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				35A6C6EA211DE8D600C2A58F /* UpdatesViewModel.swift in Sources */,
+				9C48830623834F2700321E6B /* GameTipViewController.swift in Sources */,
 				B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
@@ -8638,8 +9152,11 @@
 				82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2753215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
+				9CF0E06923BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
+				9CA4FA6A2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
 				9CD3531F22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
+				C364A8802375DD8100C7D51B /* EmptyChildViewController.swift in Sources */,
 				355B10402369E4820038EAD3 /* KeychainManager.swift in Sources */,
 				0EF60FD620EE8104006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
@@ -8652,9 +9169,11 @@
 				E807A9E62022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				35A6C6FF2121DAE500C2A58F /* MoreViewModel.swift in Sources */,
 				E8CFB8AB1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
+				9CBE9E2B2374988100E14222 /* GameService.swift in Sources */,
 				359BDB2922D398F0007002B0 /* UIColor+Image.swift in Sources */,
 				54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				9CD3532B22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
+				9CA411E02384972D00C0B602 /* GameCoreDataManager.swift in Sources */,
 				389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				35A6C6F2211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
@@ -8676,6 +9195,7 @@
 				9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				355B103A2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
+				9CBE9E2F23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
 				E89518741F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
@@ -8696,12 +9216,17 @@
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFA2102325000411297 /* UsageViewModel.swift in Sources */,
+				9CEE412623722B8A005A4AD3 /* Weekday.swift in Sources */,
+				9CBCE75723D5EEF400DA4BF8 /* ViewedTipTableViewCell.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
+				9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */,
 				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
+				9CD742C0237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */,
 				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7012121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				B0728E41215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
@@ -8729,6 +9254,8 @@
 				9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				9C28D39D2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
+				9CBE9E332374A25E00E14222 /* GameHomeViewModel.swift in Sources */,
+				9CABF6BA239719CE00B07B01 /* QuizAnswerView.swift in Sources */,
 				E835D1CF1FB63288008CE250 /* PushNotification.swift in Sources */,
 				E8D340971EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				2F4AFE5A1F068FE800603B0E /* Premise.swift in Sources */,
@@ -8740,14 +9267,17 @@
 				E841F3A31F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA21EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				82E9B60F1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
+				9C19983623A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				22EF55992170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				B039DB7A225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
+				9CA4FA662385BFC700E33E7C /* GiftsViewController.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
 				9C72424D21E5061900E5946B /* GovWeatherService.swift in Sources */,
 				B0B0839B216F970800B1C632 /* Appointment.swift in Sources */,
 				824A966A1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				9CDB5E792399AE1300976BB2 /* GiftInventory.swift in Sources */,
 				5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18F091EBD12D600BE9F21 /* Control.swift in Sources */,
 				2F51B4961F26E20000550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
@@ -8764,9 +9294,11 @@
 				E840BD3B1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				B0DB2758215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				35277AFE2102686100411297 /* UsageTool.swift in Sources */,
+				9CE549722399941300025BD5 /* GameRewardViewController.swift in Sources */,
 				54DF4BCD1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				E8039FF61EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				E8039FF91EFB0420004DB789 /* PaymentService.swift in Sources */,
+				9C5F097023A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
 				54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* MCSApi.swift in Sources */,
@@ -8774,11 +9306,13 @@
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				355B10472369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
 				82D5994C1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
+				9CC99794237B6A9300C68300 /* GameOnboardingIntroViewController.swift in Sources */,
 				B05E9D14217F688A0003FAB8 /* Application.swift in Sources */,
 				B0B083B7216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E881B1541F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
+				9CEE412223722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269362127579C009B2BFF /* HomeUpdateView.swift in Sources */,
@@ -8799,18 +9333,24 @@
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7D1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B0649A60214834380041B299 /* StormModeStatus.swift in Sources */,
+				9CA4FA612385A2B900E33E7C /* GameProgressBar.swift in Sources */,
 				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				8206D0141FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				82AC2A2B1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1901F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				B52CA0B01F311524002B5674 /* GoogleAnalytics.swift in Sources */,
+				9CD742BC237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
+				9CB7E8DE23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				B0D84D4322023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				E89C162B1F87D6AE0023DC02 /* UsageService.swift in Sources */,
+				9CBE9E372374AC5100E14222 /* MockGameService.swift in Sources */,
+				9CAC5953239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
+				9CAA4D59239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				82EAB3351F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C119F6521FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
@@ -8828,6 +9368,7 @@
 				359BDB4122D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				9C5F786422F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
+				9C2876AE23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				B0B083B0216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				823694321FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
@@ -8838,6 +9379,8 @@
 				35277B02210794B400411297 /* UnavailableView.swift in Sources */,
 				35C0F1D2233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
+				9C0EA5A9237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
+				9C5F096C23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				359BDB5122D77073007002B0 /* FirebaseUtility.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -8849,8 +9392,10 @@
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				829E058C1FA7928E00697633 /* Fillable.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
+				9CC99786237B43E800C68300 /* GameUser.swift in Sources */,
 				0EF60FD720EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
+				C364A87E2375DD7400C7D51B /* StateView.swift in Sources */,
 				82DE61061FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				9C28D389227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
@@ -8862,11 +9407,13 @@
 				8267733E1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				2249C038216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
 				54EDD2E01ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
+				9CF5369F23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
 				E835D1CA1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027B1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E89983E21F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				B068DB5720D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				B094A34E20D9442400E81303 /* HomeCard.swift in Sources */,
+				9CC87B1C23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */,
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
@@ -8874,6 +9421,7 @@
 				E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				E8B8C84D1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
+				9C34D749239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -8898,9 +9446,11 @@
 				2F036CF11F1EA7D5000DECBE /* WeatherService.swift in Sources */,
 				B07D247C20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				9C7C902823B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				2FA7B9FB1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				B0A8308A2146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,
+				9CC9978F237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */,
 				E876A8571ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				824004CB1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				35A6C6CF211C8F0500C2A58F /* TitleTableViewCell.swift in Sources */,
@@ -8910,15 +9460,18 @@
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				9C62445722C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				224EFF21216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
+				9C7774862368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				B07E17D72209F0A100B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */,
 				9C62447122C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				35C913A422EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
+				9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
+				9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				2F5A3F811EFD870200B9E49E /* BillingHistory.swift in Sources */,
 				0EF60FD820EE8104006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F82025160F00A749A3 /* MockRegistrationService.swift in Sources */,
@@ -8941,6 +9494,7 @@
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533A22CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
+				9C7774822368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				B0B083A9216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */,
 				35A6C6D7211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
@@ -8974,6 +9528,7 @@
 				359BDB3922D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				B0A79B0820E2BD1100E04DD8 /* Version.swift in Sources */,
+				9CA1381E238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 				359BDB6322D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */,
@@ -8994,6 +9549,7 @@
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE6203F57D800A56FEE /* MyHomeProfileTests.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
+				9C48856323D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BA2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -9234,6 +9790,7 @@
 				E8F62B38200924410077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE3203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
+				9C48856423D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BB2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62B3B200924410077B3DA /* SharedColor.swift in Sources */,
 				E8F62B3E200924410077B3DA /* ForgotUsername.swift in Sources */,
@@ -9422,6 +9979,7 @@
 				E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE4203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
+				9C48856523D2672000E107C6 /* Weekday.swift in Sources */,
 				B07E17BC2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */,
 				E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */,
@@ -9832,7 +10390,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
@@ -9842,6 +10400,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -10288,7 +10847,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
@@ -10296,6 +10855,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10661,7 +11221,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
@@ -10670,6 +11230,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -11089,7 +11650,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
@@ -11098,7 +11659,7 @@
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.hotfix.watchkitapp;
 				PRODUCT_NAME = "BGE-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit App Enterprise Dist";
@@ -11831,11 +12392,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Joseph Erlandson (3FBV9PSP2W)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -11858,7 +12419,7 @@
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 2.2.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -11885,17 +12446,17 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Joseph Erlandson (3FBV9PSP2W)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.develop;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.develop.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -11921,14 +12482,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.staging;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.staging.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -11954,14 +12515,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.testing;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.testing.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -11987,14 +12548,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -12020,14 +12581,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.prodbeta;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.prodbeta.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -12605,22 +13166,24 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Enterprise Dist";
-				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -12670,6 +13233,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -12678,7 +13242,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "26d3c4f4-431d-4400-a26d-910b8601a452";
 				PROVISIONING_PROFILE_SPECIFIER = "PECO Testing Enterprise Dist";
-				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -12980,7 +13544,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Jeremy Sloane (32KC7LCEJC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
@@ -12988,6 +13552,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -13622,13 +14187,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -13722,7 +14288,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20180259;
+				CURRENT_PROJECT_VERSION = 20200121;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
@@ -13731,6 +14297,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -14499,6 +15066,19 @@
 			defaultConfigurationName = Develop;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9CA411DA2384806800C0B602 /* GameCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 9CA411DA2384806800C0B602 /* GameCoreDataModel.xcdatamodel */;
+			path = GameCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B58B5AB91E4E28740051FD5F /* Project object */;
 }
