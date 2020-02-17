@@ -91,7 +91,10 @@ class PaymentUITests: ExelonUITestCase {
         ])
 
         tapButton(buttonText: "Cancel")
-        tapButton(buttonText: "Add credit/debit card")
+        
+        sleep(2)
+        
+        tapButton(buttonText: "Add credit/debit card") // fails here due to sheet not sdhowing
 
         checkExistenceOfElements([
             (.sheet, "Add Credit/Debit Card"),
