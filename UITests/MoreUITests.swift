@@ -138,7 +138,7 @@ class MoreUITests: ExelonUITestCase {
         let tableView = app.tables.matching(identifier: "moreTableView")
         let cell = tableView.cells.element(matching: .cell, identifier: "Change Password")
         cell.tap()
-
+        
         let saveButton = app.buttons["Save Password"]
 
         let elementsQuery = app.scrollViews.otherElements
@@ -146,28 +146,31 @@ class MoreUITests: ExelonUITestCase {
         // Password strength view isn't shown yet
         XCTAssertFalse(elementsQuery.images["ic_check"].exists)
         elementsQuery.secureTextFields["New Password"].clearAndEnterText("pass")
-
+        
         // Password strength view shown, criteria not yet met
         XCTAssertTrue(elementsQuery.staticTexts["Password strength weak"].exists)
         XCTAssertFalse(elementsQuery.images["Minimum password criteria met"].exists)
         elementsQuery.secureTextFields["New Password"].typeText("word1A")
-
+        
         // Password strength view shown, criteria met
         XCTAssertTrue(elementsQuery.staticTexts["Password strength weak"].exists)
         XCTAssertTrue(elementsQuery.images["Minimum password criteria met"].exists)
 
         elementsQuery.secureTextFields["Confirm Password"].clearAndEnterText("password1A")
-
+        
         // Submit still disabled
         XCTAssertFalse(saveButton.isEnabled)
 
+        elementsQuery.secureTextFields["Current Password"].tap()
         elementsQuery.secureTextFields["Current Password"].clearAndEnterText("Password1")
 
         // Fields all entered, submit now enabled
         XCTAssertTrue(saveButton.isEnabled)
-
+        
         saveButton.tap()
-
+        
+        sleep(2)
+        
         // "Password changed" toast shown
         checkExistenceOfElement(.staticText, "Password changed")
     }

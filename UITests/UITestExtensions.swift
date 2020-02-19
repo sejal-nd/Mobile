@@ -22,8 +22,12 @@ extension XCUIElement {
         
         self.tap()
         
+        sleep(2)
+        
         let characters = Array(text)
         let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: characters.count)
+        
+        sleep(2)
         
         self.typeText(deleteString)
         self.typeText(text)

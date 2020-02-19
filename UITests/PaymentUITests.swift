@@ -77,20 +77,23 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardNoDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
-        tapButton(buttonText: "Add bank account")
-
+                
+        app.buttons["Add bank account"].tap()
+        
         checkExistenceOfElements([
-            (.sheet, "Add Bank Account"),
             (.button, "Save to My Wallet"),
             (.button, "Don't Save to My Wallet"),
             (.button, "Cancel")
         ])
 
         tapButton(buttonText: "Cancel")
+                
         tapButton(buttonText: "Add credit/debit card")
 
+        sleep(2)
+        
         checkExistenceOfElements([
-            (.sheet, "Add Credit/Debit Card"),
+            (.staticText, "Add Credit/Debit Card"),
             (.button, "Save to My Wallet"),
             (.button, "Don't Save to My Wallet"),
             (.button, "Cancel")
@@ -101,15 +104,15 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardWithDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
+            
         tapButton(buttonText: "Bank account, Test Bank, Account number ending in, 1234")
         checkExistenceOfElement(.staticText, "Select Payment Method")
-
+        
         let tableView = app.tables.matching(identifier: "miniWalletTableView")
         let cell = tableView.cells.element(matching: .cell, identifier: "Add Bank Account")
         cell.tap()
-        
+                
         checkExistenceOfElements([
-            (.sheet, "Add Bank Account"),
             (.button, "Save to My Wallet"),
             (.button, "Don't Save to My Wallet"),
             (.button, "Cancel")
@@ -122,8 +125,10 @@ class PaymentUITests: ExelonUITestCase {
         let cell2 = tableView.cells.element(matching: .cell, identifier: "Add Credit/Debit Card")
         cell2.tap()
         
+        sleep(2)
+        
         checkExistenceOfElements([
-            (.sheet, "Add Credit/Debit Card"),
+            (.staticText, "Add Credit/Debit Card"),
             (.button, "Save to My Wallet"),
             (.button, "Don't Save to My Wallet"),
             (.button, "Cancel")
