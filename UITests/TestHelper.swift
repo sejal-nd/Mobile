@@ -49,6 +49,8 @@ class ExelonUITestCase: XCTestCase {
     
     func launchApp() {
         app.launch()
+        
+        app.launchEnvironment = ["animations": "0"]
     }
     
     func handleTermsFirstLaunch() {
