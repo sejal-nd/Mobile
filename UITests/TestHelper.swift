@@ -79,7 +79,7 @@ class ExelonUITestCase: XCTestCase {
         usernameEmailAddressTextField.clearAndEnterText(username)
         
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.clearAndEnterText("Password1")
+        passwordSecureTextField.pasteText(app: app, "Password1")
         
         tapButton(buttonText: "Sign In")
     
