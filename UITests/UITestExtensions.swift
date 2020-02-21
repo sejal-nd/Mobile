@@ -63,14 +63,10 @@ extension XCUIElement {
             XCTFail("Tried to clear and enter text into a non string value")
             return
         }
-        tap()
-        
-        sleep(1)
         
         UIPasteboard.general.string = text
         doubleTap()
-        
-        sleep(1)
+        tap()
         
         app.menuItems["Paste"].tap()
     }
