@@ -21,7 +21,7 @@ extension XCUIElement {
         }
         
         self.tap()
-        
+
         sleep(2)
         
         let characters = Array(text)
