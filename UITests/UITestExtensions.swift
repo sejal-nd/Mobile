@@ -57,17 +57,4 @@ extension XCUIElement {
         
         self.typeText(text)
     }
-    
-    func pasteText(app: XCUIApplication, _ text: String) {
-        if self.elementType != XCUIElement.ElementType.textField && self.elementType != XCUIElement.ElementType.secureTextField {
-            XCTFail("Tried to clear and enter text into a non string value")
-            return
-        }
-        
-        UIPasteboard.general.string = text
-        doubleTap()
-        tap()
-        
-        app.menuItems["Paste"].tap()
-    }
 }
