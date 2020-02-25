@@ -64,6 +64,7 @@ class AlertPreferencesSectionHeaderView: UIView {
         label.text = title
         caretImageView.image = isExpanded ? #imageLiteral(resourceName: "ic_caret_up") : #imageLiteral(resourceName: "ic_caret_down")
         separator.isHidden = isExpanded
+        accessibilityLabel = isExpanded ? "Hide" : "Show"
     }
 
     override var intrinsicContentSize: CGSize {
