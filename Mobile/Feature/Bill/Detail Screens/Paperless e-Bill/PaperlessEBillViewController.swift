@@ -17,7 +17,7 @@ protocol PaperlessEBillViewControllerDelegate: class {
 class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     
     @IBOutlet weak var emailContainer: UIView!
     @IBOutlet weak var emailBox: UIView!

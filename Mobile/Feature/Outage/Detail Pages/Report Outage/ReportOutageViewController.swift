@@ -19,7 +19,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
@@ -123,6 +123,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             viewModel.reportFormHidden.value = false
         }
         
+        // show comment view for ComEd only
         if opco != .comEd {
             commentView.isHidden = true
         }
@@ -165,6 +166,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self
         
+        // show phone extension for ComEd and PECO
         if opco == .bge {
             phoneExtensionContainerView.isHidden = true
         }

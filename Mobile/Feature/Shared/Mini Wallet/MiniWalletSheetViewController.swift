@@ -246,6 +246,8 @@ class MiniWalletSheetViewController: UIViewController {
     // MARK: - Helper - Sheet
     
     private func configureCardView() {
+        backgroundView.accessibilityIdentifier = "Back"
+        
         bottomSheetView.layer.masksToBounds = true
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
@@ -262,6 +264,8 @@ class MiniWalletSheetViewController: UIViewController {
         
         let buttonRow = UINib(nibName: ButtonRow.className, bundle: nil)
         tableView.register(buttonRow, forCellReuseIdentifier: ButtonRow.className)
+        
+        tableView.accessibilityIdentifier = "miniWalletTableView"
         
         tableView.tableFooterView = UIView()
         

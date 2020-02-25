@@ -104,6 +104,8 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         
         viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail, billingHistoryItem: billingHistoryItem)
         
+        navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
+        
         if billingHistoryItem != nil {
             title = NSLocalizedString("Edit Payment", comment: "")
         } else {
@@ -151,6 +153,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle: .subheadline)
         
         paymentMethodLabel.text = NSLocalizedString("Payment Method*", comment: "")
+        paymentMethodLabel.accessibilityLabel = "Payment Method*"
         paymentMethodLabel.textColor = .middleGray
         paymentMethodLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         

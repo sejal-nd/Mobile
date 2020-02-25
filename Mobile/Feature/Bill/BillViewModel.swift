@@ -316,7 +316,7 @@ class BillViewModel {
             let amountString = amtDpaReinst.currencyString
             
             let string: String
-            switch (days > 0, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
+            switch (days > 0 && Environment.shared.opco != .peco, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
             case (true, true):
                 let format = "The total amount must be paid by %@ to catch up on your DPA."
                 return String.localizedStringWithFormat(format, dueByDate.mmDdYyyyString)

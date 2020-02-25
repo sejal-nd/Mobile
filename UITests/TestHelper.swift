@@ -10,21 +10,27 @@ import Foundation
 import XCTest
 
 let appOpCo: OpCo = {
-    let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
-    let bundleId = Bundle.main.infoDictionary?["CFBundleName"] as! String
-    var opCoName = ""
-    if bundleId == "ComEdUITests-Runner" {
-        opCoName = "ComEd"
-    } else if bundleId == "BGEUITests-Runner" {
-        opCoName = "BGE"
-    } else if bundleId == "PECOUITests-Runner" {
-        opCoName = "PECO"
+    guard let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String,
+        let bundleId = Bundle.main.infoDictionary?["CFBundleName"] as? String else {
+            fatalError("Could not resolve appName or bundle id in UI Tests.")
     }
+    
+    let opCoName: String
+    switch bundleId {
+    case "BGEUITests-Runner":
+        opCoName = "BGE"
+    case "ComEdUITests-Runner":
+        opCoName = "ComEd"
+    case "PECOUITests-Runner":
+        opCoName = "PECO"
+    default:
+        fatalError("Invalid bundle Id resolving to OpCo Name.")
+    }
+
     return OpCo(rawValue: opCoName)!
 }()
 
 class ExelonUITestCase: XCTestCase {
-    
     let app = XCUIApplication()
     
     override func setUp() {
@@ -43,55 +49,26 @@ class ExelonUITestCase: XCTestCase {
     
     func launchApp() {
         app.launch()
-        sleep(20)
-//        ACTLaunch.launch(app)
+        
+        app.launchEnvironment = ["animations": "0"]
     }
     
     func handleTermsFirstLaunch() {
-        
         let continueButton = app.buttons["Continue"]
-        continueButton.waitForExistence(timeout: 10)
-        XCTAssertTrue(continueButton.exists)
+        XCTAssertTrue(buttonElement(withText: "Continue", timeout: 5).exists)
         // Assert button is disabled when the switch is not enabled
         XCTAssertFalse(continueButton.isEnabled)
-        
-//        let continueSwitch = app.switches.element(boundBy: 0)
-        
-//        let continueSwitch = app.otherElements.children(matching: Checkbox)
-//        continueSwitch.tap()
-        
-        var i = 0
+
         while !continueButton.isEnabled {
-            // seems the app sometimes has trouble starting up quickly enough for the button to react?
-            usleep(50000)
-            
-            var checkboxText = ""
-            let bundleId = Bundle.main.infoDictionary?["CFBundleName"] as! String
-            if bundleId == "ComEdUITests-Runner" {
-                checkboxText = "ComEd"
-            } else if bundleId == "BGEUITests-Runner" {
-                checkboxText = "BGE"
-            } else if bundleId == "PECOUITests-Runner" {
-                checkboxText = "PECO"
-            }
-            
-                
-            XCUIApplication().otherElements[String(format: NSLocalizedString("I agree to %@'s Privacy Policy and Terms of Use., Checkbox, Unchecked", comment: ""), checkboxText)].tap()
-            
-            i += 1
-            if i > 10 {
-                break
-            }
+            XCUIApplication().otherElements[String(format: NSLocalizedString("I agree to %@'s Privacy Policy and Terms of Use., Checkbox, Unchecked", comment: ""), appOpCo.rawValue)].tap()
         }
-       
+
         continueButton.tap()
        
         XCTAssertTrue(buttonElement(withText: "Sign In", timeout: 5).exists)
-       
     }
     
     func doLogin(username: String) {
-    
         handleTermsFirstLaunch()
     
         let signInButton = buttonElement(withText: "Sign In", timeout: 5)
@@ -114,11 +91,18 @@ class ExelonUITestCase: XCTestCase {
             XCTAssertTrue(tabButtonElement(withText: "Home").exists)
         }
         
+        // Handle Commercial Usage
+        let closeButton = app.buttons["Close"]
         
+        if closeButton.exists {
+            closeButton.tap()
+        }
     }
 }
 
+
 // MARK: - Helpers
+
 extension ExelonUITestCase {
 
     func selectTab(tabName: String) {

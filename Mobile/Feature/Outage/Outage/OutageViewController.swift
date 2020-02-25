@@ -25,7 +25,7 @@ class OutageViewController: AccountPickerViewController {
         case unavailable
     }
     
-    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     @IBOutlet weak var maintenanceModeContainerView: UIView!
     @IBOutlet weak var noNetworkConnectionContainerView: UIView!
     @IBOutlet weak var loadingContainerView: UIView!
@@ -138,6 +138,7 @@ class OutageViewController: AccountPickerViewController {
     private func configureTableView() {
         let titleDetailCell = UINib(nibName: TitleSubTitleRow.className, bundle: nil)
         tableView.register(titleDetailCell, forCellReuseIdentifier: TitleSubTitleRow.className)
+        tableView.accessibilityLabel = "outageTableView"
         tableView.reloadData()
         
         RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
@@ -172,20 +173,23 @@ class OutageViewController: AccountPickerViewController {
             }
             
             guard let `self` = self else { return }
+            
             if outageStatus.flagGasOnly {
                 self.configureState(.gasOnly)
             } else {
                 self.configureState(.normal)
                 
+                let currentAccount = AccountsStore.shared.currentAccount
+                
                 // Enable / Disable Report Outage Cell
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
-                    if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService {
+                    if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService || currentAccount.isFinaled || currentAccount.serviceType == nil {
                         cell.isEnabled = false
                     } else {
                         cell.isEnabled = true
                     }
                 }
-                
+
                 self.outageStatusView.setOutageStatus(outageStatus,
                                                       reportedResults: self.viewModel.reportedOutage,
                                                       hasJustReported: self.viewModel.hasJustReportedOutage)
