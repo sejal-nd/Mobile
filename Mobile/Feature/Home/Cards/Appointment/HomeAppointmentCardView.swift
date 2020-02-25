@@ -49,7 +49,7 @@ class HomeAppointmentCardView: UIView {
         apologyLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         bottomButtonLabel.textColor = .actionBlue
-        bottomButtonLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        bottomButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
     func bindViewModel() {
