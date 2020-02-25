@@ -732,12 +732,12 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-vr-7qF" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
-                                        <accessibility key="accessibilityConfiguration" label="Save Password"/>
+                                        <accessibility key="accessibilityConfiguration" label="Save Changes"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Jlo-es-wtb"/>
                                             <constraint firstAttribute="height" constant="55" id="nnI-uM-TPV"/>
                                         </constraints>
-                                        <state key="normal" title="Submit"/>
+                                        <state key="normal" title="Save Changes"/>
                                         <connections>
                                             <action selector="submitButtonPress:" destination="9Ug-ji-Hni" eventType="touchUpInside" id="DCw-R6-S0P"/>
                                         </connections>
