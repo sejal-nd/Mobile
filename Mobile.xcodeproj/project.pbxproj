@@ -512,6 +512,18 @@
 		35CEB03B230D985D00366440 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
 		35CEB03C230D985D00366440 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
 		35CEB03D230D985D00366440 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
+		35D02D84240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D83240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift */; };
+		35D02D85240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D83240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift */; };
+		35D02D86240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D83240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift */; };
+		35D02D8B240FFBC100D8894F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D88240FFBC000D8894F /* Router.swift */; };
+		35D02D8C240FFBC100D8894F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D88240FFBC000D8894F /* Router.swift */; };
+		35D02D8D240FFBC100D8894F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D88240FFBC000D8894F /* Router.swift */; };
+		35D02D8E240FFBC100D8894F /* ServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D89240FFBC100D8894F /* ServiceTest.swift */; };
+		35D02D8F240FFBC100D8894F /* ServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D89240FFBC100D8894F /* ServiceTest.swift */; };
+		35D02D90240FFBC100D8894F /* ServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D89240FFBC100D8894F /* ServiceTest.swift */; };
+		35D02D91240FFBC100D8894F /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* ServiceLayer.swift */; };
+		35D02D92240FFBC100D8894F /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* ServiceLayer.swift */; };
+		35D02D93240FFBC100D8894F /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* ServiceLayer.swift */; };
 		35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35D6B62D231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
@@ -3090,6 +3102,10 @@
 		35CE69DA21122F50007EB844 /* BGE-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-STAGE.entitlements"; sourceTree = "<group>"; };
 		35CE69DB21122F50007EB844 /* ComEd-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-STAGE.entitlements"; sourceTree = "<group>"; };
 		35CE69DC21122F51007EB844 /* PECO-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-PROD.entitlements"; sourceTree = "<group>"; };
+		35D02D83240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCSAuthenticationServiceNew.swift; sourceTree = "<group>"; };
+		35D02D88240FFBC000D8894F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		35D02D89240FFBC100D8894F /* ServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTest.swift; sourceTree = "<group>"; };
+		35D02D8A240FFBC100D8894F /* ServiceLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
 		35D6B62A231424E900DCD588 /* AlertRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRow.swift; sourceTree = "<group>"; };
 		35E7C78F21907EA200BA13C6 /* PECO-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PECO-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E7C79B21907EA300BA13C6 /* PECO-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PECO-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -5070,6 +5086,49 @@
 			path = "Prepaid Card View";
 			sourceTree = "<group>";
 		};
+		35D02D80240FFB8700D8894F /* New Service Layer */ = {
+			isa = PBXGroup;
+			children = (
+				35D02D95240FFBD800D8894F /* Network Models */,
+				35D02D81240FFB9400D8894F /* Networking */,
+			);
+			path = "New Service Layer";
+			sourceTree = "<group>";
+		};
+		35D02D81240FFB9400D8894F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				35D02D87240FFBB600D8894F /* Service Layer */,
+				35D02D82240FFBA000D8894F /* MCS */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		35D02D82240FFBA000D8894F /* MCS */ = {
+			isa = PBXGroup;
+			children = (
+				35D02D83240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift */,
+			);
+			path = MCS;
+			sourceTree = "<group>";
+		};
+		35D02D87240FFBB600D8894F /* Service Layer */ = {
+			isa = PBXGroup;
+			children = (
+				35D02D88240FFBC000D8894F /* Router.swift */,
+				35D02D8A240FFBC100D8894F /* ServiceLayer.swift */,
+				35D02D89240FFBC100D8894F /* ServiceTest.swift */,
+			);
+			path = "Service Layer";
+			sourceTree = "<group>";
+		};
+		35D02D95240FFBD800D8894F /* Network Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Network Models";
+			sourceTree = "<group>";
+		};
 		35E7C79021907EA200BA13C6 /* Watch */ = {
 			isa = PBXGroup;
 			children = (
@@ -5869,6 +5928,7 @@
 		B58B5AC31E4E28740051FD5F /* Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				35D02D80240FFB8700D8894F /* New Service Layer */,
 				B58B5AC41E4E28740051FD5F /* AppDelegate.swift */,
 				E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */,
 				E89496351EE9E04000B76F8C /* NotificationNames.swift */,
@@ -8737,6 +8797,7 @@
 				B07269352127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
+				35D02D91240FFBC100D8894F /* ServiceLayer.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
@@ -8814,6 +8875,7 @@
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
 				0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
+				35D02D8E240FFBC100D8894F /* ServiceTest.swift in Sources */,
 				0EF60FD420EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
@@ -8883,6 +8945,7 @@
 				9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
+				35D02D84240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */,
 				9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */,
@@ -8907,6 +8970,7 @@
 				2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */,
 				B0EA71BF2090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
+				35D02D8B240FFBC100D8894F /* Router.swift in Sources */,
 				9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
 				9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */,
@@ -9151,6 +9215,7 @@
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
+				35D02D93240FFBC100D8894F /* ServiceLayer.swift in Sources */,
 				B0649A61214834380041B299 /* StormModeStatus.swift in Sources */,
 				9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
@@ -9228,6 +9293,7 @@
 				9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				8267733F1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				2249C039216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
+				35D02D90240FFBC100D8894F /* ServiceTest.swift in Sources */,
 				54EDD2E11ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
 				E835D1CB1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027C1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
@@ -9297,6 +9363,7 @@
 				9C37BA932388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */,
 				0EF60FDB20EE8105006ABC18 /* GSTouchesShowingController.swift in Sources */,
+				35D02D86240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift in Sources */,
 				E84705F92025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				E82FF1E81F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */,
@@ -9321,6 +9388,7 @@
 				B0B083AA216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				9CCE3E4821B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				35A6C6D8211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
+				35D02D8D240FFBC100D8894F /* Router.swift in Sources */,
 				B0D84D5F220382F000C70A6F /* MockAppState.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
@@ -9565,6 +9633,7 @@
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				35C9139722E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
+				35D02D92240FFBC100D8894F /* ServiceLayer.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
 				B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
@@ -9642,6 +9711,7 @@
 				9C28D389227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				54AE06AB1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
+				35D02D8F240FFBC100D8894F /* ServiceTest.swift in Sources */,
 				35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
@@ -9711,6 +9781,7 @@
 				9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
+				35D02D85240FFBAD00D8894F /* MCSAuthenticationServiceNew.swift in Sources */,
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
@@ -9735,6 +9806,7 @@
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533A22CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
+				35D02D8C240FFBC100D8894F /* Router.swift in Sources */,
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				9C7774822368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				B0B083A9216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
