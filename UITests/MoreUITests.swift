@@ -25,7 +25,7 @@ class MoreUITests: ExelonUITestCase {
             (.cell, "My Alerts"),
             (.cell, "News and Updates"),
             (.cell, "Change Password"),
-            (.cell, "Release of Info"),
+            (.cell, "Release of Information"),
             (.cell, "Contact Us"),
             (.cell, "Set Default Account"),
             (.cell, "Policies and Terms"),
@@ -48,7 +48,7 @@ class MoreUITests: ExelonUITestCase {
             let cell = tableView.cells.element(matching: .cell, identifier: "Set Default Account")
             XCTAssertTrue(cell.isHittable)
         } else if appOpCo == .peco {
-            let cell = tableView.cells.element(matching: .cell, identifier: "Release of Info")
+            let cell = tableView.cells.element(matching: .cell, identifier: "Release of Information")
             XCTAssertTrue(cell.isHittable)
         }
     }
