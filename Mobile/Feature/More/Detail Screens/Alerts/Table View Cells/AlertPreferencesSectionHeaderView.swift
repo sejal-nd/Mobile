@@ -58,13 +58,18 @@ class AlertPreferencesSectionHeaderView: UIView {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTap(tapRecognizer:)))
         addGestureRecognizer(tap)
+        
+        isAccessibilityElement = true
+        accessibilityTraits.insert(.header)
     }
     
     func configure(withTitle title: String, isExpanded: Bool) {
         label.text = title
         caretImageView.image = isExpanded ? #imageLiteral(resourceName: "ic_caret_up") : #imageLiteral(resourceName: "ic_caret_down")
         separator.isHidden = isExpanded
-        accessibilityLabel = isExpanded ? "Hide" : "Show"
+        
+        accessibilityLabel = "\(isExpanded ? "Hide" : "Show") \(title)"
+        UIAccessibility.post(notification: .screenChanged, argument: self)
     }
 
     override var intrinsicContentSize: CGSize {
@@ -72,6 +77,7 @@ class AlertPreferencesSectionHeaderView: UIView {
     }
     
     @objc func didTap(tapRecognizer: UITapGestureRecognizer) {
+        accessibilityLabel = nil
         tapped?()
     }
 }
