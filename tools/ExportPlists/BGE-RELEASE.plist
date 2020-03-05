@@ -14,7 +14,7 @@
 		<string>BGE Watchkit Extension App Store</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>320b2a1634549d319c6ae8e159586d5be17b442a</string>
+	<string>Apple Distribution</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>

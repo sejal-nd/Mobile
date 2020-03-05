@@ -67,16 +67,19 @@ struct OutageStatus: Mappable {
     static func getOutageState(_ outageStatus: OutageStatus,
                                reportedResults: ReportedOutageResult? = nil,
                                hasJustReported: Bool = false) -> OutageState {
-        let currentAccount = AccountsStore.shared.currentAccount
+        
+        if AccountsStore.shared.accounts != nil && !AccountsStore.shared.accounts.isEmpty {
+            let currentAccount = AccountsStore.shared.currentAccount
 
-        if currentAccount.isFinaled || currentAccount.serviceType == nil {
-            return .unavailable
-        } else if hasJustReported { 
-            return .reported
-        } else if outageStatus.flagFinaled || outageStatus.flagNonService {
-            return .unavailable
-        } else if outageStatus.flagNoPay {
-            return .nonPayment
+            if currentAccount.isFinaled || currentAccount.serviceType == nil {
+                return .unavailable
+            } else if hasJustReported {
+                return .reported
+            } else if outageStatus.flagFinaled || outageStatus.flagNonService {
+                return .unavailable
+            } else if outageStatus.flagNoPay {
+                return .nonPayment
+            }
         }
         
         return .powerStatus(!outageStatus.activeOutage)

@@ -41,7 +41,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Release of Info", comment: "")
+        title = NSLocalizedString("Release of Information", comment: "")
         
         submitButton.rx.tap.asDriver().drive(onNext: { _ in
             self.onSubmitPress()
