@@ -32,10 +32,6 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         super.viewDidLoad()
         title = NSLocalizedString("Appointment Tracker", comment: "")
         
-        if StormModeStatus.shared.isOn {
-            view.backgroundColor = .stormModeBlack
-        }
-        
         viewModel.showLoadingState.not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.appointments.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] appointments in
@@ -172,6 +168,6 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         self.emptyStateView.stateMessage = "You have no appointments scheduled."
         self.emptyStateView.stateImageName = "img_appt_empty"
         self.errorStateView.stateMessage = "Error getting appointments"
-        self.errorStateView.stateImageName = "ic_appt_canceled"
+//        self.errorStateView.stateImageName = "ic_appt_canceled"
     }
 }
