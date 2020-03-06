@@ -21,25 +21,25 @@ class OutageUITests: ExelonUITestCase {
         selectTab(tabName: "Outage")
         
         checkExistenceOfElements([
-            (.button, "Report outage"),
-            (.button, "View outage map")
+            (.cell, "Report Outage"),
+            (.cell, "View Outage Map")
         ])
         
         if appOpCo == .comEd {
-            checkExistenceOfElement(.button, "Report streetlight outage")
+            checkExistenceOfElement(.cell, "Report Streetlight Outage")
         }
         
-        tapButton(buttonText: "Outage status button. Our records indicate your power is on.")
+        tapButton(buttonText: "View Details")
 
-        XCTAssertTrue(app.alerts.staticTexts["test power on message"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.staticTexts["test power on message"].waitForExistence(timeout: 3))
     }
     
     func testPowerOutState() {
         doLogin(username: "outagePowerOut")
         selectTab(tabName: "Outage")
-        tapButton(buttonText: "Outage status button. Our records indicate your power is out.")
-
-        XCTAssertTrue(app.alerts.staticTexts["test power out message"].waitForExistence(timeout: 3))
+        tapButton(buttonText: "View Details")
+                
+        XCTAssertTrue(app.staticTexts["test power out message"].waitForExistence(timeout: 3))
     }
     
     func testGasOnlyState() {
@@ -47,14 +47,7 @@ class OutageUITests: ExelonUITestCase {
         selectTab(tabName: "Outage")
 
         XCTAssertTrue(staticTextElement(withText: "Gas Only Account").exists)
-        XCTAssertFalse(buttonElement(withText: "Our records indicate").exists) // Should not be an outage status button
-        
-        // All buttons should be hidden for gas only
-        checkNonexistenceOfElements([
-            (.button, "Report outage"),
-            (.button, "Report streetlight outage"),
-            (.button, "View outage map")
-        ])
+        XCTAssertFalse(staticTextElement(withText: "Our records indicate").exists) // Should not be an outage status button
     }
     
     func testFinaledState() {
@@ -62,15 +55,19 @@ class OutageUITests: ExelonUITestCase {
         selectTab(tabName: "Outage")
         
         XCTAssertTrue(staticTextElement(withText: "Outage Unavailable").exists)
-        XCTAssertFalse(buttonElement(withText: "Our records indicate").exists) // Should not be an outage status button
+        XCTAssertFalse(staticTextElement(withText: "Our records indicate").exists)
             
-        let reportOutageButton = buttonElement(withText: "Report outage")
-        XCTAssertTrue(reportOutageButton.exists)
-        XCTAssertFalse(reportOutageButton.isEnabled, "Report outage button should be disabled for finaled accounts")
         
-        checkExistenceOfElement(.button, "View outage map")
+        let tableView = app.tables.matching(identifier: "outageTableView")
+        let cell = tableView.cells.element(matching: .cell, identifier: "Report Outage")
+        
+        XCTAssertTrue(cell.exists)
+        XCTAssertFalse(cell.isEnabled, "Report outage button should be disabled for finaled accounts")
+        
+        checkExistenceOfElement(.cell, "View Outage Map")
+        
         if appOpCo == .comEd {
-            checkExistenceOfElement(.button, "Report streetlight outage")
+            checkExistenceOfElement(.cell, "Report Streetlight Outage")
         }
     }
     
@@ -78,12 +75,16 @@ class OutageUITests: ExelonUITestCase {
         doLogin(username: "default")
         selectTab(tabName: "Outage")
 
-        tapButton(buttonText: "Report outage")
-        tapButton(buttonText: "Submit")
+        let tableView = app.tables.matching(identifier: "outageTableView")
+        let cell = tableView.cells.element(matching: .cell, identifier: "Report Outage")
+        cell.tap()
+        
+        tapButton(buttonText: "Report Outage")
 
         checkExistenceOfElements([
-            (.button, "Your outage is reported."),
-            (.button, "Report outage. Reported")
+            (.staticText, "Your outage is"),
+            (.staticText, "REPORTED")
         ])
+        XCTAssertTrue(cell.staticTexts["detail"].label != "")
     }
 }

@@ -61,6 +61,7 @@ class MoreViewController: UIViewController {
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
         tableView.register(UINib(nibName: ToggleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ToggleTableViewCell.className)
+        tableView.accessibilityLabel = "moreTableView"
         
         // Constraint stuff: In Storm Mode, we want the tableView top constrained to superview top
         // for smooth large title nav collapsing. Outside of Storm Mode there is no nav bar, so we
@@ -292,7 +293,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 2:
                 cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""))
             case 3:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Information", comment: ""))
             case 4:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morechoiceid"), text: NSLocalizedString("Choice ID", comment: ""))
             case 5:
@@ -418,7 +419,7 @@ extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
     
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
         DispatchQueue.main.asyncAfter(deadline:  .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Release of information updated", comment: ""))
+            self.view.showToast(NSLocalizedString("Release of Information updated", comment: ""))
             GoogleAnalytics.log(event: .releaseInfoComplete)
         })
     }

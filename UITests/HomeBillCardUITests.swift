@@ -26,8 +26,8 @@ class HomeBillCardUITests: ExelonUITestCase {
         XCTAssertTrue(app.navigationBars["My Wallet"].waitForExistence(timeout: 3))
         tapButton(buttonText: "Back")
         
-        let slideToPayControl = app.scrollViews.otherElements["Slide to pay today"]
-        XCTAssertFalse(slideToPayControl.isEnabled, "Slide to pay should be disabled when no default payment method")
+        let slideToPayControl = app.otherElements["Pay full bill now"]
+        XCTAssertFalse(slideToPayControl.exists, "Slide to pay should be disabled when no default payment method")
     }
     
     func testDefaultPaymentSetWithBill() {
@@ -40,14 +40,14 @@ class HomeBillCardUITests: ExelonUITestCase {
             (.button, "Bank account, Account ending in 1234")
         ])
 
-        XCTAssertTrue(app.scrollViews.otherElements["Slide to pay today"].isEnabled, "Slide to pay should be enabled")
+        XCTAssertTrue(app.scrollViews.otherElements["Pay full bill now"].isEnabled, "Slide to pay should be enabled")
     }
     
     func testScheduledPayment() {
         doLogin(username: "scheduledPayment")
 
         tapButton(buttonText: "Thank you for scheduling your $82.00 payment")
-        XCTAssertTrue(app.navigationBars["Payment Activity"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.navigationBars["Bill & Payment Activity"].waitForExistence(timeout: 3))
     }
     
     func testThankYouForPayment() {
@@ -92,12 +92,10 @@ class HomeBillCardUITests: ExelonUITestCase {
         ])
     }
     
-    func testExpiredSlideToPay(){
+    func testHiddenSlideToPay(){
         doLogin(username: "billCardWithExpiredDefaultPayment")
         
-        //Assert slider is disabled since card is expired
-        let slideToPayControl = app.scrollViews.otherElements["Slide to pay today"]
-        XCTAssertTrue(slideToPayControl.waitForExistence(timeout: 5))
-        XCTAssertFalse(slideToPayControl.isEnabled, "Slider should be disabled when card is expired")
+        let slideToPayControl = app.otherElements["Pay full bill now"]
+        XCTAssertFalse(slideToPayControl.exists, "Slider should be disabled when card is expired")
     }
 }

@@ -80,6 +80,7 @@ class LargeTitleNavigationController: UINavigationController {
         
         view.backgroundColor = backgroundColor
         navigationBar.backgroundColor = backgroundColor
+        navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
     }
     
     // If presenting an InfoModalViewController or WebViewController, first wrap it in a
