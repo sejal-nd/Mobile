@@ -132,6 +132,9 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Emergency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kag-4c-q0g">
                                                                         <rect key="frame" x="0.0" y="0.0" width="226" height="23.5"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="Emergency">
+                                                                            <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                                                        </accessibility>
                                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -355,6 +358,9 @@
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Contact Us Online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paE-eR-FKI">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="251" height="23.5"/>
+                                                                                <accessibility key="accessibilityConfiguration" label="Contact Us Online">
+                                                                                    <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                                                                </accessibility>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
@@ -433,6 +439,9 @@
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Customer Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-Vb-Ho9">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="230" height="29.5"/>
+                                                                                <accessibility key="accessibilityConfiguration" label="Customer Service">
+                                                                                    <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                                                                </accessibility>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
@@ -732,12 +741,12 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-vr-7qF" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
-                                        <accessibility key="accessibilityConfiguration" label="Save Password"/>
+                                        <accessibility key="accessibilityConfiguration" label="Save Changes"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Jlo-es-wtb"/>
                                             <constraint firstAttribute="height" constant="55" id="nnI-uM-TPV"/>
                                         </constraints>
-                                        <state key="normal" title="Submit"/>
+                                        <state key="normal" title="Save Changes"/>
                                         <connections>
                                             <action selector="submitButtonPress:" destination="9Ug-ji-Hni" eventType="touchUpInside" id="DCw-R6-S0P"/>
                                         </connections>

@@ -101,6 +101,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         passwordTextField.textField.textContentType = .password
 
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
+        let a11yText = NSLocalizedString("%@, an Exelon Company", comment: "")
+        opcoLogo.accessibilityLabel = String(format: a11yText, Environment.shared.opco.displayString)
 
         // Two-way data binding for the username/password fields
         viewModel.username.asDriver().drive(usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
