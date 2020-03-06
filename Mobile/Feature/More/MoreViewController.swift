@@ -208,7 +208,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return Environment.shared.opco == OpCo.peco ? 2 : 3
         case 1:
             return 6
         case 2:
@@ -293,7 +293,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 2:
                 cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""))
             case 3:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Information", comment: ""))
             case 4:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morechoiceid"), text: NSLocalizedString("Choice ID", comment: ""))
             case 5:
@@ -419,7 +419,7 @@ extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
     
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
         DispatchQueue.main.asyncAfter(deadline:  .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Release of information updated", comment: ""))
+            self.view.showToast(NSLocalizedString("Release of Information updated", comment: ""))
             GoogleAnalytics.log(event: .releaseInfoComplete)
         })
     }
