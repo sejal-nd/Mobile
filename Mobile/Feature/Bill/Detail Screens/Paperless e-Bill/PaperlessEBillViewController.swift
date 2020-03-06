@@ -58,13 +58,6 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let systemBack = UINavigationBackButton()
-        systemBack.isLabelHidden = true
-        systemBack.addTarget(self, action: #selector(onBackPress), for: .touchUpInside)
-        let backButton = UIBarButtonItem(customView: systemBack)
-        backButton.isAccessibilityElement = true
-        backButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
-        navigationItem.leftBarButtonItem = backButton
         navigationController?.interactivePopGestureRecognizer?.delegate = self // Enable interactive pop
         
         let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_tooltip.pdf"), style: .plain, target: self, action: #selector(onTooltipPress))

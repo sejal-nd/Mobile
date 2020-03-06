@@ -96,6 +96,6 @@ class MiniWalletItemRow: UITableViewCell {
         subtitleLabel.text = walletItem.nickName
         
         // Accessibility
-        self.accessibilityLabel = "\(selectionAccessibilityString) \(walletItem.paymentCategoryType.displayString), \(titleLabel.text ?? ""), \(subtitleLabel.text ?? "")"
+        self.accessibilityLabel = "\(selectionAccessibilityString) \(walletItem.accessibilityDescription())"
     }
 }
