@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 public struct ServiceLayerTest {
     
     public static func logJSON(router: Router, completion: @escaping (Result<String, Error>) -> ()) {
@@ -75,7 +74,8 @@ public struct ServiceLayerTest {
     }
     
     // 1.
-    public static func request<T: Codable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
+    public static func request<T: Codable>(router: Router,
+                                           completion: @escaping (Result<T, Error>) -> ()) {
         // 2.
         var components = URLComponents()
         components.scheme = router.scheme
@@ -105,13 +105,16 @@ public struct ServiceLayerTest {
                 print(error!.localizedDescription)
                 return
             }
+            
             guard response != nil else {
                 return
             }
+            
             guard let data = data else {
                 return
             }
 
+            
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
 

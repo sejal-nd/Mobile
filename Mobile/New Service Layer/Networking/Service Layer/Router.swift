@@ -38,7 +38,8 @@ public enum Router {
     public var host: String {
         switch self {
         case .fetchAnonOutageStatus, .fetchMaintenanceMode, .fetchAccountDetails, .fetchAccounts, .exchangeToken, .minVersion, .getSources, .getProductIds, .getProductInfo:
-            return Environment.shared.mcsConfig.baseUrl
+        return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
+        //return Environment.shared.mcsConfig.baseUrl
         case .fetchToken:
             return "stage-apigateway.exeloncorp.com" // TEMP
         }

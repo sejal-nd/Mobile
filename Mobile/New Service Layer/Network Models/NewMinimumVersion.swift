@@ -8,10 +8,22 @@
 
 import Foundation
 
-struct NewMinimumVersion: Codable {
-    var iosObject: NewVersions
-}
-
-struct NewVersions: Codable {
-    var minVersion: String = "0.0.0"
+public struct NewVersion: Decodable {
+    public var min = "0.0.0"
+    
+    enum CodingKeys: String, CodingKey {
+        case data = "data"
+        case iOS = "ios"
+        case min = "minVersion"
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
+                                                 forKey: .data)
+        let iOSContainer = try data.nestedContainer(keyedBy: CodingKeys.self,
+                                                    forKey: .iOS)
+        self.min = try iOSContainer.decode(String.self,
+                                           forKey: .min)
+    }
 }

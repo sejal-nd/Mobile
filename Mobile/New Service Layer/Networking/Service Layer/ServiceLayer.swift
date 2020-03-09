@@ -60,7 +60,7 @@ public struct ServiceLayer {
     }
     
     // 1.
-    public static func request<T: Codable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
+    public static func request<T: Decodable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
         // 2.
         var components = URLComponents()
         components.scheme = router.scheme
@@ -80,19 +80,26 @@ public struct ServiceLayer {
         
         // Add Headers
         ServiceLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
+        print("URL: \(url)")
 
         // 4.
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
+            
+            print("URL: \(url)")
+            
             // 5.
             guard error == nil else {
                 completion(.failure(error!))
                 print(error!.localizedDescription)
+                print("Error: \(error)")
                 return
             }
+            
             guard response != nil else {
                 return
             }
+            
             guard let data = data else {
                 return
             }

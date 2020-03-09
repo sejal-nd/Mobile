@@ -126,6 +126,8 @@ class MCSApi {
             request.setValue(Environment.shared.mcsConfig.mobileBackendId, forHTTPHeaderField: "oracle-mobile-backend-id")
             request.setValue("xml", forHTTPHeaderField: "encode")
 
+            print("OLD URL: \(url)")
+            
             return session.rx.dataResponse(request: request, onCanceled: {
                 APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .canceled, message: nil)
             })
@@ -250,6 +252,8 @@ class MCSApi {
         } else {
             request.setValue("Basic \(Environment.shared.mcsConfig.anonymousKey)", forHTTPHeaderField: "Authorization")
         }
+        
+        print("OLD URL: \(url)")
         
         // Response
         return session.rx.fullResponse(request: request, onCanceled: {
