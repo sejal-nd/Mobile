@@ -81,10 +81,6 @@ class AlertsViewController: AccountPickerViewController {
     // MARK: - Helper
     
     private func styleViews() {
-        if StormModeStatus.shared.isOn {
-            view.backgroundColor = .stormModeBlack
-        }
-        
         preferencesButtonLabel.textColor = .actionBlue
         preferencesButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")

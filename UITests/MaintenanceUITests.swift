@@ -37,8 +37,11 @@ class MaintenanceUITests: ExelonUITestCase {
         launchApp()
         handleTermsFirstLaunch()
         
-        tapButton(buttonText: "CONTINUE AS GUEST")
-        tapButton(buttonText: "Report Outage")
+        tapButton(buttonText: "Continue as Guest")
+        
+        let tableView = app.tables.matching(identifier: "guestTableView")
+        let cell = tableView.cells.element(matching: .cell, identifier: "Report Outage")
+        cell.tap()
         
         switch appOpCo {
         case .bge:

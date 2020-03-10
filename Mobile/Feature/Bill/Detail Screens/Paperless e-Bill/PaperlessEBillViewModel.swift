@@ -157,7 +157,7 @@ class PaperlessEBillViewModel {
             return nil
         }
         let opcoString = Environment.shared.opco.displayString
-        return String.localizedStringWithFormat("Your enrollment status for Paperless eBill will be updated by the next day.\n\nIf you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through %@.com, you will be automatically unenrolled from MyCheckFree.", opcoString)
+        return String.localizedStringWithFormat("Your enrollment status may take up to 24 hours to update and may not be reflected immediately.\n\nIf you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through %@.com, you will be automatically unenrolled from MyCheckFree.", opcoString)
     }
     
     func switched(accountDetail: AccountDetail, on: Bool) {

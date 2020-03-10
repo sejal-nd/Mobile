@@ -1,12 +1,14 @@
 {
     "default": {
         "accountNumber": "1234567890",
-        "address": "573 Elm Street"
+        "address": "573 Elm Street",
+        "serviceType": "GAS/ELECTRIC"
     },
     "screenshots": {
         "accountNumber": "7989123445",
         "address": "10 Anywhere Ave. Baltimore, MD 21230",
-        "isResidential": true
+        "isResidential": true,
+        "serviceType": "GAS/ELECTRIC"
     },
     "residential": {
         "accountNumber": "1234567890",

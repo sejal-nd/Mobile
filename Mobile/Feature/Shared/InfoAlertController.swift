@@ -140,11 +140,15 @@ class InfoAlertController: UIViewController {
     
     private func populateViews() {
         titleLabel.text = titleString
+        titleLabel.accessibilityLabel = titleString
+        titleLabel.accessibilityTraits.insert(.header)
         
         if let message = self.message {
             messageLabel.text = message
+            messageLabel.accessibilityLabel = message
         } else if let attributedMessage = self.attributedMessage {
             messageLabel.attributedText = attributedMessage
+            messageLabel.accessibilityAttributedLabel = attributedMessage
         }
         
         if let action = action {

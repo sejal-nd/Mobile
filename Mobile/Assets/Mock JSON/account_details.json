@@ -2,6 +2,7 @@
     "default": {
         "accountNumber": "1234567890",
         "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
         "BillingInfo": {
             "minimumPaymentAmount": 5,
             "maximumPaymentAmount": 5000,
@@ -9,6 +10,7 @@
             "convenienceFee": 5.95
         },
         "CustomerInfo": {},
+        "flagFinaled": false,
         "SERInfo": {}
     },
     "residential": {
@@ -285,8 +287,8 @@
         "BillingInfo": {
             "netDueAmount": 0,
             "lastPaymentAmount": 200,
-            "lastPaymentDate": "2019-01-01T00:00:00",
-            "dueByDate": "2019-01-01T00:00:00",
+            "lastPaymentDate": "2019-01-11T00:00:00",
+            "dueByDate": "2019-01-11T00:00:00",
             "billDate": "2018-12-31T00:00:00",
             "minimumPaymentAmount": 5,
             "maximumPaymentAmount": 5000,
