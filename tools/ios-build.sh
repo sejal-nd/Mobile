@@ -26,7 +26,8 @@ Usage:
                             
                             or
 
---build-branch              refs/heads/test
+--build-branch              refs/heads/develop
+                            refs/heads/test
                             refs/heads/stage
                             refs/heads/prodbeta
                             refs/heads/hotfix
@@ -141,7 +142,10 @@ find_in_array() {
 mkdir -p build/logs
 
 # git repo branches can be used to specify the build type instead of the configuration directly
-if [[ "$BUILD_BRANCH" == "refs/heads/test" ]]; then
+if [[ "$BUILD_BRANCH" == "refs/heads/develop" ]]; then
+  # Supports CI builds for all builds into the dev branch
+  CONFIGURATION="Testing"
+elif [[ "$BUILD_BRANCH" == "refs/heads/test" ]]; then
   CONFIGURATION="Testing"
 elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
@@ -581,17 +585,13 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
         rm -r build/Mobile.build
 
         set -e
-
+        
         # rm -rf "DerivedData"
         echo "----------------------------------- Build-for-testing -------------------------------"
         xcrun xcodebuild \
             -configuration Automation \
             -workspace $PROJECT \
-            -sdk iphoneos \
             -scheme "$OPCO-AUT-UITest" \
-            ONLY_ACTIVE_ARCH=NO \
-            ARCH="armv7 armv7s arm64" \
-            VALID_ARCHS="armv7 armv7s arm64" \
             build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty
 
         check_errs $? "Build for testing exited with a non-zero status"

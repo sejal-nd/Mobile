@@ -10,7 +10,6 @@ import XCTest
 
 
 class LoginUITests: ExelonUITestCase {
-    
     override func setUp() {
         super.setUp()
         launchApp()
@@ -22,7 +21,7 @@ class LoginUITests: ExelonUITestCase {
             (.image, "img_logo_white"),
             (.button, "Sign In"),
             (.button, "Register"),
-            (.button, "CONTINUE AS GUEST")
+            (.button, "Continue as Guest")
         ])
     }
     
@@ -33,12 +32,9 @@ class LoginUITests: ExelonUITestCase {
             (.secureTextField, "Password"),
             (.image, "img_logo_white"),
             (.button, "Sign In"),
-            (.switch, "Keep me signed in"),
-            (.button, " username "),
-            (.button, " password"),
+            (.button, "Forgot your username or password?"),
             (.button, "Back")
         ])
-
     }
     
     func testSignIn(){
@@ -100,7 +96,6 @@ class LoginUITests: ExelonUITestCase {
         tapButton(buttonText: "Sign In")
 
         checkExistenceOfElement(.alert, "Sign In Error")
-
     }
     
     func testInvalidPassword() {
@@ -110,21 +105,26 @@ class LoginUITests: ExelonUITestCase {
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
         XCTAssertTrue(usernameEmailAddressTextField.waitForExistence(timeout: 5))
         usernameEmailAddressTextField.clearAndEnterText("valid@test.com")
-
+        
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         XCTAssertTrue(passwordSecureTextField.waitForExistence(timeout: 5))
         passwordSecureTextField.clearAndEnterText("invalid")
-
+        
         tapButton(buttonText: "Sign In")
-
+        
         checkExistenceOfElement(.alert, "Sign In Error")
         
     }
     
     func testContactUsAsGuest(){
-        tapButton(buttonText: "CONTINUE AS GUEST")
-        tapButton(buttonText: "Contact Us")
-
+        tapButton(buttonText: "Continue as Guest")
+        
+        let tableView = app.tables.matching(identifier: "guestTableView")
+        let cell = tableView.cells.element(matching: .cell, identifier: "Contact Us")
+        cell.tap()
+        
+        sleep(3)
+        
         checkExistenceOfElements([
             (.navigationBar, "Contact Us"),
             (.button, "Back"),
@@ -139,9 +139,9 @@ class LoginUITests: ExelonUITestCase {
             (.button, "YouTube"),
             (.button, "LinkedIn")
         ])
-
-        if appOpCo == .bge {
-
+        
+        switch appOpCo {
+        case .bge:
             checkExistenceOfElements([
                 (.link, "1-800-685-0123"),
                 (.link, "1-800-265-6177"),
@@ -151,17 +151,7 @@ class LoginUITests: ExelonUITestCase {
                 (.staticText, "TTY/TTD"),
                 (.staticText, "If you see downed power lines or smell natural gas, leave the area immediately and then call BGE. Representatives are available 24 hours a day, 7 days a week.")
             ])
-            
-        } else if appOpCo == .peco {
-
-            checkExistenceOfElements([
-                (.link, "1-800-841-4141"),
-                (.link, "1-800-494-4000"),
-                (.staticText, "All Customers"),
-                (.staticText, "If you see downed power lines or smell natural gas, leave the area immediately and then call PECO. Representatives are available 24 hours a day, 7 days a week.")
-            ])
-        } else {
-
+        case .comEd:
             checkExistenceOfElements([
                 (.link, "1-800-334-7661"),
                 (.link, "1-877-426-6331"),
@@ -173,8 +163,13 @@ class LoginUITests: ExelonUITestCase {
                 (.button, "Instagram"),
                 (.button, "Pinterest")
             ])
+        case .peco:
+            checkExistenceOfElements([
+                (.link, "1-800-841-4141"),
+                (.link, "1-800-494-4000"),
+                (.staticText, "All Customers"),
+                (.staticText, "If you see downed power lines or smell natural gas, leave the area immediately and then call PECO. Representatives are available 24 hours a day, 7 days a week.")
+            ])
         }
     }
 }
-
-

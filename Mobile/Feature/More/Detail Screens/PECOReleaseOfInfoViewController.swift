@@ -28,6 +28,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var submitButton: PrimaryButton!
     
     let accountService = ServiceFactory.createAccountService()
     
@@ -40,12 +41,11 @@ class PECOReleaseOfInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Release of Info", comment: "")
+        title = NSLocalizedString("Release of Information", comment: "")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = submitButton
+        submitButton.rx.tap.asDriver().drive(onNext: { _ in
+            self.onSubmitPress()
+        }).disposed(by: disposeBag)
         
         tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReleaseOfInfoCell")
         tableView.estimatedRowHeight = 51
@@ -69,10 +69,6 @@ class PECOReleaseOfInfoViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         GoogleAnalytics.log(event: .releaseInfoOffer)
-    }
-    
-    @objc func onCancelPress() {
-        navigationController?.popViewController(animated: true)
     }
     
     @objc func onSubmitPress() {
@@ -145,7 +141,8 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] _ in
                     guard let self = self else { return }
-                    self.accountInfoBar.update()
+                    let currentAccount = AccountsStore.shared.currentAccount
+                    self.accountInfoBar.configure(accountNumberText: currentAccount.accountNumber, addressText: currentAccount.address)
                     fetchReleaseOfInfo()
                 }, onError: { [weak self] error in
                     guard let self = self else { return }

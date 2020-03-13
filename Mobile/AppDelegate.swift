@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
             //Speed up animations for UI Testing
             UIApplication.shared.keyWindow?.layer.speed = 200
+            UIView.setAnimationsEnabled(false)
         }
         
         // Set mock maintenance mode state based on launch argument

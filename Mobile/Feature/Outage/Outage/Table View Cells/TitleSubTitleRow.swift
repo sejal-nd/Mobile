@@ -70,6 +70,9 @@ extension TitleSubTitleRow {
         titleLabel.text = title
         subTitleLabel.text = detail
         disclosureIndicatorImageView.image = disclosureIndicatorImage
+        
+        accessibilityLabel = title
+        subTitleLabel.accessibilityLabel = "detail"
     }
     
     func updateSubTitle(_ text: String?) {

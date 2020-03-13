@@ -45,10 +45,6 @@ class StateView: UIView {
     }
     
     private func styleViews() {
-        if StormModeStatus.shared.isOn {
-            containerView.backgroundColor = .stormModeBlack
-        }
-        
         stateLabel.textColor = .middleGray
         stateLabel.font = OpenSans.regular.of(textStyle: .headline)
     }

@@ -37,6 +37,7 @@ class TitleTableViewHeaderView: UITableViewHeaderFooterView {
         }
         
         separatorView.isHidden = shouldHideSeparator
+        accessibilityLabel = text
     }
     
 }
