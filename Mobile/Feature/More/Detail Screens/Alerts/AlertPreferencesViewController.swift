@@ -301,7 +301,26 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         switch option {
         case .highUsage:
             toggleVariable = viewModel.highUsage
-            textFieldOptions = AlertPreferencesViewModel.AlertPrefTextFieldOptions(text: viewModel.billThreshold, placeHolder: viewModel.billThresholdPlacheHolder.value, textFieldType: .currency)
+            
+            if !viewModel.accountDetail.isBudgetBillEnrollment /* && NO 3rd party suppliers */ {
+                var thresholdStr: String? = nil
+                if let thresholdValue = viewModel.billThreshold.value {
+                    thresholdStr = "$\(thresholdValue)"
+                }
+                textFieldOptions = AlertPreferencesViewModel.AlertPrefTextFieldOptions(text: thresholdStr, placeHolder: viewModel.billThresholdPlacheHolder.value, showToolTip: true, textFieldType: .currency)
+                                
+                cell.toolTipTapped = { () in
+                    let alertViewController = InfoAlertController(title: NSLocalizedString("Bill Threshold", comment: ""),
+                    message: NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month.", comment: ""))
+                    self.present(alertViewController, animated: true)
+                }
+            }
+        case .peakTimeSavings:
+            toggleVariable = viewModel.peakTimeSavings
+        case .smartEnergyRewards:
+            toggleVariable = viewModel.smartEnergyRewards
+        case .energySavingsDayResults:
+            toggleVariable = viewModel.energySavingsDayResults
         case .outage:
             toggleVariable = viewModel.outage
         case .scheduledMaintenanceOutage:
@@ -359,6 +378,12 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         if let toggleVariable = toggleVariable {
             toggleVariable.asDriver().distinctUntilChanged().drive(cell.checkbox.rx.isChecked).disposed(by: cell.disposeBag)
             cell.checkbox.rx.isChecked.asDriver().skip(1).drive(toggleVariable).disposed(by: cell.disposeBag)
+            cell.textField.textField.rx.text.asDriver().skip(1)
+                .map { $0?.replacingOccurrences(of: "$", with: "") }
+                .drive(onNext: {
+                    self.viewModel.billThreshold.accept($0)
+                })
+                .disposed(by: cell.disposeBag)
         }
         
         cell.configure(withPreferenceOption: option,

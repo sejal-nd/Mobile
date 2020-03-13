@@ -11,6 +11,9 @@ import Mapper
 struct AlertPreferences {
     var usage = false
     var alertThreshold: Int?
+    var peakTimeSavings = false
+    var smartEnergyRewards = false
+    var energySavingsDayResults = false
     var outage = false
     var scheduledMaint = false // BGE only
     var severeWeather = false
@@ -26,6 +29,9 @@ struct AlertPreferences {
     init(alertPreferences: [AlertPreference]) {
         for pref in alertPreferences {
             switch pref.programName {
+            case "High Usage Electric", "High Usage Electric Alerts":
+                usage = true
+                alertThreshold = pref.alertThreshold
             case "Outage Notifications":
                 outage = true
             case "Planned Outage":
@@ -56,7 +62,12 @@ struct AlertPreferences {
     }
     
     // To create programatically, not from JSON
-    init(outage: Bool,
+    init(usage: Bool,
+         alertThreshold: Int? = nil,
+         peakTimeSavings: Bool,
+         smartEnergyRewards: Bool,
+         energySavingsDayResults: Bool,
+         outage: Bool,
          scheduledMaint: Bool,
          severeWeather: Bool,
          billReady: Bool,
@@ -66,9 +77,12 @@ struct AlertPreferences {
          paymentPastDue: Bool,
          budgetBilling: Bool,
          appointmentTracking: Bool,
-         forYourInfo: Bool,
-         usage: Bool,
-         alertThreshold: Int? = nil) {
+         forYourInfo: Bool) {
+        self.usage = usage
+        self.alertThreshold = alertThreshold
+        self.peakTimeSavings = peakTimeSavings
+        self.smartEnergyRewards = smartEnergyRewards
+        self.energySavingsDayResults = energySavingsDayResults
         self.outage = outage
         self.scheduledMaint = scheduledMaint
         self.severeWeather = severeWeather
@@ -80,8 +94,6 @@ struct AlertPreferences {
         self.budgetBilling = budgetBilling
         self.appointmentTracking = appointmentTracking
         self.forYourInfo = forYourInfo
-        self.usage = usage
-        self.alertThreshold = alertThreshold
     }
     
     // Used by the setAlertPreferences web service call
@@ -97,6 +109,10 @@ struct AlertPreferences {
         }
         
         let array = [
+            highUsageProgram,
+            ["programName": "Peak Time Savings", "type": "push", "isActive": peakTimeSavings],
+            ["programName": "Smart Energy Rewards", "type": "push", "isActive": smartEnergyRewards],
+            ["programName": "Energy Savings Day Results", "type": "push", "isActive": energySavingsDayResults],
             ["programName": "Outage Notifications", "type": "push", "isActive": outage],
             ["programName": "Planned Outage", "type": "push", "isActive": scheduledMaint],
             ["programName": "Severe Weather", "type": "push", "isActive": severeWeather],
@@ -114,7 +130,11 @@ struct AlertPreferences {
     func isDifferent(fromOriginal originalPrefs: AlertPreferences) -> Bool {
         // Note: not checking paymentDueDaysBefore here because that is compared for changes independently
         // in AlertPreferencesViewModel
-        return outage != originalPrefs.outage ||
+        return usage != originalPrefs.usage ||
+            peakTimeSavings != originalPrefs.peakTimeSavings ||
+            smartEnergyRewards != originalPrefs.smartEnergyRewards ||
+            energySavingsDayResults != originalPrefs.energySavingsDayResults ||
+            outage != originalPrefs.outage ||
             scheduledMaint != originalPrefs.scheduledMaint ||
             severeWeather != originalPrefs.severeWeather ||
             billReady != originalPrefs.billReady ||
@@ -123,14 +143,14 @@ struct AlertPreferences {
             paymentPastDue != originalPrefs.paymentPastDue ||
             budgetBilling != originalPrefs.budgetBilling ||
             appointmentTracking != originalPrefs.appointmentTracking ||
-            forYourInfo != originalPrefs.forYourInfo ||
-            usage != originalPrefs.usage
+            forYourInfo != originalPrefs.forYourInfo
     }
 }
 
 struct AlertPreference: Mappable {
     let programName: String
     var daysPrior: Int? // Only sent along with programName = "Payment Reminders"
+    var alertThreshold: Int? // Only sent along with programName = "High Usage Electric" or "High Usage Electric Alerts"
     
     init(map: Mapper) throws {
         try programName = map.from("programName")
@@ -142,5 +162,7 @@ struct AlertPreference: Mappable {
         if let string = daysString {
             daysPrior = Int(string)
         }
+        
+        alertThreshold = map.optionalFrom("alertThreshold")
     }
 }

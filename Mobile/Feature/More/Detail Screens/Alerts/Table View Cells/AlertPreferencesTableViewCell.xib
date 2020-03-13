@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,39 +41,61 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSh-LG-zl1">
+                                        <rect key="frame" x="0.0" y="50" width="280" height="75"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="sse-pk-Iyp" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="3gd-2l-yFf"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aH5-hf-Psc">
+                                                <rect key="frame" x="229" y="4.5" width="51" height="51"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="51" id="77d-Is-hRw"/>
+                                                    <constraint firstAttribute="height" constant="51" id="NeY-Yr-s76"/>
+                                                </constraints>
+                                                <state key="normal" image="ic_tooltip"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="aH5-hf-Psc" firstAttribute="centerY" secondItem="sse-pk-Iyp" secondAttribute="centerY" id="2UW-wx-ryn"/>
+                                            <constraint firstAttribute="height" constant="75" id="E8S-BF-WJ0"/>
+                                            <constraint firstAttribute="trailing" secondItem="aH5-hf-Psc" secondAttribute="trailing" id="Jc8-Lh-alH"/>
+                                            <constraint firstAttribute="trailing" secondItem="sse-pk-Iyp" secondAttribute="trailing" id="R5R-3f-ArU"/>
+                                            <constraint firstItem="sse-pk-Iyp" firstAttribute="top" secondItem="HSh-LG-zl1" secondAttribute="top" id="k5r-lh-7RT"/>
+                                            <constraint firstItem="sse-pk-Iyp" firstAttribute="leading" secondItem="HSh-LG-zl1" secondAttribute="leading" id="wLU-Qb-JpX"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCI-8S-CcA">
-                                        <rect key="frame" x="0.0" y="50" width="87" height="25"/>
+                                        <rect key="frame" x="0.0" y="131" width="87" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="c3A-qK-E08"/>
                                         </constraints>
                                         <state key="normal" title="1 Day Before"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99n-Qq-LJN" userLabel="Spacer">
-                                        <rect key="frame" x="0.0" y="81" width="231" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="162" width="231" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="VRh-XX-2D0"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receive an alert when your bill is ready to be viewed online. This alert will contain the bill due date and total amount due." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOm-Rp-lai">
-                                        <rect key="frame" x="0.0" y="87" width="273.5" height="51"/>
+                                        <rect key="frame" x="0.0" y="168" width="273.5" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="sse-pk-Iyp" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="144" width="280" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="3gd-2l-yFf"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="sse-pk-Iyp" secondAttribute="trailing" id="CyL-bJ-baJ"/>
                                     <constraint firstAttribute="trailing" secondItem="Xot-b1-HTu" secondAttribute="trailing" id="Lw2-C3-zUf"/>
+                                    <constraint firstItem="HSh-LG-zl1" firstAttribute="leading" secondItem="sAE-iE-OUP" secondAttribute="leading" id="lu6-Bn-Pqj"/>
+                                    <constraint firstAttribute="trailing" secondItem="HSh-LG-zl1" secondAttribute="trailing" id="nnH-ol-VGw"/>
                                     <constraint firstItem="Xot-b1-HTu" firstAttribute="leading" secondItem="sAE-iE-OUP" secondAttribute="leading" id="peP-qW-JGI"/>
-                                    <constraint firstItem="sse-pk-Iyp" firstAttribute="leading" secondItem="sAE-iE-OUP" secondAttribute="leading" id="vao-DU-iRj"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUg-fZ-vpS">
@@ -119,8 +141,12 @@
                 <outlet property="pickerButton" destination="NCI-8S-CcA" id="tD1-V8-ViE"/>
                 <outlet property="separatorView" destination="gUg-fZ-vpS" id="Fcy-Ae-r6X"/>
                 <outlet property="textField" destination="sse-pk-Iyp" id="hEW-EF-mER"/>
+                <outlet property="toolTipButton" destination="aH5-hf-Psc" id="EMd-Oj-2ce"/>
             </connections>
-            <point key="canvasLocation" x="132.80000000000001" y="230.73463268365819"/>
+            <point key="canvasLocation" x="141" y="231"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ic_tooltip" width="24" height="24"/>
+    </resources>
 </document>

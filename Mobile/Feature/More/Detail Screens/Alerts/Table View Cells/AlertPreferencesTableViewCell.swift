@@ -12,6 +12,7 @@ import RxCocoa
 class AlertPreferencesTableViewCell: UITableViewCell {
     
     var disposeBag = DisposeBag()
+    var toolTipTapped: (() -> Void)?
     
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
@@ -21,6 +22,7 @@ class AlertPreferencesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var checkbox: Checkbox!
     @IBOutlet weak var textField: FloatLabelTextField!
+    @IBOutlet weak var toolTipButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,12 +55,21 @@ class AlertPreferencesTableViewCell: UITableViewCell {
         
         pickerButton.isHidden = pickerButtonText == nil
         separatorView.isHidden = isLastItem
-        textField.isHidden = textFieldOptions == nil
+        textField.superview?.isHidden = textFieldOptions == nil
+        toolTipButton.isHidden = textFieldOptions?.showToolTip == false
         
         if let textFieldOptions = textFieldOptions {
-            textFieldOptions.text?.bind(to: textField.textField.rx.text).disposed(by: disposeBag)
+            textField.textField.text = textFieldOptions.text
             textField.placeholder = textFieldOptions.placeholder
             textField.accessibilityLabel = textFieldOptions.placeholder
+            
+            if textFieldOptions.showToolTip {
+                toolTipButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+                    guard let self = self else { return }
+                    self.toolTipTapped?()
+                    
+                }).disposed(by: disposeBag)
+            }
             
             switch textFieldOptions.textFieldType {
             case .string:
