@@ -229,7 +229,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 self.setLottieAnimation(for: "checkmark_blue")
                 
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
-                self.meterPingStatusContainer.isHidden = false
                 
                 var problemsFound = !meterPingInfo.pingResult
                 if meterPingInfo.voltageResult {
@@ -246,11 +245,13 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                     
                     self.viewModel.reportFormHidden.value = false
+                    self.meterPingStatusContainer.isHidden = true
                 } else {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("No Problems Found", comment: "")
                     self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Our status check verified your property's meter is operational and \(Environment.shared.opco.displayString) electrical service is being delivered to your home.", comment: "")
                     
                     self.meterPingFuseBoxView.isHidden = false
+                    self.meterPingStatusContainer.isHidden = false
                 }
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self)
@@ -262,7 +263,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                 
-                self.meterPingStatusContainer.isHidden = false
+                self.meterPingStatusContainer.isHidden = true
                 self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
                 self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                 
