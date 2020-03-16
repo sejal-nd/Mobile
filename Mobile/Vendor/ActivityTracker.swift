@@ -34,11 +34,12 @@ private struct ActivityToken<E>: ObservableConvertibleType, Disposable {
  When all activities complete `false` will be sent.
  */
 public class ActivityTracker: SharedSequenceConvertibleType {
-    public typealias E = Bool
+    public typealias Element = Bool
+    
     public typealias SharingStrategy = DriverSharingStrategy
     
     private let _lock = NSRecursiveLock()
-    private let _variable = Variable(0)
+    private let _variable = BehaviorRelay(value: 0)
     private let _loading: SharedSequence<SharingStrategy, Bool>
     
     public init() {
@@ -47,8 +48,8 @@ public class ActivityTracker: SharedSequenceConvertibleType {
             .distinctUntilChanged()
     }
     
-    fileprivate func trackActivityOfObservable<O: ObservableConvertibleType>(_ source: O) -> Observable<O.E> {
-        return Observable.using({ () -> ActivityToken<O.E> in
+    fileprivate func trackActivityOfObservable<O: ObservableConvertibleType>(_ source: O) -> Observable<O.Element> {
+        return Observable.using({ () -> ActivityToken<O.Element> in
             self.increment()
             return ActivityToken(source: source.asObservable(), disposeAction: self.decrement)
         }) { t in
@@ -58,25 +59,25 @@ public class ActivityTracker: SharedSequenceConvertibleType {
     
     private func increment() {
         _lock.lock()
-        _variable.value = _variable.value + 1
+        _variable.accept(_variable.value + 1)
 //        dLog("activity increment: \(_variable.value)")
         _lock.unlock()
     }
     
     private func decrement() {
         _lock.lock()
-        _variable.value = _variable.value - 1
+        _variable.accept(_variable.value - 1)
 //        dLog("activity decrement: \(_variable.value)")
         _lock.unlock()
     }
     
-    public func asSharedSequence() -> SharedSequence<SharingStrategy, E> {
+    public func asSharedSequence() -> SharedSequence<SharingStrategy, Element> {
         return _loading
     }
 }
 
 extension ObservableConvertibleType {
-    public func trackActivity(_ activityTracker: ActivityTracker) -> Observable<E> {
+    public func trackActivity(_ activityTracker: ActivityTracker) -> Observable<Element> {
         return activityTracker.trackActivityOfObservable(self)
     }
 }

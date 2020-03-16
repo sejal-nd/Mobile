@@ -136,7 +136,7 @@ class PeakRewardsViewController: UIViewController {
         returnPeriodCard.configure(withPeriod: .return, periodInfo: viewModel.returnInfo)
         sleepPeriodCard.configure(withPeriod: .sleep, periodInfo: viewModel.sleepInfo)
         
-        segmentedControl.selectedIndex.value = TemperatureScaleStore.shared.scale.rawValue
+        segmentedControl.selectedIndex.accept(TemperatureScaleStore.shared.scale.rawValue)
     }
     
     func bindActions() {
