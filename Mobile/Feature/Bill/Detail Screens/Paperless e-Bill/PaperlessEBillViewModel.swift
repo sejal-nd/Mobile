@@ -109,6 +109,7 @@ class PaperlessEBillViewModel {
                     .sorted { $0.0 < $1.0 }
                     .map { $0.1 }
             }
+    .asObservable()
             .share(replay: 1)
     }()
     
@@ -144,6 +145,7 @@ class PaperlessEBillViewModel {
             .merge(maxConcurrent: 3)
             .toArray()
             .observeOn(MainScheduler.instance)
+        .asObservable()
             .subscribe(onNext: { responseArray in
                 onSuccess(changedStatus)
             }, onError: { error in
