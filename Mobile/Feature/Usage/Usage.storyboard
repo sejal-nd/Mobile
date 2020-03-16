@@ -767,6 +767,7 @@
                         <segue destination="Hz7-8N-if4" kind="show" identifier="updateYourHomeProfileSegue" id="Clo-hz-GvA"/>
                         <segue destination="kgB-m9-rwa" kind="show" identifier="hourlyPricingSegue" id="GZ1-0U-wUP"/>
                         <segue destination="yQT-Cb-YF3" kind="show" identifier="smartEnergyRewardsSegue" id="ihJ-24-YJA"/>
+                        <segue destination="E5f-p1-rHh" kind="show" identifier="serWebViewSegue" id="fa2-w2-wTd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0l-ak-tzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1635,6 +1636,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Znu-AT-4jx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2620" y="283"/>
+        </scene>
+        <!--SER Web View-->
+        <scene sceneID="est-dq-Itc">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="E5f-p1-rHh" userLabel="SER Web View" customClass="SERWebViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zX6-zb-yJY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MG3-Cu-zo3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="FJ3-aO-SIl" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="177" y="415" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aj4-wr-X5y">
+                                <rect key="frame" x="29" y="411" width="356" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="MF6-Yy-ryu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FJ3-aO-SIl" firstAttribute="centerY" secondItem="zX6-zb-yJY" secondAttribute="centerY" id="1hR-Wf-c8Q"/>
+                            <constraint firstItem="MG3-Cu-zo3" firstAttribute="top" secondItem="zX6-zb-yJY" secondAttribute="top" id="3fe-Va-3p0"/>
+                            <constraint firstItem="dml-Sp-3R6" firstAttribute="trailing" secondItem="MG3-Cu-zo3" secondAttribute="trailing" id="CVU-YC-9hI"/>
+                            <constraint firstItem="aj4-wr-X5y" firstAttribute="leading" secondItem="dml-Sp-3R6" secondAttribute="leading" priority="999" constant="29" id="RUz-QK-179"/>
+                            <constraint firstItem="MG3-Cu-zo3" firstAttribute="leading" secondItem="dml-Sp-3R6" secondAttribute="leading" id="TAe-3l-Wop"/>
+                            <constraint firstItem="dml-Sp-3R6" firstAttribute="trailing" secondItem="aj4-wr-X5y" secondAttribute="trailing" priority="999" constant="29" id="dEm-Wf-lg5"/>
+                            <constraint firstItem="FJ3-aO-SIl" firstAttribute="centerX" secondItem="dml-Sp-3R6" secondAttribute="centerX" id="mG5-rY-Qcc"/>
+                            <constraint firstAttribute="bottom" secondItem="MG3-Cu-zo3" secondAttribute="bottom" id="ukP-Ir-ArZ"/>
+                            <constraint firstItem="aj4-wr-X5y" firstAttribute="centerX" secondItem="dml-Sp-3R6" secondAttribute="centerX" id="vDt-7R-na5"/>
+                            <constraint firstItem="aj4-wr-X5y" firstAttribute="centerY" secondItem="zX6-zb-yJY" secondAttribute="centerY" id="yqT-sX-fTE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dml-Sp-3R6"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Usage" id="zjC-ow-efQ"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="aj4-wr-X5y" id="5Pb-JI-ZE7"/>
+                        <outlet property="loadingIndicator" destination="FJ3-aO-SIl" id="0CH-tV-Muv"/>
+                        <outlet property="webView" destination="MG3-Cu-zo3" id="jZW-pV-FuP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QNC-5L-Qu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2429" y="-403"/>
         </scene>
     </scenes>
     <resources>
