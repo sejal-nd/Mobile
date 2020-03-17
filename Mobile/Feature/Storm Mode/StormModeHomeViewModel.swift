@@ -11,7 +11,7 @@ import RxCocoa
 
 class StormModeHomeViewModel {
     
-    let stormModePollInterval = 30.0
+    let stormModePollInterval = 30
     
     private let authService: AuthenticationService
     private var outageService: OutageService
@@ -42,7 +42,7 @@ class StormModeHomeViewModel {
     
     func startStormModePolling() -> Driver<Void> {
         return Observable<Int>
-            .interval(stormModePollInterval, scheduler: MainScheduler.instance)
+            .interval(.seconds(stormModePollInterval), scheduler: MainScheduler.instance)
             .mapTo(())
             // Start polling immediately
             .startWith(())

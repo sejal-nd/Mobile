@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-fileprivate let firstfuelSessionTimeout: TimeInterval = 900 // 15 minutes
+fileprivate let firstfuelSessionTimeout = 900 // 15 minutes
 
 class UsageViewModel {
     
@@ -59,7 +59,7 @@ class UsageViewModel {
             // Replace timer with .empty() for residential accounts
             guard !accountDetail.isResidential, let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             return Observable<Int>
-                .timer(0, period: firstfuelSessionTimeout, scheduler: MainScheduler.instance)
+                .timer(.seconds(0), period: .seconds(firstfuelSessionTimeout), scheduler: MainScheduler.instance)
                 .flatMapLatest { [weak self] _ -> Observable<SSOData> in
                     guard let self = self else { return .empty() }
                     return self.accountService

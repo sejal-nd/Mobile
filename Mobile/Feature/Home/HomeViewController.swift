@@ -539,7 +539,7 @@ class HomeViewController: AccountPickerViewController {
                 if let vc = viewController as? WalletViewController {
                     vc.didUpdate
                         .asDriver(onErrorDriveWith: .empty())
-                        .delay(0.5)
+                        .delay(.milliseconds(500))
                         .drive(onNext: { [weak self] toastMessage in
                             self?.view.showToast(toastMessage)
                         })

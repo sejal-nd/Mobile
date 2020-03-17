@@ -163,7 +163,7 @@ class PeakRewardsViewController: UIViewController {
                 guard let self = self else { return }
                 $0.viewModel.saveSuccess
                     .asDriver(onErrorDriveWith: .empty())
-                    .delay(0.5)
+                    .delay(.milliseconds(500))
                     .drive(onNext: { [weak self] in
                         self?.view.makeToast(NSLocalizedString("Override scheduled", comment: ""))
                     })
@@ -194,7 +194,7 @@ class PeakRewardsViewController: UIViewController {
                 guard let self = self else { return }
                 $0.viewModel.saveSuccess
                     .asDriver(onErrorDriveWith: .empty())
-                    .delay(0.5)
+                    .delay(.milliseconds(500))
                     .drive(onNext: { [weak self] in
                         self?.view.makeToast(NSLocalizedString("Thermostat settings saved", comment: ""))
                     })
@@ -221,7 +221,7 @@ class PeakRewardsViewController: UIViewController {
                 guard let self = self else { return }
                 vc.saveSuccess.bind(to: self.viewModel.deviceScheduleChanged).disposed(by: vc.disposeBag)
                 vc.saveSuccess.asDriver(onErrorDriveWith: .empty())
-                    .delay(0.5)
+                    .delay(.milliseconds(500))
                     .drive(onNext: { [weak self] in
                         self?.view.showToast(NSLocalizedString("Schedule updated", comment: ""))
                     })
