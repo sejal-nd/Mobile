@@ -21,7 +21,7 @@ class WalletViewModelTests: XCTestCase {
     }
         
     func testShouldShowEmptyState() {
-        viewModel.walletItems.value = []
+        viewModel.walletItems.accept([])
         viewModel.shouldShowEmptyState.asObservable().take(1).subscribe(onNext: { shouldShow in
             XCTAssert(shouldShow, "shouldShowEmptyState should be true with empty walletItems array")
         }).disposed(by: disposeBag)
@@ -33,7 +33,7 @@ class WalletViewModelTests: XCTestCase {
     }
     
     func testShouldShowWalletState() {
-        viewModel.walletItems.value = []
+        viewModel.walletItems.accept([])
         viewModel.shouldShowWallet.asObservable().take(1).subscribe(onNext: { shouldShow in
             XCTAssertFalse(shouldShow, "shouldShowEmptyState should be false with empty walletItems array")
         }).disposed(by: disposeBag)
@@ -45,7 +45,7 @@ class WalletViewModelTests: XCTestCase {
     }
     
     func testAddBankDisabled() {
-        viewModel.walletItems.value = []
+        viewModel.walletItems.accept([])
         viewModel.accountDetail = AccountDetail.default
         XCTAssertFalse(viewModel.addBankDisabled, "addBankDisabled should be false for non-cash only users")
 

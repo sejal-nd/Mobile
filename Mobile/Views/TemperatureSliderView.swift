@@ -22,13 +22,13 @@ class TemperatureSliderView: UIView {
     private let minLabel = UILabel().usingAutoLayout()
     private let maxLabel = UILabel().usingAutoLayout()
     
-    let mode: Variable<SmartThermostatMode>
+    let mode: BehaviorRelay<SmartThermostatMode>
     let currentTemperature: BehaviorSubject<Temperature>
     let minTemp: Temperature
     let maxTemp: Temperature
     let scale: TemperatureScale
     
-    init(currentTemperature: BehaviorSubject<Temperature>, minTemp: Temperature, maxTemp: Temperature, scale: TemperatureScale, mode: Variable<SmartThermostatMode>) {
+    init(currentTemperature: BehaviorSubject<Temperature>, minTemp: Temperature, maxTemp: Temperature, scale: TemperatureScale, mode: BehaviorRelay<SmartThermostatMode>) {
         self.currentTemperature = currentTemperature
         self.mode = mode
         self.scale = scale

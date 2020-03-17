@@ -135,10 +135,10 @@ class UsageViewModel {
         case noData, previous, current, projected, projectionNotAvailable
     }
     
-    let barGraphSelection = Variable(BarGraphSelection.current)
+    let barGraphSelection = BehaviorRelay(value: BarGraphSelection.current)
     
-    let electricGasSelectedSegmentIndex = Variable(0)
-    let lastYearPreviousBillSelectedSegmentIndex = Variable(1)
+    let electricGasSelectedSegmentIndex = BehaviorRelay(value: 0)
+    let lastYearPreviousBillSelectedSegmentIndex = BehaviorRelay(value: 1)
     
     // MARK: - Main States
     
@@ -802,7 +802,7 @@ class UsageViewModel {
     // MARK: Selection States
     
     func setBarSelected(tag: Int) {
-        barGraphSelection.value = BarGraphSelection(rawValue: tag) ?? .current
+        barGraphSelection.accept(BarGraphSelection(rawValue: tag) ?? .current)
     }
     
     // MARK: - Text Styling

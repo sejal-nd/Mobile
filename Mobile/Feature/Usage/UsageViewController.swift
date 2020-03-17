@@ -198,7 +198,7 @@ class UsageViewController: AccountPickerViewController {
         barGraphPress(currentContainerButton)
         
         if let (barSelection, isGas, isPreviousBill) = initialSelection {
-            viewModel.electricGasSelectedSegmentIndex.value = isGas ? 1 : 0
+            viewModel.electricGasSelectedSegmentIndex.accept(isGas ? 1 : 0)
             selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
             selectBar(barSelection, gas: isGas)
         }
@@ -271,7 +271,7 @@ class UsageViewController: AccountPickerViewController {
             FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .electric_segment_press)])
         }
         
-        viewModel.electricGasSelectedSegmentIndex.value = gas ? 1 : 0
+        viewModel.electricGasSelectedSegmentIndex.accept(gas ? 1 : 0)
         viewModel.setBarSelected(tag: selectedBar.rawValue)
     }
     
@@ -344,7 +344,7 @@ class UsageViewController: AccountPickerViewController {
                      previousBillButton.rx.tap.asDriver().mapTo(true))
             .drive(onNext: { [weak self] isPreviousBill in
                 if self?.viewModel.barGraphSelection.value == .projected {
-                    self?.viewModel.barGraphSelection.value = .current
+                    self?.viewModel.barGraphSelection.accept(.current)
                 }
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
                 
@@ -373,7 +373,7 @@ class UsageViewController: AccountPickerViewController {
             showBillComparisonLoadingState()
         }
 
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = isPreviousBill ? 1 : 0
+        viewModel.lastYearPreviousBillSelectedSegmentIndex.accept(isPreviousBill ? 1 : 0)
     }
     
     private func bindViewStates() {

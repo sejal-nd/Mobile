@@ -19,15 +19,15 @@ class ReportOutageViewModelTests: XCTestCase {
     }
     
     func testSubmitButtonEnabled() {
-        viewModel.phoneNumber.value = "410-123-4567"
-        viewModel.reportFormHidden.value = false
+        viewModel.phoneNumber.accept("410-123-4567"
+        viewModel.reportFormHidden.accept(false)
         viewModel.submitEnabled.asObservable().single().subscribe(onNext: { enabled in
             XCTAssertTrue(enabled, "Submit button should be enabled")
         }).disposed(by: disposeBag)
     }
     
     func testSubmitButtonDisabled() {
-        viewModel.phoneNumber.value = ""
+        viewModel.phoneNumber.accept("")
         viewModel.submitEnabled.asObservable().single().subscribe(onNext: { enabled in
             XCTAssertFalse(enabled, "Submit button should be disabled")
         }).disposed(by: disposeBag)
@@ -157,17 +157,17 @@ class ReportOutageViewModelTests: XCTestCase {
             XCTAssertFalse(has10, "phoneNumberHasTenDigits should be false initially")
         }).disposed(by: disposeBag)
         
-        viewModel.phoneNumber.value = "10length10"
+        viewModel.phoneNumber.accept("10length10")
         viewModel.phoneNumberHasTenDigits.asObservable().take(1).subscribe(onNext: { has10 in
             XCTAssertFalse(has10, "phoneNumberHasTenDigits should be false for \"10length10\"")
         }).disposed(by: disposeBag)
         
-        viewModel.phoneNumber.value = "1234567890"
+        viewModel.phoneNumber.accept("1234567890")
         viewModel.phoneNumberHasTenDigits.asObservable().take(1).subscribe(onNext: { has10 in
             XCTAssert(has10, "phoneNumberHasTenDigits should be true for \"1234567890\"")
         }).disposed(by: disposeBag)
         
-        viewModel.phoneNumber.value = "410-123-4567"
+        viewModel.phoneNumber.accept("410-123-4567"
         viewModel.phoneNumberHasTenDigits.asObservable().take(1).subscribe(onNext: { has10 in
             XCTAssert(has10, "phoneNumberHasTenDigits should be true for \"410-123-4567\"")
         }).disposed(by: disposeBag)

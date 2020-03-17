@@ -39,7 +39,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
                                         walletService: MockWalletService(),
                                         accountDetail: .default)
         viewModel.selectedWalletItem.value = WalletItem()
-        viewModel.userDidReadTerms.value = true
+        viewModel.userDidReadTerms.accept(true)
         viewModel.submitButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
             if !enabled {
                 XCTFail("Submit button should be enabled when unenrolled with a selected bank account")
@@ -50,17 +50,17 @@ class BGEAutoPayViewModelTests: XCTestCase {
                                         walletService: MockWalletService(),
                                         accountDetail: .fromMockJson(forKey: .autoPay))
         viewModel.selectedWalletItem.value = WalletItem()
-        viewModel.userDidChangeSettings.value = true
-        viewModel.userDidReadTerms.value = true
+        viewModel.userDidChangeSettings.accept(true)
+        viewModel.userDidReadTerms.accept(true)
         viewModel.submitButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
             if !enabled {
                 XCTFail("Submit button should be enabled when enrolled and settings changed")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.userDidChangeSettings.value = false
-        viewModel.userDidChangeBankAccount.value = true
-        viewModel.userDidReadTerms.value = true
+        viewModel.userDidChangeSettings.accept(false)
+        viewModel.userDidChangeBankAccount.accept(true)
+        viewModel.userDidReadTerms.accept(true)
         viewModel.submitButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
             if !enabled {
                 XCTFail("Submit button should be enabled when enrolled and bank account changed")

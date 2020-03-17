@@ -96,7 +96,7 @@ class PaymentViewModelTests: XCTestCase {
         
         let accountDetail = AccountDetail.default
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, billingHistoryItem: nil)
-        viewModel.paymentId.value = "123"
+        viewModel.paymentId.accept("123")
         viewModel.cancelPayment(onSuccess: {
             // Pass
         }, onError: { err in
@@ -110,7 +110,7 @@ class PaymentViewModelTests: XCTestCase {
         
         let accountDetail = AccountDetail.default
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, billingHistoryItem: nil)
-        viewModel.paymentId.value = "123"
+        viewModel.paymentId.accept("123")
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.modifyPayment(onSuccess: {
             // Pass
@@ -122,16 +122,16 @@ class PaymentViewModelTests: XCTestCase {
     func testPaymentFieldsValid() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.paymentAmount.value = 100
+        viewModel.paymentAmount.accept(100)
         var dateComps = DateComponents(calendar: .opCo, year: 2019, month: 1, day: 2)
-        viewModel.paymentDate.value = dateComps.date!
+        viewModel.paymentDate.accept(dateComps.date!)
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.paymentFieldsValid.asObservable().take(1).subscribe(onNext: { valid in
             XCTAssert(valid, "paymentFieldsValid should be true for this test case")
         }).disposed(by: disposeBag)
         
         dateComps = DateComponents(calendar: .opCo, year: 2019, month: 12, day: 2)
-        viewModel.paymentDate.value = dateComps.date!
+        viewModel.paymentDate.accept(dateComps.date!)
         viewModel.paymentFieldsValid.asObservable().take(1).subscribe(onNext: { valid in
             XCTAssertFalse(valid, "paymentFieldsValid should be false when the date is past the due date (ComEd/PECO) or more than 180 days out (BGE - bank account)")
         }).disposed(by: disposeBag)
@@ -176,7 +176,7 @@ class PaymentViewModelTests: XCTestCase {
 
         // Normal test case
         viewModel.accountDetail.value = .fromMockJson(forKey: .finaledResidential)
-        viewModel.walletItems.value = []
+        viewModel.walletItems.accept([])
         viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
             XCTAssertFalse(hasWalletItems, "hasWalletItems should be false for a normal scenario with no wallet items")
         }).disposed(by: disposeBag)
@@ -200,8 +200,8 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssert(shouldShow, "paymentAmountTextField should show when user has wallet items")
         }).disposed(by: disposeBag)
         
-        viewModel.walletItems.value = nil
-        viewModel.paymentId.value = "123"
+        viewModel.walletItems.accept(nil)
+        viewModel.paymentId.accept("123")
         viewModel.shouldShowPaymentAmountTextField.asObservable().take(1).subscribe(onNext: { shouldShow in
             XCTAssert(shouldShow, "paymentAmountTextField should show when user is editing")
         }).disposed(by: disposeBag)
@@ -304,12 +304,12 @@ class PaymentViewModelTests: XCTestCase {
     func testAmountDueCurrencyString() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.amountDue.value = 0
+        viewModel.amountDue.accept(0)
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
             XCTAssertEqual(string, "$0.00")
         }).disposed(by: disposeBag)
 
-        viewModel.amountDue.value = 15.29
+        viewModel.amountDue.accept(15.29)
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
             XCTAssertEqual(string, "$15.29")
         }).disposed(by: disposeBag)
@@ -324,12 +324,12 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertEqual(string, "$13.92")
         }).disposed(by: disposeBag)
 
-        viewModel.amountDue.value = 0.13
+        viewModel.amountDue.accept(0.13)
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
             XCTAssertEqual(string, "$0.13")
         }).disposed(by: disposeBag)
 
-        viewModel.amountDue.value = 5
+        viewModel.amountDue.accept(5)
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
             XCTAssertEqual(string, "$5.00")
         }).disposed(by: disposeBag)
@@ -342,7 +342,7 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertEqual(dueDate, "01/11/2019")
         }).disposed(by: disposeBag)
 
-        viewModel.accountDetail.value = .default
+        viewModel.accountDetail.accept(.default)
         viewModel.dueDate.asObservable().take(1).subscribe(onNext: { dueDate in
             XCTAssertEqual(dueDate, "--")
         }).disposed(by: disposeBag)
@@ -360,8 +360,8 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .default, billingHistoryItem: nil)
 
         if Environment.shared.opco == .bge { // Overpayment is a BGE only concept
-            viewModel.amountDue.value = 100
-            viewModel.paymentAmount.value = 200
+            viewModel.amountDue.accept(100)
+            viewModel.paymentAmount.accept(200)
             viewModel.isOverpaying.asObservable().take(1).subscribe(onNext: { overpaying in
                 XCTAssert(overpaying, "isOverpaying should be true when amount due = $100 and payment amount = $200")
             }).disposed(by: disposeBag)
@@ -375,12 +375,12 @@ class PaymentViewModelTests: XCTestCase {
     func testOverpayingValueDisplayString() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.paymentAmount.value = 200
+        viewModel.paymentAmount.accept(200)
         viewModel.overpayingValueDisplayString.asObservable().take(1).subscribe(onNext: { str in
             XCTAssertEqual(str, "$0.00")
         }).disposed(by: disposeBag)
 
-        viewModel.paymentAmount.value = 213.88
+        viewModel.paymentAmount.accept(213.88)
         viewModel.overpayingValueDisplayString.asObservable().take(1).subscribe(onNext: { str in
             XCTAssertEqual(str, "$13.88")
         }).disposed(by: disposeBag)
@@ -390,7 +390,7 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa)
-        viewModel.paymentAmount.value = 200
+        viewModel.paymentAmount.accept(200)
         viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
             XCTAssertEqual(str, "$205.95")
         }).disposed(by: disposeBag)

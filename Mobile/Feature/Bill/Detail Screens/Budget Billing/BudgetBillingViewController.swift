@@ -334,7 +334,7 @@ extension BudgetBillingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedUnenrollmentReason.value = indexPath.row
+        viewModel.selectedUnenrollmentReason.accept(indexPath.row)
     }
     
 }

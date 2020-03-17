@@ -19,8 +19,8 @@ class LoginViewModelTests: XCTestCase {
     func testSuccessfulLogin() {
         let asyncExpectation = expectation(description: "testSuccessfulLogin")
         
-        viewModel.username.value = "valid@test.com"
-        viewModel.password.value = "Password1"
+        viewModel.username.accept("valid@test.com"
+        viewModel.password.accept("Password1")
         
         viewModel.performLogin(onSuccess: { _,_ in
             asyncExpectation.fulfill()
@@ -38,8 +38,8 @@ class LoginViewModelTests: XCTestCase {
     func testUnsuccessfulLogin() {
         let asyncExpectation = expectation(description: "testUnsuccessfulLogin")
 
-        viewModel.username.value = "invalid@test.com"
-        viewModel.password.value = "Password1"
+        viewModel.username.accept("invalid@test.com"
+        viewModel.password.accept("Password1")
         
         viewModel.performLogin(onSuccess: { _,_ in
             XCTFail("Unexpected success response")

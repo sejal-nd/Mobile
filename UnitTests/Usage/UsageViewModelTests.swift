@@ -55,7 +55,7 @@ class UsageViewModelTests: XCTestCase {
                 self.viewModel.fetchAllData()
             }
             if $0 == 1 {
-                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.accept(0)
             }
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -125,7 +125,7 @@ class UsageViewModelTests: XCTestCase {
                 self.viewModel.fetchAllData()
             }
             if $0 == 1 {
-                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.accept(0)
             }
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -195,7 +195,7 @@ class UsageViewModelTests: XCTestCase {
                 self.viewModel.fetchAllData()
             }
             if $0 == 1 {
-                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.accept(0)
             }
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -219,7 +219,7 @@ class UsageViewModelTests: XCTestCase {
                 self.viewModel.fetchAllData()
             }
             if $0 == 1 {
-                self.viewModel.electricGasSelectedSegmentIndex.value = 1
+                self.viewModel.electricGasSelectedSegmentIndex.accept(1)
             }
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -245,7 +245,7 @@ class UsageViewModelTests: XCTestCase {
                 self.viewModel.fetchAllData()
             }
             if $0 == 1 {
-                self.viewModel.electricGasSelectedSegmentIndex.value = 1
+                self.viewModel.electricGasSelectedSegmentIndex.accept(1)
             }
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -322,7 +322,7 @@ class UsageViewModelTests: XCTestCase {
                 self.viewModel.fetchAllData()
             }
             if $0 == 1 {
-                self.viewModel.electricGasSelectedSegmentIndex.value = 1
+                self.viewModel.electricGasSelectedSegmentIndex.accept(1)
             }
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -347,7 +347,7 @@ class UsageViewModelTests: XCTestCase {
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3)]).subscribe(onNext: {
             if $0 % 2 != 0 {
-                self.viewModel.electricGasSelectedSegmentIndex.value = 1
+                self.viewModel.electricGasSelectedSegmentIndex.accept(1)
             }
             AccountsStore.shared.currentIndex = $0 % 2
             self.viewModel.fetchAllData()
@@ -368,7 +368,7 @@ class UsageViewModelTests: XCTestCase {
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3)]).subscribe(onNext: {
             if $0 % 2 != 0 {
-                self.viewModel.electricGasSelectedSegmentIndex.value = 1
+                self.viewModel.electricGasSelectedSegmentIndex.accept(1)
             }
             AccountsStore.shared.currentIndex = $0 % 2
             self.viewModel.fetchAllData()
@@ -404,7 +404,7 @@ class UsageViewModelTests: XCTestCase {
             if $0 == 0 || $0 == 1 {
                 self.viewModel.setBarSelected(tag: 0)
                 if $0 == 1 {
-                    self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+                    self.viewModel.lastYearPreviousBillSelectedSegmentIndex.accept(0)
                 }
             } else if $0 == 2 {
                 self.viewModel.setBarSelected(tag: 1)
@@ -413,7 +413,7 @@ class UsageViewModelTests: XCTestCase {
             } else if $0 == 4 || $0 == 5 {
                 self.viewModel.setBarSelected(tag: 3)
                 if $0 == 5 {
-                    self.viewModel.electricGasSelectedSegmentIndex.value = 1
+                    self.viewModel.electricGasSelectedSegmentIndex.accept(1)
                 }
             } else if $0 == 6 {
                 self.viewModel.setBarSelected(tag: 4)

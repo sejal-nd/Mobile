@@ -26,26 +26,26 @@ class BGEAutoPayViewModel {
     private var paymentService: PaymentService
     private var walletService: WalletService
 
-    let isLoading = Variable(false)
-    let isError = Variable(false)
+    let isLoading = BehaviorRelay(value: false)
+    let isError = BehaviorRelay(value: false)
     
     let accountDetail: AccountDetail
-    let initialEnrollmentStatus: Variable<EnrollmentStatus>
+    let initialEnrollmentStatus: BehaviorRelay<EnrollmentStatus>
     var confirmationNumber: String?
     
     var walletItems: [WalletItem]?
-    let selectedWalletItem = Variable<WalletItem?>(nil)
+    let selectedWalletItem = BehaviorRelay<WalletItem?>(value: nil)
     
     // --- Settings --- //
-    let userDidChangeSettings = Variable(false)
-    let userDidChangeBankAccount = Variable(false)
-    let userDidReadTerms = Variable(false)
+    let userDidChangeSettings = BehaviorRelay(value: false)
+    let userDidChangeBankAccount = BehaviorRelay(value: false)
+    let userDidReadTerms = BehaviorRelay(value: false)
     
-    let amountToPay = Variable<AmountType>(.amountDue)
-    let whenToPay = Variable<PaymentDateType>(.onDueDate)
+    let amountToPay = BehaviorRelay<AmountType>(value: .amountDue)
+    let whenToPay = BehaviorRelay<PaymentDateType>(value: .onDueDate)
     
-    let amountNotToExceed = Variable(0.0)
-    let numberOfDaysBeforeDueDate = Variable(0)
+    let amountNotToExceed = BehaviorRelay(value: 0.0)
+    let numberOfDaysBeforeDueDate = BehaviorRelay(value: 0)
     // ---------------- //
 
     required init(paymentService: PaymentService, walletService: WalletService, accountDetail: AccountDetail) {
@@ -53,7 +53,7 @@ class BGEAutoPayViewModel {
         self.walletService = walletService
         self.accountDetail = accountDetail
 
-        initialEnrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
+        initialEnrollmentStatus = BehaviorRelay(value: accountDetail.isAutoPay ? .enrolled : .unenrolled)
     }
     
     func fetchData(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
@@ -62,19 +62,19 @@ class BGEAutoPayViewModel {
             observables.append(fetchAutoPayInfo())
         }
         
-        isLoading.value = true
-        isError.value = false
+        isLoading.accept(true)
+        isError.accept(false)
         Observable.zip(observables)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.isLoading.value = false
-                self.isError.value = false
+                self.isLoading.accept(false)
+                self.isError.accept(false)
                 onSuccess?()
             }, onError: { [weak self] error in
                 guard let self = self else { return }
-                self.isLoading.value = false
-                self.isError.value = true
+                self.isLoading.accept(false)
+                self.isError.accept(true)
                 onError?(error.localizedDescription)
             })
             .disposed(by: disposeBag)
@@ -97,27 +97,27 @@ class BGEAutoPayViewModel {
                 
                 // Sync up our view model with the existing AutoPay settings
                 if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4 {
-                    self.selectedWalletItem.value = WalletItem(walletItemId: walletItemId,
+                    self.selectedWalletItem.accept(WalletItem(walletItemId: walletItemId,
                                                                maskedWalletItemAccountNumber: masked4,
                                                                nickName: autoPayInfo.paymentAccountNickname,
                                                                paymentMethodType: .ach,
                                                                bankName: nil,
                                                                expirationDate: nil,
                                                                isDefault: false,
-                                                               isTemporary: false)
+                                                               isTemporary: false))
                 }
                 
                 if let amountType = autoPayInfo.amountType {
-                    self.amountToPay.value = amountType
+                    self.amountToPay.accept(amountType)
                 }
                 
                 if let amountThreshold = autoPayInfo.amountThreshold {
-                    self.amountNotToExceed.value = amountThreshold
+                    self.amountNotToExceed.accept(amountThreshold)
                 }
                 
                 if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
-                    self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
-                    self.whenToPay.value = paymentDaysBeforeDue == 0 ? .onDueDate : .beforeDueDate
+                    self.numberOfDaysBeforeDueDate.accept(paymentDaysBeforeDue)
+                    self.whenToPay.accept(paymentDaysBeforeDue == 0 ? .onDueDate : .beforeDueDate)
                 }
             })
             .mapTo(())

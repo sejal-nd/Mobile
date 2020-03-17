@@ -27,7 +27,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
         if Environment.shared.opco == .bge {
             XCTAssertFalse(viewModel.shouldEnrollPaperlessEBill, "shouldEnrollPaperlessEBill should always be false for BGE users")
         } else {
-            viewModel.billReady.value = true
+            viewModel.billReady.accept(true)
             XCTAssert(viewModel.shouldEnrollPaperlessEBill, "shouldEnrollPaperlessEBill should be true when initialBillReadyValue = false and billReady = true")
         }
     }
@@ -110,7 +110,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
                                                   accountService: MockAccountService())
             viewModel.accountDetail = .default
             viewModel.initialEnglishValue = false
-            viewModel.english.value = true
+            viewModel.english.accept(true)
             
             let expect = expectation(description: "callback")
             viewModel.saveChanges(onSuccess: {
@@ -132,7 +132,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
                                                   accountService: MockAccountService())
             viewModel.accountDetail = .default
             viewModel.initialBillReadyValue = false
-            viewModel.billReady.value = true
+            viewModel.billReady.accept(true)
             
             let expect = expectation(description: "callback")
             viewModel.saveChanges(onSuccess: {

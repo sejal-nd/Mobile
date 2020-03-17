@@ -18,24 +18,24 @@ class PaymentViewModel {
     private let walletService: WalletService
     private let paymentService: PaymentService
 
-    let accountDetail: Variable<AccountDetail>
+    let accountDetail: BehaviorRelay<AccountDetail>
 
-    let isFetching = Variable(false)
-    let isError = Variable(false)
+    let isFetching = BehaviorRelay(value: false)
+    let isError = BehaviorRelay(value: false)
 
-    let walletItems = Variable<[WalletItem]?>(nil)
-    let selectedWalletItem = Variable<WalletItem?>(nil)
-    let wouldBeSelectedWalletItemIsExpired = Variable(false)
+    let walletItems = BehaviorRelay<[WalletItem]?>(value: nil)
+    let selectedWalletItem = BehaviorRelay<WalletItem?>(value: nil)
+    let wouldBeSelectedWalletItemIsExpired = BehaviorRelay(value: false)
 
-    let amountDue: Variable<Double>
-    let paymentAmount: Variable<Double>
-    let paymentDate: Variable<Date>
+    let amountDue: BehaviorRelay<Double>
+    let paymentAmount: BehaviorRelay<Double>
+    let paymentDate: BehaviorRelay<Date>
 
-    let termsConditionsSwitchValue = Variable(false)
-    let overpayingSwitchValue = Variable(false)
-    let activeSeveranceSwitchValue = Variable(false)
+    let termsConditionsSwitchValue = BehaviorRelay(value: false)
+    let overpayingSwitchValue = BehaviorRelay(value: false)
+    let activeSeveranceSwitchValue = BehaviorRelay(value: false)
 
-    let paymentId = Variable<String?>(nil)
+    let paymentId = BehaviorRelay<String?>(value: nil)
 
     var confirmationNumber: String?
 
@@ -45,37 +45,37 @@ class PaymentViewModel {
          billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
-        self.accountDetail = Variable(accountDetail)
+        self.accountDetail = BehaviorRelay(value: accountDetail)
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
-            paymentId.value = billingHistoryItem.paymentId
-            selectedWalletItem.value = WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,
+            paymentId.accept(billingHistoryItem.paymentId)
+            selectedWalletItem.accept(WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,
                                                   nickName: NSLocalizedString("Current Payment Method", comment: ""),
                                                   paymentMethodType: billingHistoryItem.paymentMethodType,
-                                                  isEditingItem: true)
+                                                  isEditingItem: true))
         }
 
         let netDueAmount: Double = accountDetail.billingInfo.netDueAmount ?? 0
-        amountDue = Variable(netDueAmount)
+        amountDue = BehaviorRelay(value: netDueAmount)
         
         // If editing, default to the amount paid. If not editing, default to total amount due
-        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? netDueAmount)
+        paymentAmount = BehaviorRelay(value: billingHistoryItem?.amountPaid ?? netDueAmount)
         
         // May be updated later...see computeDefaultPaymentDate()
-        paymentDate = Variable(billingHistoryItem?.date ?? .now)
+        paymentDate = BehaviorRelay(value: billingHistoryItem?.date ?? .now)
     }
 
     // MARK: - Service Calls
 
     func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
-        isFetching.value = true
+        isFetching.accept(true)
         walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] walletItems in
                 guard let self = self else { return }
-                self.isFetching.value = false
+                self.isFetching.accept(false)
                 
-                self.walletItems.value = walletItems
+                self.walletItems.accept(walletItems)
                 let defaultWalletItem = walletItems.first(where: { $0.isDefault })
 
                 if initialFetch {
@@ -83,30 +83,30 @@ class PaymentViewModel {
                         self.computeDefaultPaymentDate()
                         if self.accountDetail.value.isCashOnly {
                             if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
-                                self.selectedWalletItem.value = defaultWalletItem!
+                                self.selectedWalletItem.accept(defaultWalletItem!)
                             } else if let firstCard = walletItems.first(where: { $0.bankOrCard == .card }) {
                                 // If no default item, choose the first credit card
-                                self.selectedWalletItem.value = firstCard
+                                self.selectedWalletItem.accept(firstCard)
                             }
                         } else {
                             if defaultWalletItem != nil { // Choose the default item
-                                self.selectedWalletItem.value = defaultWalletItem!
+                                self.selectedWalletItem.accept(defaultWalletItem!)
                             } else if walletItems.count > 0 { // If no default item, choose the first item
-                                self.selectedWalletItem.value = walletItems.first
+                                self.selectedWalletItem.accept(walletItems.first)
                             }
                         }
                     }
                 }
 
                 if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
-                    self.selectedWalletItem.value = nil
-                    self.wouldBeSelectedWalletItemIsExpired.value = true
+                    self.selectedWalletItem.accept(nil)
+                    self.wouldBeSelectedWalletItemIsExpired.accept(true)
                 }
 
                 onSuccess?()
             }, onError: { [weak self] _ in
-                self?.isFetching.value = false
-                self?.isError.value = true
+                self?.isFetching.accept(false)
+                self?.isError.accept(true)
                 onError?()
             }).disposed(by: disposeBag)
     }
@@ -164,7 +164,7 @@ class PaymentViewModel {
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
     func computeDefaultPaymentDate() {
         if Environment.shared.opco == .bge {
-            paymentDate.value = .now
+            paymentDate.accept(.now)
         } else {
             let acctDetail = accountDetail.value
             let billingInfo = acctDetail.billingInfo
@@ -173,14 +173,14 @@ class PaymentViewModel {
             if (acctDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
                 (acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
                 (acctDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
-                paymentDate.value = .now
+                paymentDate.accept(.now)
             }
             
             // All the other states boil down to the due date being in the future
             if let dueDate = billingInfo.dueByDate {
-                paymentDate.value = isDueDateInTheFuture ? dueDate : .now
+                paymentDate.accept(isDueDateInTheFuture ? dueDate : .now)
             } else { // Should never get here?
-                paymentDate.value = .now
+                paymentDate.accept(.now)
             }
         }
     }

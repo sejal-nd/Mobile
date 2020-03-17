@@ -22,7 +22,7 @@ class MyHomeProfileTests: XCTestCase {
         MockAccountService.loadAccountsSync()
     }
     
-    func bind<T>(entries: [T], toVariable variable: Variable<T>, startTime: Int = 0, interval: Int = 1) {
+    func bind<T>(entries: [T], toVariable variable: BehaviorRelay<T>, startTime: Int = 0, interval: Int = 1) {
         scheduler.createHotObservable(entries.enumerated().map { ($0 * interval + startTime, $1) }.map(next))
             .bind(to: variable)
             .disposed(by: disposeBag)

@@ -732,7 +732,7 @@ class HomeViewController: AccountPickerViewController {
         case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):
             vc.viewModel.outageStatus = currentOutageStatus
             if let phone = currentOutageStatus.contactHomeNumber {
-                vc.viewModel.phoneNumber.value = phone
+                vc.viewModel.phoneNumber.accept(phone)
             }
             
             // Show a toast only after an outage is reported from this workflow

@@ -25,11 +25,11 @@ class MyHomeProfileViewModel {
     let accountDetail: AccountDetail
     let usageService: UsageService
     
-    let numberOfChildren = Variable<Int?>(nil)
-    let numberOfAdults = Variable<Int?>(nil)
-    let heatType = Variable<HeatType?>(nil)
-    let homeType = Variable<HomeType?>(nil)
-    let homeSizeEntry = Variable<String?>(nil)
+    let numberOfChildren = BehaviorRelay<Int?>(value: nil)
+    let numberOfAdults = BehaviorRelay<Int?>(value: nil)
+    let heatType = BehaviorRelay<HeatType?>(value: nil)
+    let homeType = BehaviorRelay<HomeType?>(value: nil)
+    let homeSizeEntry = BehaviorRelay<String?>(value: nil)
     
     let saveAction: Observable<Void>
     let saveTracker = ActivityTracker()
