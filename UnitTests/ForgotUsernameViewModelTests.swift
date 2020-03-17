@@ -99,7 +99,7 @@ class ForgotUsernameViewModelTests: XCTestCase {
     }
     
     func testPhoneNumberHas10Digits() {
-        viewModel.phoneNumber.accept("(410) 123-4206"
+        viewModel.phoneNumber.accept("(410) 123-4206")
         viewModel.phoneNumberHasTenDigits.asObservable().single().subscribe(onNext: { valid in
             if !valid {
                XCTFail("Phone number \"(410) 123-4206\" should pass the 10 digit check")
@@ -113,7 +113,7 @@ class ForgotUsernameViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.phoneNumber.accept("(410)--2513"
+        viewModel.phoneNumber.accept("(410)--2513")
         viewModel.phoneNumberHasTenDigits.asObservable().single().subscribe(onNext: { valid in
             if valid {
                 XCTFail("Phone number \"(410)--2513\" should fail the 10 digit check")

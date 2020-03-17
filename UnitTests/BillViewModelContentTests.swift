@@ -324,7 +324,7 @@ You have a payment of $82.00 scheduled for 01/01/2019. To avoid a duplicate paym
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(Recorded.next)
         
         let observedEqualsExpected = !zip(observer.events, expectedEvents)
             .map {

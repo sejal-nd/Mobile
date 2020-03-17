@@ -155,7 +155,9 @@ class AlertPreferencesViewModelTests: XCTestCase {
         
         viewModel.fetchData { [weak self] in
             guard let self = self else { return }
-            self.viewModel.outage.value.toggle()
+            var newValue = self.viewModel.outage.value
+            newValue.toggle()
+            self.viewModel.outage.accept(newValue)
             self.viewModel.saveButtonEnabled.asObservable().skip(1).take(1).subscribe(onNext: { enabled in
                 XCTAssertTrue(enabled, "Save button should be enabled")
                 expect.fulfill()

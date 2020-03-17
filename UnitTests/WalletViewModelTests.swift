@@ -26,7 +26,9 @@ class WalletViewModelTests: XCTestCase {
             XCTAssert(shouldShow, "shouldShowEmptyState should be true with empty walletItems array")
         }).disposed(by: disposeBag)
         
-        viewModel.walletItems.value!.append(WalletItem())
+        var newValue = viewModel.walletItems.value
+        newValue!.append(WalletItem())
+        viewModel.walletItems.accept(newValue)
         viewModel.shouldShowEmptyState.asObservable().take(1).subscribe(onNext: { shouldShow in
             XCTAssertFalse(shouldShow, "shouldShowEmptyState should be false with walletItems.count > 0")
         }).disposed(by: disposeBag)
@@ -38,7 +40,9 @@ class WalletViewModelTests: XCTestCase {
             XCTAssertFalse(shouldShow, "shouldShowEmptyState should be false with empty walletItems array")
         }).disposed(by: disposeBag)
         
-        viewModel.walletItems.value!.append(WalletItem())
+        var newValue = viewModel.walletItems.value
+        newValue!.append(WalletItem())
+        viewModel.walletItems.accept(newValue)
         viewModel.shouldShowWallet.asObservable().take(1).subscribe(onNext: { shouldShow in
             XCTAssert(shouldShow, "shouldShowEmptyState should be true with walletItems.count > 0")
         }).disposed(by: disposeBag)

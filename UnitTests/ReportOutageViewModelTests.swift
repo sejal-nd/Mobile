@@ -19,7 +19,7 @@ class ReportOutageViewModelTests: XCTestCase {
     }
     
     func testSubmitButtonEnabled() {
-        viewModel.phoneNumber.accept("410-123-4567"
+        viewModel.phoneNumber.accept("410-123-4567")
         viewModel.reportFormHidden.accept(false)
         viewModel.submitEnabled.asObservable().single().subscribe(onNext: { enabled in
             XCTAssertTrue(enabled, "Submit button should be enabled")
@@ -167,7 +167,7 @@ class ReportOutageViewModelTests: XCTestCase {
             XCTAssert(has10, "phoneNumberHasTenDigits should be true for \"1234567890\"")
         }).disposed(by: disposeBag)
         
-        viewModel.phoneNumber.accept("410-123-4567"
+        viewModel.phoneNumber.accept("410-123-4567")
         viewModel.phoneNumberHasTenDigits.asObservable().take(1).subscribe(onNext: { has10 in
             XCTAssert(has10, "phoneNumberHasTenDigits should be true for \"410-123-4567\"")
         }).disposed(by: disposeBag)

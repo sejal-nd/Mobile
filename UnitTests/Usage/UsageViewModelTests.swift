@@ -50,7 +50,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.noDataBarDateLabelText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1)]).subscribe(onNext: {
             if $0 == 0 {
                 self.viewModel.fetchAllData()
             }
@@ -79,7 +79,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.previousBarHeightConstraintValue.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1), Recorded.next(2, 2), Recorded.next(3, 3), Recorded.next(4, 4), Recorded.next(5, 5)]).subscribe(onNext: {
             AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
@@ -104,7 +104,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.previousBarDollarLabelText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0)]).subscribe(onNext: { _ in
+        scheduler.createHotObservable([Recorded.next(0, 0)]).subscribe(onNext: { _ in
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -120,7 +120,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.previousBarDateLabelText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1)]).subscribe(onNext: {
             if $0 == 0 {
                 self.viewModel.fetchAllData()
             }
@@ -149,7 +149,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.currentBarHeightConstraintValue.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1), Recorded.next(2, 2), Recorded.next(3, 3), Recorded.next(4, 4), Recorded.next(5, 5)]).subscribe(onNext: {
             AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
@@ -174,7 +174,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.currentBarDollarLabelText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0)]).subscribe(onNext: { _ in
+        scheduler.createHotObservable([Recorded.next(0, 0)]).subscribe(onNext: { _ in
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -190,7 +190,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.currentBarDateLabelText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1)]).subscribe(onNext: {
             if $0 == 0 {
                 self.viewModel.fetchAllData()
             }
@@ -214,7 +214,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.projectedCost.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1)]).subscribe(onNext: {
             if $0 == 0 {
                 self.viewModel.fetchAllData()
             }
@@ -240,7 +240,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.projectedUsage.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1)]).subscribe(onNext: {
             if $0 == 0 {
                 self.viewModel.fetchAllData()
             }
@@ -276,7 +276,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.projectedBarHeightConstraintValue.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1), Recorded.next(2, 2), Recorded.next(3, 3)]).subscribe(onNext: {
             AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
@@ -299,7 +299,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.projectedBarDollarLabelText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1)]).subscribe(onNext: {
             AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
@@ -317,7 +317,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.projectedBarDateLabelText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1)]).subscribe(onNext: {
             if $0 == 0 {
                 self.viewModel.fetchAllData()
             }
@@ -345,7 +345,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.showProjectionNotAvailableBar.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1), Recorded.next(2, 2), Recorded.next(3, 3)]).subscribe(onNext: {
             if $0 % 2 != 0 {
                 self.viewModel.electricGasSelectedSegmentIndex.accept(1)
             }
@@ -366,7 +366,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.projectionNotAvailableDaysRemainingText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1), Recorded.next(2, 2), Recorded.next(3, 3)]).subscribe(onNext: {
             if $0 % 2 != 0 {
                 self.viewModel.electricGasSelectedSegmentIndex.accept(1)
             }
@@ -394,7 +394,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.barDescriptionDateLabelText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5), next(6, 6)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1), Recorded.next(2, 2), Recorded.next(3, 3), Recorded.next(4, 4), Recorded.next(5, 5), Recorded.next(6, 6)]).subscribe(onNext: {
             if $0 <= 3 {
                 AccountsStore.shared.currentIndex = 0
             } else {
@@ -442,7 +442,7 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel.barDescriptionAvgTempLabelText.drive(observer).disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+        scheduler.createHotObservable([Recorded.next(0, 0), Recorded.next(1, 1)]).subscribe(onNext: {
             if $0 == 0 {
                 self.viewModel.setBarSelected(tag: 1)
                 self.viewModel.fetchAllData()

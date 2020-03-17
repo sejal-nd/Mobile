@@ -87,7 +87,7 @@ class UpdatesViewModelTests: XCTestCase {
     func testShouldShowUpdatesEmptyState() {
         viewModel.isFetchingUpdates.accept(false)
         viewModel.isUpdatesError.accept(false)
-        viewModel.currentOpcoUpdates.accept([OpcoUpdate]()
+        viewModel.currentOpcoUpdates.accept([OpcoUpdate]())
         viewModel.shouldShowUpdatesEmptyState.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Updates empty should show when Updates tab is selected and we successfully fetched 0 updates")

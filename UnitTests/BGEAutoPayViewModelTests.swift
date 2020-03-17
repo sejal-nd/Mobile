@@ -38,7 +38,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
         viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
                                         walletService: MockWalletService(),
                                         accountDetail: .default)
-        viewModel.selectedWalletItem.value = WalletItem()
+        viewModel.selectedWalletItem.accept(WalletItem())
         viewModel.userDidReadTerms.accept(true)
         viewModel.submitButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
             if !enabled {
@@ -49,7 +49,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
         viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
                                         walletService: MockWalletService(),
                                         accountDetail: .fromMockJson(forKey: .autoPay))
-        viewModel.selectedWalletItem.value = WalletItem()
+        viewModel.selectedWalletItem.accept(WalletItem())
         viewModel.userDidChangeSettings.accept(true)
         viewModel.userDidReadTerms.accept(true)
         viewModel.submitButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
