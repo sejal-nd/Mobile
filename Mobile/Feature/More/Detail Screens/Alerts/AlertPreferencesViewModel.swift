@@ -98,7 +98,7 @@ class AlertPreferencesViewModel {
                         usageOptions.append(.highUsage)
                     }
                     
-                    if self.accountDetail.isPTSAccount {
+                    if self.accountDetail.isSERAccount {
                         usageOptions.append(contentsOf: [.smartEnergyRewards, .energySavingsDayResults])
                     }
                     
