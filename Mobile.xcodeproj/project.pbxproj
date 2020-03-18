@@ -792,6 +792,9 @@
 		6766F96A242259D0007C9CB9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* minVersionMock.json */; };
 		6766F96B242259D0007C9CB9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* minVersionMock.json */; };
 		6766F96C242259D0007C9CB9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* minVersionMock.json */; };
+		6766F96F242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
+		6766F970242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
+		6766F971242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -3227,6 +3230,7 @@
 		668FCA1931C2BA712403005F /* Pods-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* minVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minVersionMock.json; sourceTree = "<group>"; };
+		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		6A4FD80B62F03A415062F85E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -5118,6 +5122,7 @@
 			isa = PBXGroup;
 			children = (
 				35D02DDA24168E5E00D8894F /* Test.swift */,
+				6766F96E242273D8007C9CB9 /* UserSession.swift */,
 				35D02D95240FFBD800D8894F /* Network Models */,
 				35D02D81240FFB9400D8894F /* Networking */,
 			);
@@ -8760,6 +8765,7 @@
 				E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				35A6C6DE211CC0CA00C2A58F /* UpdatesViewController.swift in Sources */,
 				6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */,
+				6766F96F242273D8007C9CB9 /* UserSession.swift in Sources */,
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				B068DB5E20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				B0728E40215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
@@ -9184,6 +9190,7 @@
 				E8FF085C1F7EDC250030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82EAB3461F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */,
+				6766F971242273D8007C9CB9 /* UserSession.swift in Sources */,
 				CEA215241F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				B0336FEC21762FB400751430 /* EventStore.swift in Sources */,
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
@@ -9608,6 +9615,7 @@
 				35A6C7012121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				B0728E41215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */,
+				6766F970242273D8007C9CB9 /* UserSession.swift in Sources */,
 				826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				35ACCB4820EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,

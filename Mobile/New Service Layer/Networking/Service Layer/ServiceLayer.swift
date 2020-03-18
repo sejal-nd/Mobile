@@ -59,6 +59,12 @@ public struct ServiceLayer {
     
     // 1.
     public static func request<T: Decodable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
+        
+        if router.apiAccess == .auth && router.token.isEmpty {
+            // THROW ERROR LOG USER OUT, NO TOKEN FOR AUTH REQUEST.
+            return
+        }
+        
         // 2.
         var components = URLComponents()
         components.scheme = router.scheme

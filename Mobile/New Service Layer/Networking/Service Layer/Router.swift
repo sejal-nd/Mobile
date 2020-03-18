@@ -22,8 +22,8 @@ public enum Router {
     case fetchToken(httpBody: HTTPBody)
     case exchangeToken(token: String)
     
-    case fetchAccounts(token: String)
-    case fetchAccountDetails(accountNumber: String, queryString: String, token: String)
+    case fetchAccounts
+    case fetchAccountDetails(accountNumber: String, queryString: String)
 
     case fetchMaintenanceMode
     
@@ -45,28 +45,61 @@ public enum Router {
         }
     }
     
+    public enum ApiAccess: String {
+        case admin = "admin"
+        case anon = "anon"
+        case auth = "auth"
+    }
+    
+    public var apiAccess: ApiAccess {
+        switch self {
+            
+        // Admin
+        case .getSources:
+            return .admin
+        case .getProductIds:
+            return .admin
+        case .getProductInfo:
+            return .admin
+            
+        // Anon
+        case .minVersion:
+            return .anon
+        case .fetchMaintenanceMode:
+            return .anon
+        case .fetchAnonOutageStatus:
+            return .anon
+        default:
+            return .auth
+        }
+    }
+    
+    public var apiVersion: String {
+        return Environment.shared.mcsConfig.apiVersion
+    }
+    
     public var path: String {
         switch self {
         case .fetchAnonOutageStatus:
-            return "/mobile/custom/anon_v6/\(Environment.shared.opco.displayString)/outage/query" // todo dynamic v number + opco
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/\(Environment.shared.opco.displayString)/outage/query"
         case .fetchMaintenanceMode:
-            return "/mobile/custom/anon_v6/\(Environment.shared.opco.displayString)/config/maintenance"
-        case .fetchAccountDetails(let accountNumber, let queryString, _):
-            return "/mobile/custom/auth_v6/accounts/\(accountNumber)\(queryString)"
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/\(Environment.shared.opco.displayString)/config/maintenance"
+        case .fetchAccountDetails(let accountNumber, let queryString):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)\(queryString)"
         case .fetchAccounts:
-            return "/mobile/custom/auth_v6/accounts" // todo dynamic v number + opco
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts"
         case .minVersion:
-            return "/mobile/custom/anon_v6/\(Environment.shared.opco.displayString)/config/versions" // todo dynamic v number + opco
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/\(Environment.shared.opco.displayString)/config/versions"
         case .fetchToken:
             return "/mcs/oauth2/tokens"
         case .exchangeToken:
             return "/mobile/platform/sso/exchange-token"
         case .getSources:
-            return "/admin/custom_collections.json"
+            return "/\(apiAccess)/custom_collections.json"
         case .getProductIds:
-            return "/admin/collects.json"
+            return "/\(apiAccess)/collects.json"
         case .getProductInfo:
-            return "/admin/products.json"
+            return "/\(apiAccess)/products.json"
         }
     }
     
@@ -78,25 +111,30 @@ public enum Router {
             return "GET"
         }
     }
+    
+    public var token: String {
+        return UserSession.shared.token
+    }
 
     // PLACE HOLDER, currently NOT BEING USED
     public var parameters: [URLQueryItem] {
-        let accessToken = "c32313df0d0ef512ca64d5b336a0d7c6"
-        switch self {
-        case .getSources:
-            return [URLQueryItem(name: "page", value: "1"),
-                URLQueryItem(name: "access_token", value: accessToken)]
-        case .getProductIds:
-            return [URLQueryItem(name: "page", value: "1"),
-                URLQueryItem(name: "collection_id", value: "68424466488"),
-                URLQueryItem(name: "access_token", value: accessToken)]
-        case .getProductInfo:
-            return [URLQueryItem(name: "ids", value: "2759162243,2759143811"),
-                URLQueryItem(name: "page", value: "1"),
-                URLQueryItem(name: "access_token", value: accessToken)]
-        default:
-            return []
-        }
+        return []
+//        let accessToken = "c32313df0d0ef512ca64d5b336a0d7c6"
+//        switch self {
+//        case .getSources:
+//            return [URLQueryItem(name: "page", value: "1"),
+//                URLQueryItem(name: "access_token", value: accessToken)]
+//        case .getProductIds:
+//            return [URLQueryItem(name: "page", value: "1"),
+//                URLQueryItem(name: "collection_id", value: "68424466488"),
+//                URLQueryItem(name: "access_token", value: accessToken)]
+//        case .getProductInfo:
+//            return [URLQueryItem(name: "ids", value: "2759162243,2759143811"),
+//                URLQueryItem(name: "page", value: "1"),
+//                URLQueryItem(name: "access_token", value: accessToken)]
+//        default:
+//            return []
+//        }
     }
     
     public var httpHeaders: HTTPHeaders? {
@@ -105,23 +143,23 @@ public enum Router {
             return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
-        ] // dynamic unauth key ..... replace unauth key with Environment.shared.mcsConfig.anonymousKey
-        case .fetchAccountDetails(_ , _, let token):
+        ]
+        case .fetchAccountDetails:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
-        case .fetchAccounts(let token):
+        case .fetchAccounts:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
         case .minVersion, .fetchMaintenanceMode:
             return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId
-        ] // dynamic unauth key
+        ]
         case .fetchToken:
             return ["content-type": "application/x-www-form-urlencoded"]
-        case .exchangeToken(let token):
+        case .exchangeToken(let samlToken):
             return ["encode": "xml",
                     "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
-                    "Authorization": "Bearer \(token)"]
+                    "Authorization": "Bearer \(samlToken)"]
         default:
             return nil
         }
