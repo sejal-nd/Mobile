@@ -14,7 +14,7 @@ class ForgotPasswordViewModel {
     
     let authService: AuthenticationService
     
-    let username = Variable("")
+    let username = BehaviorRelay(value: "")
     
     required init(authService: AuthenticationService) {
         self.authService = authService

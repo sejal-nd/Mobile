@@ -11,7 +11,7 @@ import RxCocoa
 
 class StormModeHomeViewModel {
     
-    let stormModePollInterval = 30.0
+    let stormModePollInterval = 30
     
     private let authService: AuthenticationService
     private var outageService: OutageService
@@ -22,7 +22,7 @@ class StormModeHomeViewModel {
     private let disposeBag = DisposeBag()
     
     var currentOutageStatus: OutageStatus?
-    let stormModeUpdate = Variable<OpcoUpdate?>(nil)
+    let stormModeUpdate = BehaviorRelay<OpcoUpdate?>(value: nil)
     
     var stormModeEnded = false
     
@@ -42,7 +42,7 @@ class StormModeHomeViewModel {
     
     func startStormModePolling() -> Driver<Void> {
         return Observable<Int>
-            .interval(stormModePollInterval, scheduler: MainScheduler.instance)
+            .interval(.seconds(stormModePollInterval), scheduler: MainScheduler.instance)
             .mapTo(())
             // Start polling immediately
             .startWith(())
@@ -102,7 +102,7 @@ class StormModeHomeViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] opcoUpdates in
                 if opcoUpdates.count > 0 {
-                    self?.stormModeUpdate.value = opcoUpdates[0]
+                    self?.stormModeUpdate.accept(opcoUpdates[0])
                 }
             }).disposed(by: disposeBag)
     }

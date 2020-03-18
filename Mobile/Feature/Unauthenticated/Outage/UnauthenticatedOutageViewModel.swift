@@ -13,11 +13,11 @@ class UnauthenticatedOutageViewModel {
     
     let disposeBag = DisposeBag()
     
-    let phoneNumber = Variable("")
-    let accountNumber = Variable("")
+    let phoneNumber = BehaviorRelay(value: "")
+    let accountNumber = BehaviorRelay(value: "")
     
     var outageStatusArray: [OutageStatus]?
-    let selectedOutageStatus = Variable<OutageStatus?>(nil)
+    let selectedOutageStatus = BehaviorRelay<OutageStatus?>(value: nil)
     
     var reportedOutage: ReportedOutageResult? {
         return outageService.getReportedOutageResult(accountNumber: accountNumber.value)
@@ -37,7 +37,7 @@ class UnauthenticatedOutageViewModel {
         let phone: String? = phoneNumber.value.isEmpty ? nil : phoneNumber.value
         let accountNum: String? = overrideAccountNumber ?? (accountNumber.value.isEmpty ? nil : accountNumber.value)
         
-        selectedOutageStatus.value = nil
+        selectedOutageStatus.accept(nil)
         outageService.fetchOutageStatusAnon(phoneNumber: phone, accountNumber: accountNum)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] outageStatusArray in
@@ -45,7 +45,7 @@ class UnauthenticatedOutageViewModel {
                 if outageStatusArray.isEmpty { // Should never happen, but just in case
                     onError(NSLocalizedString("Error", comment: ""), NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: ""))
                 } else if outageStatusArray.count == 1 {
-                    self.selectedOutageStatus.value = outageStatusArray[0]
+                    self.selectedOutageStatus.accept(outageStatusArray[0])
                     if self.selectedOutageStatus.value!.flagGasOnly {
                         if Environment.shared.opco == .bge {
                             onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""))
@@ -59,7 +59,7 @@ class UnauthenticatedOutageViewModel {
                     if overrideAccountNumber == nil { // Don't replace our original array when fetching again from Results screen
                         self.outageStatusArray = outageStatusArray
                     } else { // Should never happen, but if we call again from result screen and still get multiple results, just use the first
-                        self.selectedOutageStatus.value = outageStatusArray[0]
+                        self.selectedOutageStatus.accept(outageStatusArray[0])
                     }
                 }
                 onSuccess()

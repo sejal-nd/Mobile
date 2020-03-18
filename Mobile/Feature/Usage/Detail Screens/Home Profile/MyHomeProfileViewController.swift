@@ -101,27 +101,27 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                 
                 self?.homeTypeButton.valueText = homeProfile.homeType?.displayString
                 if let homeType = homeProfile.homeType {
-                    self?.viewModel.homeType.value = homeType
+                    self?.viewModel.homeType.accept(homeType)
                 }
                 
                 self?.heatingFuelButton.valueText = homeProfile.heatType?.displayString
                 if let heatType = homeProfile.heatType {
-                    self?.viewModel.heatType.value = heatType
+                    self?.viewModel.heatType.accept(heatType)
                 }
                 
                 if let numberOfAdults = homeProfile.numberOfAdults {
                     self?.numberOfAdultsButton.valueText = "\(numberOfAdults)"
-                    self?.viewModel.numberOfAdults.value = numberOfAdults
+                    self?.viewModel.numberOfAdults.accept(numberOfAdults)
                 }
                 
                 if let numberOfChildren = homeProfile.numberOfChildren {
                     self?.numberOfChildrenButton.valueText = "\(numberOfChildren)"
-                    self?.viewModel.numberOfChildren.value = numberOfChildren
+                    self?.viewModel.numberOfChildren.accept(numberOfChildren)
                 }
                 
                 if let squareFeet = homeProfile.squareFeet {
                     self?.homeSizeTextField.textField.text = "\(squareFeet)"
-                    self?.viewModel.homeSizeEntry.value = String(squareFeet)
+                    self?.viewModel.homeSizeEntry.accept(String(squareFeet))
                 }
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self?.view)
@@ -156,7 +156,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.homeTypeButton.valueText = value
-                                    self?.viewModel.homeType.value = HomeType(rawValue: index)
+                                    self?.viewModel.homeType.accept(HomeType(rawValue: index))
                                 },
                                 onCancel: nil)
             })
@@ -179,7 +179,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.heatingFuelButton.valueText = value
-                                    self?.viewModel.heatType.value = HeatType(rawValue: index)
+                                    self?.viewModel.heatType.accept(HeatType(rawValue: index))
                                 },
                                 onCancel: nil)
             })
@@ -202,7 +202,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.numberOfAdultsButton.valueText = value
-                                    self?.viewModel.numberOfAdults.value = self?.viewModel.numberOfAdultsOptions[index]
+                                    self?.viewModel.numberOfAdults.accept(self?.viewModel.numberOfAdultsOptions[index])
                                 },
                                 onCancel: nil)
             })
@@ -225,7 +225,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.numberOfChildrenButton.valueText = value
-                                    self?.viewModel.numberOfChildren.value = self?.viewModel.numberOfChildrenOptions[index]
+                                    self?.viewModel.numberOfChildren.accept(self?.viewModel.numberOfChildrenOptions[index])
                                 },
                                 onCancel: nil)
             })

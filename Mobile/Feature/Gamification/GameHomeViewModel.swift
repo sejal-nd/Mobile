@@ -62,7 +62,7 @@ class GameHomeViewModel {
         
         debouncedPoints.asObservable()
             .filter { $0 != nil } // Ignore initial
-            .debounce(2, scheduler: MainScheduler.instance)
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] points in
                 guard let self = self, let accountDetail = self.accountDetail.value else { return }
 

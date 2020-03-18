@@ -22,7 +22,7 @@ class AutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.nameOnAccount.value = "Test"
+        viewModel.nameOnAccount.accept("Test")
         viewModel.nameOnAccountHasText.asObservable().take(1).subscribe(onNext: { hasText in
             if !hasText {
                 XCTFail("nameOnAccount \"Test\" should return hasText = true")
@@ -38,14 +38,14 @@ class AutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.nameOnAccount.value = "Test Test"
+        viewModel.nameOnAccount.accept("Test Test")
         viewModel.nameOnAccountIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if !isValid {
                 XCTFail("nameOnAccount \"Test Test\" should return isValid = true")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.nameOnAccount.value = "Test!Test"
+        viewModel.nameOnAccount.accept("Test!Test")
         viewModel.nameOnAccountIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if isValid {
                 XCTFail("nameOnAccount \"Test!Test\" should return isValid = false because of the special character")
@@ -61,7 +61,7 @@ class AutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.routingNumber.value = "123456789"
+        viewModel.routingNumber.accept("123456789")
         viewModel.routingNumberIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if !isValid {
                 XCTFail("routingNumber 123456789 should be valid")
@@ -77,7 +77,7 @@ class AutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.accountNumber.value = "1234"
+        viewModel.accountNumber.accept("1234")
         viewModel.accountNumberHasText.asObservable().take(1).subscribe(onNext: { hasText in
             if !hasText {
                 XCTFail("accountNumber 1234 should return hasText = true")
@@ -93,21 +93,21 @@ class AutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.accountNumber.value = "123"
+        viewModel.accountNumber.accept("123")
         viewModel.accountNumberIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if isValid {
                 XCTFail("accountNumber 123 should be invalid (less than 4 characters)")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.accountNumber.value = "111111111111111111"
+        viewModel.accountNumber.accept("111111111111111111")
         viewModel.accountNumberIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if isValid {
                 XCTFail("accountNumber 111111111111111111 should be invalid (greater than 17 characters)")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.accountNumber.value = "1234567"
+        viewModel.accountNumber.accept("1234567")
         viewModel.accountNumberIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if !isValid {
                 XCTFail("accountNumber 1234567 should be valid")
@@ -118,15 +118,15 @@ class AutoPayViewModelTests: XCTestCase {
     func testConfirmAccountNumberMatches() {
         viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: .default)
         
-        viewModel.accountNumber.value = "Match"
-        viewModel.confirmAccountNumber.value = "NoMatch"
+        viewModel.accountNumber.accept("Match")
+        viewModel.confirmAccountNumber.accept("NoMatch")
         viewModel.confirmAccountNumberMatches.asObservable().take(1).subscribe(onNext: { matches in
             if matches {
                 XCTFail("accountNumbers \"Match\" and \"NoMatch\" should not match")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.confirmAccountNumber.value = "Match"
+        viewModel.confirmAccountNumber.accept("Match")
         viewModel.confirmAccountNumberMatches.asObservable().take(1).subscribe(onNext: { matches in
             if !matches {
                 XCTFail("accountNumbers tested should return matches = true")
