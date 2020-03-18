@@ -156,7 +156,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(Recorded.next)
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
@@ -177,7 +177,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(Recorded.next)
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
@@ -204,7 +204,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(Recorded.next)
         XCTAssertEqual(observer.events, expectedEvents)
         
     }
@@ -226,7 +226,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(Recorded.next)
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
@@ -247,7 +247,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(Recorded.next)
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
@@ -290,7 +290,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(Recorded.next)
         XCTAssertEqual(observer.events, expectedEvents)
         
     }

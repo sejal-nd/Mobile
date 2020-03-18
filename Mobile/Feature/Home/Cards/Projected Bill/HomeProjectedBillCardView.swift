@@ -86,7 +86,7 @@ class HomeProjectedBillCardView: UIView {
             .attributedString(textAlignment: .center, lineHeight: 26)
         
         segmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
-        segmentedControl.selectedIndex.value = 0
+        segmentedControl.selectedIndex.accept(0)
         
         stackView.bringSubviewToFront(segmentedControlContainer)
 

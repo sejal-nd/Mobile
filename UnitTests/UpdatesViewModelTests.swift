@@ -57,7 +57,7 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testShouldShowLoadingIndicator() {
-        viewModel.isFetchingUpdates.value = true
+        viewModel.isFetchingUpdates.accept(true)
         viewModel.shouldShowLoadingIndicator.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Loading indicator should show when Updates tab is selected while fetching updates")
@@ -66,7 +66,7 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testShouldShowErrorLabel() {
-        viewModel.isUpdatesError.value = true
+        viewModel.isUpdatesError.accept(true)
         viewModel.shouldShowErrorLabel.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Error label should show when Updates tab is selected and fetching updates failed")
@@ -75,8 +75,8 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testShouldShowUpdatesTableView() {
-        viewModel.isFetchingUpdates.value = false
-        viewModel.isUpdatesError.value = false
+        viewModel.isFetchingUpdates.accept(false)
+        viewModel.isUpdatesError.accept(false)
         viewModel.shouldShowTableView.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Updates table view should show when Updates tab is selected and we successfully fetched updates")
@@ -85,9 +85,9 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testShouldShowUpdatesEmptyState() {
-        viewModel.isFetchingUpdates.value = false
-        viewModel.isUpdatesError.value = false
-        viewModel.currentOpcoUpdates.value = [OpcoUpdate]()
+        viewModel.isFetchingUpdates.accept(false)
+        viewModel.isUpdatesError.accept(false)
+        viewModel.currentOpcoUpdates.accept([OpcoUpdate]())
         viewModel.shouldShowUpdatesEmptyState.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Updates empty should show when Updates tab is selected and we successfully fetched 0 updates")

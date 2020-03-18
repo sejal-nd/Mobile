@@ -69,11 +69,11 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
         let question = viewableQuestions[indexPath.row]
         
         if questionNumber == 1 {
-            viewModel.securityQuestion1.value = question
+            viewModel.securityQuestion1.accept(question)
         } else if questionNumber == 2 {
-            viewModel.securityQuestion2.value = question
+            viewModel.securityQuestion2.accept(question)
         } else if questionNumber == 3 {
-            viewModel.securityQuestion3.value = question
+            viewModel.securityQuestion3.accept(question)
         }
         
         navigationController?.dismiss(animated: true, completion: nil)

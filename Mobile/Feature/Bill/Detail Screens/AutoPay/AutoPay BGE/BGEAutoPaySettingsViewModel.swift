@@ -15,11 +15,11 @@ class BGEAutoPaySettingsViewModel {
     let accountDetail: AccountDetail
     let initialEnrollmentStatus: BGEAutoPayViewModel.EnrollmentStatus
     
-    let amountToPay: Variable<AmountType>
-    let whenToPay: Variable<BGEAutoPayViewModel.PaymentDateType>
+    let amountToPay: BehaviorRelay<AmountType>
+    let whenToPay: BehaviorRelay<BGEAutoPayViewModel.PaymentDateType>
     
-    let amountNotToExceed: Variable<String>
-    let numberOfDaysBeforeDueDate: Variable<Int>
+    let amountNotToExceed: BehaviorRelay<String>
+    let numberOfDaysBeforeDueDate: BehaviorRelay<Int>
     
     init(accountDetail: AccountDetail,
          initialEnrollmentStatus: BGEAutoPayViewModel.EnrollmentStatus,
@@ -29,10 +29,10 @@ class BGEAutoPaySettingsViewModel {
          numberOfDaysBeforeDueDate: Int) {
         self.accountDetail = accountDetail
         self.initialEnrollmentStatus = initialEnrollmentStatus
-        self.amountToPay = Variable(amountToPay)
-        self.whenToPay = Variable(whenToPay)
-        self.amountNotToExceed = Variable(amountNotToExceed.currencyString)
-        self.numberOfDaysBeforeDueDate = Variable(numberOfDaysBeforeDueDate)
+        self.amountToPay = BehaviorRelay(value: amountToPay)
+        self.whenToPay = BehaviorRelay(value: whenToPay)
+        self.amountNotToExceed = BehaviorRelay(value: amountNotToExceed.currencyString)
+        self.numberOfDaysBeforeDueDate = BehaviorRelay(value: numberOfDaysBeforeDueDate)
     }
     
     private(set) lazy var amountNotToExceedDouble: Driver<Double> = amountNotToExceed.asDriver()
@@ -83,7 +83,7 @@ class BGEAutoPaySettingsViewModel {
     func formatAmountNotToExceed() {
         let textStr = String(amountNotToExceed.value.filter { "0123456789".contains($0) })
         if let intVal = Double(textStr) {
-            amountNotToExceed.value = (intVal / 100).currencyString
+            amountNotToExceed.accept((intVal / 100).currencyString)
         }
     }
 }

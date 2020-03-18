@@ -13,7 +13,7 @@ class SERPTSGraphViewModel {
     
     private let eventResults: Observable<[SERResult]> // Passed from HomeUsageCardView
 
-    let barGraphSelectionStates = Variable([Variable(false), Variable(false), Variable(true)])
+    let barGraphSelectionStates = BehaviorRelay(value: [BehaviorRelay(value: false), BehaviorRelay(value: false), BehaviorRelay(value: true)])
     
     required init(eventResults: Observable<[SERResult]>) {
         self.eventResults = eventResults
@@ -273,14 +273,14 @@ class SERPTSGraphViewModel {
     func setBarSelected(tag: Int) {
         for i in stride(from: 0, to: barGraphSelectionStates.value.count, by: 1) {
             let boolVar = barGraphSelectionStates.value[i]
-            boolVar.value = i == tag
+            boolVar.accept(i == tag)
         }
-        barGraphSelectionStates.value = barGraphSelectionStates.value // Trigger Variable onNext
+        barGraphSelectionStates.accept(barGraphSelectionStates.value) // Trigger Variable onNext
     }
     
     // MARK: Helpers
     
-    private func eventFor(selectionStates: [Variable<Bool>], latest3Events: [SERResult]) -> SERResult {
+    private func eventFor(selectionStates: [BehaviorRelay<Bool>], latest3Events: [SERResult]) -> SERResult {
         var event: SERResult
         if selectionStates[0].value { // Bar 1
             event = latest3Events[0]

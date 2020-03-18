@@ -225,7 +225,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedOutageStatus.value = viewModel.outageStatusArray![indexPath.row]
+        viewModel.selectedOutageStatus.accept(viewModel.outageStatusArray![indexPath.row])
     }
 }
 

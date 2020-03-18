@@ -47,7 +47,7 @@ class HomeWeatherViewModel {
         }
     
     private(set) lazy var greeting: Driver<String?> = Observable<Int>
-        .interval(60, scheduler: MainScheduler.instance)
+        .interval(.seconds(60), scheduler: MainScheduler.instance)
 //        .map { "\($0)" }
         .mapTo(())
         .startWith(())

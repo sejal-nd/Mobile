@@ -16,34 +16,34 @@ class RegistrationViewModel {
     
     let disposeBag = DisposeBag()
     
-    let phoneNumber = Variable("")
-    let identifierNumber = Variable("")
-    let accountNumber = Variable("")
+    let phoneNumber = BehaviorRelay(value: "")
+    let identifierNumber = BehaviorRelay(value: "")
+    let accountNumber = BehaviorRelay(value: "")
     
-    let username = Variable("")
-    let newPassword = Variable("")
-    let confirmPassword = Variable("")
+    let username = BehaviorRelay(value: "")
+    let newPassword = BehaviorRelay(value: "")
+    let confirmPassword = BehaviorRelay(value: "")
     
-    var accountType = Variable("")
+    var accountType = BehaviorRelay(value: "")
     
-    var primaryProfile = Variable<Bool>(false)
+    var primaryProfile = BehaviorRelay<Bool>(value: false)
     
-    let securityQuestion1 = Variable<String?>(nil)
-    let securityAnswer1 = Variable("")
+    let securityQuestion1 = BehaviorRelay<String?>(value: nil)
+    let securityAnswer1 = BehaviorRelay(value: "")
     
-    let securityQuestion2 = Variable<String?>(nil)
-    let securityAnswer2 = Variable("")
+    let securityQuestion2 = BehaviorRelay<String?>(value: nil)
+    let securityAnswer2 = BehaviorRelay(value: "")
     
-    let securityQuestion3 = Variable<String?>(nil)
-    let securityAnswer3 = Variable("")
+    let securityQuestion3 = BehaviorRelay<String?>(value: nil)
+    let securityAnswer3 = BehaviorRelay(value: "")
     
-    var paperlessEbill = Variable<Bool>(true)
+    var paperlessEbill = BehaviorRelay<Bool>(value: true)
     
     var isPaperlessEbillEligible = false
     
     var securityQuestions: [String]?
     
-    var accounts = Variable<[AccountLookupResult]>([])
+    var accounts = BehaviorRelay<[AccountLookupResult]>(value: [])
     
     var registrationService: RegistrationService
     var authenticationService: AuthenticationService
@@ -67,7 +67,7 @@ class RegistrationViewModel {
             .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }
                 let types = data["type"] as? [String]
-                self.accountType.value = types?.first ?? ""
+                self.accountType.accept(types?.first ?? "")
                 self.isPaperlessEbillEligible = (data["ebill"] as? Bool) ?? false
                 
                 onSuccess()
@@ -181,7 +181,7 @@ class RegistrationViewModel {
         authenticationService.lookupAccount(phone: extractDigitsFrom(phoneNumber.value), identifier: identifierNumber.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] array in
-                self?.accounts.value = array
+                self?.accounts.accept(array)
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError

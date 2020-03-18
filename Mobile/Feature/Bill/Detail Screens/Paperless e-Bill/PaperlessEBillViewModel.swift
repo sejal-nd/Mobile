@@ -26,13 +26,13 @@ class PaperlessEBillViewModel {
     private var accountService: AccountService
     private var billService: BillService
     
-    let initialAccountDetail: Variable<AccountDetail>
-    let accounts: Variable<[Account]>
+    let initialAccountDetail: BehaviorRelay<AccountDetail>
+    let accounts: BehaviorRelay<[Account]>
     
-    let accountsToEnroll = Variable(Set<String>())
-    let accountsToUnenroll = Variable(Set<String>())
+    let accountsToEnroll = BehaviorRelay(value: Set<String>())
+    let accountsToUnenroll = BehaviorRelay(value: Set<String>())
     
-    let enrollStatesChanged = Variable<Bool>(false)
+    let enrollStatesChanged = BehaviorRelay<Bool>(value: false)
     
     var allAccountsCheckboxState = Observable<PaperlessEBillAllAccountsCheckboxState>.empty()
     
@@ -41,20 +41,24 @@ class PaperlessEBillViewModel {
     init(accountService: AccountService, billService: BillService, initialAccountDetail accountDetail: AccountDetail) {
         self.accountService = accountService
         self.billService = billService
-        self.initialAccountDetail = Variable(accountDetail)
+        self.initialAccountDetail = BehaviorRelay(value: accountDetail)
         
         switch Environment.shared.opco {
         case .bge:
-            self.accounts = Variable([AccountsStore.shared.accounts.filter { accountDetail.accountNumber == $0.accountNumber }.first!])
+            self.accounts = BehaviorRelay(value: [AccountsStore.shared.accounts.filter { accountDetail.accountNumber == $0.accountNumber }.first!])
         case .comEd, .peco:
-            self.accounts = Variable(AccountsStore.shared.accounts)
+            self.accounts = BehaviorRelay(value: AccountsStore.shared.accounts)
         }
         
         if self.accounts.value.count == 1 {
             if accountDetail.isEBillEnrollment {
-                accountsToUnenroll.value.insert(accountDetail.accountNumber)
+                var newValue = accountsToUnenroll.value
+                newValue.insert(accountDetail.accountNumber)
+                accountsToUnenroll.accept(newValue)
             } else {
-                accountsToEnroll.value.insert(accountDetail.accountNumber)
+                var newValue = accountsToEnroll.value
+                newValue.insert(accountDetail.accountNumber)
+                accountsToEnroll.accept(newValue)
             }
         } else {
             Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
@@ -109,6 +113,7 @@ class PaperlessEBillViewModel {
                     .sorted { $0.0 < $1.0 }
                     .map { $0.1 }
             }
+    .asObservable()
             .share(replay: 1)
     }()
     
@@ -144,6 +149,7 @@ class PaperlessEBillViewModel {
             .merge(maxConcurrent: 3)
             .toArray()
             .observeOn(MainScheduler.instance)
+        .asObservable()
             .subscribe(onNext: { responseArray in
                 onSuccess(changedStatus)
             }, onError: { error in
@@ -163,13 +169,21 @@ class PaperlessEBillViewModel {
     func switched(accountDetail: AccountDetail, on: Bool) {
         switch (accountDetail.eBillEnrollStatus, on) {
         case (.canUnenroll, true):
-            accountsToUnenroll.value.remove(accountDetail.accountNumber)
+            var newValue = accountsToUnenroll.value
+            newValue.remove(accountDetail.accountNumber)
+            accountsToUnenroll.accept(newValue)
         case (.canUnenroll, false):
-            accountsToUnenroll.value.insert(accountDetail.accountNumber)
+            var newValue = accountsToUnenroll.value
+            newValue.insert(accountDetail.accountNumber)
+            accountsToUnenroll.accept(newValue)
         case (.canEnroll, true):
-            accountsToEnroll.value.insert(accountDetail.accountNumber)
+            var newValue = accountsToEnroll.value
+            newValue.insert(accountDetail.accountNumber)
+            accountsToEnroll.accept(newValue)
         case (.canEnroll, false):
-            accountsToEnroll.value.remove(accountDetail.accountNumber)
+            var newValue = accountsToEnroll.value
+            newValue.remove(accountDetail.accountNumber)
+            accountsToEnroll.accept(newValue)
         default:
             break
         }

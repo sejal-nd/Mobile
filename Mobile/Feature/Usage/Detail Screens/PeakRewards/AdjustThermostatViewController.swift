@@ -25,7 +25,7 @@ class AdjustThermostatViewController: UIViewController {
                                                minTemp: Temperature(value: Double(40), scale: .fahrenheit),
                                                maxTemp: Temperature(value: Double(90), scale: .fahrenheit),
                                                scale: TemperatureScaleStore.shared.scale,
-                                               mode: Variable(.cool))
+                                               mode: BehaviorRelay(value: .cool))
     let permanentHoldCheckbox = Checkbox().usingAutoLayout()
     let modeSegmentedControl = SegmentedControl(frame: .zero).usingAutoLayout()
     let fanSegmentedControl = SegmentedControl(frame: .zero).usingAutoLayout()

@@ -611,7 +611,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? ReportOutageViewController,
             let outageStatus = viewModel.currentOutageStatus {
             vc.viewModel.outageStatus = outageStatus
-            vc.viewModel.phoneNumber.value = outageStatus.contactHomeNumber ?? ""
+            vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.hasPressedStreetlightOutageMapButton = false
         }

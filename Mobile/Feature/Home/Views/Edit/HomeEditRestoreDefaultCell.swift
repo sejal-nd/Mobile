@@ -23,7 +23,7 @@ class HomeEditRestoreDefaultCell: UICollectionViewCell {
     
     func configure(isEnabled: Driver<Bool>, isReordering: Driver<Bool>, onTap: @escaping ()->()) {
         button.rx.tap.asDriver()
-            .throttle(0.25)
+            .throttle(.milliseconds(250))
             .drive(onNext: onTap)
             .disposed(by: disposeBag)
         

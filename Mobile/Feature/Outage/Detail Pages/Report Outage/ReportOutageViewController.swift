@@ -107,7 +107,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             
             meterPingSeparatorView.isHidden = false
             
-            viewModel.reportFormHidden.value = true
+            viewModel.reportFormHidden.accept(true)
             viewModel.reportFormHidden.asDriver().drive(reportFormStackView.rx.isHidden).disposed(by: disposeBag)
             viewModel.reportFormHidden.asDriver().drive(onNext: { [weak self] hidden in
                 if hidden {
@@ -120,7 +120,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             meterPingStackView.isHidden = true
             meterPingFuseBoxView.isHidden = true
             meterPingSeparatorView.isHidden = true
-            viewModel.reportFormHidden.value = false
+            viewModel.reportFormHidden.accept(false)
         }
         
         // show comment view for ComEd only
@@ -244,7 +244,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
                     self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                     
-                    self.viewModel.reportFormHidden.value = false
+                    self.viewModel.reportFormHidden.accept(false)
                     self.meterPingStatusContainer.isHidden = true
                 } else {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("No Problems Found", comment: "")
@@ -267,7 +267,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
                 self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                 
-                self.viewModel.reportFormHidden.value = false
+                self.viewModel.reportFormHidden.accept(false)
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
