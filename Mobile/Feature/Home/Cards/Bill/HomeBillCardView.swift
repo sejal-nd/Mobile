@@ -380,7 +380,7 @@ class HomeBillCardView: UIView {
         // `.delay(0.02)` fixes a weird bug where the label's font
         // is set to regular instead of semibold while the view is still hidden.
         // This is not an ideal fix, hoping to find a better one later.
-        viewModel.dueDateText.delay(0.02).drive(dueDateLabel.rx.attributedText).disposed(by: bag)
+        viewModel.dueDateText.delay(.milliseconds(20)).drive(dueDateLabel.rx.attributedText).disposed(by: bag)
         viewModel.reinstatementFeeText.drive(reinstatementFeeLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardNumberText.drive(bankCreditCardNumberLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardImage.drive(bankCreditCardImageView.rx.image).disposed(by: bag)

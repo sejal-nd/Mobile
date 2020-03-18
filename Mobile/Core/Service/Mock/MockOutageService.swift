@@ -27,7 +27,7 @@ class MockOutageService: OutageService {
     
     func pingMeter(account: Account, premiseNumber: String?) -> Observable<MeterPingInfo> {
         let key = MockUser.current.currentAccount.dataKey(forFile: .meterPingInfo)
-        return MockJSONManager.shared.rx.mappableObject(fromFile: .meterPingInfo, key: key).delay(2, scheduler: MainScheduler.instance)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: .meterPingInfo, key: key).delay(.seconds(2), scheduler: MainScheduler.instance)
     }
     
     func reportOutage(outageInfo: OutageInfo) -> Observable<Void> {

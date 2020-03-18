@@ -539,7 +539,7 @@ class HomeViewController: AccountPickerViewController {
                 if let vc = viewController as? WalletViewController {
                     vc.didUpdate
                         .asDriver(onErrorDriveWith: .empty())
-                        .delay(0.5)
+                        .delay(.milliseconds(500))
                         .drive(onNext: { [weak self] toastMessage in
                             self?.view.showToast(toastMessage)
                         })
@@ -732,7 +732,7 @@ class HomeViewController: AccountPickerViewController {
         case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):
             vc.viewModel.outageStatus = currentOutageStatus
             if let phone = currentOutageStatus.contactHomeNumber {
-                vc.viewModel.phoneNumber.value = phone
+                vc.viewModel.phoneNumber.accept(phone)
             }
             
             // Show a toast only after an outage is reported from this workflow

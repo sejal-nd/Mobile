@@ -32,8 +32,8 @@ class BillViewModel {
     let usageBillImpactLoading = PublishSubject<Bool>()
     var usageBillImpactInnerLoading = false
     
-    let electricGasSelectedSegmentIndex = Variable(0)
-    let compareToLastYear = Variable(false)
+    let electricGasSelectedSegmentIndex = BehaviorRelay(value: 0)
+    let compareToLastYear = BehaviorRelay(value: false)
     
     private func tracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {

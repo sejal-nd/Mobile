@@ -23,30 +23,31 @@ class AlertPreferencesViewModel {
     var shownSections = Set<Int>() // Set of section numbers that should be expanded
     
     // Notification Preferences
-    let highUsage = Variable(false)
+    let highUsage = BehaviorRelay(value: false)
     let billThreshold: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let billThresholdPlacheHolder = BehaviorRelay(value: "Bill Threshold (Optional)")
-    let peakTimeSavings = Variable(false)
-    let smartEnergyRewards = Variable(false)
-    let energySavingsDayResults = Variable(false)
-    let outage = Variable(false)
-    let scheduledMaint = Variable(false)
-    let severeWeather = Variable(false)
-    let billReady = Variable(false)
-    let paymentDue = Variable(false)
-    let paymentDueDaysBefore = Variable(1)
-    let paymentPosted = Variable(false)
-    let paymentPastDue = Variable(false)
-    let budgetBilling = Variable(false)
-    let appointmentTracking = Variable(false)
-    let forYourInfo = Variable(false)
-    let energyBuddyUpdates = Variable(false)
-    let english = Variable(true) // Language selection. False = Spanish
+    let peakTimeSavings = BehaviorRelay(value: false)
+    let smartEnergyRewards = BehaviorRelay(value: false)
+    let energySavingsDayResults = BehaviorRelay(value: false)
     
-    var hasPreferencesChanged = Variable(false)
+    let outage = BehaviorRelay(value: false)
+    let scheduledMaint = BehaviorRelay(value: false)
+    let severeWeather = BehaviorRelay(value: false)
+    let billReady = BehaviorRelay(value: false)
+    let paymentDue = BehaviorRelay(value: false)
+    let paymentDueDaysBefore = BehaviorRelay(value: 1)
+    let paymentPosted = BehaviorRelay(value: false)
+    let paymentPastDue = BehaviorRelay(value: false)
+    let budgetBilling = BehaviorRelay(value: false)
+    let appointmentTracking = BehaviorRelay(value: false)
+    let forYourInfo = BehaviorRelay(value: false)
+    let energyBuddyUpdates = BehaviorRelay(value: false)
+    let english = BehaviorRelay(value: true) // Language selection. False = Spanish
     
-    let isError = Variable(false)
-    let alertPrefs = Variable<AlertPreferences?>(nil)
+    var hasPreferencesChanged = BehaviorRelay(value: false)
+    
+    let isError = BehaviorRelay(value: false)
+    let alertPrefs = BehaviorRelay<AlertPreferences?>(value: nil)
     
     var initialBillReadyValue = false
     var initialEnglishValue = true
@@ -77,7 +78,7 @@ class AlertPreferencesViewModel {
     // MARK: Web Services
     
     func fetchData(onCompletion: @escaping () -> Void) {
-        isError.value = false
+        isError.accept(false)
         
         var observables = [fetchAccountDetail(), fetchAlertPreferences()]
         if Environment.shared.opco == .comEd {
@@ -175,7 +176,7 @@ class AlertPreferencesViewModel {
                 
                 onCompletion()
             }, onError: { [weak self] err in
-                self?.isError.value = true
+                self?.isError.accept(true)
                 onCompletion()
             })
             .disposed(by: disposeBag)
@@ -196,25 +197,27 @@ class AlertPreferencesViewModel {
             .do(onNext: { [weak self] alertPrefs in
                 guard let self = self else { return }
                 
-                self.alertPrefs.value = alertPrefs
-                self.highUsage.value = alertPrefs.usage
+                self.highUsage.accept(alertPrefs.usage)
                 if let threshold = alertPrefs.alertThreshold {
                     self.initialBillThresholdValue = String(threshold)
                     self.billThreshold.accept(String(threshold))
                 }
-                self.outage.value = alertPrefs.outage
-                self.scheduledMaint.value = alertPrefs.scheduledMaint
-                self.severeWeather.value = alertPrefs.severeWeather
-                self.billReady.value = alertPrefs.billReady
+                
+                self.alertPrefs.accept(alertPrefs)
+                self.outage.accept(alertPrefs.outage)
+                self.scheduledMaint.accept(alertPrefs.scheduledMaint)
+                self.severeWeather.accept(alertPrefs.severeWeather)
+                self.billReady.accept(alertPrefs.billReady)
+                
                 self.initialBillReadyValue = alertPrefs.billReady
-                self.paymentDue.value = alertPrefs.paymentDue
-                self.paymentDueDaysBefore.value = alertPrefs.paymentDueDaysBefore
-                self.paymentPosted.value = alertPrefs.paymentPosted
-                self.paymentPastDue.value = alertPrefs.paymentPastDue
-                self.budgetBilling.value = alertPrefs.budgetBilling
-                self.appointmentTracking.value = alertPrefs.appointmentTracking
-                self.forYourInfo.value = alertPrefs.forYourInfo
-                self.energyBuddyUpdates.value = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference)
+                self.paymentDue.accept(alertPrefs.paymentDue)
+                self.paymentDueDaysBefore.accept(alertPrefs.paymentDueDaysBefore)
+                self.paymentPosted.accept(alertPrefs.paymentPosted)
+                self.paymentPastDue.accept(alertPrefs.paymentPastDue)
+                self.budgetBilling.accept(alertPrefs.budgetBilling)
+                self.appointmentTracking.accept(alertPrefs.appointmentTracking)
+                self.forYourInfo.accept(alertPrefs.forYourInfo)
+                self.energyBuddyUpdates.accept(UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference))
             })
             .mapTo(())
     }
@@ -224,7 +227,7 @@ class AlertPreferencesViewModel {
             .fetchAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .do(onNext: { [weak self] language in
                 self?.initialEnglishValue = language == "English"
-                self?.english.value = language == "English"
+                self?.english.accept(language == "English")
             })
             .mapTo(())
     }

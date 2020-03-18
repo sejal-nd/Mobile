@@ -18,17 +18,17 @@ class AutoPayViewModel {
         case enrolled, unenrolled
     }
     
-    let enrollmentStatus: Variable<AutoPayEnrollmentStatus>
+    let enrollmentStatus: BehaviorRelay<AutoPayEnrollmentStatus>
     
     let accountDetail: AccountDetail
     
-    let checkingSavingsSegmentedControlIndex = Variable(0)
-    let nameOnAccount = Variable("")
-    let routingNumber = Variable("")
-    let accountNumber = Variable("")
-    let confirmAccountNumber = Variable("")
-    let termsAndConditionsCheck: Variable<Bool>
-    let selectedUnenrollmentReason = Variable<String?>(nil)
+    let checkingSavingsSegmentedControlIndex = BehaviorRelay(value: 0)
+    let nameOnAccount = BehaviorRelay(value: "")
+    let routingNumber = BehaviorRelay(value: "")
+    let accountNumber = BehaviorRelay(value: "")
+    let confirmAccountNumber = BehaviorRelay(value: "")
+    let termsAndConditionsCheck: BehaviorRelay<Bool>
+    let selectedUnenrollmentReason = BehaviorRelay<String?>(value: nil)
     
     let paymentService: PaymentService
     let walletService: WalletService
@@ -39,8 +39,8 @@ class AutoPayViewModel {
         self.paymentService = paymentService
         self.walletService = walletService
         self.accountDetail = accountDetail
-        enrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
-        termsAndConditionsCheck = Variable(Environment.shared.opco != .comEd)
+        enrollmentStatus = BehaviorRelay(value: accountDetail.isAutoPay ? .enrolled : .unenrolled)
+        termsAndConditionsCheck = BehaviorRelay(value: Environment.shared.opco != .comEd)
     }
     
     func enroll() -> Observable<Bool> {

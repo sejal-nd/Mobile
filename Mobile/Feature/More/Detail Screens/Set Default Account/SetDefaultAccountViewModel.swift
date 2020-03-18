@@ -14,7 +14,7 @@ class SetDefaultAccountViewModel {
     let accountService: AccountService
     
     var initialDefaultAccount: Account? = nil
-    let selectedAccount = Variable<Account?>(nil)
+    let selectedAccount = BehaviorRelay<Account?>(value: nil)
 
     let bag = DisposeBag()
     
@@ -23,7 +23,7 @@ class SetDefaultAccountViewModel {
         
         if let currDefault = AccountsStore.shared.accounts.first(where: { $0.isDefault }) {
             initialDefaultAccount = currDefault
-            selectedAccount.value = currDefault
+            selectedAccount.accept(currDefault)
         }
     }
     

@@ -19,10 +19,10 @@ class HomeEditViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private let isReordering = Variable(false)
+    private let isReordering = BehaviorRelay(value: false)
     private var reorderingCell: HomeEditCardCell?
     
-    lazy private var cards: Variable<[[HomeCard]]> = {
+    lazy private var cards: BehaviorRelay<[[HomeCard]]> = {
         let selectedCards = HomeCardPrefsStore.shared.list
         
         // generate the sorted array of rejected cards
@@ -31,7 +31,7 @@ class HomeEditViewController: UIViewController {
             rejectedCards.append(.nothing)
         }
         
-        return Variable([selectedCards, rejectedCards])
+        return BehaviorRelay(value: [selectedCards, rejectedCards])
     }()
     
     
@@ -92,7 +92,7 @@ class HomeEditViewController: UIViewController {
         switch gesture.state {
         case .began:
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)), selectedIndexPath.section == 0 else { break }
-            isReordering.value = true
+            isReordering.accept(true)
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
             if let cell = collectionView.cellForItem(at: selectedIndexPath) as? HomeEditCardCell {
                 reorderingCell = cell
@@ -142,7 +142,7 @@ class HomeEditViewController: UIViewController {
                             cell.cardView.alpha = 1
             },
                            completion: { _ in
-                            self.isReordering.value = false
+                            self.isReordering.accept(false)
                             self.reorderingCell = nil
             })
         }
@@ -201,7 +201,7 @@ extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewData
                             rejectedCards.append(.nothing)
                         }
                         
-                        this.cards.value = [selectedCards, rejectedCards]
+                        this.cards.accept([selectedCards, rejectedCards])
                         this.collectionView.reloadData()
         })
         return cell
@@ -217,7 +217,9 @@ extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewData
             guard let this = self, !this.isReordering.value else { return }
             
             let sourceIndexPath = IndexPath(item: this.cards.value[indexPath.section].firstIndex(of: card)!, section: indexPath.section)
-            this.cards.value[indexPath.section].remove(at: sourceIndexPath.item)
+            var newValue = this.cards.value
+            newValue[indexPath.section].remove(at: sourceIndexPath.item)
+            this.cards.accept(newValue)
             
             let destinationIndex: Int
             if indexPath.section == 0 {
@@ -229,10 +231,11 @@ extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewData
             }
             
             let destinationIndexPath = IndexPath(item: destinationIndex, section: otherSection)
-            this.cards.value[otherSection].insert(card, at: destinationIndex)
+            newValue[otherSection].insert(card, at: destinationIndex)
+            this.cards.accept(newValue)
             
             this.collectionView.performBatchUpdates({
-                this.isReordering.value = true
+                this.isReordering.accept(true)
                 this.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
             }, completion: { success in
                 guard success else { return }
@@ -241,14 +244,15 @@ extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewData
                     this.collectionView?.reloadItems(at: [destinationIndexPath])
                     
                     if this.cards.value[1].isEmpty {
-                        this.cards.value[1].append(.nothing)
+                        newValue[1].append(.nothing)
                         this.collectionView?.reloadSections(IndexSet(integer: 1))
                     } else if this.cards.value[1].last == .nothing {
-                        this.cards.value[1].removeLast()
+                        newValue[1].removeLast()
                         this.collectionView?.reloadSections(IndexSet(integer: 1))
                     }
+                    this.cards.accept(newValue)
                 }, completion: { success in
-                    this.isReordering.value = false
+                    this.isReordering.accept(false)
                 })
             })
         }
@@ -271,8 +275,10 @@ extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let name = cards.value[sourceIndexPath.section][sourceIndexPath.item]
-        cards.value[sourceIndexPath.section].remove(at: sourceIndexPath.item)
-        cards.value[destinationIndexPath.section].insert(name, at: destinationIndexPath.item)
+        var newValue = cards.value
+        newValue[sourceIndexPath.section].remove(at: sourceIndexPath.item)
+        newValue[destinationIndexPath.section].insert(name, at: destinationIndexPath.item)
+        cards.accept(newValue)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

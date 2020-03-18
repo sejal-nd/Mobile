@@ -35,7 +35,7 @@ class BudgetBillingReasonForStoppingViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        viewModel.selectedUnenrollmentReason.value = -1 // Reset if user dismisses this view
+        viewModel.selectedUnenrollmentReason.accept(-1) // Reset if user dismisses this view
     }
     
     @IBAction func onUnenrollPress() {
@@ -103,6 +103,6 @@ extension BudgetBillingReasonForStoppingViewController: UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedUnenrollmentReason.value = indexPath.row
+        viewModel.selectedUnenrollmentReason.accept(indexPath.row)
     }
 }

@@ -111,7 +111,7 @@ class AlertPreferencesViewController: UIViewController {
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         
         viewModel.prefsChanged.subscribe(onNext: { [weak self] value in
-            self?.viewModel.hasPreferencesChanged = Variable(value)
+            self?.viewModel.hasPreferencesChanged = BehaviorRelay(value: value)
             
             // iOS 13 modal
             if #available(iOS 13.0, *) {
@@ -180,19 +180,19 @@ class AlertPreferencesViewController: UIViewController {
                     FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_enroll_push_cancel)])
                     GoogleAnalytics.log(event: .alertseBillEnrollPushCancel)
                     
-                    self?.viewModel.billReady.value = !isOn // Need to manually set this because .setOn does not trigger rx binding
+                    self?.viewModel.billReady.accept(!isOn) // Need to manually set this because .setOn does not trigger rx binding
                 }))
                 
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self] _ in
                     FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_enroll_push_continue)])
                     GoogleAnalytics.log(event: .alertseBillEnrollPushContinue)
                     
-                    self?.viewModel.billReady.value = true
+                    self?.viewModel.billReady.accept(true)
                 }))
                 
                 present(alertVc, animated: true, completion: nil)
             } else {
-                viewModel.billReady.value = true
+                viewModel.billReady.accept(true)
             }
         } else {
             let alertTitle = NSLocalizedString("Paperless eBill", comment: "")
@@ -206,7 +206,7 @@ class AlertPreferencesViewController: UIViewController {
 
                 GoogleAnalytics.log(event: .alertseBillUnenrollPushContinue)
 
-                self?.viewModel.billReady.value = false
+                self?.viewModel.billReady.accept(false)
             }))
             
             present(alertVc, animated: true, completion: nil)
@@ -294,7 +294,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         let options = viewModel.sections[indexPath.section - offset].1
         let option = options[indexPath.row]
         
-        var toggleVariable: Variable<Bool>?
+        var toggleVariable: BehaviorRelay<Bool>?
         var pickerButtonText: Driver<String>?
         var textFieldOptions: AlertPreferencesViewModel.AlertPrefTextFieldOptions?
         
@@ -354,7 +354,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                                                 onDone: { [weak self] value, index in
                                                     guard let self = self else { return }
                                                     if self.viewModel.paymentDueDaysBefore.value != index + 1 {
-                                                        self.viewModel.paymentDueDaysBefore.value = index + 1
+                                                        self.viewModel.paymentDueDaysBefore.accept(index + 1)
                                                     }
                         },
                                                 onCancel: nil)

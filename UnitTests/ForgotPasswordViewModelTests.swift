@@ -19,14 +19,14 @@ class ForgotPasswordViewModelTests: XCTestCase {
     }
     
     func testSubmitButtonEnabled() {
-        viewModel.username.value = "aa"
+        viewModel.username.accept("aa")
         viewModel.submitButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if !enabled {
                 XCTFail("Username \"aa\" should result in an enabled submit button")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.username.value = ""
+        viewModel.username.accept("")
         viewModel.submitButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if enabled {
                 XCTFail("Username \"\" should result in a disabled submit button")
@@ -37,7 +37,7 @@ class ForgotPasswordViewModelTests: XCTestCase {
     func testSubmitForgotPasswordSuccess() {
         let asyncExpectation = expectation(description: "testSubmitForgotPasswordSuccess")
         
-        viewModel.username.value = "aa"
+        viewModel.username.accept("aa")
         viewModel.submitForgotPassword(onSuccess: { 
             asyncExpectation.fulfill()
         }, onProfileNotFound: { message in
@@ -54,7 +54,7 @@ class ForgotPasswordViewModelTests: XCTestCase {
     func testSubmitForgotPasswordProfileNotFound() {
         let asyncExpectation = expectation(description: "testSubmitForgotPasswordProfileNotFound")
         
-        viewModel.username.value = "error"
+        viewModel.username.accept("error")
         viewModel.submitForgotPassword(onSuccess: {
             XCTFail("Unexpected success response")
         }, onProfileNotFound: { message in
