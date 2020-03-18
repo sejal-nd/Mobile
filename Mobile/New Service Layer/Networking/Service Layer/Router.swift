@@ -136,4 +136,13 @@ public enum Router {
         }
     }
     
+    public var mockFileName: String {
+        switch self {
+        case .minVersion:
+            return "minVersionMock"
+        default:
+            return ""
+        }
+    }
+    
 }

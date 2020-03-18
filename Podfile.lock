@@ -120,7 +120,7 @@ DEPENDENCIES:
   - zxcvbn-ios (= 1.0.4)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - AppCenter
     - Charts
     - Firebase
@@ -132,6 +132,7 @@ SPEC REPOS:
     - GoogleAnalytics
     - GoogleAppMeasurement
     - GoogleUtilities
+    - lottie-ios
     - ModelMapper
     - nanopb
     - PDTSimpleCalendar
@@ -141,12 +142,10 @@ SPEC REPOS:
     - RxSwift
     - RxSwiftExt
     - RxTest
+    - surveymonkey-ios-sdk
     - Toast-Swift
     - XLPagerTabStrip
     - zxcvbn-ios
-  trunk:
-    - lottie-ios
-    - surveymonkey-ios-sdk
 
 SPEC CHECKSUMS:
   AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
@@ -177,4 +176,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 741c30bf9a5b7932f81225bf83defacc312c29d5
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

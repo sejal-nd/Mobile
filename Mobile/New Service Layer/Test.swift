@@ -26,7 +26,6 @@ class NetworkTest {
                     print("JSON 1 FAIL: \(error)")
                 }
             }
-                
     }
     
     private func minVersion() {

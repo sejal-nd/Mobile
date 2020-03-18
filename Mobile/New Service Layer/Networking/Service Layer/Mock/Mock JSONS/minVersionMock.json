@@ -1,0 +1,14 @@
+{
+    "default": {
+        "success": true,
+        "data": {
+            "android": {
+                "minVersion": "0.0.0"
+            },
+            "ios": {
+                "minVersion": "0.0.0"
+            }
+        }
+
+    }
+}

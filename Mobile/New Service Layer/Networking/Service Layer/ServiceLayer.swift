@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 public struct ServiceLayer {
     
     public static func logJSON(router: Router, completion: @escaping (Result<String, Error>) -> ()) {
@@ -32,7 +30,7 @@ public struct ServiceLayer {
         
         // Add Headers
         ServiceLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
-
+        
         // 4.
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
@@ -81,9 +79,21 @@ public struct ServiceLayer {
         // Add Headers
         ServiceLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
         print("URL: \(url)")
-
+        
         // 4.
-        let session = URLSession(configuration: .default)
+        let session: URLSession
+        if Environment.shared.environmentName == .aut {
+            // todo create mechanism to make .default respect whatever we log in with
+            let configuration = URLProtocolMock.createMockURLConfiguration(path: url.absoluteString,
+                                                           mockDataFileName: router.mockFileName,
+                                                           mockUser: .default) // todo derive mockUser from some singleton for session
+            // UAT Build
+            session = URLSession(configuration: configuration)
+        } else {
+            // Regular
+            session = URLSession(configuration: .default)
+        }
+        
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             
             print("URL: \(url)")
@@ -92,21 +102,21 @@ public struct ServiceLayer {
             guard error == nil else {
                 completion(.failure(error!))
                 print(error!.localizedDescription)
-                print("Error: \(error)")
                 return
             }
-            
-            guard response != nil else {
+                        
+            // should only check if not AUT build
+            guard response != nil || Environment.shared.environmentName == .aut else {
                 return
             }
             
             guard let data = data else {
                 return
             }
-
+            
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-
+            
             do {
                 // 6.
                 let responseObject = try jsonDecoder.decode(T.self, from: data)
@@ -132,12 +142,12 @@ public struct ServiceLayer {
 }
 
 private extension DateFormatter {
-  static let iso8601Full: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//    formatter.calendar = Calendar(identifier: .iso8601)
-//    formatter.timeZone = TimeZone(secondsFromGMT: 0)
-//    formatter.locale = Locale(identifier: "en_US_POSIX")
-    return formatter
-  }()
+    static let iso8601Full: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        //    formatter.calendar = Calendar(identifier: .iso8601)
+        //    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        //    formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
 }

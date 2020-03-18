@@ -786,6 +786,12 @@
 		54EDD2DF1ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
 		54EDD2E01ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
 		54EDD2E11ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
+		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
+		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
+		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
+		6766F96A242259D0007C9CB9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* minVersionMock.json */; };
+		6766F96B242259D0007C9CB9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* minVersionMock.json */; };
+		6766F96C242259D0007C9CB9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* minVersionMock.json */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -3219,6 +3225,8 @@
 		638B790A0A077453811FDEC9 /* Pods-ComEd-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		64F75344AD0FA8FE270323F3 /* Pods-BGEApp-BGE.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.automation.xcconfig"; sourceTree = "<group>"; };
 		668FCA1931C2BA712403005F /* Pods-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
+		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
+		6766F969242259D0007C9CB9 /* minVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minVersionMock.json; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		6A4FD80B62F03A415062F85E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -5139,6 +5147,7 @@
 				35D02D88240FFBC000D8894F /* Router.swift */,
 				35D02D8A240FFBC100D8894F /* ServiceLayer.swift */,
 				35D02D89240FFBC100D8894F /* ServiceTest.swift */,
+				6766F96D2422725D007C9CB9 /* Mock */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -5319,6 +5328,23 @@
 				355B10452369E54E0038EAD3 /* KeychainKeys.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		6766F9682422582F007C9CB9 /* Mock JSONS */ = {
+			isa = PBXGroup;
+			children = (
+				6766F969242259D0007C9CB9 /* minVersionMock.json */,
+			);
+			path = "Mock JSONS";
+			sourceTree = "<group>";
+		};
+		6766F96D2422725D007C9CB9 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */,
+				6766F9682422582F007C9CB9 /* Mock JSONS */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		8246BF561FD9CA6500FF440D /* BGE */ = {
@@ -6936,6 +6962,7 @@
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
+				6766F96A242259D0007C9CB9 /* minVersionMock.json in Resources */,
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
@@ -7089,6 +7116,7 @@
 				9C0EA5B7237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				9C0EA5C3237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				9C0A2C3B23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
+				6766F96C242259D0007C9CB9 /* minVersionMock.json in Resources */,
 				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -7256,6 +7284,7 @@
 				9C0EA5B6237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				9C0EA5C2237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				9C0A2C3A23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
+				6766F96B242259D0007C9CB9 /* minVersionMock.json in Resources */,
 				35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -8730,6 +8759,7 @@
 				E80D2E171E721668002626C9 /* MaskedString.swift in Sources */,
 				E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				35A6C6DE211CC0CA00C2A58F /* UpdatesViewController.swift in Sources */,
+				6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */,
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				B068DB5E20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				B0728E40215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
@@ -9153,6 +9183,7 @@
 				825171B71F1D25130020A6CA /* HomeViewModel.swift in Sources */,
 				E8FF085C1F7EDC250030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82EAB3461F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
+				6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */,
 				CEA215241F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				B0336FEC21762FB400751430 /* EventStore.swift in Sources */,
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
@@ -9576,6 +9607,7 @@
 				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7012121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				B0728E41215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
+				6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */,
 				826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				35ACCB4820EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
