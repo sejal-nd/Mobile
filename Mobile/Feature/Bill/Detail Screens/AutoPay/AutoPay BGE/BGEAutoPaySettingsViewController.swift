@@ -195,7 +195,7 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
         amountNotToExceedTextField.isHidden = isHidden
         amountNotToExceedDetailsLabel.isHidden = isHidden
         
-        viewModel.amountToPay.value = isHidden ? .amountDue : .upToAmount
+        viewModel.amountToPay.accept(isHidden ? .amountDue : .upToAmount)
         amountNotToExceedSpacerView1.isHidden = isHidden
         
         amountNotToExceedSpacerView1.isHidden = isHidden
@@ -209,7 +209,7 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
         onDueDateSpacerView1.isHidden = isHidden
         beforeDateSpacerView1.isHidden = !isHidden
         
-        viewModel.whenToPay.value = isHidden ? .beforeDueDate : .onDueDate
+        viewModel.whenToPay.accept(isHidden ? .beforeDueDate : .onDueDate)
     }
     
     func buildStackViews() {
@@ -417,7 +417,7 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
                                             DispatchQueue.main.async { [weak self] in
                                                 guard let self = self else { return }
                                                 let day = index + 1
-                                                self.viewModel.numberOfDaysBeforeDueDate.value = day
+                                                self.viewModel.numberOfDaysBeforeDueDate.accept(day)
                                                 self.modifyBeforeDueDateDetailsLabel()
                                             }
                 },

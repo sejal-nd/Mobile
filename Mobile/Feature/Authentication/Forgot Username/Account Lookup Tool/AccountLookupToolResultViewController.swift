@@ -137,6 +137,6 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedAccount.value = viewModel.accountLookupResults[indexPath.row]
+        viewModel.selectedAccount.accept(viewModel.accountLookupResults[indexPath.row])
     }
 }

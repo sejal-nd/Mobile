@@ -23,14 +23,14 @@ class HomeUsageCardViewModel {
     let fetchTracker: ActivityTracker
     let billComparisonTracker = ActivityTracker()
     
-    let electricGasSelectedSegmentIndex = Variable<Int>(0)
+    let electricGasSelectedSegmentIndex = BehaviorRelay<Int>(value: 0)
     
     /*
      * 0 = No Data
      * 1 = Previous
      * 2 = Current
      */
-    let barGraphSelectionStates = Variable([Variable(false), Variable(false), Variable(true)])
+    let barGraphSelectionStates = BehaviorRelay(value: [BehaviorRelay(value: false), BehaviorRelay(value: false), BehaviorRelay(value: true)])
     
     required init(fetchData: Observable<Void>,
                   maintenanceModeEvents: Observable<Event<Maintenance>>,
@@ -375,9 +375,9 @@ class HomeUsageCardViewModel {
     func setBarSelected(tag: Int) {
         for i in stride(from: 0, to: barGraphSelectionStates.value.count, by: 1) {
             let boolVar = barGraphSelectionStates.value[i]
-            boolVar.value = i == tag
+            boolVar.accept(i == tag)
         }
-        barGraphSelectionStates.value = barGraphSelectionStates.value // Trigger Variable onNext
+        barGraphSelectionStates.accept(barGraphSelectionStates.value) // Trigger Variable onNext
     }
     
     // MARK: Smart Energy Rewards

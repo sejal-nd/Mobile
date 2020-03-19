@@ -25,7 +25,7 @@ class ChangePasswordTests: XCTestCase {
     }
 
     func testTooFewCharacterCount() {
-        viewModel.newPassword.value = "abc"
+        viewModel.newPassword.accept("abc")
         
         viewModel.characterCountValid.asObservable().single().subscribe(onNext: { valid in
             if valid {
@@ -35,7 +35,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testTooManyCharacterCount() {
-        viewModel.newPassword.value = "abcdefghijklmnopqrstuvwxzy"
+        viewModel.newPassword.accept("abcdefghijklmnopqrstuvwxzy")
         
         viewModel.characterCountValid.asObservable().single().subscribe(onNext: { valid in
             if valid {
@@ -45,7 +45,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testWhitespaceCharacterCount() {
-        viewModel.newPassword.value = "abc       d"
+        viewModel.newPassword.accept("abc       d")
         
         viewModel.characterCountValid.asObservable().single().subscribe(onNext: { valid in
             if valid {
@@ -55,7 +55,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testValidCharacterCount() {
-        viewModel.newPassword.value = "abcdefgh"
+        viewModel.newPassword.accept("abcdefgh")
         
         viewModel.characterCountValid.asObservable().single().subscribe(onNext: { valid in
             if !valid {
@@ -65,7 +65,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testMissingUppercaseLetter() {
-        viewModel.newPassword.value = "abcdefgh"
+        viewModel.newPassword.accept("abcdefgh")
         
         viewModel.containsUppercaseLetter.asObservable().single().subscribe(onNext: { contains in
             if contains {
@@ -75,7 +75,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testContainsUppercaseLetter() {
-        viewModel.newPassword.value = "Abcdefgh"
+        viewModel.newPassword.accept("Abcdefgh")
         
         viewModel.containsUppercaseLetter.asObservable().single().subscribe(onNext: { contains in
             if !contains {
@@ -85,7 +85,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testMissingLowercaseLetter() {
-        viewModel.newPassword.value = "ABCDEFGH"
+        viewModel.newPassword.accept("ABCDEFGH")
         
         viewModel.containsLowercaseLetter.asObservable().single().subscribe(onNext: { contains in
             if contains {
@@ -95,7 +95,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testContainsLowercaseLetter() {
-        viewModel.newPassword.value = "aBCDEFGH"
+        viewModel.newPassword.accept("aBCDEFGH")
         
         viewModel.containsLowercaseLetter.asObservable().single().subscribe(onNext: { contains in
             if !contains {
@@ -105,7 +105,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testMissingNumber() {
-        viewModel.newPassword.value = "abcdefgh"
+        viewModel.newPassword.accept("abcdefgh")
         
         viewModel.containsNumber.asObservable().single().subscribe(onNext: { contains in
             if contains {
@@ -115,7 +115,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testContainsNumber() {
-        viewModel.newPassword.value = "abcdefg1"
+        viewModel.newPassword.accept("abcdefg1")
         
         viewModel.containsNumber.asObservable().single().subscribe(onNext: { contains in
             if !contains {
@@ -126,7 +126,7 @@ class ChangePasswordTests: XCTestCase {
     
     func testMissingSpecialCharacter() {
         // Test no special character
-        viewModel.newPassword.value = "abcd0123"
+        viewModel.newPassword.accept("abcd0123")
         viewModel.containsSpecialCharacter.asObservable().single().subscribe(onNext: { contains in
             if contains {
                 XCTFail("Password \"abcd0123\" should not pass the special character requirement")
@@ -134,7 +134,7 @@ class ChangePasswordTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         // Ensure space doesn't count
-        viewModel.newPassword.value = "abcd 1234"
+        viewModel.newPassword.accept("abcd 1234")
         viewModel.containsSpecialCharacter.asObservable().single().subscribe(onNext: { contains in
             if contains {
                 XCTFail("Password \"abcd 1234\" should not pass the special character requirement")
@@ -143,7 +143,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testContainsSpecialCharacter() {
-        viewModel.newPassword.value = "abcd1234."
+        viewModel.newPassword.accept("abcd1234.")
         
         viewModel.containsSpecialCharacter.asObservable().single().subscribe(onNext: { contains in
             if !contains {
@@ -154,7 +154,7 @@ class ChangePasswordTests: XCTestCase {
     
     func testPasswordMatchesUsername() {
         // Test case match
-        viewModel.newPassword.value = "multprem02"
+        viewModel.newPassword.accept("multprem02")
         userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.passwordMatchesUsername.asObservable().single().subscribe(onNext: { matches in
             if !matches {
@@ -163,7 +163,7 @@ class ChangePasswordTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         // Test case mismatch
-        viewModel.newPassword.value = "mUltpRem02"
+        viewModel.newPassword.accept("mUltpRem02")
         userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.passwordMatchesUsername.asObservable().single().subscribe(onNext: { matches in
             if !matches {
@@ -173,7 +173,7 @@ class ChangePasswordTests: XCTestCase {
     }
     
     func testPasswordDoesNotMatchUsername() {
-        viewModel.newPassword.value = "abcdefgh"
+        viewModel.newPassword.accept("abcdefgh")
         userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.passwordMatchesUsername.asObservable().single().subscribe(onNext: { matches in
             if matches {
@@ -184,7 +184,7 @@ class ChangePasswordTests: XCTestCase {
     
     func testEverythingValid() {
         // Meets requirements
-        viewModel.newPassword.value = "Abcdefg123"
+        viewModel.newPassword.accept("Abcdefg123")
         userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.everythingValid.asObservable().single().subscribe(onNext: { valid in
             if !valid {
@@ -193,7 +193,7 @@ class ChangePasswordTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         // Does not meet requirements
-        viewModel.newPassword.value = "abcdefg123"
+        viewModel.newPassword.accept("abcdefg123")
         userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.everythingValid.asObservable().single().subscribe(onNext: { valid in
             if valid {
@@ -202,7 +202,7 @@ class ChangePasswordTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         // Meets requirements but matches username
-        viewModel.newPassword.value = "Multprem02"
+        viewModel.newPassword.accept("Multprem02")
         userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.everythingValid.asObservable().single().subscribe(onNext: { valid in
             if valid {
@@ -214,8 +214,8 @@ class ChangePasswordTests: XCTestCase {
     // This also effectively tests currentPasswordHasText() and confirmPasswordMatches()
     func testDoneButtonEnabled() {
         // Blank current password -> Disabled
-        viewModel.newPassword.value = "Abcdefg123"
-        viewModel.confirmPassword.value = "Abcdefg123"
+        viewModel.newPassword.accept("Abcdefg123")
+        viewModel.confirmPassword.accept("Abcdefg123")
         userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.doneButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if enabled {
@@ -224,8 +224,8 @@ class ChangePasswordTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         // Confirm password does not match -> Disabled
-        viewModel.newPassword.value = "Abcdefg123"
-        viewModel.confirmPassword.value = "abcdefg123"
+        viewModel.newPassword.accept("Abcdefg123")
+        viewModel.confirmPassword.accept("abcdefg123")
         userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.doneButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if enabled {
@@ -233,9 +233,9 @@ class ChangePasswordTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.currentPassword.value = "Password2"
-        viewModel.newPassword.value = "Abcdefg123"
-        viewModel.confirmPassword.value = "Abcdefg123"
+        viewModel.currentPassword.accept("Password2")
+        viewModel.newPassword.accept("Abcdefg123")
+        viewModel.confirmPassword.accept("Abcdefg123")
         userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.doneButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if !enabled {
@@ -247,7 +247,7 @@ class ChangePasswordTests: XCTestCase {
     func testChangePasswordCurrentPasswordIncorrect() {
         let asyncExpectation = expectation(description: "testChangePasswordCurrentPasswordIncorrect")
         
-        viewModel.currentPassword.value = "invalid"
+        viewModel.currentPassword.accept("invalid")
         viewModel.changePassword(
             tempPasswordWorkflow: false,
             resetPasswordWorkflow: false,
@@ -269,7 +269,7 @@ class ChangePasswordTests: XCTestCase {
     func testChangePasswordSuccess() {
         let asyncExpectation = expectation(description: "testChangePasswordSuccess")
         
-        viewModel.currentPassword.value = "Password1"
+        viewModel.currentPassword.accept("Password1")
         viewModel.changePassword(
             tempPasswordWorkflow: false,
             resetPasswordWorkflow: false,

@@ -39,7 +39,7 @@ class HomeEditCardCell: UICollectionViewCell {
         addRemoveButton.setImage(isActive ? #imageLiteral(resourceName: "ic_remove"):#imageLiteral(resourceName: "ic_add"), for: .normal)
         addRemoveButton.isHidden = !card.isOptional
         addRemoveButton.rx.tap.asDriver()
-            .throttle(0.25)
+            .throttle(.milliseconds(250))
             .drive(onNext: addRemoveTapped)
             .disposed(by: disposeBag)
         

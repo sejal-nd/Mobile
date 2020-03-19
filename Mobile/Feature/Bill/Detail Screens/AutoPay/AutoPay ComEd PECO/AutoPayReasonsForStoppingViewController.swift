@@ -41,7 +41,7 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        viewModel.selectedUnenrollmentReason.value = nil
+        viewModel.selectedUnenrollmentReason.accept(nil)
     }
     
     
@@ -133,6 +133,6 @@ extension AutoPayReasonsForStoppingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedUnenrollmentReason.value = viewModel.reasonStrings[indexPath.row]
+        viewModel.selectedUnenrollmentReason.accept(viewModel.reasonStrings[indexPath.row])
     }
 }
