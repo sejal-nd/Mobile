@@ -21,7 +21,7 @@ class SplashViewModel{
     func checkAppVersion(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
     
         var isOutOfDate = false
-        AdminService.checkMinVersion { (result: Result<String, Error>) in
+        AnonymousService.checkMinVersion { (result: Result<String, Error>) in
             switch result {
             case .success(let minVersion):
                 isOutOfDate = self.checkIfOutOfDate(minVersion: minVersion)
@@ -40,14 +40,22 @@ class SplashViewModel{
     }
     
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        authService.getMaintenanceMode(postNotification: false)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { maintenance in
-                completion(maintenance.stormModeStatus)
-            }, onError: { err in
+        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+            switch result {
+            case .success(let maintenanceMode):
+                completion(maintenanceMode.storm)
+            case .failure(_):
                 completion(false)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
+//        authService.getMaintenanceMode(postNotification: false)
+//            .observeOn(MainScheduler.instance)
+//            .subscribe(onNext: { maintenance in
+//                completion(maintenance.stormModeStatus)
+//            }, onError: { err in
+//                completion(false)
+//            })
+//            .disposed(by: disposeBag)
     }
     
     var errorTitleText: String? {

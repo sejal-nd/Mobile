@@ -795,9 +795,15 @@
 		6766F96F242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
 		6766F970242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
 		6766F971242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
-		67E6E7B72428F67000C3AC90 /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AdminService.swift */; };
-		67E6E7B82428F67000C3AC90 /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AdminService.swift */; };
-		67E6E7B92428F67000C3AC90 /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AdminService.swift */; };
+		67E6E7B72428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
+		67E6E7B82428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
+		67E6E7B92428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
+		67E6E7BB242906A900C3AC90 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */; };
+		67E6E7BC242906A900C3AC90 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */; };
+		67E6E7BD242906A900C3AC90 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */; };
+		67E6E7BF242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
+		67E6E7C0242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
+		67E6E7C1242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -3234,7 +3240,9 @@
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* minVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
-		67E6E7B62428F67000C3AC90 /* AdminService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminService.swift; sourceTree = "<group>"; };
+		67E6E7B62428F67000C3AC90 /* AnonymousService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonymousService.swift; sourceTree = "<group>"; };
+		67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = maintenanceModeMock.json; sourceTree = "<group>"; };
+		67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMaintenanceMode.swift; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		6A4FD80B62F03A415062F85E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -5165,6 +5173,7 @@
 			isa = PBXGroup;
 			children = (
 				35D02DCA2416843500D8894F /* NewMinimumVersion.swift */,
+				67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */,
 				35D02DCE241684C200D8894F /* NewBillingHistory.swift */,
 				35D02DD22416858900D8894F /* NewBillingHistoryItem.swift */,
 				35D02DD62416863500D8894F /* NewPaymentMethodType.swift */,
@@ -5343,6 +5352,7 @@
 			isa = PBXGroup;
 			children = (
 				6766F969242259D0007C9CB9 /* minVersionMock.json */,
+				67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -5359,7 +5369,7 @@
 		67E6E7B52428F65E00C3AC90 /* New Domain Layer */ = {
 			isa = PBXGroup;
 			children = (
-				67E6E7B62428F67000C3AC90 /* AdminService.swift */,
+				67E6E7B62428F67000C3AC90 /* AnonymousService.swift */,
 			);
 			path = "New Domain Layer";
 			sourceTree = "<group>";
@@ -7083,6 +7093,7 @@
 				0EF60FD020EE7AE7006ABC18 /* Assets.xcassets in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
+				67E6E7BB242906A900C3AC90 /* maintenanceModeMock.json in Resources */,
 				B0DB274E215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
 				35ACCB4320EA590D0022907F /* HomeOutageCardView.xib in Resources */,
 				35A6C6FA2121D64100C2A58F /* ToggleTableViewCell.xib in Resources */,
@@ -7212,6 +7223,7 @@
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				9C2C601123C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
+				67E6E7BD242906A900C3AC90 /* maintenanceModeMock.json in Resources */,
 				359BDBAE22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				359BDB6822D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
@@ -7380,6 +7392,7 @@
 				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				9C2C601023C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				359BDBAD22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
+				67E6E7BC242906A900C3AC90 /* maintenanceModeMock.json in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				359BDB6722D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
@@ -8710,6 +8723,7 @@
 				35D02DD32416858900D8894F /* NewBillingHistoryItem.swift in Sources */,
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
+				67E6E7BF242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */,
 				B0E9EFFB21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
 				824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
@@ -9013,7 +9027,7 @@
 				2FEC69411F056EEB00C059DC /* Premise.swift in Sources */,
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				9C62445622C1624900F14DA0 /* SecondaryButton.swift in Sources */,
-				67E6E7B72428F67000C3AC90 /* AdminService.swift in Sources */,
+				67E6E7B72428F67000C3AC90 /* AnonymousService.swift in Sources */,
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
@@ -9136,6 +9150,7 @@
 				35D02DD52416858900D8894F /* NewBillingHistoryItem.swift in Sources */,
 				824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */,
+				67E6E7C1242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				82EAB33E1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
@@ -9439,7 +9454,7 @@
 				B04DDF5D21FA800C00594ACF /* Date+Now.swift in Sources */,
 				54C1DEFE1F02B8FC00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				35A6C6E2211CC16C00C2A58F /* UpdatesViewController.swift in Sources */,
-				67E6E7B92428F67000C3AC90 /* AdminService.swift in Sources */,
+				67E6E7B92428F67000C3AC90 /* AnonymousService.swift in Sources */,
 				82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				224EFF22216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				82AEF2E11F5F50F40057E7ED /* RxNotifications.swift in Sources */,
@@ -9562,6 +9577,7 @@
 				35D02DD42416858900D8894F /* NewBillingHistoryItem.swift in Sources */,
 				B0E9EFFC21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				824A96661FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
+				67E6E7C0242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82EAB33D1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
@@ -9865,7 +9881,7 @@
 				35A6C6E1211CC16C00C2A58F /* UpdatesViewController.swift in Sources */,
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				9C62445722C1624900F14DA0 /* SecondaryButton.swift in Sources */,
-				67E6E7B82428F67000C3AC90 /* AdminService.swift in Sources */,
+				67E6E7B82428F67000C3AC90 /* AnonymousService.swift in Sources */,
 				224EFF21216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				9C7774862368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */,

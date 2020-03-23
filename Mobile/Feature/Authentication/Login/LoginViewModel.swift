@@ -96,14 +96,14 @@ class LoginViewModel {
     }
 
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        authService.getMaintenanceMode(postNotification: false)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { maintenance in
-                completion(maintenance.stormModeStatus)
-            }, onError: { _ in
+        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+            switch result {
+            case .success(let maintenanceMode):
+                completion(maintenanceMode.storm)
+            case .failure(_):
                 completion(false)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
 
     func getStoredUsername() -> String? {
@@ -137,13 +137,14 @@ class LoginViewModel {
     }
 
     func checkForMaintenance(onCompletion: @escaping () -> Void) {
-        authService.getMaintenanceMode()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+            switch result {
+            case .success(_):
                 onCompletion()
-            }, onError: { _ in
+            case .failure(_):
                 onCompletion()
-            }).disposed(by: disposeBag)
+            }
+        }
     }
 
     func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {

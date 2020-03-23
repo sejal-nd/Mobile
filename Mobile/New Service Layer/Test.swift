@@ -12,9 +12,11 @@ class NetworkTest {
     static let shared = NetworkTest()
     
     private init() {
-        json()
+//        json()
+//
+//        minVersion()
         
-        minVersion()
+        maint()
     }
     
     private func json() {
@@ -35,6 +37,17 @@ class NetworkTest {
                 print("NetworkTest 1 SUCCESS: \(data) BREAK \(data.min)")
             case .failure(let error):
                 print("NetworkTest 1 FAIL: \(error)")
+            }
+        }
+    }
+    
+    private func maint() {
+        ServiceLayer.request(router: .fetchMaintenanceMode) { (result: Result<NewMaintenanceMode, Error>) in
+            switch result {
+            case .success(let data):
+                print("NetworkTest 2 SUCCESS: \(data) BREAK \(data.all)")
+            case .failure(let error):
+                print("NetworkTest 2 FAIL: \(error)")
             }
         }
     }

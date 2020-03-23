@@ -12,17 +12,17 @@ import RxCocoa
 class MaintenanceModeViewModel{
     let disposeBag = DisposeBag()
 
-    private var maintenance: Maintenance?
+    private var maintenance: NewMaintenanceMode?
     private var authService: AuthenticationService
     
-    init(authService: AuthenticationService, maintenance: Maintenance?){
+    init(authService: AuthenticationService, maintenance: NewMaintenanceMode?){
         self.authService = authService
         self.maintenance = maintenance
     }
     
     var headerLabelText: String {
         let fallbackText = String.localizedStringWithFormat("The %@ App is currently unavailable due to maintenance.", Environment.shared.opco.displayString)
-        return maintenance?.allMessage ?? fallbackText
+        return maintenance?.message ?? fallbackText
     }
     
     let labelBody: NSAttributedString = {
@@ -95,14 +95,23 @@ class MaintenanceModeViewModel{
     }()
     
     func doReload(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        authService.getMaintenanceMode(postNotification: false)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] maintenanceInfo in
-                self?.maintenance = maintenanceInfo
-                onSuccess(maintenanceInfo.allStatus)
-            }, onError: { error in
+        AnonymousService.maintenanceMode { [weak self] (result: Result<NewMaintenanceMode, Error>) in
+            switch result {
+            case .success(let maintenanceMode):
+                self?.maintenance = maintenanceMode
+            case .failure(let error):
                 _ = error as! ServiceError
-            }).disposed(by: disposeBag)
+            }
+        }
+//
+//        authService.getMaintenanceMode(postNotification: false)
+//            .observeOn(MainScheduler.instance)
+//            .subscribe(onNext: { [weak self] maintenanceInfo in
+//                self?.maintenance = maintenanceInfo
+//                onSuccess(maintenanceInfo.allStatus)
+//            }, onError: { error in
+//                _ = error as! ServiceError
+//            }).disposed(by: disposeBag)
     }
 
 }
