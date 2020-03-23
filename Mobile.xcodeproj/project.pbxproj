@@ -795,6 +795,9 @@
 		6766F96F242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
 		6766F970242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
 		6766F971242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
+		67E6E7B72428F67000C3AC90 /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AdminService.swift */; };
+		67E6E7B82428F67000C3AC90 /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AdminService.swift */; };
+		67E6E7B92428F67000C3AC90 /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AdminService.swift */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -3231,6 +3234,7 @@
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* minVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		67E6E7B62428F67000C3AC90 /* AdminService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminService.swift; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		6A4FD80B62F03A415062F85E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -5352,6 +5356,14 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		67E6E7B52428F65E00C3AC90 /* New Domain Layer */ = {
+			isa = PBXGroup;
+			children = (
+				67E6E7B62428F67000C3AC90 /* AdminService.swift */,
+			);
+			path = "New Domain Layer";
+			sourceTree = "<group>";
+		};
 		8246BF561FD9CA6500FF440D /* BGE */ = {
 			isa = PBXGroup;
 			children = (
@@ -5984,6 +5996,7 @@
 		B58B5AC31E4E28740051FD5F /* Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				67E6E7B52428F65E00C3AC90 /* New Domain Layer */,
 				35D02D80240FFB8700D8894F /* New Service Layer */,
 				B58B5AC41E4E28740051FD5F /* AppDelegate.swift */,
 				E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */,
@@ -9000,6 +9013,7 @@
 				2FEC69411F056EEB00C059DC /* Premise.swift in Sources */,
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				9C62445622C1624900F14DA0 /* SecondaryButton.swift in Sources */,
+				67E6E7B72428F67000C3AC90 /* AdminService.swift in Sources */,
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
@@ -9425,6 +9439,7 @@
 				B04DDF5D21FA800C00594ACF /* Date+Now.swift in Sources */,
 				54C1DEFE1F02B8FC00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				35A6C6E2211CC16C00C2A58F /* UpdatesViewController.swift in Sources */,
+				67E6E7B92428F67000C3AC90 /* AdminService.swift in Sources */,
 				82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				224EFF22216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				82AEF2E11F5F50F40057E7ED /* RxNotifications.swift in Sources */,
@@ -9850,6 +9865,7 @@
 				35A6C6E1211CC16C00C2A58F /* UpdatesViewController.swift in Sources */,
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				9C62445722C1624900F14DA0 /* SecondaryButton.swift in Sources */,
+				67E6E7B82428F67000C3AC90 /* AdminService.swift in Sources */,
 				224EFF21216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				9C7774862368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */,

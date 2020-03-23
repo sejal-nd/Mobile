@@ -21,15 +21,15 @@ class SplashViewModel{
     func checkAppVersion(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
     
         var isOutOfDate = false
-    
-        authService.getMinimumVersion()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { versionInfo in
-                isOutOfDate = self.checkIfOutOfDate(minVersion: versionInfo.iosObject.minVersion)
+        AdminService.checkMinVersion { (result: Result<String, Error>) in
+            switch result {
+            case .success(let minVersion):
+                isOutOfDate = self.checkIfOutOfDate(minVersion: minVersion)
                 onSuccess(isOutOfDate)
-            }, onError: { err in
-                onError(err.localizedDescription)
-            }).disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.localizedDescription)
+            }
+        }
     }
     
     func checkIfOutOfDate(minVersion:String) -> Bool {
