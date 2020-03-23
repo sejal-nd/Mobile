@@ -62,7 +62,7 @@ class SERWebViewController: UIViewController {
     
     private func htmlForWidget(with ssoData: SSOData) -> String {
         let url = Bundle.main.url(forResource: "PTRWidget", withExtension: "html")!
-        let src = "https://ei-bgec-stage.opower.com/ei/x/e/peak-time-rebate.js?utilityCustomerId=\(ssoData.utilityCustomerId)"
+        let src = String(format: "https://ei-bgec-stage.opower.com/ei/x/e/peak-time-rebate.js?utilityCustomerId=%@", ssoData.utilityCustomerId)
         return try! String(contentsOf: url)
             .replacingOccurrences(of: "[widgetJsSrc]", with: src)
     }
