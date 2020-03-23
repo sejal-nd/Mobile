@@ -49,6 +49,7 @@ class SERWebViewController: UIViewController {
                 .subscribe(onNext: { [weak self] ssoData in
                     if let html = self?.htmlForWidget(with: ssoData) {
                         self?.webView.loadHTMLString(html, baseURL: nil)
+                        self?.webView.isHidden = false
                     }
                     else {
                         self?.errorLabel.isHidden = false
