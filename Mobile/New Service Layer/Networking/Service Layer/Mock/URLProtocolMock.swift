@@ -41,6 +41,8 @@ class URLProtocolMock: URLProtocol {
 }
 
 extension URLProtocolMock {
+    
+    // Utility config builder.
     static func createMockURLConfiguration(path: String,
                                            mockDataFileName: String,
                                            mockUser: MockDataKey) -> URLSessionConfiguration {
