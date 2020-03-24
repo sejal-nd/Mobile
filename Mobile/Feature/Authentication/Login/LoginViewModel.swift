@@ -60,12 +60,45 @@ class LoginViewModel {
         }
 
         isLoggingIn = true
-        AuthenticatedService.login(username: username.value, password: password.value) { (result: Result<Void, Error>) in
+        AuthenticatedService.login(username: username.value, password: password.value) { [weak self] (result: Result<Void, Error>) in
             switch result {
             case .success(()):
-                break
+//                guard let self = self else { return }
+                
+                onSuccess(false, false)
+                
+//                self.isLoggingIn = false
+                                // todo temp password
+//                let tempPassword = profileStatus.tempPassword
+//                if tempPassword {
+//                    onSuccess(tempPassword, false)
+//                    self.authService.logout()
+//                } else {
+//                    if #available(iOS 12.0, *) { }
+//                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
+//                    else {
+//                        SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+//                    }
+
+//                    self.checkStormMode { isStormMode in
+//                        onSuccess(tempPassword, isStormMode)
+//                    }
+//                }
             case .failure(let error):
                 print("Error new fetch login: \(error)")
+                self?.isLoggingIn = false
+                
+                onError("temp1", "temp2")
+                
+//                let serviceError = error as! ServiceError
+//                if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
+//                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
+//                } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
+//                    onRegistrationNotComplete()
+//                } else {
+//                    onError(nil, error.localizedDescription)
+//                }
+//                GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
             }
         }
 

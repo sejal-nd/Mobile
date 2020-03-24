@@ -34,6 +34,10 @@ class UserSession {
     var token = ""
     
     
+    func enabledKeepMeSignedIn() {
+        // save token to keychain here
+    }
+    
     // may want to live somewhere else.
     
 //    var account: Account?
