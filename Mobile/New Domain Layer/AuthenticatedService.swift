@@ -47,12 +47,12 @@ struct AuthenticatedService {
         //                               }
         //        }
         
-        ServiceLayer.request(router: .fetchToken(httpBody: httpBody)) { (result: Result<NewSAMLToken, Error>) in
+        ServiceLayer.request(router: .fetchSAMLToken(httpBody: httpBody)) { (result: Result<NewSAMLToken, Error>) in
             switch result {
             case .success(let data):
                 guard let token = data.token else { return }
                 
-                ServiceLayer.request(router: .exchangeToken(token: token)) { (result: Result<NewJWTToken, Error>) in
+                ServiceLayer.request(router: .exchangeSAMLToken(token: token)) { (result: Result<NewJWTToken, Error>) in
                     switch result {
                     case .success(let newJWTToken):
                         
@@ -65,7 +65,7 @@ struct AuthenticatedService {
                         
                         print("NetworkTest 4 SUCCESS: \(newJWTToken.token) BREAK")
                         
-                        ServiceLayer.request(router: .fetchAccounts) { (result: Result<NewAccounts, Error>) in
+                        ServiceLayer.request(router: .accounts) { (result: Result<NewAccounts, Error>) in
                             switch result {
                             case .success(let data):
                                 
@@ -106,7 +106,7 @@ struct AuthenticatedService {
         // SET MOCK USER
         UserSession.shared.token = username
         
-        ServiceLayer.request(router: .fetchAccounts) { (result: Result<NewAccounts, Error>) in
+        ServiceLayer.request(router: .accounts) { (result: Result<NewAccounts, Error>) in
             switch result {
             case .success(let data):
                 

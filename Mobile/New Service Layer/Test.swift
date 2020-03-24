@@ -42,7 +42,7 @@ class NetworkTest {
     }
     
     private func maint() {
-        ServiceLayer.request(router: .fetchMaintenanceMode) { (result: Result<NewMaintenanceMode, Error>) in
+        ServiceLayer.request(router: .maintenanceMode) { (result: Result<NewMaintenanceMode, Error>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 2 SUCCESS: \(data) BREAK \(data.all)")

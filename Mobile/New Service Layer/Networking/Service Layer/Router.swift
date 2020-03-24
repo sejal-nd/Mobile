@@ -16,20 +16,20 @@ public typealias HTTPBody = Data?
 public enum Router {
     
     case minVersion
+    case maintenanceMode
+        
+    case fetchSAMLToken(httpBody: HTTPBody)
+    case exchangeSAMLToken(token: String)
     
-    case fetchAnonOutageStatus(httpBody: HTTPBody)
+    case accounts
+    case accountDetails(accountNumber: String, queryString: String)
     
-    case fetchToken(httpBody: HTTPBody)
-    case exchangeToken(token: String)
+    case anonOutageStatus(httpBody: HTTPBody)
+
     
-    case fetchAccounts
-    case fetchAccountDetails(accountNumber: String, queryString: String)
-    
-    case fetchMaintenanceMode
-    
-    case getSources
-    case getProductIds
-    case getProductInfo
+//    case getSources
+//    case getProductIds
+//    case getProductInfo
     
     public var scheme: String {
         return "https"
@@ -37,10 +37,10 @@ public enum Router {
     
     public var host: String {
         switch self {
-        case .fetchAnonOutageStatus, .fetchMaintenanceMode, .fetchAccountDetails, .fetchAccounts, .exchangeToken, .minVersion, .getSources, .getProductIds, .getProductInfo:
+        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion:
             return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
         //return Environment.shared.mcsConfig.baseUrl
-        case .fetchToken:
+        case .fetchSAMLToken:
             return "dev-apigateway.exeloncorp.com"//"stage-apigateway.exeloncorp.com" // TEMP
         }
     }
@@ -55,19 +55,19 @@ public enum Router {
         switch self {
             
         // Admin
-        case .getSources:
-            return .admin
-        case .getProductIds:
-            return .admin
-        case .getProductInfo:
-            return .admin
+//        case .getSources:
+//            return .admin
+//        case .getProductIds:
+//            return .admin
+//        case .getProductInfo:
+//            return .admin
             
         // Anon
         case .minVersion:
             return .anon
-        case .fetchMaintenanceMode:
+        case .maintenanceMode:
             return .anon
-        case .fetchAnonOutageStatus:
+        case .anonOutageStatus:
             return .anon
         default:
             return .auth
@@ -80,34 +80,34 @@ public enum Router {
     
     public var path: String {
         switch self {
-        case .fetchAnonOutageStatus:
+        case .anonOutageStatus:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/\(Environment.shared.opco.displayString)/outage/query"
-        case .fetchMaintenanceMode:
+        case .maintenanceMode:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/\(Environment.shared.opco.displayString)/config/maintenance"
-        case .fetchAccountDetails(let accountNumber, let queryString):
+        case .accountDetails(let accountNumber, let queryString):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)\(queryString)"
-        case .fetchAccounts:
+        case .accounts:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts"
         case .minVersion:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/\(Environment.shared.opco.displayString)/config/versions"
-        case .fetchToken:
+        case .fetchSAMLToken:
             return "/mcs/oauth2/tokens"
-        case .exchangeToken:
+        case .exchangeSAMLToken:
             return "/mobile/platform/sso/exchange-token"
-        case .getSources:
-            return "/\(apiAccess)/custom_collections.json"
-        case .getProductIds:
-            return "/\(apiAccess)/collects.json"
-        case .getProductInfo:
-            return "/\(apiAccess)/products.json"
+//        case .getSources:
+//            return "/\(apiAccess)/custom_collections.json"
+//        case .getProductIds:
+//            return "/\(apiAccess)/collects.json"
+//        case .getProductInfo:
+//            return "/\(apiAccess)/products.json"
         }
     }
     
     public var method: String {
         switch self {
-        case .fetchAnonOutageStatus, .fetchToken:
+        case .anonOutageStatus, .fetchSAMLToken:
             return "POST"
-        case .fetchMaintenanceMode, .fetchAccountDetails, .fetchAccounts, .exchangeToken, .minVersion, .getSources, .getProductIds, .getProductInfo:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion:
             return "GET"
         }
     }
@@ -137,26 +137,27 @@ public enum Router {
         //        }
     }
     
+    // todo: this may change to switch off of api access... I believe all vlaues below are derived from auth, anon, admin.  Hold off on changing this for now tho... need to dig deeper.
     public var httpHeaders: HTTPHeaders? {
         switch self {
-        case .fetchAnonOutageStatus(_):
+        case .anonOutageStatus(_):
             return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .fetchAccountDetails:
+        case .accountDetails:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
-        case .fetchAccounts:
+        case .accounts:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
-        case .minVersion, .fetchMaintenanceMode:
+        case .minVersion, .maintenanceMode:
             return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId
             ]
-        case .fetchToken:
+        case .fetchSAMLToken:
             return ["content-type": "application/x-www-form-urlencoded"]
-        case .exchangeToken(let samlToken):
+        case .exchangeSAMLToken(let samlToken):
             return ["encode": "xml",
                     "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(samlToken)"]
@@ -167,7 +168,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchToken(let httpBody), .fetchAnonOutageStatus(let httpBody):
+        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody):
             return httpBody
         default:
             return nil
@@ -178,13 +179,13 @@ public enum Router {
         switch self {
         case .minVersion:
             return "minVersionMock"
-        case .fetchMaintenanceMode:
+        case .maintenanceMode:
             return "maintenanceModeMock"
-        case .fetchToken:
+        case .fetchSAMLToken:
             return "SAMLTokenMock"
-        case .exchangeToken:
+        case .exchangeSAMLToken:
             return "JWTTokenMock"
-        case .fetchAccounts:
+        case .accounts:
             return "AccountsMock"
         default:
             return ""
