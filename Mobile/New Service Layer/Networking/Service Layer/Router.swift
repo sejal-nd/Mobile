@@ -24,24 +24,24 @@ public enum Router {
     
     case fetchAccounts
     case fetchAccountDetails(accountNumber: String, queryString: String)
-
+    
     case fetchMaintenanceMode
     
     case getSources
     case getProductIds
     case getProductInfo
-
+    
     public var scheme: String {
         return "https"
     }
-
+    
     public var host: String {
         switch self {
         case .fetchAnonOutageStatus, .fetchMaintenanceMode, .fetchAccountDetails, .fetchAccounts, .exchangeToken, .minVersion, .getSources, .getProductIds, .getProductInfo:
-        return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
+            return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
         //return Environment.shared.mcsConfig.baseUrl
         case .fetchToken:
-            return "stage-apigateway.exeloncorp.com" // TEMP
+            return "dev-apigateway.exeloncorp.com"//"stage-apigateway.exeloncorp.com" // TEMP
         }
     }
     
@@ -115,26 +115,26 @@ public enum Router {
     public var token: String {
         return UserSession.shared.token
     }
-
+    
     // PLACE HOLDER, currently NOT BEING USED
     public var parameters: [URLQueryItem] {
         return []
-//        let accessToken = "c32313df0d0ef512ca64d5b336a0d7c6"
-//        switch self {
-//        case .getSources:
-//            return [URLQueryItem(name: "page", value: "1"),
-//                URLQueryItem(name: "access_token", value: accessToken)]
-//        case .getProductIds:
-//            return [URLQueryItem(name: "page", value: "1"),
-//                URLQueryItem(name: "collection_id", value: "68424466488"),
-//                URLQueryItem(name: "access_token", value: accessToken)]
-//        case .getProductInfo:
-//            return [URLQueryItem(name: "ids", value: "2759162243,2759143811"),
-//                URLQueryItem(name: "page", value: "1"),
-//                URLQueryItem(name: "access_token", value: accessToken)]
-//        default:
-//            return []
-//        }
+        //        let accessToken = "c32313df0d0ef512ca64d5b336a0d7c6"
+        //        switch self {
+        //        case .getSources:
+        //            return [URLQueryItem(name: "page", value: "1"),
+        //                URLQueryItem(name: "access_token", value: accessToken)]
+        //        case .getProductIds:
+        //            return [URLQueryItem(name: "page", value: "1"),
+        //                URLQueryItem(name: "collection_id", value: "68424466488"),
+        //                URLQueryItem(name: "access_token", value: accessToken)]
+        //        case .getProductInfo:
+        //            return [URLQueryItem(name: "ids", value: "2759162243,2759143811"),
+        //                URLQueryItem(name: "page", value: "1"),
+        //                URLQueryItem(name: "access_token", value: accessToken)]
+        //        default:
+        //            return []
+        //        }
     }
     
     public var httpHeaders: HTTPHeaders? {
@@ -143,7 +143,7 @@ public enum Router {
             return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
-        ]
+            ]
         case .fetchAccountDetails:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
@@ -153,7 +153,7 @@ public enum Router {
         case .minVersion, .fetchMaintenanceMode:
             return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId
-        ]
+            ]
         case .fetchToken:
             return ["content-type": "application/x-www-form-urlencoded"]
         case .exchangeToken(let samlToken):
@@ -178,6 +178,14 @@ public enum Router {
         switch self {
         case .minVersion:
             return "minVersionMock"
+        case .fetchMaintenanceMode:
+            return "maintenanceModeMock"
+        case .fetchToken:
+            return "SAMLTokenMock"
+        case .exchangeToken:
+            return "JWTTokenMock"
+        case .fetchAccounts:
+            return "AccountsMock"
         default:
             return ""
         }

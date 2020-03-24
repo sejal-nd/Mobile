@@ -60,39 +60,49 @@ class LoginViewModel {
         }
 
         isLoggingIn = true
-        authService.login(username: username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] profileStatus in
-                guard let self = self else { return }
-                self.isLoggingIn = false
-                let tempPassword = profileStatus.tempPassword
-                if tempPassword {
-                    onSuccess(tempPassword, false)
-                    self.authService.logout()
-                } else {
-                    if #available(iOS 12.0, *) { }
-                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
-                    else {
-                        SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
-                    }
+        AuthenticatedService.login(username: username.value, password: password.value) { (result: Result<Void, Error>) in
+            switch result {
+            case .success(()):
+                break
+            case .failure(let error):
+                print("Error new fetch login: \(error)")
+            }
+        }
 
-                    self.checkStormMode { isStormMode in
-                        onSuccess(tempPassword, isStormMode)
-                    }
-                }
-            }, onError: { [weak self] error in
-                self?.isLoggingIn = false
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
-                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
-                    onRegistrationNotComplete()
-                } else {
-                    onError(nil, error.localizedDescription)
-                }
-                GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
-            })
-            .disposed(by: disposeBag)
+
+//        authService.login(username: username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
+//            .observeOn(MainScheduler.instance)
+//            .subscribe(onNext: { [weak self] profileStatus in
+//                guard let self = self else { return }
+//                self.isLoggingIn = false
+//                let tempPassword = profileStatus.tempPassword
+//                if tempPassword {
+//                    onSuccess(tempPassword, false)
+//                    self.authService.logout()
+//                } else {
+//                    if #available(iOS 12.0, *) { }
+//                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
+//                    else {
+//                        SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+//                    }
+//
+//                    self.checkStormMode { isStormMode in
+//                        onSuccess(tempPassword, isStormMode)
+//                    }
+//                }
+//            }, onError: { [weak self] error in
+//                self?.isLoggingIn = false
+//                let serviceError = error as! ServiceError
+//                if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
+//                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
+//                } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
+//                    onRegistrationNotComplete()
+//                } else {
+//                    onError(nil, error.localizedDescription)
+//                }
+//                GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
+//            })
+//            .disposed(by: disposeBag)
     }
 
     func checkStormMode(completion: @escaping (Bool) -> ()) {

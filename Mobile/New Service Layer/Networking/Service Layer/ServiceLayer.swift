@@ -59,9 +59,13 @@ public struct ServiceLayer {
     
     // 1.
     public static func request<T: Decodable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
+        print("Test: \(T.self)...\(NewSAMLToken.self)   \(T.self == NewSAMLToken.self)...\(router.token.isEmpty)")
         
-        if router.apiAccess == .auth && router.token.isEmpty {
+        print("Logic test: \(router.apiAccess == .auth && router.token.isEmpty && T.self != NewSAMLToken.self && T.self != NewJWTToken.self)")
+        
+        if router.apiAccess == .auth && router.token.isEmpty && T.self != NewSAMLToken.self && T.self != NewJWTToken.self { // || T.self == NewJWTToken.self
             // THROW ERROR LOG USER OUT, NO TOKEN FOR AUTH REQUEST.
+            print("REQUEST BLOCKED ")
             return
         }
         
@@ -89,10 +93,14 @@ public struct ServiceLayer {
         // 4.
         let session: URLSession
         if Environment.shared.environmentName == .aut {
-            // todo create mechanism to make .default respect whatever we log in with
+            print("MOCK SESSION REQ")
+            
+            let username = UserSession.shared.token
+            let mockUser = MockDataKey(rawValue: username) ?? .default
+            
             let configuration = URLProtocolMock.createMockURLConfiguration(path: url.absoluteString,
                                                            mockDataFileName: router.mockFileName,
-                                                           mockUser: .default) // todo derive mockUser from some singleton for session
+                                                           mockUser: mockUser)
             // UAT Build
             session = URLSession(configuration: configuration)
         } else {
