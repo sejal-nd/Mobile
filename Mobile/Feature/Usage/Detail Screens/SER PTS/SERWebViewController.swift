@@ -47,18 +47,28 @@ class SERWebViewController: UIViewController {
             accountService.fetchSSOData(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNum)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] ssoData in
-                    if let html = self?.htmlForWidget(with: ssoData) {
-                        self?.webView.loadHTMLString(html, baseURL: nil)
-                        self?.webView.isHidden = false
+                    
+                    guard let self = self else {
+                        return
                     }
-                    else {
-                        self?.errorLabel.isHidden = false
-                    }
+                    
+                    let js = "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(self.scriptUrlForWidget(with: ssoData))'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL.absoluteString)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
+                    self.webView.evaluateJavaScript(js, completionHandler: { (resp, err) in
+                        if err != nil {
+                            self.errorLabel.isHidden = false
+                        } else {
+                            self.webView.isHidden = false
+                        }
+                    })
                 }, onError: { [weak self] err in
                     self?.loadingIndicator.isHidden = true
                     self?.errorLabel.isHidden = false
                 }).disposed(by: disposeBag)
         }
+    }
+    
+    private func scriptUrlForWidget(with ssoData: SSOData) -> String {
+        return String(format: "https://ei-bgec-stage.opower.com/ei/x/e/peak-time-rebate?utilityCustomerId=%@", ssoData.utilityCustomerId)
     }
     
     private func htmlForWidget(with ssoData: SSOData) -> String {
