@@ -317,9 +317,9 @@ class AlertPreferencesViewModel {
     private func saveAlertPreferences() -> Observable<Void> {
         let alertPreferences = AlertPreferences(usage: highUsage.value,
                                                 alertThreshold: Int(billThreshold.value ?? ""),
-                                                peakTimeSavings: peakTimeSavings.value,
-                                                smartEnergyRewards: smartEnergyRewards.value,
-                                                energySavingsDayResults: energySavingsDayResults.value,
+                                                peakTimeSavings: isPTS ? peakTimeSavings.value : nil,
+                                                smartEnergyRewards: isPTR ? smartEnergyRewards.value : nil,
+                                                energySavingsDayResults: isPTR ? energySavingsDayResults.value : nil,
                                                 outage: outage.value,
                                                 scheduledMaint: scheduledMaint.value,
                                                 severeWeather: severeWeather.value,
@@ -355,6 +355,24 @@ class AlertPreferencesViewModel {
             return NSLocalizedString("1 Day Before", comment: "")
         }
         return String(format: NSLocalizedString("%d Days Before", comment: ""), $0)
+    }
+    
+    var isPTS: Bool {
+        switch Environment.shared.opco {
+        case .bge, .peco:
+            return false
+        case .comEd:
+            return self.accountDetail.isPTSAccount
+        }
+    }
+    
+    var isPTR: Bool {
+        switch Environment.shared.opco {
+        case .bge:
+            return self.accountDetail.isSERAccount
+        case .comEd, .peco:
+            return false
+        }
     }
     
     var showAccountInfoBar: Bool {

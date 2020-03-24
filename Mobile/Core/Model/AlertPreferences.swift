@@ -11,9 +11,9 @@ import Mapper
 struct AlertPreferences {
     var usage = false
     var alertThreshold: Int?
-    var peakTimeSavings = false
-    var smartEnergyRewards = false
-    var energySavingsDayResults = false
+    var peakTimeSavings: Bool? = nil
+    var smartEnergyRewards: Bool? = nil
+    var energySavingsDayResults: Bool? = nil
     var outage = false
     var scheduledMaint = false // BGE only
     var severeWeather = false
@@ -64,9 +64,9 @@ struct AlertPreferences {
     // To create programatically, not from JSON
     init(usage: Bool,
          alertThreshold: Int? = nil,
-         peakTimeSavings: Bool,
-         smartEnergyRewards: Bool,
-         energySavingsDayResults: Bool,
+         peakTimeSavings: Bool? = nil,
+         smartEnergyRewards: Bool? = nil,
+         energySavingsDayResults: Bool? = nil,
          outage: Bool,
          scheduledMaint: Bool,
          severeWeather: Bool,
@@ -108,11 +108,8 @@ struct AlertPreferences {
             highUsageProgram["alertThreshold"] = billThreshold
         }
         
-        let array = [
+        var array = [
             highUsageProgram,
-            ["programName": "Peak Time Savings", "type": "push", "isActive": peakTimeSavings],
-            ["programName": "Smart Energy Rewards", "type": "push", "isActive": smartEnergyRewards],
-            ["programName": "Energy Savings Day Results", "type": "push", "isActive": energySavingsDayResults],
             ["programName": "Outage Notifications", "type": "push", "isActive": outage],
             ["programName": "Planned Outage", "type": "push", "isActive": scheduledMaint],
             ["programName": "Severe Weather", "type": "push", "isActive": severeWeather],
@@ -124,6 +121,19 @@ struct AlertPreferences {
             ["programName": "Customer Appointments", "type": "push", "isActive": appointmentTracking],
             ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo]
         ]
+        
+        if let peakTimeSavings = peakTimeSavings {
+            array.append(["programName": "Peak Time Savings", "type": "push", "isActive": peakTimeSavings])
+        }
+        
+        if let smartEnergyRewards = smartEnergyRewards {
+            array.append(["programName": "Smart Energy Rewards", "type": "push", "isActive": smartEnergyRewards])
+        }
+        
+        if let energySavingsDayResults = energySavingsDayResults {
+            array.append(["programName": "Energy Savings Day Results", "type": "push", "isActive": energySavingsDayResults])
+        }
+        
         return array
     }
     
