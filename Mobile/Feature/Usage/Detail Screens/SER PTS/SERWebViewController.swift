@@ -19,14 +19,14 @@ class SERWebViewController: UIViewController {
     
     let accountService = ServiceFactory.createAccountService()
     
-    var accountDetail: AccountDetail! // Passed from SERPTSViewController
+    var accountDetail: AccountDetail!
+    
+    var viewModel: SERWebViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-//        GoogleAnalytics.log(event: .viewUsageOfferComplete,
-//                             dimensions: [.residentialAMI: residentialAMIString])
+        viewModel = SERWebViewModel(accountService: accountService, accountDetail: accountDetail)
         
         title = NSLocalizedString("Smart Energy Rewards", comment: "")
         
@@ -43,39 +43,28 @@ class SERWebViewController: UIViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
-        if let premiseNum = accountDetail.premiseNumber {
-            accountService.fetchSSOData(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNum)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] ssoData in
-                    
-                    guard let self = self else {
-                        return
+        viewModel.fetchSSOData()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] ssoData in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                let js = self.viewModel.getWidgetJs(ssoData: ssoData)
+                
+                self.webView.evaluateJavaScript(js, completionHandler: { (resp, err) in
+                    if err != nil {
+                        self.errorLabel.isHidden = false
+                    } else {
+                        self.webView.isHidden = false
                     }
-                    
-                    let js = "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(self.scriptUrlForWidget(with: ssoData))'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL.absoluteString)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
-                    self.webView.evaluateJavaScript(js, completionHandler: { (resp, err) in
-                        if err != nil {
-                            self.errorLabel.isHidden = false
-                        } else {
-                            self.webView.isHidden = false
-                        }
-                    })
+                })
                 }, onError: { [weak self] err in
-                    self?.loadingIndicator.isHidden = true
                     self?.errorLabel.isHidden = false
-                }).disposed(by: disposeBag)
-        }
-    }
-    
-    private func scriptUrlForWidget(with ssoData: SSOData) -> String {
-        return String(format: "https://ei-bgec-stage.opower.com/ei/x/e/peak-time-rebate?utilityCustomerId=%@", ssoData.utilityCustomerId)
-    }
-    
-    private func htmlForWidget(with ssoData: SSOData) -> String {
-        let url = Bundle.main.url(forResource: "PTRWidget", withExtension: "html")!
-        let src = String(format: "https://ei-bgec-stage.opower.com/ei/x/e/peak-time-rebate.js?utilityCustomerId=%@", ssoData.utilityCustomerId)
-        return try! String(contentsOf: url)
-            .replacingOccurrences(of: "[widgetJsSrc]", with: src)
+                }, onCompleted: { [weak self] in
+                    self?.loadingIndicator.isHidden = true
+            }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
