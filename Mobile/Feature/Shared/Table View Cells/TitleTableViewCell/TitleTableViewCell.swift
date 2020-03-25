@@ -54,11 +54,10 @@ class TitleTableViewCell: UITableViewCell {
         disclosureImageView.isHidden = shouldHideDisclosure
         
         separatorView.isHidden = shouldHideSeparator
-        
-        accessibilityLabel = text
-        
+                
         contentView.accessibilityLabel = "\(text ?? ""). \(detailText ?? "")"
         accessibilityLabel = text
+        accessibilityTraits.insert(.button)
     }
     
 }

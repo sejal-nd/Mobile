@@ -10,11 +10,10 @@ import RxSwift
 import RxCocoa
 
 class AlertsViewModel {
-    let currentAlerts = Variable([PushNotification]())
+    let currentAlerts = BehaviorRelay(value: [PushNotification]())
 
     func fetchAlertsFromDisk() {
-        currentAlerts.value = AlertsStore.shared
-            .getAlerts(forAccountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        currentAlerts.accept(AlertsStore.shared.getAlerts(forAccountNumber: AccountsStore.shared.currentAccount.accountNumber))
     }
 
     private(set) lazy var shouldShowAlertsEmptyState: Driver<Bool> = currentAlerts.asDriver()

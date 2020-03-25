@@ -420,8 +420,8 @@ class BGEAutoPayViewController: UIViewController {
 extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
     func miniWalletSheetViewController(_ miniWalletSheetViewController: MiniWalletSheetViewController, didSelect walletItem: WalletItem) {
         guard walletItem != viewModel.selectedWalletItem.value else { return }
-        viewModel.userDidChangeBankAccount.value = true
-        viewModel.selectedWalletItem.value = walletItem
+        viewModel.userDidChangeBankAccount.accept(true)
+        viewModel.selectedWalletItem.accept(walletItem)
         
         showUpdateButton()
         
@@ -439,8 +439,8 @@ extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
 
 extension BGEAutoPayViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
-        viewModel.userDidChangeBankAccount.value = true
-        viewModel.selectedWalletItem.value = walletItem
+        viewModel.userDidChangeBankAccount.accept(true)
+        viewModel.selectedWalletItem.accept(walletItem)
         
         showUpdateButton()
         
@@ -454,13 +454,13 @@ extension BGEAutoPayViewController: BGEAutoPaySettingsViewControllerDelegate {
             (viewModel.amountToPay.value == .upToAmount && viewModel.amountNotToExceed.value != amountNotToExceed) ||
             viewModel.whenToPay.value != whenToPay ||
             (viewModel.whenToPay.value == .beforeDueDate && viewModel.numberOfDaysBeforeDueDate.value != numberOfDaysBeforeDueDate) {
-            viewModel.userDidChangeSettings.value = true
+            viewModel.userDidChangeSettings.accept(true)
         }
         
-        viewModel.amountToPay.value = amountToPay
-        viewModel.amountNotToExceed.value = amountNotToExceed
-        viewModel.whenToPay.value = whenToPay
-        viewModel.numberOfDaysBeforeDueDate.value = numberOfDaysBeforeDueDate
+        viewModel.amountToPay.accept(amountToPay)
+        viewModel.amountNotToExceed.accept(amountNotToExceed)
+        viewModel.whenToPay.accept(whenToPay)
+        viewModel.numberOfDaysBeforeDueDate.accept(numberOfDaysBeforeDueDate)
         
         showUpdateButton()
     }

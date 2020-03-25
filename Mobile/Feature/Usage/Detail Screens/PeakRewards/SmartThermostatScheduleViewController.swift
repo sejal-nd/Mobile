@@ -56,13 +56,13 @@ class SmartThermostatScheduleViewController: UIViewController {
                                                        minTemp: minTemp,
                                                        maxTemp: maxTemp,
                                                        scale: TemperatureScaleStore.shared.scale,
-                                                       mode: Variable(.cool)).usingAutoLayout()
+                                                       mode: BehaviorRelay(value: .cool)).usingAutoLayout()
         
         let heatTempSliderView = TemperatureSliderView(currentTemperature: viewModel.heatTemp,
                                                        minTemp: minTemp,
                                                        maxTemp: maxTemp,
                                                        scale: TemperatureScaleStore.shared.scale,
-                                                       mode: Variable(.heat)).usingAutoLayout()
+                                                       mode: BehaviorRelay(value: .heat)).usingAutoLayout()
         
         let sliderStack = UIStackView(arrangedSubviews: [coolTempSliderView, heatTempSliderView]).usingAutoLayout()
         sliderStack.axis = .vertical

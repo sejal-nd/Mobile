@@ -189,7 +189,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet private weak var reportOutageButton: DisclosureCellButton!
     @IBOutlet private weak var outageMapButton: DisclosureCellButton! {
         didSet {
-            outageMapButton.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""))
+            outageMapButton.configure(image: #imageLiteral(resourceName: "ic_mapoutagewhite"), text: NSLocalizedString("View Outage Map", comment: ""))
         }
     }
     
@@ -561,7 +561,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             reportOutageButton.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString)
         } else {
             // Regular State
-            reportOutageButton.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), enabled: viewModel.reportOutageEnabled)
+            reportOutageButton.configure(image: #imageLiteral(resourceName:  "ic_reportoutagewhite"), text: NSLocalizedString("Report Outage", comment: ""), enabled: viewModel.reportOutageEnabled)
         }
         
         layoutBigButtonContent(outageJustReported: outageJustReported)
@@ -611,7 +611,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? ReportOutageViewController,
             let outageStatus = viewModel.currentOutageStatus {
             vc.viewModel.outageStatus = outageStatus
-            vc.viewModel.phoneNumber.value = outageStatus.contactHomeNumber ?? ""
+            vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.hasPressedStreetlightOutageMapButton = false
         }

@@ -55,7 +55,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                 self.navigationController?.view.isUserInteractionEnabled = !self.viewModel.isLoggingIn
 
                 if !self.viewModel.isDeviceBiometricCompatible() { // In case user tapped "Don't Allow" on Face ID Permissions dialog
-                    self.viewModel.biometricsEnabled.value = false
+                    self.viewModel.biometricsEnabled.accept(false)
                 }
             })
             .disposed(by: disposeBag)
@@ -101,6 +101,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         passwordTextField.textField.textContentType = .password
 
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
+        let a11yText = NSLocalizedString("%@, an Exelon Company", comment: "")
+        opcoLogo.accessibilityLabel = String(format: a11yText, Environment.shared.opco.displayString)
 
         // Two-way data binding for the username/password fields
         viewModel.username.asDriver().drive(usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
@@ -531,7 +533,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
 extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDelegate {
 
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
-        viewModel.username.value = username
+        viewModel.username.accept(username)
         GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
         forgotUsernamePopulated = true
     }

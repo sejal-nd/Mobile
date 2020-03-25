@@ -15,11 +15,11 @@ class LoginViewModel {
 
     let disposeBag = DisposeBag()
 
-    var username = Variable("")
-    var password = Variable("")
+    var username = BehaviorRelay(value: "")
+    var password = BehaviorRelay(value: "")
     var biometricsAutofilledPassword: String? = nil
-    var keepMeSignedIn = Variable(false)
-    var biometricsEnabled = Variable(false)
+    var keepMeSignedIn = BehaviorRelay(value: false)
+    var biometricsEnabled = BehaviorRelay(value: false)
     var isLoggingIn = false
 
     private var authService: AuthenticationService
@@ -32,9 +32,9 @@ class LoginViewModel {
         self.registrationService = registrationService
 
         if let username = biometricsService.getStoredUsername() {
-            self.username.value = username
+            self.username.accept(username)
         }
-        biometricsEnabled.value = biometricsService.isBiometricsEnabled()
+        biometricsEnabled.accept(biometricsService.isBiometricsEnabled())
     }
 
     func isDeviceBiometricCompatible() -> Bool {
@@ -163,9 +163,9 @@ class LoginViewModel {
 
     func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool, Bool) -> Void, onError: @escaping (String?, String) -> Void) {
         if let username = biometricsService.getStoredUsername(), let password = biometricsService.getStoredPassword() {
-            self.username.value = username
+            self.username.accept(username)
             biometricsAutofilledPassword = password
-            self.password.value = password
+            self.password.accept(password)
             onLoad()
             isLoggingIn = true
             performLogin(onSuccess: onSuccess, onRegistrationNotComplete: {}, onError: onError)
@@ -176,7 +176,7 @@ class LoginViewModel {
 
     func disableBiometrics() {
         biometricsService.disableBiometrics()
-        biometricsEnabled.value = false
+        biometricsEnabled.accept(false)
     }
 
     func checkForMaintenance(onCompletion: @escaping () -> Void) {

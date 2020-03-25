@@ -37,7 +37,7 @@ class ForgotUsernameViewModelTests: XCTestCase {
     func testValidateAccountFailure() {
         let asyncExpectation = expectation(description: "testValidateAccountFailure")
         
-        viewModel.identifierNumber.value = "0000"
+        viewModel.identifierNumber.accept("0000")
         viewModel.validateAccount(onSuccess: {
             XCTFail("Unexpected success response")
         }, onNeedAccountNumber: {
@@ -54,7 +54,7 @@ class ForgotUsernameViewModelTests: XCTestCase {
     func testSubmitSecurityQuestionSuccess() {
         let asyncExpectation = expectation(description: "testSubmitSecurityQuestionSuccess")
         
-        viewModel.securityQuestionAnswer.value = "exelon"
+        viewModel.securityQuestionAnswer.accept("exelon")
         viewModel.validateAccount(onSuccess: {
             self.viewModel.submitSecurityQuestionAnswer(onSuccess: { username in
                 asyncExpectation.fulfill()
@@ -78,7 +78,7 @@ class ForgotUsernameViewModelTests: XCTestCase {
     func testSubmitSecurityQuestionAnswerNoMatch() {
         let asyncExpectation = expectation(description: "testSubmitSecurityQuestionAnswerNoMatch")
         
-        viewModel.securityQuestionAnswer.value = "notexelon"
+        viewModel.securityQuestionAnswer.accept("notexelon")
         viewModel.validateAccount(onSuccess: {
             self.viewModel.submitSecurityQuestionAnswer(onSuccess: { username in
                 XCTFail("Unexpected success response")
@@ -99,21 +99,21 @@ class ForgotUsernameViewModelTests: XCTestCase {
     }
     
     func testPhoneNumberHas10Digits() {
-        viewModel.phoneNumber.value = "(410) 123-4206"
+        viewModel.phoneNumber.accept("(410) 123-4206")
         viewModel.phoneNumberHasTenDigits.asObservable().single().subscribe(onNext: { valid in
             if !valid {
                XCTFail("Phone number \"(410) 123-4206\" should pass the 10 digit check")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.phoneNumber.value = "1234567890"
+        viewModel.phoneNumber.accept("1234567890")
         viewModel.phoneNumberHasTenDigits.asObservable().single().subscribe(onNext: { valid in
             if !valid {
                 XCTFail("Phone number \"1234567890\" should pass the 10 digit check")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.phoneNumber.value = "(410)--2513"
+        viewModel.phoneNumber.accept("(410)--2513")
         viewModel.phoneNumberHasTenDigits.asObservable().single().subscribe(onNext: { valid in
             if valid {
                 XCTFail("Phone number \"(410)--2513\" should fail the 10 digit check")
@@ -122,14 +122,14 @@ class ForgotUsernameViewModelTests: XCTestCase {
     }
     
     func testIdentifierHas4Digits() {
-        viewModel.identifierNumber.value = "1234"
+        viewModel.identifierNumber.accept("1234")
         viewModel.identifierHasFourDigits.asObservable().single().subscribe(onNext: { valid in
             if !valid {
                 XCTFail("Identifier \"1234\" should pass the 4 digit check")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.identifierNumber.value = "123"
+        viewModel.identifierNumber.accept("123")
         viewModel.identifierHasFourDigits.asObservable().single().subscribe(onNext: { valid in
             if valid {
                 XCTFail("Identifier \"123\" should fail the 4 digit check")
@@ -138,14 +138,14 @@ class ForgotUsernameViewModelTests: XCTestCase {
     }
     
     func testIdentifierIsNumericDigits() {
-        viewModel.identifierNumber.value = "1234"
+        viewModel.identifierNumber.accept("1234")
         viewModel.identifierIsNumeric.asObservable().single().subscribe(onNext: { valid in
             if !valid {
                 XCTFail("Identifier \"1234\" should pass the isNumeric check")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.identifierNumber.value = "abcd"
+        viewModel.identifierNumber.accept("abcd")
         viewModel.identifierIsNumeric.asObservable().single().subscribe(onNext: { valid in
             if valid {
                 XCTFail("Identifier \"abcd\" should fail the isNumeric check")
@@ -154,14 +154,14 @@ class ForgotUsernameViewModelTests: XCTestCase {
     }
     
     func testAccountNumberHasTenDigits() {
-        viewModel.accountNumber.value = "2385012311"
+        viewModel.accountNumber.accept("2385012311")
         viewModel.accountNumberHasTenDigits.asObservable().single().subscribe(onNext: { valid in
             if !valid {
                 XCTFail("Account number \"2385012311\" should pass the 10 digit check")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.accountNumber.value = "21254"
+        viewModel.accountNumber.accept("21254")
         viewModel.accountNumberHasTenDigits.asObservable().single().subscribe(onNext: { valid in
             if valid {
                 XCTFail("Account number \"21254\" should fail the NotEmpty check")
@@ -170,14 +170,14 @@ class ForgotUsernameViewModelTests: XCTestCase {
     }
     
     func testSecurityQuestionAnswerNotEmpty() {
-        viewModel.securityQuestionAnswer.value = "23850123"
+        viewModel.securityQuestionAnswer.accept("23850123")
         viewModel.securityQuestionAnswerNotEmpty.asObservable().single().subscribe(onNext: { valid in
             if !valid {
                 XCTFail("Security question answer \"23850123\" should pass the NotEmpty check")
             }
         }).disposed(by: disposeBag)
         
-        viewModel.securityQuestionAnswer.value = ""
+        viewModel.securityQuestionAnswer.accept("")
         viewModel.securityQuestionAnswerNotEmpty.asObservable().single().subscribe(onNext: { valid in
             if valid {
                 XCTFail("Security question answer \"\" should fail the NotEmpty check")

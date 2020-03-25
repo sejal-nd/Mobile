@@ -13,9 +13,9 @@ import zxcvbn_ios
 class ChangePasswordViewModel {
     let disposeBag = DisposeBag()
     
-    var currentPassword = Variable("")
-    var newPassword = Variable("")
-    var confirmPassword = Variable("")
+    var currentPassword = BehaviorRelay(value: "")
+    var newPassword = BehaviorRelay(value: "")
+    var confirmPassword = BehaviorRelay(value: "")
     
     private var userDefaults: UserDefaults
     private var authService: AuthenticationService

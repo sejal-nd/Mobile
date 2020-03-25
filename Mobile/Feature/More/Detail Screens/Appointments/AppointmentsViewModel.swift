@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class AppointmentsViewModel {
-    let pollInterval = 30.0
+    let pollInterval = 30
     
     let contactNumber = "1-800-685-0123"
     
@@ -67,7 +67,7 @@ class AppointmentsViewModel {
     
     func startPolling() -> Observable<Void> {
         return Observable<Int>
-            .interval(self.pollInterval, scheduler: MainScheduler.instance)
+            .interval(.seconds(self.pollInterval), scheduler: MainScheduler.instance)
             .startWith(-1)
             .mapTo(())
             .debug("timer")
