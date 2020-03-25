@@ -2012,6 +2012,8 @@
 		B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */; };
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
 		B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */; };
+		C31E57A7242BCD830059B797 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
+		C31E57A8242BCD830059B797 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
 		C3381A032424060400EA7062 /* SERWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A002424060400EA7062 /* SERWebViewController.swift */; };
 		C3381A042424060400EA7062 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
 		C3381A062424064100EA7062 /* PTRWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = C3381A052424064100EA7062 /* PTRWidget.html */; };
@@ -9268,6 +9270,7 @@
 				B094A34F20D9442400E81303 /* HomeCard.swift in Sources */,
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				9CF536A023A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
+				C31E57A8242BCD830059B797 /* SERWebViewModel.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */,
@@ -9683,6 +9686,7 @@
 				2249C038216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
 				54EDD2E01ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
 				9CF5369F23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
+				C31E57A7242BCD830059B797 /* SERWebViewModel.swift in Sources */,
 				E835D1CA1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027B1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E89983E21F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
