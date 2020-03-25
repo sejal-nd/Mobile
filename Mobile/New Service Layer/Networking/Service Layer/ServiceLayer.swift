@@ -63,6 +63,7 @@ public struct ServiceLayer {
         
         print("Logic test: \(router.apiAccess == .auth && router.token.isEmpty && T.self != NewSAMLToken.self && T.self != NewJWTToken.self)")
         
+        // todo can we extract this logic into router?
         if router.apiAccess == .auth && router.token.isEmpty && T.self != NewSAMLToken.self && T.self != NewJWTToken.self { // || T.self == NewJWTToken.self
             // THROW ERROR LOG USER OUT, NO TOKEN FOR AUTH REQUEST.
             print("REQUEST BLOCKED ")

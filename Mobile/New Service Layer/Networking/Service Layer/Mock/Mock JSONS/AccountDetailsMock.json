@@ -1,0 +1,168 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "accountStatusCode": null,
+      "accountType": "G&E",
+      "accountNickname": null,
+      "isAMIAccount": true,
+      "isModeledForOpower": false,
+      "isCREligible": false,
+      "isCutOut": false,
+      "isCutOutNonPay": false,
+      "isCutOutIssued": false,
+      "isCutOutDispatched": false,
+      "isDefaultProfile": false,
+      "isDollarDonationsAccount": false,
+      "isDueDateExtensionEligible": false,
+      "isGasOnly": false,
+      "isLowIncome": false,
+      "isNonService": false,
+      "isPTSAccount": false,
+      "isPartialResult": false,
+      "isPasswordProtected": false,
+      "isCashOnly": false,
+      "releaseOfInformation": null,
+      "revenueClass": null,
+      "serviceAgreementCount": 1,
+      "smartEnergyRewardsStatus": true,
+      "accountNumber": "8789671000",
+      "address": "600 N Eutaw St *Apt C Baltimore MD 21201",
+      "amountDue": null,
+      "dueDate": null,
+      "serviceType": "ELECTRIC",
+      "status": null,
+      "SERInfo": {
+        "ControlGroupFlag": "RECIPIENT",
+        "eventResults": []
+      },
+      "billRouteType": "POSTAL",
+      "CustomerInfo": {
+        "number": "1014280000",
+        "name": "Sisson,Rodney Todd",
+        "firstName": "Rodney Todd",
+        "lastName": "Sisson",
+        "nameCompressed": "Rodney Todd Sisson",
+        "emailAddress": "1014280000@example.com",
+        "PhoneInfo": {
+          "cellPhoneNumber": "4936290876",
+          "primaryPhoneNumber": "4936290876"
+        }
+      },
+      "isNetMetering": false,
+      "isEBillEligible": true,
+      "activeSeverance": false,
+      "isAutoPay": false,
+      "isBudgetBill": true,
+      "isSummaryBillingIneligible": false,
+      "isEdiBilling": false,
+      "isResidential": true,
+      "isEBillEnrollment": false,
+      "addressLine": "600 N Eutaw St *Apt C",
+      "street": "EUTAW",
+      "city": "Baltimore",
+      "state": "MD",
+      "zipCode": "21201",
+      "buildingNumber": "600",
+      "premiseNumber": "9385710000",
+      "amiAccountIdentifier": "acfc1d6386cb5e5e25a966a0a703d1a9d3e0f88954f5b70a92b9a99bd79e0154",
+      "amiCustomerIdentifier": "6e1fb8eea58c3f161d19b717f5b8e9a18c677f7d013d47da5f1790d1cee2226e",
+      "PremiseInfo": [
+        {
+          "premiseNumber": "9385710000",
+          "mainAddress": {
+            "addressGeneral": "600 N Eutaw St *Apt C Baltimore MD 21201",
+            "addressLine": [
+              "600 N Eutaw St *Apt C"
+            ],
+            "streetDetail": {
+              "mRID": "600",
+              "name": "EUTAW",
+              "suffix": "ST"
+            },
+            "townDetail": {
+              "code": "21201",
+              "name": "Baltimore",
+              "stateOrProvince": "MD"
+            }
+          },
+          "peakRewards": "NONE",
+          "smartEnergyRewards": "ENROLLED",
+          "servicePoints": [
+            {
+              "name": "service",
+              "ServiceLocation": {
+                "mRID": "9385710765",
+                "type": "E-RES3",
+                "status": {
+                  "dateTime": "2014-12-05T00:00:00"
+                }
+              },
+              "status": [
+                {
+                  "name": "servicePointLocation",
+                  "value": "Inside"
+                }
+              ],
+              "UsagePointLocation": {
+                "mRID": "30101270000"
+              }
+            }
+          ]
+        }
+      ],
+      "rateSchedule": "42RH",
+      "peakRewards": "NONE",
+      "isPeakRewards": false,
+      "electricChoiceID": "8789671362",
+      "BillingInfo": {
+        "dpa_deposit_outstanding": null,
+        "deliveryCharges": null,
+        "supplyCharges": null,
+        "taxesAndFees": null,
+        "maximumPaymentAmount": 5000,
+        "dueByDate": "2020-03-25T00:00:00",
+        "convenienceFee": 1.5,
+        "maximumPaymentAmountACH": 100000,
+        "minimumPaymentAmount": 5,
+        "lastPaymentAmount": 497.55,
+        "lastPaymentDate": "2020-01-08T00:00:00",
+        "remainingBalanceDue": 368.6,
+        "restorationAmount": null,
+        "amtDpaReinst": null,
+        "atReinstateFee": null,
+        "pastDueRemaining": null,
+        "pastDueAmount": 283.6,
+        "netDueAmount": 368.6,
+        "billDate": "2020-03-02T00:00:00",
+        "maximumWalletItems": null,
+        "disconnectNoticeArrears": 283.6,
+        "turnOffNoticeIssueDate": "2020-03-05T00:00:00",
+        "turnOffNoticeDueDate": "2020-03-19T00:00:00",
+        "isDisconnectNotice": true,
+        "currentDueAmount": 85,
+        "payments": []
+      },
+      "ACCyclingInfo": {
+        "riderCode": "",
+        "isACCyclingEnrolled": false,
+        "isACCyclingBanked": false,
+        "isEnrolledinAnotherBillCreditProgram": false
+      },
+      "isBudgetBillEligible": true,
+      "budgetBillMessage": "",
+      "isAutoPayEligible": true,
+      "customerNumber": "1014280000",
+      "programs": [
+        {
+          "ProgramName": "Smart Energy Rewards",
+          "ProgramUrl": "/pages/anonredirect.aspx?destination=/WaystoSave/ForYourHome/Pages/EnergySavingsDays.aspx"
+        },
+        {
+          "ProgramName": "Learn More About Peak Rewards",
+          "ProgramUrl": "https://bgesavings.com"
+        }
+      ]
+    }
+  }
+}

@@ -8,6 +8,8 @@
 
 import Foundation
 
+// NOTE: The location of these static methods are subject to change
+
 struct AuthenticatedService {
     static func login(username: String,
                       password: String,
@@ -18,6 +20,50 @@ struct AuthenticatedService {
             performLoginMock(username: username, completion: completion)
         }
     }
+    
+    static func fetchAccountDetails(accountNumber: String, payments: Bool, programs: Bool, budgetBilling: Bool) {
+        
+        var queryItems = [(String, String)]()
+        if !payments {
+            queryItems.append(("payments", "false"))
+        }
+        if !programs {
+            queryItems.append(("programs", "false"))
+        }
+        if !budgetBilling {
+            queryItems.append(("budgetBilling", "false"))
+        }
+        
+        let queryStringSubSequence = queryItems
+            .map { $0.0 + "=" + $0.1 }
+            .reduce("?") { $0 + $1 + "&" }
+            .dropLast() // drop the last "&"
+        let queryString = String(queryStringSubSequence)
+        
+        
+        ServiceLayer.request(router: .accountDetails(accountNumber: accountNumber, queryString: queryString)) { (result: Result<NewAccountDetails, Error>) in
+            switch result {
+            case .success(let data):
+                
+                // fetch accounts todo
+                
+                print("NetworkTest 6 SUCCESS: \(data) BREAK")
+//                completion(.success(()))
+                
+                
+            //                       completion(.success(data.min))
+            case .failure(let error):
+                print("NetworkTest 6 FAIL: \(error)")
+//                completion(.failure(error))
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    // MARK: Private methods
     
     private static func performLogin(username: String,
                                      password: String,
