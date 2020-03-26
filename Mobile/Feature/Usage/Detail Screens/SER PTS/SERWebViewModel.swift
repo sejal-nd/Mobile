@@ -33,16 +33,10 @@ class SERWebViewModel {
     }
     
     func scriptUrlForWidget(with ssoData: SSOData) -> String {
-        var clientSubdomain: String
+        let path = "peak-time-rebate"
+        let url = ssoData.relayState.absoluteString.replacingOccurrences(of: "energy-use-details", with: path)
         
-        if isProd {
-            clientSubdomain = "bgec"
-        }
-        else {
-            clientSubdomain = "ei-bgec-stage"
-        }
-        
-        return "https://\(clientSubdomain).opower.com/ei/x/e/peak-time-rebate?utilityCustomerId=\(ssoData.utilityCustomerId)"
+        return url
     }
     
     func getWidgetJs(ssoData: SSOData) -> String {
