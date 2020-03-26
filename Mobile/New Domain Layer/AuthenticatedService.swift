@@ -21,7 +21,7 @@ struct AuthenticatedService {
         }
     }
     
-    static func fetchAccountDetails(accountNumber: String, payments: Bool, programs: Bool, budgetBilling: Bool) {
+    static func fetchAccountDetails(accountNumber: String, payments: Bool = true, programs: Bool = true, budgetBilling: Bool = true) {
         
         var queryItems = [(String, String)]()
         if !payments {
@@ -47,7 +47,7 @@ struct AuthenticatedService {
                 
                 // fetch accounts todo
                 
-                print("NetworkTest 6 SUCCESS: \(data) BREAK")
+                print("NetworkTest 6 SUCCESS: \(data.address) BREAK")
 //                completion(.success(()))
                 
                 
@@ -118,6 +118,11 @@ struct AuthenticatedService {
                                 // fetch accounts todo
                                 
                                 print("NetworkTest 5 SUCCESS: \(data.accounts.first?.accountNumber) BREAK")
+                                
+                                guard let accNumber = data.accounts.first?.accountNumber else { return }
+                                
+                                AuthenticatedService.fetchAccountDetails(accountNumber: accNumber)
+                                
                                 completion(.success(()))
                                 
                                 
