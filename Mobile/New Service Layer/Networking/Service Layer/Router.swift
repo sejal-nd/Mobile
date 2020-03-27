@@ -24,6 +24,8 @@ public enum Router {
     case accounts
     case accountDetails(accountNumber: String, queryString: String)
     
+    case weather(lat: String, long: String)
+    
     case anonOutageStatus(httpBody: HTTPBody)
 
     
@@ -42,13 +44,16 @@ public enum Router {
         //return Environment.shared.mcsConfig.baseUrl
         case .fetchSAMLToken:
             return "dev-apigateway.exeloncorp.com"//"stage-apigateway.exeloncorp.com" // TEMP
+        case .weather:
+            return "api.weather.gov"
         }
     }
     
     public enum ApiAccess: String {
-        case admin = "admin"
-        case anon = "anon"
-        case auth = "auth"
+        case admin
+        case anon
+        case auth
+        case external
     }
     
     public var apiAccess: ApiAccess {
@@ -63,6 +68,8 @@ public enum Router {
 //            return .admin
             
         // Anon
+        case .weather:
+            return .external
         case .minVersion:
             return .anon
         case .maintenanceMode:
@@ -94,6 +101,8 @@ public enum Router {
             return "/mcs/oauth2/tokens"
         case .exchangeSAMLToken:
             return "/mobile/platform/sso/exchange-token"
+        case .weather(let lat, let long):
+            return "/points/\(lat),\(long)/forecast/hourly"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -107,7 +116,7 @@ public enum Router {
         switch self {
         case .anonOutageStatus, .fetchSAMLToken:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather:
             return "GET"
         }
     }
@@ -187,6 +196,8 @@ public enum Router {
             return "JWTTokenMock"
         case .accounts:
             return "AccountsMock"
+        case .weather:
+            return "WeatherMock"
         default:
             return ""
         }
