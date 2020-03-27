@@ -34,10 +34,9 @@ class SERWebViewModel {
     
     func scriptUrlForWidget(with ssoData: SSOData) -> String {
         let ptrPath = "/peak-time-rebate?"
-        let pattern = "\\/[^\\/]*\\?"
-        let ptrUrl = ssoData.relayState.absoluteString.replacingOccurrences(of: pattern, with: ptrPath, options: [.regularExpression])
+        let regex = "/[^/]*\\?"
         
-        return ptrUrl
+        return ssoData.relayState.absoluteString.replacingOccurrences(of: regex, with: ptrPath, options: [.regularExpression])
     }
     
     func getWidgetJs(ssoData: SSOData) -> String {
