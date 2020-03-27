@@ -62,6 +62,7 @@ class SERWebViewController: UIViewController {
                 })
                 }, onError: { [weak self] err in
                     self?.errorLabel.isHidden = false
+                    self?.loadingIndicator.isHidden = true
                 }, onCompleted: { [weak self] in
                     self?.loadingIndicator.isHidden = true
             }).disposed(by: disposeBag)
