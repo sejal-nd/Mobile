@@ -33,10 +33,11 @@ class SERWebViewModel {
     }
     
     func scriptUrlForWidget(with ssoData: SSOData) -> String {
-        let path = "peak-time-rebate"
-        let url = ssoData.relayState.absoluteString.replacingOccurrences(of: "energy-use-details", with: path)
+        let ptrPath = "/peak-time-rebate?"
+        let pattern = "\\/[^\\/]*\\?"
+        let ptrUrl = ssoData.relayState.absoluteString.replacingOccurrences(of: pattern, with: ptrPath, options: [.regularExpression])
         
-        return url
+        return ptrUrl
     }
     
     func getWidgetJs(ssoData: SSOData) -> String {
