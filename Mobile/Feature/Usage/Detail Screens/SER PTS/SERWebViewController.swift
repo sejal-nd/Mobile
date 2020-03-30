@@ -91,6 +91,7 @@ extension SERWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         self.loadingIndicator.isHidden = true
         self.errorLabel.isHidden = false
+        self.webView.isHidden = true
     }
 }
 
@@ -98,5 +99,6 @@ extension SERWebViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         self.loadingIndicator.isHidden = true
         self.errorLabel.isHidden = false
+        self.webView.isHidden = true
     }
 }
