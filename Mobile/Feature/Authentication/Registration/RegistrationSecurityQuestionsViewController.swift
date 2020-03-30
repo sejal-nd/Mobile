@@ -87,7 +87,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         
         setupAccessibility()
         
-        viewModel.paperlessEbill.value = true
+        viewModel.paperlessEbill.accept(true)
         viewModel.allQuestionsAnswered.drive(registerButton.rx.isEnabled).disposed(by: disposeBag)
         
         loadSecurityQuestions()
@@ -256,7 +256,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     }
     
     @IBAction func enrollIneBillToggle(_ sender: Any) {
-        viewModel.paperlessEbill.value = !viewModel.paperlessEbill.value
+        viewModel.paperlessEbill.accept(!viewModel.paperlessEbill.value)
         
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         

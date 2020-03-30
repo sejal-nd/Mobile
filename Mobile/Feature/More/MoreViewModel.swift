@@ -7,13 +7,14 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class MoreViewModel {
     
     let disposeBag = DisposeBag()
     
-    var username = Variable("")
-    var password = Variable("")
+    var username = BehaviorRelay(value: "")
+    var password = BehaviorRelay(value: "")
     
     private var authService: AuthenticationService
     private var biometricsService: BiometricsService
@@ -27,7 +28,7 @@ class MoreViewModel {
         // We should always have a stored username unless user skipped login, in which case this will probably change
         // in a future sprint anyway
         if let storedUsername = biometricsService.getStoredUsername() {
-            username.value = storedUsername
+            username.accept(storedUsername)
         }
     }
     

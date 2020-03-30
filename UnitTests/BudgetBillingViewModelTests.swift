@@ -72,7 +72,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testUnenrollSuccess() {
         viewModel = BudgetBillingViewModel(accountDetail: .default, billService: MockBillService(), alertsService: MockAlertsService())
-        viewModel.selectedUnenrollmentReason.value = 1
+        viewModel.selectedUnenrollmentReason.accept(1)
         viewModel.unenroll(onSuccess: {
             // Pass
         }, onError: { errMessage in

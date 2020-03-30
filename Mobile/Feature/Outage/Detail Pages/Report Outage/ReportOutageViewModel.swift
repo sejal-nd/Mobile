@@ -18,11 +18,11 @@ class ReportOutageViewModel {
     
     var accountNumber: String? // Passed from UnauthenticatedOutageStatusViewController
     var outageStatus: OutageStatus! // Passed from OutageViewController/UnauthenticatedOutageStatusViewController
-    var selectedSegmentIndex = Variable(0)
-    var phoneNumber = Variable("")
-    var phoneExtension = Variable("")
-    var comments = Variable("")
-    var reportFormHidden = Variable(false)
+    var selectedSegmentIndex = BehaviorRelay(value: 0)
+    var phoneNumber = BehaviorRelay(value: "")
+    var phoneExtension = BehaviorRelay(value: "")
+    var comments = BehaviorRelay(value: "")
+    var reportFormHidden = BehaviorRelay(value: false)
     
     required init(outageService: OutageService, accountService: AccountService) {
         self.outageService = outageService

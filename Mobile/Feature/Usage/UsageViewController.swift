@@ -198,7 +198,7 @@ class UsageViewController: AccountPickerViewController {
         barGraphPress(currentContainerButton)
         
         if let (barSelection, isGas, isPreviousBill) = initialSelection {
-            viewModel.electricGasSelectedSegmentIndex.value = isGas ? 1 : 0
+            viewModel.electricGasSelectedSegmentIndex.accept(isGas ? 1 : 0)
             selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
             selectBar(barSelection, gas: isGas)
         }
@@ -271,7 +271,7 @@ class UsageViewController: AccountPickerViewController {
             FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .electric_segment_press)])
         }
         
-        viewModel.electricGasSelectedSegmentIndex.value = gas ? 1 : 0
+        viewModel.electricGasSelectedSegmentIndex.accept(gas ? 1 : 0)
         viewModel.setBarSelected(tag: selectedBar.rawValue)
     }
     
@@ -344,7 +344,7 @@ class UsageViewController: AccountPickerViewController {
                      previousBillButton.rx.tap.asDriver().mapTo(true))
             .drive(onNext: { [weak self] isPreviousBill in
                 if self?.viewModel.barGraphSelection.value == .projected {
-                    self?.viewModel.barGraphSelection.value = .current
+                    self?.viewModel.barGraphSelection.accept(.current)
                 }
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
                 
@@ -373,7 +373,7 @@ class UsageViewController: AccountPickerViewController {
             showBillComparisonLoadingState()
         }
 
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = isPreviousBill ? 1 : 0
+        viewModel.lastYearPreviousBillSelectedSegmentIndex.accept(isPreviousBill ? 1 : 0)
     }
     
     private func bindViewStates() {
@@ -877,7 +877,7 @@ class UsageViewController: AccountPickerViewController {
             performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
         case .smartEnergyRewards:
             GoogleAnalytics.log(event: .viewSmartEnergyRewards)
-            performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
+            performSegue(withIdentifier: "serWebViewSegue", sender: accountDetail)
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
                 GoogleAnalytics.log(event: .hourlyPricing,
@@ -908,6 +908,8 @@ class UsageViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let accountDetail = sender as? AccountDetail else { return }
         switch segue.destination {
+        case let vc as SERWebViewController:
+            vc.accountDetail = accountDetail
         case let vc as SERPTSViewController:
             vc.accountDetail = accountDetail
         case let vc as UsageWebViewController:
@@ -917,7 +919,7 @@ class UsageViewController: AccountPickerViewController {
         case let vc as MyHomeProfileViewController:
             vc.accountDetail = accountDetail
             vc.didSaveHomeProfile
-                .delay(0.5)
+                .delay(.milliseconds(500))
                 .drive(onNext: { [weak self] in
                     self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
                 })

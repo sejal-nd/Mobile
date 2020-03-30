@@ -21,9 +21,9 @@ class HomeProjectedBillCardViewModel {
     
     let fetchTracker: ActivityTracker
     
-    let electricGasSelectedSegmentIndex = Variable(0)
-    let electricForecast = Variable<BillForecast?>(nil)
-    let gasForecast = Variable<BillForecast?>(nil)
+    let electricGasSelectedSegmentIndex = BehaviorRelay(value: 0)
+    let electricForecast = BehaviorRelay<BillForecast?>(value: nil)
+    let gasForecast = BehaviorRelay<BillForecast?>(value: nil)
     
     required init(fetchData: Observable<Void>,
                   maintenanceModeEvents: Observable<Event<Maintenance>>,

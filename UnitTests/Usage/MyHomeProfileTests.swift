@@ -9,6 +9,7 @@
 import XCTest
 import RxSwift
 import RxTest
+import RxCocoa
 
 class MyHomeProfileTests: XCTestCase {
     
@@ -22,14 +23,14 @@ class MyHomeProfileTests: XCTestCase {
         MockAccountService.loadAccountsSync()
     }
     
-    func bind<T>(entries: [T], toVariable variable: Variable<T>, startTime: Int = 0, interval: Int = 1) {
-        scheduler.createHotObservable(entries.enumerated().map { ($0 * interval + startTime, $1) }.map(next))
+    func bind<T>(entries: [T], toVariable variable: BehaviorRelay<T>, startTime: Int = 0, interval: Int = 1) {
+        scheduler.createHotObservable(entries.enumerated().map { ($0 * interval + startTime, $1) }.map(Recorded.next))
             .bind(to: variable)
             .disposed(by: disposeBag)
     }
     
     func bind<T>(entries: [T], toSubject subject: PublishSubject<T>, startTime: Int = 0, interval: Int = 1) {
-        scheduler.createHotObservable(entries.enumerated().map { ($0 * interval + startTime, $1) }.map(next))
+        scheduler.createHotObservable(entries.enumerated().map { ($0 * interval + startTime, $1) }.map(Recorded.next))
             .bind(to: subject)
             .disposed(by: disposeBag)
     }
@@ -52,9 +53,9 @@ class MyHomeProfileTests: XCTestCase {
                         homeType: .singleFamily)
             ]
             .enumerated()
-            .map(next)
+            .map(Recorded.next)
         
-        expectedEvents.append(completed(0))
+        expectedEvents.append(Recorded.completed(0))
         
         XCTAssertEqual(observer.events, expectedEvents)
     }
@@ -108,7 +109,7 @@ class MyHomeProfileTests: XCTestCase {
                         homeType: .singleFamily)
             ]
             .enumerated()
-            .map(next)
+            .map(Recorded.next)
         
         XCTAssertEqual(observer.events, expectedEvents)
     }
@@ -133,7 +134,7 @@ class MyHomeProfileTests: XCTestCase {
                 nil
                 ]
                 .enumerated()
-                .map(next)
+                .map(Recorded.next)
         
         // Initial value of the Variable is nil
         expectedEvents.insert(next(0, NSLocalizedString("Square footage is required", comment: "")), at: 0)
@@ -259,7 +260,7 @@ class MyHomeProfileTests: XCTestCase {
             "Number of children is required,Square footage is required, Save Profile",
             "Square footage is required, Save Profile",
             "Save Profile"
-        ].enumerated().map(next)
+        ].enumerated().map(Recorded.next)
         
         scheduler.start()
         
@@ -283,7 +284,7 @@ class MyHomeProfileTests: XCTestCase {
             "Home Type, House, Townhome, Row House"
             ]
             .enumerated()
-            .map(next)
+            .map(Recorded.next)
         
         // Initial value of the Variable is nil
         expectedEvents.insert(next(0, "Home Type, required"), at: 0)
@@ -312,7 +313,7 @@ class MyHomeProfileTests: XCTestCase {
             "Heating Fuel, None"
             ]
             .enumerated()
-            .map(next)
+            .map(Recorded.next)
         
         // Initial value of the Variable is nil
         expectedEvents.insert(next(0, "Heating Fuel, required"), at: 0)
@@ -338,7 +339,7 @@ class MyHomeProfileTests: XCTestCase {
             "Number of Adults, 3"
             ]
             .enumerated()
-            .map(next)
+            .map(Recorded.next)
         
         scheduler.start()
         
@@ -361,7 +362,7 @@ class MyHomeProfileTests: XCTestCase {
             "Number of Children, 3"
             ]
             .enumerated()
-            .map(next)
+            .map(Recorded.next)
         
         scheduler.start()
         

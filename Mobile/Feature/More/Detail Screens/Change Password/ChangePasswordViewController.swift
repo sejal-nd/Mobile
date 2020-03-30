@@ -257,8 +257,8 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
             actions: [
                 UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
                     self?.viewModel.hasStrongPassword = true
-                    self?.viewModel.newPassword.value = strongPassword
-                    self?.viewModel.confirmPassword.value = strongPassword
+                    self?.viewModel.newPassword.accept(strongPassword)
+                    self?.viewModel.confirmPassword.accept(strongPassword)
                     self?.newPasswordTextField.textField.text = strongPassword
                     self?.confirmPasswordTextField.textField.text = strongPassword
                     self?.newPasswordTextField.textField.backgroundColor = .autoFillYellow

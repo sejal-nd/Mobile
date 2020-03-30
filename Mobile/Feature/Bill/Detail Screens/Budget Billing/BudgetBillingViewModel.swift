@@ -20,7 +20,7 @@ class BudgetBillingViewModel {
 
     var averageMonthlyBill: String?
     
-    let selectedUnenrollmentReason = Variable(-1)
+    let selectedUnenrollmentReason = BehaviorRelay(value: -1)
     
     required init(accountDetail: AccountDetail, billService: BillService, alertsService: AlertsService) {
         self.accountDetail = accountDetail
