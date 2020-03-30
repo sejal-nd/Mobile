@@ -30,11 +30,6 @@ class SERWebViewController: UIViewController {
         
         title = NSLocalizedString("Smart Energy Rewards", comment: "")
         
-        let infoButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onInfoButtonPress))
-        infoButton.isAccessibilityElement = true
-        infoButton.accessibilityLabel = NSLocalizedString("Tooltip", comment: "")
-        navigationItem.rightBarButtonItem = infoButton
-        
         webView.navigationDelegate = self
         webView.uiDelegate = self
         webView.isHidden = true
@@ -73,14 +68,6 @@ class SERWebViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
-    @objc func onInfoButtonPress() {
-        let alertVc = UIAlertController(title: NSLocalizedString("Billing Period Info", comment: ""),
-                                        message: NSLocalizedString("The dates shown represent your billing period. Smart meter data is typically available within 24-48 hours of your usage.", comment: ""),
-                                        preferredStyle: .alert)
-        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-        self.present(alertVc, animated: true, completion: nil)
-    }
 }
 
 extension SERWebViewController: WKNavigationDelegate {
@@ -91,6 +78,7 @@ extension SERWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         self.loadingIndicator.isHidden = true
         self.errorLabel.isHidden = false
+        self.webView.isHidden = true
     }
 }
 
@@ -98,5 +86,6 @@ extension SERWebViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         self.loadingIndicator.isHidden = true
         self.errorLabel.isHidden = false
+        self.webView.isHidden = true
     }
 }
