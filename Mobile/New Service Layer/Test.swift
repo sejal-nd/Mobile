@@ -88,4 +88,15 @@ class NetworkTest {
             }
         }
     }
+    
+    func payment(accountNumber: String) {
+        ServiceLayer.request(router: .payments(accountNumber: accountNumber)) { (result: Result<NewPayments, Error>) in
+            switch result {
+            case .success(let data):
+                print("NetworkTest 11 SUCCESS: \(data) BREAK \(data.billingInfo.payments.first?.amount)")
+            case .failure(let error):
+                print("NetworkTest 11 FAIL: \(error)")
+            }
+        }
+    }
 }

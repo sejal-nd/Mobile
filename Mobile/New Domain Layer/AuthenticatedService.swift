@@ -55,6 +55,8 @@ struct AuthenticatedService {
                 
                 NetworkTest.shared.wallet()
                 
+                NetworkTest.shared.payment(accountNumber: data.accountNumber)
+                
             case .failure(let error):
                 print("NetworkTest 6 FAIL: \(error)")
 //                completion(.failure(error))
