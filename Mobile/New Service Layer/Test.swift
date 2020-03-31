@@ -25,16 +25,16 @@ class NetworkTest {
         
     }
     
-    private func json() {
-                ServiceLayer.logJSON(router: .minVersion) { (result: Result<String, Error>) in
-                switch result {
-                case .success(let data):
-                    print("JSON 1 SUCCESS: \(data)")
-                case .failure(let error):
-                    print("JSON 1 FAIL: \(error)")
-                }
-            }
-    }
+//    private func json() {
+//                ServiceLayer.logJSON(router: .minVersion) { (result: Result<String, Error>) in
+//                switch result {
+//                case .success(let data):
+//                    print("JSON 1 SUCCESS: \(data)")
+//                case .failure(let error):
+//                    print("JSON 1 FAIL: \(error)")
+//                }
+//            }
+//    }
     
     private func minVersion() {
         ServiceLayer.request(router: .minVersion) { (result: Result<NewVersion, Error>) in
@@ -59,14 +59,14 @@ class NetworkTest {
     }
     
     private func weather() {
-        ServiceLayer.logJSON(router: .weather(lat: "39.295", long: "-76.624")) { (result: Result<String, Error>) in
-            switch result {
-            case .success(let data):
-                print("NetworkTest 9 JSON SUCCESS: \(data) BREAK \(data)")
-            case .failure(let error):
-                print("NetworkTest 9 JSON FAIL: \(error)")
-            }
-        }
+//        ServiceLayer.logJSON(router: .weather(lat: "39.295", long: "-76.624")) { (result: Result<String, Error>) in
+//            switch result {
+//            case .success(let data):
+//                print("NetworkTest 9 JSON SUCCESS: \(data) BREAK \(data)")
+//            case .failure(let error):
+//                print("NetworkTest 9 JSON FAIL: \(error)")
+//            }
+//        }
         
         ServiceLayer.request(router: .weather(lat: "39.295", long: "-76.624")) { (result: Result<NewWeather, Error>) in
             switch result {

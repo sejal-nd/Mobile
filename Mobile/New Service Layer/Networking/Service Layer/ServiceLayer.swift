@@ -9,55 +9,7 @@
 import Foundation
 
 public struct ServiceLayer {
-    
-    public static func logJSON(router: Router, completion: @escaping (Result<String, Error>) -> ()) {
-        // 2.
-        var components = URLComponents()
-        components.scheme = router.scheme
-        components.host = router.host
-        components.path = router.path
-        components.queryItems = router.parameters
-        
-        // 3.
-        guard let url = components.url else { return }
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = router.method
-        
-        // HTTP BODY
-        if let httpBody = router.httpBody {
-            urlRequest.httpBody = httpBody
-        }
-        
-        // Add Headers
-        ServiceLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
-        
-        // 4.
-        let session = URLSession(configuration: .default)
-        let dataTask = session.dataTask(with: urlRequest) { data, response, error in
-            // 5.
-            guard error == nil else {
-                completion(.failure(error!))
-                print(error!.localizedDescription)
-                return
-            }
-            guard response != nil else {
-                return
-            }
-            guard let data = data else {
-                return
-            }
-            
-            guard let jsonString = String(data: data, encoding: String.Encoding.utf8) else { return } // the data will be converted to the string
-            
-            DispatchQueue.main.async {
-                // 8.
-                completion(.success(jsonString))
-            }
-        }
-        dataTask.resume()
-    }
-    
-    // 1.
+
     public static func request<T: Decodable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
         print("Test: \(T.self)...\(NewSAMLToken.self)   \(T.self == NewSAMLToken.self)...\(router.token.isEmpty)")
         
@@ -106,9 +58,9 @@ public struct ServiceLayer {
             session = URLSession(configuration: configuration)
         } else {
             // Regular
-            session = URLSession(configuration: .default)
+            session = URLSession.shared
         }
-        
+                
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             
             print("URL: \(url)")
@@ -151,6 +103,14 @@ public struct ServiceLayer {
             }
         }
         dataTask.resume()
+    }
+    
+    public static func cancelAllTasks() {
+        URLSession.shared.getAllTasks { tasks in
+            tasks
+                .forEach { $0.cancel() }
+        }
+        print("All URL Session Tasks Cancelled.")
     }
     
     private static func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?, request: inout URLRequest) {
