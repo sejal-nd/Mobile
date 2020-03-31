@@ -30,6 +30,8 @@ public enum Router {
     
     case weather(lat: String, long: String)
     
+    case alertBanner(additionalQueryItem: URLQueryItem)
+    
     case anonOutageStatus(httpBody: HTTPBody)
 
     
@@ -50,6 +52,8 @@ public enum Router {
             return "dev-apigateway.exeloncorp.com"//"stage-apigateway.exeloncorp.com" // TEMP
         case .weather:
             return "api.weather.gov"
+        case .alertBanner:
+            return "azstg.bge.com"
         }
     }
     
@@ -111,6 +115,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/wallet/query"
         case .payments(let accountNumber):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments"
+        case .alertBanner:
+            return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -124,7 +130,7 @@ public enum Router {
         switch self {
         case .anonOutageStatus, .fetchSAMLToken, .wallet:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner:
             return "GET"
         }
     }
@@ -135,7 +141,14 @@ public enum Router {
     
     // PLACE HOLDER, currently NOT BEING USED
     public var parameters: [URLQueryItem] {
-        return []
+        switch self {
+        case .alertBanner(let additionalQueryItem):
+            return [URLQueryItem(name: "$select", value: "Title,Message,Enable,CustomerType,Created,Modified"),
+                    URLQueryItem(name: "$orderby", value: "Modified desc"),
+                    additionalQueryItem]
+        default:
+            return []
+        }
         //        let accessToken = "c32313df0d0ef512ca64d5b336a0d7c6"
         //        switch self {
         //        case .getSources:
@@ -175,6 +188,8 @@ public enum Router {
             return ["encode": "xml",
                     "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(samlToken)"]
+        case .alertBanner:
+            return ["Accept": "application/json;odata=verbose"]
         default:
             return nil
         }
@@ -207,6 +222,8 @@ public enum Router {
             return "WalletMock"
         case .payments:
             return "PaymentsMock"
+        case .alertBanner:
+            return "AlertBannerMock"
         default:
             return ""
         }

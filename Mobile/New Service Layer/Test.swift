@@ -99,4 +99,8 @@ class NetworkTest {
             }
         }
     }
+    
+    func alert(accountNumber: String) {
+        AuthenticatedService.fetchAlertBanner(bannerOnly: true, stormOnly: false)
+    }
 }

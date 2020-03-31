@@ -57,6 +57,8 @@ struct AuthenticatedService {
                 
                 NetworkTest.shared.payment(accountNumber: data.accountNumber)
                 
+                AuthenticatedService.fetchAlertBanner(bannerOnly: true, stormOnly: false)
+                
             case .failure(let error):
                 print("NetworkTest 6 FAIL: \(error)")
 //                completion(.failure(error))
@@ -64,7 +66,33 @@ struct AuthenticatedService {
         }
     }
     
-    
+    static func fetchAlertBanner(bannerOnly: Bool, stormOnly: Bool) {
+        var filterString: String
+
+        if bannerOnly {
+            filterString = "(Enable eq 1) and (CustomerType eq 'Banner')"
+        } else if stormOnly {
+            filterString = "(Enable eq 1) and (CustomerType eq 'Storm')"
+        } else {
+            filterString = "(Enable eq 1) and ((CustomerType eq 'All')"
+            ["Banner", "PeakRewards", "Peak Time Savings", "Smart Energy Rewards", "Storm"]
+                .forEach {
+                    filterString += "or (CustomerType eq '\($0)')"
+            }
+            filterString += ")"
+        }
+        
+        let queryItem = URLQueryItem(name: "$filter", value: filterString)
+        
+        ServiceLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<NewAlertBanner, Error>) in
+            switch result {
+            case .success(let data):
+                print("NetworkTest 13 SUCCESS: \(data) BREAK \(data.alerts.first?.title)")
+            case .failure(let error):
+                print("NetworkTest 13 FAIL: \(error)")
+            }
+        }
+    }
     
     
     
