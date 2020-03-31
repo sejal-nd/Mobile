@@ -9,7 +9,7 @@
 import Foundation
 
 public struct NewWeather: Decodable {
-    public var temperature: String?
+    public var temperature: Int?
     public var unit: String
     public var isDaytime: Bool?
     public var shortForecast: String?
@@ -28,7 +28,7 @@ public struct NewWeather: Decodable {
         
         
         self.temperature = rawResponse.properties.periods.first?.temperature
-        self.unit = rawResponse.properties.periods.first?.unit ?? "F"
+        self.unit = rawResponse.properties.periods.first?.temperatureUnit ?? "F"
         self.isDaytime = rawResponse.properties.periods.first?.isDaytime
         self.shortForecast = rawResponse.properties.periods.first?.shortForecast
     }
@@ -42,8 +42,8 @@ fileprivate struct RawServerResponse: Decodable {
     }
     
     struct Periods: Decodable {
-        var temperature: String?
-        var unit: String = "F"
+        var temperature: Int?
+        var temperatureUnit: String = "F"
         var isDaytime: Bool?
         var shortForecast: String?
     }

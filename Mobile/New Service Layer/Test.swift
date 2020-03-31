@@ -19,7 +19,9 @@ class NetworkTest {
 //        maint()
   weather()
         
-        WeatherServiceNew.getWeather()
+        WeatherServiceNew.getWeather() { (result: Result<NewWeather, Error>) in
+            
+        }
     }
     
     private func json() {
@@ -65,13 +67,13 @@ class NetworkTest {
             }
         }
         
-//        ServiceLayer.request(router: .weather(lat: "39.295", long: "-76.624")) { (result: Result<NewWeather, Error>) in
-//            switch result {
-//            case .success(let data):
-//                print("NetworkTest 9 SUCCESS: \(data) BREAK \(data.temperature)")
-//            case .failure(let error):
-//                print("NetworkTest 9 FAIL: \(error)")
-//            }
-//        }
+        ServiceLayer.request(router: .weather(lat: "39.295", long: "-76.624")) { (result: Result<NewWeather, Error>) in
+            switch result {
+            case .success(let data):
+                print("NetworkTest 9 SUCCESS: \(data) BREAK \(data.temperature)")
+            case .failure(let error):
+                print("NetworkTest 9 FAIL: \(error)")
+            }
+        }
     }
 }
