@@ -129,6 +129,11 @@ public struct ServiceLayer {
                 return
             }
             
+            // todo only on debug
+            if let jsonString = String(data: data, encoding: String.Encoding.utf8) {
+                print("JSON Payload: \(jsonString)")
+            }
+            
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
             

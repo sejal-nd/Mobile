@@ -771,6 +771,12 @@
 		54EDD2DF1ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
 		54EDD2E01ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
 		54EDD2E11ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
+		6708866024337E8600B2C807 /* WalletMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708865F24337E8600B2C807 /* WalletMock.json */; };
+		6708866124337E8600B2C807 /* WalletMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708865F24337E8600B2C807 /* WalletMock.json */; };
+		6708866224337E8600B2C807 /* WalletMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708865F24337E8600B2C807 /* WalletMock.json */; };
+		670886642433803200B2C807 /* NewWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886632433803200B2C807 /* NewWallet.swift */; };
+		670886652433803200B2C807 /* NewWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886632433803200B2C807 /* NewWallet.swift */; };
+		670886662433803200B2C807 /* NewWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886632433803200B2C807 /* NewWallet.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3259,6 +3265,8 @@
 		638B790A0A077453811FDEC9 /* Pods-ComEd-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		64F75344AD0FA8FE270323F3 /* Pods-BGEApp-BGE.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.automation.xcconfig"; sourceTree = "<group>"; };
 		668FCA1931C2BA712403005F /* Pods-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
+		6708865F24337E8600B2C807 /* WalletMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WalletMock.json; sourceTree = "<group>"; };
+		670886632433803200B2C807 /* NewWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWallet.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* minVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5205,6 +5213,7 @@
 				67E4462C242A4276007FC7F3 /* NewAccount.swift */,
 				676BDA6F242CF28E00C880A3 /* Account Details */,
 				676BDA80242E4DC500C880A3 /* NewWeather.swift */,
+				670886632433803200B2C807 /* NewWallet.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5386,6 +5395,7 @@
 				67E44628242A4222007FC7F3 /* AccountsMock.json */,
 				676BDA67242BA85C00C880A3 /* AccountDetailsMock.json */,
 				676BDA7C242E4BB500C880A3 /* WeatherMock.json */,
+				6708865F24337E8600B2C807 /* WalletMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7108,6 +7118,7 @@
 				82D626181FE1AD8B00B09F00 /* landing_video.mp4 in Resources */,
 				B089572D2217596400A97965 /* billing_history.json in Resources */,
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
+				6708866024337E8600B2C807 /* WalletMock.json in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
@@ -7291,6 +7302,7 @@
 				82D626161FE1AD6B00B09F00 /* landing_video.mp4 in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				B066281C2252953B0060A89F /* ser_results.json in Resources */,
+				6708866224337E8600B2C807 /* WalletMock.json in Resources */,
 				35B9609B22B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B089572F2217596400A97965 /* billing_history.json in Resources */,
 				B08957092215FE7900A97965 /* recover_username.json in Resources */,
@@ -7465,6 +7477,7 @@
 				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
 				B066281B2252953B0060A89F /* ser_results.json in Resources */,
 				35B9609A22B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
+				6708866124337E8600B2C807 /* WalletMock.json in Resources */,
 				B089572E2217596400A97965 /* billing_history.json in Resources */,
 				B08957082215FE7900A97965 /* recover_username.json in Resources */,
 				441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */,
@@ -8971,6 +8984,7 @@
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
+				670886642433803200B2C807 /* NewWallet.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
 				B07E17B32208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
 				B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
@@ -9402,6 +9416,7 @@
 				B0649A61214834380041B299 /* StormModeStatus.swift in Sources */,
 				9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
+				670886662433803200B2C807 /* NewWallet.swift in Sources */,
 				8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				82AC2A2C1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1911F8E9D620090C5A5 /* BillForecast.swift in Sources */,
@@ -9833,6 +9848,7 @@
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
 				B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
+				670886652433803200B2C807 /* NewWallet.swift in Sources */,
 				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02711FB0B9E10062A348 /* AlertPreferences.swift in Sources */,

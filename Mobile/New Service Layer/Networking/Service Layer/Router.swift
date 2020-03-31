@@ -24,6 +24,8 @@ public enum Router {
     case accounts
     case accountDetails(accountNumber: String, queryString: String)
     
+    case wallet
+    
     case weather(lat: String, long: String)
     
     case anonOutageStatus(httpBody: HTTPBody)
@@ -39,7 +41,7 @@ public enum Router {
     
     public var host: String {
         switch self {
-        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion:
+        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .wallet:
             return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
         //return Environment.shared.mcsConfig.baseUrl
         case .fetchSAMLToken:
@@ -103,6 +105,8 @@ public enum Router {
             return "/mobile/platform/sso/exchange-token"
         case .weather(let lat, let long):
             return "/points/\(lat),\(long)/forecast/hourly"
+        case .wallet:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/wallet/query"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -114,7 +118,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather:
             return "GET"
@@ -154,10 +158,7 @@ public enum Router {
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .accountDetails:
-            return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
-                    "Authorization": "Bearer \(token)"]
-        case .accounts:
+        case .accounts, .accountDetails, .wallet:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
         case .minVersion, .maintenanceMode:
@@ -198,6 +199,8 @@ public enum Router {
             return "AccountsMock"
         case .weather:
             return "WeatherMock"
+        case .wallet:
+            return "WalletMock"
         default:
             return ""
         }

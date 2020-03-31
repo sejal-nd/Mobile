@@ -52,6 +52,9 @@ struct AuthenticatedService {
                 
                 
             //                       completion(.success(data.min))
+                
+                NetworkTest.shared.wallet()
+                
             case .failure(let error):
                 print("NetworkTest 6 FAIL: \(error)")
 //                completion(.failure(error))

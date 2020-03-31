@@ -17,11 +17,12 @@ class NetworkTest {
 //        minVersion()
         
 //        maint()
-  weather()
+//  weather()
+//
+//        WeatherServiceNew.getWeather() { (result: Result<NewWeather, Error>) in
+//
+//        }
         
-        WeatherServiceNew.getWeather() { (result: Result<NewWeather, Error>) in
-            
-        }
     }
     
     private func json() {
@@ -73,6 +74,17 @@ class NetworkTest {
                 print("NetworkTest 9 SUCCESS: \(data) BREAK \(data.temperature)")
             case .failure(let error):
                 print("NetworkTest 9 FAIL: \(error)")
+            }
+        }
+    }
+    
+    func wallet() {
+        ServiceLayer.request(router: .wallet) { (result: Result<NewWallet, Error>) in
+            switch result {
+            case .success(let data):
+                print("NetworkTest 10 SUCCESS: \(data) BREAK \(data.walletItems.first?.id)")
+            case .failure(let error):
+                print("NetworkTest 10 FAIL: \(error)")
             }
         }
     }
