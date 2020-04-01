@@ -24,6 +24,13 @@ protocol AccountService {
     ///   - account: the account to fetch
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail>
     
+    /// Fetch an accounts detailed information.
+    ///
+    /// - Parameters:
+    ///   - account: the account to fetch
+    ///   - alertPreferenceEligibilities: boolean field to fetch alert preference eligibilities
+    func fetchAccountDetail(account: Account, alertPreferenceEligibilities: Bool) -> Observable<AccountDetail>
+    
     #if os(iOS)
     /// Updates the Release of Information in preferences for the specified account (PECO ONLY)
     ///

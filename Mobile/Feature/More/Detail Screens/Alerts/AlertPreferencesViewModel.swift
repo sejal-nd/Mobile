@@ -92,14 +92,13 @@ class AlertPreferencesViewModel {
                 
                 switch Environment.shared.opco {
                 case .bge:
-                    let showHighUsageSection = self.accountDetail.isAMIAccount && !self.accountDetail.isFinaled && !self.accountDetail.isBGEControlGroup
                     
                     var usageOptions: [AlertPreferencesOptions] = []
-                    if showHighUsageSection {
+                    if self.isHUAEligible {
                         usageOptions.append(.highUsage)
                     }
                     
-                    if self.accountDetail.isSERAccount {
+                    if self.isPTREligible {
                         usageOptions.append(contentsOf: [.smartEnergyRewards, .energySavingsDayResults])
                     }
                     
@@ -128,7 +127,7 @@ class AlertPreferencesViewModel {
                         usageOptions.append(.highUsage)
                     }
                     
-                    if self.accountDetail.isPTSAccount {
+                    if self.isPTSEligible {
                         usageOptions.append(.peakTimeSavings)
                     }
                     
@@ -183,7 +182,7 @@ class AlertPreferencesViewModel {
     }
     
     func fetchAccountDetail() -> Observable<Void> {
-        return accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        return accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount, alertPreferenceEligibilities: true)
             .observeOn(MainScheduler.instance)
             .do(onNext: { [weak self] accountDetail in
                 self?.accountDetail = accountDetail
@@ -197,13 +196,18 @@ class AlertPreferencesViewModel {
             .do(onNext: { [weak self] alertPrefs in
                 guard let self = self else { return }
                 
+                self.alertPrefs.accept(alertPrefs) // original prefs
+                
+                // usage
                 self.highUsage.accept(alertPrefs.usage)
                 if let threshold = alertPrefs.alertThreshold {
                     self.initialBillThresholdValue = String(threshold)
                     self.billThreshold.accept(String(threshold))
                 }
-                
-                self.alertPrefs.accept(alertPrefs)
+                self.peakTimeSavings.accept(alertPrefs.peakTimeSavings ?? false)
+                self.smartEnergyRewards.accept(alertPrefs.smartEnergyRewards ?? false)
+                self.energySavingsDayResults.accept(alertPrefs.energySavingsDayResults ?? false)
+                                
                 self.outage.accept(alertPrefs.outage)
                 self.scheduledMaint.accept(alertPrefs.scheduledMaint)
                 self.severeWeather.accept(alertPrefs.severeWeather)
@@ -317,9 +321,9 @@ class AlertPreferencesViewModel {
     private func saveAlertPreferences() -> Observable<Void> {
         let alertPreferences = AlertPreferences(usage: highUsage.value,
                                                 alertThreshold: Int(billThreshold.value ?? ""),
-                                                peakTimeSavings: isPTS ? peakTimeSavings.value : nil,
-                                                smartEnergyRewards: isPTR ? smartEnergyRewards.value : nil,
-                                                energySavingsDayResults: isPTR ? energySavingsDayResults.value : nil,
+                                                peakTimeSavings: isPTSEligible ? peakTimeSavings.value : nil,
+                                                smartEnergyRewards: isPTREligible ? smartEnergyRewards.value : nil,
+                                                energySavingsDayResults: isPTREligible ? energySavingsDayResults.value : nil,
                                                 outage: outage.value,
                                                 scheduledMaint: scheduledMaint.value,
                                                 severeWeather: severeWeather.value,
@@ -357,19 +361,28 @@ class AlertPreferencesViewModel {
         return String(format: NSLocalizedString("%d Days Before", comment: ""), $0)
     }
     
-    var isPTS: Bool {
+    var isHUAEligible: Bool {
+        switch Environment.shared.opco {
+        case .bge, .comEd:
+            return self.accountDetail.isHUAEligible ?? false
+        case .peco:
+            return false
+        }
+    }
+    
+    var isPTSEligible: Bool {
         switch Environment.shared.opco {
         case .bge, .peco:
             return false
         case .comEd:
-            return self.accountDetail.isPTSAccount
+            return self.accountDetail.isPTSEligible ?? false
         }
     }
     
-    var isPTR: Bool {
+    var isPTREligible: Bool {
         switch Environment.shared.opco {
         case .bge:
-            return self.accountDetail.isSERAccount
+            return self.accountDetail.isPTREligible ?? false
         case .comEd, .peco:
             return false
         }

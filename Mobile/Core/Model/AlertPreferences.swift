@@ -9,11 +9,11 @@
 import Mapper
 
 struct AlertPreferences {
-    var usage = false
-    var alertThreshold: Int?
-    var peakTimeSavings: Bool? = nil
-    var smartEnergyRewards: Bool? = nil
-    var energySavingsDayResults: Bool? = nil
+    var usage = false // BGE/ComEd only
+    var alertThreshold: Int? // BGE/ComEd only
+    var peakTimeSavings: Bool? = false // ComEd only
+    var smartEnergyRewards: Bool? = false // BGE only
+    var energySavingsDayResults: Bool? = false // BGE only
     var outage = false
     var scheduledMaint = false // BGE only
     var severeWeather = false
@@ -32,6 +32,12 @@ struct AlertPreferences {
             case "High Usage Electric", "High Usage Electric Alerts":
                 usage = true
                 alertThreshold = pref.alertThreshold
+            case "Energy Savings Day Alert":
+                smartEnergyRewards = true
+            case "Energy Savings Day Results":
+                energySavingsDayResults = true
+            case "Peak Time Savings":
+                peakTimeSavings = true
             case "Outage Notifications":
                 outage = true
             case "Planned Outage":
@@ -127,7 +133,7 @@ struct AlertPreferences {
         }
         
         if let smartEnergyRewards = smartEnergyRewards {
-            array.append(["programName": "Smart Energy Rewards", "type": "push", "isActive": smartEnergyRewards])
+            array.append(["programName": "Energy Savings Day Alert", "type": "push", "isActive": smartEnergyRewards])
         }
         
         if let energySavingsDayResults = energySavingsDayResults {

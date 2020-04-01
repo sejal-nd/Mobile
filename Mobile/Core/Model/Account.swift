@@ -107,6 +107,11 @@ struct AccountDetail: Mappable {
     let electricChoiceId: String?
     let gasChoiceId: String?
     
+    // alert preference eligibility
+    let isHUAEligible: Bool?
+    let isPTREligible: Bool?
+    let isPTSEligible: Bool?
+    
     // Only 3 real states to think about
     enum PrepaidStatus: String {
         // Not Enrolled
@@ -174,6 +179,10 @@ struct AccountDetail: Mappable {
         
         electricChoiceId = map.optionalFrom("electricChoiceID")
         gasChoiceId = map.optionalFrom("gasChoiceID")
+        
+        isHUAEligible = map.optionalFrom("isHUAEligible")
+        isPTREligible = map.optionalFrom("isPTREligible")
+        isPTSEligible = map.optionalFrom("isPTSEligible")
     }
     
     // BGE only - Smart Energy Rewards enrollment status
