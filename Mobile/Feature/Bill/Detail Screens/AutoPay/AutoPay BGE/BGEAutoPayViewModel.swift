@@ -294,10 +294,8 @@ class BGEAutoPayViewModel {
             Editing or unenrolling in AutoPay will go into effect with your next bill. Any upcoming payments for your current bill may be viewed or canceled in Bill & Payment Activity.
             """, comment: "")
         } else if let netDueAmount = billingInfo.netDueAmount, netDueAmount > 0 {
-            let formatText = """
-            If you enroll today, AutoPay will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due immediately.
-            """
-            return String.localizedStringWithFormat(formatText, netDueAmount.currencyString)
+            let formatText = "If you enroll today, AutoPay will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due immediately.".localized()
+            return String(format: formatText, netDueAmount.currencyString)
         } else {
             return NSLocalizedString("""
             Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment you will receive a payment confirmation for your records.

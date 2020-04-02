@@ -2012,6 +2012,10 @@
 		B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */; };
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
 		B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */; };
+		C30079382436637600A9BEB0 /* BGEStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = C300793A2436637600A9BEB0 /* BGEStrings.strings */; };
+		C300793C2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
+		C300793D2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
+		C300793E2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
 		C31E57A7242BCD830059B797 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
 		C31E57A8242BCD830059B797 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
 		C3381A032424060400EA7062 /* SERWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A002424060400EA7062 /* SERWebViewController.swift */; };
@@ -3629,6 +3633,8 @@
 		B9C2CDC8EAF0A302CCFCA131 /* Pods-PECO_WatchOS Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
 		BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
+		C30079392436637600A9BEB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BGEStrings.strings; sourceTree = "<group>"; };
+		C300793B2436669F00A9BEB0 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		C3381A002424060400EA7062 /* SERWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERWebViewController.swift; sourceTree = "<group>"; };
 		C3381A012424060400EA7062 /* SERWebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERWebViewModel.swift; sourceTree = "<group>"; };
 		C3381A052424064100EA7062 /* PTRWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PTRWidget.html; sourceTree = "<group>"; };
@@ -5455,6 +5461,7 @@
 				359BDB2722D398F0007002B0 /* UIColor+Image.swift */,
 				359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */,
 				9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */,
+				C300793B2436669F00A9BEB0 /* LocalizedString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5952,6 +5959,7 @@
 				9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */,
 				9C34D745239EE92400DF7FE2 /* GameTasks.json */,
 				C3381A052424064100EA7062 /* PTRWidget.html */,
+				C300793A2436637600A9BEB0 /* BGEStrings.strings */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -6974,6 +6982,7 @@
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
 				0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */,
+				C30079382436637600A9BEB0 /* BGEStrings.strings in Resources */,
 				9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
@@ -8893,6 +8902,7 @@
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* BiometricsService.swift in Sources */,
+				C300793C2436669F00A9BEB0 /* LocalizedString.swift in Sources */,
 				9C7C902723B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
@@ -9309,6 +9319,7 @@
 				C3381A0824291ADE00EA7062 /* SERWebViewController.swift in Sources */,
 				B0CB1C8D227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */,
 				B07D247D20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
+				C300793E2436669F00A9BEB0 /* LocalizedString.swift in Sources */,
 				B0D84D4222023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				9C7C902923B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				2F036CF21F1EA7D5000DECBE /* WeatherService.swift in Sources */,
@@ -9725,6 +9736,7 @@
 				C3381A0724291ADD00EA7062 /* SERWebViewController.swift in Sources */,
 				2F036CF11F1EA7D5000DECBE /* WeatherService.swift in Sources */,
 				B07D247C20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
+				C300793D2436669F00A9BEB0 /* LocalizedString.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				9C7C902823B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				2FA7B9FB1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
@@ -10523,6 +10535,14 @@
 				35E7C7CA21907F2E00BA13C6 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C300793A2436637600A9BEB0 /* BGEStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C30079392436637600A9BEB0 /* en */,
+			);
+			name = BGEStrings.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
