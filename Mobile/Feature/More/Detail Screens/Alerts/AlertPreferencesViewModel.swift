@@ -199,7 +199,7 @@ class AlertPreferencesViewModel {
                 self.alertPrefs.accept(alertPrefs) // original prefs
                 
                 // usage
-                self.highUsage.accept(alertPrefs.usage)
+                self.highUsage.accept(alertPrefs.highUsage)
                 if let threshold = alertPrefs.alertThreshold {
                     self.initialBillThresholdValue = String(threshold)
                     self.billThreshold.accept(String(threshold))
@@ -282,7 +282,7 @@ class AlertPreferencesViewModel {
                         appointmentTracking.asObservable(),
                         forYourInfo.asObservable()])
         .map { prefs in
-            AlertPreferences(usage: prefs[0],
+            AlertPreferences(highUsage: prefs[0],
                              peakTimeSavings: prefs[1],
                              smartEnergyRewards: prefs[2],
                              energySavingsDayResults: prefs[3],
@@ -319,7 +319,7 @@ class AlertPreferencesViewModel {
         .share(replay: 1, scope: .forever)
     
     private func saveAlertPreferences() -> Observable<Void> {
-        let alertPreferences = AlertPreferences(usage: highUsage.value,
+        let alertPreferences = AlertPreferences(highUsage: highUsage.value,
                                                 alertThreshold: Int(billThreshold.value ?? ""),
                                                 peakTimeSavings: isPTSEligible ? peakTimeSavings.value : nil,
                                                 smartEnergyRewards: isPTREligible ? smartEnergyRewards.value : nil,

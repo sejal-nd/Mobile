@@ -9,7 +9,7 @@
 import Mapper
 
 struct AlertPreferences {
-    var usage = false // BGE/ComEd only
+    var highUsage = false // BGE/ComEd only
     var alertThreshold: Int? // BGE/ComEd only
     var peakTimeSavings: Bool? = false // ComEd only
     var smartEnergyRewards: Bool? = false // BGE only
@@ -29,8 +29,8 @@ struct AlertPreferences {
     init(alertPreferences: [AlertPreference]) {
         for pref in alertPreferences {
             switch pref.programName {
-            case "High Usage Electric", "High Usage Electric Alerts":
-                usage = true
+            case "High Usage Residential Alert":
+                highUsage = true
                 alertThreshold = pref.alertThreshold
             case "Energy Savings Day Alert":
                 smartEnergyRewards = true
@@ -68,7 +68,7 @@ struct AlertPreferences {
     }
     
     // To create programatically, not from JSON
-    init(usage: Bool,
+    init(highUsage: Bool,
          alertThreshold: Int? = nil,
          peakTimeSavings: Bool? = nil,
          smartEnergyRewards: Bool? = nil,
@@ -84,7 +84,7 @@ struct AlertPreferences {
          budgetBilling: Bool,
          appointmentTracking: Bool,
          forYourInfo: Bool) {
-        self.usage = usage
+        self.highUsage = highUsage
         self.alertThreshold = alertThreshold
         self.peakTimeSavings = peakTimeSavings
         self.smartEnergyRewards = smartEnergyRewards
@@ -107,9 +107,9 @@ struct AlertPreferences {
         let billReadyProgramName = Environment.shared.opco == .bge ? "Bill is Ready" : "Paperless Billing"
         let paymentDueProgramName = Environment.shared.opco == .bge ? "Payment Reminder" : "Payment Reminders"
         let forYourInfoProgramName = Environment.shared.opco == .bge ? "Marketing" : "News"
-        let highUsageProgramName = Environment.shared.opco == .comEd ? "High Usage Electric" : "High Usage Electric Alerts"
+        let highUsageProgramName = "High Usage Residential Alert"
         
-        var highUsageProgram = ["programName": highUsageProgramName, "type": "push", "isActive": usage] as [String : Any]
+        var highUsageProgram = ["programName": highUsageProgramName, "type": "push", "isActive": highUsage] as [String : Any]
         if let billThreshold = alertThreshold {
             highUsageProgram["alertThreshold"] = billThreshold
         }
@@ -146,7 +146,7 @@ struct AlertPreferences {
     func isDifferent(fromOriginal originalPrefs: AlertPreferences) -> Bool {
         // Note: not checking paymentDueDaysBefore here because that is compared for changes independently
         // in AlertPreferencesViewModel
-        return usage != originalPrefs.usage ||
+        return highUsage != originalPrefs.highUsage ||
             peakTimeSavings != originalPrefs.peakTimeSavings ||
             smartEnergyRewards != originalPrefs.smartEnergyRewards ||
             energySavingsDayResults != originalPrefs.energySavingsDayResults ||
@@ -166,7 +166,7 @@ struct AlertPreferences {
 struct AlertPreference: Mappable {
     let programName: String
     var daysPrior: Int? // Only sent along with programName = "Payment Reminders"
-    var alertThreshold: Int? // Only sent along with programName = "High Usage Electric" or "High Usage Electric Alerts"
+    var alertThreshold: Int? // Only sent along with programName = "High Usage Residential Alert"
     
     init(map: Mapper) throws {
         try programName = map.from("programName")
