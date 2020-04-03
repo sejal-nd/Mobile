@@ -14,7 +14,7 @@ extension String {
         return Environment.shared.opco == .bge ? localized(tableName: "BGEStrings", comment: comment) : NSLocalizedString(self, comment: comment ?? "")
     }
     
-    func localized(tableName: String? = nil, comment: String? = nil) -> String {
+    private func localized(tableName: String? = nil, comment: String? = nil) -> String {
         return NSLocalizedString(self, tableName: tableName, comment: comment ?? "")
     }
 }
