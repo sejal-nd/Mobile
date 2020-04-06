@@ -795,12 +795,27 @@
 		6708867C2433CF4D00B2C807 /* NewBillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708867B2433CF4D00B2C807 /* NewBillPDF.swift */; };
 		6708867D2433CF4D00B2C807 /* NewBillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708867B2433CF4D00B2C807 /* NewBillPDF.swift */; };
 		6708867E2433CF4D00B2C807 /* NewBillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708867B2433CF4D00B2C807 /* NewBillPDF.swift */; };
+		67088680243B697700B2C807 /* ScheduledPaymentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708867F243B697700B2C807 /* ScheduledPaymentMock.json */; };
+		67088681243B697700B2C807 /* ScheduledPaymentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708867F243B697700B2C807 /* ScheduledPaymentMock.json */; };
+		67088682243B697700B2C807 /* ScheduledPaymentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708867F243B697700B2C807 /* ScheduledPaymentMock.json */; };
+		67088684243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */; };
+		67088685243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */; };
+		67088686243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */; };
+		67088688243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */; };
+		67088689243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */; };
+		6708868A243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */; };
+		6708868C243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */; };
+		6708868D243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */; };
+		6708868E243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */; };
+		67088690243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */; };
+		67088691243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */; };
+		67088692243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
-		6766F96A242259D0007C9CB9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* minVersionMock.json */; };
-		6766F96B242259D0007C9CB9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* minVersionMock.json */; };
-		6766F96C242259D0007C9CB9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* minVersionMock.json */; };
+		6766F96A242259D0007C9CB9 /* MinVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* MinVersionMock.json */; };
+		6766F96B242259D0007C9CB9 /* MinVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* MinVersionMock.json */; };
+		6766F96C242259D0007C9CB9 /* MinVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6766F969242259D0007C9CB9 /* MinVersionMock.json */; };
 		6766F96F242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
 		6766F970242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
 		6766F971242273D8007C9CB9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96E242273D8007C9CB9 /* UserSession.swift */; };
@@ -849,9 +864,9 @@
 		67E6E7B72428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
 		67E6E7B82428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
 		67E6E7B92428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
-		67E6E7BB242906A900C3AC90 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */; };
-		67E6E7BC242906A900C3AC90 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */; };
-		67E6E7BD242906A900C3AC90 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */; };
+		67E6E7BB242906A900C3AC90 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */; };
+		67E6E7BC242906A900C3AC90 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */; };
+		67E6E7BD242906A900C3AC90 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */; };
 		67E6E7BF242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
 		67E6E7C0242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
 		67E6E7C1242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
@@ -3291,8 +3306,13 @@
 		670886732433B22D00B2C807 /* NewAlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlertBanner.swift; sourceTree = "<group>"; };
 		670886772433CF1E00B2C807 /* BillPDFMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillPDFMock.json; sourceTree = "<group>"; };
 		6708867B2433CF4D00B2C807 /* NewBillPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillPDF.swift; sourceTree = "<group>"; };
+		6708867F243B697700B2C807 /* ScheduledPaymentMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentMock.json; sourceTree = "<group>"; };
+		67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScheduledPayment.swift; sourceTree = "<group>"; };
+		67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSchedulePaymentResult.swift; sourceTree = "<group>"; };
+		6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentMockResult.json; sourceTree = "<group>"; };
+		6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentServiceNew.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
-		6766F969242259D0007C9CB9 /* minVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minVersionMock.json; sourceTree = "<group>"; };
+		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		676BDA67242BA85C00C880A3 /* AccountDetailsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountDetailsMock.json; sourceTree = "<group>"; };
 		676BDA6B242BA8BC00C880A3 /* NewAccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAccountDetails.swift; sourceTree = "<group>"; };
@@ -3309,7 +3329,7 @@
 		67E4462C242A4276007FC7F3 /* NewAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccount.swift; sourceTree = "<group>"; };
 		67E44630242A453A007FC7F3 /* JWTTokenMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JWTTokenMock.json; sourceTree = "<group>"; };
 		67E6E7B62428F67000C3AC90 /* AnonymousService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonymousService.swift; sourceTree = "<group>"; };
-		67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = maintenanceModeMock.json; sourceTree = "<group>"; };
+		67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MaintenanceModeMock.json; sourceTree = "<group>"; };
 		67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMaintenanceMode.swift; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -5241,6 +5261,8 @@
 				6708866B243388BF00B2C807 /* NewPayments.swift */,
 				670886732433B22D00B2C807 /* NewAlertBanner.swift */,
 				6708867B2433CF4D00B2C807 /* NewBillPDF.swift */,
+				67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */,
+				67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5415,8 +5437,8 @@
 		6766F9682422582F007C9CB9 /* Mock JSONS */ = {
 			isa = PBXGroup;
 			children = (
-				6766F969242259D0007C9CB9 /* minVersionMock.json */,
-				67E6E7BA242906A900C3AC90 /* maintenanceModeMock.json */,
+				6766F969242259D0007C9CB9 /* MinVersionMock.json */,
+				67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */,
 				67E4461C242925AD007FC7F3 /* SAMLTokenMock.json */,
 				67E44630242A453A007FC7F3 /* JWTTokenMock.json */,
 				67E44628242A4222007FC7F3 /* AccountsMock.json */,
@@ -5426,6 +5448,8 @@
 				67088667243387EE00B2C807 /* PaymentsMock.json */,
 				6708866F2433AF3000B2C807 /* AlertBannerMock.json */,
 				670886772433CF1E00B2C807 /* BillPDFMock.json */,
+				6708867F243B697700B2C807 /* ScheduledPaymentMock.json */,
+				6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -5454,6 +5478,7 @@
 			children = (
 				67E6E7B62428F67000C3AC90 /* AnonymousService.swift */,
 				67E44618242922B2007FC7F3 /* AuthenticatedService.swift */,
+				6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */,
 				676BDA84242E6E1E00C880A3 /* WeatherServiceNew.swift */,
 			);
 			path = "New Domain Layer";
@@ -7077,7 +7102,7 @@
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
-				6766F96A242259D0007C9CB9 /* minVersionMock.json in Resources */,
+				6766F96A242259D0007C9CB9 /* MinVersionMock.json in Resources */,
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
@@ -7091,6 +7116,7 @@
 				B0B083FC21710CDB00B1C632 /* Appt_Complete.json in Resources */,
 				B0EE78EA221353E700F53C56 /* report_outage.json in Resources */,
 				224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
+				67088680243B697700B2C807 /* ScheduledPaymentMock.json in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
@@ -7110,6 +7136,7 @@
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
+				6708868C243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
 				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
@@ -7183,7 +7210,7 @@
 				0EF60FD020EE7AE7006ABC18 /* Assets.xcassets in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
-				67E6E7BB242906A900C3AC90 /* maintenanceModeMock.json in Resources */,
+				67E6E7BB242906A900C3AC90 /* MaintenanceModeMock.json in Resources */,
 				67088668243387EE00B2C807 /* PaymentsMock.json in Resources */,
 				B0DB274E215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
 				35ACCB4320EA590D0022907F /* HomeOutageCardView.xib in Resources */,
@@ -7239,7 +7266,7 @@
 				9C0EA5B7237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				9C0EA5C3237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				9C0A2C3B23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
-				6766F96C242259D0007C9CB9 /* minVersionMock.json in Resources */,
+				6766F96C242259D0007C9CB9 /* MinVersionMock.json in Resources */,
 				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -7248,6 +7275,7 @@
 				B08957212217455200A97965 /* account_lookup.json in Resources */,
 				B0B0840521710D1500B1C632 /* Appt_Confirmed.json in Resources */,
 				9C0EA5BA237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
+				6708868E243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */,
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -7267,6 +7295,7 @@
 				B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				67E44633242A453A007FC7F3 /* JWTTokenMock.json in Resources */,
+				67088682243B697700B2C807 /* ScheduledPaymentMock.json in Resources */,
 				2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */,
 				359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */,
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
@@ -7321,7 +7350,7 @@
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				9C2C601123C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
-				67E6E7BD242906A900C3AC90 /* maintenanceModeMock.json in Resources */,
+				67E6E7BD242906A900C3AC90 /* MaintenanceModeMock.json in Resources */,
 				359BDBAE22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				359BDB6822D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
@@ -7417,7 +7446,7 @@
 				9C0EA5B6237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				9C0EA5C2237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				9C0A2C3A23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
-				6766F96B242259D0007C9CB9 /* minVersionMock.json in Resources */,
+				6766F96B242259D0007C9CB9 /* MinVersionMock.json in Resources */,
 				35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -7426,6 +7455,7 @@
 				B08957202217455200A97965 /* account_lookup.json in Resources */,
 				B0B083F121710C8900B1C632 /* Appt_Confirmed.json in Resources */,
 				9C0EA5B9237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
+				6708868D243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */,
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
@@ -7445,6 +7475,7 @@
 				B55736461E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B5D415801F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist in Resources */,
 				67E44632242A453A007FC7F3 /* JWTTokenMock.json in Resources */,
+				67088681243B697700B2C807 /* ScheduledPaymentMock.json in Resources */,
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				B01FF0B0221DFC77008CA222 /* autopay_info.json in Resources */,
 				E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
@@ -7499,7 +7530,7 @@
 				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				9C2C601023C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				359BDBAD22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
-				67E6E7BC242906A900C3AC90 /* maintenanceModeMock.json in Resources */,
+				67E6E7BC242906A900C3AC90 /* MaintenanceModeMock.json in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				359BDB6722D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
@@ -9042,6 +9073,7 @@
 				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				82AC2A2A1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */,
+				67088690243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
@@ -9089,6 +9121,7 @@
 				82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				0D79C6D11F1FB761004793DD /* Maintenance.swift in Sources */,
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
+				67088684243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */,
 				35AFB42B20C82DA0000312B9 /* SheetView.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
@@ -9102,6 +9135,7 @@
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
 				0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
+				67088688243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */,
 				0EF60FD420EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
@@ -9477,6 +9511,7 @@
 				82EAB3361F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
+				67088692243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				9CB7E8DF23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				35C9139822E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
@@ -9524,6 +9559,7 @@
 				82DE61071FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				E8C453251EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				54AE06AC1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
+				67088686243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */,
 				9C0E1C962333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
 				35C9139D22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
@@ -9537,6 +9573,7 @@
 				9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				8267733F1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				2249C039216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
+				6708868A243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */,
 				54EDD2E11ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
 				E835D1CB1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027C1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
@@ -9912,6 +9949,7 @@
 				9CD742BC237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
+				67088691243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */,
 				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9CB7E8DE23980BA4001FBAB9 /* GameTask.swift in Sources */,
@@ -9959,6 +9997,7 @@
 				35AFB42C20C82DA0000312B9 /* SheetView.swift in Sources */,
 				826DCCEE1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */,
 				E841F3AB1F02F316007BFA82 /* PickerView.swift in Sources */,
+				67088685243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */,
 				E82FF1F31F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CA1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
@@ -9972,6 +10011,7 @@
 				9C28D389227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				54AE06AB1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
+				67088689243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */,
 				35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,

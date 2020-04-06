@@ -16,7 +16,7 @@ public struct ServiceLayer {
         print("Logic test: \(router.apiAccess == .auth && router.token.isEmpty && T.self != NewSAMLToken.self && T.self != NewJWTToken.self)")
         
         // todo can we extract this logic into router?
-        if router.apiAccess == .auth && router.token.isEmpty && T.self != NewSAMLToken.self && T.self != NewJWTToken.self { // || T.self == NewJWTToken.self
+        if router.apiAccess == .auth && router.token.isEmpty && T.self == NewSAMLToken.self && T.self == NewJWTToken.self { // || T.self == NewJWTToken.self
             // THROW ERROR LOG USER OUT, NO TOKEN FOR AUTH REQUEST.
             print("REQUEST BLOCKED ")
             return
@@ -28,20 +28,23 @@ public struct ServiceLayer {
         components.host = router.host
         components.path = router.path
         components.queryItems = router.parameters
-        
+        print("....1")
         // 3.
-        guard let url = components.url else { return }
+        guard let url = components.url else { print("FAIL URL");return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
         
+        print("....2")
+        
         // HTTP BODY
         if let httpBody = router.httpBody {
+            print("body: \(httpBody)")
             urlRequest.httpBody = httpBody
         }
         
         // Add Headers
         ServiceLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
-        print("URL: \(url)")
+        print("NEW URL: \(url)")
         
         // 4.
         let session: URLSession
@@ -63,7 +66,7 @@ public struct ServiceLayer {
                 
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             
-            print("URL: \(url)")
+            print("DATA TASK URL: \(url)")
             
             // 5.
             guard error == nil else {
@@ -71,12 +74,12 @@ public struct ServiceLayer {
                 print(error!.localizedDescription)
                 return
             }
-                        
+                      print("....2")
             // should only check if not AUT build
             guard response != nil || Environment.shared.environmentName == .aut else {
                 return
             }
-            
+            print("....3")
             guard let data = data else {
                 return
             }

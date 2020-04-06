@@ -36,6 +36,8 @@ public enum Router {
 
     case billPDF(accountNumber: String, date: Date)
     
+    case scheduledPayment(accountNumber: String, httpBody: HTTPBody)
+    
 //    case getSources
 //    case getProductIds
 //    case getProductInfo
@@ -46,7 +48,7 @@ public enum Router {
     
     public var host: String {
         switch self {
-        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .wallet, .payments, .billPDF:
+        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .wallet, .payments, .billPDF, .scheduledPayment:
             return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
         //return Environment.shared.mcsConfig.baseUrl
         case .fetchSAMLToken:
@@ -120,7 +122,9 @@ public enum Router {
             return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
         case .billPDF(let accountNumber, let date):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
-            return "auth_v6/accounts/\(accountNumber)/billing/\(dateString)/pdf" // todo how do we get date?
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/\(dateString)/pdf" // todo how do we get date?
+        case .scheduledPayment(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/schedule"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -132,7 +136,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF:
             return "GET"
@@ -179,6 +183,11 @@ public enum Router {
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
+        case .scheduledPayment:
+            return ["Authorization": "Bearer \(token)",
+                "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
+                "Content-Type": "application/json"
+            ]
         case .accounts, .accountDetails, .wallet, .payments, .billPDF:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
@@ -201,7 +210,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody):
+        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody):
             return httpBody
         default:
             return nil
@@ -211,9 +220,9 @@ public enum Router {
     public var mockFileName: String {
         switch self {
         case .minVersion:
-            return "minVersionMock"
+            return "MinVersionMock"
         case .maintenanceMode:
-            return "maintenanceModeMock"
+            return "MaintenanceModeMock"
         case .fetchSAMLToken:
             return "SAMLTokenMock"
         case .exchangeSAMLToken:
@@ -229,7 +238,9 @@ public enum Router {
         case .alertBanner:
             return "AlertBannerMock"
         case .billPDF:
-            return "billPDFMock"
+            return "BillPDFMock"
+        case .scheduledPayment:
+            return "ScheduledPaymentMock"
         default:
             return ""
         }

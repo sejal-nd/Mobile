@@ -114,6 +114,14 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
                          onSuccess: @escaping () -> Void,
                          onError: @escaping (ServiceError) -> Void) {
+//        
+//        
+//        PaymentServiceNew.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
+//                                          paymentAmount: self.paymentAmount.value,
+//                                          paymentDate: self.paymentDate.value,
+//                                          walletId: AccountsStore.shared.customerIdentifier,
+//                                          walletItem: self.selectedWalletItem.value!)
+//        
         self.paymentService.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
                                             paymentAmount: self.paymentAmount.value,
                                             paymentDate: self.paymentDate.value,
