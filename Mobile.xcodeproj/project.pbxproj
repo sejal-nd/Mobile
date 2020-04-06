@@ -810,6 +810,15 @@
 		67088690243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */; };
 		67088691243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */; };
 		67088692243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */; };
+		67088694243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 67088693243BA5AD00B2C807 /* BillingHistoryResult.json */; };
+		67088695243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 67088693243BA5AD00B2C807 /* BillingHistoryResult.json */; };
+		67088696243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 67088693243BA5AD00B2C807 /* BillingHistoryResult.json */; };
+		67088698243BA76800B2C807 /* NewBillingHistoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */; };
+		67088699243BA76800B2C807 /* NewBillingHistoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */; };
+		6708869A243BA76800B2C807 /* NewBillingHistoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */; };
+		6708869C243BA77700B2C807 /* NewBillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */; };
+		6708869D243BA77700B2C807 /* NewBillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */; };
+		6708869E243BA77700B2C807 /* NewBillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3311,6 +3320,9 @@
 		67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSchedulePaymentResult.swift; sourceTree = "<group>"; };
 		6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentMockResult.json; sourceTree = "<group>"; };
 		6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentServiceNew.swift; sourceTree = "<group>"; };
+		67088693243BA5AD00B2C807 /* BillingHistoryResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillingHistoryResult.json; sourceTree = "<group>"; };
+		67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBillingHistoryResult.swift; sourceTree = "<group>"; };
+		6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillingHistoryItem.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5263,6 +5275,8 @@
 				6708867B2433CF4D00B2C807 /* NewBillPDF.swift */,
 				67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */,
 				67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */,
+				67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */,
+				6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5450,6 +5464,7 @@
 				670886772433CF1E00B2C807 /* BillPDFMock.json */,
 				6708867F243B697700B2C807 /* ScheduledPaymentMock.json */,
 				6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */,
+				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7178,6 +7193,7 @@
 				6708866024337E8600B2C807 /* WalletMock.json in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
+				67088694243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
 				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */,
 				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
@@ -7301,6 +7317,7 @@
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B01FF0B1221DFC77008CA222 /* autopay_info.json in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				67088696243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
 				9C3DD83923A4105900AF75B6 /* GameTasks.json in Resources */,
 				B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -7481,6 +7498,7 @@
 				E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
+				67088695243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
 				9C3DD83823A4105800AF75B6 /* GameTasks.json in Resources */,
 				B0EE78EB221353E700F53C56 /* report_outage.json in Resources */,
 				B0B083F221710C8900B1C632 /* Appt_Complete.json in Resources */,
@@ -8902,6 +8920,7 @@
 				E8CFB8AA1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
+				6708869C243BA77700B2C807 /* NewBillingHistoryItem.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				E8400E691FE05F0C0064E242 /* MockWalletService.swift in Sources */,
 				B01748972135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
@@ -9091,6 +9110,7 @@
 				821898961F3279AB0077D7A1 /* MockPaymentService.swift in Sources */,
 				9C62445F22C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				B0CB1C8B227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */,
+				67088698243BA76800B2C807 /* NewBillingHistoryResult.swift in Sources */,
 				9C119F6421FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
 				82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2C1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -9340,6 +9360,7 @@
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				B01748992135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
+				6708869E243BA77700B2C807 /* NewBillingHistoryItem.swift in Sources */,
 				E8400E6B1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A181FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35A20D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
@@ -9529,6 +9550,7 @@
 				35B960C122C2A15A003BCC97 /* AccountListRow.swift in Sources */,
 				0D79C6CF1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
+				6708869A243BA76800B2C807 /* NewBillingHistoryResult.swift in Sources */,
 				B0B083B1216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
 				823694331FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
@@ -9778,6 +9800,7 @@
 				35A6C6F2211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
+				6708869D243BA77700B2C807 /* NewBillingHistoryItem.swift in Sources */,
 				B01748982135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8400E6A1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A171FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
@@ -9967,6 +9990,7 @@
 				82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
 				9C62446022C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
+				67088699243BA76800B2C807 /* NewBillingHistoryResult.swift in Sources */,
 				B0CB1C8C227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */,
 				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				B0B083A2216F9D5C00B1C632 /* AppointmentService.swift in Sources */,

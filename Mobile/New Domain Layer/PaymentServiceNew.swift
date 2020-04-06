@@ -12,6 +12,43 @@ import Foundation
 
 struct PaymentServiceNew {
     
+    static func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) {
+        
+        let startDateString = DateFormatter.yyyyMMddFormatter.string(from: startDate)
+        let endDateString = DateFormatter.yyyyMMddFormatter.string(from: endDate)
+        
+        var httpBodyParameters = [
+            "start_date": startDateString,
+            "end_date": endDateString,
+            "statement_type": "03"
+        ]
+        
+        let opCo = Environment.shared.opco
+        if opCo == .comEd || opCo == .peco {
+            httpBodyParameters["biller_id"] = "\(opCo.rawValue)Registered"
+        }
+        
+        do {
+            let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
+            print("REQ SCHEDULE")
+            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, Error>) in
+                                                                            switch result {
+                case .success(let data):
+                    
+                    // fetch accounts todo
+                    
+                    print("NetworkTest POST 2 SUCCESS: \(data.billingHistoryItems.count) BREAK")
+                case .failure(let error):
+                    print("NetworkTest POST 2 FAIL: \(error)")
+                    //                completion(.failure(error))
+                }
+            }
+        } catch let error {
+            print("Error encoding values: \(error)")
+            print("REQ ERROR")
+        }
+    }
+    
     static func schedulePayment(accountNumber: String,
                                 paymentAmount: Double,
                                 paymentDate: Date,
