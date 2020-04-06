@@ -34,6 +34,7 @@ public enum Router {
     
     case anonOutageStatus(httpBody: HTTPBody)
 
+    case billPDF(accountNumber: String, date: Date)
     
 //    case getSources
 //    case getProductIds
@@ -45,7 +46,7 @@ public enum Router {
     
     public var host: String {
         switch self {
-        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .wallet, .payments:
+        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .wallet, .payments, .billPDF:
             return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
         //return Environment.shared.mcsConfig.baseUrl
         case .fetchSAMLToken:
@@ -117,6 +118,9 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments"
         case .alertBanner:
             return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
+        case .billPDF(let accountNumber, let date):
+            let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
+            return "auth_v6/accounts/\(accountNumber)/billing/\(dateString)/pdf" // todo how do we get date?
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -130,7 +134,7 @@ public enum Router {
         switch self {
         case .anonOutageStatus, .fetchSAMLToken, .wallet:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF:
             return "GET"
         }
     }
@@ -175,7 +179,7 @@ public enum Router {
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .accounts, .accountDetails, .wallet, .payments:
+        case .accounts, .accountDetails, .wallet, .payments, .billPDF:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
         case .minVersion, .maintenanceMode:
@@ -224,6 +228,8 @@ public enum Router {
             return "PaymentsMock"
         case .alertBanner:
             return "AlertBannerMock"
+        case .billPDF:
+            return "billPDFMock"
         default:
             return ""
         }

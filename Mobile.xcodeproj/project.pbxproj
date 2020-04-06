@@ -789,6 +789,12 @@
 		670886742433B22D00B2C807 /* NewAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewAlertBanner.swift */; };
 		670886752433B22D00B2C807 /* NewAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewAlertBanner.swift */; };
 		670886762433B22D00B2C807 /* NewAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewAlertBanner.swift */; };
+		670886782433CF1E00B2C807 /* BillPDFMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 670886772433CF1E00B2C807 /* BillPDFMock.json */; };
+		670886792433CF1E00B2C807 /* BillPDFMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 670886772433CF1E00B2C807 /* BillPDFMock.json */; };
+		6708867A2433CF1E00B2C807 /* BillPDFMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 670886772433CF1E00B2C807 /* BillPDFMock.json */; };
+		6708867C2433CF4D00B2C807 /* NewBillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708867B2433CF4D00B2C807 /* NewBillPDF.swift */; };
+		6708867D2433CF4D00B2C807 /* NewBillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708867B2433CF4D00B2C807 /* NewBillPDF.swift */; };
+		6708867E2433CF4D00B2C807 /* NewBillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708867B2433CF4D00B2C807 /* NewBillPDF.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3283,6 +3289,8 @@
 		6708866B243388BF00B2C807 /* NewPayments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPayments.swift; sourceTree = "<group>"; };
 		6708866F2433AF3000B2C807 /* AlertBannerMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlertBannerMock.json; sourceTree = "<group>"; };
 		670886732433B22D00B2C807 /* NewAlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlertBanner.swift; sourceTree = "<group>"; };
+		670886772433CF1E00B2C807 /* BillPDFMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillPDFMock.json; sourceTree = "<group>"; };
+		6708867B2433CF4D00B2C807 /* NewBillPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillPDF.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* minVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5232,6 +5240,7 @@
 				670886632433803200B2C807 /* NewWallet.swift */,
 				6708866B243388BF00B2C807 /* NewPayments.swift */,
 				670886732433B22D00B2C807 /* NewAlertBanner.swift */,
+				6708867B2433CF4D00B2C807 /* NewBillPDF.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5416,6 +5425,7 @@
 				6708865F24337E8600B2C807 /* WalletMock.json */,
 				67088667243387EE00B2C807 /* PaymentsMock.json */,
 				6708866F2433AF3000B2C807 /* AlertBannerMock.json */,
+				670886772433CF1E00B2C807 /* BillPDFMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7181,6 +7191,7 @@
 				B5D415781F3A6C6300AC32B2 /* GoogleService-Info_bge.plist in Resources */,
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
+				670886782433CF1E00B2C807 /* BillPDFMock.json in Resources */,
 				0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */,
 				9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
@@ -7319,6 +7330,7 @@
 				82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				35A5DCC52305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				B08957282217496D00A97965 /* bill_pdf.json in Resources */,
+				6708867A2433CF1E00B2C807 /* BillPDFMock.json in Resources */,
 				9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */,
 				35A6C6D6211C8F1300C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				9C88942423C39F2B002E46A7 /* confetti.json in Resources */,
@@ -7496,6 +7508,7 @@
 				9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */,
 				35A5DCC42305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				35A6C6D5211C8F1200C2A58F /* TitleTableViewHeaderView.xib in Resources */,
+				670886792433CF1E00B2C807 /* BillPDFMock.json in Resources */,
 				82E22B621F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				9C88942323C39F2B002E46A7 /* confetti.json in Resources */,
@@ -9221,6 +9234,7 @@
 				44A373431F211521005E227B /* TemplateCardView.swift in Sources */,
 				B0CB1CB7228487020081F99B /* InfoAlertController.swift in Sources */,
 				B07D247320C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
+				6708867C2433CF4D00B2C807 /* NewBillPDF.swift in Sources */,
 				E87C41301FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				359BDB3822D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				B0A79B0720E2BD1100E04DD8 /* Version.swift in Sources */,
@@ -9655,6 +9669,7 @@
 				821898981F33AB300077D7A1 /* MockPaymentService.swift in Sources */,
 				B07D247520C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
 				E87C41321FAA522B00448F86 /* AlertsViewController.swift in Sources */,
+				6708867E2433CF4D00B2C807 /* NewBillPDF.swift in Sources */,
 				B0E9EFFD21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */,
@@ -10089,6 +10104,7 @@
 				B0CB1CB8228487020081F99B /* InfoAlertController.swift in Sources */,
 				B07D247420C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
 				E87C41311FAA522B00448F86 /* AlertsViewController.swift in Sources */,
+				6708867D2433CF4D00B2C807 /* NewBillPDF.swift in Sources */,
 				359BDB3922D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				B0A79B0820E2BD1100E04DD8 /* Version.swift in Sources */,
