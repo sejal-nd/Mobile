@@ -50,6 +50,8 @@ public enum Router {
     
     case paperless(accountNumber: String, httpBody: HTTPBody)
     
+    case budgetBilling(accountNumber: String)
+    
 //    case getSources
 //    case getProductIds
 //    case getProductInfo
@@ -149,6 +151,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/recurring"
         case .paperless(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/paperless"
+        case .budgetBilling(let accountNumber):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/budget"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -162,7 +166,7 @@ public enum Router {
         switch self {
         case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPay:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBilling:
             return "GET"
         case .paperless:
             return "PUT"
@@ -214,7 +218,7 @@ public enum Router {
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .accounts, .accountDetails, .wallet, .payments, .billPDF:
+        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBilling:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
         case .minVersion, .maintenanceMode:
@@ -279,6 +283,8 @@ public enum Router {
             return "AutoPayMock"
         case .paperless:
             return "PaperlessMock"
+        case .budgetBilling:
+            return "BudgetBillingMock"
         default:
             return ""
         }
