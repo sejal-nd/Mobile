@@ -12,6 +12,48 @@ import Foundation
 
 struct PaymentServiceNew {
     
+    // POST.
+    static func autoPay(accountNumber: String,
+                        walletItemId: String?,
+                        amountType: AmountType,
+                        amountThreshold: String,
+                        paymentDaysBeforeDue: String) {
+        var httpBodyParameters = ["amount_type": amountType.rawValue,
+                                  "payment_date_type": "before due",
+                                  "payment_days_before_due": paymentDaysBeforeDue,
+                                  "auto_pay_request_type": "Start"]
+        
+        if let walletId = walletItemId {
+            httpBodyParameters["wallet_item_id"] = walletId
+        }
+        if amountType == .upToAmount {
+            httpBodyParameters["amount_threshold"] = amountThreshold
+        }
+        
+        do {
+            let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
+            print("REQ SCHEDULE")
+            
+            ServiceLayer.request(router: .autoPay(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewAutoPayResult, Error>) in
+                switch result {
+                case .success(let data):
+                    
+                    // fetch accounts todo
+                    
+                    print("NetworkTest POST 5 SUCCESS: \(data.message) BREAK")
+                    
+                case .failure(let error):
+                    print("NetworkTest POST 5 FAIL: \(error)")
+                    //                completion(.failure(error))
+                }
+            }
+        } catch let error {
+            print("Error encoding values: \(error)")
+            print("REQ ERROR")
+        }
+        
+    }
+    
     static func deleteWalletItem(walletItem : WalletItem) {
         let opCo = Environment.shared.opco
         let httpBodyParameters: [String: Any] = [

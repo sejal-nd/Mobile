@@ -840,6 +840,12 @@
 		67278360243CD92400D5CD95 /* UsageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835F243CD92400D5CD95 /* UsageServiceNew.swift */; };
 		67278361243CD92400D5CD95 /* UsageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835F243CD92400D5CD95 /* UsageServiceNew.swift */; };
 		67278362243CD92400D5CD95 /* UsageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835F243CD92400D5CD95 /* UsageServiceNew.swift */; };
+		67278364243D028000D5CD95 /* AutoPayMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278363243D028000D5CD95 /* AutoPayMock.json */; };
+		67278365243D028000D5CD95 /* AutoPayMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278363243D028000D5CD95 /* AutoPayMock.json */; };
+		67278366243D028000D5CD95 /* AutoPayMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278363243D028000D5CD95 /* AutoPayMock.json */; };
+		67278368243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
+		67278369243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
+		6727836A243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3351,6 +3357,8 @@
 		67278357243CD68200D5CD95 /* CompareBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CompareBillMock.json; sourceTree = "<group>"; };
 		6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCompareBillResult.swift; sourceTree = "<group>"; };
 		6727835F243CD92400D5CD95 /* UsageServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageServiceNew.swift; sourceTree = "<group>"; };
+		67278363243D028000D5CD95 /* AutoPayMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AutoPayMock.json; sourceTree = "<group>"; };
+		67278367243D02B700D5CD95 /* NewAutoPayResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAutoPayResult.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5308,6 +5316,7 @@
 				6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */,
 				67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */,
 				6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */,
+				67278367243D02B700D5CD95 /* NewAutoPayResult.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5499,6 +5508,7 @@
 				67278347243CCE6400D5CD95 /* PaymentMock.json */,
 				6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */,
 				67278357243CD68200D5CD95 /* CompareBillMock.json */,
+				67278363243D028000D5CD95 /* AutoPayMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7193,6 +7203,7 @@
 				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
+				67278364243D028000D5CD95 /* AutoPayMock.json in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
@@ -7473,6 +7484,7 @@
 				9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */,
 				B0EE78F32214766700F53C56 /* appointments.json in Resources */,
 				35376C6820F8FFC9007E50F7 /* BillImpactView.xib in Resources */,
+				67278366243D028000D5CD95 /* AutoPayMock.json in Resources */,
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
@@ -7657,6 +7669,7 @@
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD21032155AD85505077D /* splash.json in Resources */,
 				B0EE78F22214766700F53C56 /* appointments.json in Resources */,
+				67278365243D028000D5CD95 /* AutoPayMock.json in Resources */,
 				B08956F32215C27100A97965 /* sso_data.json in Resources */,
 				35376C6720F8FFC8007E50F7 /* BillImpactView.xib in Resources */,
 				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,
@@ -8928,6 +8941,7 @@
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */,
 				9CD3532122CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
+				67278368243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */,
 				6708866C243388BF00B2C807 /* NewPayments.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */,
@@ -9372,6 +9386,7 @@
 				E87C41401FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
+				6727836A243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */,
 				6708866E243388BF00B2C807 /* NewPayments.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				9C10B4D522DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
@@ -9816,6 +9831,7 @@
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				9CD3532222CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
+				67278369243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */,
 				6708866D243388BF00B2C807 /* NewPayments.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */,

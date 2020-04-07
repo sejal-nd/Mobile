@@ -32,19 +32,21 @@ public enum Router {
     
     case alertBanner(additionalQueryItem: URLQueryItem)
     
-    case anonOutageStatus(httpBody: HTTPBody)
+    case anonOutageStatus(httpBody: HTTPBody) // POST
 
     case billPDF(accountNumber: String, date: Date)
     
-    case scheduledPayment(accountNumber: String, httpBody: HTTPBody)
+    case scheduledPayment(accountNumber: String, httpBody: HTTPBody) // POST
     
-    case billingHistory(accountNumber: String, httpBody: HTTPBody)
+    case billingHistory(accountNumber: String, httpBody: HTTPBody) // POST
     
-    case payment(httpBody: HTTPBody)
+    case payment(httpBody: HTTPBody) // POST
     
-    case deleteWalletItem(httpBody: HTTPBody)
+    case deleteWalletItem(httpBody: HTTPBody) // POST
     
-    case compareBill(accountNumber: String, premiseNumber: String, httpBody: HTTPBody)
+    case compareBill(accountNumber: String, premiseNumber: String, httpBody: HTTPBody) // POST
+    
+    case autoPay(accountNumber: String, httpBody: HTTPBody) // POST
     
 //    case getSources
 //    case getProductIds
@@ -141,6 +143,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/wallet/delete"
         case .compareBill(let accountNumber, let premiseNumber, _):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/compare_bills"
+        case .autoPay(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/recurring"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -152,7 +156,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPay:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF:
             return "GET"
@@ -199,7 +203,7 @@ public enum Router {
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .scheduledPayment, .billingHistory:
+        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPay:
             return ["Authorization": "Bearer \(token)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
@@ -226,7 +230,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), compareBill(_, _, let httpBody):
+        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPay(_, let httpBody):
             return httpBody
         default:
             return nil
@@ -265,6 +269,8 @@ public enum Router {
             return "DeleteWalletItemMock"
         case .compareBill:
             return "CompareBillMock"
+        case .autoPay:
+            return "AutoPayMock"
         default:
             return ""
         }
