@@ -846,6 +846,12 @@
 		67278368243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
 		67278369243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
 		6727836A243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
+		6727836C243D076400D5CD95 /* PaperlessMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727836B243D076400D5CD95 /* PaperlessMock.json */; };
+		6727836D243D076400D5CD95 /* PaperlessMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727836B243D076400D5CD95 /* PaperlessMock.json */; };
+		6727836E243D076400D5CD95 /* PaperlessMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727836B243D076400D5CD95 /* PaperlessMock.json */; };
+		67278370243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
+		67278371243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
+		67278372243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3359,6 +3365,8 @@
 		6727835F243CD92400D5CD95 /* UsageServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageServiceNew.swift; sourceTree = "<group>"; };
 		67278363243D028000D5CD95 /* AutoPayMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AutoPayMock.json; sourceTree = "<group>"; };
 		67278367243D02B700D5CD95 /* NewAutoPayResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAutoPayResult.swift; sourceTree = "<group>"; };
+		6727836B243D076400D5CD95 /* PaperlessMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaperlessMock.json; sourceTree = "<group>"; };
+		6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPaperlessResult.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5317,6 +5325,7 @@
 				67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */,
 				6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */,
 				67278367243D02B700D5CD95 /* NewAutoPayResult.swift */,
+				6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5509,6 +5518,7 @@
 				6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */,
 				67278357243CD68200D5CD95 /* CompareBillMock.json */,
 				67278363243D028000D5CD95 /* AutoPayMock.json */,
+				6727836B243D076400D5CD95 /* PaperlessMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7248,6 +7258,7 @@
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
+				6727836C243D076400D5CD95 /* PaperlessMock.json in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
@@ -7371,6 +7382,7 @@
 				6727834A243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				67088696243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
 				9C3DD83923A4105900AF75B6 /* GameTasks.json in Resources */,
+				6727836E243D076400D5CD95 /* PaperlessMock.json in Resources */,
 				B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B0EE78EC221353E700F53C56 /* report_outage.json in Resources */,
@@ -7556,6 +7568,7 @@
 				67278349243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				67088695243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
 				9C3DD83823A4105800AF75B6 /* GameTasks.json in Resources */,
+				6727836D243D076400D5CD95 /* PaperlessMock.json in Resources */,
 				B0EE78EB221353E700F53C56 /* report_outage.json in Resources */,
 				B0B083F221710C8900B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1D216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
@@ -9135,6 +9148,7 @@
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
+				67278370243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */,
 				670886642433803200B2C807 /* NewWallet.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
 				B07E17B32208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
@@ -9580,6 +9594,7 @@
 				B0649A61214834380041B299 /* StormModeStatus.swift in Sources */,
 				9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
+				67278372243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */,
 				670886662433803200B2C807 /* NewWallet.swift in Sources */,
 				8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				82AC2A2C1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
@@ -10025,6 +10040,7 @@
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
 				B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
+				67278371243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */,
 				670886652433803200B2C807 /* NewWallet.swift in Sources */,
 				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
