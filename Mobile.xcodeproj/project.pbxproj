@@ -825,6 +825,12 @@
 		6727834C243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */; };
 		6727834D243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */; };
 		6727834E243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */; };
+		67278350243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */; };
+		67278351243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */; };
+		67278352243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */; };
+		67278354243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */; };
+		67278355243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */; };
+		67278356243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3331,6 +3337,8 @@
 		6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillingHistoryItem.swift; sourceTree = "<group>"; };
 		67278347243CCE6400D5CD95 /* PaymentMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaymentMock.json; sourceTree = "<group>"; };
 		6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPaymentResult.swift; sourceTree = "<group>"; };
+		6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeleteWalletItemMock.json; sourceTree = "<group>"; };
+		67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeleteWalletItemResult.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5286,6 +5294,7 @@
 				67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */,
 				6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */,
 				6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */,
+				67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5475,6 +5484,7 @@
 				6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */,
 				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
 				67278347243CCE6400D5CD95 /* PaymentMock.json */,
+				6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7157,6 +7167,7 @@
 				9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				9CABF6BD239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */,
+				67278350243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */,
 				359BB2792148349200FBAD83 /* outage.json in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
@@ -7305,6 +7316,7 @@
 				6708868E243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */,
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
+				67278352243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				35C913AB22EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				B0DB275C215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
@@ -7487,6 +7499,7 @@
 				6708868D243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */,
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
+				67278351243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				35C913AA22EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */,
@@ -8905,6 +8918,7 @@
 				B06B40FD20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2752215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
+				67278354243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */,
 				B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06823BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
 				9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
@@ -9346,6 +9360,7 @@
 				82EAB3421F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				9C10B4DD22E23A9A00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B0DB2754215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
+				67278356243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */,
 				B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06A23BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
 				9CA4FA6B2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
@@ -9787,6 +9802,7 @@
 				B06B40FE20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2753215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
+				67278355243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */,
 				B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06923BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
 				9CA4FA6A2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,

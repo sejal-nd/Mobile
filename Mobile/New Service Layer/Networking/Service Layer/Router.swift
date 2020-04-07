@@ -42,6 +42,8 @@ public enum Router {
     
     case payment(httpBody: HTTPBody)
     
+    case deleteWalletItem(httpBody: HTTPBody)
+    
 //    case getSources
 //    case getProductIds
 //    case getProductInfo
@@ -52,15 +54,15 @@ public enum Router {
     
     public var host: String {
         switch self {
-        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .wallet, .payments, .billPDF, .scheduledPayment, .billingHistory, .payment:
-            return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
-        //return Environment.shared.mcsConfig.baseUrl
         case .fetchSAMLToken:
             return "dev-apigateway.exeloncorp.com"//"stage-apigateway.exeloncorp.com" // TEMP
         case .weather:
             return "api.weather.gov"
         case .alertBanner:
             return "azstg.bge.com"
+        default:
+            //return Environment.shared.mcsConfig.baseUrl
+            return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
         }
     }
     
@@ -133,6 +135,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/history"
         case .payment:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/encryptionkey"
+        case .deleteWalletItem:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/wallet/delete"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -144,7 +148,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF:
             return "GET"
@@ -218,7 +222,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody):
+        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody):
             return httpBody
         default:
             return nil
@@ -253,6 +257,8 @@ public enum Router {
             return "BillingHistoryMock"
         case .payment:
             return "PaymentMock"
+        case .deleteWalletItem:
+            return "DeleteWalletItemMock"
         default:
             return ""
         }

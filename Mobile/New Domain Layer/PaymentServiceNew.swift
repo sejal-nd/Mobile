@@ -12,6 +12,52 @@ import Foundation
 
 struct PaymentServiceNew {
     
+    static func deleteWalletItem(walletItem : WalletItem) {
+        let opCo = Environment.shared.opco
+        let httpBodyParameters: [String: Any] = [
+            "account_number": AccountsStore.shared.accounts[0].accountNumber,
+            "wallet_item_id": walletItem.walletItemId ?? "",
+            "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
+            "biller_id": "\(opCo.rawValue)Registered",
+            "payment_category_type": walletItem.bankOrCard == .bank ? "check" : "credit"
+        ]
+        
+        do {
+            let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
+            print("REQ SCHEDULE")
+            
+            ServiceLayer.request(router: .deleteWalletItem(httpBody: httpBody)) { (result: Result<NewDeleteWalletItemResult, Error>) in
+                switch result {
+                case .success(let data):
+                    
+                    // fetch accounts todo
+                    
+                    print("NetworkTest POST 4 SUCCESS: \(data.success) BREAK")
+                    
+                case .failure(let error):
+                    print("NetworkTest POST 4 FAIL: \(error)")
+                    //                completion(.failure(error))
+                }
+            }
+            
+            //            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, Error>) in
+            //                                                                            switch result {
+            //                case .success(let data):
+            //
+            //                    // fetch accounts todo
+            //
+            //                    print("NetworkTest POST 2 SUCCESS: \(data.billingHistoryItems.count) BREAK")
+            //                case .failure(let error):
+            //                    print("NetworkTest POST 2 FAIL: \(error)")
+            //                    //                completion(.failure(error))
+            //                }
+            //            }
+        } catch let error {
+            print("Error encoding values: \(error)")
+            print("REQ ERROR")
+        }
+    }
+    
     static func pay(customerId: String,
                     bankOrCard: BankOrCard,
                     temporary: Bool,
@@ -48,25 +94,25 @@ struct PaymentServiceNew {
                     // fetch accounts todo
                     
                     print("NetworkTest POST 3 SUCCESS: \(data.data) BREAK")
-                        
+                    
                 case .failure(let error):
                     print("NetworkTest POST 3 FAIL: \(error)")
                     //                completion(.failure(error))
                 }
             }
             
-//            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, Error>) in
-//                                                                            switch result {
-//                case .success(let data):
-//
-//                    // fetch accounts todo
-//
-//                    print("NetworkTest POST 2 SUCCESS: \(data.billingHistoryItems.count) BREAK")
-//                case .failure(let error):
-//                    print("NetworkTest POST 2 FAIL: \(error)")
-//                    //                completion(.failure(error))
-//                }
-//            }
+            //            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, Error>) in
+            //                                                                            switch result {
+            //                case .success(let data):
+            //
+            //                    // fetch accounts todo
+            //
+            //                    print("NetworkTest POST 2 SUCCESS: \(data.billingHistoryItems.count) BREAK")
+            //                case .failure(let error):
+            //                    print("NetworkTest POST 2 FAIL: \(error)")
+            //                    //                completion(.failure(error))
+            //                }
+            //            }
         } catch let error {
             print("Error encoding values: \(error)")
             print("REQ ERROR")
@@ -94,7 +140,7 @@ struct PaymentServiceNew {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
             ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, Error>) in
-                                                                            switch result {
+                switch result {
                 case .success(let data):
                     
                     // fetch accounts todo
