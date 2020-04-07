@@ -44,6 +44,8 @@ public enum Router {
     
     case deleteWalletItem(httpBody: HTTPBody)
     
+    case compareBill(accountNumber: String, premiseNumber: String, httpBody: HTTPBody)
+    
 //    case getSources
 //    case getProductIds
 //    case getProductInfo
@@ -137,6 +139,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/encryptionkey"
         case .deleteWalletItem:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/wallet/delete"
+        case .compareBill(let accountNumber, let premiseNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/compare_bills"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -148,7 +152,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF:
             return "GET"
@@ -222,7 +226,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody):
+        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), compareBill(_, _, let httpBody):
             return httpBody
         default:
             return nil
@@ -259,6 +263,8 @@ public enum Router {
             return "PaymentMock"
         case .deleteWalletItem:
             return "DeleteWalletItemMock"
+        case .compareBill:
+            return "CompareBillMock"
         default:
             return ""
         }

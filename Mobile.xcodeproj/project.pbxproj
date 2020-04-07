@@ -831,6 +831,15 @@
 		67278354243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */; };
 		67278355243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */; };
 		67278356243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */; };
+		67278358243CD68200D5CD95 /* CompareBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278357243CD68200D5CD95 /* CompareBillMock.json */; };
+		67278359243CD68200D5CD95 /* CompareBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278357243CD68200D5CD95 /* CompareBillMock.json */; };
+		6727835A243CD68200D5CD95 /* CompareBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278357243CD68200D5CD95 /* CompareBillMock.json */; };
+		6727835C243CD73900D5CD95 /* NewCompareBillResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */; };
+		6727835D243CD73900D5CD95 /* NewCompareBillResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */; };
+		6727835E243CD73900D5CD95 /* NewCompareBillResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */; };
+		67278360243CD92400D5CD95 /* UsageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835F243CD92400D5CD95 /* UsageServiceNew.swift */; };
+		67278361243CD92400D5CD95 /* UsageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835F243CD92400D5CD95 /* UsageServiceNew.swift */; };
+		67278362243CD92400D5CD95 /* UsageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835F243CD92400D5CD95 /* UsageServiceNew.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3339,6 +3348,9 @@
 		6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPaymentResult.swift; sourceTree = "<group>"; };
 		6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeleteWalletItemMock.json; sourceTree = "<group>"; };
 		67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeleteWalletItemResult.swift; sourceTree = "<group>"; };
+		67278357243CD68200D5CD95 /* CompareBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CompareBillMock.json; sourceTree = "<group>"; };
+		6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCompareBillResult.swift; sourceTree = "<group>"; };
+		6727835F243CD92400D5CD95 /* UsageServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageServiceNew.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5295,6 +5307,7 @@
 				6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */,
 				6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */,
 				67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */,
+				6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5485,6 +5498,7 @@
 				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
 				67278347243CCE6400D5CD95 /* PaymentMock.json */,
 				6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */,
+				67278357243CD68200D5CD95 /* CompareBillMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -5515,6 +5529,7 @@
 				67E44618242922B2007FC7F3 /* AuthenticatedService.swift */,
 				6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */,
 				676BDA84242E6E1E00C880A3 /* WeatherServiceNew.swift */,
+				6727835F243CD92400D5CD95 /* UsageServiceNew.swift */,
 			);
 			path = "New Domain Layer";
 			sourceTree = "<group>";
@@ -7204,6 +7219,7 @@
 				359BDB6622D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
+				67278358243CD68200D5CD95 /* CompareBillMock.json in Resources */,
 				9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */,
 				35A5DCC32305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
@@ -7339,6 +7355,7 @@
 				359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */,
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B01FF0B1221DFC77008CA222 /* autopay_info.json in Resources */,
+				6727835A243CD68200D5CD95 /* CompareBillMock.json in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				6727834A243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				67088696243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
@@ -7522,6 +7539,7 @@
 				B01FF0B0221DFC77008CA222 /* autopay_info.json in Resources */,
 				E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				67278359243CD68200D5CD95 /* CompareBillMock.json in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				67278349243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				67088695243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
@@ -8983,6 +9001,7 @@
 				B0472B292111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E83F026B1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				E80CBD0F1F98EC930039D9E7 /* SSOData.swift in Sources */,
+				6727835C243CD73900D5CD95 /* NewCompareBillResult.swift in Sources */,
 				676BDA79242CFA5A00C880A3 /* NewPremiseInfo.swift in Sources */,
 				E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				B0882C9F210B925000EB756B /* UsageToolCardView.swift in Sources */,
@@ -9131,6 +9150,7 @@
 				9CAA4D58239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
+				67278360243CD92400D5CD95 /* UsageServiceNew.swift in Sources */,
 				B0D84D4422023FD900C70A6F /* MockJSONManager.swift in Sources */,
 				E89C162A1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
@@ -9425,6 +9445,7 @@
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				B068DB6020D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
+				6727835E243CD73900D5CD95 /* NewCompareBillResult.swift in Sources */,
 				676BDA7B242CFA5A00C880A3 /* NewPremiseInfo.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7022121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
@@ -9573,6 +9594,7 @@
 				9CAA4D5A239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
+				67278362243CD92400D5CD95 /* UsageServiceNew.swift in Sources */,
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				B0B083A3216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
@@ -9867,6 +9889,7 @@
 				E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD61E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
 				B0882CA0210B925000EB756B /* UsageToolCardView.swift in Sources */,
+				6727835D243CD73900D5CD95 /* NewCompareBillResult.swift in Sources */,
 				676BDA7A242CFA5A00C880A3 /* NewPremiseInfo.swift in Sources */,
 				E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
@@ -10015,6 +10038,7 @@
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				9CAA4D59239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				82EAB3351F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
+				67278361243CD92400D5CD95 /* UsageServiceNew.swift in Sources */,
 				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C119F6521FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
