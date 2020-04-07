@@ -40,6 +40,8 @@ public enum Router {
     
     case billingHistory(accountNumber: String, httpBody: HTTPBody)
     
+    case payment(httpBody: HTTPBody)
+    
 //    case getSources
 //    case getProductIds
 //    case getProductInfo
@@ -50,7 +52,7 @@ public enum Router {
     
     public var host: String {
         switch self {
-        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .wallet, .payments, .billPDF, .scheduledPayment, .billingHistory:
+        case .anonOutageStatus, .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .wallet, .payments, .billPDF, .scheduledPayment, .billingHistory, .payment:
             return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
         //return Environment.shared.mcsConfig.baseUrl
         case .fetchSAMLToken:
@@ -129,6 +131,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/schedule"
         case .billingHistory(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/history"
+        case .payment:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/encryptionkey"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -140,7 +144,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF:
             return "GET"
@@ -214,7 +218,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody):
+        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody):
             return httpBody
         default:
             return nil
@@ -247,6 +251,8 @@ public enum Router {
             return "ScheduledPaymentMock"
         case .billingHistory:
             return "BillingHistoryMock"
+        case .payment:
+            return "PaymentMock"
         default:
             return ""
         }

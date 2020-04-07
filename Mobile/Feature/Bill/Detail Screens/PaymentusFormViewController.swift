@@ -124,28 +124,34 @@ class PaymentusFormViewController: UIViewController {
     }
     
     func fetchEncryptionKey() {
-        let walletService = ServiceFactory.createWalletService()
-        walletService.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier,
-                                               bankOrCard: bankOrCard,
-                                               temporary: temporary,
-                                               isWalletEmpty: isWalletEmpty,
-                                               walletItemId: walletItemId)
-            .subscribe(onNext: { [weak self] key in
-                guard let self = self else { return }
-                
-                var urlComponents = URLComponents(string: Environment.shared.mcsConfig.paymentusUrl)
-                urlComponents?.queryItems = [
-                    URLQueryItem(name: "authToken", value: key)
-                ]
-                if let components = urlComponents, let url = components.url {
-                    let request = URLRequest(url: url)
-                    self.webView.load(request)
-                } else {
-                    self.showError()
-                }
-            }, onError: { [weak self] err in
-                self?.showError()
-            }).disposed(by: disposeBag)
+//        let walletService = ServiceFactory.createWalletService()
+//        walletService.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier,
+//                                               bankOrCard: bankOrCard,
+//                                               temporary: temporary,
+//                                               isWalletEmpty: isWalletEmpty,
+//                                               walletItemId: walletItemId)
+//            .subscribe(onNext: { [weak self] key in
+//                guard let self = self else { return }
+//
+//                var urlComponents = URLComponents(string: Environment.shared.mcsConfig.paymentusUrl)
+//                urlComponents?.queryItems = [
+//                    URLQueryItem(name: "authToken", value: key)
+//                ]
+//                if let components = urlComponents, let url = components.url {
+//                    let request = URLRequest(url: url)
+//                    self.webView.load(request)
+//                } else {
+//                    self.showError()
+//                }
+//            }, onError: { [weak self] err in
+//                self?.showError()
+//            }).disposed(by: disposeBag)
+        
+        PaymentServiceNew.pay(customerId: AccountsStore.shared.customerIdentifier,
+                              bankOrCard: bankOrCard,
+                              temporary: temporary,
+                              isWalletEmpty: isWalletEmpty,
+                              walletItemId: walletItemId)
     }
     
     func showWebView() {

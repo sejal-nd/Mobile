@@ -819,6 +819,12 @@
 		6708869C243BA77700B2C807 /* NewBillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */; };
 		6708869D243BA77700B2C807 /* NewBillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */; };
 		6708869E243BA77700B2C807 /* NewBillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */; };
+		67278348243CCE6400D5CD95 /* PaymentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278347243CCE6400D5CD95 /* PaymentMock.json */; };
+		67278349243CCE6400D5CD95 /* PaymentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278347243CCE6400D5CD95 /* PaymentMock.json */; };
+		6727834A243CCE6400D5CD95 /* PaymentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278347243CCE6400D5CD95 /* PaymentMock.json */; };
+		6727834C243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */; };
+		6727834D243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */; };
+		6727834E243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3323,6 +3329,8 @@
 		67088693243BA5AD00B2C807 /* BillingHistoryResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillingHistoryResult.json; sourceTree = "<group>"; };
 		67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBillingHistoryResult.swift; sourceTree = "<group>"; };
 		6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillingHistoryItem.swift; sourceTree = "<group>"; };
+		67278347243CCE6400D5CD95 /* PaymentMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaymentMock.json; sourceTree = "<group>"; };
+		6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPaymentResult.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5277,6 +5285,7 @@
 				67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */,
 				67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */,
 				6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */,
+				6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5465,6 +5474,7 @@
 				6708867F243B697700B2C807 /* ScheduledPaymentMock.json */,
 				6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */,
 				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
+				67278347243CCE6400D5CD95 /* PaymentMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7224,6 +7234,7 @@
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				9C0EA5B2237DAD2900D1E18F /* buddy_body.json in Resources */,
 				0EF60FD020EE7AE7006ABC18 /* Assets.xcassets in Resources */,
+				67278348243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				67E6E7BB242906A900C3AC90 /* MaintenanceModeMock.json in Resources */,
@@ -7317,6 +7328,7 @@
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B01FF0B1221DFC77008CA222 /* autopay_info.json in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				6727834A243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				67088696243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
 				9C3DD83923A4105900AF75B6 /* GameTasks.json in Resources */,
 				B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */,
@@ -7498,6 +7510,7 @@
 				E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
+				67278349243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				67088695243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
 				9C3DD83823A4105800AF75B6 /* GameTasks.json in Resources */,
 				B0EE78EB221353E700F53C56 /* report_outage.json in Resources */,
@@ -8887,6 +8900,7 @@
 				6708866C243388BF00B2C807 /* NewPayments.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */,
+				6727834C243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */,
 				9C62446322C28A4600F14DA0 /* InsetTextField.swift in Sources */,
 				B06B40FD20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
@@ -9327,6 +9341,7 @@
 				6708866E243388BF00B2C807 /* NewPayments.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				9C10B4D522DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
+				6727834E243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */,
 				B06B40FF20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3421F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				9C10B4DD22E23A9A00B0851B /* ForgotPasswordViewModel.swift in Sources */,
@@ -9767,6 +9782,7 @@
 				6708866D243388BF00B2C807 /* NewPayments.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */,
+				6727834D243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */,
 				9C62446422C28A4600F14DA0 /* InsetTextField.swift in Sources */,
 				B06B40FE20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,

@@ -12,6 +12,68 @@ import Foundation
 
 struct PaymentServiceNew {
     
+    static func pay(customerId: String,
+                    bankOrCard: BankOrCard,
+                    temporary: Bool,
+                    isWalletEmpty: Bool,
+                    walletItemId: String? = nil) {
+        var httpBodyParameters = [
+            "pmCategory": bankOrCard == .bank ? "DD" : "CC", // "DC" = Debit Card
+            "postbackUrl": "",
+        ]
+        
+        var strParameters = "pageView=mobile;postMessagePmDetailsOrigin=\(Environment.shared.mcsConfig.paymentusUrl);"
+        if temporary {
+            strParameters += "nickname=false;primaryPM=false;"
+        } else {
+            if isWalletEmpty { // If wallet is empty, hide the default checkbox because Paymentus automatically sets first wallet items as default
+                strParameters += "primaryPM=false;"
+            }
+            httpBodyParameters["ownerId"] = customerId
+        }
+        httpBodyParameters["strParam"] = strParameters
+        
+        if let wid = walletItemId { // Indicates that this is an edit operation (as opposed to an add)
+            httpBodyParameters["wallet_item_id"] = wid
+        }
+        
+        do {
+            let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
+            print("REQ SCHEDULE")
+            
+            ServiceLayer.request(router: .payment(httpBody: httpBody)) { (result: Result<NewPaymentResult, Error>) in
+                switch result {
+                case .success(let data):
+                    
+                    // fetch accounts todo
+                    
+                    print("NetworkTest POST 3 SUCCESS: \(data.data) BREAK")
+                        
+                case .failure(let error):
+                    print("NetworkTest POST 3 FAIL: \(error)")
+                    //                completion(.failure(error))
+                }
+            }
+            
+//            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, Error>) in
+//                                                                            switch result {
+//                case .success(let data):
+//
+//                    // fetch accounts todo
+//
+//                    print("NetworkTest POST 2 SUCCESS: \(data.billingHistoryItems.count) BREAK")
+//                case .failure(let error):
+//                    print("NetworkTest POST 2 FAIL: \(error)")
+//                    //                completion(.failure(error))
+//                }
+//            }
+        } catch let error {
+            print("Error encoding values: \(error)")
+            print("REQ ERROR")
+        }
+    }
+    
+    
     static func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) {
         
         let startDateString = DateFormatter.yyyyMMddFormatter.string(from: startDate)
