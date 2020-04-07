@@ -29,7 +29,7 @@ struct AlertPreferences {
     init(alertPreferences: [AlertPreference]) {
         for pref in alertPreferences {
             switch pref.programName {
-            case "High Usage Residential Alert":
+            case "High Usage Alert":
                 highUsage = true
                 alertThreshold = pref.alertThreshold
             case "Energy Savings Day Alert":
@@ -107,7 +107,7 @@ struct AlertPreferences {
         let billReadyProgramName = Environment.shared.opco == .bge ? "Bill is Ready" : "Paperless Billing"
         let paymentDueProgramName = Environment.shared.opco == .bge ? "Payment Reminder" : "Payment Reminders"
         let forYourInfoProgramName = Environment.shared.opco == .bge ? "Marketing" : "News"
-        let highUsageProgramName = "High Usage Residential Alert"
+        let highUsageProgramName = "High Usage Alert"
         
         var highUsageProgram = ["programName": highUsageProgramName, "type": "push", "isActive": highUsage] as [String : Any]
         if let billThreshold = alertThreshold {
@@ -166,7 +166,7 @@ struct AlertPreferences {
 struct AlertPreference: Mappable {
     let programName: String
     var daysPrior: Int? // Only sent along with programName = "Payment Reminders"
-    var alertThreshold: Int? // Only sent along with programName = "High Usage Residential Alert"
+    var alertThreshold: Int? // Only sent along with programName = "High Usage Alert"
     
     init(map: Mapper) throws {
         try programName = map.from("programName")
