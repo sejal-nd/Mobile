@@ -795,9 +795,9 @@
 		6708867C2433CF4D00B2C807 /* NewBillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708867B2433CF4D00B2C807 /* NewBillPDF.swift */; };
 		6708867D2433CF4D00B2C807 /* NewBillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708867B2433CF4D00B2C807 /* NewBillPDF.swift */; };
 		6708867E2433CF4D00B2C807 /* NewBillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708867B2433CF4D00B2C807 /* NewBillPDF.swift */; };
-		67088680243B697700B2C807 /* ScheduledPaymentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708867F243B697700B2C807 /* ScheduledPaymentMock.json */; };
-		67088681243B697700B2C807 /* ScheduledPaymentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708867F243B697700B2C807 /* ScheduledPaymentMock.json */; };
-		67088682243B697700B2C807 /* ScheduledPaymentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708867F243B697700B2C807 /* ScheduledPaymentMock.json */; };
+		67088680243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */; };
+		67088681243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */; };
+		67088682243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */; };
 		67088684243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */; };
 		67088685243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */; };
 		67088686243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */; };
@@ -840,9 +840,9 @@
 		67278360243CD92400D5CD95 /* UsageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835F243CD92400D5CD95 /* UsageServiceNew.swift */; };
 		67278361243CD92400D5CD95 /* UsageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835F243CD92400D5CD95 /* UsageServiceNew.swift */; };
 		67278362243CD92400D5CD95 /* UsageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727835F243CD92400D5CD95 /* UsageServiceNew.swift */; };
-		67278364243D028000D5CD95 /* AutoPayMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278363243D028000D5CD95 /* AutoPayMock.json */; };
-		67278365243D028000D5CD95 /* AutoPayMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278363243D028000D5CD95 /* AutoPayMock.json */; };
-		67278366243D028000D5CD95 /* AutoPayMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278363243D028000D5CD95 /* AutoPayMock.json */; };
+		67278364243D028000D5CD95 /* AutoPayEnrollMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278363243D028000D5CD95 /* AutoPayEnrollMock.json */; };
+		67278365243D028000D5CD95 /* AutoPayEnrollMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278363243D028000D5CD95 /* AutoPayEnrollMock.json */; };
+		67278366243D028000D5CD95 /* AutoPayEnrollMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278363243D028000D5CD95 /* AutoPayEnrollMock.json */; };
 		67278368243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
 		67278369243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
 		6727836A243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
@@ -852,9 +852,9 @@
 		67278370243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
 		67278371243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
 		67278372243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
-		67278374243D084F00D5CD95 /* BudgetBillingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingMock.json */; };
-		67278375243D084F00D5CD95 /* BudgetBillingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingMock.json */; };
-		67278376243D084F00D5CD95 /* BudgetBillingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingMock.json */; };
+		67278374243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */; };
+		67278375243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */; };
+		67278376243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */; };
 		67278378243D085B00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBilling.swift */; };
 		67278379243D085B00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBilling.swift */; };
 		6727837A243D085B00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBilling.swift */; };
@@ -3354,7 +3354,7 @@
 		670886732433B22D00B2C807 /* NewAlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlertBanner.swift; sourceTree = "<group>"; };
 		670886772433CF1E00B2C807 /* BillPDFMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillPDFMock.json; sourceTree = "<group>"; };
 		6708867B2433CF4D00B2C807 /* NewBillPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillPDF.swift; sourceTree = "<group>"; };
-		6708867F243B697700B2C807 /* ScheduledPaymentMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentMock.json; sourceTree = "<group>"; };
+		6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentUNUSEDMock.json; sourceTree = "<group>"; };
 		67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScheduledPayment.swift; sourceTree = "<group>"; };
 		67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSchedulePaymentResult.swift; sourceTree = "<group>"; };
 		6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentMockResult.json; sourceTree = "<group>"; };
@@ -3369,11 +3369,11 @@
 		67278357243CD68200D5CD95 /* CompareBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CompareBillMock.json; sourceTree = "<group>"; };
 		6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCompareBillResult.swift; sourceTree = "<group>"; };
 		6727835F243CD92400D5CD95 /* UsageServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageServiceNew.swift; sourceTree = "<group>"; };
-		67278363243D028000D5CD95 /* AutoPayMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AutoPayMock.json; sourceTree = "<group>"; };
+		67278363243D028000D5CD95 /* AutoPayEnrollMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AutoPayEnrollMock.json; sourceTree = "<group>"; };
 		67278367243D02B700D5CD95 /* NewAutoPayResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAutoPayResult.swift; sourceTree = "<group>"; };
 		6727836B243D076400D5CD95 /* PaperlessMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaperlessMock.json; sourceTree = "<group>"; };
 		6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPaperlessResult.swift; sourceTree = "<group>"; };
-		67278373243D084F00D5CD95 /* BudgetBillingMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingMock.json; sourceTree = "<group>"; };
+		67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingEnrollMock.json; sourceTree = "<group>"; };
 		67278377243D085B00D5CD95 /* NewBudgetBilling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBudgetBilling.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
@@ -5520,15 +5520,15 @@
 				67088667243387EE00B2C807 /* PaymentsMock.json */,
 				6708866F2433AF3000B2C807 /* AlertBannerMock.json */,
 				670886772433CF1E00B2C807 /* BillPDFMock.json */,
-				6708867F243B697700B2C807 /* ScheduledPaymentMock.json */,
+				6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */,
 				6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */,
 				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
 				67278347243CCE6400D5CD95 /* PaymentMock.json */,
 				6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */,
 				67278357243CD68200D5CD95 /* CompareBillMock.json */,
-				67278363243D028000D5CD95 /* AutoPayMock.json */,
+				67278363243D028000D5CD95 /* AutoPayEnrollMock.json */,
 				6727836B243D076400D5CD95 /* PaperlessMock.json */,
-				67278373243D084F00D5CD95 /* BudgetBillingMock.json */,
+				67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7196,7 +7196,7 @@
 				B0B083FC21710CDB00B1C632 /* Appt_Complete.json in Resources */,
 				B0EE78EA221353E700F53C56 /* report_outage.json in Resources */,
 				224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
-				67088680243B697700B2C807 /* ScheduledPaymentMock.json in Resources */,
+				67088680243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
@@ -7223,7 +7223,7 @@
 				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
-				67278364243D028000D5CD95 /* AutoPayMock.json in Resources */,
+				67278364243D028000D5CD95 /* AutoPayEnrollMock.json in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
@@ -7245,7 +7245,7 @@
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
-				67278374243D084F00D5CD95 /* BudgetBillingMock.json in Resources */,
+				67278374243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */,
 				359BDBAC22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				B08957262217496D00A97965 /* bill_pdf.json in Resources */,
 				359BDB6622D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
@@ -7383,7 +7383,7 @@
 				B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				67E44633242A453A007FC7F3 /* JWTTokenMock.json in Resources */,
-				67088682243B697700B2C807 /* ScheduledPaymentMock.json in Resources */,
+				67088682243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json in Resources */,
 				2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */,
 				359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */,
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
@@ -7483,7 +7483,7 @@
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
-				67278376243D084F00D5CD95 /* BudgetBillingMock.json in Resources */,
+				67278376243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */,
 				9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				9C0EA5BD237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
@@ -7508,7 +7508,7 @@
 				9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */,
 				B0EE78F32214766700F53C56 /* appointments.json in Resources */,
 				35376C6820F8FFC9007E50F7 /* BillImpactView.xib in Resources */,
-				67278366243D028000D5CD95 /* AutoPayMock.json in Resources */,
+				67278366243D028000D5CD95 /* AutoPayEnrollMock.json in Resources */,
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
@@ -7570,7 +7570,7 @@
 				B55736461E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B5D415801F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist in Resources */,
 				67E44632242A453A007FC7F3 /* JWTTokenMock.json in Resources */,
-				67088681243B697700B2C807 /* ScheduledPaymentMock.json in Resources */,
+				67088681243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json in Resources */,
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				B01FF0B0221DFC77008CA222 /* autopay_info.json in Resources */,
 				E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
@@ -7670,7 +7670,7 @@
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
-				67278375243D084F00D5CD95 /* BudgetBillingMock.json in Resources */,
+				67278375243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */,
 				9C0EA5BF237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				9C0EA5BC237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				B07E17E32209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
@@ -7695,7 +7695,7 @@
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD21032155AD85505077D /* splash.json in Resources */,
 				B0EE78F22214766700F53C56 /* appointments.json in Resources */,
-				67278365243D028000D5CD95 /* AutoPayMock.json in Resources */,
+				67278365243D028000D5CD95 /* AutoPayEnrollMock.json in Resources */,
 				B08956F32215C27100A97965 /* sso_data.json in Resources */,
 				35376C6720F8FFC8007E50F7 /* BillImpactView.xib in Resources */,
 				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,

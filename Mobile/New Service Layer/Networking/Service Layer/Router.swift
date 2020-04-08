@@ -32,25 +32,32 @@ public enum Router {
     
     case alertBanner(additionalQueryItem: URLQueryItem)
     
-    case anonOutageStatus(httpBody: HTTPBody) // POST
+    case anonOutageStatus(httpBody: HTTPBody)
 
     case billPDF(accountNumber: String, date: Date)
     
-    case scheduledPayment(accountNumber: String, httpBody: HTTPBody) // POST
+    case scheduledPayment(accountNumber: String, httpBody: HTTPBody)
+    case scheduledPaymentUpdate(accountNumber: String, paymentId: String, httpBody: HTTPBody) // todo - Mock + model
+    case scheduledPaymentDelete(accountNumber: String, paymentId: String, httpBody: HTTPBody) // todo - Mock + model
     
-    case billingHistory(accountNumber: String, httpBody: HTTPBody) // POST
+    case billingHistory(accountNumber: String, httpBody: HTTPBody)
     
-    case payment(httpBody: HTTPBody) // POST
+    case payment(httpBody: HTTPBody)
     
-    case deleteWalletItem(httpBody: HTTPBody) // POST
+    case deleteWalletItem(httpBody: HTTPBody)
     
-    case compareBill(accountNumber: String, premiseNumber: String, httpBody: HTTPBody) // POST
+    case compareBill(accountNumber: String, premiseNumber: String, httpBody: HTTPBody)
+
+    case autoPayInfo(accountNumber: String) // todo - Mock + model
+    case autoPayEnroll(accountNumber: String, httpBody: HTTPBody)
+    case autoPayUnenroll(accountNumber: String, httpBody: HTTPBody) // todo - Mock + model
     
-    case autoPay(accountNumber: String, httpBody: HTTPBody) // POST
+    case paperlessEnroll(accountNumber: String, httpBody: HTTPBody)
+    case paperlessUnenroll(accountNumber: String)
     
-    case paperless(accountNumber: String, httpBody: HTTPBody)
-    
-    case budgetBilling(accountNumber: String)
+    case budgetBillingInfo(accountNumber: String) // todo - Mock + model
+    case budgetBillingEnroll(accountNumber: String)
+    case budgetBillingUnenroll(accountNumber: String, httpBody: HTTPBody) // todo - Mock + model
     
 //    case getSources
 //    case getProductIds
@@ -139,6 +146,10 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/\(dateString)/pdf" // todo how do we get date?
         case .scheduledPayment(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/schedule"
+        case .scheduledPaymentUpdate(let accountNumber, let paymentId, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/schedule/\(paymentId)"
+        case .scheduledPaymentDelete(let accountNumber, let paymentId, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/schedule/\(paymentId)"
         case .billingHistory(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/history"
         case .payment:
@@ -147,12 +158,22 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/wallet/delete"
         case .compareBill(let accountNumber, let premiseNumber, _):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/compare_bills"
-        case .autoPay(let accountNumber, _):
+        case .autoPayInfo(let accountNumber):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/recurring"
-        case .paperless(let accountNumber, _):
+        case .autoPayEnroll(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/recurring"
+        case .autoPayUnenroll(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/recurring/delete"
+        case .paperlessEnroll(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/paperless"
-        case .budgetBilling(let accountNumber):
+        case .paperlessUnenroll(let accountNumber):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/paperless"
+        case .budgetBillingInfo(let accountNumber):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/budget"
+        case .budgetBillingEnroll(let accountNumber):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/budget"
+        case .budgetBillingUnenroll(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/budget/delete"
 //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -164,12 +185,14 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPay:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBilling:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo:
             return "GET"
-        case .paperless:
+        case .paperlessEnroll, .scheduledPaymentUpdate:
             return "PUT"
+        case .paperlessUnenroll:
+            return "DELETE"
         }
     }
     
@@ -213,12 +236,12 @@ public enum Router {
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPay, .paperless:
+        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll:
             return ["Authorization": "Bearer \(token)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBilling:
+        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
         case .minVersion, .maintenanceMode:
@@ -240,7 +263,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPay(_, let httpBody):
+        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPayEnroll(_, let httpBody), .autoPayUnenroll(_, let httpBody), .scheduledPaymentUpdate(_, _, let httpBody), .budgetBillingUnenroll(_, let httpBody):
             return httpBody
         default:
             return nil
@@ -271,6 +294,10 @@ public enum Router {
             return "BillPDFMock"
         case .scheduledPayment:
             return "ScheduledPaymentMock"
+        case .scheduledPaymentUpdate:
+            return "ScheduledPaymentUpdateMock" // TODO
+        case .scheduledPaymentDelete:
+            return "ScheduledPaymentCancelMock" // TODO
         case .billingHistory:
             return "BillingHistoryMock"
         case .payment:
@@ -279,12 +306,20 @@ public enum Router {
             return "DeleteWalletItemMock"
         case .compareBill:
             return "CompareBillMock"
-        case .autoPay:
-            return "AutoPayMock"
-        case .paperless:
+        case .autoPayInfo:
+            return "AutoPayInfoMock" // TODO
+        case .autoPayEnroll:
+            return "AutoPayEnrollMock"
+        case .autoPayUnenroll:
+            return "AutoPayUnenrollMock" // TODO
+        case .paperlessEnroll:
             return "PaperlessMock"
-        case .budgetBilling:
-            return "BudgetBillingMock"
+        case .budgetBillingInfo:
+            return "BudgetBillingInfoMock" // TODO
+        case .budgetBillingEnroll:
+            return "BudgetBillingEnrollMock"
+        case .budgetBillingUnenroll:
+            return "BudgetBillingUnenrollMock" // TODO
         default:
             return ""
         }

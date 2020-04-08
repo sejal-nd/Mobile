@@ -12,6 +12,93 @@ import Foundation
 
 struct PaymentServiceNew {
     
+//    static func budgetBillingInfo(accountNumber: String) {
+//        ServiceLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber)) { (result: Result<TODO, Error>) in
+//            switch result {
+//            case .success(let data):
+//
+//                // fetch accounts todo
+//
+//                print("NetworkTest POST BUDGET BILL INFO SUCCESS: \(data.message) BREAK")
+//
+//            case .failure(let error):
+//                print("NetworkTest POST BUDGET BILL INFO FAIL: \(error)")
+//                //                completion(.failure(error))
+//            }
+//        }
+//    }
+    
+//    static func budgetBillingEnroll(accountNumber: String) {
+//        ServiceLayer.request(router: .budgetBillingEnroll(accountNumber: accountNumber)) { (result: Result<TODO, Error>) in
+//            switch result {
+//            case .success(let data):
+//
+//                // fetch accounts todo
+//
+//                print("NetworkTest POST BUDGET BILL ENROLL SUCCESS: \(data.message) BREAK")
+//
+//            case .failure(let error):
+//                print("NetworkTest POST BUDGET BILL UNENROLL FAIL: \(error)")
+//                //                completion(.failure(error))
+//            }
+//        }
+//    }
+//
+//    static func budgetBillingUnenroll(accountNumber: String, reason: String) {
+//        let httpBodyParameters = ["reason": reason, "comment": ""]
+//
+//         do {
+//               let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
+//               print("REQ SCHEDULE")
+//
+//               ServiceLayer.request(router: .budgetBillingUnenroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<TODO, Error>) in
+//                   switch result {
+//                   case .success(let data):
+//
+//                       // fetch accounts todo
+//
+//                       print("NetworkTest POST BUDGET BILL UNENROLL SUCCESS: \(data.message) BREAK")
+//
+//                   case .failure(let error):
+//                       print("NetworkTest POST BUDGET BILL UNENROLL FAIL: \(error)")
+//                       //                completion(.failure(error))
+//                   }
+//               }
+//           } catch let error {
+//               print("Error encoding values: \(error)")
+//               print("REQ ERROR")
+//           }
+//    }
+
+    
+//    static func autoPayUnenroll(accountNumber: String, reason: String) {
+//
+//    let httpBodyParameters: [String: Any] = ["reason": reason,
+//                                             "comments": ""]
+//        
+//        do {
+//            let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
+//            print("REQ SCHEDULE")
+//            
+//            ServiceLayer.request(router: .autoPayUnenroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<TODO, Error>) in
+//                switch result {
+//                case .success(let data):
+//                    
+//                    // fetch accounts todo
+//                    
+//                    print("NetworkTest POST 5  UNENROLL SUCCESS: \(data.message) BREAK")
+//                    
+//                case .failure(let error):
+//                    print("NetworkTest POST 5 UNENROLL FAIL: \(error)")
+//                    //                completion(.failure(error))
+//                }
+//            }
+//        } catch let error {
+//            print("Error encoding values: \(error)")
+//            print("REQ ERROR")
+//        }
+//    }
+    
     // POST.
     static func autoPay(accountNumber: String,
                         walletItemId: String?,
@@ -34,7 +121,7 @@ struct PaymentServiceNew {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
             
-            ServiceLayer.request(router: .autoPay(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewAutoPayResult, Error>) in
+            ServiceLayer.request(router: .autoPayEnroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewAutoPayResult, Error>) in
                 switch result {
                 case .success(let data):
                     
@@ -53,6 +140,22 @@ struct PaymentServiceNew {
         }
         
     }
+    
+//    static func autoPayInfo(accountNumber: String) {
+//        ServiceLayer.request(router: .autoPayInfo(accountNumber: accountNumber)) { (result: Result<TODO, Error>) in
+//            switch result {
+//            case .success(let data):
+//
+//                // fetch accounts todo
+//
+//                print("NetworkTest POST 5 INFO SUCCESS: \(data.message) BREAK")
+//
+//            case .failure(let error):
+//                print("NetworkTest POST 5 INFO FAIL: \(error)")
+//                //                completion(.failure(error))
+//            }
+//        }
+//    }
     
     static func deleteWalletItem(walletItem : WalletItem) {
         let opCo = Environment.shared.opco
@@ -238,5 +341,77 @@ struct PaymentServiceNew {
             print("REQ ERROR")
         }
     }
+//    
+//    static func cancelScheduledPayment(accountNumber: String, paymentAmount: Double, paymentId: String) {
+//        let httpBodyParameters: [String: Any] = [
+//            "payment_amount": String.init(format: "%.02f", paymentAmount)
+//        ]
+//        
+//        do {
+//            let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
+//            print("REQ SCHEDULE")
+//            ServiceLayer.request(router: .scheduledPaymentDelete(accountNumber: accountNumber, paymentId: paymentId,
+//                                                                 httpBody: httpBody)) { (result: Result<TODO, Error>) in
+//                                                                    switch result {
+//                                                                    case .success(let data):
+//                                                                        
+//                                                                        // fetch accounts todo
+//                                                                        
+//                                                                        print("NetworkTest POST 1 CANCEL SUCCESS: \(data.confirmationNumber) BREAK")
+//                                                                    case .failure(let error):
+//                                                                        print("NetworkTest POST 1 CANCEL FAIL: \(error)")
+//                                                                        //                completion(.failure(error))
+//                                                                    }
+//            }
+//        } catch let error {
+//            print("Error encoding values: \(error)")
+//            print("REQ ERROR")
+//        }
+//        
+//    }
+    
+//    static func updateScheduledPayment(paymentId: String,
+//                                       accountNumber: String,
+//                                       paymentAmount: Double,
+//                                       paymentDate: Date,
+//                                       walletId: String,
+//                                       walletItem: WalletItem) -> String {
+//        let opCo = Environment.shared.opco
+//        var httpBodyParameters: [String: Any] = [
+//            "payment_amount": String.init(format: "%.02f", paymentAmount),
+//            "payment_date": paymentDate.paymentFormatString,
+//            "payment_category_type": walletItem.bankOrCard == .bank ? "Check" : "Credit",
+//            "payment_id": paymentId,
+//            "wallet_id": walletId,
+//            "biller_id": "\(opCo.rawValue)Registered"
+//        ]
+//
+//        if !walletItem.isEditingItem, let walletItemId = walletItem.walletItemId { // User selected a new payment method
+//            httpBodyParameters["wallet_item_id"] = walletItemId
+//            httpBodyParameters["is_existing_account"] = !walletItem.isTemporary
+//            httpBodyParameters["masked_wallet_item_account_number"] = walletItem.maskedWalletItemAccountNumber ?? ""
+//        }
+//
+//        do {
+//            let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
+//            print("REQ SCHEDULE")
+//            ServiceLayer.request(router: .scheduledPaymentUpdate(accountNumber: accountNumber, paymentId: paymentId, httpBody: httpBody)) { (result: Result<TODO, Error>) in
+//                switch result {
+//                case .success(let data):
+//
+//                    // fetch accounts todo
+//
+//                    print("NetworkTest POST 1 UPDATE SUCCESS: \(data.confirmationNumber) BREAK")
+//                case .failure(let error):
+//                    print("NetworkTest POST 1 UPDDATE FAIL: \(error)")
+//                    //                completion(.failure(error))
+//                }
+//            }
+//        } catch let error {
+//            print("Error encoding values: \(error)")
+//            print("REQ ERROR")
+//        }
+//
+//    }
     
 }
