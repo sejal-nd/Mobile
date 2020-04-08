@@ -852,12 +852,18 @@
 		67278370243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
 		67278371243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
 		67278372243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
-		67278374243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */; };
-		67278375243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */; };
-		67278376243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */; };
-		67278378243D085B00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBilling.swift */; };
-		67278379243D085B00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBilling.swift */; };
-		6727837A243D085B00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBilling.swift */; };
+		67278374243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */; };
+		67278375243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */; };
+		67278376243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */; };
+		67278378243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */; };
+		67278379243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */; };
+		6727837A243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */; };
+		6727837C243E52CC00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */; };
+		6727837D243E52CC00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */; };
+		6727837E243E52CC00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */; };
+		67278380243E52EB00D5CD95 /* BudgetBillingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */; };
+		67278381243E52EB00D5CD95 /* BudgetBillingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */; };
+		67278382243E52EB00D5CD95 /* BudgetBillingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3373,8 +3379,10 @@
 		67278367243D02B700D5CD95 /* NewAutoPayResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAutoPayResult.swift; sourceTree = "<group>"; };
 		6727836B243D076400D5CD95 /* PaperlessMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaperlessMock.json; sourceTree = "<group>"; };
 		6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPaperlessResult.swift; sourceTree = "<group>"; };
-		67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingEnrollMock.json; sourceTree = "<group>"; };
-		67278377243D085B00D5CD95 /* NewBudgetBilling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBudgetBilling.swift; sourceTree = "<group>"; };
+		67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingResultMock.json; sourceTree = "<group>"; };
+		67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBudgetBillingResult.swift; sourceTree = "<group>"; };
+		6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBudgetBilling.swift; sourceTree = "<group>"; };
+		6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingMock.json; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5334,7 +5342,8 @@
 				6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */,
 				67278367243D02B700D5CD95 /* NewAutoPayResult.swift */,
 				6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */,
-				67278377243D085B00D5CD95 /* NewBudgetBilling.swift */,
+				67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */,
+				6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5528,7 +5537,8 @@
 				67278357243CD68200D5CD95 /* CompareBillMock.json */,
 				67278363243D028000D5CD95 /* AutoPayEnrollMock.json */,
 				6727836B243D076400D5CD95 /* PaperlessMock.json */,
-				67278373243D084F00D5CD95 /* BudgetBillingEnrollMock.json */,
+				67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */,
+				6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7245,7 +7255,7 @@
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
-				67278374243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */,
+				67278374243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */,
 				359BDBAC22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				B08957262217496D00A97965 /* bill_pdf.json in Resources */,
 				359BDB6622D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
@@ -7293,6 +7303,7 @@
 				E8C29C781F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				9C0EA5B2237DAD2900D1E18F /* buddy_body.json in Resources */,
+				67278380243E52EB00D5CD95 /* BudgetBillingMock.json in Resources */,
 				0EF60FD020EE7AE7006ABC18 /* Assets.xcassets in Resources */,
 				67278348243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
@@ -7370,6 +7381,7 @@
 				35C913AB22EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				B0DB275C215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				B039DB77225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
+				67278382243E52EB00D5CD95 /* BudgetBillingMock.json in Resources */,
 				9C62446A22C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */,
 				351241F122B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				E841F3A11F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
@@ -7483,7 +7495,7 @@
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
-				67278376243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */,
+				67278376243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */,
 				9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				9C0EA5BD237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
@@ -7557,6 +7569,7 @@
 				35C913AA22EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */,
 				384F86A31F310B8600A85557 /* TermPolicies.html in Resources */,
+				67278381243E52EB00D5CD95 /* BudgetBillingMock.json in Resources */,
 				B0DB275B215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				B039DB76225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -7670,7 +7683,7 @@
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
-				67278375243D084F00D5CD95 /* BudgetBillingEnrollMock.json in Resources */,
+				67278375243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */,
 				9C0EA5BF237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				9C0EA5BC237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				B07E17E32209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
@@ -8982,6 +8995,7 @@
 				9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
+				6727837C243E52CC00D5CD95 /* NewBudgetBilling.swift in Sources */,
 				C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */,
 				676BDA71242CF2A800C880A3 /* NewCustomerInfo.swift in Sources */,
 				355B10412369E4820038EAD3 /* KeychainManager.swift in Sources */,
@@ -9147,7 +9161,7 @@
 				9CEE412123722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				35D02DCB2416843500D8894F /* NewMinimumVersion.swift in Sources */,
-				67278378243D085B00D5CD95 /* NewBudgetBilling.swift in Sources */,
+				67278378243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */,
 				B05E9D13217F688A0003FAB8 /* Application.swift in Sources */,
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
@@ -9429,6 +9443,7 @@
 				9CA4FA6B2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				9C62447222C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
+				6727837E243E52CC00D5CD95 /* NewBudgetBilling.swift in Sources */,
 				C364A8812375DD8200C7D51B /* EmptyChildViewController.swift in Sources */,
 				676BDA73242CF2A800C880A3 /* NewCustomerInfo.swift in Sources */,
 				0EF60FD920EE8105006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
@@ -9594,7 +9609,7 @@
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				35D02DCD2416843500D8894F /* NewMinimumVersion.swift in Sources */,
-				6727837A243D085B00D5CD95 /* NewBudgetBilling.swift in Sources */,
+				6727837A243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B085C44920FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -9876,6 +9891,7 @@
 				9CA4FA6A2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
 				9CD3531F22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
+				6727837D243E52CC00D5CD95 /* NewBudgetBilling.swift in Sources */,
 				C364A8802375DD8100C7D51B /* EmptyChildViewController.swift in Sources */,
 				676BDA72242CF2A800C880A3 /* NewCustomerInfo.swift in Sources */,
 				355B10402369E4820038EAD3 /* KeychainManager.swift in Sources */,
@@ -10041,7 +10057,7 @@
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				9CEE412223722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				35D02DCC2416843500D8894F /* NewMinimumVersion.swift in Sources */,
-				67278379243D085B00D5CD95 /* NewBudgetBilling.swift in Sources */,
+				67278379243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */,
 				54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269362127579C009B2BFF /* HomeUpdateView.swift in Sources */,

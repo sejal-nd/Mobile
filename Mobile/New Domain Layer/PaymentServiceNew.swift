@@ -12,63 +12,63 @@ import Foundation
 
 struct PaymentServiceNew {
     
-//    static func budgetBillingInfo(accountNumber: String) {
-//        ServiceLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber)) { (result: Result<TODO, Error>) in
-//            switch result {
-//            case .success(let data):
-//
-//                // fetch accounts todo
-//
-//                print("NetworkTest POST BUDGET BILL INFO SUCCESS: \(data.message) BREAK")
-//
-//            case .failure(let error):
-//                print("NetworkTest POST BUDGET BILL INFO FAIL: \(error)")
-//                //                completion(.failure(error))
-//            }
-//        }
-//    }
+    static func budgetBillingInfo(accountNumber: String) {
+        ServiceLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber)) { (result: Result<NewBudgetBilling, Error>) in
+            switch result {
+            case .success(let data):
+
+                // fetch accounts todo
+
+                print("NetworkTest POST BUDGET BILL INFO SUCCESS: \(data.isEnrolled) BREAK")
+
+            case .failure(let error):
+                print("NetworkTest POST BUDGET BILL INFO FAIL: \(error)")
+                //                completion(.failure(error))
+            }
+        }
+    }
     
-//    static func budgetBillingEnroll(accountNumber: String) {
-//        ServiceLayer.request(router: .budgetBillingEnroll(accountNumber: accountNumber)) { (result: Result<TODO, Error>) in
-//            switch result {
-//            case .success(let data):
-//
-//                // fetch accounts todo
-//
-//                print("NetworkTest POST BUDGET BILL ENROLL SUCCESS: \(data.message) BREAK")
-//
-//            case .failure(let error):
-//                print("NetworkTest POST BUDGET BILL UNENROLL FAIL: \(error)")
-//                //                completion(.failure(error))
-//            }
-//        }
-//    }
-//
-//    static func budgetBillingUnenroll(accountNumber: String, reason: String) {
-//        let httpBodyParameters = ["reason": reason, "comment": ""]
-//
-//         do {
-//               let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
-//               print("REQ SCHEDULE")
-//
-//               ServiceLayer.request(router: .budgetBillingUnenroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<TODO, Error>) in
-//                   switch result {
-//                   case .success(let data):
-//
-//                       // fetch accounts todo
-//
-//                       print("NetworkTest POST BUDGET BILL UNENROLL SUCCESS: \(data.message) BREAK")
-//
-//                   case .failure(let error):
-//                       print("NetworkTest POST BUDGET BILL UNENROLL FAIL: \(error)")
-//                       //                completion(.failure(error))
-//                   }
-//               }
-//           } catch let error {
-//               print("Error encoding values: \(error)")
-//               print("REQ ERROR")
-//           }
-//    }
+    static func budgetBillingEnroll(accountNumber: String) {
+        ServiceLayer.request(router: .budgetBillingEnroll(accountNumber: accountNumber)) { (result: Result<NewBudgetBillingResult, Error>) in
+            switch result {
+            case .success(let data):
+
+                // fetch accounts todo
+
+                print("NetworkTest POST BUDGET BILL ENROLL SUCCESS: \(data.success) BREAK")
+
+            case .failure(let error):
+                print("NetworkTest POST BUDGET BILL UNENROLL FAIL: \(error)")
+                //                completion(.failure(error))
+            }
+        }
+    }
+
+    static func budgetBillingUnenroll(accountNumber: String, reason: String) {
+        let httpBodyParameters = ["reason": reason, "comment": ""]
+
+         do {
+               let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
+               print("REQ SCHEDULE")
+
+               ServiceLayer.request(router: .budgetBillingUnenroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBudgetBillingResult, Error>) in
+                   switch result {
+                   case .success(let data):
+
+                       // fetch accounts todo
+
+                       print("NetworkTest POST BUDGET BILL UNENROLL SUCCESS: \(data.success) BREAK")
+
+                   case .failure(let error):
+                       print("NetworkTest POST BUDGET BILL UNENROLL FAIL: \(error)")
+                       //                completion(.failure(error))
+                   }
+               }
+           } catch let error {
+               print("Error encoding values: \(error)")
+               print("REQ ERROR")
+           }
+    }
 
     
 //    static func autoPayUnenroll(accountNumber: String, reason: String) {

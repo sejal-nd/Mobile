@@ -55,9 +55,9 @@ public enum Router {
     case paperlessEnroll(accountNumber: String, httpBody: HTTPBody)
     case paperlessUnenroll(accountNumber: String)
     
-    case budgetBillingInfo(accountNumber: String) // todo - Mock + model
+    case budgetBillingInfo(accountNumber: String)
     case budgetBillingEnroll(accountNumber: String)
-    case budgetBillingUnenroll(accountNumber: String, httpBody: HTTPBody) // todo - Mock + model
+    case budgetBillingUnenroll(accountNumber: String, httpBody: HTTPBody)
     
 //    case getSources
 //    case getProductIds
@@ -311,11 +311,9 @@ public enum Router {
         case .paperlessEnroll:
             return "PaperlessMock"
         case .budgetBillingInfo:
-            return "BudgetBillingInfoMock" // TODO
-        case .budgetBillingEnroll:
-            return "BudgetBillingEnrollMock"
-        case .budgetBillingUnenroll:
-            return "BudgetBillingUnenrollMock" // TODO
+            return "BudgetBillingMock"
+        case .budgetBillingEnroll, .budgetBillingUnenroll:
+            return "BudgetBillingResultMock"
         default:
             return ""
         }
