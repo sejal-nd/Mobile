@@ -37,8 +37,8 @@ public enum Router {
     case billPDF(accountNumber: String, date: Date)
     
     case scheduledPayment(accountNumber: String, httpBody: HTTPBody)
-    case scheduledPaymentUpdate(accountNumber: String, paymentId: String, httpBody: HTTPBody) // todo - Mock + model
-    case scheduledPaymentDelete(accountNumber: String, paymentId: String, httpBody: HTTPBody) // todo - Mock + model
+    case scheduledPaymentUpdate(accountNumber: String, paymentId: String, httpBody: HTTPBody)
+    case scheduledPaymentDelete(accountNumber: String, paymentId: String, httpBody: HTTPBody)
     
     case billingHistory(accountNumber: String, httpBody: HTTPBody)
     
@@ -292,12 +292,8 @@ public enum Router {
             return "AlertBannerMock"
         case .billPDF:
             return "BillPDFMock"
-        case .scheduledPayment:
+        case .scheduledPayment, .scheduledPaymentUpdate, .scheduledPaymentDelete:
             return "ScheduledPaymentMock"
-        case .scheduledPaymentUpdate:
-            return "ScheduledPaymentUpdateMock" // TODO
-        case .scheduledPaymentDelete:
-            return "ScheduledPaymentCancelMock" // TODO
         case .billingHistory:
             return "BillingHistoryMock"
         case .payment:

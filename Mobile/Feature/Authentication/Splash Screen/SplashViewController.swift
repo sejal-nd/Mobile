@@ -197,19 +197,20 @@ class SplashViewController: UIViewController{
     }
         
     func checkAppVersion(callback: @escaping() -> Void) {
-        viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
-            if isOutOfDate {
-                self?.handleOutOfDate()
-            } else {
-                callback()
-            }
-        }, onError: { [weak self] _ in
-            self?.loadingTimer.invalidate()
-            self?.imageView.isHidden = true
-            self?.splashAnimationContainer.isHidden = true
-            self?.loadingContainerView.isHidden = true
-            self?.errorView.isHidden = false
-        })
+        callback()
+//        viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
+//            if isOutOfDate {
+//                self?.handleOutOfDate()
+//            } else {
+//                callback()
+//            }
+//        }, onError: { [weak self] _ in
+//            self?.loadingTimer.invalidate()
+//            self?.imageView.isHidden = true
+//            self?.splashAnimationContainer.isHidden = true
+//            self?.loadingContainerView.isHidden = true
+//            self?.errorView.isHidden = false
+//        })
     }
     
     func checkIOSVersion() {
