@@ -375,7 +375,7 @@ struct PaymentServiceNew {
                                        paymentAmount: Double,
                                        paymentDate: Date,
                                        walletId: String,
-                                       walletItem: WalletItem) -> String {
+                                       walletItem: WalletItem) {
         let opCo = Environment.shared.opco
         var httpBodyParameters: [String: Any] = [
             "payment_amount": String.init(format: "%.02f", paymentAmount),
