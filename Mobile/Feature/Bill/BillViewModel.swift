@@ -336,7 +336,8 @@ class BillViewModel {
             if pastDueAmount == billingInfo.netDueAmount {
                 return NSLocalizedString("Your bill is past due.", comment: "")
             } else {
-                return String.localizedStringWithFormat("%@ of the total is due immediately.", pastDueAmount.currencyString)
+                let format = "%@ of the total is due immediately.".localized()
+                return String(format: format, pastDueAmount.currencyString)
             }
         }
         
@@ -377,7 +378,7 @@ class BillViewModel {
         let string: String
         if billingInfo.pastDueAmount > 0 {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
-                string = NSLocalizedString("Total Amount Due Immediately", comment: "")
+                string = "Total Amount Due Immediately".localized()
                 attributes[.foregroundColor] = UIColor.errorRed
                 attributes[.font] = SystemFont.semibold.of(textStyle: .caption1)
             } else {
@@ -426,7 +427,7 @@ class BillViewModel {
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.middleGray,
                                                                        .font: SystemFont.regular.of(textStyle: .caption1)])
             } else {
-                let string = NSLocalizedString("Due Immediately", comment: "")
+                let string = "Due Immediately".localized()
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorRed,
                                                                        .font: SystemFont.semibold.of(textStyle: .caption1)])
             }

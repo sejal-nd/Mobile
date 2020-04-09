@@ -409,12 +409,12 @@ class HomeBillCardViewModel {
             switch (isMultiPremise, billingInfo.netDueAmount == billingInfo.pastDueAmount) {
             case (false, false):
                 guard let amount = billingInfo.pastDueAmount?.currencyString else { return nil }
-                let format = "%@ of the total is due immediately."
-                string = String.localizedStringWithFormat(format, amount)
+                let format = "%@ of the total is due immediately.".localized()
+                string = String(format: format, amount)
             case (true, false):
                 guard let amount = billingInfo.pastDueAmount?.currencyString else { return nil }
-                let format = "%@ of the total is due immediately for your multi-premise account."
-                string = String.localizedStringWithFormat(format, amount)
+                let format = "%@ of the total is due immediately for your multi-premise account.".localized()
+                string = String(format: format, amount)
             case (false, true):
                 string = NSLocalizedString("Your bill is past due.", comment: "")
             case (true, true):
@@ -538,7 +538,7 @@ class HomeBillCardViewModel {
         switch billState {
         case .pastDue, .finaled, .restoreService, .avoidShutoff, .eligibleForCutoff, .catchUp:
             if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
-                return NSAttributedString(string: NSLocalizedString("Total Amount Due Immediately", comment: ""),
+                return NSAttributedString(string: "Total Amount Due Immediately".localized(),
                                           attributes: redAttributes)
             } else {
                 return NSAttributedString(string: NSLocalizedString("Total Amount Due", comment: ""),
