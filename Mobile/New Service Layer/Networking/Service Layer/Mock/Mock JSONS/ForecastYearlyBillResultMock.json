@@ -1,0 +1,36 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "meterUnit": "KWH",
+      "currencySymbol": "$",
+      "temperatureUnit": "FAHRENHEIT",
+      "analysisResults": [
+        {
+          "analysisName": "WEATHER",
+          "costDifferenceExplained": -16.36
+        },
+        {
+          "analysisName": "OTHER",
+          "costDifferenceExplained": -67.14
+        }
+      ],
+      "reference": {
+        "charges": 27.66,
+        "usage": 161,
+        "startDate": "2020-03-09",
+        "endDate": "2020-04-06",
+        "averageTemperature": 49.4,
+        "ratePlan": "R_PTR"
+      },
+      "compared": {
+        "charges": 111.16,
+        "usage": 827,
+        "startDate": "2019-03-08",
+        "endDate": "2019-04-05",
+        "averageTemperature": 45.9,
+        "ratePlan": "R_PTR"
+      }
+    }
+  }
+}
