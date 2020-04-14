@@ -289,8 +289,8 @@ class BGEAutoPayViewController: UIViewController {
             let title = NSLocalizedString("Enrolled in AutoPay", comment: "")
             let description: String
             if let netDueAmount = self.accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
-                let formatText = NSLocalizedString("You are successfully enrolled in AutoPay and it will begin with your next bill. Upon payment you will receive a payment confirmation for your records.", comment: "")
-                description = String.localizedStringWithFormat(formatText, netDueAmount.currencyString)
+                let formatText = "You are successfully enrolled in AutoPay and will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due immediately.".localized()
+                description = String(format: formatText, netDueAmount.currencyString)
             } else {
                 description = NSLocalizedString("You are successfully enrolled in AutoPay and will begin with your next bill. Upon payment you will receive a payment confirmation for your records.", comment: "")
             }
@@ -420,8 +420,8 @@ class BGEAutoPayViewController: UIViewController {
 extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
     func miniWalletSheetViewController(_ miniWalletSheetViewController: MiniWalletSheetViewController, didSelect walletItem: WalletItem) {
         guard walletItem != viewModel.selectedWalletItem.value else { return }
-        viewModel.userDidChangeBankAccount.value = true
-        viewModel.selectedWalletItem.value = walletItem
+        viewModel.userDidChangeBankAccount.accept(true)
+        viewModel.selectedWalletItem.accept(walletItem)
         
         showUpdateButton()
         
@@ -439,8 +439,8 @@ extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
 
 extension BGEAutoPayViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
-        viewModel.userDidChangeBankAccount.value = true
-        viewModel.selectedWalletItem.value = walletItem
+        viewModel.userDidChangeBankAccount.accept(true)
+        viewModel.selectedWalletItem.accept(walletItem)
         
         showUpdateButton()
         
@@ -454,13 +454,13 @@ extension BGEAutoPayViewController: BGEAutoPaySettingsViewControllerDelegate {
             (viewModel.amountToPay.value == .upToAmount && viewModel.amountNotToExceed.value != amountNotToExceed) ||
             viewModel.whenToPay.value != whenToPay ||
             (viewModel.whenToPay.value == .beforeDueDate && viewModel.numberOfDaysBeforeDueDate.value != numberOfDaysBeforeDueDate) {
-            viewModel.userDidChangeSettings.value = true
+            viewModel.userDidChangeSettings.accept(true)
         }
         
-        viewModel.amountToPay.value = amountToPay
-        viewModel.amountNotToExceed.value = amountNotToExceed
-        viewModel.whenToPay.value = whenToPay
-        viewModel.numberOfDaysBeforeDueDate.value = numberOfDaysBeforeDueDate
+        viewModel.amountToPay.accept(amountToPay)
+        viewModel.amountNotToExceed.accept(amountNotToExceed)
+        viewModel.whenToPay.accept(whenToPay)
+        viewModel.numberOfDaysBeforeDueDate.accept(numberOfDaysBeforeDueDate)
         
         showUpdateButton()
     }

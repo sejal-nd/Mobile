@@ -119,7 +119,7 @@ class HomeUsageCardView: UIView {
                                   NSLocalizedString("Gas", comment: "")]
         
         isInitialSegmentValuePress = true
-        segmentedControl.selectedIndex.value = 0
+        segmentedControl.selectedIndex.accept(0)
 
         billComparisonStackView.bringSubviewToFront(segmentedControl)
         

@@ -219,12 +219,12 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         view.endEditing(true)
         
         if let vc = segue.destination as? ForgotUsernameBGEAccountNumberViewController {
-            vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
-            vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
+            vc.viewModel.phoneNumber.accept(viewModel.phoneNumber.value)
+            vc.viewModel.identifierNumber.accept(viewModel.identifierNumber.value)
         } else if let navController = segue.destination as? LargeTitleNavigationController,
             let vc = navController.viewControllers.first as? AccountLookupToolViewController {
             vc.delegate = self
-            vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
+            vc.viewModel.phoneNumber.accept(viewModel.phoneNumber.value)
         } else if let vc = segue.destination as? ForgotUsernameResultViewController {
             vc.viewModel = viewModel
         }

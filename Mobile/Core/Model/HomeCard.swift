@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 enum HomeCard: Int {
     case bill, usage, template, projectedBill, outageStatus, prepaidActive, prepaidPending, nothing
@@ -94,7 +95,7 @@ enum HomeCard: Int {
 final class HomeCardPrefsStore {
     static let shared = HomeCardPrefsStore()
     
-    private let listCache: Variable<[HomeCard]>
+    private let listCache: BehaviorRelay<[HomeCard]>
     
     let listObservable: Observable<[HomeCard]>
     
@@ -103,7 +104,7 @@ final class HomeCardPrefsStore {
             return listCache.value
         }
         set(newValue) {
-            listCache.value = newValue
+            listCache.accept(newValue)
             let stringValues = newValue.map { $0.id }
             UserDefaults.standard.set(stringValues, forKey: UserDefaultKeys.homeCardPrefsList)
         }
@@ -124,7 +125,7 @@ final class HomeCardPrefsStore {
             }
         }
         
-        listCache = Variable(storedList)
+        listCache = BehaviorRelay(value: storedList)
         
         listObservable = listCache.asObservable()
         

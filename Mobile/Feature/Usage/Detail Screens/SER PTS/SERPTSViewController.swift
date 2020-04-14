@@ -150,7 +150,7 @@ class SERPTSViewController: UIViewController {
         case let (vc as MyHomeProfileViewController, _):
             vc.accountDetail = accountDetail
             vc.didSaveHomeProfile
-                .delay(0.5)
+                .delay(.milliseconds(500))
                 .drive(onNext: { [weak self] in
                     self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
                 })

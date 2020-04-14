@@ -116,7 +116,7 @@ extension SetDefaultAccountViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let account = AccountsStore.shared.accounts[indexPath.row]
-        viewModel.selectedAccount.value = account
+        viewModel.selectedAccount.accept(account)
     }
     
 }

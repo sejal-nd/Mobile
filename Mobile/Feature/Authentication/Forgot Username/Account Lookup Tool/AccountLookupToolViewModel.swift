@@ -14,11 +14,11 @@ class AccountLookupToolViewModel {
     
     private var authService: AuthenticationService
     
-    let phoneNumber = Variable("")
-    let identifierNumber = Variable("")
+    let phoneNumber = BehaviorRelay(value: "")
+    let identifierNumber = BehaviorRelay(value: "")
     
     var accountLookupResults = [AccountLookupResult]()
-    let selectedAccount = Variable<AccountLookupResult?>(nil)
+    let selectedAccount = BehaviorRelay<AccountLookupResult?>(value: nil)
     
     required init(authService: AuthenticationService) {
         self.authService = authService
