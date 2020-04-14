@@ -103,6 +103,18 @@ public struct ServiceLayer {
             do {
                 // 6.
                 let responseObject = try jsonDecoder.decode(T.self, from: data)
+                
+                if let endpointError = responseObject as? EndpointErrorable,
+                    let errorCode = endpointError.errorCode,
+                    let errorMessage = endpointError.errorMessage {
+                    // todo
+                    
+                    print("FN ERROR")
+                    completion(.failure(.endpointError))
+                    
+                    return
+                }
+                
                 // 7.
                 DispatchQueue.main.async {
                     // 8.
@@ -151,6 +163,7 @@ public enum NetworkingError: Error {
     case invalidResponse
     case invalidData
     case decodingError
+    case endpointError
 }
 
 // todo: below will be implemented for user facing messages.

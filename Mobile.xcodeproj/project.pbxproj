@@ -876,6 +876,9 @@
 		67278390243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727838F243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json */; };
 		67278391243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727838F243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json */; };
 		67278392243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727838F243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json */; };
+		67278394244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
+		67278395244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
+		67278396244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3399,6 +3402,7 @@
 		67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForecastMonthlyBillMock.json; sourceTree = "<group>"; };
 		6727838B243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForecastYearlyBillResut.swift; sourceTree = "<group>"; };
 		6727838F243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForecastYearlyBillResultMock.json; sourceTree = "<group>"; };
+		67278393244634DB00D5CD95 /* EndpointError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointError.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5310,6 +5314,7 @@
 			isa = PBXGroup;
 			children = (
 				35D02DDA24168E5E00D8894F /* Test.swift */,
+				67278393244634DB00D5CD95 /* EndpointError.swift */,
 				6766F96E242273D8007C9CB9 /* UserSession.swift */,
 				35D02D95240FFBD800D8894F /* Network Models */,
 				35D02D81240FFB9400D8894F /* Networking */,
@@ -9064,6 +9069,7 @@
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				355B103B2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
+				67278394244634DB00D5CD95 /* EndpointError.swift in Sources */,
 				9CBE9E2E23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
@@ -9514,6 +9520,7 @@
 				B0DB2762215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
 				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				82DE610C1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
+				67278396244634DB00D5CD95 /* EndpointError.swift in Sources */,
 				9CBE9E3023749B9900E14222 /* MCSGameService.swift in Sources */,
 				E83F026D1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				B0472B2B2111011F0048C1A7 /* UsageViewController.swift in Sources */,
@@ -9964,6 +9971,7 @@
 				9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				355B103A2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
+				67278395244634DB00D5CD95 /* EndpointError.swift in Sources */,
 				9CBE9E2F23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
