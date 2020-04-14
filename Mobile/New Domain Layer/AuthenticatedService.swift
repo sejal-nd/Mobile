@@ -13,7 +13,7 @@ import Foundation
 struct AuthenticatedService {
     static func login(username: String,
                       password: String,
-                      completion: @escaping (Result<Void, Error>) -> ()) {
+                      completion: @escaping (Result<Void, NetworkingError>) -> ()) {
         if Environment.shared.environmentName != .aut {
             performLogin(username: username, password: password, completion: completion)
         } else {
@@ -41,7 +41,7 @@ struct AuthenticatedService {
         let queryString = String(queryStringSubSequence)
         
         
-        ServiceLayer.request(router: .accountDetails(accountNumber: accountNumber, queryString: queryString)) { (result: Result<NewAccountDetails, Error>) in
+        ServiceLayer.request(router: .accountDetails(accountNumber: accountNumber, queryString: queryString)) { (result: Result<NewAccountDetails, NetworkingError>) in
             switch result {
             case .success(let data):
                 
@@ -84,7 +84,7 @@ struct AuthenticatedService {
         
         let queryItem = URLQueryItem(name: "$filter", value: filterString)
         
-        ServiceLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<NewAlertBanner, Error>) in
+        ServiceLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<NewAlertBanner, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 13 SUCCESS: \(data) BREAK \(data.alerts.first?.title)")
@@ -100,7 +100,7 @@ struct AuthenticatedService {
     
     private static func performLogin(username: String,
                                      password: String,
-                                     completion: @escaping (Result<Void, Error>) -> ()) {
+                                     completion: @escaping (Result<Void, NetworkingError>) -> ()) {
         print("username: \(username)")
         print("PW: \(password)")
         
@@ -126,12 +126,12 @@ struct AuthenticatedService {
         //                               }
         //        }
         
-        ServiceLayer.request(router: .fetchSAMLToken(httpBody: httpBody)) { (result: Result<NewSAMLToken, Error>) in
+        ServiceLayer.request(router: .fetchSAMLToken(httpBody: httpBody)) { (result: Result<NewSAMLToken, NetworkingError>) in
             switch result {
             case .success(let data):
                 guard let token = data.token else { return }
                 
-                ServiceLayer.request(router: .exchangeSAMLToken(token: token)) { (result: Result<NewJWTToken, Error>) in
+                ServiceLayer.request(router: .exchangeSAMLToken(token: token)) { (result: Result<NewJWTToken, NetworkingError>) in
                     switch result {
                     case .success(let newJWTToken):
                         
@@ -144,7 +144,7 @@ struct AuthenticatedService {
                         
                         print("NetworkTest 4 SUCCESS: \(newJWTToken.token) BREAK")
                         
-                        ServiceLayer.request(router: .accounts) { (result: Result<NewAccounts, Error>) in
+                        ServiceLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
                             switch result {
                             case .success(let data):
                                 
@@ -185,12 +185,12 @@ struct AuthenticatedService {
     }
     
     private static func performLoginMock(username: String,
-                                         completion: @escaping (Result<Void, Error>) -> ()) {
+                                         completion: @escaping (Result<Void, NetworkingError>) -> ()) {
         print("LOGIN MOCK")
         // SET MOCK USER
         UserSession.shared.token = username
         
-        ServiceLayer.request(router: .accounts) { (result: Result<NewAccounts, Error>) in
+        ServiceLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
             switch result {
             case .success(let data):
                 

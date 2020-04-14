@@ -60,7 +60,7 @@ class LoginViewModel {
         }
 
         isLoggingIn = true
-        AuthenticatedService.login(username: username.value, password: password.value) { [weak self] (result: Result<Void, Error>) in
+        AuthenticatedService.login(username: username.value, password: password.value) { [weak self] (result: Result<Void, NetworkingError>) in
             switch result {
             case .success(()):
 //                guard let self = self else { return }

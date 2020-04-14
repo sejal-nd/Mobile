@@ -31,7 +31,7 @@ struct WeatherServiceNew {
         print(long)
         
         //lat: "39.295", long: "-76.624")
-        ServiceLayer.request(router: .weather(lat: lat, long: long)) { (result: Result<NewWeather, Error>) in
+        ServiceLayer.request(router: .weather(lat: lat, long: long)) { (result: Result<NewWeather, NetworkingError>) in
             switch result {
             case .success(let weather):
                 print("NetworkTest 9 SUCCESS: \(weather) BREAK \(weather.temperature)")

@@ -10,7 +10,7 @@ import Foundation
 
 public struct ServiceLayer {
 
-    public static func request<T: Decodable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
+    public static func request<T: Decodable>(router: Router, completion: @escaping (Result<T, NetworkingError>) -> ()) {
         print("Test: \(T.self)...\(NewSAMLToken.self)   \(T.self == NewSAMLToken.self)...\(router.token.isEmpty)")
         
         print("Logic test: \(router.apiAccess == .auth && router.token.isEmpty && T.self != NewSAMLToken.self && T.self != NewJWTToken.self)")
@@ -19,6 +19,8 @@ public struct ServiceLayer {
         if router.apiAccess == .auth && router.token.isEmpty && T.self == NewSAMLToken.self && T.self == NewJWTToken.self { // || T.self == NewJWTToken.self
             // THROW ERROR LOG USER OUT, NO TOKEN FOR AUTH REQUEST.
             print("REQUEST BLOCKED ")
+            completion(.failure(.invalidToken))
+            
             return
         }
         
@@ -30,7 +32,7 @@ public struct ServiceLayer {
         components.queryItems = router.parameters
         print("....1")
         // 3.
-        guard let url = components.url else { print("FAIL URL");return }
+        guard let url = components.url else { print("FAIL URL");completion(.failure(.invalidURL));return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
         
@@ -69,18 +71,24 @@ public struct ServiceLayer {
             print("DATA TASK URL: \(url)")
             
             // 5.
-            guard error == nil else {
-                completion(.failure(error!))
-                print(error!.localizedDescription)
+            if let error = error {
+                print(error.localizedDescription)
+
+                completion(.failure(.networkError))
+                
                 return
             }
                       print("....2")
             // should only check if not AUT build
             guard response != nil || Environment.shared.environmentName == .aut else {
+                completion(.failure(.invalidResponse))
+                
                 return
             }
             print("....3")
             guard let data = data else {
+                completion(.failure(.invalidData))
+                
                 return
             }
             
@@ -101,8 +109,9 @@ public struct ServiceLayer {
                     completion(.success(responseObject))
                 }
             } catch let error {
-                completion(.failure(error))
                 print(error.localizedDescription)
+                
+                completion(.failure(.decodingError))
             }
         }
         dataTask.resume()
@@ -134,3 +143,38 @@ private extension DateFormatter {
         return formatter
     }()
 }
+
+public enum NetworkingError: Error {
+    case invalidToken
+    case invalidURL
+    case networkError
+    case invalidResponse
+    case invalidData
+    case decodingError
+}
+
+// todo: below will be implemented for user facing messages.
+
+//extension NewServiceError: LocalizedError {
+//    var errorDescription: String? {
+//        switch self {
+//        case .tooShort:
+//            return NSLocalizedString(
+//                "Your username needs to be at least 4 characters long",
+//                comment: ""
+//            )
+//        case .tooLong:
+//            return NSLocalizedString(
+//                "Your username can't be longer than 14 characters",
+//                comment: ""
+//            )
+//        case .invalidCharacterFound(let character):
+//            let format = NSLocalizedString(
+//                "Your username can't contain the character '%@'",
+//                comment: ""
+//            )
+//
+//            return String(format: format, String(character))
+//        }
+//    }
+//}

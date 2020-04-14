@@ -37,7 +37,7 @@ class NetworkTest {
 //    }
     
     private func minVersion() {
-        ServiceLayer.request(router: .minVersion) { (result: Result<NewVersion, Error>) in
+        ServiceLayer.request(router: .minVersion) { (result: Result<NewVersion, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 1 SUCCESS: \(data) BREAK \(data.min)")
@@ -48,7 +48,7 @@ class NetworkTest {
     }
     
     private func maint() {
-        ServiceLayer.request(router: .maintenanceMode) { (result: Result<NewMaintenanceMode, Error>) in
+        ServiceLayer.request(router: .maintenanceMode) { (result: Result<NewMaintenanceMode, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 2 SUCCESS: \(data) BREAK \(data.all)")
@@ -68,7 +68,7 @@ class NetworkTest {
 //            }
 //        }
         
-        ServiceLayer.request(router: .weather(lat: "39.295", long: "-76.624")) { (result: Result<NewWeather, Error>) in
+        ServiceLayer.request(router: .weather(lat: "39.295", long: "-76.624")) { (result: Result<NewWeather, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 9 SUCCESS: \(data) BREAK \(data.temperature)")
@@ -79,7 +79,7 @@ class NetworkTest {
     }
     
     func wallet() {
-        ServiceLayer.request(router: .wallet) { (result: Result<NewWallet, Error>) in
+        ServiceLayer.request(router: .wallet) { (result: Result<NewWallet, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 10 SUCCESS: \(data) BREAK \(data.walletItems.first?.id)")
@@ -90,7 +90,7 @@ class NetworkTest {
     }
     
     func payment(accountNumber: String) {
-        ServiceLayer.request(router: .payments(accountNumber: accountNumber)) { (result: Result<NewPayments, Error>) in
+        ServiceLayer.request(router: .payments(accountNumber: accountNumber)) { (result: Result<NewPayments, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 11 SUCCESS: \(data) BREAK \(data.billingInfo.payments.first?.amount)")

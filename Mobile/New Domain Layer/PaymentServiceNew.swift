@@ -13,7 +13,7 @@ import Foundation
 struct PaymentServiceNew {
     
     static func budgetBillingInfo(accountNumber: String) {
-        ServiceLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber)) { (result: Result<NewBudgetBilling, Error>) in
+        ServiceLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber)) { (result: Result<NewBudgetBilling, NetworkingError>) in
             switch result {
             case .success(let data):
 
@@ -29,7 +29,7 @@ struct PaymentServiceNew {
     }
     
     static func budgetBillingEnroll(accountNumber: String) {
-        ServiceLayer.request(router: .budgetBillingEnroll(accountNumber: accountNumber)) { (result: Result<NewBudgetBillingResult, Error>) in
+        ServiceLayer.request(router: .budgetBillingEnroll(accountNumber: accountNumber)) { (result: Result<NewBudgetBillingResult, NetworkingError>) in
             switch result {
             case .success(let data):
 
@@ -51,7 +51,7 @@ struct PaymentServiceNew {
                let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
                print("REQ SCHEDULE")
 
-               ServiceLayer.request(router: .budgetBillingUnenroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBudgetBillingResult, Error>) in
+               ServiceLayer.request(router: .budgetBillingUnenroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBudgetBillingResult, NetworkingError>) in
                    switch result {
                    case .success(let data):
 
@@ -121,7 +121,7 @@ struct PaymentServiceNew {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
             
-            ServiceLayer.request(router: .autoPayEnroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewAutoPayResult, Error>) in
+            ServiceLayer.request(router: .autoPayEnroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewAutoPayResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
@@ -171,7 +171,7 @@ struct PaymentServiceNew {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
             
-            ServiceLayer.request(router: .deleteWalletItem(httpBody: httpBody)) { (result: Result<NewDeleteWalletItemResult, Error>) in
+            ServiceLayer.request(router: .deleteWalletItem(httpBody: httpBody)) { (result: Result<NewDeleteWalletItemResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
@@ -232,7 +232,7 @@ struct PaymentServiceNew {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
             
-            ServiceLayer.request(router: .payment(httpBody: httpBody)) { (result: Result<NewPaymentResult, Error>) in
+            ServiceLayer.request(router: .payment(httpBody: httpBody)) { (result: Result<NewPaymentResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
@@ -284,7 +284,7 @@ struct PaymentServiceNew {
         do {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
-            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, Error>) in
+            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
@@ -324,7 +324,7 @@ struct PaymentServiceNew {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
             ServiceLayer.request(router: .scheduledPayment(accountNumber: accountNumber,
-                                                           httpBody: httpBody)) { (result: Result<NewScheduledPaymentResult, Error>) in
+                                                           httpBody: httpBody)) { (result: Result<NewScheduledPaymentResult, NetworkingError>) in
                                                             switch result {
                                                             case .success(let data):
                                                                 
@@ -351,7 +351,7 @@ struct PaymentServiceNew {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
             ServiceLayer.request(router: .scheduledPaymentDelete(accountNumber: accountNumber, paymentId: paymentId,
-                                                                 httpBody: httpBody)) { (result: Result<NewScheduledPaymentResult, Error>) in
+                                                                 httpBody: httpBody)) { (result: Result<NewScheduledPaymentResult, NetworkingError>) in
                                                                     switch result {
                                                                     case .success(let data):
                                                                         
@@ -395,7 +395,7 @@ struct PaymentServiceNew {
         do {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
-            ServiceLayer.request(router: .scheduledPaymentUpdate(accountNumber: accountNumber, paymentId: paymentId, httpBody: httpBody)) { (result: Result<NewScheduledPaymentResult, Error>) in
+            ServiceLayer.request(router: .scheduledPaymentUpdate(accountNumber: accountNumber, paymentId: paymentId, httpBody: httpBody)) { (result: Result<NewScheduledPaymentResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
 

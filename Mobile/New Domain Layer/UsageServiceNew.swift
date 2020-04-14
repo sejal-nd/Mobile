@@ -19,7 +19,7 @@ struct UsageServiceNew {
             let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
             print("REQ SCHEDULE")
             
-            ServiceLayer.request(router: .compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, httpBody: httpBody)) { (result: Result<NewCompareBillResult, Error>) in
+            ServiceLayer.request(router: .compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, httpBody: httpBody)) { (result: Result<NewCompareBillResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
