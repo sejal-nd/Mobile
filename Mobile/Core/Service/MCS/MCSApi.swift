@@ -101,69 +101,6 @@ class MCSApi {
         return call(pathPrefix: pathPrefix, path: path, params: params, method: .delete, logResponseBody: logResponseBody)
     }
 
-    #if os(iOS)
-    /// Exchange the specified token for an OAuth/MCS token.
-    ///
-    /// - Parameters:
-    ///   - token: the token to exchange.
-    func exchangeToken(_ token: String, storeToken: Bool = false) -> Observable<Void> {
-        // Logging
-        let requestId = ShortUUIDGenerator.getUUID(length: 8)
-        let path = "/mobile/platform/sso/exchange-token"
-        let method = HttpMethod.get
-        APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .request, message: nil)
-        
-        switch Reachability()!.connection {
-        case .none:
-            let serviceError = ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue)
-            APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
-            return .error(ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue))
-        case .wifi, .cellular:
-            let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)\(path)")!
-            var request = URLRequest(url: url)
-            request.httpMethod = method.rawValue
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            request.setValue("xml", forHTTPHeaderField: "encode")
-
-            return session.rx.dataResponse(request: request, onCanceled: {
-                APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .canceled, message: nil)
-            })
-                .do(onError: { error in
-                    let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                    APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
-                })
-                .map { data -> String in
-                    guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-                        let parsedJSON = parsedData as? [String: Any],
-                        let token = parsedJSON["access_token"] as? String else {
-                            APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: String(data: data, encoding: .utf8))
-                            throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                    }
-                    
-                    APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
-
-                    return token
-                }
-                .do(onNext: { [weak self] token in
-                    guard let self = self else { return }
-                    self.accessToken = token
-                    
-                    #if os(iOS)
-                    if let token = self.accessToken {
-                        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : token])
-                    }
-                    #endif
-                    
-                    if storeToken {
-                        self.tokenKeychain.setString(token, forKey: self.TOKEN_KEYCHAIN_KEY)
-                    }
-                })
-                .mapTo(())
-                .observeOn(MainScheduler.instance)
-        }
-    }
-    #endif
-
     /// Log the user out.
     func logout() {
         #if os(iOS)
@@ -284,6 +221,22 @@ class MCSApi {
                 }
             }
             .observeOn(MainScheduler.instance)
+    }
+    
+    func storeToken(_ token: String, storeToken: Bool = false) -> Observable<Void> {
+        self.accessToken = token
+        
+        #if os(iOS)
+        if let token = self.accessToken {
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : token])
+        }
+        
+        if storeToken {
+            tokenKeychain.setString(token, forKey: TOKEN_KEYCHAIN_KEY)
+        }
+        #endif
+        
+        return Observable<Void>.just(Void())
     }
 
 }
