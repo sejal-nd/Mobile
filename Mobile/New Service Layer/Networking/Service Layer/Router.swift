@@ -70,6 +70,9 @@ public enum Router {
 //    case getProductIds
 //    case getProductInfo
     
+    // Unauthenticated
+    case passwordChange(httpBody: HTTPBody)
+    
     public var scheme: String {
         return "https"
     }
@@ -114,6 +117,8 @@ public enum Router {
         case .maintenanceMode:
             return .anon
         case .anonOutageStatus:
+            return .anon
+        case .passwordChange:
             return .anon
         default:
             return .auth
@@ -189,6 +194,8 @@ public enum Router {
 //            return "/\(apiAccess)/collects.json"
 //        case .getProductInfo:
 //            return "/\(apiAccess)/products.json"
+        case .passwordChange:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/profile/password"
         }
     }
     
@@ -198,7 +205,7 @@ public enum Router {
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastMonthlyBill:
             return "GET"
-        case .paperlessEnroll, .scheduledPaymentUpdate:
+        case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange:
             return "PUT"
         case .paperlessUnenroll:
             return "DELETE"
@@ -272,7 +279,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPayEnroll(_, let httpBody), .autoPayUnenroll(_, let httpBody), .scheduledPaymentUpdate(_, _, let httpBody), .budgetBillingUnenroll(_, let httpBody), .forecastYearlyBill(_, _, let httpBody):
+        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPayEnroll(_, let httpBody), .autoPayUnenroll(_, let httpBody), .scheduledPaymentUpdate(_, _, let httpBody), .budgetBillingUnenroll(_, let httpBody), .forecastYearlyBill(_, _, let httpBody), .passwordChange(let httpBody):
             return httpBody
         default:
             return nil
