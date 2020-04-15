@@ -123,7 +123,6 @@ class MCSApi {
             var request = URLRequest(url: url)
             request.httpMethod = method.rawValue
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            request.setValue(Environment.shared.mcsConfig.mobileBackendId, forHTTPHeaderField: "oracle-mobile-backend-id")
             request.setValue("xml", forHTTPHeaderField: "encode")
 
             return session.rx.dataResponse(request: request, onCanceled: {

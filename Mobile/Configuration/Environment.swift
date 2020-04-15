@@ -66,7 +66,7 @@ struct MCSConfig {
         let mobileBackend = mobileBackends[mcsInstanceName] as! [String: Any]
         
         baseUrl = mobileBackend["baseURL"] as! String
-        mobileBackendId = mobileBackend["mobileBackendID"] as! String
+        mobileBackendId = mobileBackend["mobileBackendID"] as? String ?? ""
         anonymousKey = mobileBackend["anonymousKey"] as! String
         oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
         apiVersion = mobileBackend["apiVersion"] as! String
