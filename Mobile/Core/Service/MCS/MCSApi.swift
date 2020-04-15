@@ -202,9 +202,9 @@ class MCSApi {
         switch pathPrefix {
         case .anon:
             let opCoString = Environment.shared.opco.displayString.uppercased()
-            fullPath = String(format: "anon_%@/%@/%@", Environment.shared.mcsConfig.apiVersion, opCoString, path)
+            fullPath = String(format: "anon/%@/%@", opCoString, path)
         case .auth:
-            fullPath = String(format: "auth_%@/%@", Environment.shared.mcsConfig.apiVersion, path)
+            fullPath = String(format: "auth/%@", path)
         case .none:
             fullPath = path
         }
