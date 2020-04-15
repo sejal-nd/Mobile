@@ -2192,6 +2192,7 @@
 		B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */; };
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
 		B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */; };
+		C30BBE152444DEA60070522A /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
 		C35630934D9C14C670A6E89D /* Pods_BGE_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56989091D306CA58F4B7F0BC /* Pods_BGE_Watch.framework */; };
 		C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
 		C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
@@ -2200,6 +2201,14 @@
 		C364A87F2375DD7600C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
 		C364A8802375DD8100C7D51B /* EmptyChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */; };
 		C364A8812375DD8200C7D51B /* EmptyChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */; };
+		C37BFD0A2447504A0037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
+		C37BFD0B2447504B0037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
+		C37BFD0C244750540037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
+		C37BFD0D244750550037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
+		C37BFD0E244750560037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
+		C37BFD10244750B10037A9C9 /* VoidDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */; };
+		C37BFD11244750B10037A9C9 /* VoidDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */; };
+		C37BFD12244750B10037A9C9 /* VoidDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -3862,10 +3871,12 @@
 		B9C2CDC8EAF0A302CCFCA131 /* Pods-PECO_WatchOS Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
 		BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
+		C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodyUnauthenticatedServiceNew.swift; sourceTree = "<group>"; };
 		C361710423943454FDB6587F /* Pods-PECOApp-PECOUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
 		C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyChildViewController.swift; sourceTree = "<group>"; };
+		C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidDecodable.swift; sourceTree = "<group>"; };
 		C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C55AF9BA52D8B1D3E432E4D2 /* Pods_PECOApp_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -5367,6 +5378,7 @@
 				6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */,
 				67278383243F76F800D5CD95 /* NewForecastMonthlyBill.swift */,
 				6727838B243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift */,
+				C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5591,6 +5603,7 @@
 			isa = PBXGroup;
 			children = (
 				67E6E7B62428F67000C3AC90 /* AnonymousService.swift */,
+				C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */,
 				67E44618242922B2007FC7F3 /* AuthenticatedService.swift */,
 				6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */,
 				676BDA84242E6E1E00C880A3 /* WeatherServiceNew.swift */,
@@ -9261,6 +9274,7 @@
 				B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				35A6C6FE2121D9D600C2A58F /* MoreViewModel.swift in Sources */,
 				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
+				C37BFD10244750B10037A9C9 /* VoidDecodable.swift in Sources */,
 				67E4462124292E78007FC7F3 /* NewSAMLToken.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				B0D7860D2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
@@ -9279,6 +9293,7 @@
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				67088684243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */,
 				35AFB42B20C82DA0000312B9 /* SheetView.swift in Sources */,
+				C30BBE152444DEA60070522A /* CodyUnauthenticatedServiceNew.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
@@ -9550,6 +9565,7 @@
 				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
 				9CA411DD2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				C37BFD0B2447504B0037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */,
 				359BDB7122D8DCF6007002B0 /* OutageStatusView.swift in Sources */,
 				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				9CD742C1237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */,
@@ -9711,6 +9727,7 @@
 				54AE069B1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
+				C37BFD12244750B10037A9C9 /* VoidDecodable.swift in Sources */,
 				35AFB42D20C82DA0000312B9 /* SheetView.swift in Sources */,
 				67E4462324292E78007FC7F3 /* NewSAMLToken.swift in Sources */,
 				826DCCEF1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */,
@@ -10001,6 +10018,7 @@
 				9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
+				C37BFD0A2447504A0037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */,
 				9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */,
 				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
@@ -10162,6 +10180,7 @@
 				9C2876AE23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				B0B083B0216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
+				C37BFD11244750B10037A9C9 /* VoidDecodable.swift in Sources */,
 				823694321FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
 				67E4462224292E78007FC7F3 /* NewSAMLToken.swift in Sources */,
 				0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */,
@@ -10514,6 +10533,7 @@
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
 				8206D01E1FACA93B0056F4CB /* TemperatureScaleStore.swift in Sources */,
+				C37BFD0C244750540037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */,
 				35CEB03B230D985D00366440 /* BillViewModel.swift in Sources */,
 				35A6C6ED211DEB5500C2A58F /* UpdatesViewModel.swift in Sources */,
 				B0A79B0A20E2BD1100E04DD8 /* Version.swift in Sources */,
@@ -10755,6 +10775,7 @@
 				E8F62BB7200924410077B3DA /* PaymentService.swift in Sources */,
 				E8F62BB8200924410077B3DA /* ChangePasswordViewModel.swift in Sources */,
 				E8F62BBA200924410077B3DA /* AccountService.swift in Sources */,
+				C37BFD0D244750550037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */,
 				35CEB03C230D985D00366440 /* BillViewModel.swift in Sources */,
 				E8F62BBC200924410077B3DA /* TemperatureScaleStore.swift in Sources */,
 				B0A79B0B20E2BD1100E04DD8 /* Version.swift in Sources */,
@@ -10944,6 +10965,7 @@
 				E8F62C6C200924570077B3DA /* PaymentService.swift in Sources */,
 				E8F62C6D200924570077B3DA /* ChangePasswordViewModel.swift in Sources */,
 				E8F62C6F200924570077B3DA /* AccountService.swift in Sources */,
+				C37BFD0E244750560037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */,
 				35CEB03D230D985D00366440 /* BillViewModel.swift in Sources */,
 				E8F62C71200924570077B3DA /* TemperatureScaleStore.swift in Sources */,
 				B0A79B0C20E2BD1100E04DD8 /* Version.swift in Sources */,
