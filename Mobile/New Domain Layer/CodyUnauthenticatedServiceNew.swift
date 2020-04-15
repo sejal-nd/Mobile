@@ -9,15 +9,11 @@
 import Foundation
 
 struct CodyUnauthenticatedServiceNew {
-    static func changePassword(username: String, currentPassword: String, newPassword: String, completion: @escaping (Result<Void, NetworkingError>) -> ()) {
-        
-        let params = ["username": username,
-                      "old_password": currentPassword,
-                      "new_password": newPassword]
+    
+    static func changePassword(request: ChangePasswordRequest, completion: @escaping (Result<Void, NetworkingError>) -> ()) {
         
         do {
-            let httpBody = try JSONSerialization.data(withJSONObject: params)
-            
+            let httpBody = try JSONEncoder().encode(request)
             ServiceLayer.request(router: .passwordChange(httpBody: httpBody)) { (result: Result<VoidDecodable, NetworkingError>) in
                 switch result {
                 case .success(let data):
@@ -31,7 +27,27 @@ struct CodyUnauthenticatedServiceNew {
             }
         } catch let error {
             print("changePassword encdoing error: \(error)")
-            completion(.failure(.decodingError))
+            completion(.failure(.encodingError))
+        }
+    }
+    
+    static func lookupAccount(request: AccountLookupRequest, completion: @escaping (Result<Void, NetworkingError>) -> ()) {
+        do {
+            let httpBody = try JSONEncoder().encode(request)
+//            ServiceLayer.request(router: .passwordChange(httpBody: httpBody)) { (result: Result<NewAccountLookupResult, NetworkingError>) in
+//                switch result {
+//                case .success(let data):
+//                    print("changePassword SUCCESS: \(data)")
+//                    completion(.success(()))
+//
+//                case .failure(let error):
+//                    print("changePassword FAIL: \(error)")
+//                    completion(.failure(error))
+//                }
+//            }
+        } catch let error {
+            print("lookupAccount encdoing error: \(error)")
+            completion(.failure(.encodingError))
         }
     }
 }

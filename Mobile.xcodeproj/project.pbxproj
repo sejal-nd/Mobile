@@ -2209,6 +2209,15 @@
 		C37BFD10244750B10037A9C9 /* VoidDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */; };
 		C37BFD11244750B10037A9C9 /* VoidDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */; };
 		C37BFD12244750B10037A9C9 /* VoidDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */; };
+		C37BFD14244771250037A9C9 /* NewAccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD13244771250037A9C9 /* NewAccountLookupResult.swift */; };
+		C37BFD15244771250037A9C9 /* NewAccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD13244771250037A9C9 /* NewAccountLookupResult.swift */; };
+		C37BFD16244771250037A9C9 /* NewAccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD13244771250037A9C9 /* NewAccountLookupResult.swift */; };
+		C37BFD19244774080037A9C9 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD18244774080037A9C9 /* ChangePasswordRequest.swift */; };
+		C37BFD1A244774080037A9C9 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD18244774080037A9C9 /* ChangePasswordRequest.swift */; };
+		C37BFD1B244774080037A9C9 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD18244774080037A9C9 /* ChangePasswordRequest.swift */; };
+		C37BFD1D244781B10037A9C9 /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */; };
+		C37BFD1E244781B10037A9C9 /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */; };
+		C37BFD1F244781B10037A9C9 /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -3877,6 +3886,9 @@
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
 		C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyChildViewController.swift; sourceTree = "<group>"; };
 		C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidDecodable.swift; sourceTree = "<group>"; };
+		C37BFD13244771250037A9C9 /* NewAccountLookupResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountLookupResult.swift; sourceTree = "<group>"; };
+		C37BFD18244774080037A9C9 /* ChangePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequest.swift; sourceTree = "<group>"; };
+		C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLookupRequest.swift; sourceTree = "<group>"; };
 		C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C55AF9BA52D8B1D3E432E4D2 /* Pods_PECOApp_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -5359,6 +5371,7 @@
 				67E4462024292E78007FC7F3 /* NewSAMLToken.swift */,
 				67E4462424295019007FC7F3 /* NewJWTToken.swift */,
 				67E4462C242A4276007FC7F3 /* NewAccount.swift */,
+				C37BFD13244771250037A9C9 /* NewAccountLookupResult.swift */,
 				676BDA6F242CF28E00C880A3 /* Account Details */,
 				676BDA80242E4DC500C880A3 /* NewWeather.swift */,
 				670886632433803200B2C807 /* NewWallet.swift */,
@@ -5602,6 +5615,7 @@
 		67E6E7B52428F65E00C3AC90 /* New Domain Layer */ = {
 			isa = PBXGroup;
 			children = (
+				C37BFD17244773330037A9C9 /* Models */,
 				67E6E7B62428F67000C3AC90 /* AnonymousService.swift */,
 				C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */,
 				67E44618242922B2007FC7F3 /* AuthenticatedService.swift */,
@@ -6459,6 +6473,15 @@
 				C364A8792375DC7B00C7D51B /* StateView.xib */,
 			);
 			path = "State View";
+			sourceTree = "<group>";
+		};
+		C37BFD17244773330037A9C9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C37BFD18244774080037A9C9 /* ChangePasswordRequest.swift */,
+				C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
@@ -9005,6 +9028,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37BFD14244771250037A9C9 /* NewAccountLookupResult.swift in Sources */,
 				E8EA601A1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
@@ -9341,6 +9365,7 @@
 				82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				E83F027F1FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
+				C37BFD1D244781B10037A9C9 /* AccountLookupRequest.swift in Sources */,
 				B0AD7FEE205841C80090B40D /* SequenceForEach.swift in Sources */,
 				54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
@@ -9380,6 +9405,7 @@
 				9C62447022C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				35C913A322EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
 				9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
+				C37BFD19244774080037A9C9 /* ChangePasswordRequest.swift in Sources */,
 				B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
@@ -9458,6 +9484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37BFD16244771250037A9C9 /* NewAccountLookupResult.swift in Sources */,
 				E8EA601C1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				35B9609F22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
@@ -9794,6 +9821,7 @@
 				B0B0840A21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				826773481FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
+				C37BFD1F244781B10037A9C9 /* AccountLookupRequest.swift in Sources */,
 				B0728E48215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				821898901F2A30C00077D7A1 /* Binders.swift in Sources */,
 				9C119F6621FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
@@ -9833,6 +9861,7 @@
 				82837D161F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				E8C453291EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				9C37BA932388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
+				C37BFD1B244774080037A9C9 /* ChangePasswordRequest.swift in Sources */,
 				2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */,
 				0EF60FDB20EE8105006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F92025160F00A749A3 /* MockRegistrationService.swift in Sources */,
@@ -9911,6 +9940,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37BFD15244771250037A9C9 /* NewAccountLookupResult.swift in Sources */,
 				E8EA601B1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
@@ -10247,6 +10277,7 @@
 				545784B31EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B0B0840921710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				C37BFD1E244781B10037A9C9 /* AccountLookupRequest.swift in Sources */,
 				826773471FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B0728E47215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
@@ -10286,6 +10317,7 @@
 				9C62447122C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				35C913A422EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
 				9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
+				C37BFD1A244774080037A9C9 /* ChangePasswordRequest.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,

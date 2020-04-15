@@ -163,6 +163,7 @@ public enum NetworkingError: Error {
     case invalidResponse
     case invalidData
     case decodingError
+    case encodingError
     case endpointError
 }
 
