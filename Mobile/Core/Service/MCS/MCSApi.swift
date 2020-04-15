@@ -243,7 +243,6 @@ class MCSApi {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.httpBody = requestBody
-        request.setValue(Environment.shared.mcsConfig.mobileBackendId, forHTTPHeaderField: "oracle-mobile-backend-id")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if isAuthenticated() {
             request.setValue("Bearer \(accessToken!)", forHTTPHeaderField: "Authorization")
