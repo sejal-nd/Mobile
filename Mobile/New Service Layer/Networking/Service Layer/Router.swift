@@ -295,7 +295,7 @@ public enum Router {
         case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPayEnroll(_, let httpBody), .autoPayUnenroll(_, let httpBody), .scheduledPaymentUpdate(_, _, let httpBody), .budgetBillingUnenroll(_, let httpBody), .forecastYearlyBill(_, _, let httpBody):
             return httpBody
         case .passwordChange(let encodable), .accountLookup(let encodable):
-            let encodable = AnyEncodable(encodable)
+            let encodable = AnyEncodable(value: encodable)
             
             do {
                 return try JSONEncoder().encode(encodable)

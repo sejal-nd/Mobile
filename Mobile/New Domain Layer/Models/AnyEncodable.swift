@@ -8,6 +8,7 @@
 
 import Foundation
 
+// An Encodable wrapper that allows us to encode any type that conforms to Encodable
 struct AnyEncodable: Encodable {
     let value: Encodable
 
