@@ -83,8 +83,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-bge-t-ams-01.azure-api.net/legacy</string>
-			<key>mobileBackendID</key>
-			<string>668cb0be-82c7-4943-aed4-559f4c804d56</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -98,8 +96,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-bge-d-ams-01.azure-api.net/legacy</string>
-			<key>mobileBackendID</key>
-			<string>668cb0be-82c7-4943-aed4-559f4c804d56</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -113,12 +109,10 @@
 		<dict>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-bge-s-ams-01.azure-api.net/legacy</string>
-			<key>mobileBackendID</key>
-			<string>c08e5dd7-3d18-4e20-b1f5-4a2639b060d0</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>apiVersion</key>
 			<string>v6</string>
 			<key>paymentusUrl</key>
@@ -158,8 +152,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-comed-t-ams-01.azure-api.net/legacy</string>
-			<key>mobileBackendID</key>
-			<string>668cb0be-82c7-4943-aed4-559f4c804d56</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -173,8 +165,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-comed-d-ams-01.azure-api.net/legacy</string>
-			<key>mobileBackendID</key>
-			<string>668cb0be-82c7-4943-aed4-559f4c804d56</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -188,12 +178,10 @@
 		<dict>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-comed-s-ams-01.azure-api.net/legacy</string>
-			<key>mobileBackendID</key>
-			<string>4f9cc034-207a-4afe-a30a-bd7a825b78a2</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>apiVersion</key>
 			<string>v6</string>
 			<key>paymentusUrl</key>
@@ -233,8 +221,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-peco-t-ams-01.azure-api.net/legacy</string>
-			<key>mobileBackendID</key>
-			<string>668cb0be-82c7-4943-aed4-559f4c804d56</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -248,8 +234,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-peco-d-ams-01.azure-api.net/legacy</string>
-			<key>mobileBackendID</key>
-			<string>668cb0be-82c7-4943-aed4-559f4c804d56</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -263,12 +247,10 @@
 		<dict>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-peco-s-ams-01.azure-api.net/legacy</string>
-			<key>mobileBackendID</key>
-			<string>e187e300-70a6-46f8-83d6-4c916b35ed3e</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>apiVersion</key>
 			<string>v6</string>
 			<key>paymentusUrl</key>
