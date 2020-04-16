@@ -299,9 +299,8 @@ public enum Router {
             
             do {
                 return try JSONEncoder().encode(encodable)
-            }
-            catch {
-                fatalError("Error encoding object")
+            } catch {
+                fatalError("Error encoding object: \(error)")
             }
         default:
             return nil
