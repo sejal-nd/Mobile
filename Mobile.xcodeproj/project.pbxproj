@@ -2218,6 +2218,9 @@
 		C37BFD1D244781B10037A9C9 /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */; };
 		C37BFD1E244781B10037A9C9 /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */; };
 		C37BFD1F244781B10037A9C9 /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */; };
+		C37BFD212447BDB10037A9C9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD202447BDB10037A9C9 /* AnyEncodable.swift */; };
+		C37BFD222447BF510037A9C9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD202447BDB10037A9C9 /* AnyEncodable.swift */; };
+		C37BFD232447BF510037A9C9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BFD202447BDB10037A9C9 /* AnyEncodable.swift */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -3889,6 +3892,7 @@
 		C37BFD13244771250037A9C9 /* NewAccountLookupResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountLookupResult.swift; sourceTree = "<group>"; };
 		C37BFD18244774080037A9C9 /* ChangePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequest.swift; sourceTree = "<group>"; };
 		C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLookupRequest.swift; sourceTree = "<group>"; };
+		C37BFD202447BDB10037A9C9 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C55AF9BA52D8B1D3E432E4D2 /* Pods_PECOApp_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6480,6 +6484,7 @@
 			children = (
 				C37BFD18244774080037A9C9 /* ChangePasswordRequest.swift */,
 				C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */,
+				C37BFD202447BDB10037A9C9 /* AnyEncodable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -9164,6 +9169,7 @@
 				228877011FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				B0CB1C7E227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
+				C37BFD212447BDB10037A9C9 /* AnyEncodable.swift in Sources */,
 				82E22B5E1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				9CB8A5ED21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				35C9139B22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
@@ -9620,6 +9626,7 @@
 				E893993F1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				E87C41491FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
 				E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
+				C37BFD232447BF510037A9C9 /* AnyEncodable.swift in Sources */,
 				822BBBA31EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				9C5F786522F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
 				82E9B6101FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
@@ -10076,6 +10083,7 @@
 				82E22B5F1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,
 				224EFF19216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
+				C37BFD222447BF510037A9C9 /* AnyEncodable.swift in Sources */,
 				9CB8A5EE21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				B0CB1C7F227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
 				35C9139C22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
