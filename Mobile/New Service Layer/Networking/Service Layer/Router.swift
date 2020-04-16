@@ -73,6 +73,7 @@ public enum Router {
     // Unauthenticated
     case passwordChange(encodable: Encodable)
     case accountLookup(encodable: Encodable)
+    case recoverPassword(encodable: Encodable)
     
     public var scheme: String {
         return "https"
@@ -208,13 +209,15 @@ public enum Router {
         case .passwordChange:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/profile/password"
         case .accountLookup:
-            return "/mobile/custom/\(apiAccess)_\(apiVersion)/profile/password"
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/account/lookup"
+        case .recoverPassword:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/recover/password"
         }
     }
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .forecastYearlyBill, .accountLookup:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .forecastYearlyBill, .accountLookup, .recoverPassword:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastMonthlyBill:
             return "GET"
@@ -294,14 +297,8 @@ public enum Router {
         switch self {
         case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPayEnroll(_, let httpBody), .autoPayUnenroll(_, let httpBody), .scheduledPaymentUpdate(_, _, let httpBody), .budgetBillingUnenroll(_, let httpBody), .forecastYearlyBill(_, _, let httpBody):
             return httpBody
-        case .passwordChange(let encodable), .accountLookup(let encodable):
-            let encodable = AnyEncodable(value: encodable)
-            
-            do {
-                return try JSONEncoder().encode(encodable)
-            } catch {
-                fatalError("Error encoding object: \(error)")
-            }
+        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable):
+            return self.encode(encodable)
         default:
             return nil
         }
@@ -355,9 +352,20 @@ public enum Router {
             return "ForecastMonthlyBillMock"
         case .forecastYearlyBill:
             return "ForecastYearlyBillResultMock"
+        case .accountLookup:
+            return "AccountLookupResultMock"
         default:
             return ""
         }
     }
     
+    private func encode(_ encodable: Encodable) -> HTTPBody {
+        let encodable = AnyEncodable(value: encodable)
+        
+        do {
+            return try JSONEncoder().encode(encodable)
+        } catch {
+            fatalError("Error encoding object: \(error)")
+        }
+    }
 }

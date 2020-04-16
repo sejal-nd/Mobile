@@ -25,14 +25,29 @@ struct CodyUnauthenticatedServiceNew {
         }
     }
     
-    static func lookupAccount(request: AccountLookupRequest, completion: @escaping (Result<Void, NetworkingError>) -> ()) {
+    static func lookupAccount(request: AccountLookupRequest, completion: @escaping (Result<NewAccountLookupResult, NetworkingError>) -> ()) {
         
         ServiceLayer.request(router: .accountLookup(encodable: request)) { (result: Result<NewAccountLookupResult, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("changePassword SUCCESS: \(data)")
-                completion(.success(()))
+                completion(.success(data))
 
+            case .failure(let error):
+                print("changePassword FAIL: \(error)")
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    static func recoverPassword(request: RecoverPasswordRequest, completion: @escaping (Result<Void, NetworkingError>) -> ()) {
+        
+        ServiceLayer.request(router: .recoverPassword(encodable: request)) { (result: Result<VoidDecodable, NetworkingError>) in
+            switch result {
+            case .success(let data):
+                print("changePassword SUCCESS: \(data)")
+                completion(.success(()))
+                
             case .failure(let error):
                 print("changePassword FAIL: \(error)")
                 completion(.failure(error))
