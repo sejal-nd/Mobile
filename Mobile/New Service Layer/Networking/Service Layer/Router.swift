@@ -71,7 +71,8 @@ public enum Router {
 //    case getProductInfo
     
     // Unauthenticated
-    case passwordChange(httpBody: HTTPBody)
+    case passwordChange(encodable: Encodable)
+    case accountLookup(encodable: Encodable)
     
     public var scheme: String {
         return "https"
@@ -96,6 +97,16 @@ public enum Router {
         case anon
         case auth
         case external
+    }
+    
+    /// Represents a type of request.
+    public enum RequestDataType {
+
+        /// A requests body set with data.
+        case data(Encodable)
+
+        /// A requests body set with parameters and encoding.
+        case encoded(params: [String: Any])
     }
     
     public var apiAccess: ApiAccess {
@@ -196,12 +207,14 @@ public enum Router {
 //            return "/\(apiAccess)/products.json"
         case .passwordChange:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/profile/password"
+        case .accountLookup:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/profile/password"
         }
     }
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .forecastYearlyBill:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .forecastYearlyBill, .accountLookup:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastMonthlyBill:
             return "GET"
@@ -279,8 +292,16 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPayEnroll(_, let httpBody), .autoPayUnenroll(_, let httpBody), .scheduledPaymentUpdate(_, _, let httpBody), .budgetBillingUnenroll(_, let httpBody), .forecastYearlyBill(_, _, let httpBody), .passwordChange(let httpBody):
+        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPayEnroll(_, let httpBody), .autoPayUnenroll(_, let httpBody), .scheduledPaymentUpdate(_, _, let httpBody), .budgetBillingUnenroll(_, let httpBody), .forecastYearlyBill(_, _, let httpBody):
             return httpBody
+        case .passwordChange(let encodable), .accountLookup(let encodable):
+            let encodable = AnyEncodable(value: encodable)
+            
+            do {
+                return try JSONEncoder().encode(encodable)
+            } catch {
+                fatalError("Error encoding object: \(error)")
+            }
         default:
             return nil
         }
