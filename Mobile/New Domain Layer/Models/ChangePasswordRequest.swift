@@ -9,9 +9,9 @@
 import Foundation
 
 struct ChangePasswordRequest: Encodable {
-    var username: String
-    var currentPassword: String
-    var newPassword: String
+    let username: String
+    let currentPassword: String
+    let newPassword: String
     
     enum CodingKeys: String, CodingKey {
         case username

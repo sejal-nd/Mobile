@@ -2193,6 +2193,12 @@
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
 		B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */; };
 		C30BBE152444DEA60070522A /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
+		C32BD4922448D5A500870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
+		C32BD4932448D5A600870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
+		C32BD4942448D5A600870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
+		C32BD49A2448D9F800870262 /* AccountLookupResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupResultMock.json */; };
+		C32BD49B2448D9F800870262 /* AccountLookupResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupResultMock.json */; };
+		C32BD49C2448D9F800870262 /* AccountLookupResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupResultMock.json */; };
 		C35630934D9C14C670A6E89D /* Pods_BGE_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56989091D306CA58F4B7F0BC /* Pods_BGE_Watch.framework */; };
 		C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
 		C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
@@ -3884,6 +3890,8 @@
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
 		BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodyUnauthenticatedServiceNew.swift; sourceTree = "<group>"; };
+		C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordRequest.swift; sourceTree = "<group>"; };
+		C32BD4992448D9F800870262 /* AccountLookupResultMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AccountLookupResultMock.json; sourceTree = "<group>"; };
 		C361710423943454FDB6587F /* Pods-PECOApp-PECOUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
@@ -5586,6 +5594,7 @@
 				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
 				67278347243CCE6400D5CD95 /* PaymentMock.json */,
 				6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */,
+				C32BD4992448D9F800870262 /* AccountLookupResultMock.json */,
 				67278357243CD68200D5CD95 /* CompareBillMock.json */,
 				67278363243D028000D5CD95 /* AutoPayEnrollMock.json */,
 				6727836B243D076400D5CD95 /* PaperlessMock.json */,
@@ -6485,6 +6494,7 @@
 				C37BFD18244774080037A9C9 /* ChangePasswordRequest.swift */,
 				C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */,
 				C37BFD202447BDB10037A9C9 /* AnyEncodable.swift */,
+				C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -7263,6 +7273,7 @@
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
+				C32BD49A2448D9F800870262 /* AccountLookupResultMock.json in Resources */,
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
@@ -7434,6 +7445,7 @@
 				9C0A2C3B23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				6766F96C242259D0007C9CB9 /* MinVersionMock.json in Resources */,
 				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
+				C32BD49C2448D9F800870262 /* AccountLookupResultMock.json in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2765215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
@@ -7624,6 +7636,7 @@
 				9C0A2C3A23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				6766F96B242259D0007C9CB9 /* MinVersionMock.json in Resources */,
 				35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
+				C32BD49B2448D9F800870262 /* AccountLookupResultMock.json in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2764215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
@@ -9264,6 +9277,7 @@
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				B0649A5F214834380041B299 /* StormModeStatus.swift in Sources */,
+				C32BD4922448D5A500870262 /* RecoverPasswordRequest.swift in Sources */,
 				8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				9CD742BB237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				67E44619242922B2007FC7F3 /* AuthenticatedService.swift in Sources */,
@@ -9721,6 +9735,7 @@
 				9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */,
+				C32BD4942448D5A600870262 /* RecoverPasswordRequest.swift in Sources */,
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				9CD742BD237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
@@ -10178,6 +10193,7 @@
 				9CA4FA612385A2B900E33E7C /* GameProgressBar.swift in Sources */,
 				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				8206D0141FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
+				C32BD4932448D5A600870262 /* RecoverPasswordRequest.swift in Sources */,
 				82AC2A2B1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1901F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				B52CA0B01F311524002B5674 /* GoogleAnalytics.swift in Sources */,

@@ -9,6 +9,6 @@
 import Foundation
 
 struct AccountLookupRequest: Encodable {
-    var phone: String
-    var identifier: String
+    let phone: String
+    let identifier: String
 }
