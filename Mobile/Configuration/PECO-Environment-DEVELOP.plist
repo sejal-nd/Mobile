@@ -9,7 +9,7 @@
 	<key>appName</key>
 	<string>PECO_DEV</string>
 	<key>mcsInstanceName</key>
-	<string>Test1Integration</string>
+	<string>Dev-pecoMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.peco.com/MyAccount</string>
 	<key>firebaseConfigFile</key>

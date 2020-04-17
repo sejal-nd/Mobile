@@ -9,7 +9,7 @@
 	<key>appName</key>
 	<string>PECO_AUT</string>
 	<key>mcsInstanceName</key>
-	<string>Stage</string>
+	<string>Stage-pecoMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.peco.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
