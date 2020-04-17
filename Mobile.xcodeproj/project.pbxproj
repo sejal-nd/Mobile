@@ -2199,6 +2199,15 @@
 		C32BD49A2448D9F800870262 /* AccountLookupResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupResultMock.json */; };
 		C32BD49B2448D9F800870262 /* AccountLookupResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupResultMock.json */; };
 		C32BD49C2448D9F800870262 /* AccountLookupResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupResultMock.json */; };
+		C32BD49E2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */; };
+		C32BD49F2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */; };
+		C32BD4A02448EF3B00870262 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */; };
+		C32BD4A22448EFC100870262 /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4A12448EFC100870262 /* RecoverUsernameRequest.swift */; };
+		C32BD4A32448EFC100870262 /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4A12448EFC100870262 /* RecoverUsernameRequest.swift */; };
+		C32BD4A42448EFC100870262 /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4A12448EFC100870262 /* RecoverUsernameRequest.swift */; };
+		C32BD4A62448F2CD00870262 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */; };
+		C32BD4A72448F2CD00870262 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */; };
+		C32BD4A82448F2CD00870262 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */; };
 		C35630934D9C14C670A6E89D /* Pods_BGE_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56989091D306CA58F4B7F0BC /* Pods_BGE_Watch.framework */; };
 		C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
 		C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
@@ -3892,6 +3901,9 @@
 		C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodyUnauthenticatedServiceNew.swift; sourceTree = "<group>"; };
 		C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordRequest.swift; sourceTree = "<group>"; };
 		C32BD4992448D9F800870262 /* AccountLookupResultMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AccountLookupResultMock.json; sourceTree = "<group>"; };
+		C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverMaskedUsernameRequest.swift; sourceTree = "<group>"; };
+		C32BD4A12448EFC100870262 /* RecoverUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverUsernameRequest.swift; sourceTree = "<group>"; };
+		C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewForgotMaskedUsername.swift; sourceTree = "<group>"; };
 		C361710423943454FDB6587F /* Pods-PECOApp-PECOUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
@@ -5384,6 +5396,7 @@
 				67E4462424295019007FC7F3 /* NewJWTToken.swift */,
 				67E4462C242A4276007FC7F3 /* NewAccount.swift */,
 				C37BFD13244771250037A9C9 /* NewAccountLookupResult.swift */,
+				C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */,
 				676BDA6F242CF28E00C880A3 /* Account Details */,
 				676BDA80242E4DC500C880A3 /* NewWeather.swift */,
 				670886632433803200B2C807 /* NewWallet.swift */,
@@ -6495,6 +6508,8 @@
 				C37BFD1C244781B10037A9C9 /* AccountLookupRequest.swift */,
 				C37BFD202447BDB10037A9C9 /* AnyEncodable.swift */,
 				C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */,
+				C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */,
+				C32BD4A12448EFC100870262 /* RecoverUsernameRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -9250,12 +9265,14 @@
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				35D02DCB2416843500D8894F /* NewMinimumVersion.swift in Sources */,
 				67278378243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */,
+				C32BD4A62448F2CD00870262 /* NewForgotMaskedUsername.swift in Sources */,
 				B05E9D13217F688A0003FAB8 /* Application.swift in Sources */,
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				3559C8BA23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
 				CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
+				C32BD4A22448EFC100870262 /* RecoverUsernameRequest.swift in Sources */,
 				82E9B6121FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269352127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
@@ -9411,6 +9428,7 @@
 				E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				B0A830892146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,
 				E86DE4B71F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
+				C32BD49E2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				2FEC69411F056EEB00C059DC /* Premise.swift in Sources */,
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
@@ -9708,12 +9726,14 @@
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				35D02DCD2416843500D8894F /* NewMinimumVersion.swift in Sources */,
+				C32BD4A82448F2CD00870262 /* NewForgotMaskedUsername.swift in Sources */,
 				6727837A243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B085C44920FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757422113582D00E73542 /* DateParser.swift in Sources */,
 				E873DA651EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
+				C32BD4A42448EFC100870262 /* RecoverUsernameRequest.swift in Sources */,
 				B0030D0A2097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02721FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
@@ -9869,6 +9889,7 @@
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				35A6C6D0211C8F0500C2A58F /* TitleTableViewCell.swift in Sources */,
+				C32BD4A02448EF3B00870262 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				E88B8DA31F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
 				B04DDF5D21FA800C00594ACF /* Date+Now.swift in Sources */,
 				54C1DEFE1F02B8FC00290FE5 /* BillingHistoryViewController.swift in Sources */,
@@ -10166,12 +10187,14 @@
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				9CEE412223722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				35D02DCC2416843500D8894F /* NewMinimumVersion.swift in Sources */,
+				C32BD4A72448F2CD00870262 /* NewForgotMaskedUsername.swift in Sources */,
 				67278379243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */,
 				54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269362127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				E87926DB1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				3559C8BB23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
+				C32BD4A32448EFC100870262 /* RecoverUsernameRequest.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -10327,6 +10350,7 @@
 				824004CB1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				35A6C6CF211C8F0500C2A58F /* TitleTableViewCell.swift in Sources */,
 				E88B8DA21F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
+				C32BD49F2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				54C1DEFD1F02B8FB00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				35A6C6E1211CC16C00C2A58F /* UpdatesViewController.swift in Sources */,
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,

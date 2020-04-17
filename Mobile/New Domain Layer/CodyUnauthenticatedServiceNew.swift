@@ -30,11 +30,41 @@ struct CodyUnauthenticatedServiceNew {
         ServiceLayer.request(router: .accountLookup(encodable: request)) { (result: Result<NewAccountLookupResult, NetworkingError>) in
             switch result {
             case .success(let data):
-                print("changePassword SUCCESS: \(data)")
+                print("lookupAccount SUCCESS: \(data)")
                 completion(.success(data))
 
             case .failure(let error):
-                print("changePassword FAIL: \(error)")
+                print("lookupAccount FAIL: \(error)")
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    static func recoverUsername(request: RecoverUsernameRequest, completion: @escaping (Result<String, NetworkingError>) -> ()) {
+        
+        ServiceLayer.request(router: .recoverUsername(encodable: request)) { (result: Result<String, NetworkingError>) in
+            switch result {
+            case .success(let data):
+                print("recoverUsername SUCCESS: \(data)")
+                completion(.success(data))
+
+            case .failure(let error):
+                print("recoverUsername FAIL: \(error)")
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    static func recoverMaskedUsername(request: RecoverMaskedUsernameRequest, completion: @escaping (Result<NewForgotMaskedUsername, NetworkingError>) -> ()) {
+        
+        ServiceLayer.request(router: .recoverUsername(encodable: request)) { (result: Result<NewForgotMaskedUsername, NetworkingError>) in
+            switch result {
+            case .success(let data):
+                print("recoverMaskedUsername SUCCESS: \(data)")
+                completion(.success(data))
+
+            case .failure(let error):
+                print("recoverMaskedUsername FAIL: \(error)")
                 completion(.failure(error))
             }
         }
@@ -45,11 +75,11 @@ struct CodyUnauthenticatedServiceNew {
         ServiceLayer.request(router: .recoverPassword(encodable: request)) { (result: Result<VoidDecodable, NetworkingError>) in
             switch result {
             case .success(let data):
-                print("changePassword SUCCESS: \(data)")
+                print("recoverPassword SUCCESS: \(data)")
                 completion(.success(()))
                 
             case .failure(let error):
-                print("changePassword FAIL: \(error)")
+                print("recoverPassword FAIL: \(error)")
                 completion(.failure(error))
             }
         }
