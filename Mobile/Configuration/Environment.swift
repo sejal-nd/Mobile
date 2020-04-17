@@ -53,7 +53,6 @@ enum EnvironmentName: String {
 
 struct MCSConfig {
     let baseUrl: String
-    let mobileBackendId: String
     let anonymousKey: String
     let oAuthEndpoint: String // The Layer 7 token endpoint
     let apiVersion: String
@@ -66,7 +65,6 @@ struct MCSConfig {
         let mobileBackend = mobileBackends[mcsInstanceName] as! [String: Any]
         
         baseUrl = mobileBackend["baseURL"] as! String
-        mobileBackendId = mobileBackend["mobileBackendID"] as! String
         anonymousKey = mobileBackend["anonymousKey"] as! String
         oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
         apiVersion = mobileBackend["apiVersion"] as! String
