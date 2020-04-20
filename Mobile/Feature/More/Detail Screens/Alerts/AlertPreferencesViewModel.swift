@@ -92,7 +92,6 @@ class AlertPreferencesViewModel {
                 
                 switch Environment.shared.opco {
                 case .bge:
-                    
                     var usageOptions: [AlertPreferencesOptions] = []
                     if self.isHUAEligible {
                         usageOptions.append(.highUsage)
@@ -120,10 +119,8 @@ class AlertPreferencesViewModel {
                         self.sections.append((NSLocalizedString("BGE's Play-n-Save Pilot", comment: ""), [.energyBuddyUpdates]))
                     }
                 case .comEd:
-                    let showHighUsageSection = self.accountDetail.isAMIAccount && !self.accountDetail.isFinaled
-                    
                     var usageOptions: [AlertPreferencesOptions] = []
-                    if showHighUsageSection {
+                    if self.isHUAEligible {
                         usageOptions.append(.highUsage)
                     }
                     
@@ -151,10 +148,7 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                     
                 case .peco:
-                    self.sections = [
-                        (NSLocalizedString("Usage", comment: ""),
-                         [.highUsage]),
-                        (NSLocalizedString("Outage", comment: ""),
+                    self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
                     
                     if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
