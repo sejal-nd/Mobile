@@ -25,7 +25,7 @@ final class TemperatureScaleStore {
     
     static let shared = TemperatureScaleStore()
     
-    private let temperatureScaleCache: Variable<TemperatureScale>
+    private let temperatureScaleCache: BehaviorRelay<TemperatureScale>
     
     let scaleObservable: Observable<TemperatureScale>
     
@@ -34,7 +34,7 @@ final class TemperatureScaleStore {
             return temperatureScaleCache.value
         }
         set(newValue) {
-            temperatureScaleCache.value = newValue
+            temperatureScaleCache.accept(newValue)
             UserDefaults.standard.set(newValue.rawValue, forKey: UserDefaultKeys.temperatureScale)
         }
     }
@@ -43,7 +43,7 @@ final class TemperatureScaleStore {
     private init() {
         let storedTempScale = UserDefaults.standard.integer(forKey: UserDefaultKeys.temperatureScale)
         let initialScaleValue: TemperatureScale = TemperatureScale(rawValue: storedTempScale) ?? .fahrenheit
-        temperatureScaleCache = Variable(initialScaleValue)
+        temperatureScaleCache = BehaviorRelay(value: initialScaleValue)
         
         scaleObservable = temperatureScaleCache.asObservable()
     }

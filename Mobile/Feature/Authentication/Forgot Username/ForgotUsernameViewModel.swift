@@ -14,14 +14,14 @@ class ForgotUsernameViewModel {
     
     private var authService: AuthenticationService
     
-    let phoneNumber = Variable("")
-    let identifierNumber = Variable("")
-    let accountNumber = Variable("")
+    let phoneNumber = BehaviorRelay(value: "")
+    let identifierNumber = BehaviorRelay(value: "")
+    let accountNumber = BehaviorRelay(value: "")
     
     var maskedUsernames = [ForgotUsernameMasked]()
     var selectedUsernameIndex = 0
     
-    let securityQuestionAnswer = Variable("")
+    let securityQuestionAnswer = BehaviorRelay(value: "")
     
     required init(authService: AuthenticationService) {
         self.authService = authService

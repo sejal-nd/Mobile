@@ -357,7 +357,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
                             // then selects "Other" again, the previously entered amount should persist.
                             self.hasPrecariousOtherAmountBeenSelected = true
                             self.paymentAmountTextField.textField.text = 0.currencyString
-                            self.viewModel.paymentAmount.value = 0
+                            self.viewModel.paymentAmount.accept(0)
                         }
                         UIView.animate(withDuration: 0.2) {
                             self.paymentAmountTextField.isHidden = shouldHideOtherTextField
@@ -368,7 +368,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
                     
                     if let amount = amount {
                         self.paymentAmountTextField.textField.resignFirstResponder()
-                        self.viewModel.paymentAmount.value = amount
+                        self.viewModel.paymentAmount.accept(amount)
                     } else {
                         self.paymentAmountTextField.textField.becomeFirstResponder()
                     }
@@ -407,7 +407,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
                 }
                 
                 self.paymentAmountTextField.textField.text = amount.currencyString
-                self.viewModel.paymentAmount.value = amount
+                self.viewModel.paymentAmount.accept(amount)
             })
             .disposed(by: disposeBag)
         
@@ -614,7 +614,7 @@ extension MakePaymentViewController: UITextFieldDelegate {
 
 extension MakePaymentViewController: MiniWalletSheetViewControllerDelegate {
     func miniWalletSheetViewController(_ miniWalletSheetViewController: MiniWalletSheetViewController, didSelect walletItem: WalletItem) {
-        viewModel.selectedWalletItem.value = walletItem
+        viewModel.selectedWalletItem.accept(walletItem)
     }
     
     func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
@@ -643,7 +643,7 @@ extension MakePaymentViewController: MiniWalletSheetViewControllerDelegate {
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
-        viewModel.selectedWalletItem.value = walletItem
+        viewModel.selectedWalletItem.accept(walletItem)
         fetchData(initialFetch: false)
         if !walletItem.isTemporary {
             GoogleAnalytics.log(event: walletItem.bankOrCard == .bank ? .eCheckAddNewWallet : .cardAddNewWallet, dimensions: [.otpEnabled: walletItem.isDefault ? "enabled" : "disabled"])
@@ -667,6 +667,6 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
-        viewModel.paymentDate.value = opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate
+        viewModel.paymentDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
     }
 }

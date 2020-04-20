@@ -73,7 +73,7 @@ struct MockAuthenticationService: AuthenticationService {
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?) -> Observable<[ForgotUsernameMasked]> {
         if identifier == "0000" {
             return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnAccountNotFound.rawValue))
-                .delay(1, scheduler: MainScheduler.instance)
+                .delay(.seconds(1), scheduler: MainScheduler.instance)
         }
         
         return MockJSONManager.shared.rx.mappableArray(fromFile: .recoverUsername, key: .default)
@@ -82,10 +82,10 @@ struct MockAuthenticationService: AuthenticationService {
     func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String) -> Observable<String> {
         if questionResponse.lowercased() == "exelon" {
             return Observable.just("username@email.com")
-                .delay(1, scheduler: MainScheduler.instance)
+                .delay(.seconds(1), scheduler: MainScheduler.instance)
         } else {
             return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnProfBadSecurity.rawValue))
-                .delay(1, scheduler: MainScheduler.instance)
+                .delay(.seconds(1), scheduler: MainScheduler.instance)
         }
     }
     
@@ -106,10 +106,10 @@ struct MockAuthenticationService: AuthenticationService {
     func recoverPassword(username: String) -> Observable<Void> {
         if username.lowercased() == "error" {
             return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnProfNotFound.rawValue))
-                .delay(1, scheduler: MainScheduler.instance)
+                .delay(.seconds(1), scheduler: MainScheduler.instance)
         } else {
             return Observable.just(())
-                .delay(1, scheduler: MainScheduler.instance)
+                .delay(.seconds(1), scheduler: MainScheduler.instance)
         }
     }
     

@@ -22,7 +22,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         
@@ -43,7 +43,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         
@@ -64,11 +64,11 @@ class PeakRewardsViewModelTests: XCTestCase {
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(1, 0), next(1, 1)])
+        scheduler.createHotObservable([Recorded.next(1, 0), Recorded.next(1, 1)])
             .bind(to: viewModel.selectedDeviceIndex)
             .disposed(by: disposeBag)
         
@@ -90,11 +90,11 @@ class PeakRewardsViewModelTests: XCTestCase {
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0)])
+        scheduler.createHotObservable([Recorded.next(0, 0)])
             .bind(to: viewModel.selectedDeviceIndex)
             .disposed(by: disposeBag)
         
@@ -103,7 +103,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedEvents = [[("Test Program", "Override scheduled for today")]].enumerated().map(next)
+        let expectedEvents = [[("Test Program", "Override scheduled for today")]].enumerated().map(Recorded.next)
         XCTAssert(!zip(observer.events, expectedEvents)
             .map {
                 if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
@@ -122,11 +122,11 @@ class PeakRewardsViewModelTests: XCTestCase {
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0)])
+        scheduler.createHotObservable([Recorded.next(0, 0)])
             .bind(to: viewModel.selectedDeviceIndex)
             .disposed(by: disposeBag)
         
@@ -135,7 +135,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
 
-        let expectedEvents = [[("Test Program", "Currently cycling")]].enumerated().map(next)
+        let expectedEvents = [[("Test Program", "Currently cycling")]].enumerated().map(Recorded.next)
         XCTAssert(!zip(observer.events, expectedEvents)
             .map {
                 if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
@@ -154,11 +154,11 @@ class PeakRewardsViewModelTests: XCTestCase {
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0)])
+        scheduler.createHotObservable([Recorded.next(0, 0)])
             .bind(to: viewModel.selectedDeviceIndex)
             .disposed(by: disposeBag)
         
@@ -167,7 +167,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedEvents = [[("Test Program", "Override scheduled for today")]].enumerated().map(next)
+        let expectedEvents = [[("Test Program", "Override scheduled for today")]].enumerated().map(Recorded.next)
         XCTAssert(!zip(observer.events, expectedEvents)
             .map {
                 if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
@@ -186,11 +186,11 @@ class PeakRewardsViewModelTests: XCTestCase {
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0)])
+        scheduler.createHotObservable([Recorded.next(0, 0)])
             .bind(to: viewModel.selectedDeviceIndex)
             .disposed(by: disposeBag)
         
@@ -199,7 +199,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedEvents = [[("Test Program", "You have been cycled today")]].enumerated().map(next)
+        let expectedEvents = [[("Test Program", "You have been cycled today")]].enumerated().map(Recorded.next)
         XCTAssert(!zip(observer.events, expectedEvents)
             .map {
                 if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
@@ -218,11 +218,11 @@ class PeakRewardsViewModelTests: XCTestCase {
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         
-        scheduler.createHotObservable([next(0, 0)])
+        scheduler.createHotObservable([Recorded.next(0, 0)])
             .bind(to: viewModel.selectedDeviceIndex)
             .disposed(by: disposeBag)
         
@@ -231,7 +231,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedEvents = [[("Test Program", "You have been cycled today")]].enumerated().map(next)
+        let expectedEvents = [[("Test Program", "You have been cycled today")]].enumerated().map(Recorded.next)
         XCTAssert(!zip(observer.events, expectedEvents)
             .map {
                 if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
@@ -250,7 +250,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         var viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         
@@ -260,7 +260,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         scheduler.start()
         
         XCTAssertRecordedElements(observer.events, [true])
-        XCTAssertEqual(observer.events, [true].enumerated().map(next))
+        XCTAssertEqual(observer.events, [true].enumerated().map(Recorded.next))
         
         MockUser.current = MockUser(globalKeys: .peakRewardsActiveProgram)
         MockAccountService.loadAccountsSync()
@@ -269,7 +269,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
                                              accountDetail: .default)
         
-        scheduler.createHotObservable([next(0, ())])
+        scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
             .disposed(by: disposeBag)
         

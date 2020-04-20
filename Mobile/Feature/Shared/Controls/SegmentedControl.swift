@@ -15,7 +15,7 @@ class SegmentedControl: UIControl {
     let disposeBag = DisposeBag()
     
     var items: [String]?
-    var selectedIndex = Variable(0)
+    var selectedIndex = BehaviorRelay(value: 0)
     
     private var views = [UIView]()
     private var labels = [UILabel]()
@@ -119,11 +119,11 @@ class SegmentedControl: UIControl {
     
     @objc func onButtonTap(sender: UIButton) {
         let index = sender.tag
-        selectedIndex.value = index
+        selectedIndex.accept(index)
     }
     
     func selectIndex(_ index: Int, animated: Bool = true, postAccessibilityNotification: Bool = true) {
-        selectedIndex.value = index
+        selectedIndex.accept(index)
         sendActions(for: .valueChanged)
         setNeedsLayout()
         

@@ -19,7 +19,7 @@ class WalletViewModel {
     
     let fetchWalletItems = PublishSubject<Void>()
     let fetchingWalletItemsTracker = ActivityTracker()
-    let walletItems = Variable<[WalletItem]?>(nil)
+    let walletItems = BehaviorRelay<[WalletItem]?>(value: nil)
     let isFetchingWalletItems: Driver<Bool>
     
     required init(walletService: WalletService) {

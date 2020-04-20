@@ -18,13 +18,13 @@ class UpdatesViewModel {
 
     let alertsService: AlertsService
 
-    let selectedSegmentIndex = Variable(0)
+    let selectedSegmentIndex = BehaviorRelay(value: 0)
 
-    let isFetchingUpdates = Variable(false)
-    let isUpdatesError = Variable(false)
-    let isNoNetworkConnection = Variable(false)
+    let isFetchingUpdates = BehaviorRelay(value: false)
+    let isUpdatesError = BehaviorRelay(value: false)
+    let isNoNetworkConnection = BehaviorRelay(value: false)
 
-    var currentOpcoUpdates = Variable<[OpcoUpdate]?>(nil)
+    var currentOpcoUpdates = BehaviorRelay<[OpcoUpdate]?>(value: nil)
 
     required init(alertsService: AlertsService) {
         self.alertsService = alertsService
@@ -32,23 +32,23 @@ class UpdatesViewModel {
     
     /// Should Succeed allows us to unit test a failure
     func fetchData() {
-        isFetchingUpdates.value = true
-        isUpdatesError.value = false
-        isNoNetworkConnection.value = false
+        isFetchingUpdates.accept(true)
+        isUpdatesError.accept(false)
+        isNoNetworkConnection.accept(false)
         
         alertsService.fetchOpcoUpdates()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] opcoUpdates in
-                self?.currentOpcoUpdates.value = opcoUpdates
-                self?.isFetchingUpdates.value = false
-                self?.isNoNetworkConnection.value = false
+                self?.currentOpcoUpdates.accept(opcoUpdates)
+                self?.isFetchingUpdates.accept(false)
+                self?.isNoNetworkConnection.accept(false)
                 self?.reloadTableViewEvent.onNext(())
                 self?.a11yScreenChangedEvent.onNext(())
                 }, onError: { [weak self] err in
-                    self?.isFetchingUpdates.value = false
-                    self?.isUpdatesError.value = true
+                    self?.isFetchingUpdates.accept(false)
+                    self?.isUpdatesError.accept(true)
                     if let error = err as? ServiceError {
-                        self?.isNoNetworkConnection.value = error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue
+                        self?.isNoNetworkConnection.accept(error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue)
                     }
             }).disposed(by: self.disposeBag)
     }

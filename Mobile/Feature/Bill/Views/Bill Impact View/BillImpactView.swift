@@ -254,7 +254,7 @@ class BillImpactView: UIView {
     @IBAction func comparisonToggleButtonPress() {
         guard let viewModel = viewModel else { return }
         setInnerLoadingState(true)
-        viewModel.compareToLastYear.value = !viewModel.compareToLastYear.value
+        viewModel.compareToLastYear.accept(!viewModel.compareToLastYear.value)
     }
     
     func setInnerLoadingState(_ loading: Bool) {
