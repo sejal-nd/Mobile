@@ -111,6 +111,7 @@ struct AccountDetail: Mappable {
     let isHUAEligible: Bool?
     let isPTREligible: Bool?
     let isPTSEligible: Bool?
+    let hasThirdPartySupplier: Bool
     
     // Only 3 real states to think about
     enum PrepaidStatus: String {
@@ -183,6 +184,7 @@ struct AccountDetail: Mappable {
         isHUAEligible = map.optionalFrom("isHUAEligible")
         isPTREligible = map.optionalFrom("isPTREligible")
         isPTSEligible = map.optionalFrom("isPTSEligible")
+        hasThirdPartySupplier = map.optionalFrom("hasThirdPartySupplier") ?? false
     }
     
     // BGE only - Smart Energy Rewards enrollment status

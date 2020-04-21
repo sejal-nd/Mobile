@@ -59,6 +59,10 @@ class AlertPreferencesViewModel {
         return initialBillReadyValue == false && billReady.value == true
     }
     
+    var shouldShowHUABillThreshold: Bool {
+        return !accountDetail.isBudgetBillEnrollment && !accountDetail.hasThirdPartySupplier
+    }
+    
     var devicePushNotificationsEnabled = false
     
     required init(alertsService: AlertsService, billService: BillService, accountService: AccountService) {

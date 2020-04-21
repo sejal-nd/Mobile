@@ -302,7 +302,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         case .highUsage:
             toggleVariable = viewModel.highUsage
             
-            if !viewModel.accountDetail.isBudgetBillEnrollment /* && NO 3rd party suppliers */ {
+            if viewModel.shouldShowHUABillThreshold {
                 var thresholdStr: String? = nil
                 if let thresholdValue = viewModel.billThreshold.value {
                     thresholdStr = "$\(thresholdValue)"
