@@ -18,7 +18,7 @@ public enum Router {
     case minVersion
     case maintenanceMode
         
-    case fetchSAMLToken(httpBody: HTTPBody)
+    case fetchSAMLToken(encodable: Encodable)
     case exchangeSAMLToken(token: String)
     
     case accounts
@@ -32,39 +32,39 @@ public enum Router {
     
     case alertBanner(additionalQueryItem: URLQueryItem)
     
-    case anonOutageStatus(httpBody: HTTPBody)
+    case anonOutageStatus(encodable: Encodable)
 
     // Billing
     
     case billPDF(accountNumber: String, date: Date)
     
-    case scheduledPayment(accountNumber: String, httpBody: HTTPBody)
-    case scheduledPaymentUpdate(accountNumber: String, paymentId: String, httpBody: HTTPBody)
-    case scheduledPaymentDelete(accountNumber: String, paymentId: String, httpBody: HTTPBody)
+    case scheduledPayment(accountNumber: String, encodable: Encodable)
+    case scheduledPaymentUpdate(accountNumber: String, paymentId: String, encodable: Encodable)
+    case scheduledPaymentDelete(accountNumber: String, paymentId: String, encodable: Encodable)
     
-    case billingHistory(accountNumber: String, httpBody: HTTPBody)
+    case billingHistory(accountNumber: String, encodable: Encodable)
     
-    case payment(httpBody: HTTPBody)
+    case payment(encodable: Encodable)
     
-    case deleteWalletItem(httpBody: HTTPBody)
+    case deleteWalletItem(encodable: Encodable)
     
-    case compareBill(accountNumber: String, premiseNumber: String, httpBody: HTTPBody)
+    case compareBill(accountNumber: String, premiseNumber: String, encodable: Encodable)
 
     case autoPayInfo(accountNumber: String) // todo - Mock + model
-    case autoPayEnroll(accountNumber: String, httpBody: HTTPBody)
-    case autoPayUnenroll(accountNumber: String, httpBody: HTTPBody) // todo - Mock + model
+    case autoPayEnroll(accountNumber: String, encodable: Encodable)
+    case autoPayUnenroll(accountNumber: String, encodable: Encodable) // todo - Mock + model
     
-    case paperlessEnroll(accountNumber: String, httpBody: HTTPBody)
+    case paperlessEnroll(accountNumber: String, encodable: Encodable)
     case paperlessUnenroll(accountNumber: String) // todo - Mock + model
     
     case budgetBillingInfo(accountNumber: String)
     case budgetBillingEnroll(accountNumber: String)
-    case budgetBillingUnenroll(accountNumber: String, httpBody: HTTPBody)
+    case budgetBillingUnenroll(accountNumber: String, encodable: Encodable)
     
     // Usage
     
     case forecastMonthlyBill(accountNumber: String, premiseNumber: String)
-    case forecastYearlyBill(accountNumber: String, premiseNumber: String, httpBody: HTTPBody)
+    case forecastYearlyBill(accountNumber: String, premiseNumber: String, encodable: Encodable)
     
 //    case getSources
 //    case getProductIds
@@ -295,9 +295,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchSAMLToken(let httpBody), .anonOutageStatus(let httpBody), .scheduledPayment(_, let httpBody), .billingHistory(_, let httpBody), .payment(let httpBody), .deleteWalletItem(let httpBody), .compareBill(_, _, let httpBody), .autoPayEnroll(_, let httpBody), .autoPayUnenroll(_, let httpBody), .scheduledPaymentUpdate(_, _, let httpBody), .budgetBillingUnenroll(_, let httpBody), .forecastYearlyBill(_, _, let httpBody):
-            return httpBody
-        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable):
+        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .fetchSAMLToken(let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .forecastYearlyBill(_, _, let encodable):
             return self.encode(encodable)
         default:
             return nil
