@@ -123,7 +123,9 @@ class LoginViewModel {
                     }
 
                     self.checkStormMode { isStormMode in
+                        DispatchQueue.main.async {
                         onSuccess(tempPassword, isStormMode)
+                        }
                     }
                 }
                     }

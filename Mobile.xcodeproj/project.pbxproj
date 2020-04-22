@@ -864,18 +864,12 @@
 		67278380243E52EB00D5CD95 /* BudgetBillingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */; };
 		67278381243E52EB00D5CD95 /* BudgetBillingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */; };
 		67278382243E52EB00D5CD95 /* BudgetBillingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */; };
-		67278384243F76F800D5CD95 /* NewForecastMonthlyBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278383243F76F800D5CD95 /* NewForecastMonthlyBill.swift */; };
-		67278385243F76F800D5CD95 /* NewForecastMonthlyBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278383243F76F800D5CD95 /* NewForecastMonthlyBill.swift */; };
-		67278386243F76F800D5CD95 /* NewForecastMonthlyBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278383243F76F800D5CD95 /* NewForecastMonthlyBill.swift */; };
+		67278384243F76F800D5CD95 /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278383243F76F800D5CD95 /* NewForecastBill.swift */; };
+		67278385243F76F800D5CD95 /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278383243F76F800D5CD95 /* NewForecastBill.swift */; };
+		67278386243F76F800D5CD95 /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278383243F76F800D5CD95 /* NewForecastBill.swift */; };
 		67278388243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */; };
 		67278389243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */; };
 		6727838A243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */; };
-		6727838C243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727838B243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift */; };
-		6727838D243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727838B243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift */; };
-		6727838E243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727838B243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift */; };
-		67278390243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727838F243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json */; };
-		67278391243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727838F243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json */; };
-		67278392243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727838F243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json */; };
 		67278394244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
 		67278395244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
 		67278396244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
@@ -891,6 +885,12 @@
 		672783A42449F8D300D5CD95 /* ScheduledPaymentUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672783A32449F8D300D5CD95 /* ScheduledPaymentUpdateRequest.swift */; };
 		672783A52449F8D300D5CD95 /* ScheduledPaymentUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672783A32449F8D300D5CD95 /* ScheduledPaymentUpdateRequest.swift */; };
 		672783A62449F8D300D5CD95 /* ScheduledPaymentUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672783A32449F8D300D5CD95 /* ScheduledPaymentUpdateRequest.swift */; };
+		67630E6524509CF60078D3C3 /* SSODataMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E6424509CF60078D3C3 /* SSODataMock.json */; };
+		67630E6624509CF60078D3C3 /* SSODataMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E6424509CF60078D3C3 /* SSODataMock.json */; };
+		67630E6724509CF60078D3C3 /* SSODataMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E6424509CF60078D3C3 /* SSODataMock.json */; };
+		67630E6924509EBD0078D3C3 /* SSODataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E6824509EBD0078D3C3 /* SSODataResponse.swift */; };
+		67630E6A24509EBD0078D3C3 /* SSODataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E6824509EBD0078D3C3 /* SSODataResponse.swift */; };
+		67630E6B24509EBD0078D3C3 /* SSODataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E6824509EBD0078D3C3 /* SSODataResponse.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3452,15 +3452,15 @@
 		67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBudgetBillingResult.swift; sourceTree = "<group>"; };
 		6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBudgetBilling.swift; sourceTree = "<group>"; };
 		6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingMock.json; sourceTree = "<group>"; };
-		67278383243F76F800D5CD95 /* NewForecastMonthlyBill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForecastMonthlyBill.swift; sourceTree = "<group>"; };
+		67278383243F76F800D5CD95 /* NewForecastBill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForecastBill.swift; sourceTree = "<group>"; };
 		67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForecastMonthlyBillMock.json; sourceTree = "<group>"; };
-		6727838B243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForecastYearlyBillResut.swift; sourceTree = "<group>"; };
-		6727838F243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForecastYearlyBillResultMock.json; sourceTree = "<group>"; };
 		67278393244634DB00D5CD95 /* EndpointError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointError.swift; sourceTree = "<group>"; };
 		672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetBillingUnenrollRequest.swift; sourceTree = "<group>"; };
 		6727839B2449F52500D5CD95 /* AutoPayEnrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayEnrollRequest.swift; sourceTree = "<group>"; };
 		6727839F2449F83800D5CD95 /* CompareBillRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareBillRequest.swift; sourceTree = "<group>"; };
 		672783A32449F8D300D5CD95 /* ScheduledPaymentUpdateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPaymentUpdateRequest.swift; sourceTree = "<group>"; };
+		67630E6424509CF60078D3C3 /* SSODataMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SSODataMock.json; sourceTree = "<group>"; };
+		67630E6824509EBD0078D3C3 /* SSODataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSODataResponse.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5437,9 +5437,9 @@
 				6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */,
 				67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */,
 				6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */,
-				67278383243F76F800D5CD95 /* NewForecastMonthlyBill.swift */,
-				6727838B243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift */,
+				67278383243F76F800D5CD95 /* NewForecastBill.swift */,
 				C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */,
+				67630E6824509EBD0078D3C3 /* SSODataResponse.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5637,7 +5637,7 @@
 				67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */,
 				6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */,
 				67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */,
-				6727838F243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json */,
+				67630E6424509CF60078D3C3 /* SSODataMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7287,6 +7287,7 @@
 				67278388243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */,
 				0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				22EF559B2170507700070C13 /* AppointmentDetailViewController.xib in Resources */,
+				67630E6524509CF60078D3C3 /* SSODataMock.json in Resources */,
 				676BDA7D242E4BB500C880A3 /* WeatherMock.json in Resources */,
 				B07E18042211D31700B6E3C7 /* outage_status.json in Resources */,
 				9C0EA5B5237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
@@ -7393,7 +7394,6 @@
 				B089572D2217596400A97965 /* billing_history.json in Resources */,
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
 				6708866024337E8600B2C807 /* WalletMock.json in Resources */,
-				67278390243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				67088694243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
@@ -7479,6 +7479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22EF559D2170507700070C13 /* AppointmentDetailViewController.xib in Resources */,
+				67630E6724509CF60078D3C3 /* SSODataMock.json in Resources */,
 				B07E18022211D31600B6E3C7 /* outage_status.json in Resources */,
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
 				358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */,
@@ -7650,7 +7651,6 @@
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
-				67278392243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json in Resources */,
 				B07E17D92209F0C900B6E3C7 /* accounts.json in Resources */,
 				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
@@ -7670,6 +7670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22EF559C2170507700070C13 /* AppointmentDetailViewController.xib in Resources */,
+				67630E6624509CF60078D3C3 /* SSODataMock.json in Resources */,
 				B07E18032211D31700B6E3C7 /* outage_status.json in Resources */,
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
 				358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */,
@@ -7841,7 +7842,6 @@
 				B08956F32215C27100A97965 /* sso_data.json in Resources */,
 				35376C6720F8FFC8007E50F7 /* BillImpactView.xib in Resources */,
 				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,
-				67278391243F7BC800D5CD95 /* ForecastYearlyBillResultMock.json in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
@@ -9313,6 +9313,7 @@
 				B07269352127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
+				67630E6924509EBD0078D3C3 /* SSODataResponse.swift in Sources */,
 				35D02D91240FFBC100D8894F /* ServiceLayer.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
@@ -9447,7 +9448,7 @@
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
-				67278384243F76F800D5CD95 /* NewForecastMonthlyBill.swift in Sources */,
+				67278384243F76F800D5CD95 /* NewForecastBill.swift in Sources */,
 				8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */,
 				9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				2FA7B9FA1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
@@ -9494,7 +9495,6 @@
 				E82FF1E61F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */,
 				B01748922135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
-				6727838C243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift in Sources */,
 				E87C414B1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				826773311FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				359BDB6F22D8DCF6007002B0 /* OutageStatusView.swift in Sources */,
@@ -9780,6 +9780,7 @@
 				E83F02721FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
+				67630E6B24509EBD0078D3C3 /* SSODataResponse.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				35D02D93240FFBC100D8894F /* ServiceLayer.swift in Sources */,
 				B0649A61214834380041B299 /* StormModeStatus.swift in Sources */,
@@ -9914,7 +9915,7 @@
 				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				82A18E5E1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
-				67278386243F76F800D5CD95 /* NewForecastMonthlyBill.swift in Sources */,
+				67278386243F76F800D5CD95 /* NewForecastBill.swift in Sources */,
 				359BDB5F22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
 				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				44A373441F211522005E227B /* TemplateCardView.swift in Sources */,
@@ -9961,7 +9962,6 @@
 				9C62447622C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
 				35C0F1D3233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
-				6727838E243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				9CE2276822DE1D7E003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */,
@@ -10247,6 +10247,7 @@
 				B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				35C9139722E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
+				67630E6A24509EBD0078D3C3 /* SSODataResponse.swift in Sources */,
 				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				35D02D92240FFBC100D8894F /* ServiceLayer.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -10381,7 +10382,7 @@
 				82EAB3391F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
-				67278385243F76F800D5CD95 /* NewForecastMonthlyBill.swift in Sources */,
+				67278385243F76F800D5CD95 /* NewForecastBill.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				82A18E5D1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				E882B7EE1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
@@ -10428,7 +10429,6 @@
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				E87C414C1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
-				6727838D243F7BB500D5CD95 /* NewForecastYearlyBillResut.swift in Sources */,
 				826773321FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				359BDB7022D8DCF6007002B0 /* OutageStatusView.swift in Sources */,

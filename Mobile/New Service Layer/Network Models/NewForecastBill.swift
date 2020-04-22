@@ -8,8 +8,8 @@
 
 import Foundation
 
-public struct NewForecastMonthlyBillContainer: Decodable {
-    public var forecastMonthlyBills: [NewForecastMonthlyBill]
+public struct NewForecastBillContainer: Decodable {
+    public var forecastMonthlyBills: [NewForecastBill]
     
     enum CodingKeys: String, CodingKey {
         case data = "data"
@@ -22,12 +22,12 @@ public struct NewForecastMonthlyBillContainer: Decodable {
         let data = try container.nestedContainer(keyedBy: CodingKeys.self,
                                                  forKey: .data)
         
-        self.forecastMonthlyBills = try data.decode([NewForecastMonthlyBill].self,
+        self.forecastMonthlyBills = try data.decode([NewForecastBill].self,
                                                              forKey: .forecastMonthlyBills) // may be wrong
     }
 }
 
-public struct NewForecastMonthlyBill: Decodable {
+public struct NewForecastBill: Decodable {
     public var billingStartDate: Date?
     public var billingEndDate: Date?
     public var calculationDate: Date?

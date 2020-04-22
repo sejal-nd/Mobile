@@ -62,9 +62,8 @@ public enum Router {
     case budgetBillingUnenroll(accountNumber: String, encodable: Encodable)
     
     // Usage
-    
-    case forecastMonthlyBill(accountNumber: String, premiseNumber: String)
-    case forecastYearlyBill(accountNumber: String, premiseNumber: String, encodable: Encodable)
+    case forecastBill(accountNumber: String, premiseNumber: String)
+    case ssoData(accountNumber: String, premiseNumber: String)
     
 //    case getSources
 //    case getProductIds
@@ -198,8 +197,10 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/budget"
         case .budgetBillingUnenroll(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/budget/delete"
-        case .forecastMonthlyBill(let accountNumber, let premiseNumber), .forecastYearlyBill(let accountNumber, let premiseNumber, _):
+        case .forecastBill(let accountNumber, let premiseNumber):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/forecast_bill"
+        case .ssoData(let accountNumber, let premiseNumber):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises/\(premiseNumber)/ssodata"
             //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -217,9 +218,9 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .forecastYearlyBill, .accountLookup, .recoverPassword:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastMonthlyBill:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange:
             return "PUT"
@@ -268,12 +269,12 @@ public enum Router {
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .forecastYearlyBill:
+        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll:
             return ["Authorization": "Bearer \(token)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastMonthlyBill:
+        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
         case .minVersion, .maintenanceMode:
@@ -295,7 +296,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .fetchSAMLToken(let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .forecastYearlyBill(_, _, let encodable):
+        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .fetchSAMLToken(let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable):
             return self.encode(encodable)
         default:
             return nil
@@ -346,12 +347,12 @@ public enum Router {
             return "BudgetBillingMock"
         case .budgetBillingEnroll, .budgetBillingUnenroll:
             return "BudgetBillingResultMock"
-        case .forecastMonthlyBill:
-            return "ForecastMonthlyBillMock"
-        case .forecastYearlyBill:
-            return "ForecastYearlyBillResultMock"
+        case .forecastBill:
+            return "ForecastBillMock"
         case .accountLookup:
             return "AccountLookupResultMock"
+        case .ssoData:
+            return "SSODataMock"
         default:
             return ""
         }
