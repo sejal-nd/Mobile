@@ -1,0 +1,13 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "customerId": 614652,
+      "dwellingType": "SINGLE_FAMILY",
+      "squareFeet": 1160,
+      "heatType": "ELEC",
+      "numberOfAdults": 1,
+      "numberOfChildren": 0
+    }
+  }
+}
