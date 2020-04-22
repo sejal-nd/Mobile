@@ -81,7 +81,7 @@ public enum Router {
     
     // Outage
     
-    case outageStatus
+    case outageStatus(accountNumber: String, premiseNumber: String)
     
     // Unauthenticated
     case passwordChange(encodable: Encodable)

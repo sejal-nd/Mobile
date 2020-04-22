@@ -2272,6 +2272,9 @@
 		C3ADD1732450CEC500487920 /* OutageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ADD16F2450CEC500487920 /* OutageServiceNew.swift */; };
 		C3ADD1742450CEC500487920 /* OutageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ADD16F2450CEC500487920 /* OutageServiceNew.swift */; };
 		C3ADD1752450CEC500487920 /* OutageServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ADD16F2450CEC500487920 /* OutageServiceNew.swift */; };
+		C3ADD1772450DB5100487920 /* OutageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ADD1762450DB5100487920 /* OutageRequest.swift */; };
+		C3ADD1782450DB5100487920 /* OutageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ADD1762450DB5100487920 /* OutageRequest.swift */; };
+		C3ADD1792450DB5100487920 /* OutageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ADD1762450DB5100487920 /* OutageRequest.swift */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -3961,6 +3964,7 @@
 		C37BFD202447BDB10037A9C9 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		C3ADD16F2450CEC500487920 /* OutageServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageServiceNew.swift; sourceTree = "<group>"; };
+		C3ADD1762450DB5100487920 /* OutageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageRequest.swift; sourceTree = "<group>"; };
 		C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C55AF9BA52D8B1D3E432E4D2 /* Pods_PECOApp_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C577CF1D0C7BCE01659C0C25 /* Pods-ComEdApp-ComEd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.release.xcconfig"; sourceTree = "<group>"; };
@@ -6568,6 +6572,7 @@
 				6798CFD1244F6B5600429477 /* SAMLRequest.swift */,
 				6798CFD5244F6CF600429477 /* WalletItemDeleteRequest.swift */,
 				67630E7C2450B8830078D3C3 /* HomeProfileUpdateRequest.swift */,
+				C3ADD1762450DB5100487920 /* OutageRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -9443,6 +9448,7 @@
 				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				2249C037216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
 				9CF5369E23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
+				C3ADD1772450DB5100487920 /* OutageRequest.swift in Sources */,
 				826773411FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				8267733D1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				676BDA6C242BA8BC00C880A3 /* NewAccountDetails.swift in Sources */,
@@ -9915,6 +9921,7 @@
 				B094A34F20D9442400E81303 /* HomeCard.swift in Sources */,
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				9CF536A023A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
+				C3ADD1792450DB5100487920 /* OutageRequest.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				676BDA6E242BA8BC00C880A3 /* NewAccountDetails.swift in Sources */,
@@ -10387,6 +10394,7 @@
 				2249C038216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
 				54EDD2E01ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
 				9CF5369F23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
+				C3ADD1782450DB5100487920 /* OutageRequest.swift in Sources */,
 				E835D1CA1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027B1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				676BDA6D242BA8BC00C880A3 /* NewAccountDetails.swift in Sources */,
