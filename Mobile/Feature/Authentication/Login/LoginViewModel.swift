@@ -63,9 +63,10 @@ class LoginViewModel {
         AuthenticatedService.login(username: username.value, password: password.value) { [weak self] (result: Result<Void, NetworkingError>) in
             switch result {
             case .success(()):
+                break
 //                guard let self = self else { return }
 
-                onSuccess(false, false)
+//                onSuccess(false, false)
 
 //                self.isLoggingIn = false
                                 // todo temp password
@@ -88,7 +89,7 @@ class LoginViewModel {
                 print("Error new fetch login: \(error)")
                 self?.isLoggingIn = false
 
-                onError("temp1", "temp2")
+//                onError("temp1", "temp2")
 
 //                let serviceError = error as! ServiceError
 //                if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
@@ -106,6 +107,8 @@ class LoginViewModel {
         authService.login(username: username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] profileStatus in
+                DispatchQueue.main.async {
+                    
                 guard let self = self else { return }
                 self.isLoggingIn = false
                 let tempPassword = profileStatus.tempPassword
@@ -120,10 +123,17 @@ class LoginViewModel {
                     }
 
                     self.checkStormMode { isStormMode in
+                        DispatchQueue.main.async {
                         onSuccess(tempPassword, isStormMode)
+                        }
                     }
                 }
+                    }
+
             }, onError: { [weak self] error in
+                DispatchQueue.main.async {
+                    
+                
                 self?.isLoggingIn = false
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
@@ -134,6 +144,7 @@ class LoginViewModel {
                     onError(nil, error.localizedDescription)
                 }
                 GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
+                }
             })
             .disposed(by: disposeBag)
     }

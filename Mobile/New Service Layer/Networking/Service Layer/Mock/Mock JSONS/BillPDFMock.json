@@ -1,5 +1,9 @@
 {
   "default": {
-    // todo
+    "success": true,
+    "data": {
+      "billImageData": "JVBERi0xLjMNCoGWvdwNCjMgMCBvYmoNC",
+      "contentType": "application/pdf"
+    }
   }
 }

@@ -1,0 +1,10 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "SERInfo": {
+        "eventResults": []
+      }
+    }
+  }
+}

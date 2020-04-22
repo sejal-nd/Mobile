@@ -8,8 +8,8 @@
 
 import Foundation
 
-public struct NewForecastMonthlyBillContainer: Decodable {
-    public var forecastMonthlyBills: [NewForecastMonthlyBill]
+public struct NewForecastBillContainer: Decodable {
+    public var forecastMonthlyBills: [NewForecastBill]
     
     enum CodingKeys: String, CodingKey {
         case data = "data"
@@ -22,12 +22,12 @@ public struct NewForecastMonthlyBillContainer: Decodable {
         let data = try container.nestedContainer(keyedBy: CodingKeys.self,
                                                  forKey: .data)
         
-        self.forecastMonthlyBills = try data.decode([NewForecastMonthlyBill].self,
+        self.forecastMonthlyBills = try data.decode([NewForecastBill].self,
                                                              forKey: .forecastMonthlyBills) // may be wrong
     }
 }
 
-public struct NewForecastMonthlyBill: Decodable {
+public struct NewForecastBill: Decodable {
     public var billingStartDate: Date?
     public var billingEndDate: Date?
     public var calculationDate: Date?
@@ -85,41 +85,3 @@ public struct NewForecastMonthlyBill: Decodable {
                                                        forKey: .meterUnit)
     }
 }
-
-
-//{
-//  "default": {
-//    "success": true,
-//    "data": {
-//      "meterUnit": "KWH",
-//      "currencySymbol": "$",
-//      "temperatureUnit": "FAHRENHEIT",
-//      "analysisResults": [
-//        {
-//          "analysisName": "WEATHER",
-//          "costDifferenceExplained": -16.36
-//        },
-//        {
-//          "analysisName": "OTHER",
-//          "costDifferenceExplained": -67.14
-//        }
-//      ],
-//      "reference": {
-//        "charges": 27.66,
-//        "usage": 161,
-//        "startDate": "2020-03-09",
-//        "endDate": "2020-04-06",
-//        "averageTemperature": 49.4,
-//        "ratePlan": "R_PTR"
-//      },
-//      "compared": {
-//        "charges": 111.16,
-//        "usage": 827,
-//        "startDate": "2019-03-08",
-//        "endDate": "2019-04-05",
-//        "averageTemperature": 45.9,
-//        "ratePlan": "R_PTR"
-//      }
-//    }
-//  }
-//}
