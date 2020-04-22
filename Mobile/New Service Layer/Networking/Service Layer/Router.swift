@@ -79,6 +79,10 @@ public enum Router {
 //    case getProductIds
 //    case getProductInfo
     
+    // Outage
+    
+    case outageStatus
+    
     // Unauthenticated
     case passwordChange(encodable: Encodable)
     case accountLookup(encodable: Encodable)
@@ -238,11 +242,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-<<<<<<< HEAD
         case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .forecastYearlyBill, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername:
-=======
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword:
->>>>>>> refactor/separateConcerns
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad:
             return "GET"
@@ -369,10 +369,8 @@ public enum Router {
             return "ForecastBillMock"
         case .accountLookup:
             return "AccountLookupResultMock"
-<<<<<<< HEAD
-            case .recoverUsername:
+        case .recoverUsername:
             return "RecoverUsernameResultMock"
-=======
         case .ssoData:
             return "SSODataMock"
         case .energyTips:
@@ -383,7 +381,6 @@ public enum Router {
             return "EnergyRewardsMock"
         case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate:
             return "GenericResponseMock"
->>>>>>> refactor/separateConcerns
         default:
             return ""
         }
