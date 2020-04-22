@@ -906,6 +906,12 @@
 		67630E7D2450B8830078D3C3 /* HomeProfileUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E7C2450B8830078D3C3 /* HomeProfileUpdateRequest.swift */; };
 		67630E7E2450B8830078D3C3 /* HomeProfileUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E7C2450B8830078D3C3 /* HomeProfileUpdateRequest.swift */; };
 		67630E7F2450B8830078D3C3 /* HomeProfileUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E7C2450B8830078D3C3 /* HomeProfileUpdateRequest.swift */; };
+		67630E812450BF410078D3C3 /* EnergyRewardsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E802450BF410078D3C3 /* EnergyRewardsMock.json */; };
+		67630E822450BF410078D3C3 /* EnergyRewardsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E802450BF410078D3C3 /* EnergyRewardsMock.json */; };
+		67630E832450BF410078D3C3 /* EnergyRewardsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E802450BF410078D3C3 /* EnergyRewardsMock.json */; };
+		67630E852450BF8B0078D3C3 /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */; };
+		67630E862450BF8B0078D3C3 /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */; };
+		67630E872450BF8B0078D3C3 /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3481,6 +3487,8 @@
 		67630E742450B6FF0078D3C3 /* HomeProfileLoadMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeProfileLoadMock.json; sourceTree = "<group>"; };
 		67630E782450B7360078D3C3 /* HomeProfileLoadNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProfileLoadNew.swift; sourceTree = "<group>"; };
 		67630E7C2450B8830078D3C3 /* HomeProfileUpdateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProfileUpdateRequest.swift; sourceTree = "<group>"; };
+		67630E802450BF410078D3C3 /* EnergyRewardsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EnergyRewardsMock.json; sourceTree = "<group>"; };
+		67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyRewardsNew.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5462,6 +5470,7 @@
 				67630E6824509EBD0078D3C3 /* SSODataResponse.swift */,
 				67630E702450B47D0078D3C3 /* UsageTipNew.swift */,
 				67630E782450B7360078D3C3 /* HomeProfileLoadNew.swift */,
+				67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5662,6 +5671,7 @@
 				67630E6424509CF60078D3C3 /* SSODataMock.json */,
 				67630E6C2450AD540078D3C3 /* EnergyTipsMock.json */,
 				67630E742450B6FF0078D3C3 /* HomeProfileLoadMock.json */,
+				67630E802450BF410078D3C3 /* EnergyRewardsMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7359,6 +7369,7 @@
 				67088680243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */,
+				67630E812450BF410078D3C3 /* EnergyRewardsMock.json in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
@@ -7649,6 +7660,7 @@
 				670886722433AF3000B2C807 /* AlertBannerMock.json in Resources */,
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
+				67630E832450BF410078D3C3 /* EnergyRewardsMock.json in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
 				67278376243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */,
 				9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
@@ -7842,6 +7854,7 @@
 				670886712433AF3000B2C807 /* AlertBannerMock.json in Resources */,
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
+				67630E822450BF410078D3C3 /* EnergyRewardsMock.json in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				67278375243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */,
 				9C0EA5BF237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
@@ -9261,6 +9274,7 @@
 				E873DA7C1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				E8FF085A1F7EDC160030F1BF /* BillingHistoryViewModel.swift in Sources */,
+				67630E852450BF8B0078D3C3 /* EnergyRewardsNew.swift in Sources */,
 				82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				351DE2F9221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				B0336FEA21762FB400751430 /* EventStore.swift in Sources */,
@@ -9731,6 +9745,7 @@
 				356C7F8121909997003E8A90 /* KeychainManager.swift in Sources */,
 				822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				E835D1D01FB63288008CE250 /* PushNotification.swift in Sources */,
+				67630E872450BF8B0078D3C3 /* EnergyRewardsNew.swift in Sources */,
 				B56DD49F1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				2F4AFE5B1F068FE900603B0E /* Premise.swift in Sources */,
 				8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */,
@@ -10201,6 +10216,7 @@
 				82EAB3451F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				CEA215231F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				B0336FEB21762FB400751430 /* EventStore.swift in Sources */,
+				67630E862450BF8B0078D3C3 /* EnergyRewardsNew.swift in Sources */,
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				228877021FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				351DE2FA221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
