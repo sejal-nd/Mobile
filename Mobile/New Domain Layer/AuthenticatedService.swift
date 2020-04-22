@@ -110,8 +110,8 @@ struct AuthenticatedService {
                 return
         }
         
-        let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
-        let httpBody = postDataString.data(using: .utf8)
+//        let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
+//        let httpBody = postDataString.data(using: .utf8)
         //        ServiceLayer.logJSON(router: .fetchToken(httpBody: postDataString.data(using: .utf8))) { (result: Result<String, Error>) in
         //                               switch result {
         //                               case .success(let data):
@@ -126,7 +126,9 @@ struct AuthenticatedService {
         //                               }
         //        }
         
-        ServiceLayer.request(router: .fetchSAMLToken(httpBody: httpBody)) { (result: Result<NewSAMLToken, NetworkingError>) in
+        let encodedObject = SAMLRequest(username: username, password: password)
+        
+        ServiceLayer.request(router: .fetchSAMLToken(encodable: encodedObject)) { (result: Result<NewSAMLToken, NetworkingError>) in
             switch result {
             case .success(let data):
                 guard let token = data.token else { return }
