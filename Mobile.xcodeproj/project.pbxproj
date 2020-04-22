@@ -801,12 +801,6 @@
 		67088684243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */; };
 		67088685243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */; };
 		67088686243B6A3C00B2C807 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */; };
-		67088688243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */; };
-		67088689243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */; };
-		6708868A243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */; };
-		6708868C243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */; };
-		6708868D243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */; };
-		6708868E243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */; };
 		67088690243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */; };
 		67088691243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */; };
 		67088692243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */; };
@@ -825,12 +819,6 @@
 		6727834C243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */; };
 		6727834D243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */; };
 		6727834E243CCE9900D5CD95 /* NewPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */; };
-		67278350243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */; };
-		67278351243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */; };
-		67278352243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */; };
-		67278354243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */; };
-		67278355243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */; };
-		67278356243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */; };
 		67278358243CD68200D5CD95 /* CompareBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278357243CD68200D5CD95 /* CompareBillMock.json */; };
 		67278359243CD68200D5CD95 /* CompareBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278357243CD68200D5CD95 /* CompareBillMock.json */; };
 		6727835A243CD68200D5CD95 /* CompareBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278357243CD68200D5CD95 /* CompareBillMock.json */; };
@@ -846,18 +834,9 @@
 		67278368243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
 		67278369243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
 		6727836A243D02B700D5CD95 /* NewAutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278367243D02B700D5CD95 /* NewAutoPayResult.swift */; };
-		6727836C243D076400D5CD95 /* PaperlessMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727836B243D076400D5CD95 /* PaperlessMock.json */; };
-		6727836D243D076400D5CD95 /* PaperlessMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727836B243D076400D5CD95 /* PaperlessMock.json */; };
-		6727836E243D076400D5CD95 /* PaperlessMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727836B243D076400D5CD95 /* PaperlessMock.json */; };
-		67278370243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
-		67278371243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
-		67278372243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */; };
-		67278374243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */; };
-		67278375243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */; };
-		67278376243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */; };
-		67278378243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */; };
-		67278379243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */; };
-		6727837A243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */; };
+		6727836C243D076400D5CD95 /* GenericResponseMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727836B243D076400D5CD95 /* GenericResponseMock.json */; };
+		6727836D243D076400D5CD95 /* GenericResponseMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727836B243D076400D5CD95 /* GenericResponseMock.json */; };
+		6727836E243D076400D5CD95 /* GenericResponseMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6727836B243D076400D5CD95 /* GenericResponseMock.json */; };
 		6727837C243E52CC00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */; };
 		6727837D243E52CC00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */; };
 		6727837E243E52CC00D5CD95 /* NewBudgetBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */; };
@@ -912,6 +891,9 @@
 		67630E852450BF8B0078D3C3 /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */; };
 		67630E862450BF8B0078D3C3 /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */; };
 		67630E872450BF8B0078D3C3 /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */; };
+		67630E892450C3970078D3C3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E882450C3970078D3C3 /* GenericResponse.swift */; };
+		67630E8A2450C3970078D3C3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E882450C3970078D3C3 /* GenericResponse.swift */; };
+		67630E8B2450C3970078D3C3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E882450C3970078D3C3 /* GenericResponse.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3452,25 +3434,18 @@
 		6708867B2433CF4D00B2C807 /* NewBillPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillPDF.swift; sourceTree = "<group>"; };
 		6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentUNUSEDMock.json; sourceTree = "<group>"; };
 		67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScheduledPayment.swift; sourceTree = "<group>"; };
-		67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSchedulePaymentResult.swift; sourceTree = "<group>"; };
-		6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentMockResult.json; sourceTree = "<group>"; };
 		6708868F243B6DC900B2C807 /* PaymentServiceNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentServiceNew.swift; sourceTree = "<group>"; };
 		67088693243BA5AD00B2C807 /* BillingHistoryResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillingHistoryResult.json; sourceTree = "<group>"; };
 		67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBillingHistoryResult.swift; sourceTree = "<group>"; };
 		6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillingHistoryItem.swift; sourceTree = "<group>"; };
 		67278347243CCE6400D5CD95 /* PaymentMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaymentMock.json; sourceTree = "<group>"; };
 		6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPaymentResult.swift; sourceTree = "<group>"; };
-		6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeleteWalletItemMock.json; sourceTree = "<group>"; };
-		67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeleteWalletItemResult.swift; sourceTree = "<group>"; };
 		67278357243CD68200D5CD95 /* CompareBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CompareBillMock.json; sourceTree = "<group>"; };
 		6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCompareBillResult.swift; sourceTree = "<group>"; };
 		6727835F243CD92400D5CD95 /* UsageServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageServiceNew.swift; sourceTree = "<group>"; };
 		67278363243D028000D5CD95 /* AutoPayEnrollMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AutoPayEnrollMock.json; sourceTree = "<group>"; };
 		67278367243D02B700D5CD95 /* NewAutoPayResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAutoPayResult.swift; sourceTree = "<group>"; };
-		6727836B243D076400D5CD95 /* PaperlessMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaperlessMock.json; sourceTree = "<group>"; };
-		6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPaperlessResult.swift; sourceTree = "<group>"; };
-		67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingResultMock.json; sourceTree = "<group>"; };
-		67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBudgetBillingResult.swift; sourceTree = "<group>"; };
+		6727836B243D076400D5CD95 /* GenericResponseMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GenericResponseMock.json; sourceTree = "<group>"; };
 		6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBudgetBilling.swift; sourceTree = "<group>"; };
 		6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingMock.json; sourceTree = "<group>"; };
 		67278383243F76F800D5CD95 /* NewForecastBill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForecastBill.swift; sourceTree = "<group>"; };
@@ -3489,6 +3464,7 @@
 		67630E7C2450B8830078D3C3 /* HomeProfileUpdateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProfileUpdateRequest.swift; sourceTree = "<group>"; };
 		67630E802450BF410078D3C3 /* EnergyRewardsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EnergyRewardsMock.json; sourceTree = "<group>"; };
 		67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyRewardsNew.swift; sourceTree = "<group>"; };
+		67630E882450C3970078D3C3 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5455,15 +5431,11 @@
 				670886732433B22D00B2C807 /* NewAlertBanner.swift */,
 				6708867B2433CF4D00B2C807 /* NewBillPDF.swift */,
 				67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */,
-				67088687243B6CFE00B2C807 /* NewSchedulePaymentResult.swift */,
 				67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */,
 				6708869B243BA77700B2C807 /* NewBillingHistoryItem.swift */,
 				6727834B243CCE9900D5CD95 /* NewPaymentResult.swift */,
-				67278353243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift */,
 				6727835B243CD73900D5CD95 /* NewCompareBillResult.swift */,
 				67278367243D02B700D5CD95 /* NewAutoPayResult.swift */,
-				6727836F243D077F00D5CD95 /* NewPaperlessResult.swift */,
-				67278377243D085B00D5CD95 /* NewBudgetBillingResult.swift */,
 				6727837B243E52CC00D5CD95 /* NewBudgetBilling.swift */,
 				67278383243F76F800D5CD95 /* NewForecastBill.swift */,
 				C37BFD0F244750B10037A9C9 /* VoidDecodable.swift */,
@@ -5471,6 +5443,7 @@
 				67630E702450B47D0078D3C3 /* UsageTipNew.swift */,
 				67630E782450B7360078D3C3 /* HomeProfileLoadNew.swift */,
 				67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */,
+				67630E882450C3970078D3C3 /* GenericResponse.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5657,21 +5630,18 @@
 				6708866F2433AF3000B2C807 /* AlertBannerMock.json */,
 				670886772433CF1E00B2C807 /* BillPDFMock.json */,
 				6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */,
-				6708868B243B6D1C00B2C807 /* ScheduledPaymentMockResult.json */,
 				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
 				67278347243CCE6400D5CD95 /* PaymentMock.json */,
-				6727834F243CD37C00D5CD95 /* DeleteWalletItemMock.json */,
 				C32BD4992448D9F800870262 /* AccountLookupResultMock.json */,
 				67278357243CD68200D5CD95 /* CompareBillMock.json */,
 				67278363243D028000D5CD95 /* AutoPayEnrollMock.json */,
-				6727836B243D076400D5CD95 /* PaperlessMock.json */,
-				67278373243D084F00D5CD95 /* BudgetBillingResultMock.json */,
 				6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */,
 				67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */,
 				67630E6424509CF60078D3C3 /* SSODataMock.json */,
 				67630E6C2450AD540078D3C3 /* EnergyTipsMock.json */,
 				67630E742450B6FF0078D3C3 /* HomeProfileLoadMock.json */,
 				67630E802450BF410078D3C3 /* EnergyRewardsMock.json */,
+				6727836B243D076400D5CD95 /* GenericResponseMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7383,12 +7353,10 @@
 				9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				9CABF6BD239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */,
-				67278350243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */,
 				359BB2792148349200FBAD83 /* outage.json in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
-				6708868C243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
 				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
@@ -7417,7 +7385,6 @@
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
-				67278374243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */,
 				359BDBAC22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				B08957262217496D00A97965 /* bill_pdf.json in Resources */,
 				359BDB6622D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
@@ -7441,7 +7408,7 @@
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
-				6727836C243D076400D5CD95 /* PaperlessMock.json in Resources */,
+				6727836C243D076400D5CD95 /* GenericResponseMock.json in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
@@ -7537,10 +7504,8 @@
 				B08957212217455200A97965 /* account_lookup.json in Resources */,
 				B0B0840521710D1500B1C632 /* Appt_Confirmed.json in Resources */,
 				9C0EA5BA237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
-				6708868E243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */,
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
-				67278352243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				35C913AB22EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				B0DB275C215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
@@ -7569,7 +7534,7 @@
 				6727834A243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				67088696243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
 				9C3DD83923A4105900AF75B6 /* GameTasks.json in Resources */,
-				6727836E243D076400D5CD95 /* PaperlessMock.json in Resources */,
+				6727836E243D076400D5CD95 /* GenericResponseMock.json in Resources */,
 				67630E772450B6FF0078D3C3 /* HomeProfileLoadMock.json in Resources */,
 				B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -7662,7 +7627,6 @@
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				67630E832450BF410078D3C3 /* EnergyRewardsMock.json in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
-				67278376243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */,
 				9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				9C0EA5BD237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
@@ -7731,10 +7695,8 @@
 				B08957202217455200A97965 /* account_lookup.json in Resources */,
 				B0B083F121710C8900B1C632 /* Appt_Confirmed.json in Resources */,
 				9C0EA5B9237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
-				6708868D243B6D1C00B2C807 /* ScheduledPaymentMockResult.json in Resources */,
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
-				67278351243CD37C00D5CD95 /* DeleteWalletItemMock.json in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				35C913AA22EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */,
@@ -7763,7 +7725,7 @@
 				67278349243CCE6400D5CD95 /* PaymentMock.json in Resources */,
 				67088695243BA5AD00B2C807 /* BillingHistoryResult.json in Resources */,
 				9C3DD83823A4105800AF75B6 /* GameTasks.json in Resources */,
-				6727836D243D076400D5CD95 /* PaperlessMock.json in Resources */,
+				6727836D243D076400D5CD95 /* GenericResponseMock.json in Resources */,
 				67630E762450B6FF0078D3C3 /* HomeProfileLoadMock.json in Resources */,
 				B0EE78EB221353E700F53C56 /* report_outage.json in Resources */,
 				B0B083F221710C8900B1C632 /* Appt_Complete.json in Resources */,
@@ -7856,7 +7818,6 @@
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				67630E822450BF410078D3C3 /* EnergyRewardsMock.json in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
-				67278375243D084F00D5CD95 /* BudgetBillingResultMock.json in Resources */,
 				9C0EA5BF237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				9C0EA5BC237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				B07E17E32209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
@@ -9166,7 +9127,6 @@
 				B06B40FD20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2752215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
-				67278354243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */,
 				B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06823BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
 				9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
@@ -9350,7 +9310,6 @@
 				9CEE412123722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				35D02DCB2416843500D8894F /* NewMinimumVersion.swift in Sources */,
-				67278378243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */,
 				B05E9D13217F688A0003FAB8 /* Application.swift in Sources */,
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
@@ -9366,7 +9325,6 @@
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
-				67278370243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */,
 				670886642433803200B2C807 /* NewWallet.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
 				B07E17B32208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
@@ -9452,7 +9410,6 @@
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
 				0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
-				67088688243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */,
 				0EF60FD420EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
@@ -9480,6 +9437,7 @@
 				670886742433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
+				67630E892450C3970078D3C3 /* GenericResponse.swift in Sources */,
 				B0D5792D219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				E8B8C84C1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */,
 				B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */,
@@ -9637,7 +9595,6 @@
 				82EAB3421F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				9C10B4DD22E23A9A00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B0DB2754215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
-				67278356243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */,
 				B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06A23BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
 				9CA4FA6B2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
@@ -9822,7 +9779,6 @@
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				35D02DCD2416843500D8894F /* NewMinimumVersion.swift in Sources */,
-				6727837A243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B085C44920FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -9838,7 +9794,6 @@
 				B0649A61214834380041B299 /* StormModeStatus.swift in Sources */,
 				9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
-				67278372243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */,
 				670886662433803200B2C807 /* NewWallet.swift in Sources */,
 				8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				82AC2A2C1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
@@ -9923,7 +9878,6 @@
 				9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				8267733F1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				2249C039216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
-				6708868A243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */,
 				54EDD2E11ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
 				E835D1CB1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027C1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
@@ -9951,6 +9905,7 @@
 				670886762433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
 				9C62446122C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
+				67630E8B2450C3970078D3C3 /* GenericResponse.swift in Sources */,
 				B0AD7FF0205841C80090B40D /* SequenceForEach.swift in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				545784B41EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
@@ -10108,7 +10063,6 @@
 				B06B40FE20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2753215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
-				67278355243CD3BA00D5CD95 /* NewDeleteWalletItemResult.swift in Sources */,
 				B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06923BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
 				9CA4FA6A2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
@@ -10293,7 +10247,6 @@
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				9CEE412223722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				35D02DCC2416843500D8894F /* NewMinimumVersion.swift in Sources */,
-				67278379243D085B00D5CD95 /* NewBudgetBillingResult.swift in Sources */,
 				54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269362127579C009B2BFF /* HomeUpdateView.swift in Sources */,
@@ -10309,7 +10262,6 @@
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
 				B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
-				67278371243D077F00D5CD95 /* NewPaperlessResult.swift in Sources */,
 				670886652433803200B2C807 /* NewWallet.swift in Sources */,
 				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
@@ -10394,7 +10346,6 @@
 				9C28D389227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				54AE06AB1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
-				67088689243B6CFE00B2C807 /* NewSchedulePaymentResult.swift in Sources */,
 				35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
@@ -10422,6 +10373,7 @@
 				670886752433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
 				B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
+				67630E8A2450C3970078D3C3 /* GenericResponse.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */,
 				E83F02801FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
 				B0AD7FEF205841C80090B40D /* SequenceForEach.swift in Sources */,

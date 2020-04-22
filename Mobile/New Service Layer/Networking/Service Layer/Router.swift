@@ -347,8 +347,6 @@ public enum Router {
             return "BillingHistoryMock"
         case .payment:
             return "PaymentMock"
-        case .deleteWalletItem:
-            return "DeleteWalletItemMock"
         case .compareBill:
             return "CompareBillMock"
         case .autoPayInfo:
@@ -357,12 +355,8 @@ public enum Router {
             return "AutoPayEnrollMock"
         case .autoPayUnenroll:
             return "AutoPayUnenrollMock" // TODO
-        case .paperlessEnroll, .paperlessUnenroll:
-            return "PaperlessMock" // TODO
         case .budgetBillingInfo:
             return "BudgetBillingMock"
-        case .budgetBillingEnroll, .budgetBillingUnenroll:
-            return "BudgetBillingResultMock"
         case .forecastBill:
             return "ForecastBillMock"
         case .accountLookup:
@@ -373,10 +367,10 @@ public enum Router {
             return "EnergyTipsMock"
         case .homeProfileLoad:
             return "HomeProfileLoadMock"
-        case .homeProfileUpdate:
-            return "BudgetBillingResultMock" // TODO UPDATE NAME OF THIS FILE TO BE A GENERIC SUCCESS RESULT MOCK
         case .energyRewardsLoad:
             return "EnergyRewardsMock"
+        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate:
+            return "GenericResponseMock"
         default:
             return ""
         }

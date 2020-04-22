@@ -8,9 +8,6 @@
 
 import Foundation
 
-// PDF
-
-
 public struct BillPDFNew: Decodable {
     public var imageData: String
     public var contentType: String
