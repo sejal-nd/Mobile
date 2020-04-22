@@ -11,7 +11,7 @@ import Foundation
 struct CodyUnauthenticatedServiceNew {
     
     static func changePassword(request: ChangePasswordRequest, completion: @escaping (Result<Void, NetworkingError>) -> ()) {
-        
+                
         ServiceLayer.request(router: .passwordChange(encodable: request)) { (result: Result<VoidDecodable, NetworkingError>) in
             switch result {
             case .success(let data):
