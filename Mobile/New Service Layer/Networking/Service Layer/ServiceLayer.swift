@@ -9,10 +9,12 @@
 import Foundation
 
 public struct ServiceLayer {
-
-    public static func request<T: Decodable>(router: Router, completion: @escaping (Result<T, NetworkingError>) -> ()) {
+    public static func request<T: Decodable>(router: Router,
+                                             completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // Ensure token exists for auth requests
-        if router.apiAccess == .auth && router.token.isEmpty && T.self == NewSAMLToken.self && T.self == NewJWTToken.self {
+        if router.apiAccess == .auth && router.token.isEmpty
+            && T.self == NewSAMLToken.self
+            && T.self == NewJWTToken.self {
             dLog("No token found: Request denied.")
             completion(.failure(.invalidToken))
             return
@@ -40,7 +42,7 @@ public struct ServiceLayer {
         // Add Headers
         ServiceLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
         
-        // Configure Session (Mock or regular)
+        // Configure URL Session (Mock or regular)
         let session: URLSession
         if Environment.shared.environmentName == .aut {
             // Mock
@@ -105,7 +107,6 @@ public struct ServiceLayer {
                 }
             } catch {
                 dLog("Failed to deocde network response:\n\n\(error)")
-                
                 completion(.failure(.decodingError))
             }
         }
@@ -119,7 +120,8 @@ public struct ServiceLayer {
         dLog("Cancelled all URL Session requests.")
     }
     
-    private static func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?, request: inout URLRequest) {
+    private static func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?,
+                                             request: inout URLRequest) {
         guard let headers = additionalHeaders else { return }
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)

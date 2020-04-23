@@ -12,7 +12,6 @@ public typealias HTTPHeaders = [String: String]
 public typealias HTTPBody = Data?
 
 public enum Router {
-    
     public enum ApiAccess: String {
         case admin
         case anon
@@ -159,7 +158,7 @@ public enum Router {
             return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
         case .billPDF(let accountNumber, let date):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
-            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/\(dateString)/pdf" // todo how do we get date?
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
         case .scheduledPayment(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments/schedule"
         case .scheduledPaymentUpdate(let accountNumber, let paymentId, _):
