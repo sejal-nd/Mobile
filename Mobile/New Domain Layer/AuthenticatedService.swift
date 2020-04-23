@@ -84,7 +84,7 @@ struct AuthenticatedService {
         
         let queryItem = URLQueryItem(name: "$filter", value: filterString)
         
-        ServiceLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<NewAlertBanner, NetworkingError>) in
+        ServiceLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<NewSharePointAlert, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 13 SUCCESS: \(data) BREAK \(data.alerts.first?.title)")
