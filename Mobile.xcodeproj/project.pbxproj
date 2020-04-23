@@ -894,6 +894,15 @@
 		67630E892450C3970078D3C3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E882450C3970078D3C3 /* GenericResponse.swift */; };
 		67630E8A2450C3970078D3C3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E882450C3970078D3C3 /* GenericResponse.swift */; };
 		67630E8B2450C3970078D3C3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E882450C3970078D3C3 /* GenericResponse.swift */; };
+		67630E912451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */; };
+		67630E922451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */; };
+		67630E932451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */; };
+		67630E952451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */; };
+		67630E962451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */; };
+		67630E972451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */; };
+		67630E992451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */; };
+		67630E9A2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */; };
+		67630E9B2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3465,6 +3474,9 @@
 		67630E802450BF410078D3C3 /* EnergyRewardsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EnergyRewardsMock.json; sourceTree = "<group>"; };
 		67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyRewardsNew.swift; sourceTree = "<group>"; };
 		67630E882450C3970078D3C3 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlertPreferencesLoadMock.json; sourceTree = "<group>"; };
+		67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNew.swift; sourceTree = "<group>"; };
+		67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesRequest.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5444,6 +5456,7 @@
 				67630E782450B7360078D3C3 /* HomeProfileLoadNew.swift */,
 				67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */,
 				67630E882450C3970078D3C3 /* GenericResponse.swift */,
+				67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5642,6 +5655,7 @@
 				67630E742450B6FF0078D3C3 /* HomeProfileLoadMock.json */,
 				67630E802450BF410078D3C3 /* EnergyRewardsMock.json */,
 				6727836B243D076400D5CD95 /* GenericResponseMock.json */,
+				67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -6545,6 +6559,7 @@
 				6798CFD1244F6B5600429477 /* SAMLRequest.swift */,
 				6798CFD5244F6CF600429477 /* WalletItemDeleteRequest.swift */,
 				67630E7C2450B8830078D3C3 /* HomeProfileUpdateRequest.swift */,
+				67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -7318,6 +7333,7 @@
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				359BDB7822D8F9B2007002B0 /* outage_reported.json in Resources */,
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
+				67630E912451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */,
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				6766F96A242259D0007C9CB9 /* MinVersionMock.json in Resources */,
@@ -7541,6 +7557,7 @@
 				B0EE78EC221353E700F53C56 /* report_outage.json in Resources */,
 				B0B0840621710D1500B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1E216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
+				67630E932451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
 				9C0E1C992333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
@@ -7732,6 +7749,7 @@
 				224EFF1D216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				67630E922451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				9C0E1C982333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
@@ -9210,6 +9228,7 @@
 				9CABF6B52397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
 				351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
+				67630E992451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */,
 				9CA411DB2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */,
@@ -9524,6 +9543,7 @@
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
+				67630E952451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */,
 				8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				357757552114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				35B9609D22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
@@ -9678,6 +9698,7 @@
 				9CABF6B72397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
+				67630E9B2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */,
 				9CA411DD2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				C37BFD0B2447504B0037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */,
@@ -9992,6 +10013,7 @@
 				3559C8BC23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
 				9CD3532C22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				67630E972451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */,
 				9CEE412323722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				357757572114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
@@ -10146,6 +10168,7 @@
 				9CBCE75723D5EEF400DA4BF8 /* ViewedTipTableViewCell.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */,
+				67630E9A2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				C37BFD0A2447504A0037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */,
@@ -10460,6 +10483,7 @@
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
 				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01C1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
+				67630E962451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				357757562114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				35B9609E22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,

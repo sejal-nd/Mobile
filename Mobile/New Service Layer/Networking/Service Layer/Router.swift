@@ -74,6 +74,10 @@ public enum Router {
     case energyRewardsLoad(accountNumber: String)
     // todo energyRewardsUpdate
     
+    // More
+    
+    case alertPreferencesLoad(accountNumber: String)
+    case alertPreferencesUpdate(accountNumber: String, encodable: Encodable)
     
 //    case getSources
 //    case getProductIds
@@ -217,6 +221,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile"
         case .energyRewardsLoad(let accountNumber):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/programs"
+        case .alertPreferencesLoad(let accountNumber), .alertPreferencesUpdate(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/alerts/preferences/push"
             //        case .getSources:
 //            return "/\(apiAccess)/custom_collections.json"
 //        case .getProductIds:
@@ -236,9 +242,9 @@ public enum Router {
         switch self {
         case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad:
             return "GET"
-        case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate:
+        case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate:
             return "PUT"
         case .paperlessUnenroll:
             return "DELETE"
@@ -285,12 +291,12 @@ public enum Router {
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate:
+        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
             return ["Authorization": "Bearer \(token)",
                 "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                 "Content-Type": "application/json"
             ]
-        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad:
+        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad:
             return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(token)"]
         case .minVersion, .maintenanceMode:
@@ -312,7 +318,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .fetchSAMLToken(let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable):
+        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .fetchSAMLToken(let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable), .alertPreferencesUpdate(_, let encodable):
             return self.encode(encodable)
         default:
             return nil
@@ -369,7 +375,9 @@ public enum Router {
             return "HomeProfileLoadMock"
         case .energyRewardsLoad:
             return "EnergyRewardsMock"
-        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate:
+        case .alertPreferencesLoad:
+            return "AlertPreferencesLoadMock"
+        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
             return "GenericResponseMock"
         default:
             return ""
