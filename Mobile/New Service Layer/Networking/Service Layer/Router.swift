@@ -8,32 +8,35 @@
 
 import Foundation
 
-// extract this into an enum of auth, anon, other (manual)
 public typealias HTTPHeaders = [String: String]
 public typealias HTTPBody = Data?
 
-
 public enum Router {
+    
+    public enum ApiAccess: String {
+        case admin
+        case anon
+        case auth
+        case external
+    }
     
     case minVersion
     case maintenanceMode
-        
+    
     case fetchSAMLToken(encodable: Encodable)
     case exchangeSAMLToken(token: String)
     
     case accounts
     case accountDetails(accountNumber: String, queryString: String)
     
+    case weather(lat: String, long: String)
+    
     case wallet
     
     case payments(accountNumber: String)
     
-    case weather(lat: String, long: String)
-    
     case alertBanner(additionalQueryItem: URLQueryItem)
-    
-    case anonOutageStatus(encodable: Encodable)
-
+        
     // Billing
     
     case billPDF(accountNumber: String, date: Date)
@@ -49,7 +52,7 @@ public enum Router {
     case deleteWalletItem(encodable: Encodable)
     
     case compareBill(accountNumber: String, premiseNumber: String, encodable: Encodable)
-
+    
     case autoPayInfo(accountNumber: String) // todo - Mock + model
     case autoPayEnroll(accountNumber: String, encodable: Encodable)
     case autoPayUnenroll(accountNumber: String, encodable: Encodable) // todo - Mock + model
@@ -75,7 +78,6 @@ public enum Router {
     // todo energyRewardsUpdate
     
     // More
-    
     case alertPreferencesLoad(accountNumber: String)
     case alertPreferencesUpdate(accountNumber: String, encodable: Encodable)
     
@@ -83,11 +85,9 @@ public enum Router {
     
     case appointments(accountNumber: String, premiseNumber: String)
     
-//    case getSources
-//    case getProductIds
-//    case getProductInfo
-    
     // Unauthenticated
+    case anonOutageStatus(encodable: Encodable)
+
     case passwordChange(encodable: Encodable)
     case accountLookup(encodable: Encodable)
     case recoverPassword(encodable: Encodable)
@@ -99,48 +99,23 @@ public enum Router {
     public var host: String {
         switch self {
         case .fetchSAMLToken:
-            return "dev-apigateway.exeloncorp.com"//"stage-apigateway.exeloncorp.com" // TEMP
+            return "dev-apigateway.exeloncorp.com"// todo: fix in mcs config
         case .weather:
             return "api.weather.gov"
         case .alertBanner, .newsAndUpdates:
-            return "azstg.bge.com/_api/web/lists/GetByTitle('GlobalAlert')/items"
+            return "azstg.bge.com/_api/web/lists/GetByTitle('GlobalAlert')/items" // todo: fix in mcs config
         default:
             //return Environment.shared.mcsConfig.baseUrl
-            return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
+            return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com" // todo fix in mcs config
         }
-    }
-    
-    public enum ApiAccess: String {
-        case admin
-        case anon
-        case auth
-        case external
-    }
-    
-    /// Represents a type of request.
-    public enum RequestDataType {
-
-        /// A requests body set with data.
-        case data(Encodable)
-
-        /// A requests body set with parameters and encoding.
-        case encoded(params: [String: Any])
     }
     
     public var apiAccess: ApiAccess {
         switch self {
-            
-        // Admin
-//        case .getSources:
-//            return .admin
-//        case .getProductIds:
-//            return .admin
-//        case .getProductInfo:
-//            return .admin
-            
-        // Anon
+        // External
         case .weather:
             return .external
+        // Anon
         case .minVersion:
             return .anon
         case .maintenanceMode:
@@ -229,12 +204,7 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/alerts/preferences/push"
         case .appointments(let accountNumber, let premiseNumber):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises/\(premiseNumber)/service/appointments/query"
-            //        case .getSources:
-//            return "/\(apiAccess)/custom_collections.json"
-//        case .getProductIds:
-//            return "/\(apiAccess)/collects.json"
-//        case .getProductInfo:
-//            return "/\(apiAccess)/products.json"
+            
         case .passwordChange:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/profile/password"
         case .accountLookup:
@@ -261,7 +231,6 @@ public enum Router {
         return UserSession.shared.token
     }
     
-    // PLACE HOLDER, currently NOT BEING USED
     public var parameters: [URLQueryItem] {
         switch self {
         case .alertBanner(let additionalQueryItem), .newsAndUpdates(let additionalQueryItem):
@@ -271,44 +240,11 @@ public enum Router {
         default:
             return []
         }
-        //        let accessToken = "c32313df0d0ef512ca64d5b336a0d7c6"
-        //        switch self {
-        //        case .getSources:
-        //            return [URLQueryItem(name: "page", value: "1"),
-        //                URLQueryItem(name: "access_token", value: accessToken)]
-        //        case .getProductIds:
-        //            return [URLQueryItem(name: "page", value: "1"),
-        //                URLQueryItem(name: "collection_id", value: "68424466488"),
-        //                URLQueryItem(name: "access_token", value: accessToken)]
-        //        case .getProductInfo:
-        //            return [URLQueryItem(name: "ids", value: "2759162243,2759143811"),
-        //                URLQueryItem(name: "page", value: "1"),
-        //                URLQueryItem(name: "access_token", value: accessToken)]
-        //        default:
-        //            return []
-        //        }
     }
     
     // todo: this may change to switch off of api access... I believe all vlaues below are derived from auth, anon, admin.  Hold off on changing this for now tho... need to dig deeper.
     public var httpHeaders: HTTPHeaders? {
         switch self {
-        case .anonOutageStatus(_):
-            return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
-                "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
-                "Content-Type": "application/json"
-            ]
-        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
-            return ["Authorization": "Bearer \(token)",
-                "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
-                "Content-Type": "application/json"
-            ]
-        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
-            return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
-                    "Authorization": "Bearer \(token)"]
-        case .minVersion, .maintenanceMode:
-            return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
-                "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId
-            ]
         case .fetchSAMLToken:
             return ["content-type": "application/x-www-form-urlencoded"]
         case .exchangeSAMLToken(let samlToken):
@@ -317,6 +253,20 @@ public enum Router {
                     "Authorization": "Bearer \(samlToken)"]
         case .alertBanner, .newsAndUpdates:
             return ["Accept": "application/json;odata=verbose"]
+        case .anonOutageStatus:
+            return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
+                    "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
+                    "Content-Type": "application/json"]
+        case .minVersion, .maintenanceMode:
+            return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
+                    "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId]
+        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
+            return ["oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
+                    "Authorization": "Bearer \(token)"]
+        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
+            return ["Authorization": "Bearer \(token)",
+                    "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
+                    "Content-Type": "application/json"]
         default:
             return nil
         }
@@ -325,7 +275,7 @@ public enum Router {
     public var httpBody: HTTPBody? {
         switch self {
         case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .fetchSAMLToken(let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable), .alertPreferencesUpdate(_, let encodable):
-            return self.encode(encodable)
+            return encode(encodable)
         default:
             return nil
         }

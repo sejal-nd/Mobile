@@ -909,6 +909,9 @@
 		67630EA52451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */; };
 		67630EA62451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */; };
 		67630EA72451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */; };
+		67630EA92452183A0078D3C3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA82452183A0078D3C3 /* NetworkingError.swift */; };
+		67630EAA2452183A0078D3C3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA82452183A0078D3C3 /* NetworkingError.swift */; };
+		67630EAB2452183A0078D3C3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA82452183A0078D3C3 /* NetworkingError.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3485,6 +3488,7 @@
 		67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesRequest.swift; sourceTree = "<group>"; };
 		67630EA02451E1580078D3C3 /* AppointmentsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppointmentsMock.json; sourceTree = "<group>"; };
 		67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsContainer.swift; sourceTree = "<group>"; };
+		67630EA82452183A0078D3C3 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5430,6 +5434,7 @@
 			children = (
 				35D02D88240FFBC000D8894F /* Router.swift */,
 				35D02D8A240FFBC100D8894F /* ServiceLayer.swift */,
+				67630EA82452183A0078D3C3 /* NetworkingError.swift */,
 				6766F96D2422725D007C9CB9 /* Mock */,
 			);
 			path = "Service Layer";
@@ -9551,6 +9556,7 @@
 				9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
 				9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */,
+				67630EA92452183A0078D3C3 /* NetworkingError.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				E867A8FF1F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				B0B083A8216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
@@ -10022,6 +10028,7 @@
 				B0D84D5F220382F000C70A6F /* MockAppState.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
+				67630EAB2452183A0078D3C3 /* NetworkingError.swift in Sources */,
 				351DE2FB221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01D1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
@@ -10493,6 +10500,7 @@
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				9C7774822368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				B0B083A9216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
+				67630EAA2452183A0078D3C3 /* NetworkingError.swift in Sources */,
 				9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */,
 				35A6C6D7211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
