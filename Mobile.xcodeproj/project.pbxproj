@@ -783,12 +783,12 @@
 		6708866C243388BF00B2C807 /* NewPayments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708866B243388BF00B2C807 /* NewPayments.swift */; };
 		6708866D243388BF00B2C807 /* NewPayments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708866B243388BF00B2C807 /* NewPayments.swift */; };
 		6708866E243388BF00B2C807 /* NewPayments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708866B243388BF00B2C807 /* NewPayments.swift */; };
-		670886702433AF3000B2C807 /* AlertBannerMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* AlertBannerMock.json */; };
-		670886712433AF3000B2C807 /* AlertBannerMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* AlertBannerMock.json */; };
-		670886722433AF3000B2C807 /* AlertBannerMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* AlertBannerMock.json */; };
-		670886742433B22D00B2C807 /* NewAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewAlertBanner.swift */; };
-		670886752433B22D00B2C807 /* NewAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewAlertBanner.swift */; };
-		670886762433B22D00B2C807 /* NewAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewAlertBanner.swift */; };
+		670886702433AF3000B2C807 /* SharePointAlertMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* SharePointAlertMock.json */; };
+		670886712433AF3000B2C807 /* SharePointAlertMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* SharePointAlertMock.json */; };
+		670886722433AF3000B2C807 /* SharePointAlertMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* SharePointAlertMock.json */; };
+		670886742433B22D00B2C807 /* NewSharePointAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewSharePointAlert.swift */; };
+		670886752433B22D00B2C807 /* NewSharePointAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewSharePointAlert.swift */; };
+		670886762433B22D00B2C807 /* NewSharePointAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewSharePointAlert.swift */; };
 		670886782433CF1E00B2C807 /* BillPDFMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 670886772433CF1E00B2C807 /* BillPDFMock.json */; };
 		670886792433CF1E00B2C807 /* BillPDFMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 670886772433CF1E00B2C807 /* BillPDFMock.json */; };
 		6708867A2433CF1E00B2C807 /* BillPDFMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 670886772433CF1E00B2C807 /* BillPDFMock.json */; };
@@ -3437,8 +3437,8 @@
 		670886632433803200B2C807 /* NewWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWallet.swift; sourceTree = "<group>"; };
 		67088667243387EE00B2C807 /* PaymentsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaymentsMock.json; sourceTree = "<group>"; };
 		6708866B243388BF00B2C807 /* NewPayments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPayments.swift; sourceTree = "<group>"; };
-		6708866F2433AF3000B2C807 /* AlertBannerMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlertBannerMock.json; sourceTree = "<group>"; };
-		670886732433B22D00B2C807 /* NewAlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlertBanner.swift; sourceTree = "<group>"; };
+		6708866F2433AF3000B2C807 /* SharePointAlertMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SharePointAlertMock.json; sourceTree = "<group>"; };
+		670886732433B22D00B2C807 /* NewSharePointAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSharePointAlert.swift; sourceTree = "<group>"; };
 		670886772433CF1E00B2C807 /* BillPDFMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillPDFMock.json; sourceTree = "<group>"; };
 		6708867B2433CF4D00B2C807 /* NewBillPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillPDF.swift; sourceTree = "<group>"; };
 		6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentUNUSEDMock.json; sourceTree = "<group>"; };
@@ -5440,7 +5440,7 @@
 				676BDA80242E4DC500C880A3 /* NewWeather.swift */,
 				670886632433803200B2C807 /* NewWallet.swift */,
 				6708866B243388BF00B2C807 /* NewPayments.swift */,
-				670886732433B22D00B2C807 /* NewAlertBanner.swift */,
+				670886732433B22D00B2C807 /* NewSharePointAlert.swift */,
 				6708867B2433CF4D00B2C807 /* NewBillPDF.swift */,
 				67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */,
 				67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */,
@@ -5640,7 +5640,7 @@
 				676BDA7C242E4BB500C880A3 /* WeatherMock.json */,
 				6708865F24337E8600B2C807 /* WalletMock.json */,
 				67088667243387EE00B2C807 /* PaymentsMock.json */,
-				6708866F2433AF3000B2C807 /* AlertBannerMock.json */,
+				6708866F2433AF3000B2C807 /* SharePointAlertMock.json */,
 				670886772433CF1E00B2C807 /* BillPDFMock.json */,
 				6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */,
 				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
@@ -7482,7 +7482,7 @@
 				9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
-				670886702433AF3000B2C807 /* AlertBannerMock.json in Resources */,
+				670886702433AF3000B2C807 /* SharePointAlertMock.json in Resources */,
 				B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */,
 				359BDB7522D8F9B2007002B0 /* outage_off.json in Resources */,
 				B07D247720C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
@@ -7639,7 +7639,7 @@
 				E873DA7A1EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				35C913A122E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
-				670886722433AF3000B2C807 /* AlertBannerMock.json in Resources */,
+				670886722433AF3000B2C807 /* SharePointAlertMock.json in Resources */,
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				67630E832450BF410078D3C3 /* EnergyRewardsMock.json in Resources */,
@@ -7831,7 +7831,7 @@
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				35C913A022E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
-				670886712433AF3000B2C807 /* AlertBannerMock.json in Resources */,
+				670886712433AF3000B2C807 /* SharePointAlertMock.json in Resources */,
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				67630E822450BF410078D3C3 /* EnergyRewardsMock.json in Resources */,
@@ -9453,7 +9453,7 @@
 				E8B956E21F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
 				9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
-				670886742433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
+				670886742433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				67630E892450C3970078D3C3 /* GenericResponse.swift in Sources */,
@@ -9923,7 +9923,7 @@
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				9C34D74A239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
-				670886762433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
+				670886762433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				9C62446122C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
 				67630E8B2450C3970078D3C3 /* GenericResponse.swift in Sources */,
@@ -10393,7 +10393,7 @@
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				9C34D749239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
-				670886752433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
+				670886752433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				67630E8A2450C3970078D3C3 /* GenericResponse.swift in Sources */,

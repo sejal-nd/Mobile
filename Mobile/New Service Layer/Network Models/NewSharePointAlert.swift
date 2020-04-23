@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewAlertBanner: Decodable {
+public struct NewSharePointAlert: Decodable {
     public var alerts: [NewAlert]
     
     enum CodingKeys: String, CodingKey {

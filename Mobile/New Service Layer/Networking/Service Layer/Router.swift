@@ -79,6 +79,8 @@ public enum Router {
     case alertPreferencesLoad(accountNumber: String)
     case alertPreferencesUpdate(accountNumber: String, encodable: Encodable)
     
+    case newsAndUpdates(additionalQueryItem: URLQueryItem)
+    
 //    case getSources
 //    case getProductIds
 //    case getProductInfo
@@ -98,8 +100,8 @@ public enum Router {
             return "dev-apigateway.exeloncorp.com"//"stage-apigateway.exeloncorp.com" // TEMP
         case .weather:
             return "api.weather.gov"
-        case .alertBanner:
-            return "azstg.bge.com"
+        case .alertBanner, .newsAndUpdates:
+            return "azstg.bge.com/_api/web/lists/GetByTitle('GlobalAlert')/items"
         default:
             //return Environment.shared.mcsConfig.baseUrl
             return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com"
@@ -176,7 +178,7 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/wallet/query"
         case .payments(let accountNumber):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/payments"
-        case .alertBanner:
+        case .alertBanner, .newsAndUpdates:
             return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
         case .billPDF(let accountNumber, let date):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
@@ -242,7 +244,7 @@ public enum Router {
         switch self {
         case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate:
             return "PUT"
@@ -258,7 +260,7 @@ public enum Router {
     // PLACE HOLDER, currently NOT BEING USED
     public var parameters: [URLQueryItem] {
         switch self {
-        case .alertBanner(let additionalQueryItem):
+        case .alertBanner(let additionalQueryItem), .newsAndUpdates(let additionalQueryItem):
             return [URLQueryItem(name: "$select", value: "Title,Message,Enable,CustomerType,Created,Modified"),
                     URLQueryItem(name: "$orderby", value: "Modified desc"),
                     additionalQueryItem]
@@ -309,7 +311,7 @@ public enum Router {
             return ["encode": "xml",
                     "oracle-mobile-backend-id": Environment.shared.mcsConfig.mobileBackendId,
                     "Authorization": "Bearer \(samlToken)"]
-        case .alertBanner:
+        case .alertBanner, .newsAndUpdates:
             return ["Accept": "application/json;odata=verbose"]
         default:
             return nil
@@ -343,8 +345,8 @@ public enum Router {
             return "WalletMock"
         case .payments:
             return "PaymentsMock"
-        case .alertBanner:
-            return "AlertBannerMock"
+        case .alertBanner, .newsAndUpdates:
+            return "SharePointAlertMock"
         case .billPDF:
             return "BillPDFMock"
         case .scheduledPayment, .scheduledPaymentUpdate, .scheduledPaymentDelete:
