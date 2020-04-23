@@ -33,7 +33,7 @@ public struct NetworkingLayer {
         }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
-                
+        
         // Set HTTP BODY
         if let httpBody = router.httpBody {
             urlRequest.httpBody = httpBody
