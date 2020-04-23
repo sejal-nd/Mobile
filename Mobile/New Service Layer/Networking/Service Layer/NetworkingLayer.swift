@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ServiceLayer {
+public struct NetworkingLayer {
     public static func request<T: Decodable>(router: Router,
                                              completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // Ensure token exists for auth requests
@@ -40,7 +40,7 @@ public struct ServiceLayer {
         }
         
         // Add Headers
-        ServiceLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
+        NetworkingLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
         
         // Configure URL Session (Mock or regular)
         let session: URLSession

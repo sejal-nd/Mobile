@@ -515,9 +515,9 @@
 		35D02D8B240FFBC100D8894F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D88240FFBC000D8894F /* Router.swift */; };
 		35D02D8C240FFBC100D8894F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D88240FFBC000D8894F /* Router.swift */; };
 		35D02D8D240FFBC100D8894F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D88240FFBC000D8894F /* Router.swift */; };
-		35D02D91240FFBC100D8894F /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* ServiceLayer.swift */; };
-		35D02D92240FFBC100D8894F /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* ServiceLayer.swift */; };
-		35D02D93240FFBC100D8894F /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* ServiceLayer.swift */; };
+		35D02D91240FFBC100D8894F /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */; };
+		35D02D92240FFBC100D8894F /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */; };
+		35D02D93240FFBC100D8894F /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */; };
 		35D02DCB2416843500D8894F /* NewMinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02DCA2416843500D8894F /* NewMinimumVersion.swift */; };
 		35D02DCC2416843500D8894F /* NewMinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02DCA2416843500D8894F /* NewMinimumVersion.swift */; };
 		35D02DCD2416843500D8894F /* NewMinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02DCA2416843500D8894F /* NewMinimumVersion.swift */; };
@@ -3346,7 +3346,7 @@
 		35CE69DB21122F50007EB844 /* ComEd-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-STAGE.entitlements"; sourceTree = "<group>"; };
 		35CE69DC21122F51007EB844 /* PECO-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-PROD.entitlements"; sourceTree = "<group>"; };
 		35D02D88240FFBC000D8894F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		35D02D8A240FFBC100D8894F /* ServiceLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
+		35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingLayer.swift; sourceTree = "<group>"; };
 		35D02DCA2416843500D8894F /* NewMinimumVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMinimumVersion.swift; sourceTree = "<group>"; };
 		35D02DDA24168E5E00D8894F /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		35D6B62A231424E900DCD588 /* AlertRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRow.swift; sourceTree = "<group>"; };
@@ -5433,7 +5433,7 @@
 			isa = PBXGroup;
 			children = (
 				35D02D88240FFBC000D8894F /* Router.swift */,
-				35D02D8A240FFBC100D8894F /* ServiceLayer.swift */,
+				35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */,
 				67630EA82452183A0078D3C3 /* NetworkingError.swift */,
 				6766F96D2422725D007C9CB9 /* Mock */,
 			);
@@ -9358,7 +9358,7 @@
 				35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				67630E6924509EBD0078D3C3 /* SSODataResponse.swift in Sources */,
-				35D02D91240FFBC100D8894F /* ServiceLayer.swift in Sources */,
+				35D02D91240FFBC100D8894F /* NetworkingLayer.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
@@ -9831,7 +9831,7 @@
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				67630E6B24509EBD0078D3C3 /* SSODataResponse.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
-				35D02D93240FFBC100D8894F /* ServiceLayer.swift in Sources */,
+				35D02D93240FFBC100D8894F /* NetworkingLayer.swift in Sources */,
 				B0649A61214834380041B299 /* StormModeStatus.swift in Sources */,
 				9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
@@ -10303,7 +10303,7 @@
 				35C9139722E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				67630E6A24509EBD0078D3C3 /* SSODataResponse.swift in Sources */,
 				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
-				35D02D92240FFBC100D8894F /* ServiceLayer.swift in Sources */,
+				35D02D92240FFBC100D8894F /* NetworkingLayer.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
 				B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */,

@@ -17,7 +17,7 @@ struct UsageServiceNew {
         let encodedObject = CompareBillRequest(compareWith: yearAgo ? "YEAR_AGO" : "PREVIOUS",
                                                fuelType: gas ? "GAS" : "ELEC")
         
-            ServiceLayer.request(router: .compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, encodable: encodedObject)) { (result: Result<NewCompareBillResult, NetworkingError>) in
+            NetworkingLayer.request(router: .compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, encodable: encodedObject)) { (result: Result<NewCompareBillResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
