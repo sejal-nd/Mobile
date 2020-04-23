@@ -903,6 +903,12 @@
 		67630E992451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */; };
 		67630E9A2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */; };
 		67630E9B2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */; };
+		67630EA12451E1580078D3C3 /* AppointmentsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630EA02451E1580078D3C3 /* AppointmentsMock.json */; };
+		67630EA22451E1580078D3C3 /* AppointmentsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630EA02451E1580078D3C3 /* AppointmentsMock.json */; };
+		67630EA32451E1580078D3C3 /* AppointmentsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630EA02451E1580078D3C3 /* AppointmentsMock.json */; };
+		67630EA52451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */; };
+		67630EA62451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */; };
+		67630EA72451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3477,6 +3483,8 @@
 		67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlertPreferencesLoadMock.json; sourceTree = "<group>"; };
 		67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNew.swift; sourceTree = "<group>"; };
 		67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesRequest.swift; sourceTree = "<group>"; };
+		67630EA02451E1580078D3C3 /* AppointmentsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppointmentsMock.json; sourceTree = "<group>"; };
+		67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsContainer.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5457,6 +5465,7 @@
 				67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */,
 				67630E882450C3970078D3C3 /* GenericResponse.swift */,
 				67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */,
+				67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5656,6 +5665,7 @@
 				67630E802450BF410078D3C3 /* EnergyRewardsMock.json */,
 				6727836B243D076400D5CD95 /* GenericResponseMock.json */,
 				67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */,
+				67630EA02451E1580078D3C3 /* AppointmentsMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -7466,6 +7476,7 @@
 				9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				676BDA68242BA85C00C880A3 /* AccountDetailsMock.json in Resources */,
+				67630EA12451E1580078D3C3 /* AppointmentsMock.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
@@ -7676,6 +7687,7 @@
 				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
 				359BDB7722D8F9B2007002B0 /* outage_off.json in Resources */,
+				67630EA32451E1580078D3C3 /* AppointmentsMock.json in Resources */,
 				67630E6F2450AD540078D3C3 /* EnergyTipsMock.json in Resources */,
 				9C0EA5B4237DAD2900D1E18F /* buddy_body.json in Resources */,
 				B07D247920C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
@@ -7868,6 +7880,7 @@
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
 				359BDB7622D8F9B2007002B0 /* outage_off.json in Resources */,
+				67630EA22451E1580078D3C3 /* AppointmentsMock.json in Resources */,
 				67630E6E2450AD540078D3C3 /* EnergyTipsMock.json in Resources */,
 				9C0EA5B3237DAD2900D1E18F /* buddy_body.json in Resources */,
 				B07D247820C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
@@ -9365,6 +9378,7 @@
 				E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				67088690243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
+				67630EA52451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */,
 				9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
@@ -9835,6 +9849,7 @@
 				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				67088692243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */,
+				67630EA72451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				9CB7E8DF23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				35C9139822E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
@@ -10305,6 +10320,7 @@
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				67088691243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */,
+				67630EA62451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */,
 				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9CB7E8DE23980BA4001FBAB9 /* GameTask.swift in Sources */,
