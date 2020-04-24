@@ -8,15 +8,17 @@
 
 import Foundation
 
+// todo clean up naming to reflect differences otherwise combine into a single error.
+
 public enum NetworkingError: Error {
     case invalidToken
     case invalidURL
-    case networkError
-    case invalidResponse
-    case invalidData
+    case networkError // how does this differ?
+    case invalidResponse // how does this differ?
+    case invalidData // how does this differ?
     case decodingError
     case encodingError
-    case endpointError
+    case endpointError(_ error: EndpointError) // how does this differ?
 }
 
 // todo: below will be implemented for user facing messages.

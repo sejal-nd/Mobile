@@ -849,9 +849,6 @@
 		67278388243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */; };
 		67278389243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */; };
 		6727838A243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */; };
-		67278394244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
-		67278395244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
-		67278396244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
 		672783982449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */; };
 		672783992449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */; };
 		6727839A2449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */; };
@@ -912,6 +909,9 @@
 		67630EA92452183A0078D3C3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA82452183A0078D3C3 /* NetworkingError.swift */; };
 		67630EAA2452183A0078D3C3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA82452183A0078D3C3 /* NetworkingError.swift */; };
 		67630EAB2452183A0078D3C3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA82452183A0078D3C3 /* NetworkingError.swift */; };
+		67630EAD245323D40078D3C3 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EAC245323D40078D3C3 /* EndpointError.swift */; };
+		67630EAE245323D40078D3C3 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EAC245323D40078D3C3 /* EndpointError.swift */; };
+		67630EAF245323D40078D3C3 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EAC245323D40078D3C3 /* EndpointError.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3468,7 +3468,6 @@
 		6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingMock.json; sourceTree = "<group>"; };
 		67278383243F76F800D5CD95 /* NewForecastBill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForecastBill.swift; sourceTree = "<group>"; };
 		67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForecastMonthlyBillMock.json; sourceTree = "<group>"; };
-		67278393244634DB00D5CD95 /* EndpointError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointError.swift; sourceTree = "<group>"; };
 		672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetBillingUnenrollRequest.swift; sourceTree = "<group>"; };
 		6727839B2449F52500D5CD95 /* AutoPayEnrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayEnrollRequest.swift; sourceTree = "<group>"; };
 		6727839F2449F83800D5CD95 /* CompareBillRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareBillRequest.swift; sourceTree = "<group>"; };
@@ -3489,6 +3488,7 @@
 		67630EA02451E1580078D3C3 /* AppointmentsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppointmentsMock.json; sourceTree = "<group>"; };
 		67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsContainer.swift; sourceTree = "<group>"; };
 		67630EA82452183A0078D3C3 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		67630EAC245323D40078D3C3 /* EndpointError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointError.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5413,7 +5413,6 @@
 			isa = PBXGroup;
 			children = (
 				35D02DDA24168E5E00D8894F /* Test.swift */,
-				67278393244634DB00D5CD95 /* EndpointError.swift */,
 				6766F96E242273D8007C9CB9 /* UserSession.swift */,
 				35D02D95240FFBD800D8894F /* Network Models */,
 				35D02D81240FFB9400D8894F /* Networking */,
@@ -5460,9 +5459,10 @@
 				67630E702450B47D0078D3C3 /* UsageTipNew.swift */,
 				67630E782450B7360078D3C3 /* HomeProfileLoadNew.swift */,
 				67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */,
-				67630E882450C3970078D3C3 /* GenericResponse.swift */,
 				67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */,
 				67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */,
+				67630E882450C3970078D3C3 /* GenericResponse.swift */,
+				67630EAC245323D40078D3C3 /* EndpointError.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -9206,7 +9206,6 @@
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				355B103B2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
-				67278394244634DB00D5CD95 /* EndpointError.swift in Sources */,
 				9CBE9E2E23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
@@ -9223,6 +9222,7 @@
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				67630E792450B7360078D3C3 /* HomeProfileLoadNew.swift in Sources */,
 				B0D84D5C220382EE00C70A6F /* MockAppState.swift in Sources */,
+				67630EAD245323D40078D3C3 /* EndpointError.swift in Sources */,
 				82DE610A1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
 				B0472B292111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E83F026B1FB0B5850062A348 /* AlertsService.swift in Sources */,
@@ -9678,7 +9678,6 @@
 				B0DB2762215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
 				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				82DE610C1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
-				67278396244634DB00D5CD95 /* EndpointError.swift in Sources */,
 				9CBE9E3023749B9900E14222 /* MCSGameService.swift in Sources */,
 				E83F026D1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				B0472B2B2111011F0048C1A7 /* UsageViewController.swift in Sources */,
@@ -9695,6 +9694,7 @@
 				359BDB2A22D398F0007002B0 /* UIColor+Image.swift in Sources */,
 				67630E7B2450B7360078D3C3 /* HomeProfileLoadNew.swift in Sources */,
 				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
+				67630EAF245323D40078D3C3 /* EndpointError.swift in Sources */,
 				35277AFB2102325100411297 /* UsageViewModel.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -10150,7 +10150,6 @@
 				9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				355B103A2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
-				67278395244634DB00D5CD95 /* EndpointError.swift in Sources */,
 				9CBE9E2F23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
@@ -10167,6 +10166,7 @@
 				B0D84D5E220382EF00C70A6F /* MockAppState.swift in Sources */,
 				67630E7A2450B7360078D3C3 /* HomeProfileLoadNew.swift in Sources */,
 				B0472B2A2111011F0048C1A7 /* UsageViewController.swift in Sources */,
+				67630EAE245323D40078D3C3 /* EndpointError.swift in Sources */,
 				E80CBD101F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD61E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,

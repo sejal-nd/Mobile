@@ -50,14 +50,14 @@ public struct NetworkingLayer {
             let mockUser = MockDataKey(rawValue: username) ?? .default
             
             let configuration = URLProtocolMock.createMockURLConfiguration(path: url.absoluteString,
-                                                           mockDataFileName: router.mockFileName,
-                                                           mockUser: mockUser)
+                                                                           mockDataFileName: router.mockFileName,
+                                                                           mockUser: mockUser)
             session = URLSession(configuration: configuration)
         } else {
             // Regular
             session = URLSession.shared
         }
-                
+        
         // Perform Data Task
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
@@ -65,13 +65,13 @@ public struct NetworkingLayer {
                 completion(.failure(.networkError))
                 return
             }
-
+            
             // Validate response if not using mock
             guard response != nil || Environment.shared.environmentName == .aut else {
                 completion(.failure(.invalidResponse))
                 return
             }
-
+            
             guard let data = data else {
                 completion(.failure(.invalidData))
                 return
@@ -86,28 +86,24 @@ public struct NetworkingLayer {
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
             
-            do {
-                // Decode response
-                let responseObject = try jsonDecoder.decode(T.self, from: data)
+            
+            if let errorResponse = try? jsonDecoder.decode(EndpointError.self, from: data) {
+                // Error
+                dLog("Endpoint error response:\n\n\(errorResponse)")
                 
-                // Validate successful response
-                if let endpointError = responseObject as? EndpointErrorable,
-                    let errorCode = endpointError.errorCode,
-                    let errorMessage = endpointError.errorMessage {
-                    // todo
+                completion(.failure(.endpointError(errorResponse)))
+            } else {
+                do {
+                    let responseObject = try jsonDecoder.decode(T.self, from: data)
                     
-                    print("FN ERROR")
-                    completion(.failure(.endpointError))
-                    return
+                    // Success
+                    DispatchQueue.main.async {
+                        completion(.success(responseObject))
+                    }
+                } catch {
+                    dLog("Failed to deocde network response:\n\n\(error)")
+                    completion(.failure(.decodingError))
                 }
-                
-                // Success
-                DispatchQueue.main.async {
-                    completion(.success(responseObject))
-                }
-            } catch {
-                dLog("Failed to deocde network response:\n\n\(error)")
-                completion(.failure(.decodingError))
             }
         }
         dataTask.resume()
