@@ -102,18 +102,7 @@ public struct ServiceLayer {
             
             do {
                 // 6.
-                let responseObject = try jsonDecoder.decode(T.self, from: data)
-                
-                if let endpointError = responseObject as? EndpointErrorable,
-                    let errorCode = endpointError.errorCode,
-                    let errorMessage = endpointError.errorMessage {
-                    // todo
-                    
-                    print("FN ERROR")
-                    completion(.failure(.endpointError(endpointError)))
-                    
-                    return
-                }
+                let responseObject: T = try decode(data: data)
                 
                 // 7.
                 DispatchQueue.main.async {
@@ -127,6 +116,37 @@ public struct ServiceLayer {
             }
         }
         dataTask.resume()
+    }
+    
+    public static func decode<T: Decodable>(data: Data) throws -> T {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+        
+        var responseWrapper: NewResponseWrapper<T>?
+        var responseObject: T?
+        do {
+            // 1st attempt to decode response wrapper
+            responseWrapper = try jsonDecoder.decode(NewResponseWrapper<T>.self, from: data)
+            responseObject = responseWrapper?.data
+        } catch {
+            // 2nd attempt to decode data model
+            responseObject = try jsonDecoder.decode(T.self, from: data)
+        }
+        
+        // check for endpoint error
+        if let endpointError = checkForEndpointError(responseWrapper ?? responseObject) {
+            throw NetworkingError.endpointError(endpointError)
+        }
+        
+        if responseObject == nil {
+            throw NetworkingError.decodingError
+        }
+        
+        return responseObject!
+    }
+    
+    public static func checkForEndpointError(_ decodable: Decodable?) -> EndpointErrorable? {
+        return decodable as? EndpointErrorable
     }
     
     public static func cancelAllTasks() {

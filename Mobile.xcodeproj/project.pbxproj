@@ -2238,6 +2238,12 @@
 		C3244C5C24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */; };
 		C3244C5D24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */; };
 		C3244C5E24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */; };
+		C3244C6024571E3100C05FB2 /* NewResponseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */; };
+		C3244C6124571E3100C05FB2 /* NewResponseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */; };
+		C3244C6224571E3100C05FB2 /* NewResponseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */; };
+		C3244C6324571E3100C05FB2 /* NewResponseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */; };
+		C3244C6424571E3100C05FB2 /* NewResponseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */; };
+		C3244C6524571E3100C05FB2 /* NewResponseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */; };
 		C32BD4922448D5A500870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
 		C32BD4932448D5A600870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
 		C32BD4942448D5A600870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
@@ -3966,6 +3972,7 @@
 		C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOutageStatus.swift; sourceTree = "<group>"; };
 		C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReportedOutageResult.swift; sourceTree = "<group>"; };
 		C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeterPingResult.swift; sourceTree = "<group>"; };
+		C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewResponseWrapper.swift; sourceTree = "<group>"; };
 		C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordRequest.swift; sourceTree = "<group>"; };
 		C32BD4992448D9F800870262 /* AccountLookupResultMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AccountLookupResultMock.json; sourceTree = "<group>"; };
 		C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverMaskedUsernameRequest.swift; sourceTree = "<group>"; };
@@ -5489,6 +5496,7 @@
 				C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */,
 				C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */,
 				C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */,
+				C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -9466,6 +9474,7 @@
 				0EF60FD420EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
+				C3244C6024571E3100C05FB2 /* NewResponseWrapper.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */,
 				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
@@ -9942,6 +9951,7 @@
 				54EDD2E11ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
 				E835D1CB1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027C1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
+				C3244C6224571E3100C05FB2 /* NewResponseWrapper.swift in Sources */,
 				E89983E31F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				B068DB5820D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				B094A34F20D9442400E81303 /* HomeCard.swift in Sources */,
@@ -10418,6 +10428,7 @@
 				35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				C3244C6124571E3100C05FB2 /* NewResponseWrapper.swift in Sources */,
 				826773421FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				8267733E1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				2249C038216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
@@ -10580,6 +10591,7 @@
 				54AE06B31ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE6203F57D800A56FEE /* MyHomeProfileTests.swift in Sources */,
+				C3244C6324571E3100C05FB2 /* NewResponseWrapper.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
 				9C48856323D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BA2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
@@ -10825,6 +10837,7 @@
 				E8F62B36200924410077B3DA /* Premise.swift in Sources */,
 				E8F62B38200924410077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */,
+				C3244C6424571E3100C05FB2 /* NewResponseWrapper.swift in Sources */,
 				82119FE3203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
 				9C48856423D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BB2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
@@ -11018,6 +11031,7 @@
 				E8F62BEB200924570077B3DA /* Premise.swift in Sources */,
 				E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */,
+				C3244C6524571E3100C05FB2 /* NewResponseWrapper.swift in Sources */,
 				82119FE4203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
 				9C48856523D2672000E107C6 /* Weekday.swift in Sources */,
 				B07E17BC2208F63700B6E3C7 /* WeatherItem.swift in Sources */,

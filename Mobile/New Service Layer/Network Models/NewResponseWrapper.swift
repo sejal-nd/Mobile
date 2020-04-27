@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct NewResponseWrapper<T: Decodable>: Decodable {
+    public let success: Bool
+    public let data: T
+}
