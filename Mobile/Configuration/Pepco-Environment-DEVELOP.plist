@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>environment</key>
+	<string>DEV</string>
+	<key>opco</key>
+	<string>BGE</string>
+	<key>appName</key>
+	<string>BGE_DEV</string>
+	<key>mcsInstanceName</key>
+	<string>Dev-bgeMBE</string>
+	<key>myAccountUrl</key>
+	<string>https://aztst.bge.com/MyAccount</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_bge_develop</string>
+	<key>gaTrackingId</key>
+	<string>UA-76742208-8</string>
+	<key>opcoUpdatesHost</key>
+	<string>azstg.bge.com</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.bge.com</string>
+</dict>
+</plist>
