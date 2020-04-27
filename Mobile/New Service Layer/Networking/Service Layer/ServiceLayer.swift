@@ -110,7 +110,7 @@ public struct ServiceLayer {
                     // todo
                     
                     print("FN ERROR")
-                    completion(.failure(.endpointError))
+                    completion(.failure(.endpointError(endpointError)))
                     
                     return
                 }
@@ -164,7 +164,7 @@ public enum NetworkingError: Error {
     case invalidData
     case decodingError
     case encodingError
-    case endpointError
+    case endpointError(_: EndpointErrorable)
 }
 
 // todo: below will be implemented for user facing messages.

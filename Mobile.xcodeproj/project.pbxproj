@@ -2223,6 +2223,21 @@
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
 		B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */; };
 		C30BBE152444DEA60070522A /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
+		C3244C4E2452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
+		C3244C4F2452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
+		C3244C502452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
+		C3244C5224522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */; };
+		C3244C5324522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */; };
+		C3244C5424522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */; };
+		C3244C5524522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */; };
+		C3244C5624522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */; };
+		C3244C5724522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */; };
+		C3244C5924535B8800C05FB2 /* NewMeterPingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */; };
+		C3244C5A24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */; };
+		C3244C5B24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */; };
+		C3244C5C24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */; };
+		C3244C5D24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */; };
+		C3244C5E24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */; };
 		C32BD4922448D5A500870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
 		C32BD4932448D5A600870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
 		C32BD4942448D5A600870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
@@ -3948,6 +3963,9 @@
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
 		BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodyUnauthenticatedServiceNew.swift; sourceTree = "<group>"; };
+		C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOutageStatus.swift; sourceTree = "<group>"; };
+		C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReportedOutageResult.swift; sourceTree = "<group>"; };
+		C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeterPingResult.swift; sourceTree = "<group>"; };
 		C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordRequest.swift; sourceTree = "<group>"; };
 		C32BD4992448D9F800870262 /* AccountLookupResultMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AccountLookupResultMock.json; sourceTree = "<group>"; };
 		C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverMaskedUsernameRequest.swift; sourceTree = "<group>"; };
@@ -5468,6 +5486,9 @@
 				67630E782450B7360078D3C3 /* HomeProfileLoadNew.swift */,
 				67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */,
 				67630E882450C3970078D3C3 /* GenericResponse.swift */,
+				C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */,
+				C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */,
+				C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -9169,6 +9190,7 @@
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				67E6E7BF242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */,
+				C3244C4E2452137400C05FB2 /* NewOutageStatus.swift in Sources */,
 				B0E9EFFB21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
 				824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
@@ -9245,6 +9267,7 @@
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				9CD742BF237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */,
 				54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
+				C3244C5924535B8800C05FB2 /* NewMeterPingResult.swift in Sources */,
 				E80D2E171E721668002626C9 /* MaskedString.swift in Sources */,
 				E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				35A6C6DE211CC0CA00C2A58F /* UpdatesViewController.swift in Sources */,
@@ -9466,6 +9489,7 @@
 				E8B956E21F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
 				9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
+				C3244C5224522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
 				670886742433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -9642,6 +9666,7 @@
 				824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */,
 				67E6E7C1242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */,
+				C3244C502452137400C05FB2 /* NewOutageStatus.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				82EAB33E1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
@@ -9718,6 +9743,7 @@
 				359BDB7122D8DCF6007002B0 /* OutageStatusView.swift in Sources */,
 				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				9CD742C1237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */,
+				C3244C5B24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */,
 				B06B08842226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				825171B71F1D25130020A6CA /* HomeViewModel.swift in Sources */,
 				E8FF085C1F7EDC250030F1BF /* BillingHistoryViewModel.swift in Sources */,
@@ -9939,6 +9965,7 @@
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				9C34D74A239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
+				C3244C5424522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
 				670886762433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
 				9C62446122C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
@@ -10115,6 +10142,7 @@
 				B0E9EFFC21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				824A96661FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				67E6E7C0242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */,
+				C3244C4F2452137400C05FB2 /* NewOutageStatus.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				82EAB33D1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
@@ -10191,6 +10219,7 @@
 				9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */,
 				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
+				C3244C5A24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */,
 				9CD742C0237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */,
 				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7012121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
@@ -10412,6 +10441,7 @@
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				9C34D749239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
+				C3244C5324522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
 				670886752433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
 				B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -10580,6 +10610,7 @@
 				B08BBFC621C8539000A899FC /* SERResult.swift in Sources */,
 				B548468E1E688744008CE1B1 /* MCSResponseParser.swift in Sources */,
 				E83F027D1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
+				C3244C5C24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */,
 				357757512113611000E73542 /* DateParserTests.swift in Sources */,
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
@@ -10701,6 +10732,7 @@
 				82DE61081FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */,
 				B0882C9A2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
+				C3244C5524522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
 				B067E0A32045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
@@ -10823,6 +10855,7 @@
 				B08BBFC721C8539000A899FC /* SERResult.swift in Sources */,
 				82B20A3A203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
 				E8F62B4F200924410077B3DA /* BillBreakdownViewModelTests.swift in Sources */,
+				C3244C5D24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */,
 				E8F62B51200924410077B3DA /* MCSResponseParser.swift in Sources */,
 				B07E17C22208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				E8F62B52200924410077B3DA /* OpcoUpdate.swift in Sources */,
@@ -10944,6 +10977,7 @@
 				E8F62BAE200924410077B3DA /* OutageService.swift in Sources */,
 				E8F62BB0200924410077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62BB1200924410077B3DA /* HomeProfile.swift in Sources */,
+				C3244C5624522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
 				B0882C9B2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
 				B067E0A42045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */,
@@ -11014,6 +11048,7 @@
 				B08BBFC821C8539000A899FC /* SERResult.swift in Sources */,
 				82B20A3B203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
 				E8F62C04200924570077B3DA /* BillBreakdownViewModelTests.swift in Sources */,
+				C3244C5E24535B8800C05FB2 /* NewMeterPingResult.swift in Sources */,
 				E8F62C06200924570077B3DA /* MCSResponseParser.swift in Sources */,
 				B07E17C32208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				E8F62C07200924570077B3DA /* OpcoUpdate.swift in Sources */,
@@ -11135,6 +11170,7 @@
 				E8F62C63200924570077B3DA /* OutageService.swift in Sources */,
 				E8F62C65200924570077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62C66200924570077B3DA /* HomeProfile.swift in Sources */,
+				C3244C5724522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
 				B0882C9C2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
 				B067E0A52045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */,

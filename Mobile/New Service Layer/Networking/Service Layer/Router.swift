@@ -80,8 +80,9 @@ public enum Router {
 //    case getProductInfo
     
     // Outage
-    
     case outageStatus(accountNumber: String, premiseNumber: String)
+    case reportOutage(accountNumber: String, encodable: Encodable)
+    case meterPing(accountNumber: String, premiseNumber: String)
     
     // Unauthenticated
     case passwordChange(encodable: Encodable)
@@ -237,14 +238,20 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/recover/password"
         case .recoverUsername, .recoverMaskedUsername:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/recover/username"
+        case .outageStatus(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/outage?meterPing=false"
+        case .reportOutage(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/outage"
+        case .meterPing(let accountNumber, let premiseNumber):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises\(premiseNumber)/outage"
         }
     }
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .forecastYearlyBill, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .outageStatus, .meterPing:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate:
             return "PUT"

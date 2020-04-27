@@ -9,34 +9,46 @@
 import Foundation
 
 struct OutageServiceNew {
-    static func fetchOutageStatus(account: Account, completion: @escaping (Result<Void, NetworkingError>) -> ()) {
-        var path = "accounts/\(account.accountNumber)/outage?meterPing=false"
-        if StormModeStatus.shared.isOn && Environment.shared.opco != .bge {
-            path.append("&summary=true")
-        }
-        return MCSApi.shared.get(pathPrefix: .auth, path: path)
-            .map { jsonArray in
-                guard let outageStatusArray = jsonArray as? NSArray else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                if account.isMultipremise {
-                    let outageStatusModels = outageStatusArray.map { $0 as! NSDictionary }
-                    guard let premiseNumber = account.currentPremise?.premiseNumber,
-                        let dict = outageStatusModels.filter({ $0["premiseNumber"] as? String == premiseNumber }).first,
-                        let outageStatus = OutageStatus.from(dict as NSDictionary) else {
-                            throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                    }
-                    
-                    return outageStatus
-                } else {
-                    guard let dict = outageStatusArray[0] as? NSDictionary,
-                        let outageStatus = OutageStatus.from(dict) else {
-                            throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                    }
-                    
-                    return outageStatus
-                }
+    static func fetchOutageStatus(accountNumber: String, premiseNumber: String, completion: @escaping (Result<NewOutageStatus, NetworkingError>) -> ()) {
+        
+        ServiceLayer.request(router: .outageStatus(accountNumber: accountNumber, premiseNumber: premiseNumber)) { (result: Result<NewOutageStatus, NetworkingError>) in
+            switch result {
+            case .success(let data):
+                print("outageStatus SUCCESS: \(data)")
+                completion(.success(data))
+
+            case .failure(let error):
+                print("outageStatus FAIL: \(error)")
+                completion(.failure(error))
             }
+        }
+    }
+    
+    static func reportOutage(request: OutageRequest, completion: @escaping (Result<NewReportedOutageResult, NetworkingError>) -> ()) {
+        ServiceLayer.request(router: .reportOutage(accountNumber: request.accountNumber, encodable: request)) { (result: Result<NewReportedOutageResult, NetworkingError>) in
+            switch result {
+            case .success(let data):
+                print("reportOutage SUCCESS: \(data)")
+                completion(.success(data))
+
+            case .failure(let error):
+                print("reportOutage FAIL: \(error)")
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    static func pingMeter(accountNumber: String, premiseNumber: String, completion: @escaping (Result<NewMeterPingResult, NetworkingError>) -> ()) {
+        ServiceLayer.request(router: .meterPing(accountNumber: accountNumber, premiseNumber: premiseNumber)) { (result: Result<NewMeterPingResult, NetworkingError>) in
+            switch result {
+            case .success(let data):
+                print("meterPing SUCCESS: \(data)")
+                completion(.success(data))
+
+            case .failure(let error):
+                print("meterPing FAIL: \(error)")
+                completion(.failure(error))
+            }
+        }
     }
 }
