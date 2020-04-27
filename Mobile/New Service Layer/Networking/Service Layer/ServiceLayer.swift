@@ -122,31 +122,18 @@ public struct ServiceLayer {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
         
-        var responseWrapper: NewResponseWrapper<T>?
-        var responseObject: T?
-        do {
-            // 1st attempt to decode response wrapper
-            responseWrapper = try jsonDecoder.decode(NewResponseWrapper<T>.self, from: data)
-            responseObject = responseWrapper?.data
-        } catch {
-            // 2nd attempt to decode data model
-            responseObject = try jsonDecoder.decode(T.self, from: data)
-        }
+        let responseWrapper = try jsonDecoder.decode(NewResponseWrapper<T>.self, from: data)
         
         // check for endpoint error
-        if let endpointError = checkForEndpointError(responseWrapper ?? responseObject) {
+        if let endpointError = responseWrapper.error {
             throw NetworkingError.endpointError(endpointError)
         }
         
-        if responseObject == nil {
+        if responseWrapper.data == nil {
             throw NetworkingError.decodingError
         }
         
-        return responseObject!
-    }
-    
-    public static func checkForEndpointError(_ decodable: Decodable?) -> EndpointErrorable? {
-        return decodable as? EndpointErrorable
+        return responseWrapper.data!
     }
     
     public static func cancelAllTasks() {
