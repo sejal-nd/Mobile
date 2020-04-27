@@ -336,6 +336,15 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
             performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
         case .bge:
             fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
+        case .pepco:
+            // todo
+            fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
+        case .ace:
+            // todo
+            fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
+        case .delmarva:
+            // todo
+            fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
         }
     }
     

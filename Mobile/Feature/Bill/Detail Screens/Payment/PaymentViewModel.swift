@@ -269,6 +269,24 @@ class PaymentViewModel {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
                 return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
             }
+        case .pepco:
+            // todo
+            if let dueDate = accountDetail.value.billingInfo.dueByDate {
+                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
+                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
+            }
+        case .ace:
+            // todo
+            if let dueDate = accountDetail.value.billingInfo.dueByDate {
+                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
+                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
+            }
+        case .delmarva:
+            // todo
+            if let dueDate = accountDetail.value.billingInfo.dueByDate {
+                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
+                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
+            }
         }
         
         return false // Will never execute
@@ -618,6 +636,15 @@ class PaymentViewModel {
             return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver(), resultSelector: <)
         case .comEd, .peco:
             return Driver.just(false)
+        case .pepco:
+            // todo
+            return Driver.just(false)
+        case .ace:
+            // todo
+            return Driver.just(false)
+        case .delmarva:
+            // todo
+            return Driver.just(false)
         }
     }()
 
@@ -714,6 +741,21 @@ class PaymentViewModel {
             
             Gas Off:  If your natural gas service has been interrupted, a restoration appointment must be scheduled. An adult (18 years or older) must be at the property and provide access to light the pilots on all gas appliances. If an adult is not present or cannot provide the access required, the gas service will NOT be restored. This policy ensures public safety.
             """
+        case .pepco:
+            boldText = NSLocalizedString("todo: ", comment: "")
+            bodyText = """
+            todo
+            """
+        case .ace:
+            boldText = NSLocalizedString("todo: ", comment: "")
+            bodyText = """
+            todo
+            """
+        case .delmarva:
+            boldText = NSLocalizedString("todo: ", comment: "")
+            bodyText = """
+            todo
+            """
         }
         
         let localizedText = String.localizedStringWithFormat("%@%@", boldText, bodyText)
@@ -735,6 +777,12 @@ class PaymentViewModel {
             return "1-800-334-7661"
         case .peco:
             return "1-800-494-4000"
+        case .pepco:
+            return "todo"
+        case .ace:
+            return "todo"
+        case .delmarva:
+            return "todo"
         }
     }
 

@@ -118,12 +118,69 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
+                case .pepco:
+                    // todo
+                    self.sections = [(NSLocalizedString("Outage", comment: ""),
+                                      [.outage, .severeWeather])]
+                    
+                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                        (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
+                        self.sections.append((NSLocalizedString("Billing", comment: ""),
+                                              [.billIsReady]))
+                    }
+                    
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
+                    if self.accountDetail.isBudgetBillEnrollment {
+                        paymentOptions.append(.budgetBillingReview)
+                    }
+                    
+                    self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
+                    self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
+                case .ace:
+                    // todo
+                    self.sections = [(NSLocalizedString("Outage", comment: ""),
+                                      [.outage, .severeWeather])]
+                    
+                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                        (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
+                        self.sections.append((NSLocalizedString("Billing", comment: ""),
+                                              [.billIsReady]))
+                    }
+                    
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
+                    if self.accountDetail.isBudgetBillEnrollment {
+                        paymentOptions.append(.budgetBillingReview)
+                    }
+                    
+                    self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
+                    self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
+                case .delmarva:
+                    // todo
+                    self.sections = [(NSLocalizedString("Outage", comment: ""),
+                                      [.outage, .severeWeather])]
+                    
+                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                        (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
+                        self.sections.append((NSLocalizedString("Billing", comment: ""),
+                                              [.billIsReady]))
+                    }
+                    
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
+                    if self.accountDetail.isBudgetBillEnrollment {
+                        paymentOptions.append(.budgetBillingReview)
+                    }
+                    
+                    self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
+                    self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 }
                 
                 onCompletion()
-            }, onError: { [weak self] err in
-                self?.isError.accept(true)
-                onCompletion()
+                }, onError: { [weak self] err in
+                    self?.isError.accept(true)
+                    onCompletion()
             })
             .disposed(by: disposeBag)
     }
@@ -203,15 +260,15 @@ class AlertPreferencesViewModel {
     
     private lazy var booleanPrefsChanged = Observable
         .combineLatest([outage.asObservable(),
-                       scheduledMaint.asObservable(),
-                       severeWeather.asObservable(),
-                       billReady.asObservable(),
-                       paymentDue.asObservable(),
-                       paymentPosted.asObservable(),
-                       paymentPastDue.asObservable(),
-                       budgetBilling.asObservable(),
-                       appointmentTracking.asObservable(),
-                       forYourInfo.asObservable()])
+                        scheduledMaint.asObservable(),
+                        severeWeather.asObservable(),
+                        billReady.asObservable(),
+                        paymentDue.asObservable(),
+                        paymentPosted.asObservable(),
+                        paymentPastDue.asObservable(),
+                        budgetBilling.asObservable(),
+                        appointmentTracking.asObservable(),
+                        forYourInfo.asObservable()])
         .map { prefs in
             AlertPreferences(outage: prefs[0],
                              scheduledMaint: prefs[1],
@@ -224,9 +281,9 @@ class AlertPreferencesViewModel {
                              budgetBilling: prefs[7],
                              appointmentTracking: prefs[8],
                              forYourInfo: prefs[9])
-        }
-        .withLatestFrom(alertPrefs.asObservable().unwrap())
-        { $0.isDifferent(fromOriginal: $1) }
+    }
+    .withLatestFrom(alertPrefs.asObservable().unwrap())
+    { $0.isDifferent(fromOriginal: $1) }
     
     private lazy var languagePrefChanged = english.asObservable()
         .map { [weak self] in $0 != self?.initialEnglishValue ?? false }
@@ -284,6 +341,15 @@ class AlertPreferencesViewModel {
             return false
         case .comEd, .peco:
             return true
+        case .pepco:
+            // todo
+            return true
+        case .ace:
+            // todo
+            return true
+        case .delmarva:
+            // todo
+            return true
         }
     }
     
@@ -300,6 +366,15 @@ class AlertPreferencesViewModel {
         case .comEd:
             return true
         case .bge, .peco:
+            return false
+        case .pepco:
+            // todo
+            return false
+        case .ace:
+            // todo
+            return false
+        case .delmarva:
+            // todo
             return false
         }
     }
@@ -355,6 +430,12 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.\n\nNOTE: Outage Notifications will be provided by ComEd on a 24/7 basis. You may be updated with outage information during the overnight hours or over holidays where applicable.", comment: "")
             case (.outage, .peco):
                 return NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.", comment: "")
+            case (.outage, .pepco):
+                return NSLocalizedString("todo", comment: "")
+            case (.outage, .ace):
+                return NSLocalizedString("todo", comment: "")
+            case (.outage, .delmarva):
+                return NSLocalizedString("todo", comment: "")
                 
             // Scheduled Maintenance Outage
             case (.scheduledMaintenanceOutage, .bge):
@@ -362,6 +443,12 @@ class AlertPreferencesViewModel {
             case (.scheduledMaintenanceOutage, .comEd): fallthrough
             case (.scheduledMaintenanceOutage, .peco):
                 return ""
+            case (.scheduledMaintenanceOutage, .pepco):
+                return NSLocalizedString("todo", comment: "")
+            case (.scheduledMaintenanceOutage, .ace):
+                return NSLocalizedString("todo", comment: "")
+            case (.scheduledMaintenanceOutage, .delmarva):
+                return NSLocalizedString("todo", comment: "")
                 
             // Severe Weather
             case (.severeWeather, .bge):
@@ -370,6 +457,12 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Receive an alert about weather conditions that could potentially impact ComEd service in your area.", comment: "")
             case (.severeWeather, .peco):
                 return NSLocalizedString("Receive an alert about weather conditions that could potentially impact PECO service in your area.", comment: "")
+            case (.severeWeather, .pepco):
+                return NSLocalizedString("todo", comment: "")
+            case (.severeWeather, .ace):
+                return NSLocalizedString("todo", comment: "")
+            case (.severeWeather, .delmarva):
+                return NSLocalizedString("todo", comment: "")
                 
             // Bill is Ready
             case (.billIsReady, .bge):
@@ -377,6 +470,12 @@ class AlertPreferencesViewModel {
             case (.billIsReady, .comEd): fallthrough
             case (.billIsReady, .peco):
                 return NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
+            case (.billIsReady, .pepco):
+                return NSLocalizedString("todo", comment: "")
+            case (.billIsReady, .ace):
+                return NSLocalizedString("todo", comment: "")
+            case (.billIsReady, .delmarva):
+                return NSLocalizedString("todo", comment: "")
                 
             // Payment Due Reminder
             case (.paymentDueReminder, .bge):
@@ -384,6 +483,12 @@ class AlertPreferencesViewModel {
             case (.paymentDueReminder, .comEd): fallthrough
             case (.paymentDueReminder, .peco):
                 return NSLocalizedString("Receive an alert 1 to 7 days before your payment due date. If enrolled in AutoPay, the alert will notify you of when a payment will be deducted from your bank account.\n\nNOTE: You are responsible for payment of the total amount due on your account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
+            case (.paymentDueReminder, .pepco):
+                return NSLocalizedString("todo", comment: "")
+            case (.paymentDueReminder, .ace):
+                return NSLocalizedString("todo", comment: "")
+            case (.paymentDueReminder, .delmarva):
+                return NSLocalizedString("todo", comment: "")
                 
             // Payment Posted
             case (.paymentPosted, _):
@@ -400,6 +505,12 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Your monthly Budget Bill Payment may be adjusted every six months to keep your account current with your actual electricity usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
             case (.budgetBillingReview, .peco):
                 return NSLocalizedString("Your monthly Budget Bill payment may be adjusted every four months to keep your account current with your actual energy usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
+            case (.budgetBillingReview, .pepco):
+                return NSLocalizedString("todo", comment: "")
+            case (.budgetBillingReview, .ace):
+                return NSLocalizedString("todo", comment: "")
+            case (.budgetBillingReview, .delmarva):
+                return NSLocalizedString("todo", comment: "")
                 
             // Appointment Tracking
             case (.appointmentTracking, _):
@@ -412,6 +523,12 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Occasionally, ComEd may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
             case (.forYourInformation, .peco):
                 return NSLocalizedString("Occasionally, PECO may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
+            case (.forYourInformation, .pepco):
+                return NSLocalizedString("todo", comment: "")
+            case (.forYourInformation, .ace):
+                return NSLocalizedString("todo", comment: "")
+            case (.forYourInformation, .delmarva):
+                return NSLocalizedString("todo", comment: "")
                 
             // Energy Buddy
             case (.energyBuddyUpdates, _):

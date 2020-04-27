@@ -144,6 +144,12 @@ class StormModeHomeViewModel {
             secondLine = NSLocalizedString("To issue a Gas Emergency Order, please call", comment: "")
         case .comEd:
             secondLine = nil
+        case .pepco:
+            secondLine = NSLocalizedString("todo", comment: "")
+        case .ace:
+            secondLine = NSLocalizedString("todo", comment: "")
+        case .delmarva:
+            secondLine = NSLocalizedString("todo", comment: "")
         }
         
         if let secondLine = secondLine {

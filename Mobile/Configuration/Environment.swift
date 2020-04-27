@@ -12,6 +12,9 @@ enum OpCo: String {
     case bge = "BGE"
     case comEd = "ComEd"
     case peco = "PECO"
+    case pepco = "Pepco"
+    case ace = "ACE"
+    case delmarva = "Delmarva"
     
     var displayString: String {
         return rawValue
@@ -26,6 +29,12 @@ enum OpCo: String {
             return "Powering lives"
         case .peco:
             return "The future is on"
+        case .pepco:
+            return "todo"
+        case .ace:
+            return "todo"
+        case .delmarva:
+            return "todo"
         }
     }
     
@@ -37,6 +46,12 @@ enum OpCo: String {
             return URL(string: "https://itunes.apple.com/us/app/comed-an-exelon-company/id519716176?mt=8")
         case .peco:
             return URL(string: "https://itunes.apple.com/us/app/peco-an-exelon-company/id1274171957?ls=1&mt=8")
+        case .pepco:
+            return URL(string: "todo")
+        case .ace:
+            return URL(string: "todo")
+        case .delmarva:
+            return URL(string: "todo")
         }
     }
 }
@@ -81,6 +96,15 @@ struct MCSConfig {
         case .peco:
             opcoStr = "peco"
             opcoNum = "622"
+        case .pepco:
+            opcoStr = "todo"
+            opcoNum = "todo"
+        case .ace:
+            opcoStr = "todo"
+            opcoNum = "todo"
+        case .delmarva:
+            opcoStr = "todo"
+            opcoNum = "todo"
         }
         let paymentusUrlFormat = mobileBackend["paymentusUrl"] as! String
         paymentusUrl = paymentusUrlFormat.replacingOccurrences(of: "%@", with: opcoStr)
@@ -107,7 +131,7 @@ struct Environment {
     private init() {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")!
         let dict = NSDictionary(contentsOfFile: path)!
-    
+        
         environmentName = EnvironmentName(rawValue: dict["environment"] as! String)!
         appName = dict["appName"] as! String
         opco = OpCo(rawValue: dict["opco"] as! String)!

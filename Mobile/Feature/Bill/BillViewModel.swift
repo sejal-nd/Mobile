@@ -368,6 +368,12 @@ class BillViewModel {
             return abs(netDueAmount).currencyString
         case .comEd, .peco:
             return max(netDueAmount, 0).currencyString
+        case .pepco:
+            return max(netDueAmount, 0).currencyString
+        case .ace:
+            return max(netDueAmount, 0).currencyString
+        case .delmarva:
+            return max(netDueAmount, 0).currencyString
         }
     }
     
@@ -460,6 +466,12 @@ class BillViewModel {
             return NSLocalizedString("Payments Processing", comment: "")
         case .comEd, .peco:
             return NSLocalizedString("Pending Payments", comment: "")
+        case .pepco:
+            return NSLocalizedString("todo", comment: "")
+        case .ace:
+            return NSLocalizedString("todo", comment: "")
+        case .delmarva:
+            return NSLocalizedString("todo", comment: "")
         }
     }()
     

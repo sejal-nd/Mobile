@@ -558,7 +558,7 @@ class HomeBillCardView: UIView {
                 let vc = UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
                 vc.accountDetail = accountDetail
                 return vc
-            case .peco, .comEd:
+            case .peco, .comEd, .pepco, .ace, .delmarva:
                 let vc = UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "AutoPay") as! AutoPayViewController
                 vc.accountDetail = accountDetail
                 return vc

@@ -88,6 +88,12 @@ enum HomeCard: Int {
             return Version(major: 1, minor: 2, patch: 5)
         case .comEd:
             return Version(major: 9, minor: 0, patch: 5)
+        case .pepco:
+            return Version(major: 1, minor: 2, patch: 5)
+        case .ace:
+            return Version(major: 1, minor: 2, patch: 5)
+        case .delmarva:
+            return Version(major: 1, minor: 2, patch: 5)
         }
     }()
 }

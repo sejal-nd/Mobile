@@ -23,7 +23,7 @@ class MaintenanceModeView: UIView {
     @IBOutlet weak var infoTextView: DataDetectorTextView!
     
     let disposeBag = DisposeBag()
-
+    
     @IBInspectable var isColorBackground: Bool = true {
         didSet {
             if isColorBackground {
@@ -92,7 +92,7 @@ class MaintenanceModeView: UIView {
         infoTextContainerView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
         infoTextView.tintColor = .actionBlue
     }
-        
+    
     let infoText: NSAttributedString = {
         let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
         var localizedString: String
@@ -128,6 +128,30 @@ class MaintenanceModeView: UIView {
                 If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
                 Representatives are available 24 hours a day, 7 days a week.
                 """
+                , leaveAreaString, phone)
+        case .pepco:
+            let phone = "todo"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+            todo
+            """
+                , leaveAreaString, phone)
+        case .ace:
+            let phone = "todo"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+            todo
+            """
+                , leaveAreaString, phone)
+        case .delmarva:
+            let phone = "todo"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+            todo
+            """
                 , leaveAreaString, phone)
         }
         

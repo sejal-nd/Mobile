@@ -158,6 +158,15 @@ fileprivate extension WeatherItem {
             return temperature >= 81
         case .peco:
             return temperature >= 80
+        case .pepco:
+            // todo
+            return temperature >= 80
+        case .ace:
+            // todo
+            return temperature >= 80
+        case .delmarva:
+            // todo
+            return temperature >= 80
         }
     }
     
@@ -168,6 +177,15 @@ fileprivate extension WeatherItem {
         case .comEd:
             return temperature <= 21
         case .peco:
+            return temperature <= 27
+        case .pepco:
+            // todo
+            return temperature <= 27
+        case .ace:
+            // todo
+            return temperature <= 27
+        case .delmarva:
+            // todo
             return temperature <= 27
         }
     }

@@ -65,6 +65,15 @@ class TemplateCardViewModel {
                 } else {
                     return #imageLiteral(resourceName: "Commercial")
                 }
+            case .pepco:
+                // todo
+                return nil
+            case .ace:
+                // todo
+                return nil
+            case .delmarva:
+                // todo
+                return nil
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -98,6 +107,12 @@ class TemplateCardViewModel {
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
+            case .pepco:
+                return NSLocalizedString("todo", comment: "")
+            case .ace:
+                return NSLocalizedString("todo", comment: "")
+            case .delmarva:
+                return NSLocalizedString("todo", comment: "")
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -134,6 +149,12 @@ class TemplateCardViewModel {
                 } else {
                     return NSLocalizedString("A FREE facility assessment can help you save money and energy", comment: "")
                 }
+            case .pepco:
+                return NSLocalizedString("todo", comment: "")
+            case .ace:
+                return NSLocalizedString("todo", comment: "")
+            case .delmarva:
+                return NSLocalizedString("todo", comment: "")
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -177,6 +198,12 @@ class TemplateCardViewModel {
                 } else {
                     return NSLocalizedString("Get started today", comment: "")
                 }
+            case .pepco:
+                return NSLocalizedString("todo", comment: "")
+            case .ace:
+                return NSLocalizedString("todo", comment: "")
+            case .delmarva:
+                return NSLocalizedString("todo", comment: "")
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -212,6 +239,12 @@ class TemplateCardViewModel {
                 } else {
                     return "http://comed.com/BusinessSavings"
                 }
+            case .pepco:
+                return "todo"
+            case .ace:
+                return "todo"
+            case .delmarva:
+                return "todo"
             }
         }
         .unwrap()

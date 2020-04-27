@@ -314,6 +314,15 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                     .skip(1)
                     .drive(onNext: { [weak self] in self?.showBillIsReadyToggleAlert(isOn: $0) })
                     .disposed(by: cell.disposeBag)
+            case .pepco:
+                // todo
+                break
+            case .ace:
+                // todo
+                break
+            case .delmarva:
+                // todo
+                break
             }
         case .paymentDueReminder:
             toggleVariable = viewModel.paymentDue

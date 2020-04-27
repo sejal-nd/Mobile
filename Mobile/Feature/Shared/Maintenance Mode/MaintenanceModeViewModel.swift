@@ -61,6 +61,33 @@ class MaintenanceModeViewModel{
                 Representatives are available 24 hours a day, 7 days a week.
                 """
             , leaveAreaString, phone)
+        case .pepco:
+            let phone = "todo"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+            , leaveAreaString, phone)
+        case .ace:
+            let phone = "todo"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+            , leaveAreaString, phone)
+        case .delmarva:
+            let phone = "todo"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+            , leaveAreaString, phone)
         }
         
         let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
@@ -86,6 +113,12 @@ class MaintenanceModeViewModel{
             phoneString = "1-800-334-7661"
         case .peco:
             phoneString = "1-800-494-4000"
+        case .pepco:
+            phoneString = "todo"
+        case .ace:
+            phoneString = "todo"
+        case .delmarva:
+            phoneString = "todo"
         }
         
         let localizedString = String.localizedStringWithFormat("For all other inquiries, please call %@ M-F 7AM to 7PM", phoneString)

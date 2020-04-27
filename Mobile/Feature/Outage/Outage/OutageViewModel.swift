@@ -122,6 +122,12 @@ class OutageViewModel {
             FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_main)])
         case .peco:
             FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_main)])
+        case .pepco:
+            FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_main)])
+        case .ace:
+            FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_main)])
+        case .delmarva:
+            FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_main)])
         }
     }
     
@@ -141,7 +147,7 @@ class OutageViewModel {
 
         return NSLocalizedString("Reported", comment: "")
     }
-    
+
     var footerTextViewText: NSAttributedString {
         var localizedString: String
         let phoneNumbers: [String]
@@ -165,6 +171,18 @@ class OutageViewModel {
             let phone1 = "1-800-841-4141"
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
+            case .pepco:
+                let phone1 = "todo"
+                phoneNumbers = [phone1]
+                localizedString = String.localizedStringWithFormat("todo %@", phone1)
+            case .ace:
+                let phone1 = "todo"
+                phoneNumbers = [phone1]
+                localizedString = String.localizedStringWithFormat("todo %@", phone1)
+            case .delmarva:
+                let phone1 = "todo"
+                phoneNumbers = [phone1]
+                localizedString = String.localizedStringWithFormat("todo %@", phone1)
         }
         
         let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: SystemFont.regular.of(textStyle: .caption1)])

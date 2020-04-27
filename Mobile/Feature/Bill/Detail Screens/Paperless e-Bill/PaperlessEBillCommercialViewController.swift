@@ -23,6 +23,12 @@ class PaperlessEBillCommercialViewController: DismissableFormSheetViewController
             return URL(string: "https://mydetail.getbills.com/BDPeco/index.jsp")
         case .bge:
             return nil
+        case .pepco:
+            return URL(string: "todo")
+        case .ace:
+            return URL(string: "todo")
+        case .delmarva:
+            return URL(string: "todo")
         }
     }
 

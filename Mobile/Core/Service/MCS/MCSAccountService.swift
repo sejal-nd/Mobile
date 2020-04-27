@@ -197,6 +197,15 @@ struct MCSAccountService: AccountService {
                     throw serviceError
                 }
             }
+        case .pepco:
+            // todo
+            return .just([])
+        case .ace:
+            // todo
+            return .just([])
+        case .delmarva:
+            // todo
+            return .just([])
         }
     }
 }

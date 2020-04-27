@@ -371,6 +371,12 @@ class HomeBillCardViewModel {
                     text = NSLocalizedString("You have processing payments", comment: "")
                 case .comEd, .peco:
                     text = NSLocalizedString("You have pending payments", comment: "")
+                case .pepco:
+                    text = NSLocalizedString("todo", comment: "")
+                case .ace:
+                    text = NSLocalizedString("todo", comment: "")
+                case .delmarva:
+                    text = NSLocalizedString("todo", comment: "")
                 }
                 return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .headline),
                                                                      .foregroundColor: textColor])
@@ -706,6 +712,12 @@ class HomeBillCardViewModel {
                 }
                 
                 return String.localizedStringWithFormat("Your confirmation number is %@", payment.confirmationNumber)
+            case .pepco:
+                return NSLocalizedString("todo", comment: "")
+            case .ace:
+                return NSLocalizedString("todo", comment: "")
+            case .delmarva:
+                return NSLocalizedString("todo", comment: "")
             }
     }
     
@@ -725,6 +737,12 @@ class HomeBillCardViewModel {
             return "1-800-334-7661"
         case .peco:
             return "1-800-494-4000"
+        case .pepco:
+            return "todo"
+        case .ace:
+            return "todo"
+        case .delmarva:
+            return "todo"
         }
     }
     
