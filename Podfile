@@ -125,6 +125,25 @@ abstract_target 'DelmarvaApp' do
     end
 end
 
+abstract_target 'ACEApp' do
+    platform :ios, '11.0'
+    use_frameworks!
+
+    iOS_pods
+    shared_pods
+
+    target 'ACE' do
+    end
+
+    target 'ACEUnitTests' do
+        iOS_UnitTestPods
+    end
+
+    target 'ACEUITests' do
+        iOS_UITestPods
+    end
+end
+
 target 'PECO-Watch' do
   platform :watchos, '4.0'
   use_frameworks!
