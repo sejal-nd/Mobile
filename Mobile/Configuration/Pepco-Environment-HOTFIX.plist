@@ -19,7 +19,7 @@
 	<key>paymentusUrl</key>
 	<string>https://secure2.paymentus.com/xotp/pm/bge</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_bge_hotfix</string>
+	<string>GoogleService-Info_pepco_hotfix</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>

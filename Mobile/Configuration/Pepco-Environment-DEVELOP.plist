@@ -13,7 +13,7 @@
 	<key>myAccountUrl</key>
 	<string>https://aztst.bge.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_bge_develop</string>
+	<string>GoogleService-Info_pepco_develop</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
