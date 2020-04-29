@@ -110,9 +110,7 @@ struct AlertPreferences {
         let highUsageProgramName = "High Usage Residential Alert"
         
         var highUsageProgram = ["programName": highUsageProgramName, "type": "push", "isActive": highUsage] as [String : Any]
-        if let billThreshold = alertThreshold {
-            highUsageProgram["alertThreshold"] = billThreshold
-        }
+        highUsageProgram["alertThreshold"] = alertThreshold ?? "null"
         
         var array = [
             highUsageProgram,

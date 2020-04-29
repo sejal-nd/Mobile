@@ -311,7 +311,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                                 
                 cell.toolTipTapped = { () in
                     let alertViewController = InfoAlertController(title: NSLocalizedString("Bill Threshold", comment: ""),
-                    message: NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month.", comment: ""))
+                                                                  message: self.viewModel.billThresholdToolTipText)
                     self.present(alertViewController, animated: true)
                 }
             }
@@ -379,11 +379,29 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             toggleVariable.asDriver().distinctUntilChanged().drive(cell.checkbox.rx.isChecked).disposed(by: cell.disposeBag)
             cell.checkbox.rx.isChecked.asDriver().skip(1).drive(toggleVariable).disposed(by: cell.disposeBag)
             cell.textField.textField.rx.text.asDriver().skip(1)
-                .map { $0?.replacingOccurrences(of: "$", with: "") }
+                .map { $0?.filter { "0123456789".contains($0) } }
                 .drive(onNext: {
                     self.viewModel.billThreshold.accept($0)
                 })
                 .disposed(by: cell.disposeBag)
+            
+            viewModel.billThreshold.asDriver().drive(onNext: {
+                var amount: Double?
+                amount = Double($0 ?? "")
+                
+                if amount < 1 {
+                    amount = nil
+                }
+                
+                if amount > 10000 {
+                    cell.textField.setError(NSLocalizedString("Value must be less than or equal to $10,000.", comment: ""))
+                }
+                else {
+                    cell.textField.setError(nil)
+                }
+                
+                cell.textField.textField.text = amount?.currencyNoDecimalString ?? nil
+            }).disposed(by: disposeBag)
         }
         
         cell.configure(withPreferenceOption: option,

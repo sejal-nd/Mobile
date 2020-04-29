@@ -202,6 +202,10 @@ class AlertPreferencesViewModel {
                     self.initialBillThresholdValue = String(threshold)
                     self.billThreshold.accept(String(threshold))
                 }
+                else {
+                    self.initialBillThresholdValue = ""
+                    self.billThreshold.accept("")
+                }
                 self.peakTimeSavings.accept(alertPrefs.peakTimeSavings ?? false)
                 self.smartEnergyRewards.accept(alertPrefs.smartEnergyRewards ?? false)
                 self.energySavingsDayResults.accept(alertPrefs.energySavingsDayResults ?? false)
@@ -301,7 +305,23 @@ class AlertPreferencesViewModel {
     
     private lazy var billThresholdPrefChanged = billThreshold.asObservable()
         .map { [weak self] in
-            return $0 ?? "" != self?.initialBillThresholdValue ?? ""
+            return $0 != self?.initialBillThresholdValue
+    }
+    
+    private lazy var billThresholdValid: Observable<Bool> = billThreshold.asObservable()
+        .map { [weak self] in
+            var isValid = false
+            let thresholdStr = $0 ?? ""
+            
+            if (!thresholdStr.isEmpty) {
+                let amount = Double(thresholdStr) ?? 0.0
+                isValid = amount >= 1 && amount <= 10000
+            }
+            else {
+                isValid = true
+            }
+            
+            return isValid
     }
     
     private lazy var languagePrefChanged = english.asObservable()
@@ -350,7 +370,10 @@ class AlertPreferencesViewModel {
                                     email: accountDetail.customerInfo.emailAddress)
     }
     
-    private(set) lazy var saveButtonEnabled: Driver<Bool> = prefsChanged.asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var saveButtonEnabled: Driver<Bool> = Observable<Bool>
+        .combineLatest(prefsChanged, billThresholdValid)
+        { $0 && $1}
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var paymentDueDaysBeforeButtonText: Driver<String> = self.paymentDueDaysBefore.asDriver().map {
         if $0 == 1 {
@@ -392,6 +415,17 @@ class AlertPreferencesViewModel {
             return false
         case .comEd, .peco:
             return true
+        }
+    }
+    
+    var billThresholdToolTipText: String {
+        switch Environment.shared.opco {
+        case .bge:
+            return NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month. If no selection is made, we will alert you if your usage is 30% and $30 higher compared to the same time last year.", comment: "")
+        case .comEd:
+            return NSLocalizedString("Choose the bill amount that triggers your alert. If no selection is made, we will alert you if your usage is 30% higher compared to the same time last year.", comment: "")
+        default:
+            return ""
         }
     }
     

@@ -80,22 +80,6 @@ class AlertPreferencesTableViewCell: UITableViewCell {
                 textField.textField.keyboardType = .decimalPad
             case .currency:
                 textField.textField.keyboardType = .decimalPad
-                textField.textField.rx.text.orEmpty.asObservable()
-                    .skip(1)
-                    .subscribe(onNext: { [weak self] entry in
-                        guard let self = self else { return }
-                        
-                        let amount: Double?
-                        let textStr = String(entry.filter { "0123456789".contains($0) })
-                        if let intVal = Double(textStr), intVal >= 1 {
-                            amount = intVal
-                        } else {
-                            amount = nil
-                        }
-                        
-                        self.textField.textField.text = amount?.currencyNoDecimalString ?? nil
-                    })
-                    .disposed(by: disposeBag)
             }
         }
     }
