@@ -5448,19 +5448,11 @@
 		35D02D81240FFB9400D8894F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				35D02D87240FFBB600D8894F /* Service Layer */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		35D02D87240FFBB600D8894F /* Service Layer */ = {
-			isa = PBXGroup;
-			children = (
 				35D02D88240FFBC000D8894F /* Router.swift */,
 				35D02D8A240FFBC100D8894F /* ServiceLayer.swift */,
 				6766F96D2422725D007C9CB9 /* Mock */,
 			);
-			path = "Service Layer";
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		35D02D95240FFBD800D8894F /* Network Models */ = {
