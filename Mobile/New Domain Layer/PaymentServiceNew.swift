@@ -13,7 +13,7 @@ import Foundation
 struct PaymentServiceNew {
     
     static func budgetBillingInfo(accountNumber: String) {
-        ServiceLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber)) { (result: Result<NewBudgetBilling, NetworkingError>) in
+        NetworkingLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber)) { (result: Result<NewBudgetBilling, NetworkingError>) in
             switch result {
             case .success(let data):
 
@@ -29,7 +29,7 @@ struct PaymentServiceNew {
     }
     
     static func budgetBillingEnroll(accountNumber: String) {
-        ServiceLayer.request(router: .budgetBillingEnroll(accountNumber: accountNumber)) { (result: Result<GenericResponse, NetworkingError>) in
+        NetworkingLayer.request(router: .budgetBillingEnroll(accountNumber: accountNumber)) { (result: Result<GenericResponse, NetworkingError>) in
             switch result {
             case .success(let data):
 
@@ -47,7 +47,7 @@ struct PaymentServiceNew {
     static func budgetBillingUnenroll(accountNumber: String, reason: String) {
         let encodedObject = BudgetBillingUnenrollRequest(reason: reason, comment: "")
         
-        ServiceLayer.request(router: .budgetBillingUnenroll(accountNumber: accountNumber, encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
+        NetworkingLayer.request(router: .budgetBillingUnenroll(accountNumber: accountNumber, encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
             switch result {
             case .success(let data):
                 
@@ -115,7 +115,7 @@ struct PaymentServiceNew {
                                                  requestType: "Start", walletItemId: walletItemId,
                                                  amountThreshold: amountType == .upToAmount ? amountThreshold : nil)
         
-            ServiceLayer.request(router: .autoPayEnroll(accountNumber: accountNumber, encodable: encodedObject)) { (result: Result<NewAutoPayResult, NetworkingError>) in
+            NetworkingLayer.request(router: .autoPayEnroll(accountNumber: accountNumber, encodable: encodedObject)) { (result: Result<NewAutoPayResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
@@ -164,7 +164,7 @@ struct PaymentServiceNew {
         
         print("REQ SCHEDULE")
             
-            ServiceLayer.request(router: .deleteWalletItem(encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
+            NetworkingLayer.request(router: .deleteWalletItem(encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
@@ -244,7 +244,7 @@ struct PaymentServiceNew {
         
             print("REQ SCHEDULE")
             
-            ServiceLayer.request(router: .payment(encodable: encodedObject)) { (result: Result<NewPaymentResult, NetworkingError>) in
+            NetworkingLayer.request(router: .payment(encodable: encodedObject)) { (result: Result<NewPaymentResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
@@ -297,7 +297,7 @@ struct PaymentServiceNew {
                                                   statementType: "03",
                                                   billerId: billerId)
             print("REQ SCHEDULE")
-            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, encodable: encodedObject)) { (result: Result<NewBillingHistoryResult, NetworkingError>) in
+            NetworkingLayer.request(router: .billingHistory(accountNumber: accountNumber, encodable: encodedObject)) { (result: Result<NewBillingHistoryResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
@@ -339,7 +339,7 @@ struct PaymentServiceNew {
             isExistingAccount: !walletItem.isTemporary,
             maskedWalletItemAccountNumber: walletItem.maskedWalletItemAccountNumber ?? "")
         
-            ServiceLayer.request(router: .scheduledPayment(accountNumber: accountNumber,
+            NetworkingLayer.request(router: .scheduledPayment(accountNumber: accountNumber,
                                                            encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
                                                             switch result {
                                                             case .success(let data):
@@ -362,7 +362,7 @@ struct PaymentServiceNew {
         
         let encodedObject = SchedulePaymentCancelRequest(paymentAmount: String.init(format: "%.02f", paymentAmount))
 
-            ServiceLayer.request(router: .scheduledPaymentDelete(accountNumber: accountNumber, paymentId: paymentId,
+            NetworkingLayer.request(router: .scheduledPaymentDelete(accountNumber: accountNumber, paymentId: paymentId,
                                                                  encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
                                                                     switch result {
                                                                     case .success(let data):
@@ -417,7 +417,7 @@ struct PaymentServiceNew {
             maskedWalletItemAccountNumber: maskedWalletItemAccountNumber)
         
             print("REQ SCHEDULE")
-            ServiceLayer.request(router: .scheduledPaymentUpdate(accountNumber: accountNumber, paymentId: paymentId, encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
+            NetworkingLayer.request(router: .scheduledPaymentUpdate(accountNumber: accountNumber, paymentId: paymentId, encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
                 switch result {
                 case .success(let data):
 

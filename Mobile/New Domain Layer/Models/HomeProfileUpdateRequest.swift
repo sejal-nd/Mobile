@@ -9,11 +9,11 @@
 import Foundation
 
 struct HomeProfileUpdateRequest: Encodable {
-let adultCount: Int
-let childCount: Int
-let heatType: String
-let squareFeet: Int
-let dwellingType: String
+    let adultCount: Int
+    let childCount: Int
+    let heatType: String
+    let squareFeet: Int
+    let dwellingType: String
     
     enum CodingKeys: String, CodingKey {
         case adultCount = "adult_count"

@@ -41,7 +41,7 @@ struct AuthenticatedService {
         let queryString = String(queryStringSubSequence)
         
         
-        ServiceLayer.request(router: .accountDetails(accountNumber: accountNumber, queryString: queryString)) { (result: Result<NewAccountDetails, NetworkingError>) in
+        NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryString: queryString)) { (result: Result<NewAccountDetails, NetworkingError>) in
             switch result {
             case .success(let data):
                 
@@ -84,7 +84,7 @@ struct AuthenticatedService {
         
         let queryItem = URLQueryItem(name: "$filter", value: filterString)
         
-        ServiceLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<NewAlertBanner, NetworkingError>) in
+        NetworkingLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<NewSharePointAlert, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 13 SUCCESS: \(data) BREAK \(data.alerts.first?.title)")
@@ -128,12 +128,12 @@ struct AuthenticatedService {
         
         let encodedObject = SAMLRequest(username: username, password: password)
         
-        ServiceLayer.request(router: .fetchSAMLToken(encodable: encodedObject)) { (result: Result<NewSAMLToken, NetworkingError>) in
+        NetworkingLayer.request(router: .fetchSAMLToken(encodable: encodedObject)) { (result: Result<NewSAMLToken, NetworkingError>) in
             switch result {
             case .success(let data):
                 guard let token = data.token else { return }
                 
-                ServiceLayer.request(router: .exchangeSAMLToken(token: token)) { (result: Result<NewJWTToken, NetworkingError>) in
+                NetworkingLayer.request(router: .exchangeSAMLToken(token: token)) { (result: Result<NewJWTToken, NetworkingError>) in
                     switch result {
                     case .success(let newJWTToken):
                         
@@ -146,7 +146,7 @@ struct AuthenticatedService {
                         
                         print("NetworkTest 4 SUCCESS: \(newJWTToken.token) BREAK")
                         
-                        ServiceLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
+                        NetworkingLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
                             switch result {
                             case .success(let data):
                                 
@@ -192,7 +192,7 @@ struct AuthenticatedService {
         // SET MOCK USER
         UserSession.shared.token = username
         
-        ServiceLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
+        NetworkingLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
             switch result {
             case .success(let data):
                 

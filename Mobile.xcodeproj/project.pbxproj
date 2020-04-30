@@ -515,9 +515,9 @@
 		35D02D8B240FFBC100D8894F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D88240FFBC000D8894F /* Router.swift */; };
 		35D02D8C240FFBC100D8894F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D88240FFBC000D8894F /* Router.swift */; };
 		35D02D8D240FFBC100D8894F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D88240FFBC000D8894F /* Router.swift */; };
-		35D02D91240FFBC100D8894F /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* ServiceLayer.swift */; };
-		35D02D92240FFBC100D8894F /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* ServiceLayer.swift */; };
-		35D02D93240FFBC100D8894F /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* ServiceLayer.swift */; };
+		35D02D91240FFBC100D8894F /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */; };
+		35D02D92240FFBC100D8894F /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */; };
+		35D02D93240FFBC100D8894F /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */; };
 		35D02DCB2416843500D8894F /* NewMinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02DCA2416843500D8894F /* NewMinimumVersion.swift */; };
 		35D02DCC2416843500D8894F /* NewMinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02DCA2416843500D8894F /* NewMinimumVersion.swift */; };
 		35D02DCD2416843500D8894F /* NewMinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D02DCA2416843500D8894F /* NewMinimumVersion.swift */; };
@@ -783,12 +783,12 @@
 		6708866C243388BF00B2C807 /* NewPayments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708866B243388BF00B2C807 /* NewPayments.swift */; };
 		6708866D243388BF00B2C807 /* NewPayments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708866B243388BF00B2C807 /* NewPayments.swift */; };
 		6708866E243388BF00B2C807 /* NewPayments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708866B243388BF00B2C807 /* NewPayments.swift */; };
-		670886702433AF3000B2C807 /* AlertBannerMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* AlertBannerMock.json */; };
-		670886712433AF3000B2C807 /* AlertBannerMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* AlertBannerMock.json */; };
-		670886722433AF3000B2C807 /* AlertBannerMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* AlertBannerMock.json */; };
-		670886742433B22D00B2C807 /* NewAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewAlertBanner.swift */; };
-		670886752433B22D00B2C807 /* NewAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewAlertBanner.swift */; };
-		670886762433B22D00B2C807 /* NewAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewAlertBanner.swift */; };
+		670886702433AF3000B2C807 /* SharePointAlertMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* SharePointAlertMock.json */; };
+		670886712433AF3000B2C807 /* SharePointAlertMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* SharePointAlertMock.json */; };
+		670886722433AF3000B2C807 /* SharePointAlertMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708866F2433AF3000B2C807 /* SharePointAlertMock.json */; };
+		670886742433B22D00B2C807 /* NewSharePointAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewSharePointAlert.swift */; };
+		670886752433B22D00B2C807 /* NewSharePointAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewSharePointAlert.swift */; };
+		670886762433B22D00B2C807 /* NewSharePointAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670886732433B22D00B2C807 /* NewSharePointAlert.swift */; };
 		670886782433CF1E00B2C807 /* BillPDFMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 670886772433CF1E00B2C807 /* BillPDFMock.json */; };
 		670886792433CF1E00B2C807 /* BillPDFMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 670886772433CF1E00B2C807 /* BillPDFMock.json */; };
 		6708867A2433CF1E00B2C807 /* BillPDFMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 670886772433CF1E00B2C807 /* BillPDFMock.json */; };
@@ -849,9 +849,6 @@
 		67278388243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */; };
 		67278389243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */; };
 		6727838A243F771600D5CD95 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */; };
-		67278394244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
-		67278395244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
-		67278396244634DB00D5CD95 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67278393244634DB00D5CD95 /* EndpointError.swift */; };
 		672783982449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */; };
 		672783992449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */; };
 		6727839A2449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */; };
@@ -894,6 +891,27 @@
 		67630E892450C3970078D3C3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E882450C3970078D3C3 /* GenericResponse.swift */; };
 		67630E8A2450C3970078D3C3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E882450C3970078D3C3 /* GenericResponse.swift */; };
 		67630E8B2450C3970078D3C3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E882450C3970078D3C3 /* GenericResponse.swift */; };
+		67630E912451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */; };
+		67630E922451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */; };
+		67630E932451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */; };
+		67630E952451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */; };
+		67630E962451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */; };
+		67630E972451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */; };
+		67630E992451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */; };
+		67630E9A2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */; };
+		67630E9B2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */; };
+		67630EA12451E1580078D3C3 /* AppointmentsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630EA02451E1580078D3C3 /* AppointmentsMock.json */; };
+		67630EA22451E1580078D3C3 /* AppointmentsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630EA02451E1580078D3C3 /* AppointmentsMock.json */; };
+		67630EA32451E1580078D3C3 /* AppointmentsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67630EA02451E1580078D3C3 /* AppointmentsMock.json */; };
+		67630EA52451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */; };
+		67630EA62451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */; };
+		67630EA72451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */; };
+		67630EA92452183A0078D3C3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA82452183A0078D3C3 /* NetworkingError.swift */; };
+		67630EAA2452183A0078D3C3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA82452183A0078D3C3 /* NetworkingError.swift */; };
+		67630EAB2452183A0078D3C3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EA82452183A0078D3C3 /* NetworkingError.swift */; };
+		67630EAD245323D40078D3C3 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EAC245323D40078D3C3 /* EndpointError.swift */; };
+		67630EAE245323D40078D3C3 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EAC245323D40078D3C3 /* EndpointError.swift */; };
+		67630EAF245323D40078D3C3 /* EndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67630EAC245323D40078D3C3 /* EndpointError.swift */; };
 		6766F96524224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96624224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
 		6766F96724224E1A007C9CB9 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */; };
@@ -3367,7 +3385,7 @@
 		35CE69DB21122F50007EB844 /* ComEd-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-STAGE.entitlements"; sourceTree = "<group>"; };
 		35CE69DC21122F51007EB844 /* PECO-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-PROD.entitlements"; sourceTree = "<group>"; };
 		35D02D88240FFBC000D8894F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		35D02D8A240FFBC100D8894F /* ServiceLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
+		35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingLayer.swift; sourceTree = "<group>"; };
 		35D02DCA2416843500D8894F /* NewMinimumVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMinimumVersion.swift; sourceTree = "<group>"; };
 		35D02DDA24168E5E00D8894F /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		35D6B62A231424E900DCD588 /* AlertRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRow.swift; sourceTree = "<group>"; };
@@ -3467,8 +3485,8 @@
 		670886632433803200B2C807 /* NewWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWallet.swift; sourceTree = "<group>"; };
 		67088667243387EE00B2C807 /* PaymentsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaymentsMock.json; sourceTree = "<group>"; };
 		6708866B243388BF00B2C807 /* NewPayments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPayments.swift; sourceTree = "<group>"; };
-		6708866F2433AF3000B2C807 /* AlertBannerMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlertBannerMock.json; sourceTree = "<group>"; };
-		670886732433B22D00B2C807 /* NewAlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlertBanner.swift; sourceTree = "<group>"; };
+		6708866F2433AF3000B2C807 /* SharePointAlertMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SharePointAlertMock.json; sourceTree = "<group>"; };
+		670886732433B22D00B2C807 /* NewSharePointAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSharePointAlert.swift; sourceTree = "<group>"; };
 		670886772433CF1E00B2C807 /* BillPDFMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillPDFMock.json; sourceTree = "<group>"; };
 		6708867B2433CF4D00B2C807 /* NewBillPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillPDF.swift; sourceTree = "<group>"; };
 		6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentUNUSEDMock.json; sourceTree = "<group>"; };
@@ -3489,7 +3507,6 @@
 		6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BudgetBillingMock.json; sourceTree = "<group>"; };
 		67278383243F76F800D5CD95 /* NewForecastBill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForecastBill.swift; sourceTree = "<group>"; };
 		67278387243F771600D5CD95 /* ForecastMonthlyBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForecastMonthlyBillMock.json; sourceTree = "<group>"; };
-		67278393244634DB00D5CD95 /* EndpointError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointError.swift; sourceTree = "<group>"; };
 		672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetBillingUnenrollRequest.swift; sourceTree = "<group>"; };
 		6727839B2449F52500D5CD95 /* AutoPayEnrollRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayEnrollRequest.swift; sourceTree = "<group>"; };
 		6727839F2449F83800D5CD95 /* CompareBillRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareBillRequest.swift; sourceTree = "<group>"; };
@@ -3504,6 +3521,13 @@
 		67630E802450BF410078D3C3 /* EnergyRewardsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EnergyRewardsMock.json; sourceTree = "<group>"; };
 		67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyRewardsNew.swift; sourceTree = "<group>"; };
 		67630E882450C3970078D3C3 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlertPreferencesLoadMock.json; sourceTree = "<group>"; };
+		67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNew.swift; sourceTree = "<group>"; };
+		67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesRequest.swift; sourceTree = "<group>"; };
+		67630EA02451E1580078D3C3 /* AppointmentsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppointmentsMock.json; sourceTree = "<group>"; };
+		67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsContainer.swift; sourceTree = "<group>"; };
+		67630EA82452183A0078D3C3 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		67630EAC245323D40078D3C3 /* EndpointError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointError.swift; sourceTree = "<group>"; };
 		6766F96424224E1A007C9CB9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 		6766F969242259D0007C9CB9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		6766F96E242273D8007C9CB9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -5437,7 +5461,6 @@
 			isa = PBXGroup;
 			children = (
 				35D02DDA24168E5E00D8894F /* Test.swift */,
-				67278393244634DB00D5CD95 /* EndpointError.swift */,
 				6766F96E242273D8007C9CB9 /* UserSession.swift */,
 				35D02D95240FFBD800D8894F /* Network Models */,
 				35D02D81240FFB9400D8894F /* Networking */,
@@ -5449,7 +5472,8 @@
 			isa = PBXGroup;
 			children = (
 				35D02D88240FFBC000D8894F /* Router.swift */,
-				35D02D8A240FFBC100D8894F /* ServiceLayer.swift */,
+				35D02D8A240FFBC100D8894F /* NetworkingLayer.swift */,
+				67630EA82452183A0078D3C3 /* NetworkingError.swift */,
 				6766F96D2422725D007C9CB9 /* Mock */,
 			);
 			path = Networking;
@@ -5469,7 +5493,7 @@
 				676BDA80242E4DC500C880A3 /* NewWeather.swift */,
 				670886632433803200B2C807 /* NewWallet.swift */,
 				6708866B243388BF00B2C807 /* NewPayments.swift */,
-				670886732433B22D00B2C807 /* NewAlertBanner.swift */,
+				670886732433B22D00B2C807 /* NewSharePointAlert.swift */,
 				6708867B2433CF4D00B2C807 /* NewBillPDF.swift */,
 				67088683243B6A3C00B2C807 /* NewScheduledPayment.swift */,
 				67088697243BA76800B2C807 /* NewBillingHistoryResult.swift */,
@@ -5484,11 +5508,14 @@
 				67630E702450B47D0078D3C3 /* UsageTipNew.swift */,
 				67630E782450B7360078D3C3 /* HomeProfileLoadNew.swift */,
 				67630E842450BF8B0078D3C3 /* EnergyRewardsNew.swift */,
+				67630E942451D1A40078D3C3 /* AlertPreferencesNew.swift */,
+				67630EA42451E27C0078D3C3 /* AppointmentsContainer.swift */,
 				67630E882450C3970078D3C3 /* GenericResponse.swift */,
 				C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */,
 				C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */,
 				C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */,
 				C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */,
+				67630EAC245323D40078D3C3 /* EndpointError.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -5672,7 +5699,7 @@
 				676BDA7C242E4BB500C880A3 /* WeatherMock.json */,
 				6708865F24337E8600B2C807 /* WalletMock.json */,
 				67088667243387EE00B2C807 /* PaymentsMock.json */,
-				6708866F2433AF3000B2C807 /* AlertBannerMock.json */,
+				6708866F2433AF3000B2C807 /* SharePointAlertMock.json */,
 				670886772433CF1E00B2C807 /* BillPDFMock.json */,
 				6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */,
 				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
@@ -5687,6 +5714,8 @@
 				67630E742450B6FF0078D3C3 /* HomeProfileLoadMock.json */,
 				67630E802450BF410078D3C3 /* EnergyRewardsMock.json */,
 				6727836B243D076400D5CD95 /* GenericResponseMock.json */,
+				67630E902451D1390078D3C3 /* AlertPreferencesLoadMock.json */,
+				67630EA02451E1580078D3C3 /* AppointmentsMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -6594,6 +6623,7 @@
 				6798CFD5244F6CF600429477 /* WalletItemDeleteRequest.swift */,
 				67630E7C2450B8830078D3C3 /* HomeProfileUpdateRequest.swift */,
 				C3ADD1762450DB5100487920 /* OutageRequest.swift */,
+				67630E982451D43F0078D3C3 /* AlertPreferencesRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -7367,6 +7397,7 @@
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				359BDB7822D8F9B2007002B0 /* outage_reported.json in Resources */,
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
+				67630E912451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */,
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				6766F96A242259D0007C9CB9 /* MinVersionMock.json in Resources */,
@@ -7499,6 +7530,7 @@
 				9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				676BDA68242BA85C00C880A3 /* AccountDetailsMock.json in Resources */,
+				67630EA12451E1580078D3C3 /* AppointmentsMock.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
@@ -7515,7 +7547,7 @@
 				9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
-				670886702433AF3000B2C807 /* AlertBannerMock.json in Resources */,
+				670886702433AF3000B2C807 /* SharePointAlertMock.json in Resources */,
 				B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */,
 				359BDB7522D8F9B2007002B0 /* outage_off.json in Resources */,
 				B07D247720C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
@@ -7590,6 +7622,7 @@
 				B0EE78EC221353E700F53C56 /* report_outage.json in Resources */,
 				B0B0840621710D1500B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1E216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
+				67630E932451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
 				9C0E1C992333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
@@ -7671,7 +7704,7 @@
 				E873DA7A1EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				35C913A122E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
-				670886722433AF3000B2C807 /* AlertBannerMock.json in Resources */,
+				670886722433AF3000B2C807 /* SharePointAlertMock.json in Resources */,
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				67630E832450BF410078D3C3 /* EnergyRewardsMock.json in Resources */,
@@ -7708,6 +7741,7 @@
 				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
 				359BDB7722D8F9B2007002B0 /* outage_off.json in Resources */,
+				67630EA32451E1580078D3C3 /* AppointmentsMock.json in Resources */,
 				67630E6F2450AD540078D3C3 /* EnergyTipsMock.json in Resources */,
 				9C0EA5B4237DAD2900D1E18F /* buddy_body.json in Resources */,
 				B07D247920C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
@@ -7781,6 +7815,7 @@
 				224EFF1D216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				67630E922451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				9C0E1C982333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
@@ -7862,7 +7897,7 @@
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				35C913A022E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
-				670886712433AF3000B2C807 /* AlertBannerMock.json in Resources */,
+				670886712433AF3000B2C807 /* SharePointAlertMock.json in Resources */,
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				67630E822450BF410078D3C3 /* EnergyRewardsMock.json in Resources */,
@@ -7899,6 +7934,7 @@
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
 				359BDB7622D8F9B2007002B0 /* outage_off.json in Resources */,
+				67630EA22451E1580078D3C3 /* AppointmentsMock.json in Resources */,
 				67630E6E2450AD540078D3C3 /* EnergyTipsMock.json in Resources */,
 				9C0EA5B3237DAD2900D1E18F /* buddy_body.json in Resources */,
 				B07D247820C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
@@ -9228,7 +9264,6 @@
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				355B103B2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
-				67278394244634DB00D5CD95 /* EndpointError.swift in Sources */,
 				9CBE9E2E23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
@@ -9245,6 +9280,7 @@
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				67630E792450B7360078D3C3 /* HomeProfileLoadNew.swift in Sources */,
 				B0D84D5C220382EE00C70A6F /* MockAppState.swift in Sources */,
+				67630EAD245323D40078D3C3 /* EndpointError.swift in Sources */,
 				82DE610A1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
 				B0472B292111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E83F026B1FB0B5850062A348 /* AlertsService.swift in Sources */,
@@ -9260,6 +9296,7 @@
 				9CABF6B52397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
 				351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
+				67630E992451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */,
 				9CA411DB2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */,
@@ -9374,7 +9411,7 @@
 				35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				67630E6924509EBD0078D3C3 /* SSODataResponse.swift in Sources */,
-				35D02D91240FFBC100D8894F /* ServiceLayer.swift in Sources */,
+				35D02D91240FFBC100D8894F /* NetworkingLayer.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
@@ -9399,6 +9436,7 @@
 				E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				67088690243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
+				67630EA52451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */,
 				9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
@@ -9492,6 +9530,7 @@
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				C3244C5224522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
 				670886742433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
+				670886742433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				67630E892450C3970078D3C3 /* GenericResponse.swift in Sources */,
@@ -9576,12 +9615,14 @@
 				9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
 				9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */,
+				67630EA92452183A0078D3C3 /* NetworkingError.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				E867A8FF1F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				B0B083A8216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
+				67630E952451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */,
 				8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				357757552114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				35B9609D22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
@@ -9705,7 +9746,6 @@
 				B0DB2762215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
 				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				82DE610C1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
-				67278396244634DB00D5CD95 /* EndpointError.swift in Sources */,
 				9CBE9E3023749B9900E14222 /* MCSGameService.swift in Sources */,
 				E83F026D1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				B0472B2B2111011F0048C1A7 /* UsageViewController.swift in Sources */,
@@ -9722,6 +9762,7 @@
 				359BDB2A22D398F0007002B0 /* UIColor+Image.swift in Sources */,
 				67630E7B2450B7360078D3C3 /* HomeProfileLoadNew.swift in Sources */,
 				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
+				67630EAF245323D40078D3C3 /* EndpointError.swift in Sources */,
 				35277AFB2102325100411297 /* UsageViewModel.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -9737,6 +9778,7 @@
 				9CABF6B72397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
+				67630E9B2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */,
 				9CA411DD2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				C37BFD0B2447504B0037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */,
@@ -9852,7 +9894,7 @@
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				67630E6B24509EBD0078D3C3 /* SSODataResponse.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
-				35D02D93240FFBC100D8894F /* ServiceLayer.swift in Sources */,
+				35D02D93240FFBC100D8894F /* NetworkingLayer.swift in Sources */,
 				B0649A61214834380041B299 /* StormModeStatus.swift in Sources */,
 				9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
@@ -9876,6 +9918,7 @@
 				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				67088692243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */,
+				67630EA72451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				9CB7E8DF23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				35C9139822E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
@@ -9969,6 +10012,7 @@
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
 				C3244C5424522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
 				670886762433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
+				670886762433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				9C62446122C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
 				67630E8B2450C3970078D3C3 /* GenericResponse.swift in Sources */,
@@ -10053,12 +10097,14 @@
 				B0D84D5F220382F000C70A6F /* MockAppState.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
+				67630EAB2452183A0078D3C3 /* NetworkingError.swift in Sources */,
 				351DE2FB221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01D1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				3559C8BC23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
 				9CD3532C22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				67630E972451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */,
 				9CEE412323722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				357757572114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
@@ -10182,7 +10228,6 @@
 				9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				355B103A2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
-				67278395244634DB00D5CD95 /* EndpointError.swift in Sources */,
 				9CBE9E2F23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
@@ -10199,6 +10244,7 @@
 				B0D84D5E220382EF00C70A6F /* MockAppState.swift in Sources */,
 				67630E7A2450B7360078D3C3 /* HomeProfileLoadNew.swift in Sources */,
 				B0472B2A2111011F0048C1A7 /* UsageViewController.swift in Sources */,
+				67630EAE245323D40078D3C3 /* EndpointError.swift in Sources */,
 				E80CBD101F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD61E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
@@ -10214,6 +10260,7 @@
 				9CBCE75723D5EEF400DA4BF8 /* ViewedTipTableViewCell.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */,
+				67630E9A2451D43F0078D3C3 /* AlertPreferencesRequest.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				C37BFD0A2447504A0037A9C9 /* CodyUnauthenticatedServiceNew.swift in Sources */,
@@ -10329,7 +10376,7 @@
 				35C9139722E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				67630E6A24509EBD0078D3C3 /* SSODataResponse.swift in Sources */,
 				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
-				35D02D92240FFBC100D8894F /* ServiceLayer.swift in Sources */,
+				35D02D92240FFBC100D8894F /* NetworkingLayer.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
 				B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
@@ -10353,6 +10400,7 @@
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				67088691243B6DC900B2C807 /* PaymentServiceNew.swift in Sources */,
+				67630EA62451E27C0078D3C3 /* AppointmentsContainer.swift in Sources */,
 				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9CB7E8DE23980BA4001FBAB9 /* GameTask.swift in Sources */,
@@ -10446,6 +10494,7 @@
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				C3244C5324522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
 				670886752433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
+				670886752433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				67630E8A2450C3970078D3C3 /* GenericResponse.swift in Sources */,
@@ -10530,12 +10579,14 @@
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				9C7774822368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				B0B083A9216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
+				67630EAA2452183A0078D3C3 /* NetworkingError.swift in Sources */,
 				9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */,
 				35A6C6D7211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
 				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01C1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
+				67630E962451D1A40078D3C3 /* AlertPreferencesNew.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				357757562114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				35B9609E22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,

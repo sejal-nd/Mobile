@@ -1,0 +1,20 @@
+{
+  "default": {
+    "success": true,
+    "data": [
+      {
+        "id": "212870938",
+        "type": "Bill Inquiry",
+        "typeID": "17",
+        "status": "Field Order Issued",
+        "statusID": "51",
+        "completionComments": null,
+        "createDate": "2019-04-23T00:00:00",
+        "lastAmendDate": null,
+        "startDate": "2019-04-29T00:00:00",
+        "timeSlot": "AM",
+        "stopDate": "0001-01-01T00:00:00"
+      }
+    ]
+  }
+}
