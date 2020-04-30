@@ -8,24 +8,10 @@
 
 import Foundation
 
-struct NewResponseWrapper<T: Decodable>: Decodable, EndpointErrorable {
+struct NewResponseWrapper<T: Decodable>: Decodable {
     public let success: Bool?
     public let data: T?
-    
-    // endpoint error
-    var errorCode: String?
-    var errorMessage: String?
-    
-    public var error: EndpointErrorable? {
-        get {
-            if errorCode != nil && errorMessage != nil {
-                return self
-            }
-            else {
-                return nil
-            }
-        }
-    }
+    public var error: EndpointErrorable?
     
     enum CodingKeys: String, CodingKey {
         case data
@@ -37,17 +23,27 @@ struct NewResponseWrapper<T: Decodable>: Decodable, EndpointErrorable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if container.contains(.data) {
-            self.data = try container.decode(T.self, forKey: .data)
-            self.success = try container.decodeIfPresent(Bool.self, forKey: .success)
+        // first check for error
+        if container.contains(.errorMessage) {
+            let errorCode = try container.decodeIfPresent(String.self, forKey: .errorCode)
+            let errorMessage = try container.decodeIfPresent(String.self, forKey: .errorMessage)
+            
+            self.data = nil
+            self.success = false
+            self.error = EndpointError(errorCode: errorCode, errorMessage: errorMessage)
         }
         else {
-            var container = try decoder.unkeyedContainer()
-            self.data = try container.decode(T.self)
-            self.success = true
+            // check for and decode data object
+            if container.contains(.data) {
+                self.data = try container.decode(T.self, forKey: .data)
+                self.success = try container.decodeIfPresent(Bool.self, forKey: .success)
+            }
+            else {
+                // if data is not present, then decode the data object as the parent
+                let container = try decoder.singleValueContainer()
+                self.data = try container.decode(T.self)
+                self.success = true
+            }
         }
-        
-        self.errorCode = try container.decodeIfPresent(String.self, forKey: .errorCode)
-        self.errorMessage = try container.decodeIfPresent(String.self, forKey: .errorMessage)
     }
 }

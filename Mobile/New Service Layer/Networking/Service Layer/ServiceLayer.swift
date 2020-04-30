@@ -97,9 +97,6 @@ public struct ServiceLayer {
                 print("JSON Payload: \(jsonString)")
             }
             
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-            
             do {
                 // 6.
                 let responseObject: T = try decode(data: data)

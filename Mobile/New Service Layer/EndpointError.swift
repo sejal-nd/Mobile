@@ -12,3 +12,8 @@ public protocol EndpointErrorable {
     var errorCode: String? { get set }
     var errorMessage: String? { get set }
 }
+
+struct EndpointError: EndpointErrorable {
+    var errorCode: String?
+    var errorMessage: String?
+}
