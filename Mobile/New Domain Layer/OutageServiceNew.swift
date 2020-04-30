@@ -11,7 +11,7 @@ import Foundation
 struct OutageServiceNew {
     static func fetchOutageStatus(accountNumber: String, premiseNumber: String, completion: @escaping (Result<NewOutageStatus, NetworkingError>) -> ()) {
         
-        ServiceLayer.request(router: .outageStatus(accountNumber: accountNumber, premiseNumber: premiseNumber)) { (result: Result<NewOutageStatus, NetworkingError>) in
+        NetworkingLayer.request(router: .outageStatus(accountNumber: accountNumber, premiseNumber: premiseNumber)) { (result: Result<NewOutageStatus, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("outageStatus SUCCESS: \(data)")
@@ -25,7 +25,7 @@ struct OutageServiceNew {
     }
     
     static func reportOutage(request: OutageRequest, completion: @escaping (Result<NewReportedOutageResult, NetworkingError>) -> ()) {
-        ServiceLayer.request(router: .reportOutage(accountNumber: request.accountNumber, encodable: request)) { (result: Result<NewReportedOutageResult, NetworkingError>) in
+        NetworkingLayer.request(router: .reportOutage(accountNumber: request.accountNumber, encodable: request)) { (result: Result<NewReportedOutageResult, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("reportOutage SUCCESS: \(data)")
@@ -39,7 +39,7 @@ struct OutageServiceNew {
     }
     
     static func pingMeter(accountNumber: String, premiseNumber: String, completion: @escaping (Result<NewMeterPingResult, NetworkingError>) -> ()) {
-        ServiceLayer.request(router: .meterPing(accountNumber: accountNumber, premiseNumber: premiseNumber)) { (result: Result<NewMeterPingResult, NetworkingError>) in
+        NetworkingLayer.request(router: .meterPing(accountNumber: accountNumber, premiseNumber: premiseNumber)) { (result: Result<NewMeterPingResult, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("meterPing SUCCESS: \(data)")
