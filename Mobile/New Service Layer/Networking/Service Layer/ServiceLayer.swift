@@ -108,8 +108,12 @@ public struct ServiceLayer {
                 }
             } catch let error {
                 print(error.localizedDescription)
-                
-                completion(.failure(.decodingError))
+                if let networkError = error as? NetworkingError {
+                    completion(.failure(networkError))
+                }
+                else {
+                    completion(.failure(.decodingError))
+                }
             }
         }
         dataTask.resume()
