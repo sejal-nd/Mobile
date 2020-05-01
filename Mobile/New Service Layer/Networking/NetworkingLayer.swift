@@ -101,7 +101,7 @@ public struct NetworkingLayer {
                         completion(.success(responseObject))
                     }
                 } catch {
-                    print(error.localizedDescription)
+                    dLog("Failed to deocde network response:\n\n\(error)")
                     if let networkError = error as? NetworkingError {
                         completion(.failure(networkError))
                     } else {
