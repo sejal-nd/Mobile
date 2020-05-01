@@ -100,12 +100,11 @@ public struct NetworkingLayer {
                     DispatchQueue.main.async {
                         completion(.success(responseObject))
                     }
-                } catch let error {
+                } catch {
                     print(error.localizedDescription)
                     if let networkError = error as? NetworkingError {
                         completion(.failure(networkError))
-                    }
-                    else {
+                    } else {
                         completion(.failure(.decodingError))
                     }
                 }
@@ -125,11 +124,11 @@ public struct NetworkingLayer {
             throw NetworkingError.endpointError(endpointError)
         }
         
-        if responseWrapper.data == nil {
+        guard let data = responseWrapper.data else {
             throw NetworkingError.decodingError
         }
         
-        return responseWrapper.data!
+        return data
     }
     
     public static func cancelAllTasks() {

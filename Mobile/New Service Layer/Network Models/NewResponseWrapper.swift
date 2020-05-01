@@ -29,12 +29,10 @@ struct NewResponseWrapper<T: Decodable>: Decodable {
             if !self.success {
                 let container = try decoder.singleValueContainer()
                 self.error = try container.decode(EndpointError.self)
-            }
-            else {
+            } else {
                 self.data = try container.decode(T.self, forKey: .data)
             }
-        }
-        else { // no response wrapper
+        } else { // no response wrapper
             let container = try decoder.singleValueContainer()
             self.data = try container.decode(T.self)
             self.success = true
