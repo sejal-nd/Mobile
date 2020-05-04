@@ -339,6 +339,7 @@ class AlertPreferencesViewModel {
     private func saveAlertPreferences() -> Observable<Void> {
         let alertPreferences = AlertPreferences(highUsage: highUsage.value,
                                                 alertThreshold: Int(billThreshold.value ?? ""),
+                                                previousAlertThreshold: Int(initialBillThresholdValue),
                                                 peakTimeSavings: isPTSEligible ? peakTimeSavings.value : nil,
                                                 smartEnergyRewards: isPTREligible ? smartEnergyRewards.value : nil,
                                                 energySavingsDayResults: isPTREligible ? energySavingsDayResults.value : nil,

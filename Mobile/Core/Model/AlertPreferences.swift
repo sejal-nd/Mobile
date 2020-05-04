@@ -11,6 +11,7 @@ import Mapper
 struct AlertPreferences {
     var highUsage = false // BGE/ComEd only
     var alertThreshold: Int? // BGE/ComEd only
+    var previousAlertThreshold: Int? // BGE/ComEd only
     var peakTimeSavings: Bool? = false // ComEd only
     var smartEnergyRewards: Bool? = false // BGE only
     var energySavingsDayResults: Bool? = false // BGE only
@@ -70,6 +71,7 @@ struct AlertPreferences {
     // To create programatically, not from JSON
     init(highUsage: Bool,
          alertThreshold: Int? = nil,
+         previousAlertThreshold: Int? = nil,
          peakTimeSavings: Bool? = nil,
          smartEnergyRewards: Bool? = nil,
          energySavingsDayResults: Bool? = nil,
@@ -86,6 +88,7 @@ struct AlertPreferences {
          forYourInfo: Bool) {
         self.highUsage = highUsage
         self.alertThreshold = alertThreshold
+        self.previousAlertThreshold = previousAlertThreshold
         self.peakTimeSavings = peakTimeSavings
         self.smartEnergyRewards = smartEnergyRewards
         self.energySavingsDayResults = energySavingsDayResults
@@ -110,7 +113,10 @@ struct AlertPreferences {
         let highUsageProgramName = "High Usage Residential Alert"
         
         var highUsageProgram = ["programName": highUsageProgramName, "type": "push", "isActive": highUsage] as [String : Any]
-        highUsageProgram["alertThreshold"] = alertThreshold ?? "null"
+        
+        if previousAlertThreshold != alertThreshold {
+            highUsageProgram["alertThreshold"] = alertThreshold ?? NSNull()
+        }
         
         var array = [
             highUsageProgram,
@@ -142,7 +148,7 @@ struct AlertPreferences {
     }
     
     func isDifferent(fromOriginal originalPrefs: AlertPreferences) -> Bool {
-        // Note: not checking paymentDueDaysBefore here because that is compared for changes independently
+        // Note: not checking paymentDueDaysBefore or alertThreshold here because those are compared for changes independently
         // in AlertPreferencesViewModel
         return highUsage != originalPrefs.highUsage ||
             peakTimeSavings != originalPrefs.peakTimeSavings ||
