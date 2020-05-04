@@ -94,7 +94,7 @@ public struct NetworkingLayer {
                 completion(.failure(.endpointError(errorResponse)))
             } else {
                 do {
-                    let responseObject = try jsonDecoder.decode(T.self, from: data)
+                    let responseObject: T = try decode(data: data)
                     
                     // Success
                     DispatchQueue.main.async {
@@ -102,11 +102,33 @@ public struct NetworkingLayer {
                     }
                 } catch {
                     dLog("Failed to deocde network response:\n\n\(error)")
-                    completion(.failure(.decodingError))
+                    if let networkError = error as? NetworkingError {
+                        completion(.failure(networkError))
+                    } else {
+                        completion(.failure(.decodingError))
+                    }
                 }
             }
         }
         dataTask.resume()
+    }
+    
+    public static func decode<T: Decodable>(data: Data) throws -> T {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+        
+        let responseWrapper = try jsonDecoder.decode(NewResponseWrapper<T>.self, from: data)
+        
+        // check for endpoint error
+        if let endpointError = responseWrapper.error {
+            throw NetworkingError.endpointError(endpointError)
+        }
+        
+        guard let data = responseWrapper.data else {
+            throw NetworkingError.decodingError
+        }
+        
+        return data
     }
     
     public static func cancelAllTasks() {

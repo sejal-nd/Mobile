@@ -84,12 +84,19 @@ public enum Router {
     
     case appointments(accountNumber: String, premiseNumber: String)
     
+    // Outage
+    case outageStatus(accountNumber: String, premiseNumber: String)
+    case reportOutage(accountNumber: String, encodable: Encodable)
+    case meterPing(accountNumber: String, premiseNumber: String)
+    
     // Unauthenticated
     case anonOutageStatus(encodable: Encodable)
 
     case passwordChange(encodable: Encodable)
     case accountLookup(encodable: Encodable)
     case recoverPassword(encodable: Encodable)
+    case recoverUsername(encodable: Encodable)
+    case recoverMaskedUsername(encodable: Encodable)
     
     public var scheme: String {
         return "https"
@@ -210,14 +217,22 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/account/lookup"
         case .recoverPassword:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/recover/password"
+        case .recoverUsername, .recoverMaskedUsername:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/recover/username"
+        case .outageStatus(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/outage?meterPing=false"
+        case .reportOutage(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/outage"
+        case .meterPing(let accountNumber, let premiseNumber):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises\(premiseNumber)/outage"
         }
     }
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate:
             return "PUT"
@@ -322,6 +337,8 @@ public enum Router {
             return "ForecastBillMock"
         case .accountLookup:
             return "AccountLookupResultMock"
+        case .recoverUsername:
+            return "RecoverUsernameResultMock"
         case .ssoData:
             return "SSODataMock"
         case .energyTips:
