@@ -314,6 +314,11 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                                                                   message: self.viewModel.billThresholdToolTipText)
                     self.present(alertViewController, animated: true)
                 }
+                cell.checkbox.rx.isChecked.asDriver()
+                    .distinctUntilChanged()
+                    .skip(1)
+                    .drive(onNext: { cell.textField.setEnabled($0) })
+                    .disposed(by: cell.disposeBag)
             }
         case .peakTimeSavings:
             toggleVariable = viewModel.peakTimeSavings
