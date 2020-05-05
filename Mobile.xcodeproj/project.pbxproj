@@ -2241,6 +2241,18 @@
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
 		B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */; };
 		C30BBE152444DEA60070522A /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
+		C30E4ED62461CBEE0050AAFB /* RecoverUsernameMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4ED52461CBEE0050AAFB /* RecoverUsernameMock.json */; };
+		C30E4ED72461CBEE0050AAFB /* RecoverUsernameMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4ED52461CBEE0050AAFB /* RecoverUsernameMock.json */; };
+		C30E4ED82461CBEE0050AAFB /* RecoverUsernameMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4ED52461CBEE0050AAFB /* RecoverUsernameMock.json */; };
+		C30E4EDA2461D32D0050AAFB /* MeterPingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4ED92461D32D0050AAFB /* MeterPingMock.json */; };
+		C30E4EDB2461D32D0050AAFB /* MeterPingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4ED92461D32D0050AAFB /* MeterPingMock.json */; };
+		C30E4EDC2461D32D0050AAFB /* MeterPingMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4ED92461D32D0050AAFB /* MeterPingMock.json */; };
+		C30E4EDE2461D39F0050AAFB /* OutageStatusMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4EDD2461D39F0050AAFB /* OutageStatusMock.json */; };
+		C30E4EDF2461D39F0050AAFB /* OutageStatusMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4EDD2461D39F0050AAFB /* OutageStatusMock.json */; };
+		C30E4EE02461D39F0050AAFB /* OutageStatusMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4EDD2461D39F0050AAFB /* OutageStatusMock.json */; };
+		C30E4EE62461D41B0050AAFB /* ReportOutageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4EE52461D41B0050AAFB /* ReportOutageMock.json */; };
+		C30E4EE72461D41B0050AAFB /* ReportOutageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4EE52461D41B0050AAFB /* ReportOutageMock.json */; };
+		C30E4EE82461D41B0050AAFB /* ReportOutageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4EE52461D41B0050AAFB /* ReportOutageMock.json */; };
 		C3244C4E2452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
 		C3244C4F2452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
 		C3244C502452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
@@ -2265,9 +2277,9 @@
 		C32BD4922448D5A500870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
 		C32BD4932448D5A600870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
 		C32BD4942448D5A600870262 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */; };
-		C32BD49A2448D9F800870262 /* AccountLookupResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupResultMock.json */; };
-		C32BD49B2448D9F800870262 /* AccountLookupResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupResultMock.json */; };
-		C32BD49C2448D9F800870262 /* AccountLookupResultMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupResultMock.json */; };
+		C32BD49A2448D9F800870262 /* AccountLookupMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupMock.json */; };
+		C32BD49B2448D9F800870262 /* AccountLookupMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupMock.json */; };
+		C32BD49C2448D9F800870262 /* AccountLookupMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C32BD4992448D9F800870262 /* AccountLookupMock.json */; };
 		C32BD49E2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */; };
 		C32BD49F2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */; };
 		C32BD4A02448EF3B00870262 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */; };
@@ -3993,12 +4005,16 @@
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
 		BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodyUnauthenticatedServiceNew.swift; sourceTree = "<group>"; };
+		C30E4ED52461CBEE0050AAFB /* RecoverUsernameMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecoverUsernameMock.json; sourceTree = "<group>"; };
+		C30E4ED92461D32D0050AAFB /* MeterPingMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MeterPingMock.json; sourceTree = "<group>"; };
+		C30E4EDD2461D39F0050AAFB /* OutageStatusMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OutageStatusMock.json; sourceTree = "<group>"; };
+		C30E4EE52461D41B0050AAFB /* ReportOutageMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ReportOutageMock.json; sourceTree = "<group>"; };
 		C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOutageStatus.swift; sourceTree = "<group>"; };
 		C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReportedOutageResult.swift; sourceTree = "<group>"; };
 		C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeterPingResult.swift; sourceTree = "<group>"; };
 		C3244C5F24571E3100C05FB2 /* NewResponseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewResponseWrapper.swift; sourceTree = "<group>"; };
 		C32BD4912448D5A500870262 /* RecoverPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordRequest.swift; sourceTree = "<group>"; };
-		C32BD4992448D9F800870262 /* AccountLookupResultMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AccountLookupResultMock.json; sourceTree = "<group>"; };
+		C32BD4992448D9F800870262 /* AccountLookupMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AccountLookupMock.json; sourceTree = "<group>"; };
 		C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverMaskedUsernameRequest.swift; sourceTree = "<group>"; };
 		C32BD4A12448EFC100870262 /* RecoverUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverUsernameRequest.swift; sourceTree = "<group>"; };
 		C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewForgotMaskedUsername.swift; sourceTree = "<group>"; };
@@ -5697,14 +5713,18 @@
 				67E44628242A4222007FC7F3 /* AccountsMock.json */,
 				676BDA67242BA85C00C880A3 /* AccountDetailsMock.json */,
 				676BDA7C242E4BB500C880A3 /* WeatherMock.json */,
+				C30E4EDD2461D39F0050AAFB /* OutageStatusMock.json */,
+				C30E4EE52461D41B0050AAFB /* ReportOutageMock.json */,
 				6708865F24337E8600B2C807 /* WalletMock.json */,
+				C30E4ED92461D32D0050AAFB /* MeterPingMock.json */,
+				C30E4ED52461CBEE0050AAFB /* RecoverUsernameMock.json */,
 				67088667243387EE00B2C807 /* PaymentsMock.json */,
 				6708866F2433AF3000B2C807 /* SharePointAlertMock.json */,
 				670886772433CF1E00B2C807 /* BillPDFMock.json */,
 				6708867F243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json */,
 				67088693243BA5AD00B2C807 /* BillingHistoryResult.json */,
 				67278347243CCE6400D5CD95 /* PaymentMock.json */,
-				C32BD4992448D9F800870262 /* AccountLookupResultMock.json */,
+				C32BD4992448D9F800870262 /* AccountLookupMock.json */,
 				67278357243CD68200D5CD95 /* CompareBillMock.json */,
 				67278363243D028000D5CD95 /* AutoPayEnrollMock.json */,
 				6727837F243E52EB00D5CD95 /* BudgetBillingMock.json */,
@@ -7395,6 +7415,7 @@
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				9C62446822C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */,
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
+				C30E4EE62461D41B0050AAFB /* ReportOutageMock.json in Resources */,
 				359BDB7822D8F9B2007002B0 /* outage_reported.json in Resources */,
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
 				67630E912451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */,
@@ -7404,7 +7425,7 @@
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
-				C32BD49A2448D9F800870262 /* AccountLookupResultMock.json in Resources */,
+				C32BD49A2448D9F800870262 /* AccountLookupMock.json in Resources */,
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
@@ -7500,6 +7521,7 @@
 				82A18EF31EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				B07E17EB2209F0CA00B6E3C7 /* maintenance.json in Resources */,
 				356C7FAA2190D940003E8A90 /* environment.plist in Resources */,
+				C30E4EDA2461D32D0050AAFB /* MeterPingMock.json in Resources */,
 				359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
 				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
@@ -7543,6 +7565,7 @@
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
 				9CEE411923722444005A4AD3 /* Game.storyboard in Resources */,
+				C30E4EDE2461D39F0050AAFB /* OutageStatusMock.json in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
 				9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
@@ -7554,6 +7577,7 @@
 				3575232D22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				359BDB7B22D8F9B2007002B0 /* outage_on.json in Resources */,
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
+				C30E4ED62461CBEE0050AAFB /* RecoverUsernameMock.json in Resources */,
 				B0CB1C87227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
 				0E0276D02347B20300671E65 /* BGE-Environment-HOTFIX.plist in Resources */,
@@ -7577,7 +7601,7 @@
 				9C0A2C3B23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				6766F96C242259D0007C9CB9 /* MinVersionMock.json in Resources */,
 				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
-				C32BD49C2448D9F800870262 /* AccountLookupResultMock.json in Resources */,
+				C32BD49C2448D9F800870262 /* AccountLookupMock.json in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2765215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
@@ -7625,6 +7649,7 @@
 				67630E932451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
+				C30E4ED82461CBEE0050AAFB /* RecoverUsernameMock.json in Resources */,
 				9C0E1C992333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -7664,6 +7689,7 @@
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				3559C8B82301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				C30E4EE02461D39F0050AAFB /* OutageStatusMock.json in Resources */,
 				9C2C601123C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				67E6E7BD242906A900C3AC90 /* MaintenanceModeMock.json in Resources */,
@@ -7693,6 +7719,7 @@
 				E8494F431EBBCB4C0047D6BE /* outage_loading.json in Resources */,
 				9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */,
 				B01748902135D19B0039D0C6 /* Storm.storyboard in Resources */,
+				C30E4EDC2461D32D0050AAFB /* MeterPingMock.json in Resources */,
 				82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
 				9CEE411B23722444005A4AD3 /* Game.storyboard in Resources */,
@@ -7729,6 +7756,7 @@
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
 				67E4461F242925AD007FC7F3 /* SAMLTokenMock.json in Resources */,
 				352B8D9A230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
+				C30E4EE82461D41B0050AAFB /* ReportOutageMock.json in Resources */,
 				676BDA6A242BA85C00C880A3 /* AccountDetailsMock.json in Resources */,
 				9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */,
 				B0EE78F32214766700F53C56 /* appointments.json in Resources */,
@@ -7770,7 +7798,7 @@
 				9C0A2C3A23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				6766F96B242259D0007C9CB9 /* MinVersionMock.json in Resources */,
 				35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
-				C32BD49B2448D9F800870262 /* AccountLookupResultMock.json in Resources */,
+				C32BD49B2448D9F800870262 /* AccountLookupMock.json in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2764215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
@@ -7818,6 +7846,7 @@
 				67630E922451D1390078D3C3 /* AlertPreferencesLoadMock.json in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
+				C30E4ED72461CBEE0050AAFB /* RecoverUsernameMock.json in Resources */,
 				9C0E1C982333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				B089573C22175FDC00A97965 /* alert_preferences.json in Resources */,
@@ -7857,6 +7886,7 @@
 				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				3559C8B72301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
+				C30E4EDF2461D39F0050AAFB /* OutageStatusMock.json in Resources */,
 				9C2C601023C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				359BDBAD22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				67E6E7BC242906A900C3AC90 /* MaintenanceModeMock.json in Resources */,
@@ -7886,6 +7916,7 @@
 				9C8775B522A082CD0087F0BA /* FirstFuelWidget.html in Resources */,
 				E8494F411EBBCB430047D6BE /* outage_loading.json in Resources */,
 				9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */,
+				C30E4EDB2461D32D0050AAFB /* MeterPingMock.json in Resources */,
 				B017488F2135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				9CEE411A23722444005A4AD3 /* Game.storyboard in Resources */,
@@ -7922,6 +7953,7 @@
 				B07E17E12209F0CA00B6E3C7 /* account_details.json in Resources */,
 				67E4461E242925AD007FC7F3 /* SAMLTokenMock.json in Resources */,
 				352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
+				C30E4EE72461D41B0050AAFB /* ReportOutageMock.json in Resources */,
 				676BDA69242BA85C00C880A3 /* AccountDetailsMock.json in Resources */,
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD21032155AD85505077D /* splash.json in Resources */,
@@ -9529,7 +9561,7 @@
 				9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				C3244C5224522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
-				670886742433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
+				670886742433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				670886742433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -10011,7 +10043,7 @@
 				9C34D74A239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
 				C3244C5424522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
-				670886762433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
+				670886762433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				670886762433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				9C62446122C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
@@ -10493,7 +10525,7 @@
 				9C34D749239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				C3244C5324522F6A00C05FB2 /* NewReportedOutageResult.swift in Sources */,
-				670886752433B22D00B2C807 /* NewAlertBanner.swift in Sources */,
+				670886752433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				670886752433B22D00B2C807 /* NewSharePointAlert.swift in Sources */,
 				B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,

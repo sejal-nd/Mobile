@@ -338,7 +338,15 @@ public enum Router {
         case .accountLookup:
             return "AccountLookupResultMock"
         case .recoverUsername:
+            fallthrough
+        case .recoverMaskedUsername:
             return "RecoverUsernameResultMock"
+        case .outageStatus:
+            return "OutageStatusMock"
+        case .reportOutage:
+            return "ReportOutageMock"
+        case .meterPing:
+            return "MeterPingMock"
         case .ssoData:
             return "SSODataMock"
         case .energyTips:
