@@ -33,7 +33,7 @@
 		<key>Stage-bgeMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-bge-s-ams-01.azure-api.net/legacy</string>
+			<string>https://mcsstg.mobileenv.bge.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
@@ -102,7 +102,7 @@
 		<key>Stage-comedMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-comed-s-ams-01.azure-api.net/legacy</string>
+			<string>https://mcsstg.mobileenv.comed.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
@@ -171,7 +171,7 @@
 		<key>Stage-pecoMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-peco-s-ams-01.azure-api.net/legacy</string>
+			<string>https://mcsstg.mobileenv.peco.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
