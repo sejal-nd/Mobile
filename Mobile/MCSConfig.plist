@@ -12,8 +12,6 @@
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -25,21 +23,17 @@
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Stage-bgeMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-bge-s-ams-01.azure-api.net/legacy</string>
+			<string>https://mcsstg.mobileenv.bge.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
@@ -53,8 +47,6 @@
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
@@ -68,8 +60,6 @@
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 		</dict>
@@ -81,8 +71,6 @@
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -94,21 +82,17 @@
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Stage-comedMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-comed-s-ams-01.azure-api.net/legacy</string>
+			<string>https://mcsstg.mobileenv.comed.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
@@ -122,8 +106,6 @@
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
@@ -137,8 +119,6 @@
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 		</dict>
@@ -150,8 +130,6 @@
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -163,21 +141,17 @@
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Stage-pecoMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-peco-s-ams-01.azure-api.net/legacy</string>
+			<string>https://mcsstg.mobileenv.peco.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
@@ -191,8 +165,6 @@
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
@@ -206,11 +178,189 @@
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>apiVersion</key>
-			<string>v6</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 		</dict>
+        
+        <key>Test-pepcoMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://xze-e-n-eudapi-bge-t-ams-01.azure-api.net/legacy</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
+            <key>oauthEndpoint</key>
+            <string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+            <key>paymentusUrl</key>
+            <string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+        </dict>
+        <key>Dev-pepcoMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://xze-e-n-eudapi-bge-d-ams-01.azure-api.net/legacy</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
+            <key>oauthEndpoint</key>
+            <string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+            <key>paymentusUrl</key>
+            <string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+        </dict>
+        <key>Stage-pepcoMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://mcsstg.mobileenv.pepco.com</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+            <key>oauthEndpoint</key>
+            <string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+            <key>paymentusUrl</key>
+            <string>https://secure2.paymentus.com/xotp/pm/%@</string>
+        </dict>
+        <key>Stage-pepcoHotfixMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://mcsstg.mobileenv.bge.com</string>
+            <key>mobileBackendID</key>
+            <string>03adfef5-e1a8-416b-ad0e-8fff74fb04f8</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+            <key>oauthEndpoint</key>
+            <string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+            <key>paymentusUrl</key>
+            <string>https://secure2.paymentus.com/xotp/pm/%@</string>
+        </dict>
+        <key>Prod-pepcoMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://mcs.mobileenv.bge.com</string>
+            <key>mobileBackendID</key>
+            <string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
+            <key>oauthEndpoint</key>
+            <string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+            <key>paymentusUrl</key>
+            <string>https://ipn2.paymentus.com/xotp/pm/%@</string>
+        </dict>
+        
+        <key>Test-aceMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://xze-e-n-eudapi-bge-t-ams-01.azure-api.net/legacy</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
+            <key>oauthEndpoint</key>
+            <string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+            <key>paymentusUrl</key>
+            <string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+        </dict>
+        <key>Dev-aceMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://xze-e-n-eudapi-bge-d-ams-01.azure-api.net/legacy</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
+            <key>oauthEndpoint</key>
+            <string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+            <key>paymentusUrl</key>
+            <string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+        </dict>
+        <key>Stage-aceMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://mcsstg.mobileenv.atlanticcityelectric.com</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+            <key>oauthEndpoint</key>
+            <string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+            <key>paymentusUrl</key>
+            <string>https://secure2.paymentus.com/xotp/pm/%@</string>
+        </dict>
+        <key>Stage-aceHotfixMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://mcsstg.mobileenv.bge.com</string>
+            <key>mobileBackendID</key>
+            <string>03adfef5-e1a8-416b-ad0e-8fff74fb04f8</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+            <key>oauthEndpoint</key>
+            <string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+            <key>paymentusUrl</key>
+            <string>https://secure2.paymentus.com/xotp/pm/%@</string>
+        </dict>
+        <key>Prod-aceMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://mcs.mobileenv.bge.com</string>
+            <key>mobileBackendID</key>
+            <string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
+            <key>oauthEndpoint</key>
+            <string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+            <key>paymentusUrl</key>
+            <string>https://ipn2.paymentus.com/xotp/pm/%@</string>
+        </dict>
+        
+        <key>Test-delmarvaMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://xze-e-n-eudapi-bge-t-ams-01.azure-api.net/legacy</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
+            <key>oauthEndpoint</key>
+            <string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+            <key>paymentusUrl</key>
+            <string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+        </dict>
+        <key>Dev-delmarvaMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://xze-e-n-eudapi-bge-d-ams-01.azure-api.net/legacy</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
+            <key>oauthEndpoint</key>
+            <string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+            <key>paymentusUrl</key>
+            <string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+        </dict>
+        <key>Stage-delmarvaMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://mcsstg.mobileenv.delmarva.com</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+            <key>oauthEndpoint</key>
+            <string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+            <key>paymentusUrl</key>
+            <string>https://secure2.paymentus.com/xotp/pm/%@</string>
+        </dict>
+        <key>Stage-delmarvaHotfixMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://mcsstg.mobileenv.bge.com</string>
+            <key>mobileBackendID</key>
+            <string>03adfef5-e1a8-416b-ad0e-8fff74fb04f8</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+            <key>oauthEndpoint</key>
+            <string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+            <key>paymentusUrl</key>
+            <string>https://secure2.paymentus.com/xotp/pm/%@</string>
+        </dict>
+        <key>Prod-delmarvaMBE</key>
+        <dict>
+            <key>baseURL</key>
+            <string>https://mcs.mobileenv.bge.com</string>
+            <key>mobileBackendID</key>
+            <string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
+            <key>anonymousKey</key>
+            <string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
+            <key>oauthEndpoint</key>
+            <string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+            <key>paymentusUrl</key>
+            <string>https://ipn2.paymentus.com/xotp/pm/%@</string>
+        </dict>
 	</dict>
 </dict>
 </plist>
