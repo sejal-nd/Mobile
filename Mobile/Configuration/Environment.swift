@@ -17,7 +17,12 @@ enum OpCo: String {
     case delmarva = "Delmarva"
     
     var displayString: String {
-        return rawValue
+        switch self {
+        case .ace:
+            return "Atlantic City Electric"
+        default:
+            return rawValue
+        }
     }
     
     // Used for reading the splash screen animation to VoiceOver users
