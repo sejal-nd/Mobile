@@ -17064,7 +17064,7 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -17095,7 +17095,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 9.8.8;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -17126,7 +17126,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -17145,7 +17145,7 @@
 				DEVELOPMENT_TEAM = "";
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5;
@@ -17157,7 +17157,7 @@
 			buildSettings = {
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5;
@@ -17169,7 +17169,7 @@
 			buildSettings = {
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5;
@@ -17195,7 +17195,7 @@
 					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -17226,7 +17226,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
@@ -17258,7 +17258,7 @@
 					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
@@ -17290,7 +17290,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -17322,7 +17322,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -17354,7 +17354,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -19559,8 +19559,9 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.develop;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				EXM_ENVIRONMENT = HOTFIX;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -19574,11 +19575,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = ComEd_Watch_Extension;
-				INFOPLIST_FILE = "Watch/Configuration/ComEd-Info.plist";
-				MARKETING_VERSION = 9.8.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.develop.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -19772,7 +19776,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
@@ -19798,9 +19802,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
+				EXM_BUNDLE_ID = com.exelon.mobile.comed.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
@@ -19814,9 +19818,9 @@
 			};
 			name = Automation;
 		};
-		67DDB52124535D2E006CD6EB /* Staging */ = {
+		67DDB52124535D2E006CD6EB /* Hotfix */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AED49372A2A1780FFC38D1CA /* Pods-PepcoApp-Pepco.staging.xcconfig */;
+			baseConfigurationReference = 75DEB2BD50E040CBA4237C21 /* Pods-PepcoApp-Pepco.hotfix.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
@@ -19827,9 +19831,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
+				EXM_BUNDLE_ID = com.exelon.mobile.peco.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
@@ -19843,7 +19847,7 @@
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = Staging;
+			name = Hotfix;
 		};
 		67DDB52224535D2E006CD6EB /* Hotfix */ = {
 			isa = XCBuildConfiguration;
@@ -19860,9 +19864,17 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+				);
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -19881,20 +19893,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6D71F4205268AD96E66C4737 /* Pods-PepcoApp-Pepco.testing.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -19913,18 +19928,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8D669F469EE65C511141A20 /* Pods-PepcoApp-Pepco.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -19942,19 +19962,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26C30C9C594F8AE59CEA4C59 /* Pods-PepcoApp-Pepco.prodbeta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -20001,25 +20025,32 @@
 			baseConfigurationReference = 395832BDDB4AB00255A495E3 /* Pods-ACEApp-ACE.automation.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.develop;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.2.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_ENVIRONMENT = HOTFIX;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.hotfix.watchkitapp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper-watchOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-watchOS\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/PECO-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.hotfix.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Hotfix Watchkit WatchkitExtension Enterprise";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -20075,7 +20106,7 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -20291,7 +20322,7 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -20547,7 +20578,7 @@
 					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUnitTests;
@@ -20796,7 +20827,7 @@
 					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUnitTests;
@@ -21045,7 +21076,7 @@
 					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUnitTests;
@@ -21304,7 +21335,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUITests;
@@ -21567,7 +21598,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUITests;
@@ -21830,7 +21861,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUITests;
@@ -21978,7 +22009,7 @@
 				DEVELOPMENT_TEAM = "";
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5;
@@ -22063,7 +22094,7 @@
 				DEVELOPMENT_TEAM = "";
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5;
@@ -22148,7 +22179,7 @@
 				DEVELOPMENT_TEAM = "";
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5;
@@ -22190,6 +22221,13 @@
 				SWIFT_VERSION = 5;
 			};
 			name = Prodbeta;
+		};
+		67DDBDA324631BAE006CD6EB /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Mobile;
+			};
+			name = Staging;
 		};
 		9C541053218B9D8700E03670 /* Testing */ = {
 			isa = XCBuildConfiguration;
@@ -24020,11 +24058,12 @@
 			buildConfigurations = (
 				67DDB51F24535D2E006CD6EB /* Develop */,
 				67DDB52024535D2E006CD6EB /* Automation */,
-				67DDB52124535D2E006CD6EB /* Staging */,
+				67DDB52124535D2E006CD6EB /* Hotfix */,
 				67DDB52224535D2E006CD6EB /* Hotfix */,
 				67DDB52324535D2E006CD6EB /* Testing */,
 				67DDB52424535D2E006CD6EB /* Release */,
 				67DDB52524535D2E006CD6EB /* Prodbeta */,
+				67DDBDA324631BAE006CD6EB /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Develop;

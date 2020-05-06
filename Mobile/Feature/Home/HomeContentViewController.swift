@@ -155,12 +155,13 @@ class HomeContentViewController: UIViewController {
         let duration = animated ? 1.0 : 0.0
         if inGame {
             inGame = false
+            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
+            
             let controller = storyboard!.instantiateViewController(withIdentifier: "Home")
             controller.view.translatesAutoresizingMaskIntoConstraints = false
-            
             addChild(controller)
+            controller.beginAppearanceTransition(true, animated: false)
             
-            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
             UIView.transition(from: containerView, to: controller.view, duration: duration, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.containerView = controller.view
                 onCompletion?()
@@ -173,16 +174,18 @@ class HomeContentViewController: UIViewController {
                 controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
             ])
             controller.didMove(toParent: self)
+            
             view.sendSubviewToBack(controller.view)
         } else {
             inGame = true
+            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
+            
             let sb = UIStoryboard(name: "Game", bundle: nil)
             let controller = sb.instantiateViewController(withIdentifier: "GameHome")
             controller.view.translatesAutoresizingMaskIntoConstraints = false
-            
             addChild(controller)
+            controller.beginAppearanceTransition(true, animated: false)
             
-            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
             UIView.transition(from: containerView, to: controller.view, duration: duration, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.containerView = controller.view
                 onCompletion?()
@@ -195,6 +198,7 @@ class HomeContentViewController: UIViewController {
                 controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
             ])
             controller.didMove(toParent: self)
+            
             view.sendSubviewToBack(controller.view)
         }
         
