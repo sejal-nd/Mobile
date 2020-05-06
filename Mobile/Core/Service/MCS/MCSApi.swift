@@ -137,14 +137,14 @@ class MCSApi {
         var fullPath: String
         switch pathPrefix {
         case .anon:
-            let opCoString = Environment.shared.opco.displayString.uppercased()
+            let opCoString = Environment.shared.opco.rawValue.uppercased()
             fullPath = String(format: "anon/%@/%@", opCoString, path)
         case .auth:
             fullPath = String(format: "auth/%@", path)
         case .none:
             fullPath = path
         }
-        
+                
         #if os(iOS)
         let reachability = Reachability()!
         let networkStatus = reachability.connection

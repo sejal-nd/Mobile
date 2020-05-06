@@ -3208,14 +3208,15 @@
 		67DDBD6524572E7C006CD6EB /* PepcoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBD2E24571083006CD6EB /* PepcoColor.swift */; };
 		67DDBD6624572E7D006CD6EB /* PepcoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBD2E24571083006CD6EB /* PepcoColor.swift */; };
 		67DDBD6824573696006CD6EB /* LaunchScreen-ACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6724573696006CD6EB /* LaunchScreen-ACE.storyboard */; };
-		67DDBD802457382A006CD6EB /* GoogleService-Info_ace_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6C245736E1006CD6EB /* GoogleService-Info_ace_develop.plist */; };
-		67DDBD812457382A006CD6EB /* GoogleService-Info_ace_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6B245736E1006CD6EB /* GoogleService-Info_ace_prodbeta.plist */; };
-		67DDBD822457382A006CD6EB /* GoogleService-Info_ace_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6D245736E2006CD6EB /* GoogleService-Info_ace_staging.plist */; };
-		67DDBD832457382A006CD6EB /* GoogleService-Info_ace_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6A245736E1006CD6EB /* GoogleService-Info_ace_testing.plist */; };
-		67DDBD842457382A006CD6EB /* GoogleService-Info_ace.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD69245736E0006CD6EB /* GoogleService-Info_ace.plist */; };
 		67DDBD882457389E006CD6EB /* DelmarvaAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD872457389E006CD6EB /* DelmarvaAssets.xcassets */; };
 		67DDBD892457389E006CD6EB /* DelmarvaAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD872457389E006CD6EB /* DelmarvaAssets.xcassets */; };
 		67DDBD8C245738CF006CD6EB /* ACEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD8A245738B8006CD6EB /* ACEAssets.xcassets */; };
+		67DDBD9824630B8A006CD6EB /* GoogleService-Info_ace.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9724630B85006CD6EB /* GoogleService-Info_ace.plist */; };
+		67DDBD9A24630C37006CD6EB /* GoogleService-Info_ace_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9924630C37006CD6EB /* GoogleService-Info_ace_develop.plist */; };
+		67DDBD9C24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9B24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist */; };
+		67DDBD9E24630D08006CD6EB /* GoogleService-Info_ace_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9D24630D07006CD6EB /* GoogleService-Info_ace_prodbeta.plist */; };
+		67DDBDA024630D41006CD6EB /* GoogleService-Info_ace_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9F24630D41006CD6EB /* GoogleService-Info_ace_staging.plist */; };
+		67DDBDA224630D7F006CD6EB /* GoogleService-Info_ace_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDA124630D7E006CD6EB /* GoogleService-Info_ace_testing.plist */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -5808,11 +5809,6 @@
 		67DDBD5D24572E10006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_prodbeta.plist"; sourceTree = "<group>"; };
 		67DDBD6324572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-Delmarva.storyboard"; sourceTree = "<group>"; };
 		67DDBD6724573696006CD6EB /* LaunchScreen-ACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ACE.storyboard"; sourceTree = "<group>"; };
-		67DDBD69245736E0006CD6EB /* GoogleService-Info_ace.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace.plist"; sourceTree = "<group>"; };
-		67DDBD6A245736E1006CD6EB /* GoogleService-Info_ace_testing.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_testing.plist"; sourceTree = "<group>"; };
-		67DDBD6B245736E1006CD6EB /* GoogleService-Info_ace_prodbeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_prodbeta.plist"; sourceTree = "<group>"; };
-		67DDBD6C245736E1006CD6EB /* GoogleService-Info_ace_develop.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_develop.plist"; sourceTree = "<group>"; };
-		67DDBD6D245736E2006CD6EB /* GoogleService-Info_ace_staging.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_staging.plist"; sourceTree = "<group>"; };
 		67DDBD6E24573747006CD6EB /* ACE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		67DDBD6F24573748006CD6EB /* ACE-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		67DDBD7024573748006CD6EB /* ACE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
@@ -5823,6 +5819,12 @@
 		67DDBD752457375D006CD6EB /* ACE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Info.plist"; sourceTree = "<group>"; };
 		67DDBD872457389E006CD6EB /* DelmarvaAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DelmarvaAssets.xcassets; sourceTree = "<group>"; };
 		67DDBD8A245738B8006CD6EB /* ACEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ACEAssets.xcassets; sourceTree = "<group>"; };
+		67DDBD9724630B85006CD6EB /* GoogleService-Info_ace.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace.plist"; sourceTree = "<group>"; };
+		67DDBD9924630C37006CD6EB /* GoogleService-Info_ace_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_develop.plist"; sourceTree = "<group>"; };
+		67DDBD9B24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_hotfix.plist"; sourceTree = "<group>"; };
+		67DDBD9D24630D07006CD6EB /* GoogleService-Info_ace_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_prodbeta.plist"; sourceTree = "<group>"; };
+		67DDBD9F24630D41006CD6EB /* GoogleService-Info_ace_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_staging.plist"; sourceTree = "<group>"; };
+		67DDBDA124630D7E006CD6EB /* GoogleService-Info_ace_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_testing.plist"; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6918FF23DD2B6EFEC03153D8 /* Pods-ACEApp-ACEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -8686,11 +8688,12 @@
 				67DDBD5C24572E0F006CD6EB /* GoogleService-Info_delmarva_staging.plist */,
 				67DDBD5924572E0E006CD6EB /* GoogleService-Info_delmarva_testing.plist */,
 				67DDBD5A24572E0F006CD6EB /* GoogleService-Info_delmarva.plist */,
-				67DDBD6C245736E1006CD6EB /* GoogleService-Info_ace_develop.plist */,
-				67DDBD6B245736E1006CD6EB /* GoogleService-Info_ace_prodbeta.plist */,
-				67DDBD6D245736E2006CD6EB /* GoogleService-Info_ace_staging.plist */,
-				67DDBD6A245736E1006CD6EB /* GoogleService-Info_ace_testing.plist */,
-				67DDBD69245736E0006CD6EB /* GoogleService-Info_ace.plist */,
+				67DDBDA124630D7E006CD6EB /* GoogleService-Info_ace_testing.plist */,
+				67DDBD9924630C37006CD6EB /* GoogleService-Info_ace_develop.plist */,
+				67DDBD9F24630D41006CD6EB /* GoogleService-Info_ace_staging.plist */,
+				67DDBD9B24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist */,
+				67DDBD9D24630D07006CD6EB /* GoogleService-Info_ace_prodbeta.plist */,
+				67DDBD9724630B85006CD6EB /* GoogleService-Info_ace.plist */,
 			);
 			path = GoogleAnalytics;
 			sourceTree = "<group>";
@@ -10142,8 +10145,10 @@
 				67DDB6DB24535D32006CD6EB /* HomeUpdateView.xib in Resources */,
 				67DDB6DC24535D32006CD6EB /* WebViewController.xib in Resources */,
 				67DDB6DD24535D32006CD6EB /* ButtonRow.xib in Resources */,
+				67DDBD9A24630C37006CD6EB /* GoogleService-Info_ace_develop.plist in Resources */,
 				67DDB6DE24535D32006CD6EB /* AlertPreferencesLanguageCell.xib in Resources */,
 				67DDB6DF24535D32006CD6EB /* HomePrepaidCardView.xib in Resources */,
+				67DDBD9C24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist in Resources */,
 				67DDB6E024535D32006CD6EB /* OpenSans-Bold.ttf in Resources */,
 				67DDB6E124535D32006CD6EB /* FloatLabelTextView.xib in Resources */,
 				67DDB6E224535D32006CD6EB /* AccountSheet.storyboard in Resources */,
@@ -10154,7 +10159,6 @@
 				67DDB6E724535D32006CD6EB /* peak_rewards_overrides.json in Resources */,
 				67DDB6E824535D32006CD6EB /* appointment_tracker.json in Resources */,
 				67DDB6E924535D32006CD6EB /* HomeBillCardView.xib in Resources */,
-				67DDBD812457382A006CD6EB /* GoogleService-Info_ace_prodbeta.plist in Resources */,
 				67DDB6EB24535D32006CD6EB /* alert_icon.json in Resources */,
 				67DDB6EC24535D32006CD6EB /* Login.storyboard in Resources */,
 				67DDB6ED24535D32006CD6EB /* autopay_info.json in Resources */,
@@ -10169,7 +10173,6 @@
 				67DDB6F724535D32006CD6EB /* Main.storyboard in Resources */,
 				67DDB6F824535D32006CD6EB /* UnavailableView.xib in Resources */,
 				67DDB6F924535D32006CD6EB /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
-				67DDBD842457382A006CD6EB /* GoogleService-Info_ace.plist in Resources */,
 				67DDB6FA24535D32006CD6EB /* alert_preferences.json in Resources */,
 				67DDB6FB24535D32006CD6EB /* Updates.storyboard in Resources */,
 				67DDB6FC24535D32006CD6EB /* UsageToolTopCardView.xib in Resources */,
@@ -10210,7 +10213,6 @@
 				67DDB72024535D32006CD6EB /* bill_pdf.json in Resources */,
 				67DDB72124535D32006CD6EB /* TitleSubTitleRow.xib in Resources */,
 				67DDB72224535D32006CD6EB /* Home.storyboard in Resources */,
-				67DDBD802457382A006CD6EB /* GoogleService-Info_ace_develop.plist in Resources */,
 				67DDB72424535D32006CD6EB /* meter_ping_info.json in Resources */,
 				67DDB72524535D32006CD6EB /* AutoPayBGE.storyboard in Resources */,
 				67DDB72624535D32006CD6EB /* Wallet.storyboard in Resources */,
@@ -10218,7 +10220,6 @@
 				67DDB72824535D32006CD6EB /* landing_video.mp4 in Resources */,
 				67DDB72924535D32006CD6EB /* billing_history.json in Resources */,
 				67DDB72A24535D32006CD6EB /* ser_results.json in Resources */,
-				67DDBD822457382A006CD6EB /* GoogleService-Info_ace_staging.plist in Resources */,
 				67DDB72B24535D32006CD6EB /* PTRWidget.html in Resources */,
 				67DDB72C24535D32006CD6EB /* PremiseListRow.xib in Resources */,
 				67DDB72D24535D32006CD6EB /* recover_username.json in Resources */,
@@ -10255,12 +10256,15 @@
 				67DDB74C24535D32006CD6EB /* Alerts.storyboard in Resources */,
 				67DDB74D24535D32006CD6EB /* AccountDetailsView.xib in Resources */,
 				67DDB74E24535D32006CD6EB /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
+				67DDBD9E24630D08006CD6EB /* GoogleService-Info_ace_prodbeta.plist in Resources */,
 				67DDB74F24535D32006CD6EB /* HomeOutageCardView.xib in Resources */,
 				67DDB75024535D32006CD6EB /* ToggleTableViewCell.xib in Resources */,
 				67DDB75224535D32006CD6EB /* MaintenanceModeView.xib in Resources */,
 				67DDBD8C245738CF006CD6EB /* ACEAssets.xcassets in Resources */,
-				67DDBD832457382A006CD6EB /* GoogleService-Info_ace_testing.plist in Resources */,
+				67DDBDA224630D7F006CD6EB /* GoogleService-Info_ace_testing.plist in Resources */,
+				67DDBD9824630B8A006CD6EB /* GoogleService-Info_ace.plist in Resources */,
 				67DDB75324535D32006CD6EB /* Bill.storyboard in Resources */,
+				67DDBDA024630D41006CD6EB /* GoogleService-Info_ace_staging.plist in Resources */,
 				67DDB75624535D32006CD6EB /* EnergyBuddyView.xib in Resources */,
 				67DDB75724535D32006CD6EB /* account_details.json in Resources */,
 				67DDB75824535D32006CD6EB /* ellipses_loading_white.json in Resources */,
@@ -19976,7 +19980,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
+				EXM_BUNDLE_ID = com.ifactorconsulting.ace.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20005,7 +20009,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
+				EXM_BUNDLE_ID = com.ifactorconsulting.ace.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20035,7 +20039,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
+				EXM_BUNDLE_ID = com.ifactorconsulting.ace.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20067,7 +20071,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.hotfix;
+				EXM_BUNDLE_ID = com.ifactorconsulting.ace.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
@@ -20100,7 +20104,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
+				EXM_BUNDLE_ID = com.ifactorconsulting.ace.testing;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
@@ -20132,7 +20136,7 @@
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge;
+				EXM_BUNDLE_ID = com.ifactorconsulting.ace;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20163,7 +20167,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
+				EXM_BUNDLE_ID = com.ifactorconsulting.ace.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
