@@ -7,13 +7,13 @@
 	<key>environment</key>
 	<string>HOTFIX</string>
 	<key>opco</key>
-	<string>BGE</string>
+	<string>Pepco</string>
 	<key>appName</key>
-	<string>BGE_HOTFIX</string>
+	<string>Pepco_HOTFIX</string>
 	<key>mcsInstanceName</key>
-	<string>Stage-bgeHotfixMBE</string>
+	<string>Stage-pepcoHotfixMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://azstg.bge.com/MyAccount</string>
+	<string>https://azstg.pepco.com/MyAccount</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
 	<key>paymentusUrl</key>
@@ -23,9 +23,9 @@
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.bge.com</string>
+	<string>azstg.pepco.com</string>
 	<key>associatedDomain</key>
-	<string>azstg-secure.bge.com</string>
+	<string>azstg-secure.pepco.com</string>
 	<key>appCenterId</key>
 	<string>ab784d1a-981b-477b-abb9-b54c3917d011</string>
 </dict>

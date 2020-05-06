@@ -5,20 +5,20 @@
 	<key>environment</key>
 	<string>DEV</string>
 	<key>opco</key>
-	<string>BGE</string>
+	<string>Pepco</string>
 	<key>appName</key>
-	<string>BGE_DEV</string>
+	<string>Pepco_DEV</string>
 	<key>mcsInstanceName</key>
-	<string>Dev-bgeMBE</string>
+	<string>Dev-pepcoMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://aztst.bge.com/MyAccount</string>
+	<string>https://aztst.pepco.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_pepco_develop</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.bge.com</string>
+	<string>azstg.pepco.com</string>
 	<key>associatedDomain</key>
-	<string>azstg-secure.bge.com</string>
+	<string>azstg-secure.pepco.com</string>
 </dict>
 </plist>
