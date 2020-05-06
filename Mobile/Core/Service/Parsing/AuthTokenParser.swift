@@ -82,7 +82,7 @@ class AuthTokenParser : NSObject {
         UserDefaults.standard.set(customerIdentifier, forKey: UserDefaultKeys.customerIdentifier)
         AccountsStore.shared.customerIdentifier = customerIdentifier
         
-        if let assertion = data["assertion"] as? String {
+        if let assertion = data["jwt"] as? String {
             // SUCCESS
             return ServiceResult.success(AuthTokenResponse(token: assertion, profileStatus: profileStatus))
         }
