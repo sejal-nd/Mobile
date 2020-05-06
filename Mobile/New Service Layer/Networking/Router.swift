@@ -76,6 +76,10 @@ public enum Router {
     case energyRewardsLoad(accountNumber: String)
     // todo energyRewardsUpdate
     
+    // Gamification
+    case fetchGameUser(accountNumber: String)
+    case updateGameUser(accountNumber: String, encodable: Encodable)
+    
     // More
     case alertPreferencesLoad(accountNumber: String)
     case alertPreferencesUpdate(accountNumber: String, encodable: Encodable)

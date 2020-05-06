@@ -2253,6 +2253,9 @@
 		C30E4EE62461D41B0050AAFB /* ReportOutageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4EE52461D41B0050AAFB /* ReportOutageMock.json */; };
 		C30E4EE72461D41B0050AAFB /* ReportOutageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4EE52461D41B0050AAFB /* ReportOutageMock.json */; };
 		C30E4EE82461D41B0050AAFB /* ReportOutageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4EE52461D41B0050AAFB /* ReportOutageMock.json */; };
+		C30E4EEA2461F8A70050AAFB /* GameUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E4EE92461F8A70050AAFB /* GameUserRequest.swift */; };
+		C30E4EEB2461F8A70050AAFB /* GameUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E4EE92461F8A70050AAFB /* GameUserRequest.swift */; };
+		C30E4EEC2461F8A70050AAFB /* GameUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E4EE92461F8A70050AAFB /* GameUserRequest.swift */; };
 		C3244C4E2452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
 		C3244C4F2452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
 		C3244C502452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
@@ -4009,6 +4012,7 @@
 		C30E4ED92461D32D0050AAFB /* MeterPingMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MeterPingMock.json; sourceTree = "<group>"; };
 		C30E4EDD2461D39F0050AAFB /* OutageStatusMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OutageStatusMock.json; sourceTree = "<group>"; };
 		C30E4EE52461D41B0050AAFB /* ReportOutageMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ReportOutageMock.json; sourceTree = "<group>"; };
+		C30E4EE92461F8A70050AAFB /* GameUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUserRequest.swift; sourceTree = "<group>"; };
 		C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOutageStatus.swift; sourceTree = "<group>"; };
 		C3244C5124522F6A00C05FB2 /* NewReportedOutageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReportedOutageResult.swift; sourceTree = "<group>"; };
 		C3244C5824535B8800C05FB2 /* NewMeterPingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeterPingResult.swift; sourceTree = "<group>"; };
@@ -6634,6 +6638,7 @@
 				C32BD4A12448EFC100870262 /* RecoverUsernameRequest.swift */,
 				672783972449F48100D5CD95 /* BudgetBillingUnenrollRequest.swift */,
 				6727839B2449F52500D5CD95 /* AutoPayEnrollRequest.swift */,
+				C30E4EE92461F8A70050AAFB /* GameUserRequest.swift */,
 				6727839F2449F83800D5CD95 /* CompareBillRequest.swift */,
 				672783A32449F8D300D5CD95 /* ScheduledPaymentUpdateRequest.swift */,
 				6798CFC1244A2E9F00429477 /* SchedulePaymentCancelRequest.swift */,
@@ -9475,6 +9480,7 @@
 				9CBE9E362374AC5100E14222 /* MockGameService.swift in Sources */,
 				9CAC5952239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
+				C30E4EEA2461F8A70050AAFB /* GameUserRequest.swift in Sources */,
 				9CAA4D58239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
@@ -9957,6 +9963,7 @@
 				9C28D38A227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				9CBE9E382374AC5100E14222 /* MockGameService.swift in Sources */,
 				9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
+				C30E4EEC2461F8A70050AAFB /* GameUserRequest.swift in Sources */,
 				54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				9CAA4D5A239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
@@ -10439,6 +10446,7 @@
 				B0D84D4322023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				E89C162B1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				9CBE9E372374AC5100E14222 /* MockGameService.swift in Sources */,
+				C30E4EEB2461F8A70050AAFB /* GameUserRequest.swift in Sources */,
 				9CAC5953239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				9CAA4D59239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
