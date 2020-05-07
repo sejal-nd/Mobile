@@ -3182,11 +3182,6 @@
 		67DDBCF724535DDB006CD6EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EF60FC920EE7916006ABC18 /* Assets.xcassets */; };
 		67DDBD0824535EA6006CD6EB /* LaunchScreen-Pepco.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD0724535EA6006CD6EB /* LaunchScreen-Pepco.storyboard */; };
 		67DDBD0A24535EE6006CD6EB /* PepcoAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD0924535EE6006CD6EB /* PepcoAssets.xcassets */; };
-		67DDBD18245360FC006CD6EB /* GoogleService-Info_pepco_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD17245360FC006CD6EB /* GoogleService-Info_pepco_develop.plist */; };
-		67DDBD1B24536117006CD6EB /* GoogleService-Info_pepco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD1A24536117006CD6EB /* GoogleService-Info_pepco_testing.plist */; };
-		67DDBD1D24536124006CD6EB /* GoogleService-Info_pepco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD1C24536124006CD6EB /* GoogleService-Info_pepco_staging.plist */; };
-		67DDBD1F24536132006CD6EB /* GoogleService-Info_pepco_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD1E24536132006CD6EB /* GoogleService-Info_pepco_prodbeta.plist */; };
-		67DDBD212453613E006CD6EB /* GoogleService-Info_pepco.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD202453613E006CD6EB /* GoogleService-Info_pepco.plist */; };
 		67DDBD2F24571083006CD6EB /* PepcoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBD2E24571083006CD6EB /* PepcoColor.swift */; };
 		67DDBD3624571AFE006CD6EB /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
 		67DDBD3724571B15006CD6EB /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */; };
@@ -3199,11 +3194,6 @@
 		67DDBD3E24571CF2006CD6EB /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
 		67DDBD3F24571D36006CD6EB /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		67DDBD4024571E1F006CD6EB /* AutoPayBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */; };
-		67DDBD5E24572E1B006CD6EB /* GoogleService-Info_delmarva_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD5B24572E0F006CD6EB /* GoogleService-Info_delmarva_develop.plist */; };
-		67DDBD5F24572E1B006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD5D24572E10006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist */; };
-		67DDBD6024572E1B006CD6EB /* GoogleService-Info_delmarva_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD5C24572E0F006CD6EB /* GoogleService-Info_delmarva_staging.plist */; };
-		67DDBD6124572E1B006CD6EB /* GoogleService-Info_delmarva_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD5924572E0E006CD6EB /* GoogleService-Info_delmarva_testing.plist */; };
-		67DDBD6224572E1B006CD6EB /* GoogleService-Info_delmarva.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD5A24572E0F006CD6EB /* GoogleService-Info_delmarva.plist */; };
 		67DDBD6424572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6324572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard */; };
 		67DDBD6524572E7C006CD6EB /* PepcoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBD2E24571083006CD6EB /* PepcoColor.swift */; };
 		67DDBD6624572E7D006CD6EB /* PepcoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBD2E24571083006CD6EB /* PepcoColor.swift */; };
@@ -3217,6 +3207,18 @@
 		67DDBD9E24630D08006CD6EB /* GoogleService-Info_ace_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9D24630D07006CD6EB /* GoogleService-Info_ace_prodbeta.plist */; };
 		67DDBDA024630D41006CD6EB /* GoogleService-Info_ace_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9F24630D41006CD6EB /* GoogleService-Info_ace_staging.plist */; };
 		67DDBDA224630D7F006CD6EB /* GoogleService-Info_ace_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDA124630D7E006CD6EB /* GoogleService-Info_ace_testing.plist */; };
+		67DDBDA5246450F8006CD6EB /* GoogleService-Info_delmarva.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDA4246450F8006CD6EB /* GoogleService-Info_delmarva.plist */; };
+		67DDBDA724645171006CD6EB /* GoogleService-Info_delmarva_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDA624645171006CD6EB /* GoogleService-Info_delmarva_develop.plist */; };
+		67DDBDA92464523C006CD6EB /* GoogleService-Info_delmarva_hotfix.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDA82464523B006CD6EB /* GoogleService-Info_delmarva_hotfix.plist */; };
+		67DDBDAB24645309006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDAA24645309006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist */; };
+		67DDBDAD246456B9006CD6EB /* GoogleService-Info_delmarva_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDAC246456B8006CD6EB /* GoogleService-Info_delmarva_testing.plist */; };
+		67DDBDB12464599D006CD6EB /* GoogleService-Info_delmarva_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDB02464599D006CD6EB /* GoogleService-Info_delmarva_staging.plist */; };
+		67DDBDB324646032006CD6EB /* GoogleService-Info_pepco.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDB224646031006CD6EB /* GoogleService-Info_pepco.plist */; };
+		67DDBDB524646317006CD6EB /* GoogleService-Info_pepco_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDB424646317006CD6EB /* GoogleService-Info_pepco_develop.plist */; };
+		67DDBDB724646330006CD6EB /* GoogleService-Info_pepco_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDB62464632F006CD6EB /* GoogleService-Info_pepco_prodbeta.plist */; };
+		67DDBDB92464638D006CD6EB /* GoogleService-Info_pepco_hotfix.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDB82464638C006CD6EB /* GoogleService-Info_pepco_hotfix.plist */; };
+		67DDBDBB246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDBA246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist */; };
+		67DDBDBD246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDBC246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -5782,11 +5784,6 @@
 		67DDBD0624535E84006CD6EB /* Pepco-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-AUT.plist"; sourceTree = "<group>"; };
 		67DDBD0724535EA6006CD6EB /* LaunchScreen-Pepco.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-Pepco.storyboard"; sourceTree = "<group>"; };
 		67DDBD0924535EE6006CD6EB /* PepcoAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PepcoAssets.xcassets; sourceTree = "<group>"; };
-		67DDBD17245360FC006CD6EB /* GoogleService-Info_pepco_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_develop.plist"; sourceTree = "<group>"; };
-		67DDBD1A24536117006CD6EB /* GoogleService-Info_pepco_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_testing.plist"; sourceTree = "<group>"; };
-		67DDBD1C24536124006CD6EB /* GoogleService-Info_pepco_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_staging.plist"; sourceTree = "<group>"; };
-		67DDBD1E24536132006CD6EB /* GoogleService-Info_pepco_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_prodbeta.plist"; sourceTree = "<group>"; };
-		67DDBD202453613E006CD6EB /* GoogleService-Info_pepco.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco.plist"; sourceTree = "<group>"; };
 		67DDBD222457100A006CD6EB /* Pepco-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		67DDBD2424571016006CD6EB /* Pepco-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		67DDBD2624571026006CD6EB /* Pepco-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-STAGING.plist"; sourceTree = "<group>"; };
@@ -5802,11 +5799,6 @@
 		67DDBD5424572D44006CD6EB /* Delmarva-Environment-RELEASE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-RELEASE.plist"; sourceTree = "<group>"; };
 		67DDBD5524572D44006CD6EB /* Delmarva-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-AUT.plist"; sourceTree = "<group>"; };
 		67DDBD5724572D80006CD6EB /* Delmarva-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Delmarva-Info.plist"; sourceTree = "<group>"; };
-		67DDBD5924572E0E006CD6EB /* GoogleService-Info_delmarva_testing.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_testing.plist"; sourceTree = "<group>"; };
-		67DDBD5A24572E0F006CD6EB /* GoogleService-Info_delmarva.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva.plist"; sourceTree = "<group>"; };
-		67DDBD5B24572E0F006CD6EB /* GoogleService-Info_delmarva_develop.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_develop.plist"; sourceTree = "<group>"; };
-		67DDBD5C24572E0F006CD6EB /* GoogleService-Info_delmarva_staging.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_staging.plist"; sourceTree = "<group>"; };
-		67DDBD5D24572E10006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_prodbeta.plist"; sourceTree = "<group>"; };
 		67DDBD6324572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-Delmarva.storyboard"; sourceTree = "<group>"; };
 		67DDBD6724573696006CD6EB /* LaunchScreen-ACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ACE.storyboard"; sourceTree = "<group>"; };
 		67DDBD6E24573747006CD6EB /* ACE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-TESTING.plist"; sourceTree = "<group>"; };
@@ -5825,6 +5817,18 @@
 		67DDBD9D24630D07006CD6EB /* GoogleService-Info_ace_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_prodbeta.plist"; sourceTree = "<group>"; };
 		67DDBD9F24630D41006CD6EB /* GoogleService-Info_ace_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_staging.plist"; sourceTree = "<group>"; };
 		67DDBDA124630D7E006CD6EB /* GoogleService-Info_ace_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_testing.plist"; sourceTree = "<group>"; };
+		67DDBDA4246450F8006CD6EB /* GoogleService-Info_delmarva.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva.plist"; sourceTree = "<group>"; };
+		67DDBDA624645171006CD6EB /* GoogleService-Info_delmarva_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_develop.plist"; sourceTree = "<group>"; };
+		67DDBDA82464523B006CD6EB /* GoogleService-Info_delmarva_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_hotfix.plist"; sourceTree = "<group>"; };
+		67DDBDAA24645309006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_prodbeta.plist"; sourceTree = "<group>"; };
+		67DDBDAC246456B8006CD6EB /* GoogleService-Info_delmarva_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_testing.plist"; sourceTree = "<group>"; };
+		67DDBDB02464599D006CD6EB /* GoogleService-Info_delmarva_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_staging.plist"; sourceTree = "<group>"; };
+		67DDBDB224646031006CD6EB /* GoogleService-Info_pepco.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco.plist"; sourceTree = "<group>"; };
+		67DDBDB424646317006CD6EB /* GoogleService-Info_pepco_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_develop.plist"; sourceTree = "<group>"; };
+		67DDBDB62464632F006CD6EB /* GoogleService-Info_pepco_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_prodbeta.plist"; sourceTree = "<group>"; };
+		67DDBDB82464638C006CD6EB /* GoogleService-Info_pepco_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_hotfix.plist"; sourceTree = "<group>"; };
+		67DDBDBA246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_staging.plist"; sourceTree = "<group>"; };
+		67DDBDBC246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_testing.plist"; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6918FF23DD2B6EFEC03153D8 /* Pods-ACEApp-ACEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -8678,16 +8682,18 @@
 				B5D415751F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist */,
 				0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */,
 				B5D415771F3A6C6300AC32B2 /* GoogleService-Info_bge.plist */,
-				67DDBD17245360FC006CD6EB /* GoogleService-Info_pepco_develop.plist */,
-				67DDBD1A24536117006CD6EB /* GoogleService-Info_pepco_testing.plist */,
-				67DDBD1C24536124006CD6EB /* GoogleService-Info_pepco_staging.plist */,
-				67DDBD1E24536132006CD6EB /* GoogleService-Info_pepco_prodbeta.plist */,
-				67DDBD202453613E006CD6EB /* GoogleService-Info_pepco.plist */,
-				67DDBD5B24572E0F006CD6EB /* GoogleService-Info_delmarva_develop.plist */,
-				67DDBD5D24572E10006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist */,
-				67DDBD5C24572E0F006CD6EB /* GoogleService-Info_delmarva_staging.plist */,
-				67DDBD5924572E0E006CD6EB /* GoogleService-Info_delmarva_testing.plist */,
-				67DDBD5A24572E0F006CD6EB /* GoogleService-Info_delmarva.plist */,
+				67DDBDBC246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist */,
+				67DDBDB424646317006CD6EB /* GoogleService-Info_pepco_develop.plist */,
+				67DDBDBA246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist */,
+				67DDBDB82464638C006CD6EB /* GoogleService-Info_pepco_hotfix.plist */,
+				67DDBDB62464632F006CD6EB /* GoogleService-Info_pepco_prodbeta.plist */,
+				67DDBDB224646031006CD6EB /* GoogleService-Info_pepco.plist */,
+				67DDBDAC246456B8006CD6EB /* GoogleService-Info_delmarva_testing.plist */,
+				67DDBDA624645171006CD6EB /* GoogleService-Info_delmarva_develop.plist */,
+				67DDBDB02464599D006CD6EB /* GoogleService-Info_delmarva_staging.plist */,
+				67DDBDA82464523B006CD6EB /* GoogleService-Info_delmarva_hotfix.plist */,
+				67DDBDAA24645309006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist */,
+				67DDBDA4246450F8006CD6EB /* GoogleService-Info_delmarva.plist */,
 				67DDBDA124630D7E006CD6EB /* GoogleService-Info_ace_testing.plist */,
 				67DDBD9924630C37006CD6EB /* GoogleService-Info_ace_develop.plist */,
 				67DDBD9F24630D41006CD6EB /* GoogleService-Info_ace_staging.plist */,
@@ -9957,11 +9963,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67DDBD18245360FC006CD6EB /* GoogleService-Info_pepco_develop.plist in Resources */,
-				67DDBD1B24536117006CD6EB /* GoogleService-Info_pepco_testing.plist in Resources */,
-				67DDBD1D24536124006CD6EB /* GoogleService-Info_pepco_staging.plist in Resources */,
-				67DDBD1F24536132006CD6EB /* GoogleService-Info_pepco_prodbeta.plist in Resources */,
-				67DDBD212453613E006CD6EB /* GoogleService-Info_pepco.plist in Resources */,
 				67DDB47624535D2E006CD6EB /* Maintenance.storyboard in Resources */,
 				67DDB47724535D2E006CD6EB /* AppointmentDetailViewController.xib in Resources */,
 				67DDB47824535D2E006CD6EB /* outage_status.json in Resources */,
@@ -9980,6 +9981,7 @@
 				67DDB48524535D2E006CD6EB /* HomeUpdateView.xib in Resources */,
 				67DDB48624535D2E006CD6EB /* WebViewController.xib in Resources */,
 				67DDB48724535D2E006CD6EB /* ButtonRow.xib in Resources */,
+				67DDBDBB246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist in Resources */,
 				67DDB48824535D2E006CD6EB /* AlertPreferencesLanguageCell.xib in Resources */,
 				67DDB48924535D2E006CD6EB /* HomePrepaidCardView.xib in Resources */,
 				67DDB48A24535D2E006CD6EB /* OpenSans-Bold.ttf in Resources */,
@@ -10030,6 +10032,8 @@
 				67DDB4BA24535D2E006CD6EB /* energy_tips.json in Resources */,
 				67DDB4BB24535D2E006CD6EB /* TitleTableViewCell.xib in Resources */,
 				67DDB4BC24535D2E006CD6EB /* coin_bonus_point.json in Resources */,
+				67DDBDB524646317006CD6EB /* GoogleService-Info_pepco_develop.plist in Resources */,
+				67DDBDBD246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist in Resources */,
 				67DDB4BD24535D2E006CD6EB /* NoNetworkConnectionView.xib in Resources */,
 				67DDB4BE24535D2E006CD6EB /* Appt_Canceled.json in Resources */,
 				67DDB4BF24535D2E006CD6EB /* Appt_Inprogress.json in Resources */,
@@ -10058,6 +10062,7 @@
 				67DDB4D724535D2E006CD6EB /* recover_username.json in Resources */,
 				67DDB4D824535D2E006CD6EB /* message_bubble_tip.json in Resources */,
 				67DDB4D924535D2E006CD6EB /* PECO-Environment-HOTFIX.plist in Resources */,
+				67DDBDB724646330006CD6EB /* GoogleService-Info_pepco_prodbeta.plist in Resources */,
 				67DDB4DA24535D2E006CD6EB /* buddy_particles_hearts.json in Resources */,
 				67DDB4DC24535D2E006CD6EB /* InfoModal.xib in Resources */,
 				67DDB4DD24535D2E006CD6EB /* AccountPicker.xib in Resources */,
@@ -10105,7 +10110,9 @@
 				67DDB50A24535D2E006CD6EB /* appointments.json in Resources */,
 				67DDB50B24535D2E006CD6EB /* sso_data.json in Resources */,
 				67DDB50C24535D2E006CD6EB /* BillImpactView.xib in Resources */,
+				67DDBDB324646032006CD6EB /* GoogleService-Info_pepco.plist in Resources */,
 				67DDBD0824535EA6006CD6EB /* LaunchScreen-Pepco.storyboard in Resources */,
+				67DDBDB92464638D006CD6EB /* GoogleService-Info_pepco_hotfix.plist in Resources */,
 				67DDB50D24535D2E006CD6EB /* Game.storyboard in Resources */,
 				67DDB50E24535D2E006CD6EB /* budget_billing_info.json in Resources */,
 				67DDB50F24535D2E006CD6EB /* buddy_face_happy.json in Resources */,
@@ -10303,6 +10310,7 @@
 				67DDB92424535D35006CD6EB /* outage_status.json in Resources */,
 				67DDB92524535D35006CD6EB /* buddy_face_happy_bounce.json in Resources */,
 				67DDB92624535D35006CD6EB /* BillingHistoryTableViewCell.xib in Resources */,
+				67DDBDB12464599D006CD6EB /* GoogleService-Info_delmarva_staging.plist in Resources */,
 				67DDB92724535D35006CD6EB /* Usage.storyboard in Resources */,
 				67DDB92824535D35006CD6EB /* MiniWalletSheet.storyboard in Resources */,
 				67DDB92924535D35006CD6EB /* StateView.xib in Resources */,
@@ -10317,6 +10325,7 @@
 				67DDB93224535D35006CD6EB /* WebViewController.xib in Resources */,
 				67DDB93324535D35006CD6EB /* ButtonRow.xib in Resources */,
 				67DDB93424535D35006CD6EB /* AlertPreferencesLanguageCell.xib in Resources */,
+				67DDBDA5246450F8006CD6EB /* GoogleService-Info_delmarva.plist in Resources */,
 				67DDB93524535D35006CD6EB /* HomePrepaidCardView.xib in Resources */,
 				67DDB93624535D35006CD6EB /* OpenSans-Bold.ttf in Resources */,
 				67DDB93724535D35006CD6EB /* FloatLabelTextView.xib in Resources */,
@@ -10339,7 +10348,6 @@
 				67DDB94924535D35006CD6EB /* HomeAppointmentCardView.xib in Resources */,
 				67DDB94A24535D35006CD6EB /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				67DDB94B24535D35006CD6EB /* GameTasks.json in Resources */,
-				67DDBD5E24572E1B006CD6EB /* GoogleService-Info_delmarva_develop.plist in Resources */,
 				67DDB94D24535D35006CD6EB /* Main.storyboard in Resources */,
 				67DDB94E24535D35006CD6EB /* UnavailableView.xib in Resources */,
 				67DDB94F24535D35006CD6EB /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
@@ -10384,7 +10392,7 @@
 				67DDB97724535D35006CD6EB /* TitleSubTitleRow.xib in Resources */,
 				67DDB97824535D35006CD6EB /* Home.storyboard in Resources */,
 				67DDB97A24535D35006CD6EB /* meter_ping_info.json in Resources */,
-				67DDBD6224572E1B006CD6EB /* GoogleService-Info_delmarva.plist in Resources */,
+				67DDBDAB24645309006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist in Resources */,
 				67DDB97B24535D35006CD6EB /* AutoPayBGE.storyboard in Resources */,
 				67DDB97C24535D35006CD6EB /* Wallet.storyboard in Resources */,
 				67DDB97D24535D35006CD6EB /* Settings.bundle in Resources */,
@@ -10410,7 +10418,9 @@
 				67DDB99224535D35006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
 				67DDB99324535D35006CD6EB /* maintenance.json in Resources */,
 				67DDB99424535D35006CD6EB /* environment.plist in Resources */,
+				67DDBDA724645171006CD6EB /* GoogleService-Info_delmarva_develop.plist in Resources */,
 				67DDB99524535D35006CD6EB /* checkmark_blue.json in Resources */,
+				67DDBDA92464523C006CD6EB /* GoogleService-Info_delmarva_hotfix.plist in Resources */,
 				67DDB99624535D35006CD6EB /* loading.json in Resources */,
 				67DDB99724535D35006CD6EB /* OpenSans-Light.ttf in Resources */,
 				67DDB99824535D35006CD6EB /* confetti.json in Resources */,
@@ -10446,19 +10456,17 @@
 				67DDB9B824535D35006CD6EB /* BillImpactView.xib in Resources */,
 				67DDB9B924535D35006CD6EB /* Game.storyboard in Resources */,
 				67DDB9BA24535D35006CD6EB /* budget_billing_info.json in Resources */,
-				67DDBD6024572E1B006CD6EB /* GoogleService-Info_delmarva_staging.plist in Resources */,
 				67DDB9BB24535D35006CD6EB /* buddy_face_happy.json in Resources */,
 				67DDBD6424572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard in Resources */,
 				67DDB9BC24535D35006CD6EB /* HomeUsageCardView.xib in Resources */,
+				67DDBDAD246456B9006CD6EB /* GoogleService-Info_delmarva_testing.plist in Resources */,
 				67DDB9BD24535D35006CD6EB /* accounts.json in Resources */,
 				67DDB9BE24535D35006CD6EB /* weather.json in Resources */,
 				67DDB9BF24535D35006CD6EB /* outage_off.json in Resources */,
 				67DDB9C024535D35006CD6EB /* HomeWeatherView.xib in Resources */,
 				67DDB9C124535D35006CD6EB /* AccountListRow.xib in Resources */,
 				67DDB9C224535D35006CD6EB /* outage_on.json in Resources */,
-				67DDBD6124572E1B006CD6EB /* GoogleService-Info_delmarva_testing.plist in Resources */,
 				67DDB9C324535D35006CD6EB /* PeakRewards.storyboard in Resources */,
-				67DDBD5F24572E1B006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist in Resources */,
 				67DDB9C424535D35006CD6EB /* TabCollectionViewCell.xib in Resources */,
 				67DDB9C524535D35006CD6EB /* wallet.json in Resources */,
 			);
@@ -19774,7 +19782,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
+				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -19802,7 +19810,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.comed.hotfix;
+				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.develop;
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -19831,7 +19839,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.peco.hotfix;
+				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -19898,6 +19906,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.testing;
 				EXM_ENVIRONMENT = HOTFIX;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19933,6 +19942,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXM_BUNDLE_ID = com.ifactorconsulting.pepco;
 				EXM_ENVIRONMENT = HOTFIX;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19967,6 +19977,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.prodbeta;
 				EXM_ENVIRONMENT = HOTFIX;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -20043,7 +20054,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/PECO-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -20227,7 +20238,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
+				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20256,7 +20267,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
+				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20286,7 +20297,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
+				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20318,7 +20329,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.hotfix;
+				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
@@ -20351,7 +20362,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
+				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.testing;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
@@ -20383,7 +20394,7 @@
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge;
+				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20414,7 +20425,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
+				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -22224,7 +22235,9 @@
 		};
 		67DDBDA324631BAE006CD6EB /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AED49372A2A1780FFC38D1CA /* Pods-PepcoApp-Pepco.staging.xcconfig */;
 			buildSettings = {
+				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.staging;
 				PRODUCT_NAME = Mobile;
 			};
 			name = Staging;
