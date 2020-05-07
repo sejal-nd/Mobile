@@ -25,8 +25,19 @@ public enum Router {
     case fetchSAMLToken(encodable: Encodable)
     case exchangeSAMLToken(token: String)
     
+    // Registration
+    case registration(encodable: Encodable)
+    case checkDuplicateRegistration
+    case registrationQuestions
+    case validateRegistration
+    case sendConfirmationEmail
+    case validateConfirmationEmail
+    
     case accounts
     case accountDetails(accountNumber: String, queryString: String)
+    
+    // PECO only release of info preferences
+    case updateReleaseOfInfo(accountNumber: String, encodable: Encodable)
     
     case weather(lat: String, long: String)
     
@@ -153,12 +164,26 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)\(queryString)"
         case .accounts:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts"
+        case .updateReleaseOfInfo(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/preferences/release"
         case .minVersion:
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/\(Environment.shared.opco.displayString)/config/versions"
         case .fetchSAMLToken:
             return "/mcs/oauth2/tokens"
         case .exchangeSAMLToken:
             return "/mobile/platform/sso/exchange-token"
+        case .registration:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/registration"
+        case .checkDuplicateRegistration:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/registration/duplicate"
+        case .registrationQuestions:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/registration/questions"
+        case .validateRegistration:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/registration/validate"
+        case .sendConfirmationEmail:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/registration/confirmation"
+        case .validateConfirmationEmail:
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/registration/confirmation"
         case .weather(let lat, let long):
             return "/points/\(lat),\(long)/forecast/hourly"
         case .wallet:
@@ -229,16 +254,22 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/outage"
         case .meterPing(let accountNumber, let premiseNumber):
             return "/mobile/custom/\(apiAccess)_\(apiVersion)/accounts/\(accountNumber)/premises\(premiseNumber)/outage"
+        case .fetchGameUser(let accountNumber):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/game/\(accountNumber)"
+        case .updateGameUser(let accountNumber, _):
+            return "/mobile/custom/\(apiAccess)_\(apiVersion)/game/\(accountNumber)"
         }
     }
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage:
+        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing:
+        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser,
+             .registrationQuestions:
             return "GET"
-        case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate:
+        case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
+             .updateReleaseOfInfo, .validateConfirmationEmail:
             return "PUT"
         case .paperlessUnenroll:
             return "DELETE"
