@@ -91,9 +91,6 @@
 		0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
-		0E0276D02347B20300671E65 /* BGE-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276CF2347B20300671E65 /* BGE-Environment-HOTFIX.plist */; };
-		0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */; };
-		0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */; };
 		0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF09202E22CD009D1ADB /* GoogleService-Info_comed_prodbeta.plist */; };
 		0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */; };
 		0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0C202E2389009D1ADB /* GoogleService-Info_peco_prodbeta.plist */; };
@@ -1257,7 +1254,6 @@
 		67DDB4AF24535D2E006CD6EB /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
 		67DDB4B024535D2E006CD6EB /* Appt_otw.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F521710CD900B1C632 /* Appt_otw.json */; };
 		67DDB4B124535D2E006CD6EB /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62445A22C171C800F14DA0 /* FloatLabelTextField.xib */; };
-		67DDB4B224535D2E006CD6EB /* ComEd-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */; };
 		67DDB4B324535D2E006CD6EB /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
 		67DDB4B424535D2E006CD6EB /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
 		67DDB4B524535D2E006CD6EB /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
@@ -1294,7 +1290,6 @@
 		67DDB4D624535D2E006CD6EB /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
 		67DDB4D724535D2E006CD6EB /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
 		67DDB4D824535D2E006CD6EB /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
-		67DDB4D924535D2E006CD6EB /* PECO-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */; };
 		67DDB4DA24535D2E006CD6EB /* buddy_particles_hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */; };
 		67DDB4DC24535D2E006CD6EB /* InfoModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E827D2371ED490A0004DA1D6 /* InfoModal.xib */; };
 		67DDB4DD24535D2E006CD6EB /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
@@ -1821,7 +1816,6 @@
 		67DDB70524535D32006CD6EB /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
 		67DDB70624535D32006CD6EB /* Appt_otw.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F521710CD900B1C632 /* Appt_otw.json */; };
 		67DDB70724535D32006CD6EB /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62445A22C171C800F14DA0 /* FloatLabelTextField.xib */; };
-		67DDB70824535D32006CD6EB /* ComEd-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */; };
 		67DDB70924535D32006CD6EB /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
 		67DDB70A24535D32006CD6EB /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
 		67DDB70B24535D32006CD6EB /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
@@ -1859,7 +1853,6 @@
 		67DDB72C24535D32006CD6EB /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
 		67DDB72D24535D32006CD6EB /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
 		67DDB72E24535D32006CD6EB /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
-		67DDB72F24535D32006CD6EB /* PECO-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */; };
 		67DDB73024535D32006CD6EB /* buddy_particles_hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */; };
 		67DDB73224535D32006CD6EB /* InfoModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E827D2371ED490A0004DA1D6 /* InfoModal.xib */; };
 		67DDB73324535D32006CD6EB /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
@@ -2386,7 +2379,6 @@
 		67DDB95B24535D35006CD6EB /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
 		67DDB95C24535D35006CD6EB /* Appt_otw.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F521710CD900B1C632 /* Appt_otw.json */; };
 		67DDB95D24535D35006CD6EB /* FloatLabelTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62445A22C171C800F14DA0 /* FloatLabelTextField.xib */; };
-		67DDB95E24535D35006CD6EB /* ComEd-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */; };
 		67DDB95F24535D35006CD6EB /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E80043251E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf */; };
 		67DDB96024535D35006CD6EB /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
 		67DDB96124535D35006CD6EB /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
@@ -2424,7 +2416,6 @@
 		67DDB98224535D35006CD6EB /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
 		67DDB98324535D35006CD6EB /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
 		67DDB98424535D35006CD6EB /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
-		67DDB98524535D35006CD6EB /* PECO-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */; };
 		67DDB98624535D35006CD6EB /* buddy_particles_hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */; };
 		67DDB98824535D35006CD6EB /* InfoModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E827D2371ED490A0004DA1D6 /* InfoModal.xib */; };
 		67DDB98924535D35006CD6EB /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
@@ -10021,7 +10012,6 @@
 				67DDB4AF24535D2E006CD6EB /* home_profile.json in Resources */,
 				67DDB4B024535D2E006CD6EB /* Appt_otw.json in Resources */,
 				67DDB4B124535D2E006CD6EB /* FloatLabelTextField.xib in Resources */,
-				67DDB4B224535D2E006CD6EB /* ComEd-Environment-HOTFIX.plist in Resources */,
 				67DDB4B324535D2E006CD6EB /* OpenSans-SemiboldItalic.ttf in Resources */,
 				67DDB4B424535D2E006CD6EB /* DailyInsightCoinView.xib in Resources */,
 				67DDB4B524535D2E006CD6EB /* DisclosureCellButton.xib in Resources */,
@@ -10061,7 +10051,6 @@
 				67DDB4D624535D2E006CD6EB /* PremiseListRow.xib in Resources */,
 				67DDB4D724535D2E006CD6EB /* recover_username.json in Resources */,
 				67DDB4D824535D2E006CD6EB /* message_bubble_tip.json in Resources */,
-				67DDB4D924535D2E006CD6EB /* PECO-Environment-HOTFIX.plist in Resources */,
 				67DDBDB724646330006CD6EB /* GoogleService-Info_pepco_prodbeta.plist in Resources */,
 				67DDB4DA24535D2E006CD6EB /* buddy_particles_hearts.json in Resources */,
 				67DDB4DC24535D2E006CD6EB /* InfoModal.xib in Resources */,
@@ -10193,7 +10182,6 @@
 				67DDB70524535D32006CD6EB /* home_profile.json in Resources */,
 				67DDB70624535D32006CD6EB /* Appt_otw.json in Resources */,
 				67DDB70724535D32006CD6EB /* FloatLabelTextField.xib in Resources */,
-				67DDB70824535D32006CD6EB /* ComEd-Environment-HOTFIX.plist in Resources */,
 				67DDB70924535D32006CD6EB /* OpenSans-SemiboldItalic.ttf in Resources */,
 				67DDB70A24535D32006CD6EB /* DailyInsightCoinView.xib in Resources */,
 				67DDB70B24535D32006CD6EB /* DisclosureCellButton.xib in Resources */,
@@ -10231,7 +10219,6 @@
 				67DDB72C24535D32006CD6EB /* PremiseListRow.xib in Resources */,
 				67DDB72D24535D32006CD6EB /* recover_username.json in Resources */,
 				67DDB72E24535D32006CD6EB /* message_bubble_tip.json in Resources */,
-				67DDB72F24535D32006CD6EB /* PECO-Environment-HOTFIX.plist in Resources */,
 				67DDB73024535D32006CD6EB /* buddy_particles_hearts.json in Resources */,
 				67DDB73224535D32006CD6EB /* InfoModal.xib in Resources */,
 				67DDB73324535D32006CD6EB /* AccountPicker.xib in Resources */,
@@ -10364,7 +10351,6 @@
 				67DDB95B24535D35006CD6EB /* home_profile.json in Resources */,
 				67DDB95C24535D35006CD6EB /* Appt_otw.json in Resources */,
 				67DDB95D24535D35006CD6EB /* FloatLabelTextField.xib in Resources */,
-				67DDB95E24535D35006CD6EB /* ComEd-Environment-HOTFIX.plist in Resources */,
 				67DDB95F24535D35006CD6EB /* OpenSans-SemiboldItalic.ttf in Resources */,
 				67DDB96024535D35006CD6EB /* DailyInsightCoinView.xib in Resources */,
 				67DDB96124535D35006CD6EB /* DisclosureCellButton.xib in Resources */,
@@ -10403,7 +10389,6 @@
 				67DDB98224535D35006CD6EB /* PremiseListRow.xib in Resources */,
 				67DDB98324535D35006CD6EB /* recover_username.json in Resources */,
 				67DDB98424535D35006CD6EB /* message_bubble_tip.json in Resources */,
-				67DDB98524535D35006CD6EB /* PECO-Environment-HOTFIX.plist in Resources */,
 				67DDB98624535D35006CD6EB /* buddy_particles_hearts.json in Resources */,
 				67DDB98824535D35006CD6EB /* InfoModal.xib in Resources */,
 				67DDB98924535D35006CD6EB /* AccountPicker.xib in Resources */,
@@ -10671,7 +10656,6 @@
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
-				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
@@ -10710,7 +10694,6 @@
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
-				0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */,
 				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
@@ -10776,7 +10759,6 @@
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				B0CB1C87227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
-				0E0276D02347B20300671E65 /* BGE-Environment-HOTFIX.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19779,12 +19761,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Jeremy Sloane (32KC7LCEJC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
@@ -19806,13 +19788,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.develop;
 				EXM_ENVIRONMENT = HOTFIX;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
@@ -19835,13 +19817,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
@@ -19902,9 +19884,11 @@
 			baseConfigurationReference = 6D71F4205268AD96E66C4737 /* Pods-PepcoApp-Pepco.testing.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.testing;
 				EXM_ENVIRONMENT = HOTFIX;
@@ -19916,7 +19900,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
-				INFOPLIST_FILE = UITests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -19938,9 +19922,11 @@
 			baseConfigurationReference = B8D669F469EE65C511141A20 /* Pods-PepcoApp-Pepco.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.ifactorconsulting.pepco;
 				EXM_ENVIRONMENT = HOTFIX;
@@ -19952,7 +19938,7 @@
 					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
-				INFOPLIST_FILE = UITests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -19973,9 +19959,11 @@
 			baseConfigurationReference = 26C30C9C594F8AE59CEA4C59 /* Pods-PepcoApp-Pepco.prodbeta.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = "";
 				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.prodbeta;
 				EXM_ENVIRONMENT = HOTFIX;
@@ -19987,7 +19975,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
 				);
-				INFOPLIST_FILE = UITests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -22237,7 +22225,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AED49372A2A1780FFC38D1CA /* Pods-PepcoApp-Pepco.staging.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 20200122;
 				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.staging;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
+				MARKETING_VERSION = 2.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = Mobile;
 			};
 			name = Staging;
