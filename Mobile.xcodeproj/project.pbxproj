@@ -296,7 +296,6 @@
 		356C7F8721909EFC003E8A90 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		356C7F8821909F46003E8A90 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		356C7F8921909F6F003E8A90 /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
-		356C7F8A21909F89003E8A90 /* PecoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C681E550545000B7BD0 /* PecoColor.swift */; };
 		356C7F8B21909FBB003E8A90 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAD81E78360D001E8A44 /* AccountService.swift */; };
 		356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
 		356C7F8D2190A09F003E8A90 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
@@ -625,7 +624,6 @@
 		35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */; };
 		35F9DDB72333D8F100AAA2B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
-		35F9DDB92333D8FE00AAA2B2 /* PecoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C681E550545000B7BD0 /* PecoColor.swift */; };
 		35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		35F9DDBC2333D90D00AAA2B2 /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
@@ -690,7 +688,6 @@
 		35F9DE3A23353D2600AAA2B2 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */; };
 		35F9DE3B23353D2900AAA2B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		35F9DE3C23353D3400AAA2B2 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
-		35F9DE3D23353D3800AAA2B2 /* PecoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C681E550545000B7BD0 /* PecoColor.swift */; };
 		35F9DE3E23353D4000AAA2B2 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		35F9DE3F23353D4500AAA2B2 /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		35F9DE4023353D4C00AAA2B2 /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
@@ -3173,7 +3170,6 @@
 		67DDBCF724535DDB006CD6EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EF60FC920EE7916006ABC18 /* Assets.xcassets */; };
 		67DDBD0824535EA6006CD6EB /* LaunchScreen-Pepco.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD0724535EA6006CD6EB /* LaunchScreen-Pepco.storyboard */; };
 		67DDBD0A24535EE6006CD6EB /* PepcoAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD0924535EE6006CD6EB /* PepcoAssets.xcassets */; };
-		67DDBD2F24571083006CD6EB /* PepcoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBD2E24571083006CD6EB /* PepcoColor.swift */; };
 		67DDBD3624571AFE006CD6EB /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
 		67DDBD3724571B15006CD6EB /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */; };
 		67DDBD3824571B16006CD6EB /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */; };
@@ -3186,8 +3182,6 @@
 		67DDBD3F24571D36006CD6EB /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		67DDBD4024571E1F006CD6EB /* AutoPayBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */; };
 		67DDBD6424572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6324572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard */; };
-		67DDBD6524572E7C006CD6EB /* PepcoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBD2E24571083006CD6EB /* PepcoColor.swift */; };
-		67DDBD6624572E7D006CD6EB /* PepcoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBD2E24571083006CD6EB /* PepcoColor.swift */; };
 		67DDBD6824573696006CD6EB /* LaunchScreen-ACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6724573696006CD6EB /* LaunchScreen-ACE.storyboard */; };
 		67DDBD882457389E006CD6EB /* DelmarvaAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD872457389E006CD6EB /* DelmarvaAssets.xcassets */; };
 		67DDBD892457389E006CD6EB /* DelmarvaAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD872457389E006CD6EB /* DelmarvaAssets.xcassets */; };
@@ -3210,6 +3204,12 @@
 		67DDBDB92464638D006CD6EB /* GoogleService-Info_pepco_hotfix.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDB82464638C006CD6EB /* GoogleService-Info_pepco_hotfix.plist */; };
 		67DDBDBB246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDBA246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist */; };
 		67DDBDBD246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBDBC246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist */; };
+		67DDBDBF24646E38006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
+		67DDBDC024646E4D006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
+		67DDBDC124646E4E006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
+		67DDBDC224646E4F006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
+		67DDBDC324646E50006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
+		67DDBDC424646E50006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -3501,9 +3501,6 @@
 		8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE991E54EAB8003F640D /* loading.json */; };
 		8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE991E54EAB8003F640D /* loading.json */; };
 		8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE991E54EAB8003F640D /* loading.json */; };
-		8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C661E550502000B7BD0 /* BGEColor.swift */; };
-		8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C681E550545000B7BD0 /* PecoColor.swift */; };
-		8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */; };
 		8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
@@ -5781,7 +5778,6 @@
 		67DDBD2824571035006CD6EB /* Pepco-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
 		67DDBD2A24571042006CD6EB /* Pepco-Environment-PRODBETA.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		67DDBD2C24571050006CD6EB /* Pepco-Environment-RELEASE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-RELEASE.plist"; sourceTree = "<group>"; };
-		67DDBD2E24571083006CD6EB /* PepcoColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PepcoColor.swift; sourceTree = "<group>"; };
 		67DDBD4F24572D42006CD6EB /* Delmarva-Environment-HOTFIX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
 		67DDBD5024572D42006CD6EB /* Delmarva-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		67DDBD5124572D43006CD6EB /* Delmarva-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
@@ -5820,6 +5816,7 @@
 		67DDBDB82464638C006CD6EB /* GoogleService-Info_pepco_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_hotfix.plist"; sourceTree = "<group>"; };
 		67DDBDBA246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_staging.plist"; sourceTree = "<group>"; };
 		67DDBDBC246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_testing.plist"; sourceTree = "<group>"; };
+		67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OpCo.swift"; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6918FF23DD2B6EFEC03153D8 /* Pods-ACEApp-ACEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -5961,9 +5958,6 @@
 		8FD5AE8F1E54EA53003F640D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		8FD5AE981E54EAB8003F640D /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
 		8FD5AE991E54EAB8003F640D /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
-		8FDF8C661E550502000B7BD0 /* BGEColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEColor.swift; sourceTree = "<group>"; };
-		8FDF8C681E550545000B7BD0 /* PecoColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PecoColor.swift; sourceTree = "<group>"; };
-		8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComEdColor.swift; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
 		9025350210AEE78D35E98169 /* Pods_DelmarvaApp_Delmarva.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DelmarvaApp_Delmarva.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9040E878A5E93D804D77CCA9 /* Pods-ACEApp-ACE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACE.release.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACE/Pods-ACEApp-ACE.release.xcconfig"; sourceTree = "<group>"; };
@@ -8255,9 +8249,7 @@
 		8FDF8C651E550459000B7BD0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8FDF8C661E550502000B7BD0 /* BGEColor.swift */,
-				67DDBD2E24571083006CD6EB /* PepcoColor.swift */,
-				8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */,
+				67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */,
 				82A18F071EBD12D600BE9F21 /* Control.swift */,
 				82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */,
 				225FF8591EC56B480079010C /* Date.swift */,
@@ -8268,7 +8260,6 @@
 				E80D2E161E721668002626C9 /* MaskedString.swift */,
 				82A18F171EC0E83800BE9F21 /* NibViews.swift */,
 				8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */,
-				8FDF8C681E550545000B7BD0 /* PecoColor.swift */,
 				8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */,
 				E8C453141EF3293600F5C781 /* ToastView.swift */,
 				8218988D1F2A30C00077D7A1 /* Binders.swift */,
@@ -12817,7 +12808,6 @@
 				356C7F962190A275003E8A90 /* OutageService.swift in Sources */,
 				356C7F9B2190A37F003E8A90 /* MCSAuthenticationService.swift in Sources */,
 				356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */,
-				356C7F8A21909F89003E8A90 /* PecoColor.swift in Sources */,
 				356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */,
 				9CBE9E26237473C200E14222 /* Weekday.swift in Sources */,
 				356C7F8321909E7E003E8A90 /* NumberFormatter.swift in Sources */,
@@ -12888,7 +12878,6 @@
 				35F9DDA12333D87800AAA2B2 /* SERResult.swift in Sources */,
 				35F9DDBE2333D91D00AAA2B2 /* KeychainManager.swift in Sources */,
 				35F9DDB32333D8D900AAA2B2 /* AuthTokenParser.swift in Sources */,
-				35F9DDB92333D8FE00AAA2B2 /* PecoColor.swift in Sources */,
 				35F9DD9E2333D86600AAA2B2 /* SSOData.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				35F9DDAF2333D8C300AAA2B2 /* MCSApi.swift in Sources */,
@@ -12966,7 +12955,6 @@
 				35F9DE4223353D5F00AAA2B2 /* KeychainManager.swift in Sources */,
 				35F9DE0B23353A5300AAA2B2 /* OutageInterfaceController.swift in Sources */,
 				9CBE9E28237473C400E14222 /* Weekday.swift in Sources */,
-				35F9DE3D23353D3800AAA2B2 /* PecoColor.swift in Sources */,
 				355B104B2369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
 				35F9DE2523353C9C00AAA2B2 /* SERResult.swift in Sources */,
 				35F9DE3C23353D3400AAA2B2 /* NibViews.swift in Sources */,
@@ -13190,7 +13178,6 @@
 				67DDB39924535D2E006CD6EB /* BillViewController.swift in Sources */,
 				67DDB39A24535D2E006CD6EB /* HomeProfile.swift in Sources */,
 				67DDB39B24535D2E006CD6EB /* HomeUpdateView.swift in Sources */,
-				67DDBD2F24571083006CD6EB /* PepcoColor.swift in Sources */,
 				67DDB39C24535D2E006CD6EB /* MiniWalletSheetViewController.swift in Sources */,
 				67DDB39D24535D2E006CD6EB /* BillBreakdownViewController.swift in Sources */,
 				67DDB39E24535D2E006CD6EB /* MockAccountService.swift in Sources */,
@@ -13207,6 +13194,7 @@
 				67DDB3A924535D2E006CD6EB /* OutageStatusButton.swift in Sources */,
 				67DDB3AA24535D2E006CD6EB /* GoogleAnalytics.swift in Sources */,
 				67DDB3AB24535D2E006CD6EB /* StormModeStatus.swift in Sources */,
+				67DDBDC224646E4F006CD6EB /* Color+OpCo.swift in Sources */,
 				67DDB3AC24535D2E006CD6EB /* PeakRewardsProgramCard.swift in Sources */,
 				67DDB3AD24535D2E006CD6EB /* GameOnboardingStep1ViewController.swift in Sources */,
 				67DDB3AE24535D2E006CD6EB /* SplashViewModel.swift in Sources */,
@@ -13527,6 +13515,7 @@
 				67DDB5A324535D32006CD6EB /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				67DDB5A424535D32006CD6EB /* EventStore.swift in Sources */,
 				67DDB5A524535D32006CD6EB /* SetDefaultAccountViewModel.swift in Sources */,
+				67DDBDC424646E50006CD6EB /* Color+OpCo.swift in Sources */,
 				67DDB5A624535D32006CD6EB /* MockAlertsService.swift in Sources */,
 				67DDB5A724535D32006CD6EB /* HttpMethod.swift in Sources */,
 				67DDB5A824535D32006CD6EB /* CommercialUsageViewController.swift in Sources */,
@@ -13603,7 +13592,6 @@
 				67DDB5EF24535D32006CD6EB /* BillViewController.swift in Sources */,
 				67DDB5F024535D32006CD6EB /* HomeProfile.swift in Sources */,
 				67DDB5F124535D32006CD6EB /* HomeUpdateView.swift in Sources */,
-				67DDBD6624572E7D006CD6EB /* PepcoColor.swift in Sources */,
 				67DDB5F224535D32006CD6EB /* MiniWalletSheetViewController.swift in Sources */,
 				67DDB5F324535D32006CD6EB /* BillBreakdownViewController.swift in Sources */,
 				67DDB5F424535D32006CD6EB /* MockAccountService.swift in Sources */,
@@ -13944,6 +13932,7 @@
 				67DDB7F924535D35006CD6EB /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				67DDB7FA24535D35006CD6EB /* EventStore.swift in Sources */,
 				67DDB7FB24535D35006CD6EB /* SetDefaultAccountViewModel.swift in Sources */,
+				67DDBDC324646E50006CD6EB /* Color+OpCo.swift in Sources */,
 				67DDB7FC24535D35006CD6EB /* MockAlertsService.swift in Sources */,
 				67DDB7FD24535D35006CD6EB /* HttpMethod.swift in Sources */,
 				67DDB7FE24535D35006CD6EB /* CommercialUsageViewController.swift in Sources */,
@@ -14020,7 +14009,6 @@
 				67DDB84524535D35006CD6EB /* BillViewController.swift in Sources */,
 				67DDB84624535D35006CD6EB /* HomeProfile.swift in Sources */,
 				67DDB84724535D35006CD6EB /* HomeUpdateView.swift in Sources */,
-				67DDBD6524572E7C006CD6EB /* PepcoColor.swift in Sources */,
 				67DDB84824535D35006CD6EB /* MiniWalletSheetViewController.swift in Sources */,
 				67DDB84924535D35006CD6EB /* BillBreakdownViewController.swift in Sources */,
 				67DDB84A24535D35006CD6EB /* MockAccountService.swift in Sources */,
@@ -14893,7 +14881,6 @@
 				E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				B068DB5A20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				9C48830523834F2700321E6B /* GameTipViewController.swift in Sources */,
-				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A1E1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
 				9C62447422C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
@@ -15006,6 +14993,7 @@
 				82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				351DE2F9221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				B0336FEA21762FB400751430 /* EventStore.swift in Sources */,
+				67DDBDBF24646E38006CD6EB /* Color+OpCo.swift in Sources */,
 				826DCCED1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */,
 				228877011FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
@@ -15312,7 +15300,6 @@
 				9C48830723834F2700321E6B /* GameTipViewController.swift in Sources */,
 				35A6C6E9211DE8D500C2A58F /* UpdatesViewModel.swift in Sources */,
 				B068DB5C20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
-				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				359BDB4E22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */,
 				B0CB1CB9228487020081F99B /* InfoAlertController.swift in Sources */,
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
@@ -15423,6 +15410,7 @@
 				2F4AFE5B1F068FE900603B0E /* Premise.swift in Sources */,
 				8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */,
 				82A18EC61EBA676700BE9F21 /* Switch.swift in Sources */,
+				67DDBDC124646E4E006CD6EB /* Color+OpCo.swift in Sources */,
 				E893993F1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				E87C41491FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
 				E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
@@ -15728,7 +15716,6 @@
 				35A6C6EA211DE8D600C2A58F /* UpdatesViewModel.swift in Sources */,
 				9C48830623834F2700321E6B /* GameTipViewController.swift in Sources */,
 				B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
-				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				9C62447522C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
 				9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
@@ -15840,6 +15827,7 @@
 				228877021FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				351DE2FA221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				E86DE4B81F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
+				67DDBDC024646E4D006CD6EB /* Color+OpCo.swift in Sources */,
 				82E22B5F1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,
 				224EFF19216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
