@@ -70,8 +70,19 @@ class MCSBillService: BillService {
         ]
         
         let opCo = Environment.shared.opco
-        if opCo == .comEd || opCo == .peco {
-            params["biller_id"] = "\(opCo.rawValue)Registered"
+        switch opCo {
+        case .bge:
+            break
+        case .comEd:
+            params["biller_id"] = "ComEdRegistered"
+        case .peco:
+            params["biller_id"] = "PECORegistered"
+        case .pepco:
+            params["biller_id"] = "PEPCORegistered"
+        case .ace:
+            params["biller_id"] = "ACERegistered"
+        case .delmarva:
+            params["biller_id"] = "DPLRegistered"
         }
         
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/billing/history", params: params)
