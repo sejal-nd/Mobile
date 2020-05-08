@@ -82,31 +82,19 @@ public struct NetworkingLayer {
                 dLog("Network Payload:\n\n\(jsonString)")
             }
             
-            // Setup decoder
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-            
-            
-            if let errorResponse = try? jsonDecoder.decode(EndpointError.self, from: data) {
-                // Error
-                dLog("Endpoint error response:\n\n\(errorResponse)")
+            do {
+                let responseObject: T = try decode(data: data)
                 
-                completion(.failure(.endpointError(errorResponse)))
-            } else {
-                do {
-                    let responseObject: T = try decode(data: data)
-                    
-                    // Success
-                    DispatchQueue.main.async {
-                        completion(.success(responseObject))
-                    }
-                } catch {
-                    dLog("Failed to deocde network response:\n\n\(error)")
-                    if let networkError = error as? NetworkingError {
-                        completion(.failure(networkError))
-                    } else {
-                        completion(.failure(.decodingError))
-                    }
+                // Success
+                DispatchQueue.main.async {
+                    completion(.success(responseObject))
+                }
+            } catch {
+                dLog("Failed to deocde network response:\n\n\(error)")
+                if let networkError = error as? NetworkingError {
+                    completion(.failure(networkError))
+                } else {
+                    completion(.failure(.decodingError))
                 }
             }
         }
