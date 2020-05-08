@@ -5,21 +5,21 @@
 	<key>environment</key>
 	<string>PRODBETA</string>
 	<key>opco</key>
-	<string>BGE</string>
+	<string>ACE</string>
 	<key>appName</key>
-	<string>BGE</string>
+	<string>ACE</string>
 	<key>mcsInstanceName</key>
-	<string>Prod-bgeMBE</string>
+	<string>Prod-aceMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://bge.com/MyAccount</string>
+	<string>https://atlanticcityelectric.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_ace_prodbeta</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-1</string>
 	<key>opcoUpdatesHost</key>
-	<string>www.bge.com</string>
+	<string>www.atlanticcityelectric.com</string>
 	<key>associatedDomain</key>
-	<string>secure.bge.com</string>
+	<string>secure.atlanticcityelectric.com</string>
 	<key>appCenterId</key>
 	<string>bddc73d9-4dfb-421f-a59f-71c08c3647e5</string>
 </dict>

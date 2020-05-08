@@ -9,16 +9,16 @@
 	<key>appName</key>
 	<string>Delmarva_AUT</string>
 	<key>mcsInstanceName</key>
-	<string>Stage-bgeMBE</string>
+	<string>Stage-delmarvaMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://aztst.bge.com/MyAccount</string>
+	<string>https://aztst.delmarva.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_delmarva_testing</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.bge.com</string>
+	<string>azstg.delmarva.com</string>
 	<key>associatedDomain</key>
-	<string>azstg-secure.bge.com</string>
+	<string>azstg-secure.delmarva.com</string>
 </dict>
 </plist>

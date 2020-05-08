@@ -5,20 +5,20 @@
 	<key>environment</key>
 	<string>AUT</string>
 	<key>opco</key>
-	<string>Delmarva</string>
+	<string>ACE</string>
 	<key>appName</key>
-	<string>Delmarva_AUT</string>
+	<string>ACE_AUT</string>
 	<key>mcsInstanceName</key>
-	<string>Stage-bgeMBE</string>
+	<string>Stage-aceMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://aztst.bge.com/MyAccount</string>
+	<string>https://aztst.atlanticcityelectric.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_ace_testing</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.bge.com</string>
+	<string>azstg.atlanticcityelectric.com</string>
 	<key>associatedDomain</key>
-	<string>azstg-secure.bge.com</string>
+	<string>azstg-secure.atlanticcityelectric.com</string>
 </dict>
 </plist>

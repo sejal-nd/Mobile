@@ -74,6 +74,18 @@ class SERPTSViewModelTests: XCTestCase {
             viewModel.smartEnergyRewardsFooterText.asObservable().single().subscribe(onNext: { text in
                 XCTAssertEqual(text, "As a Smart Energy Rewards customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent Smart Energy Rewards season will display here once available.")
             }).disposed(by: disposeBag)
+        case .pepco:
+            viewModel.smartEnergyRewardsFooterText.asObservable().single().subscribe(onNext: { text in
+                XCTAssertEqual(text, "todo")
+            }).disposed(by: disposeBag)
+        case .ace:
+            viewModel.smartEnergyRewardsFooterText.asObservable().single().subscribe(onNext: { text in
+                XCTAssertEqual(text, "todo")
+            }).disposed(by: disposeBag)
+        case .delmarva:
+            viewModel.smartEnergyRewardsFooterText.asObservable().single().subscribe(onNext: { text in
+                XCTAssertEqual(text, "todo")
+            }).disposed(by: disposeBag)
         }
     }
 }

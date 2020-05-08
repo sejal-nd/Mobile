@@ -25,7 +25,7 @@ class BillUtility {
         case restoreService, catchUp, avoidShutoff, pastDue, finaled,
         eligibleForCutoff, billReady, billReadyAutoPay, billPaid,
         billPaidIntermediate, credit, paymentPending, billNotReady, paymentScheduled
-
+        
         var isPrecariousBillSituation: Bool {
             switch self {
             case .restoreService, .catchUp, .avoidShutoff, .pastDue, .finaled, .eligibleForCutoff:
@@ -39,15 +39,15 @@ class BillUtility {
     private lazy var billState: BillState = {
         let opco = Environment.shared.opco
         // Note: Removed Bill internmediate payed as it is not needed.
-
+        
         if accountDetails.isFinaled && billingInfo.pastDueAmount > 0 {
             return .finaled
         }
-
+        
         if opco != .bge && billingInfo.restorationAmount > 0 && accountDetails.isCutOutNonPay {
             return .restoreService
         }
-
+        
         if billingInfo.disconnectNoticeArrears > 0 {
             if accountDetails.isCutOutIssued {
                 return .eligibleForCutoff
@@ -55,42 +55,42 @@ class BillUtility {
                 return .avoidShutoff
             }
         }
-
+        
         if opco != .bge && billingInfo.amtDpaReinst > 0 {
             return .catchUp
         }
-
+        
         if billingInfo.pastDueAmount > 0 {
             return .pastDue
         }
-
+        
         if billingInfo.pendingPaymentsTotal > 0 {
             return .paymentPending
         }
-
+        
         if billingInfo.netDueAmount > 0 && (accountDetails.isAutoPay || accountDetails.isBGEasy) {
             return .billReadyAutoPay
         }
-
+        
         if billingInfo.scheduledPayment?.amount > 0 {
             return .paymentScheduled
         }
-
+        
         if opco == .bge && billingInfo.netDueAmount < 0 {
             return .credit
         }
-
+        
         if billingInfo.netDueAmount > 0 {
             return .billReady
         }
-
+        
         if let billDate = billingInfo.billDate,
             let lastPaymentDate = billingInfo.lastPaymentDate,
             billingInfo.lastPaymentAmount > 0,
             billDate < lastPaymentDate {
             return .billPaid
         }
-
+        
         return .billNotReady
     }()
     
@@ -240,12 +240,14 @@ class BillUtility {
             return abs(netDueAmount).currencyString
         case .comEd, .peco:
             return max(netDueAmount, 0).currencyString
+        default:
+            fatalError("Unsupported OpCo.")
         }
     }()
     
     private lazy var isCreditBalance: Bool = {
-       guard let netDueAmount = billingInfo.netDueAmount else { return false }
-       return netDueAmount < 0 && Environment.shared.opco == .bge
+        guard let netDueAmount = billingInfo.netDueAmount else { return false }
+        return netDueAmount < 0 && Environment.shared.opco == .bge
     }()
     
     private(set) lazy var totalAmountDescriptionText: NSAttributedString = {
@@ -340,6 +342,8 @@ class BillUtility {
             return NSLocalizedString("Payments Processing", comment: "")
         case .comEd, .peco:
             return NSLocalizedString("Pending Payments", comment: "")
+        default:
+            fatalError("Unsupported OpCo.")
         }
     }()
     

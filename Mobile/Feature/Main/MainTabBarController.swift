@@ -18,7 +18,7 @@ class MainTabBarController: UITabBarController {
     let selectedTitleFont = SystemFont.bold.of(textStyle: .caption2)
     
     let normalTitleColor = UIColor.middleGray
-    let selectedTitleColor = UIColor.primaryColorADA
+    let selectedTitleColor = UIColor.primaryColor
         
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

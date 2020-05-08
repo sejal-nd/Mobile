@@ -5,21 +5,21 @@
 	<key>environment</key>
 	<string>PROD</string>
 	<key>opco</key>
-	<string>BGE</string>
+	<string>Delmarva</string>
 	<key>appName</key>
-	<string>BGE</string>
+	<string>Delmarva</string>
 	<key>mcsInstanceName</key>
-	<string>Prod-bgeMBE</string>
+	<string>Prod-delmarvaMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://bge.com/MyAccount</string>
+	<string>https://delmarva.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_delmarva</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-1</string>
 	<key>opcoUpdatesHost</key>
-	<string>www.bge.com</string>
+	<string>www.delmarva.com</string>
 	<key>associatedDomain</key>
-	<string>secure.bge.com</string>
+	<string>secure.delmarva.com</string>
 	<key>appCenterId</key>
 	<string>8bfce822-abdf-4e5c-8425-0897f447692a</string>
 </dict>

@@ -17,7 +17,12 @@ enum OpCo: String {
     case delmarva = "Delmarva"
     
     var displayString: String {
-        return rawValue
+        switch self {
+        case .ace:
+            return "Atlantic City Electric"
+        default:
+            return rawValue
+        }
     }
     
     // Used for reading the splash screen animation to VoiceOver users
@@ -70,7 +75,6 @@ struct MCSConfig {
     let baseUrl: String
     let anonymousKey: String
     let oAuthEndpoint: String // The Layer 7 token endpoint
-    let apiVersion: String
     let paymentusUrl: String
     
     init(mcsInstanceName: String, opco: OpCo) {
@@ -82,7 +86,6 @@ struct MCSConfig {
         baseUrl = mobileBackend["baseURL"] as! String
         anonymousKey = mobileBackend["anonymousKey"] as! String
         oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
-        apiVersion = mobileBackend["apiVersion"] as! String
         
         let opcoStr: String
         let opcoNum: String
