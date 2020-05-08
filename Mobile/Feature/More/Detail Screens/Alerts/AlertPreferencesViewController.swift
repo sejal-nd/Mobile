@@ -296,7 +296,36 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         
         var toggleVariable: BehaviorRelay<Bool>?
         var pickerButtonText: Driver<String>?
+        var textFieldOptions: AlertPreferencesViewModel.AlertPrefTextFieldOptions?
+        
         switch option {
+        case .highUsage:
+            toggleVariable = viewModel.highUsage
+            
+            if viewModel.shouldShowHUABillThreshold {
+                var thresholdStr: String? = nil
+                if let thresholdValue = viewModel.billThreshold.value {
+                    thresholdStr = "$\(thresholdValue)"
+                }
+                textFieldOptions = AlertPreferencesViewModel.AlertPrefTextFieldOptions(text: thresholdStr, placeHolder: viewModel.billThresholdPlacheHolder.value, showToolTip: true, textFieldType: .currency)
+                                
+                cell.toolTipTapped = { () in
+                    let alertViewController = InfoAlertController(title: NSLocalizedString("Bill Threshold", comment: ""),
+                                                                  message: self.viewModel.billThresholdToolTipText)
+                    self.present(alertViewController, animated: true)
+                }
+                cell.checkbox.rx.isChecked.asDriver()
+                    .distinctUntilChanged()
+                    .skip(1)
+                    .drive(onNext: { cell.textField.setEnabled($0) })
+                    .disposed(by: cell.disposeBag)
+            }
+        case .peakTimeSavings:
+            toggleVariable = viewModel.peakTimeSavings
+        case .smartEnergyRewards:
+            toggleVariable = viewModel.smartEnergyRewards
+        case .energySavingsDayResults:
+            toggleVariable = viewModel.energySavingsDayResults
         case .outage:
             toggleVariable = viewModel.outage
         case .scheduledMaintenanceOutage:
@@ -354,10 +383,35 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         if let toggleVariable = toggleVariable {
             toggleVariable.asDriver().distinctUntilChanged().drive(cell.checkbox.rx.isChecked).disposed(by: cell.disposeBag)
             cell.checkbox.rx.isChecked.asDriver().skip(1).drive(toggleVariable).disposed(by: cell.disposeBag)
+            cell.textField.textField.rx.text.asDriver().skip(1)
+                .map { $0?.filter { "0123456789".contains($0) } }
+                .drive(onNext: {
+                    self.viewModel.billThreshold.accept($0)
+                })
+                .disposed(by: cell.disposeBag)
+            
+            viewModel.billThreshold.asDriver().drive(onNext: {
+                var amount: Double?
+                amount = Double($0 ?? "")
+                
+                if amount < 1 {
+                    amount = nil
+                }
+                
+                if amount > 10000 {
+                    cell.textField.setError(NSLocalizedString("Value must be less than or equal to $10,000.", comment: ""))
+                }
+                else {
+                    cell.textField.setError(nil)
+                }
+                
+                cell.textField.textField.text = amount?.currencyNoDecimalString ?? nil
+            }).disposed(by: disposeBag)
         }
         
         cell.configure(withPreferenceOption: option,
                        pickerButtonText: pickerButtonText,
+                       textFieldOptions: textFieldOptions,
                        isLastItem: options.count - 1 == indexPath.row)
     }
     
