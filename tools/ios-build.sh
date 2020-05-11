@@ -56,7 +56,6 @@ to just update the build script directly if it's a permanent change.
                             See the EU-DevOps -> eucoms-list-changes repo for details
 --releasenotesprnumber    - The pull request number to generate release notes off of
 --releasenotescontent     - Alternative, a quick blurb to upload for release notes
---bundle-suffix           - Appends to the end of bundle_name.opco if specified
 --bundle-name             - Specifies the base bundle_name. Defaults to either:
                             com.exelon.mobile
                             or 
@@ -64,7 +63,7 @@ to just update the build script directly if it's a permanent change.
 
 --project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
---phase                   - cocoapods, build, veracodePrep, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
+--phase                   - cocoapods, build, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
 --override-mbe            - Override the default MBE for testing or staging builds only 
                           - Options: ${stagingMBEs[*]}
 "
@@ -76,7 +75,6 @@ PROJECT="Mobile.xcworkspace"
 CONFIGURATION=""
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
 BUILD_NUMBER=
-BUNDLE_SUFFIX=
 BASE_BUNDLE_NAME=
 SCHEME=
 APP_CENTER_APP=
@@ -97,7 +95,6 @@ NOWSECURE_API_TOKEN=
 for i in "$@"; do
     case $1 in
         --build-number) BUILD_NUMBER="$2"; shift ;;
-        --bundle-suffix) BUNDLE_SUFFIX="$2"; shift ;;
         --bundle-name) BASE_BUNDLE_NAME="$2"; shift ;;
         --scheme) SCHEME="$2"; shift ;;
         --project) PROJECT="$2"; shift ;;
@@ -168,7 +165,7 @@ elif [ -z "$OPCO" ]; then
     exit 1
 fi
 
-target_phases="cocoapods, build, veracodePrep, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
+target_phases="cocoapods, build, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
 
 if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
@@ -227,40 +224,30 @@ elif [ "$OPCO" == "ACE" ]; then
 fi
 
 if [ "$CONFIGURATION" == "Testing" ]; then
-    target_bundle_id="$BASE_BUNDLE_NAME.testing"
     target_app_name="$OPCO Testing"
     target_icon_asset="tools/$OPCO/testing"
     target_scheme="$OPCO-TESTING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO"
     target_version_number="$target_version_number.$BUILD_NUMBER-testing"
 elif [ "$CONFIGURATION" == "Staging" ]; then
-    target_bundle_id="$BASE_BUNDLE_NAME.staging"
     target_app_name="$OPCO Staging"
     target_icon_asset="tools/$OPCO/staging"
     target_scheme="$OPCO-STAGING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$OPCO"
     target_version_number="$target_version_number.$BUILD_NUMBER-staging"
 elif [ "$CONFIGURATION" == "Prodbeta" ]; then
-    target_bundle_id="$BASE_BUNDLE_NAME.prodbeta"
     target_app_name="$OPCO Prodbeta"
     target_icon_asset="tools/$OPCO/prodbeta"
     target_scheme="$OPCO-PRODBETA"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
     target_version_number="$target_version_number.$BUILD_NUMBER-prodbeta"
 elif [ "$CONFIGURATION" == "Hotfix" ]; then
-    target_bundle_id="$BASE_BUNDLE_NAME.hotfix"
     target_app_name="$OPCO Hotfix"
     target_icon_asset="tools/$OPCO/hotfix"
     target_scheme="$OPCO-HOTFIX"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
     target_version_number="$target_version_number.$BUILD_NUMBER-hotfix"
 elif [ "$CONFIGURATION" == "Release" ]; then
-    if [ "$OPCO_LOWERCASE" == "comed" ]; then
-        # ComEd's production app bundle is different because of the previous Kony mobile app
-        target_bundle_id="com.iphoneproduction.exelon"
-    else
-        target_bundle_id="$BASE_BUNDLE_NAME"
-    fi
     target_app_name="$OPCO"
     target_icon_asset="tools/$OPCO/release"
     target_scheme="$OPCO-RELEASE"
@@ -320,13 +307,6 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	
 	echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
 	echo "   CFBundleVersion=$BUILD_NUMBER"
-	if [ -n "$BUNDLE_SUFFIX" ]; then 
-		# Optional -- the defaults are all defined in the xcode project, this just gives the user the ability to override
-		echo "   CFBundleIdentifier=$target_bundle_id"
-		plutil -replace CFBundleIdentifier -string $target_bundle_id $PROJECT_DIR/Mobile/$OPCO-Info.plist
-	else
-		echo "   CFBundleIdentifier=(Left as is -- should be \${EXM_BUNDLE_ID} which means Xcode project settings take affect)"
-	fi
 	echo "   CFBundleName=$target_app_name"
 	echo "   CFBundleShortVersionString=$target_version_number"
 	echo ""
@@ -526,38 +506,6 @@ appcenter distribute release \\
     fi 
 
 fi
-fi
-
-if [[ $target_phases = *"veracodePrep"* ]]; then
-
-    if [ "$CONFIGURATION" == "Staging" ]; then
-
-
-        # disable error propagation. we do not want to force the whole build script to fail if the rm fails
-        set +e
-
-        rm -r build/veracode
-
-        set -e
-
-        mkdir build/veracode
-        mkdir build/veracode/Payload
-
-        # xcode logs include a statement to output the location of the build directory
-        $(grep "export BUILT_PRODUCTS_DIR" build/logs/xcodebuild_archive.log| head -n1)
-        echo "Set environment variable BUILT_PRODUCTS_DIR to $BUILT_PRODUCTS_DIR"
-
-        cp -a $BUILT_PRODUCTS_DIR/$OPCO.app.dSYM/. build/veracode/Payload/$OPCO.app.dSYM/
-        cp -a $BUILT_PRODUCTS_DIR/$OPCO.swiftmodule/. build/veracode/Payload/$OPCO.swiftmodule/
-        cp -a build/archive/$target_scheme.xcarchive/Products/Applications/$OPCO.app/. build/veracode/Payload/$OPCO.app/
-        pushd ./build/veracode
-        zip -r $OPCO-Veracode-$target_version_number.zip ./Payload
-        popd
-
-        rm -r build/veracode/Payload
-    else
-        echo "Skipping Veracode prep. Only Staging configuration is setup for Veracode analysis currently"
-    fi
 fi
 
 if [[ $target_phases = *"nowsecure"* ]]; then
