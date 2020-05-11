@@ -19,7 +19,7 @@ Usage:
 
 ------- Required Arguments ------
 
---opco                    - BGE, PECO, or ComEd
+--opco                    - BGE, PECO, or ComEd, ACE, Pepco, Delmarva
 --build-number            - Integer, will be appended to the base version number
 
 --configuration           - Testing, Staging, Prodbeta, Hotfix, or Release
@@ -218,6 +218,12 @@ elif [ "$OPCO" == "ComEd" ]; then
     target_version_number=$COMED_VERSION_NUMBER
 elif [ "$OPCO" == "PECO" ]; then
     target_version_number=$PECO_VERSION_NUMBER
+elif [ "$OPCO" == "Pepco" ]; then
+    target_version_number=$PEPCO_VERSION_NUMBER
+elif [ "$OPCO" == "Delmarva" ]; then
+    target_version_number=$DELMARVA_VERSION_NUMBER
+elif [ "$OPCO" == "ACE" ]; then
+    target_version_number=$ACE_VERSION_NUMBER
 fi
 
 if [ "$CONFIGURATION" == "Testing" ]; then
