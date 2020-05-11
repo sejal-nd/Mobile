@@ -32,6 +32,8 @@ Usage:
                             refs/heads/prodbeta
                             refs/heads/hotfix
                             refs/heads/master
+                            refs/heads/phi/develop
+                            refs/heads/phi/stage
 
 ------ App Center Arguments -----
 
@@ -56,11 +58,6 @@ to just update the build script directly if it's a permanent change.
                             See the EU-DevOps -> eucoms-list-changes repo for details
 --releasenotesprnumber    - The pull request number to generate release notes off of
 --releasenotescontent     - Alternative, a quick blurb to upload for release notes
---bundle-name             - Specifies the base bundle_name. Defaults to either:
-                            com.exelon.mobile
-                            or 
-                            com.iphoneproduction.exelon -- if building a ComEd Prod app
-
 --project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
 --phase                   - cocoapods, build, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
@@ -75,7 +72,6 @@ PROJECT="Mobile.xcworkspace"
 CONFIGURATION=""
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
 BUILD_NUMBER=
-BASE_BUNDLE_NAME=
 SCHEME=
 APP_CENTER_APP=
 APP_CENTER_API_TOKEN=
@@ -95,7 +91,6 @@ NOWSECURE_API_TOKEN=
 for i in "$@"; do
     case $1 in
         --build-number) BUILD_NUMBER="$2"; shift ;;
-        --bundle-name) BASE_BUNDLE_NAME="$2"; shift ;;
         --scheme) SCHEME="$2"; shift ;;
         --project) PROJECT="$2"; shift ;;
         --configuration) CONFIGURATION="$2"; shift ;;
@@ -142,9 +137,13 @@ mkdir -p build/logs
 if [[ "$BUILD_BRANCH" == "refs/heads/develop" ]]; then
   # Supports CI builds for all builds into the dev branch
   CONFIGURATION="Testing"
+elif [[ "$BUILD_BRANCH" == "refs/heads/phi/develop" ]]; then
+  CONFIGURATION="Testing"
 elif [[ "$BUILD_BRANCH" == "refs/heads/test" ]]; then
   CONFIGURATION="Testing"
 elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
+  CONFIGURATION="Staging"
+elif [[ "$BUILD_BRANCH" == "refs/heads/phi/stage" ]]; then
   CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
   CONFIGURATION="Prodbeta"
@@ -204,10 +203,6 @@ target_app_center_app=
 target_version_number=
 
 OPCO_LOWERCASE=$(echo "$OPCO" | tr '[:upper:]' '[:lower:]')
-
-if [ -z "$BASE_BUNDLE_NAME" ]; then
-    BASE_BUNDLE_NAME="com.exelon.mobile.$OPCO_LOWERCASE"
-fi
 
 if [ "$OPCO" == "BGE" ]; then
     target_version_number=$BGE_VERSION_NUMBER
