@@ -19752,7 +19752,7 @@
 				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -19781,7 +19781,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.develop;
 				EXM_ENVIRONMENT = AUT;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -19811,7 +19811,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.hotfix;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -19881,7 +19881,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = "";
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.testing;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.testing;
 				EXM_ENVIRONMENT = TESTING;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19956,7 +19956,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = "";
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.prodbeta;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.prodbeta;
 				EXM_ENVIRONMENT = PRODBETA;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -19994,7 +19994,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20027,7 +20027,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.develop;
 				EXM_ENVIRONMENT = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
@@ -20058,7 +20058,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.staging;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20092,7 +20092,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.hotfix;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
@@ -20127,7 +20127,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.testing;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.testing;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
@@ -20194,7 +20194,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.prodbeta;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20225,7 +20225,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20255,7 +20255,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20286,7 +20286,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.staging;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -20319,7 +20319,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.hotfix;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
@@ -20353,7 +20353,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.testing;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.testing;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
@@ -20418,7 +20418,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.prodbeta;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -22233,7 +22233,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 20200122;
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.staging;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				MARKETING_VERSION = 2.2.0;
