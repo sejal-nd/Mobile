@@ -20026,7 +20026,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
+				CODE_SIGN_IDENTITY = "Apple Development: Jeremy Sloane (32KC7LCEJC)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
