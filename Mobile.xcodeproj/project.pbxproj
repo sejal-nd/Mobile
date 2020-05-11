@@ -5493,6 +5493,15 @@
 		0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
+		0E1F37642469EDCD009D3A63 /* Pepco-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pepco-STAGE.entitlements"; sourceTree = "<group>"; };
+		0E1F37652469EDCD009D3A63 /* Delmarva-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Delmarva-TEST.entitlements"; sourceTree = "<group>"; };
+		0E1F37662469EDCD009D3A63 /* ACE-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ACE-TEST.entitlements"; sourceTree = "<group>"; };
+		0E1F37672469EDCD009D3A63 /* Delmarva-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Delmarva-STAGE.entitlements"; sourceTree = "<group>"; };
+		0E1F37682469EDCE009D3A63 /* Pepco-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pepco-TEST.entitlements"; sourceTree = "<group>"; };
+		0E1F37692469EDCE009D3A63 /* ACE-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ACE-STAGE.entitlements"; sourceTree = "<group>"; };
+		0E1F376A2469EDCE009D3A63 /* Delmarva-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Delmarva-PROD.entitlements"; sourceTree = "<group>"; };
+		0E1F376B2469EDCE009D3A63 /* Pepco-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pepco-PROD.entitlements"; sourceTree = "<group>"; };
+		0E1F376C2469EDCE009D3A63 /* ACE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ACE-PROD.entitlements"; sourceTree = "<group>"; };
 		0E5BEF09202E22CD009D1ADB /* GoogleService-Info_comed_prodbeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_comed_prodbeta.plist"; sourceTree = "<group>"; };
 		0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_bge_prodbeta.plist"; sourceTree = "<group>"; };
 		0E5BEF0C202E2389009D1ADB /* GoogleService-Info_peco_prodbeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_peco_prodbeta.plist"; sourceTree = "<group>"; };
@@ -9020,6 +9029,15 @@
 		E81CFFE81EC230B5004FDA7E /* Entitlements */ = {
 			isa = PBXGroup;
 			children = (
+				0E1F376C2469EDCE009D3A63 /* ACE-PROD.entitlements */,
+				0E1F37692469EDCE009D3A63 /* ACE-STAGE.entitlements */,
+				0E1F37662469EDCD009D3A63 /* ACE-TEST.entitlements */,
+				0E1F376A2469EDCE009D3A63 /* Delmarva-PROD.entitlements */,
+				0E1F37672469EDCD009D3A63 /* Delmarva-STAGE.entitlements */,
+				0E1F37652469EDCD009D3A63 /* Delmarva-TEST.entitlements */,
+				0E1F376B2469EDCE009D3A63 /* Pepco-PROD.entitlements */,
+				0E1F37642469EDCD009D3A63 /* Pepco-STAGE.entitlements */,
+				0E1F37682469EDCE009D3A63 /* Pepco-TEST.entitlements */,
 				35CE69D421122F50007EB844 /* BGE-PROD.entitlements */,
 				35CE69DA21122F50007EB844 /* BGE-STAGE.entitlements */,
 				35CE69D921122F50007EB844 /* BGE-TEST.entitlements */,
