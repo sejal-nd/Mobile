@@ -5493,6 +5493,15 @@
 		0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
+		0E1F37642469EDCD009D3A63 /* Pepco-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pepco-STAGE.entitlements"; sourceTree = "<group>"; };
+		0E1F37652469EDCD009D3A63 /* Delmarva-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Delmarva-TEST.entitlements"; sourceTree = "<group>"; };
+		0E1F37662469EDCD009D3A63 /* ACE-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ACE-TEST.entitlements"; sourceTree = "<group>"; };
+		0E1F37672469EDCD009D3A63 /* Delmarva-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Delmarva-STAGE.entitlements"; sourceTree = "<group>"; };
+		0E1F37682469EDCE009D3A63 /* Pepco-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pepco-TEST.entitlements"; sourceTree = "<group>"; };
+		0E1F37692469EDCE009D3A63 /* ACE-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ACE-STAGE.entitlements"; sourceTree = "<group>"; };
+		0E1F376A2469EDCE009D3A63 /* Delmarva-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Delmarva-PROD.entitlements"; sourceTree = "<group>"; };
+		0E1F376B2469EDCE009D3A63 /* Pepco-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pepco-PROD.entitlements"; sourceTree = "<group>"; };
+		0E1F376C2469EDCE009D3A63 /* ACE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ACE-PROD.entitlements"; sourceTree = "<group>"; };
 		0E5BEF09202E22CD009D1ADB /* GoogleService-Info_comed_prodbeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_comed_prodbeta.plist"; sourceTree = "<group>"; };
 		0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_bge_prodbeta.plist"; sourceTree = "<group>"; };
 		0E5BEF0C202E2389009D1ADB /* GoogleService-Info_peco_prodbeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_peco_prodbeta.plist"; sourceTree = "<group>"; };
@@ -9020,6 +9029,15 @@
 		E81CFFE81EC230B5004FDA7E /* Entitlements */ = {
 			isa = PBXGroup;
 			children = (
+				0E1F376C2469EDCE009D3A63 /* ACE-PROD.entitlements */,
+				0E1F37692469EDCE009D3A63 /* ACE-STAGE.entitlements */,
+				0E1F37662469EDCD009D3A63 /* ACE-TEST.entitlements */,
+				0E1F376A2469EDCE009D3A63 /* Delmarva-PROD.entitlements */,
+				0E1F37672469EDCD009D3A63 /* Delmarva-STAGE.entitlements */,
+				0E1F37652469EDCD009D3A63 /* Delmarva-TEST.entitlements */,
+				0E1F376B2469EDCE009D3A63 /* Pepco-PROD.entitlements */,
+				0E1F37642469EDCD009D3A63 /* Pepco-STAGE.entitlements */,
+				0E1F37682469EDCE009D3A63 /* Pepco-TEST.entitlements */,
 				35CE69D421122F50007EB844 /* BGE-PROD.entitlements */,
 				35CE69DA21122F50007EB844 /* BGE-STAGE.entitlements */,
 				35CE69D921122F50007EB844 /* BGE-TEST.entitlements */,
@@ -17006,7 +17024,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -17018,7 +17036,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
 			};
@@ -19539,7 +19557,7 @@
 				ENABLE_TESTABILITY = YES;
 				EXM_ENVIRONMENT = HOTFIX;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -19752,10 +19770,11 @@
 				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -19780,10 +19799,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.develop;
-				EXM_ENVIRONMENT = HOTFIX;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.develop;
+				EXM_ENVIRONMENT = AUT;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -19801,7 +19821,7 @@
 			baseConfigurationReference = 75DEB2BD50E040CBA4237C21 /* Pods-PepcoApp-Pepco.hotfix.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Pepco-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -19809,10 +19829,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.hotfix;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -19820,7 +19841,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Hotfix Enterprise Dist";
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -19874,12 +19895,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Pepco-TEST.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20200122;
-				DEVELOPMENT_TEAM = "";
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.testing;
-				EXM_ENVIRONMENT = HOTFIX;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.testing;
+				EXM_ENVIRONMENT = TESTING;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
@@ -19890,7 +19913,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -19898,7 +19921,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Testing Enterprise Dist";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -19912,12 +19935,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Pepco-PROD.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20200122;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_BUNDLE_ID = com.ifactorconsulting.pepco;
-				EXM_ENVIRONMENT = HOTFIX;
+				EXM_ENVIRONMENT = RELEASE;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
@@ -19928,14 +19952,14 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Peter's Devices";
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -19949,12 +19973,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Pepco-PROD.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20200122;
-				DEVELOPMENT_TEAM = "";
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.prodbeta;
-				EXM_ENVIRONMENT = HOTFIX;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.prodbeta;
+				EXM_ENVIRONMENT = PRODBETA;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
@@ -19965,14 +19991,14 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Production Beta Enterprise Dist";
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -19985,16 +20011,19 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "Apple Development: Jeremy Sloane (32KC7LCEJC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.develop;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -20002,6 +20031,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
+				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -20014,30 +20044,28 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
+				CODE_SIGN_IDENTITY = "Apple Development: Jeremy Sloane (32KC7LCEJC)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				EXM_ENVIRONMENT = HOTFIX;
-				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.hotfix.watchkitapp;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper-watchOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-watchOS\"",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/PECO-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				CURRENT_PROJECT_VERSION = 20200121;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.develop;
+				EXM_ENVIRONMENT = AUT;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.hotfix.watchkitapp.watchkitextension;
+				MARKETING_VERSION = 2.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Hotfix Watchkit WatchkitExtension Enterprise";
-				SDKROOT = watchos;
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -20049,7 +20077,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ACE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -20057,10 +20086,12 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.staging;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.staging;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -20068,7 +20099,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Enterprise Dist";
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -20081,7 +20113,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ACE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -20089,11 +20122,13 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.hotfix;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -20101,7 +20136,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Hotfix Enterprise Dist";
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -20114,7 +20150,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ACE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -20122,11 +20159,13 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.testing;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.testing;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -20134,7 +20173,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Testing Enterprise Dist";
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -20147,17 +20187,20 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ACE-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_BUNDLE_ID = com.ifactorconsulting.ace;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -20165,6 +20208,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -20177,25 +20221,29 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ACE-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.ace.prodbeta;
+				EXM_BUNDLE_ID = com.exelon.mobile.ace.prodbeta;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ACE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta Enterprise Dist";
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -20214,10 +20262,11 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -20243,10 +20292,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.develop;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -20265,7 +20315,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Delmarva-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -20273,10 +20323,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.staging;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -20284,7 +20335,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Staging Enterprise Dist";
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -20297,7 +20348,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Delmarva-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -20305,11 +20356,12 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.hotfix;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -20317,7 +20369,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Hotfix Enterprise Dist";
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -20330,7 +20382,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Delmarva-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -20338,11 +20390,12 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.testing;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.testing;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -20350,7 +20403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Testing Enterprise Dist";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -20364,7 +20417,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Delmarva-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -20374,6 +20427,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -20394,24 +20448,25 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Delmarva-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.ifactorconsulting.delmarva.prodbeta;
+				EXM_BUNDLE_ID = com.exelon.mobile.delmarva.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Delmarva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta Enterprise Dist";
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -22214,12 +22269,18 @@
 			baseConfigurationReference = AED49372A2A1780FFC38D1CA /* Pods-PepcoApp-Pepco.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/Pepco-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 20200122;
-				EXM_BUNDLE_ID = com.ifactorconsulting.pepco.staging;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_BUNDLE_ID = com.exelon.mobile.pepco.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Pepco-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = Mobile;
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Enterprise Dist";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Staging;
 		};
