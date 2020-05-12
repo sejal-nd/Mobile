@@ -27,7 +27,7 @@ public enum Router {
     
     // Registration
     case registration(encodable: Encodable)
-    case checkDuplicateRegistration
+    case checkDuplicateRegistration(encodable: Encodable)
     case registrationQuestions
     case validateRegistration
     case sendConfirmationEmail

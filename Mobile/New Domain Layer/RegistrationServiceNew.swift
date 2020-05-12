@@ -12,4 +12,8 @@ struct RegistrationServiceNew {
     static func createAccount(request: NewAccountRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .registration(encodable: request), completion: completion)
     }
+    
+    static func checkDuplicateRegistration(request: UsernameRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .checkDuplicateRegistration(encodable: request), completion: completion)
+    }
 }
