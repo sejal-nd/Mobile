@@ -241,7 +241,7 @@ class ReviewPaymentViewController: UIViewController {
                 self?.alternateNumberTextField.textField.becomeFirstResponder()
             }).disposed(by: disposeBag)
         
-        alternateNumberTextField.placeholder = NSLocalizedString("Mobile Phone Number (Optional)",
+        alternateNumberTextField.placeholder = NSLocalizedString("Phone Number (Optional)",
                                                                  comment: "")
         alternateNumberTextField.textField.autocorrectionType = .no
         alternateNumberTextField.setKeyboardType(.phonePad)
