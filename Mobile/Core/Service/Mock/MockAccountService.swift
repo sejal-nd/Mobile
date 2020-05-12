@@ -55,6 +55,20 @@ class MockAccountService: AccountService {
         return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
+    func fetchAccountDetail(account: Account, alertPreferenceEligibilities: Bool) -> Observable<AccountDetail> {
+        let dataFile = MockJSONManager.File.accountDetails
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        
+        if key == .thankYouForPaymentOTP {
+            RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] =
+                PaymentDetails(amount: 234,
+                               date: Date.now.addingTimeInterval(-3600),
+                               confirmationNumber: "123456")
+        }
+        
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
+    }
+    
     func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void> {
         return .just(())
     }
