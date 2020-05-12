@@ -14,12 +14,15 @@ import UIKit
 class PaymentViewModel {
     
     let disposeBag = DisposeBag()
-
+    
+    fileprivate let kMaxUsernameChars = 255
+    
     private let walletService: WalletService
     private let paymentService: PaymentService
 
     let accountDetail: BehaviorRelay<AccountDetail>
-
+    let billingHistoryItem: BillingHistoryItem?
+    
     let isFetching = BehaviorRelay(value: false)
     let isError = BehaviorRelay(value: false)
 
@@ -36,6 +39,9 @@ class PaymentViewModel {
     let activeSeveranceSwitchValue = BehaviorRelay(value: false)
 
     let paymentId = BehaviorRelay<String?>(value: nil)
+    
+    let emailAddress = BehaviorRelay(value: "")
+    let phoneNumber = BehaviorRelay(value: "")
 
     var confirmationNumber: String?
 
@@ -46,6 +52,7 @@ class PaymentViewModel {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = BehaviorRelay(value: accountDetail)
+        self.billingHistoryItem = billingHistoryItem
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
             paymentId.accept(billingHistoryItem.paymentId)
@@ -117,6 +124,8 @@ class PaymentViewModel {
         self.paymentService.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
                                             paymentAmount: self.paymentAmount.value,
                                             paymentDate: self.paymentDate.value,
+                                            alternateEmail: self.emailAddress.value,
+                                            alternateNumber: self.phoneNumber.value,
                                             walletId: AccountsStore.shared.customerIdentifier,
                                             walletItem: self.selectedWalletItem.value!)
             .observeOn(MainScheduler.instance)
@@ -227,6 +236,67 @@ class PaymentViewModel {
             }
         }
         return true
+    }
+    
+    private(set) lazy var emailIsValidBool: Driver<Bool> =
+        self.emailAddress.asDriver().map { text -> Bool in
+            if text.count > self.kMaxUsernameChars {
+                return false
+            }
+            if text.count == .zero {
+                return true
+            }
+            let components = text.components(separatedBy: "@")
+            
+            if components.count != 2 {
+                return false
+            }
+            
+            let urlComponents = components[1].components(separatedBy: ".")
+            
+            if urlComponents.count < 2 {
+                return false
+            } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                return false
+            }
+            
+            return true
+    }
+    
+    private(set) lazy var emailIsValid: Driver<String?> =
+        self.emailAddress.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > self.kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+                
+                let components = text.components(separatedBy: "@")
+                
+                if components.count != 2 {
+                    return "Invalid email address"
+                }
+                
+                let urlComponents = components[1].components(separatedBy: ".")
+                
+                if urlComponents.count < 2 {
+                    return "Invalid email address"
+                } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                    return "Invalid email address"
+                }
+            }
+            
+            return nil
+    }
+    
+    private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
+        self.phoneNumber.asDriver().map { [weak self] text -> Bool in
+            guard let self = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.count == 10 || digitsOnlyString.count == 0
+    }
+    
+    private func extractDigitsFrom(_ string: String) -> String {
+        return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
     
     private(set) lazy var shouldShowPaymentDateView: Driver<Bool> =
@@ -595,7 +665,9 @@ class PaymentViewModel {
                        isOverpaying,
                        overpayingSwitchValue.asDriver(),
                        isActiveSeveranceUser,
-                       activeSeveranceSwitchValue.asDriver())
+                       activeSeveranceSwitchValue.asDriver(),
+                       self.emailIsValidBool.asDriver(),
+                       self.phoneNumberHasTenDigits.asDriver())
         {
             if !$0 {
                 return false
@@ -606,8 +678,11 @@ class PaymentViewModel {
             if $3 && !$4 {
                 return false
             }
+            if !$5 || !$6 {
+                return false
+            }
             return true
-        }
+    }
 
     private(set) lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> =
         self.selectedWalletItem.asDriver().map { $0?.bankOrCard == .card }

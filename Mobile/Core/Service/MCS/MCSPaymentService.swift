@@ -132,10 +132,13 @@ class MCSPaymentService: PaymentService {
     func schedulePayment(accountNumber: String,
                          paymentAmount: Double,
                          paymentDate: Date,
+                         alternateEmail: String,
+                         alternateNumber: String,
                          walletId: String,
                          walletItem: WalletItem) -> Observable<String> {
+        
         let opCo = Environment.shared.opco
-        let params: [String: Any] = [
+        var params: [String: Any] = [
             "payment_amount": String.init(format: "%.02f", paymentAmount),
             "payment_date": paymentDate.paymentFormatString,
             "payment_category_type": walletItem.bankOrCard == .bank ? "Check" : "Credit",
@@ -145,7 +148,15 @@ class MCSPaymentService: PaymentService {
             "biller_id": "\(opCo.rawValue)Registered",
             "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber ?? ""
         ]
-
+        
+        if !alternateEmail.isEmpty &&  !(alternateEmail == "") {
+            params.updateValue(alternateEmail, forKey: "email_id")
+        }
+        
+        if !alternateNumber.isEmpty && !(alternateNumber == "") {
+            params.updateValue(alternateNumber, forKey: "mobile_phone_number")
+        }
+        
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
             .map { json -> String in
                 guard let dict = json as? NSDictionary, let confirmation = dict["confirmationNumber"] as? String else {

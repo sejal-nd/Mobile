@@ -53,6 +53,8 @@ class MockPaymentService: PaymentService {
     func schedulePayment(accountNumber: String,
                          paymentAmount: Double,
                          paymentDate: Date,
+                         alternateEmail: String,
+                         alternateNumber: String,
                          walletId: String,
                          walletItem: WalletItem) -> Observable<String> {
         return .just("123456")
