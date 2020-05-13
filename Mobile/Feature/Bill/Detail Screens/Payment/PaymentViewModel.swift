@@ -15,7 +15,7 @@ class PaymentViewModel {
     
     let disposeBag = DisposeBag()
     
-    fileprivate let kMaxUsernameChars = 255
+    private let kMaxUsernameChars = 255
     
     private let walletService: WalletService
     private let paymentService: PaymentService

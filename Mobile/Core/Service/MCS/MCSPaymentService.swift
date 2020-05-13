@@ -149,11 +149,11 @@ class MCSPaymentService: PaymentService {
             "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber ?? ""
         ]
         
-        if !alternateEmail.isEmpty &&  !(alternateEmail == "") {
+        if !alternateEmail.isEmpty {
             params.updateValue(alternateEmail, forKey: "email_id")
         }
         
-        if !alternateNumber.isEmpty && !(alternateNumber == "") {
+        if !alternateNumber.isEmpty {
             params.updateValue(alternateNumber, forKey: "mobile_phone_number")
         }
         
