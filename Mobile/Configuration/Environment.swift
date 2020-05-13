@@ -20,6 +20,8 @@ enum OpCo: String {
         switch self {
         case .ace:
             return "Atlantic City Electric"
+        case .delmarva:
+            return "Delmarva Power"
         default:
             return rawValue
         }
