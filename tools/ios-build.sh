@@ -4,13 +4,13 @@
 # Reads in the mobile cloud config file directly, filtering out prod instances
 # Have to convert to json first
 
-plutil -convert json -e json Mobile/MCSConfig.plist
+plutil -convert json -e json App/MCSConfig.plist
 
-string_of_mbes="$(jq -r '.mobileBackends|keys[]' < Mobile/MCSConfig.json | grep -v Prod)"
+string_of_mbes="$(jq -r '.mobileBackends|keys[]' < App/MCSConfig.json | grep -v Prod)"
 
 stagingMBEs=($string_of_mbes)
 
-rm Mobile/MCSConfig.json
+rm App/MCSConfig.json
 
 echo "
 Exelon Utilities Mobile Build Script for iOS
@@ -23,7 +23,7 @@ Usage:
 --build-number            - Integer, will be appended to the base version number
 
 --configuration           - Testing, Staging, Prodbeta, Hotfix, or Release
-                            
+
                             or
 
 --build-branch              refs/heads/develop
@@ -54,20 +54,20 @@ to just update the build script directly if it's a permanent change.
 
 --nowsecure-api-token     - API key for NowSecure security scanning system
 --azuredevopstoken        - A token used by the eucoms-list-changes.sh script to access pull
-                            request and work item details to generate release notes. 
+                            request and work item details to generate release notes.
                             See the EU-DevOps -> eucoms-list-changes repo for details
 --releasenotesprnumber    - The pull request number to generate release notes off of
 --releasenotescontent     - Alternative, a quick blurb to upload for release notes
 --project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
 --phase                   - cocoapods, build, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
---override-mbe            - Override the default MBE for testing or staging builds only 
+--override-mbe            - Override the default MBE for testing or staging builds only
                           - Options: ${stagingMBEs[*]}
 "
 
 PROPERTIES_FILE='version.properties'
 PROJECT_DIR="."
-ASSET_DIR="$PROJECT_DIR/Mobile/Assets/"
+ASSET_DIR="$PROJECT_DIR/App/Assets/"
 PROJECT="Mobile.xcworkspace"
 CONFIGURATION=""
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
@@ -127,7 +127,7 @@ find_in_array() {
   local word=$1
   shift
   for e in "$@"; do
-    [[ "$e" == "$word" ]] && return 0; 
+    [[ "$e" == "$word" ]] && return 0;
   done
 }
 
@@ -253,7 +253,7 @@ else
     exit 1
 fi
 
-if [ -n "$SCHEME" ]; then 
+if [ -n "$SCHEME" ]; then
     echo "Scheme has been specified via args -- overriding default of $target_scheme with $SCHEME"
     target_scheme=$SCHEME
 fi
@@ -281,14 +281,14 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	echo "   with: "
 	echo "   AppIconSet=$target_icon_asset"
 
-	echo "Updating plist $PROJECT_DIR/Mobile/$OPCO-Info.plist"
+	echo "Updating plist $PROJECT_DIR/App/$OPCO-Info.plist"
     echo "Updating plist $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist"
     echo "Updating plist $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist"
 
 	# Update Bundle ID, App Name, App Version, and Icons
-	plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-Info.plist
-	plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Mobile/$OPCO-Info.plist
-	plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Mobile/$OPCO-Info.plist
+	plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/App/$OPCO-Info.plist
+	plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/App/$OPCO-Info.plist
+	plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/App/$OPCO-Info.plist
 
 
     plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
@@ -299,8 +299,8 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
     plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
     plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
 
-	
-	echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
+
+	echo "$PROJECT_DIR/App/$OPCO-Info.plist updated:"
 	echo "   CFBundleVersion=$BUILD_NUMBER"
 	echo "   CFBundleName=$target_app_name"
 	echo "   CFBundleShortVersionString=$target_version_number"
@@ -310,14 +310,14 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
         if find_in_array $OVERRIDE_MBE "${stagingMBEs[@]}"; then
 
             if [ "$CONFIGURATION" == "Staging" ]; then
-                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist
-                echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist"
+                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/App/Configuration/$OPCO-Environment-STAGING.plist
+                echo "Updating plist $PROJECT_DIR/App/Configuration/$OPCO-Environment-STAGING.plist"
             elif [ "$CONFIGURATION" == "Hotfix" ]; then
-                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-HOTFIX.plist
-                echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-HOTFIX.plist"
+                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/App/Configuration/$OPCO-Environment-HOTFIX.plist
+                echo "Updating plist $PROJECT_DIR/App/Configuration/$OPCO-Environment-HOTFIX.plist"
             else
-                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-TESTING.plist
-                echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-TESTING.plist"
+                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/App/Configuration/$OPCO-Environment-TESTING.plist
+                echo "Updating plist $PROJECT_DIR/App/Configuration/$OPCO-Environment-TESTING.plist"
             fi
             echo "   mcsInstanceName=$OVERRIDE_MBE"
         else
@@ -335,7 +335,7 @@ if xcodebuild -version | grep -q "Xcode 10"; then
 fi
 
 # Restore cocoapods Packages
-if [[ $target_phases = *"cocoapods"* ]]; then 
+if [[ $target_phases = *"cocoapods"* ]]; then
     pod repo update
     pod install
     check_errs $? "Cocoapods install exited with a non-zero status"
@@ -351,7 +351,7 @@ if [[ $target_phases = *"unitTest"* ]]; then
         -scheme "$OPCO-AUT" \
         -destination "$UNIT_TEST_SIMULATOR" \
         -configuration Automation \
-        test | tee build/logs/xcodebuild_automation_unittests.log | xcpretty --report junit 
+        test | tee build/logs/xcodebuild_automation_unittests.log | xcpretty --report junit
     check_errs $? "Xcode unit tests exited with a non-zero status"
 
     set +o pipefail
@@ -393,7 +393,7 @@ if [[ $target_phases = *"build"* ]]; then
 
         if [ -n "$AZURE_DEVOPS_TOKEN" ]; then
             echo "Azure dev ops token has been specified"
-            
+
             if [ -n "$RELEASE_NOTES_PR_NUMBER" ]; then
                 echo "Calling release notes script to generate release notes"
                  # disable error propagation. we do not want to force the whole build script to fail if the rm fails
@@ -463,7 +463,7 @@ if [[ $target_phases = *"build"* ]]; then
             check_errs $? "App center crash uploading exited with a non-zero status"
 
                 rm -r build/appcentersymbols
-            
+
             echo "--------------------------------- Completed symbols  -------------------------------"
 
             else
@@ -498,7 +498,7 @@ appcenter distribute release \\
 --group \"\$APP_CENTER_GROUP\" \\
 --release-notes-file \"tools/release_notes_script/release_notes.txt\"
 " > ./tools/app_center_push.sh
-    fi 
+    fi
 
 fi
 fi
@@ -529,12 +529,12 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 
         # disable error propagation. we do not want to force the whole build script to fail if the rm fails
         set +e
-        
+
         rm -r build/Automation
         rm -r build/Mobile.build
 
         set -e
-        
+
         # rm -rf "DerivedData"
         echo "----------------------------------- Build-for-testing -------------------------------"
         xcrun xcodebuild \
