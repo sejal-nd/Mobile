@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Delmarva</string>
+	<string>AC Electric</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -41,7 +41,7 @@
 		</dict>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>This allows Pepco to save appointment events in your calendar.</string>
+	<string>This allows AC Electric to save appointment events in your calendar.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow camera access to scan your credit/debit card.</string>
 	<key>NSFaceIDUsageDescription</key>
@@ -64,7 +64,7 @@
 		<string>OpenSans-SemiboldItalic.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen-Delmarva</string>
+	<string>LaunchScreen-ACE</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Login</string>
 	<key>UIRequiredDeviceCapabilities</key>

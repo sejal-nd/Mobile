@@ -137,6 +137,7 @@ struct Environment {
         
         environmentName = EnvironmentName(rawValue: dict["environment"] as! String)!
         appName = dict["appName"] as! String
+        print("OPCO12: \(dict["opco"])")
         opco = OpCo(rawValue: dict["opco"] as! String)!
         mcsInstanceName = dict["mcsInstanceName"] as! String
         mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName, opco: opco)

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>AC Electric</string>
+	<string>Pepco</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -64,7 +64,7 @@
 		<string>OpenSans-SemiboldItalic.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen-ACE</string>
+	<string>LaunchScreen-Pepco</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Login</string>
 	<key>UIRequiredDeviceCapabilities</key>
