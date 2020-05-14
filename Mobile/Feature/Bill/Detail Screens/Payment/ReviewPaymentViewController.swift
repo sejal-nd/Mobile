@@ -206,7 +206,7 @@ class ReviewPaymentViewController: UIViewController {
         
         alternateViewTextView.backgroundColor = .softGray
         alternateViewTextView.textColor = .deepGray
-        alternateViewTextView.font = SystemFont.regular.of(textStyle: .body)
+        alternateViewTextView.font = SystemFont.regular.of(textStyle: .callout)
         alternateViewTextView.text = NSLocalizedString("Add an additional email address and/or mobile phone number in the box below if you’d like us to send this payment confirmation via text message or to an email different from the one associated with your My Account. Standard messaging rates apply.", comment: "")
         
         addAdditionaRecipientButton.setTitleColor(.deepGray, for: .normal)
