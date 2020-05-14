@@ -1310,15 +1310,8 @@
                                                             <constraint firstItem="aOU-wC-E3a" firstAttribute="top" secondItem="bjS-0r-dlL" secondAttribute="top" constant="-4" id="voH-At-J45"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHh-zM-H00">
-                                                        <rect key="frame" x="0.0" y="849" width="375" height="1"/>
-                                                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="1" id="v0v-zC-DpG"/>
-                                                        </constraints>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gu0-ai-uGz">
-                                                        <rect key="frame" x="0.0" y="897" width="375" height="340"/>
+                                                        <rect key="frame" x="0.0" y="849" width="375" height="340"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="av3-rL-Qad" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="260" width="335" height="60"/>
@@ -1349,6 +1342,13 @@
                                                             <constraint firstAttribute="bottom" secondItem="av3-rL-Qad" secondAttribute="bottom" constant="20" id="mC2-l6-j3A"/>
                                                             <constraint firstItem="av3-rL-Qad" firstAttribute="leading" secondItem="gu0-ai-uGz" secondAttribute="leading" constant="20" id="qo0-fn-bRP"/>
                                                             <constraint firstItem="bgT-iP-LO4" firstAttribute="top" secondItem="gu0-ai-uGz" secondAttribute="top" constant="20" id="rKn-JC-ALC"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHh-zM-H00">
+                                                        <rect key="frame" x="0.0" y="1236" width="375" height="1"/>
+                                                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="v0v-zC-DpG"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7y-ry-gn4">
@@ -1471,7 +1471,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="V2J-70-Ob5" secondAttribute="trailing" priority="999" constant="20" id="1Nx-SW-dOl"/>
                                                     <constraint firstItem="lOb-Vo-ahE" firstAttribute="leading" secondItem="NXu-wK-GYQ" secondAttribute="leading" priority="999" constant="20" id="82I-u3-1k0"/>
-                                                    <constraint firstItem="bjS-0r-dlL" firstAttribute="width" secondItem="gu0-ai-uGz" secondAttribute="width" multiplier="0.893333" id="9i7-8n-o8H"/>
+                                                    <constraint firstItem="bjS-0r-dlL" firstAttribute="width" secondItem="V2p-Ap-Ww7" secondAttribute="width" id="Avz-6T-eey"/>
                                                     <constraint firstItem="x4Z-6u-eyD" firstAttribute="leading" secondItem="NXu-wK-GYQ" secondAttribute="leading" id="Dv9-Rd-e5o"/>
                                                     <constraint firstAttribute="trailing" secondItem="QHh-zM-H00" secondAttribute="trailing" id="HJd-6x-Lgw"/>
                                                     <constraint firstAttribute="trailing" secondItem="V2p-Ap-Ww7" secondAttribute="trailing" priority="999" constant="20" id="IlC-6J-n7m"/>
