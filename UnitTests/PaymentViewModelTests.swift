@@ -404,4 +404,36 @@ class PaymentViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.reviewPaymentFooterLabelText, NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""))
     }
 
+    func testPhoneNumberHasTenDigits() {
+         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .default, billingHistoryItem: nil)
+        
+        viewModel.phoneNumber.accept("10length10")
+        viewModel.phoneNumberHasTenDigits.asObservable().take(1).subscribe(onNext: { has10 in
+            XCTAssertFalse(has10, "phoneNumberHasTenDigits should be false for \"10length10\"")
+        }).disposed(by: disposeBag)
+        
+        viewModel.phoneNumber.accept("1234567890")
+        viewModel.phoneNumberHasTenDigits.asObservable().take(1).subscribe(onNext: { has10 in
+            XCTAssert(has10, "phoneNumberHasTenDigits should be true for \"1234567890\"")
+        }).disposed(by: disposeBag)
+        
+        viewModel.phoneNumber.accept("410-123-4567")
+        viewModel.phoneNumberHasTenDigits.asObservable().take(1).subscribe(onNext: { has10 in
+            XCTAssert(has10, "phoneNumberHasTenDigits should be true for \"410-123-4567\"")
+        }).disposed(by: disposeBag)
+    }
+    
+    func testEmailIsValid() {
+           viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .default, billingHistoryItem: nil)
+          
+          viewModel.emailAddress.accept("abc")
+          viewModel.emailIsValidBool.asObservable().take(1).subscribe(onNext: { validEmail in
+              XCTAssertFalse(validEmail, "Email should be false for \"abc\"")
+          }).disposed(by: disposeBag)
+          
+          viewModel.emailAddress.accept("abc@mail.com")
+          viewModel.emailIsValidBool.asObservable().take(1).subscribe(onNext: { validEmail in
+              XCTAssert(validEmail, "Email address should be true for \"abc@mail.com\"")
+          }).disposed(by: disposeBag)
+      }
 }
