@@ -9036,7 +9036,6 @@
 		B58B5AC31E4E28740051FD5F /* App */ = {
 			isa = PBXGroup;
 			children = (
-				67D73B0D246C743500450B63 /* Supporting Files */,
 				B58B5AC41E4E28740051FD5F /* AppDelegate.swift */,
 				E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */,
 				E89496351EE9E04000B76F8C /* NotificationNames.swift */,
@@ -9048,6 +9047,7 @@
 				E8B4F4C31E5CE1500031D934 /* Vendor */,
 				8FD5AE7D1E54EA11003F640D /* Views */,
 				B5AC06C61E521B2600BBA4ED /* Resources */,
+				67D73B0D246C743500450B63 /* Supporting Files */,
 			);
 			path = App;
 			sourceTree = "<group>";
