@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "67DDB52824535D32006CD6EB"
-               BuildableName = "ACE.app"
-               BlueprintName = "ACE"
-               ReferencedContainer = "container:Mobile.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "67DDBABC24535DAC006CD6EB"
-               BuildableName = "ACEUnitTests.xctest"
-               BlueprintName = "ACEUnitTests"
+               BlueprintIdentifier = "67DDB77E24535D35006CD6EB"
+               BuildableName = "Delmarva.app"
+               BlueprintName = "Delmarva"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -99,9 +85,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "67DDB52824535D32006CD6EB"
-            BuildableName = "ACE.app"
-            BlueprintName = "ACE"
+            BlueprintIdentifier = "67DDB77E24535D35006CD6EB"
+            BuildableName = "Delmarva.app"
+            BlueprintName = "Delmarva"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
