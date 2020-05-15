@@ -50,7 +50,6 @@ class PaymentConfirmationViewController: UIViewController {
         
         confirmationLabel.textColor = .deepGray
         confirmationLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        confirmationLabel.text = NSLocalizedString("A confirmation email will be sent to you shortly.", comment: "")
         
         paymentInfoView.layer.borderColor = UIColor.accentGray.cgColor
         paymentInfoView.layer.borderWidth = 1
