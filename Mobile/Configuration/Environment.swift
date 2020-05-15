@@ -22,6 +22,8 @@ enum OpCo: String {
             return "Atlantic City Electric"
         case .delmarva:
             return "Delmarva Power"
+        case .pepco:
+            return "Pepco"
         default:
             return rawValue
         }
