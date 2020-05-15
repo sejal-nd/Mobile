@@ -17,6 +17,8 @@ extension UIColor {
             return UIColor(red: 235/255.0, green: 0/255.0, blue: 61/255.0, alpha: 1.0)
         case .peco:
             return UIColor(red: 0.0/255.0, green: 162.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        default:
+            fatalError("Unsupported OpCo.")
         }
     }
     

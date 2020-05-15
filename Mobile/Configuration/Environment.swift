@@ -12,9 +12,17 @@ enum OpCo: String {
     case bge = "BGE"
     case comEd = "ComEd"
     case peco = "PECO"
+    case pepco = "Pepco"
+    case ace = "ACE"
+    case delmarva = "Delmarva"
     
     var displayString: String {
-        return rawValue
+        switch self {
+        case .ace:
+            return "Atlantic City Electric"
+        default:
+            return rawValue
+        }
     }
     
     // Used for reading the splash screen animation to VoiceOver users
@@ -26,6 +34,12 @@ enum OpCo: String {
             return "Powering lives"
         case .peco:
             return "The future is on"
+        case .pepco:
+            return "todo"
+        case .ace:
+            return "todo"
+        case .delmarva:
+            return "todo"
         }
     }
     
@@ -37,6 +51,12 @@ enum OpCo: String {
             return URL(string: "https://itunes.apple.com/us/app/comed-an-exelon-company/id519716176?mt=8")
         case .peco:
             return URL(string: "https://itunes.apple.com/us/app/peco-an-exelon-company/id1274171957?ls=1&mt=8")
+        case .pepco:
+            return URL(string: "todo")
+        case .ace:
+            return URL(string: "todo")
+        case .delmarva:
+            return URL(string: "todo")
         }
     }
 }
@@ -53,10 +73,8 @@ enum EnvironmentName: String {
 
 struct MCSConfig {
     let baseUrl: String
-    let mobileBackendId: String
     let anonymousKey: String
     let oAuthEndpoint: String // The Layer 7 token endpoint
-    let apiVersion: String
     let paymentusUrl: String
     
     init(mcsInstanceName: String, opco: OpCo) {
@@ -66,10 +84,8 @@ struct MCSConfig {
         let mobileBackend = mobileBackends[mcsInstanceName] as! [String: Any]
         
         baseUrl = mobileBackend["baseURL"] as! String
-        mobileBackendId = mobileBackend["mobileBackendID"] as! String
         anonymousKey = mobileBackend["anonymousKey"] as! String
         oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
-        apiVersion = mobileBackend["apiVersion"] as! String
         
         let opcoStr: String
         let opcoNum: String
@@ -83,6 +99,15 @@ struct MCSConfig {
         case .peco:
             opcoStr = "peco"
             opcoNum = "622"
+        case .pepco:
+            opcoStr = "todo"
+            opcoNum = "todo"
+        case .ace:
+            opcoStr = "todo"
+            opcoNum = "todo"
+        case .delmarva:
+            opcoStr = "todo"
+            opcoNum = "todo"
         }
         let paymentusUrlFormat = mobileBackend["paymentusUrl"] as! String
         paymentusUrl = paymentusUrlFormat.replacingOccurrences(of: "%@", with: opcoStr)
@@ -109,7 +134,7 @@ struct Environment {
     private init() {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")!
         let dict = NSDictionary(contentsOfFile: path)!
-    
+        
         environmentName = EnvironmentName(rawValue: dict["environment"] as! String)!
         appName = dict["appName"] as! String
         opco = OpCo(rawValue: dict["opco"] as! String)!

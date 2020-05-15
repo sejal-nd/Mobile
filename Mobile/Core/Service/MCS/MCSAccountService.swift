@@ -39,15 +39,20 @@ struct MCSAccountService: AccountService {
     
     #if os(iOS)
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        return fetchAccountDetail(account: account, payments: false, programs: false, budgetBilling: false)
+        return fetchAccountDetail(account: account, payments: false, programs: false, budgetBilling: false, alertPreferenceEligibilities: false)
     }
+    
     #elseif os(watchOS)
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        return fetchAccountDetail(account: account, payments: true, programs: false, budgetBilling: false)
+        return fetchAccountDetail(account: account, payments: true, programs: false, budgetBilling: false, alertPreferenceEligibilities: false)
     }
     #endif
     
-    private func fetchAccountDetail(account: Account, payments: Bool, programs: Bool, budgetBilling: Bool) -> Observable<AccountDetail> {
+    func fetchAccountDetail(account: Account, alertPreferenceEligibilities: Bool) -> Observable<AccountDetail> {
+        return fetchAccountDetail(account: account, payments: false, programs: false, budgetBilling: false, alertPreferenceEligibilities: alertPreferenceEligibilities)
+    }
+    
+    private func fetchAccountDetail(account: Account, payments: Bool, programs: Bool, budgetBilling: Bool, alertPreferenceEligibilities: Bool = false) -> Observable<AccountDetail> {
         var path = "accounts/\(account.accountNumber)"
         
         var queryItems = [(String, String)]()
@@ -61,6 +66,10 @@ struct MCSAccountService: AccountService {
         
         if !budgetBilling {
             queryItems.append(("budgetBilling", "false"))
+        }
+        
+        if alertPreferenceEligibilities {
+            queryItems.append(("alertPreferenceEligibilities", "true"))
         }
         
         let queryString = queryItems
@@ -197,6 +206,15 @@ struct MCSAccountService: AccountService {
                     throw serviceError
                 }
             }
+        case .pepco:
+            // todo
+            return .just([])
+        case .ace:
+            // todo
+            return .just([])
+        case .delmarva:
+            // todo
+            return .just([])
         }
     }
 }

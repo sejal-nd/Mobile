@@ -48,6 +48,12 @@ class PaperlessEBillViewModel {
             self.accounts = BehaviorRelay(value: [AccountsStore.shared.accounts.filter { accountDetail.accountNumber == $0.accountNumber }.first!])
         case .comEd, .peco:
             self.accounts = BehaviorRelay(value: AccountsStore.shared.accounts)
+        case .pepco:
+            fatalError("todo")
+        case .ace:
+            fatalError("todo")
+        case .delmarva:
+            fatalError("todo")
         }
         
         if self.accounts.value.count == 1 {

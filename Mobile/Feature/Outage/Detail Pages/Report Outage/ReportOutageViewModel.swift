@@ -60,6 +60,18 @@ class ReportOutageViewModel {
             let phone1 = "1-800-841-4141"
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
+        case .pepco:
+            let phone1 = "todo"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+        case .ace:
+            let phone1 = "todo"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+        case .delmarva:
+            let phone1 = "todo"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("todo %@", phone1)
         }
         
         let attributedText = NSMutableAttributedString(string: localizedString, attributes: [
@@ -71,7 +83,7 @@ class ReportOutageViewModel {
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
                     attributedText.addAttribute(.font, value: SystemFont.bold.of(textStyle: .caption1), range: $0)
-                }
+            }
         }
         return attributedText
     }
@@ -161,7 +173,7 @@ class ReportOutageViewModel {
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.count == 10
-        }
+    }
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")

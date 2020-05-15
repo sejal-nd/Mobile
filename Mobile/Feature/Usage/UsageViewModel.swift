@@ -221,6 +221,15 @@ class UsageViewModel {
                 return false
             case .bge, .peco:
                 return accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC"
+            case .pepco:
+                // todo
+                return false
+            case .ace:
+                // todo
+                return false
+            case .delmarva:
+                // todo
+                return false
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -866,6 +875,27 @@ class UsageViewModel {
                 }
             case .peco:
                 break
+            case .pepco:
+                // todo
+                usageTools.insert(.hourlyPricing, at: 1)
+                
+                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
+                    usageTools.append(.peakTimeSavings)
+                }
+            case .ace:
+                // todo
+                usageTools.insert(.hourlyPricing, at: 1)
+                
+                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
+                    usageTools.append(.peakTimeSavings)
+                }
+            case .delmarva:
+                // todo
+                usageTools.insert(.hourlyPricing, at: 1)
+                
+                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
+                    usageTools.append(.peakTimeSavings)
+                }
             }
             
             return usageTools

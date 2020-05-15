@@ -68,12 +68,12 @@ class GiftInventory {
     static let shared = GiftInventory()
     
     private let orderedAssetIds = [
-        "bg_bay", "hat_maryland", "bg_snow", "hat_antlers", "hat_beaniegreen", "acc_hornrimmed",
-        "bg_mdresidential", "hat_bgehardhat", "acc_safetyglasses", "bg_cherryblossoms", "hat_sprout",
-        "hat_flowercrown", "acc_cateye", "bg_skipjack", "hat_crab", "acc_sunglasses", "hat_sailor",
-        "bg_susans", "hat_sunhat", "hat_fancy", "hat_beretred", "acc_glasses", "bg_forest",
-        "hat_oriole", "hat_dog", "hat_cat", "bg_farm", "hat_strawhat", "hat_horse", "hat_rodent",
-        "hat_rabbit", "bg_baltimoreharbor", "hat_beaniefootball", "hat_capbaseball", "bg_ellicottcity",
+        "bg_bay", "hat_maryland", "hat_beaniegreen", "acc_hornrimmed", "bg_mdresidential",
+        "hat_bgehardhat", "acc_safetyglasses", "bg_cherryblossoms", "hat_sprout", "hat_flowercrown",
+        "acc_cateye", "bg_skipjack", "hat_crab", "acc_sunglasses", "hat_sailor", "bg_susans",
+        "hat_sunhat", "hat_fancy", "hat_beretred", "acc_glasses", "bg_forest", "hat_oriole",
+        "hat_dog", "hat_cat", "bg_farm", "hat_strawhat", "hat_horse", "hat_rodent", "hat_rabbit",
+        "bg_baltimoreharbor", "hat_beaniefootball", "hat_capbaseball", "bg_ellicottcity",
         "hat_tophat", "acc_monocle", "hat_bow", "hat_capgreen", "hat_stripedbow", "bg_colonialmd",
         "hat_colonial", "hat_cowboy", "bg_falltrees", "hat_ghost", "hat_beretblack", "hat_paper",
         "bg_space", "hat_ecocrown"

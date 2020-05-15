@@ -80,6 +80,12 @@ class OutageStatusButton: UIView {
             color = .primaryColor
         case .peco:
             color = isStormMode ? .stormPrimaryColor : .primaryColor
+        case .pepco:
+            color = .primaryColor
+        case .ace:
+            color = .primaryColor
+        case .delmarva:
+            color = .primaryColor
         }
         return color
     }

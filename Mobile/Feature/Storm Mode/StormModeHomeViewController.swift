@@ -240,6 +240,12 @@ class StormModeHomeViewController: AccountPickerViewController {
             gradientColor = .bgeGreen
         case .comEd, .peco:
             gradientColor = .primaryColor
+        case .pepco:
+            gradientColor = .primaryColor
+        case .ace:
+            gradientColor = .primaryColor
+        case .delmarva:
+            gradientColor = .primaryColor
         }
         
         gradientLayer.colors = [
@@ -398,6 +404,15 @@ class StormModeHomeViewController: AccountPickerViewController {
         case .peco:
             group1Label.text = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call", comment: "")
             phone1Label.text = "1-800-841-4141"
+        case .pepco:
+            group1Label.text = NSLocalizedString("todo", comment: "")
+            phone1Label.text = "todo"
+        case .ace:
+            group1Label.text = NSLocalizedString("todo", comment: "")
+            phone1Label.text = "todo"
+        case .delmarva:
+            group1Label.text = NSLocalizedString("todo", comment: "")
+            phone1Label.text = "todo"
         }
         
         phone1Button.accessibilityLabel = phone1Label.text
@@ -415,6 +430,12 @@ class StormModeHomeViewController: AccountPickerViewController {
             gasOnlyPhone1Label.text = ""
         case .peco:
             gasOnlyPhone1Label.text = "1-800-841-4141"
+        case .pepco:
+            gasOnlyPhone1Label.text = "todo"
+        case .ace:
+            gasOnlyPhone1Label.text = "todo"
+        case .delmarva:
+            gasOnlyPhone1Label.text = "todo"
         }
         
         gasOnlyPhone1Button.accessibilityLabel = gasOnlyPhone1Label.text

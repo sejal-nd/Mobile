@@ -132,6 +132,8 @@ class HomeBillCardViewModel {
                         return self.paymentService.schedulePayment(accountNumber: object["accountNumber"] as! String,
                                                                    paymentAmount: paymentAmount,
                                                                    paymentDate: paymentDate,
+                                                                   alternateEmail: "",
+                                                                   alternateNumber: "",
                                                                    walletId: AccountsStore.shared.customerIdentifier,
                                                                    walletItem: object["walletItem"] as! WalletItem)
                             .do(onNext: { confirmationNumber in
@@ -371,6 +373,12 @@ class HomeBillCardViewModel {
                     text = NSLocalizedString("You have processing payments", comment: "")
                 case .comEd, .peco:
                     text = NSLocalizedString("You have pending payments", comment: "")
+                case .pepco:
+                    text = NSLocalizedString("todo", comment: "")
+                case .ace:
+                    text = NSLocalizedString("todo", comment: "")
+                case .delmarva:
+                    text = NSLocalizedString("todo", comment: "")
                 }
                 return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .headline),
                                                                      .foregroundColor: textColor])
@@ -409,12 +417,12 @@ class HomeBillCardViewModel {
             switch (isMultiPremise, billingInfo.netDueAmount == billingInfo.pastDueAmount) {
             case (false, false):
                 guard let amount = billingInfo.pastDueAmount?.currencyString else { return nil }
-                let format = "%@ of the total is due immediately."
-                string = String.localizedStringWithFormat(format, amount)
+                let format = "%@ of the total is due immediately.".localized()
+                string = String(format: format, amount)
             case (true, false):
                 guard let amount = billingInfo.pastDueAmount?.currencyString else { return nil }
-                let format = "%@ of the total is due immediately for your multi-premise account."
-                string = String.localizedStringWithFormat(format, amount)
+                let format = "%@ of the total is due immediately for your multi-premise account.".localized()
+                string = String(format: format, amount)
             case (false, true):
                 string = NSLocalizedString("Your bill is past due.", comment: "")
             case (true, true):
@@ -538,7 +546,7 @@ class HomeBillCardViewModel {
         switch billState {
         case .pastDue, .finaled, .restoreService, .avoidShutoff, .eligibleForCutoff, .catchUp:
             if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
-                return NSAttributedString(string: NSLocalizedString("Total Amount Due Immediately", comment: ""),
+                return NSAttributedString(string: "Total Amount Due Immediately".localized(),
                                           attributes: redAttributes)
             } else {
                 return NSAttributedString(string: NSLocalizedString("Total Amount Due", comment: ""),
@@ -706,6 +714,12 @@ class HomeBillCardViewModel {
                 }
                 
                 return String.localizedStringWithFormat("Your confirmation number is %@", payment.confirmationNumber)
+            case .pepco:
+                return NSLocalizedString("todo", comment: "")
+            case .ace:
+                return NSLocalizedString("todo", comment: "")
+            case .delmarva:
+                return NSLocalizedString("todo", comment: "")
             }
     }
     
@@ -725,6 +739,12 @@ class HomeBillCardViewModel {
             return "1-800-334-7661"
         case .peco:
             return "1-800-494-4000"
+        case .pepco:
+            return "todo"
+        case .ace:
+            return "todo"
+        case .delmarva:
+            return "todo"
         }
     }
     

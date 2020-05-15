@@ -13,13 +13,12 @@ class SplashViewModel{
     
     private var authService: AuthenticationService
     let disposeBag = DisposeBag()
-
+    
     init(authService: AuthenticationService) {
         self.authService = authService
     }
     
     func checkAppVersion(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-    
         var isOutOfDate = false
         AnonymousService.checkMinVersion { (result: Result<String, Error>) in
             switch result {
@@ -66,6 +65,12 @@ class SplashViewModel{
             return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at ComEd.com.", comment: "")
         case .peco:
             return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at PECO.com.", comment: "")
+        case .pepco:
+            return NSLocalizedString("todo", comment: "")
+        case .ace:
+            return NSLocalizedString("todo", comment: "")
+        case .delmarva:
+            return NSLocalizedString("todo", comment: "")
         }
     }
     
@@ -85,7 +90,7 @@ class SplashViewModel{
                 If you smell natural gas, %@ and call %@ or %@.\n
                 If your power is out or for downed or sparking power lines, please call %@ or %@.
                 """
-            , leaveAreaString, phone1, phone2, phone1, phone3)
+                , leaveAreaString, phone1, phone2, phone1, phone3)
         case .comEd:
             let phone = "1-800-334-7661"
             phoneNumbers = [phone]
@@ -94,7 +99,7 @@ class SplashViewModel{
                 If you see downed power lines, %@ and then call ComEd at %@.\n
                 If your power is out, please call %@ to report your outage.
                 """
-            , leaveAreaString, phone, phone)
+                , leaveAreaString, phone, phone)
         case .peco:
             let phone = "1-800-841-4141"
             phoneNumbers = [phone]
@@ -103,7 +108,31 @@ class SplashViewModel{
                 If you smell natural gas or see downed power lines, %@ and then call PECO at %@.\n
                 If your power is out, please call %@ to report your outage.
                 """
-            , leaveAreaString, phone, phone)
+                , leaveAreaString, phone, phone)
+        case .pepco:
+            let phone = "todo"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                todo
+                """
+                , leaveAreaString, phone, phone)
+        case .ace:
+            let phone = "todo"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                todo
+                """
+                , leaveAreaString, phone, phone)
+        case .delmarva:
+            let phone = "todo"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                todo
+                """
+                , leaveAreaString, phone, phone)
         }
         
         let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])

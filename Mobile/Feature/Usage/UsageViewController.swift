@@ -291,6 +291,21 @@ class UsageViewController: AccountPickerViewController {
             projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
             projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
             projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
+        case .pepco:
+            // todo
+            projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
+            projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
+            projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
+        case .ace:
+            // todo
+            projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
+            projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
+            projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
+        case .delmarva:
+            // todo
+            projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
+            projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
+            projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
         }
         
         // Bar Graph Styling
@@ -877,7 +892,7 @@ class UsageViewController: AccountPickerViewController {
             performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
         case .smartEnergyRewards:
             GoogleAnalytics.log(event: .viewSmartEnergyRewards)
-            performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
+            performSegue(withIdentifier: "serWebViewSegue", sender: accountDetail)
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
                 GoogleAnalytics.log(event: .hourlyPricing,
@@ -908,6 +923,8 @@ class UsageViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let accountDetail = sender as? AccountDetail else { return }
         switch segue.destination {
+        case let vc as SERWebViewController:
+            vc.accountDetail = accountDetail
         case let vc as SERPTSViewController:
             vc.accountDetail = accountDetail
         case let vc as UsageWebViewController:

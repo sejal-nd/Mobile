@@ -83,6 +83,39 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
             card2Bullet3Label.text = NSLocalizedString("If you unenroll from Budget Billing, you will see your regular bill amount and any past differences between your Budget Billing amount and your actual charges on your next bill.", comment: "")
             card2Bullet4Label.isHidden = true
             card2Bullet5Label.isHidden = true
+        case .pepco:
+            // todo
+            card1Bullet1Label.text = NSLocalizedString("We calculate your monthly bill payment based on your usage during the last 12 months.", comment: "")
+            card1Bullet2Label.text = NSLocalizedString("Your actual usage will continue to be shown on your monthly bill.", comment: "")
+            card1Bullet3Label.text = NSLocalizedString("You may enroll at any time and your Budget Billing plan will begin with your next bill.", comment: "")
+            
+            card2Bullet1Label.text = NSLocalizedString("Your monthly Budget Bill payment will be adjusted every four (4) months to keep the payment in line with your actual usage.", comment: "")
+            card2Bullet2Label.text = NSLocalizedString("After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage. This Budget Bill amount will be adjusted every four months to stay in line with your usage.", comment: "")
+            card2Bullet3Label.text = NSLocalizedString("If you unenroll from Budget Billing, you will see your regular bill amount and any past differences between your Budget Billing amount and your actual charges on your next bill.", comment: "")
+            card2Bullet4Label.isHidden = true
+            card2Bullet5Label.isHidden = true
+        case .ace:
+            // todo
+            card1Bullet1Label.text = NSLocalizedString("We calculate your monthly bill payment based on your usage during the last 12 months.", comment: "")
+            card1Bullet2Label.text = NSLocalizedString("Your actual usage will continue to be shown on your monthly bill.", comment: "")
+            card1Bullet3Label.text = NSLocalizedString("You may enroll at any time and your Budget Billing plan will begin with your next bill.", comment: "")
+            
+            card2Bullet1Label.text = NSLocalizedString("Your monthly Budget Bill payment will be adjusted every four (4) months to keep the payment in line with your actual usage.", comment: "")
+            card2Bullet2Label.text = NSLocalizedString("After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage. This Budget Bill amount will be adjusted every four months to stay in line with your usage.", comment: "")
+            card2Bullet3Label.text = NSLocalizedString("If you unenroll from Budget Billing, you will see your regular bill amount and any past differences between your Budget Billing amount and your actual charges on your next bill.", comment: "")
+            card2Bullet4Label.isHidden = true
+            card2Bullet5Label.isHidden = true
+        case .delmarva:
+            // todo
+            card1Bullet1Label.text = NSLocalizedString("We calculate your monthly bill payment based on your usage during the last 12 months.", comment: "")
+            card1Bullet2Label.text = NSLocalizedString("Your actual usage will continue to be shown on your monthly bill.", comment: "")
+            card1Bullet3Label.text = NSLocalizedString("You may enroll at any time and your Budget Billing plan will begin with your next bill.", comment: "")
+            
+            card2Bullet1Label.text = NSLocalizedString("Your monthly Budget Bill payment will be adjusted every four (4) months to keep the payment in line with your actual usage.", comment: "")
+            card2Bullet2Label.text = NSLocalizedString("After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage. This Budget Bill amount will be adjusted every four months to stay in line with your usage.", comment: "")
+            card2Bullet3Label.text = NSLocalizedString("If you unenroll from Budget Billing, you will see your regular bill amount and any past differences between your Budget Billing amount and your actual charges on your next bill.", comment: "")
+            card2Bullet4Label.isHidden = true
+            card2Bullet5Label.isHidden = true
         }
         
         card1Bullet1Label.setLineHeight(lineHeight: 24)

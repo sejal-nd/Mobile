@@ -336,7 +336,8 @@ class BillViewModel {
             if pastDueAmount == billingInfo.netDueAmount {
                 return NSLocalizedString("Your bill is past due.", comment: "")
             } else {
-                return String.localizedStringWithFormat("%@ of the total is due immediately.", pastDueAmount.currencyString)
+                let format = "%@ of the total is due immediately.".localized()
+                return String(format: format, pastDueAmount.currencyString)
             }
         }
         
@@ -367,6 +368,12 @@ class BillViewModel {
             return abs(netDueAmount).currencyString
         case .comEd, .peco:
             return max(netDueAmount, 0).currencyString
+        case .pepco:
+            return max(netDueAmount, 0).currencyString
+        case .ace:
+            return max(netDueAmount, 0).currencyString
+        case .delmarva:
+            return max(netDueAmount, 0).currencyString
         }
     }
     
@@ -377,7 +384,7 @@ class BillViewModel {
         let string: String
         if billingInfo.pastDueAmount > 0 {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
-                string = NSLocalizedString("Total Amount Due Immediately", comment: "")
+                string = "Total Amount Due Immediately".localized()
                 attributes[.foregroundColor] = UIColor.errorRed
                 attributes[.font] = SystemFont.semibold.of(textStyle: .caption1)
             } else {
@@ -426,7 +433,7 @@ class BillViewModel {
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.middleGray,
                                                                        .font: SystemFont.regular.of(textStyle: .caption1)])
             } else {
-                let string = NSLocalizedString("Due Immediately", comment: "")
+                let string = "Due Immediately".localized()
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorRed,
                                                                        .font: SystemFont.semibold.of(textStyle: .caption1)])
             }
@@ -459,6 +466,12 @@ class BillViewModel {
             return NSLocalizedString("Payments Processing", comment: "")
         case .comEd, .peco:
             return NSLocalizedString("Pending Payments", comment: "")
+        case .pepco:
+            return NSLocalizedString("todo", comment: "")
+        case .ace:
+            return NSLocalizedString("todo", comment: "")
+        case .delmarva:
+            return NSLocalizedString("todo", comment: "")
         }
     }()
     

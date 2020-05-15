@@ -880,6 +880,12 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
             showDelayedToast(withMessage: String(format: textFormat, averageMonthlyBill ?? "--"))
         case .comEd, .peco:
             showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
+        case .pepco:
+            showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
+        case .ace:
+            showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
+        case .delmarva:
+            showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
         }
         GoogleAnalytics.log(event: .budgetBillEnrollComplete)
     }

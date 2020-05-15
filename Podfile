@@ -87,6 +87,63 @@ abstract_target 'PECOApp' do
     end
 end
 
+abstract_target 'PepcoApp' do
+    platform :ios, '11.0'
+    use_frameworks!
+
+    iOS_pods
+    shared_pods
+
+    target 'Pepco' do
+    end
+
+    target 'PepcoUnitTests' do
+        iOS_UnitTestPods
+    end
+
+    target 'PepcoUITests' do
+        iOS_UITestPods
+    end
+end
+
+abstract_target 'DelmarvaApp' do
+    platform :ios, '11.0'
+    use_frameworks!
+
+    iOS_pods
+    shared_pods
+
+    target 'Delmarva' do
+    end
+
+    target 'DelmarvaUnitTests' do
+        iOS_UnitTestPods
+    end
+
+    target 'DelmarvaUITests' do
+        iOS_UITestPods
+    end
+end
+
+abstract_target 'ACEApp' do
+    platform :ios, '11.0'
+    use_frameworks!
+
+    iOS_pods
+    shared_pods
+
+    target 'ACE' do
+    end
+
+    target 'ACEUnitTests' do
+        iOS_UnitTestPods
+    end
+
+    target 'ACEUITests' do
+        iOS_UITestPods
+    end
+end
+
 target 'PECO-Watch' do
   platform :watchos, '4.0'
   use_frameworks!

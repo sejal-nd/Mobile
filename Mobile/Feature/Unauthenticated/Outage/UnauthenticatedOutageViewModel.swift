@@ -179,6 +179,18 @@ class UnauthenticatedOutageViewModel {
             let phone1 = "1-800-841-4141"
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
+        case .pepco:
+            let phone1 = "todo"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+        case .ace:
+            let phone1 = "todo"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+        case .delmarva:
+            let phone1 = "todo"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("todo %@", phone1)
         }
         
         let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])

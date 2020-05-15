@@ -302,6 +302,15 @@ extension DateFormatter {
             formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
         case .peco:
             formatter.dateFormat = "h:mm a zz 'on' M/dd/yyyy"
+        case .pepco:
+            // todo
+            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        case .ace:
+            // todo
+            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        case .delmarva:
+            // todo
+            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
         }
         return formatter
     }()
@@ -365,6 +374,15 @@ extension TimeZone {
             return TimeZone(identifier: "America/New_York")!
         case .comEd:
             return TimeZone(identifier: "America/Chicago")!
+        case .pepco:
+            // todo
+            return TimeZone(identifier: "America/New_York")!
+        case .ace:
+            // todo
+            return TimeZone(identifier: "America/New_York")!
+        case .delmarva:
+            // todo
+            return TimeZone(identifier: "America/New_York")!
         }
     }()
     
