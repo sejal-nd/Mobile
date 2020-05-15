@@ -89,11 +89,38 @@ class PaymentConfirmationViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        configurePaymentSuccessMessage()
         
         // [iOS bug?] Need to set the text in here or the label doesn't wrap to 2 lines
         titleLabel.text = viewModel.paymentId.value != nil ?
             NSLocalizedString("Thank you for modifying your payment.", comment: "") :
             NSLocalizedString("Thank you for your payment", comment: "")
+    }
+    
+    func configurePaymentSuccessMessage() {
+        if viewModel.emailAddress.value.isEmpty && viewModel.phoneNumber.value.isEmpty {
+            confirmationLabel.text =  NSLocalizedString("You'll receive confirmation of this scheduled payment to the email associated with your My Account.", comment: "")
+        } else {
+            if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
+                
+                var contactDetails = ""
+                if viewModel.emailAddress.value.isEmpty {
+                    contactDetails = " and \(viewModel.phoneNumber.value)."
+                } else if viewModel.phoneNumber.value.isEmpty {
+                    contactDetails = " and \(viewModel.emailAddress.value)."
+                } else {
+                    contactDetails = ", \(viewModel.emailAddress.value), and \(viewModel.phoneNumber.value)."
+                }
+                switch bankOrCard {
+                case .bank:
+                    let paymentSuccessMessage = NSLocalizedString("You'll receive confirmation of this scheduled payment request to the email associated with your My Account", comment: "")
+                    confirmationLabel.text = paymentSuccessMessage + contactDetails
+                case .card:
+                    let paymentSuccessMessage = NSLocalizedString("You'll receive confirmation of this payment to the email associated with your My Account", comment: "")
+                    confirmationLabel.text = paymentSuccessMessage + contactDetails
+                }
+            }
+        }
     }
     
     func bindViewHiding() {
