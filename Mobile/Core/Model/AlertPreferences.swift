@@ -9,6 +9,12 @@
 import Mapper
 
 struct AlertPreferences {
+    var highUsage = false // BGE/ComEd only
+    var alertThreshold: Int? // BGE/ComEd only
+    var previousAlertThreshold: Int? // BGE/ComEd only
+    var peakTimeSavings: Bool? = false // ComEd only
+    var smartEnergyRewards: Bool? = false // BGE only
+    var energySavingsDayResults: Bool? = false // BGE only
     var outage = false
     var scheduledMaint = false // BGE only
     var severeWeather = false
@@ -24,6 +30,15 @@ struct AlertPreferences {
     init(alertPreferences: [AlertPreference]) {
         for pref in alertPreferences {
             switch pref.programName {
+            case "High Usage Residential Alert":
+                highUsage = true
+                alertThreshold = pref.alertThreshold
+            case "Energy Savings Day Alert":
+                smartEnergyRewards = true
+            case "Energy Savings Day Results":
+                energySavingsDayResults = true
+            case "Peak Time Savings":
+                peakTimeSavings = true
             case "Outage Notifications":
                 outage = true
             case "Planned Outage":
@@ -54,7 +69,13 @@ struct AlertPreferences {
     }
     
     // To create programatically, not from JSON
-    init(outage: Bool,
+    init(highUsage: Bool,
+         alertThreshold: Int? = nil,
+         previousAlertThreshold: Int? = nil,
+         peakTimeSavings: Bool? = nil,
+         smartEnergyRewards: Bool? = nil,
+         energySavingsDayResults: Bool? = nil,
+         outage: Bool,
          scheduledMaint: Bool,
          severeWeather: Bool,
          billReady: Bool,
@@ -65,6 +86,12 @@ struct AlertPreferences {
          budgetBilling: Bool,
          appointmentTracking: Bool,
          forYourInfo: Bool) {
+        self.highUsage = highUsage
+        self.alertThreshold = alertThreshold
+        self.previousAlertThreshold = previousAlertThreshold
+        self.peakTimeSavings = peakTimeSavings
+        self.smartEnergyRewards = smartEnergyRewards
+        self.energySavingsDayResults = energySavingsDayResults
         self.outage = outage
         self.scheduledMaint = scheduledMaint
         self.severeWeather = severeWeather
@@ -83,7 +110,16 @@ struct AlertPreferences {
         let billReadyProgramName = Environment.shared.opco == .bge ? "Bill is Ready" : "Paperless Billing"
         let paymentDueProgramName = Environment.shared.opco == .bge ? "Payment Reminder" : "Payment Reminders"
         let forYourInfoProgramName = Environment.shared.opco == .bge ? "Marketing" : "News"
-        let array = [
+        let highUsageProgramName = "High Usage Residential Alert"
+        
+        var highUsageProgram = ["programName": highUsageProgramName, "type": "push", "isActive": highUsage] as [String : Any]
+        
+        if previousAlertThreshold != alertThreshold {
+            highUsageProgram["alertThreshold"] = alertThreshold ?? NSNull()
+        }
+        
+        var array = [
+            highUsageProgram,
             ["programName": "Outage Notifications", "type": "push", "isActive": outage],
             ["programName": "Planned Outage", "type": "push", "isActive": scheduledMaint],
             ["programName": "Severe Weather", "type": "push", "isActive": severeWeather],
@@ -95,13 +131,30 @@ struct AlertPreferences {
             ["programName": "Customer Appointments", "type": "push", "isActive": appointmentTracking],
             ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo]
         ]
+        
+        if let peakTimeSavings = peakTimeSavings {
+            array.append(["programName": "Peak Time Savings", "type": "push", "isActive": peakTimeSavings])
+        }
+        
+        if let smartEnergyRewards = smartEnergyRewards {
+            array.append(["programName": "Energy Savings Day Alert", "type": "push", "isActive": smartEnergyRewards])
+        }
+        
+        if let energySavingsDayResults = energySavingsDayResults {
+            array.append(["programName": "Energy Savings Day Results", "type": "push", "isActive": energySavingsDayResults])
+        }
+        
         return array
     }
     
     func isDifferent(fromOriginal originalPrefs: AlertPreferences) -> Bool {
-        // Note: not checking paymentDueDaysBefore here because that is compared for changes independently
+        // Note: not checking paymentDueDaysBefore or alertThreshold here because those are compared for changes independently
         // in AlertPreferencesViewModel
-        return outage != originalPrefs.outage ||
+        return highUsage != originalPrefs.highUsage ||
+            peakTimeSavings != originalPrefs.peakTimeSavings ||
+            smartEnergyRewards != originalPrefs.smartEnergyRewards ||
+            energySavingsDayResults != originalPrefs.energySavingsDayResults ||
+            outage != originalPrefs.outage ||
             scheduledMaint != originalPrefs.scheduledMaint ||
             severeWeather != originalPrefs.severeWeather ||
             billReady != originalPrefs.billReady ||
@@ -117,6 +170,7 @@ struct AlertPreferences {
 struct AlertPreference: Mappable {
     let programName: String
     var daysPrior: Int? // Only sent along with programName = "Payment Reminders"
+    var alertThreshold: Int? // Only sent along with programName = "High Usage Residential Alert"
     
     init(map: Mapper) throws {
         try programName = map.from("programName")
@@ -128,5 +182,7 @@ struct AlertPreference: Mappable {
         if let string = daysString {
             daysPrior = Int(string)
         }
+        
+        alertThreshold = map.optionalFrom("alertThreshold")
     }
 }
