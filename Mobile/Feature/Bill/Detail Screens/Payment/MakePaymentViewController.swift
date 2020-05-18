@@ -618,6 +618,7 @@ extension MakePaymentViewController: MiniWalletSheetViewControllerDelegate {
     }
     
     func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
+        dismissModal()
         let actionSheet = UIAlertController
             .saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
                 self?.presentPaymentusForm(bankOrCard: .bank, temporary: false)
@@ -628,6 +629,7 @@ extension MakePaymentViewController: MiniWalletSheetViewControllerDelegate {
     }
     
     func miniWalletSheetViewControllerDidSelectAddCard(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
+        dismissModal()
         let actionSheet = UIAlertController
             .saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
                 self?.presentPaymentusForm(bankOrCard: .card, temporary: false)
