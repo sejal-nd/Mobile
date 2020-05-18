@@ -166,8 +166,9 @@ class BudgetBillingViewController: UIViewController {
             footerContainerView.isHidden = true
             enrollButton.isHidden = true
         } else {
-            unenrollView.isHidden = true
+//            unenrollView.isHidden = true
         }
+        unenrollView.isHidden = false
         
         scrollView.isHidden = true
         loadingIndicator.isHidden = false
@@ -199,10 +200,10 @@ class BudgetBillingViewController: UIViewController {
                     }
                 }
                 
-                if budgetBillingInfo.isUSPPParticipant {
-                    // USPP Participants cannot unenroll
-                    self.stickyFooterView.isHidden = true
-                }
+//                if budgetBillingInfo.isUSPPParticipant {
+//                    // USPP Participants cannot unenroll
+//                    self.stickyFooterView.isHidden = true
+//                }
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
             }

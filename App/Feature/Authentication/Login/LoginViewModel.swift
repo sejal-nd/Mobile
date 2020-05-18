@@ -60,9 +60,55 @@ class LoginViewModel {
         }
 
         isLoggingIn = true
+        AuthenticatedService.login(username: username.value, password: password.value) { [weak self] (result: Result<Void, NetworkingError>) in
+            switch result {
+            case .success(()):
+                break
+//                guard let self = self else { return }
+
+//                onSuccess(false, false)
+
+//                self.isLoggingIn = false
+                                // todo temp password
+//                let tempPassword = profileStatus.tempPassword
+//                if tempPassword {
+//                    onSuccess(tempPassword, false)
+//                    self.authService.logout()
+//                } else {
+//                    if #available(iOS 12.0, *) { }
+//                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
+//                    else {
+//                        SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+//                    }
+
+//                    self.checkStormMode { isStormMode in
+//                        onSuccess(tempPassword, isStormMode)
+//                    }
+//                }
+            case .failure(let error):
+                print("Error new fetch login: \(error)")
+                self?.isLoggingIn = false
+
+//                onError("temp1", "temp2")
+
+//                let serviceError = error as! ServiceError
+//                if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
+//                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
+//                } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
+//                    onRegistrationNotComplete()
+//                } else {
+//                    onError(nil, error.localizedDescription)
+//                }
+//                GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
+            }
+        }
+
+
         authService.login(username: username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] profileStatus in
+                DispatchQueue.main.async {
+                    
                 guard let self = self else { return }
                 self.isLoggingIn = false
                 let tempPassword = profileStatus.tempPassword
@@ -77,10 +123,17 @@ class LoginViewModel {
                     }
 
                     self.checkStormMode { isStormMode in
+                        DispatchQueue.main.async {
                         onSuccess(tempPassword, isStormMode)
+                        }
                     }
                 }
+                    }
+
             }, onError: { [weak self] error in
+                DispatchQueue.main.async {
+                    
+                
                 self?.isLoggingIn = false
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
@@ -91,19 +144,20 @@ class LoginViewModel {
                     onError(nil, error.localizedDescription)
                 }
                 GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
+                }
             })
             .disposed(by: disposeBag)
     }
 
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        authService.getMaintenanceMode(postNotification: false)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { maintenance in
-                completion(maintenance.stormModeStatus)
-            }, onError: { _ in
+        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+            switch result {
+            case .success(let maintenanceMode):
+                completion(maintenanceMode.storm)
+            case .failure(_):
                 completion(false)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
 
     func getStoredUsername() -> String? {
@@ -137,13 +191,14 @@ class LoginViewModel {
     }
 
     func checkForMaintenance(onCompletion: @escaping () -> Void) {
-        authService.getMaintenanceMode()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+            switch result {
+            case .success(_):
                 onCompletion()
-            }, onError: { _ in
+            case .failure(_):
                 onCompletion()
-            }).disposed(by: disposeBag)
+            }
+        }
     }
 
     func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {

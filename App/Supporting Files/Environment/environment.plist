@@ -5,21 +5,21 @@
 	<key>environment</key>
 	<string>STAGE</string>
 	<key>opco</key>
-	<string>ACE</string>
+	<string>BGE</string>
 	<key>appName</key>
-	<string>ACE_STAGE</string>
+	<string>BGE_STAGE</string>
 	<key>mcsInstanceName</key>
-	<string>Stage-aceMBE</string>
+	<string>Stage-bgeMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://azstg.atlanticcityelectric.com/MyAccount</string>
+	<string>https://azstg.bge.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_ace_staging</string>
+	<string>GoogleService-Info_bge_staging</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.atlanticcityelectric.com</string>
+	<string>azstg.bge.com</string>
 	<key>associatedDomain</key>
-	<string>azstg-secure.atlanticcityelectric.com</string>
+	<string>azstg-secure.bge.com</string>
 	<key>appCenterId</key>
 	<string>3bf3242e-af11-4b1e-9242-99dce77bbbc8</string>
 </dict>

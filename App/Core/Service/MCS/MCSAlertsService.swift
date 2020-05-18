@@ -106,7 +106,9 @@ struct MCSAlertsService: AlertsService {
         var request = URLRequest(url: url)
         request.httpMethod = HttpMethod.get.rawValue
         request.setValue("application/json;odata=verbose", forHTTPHeaderField: "Accept")
-        
+        print("NEWS AND UPDATES PATH: \(request.url?.absoluteString)")
+        print("ATTEMP2")
+        print("\(request.url?.absoluteURL)")
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .request, message: nil)
         

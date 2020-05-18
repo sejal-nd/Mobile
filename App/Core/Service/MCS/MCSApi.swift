@@ -186,6 +186,8 @@ class MCSApi {
             request.setValue("Basic \(Environment.shared.mcsConfig.anonymousKey)", forHTTPHeaderField: "Authorization")
         }
         
+        print("OLD URL: \(url)")
+        
         // Response
         return session.rx.fullResponse(request: request, onCanceled: {
             APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .canceled, message: nil)
