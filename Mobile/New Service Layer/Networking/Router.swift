@@ -23,7 +23,6 @@ public enum Router {
     case maintenanceMode
     
     case fetchSAMLToken(encodable: Encodable)
-    case exchangeSAMLToken(token: String)
     
     // Registration
     case registration(encodable: Encodable)
