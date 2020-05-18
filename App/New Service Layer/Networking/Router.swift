@@ -26,11 +26,11 @@ public enum Router {
     
     // Registration
     case registration(encodable: Encodable)
-    case checkDuplicateRegistration
+    case checkDuplicateRegistration(encodable: Encodable)
     case registrationQuestions
-    case validateRegistration
-    case sendConfirmationEmail
-    case validateConfirmationEmail
+    case validateRegistration(encodable: Encodable)
+    case sendConfirmationEmail(encodable: Encodable)
+    case validateConfirmationEmail(encodable: Encodable)
     
     case accounts
     case accountDetails(accountNumber: String, queryString: String)
@@ -148,7 +148,7 @@ public enum Router {
             return .auth
         }
     }
-
+    
     public var path: String {
         switch self {
         case .anonOutageStatus:
