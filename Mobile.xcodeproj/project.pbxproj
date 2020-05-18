@@ -780,6 +780,12 @@
 		54EDD2E11ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
 		560F81B4C86B61BD0F53C589 /* Pods_PepcoApp_PepcoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641F6D0342094F724227D56B /* Pods_PepcoApp_PepcoUITests.framework */; };
 		5B11E1862727BB0693587308 /* Pods_BGEApp_BGEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F13F08C5085CB9F8DE2DAC /* Pods_BGEApp_BGEUITests.framework */; };
+		671448C224731680004D2AFF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		671448C324731681004D2AFF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		671448C424731682004D2AFF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		671448C524731683004D2AFF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		671448C624731685004D2AFF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		671448C724731686004D2AFF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
 		67D73AE3246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
@@ -14483,6 +14489,7 @@
 				67DDBA0724535DAA006CD6EB /* BiometricsService.swift in Sources */,
 				67DDBA0824535DAA006CD6EB /* HomeAppointmentCardViewModel.swift in Sources */,
 				67DDBA0924535DAA006CD6EB /* UserDefaultKeys.swift in Sources */,
+				671448C524731683004D2AFF /* Environment.swift in Sources */,
 				67DDBA0A24535DAA006CD6EB /* AppRating.swift in Sources */,
 				67DDBA0B24535DAA006CD6EB /* SequenceForEach.swift in Sources */,
 				67DDBA0C24535DAA006CD6EB /* AlertsViewModel.swift in Sources */,
@@ -14627,6 +14634,7 @@
 				67DDBAC524535DAC006CD6EB /* RegistrationViewModel.swift in Sources */,
 				67DDBAC624535DAC006CD6EB /* ReportOutageViewModelTests.swift in Sources */,
 				67DDBAC724535DAC006CD6EB /* MyHomeProfileTests.swift in Sources */,
+				671448C624731685004D2AFF /* Environment.swift in Sources */,
 				67DDBAC824535DAC006CD6EB /* SharedColor.swift in Sources */,
 				67DDBAC924535DAC006CD6EB /* Weekday.swift in Sources */,
 				67DDBACA24535DAC006CD6EB /* WeatherItem.swift in Sources */,
@@ -14816,6 +14824,7 @@
 				67DDBBAD24535DAE006CD6EB /* RegistrationViewModel.swift in Sources */,
 				67DDBBAE24535DAE006CD6EB /* ReportOutageViewModelTests.swift in Sources */,
 				67DDBBAF24535DAE006CD6EB /* MyHomeProfileTests.swift in Sources */,
+				671448C724731686004D2AFF /* Environment.swift in Sources */,
 				67DDBBB024535DAE006CD6EB /* SharedColor.swift in Sources */,
 				67DDBBB124535DAE006CD6EB /* Weekday.swift in Sources */,
 				67DDBBB224535DAE006CD6EB /* WeatherItem.swift in Sources */,
@@ -16328,6 +16337,7 @@
 				54AE06B31ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE6203F57D800A56FEE /* MyHomeProfileTests.swift in Sources */,
+				671448C224731680004D2AFF /* Environment.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
 				9C48856323D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BA2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
@@ -16565,6 +16575,7 @@
 				E8F62B36200924410077B3DA /* Premise.swift in Sources */,
 				E8F62B38200924410077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */,
+				671448C324731681004D2AFF /* Environment.swift in Sources */,
 				82119FE3203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
 				9C48856423D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BB2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
@@ -16754,6 +16765,7 @@
 				E8F62BEB200924570077B3DA /* Premise.swift in Sources */,
 				E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */,
+				671448C424731682004D2AFF /* Environment.swift in Sources */,
 				82119FE4203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
 				9C48856523D2672000E107C6 /* Weekday.swift in Sources */,
 				B07E17BC2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
