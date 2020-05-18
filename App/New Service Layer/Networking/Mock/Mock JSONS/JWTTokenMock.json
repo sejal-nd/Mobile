@@ -1,0 +1,82 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiAiaHR0cHM6Ly9kZXYtYXBpZ2F0ZXdheS5leGVsb25jb3JwLmNvbSIsICJ0eXBlIjoicmVzaWRlbnRpYWwiLCJpZCI6IjEwMTQyODAwMDAiLCJ1c2VyIjoidXBtMTAwMDAwOTM4NzAiLCJvcGNvIjoiQkdFIn0.a2SSGzvQaxtuTQUf2hujtaZpsYivIemgzEzbQlEwulqGiuv-hUvuwvHBjFPDBmVV0OKdetU4xnQMtW5lRYDMhVX7WNQ48vTdLlNnWQNmZ_9rUlPzKloaUHe7MBr9nYv0RAj6GmVHWTMD0LX551oxEZQ1uqziFeGJ2AC3vBx2tC7ZYXXCmdEwRCeel80sRgaISuFiduaoXfSQqfXKVT5peNjNIdWls1PmNJeUiu_C17PEbhJLAlXhLje_Fsnj_KsOLR-1hehHDhMdHgUGskxlwDdSldOmzomxFltBspkr1J3squHfguMqoF7OjbaH3p-c8z-iQYDsOjRjnisSmgHO8w",
+      "profileType": "residential",
+      "profileStatus": {
+        "status": [
+          {
+            "value": true,
+            "name": "active"
+          },
+          {
+            "value": true,
+            "name": "primary"
+          },
+          {
+            "dateTime": "2020-03-13T03:43:47-04:00",
+            "name": "created"
+          }
+        ]
+      },
+      "custProfile": {
+        "CustomerProfile": {
+          "mRID": "upm10000093870",
+          "PersonRoles": {
+            "PersonRole": {
+              "name": "main",
+              "Person": {
+                "mRID": "1014280000",
+                "Names": {
+                  "Name": {
+                    "NameType": {
+                      "name": "last"
+                    },
+                    "name": "Sisson,Rodney Todd"
+                  }
+                },
+                "name": "Sisson,Rodney Todd",
+                "electronicAddress": {
+                  "email": "1014280000@example.com"
+                }
+              }
+            }
+          },
+          "SecurityElementRoles": {
+            "SecurityElementRole": {
+              "SecurityElements": {
+                "SecurityElement": [
+                  {
+                    "name": "In what city or town did your mother and father meet?"
+                  },
+                  {
+                    "name": "What was the lastname of your third grade teacher?"
+                  }
+                ]
+              },
+              "name": "question"
+            }
+          },
+          "name": "Sisson,Rodney Todd",
+          "type": "residential",
+          "status": [
+            {
+              "value": true,
+              "name": "active"
+            },
+            {
+              "value": true,
+              "name": "primary"
+            },
+            {
+              "dateTime": "2020-03-13T03:43:47-04:00",
+              "name": "created"
+            }
+          ]
+        }
+      },
+      "customerIdentifier": "1014280000"
+    }
+  }
+}

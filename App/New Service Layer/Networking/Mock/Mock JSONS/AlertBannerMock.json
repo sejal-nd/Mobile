@@ -1,0 +1,22 @@
+{
+  "default": {
+    "d": {
+      "results": [
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)",
+            "uri": "https://azstg.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)",
+            "etag": "\"17\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "Title": "URGENT MESSAGE LOOK OUT MAKING THE TITLE VERY LONG SO IT HOPEFULLY STRETCHES TO 3 LINES",
+          "Message": "There will be a planned outage or something soon. Please prepare to not have power. It will totally be gone. Soon. Please make preparations. ",
+          "Enable": true,
+          "CustomerType": "Banner",
+          "Modified": "2018-10-05T18:09:08Z",
+          "Created": "2018-08-22T19:12:52Z"
+        }
+      ]
+    }
+  }
+}

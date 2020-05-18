@@ -1,0 +1,10 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+        "AccountNumber": "1234567890",
+        "StreetNumber": "1268",
+        "ApartmentUnitNumber": "12B"
+    }
+  }
+}

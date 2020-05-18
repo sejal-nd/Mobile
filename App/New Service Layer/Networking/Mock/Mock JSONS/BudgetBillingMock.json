@@ -1,0 +1,17 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "isBudgetBillingAvailable": true,
+      "enrolled": true,
+      "averageMonthlyBill": 94,
+      "budgetBill": 85,
+      "budgetBillDifference": 43.42,
+      "budgetBillBalance": 368.6,
+      "budgetBillPayoff": 412.02,
+      "programStatusCode": "ACTV",
+      "programCode": "USPPBDPL",
+      "programStartDate": "2020-04-30T00:00:00"
+    }
+  }
+}

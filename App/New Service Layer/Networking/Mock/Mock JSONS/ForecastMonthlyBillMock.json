@@ -1,0 +1,23 @@
+{
+  "default": {
+    "success": true,
+    "data": [
+      {
+        "billingStartDate": "2020-04-08",
+        "billingEndDate": "2020-05-07",
+        "calculationDate": "2020-04-09T11:14:15.178",
+        "toDateUsage": 0,
+        "projectedUsage": 188,
+        "baselineUsage": 342,
+        "baselineCost": 50,
+        "currencySymbol": "$",
+        "utilityAccountDTO": {
+          "utilityAccountId": "5795850914",
+          "utilityAccountId2": "5795850914",
+          "meterType": "ELEC",
+          "meterUnit": "KWH"
+        }
+      }
+    ]
+  }
+}

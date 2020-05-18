@@ -1,0 +1,9 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "header": "",
+      "message": "Your Automatic Payment enrollment has been submitted."
+    }
+  }
+}

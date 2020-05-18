@@ -1,0 +1,35 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "all": false,
+      "bill": false,
+      "alert": false,
+      "outage": false,
+      "home": false,
+      "storm": false,
+      "ios": {
+        "all": false,
+        "home": false,
+        "bill": false,
+        "outage": false,
+        "usage": false,
+        "alerts": false,
+        "storm": false,
+        "message": ""
+      },
+      "message": "This maintenance message is for all platforms",
+      "android": {
+        "all": false,
+        "home": false,
+        "bill": false,
+        "outage": false,
+        "usage": false,
+        "alerts": true,
+        "storm": false,
+        "message": "hello. I am broked!"
+      },
+      "cutover_date": "2019-06-28T05:00:00Z"
+    }
+  }
+}
