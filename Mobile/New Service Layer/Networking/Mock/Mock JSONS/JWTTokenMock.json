@@ -1,8 +1,82 @@
 {
   "default": {
-    "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsIng1dCI6IkRlUXJ2QjM0MFlBU0p6NVhIaWl4TTZTS0pSMCJ9.eyJpc3MiOiJvcmFjbGUubW9iaWxlLmE0NTM1NzYiLCJzdWIiOiJ1cG0xMDAwMDA5Mzg3MCIsIm9yYWNsZS5vYXV0aC5jbGllbnRfb3JpZ2luX2lkIjoiNTAyY2IwYTktYjg2Yy00ZjIzLThjOTgtMjAzMTU2N2ZlOGRmIiwib3JhY2xlLm9hdXRoLnRrX2NvbnRleHQiOiJ1c2VyX2Fzc2VydGlvbiIsImF1ZCI6WyJodHRwczovL2V4ZWxvbmV1bW9iaWxlYXBwdGVzdC1hNDUzNTc2Lm1vYmlsZWVudi51czIub3JhY2xlY2xvdWQuY29tOjQ0My9tb2JpbGUiLCJodHRwOi8vdXMyejIwLW1vYmlsZS1tb2JlbnY2OTIzLWNvcmUxLm9wY21vYmlsZS56MjAudXNkYzIub3JhY2xlY2xvdWQuY29tL2ludGVybmFsLXJ0Il0sIm9tY3MtY2l0IjoiYiIsIm9yYWNsZS1tb2JpbGUtdXNlci1yb2xlcyI6WyJleGVsb25ldW1vYmlsZWFwcHRlc3RfTW9iaWxlRW52aXJvbm1lbnRfaWQ6MTAxNDI4MDAwMCIsImV4ZWxvbmV1bW9iaWxlYXBwdGVzdF9Nb2JpbGVFbnZpcm9ubWVudF9vcGNvOkJHRSIsImV4ZWxvbmV1bW9iaWxlYXBwdGVzdF9Nb2JpbGVFbnZpcm9ubWVudF91c2VyOnVwbTEwMDAwMDkzODcwIiwiZXhlbG9uZXVtb2JpbGVhcHB0ZXN0X01vYmlsZUVudmlyb25tZW50X2VtYWlsOjEwMTQyODAwMDBAZXhhbXBsZS5jb20iLCJleGVsb25ldW1vYmlsZWFwcHRlc3RfTW9iaWxlRW52aXJvbm1lbnRfY3VzdG9tZXIiLCJleGVsb25ldW1vYmlsZWFwcHRlc3RfTW9iaWxlRW52aXJvbm1lbnRfdHlwZTpyZXNpZGVudGlhbCIsImV4ZWxvbmV1bW9iaWxlYXBwdGVzdF9Nb2JpbGVFbnZpcm9ubWVudF9iZ2V0c3RyZWFsbV8xXzBfUmVhbG0iLCJleGVsb25ldW1vYmlsZWFwcHRlc3RfTW9iaWxlRW52aXJvbm1lbnRfQkdFX2N1c3RvbWVyIl0sImlhdCI6MTU4NTA1NTgwMCwiZXhwIjoxNjE2NTk1ODAwfQ.bAQPD2jjSbO5OVtjegTfyc3FQ1ZVc8kEvdgYJ_EchEgA8HuAsbC1bGfnXZqCF2idTE2BYMHBI4ClMsT2UjR7Y-4SX0tFPuMexQsvqSJ3asBwzMx0KSZbF6064KVwt2EIDWZMh0kRbz5Q48ovi4V-guUYST8du2Q2bb47yh73f_Ss8QEMjjFaQzr7sHDuMhw4IKkS7kaLSWIuXB8Zy8qezF8pZFEVkPOq1kWZE3UwST1oqDloPcXOF0wZDr_NDTrrIZUOuefRT6oWWy3D6j9n4mSAhByMVV-U5jnQIpHaRWGglhHMBsZ8iQ6-9pV5kSEjTU5fMzGMcirNQ2V7ZtWacg",
-    "id_token": null,
-    "token_type": "Bearer",
-    "expires_in": 31539999
+    "success": true,
+    "data": {
+      "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiAiaHR0cHM6Ly9kZXYtYXBpZ2F0ZXdheS5leGVsb25jb3JwLmNvbSIsICJ0eXBlIjoicmVzaWRlbnRpYWwiLCJpZCI6IjEwMTQyODAwMDAiLCJ1c2VyIjoidXBtMTAwMDAwOTM4NzAiLCJvcGNvIjoiQkdFIn0.a2SSGzvQaxtuTQUf2hujtaZpsYivIemgzEzbQlEwulqGiuv-hUvuwvHBjFPDBmVV0OKdetU4xnQMtW5lRYDMhVX7WNQ48vTdLlNnWQNmZ_9rUlPzKloaUHe7MBr9nYv0RAj6GmVHWTMD0LX551oxEZQ1uqziFeGJ2AC3vBx2tC7ZYXXCmdEwRCeel80sRgaISuFiduaoXfSQqfXKVT5peNjNIdWls1PmNJeUiu_C17PEbhJLAlXhLje_Fsnj_KsOLR-1hehHDhMdHgUGskxlwDdSldOmzomxFltBspkr1J3squHfguMqoF7OjbaH3p-c8z-iQYDsOjRjnisSmgHO8w",
+      "profileType": "residential",
+      "profileStatus": {
+        "status": [
+          {
+            "value": true,
+            "name": "active"
+          },
+          {
+            "value": true,
+            "name": "primary"
+          },
+          {
+            "dateTime": "2020-03-13T03:43:47-04:00",
+            "name": "created"
+          }
+        ]
+      },
+      "custProfile": {
+        "CustomerProfile": {
+          "mRID": "upm10000093870",
+          "PersonRoles": {
+            "PersonRole": {
+              "name": "main",
+              "Person": {
+                "mRID": "1014280000",
+                "Names": {
+                  "Name": {
+                    "NameType": {
+                      "name": "last"
+                    },
+                    "name": "Sisson,Rodney Todd"
+                  }
+                },
+                "name": "Sisson,Rodney Todd",
+                "electronicAddress": {
+                  "email": "1014280000@example.com"
+                }
+              }
+            }
+          },
+          "SecurityElementRoles": {
+            "SecurityElementRole": {
+              "SecurityElements": {
+                "SecurityElement": [
+                  {
+                    "name": "In what city or town did your mother and father meet?"
+                  },
+                  {
+                    "name": "What was the lastname of your third grade teacher?"
+                  }
+                ]
+              },
+              "name": "question"
+            }
+          },
+          "name": "Sisson,Rodney Todd",
+          "type": "residential",
+          "status": [
+            {
+              "value": true,
+              "name": "active"
+            },
+            {
+              "value": true,
+              "name": "primary"
+            },
+            {
+              "dateTime": "2020-03-13T03:43:47-04:00",
+              "name": "created"
+            }
+          ]
+        }
+      },
+      "customerIdentifier": "1014280000"
+    }
   }
 }

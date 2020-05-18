@@ -110,8 +110,12 @@ struct AuthenticatedService {
                 return
         }
         
-//        let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
-//        let httpBody = postDataString.data(using: .utf8)
+        let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
+
+        
+        
+        //        let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
+        //        let httpBody = postDataString.data(using: .utf8)
         //        ServiceLayer.logJSON(router: .fetchToken(httpBody: postDataString.data(using: .utf8))) { (result: Result<String, Error>) in
         //                               switch result {
         //                               case .success(let data):
@@ -126,47 +130,34 @@ struct AuthenticatedService {
         //                               }
         //        }
         
-        let encodedObject = SAMLRequest(username: username, password: password)
+        let encodedObject = JWTRequest(username: username, password: password)
+        // encode is not working properly.
         
-        NetworkingLayer.request(router: .fetchSAMLToken(encodable: encodedObject)) { (result: Result<NewSAMLToken, NetworkingError>) in
+        NetworkingLayer.request(router: .fetchJWTToken(encodable: encodedObject)) { (result: Result<NewSAMLToken, NetworkingError>) in
             switch result {
             case .success(let data):
+                
+                    print("NetworkTest 3 SUCCESS: \(data.token) BREAK")
+                //                       completion(.success(data.min))
+                
                 guard let token = data.token else { return }
                 
-                NetworkingLayer.request(router: .exchangeSAMLToken(token: token)) { (result: Result<NewJWTToken, NetworkingError>) in
+                UserSession.shared.token = token
+                
+                NetworkingLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
                     switch result {
-                    case .success(let newJWTToken):
+                    case .success(let data):
                         
-                        // todo persist jwt token for keep me signed in
-                        guard let token = newJWTToken.token else {
-                            print("FAILED NO TOKEN")
-                            return
-                        }
-                        UserSession.shared.token = token
+                        // fetch accounts todo
                         
-                        print("NetworkTest 4 SUCCESS: \(newJWTToken.token) BREAK")
+                        print("NetworkTest 4 SUCCESS: \(data.accounts.first?.accountNumber) BREAK")
                         
-                        NetworkingLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
-                            switch result {
-                            case .success(let data):
-                                
-                                // fetch accounts todo
-                                
-                                print("NetworkTest 5 SUCCESS: \(data.accounts.first?.accountNumber) BREAK")
-                                
-                                guard let accNumber = data.accounts.first?.accountNumber else { return }
-                                
-                                AuthenticatedService.fetchAccountDetails(accountNumber: accNumber)
-                                
-                                completion(.success(()))
-                                
-                                
-                            //                       completion(.success(data.min))
-                            case .failure(let error):
-                                print("NetworkTest 5 FAIL: \(error)")
-                                completion(.failure(error))
-                            }
-                        }
+                        guard let accNumber = data.accounts.first?.accountNumber else { return }
+                        
+                        AuthenticatedService.fetchAccountDetails(accountNumber: accNumber)
+                        
+                        completion(.success(()))
+                        
                         
                     //                       completion(.success(data.min))
                     case .failure(let error):
@@ -174,18 +165,13 @@ struct AuthenticatedService {
                         completion(.failure(error))
                     }
                 }
-                
-                
-                
-                print("NetworkTest 3 SUCCESS: \(data.token) BREAK")
-            //                       completion(.success(data.min))
             case .failure(let error):
                 print("NetworkTest 3 FAIL: \(error)")
                 completion(.failure(error))
             }
         }
     }
-    
+
     private static func performLoginMock(username: String,
                                          completion: @escaping (Result<Void, NetworkingError>) -> ()) {
         print("LOGIN MOCK")

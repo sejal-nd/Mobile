@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SAMLRequest: Encodable {
+struct JWTRequest: Encodable {
     let username: String
     let password: String
 }

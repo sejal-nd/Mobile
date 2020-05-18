@@ -806,6 +806,8 @@
 		54EDD2DF1ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
 		54EDD2E01ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
 		54EDD2E11ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
+		560F81B4C86B61BD0F53C589 /* Pods_PepcoApp_PepcoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641F6D0342094F724227D56B /* Pods_PepcoApp_PepcoUITests.framework */; };
+		5B11E1862727BB0693587308 /* Pods_BGEApp_BGEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F13F08C5085CB9F8DE2DAC /* Pods_BGEApp_BGEUITests.framework */; };
 		6708866024337E8600B2C807 /* WalletMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708865F24337E8600B2C807 /* WalletMock.json */; };
 		6708866124337E8600B2C807 /* WalletMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708865F24337E8600B2C807 /* WalletMock.json */; };
 		6708866224337E8600B2C807 /* WalletMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6708865F24337E8600B2C807 /* WalletMock.json */; };
@@ -986,44 +988,12 @@
 		6798CFCE244F695F00429477 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFCD244F695F00429477 /* PaymentRequest.swift */; };
 		6798CFCF244F695F00429477 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFCD244F695F00429477 /* PaymentRequest.swift */; };
 		6798CFD0244F695F00429477 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFCD244F695F00429477 /* PaymentRequest.swift */; };
-		6798CFD2244F6B5600429477 /* SAMLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFD1244F6B5600429477 /* SAMLRequest.swift */; };
-		6798CFD3244F6B5600429477 /* SAMLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFD1244F6B5600429477 /* SAMLRequest.swift */; };
-		6798CFD4244F6B5600429477 /* SAMLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFD1244F6B5600429477 /* SAMLRequest.swift */; };
+		6798CFD2244F6B5600429477 /* JWTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFD1244F6B5600429477 /* JWTRequest.swift */; };
+		6798CFD3244F6B5600429477 /* JWTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFD1244F6B5600429477 /* JWTRequest.swift */; };
+		6798CFD4244F6B5600429477 /* JWTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFD1244F6B5600429477 /* JWTRequest.swift */; };
 		6798CFD6244F6CF600429477 /* WalletItemDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFD5244F6CF600429477 /* WalletItemDeleteRequest.swift */; };
 		6798CFD7244F6CF600429477 /* WalletItemDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFD5244F6CF600429477 /* WalletItemDeleteRequest.swift */; };
 		6798CFD8244F6CF600429477 /* WalletItemDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798CFD5244F6CF600429477 /* WalletItemDeleteRequest.swift */; };
-		67E44619242922B2007FC7F3 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E44618242922B2007FC7F3 /* AuthenticatedService.swift */; };
-		67E4461A242922B2007FC7F3 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E44618242922B2007FC7F3 /* AuthenticatedService.swift */; };
-		67E4461B242922B2007FC7F3 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E44618242922B2007FC7F3 /* AuthenticatedService.swift */; };
-		67E4461D242925AD007FC7F3 /* SAMLTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E4461C242925AD007FC7F3 /* SAMLTokenMock.json */; };
-		67E4461E242925AD007FC7F3 /* SAMLTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E4461C242925AD007FC7F3 /* SAMLTokenMock.json */; };
-		67E4461F242925AD007FC7F3 /* SAMLTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E4461C242925AD007FC7F3 /* SAMLTokenMock.json */; };
-		67E4462124292E78007FC7F3 /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462024292E78007FC7F3 /* NewSAMLToken.swift */; };
-		67E4462224292E78007FC7F3 /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462024292E78007FC7F3 /* NewSAMLToken.swift */; };
-		67E4462324292E78007FC7F3 /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462024292E78007FC7F3 /* NewSAMLToken.swift */; };
-		67E4462524295019007FC7F3 /* NewJWTToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462424295019007FC7F3 /* NewJWTToken.swift */; };
-		67E4462624295019007FC7F3 /* NewJWTToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462424295019007FC7F3 /* NewJWTToken.swift */; };
-		67E4462724295019007FC7F3 /* NewJWTToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462424295019007FC7F3 /* NewJWTToken.swift */; };
-		67E44629242A4222007FC7F3 /* AccountsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E44628242A4222007FC7F3 /* AccountsMock.json */; };
-		67E4462A242A4222007FC7F3 /* AccountsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E44628242A4222007FC7F3 /* AccountsMock.json */; };
-		67E4462B242A4222007FC7F3 /* AccountsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E44628242A4222007FC7F3 /* AccountsMock.json */; };
-		67E4462D242A4276007FC7F3 /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462C242A4276007FC7F3 /* NewAccount.swift */; };
-		67E4462E242A4276007FC7F3 /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462C242A4276007FC7F3 /* NewAccount.swift */; };
-		67E4462F242A4276007FC7F3 /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462C242A4276007FC7F3 /* NewAccount.swift */; };
-		67E44631242A453A007FC7F3 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E44630242A453A007FC7F3 /* JWTTokenMock.json */; };
-		67E44632242A453A007FC7F3 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E44630242A453A007FC7F3 /* JWTTokenMock.json */; };
-		67E44633242A453A007FC7F3 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E44630242A453A007FC7F3 /* JWTTokenMock.json */; };
-		67E6E7B72428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
-		67E6E7B82428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
-		67E6E7B92428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
-		67E6E7BB242906A900C3AC90 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */; };
-		67E6E7BC242906A900C3AC90 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */; };
-		67E6E7BD242906A900C3AC90 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */; };
-		67E6E7BF242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
-		67E6E7C0242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
-		67E6E7C1242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
-		560F81B4C86B61BD0F53C589 /* Pods_PepcoApp_PepcoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641F6D0342094F724227D56B /* Pods_PepcoApp_PepcoUITests.framework */; };
-		5B11E1862727BB0693587308 /* Pods_BGEApp_BGEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F13F08C5085CB9F8DE2DAC /* Pods_BGEApp_BGEUITests.framework */; };
 		67DDB2D924535D2E006CD6EB /* TotalSavingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */; };
 		67DDB2DA24535D2E006CD6EB /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		67DDB2DB24535D2E006CD6EB /* TotalSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */; };
@@ -3438,6 +3408,33 @@
 		67DDBDC224646E4F006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
 		67DDBDC324646E50006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
 		67DDBDC424646E50006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
+		67E44619242922B2007FC7F3 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E44618242922B2007FC7F3 /* AuthenticatedService.swift */; };
+		67E4461A242922B2007FC7F3 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E44618242922B2007FC7F3 /* AuthenticatedService.swift */; };
+		67E4461B242922B2007FC7F3 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E44618242922B2007FC7F3 /* AuthenticatedService.swift */; };
+		67E4461D242925AD007FC7F3 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E4461C242925AD007FC7F3 /* JWTTokenMock.json */; };
+		67E4461E242925AD007FC7F3 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E4461C242925AD007FC7F3 /* JWTTokenMock.json */; };
+		67E4461F242925AD007FC7F3 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E4461C242925AD007FC7F3 /* JWTTokenMock.json */; };
+		67E4462124292E78007FC7F3 /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462024292E78007FC7F3 /* NewSAMLToken.swift */; };
+		67E4462224292E78007FC7F3 /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462024292E78007FC7F3 /* NewSAMLToken.swift */; };
+		67E4462324292E78007FC7F3 /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462024292E78007FC7F3 /* NewSAMLToken.swift */; };
+		67E4462524295019007FC7F3 /* NewJWTToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462424295019007FC7F3 /* NewJWTToken.swift */; };
+		67E4462624295019007FC7F3 /* NewJWTToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462424295019007FC7F3 /* NewJWTToken.swift */; };
+		67E4462724295019007FC7F3 /* NewJWTToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462424295019007FC7F3 /* NewJWTToken.swift */; };
+		67E44629242A4222007FC7F3 /* AccountsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E44628242A4222007FC7F3 /* AccountsMock.json */; };
+		67E4462A242A4222007FC7F3 /* AccountsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E44628242A4222007FC7F3 /* AccountsMock.json */; };
+		67E4462B242A4222007FC7F3 /* AccountsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E44628242A4222007FC7F3 /* AccountsMock.json */; };
+		67E4462D242A4276007FC7F3 /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462C242A4276007FC7F3 /* NewAccount.swift */; };
+		67E4462E242A4276007FC7F3 /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462C242A4276007FC7F3 /* NewAccount.swift */; };
+		67E4462F242A4276007FC7F3 /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4462C242A4276007FC7F3 /* NewAccount.swift */; };
+		67E6E7B72428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
+		67E6E7B82428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
+		67E6E7B92428F67000C3AC90 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7B62428F67000C3AC90 /* AnonymousService.swift */; };
+		67E6E7BB242906A900C3AC90 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */; };
+		67E6E7BC242906A900C3AC90 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */; };
+		67E6E7BD242906A900C3AC90 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */; };
+		67E6E7BF242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
+		67E6E7C0242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
+		67E6E7C1242907B900C3AC90 /* NewMaintenanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -4691,6 +4688,11 @@
 		B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */; };
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
 		B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */; };
+		B9644DF2EF5BEDFD52683DCE /* Pods_BGEApp_BGE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA4ADFB6746AAD59D94DD75 /* Pods_BGEApp_BGE.framework */; };
+		C30079382436637600A9BEB0 /* BGEStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = C300793A2436637600A9BEB0 /* BGEStrings.strings */; };
+		C300793C2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
+		C300793D2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
+		C300793E2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
 		C30BBE152444DEA60070522A /* CodyUnauthenticatedServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */; };
 		C30E4ED62461CBEE0050AAFB /* RecoverUsernameMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4ED52461CBEE0050AAFB /* RecoverUsernameMock.json */; };
 		C30E4ED72461CBEE0050AAFB /* RecoverUsernameMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C30E4ED52461CBEE0050AAFB /* RecoverUsernameMock.json */; };
@@ -4716,6 +4718,8 @@
 		C30E4EF6246484D60050AAFB /* UsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E4EF5246484D60050AAFB /* UsernameRequest.swift */; };
 		C30E4EF7246484D60050AAFB /* UsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E4EF5246484D60050AAFB /* UsernameRequest.swift */; };
 		C30E4EF8246484D60050AAFB /* UsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E4EF5246484D60050AAFB /* UsernameRequest.swift */; };
+		C31E57A7242BCD830059B797 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
+		C31E57A8242BCD830059B797 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
 		C3244C4E2452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
 		C3244C4F2452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
 		C3244C502452137400C05FB2 /* NewOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3244C4D2452137400C05FB2 /* NewOutageStatus.swift */; };
@@ -4752,13 +4756,6 @@
 		C32BD4A62448F2CD00870262 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */; };
 		C32BD4A72448F2CD00870262 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */; };
 		C32BD4A82448F2CD00870262 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */; };
-		B9644DF2EF5BEDFD52683DCE /* Pods_BGEApp_BGE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA4ADFB6746AAD59D94DD75 /* Pods_BGEApp_BGE.framework */; };
-		C30079382436637600A9BEB0 /* BGEStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = C300793A2436637600A9BEB0 /* BGEStrings.strings */; };
-		C300793C2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
-		C300793D2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
-		C300793E2436669F00A9BEB0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
-		C31E57A7242BCD830059B797 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
-		C31E57A8242BCD830059B797 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
 		C3381A032424060400EA7062 /* SERWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A002424060400EA7062 /* SERWebViewController.swift */; };
 		C3381A042424060400EA7062 /* SERWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3381A012424060400EA7062 /* SERWebViewModel.swift */; };
 		C3381A062424064100EA7062 /* PTRWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = C3381A052424064100EA7062 /* PTRWidget.html */; };
@@ -6090,64 +6087,6 @@
 		641F6D0342094F724227D56B /* Pods_PepcoApp_PepcoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PepcoApp_PepcoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B54F986135F59113BFA426 /* Pods-DelmarvaApp-Delmarva.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelmarvaApp-Delmarva.release.xcconfig"; path = "Pods/Target Support Files/Pods-DelmarvaApp-Delmarva/Pods-DelmarvaApp-Delmarva.release.xcconfig"; sourceTree = "<group>"; };
 		668FCA1931C2BA712403005F /* Pods-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
-		67DDB52624535D2E006CD6EB /* Pepco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pepco.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DDB77C24535D32006CD6EB /* ACE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACE.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DDB9D224535D35006CD6EB /* Delmarva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delmarva.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DDBABA24535DAA006CD6EB /* PepcoUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PepcoUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DDBBA224535DAC006CD6EB /* ACEUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACEUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DDBC8A24535DAE006CD6EB /* DelmarvaUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelmarvaUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DDBCB224535DD5006CD6EB /* PepcoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PepcoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DDBCDA24535DD9006CD6EB /* ACEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DDBD0224535DDB006CD6EB /* DelmarvaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelmarvaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DDBD0424535E6D006CD6EB /* Pepco-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Info.plist"; sourceTree = "<group>"; };
-		67DDBD0624535E84006CD6EB /* Pepco-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-AUT.plist"; sourceTree = "<group>"; };
-		67DDBD0724535EA6006CD6EB /* LaunchScreen-Pepco.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-Pepco.storyboard"; sourceTree = "<group>"; };
-		67DDBD0924535EE6006CD6EB /* PepcoAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PepcoAssets.xcassets; sourceTree = "<group>"; };
-		67DDBD222457100A006CD6EB /* Pepco-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		67DDBD2424571016006CD6EB /* Pepco-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-TESTING.plist"; sourceTree = "<group>"; };
-		67DDBD2624571026006CD6EB /* Pepco-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-STAGING.plist"; sourceTree = "<group>"; };
-		67DDBD2824571035006CD6EB /* Pepco-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
-		67DDBD2A24571042006CD6EB /* Pepco-Environment-PRODBETA.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
-		67DDBD2C24571050006CD6EB /* Pepco-Environment-RELEASE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-RELEASE.plist"; sourceTree = "<group>"; };
-		67DDBD4F24572D42006CD6EB /* Delmarva-Environment-HOTFIX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
-		67DDBD5024572D42006CD6EB /* Delmarva-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-STAGING.plist"; sourceTree = "<group>"; };
-		67DDBD5124572D43006CD6EB /* Delmarva-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		67DDBD5224572D43006CD6EB /* Delmarva-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
-		67DDBD5324572D44006CD6EB /* Delmarva-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-TESTING.plist"; sourceTree = "<group>"; };
-		67DDBD5424572D44006CD6EB /* Delmarva-Environment-RELEASE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-RELEASE.plist"; sourceTree = "<group>"; };
-		67DDBD5524572D44006CD6EB /* Delmarva-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-AUT.plist"; sourceTree = "<group>"; };
-		67DDBD5724572D80006CD6EB /* Delmarva-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Delmarva-Info.plist"; sourceTree = "<group>"; };
-		67DDBD6324572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-Delmarva.storyboard"; sourceTree = "<group>"; };
-		67DDBD6724573696006CD6EB /* LaunchScreen-ACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ACE.storyboard"; sourceTree = "<group>"; };
-		67DDBD6E24573747006CD6EB /* ACE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-TESTING.plist"; sourceTree = "<group>"; };
-		67DDBD6F24573748006CD6EB /* ACE-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
-		67DDBD7024573748006CD6EB /* ACE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		67DDBD7124573748006CD6EB /* ACE-Environment-HOTFIX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
-		67DDBD7224573749006CD6EB /* ACE-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-STAGING.plist"; sourceTree = "<group>"; };
-		67DDBD7324573749006CD6EB /* ACE-Environment-RELEASE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-RELEASE.plist"; sourceTree = "<group>"; };
-		67DDBD742457374A006CD6EB /* ACE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-AUT.plist"; sourceTree = "<group>"; };
-		67DDBD752457375D006CD6EB /* ACE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Info.plist"; sourceTree = "<group>"; };
-		67DDBD872457389E006CD6EB /* DelmarvaAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DelmarvaAssets.xcassets; sourceTree = "<group>"; };
-		67DDBD8A245738B8006CD6EB /* ACEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ACEAssets.xcassets; sourceTree = "<group>"; };
-		67DDBD9724630B85006CD6EB /* GoogleService-Info_ace.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace.plist"; sourceTree = "<group>"; };
-		67DDBD9924630C37006CD6EB /* GoogleService-Info_ace_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_develop.plist"; sourceTree = "<group>"; };
-		67DDBD9B24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_hotfix.plist"; sourceTree = "<group>"; };
-		67DDBD9D24630D07006CD6EB /* GoogleService-Info_ace_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_prodbeta.plist"; sourceTree = "<group>"; };
-		67DDBD9F24630D41006CD6EB /* GoogleService-Info_ace_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_staging.plist"; sourceTree = "<group>"; };
-		67DDBDA124630D7E006CD6EB /* GoogleService-Info_ace_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_testing.plist"; sourceTree = "<group>"; };
-		67DDBDA4246450F8006CD6EB /* GoogleService-Info_delmarva.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva.plist"; sourceTree = "<group>"; };
-		67DDBDA624645171006CD6EB /* GoogleService-Info_delmarva_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_develop.plist"; sourceTree = "<group>"; };
-		67DDBDA82464523B006CD6EB /* GoogleService-Info_delmarva_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_hotfix.plist"; sourceTree = "<group>"; };
-		67DDBDAA24645309006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_prodbeta.plist"; sourceTree = "<group>"; };
-		67DDBDAC246456B8006CD6EB /* GoogleService-Info_delmarva_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_testing.plist"; sourceTree = "<group>"; };
-		67DDBDB02464599D006CD6EB /* GoogleService-Info_delmarva_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_staging.plist"; sourceTree = "<group>"; };
-		67DDBDB224646031006CD6EB /* GoogleService-Info_pepco.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco.plist"; sourceTree = "<group>"; };
-		67DDBDB424646317006CD6EB /* GoogleService-Info_pepco_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_develop.plist"; sourceTree = "<group>"; };
-		67DDBDB62464632F006CD6EB /* GoogleService-Info_pepco_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_prodbeta.plist"; sourceTree = "<group>"; };
-		67DDBDB82464638C006CD6EB /* GoogleService-Info_pepco_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_hotfix.plist"; sourceTree = "<group>"; };
-		67DDBDBA246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_staging.plist"; sourceTree = "<group>"; };
-		67DDBDBC246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_testing.plist"; sourceTree = "<group>"; };
-		67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OpCo.swift"; sourceTree = "<group>"; };
 		6708865F24337E8600B2C807 /* WalletMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WalletMock.json; sourceTree = "<group>"; };
 		670886632433803200B2C807 /* NewWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWallet.swift; sourceTree = "<group>"; };
 		67088667243387EE00B2C807 /* PaymentsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaymentsMock.json; sourceTree = "<group>"; };
@@ -6208,15 +6147,72 @@
 		6798CFC1244A2E9F00429477 /* SchedulePaymentCancelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePaymentCancelRequest.swift; sourceTree = "<group>"; };
 		6798CFC9244F686200429477 /* BillingHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingHistoryRequest.swift; sourceTree = "<group>"; };
 		6798CFCD244F695F00429477 /* PaymentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
-		6798CFD1244F6B5600429477 /* SAMLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMLRequest.swift; sourceTree = "<group>"; };
+		6798CFD1244F6B5600429477 /* JWTRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTRequest.swift; sourceTree = "<group>"; };
 		6798CFD5244F6CF600429477 /* WalletItemDeleteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletItemDeleteRequest.swift; sourceTree = "<group>"; };
+		67DDB52624535D2E006CD6EB /* Pepco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pepco.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DDB77C24535D32006CD6EB /* ACE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DDB9D224535D35006CD6EB /* Delmarva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delmarva.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DDBABA24535DAA006CD6EB /* PepcoUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PepcoUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DDBBA224535DAC006CD6EB /* ACEUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACEUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DDBC8A24535DAE006CD6EB /* DelmarvaUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelmarvaUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DDBCB224535DD5006CD6EB /* PepcoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PepcoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DDBCDA24535DD9006CD6EB /* ACEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DDBD0224535DDB006CD6EB /* DelmarvaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelmarvaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DDBD0424535E6D006CD6EB /* Pepco-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Info.plist"; sourceTree = "<group>"; };
+		67DDBD0624535E84006CD6EB /* Pepco-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-AUT.plist"; sourceTree = "<group>"; };
+		67DDBD0724535EA6006CD6EB /* LaunchScreen-Pepco.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-Pepco.storyboard"; sourceTree = "<group>"; };
+		67DDBD0924535EE6006CD6EB /* PepcoAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PepcoAssets.xcassets; sourceTree = "<group>"; };
+		67DDBD222457100A006CD6EB /* Pepco-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		67DDBD2424571016006CD6EB /* Pepco-Environment-TESTING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		67DDBD2624571026006CD6EB /* Pepco-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		67DDBD2824571035006CD6EB /* Pepco-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
+		67DDBD2A24571042006CD6EB /* Pepco-Environment-PRODBETA.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
+		67DDBD2C24571050006CD6EB /* Pepco-Environment-RELEASE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pepco-Environment-RELEASE.plist"; sourceTree = "<group>"; };
+		67DDBD4F24572D42006CD6EB /* Delmarva-Environment-HOTFIX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
+		67DDBD5024572D42006CD6EB /* Delmarva-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		67DDBD5124572D43006CD6EB /* Delmarva-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		67DDBD5224572D43006CD6EB /* Delmarva-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
+		67DDBD5324572D44006CD6EB /* Delmarva-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		67DDBD5424572D44006CD6EB /* Delmarva-Environment-RELEASE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-RELEASE.plist"; sourceTree = "<group>"; };
+		67DDBD5524572D44006CD6EB /* Delmarva-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Environment-AUT.plist"; sourceTree = "<group>"; };
+		67DDBD5724572D80006CD6EB /* Delmarva-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Delmarva-Info.plist"; sourceTree = "<group>"; };
+		67DDBD6324572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-Delmarva.storyboard"; sourceTree = "<group>"; };
+		67DDBD6724573696006CD6EB /* LaunchScreen-ACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ACE.storyboard"; sourceTree = "<group>"; };
+		67DDBD6E24573747006CD6EB /* ACE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		67DDBD6F24573748006CD6EB /* ACE-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
+		67DDBD7024573748006CD6EB /* ACE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		67DDBD7124573748006CD6EB /* ACE-Environment-HOTFIX.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
+		67DDBD7224573749006CD6EB /* ACE-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-STAGING.plist"; sourceTree = "<group>"; };
+		67DDBD7324573749006CD6EB /* ACE-Environment-RELEASE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-RELEASE.plist"; sourceTree = "<group>"; };
+		67DDBD742457374A006CD6EB /* ACE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Environment-AUT.plist"; sourceTree = "<group>"; };
+		67DDBD752457375D006CD6EB /* ACE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Info.plist"; sourceTree = "<group>"; };
+		67DDBD872457389E006CD6EB /* DelmarvaAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DelmarvaAssets.xcassets; sourceTree = "<group>"; };
+		67DDBD8A245738B8006CD6EB /* ACEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ACEAssets.xcassets; sourceTree = "<group>"; };
+		67DDBD9724630B85006CD6EB /* GoogleService-Info_ace.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace.plist"; sourceTree = "<group>"; };
+		67DDBD9924630C37006CD6EB /* GoogleService-Info_ace_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_develop.plist"; sourceTree = "<group>"; };
+		67DDBD9B24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_hotfix.plist"; sourceTree = "<group>"; };
+		67DDBD9D24630D07006CD6EB /* GoogleService-Info_ace_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_prodbeta.plist"; sourceTree = "<group>"; };
+		67DDBD9F24630D41006CD6EB /* GoogleService-Info_ace_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_staging.plist"; sourceTree = "<group>"; };
+		67DDBDA124630D7E006CD6EB /* GoogleService-Info_ace_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_ace_testing.plist"; sourceTree = "<group>"; };
+		67DDBDA4246450F8006CD6EB /* GoogleService-Info_delmarva.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva.plist"; sourceTree = "<group>"; };
+		67DDBDA624645171006CD6EB /* GoogleService-Info_delmarva_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_develop.plist"; sourceTree = "<group>"; };
+		67DDBDA82464523B006CD6EB /* GoogleService-Info_delmarva_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_hotfix.plist"; sourceTree = "<group>"; };
+		67DDBDAA24645309006CD6EB /* GoogleService-Info_delmarva_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_prodbeta.plist"; sourceTree = "<group>"; };
+		67DDBDAC246456B8006CD6EB /* GoogleService-Info_delmarva_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_testing.plist"; sourceTree = "<group>"; };
+		67DDBDB02464599D006CD6EB /* GoogleService-Info_delmarva_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_delmarva_staging.plist"; sourceTree = "<group>"; };
+		67DDBDB224646031006CD6EB /* GoogleService-Info_pepco.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco.plist"; sourceTree = "<group>"; };
+		67DDBDB424646317006CD6EB /* GoogleService-Info_pepco_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_develop.plist"; sourceTree = "<group>"; };
+		67DDBDB62464632F006CD6EB /* GoogleService-Info_pepco_prodbeta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_prodbeta.plist"; sourceTree = "<group>"; };
+		67DDBDB82464638C006CD6EB /* GoogleService-Info_pepco_hotfix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_hotfix.plist"; sourceTree = "<group>"; };
+		67DDBDBA246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_staging.plist"; sourceTree = "<group>"; };
+		67DDBDBC246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_testing.plist"; sourceTree = "<group>"; };
+		67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OpCo.swift"; sourceTree = "<group>"; };
 		67E44618242922B2007FC7F3 /* AuthenticatedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedService.swift; sourceTree = "<group>"; };
-		67E4461C242925AD007FC7F3 /* SAMLTokenMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SAMLTokenMock.json; sourceTree = "<group>"; };
+		67E4461C242925AD007FC7F3 /* JWTTokenMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JWTTokenMock.json; sourceTree = "<group>"; };
 		67E4462024292E78007FC7F3 /* NewSAMLToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSAMLToken.swift; sourceTree = "<group>"; };
 		67E4462424295019007FC7F3 /* NewJWTToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewJWTToken.swift; sourceTree = "<group>"; };
 		67E44628242A4222007FC7F3 /* AccountsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountsMock.json; sourceTree = "<group>"; };
 		67E4462C242A4276007FC7F3 /* NewAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccount.swift; sourceTree = "<group>"; };
-		67E44630242A453A007FC7F3 /* JWTTokenMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JWTTokenMock.json; sourceTree = "<group>"; };
 		67E6E7B62428F67000C3AC90 /* AnonymousService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonymousService.swift; sourceTree = "<group>"; };
 		67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MaintenanceModeMock.json; sourceTree = "<group>"; };
 		67E6E7BE242907B900C3AC90 /* NewMaintenanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMaintenanceMode.swift; sourceTree = "<group>"; };
@@ -6690,6 +6686,10 @@
 		B9C2CDC8EAF0A302CCFCA131 /* Pods-PECO_WatchOS Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
 		BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
+		BD4EA1C2C162E3AF37D8C205 /* Pods-PepcoApp-PepcoUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PepcoApp-PepcoUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PepcoApp-PepcoUnitTests/Pods-PepcoApp-PepcoUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
+		BF0A5AA104DCE80689EBDDAC /* Pods-PepcoApp-PepcoUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PepcoApp-PepcoUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PepcoApp-PepcoUnitTests/Pods-PepcoApp-PepcoUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
+		C30079392436637600A9BEB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BGEStrings.strings; sourceTree = "<group>"; };
+		C300793B2436669F00A9BEB0 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		C30BBE142444DEA60070522A /* CodyUnauthenticatedServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodyUnauthenticatedServiceNew.swift; sourceTree = "<group>"; };
 		C30E4ED52461CBEE0050AAFB /* RecoverUsernameMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecoverUsernameMock.json; sourceTree = "<group>"; };
 		C30E4ED92461D32D0050AAFB /* MeterPingMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MeterPingMock.json; sourceTree = "<group>"; };
@@ -6708,10 +6708,6 @@
 		C32BD49D2448EF3B00870262 /* RecoverMaskedUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverMaskedUsernameRequest.swift; sourceTree = "<group>"; };
 		C32BD4A12448EFC100870262 /* RecoverUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverUsernameRequest.swift; sourceTree = "<group>"; };
 		C32BD4A52448F2CD00870262 /* NewForgotMaskedUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewForgotMaskedUsername.swift; sourceTree = "<group>"; };
-		BD4EA1C2C162E3AF37D8C205 /* Pods-PepcoApp-PepcoUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PepcoApp-PepcoUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PepcoApp-PepcoUnitTests/Pods-PepcoApp-PepcoUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
-		BF0A5AA104DCE80689EBDDAC /* Pods-PepcoApp-PepcoUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PepcoApp-PepcoUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PepcoApp-PepcoUnitTests/Pods-PepcoApp-PepcoUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
-		C30079392436637600A9BEB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BGEStrings.strings; sourceTree = "<group>"; };
-		C300793B2436669F00A9BEB0 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		C3381A002424060400EA7062 /* SERWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERWebViewController.swift; sourceTree = "<group>"; };
 		C3381A012424060400EA7062 /* SERWebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERWebViewModel.swift; sourceTree = "<group>"; };
 		C3381A052424064100EA7062 /* PTRWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PTRWidget.html; sourceTree = "<group>"; };
@@ -8565,8 +8561,7 @@
 			children = (
 				6766F969242259D0007C9CB9 /* MinVersionMock.json */,
 				67E6E7BA242906A900C3AC90 /* MaintenanceModeMock.json */,
-				67E4461C242925AD007FC7F3 /* SAMLTokenMock.json */,
-				67E44630242A453A007FC7F3 /* JWTTokenMock.json */,
+				67E4461C242925AD007FC7F3 /* JWTTokenMock.json */,
 				67E44628242A4222007FC7F3 /* AccountsMock.json */,
 				676BDA67242BA85C00C880A3 /* AccountDetailsMock.json */,
 				676BDA7C242E4BB500C880A3 /* WeatherMock.json */,
@@ -9564,7 +9559,7 @@
 				6798CFC1244A2E9F00429477 /* SchedulePaymentCancelRequest.swift */,
 				6798CFC9244F686200429477 /* BillingHistoryRequest.swift */,
 				6798CFCD244F695F00429477 /* PaymentRequest.swift */,
-				6798CFD1244F6B5600429477 /* SAMLRequest.swift */,
+				6798CFD1244F6B5600429477 /* JWTRequest.swift */,
 				6798CFD5244F6CF600429477 /* WalletItemDeleteRequest.swift */,
 				67630E7C2450B8830078D3C3 /* HomeProfileUpdateRequest.swift */,
 				C3ADD1762450DB5100487920 /* OutageRequest.swift */,
@@ -11196,7 +11191,7 @@
 				676BDA7D242E4BB500C880A3 /* WeatherMock.json in Resources */,
 				B07E18042211D31700B6E3C7 /* outage_status.json in Resources */,
 				9C0EA5B5237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
-				67E4461D242925AD007FC7F3 /* SAMLTokenMock.json in Resources */,
+				67E4461D242925AD007FC7F3 /* JWTTokenMock.json in Resources */,
 				2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */,
 				358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */,
 				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
@@ -11271,7 +11266,6 @@
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
-				67E44631242A453A007FC7F3 /* JWTTokenMock.json in Resources */,
 				9C2C600F23C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B0B083F821710CDB00B1C632 /* Appt_Canceled.json in Resources */,
@@ -11429,7 +11423,6 @@
 				822BBBA61EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
-				67E44633242A453A007FC7F3 /* JWTTokenMock.json in Resources */,
 				67088682243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json in Resources */,
 				2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */,
 				359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */,
@@ -11555,7 +11548,7 @@
 				35AE569F214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				9C0A2C3E23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
-				67E4461F242925AD007FC7F3 /* SAMLTokenMock.json in Resources */,
+				67E4461F242925AD007FC7F3 /* JWTTokenMock.json in Resources */,
 				352B8D9A230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				C30E4EE82461D41B0050AAFB /* ReportOutageMock.json in Resources */,
 				676BDA6A242BA85C00C880A3 /* AccountDetailsMock.json in Resources */,
@@ -11626,7 +11619,6 @@
 				E841F3A01F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				B55736461E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B5D415801F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist in Resources */,
-				67E44632242A453A007FC7F3 /* JWTTokenMock.json in Resources */,
 				67088681243B697700B2C807 /* ScheduledPaymentUNUSEDMock.json in Resources */,
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				B01FF0B0221DFC77008CA222 /* autopay_info.json in Resources */,
@@ -11752,7 +11744,7 @@
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
 				9C0A2C3D23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				B07E17E12209F0CA00B6E3C7 /* account_details.json in Resources */,
-				67E4461E242925AD007FC7F3 /* SAMLTokenMock.json in Resources */,
+				67E4461E242925AD007FC7F3 /* JWTTokenMock.json in Resources */,
 				352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				C30E4EE72461D41B0050AAFB /* ReportOutageMock.json in Resources */,
 				676BDA69242BA85C00C880A3 /* AccountDetailsMock.json in Resources */,
@@ -15572,7 +15564,7 @@
 				E8EA601A1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
-				6798CFD2244F6B5600429477 /* SAMLRequest.swift in Sources */,
+				6798CFD2244F6B5600429477 /* JWTRequest.swift in Sources */,
 				B068DB5A20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				9C48830523834F2700321E6B /* GameTipViewController.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
@@ -16061,7 +16053,7 @@
 				E8EA601C1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				35B9609F22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
-				6798CFD4244F6B5600429477 /* SAMLRequest.swift in Sources */,
+				6798CFD4244F6B5600429477 /* JWTRequest.swift in Sources */,
 				E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				9C48830723834F2700321E6B /* GameTipViewController.swift in Sources */,
 				35A6C6E9211DE8D500C2A58F /* UpdatesViewModel.swift in Sources */,
@@ -16550,7 +16542,7 @@
 				E8EA601B1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
-				6798CFD3244F6B5600429477 /* SAMLRequest.swift in Sources */,
+				6798CFD3244F6B5600429477 /* JWTRequest.swift in Sources */,
 				35A6C6EA211DE8D600C2A58F /* UpdatesViewModel.swift in Sources */,
 				9C48830623834F2700321E6B /* GameTipViewController.swift in Sources */,
 				B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,

@@ -22,7 +22,7 @@ public enum Router {
     case minVersion
     case maintenanceMode
     
-    case fetchSAMLToken(encodable: Encodable)
+    case fetchJWTToken(encodable: Encodable)
     
     // Registration
     case registration(encodable: Encodable)
@@ -118,7 +118,7 @@ public enum Router {
     
     public var host: String {
         switch self {
-        case .fetchSAMLToken:
+        case .fetchJWTToken:
             return "dev-apigateway.exeloncorp.com"// todo: fix in mcs config
         case .weather:
             return "api.weather.gov"
@@ -163,10 +163,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/preferences/release"
         case .minVersion:
             return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.displayString)/config/versions"
-        case .fetchSAMLToken:
-            return "/mcs/oauth2/tokens"
-        case .exchangeSAMLToken:
-            return "/mobile/platform/sso/exchange-token"
+        case .fetchJWTToken:
+            return "/eu/oauth2/token"
         case .registration:
             return "/mobile/custom/\(apiAccess)/registration"
         case .checkDuplicateRegistration:
@@ -258,9 +256,9 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchSAMLToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail:
+        case .anonOutageStatus, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .exchangeSAMLToken, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser,
+        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser,
              .registrationQuestions:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
@@ -289,11 +287,8 @@ public enum Router {
     // todo: this may change to switch off of api access... I believe all vlaues below are derived from auth, anon, admin.  Hold off on changing this for now tho... need to dig deeper.
     public var httpHeaders: HTTPHeaders? {
         switch self {
-        case .fetchSAMLToken:
+        case .fetchJWTToken:
             return ["content-type": "application/x-www-form-urlencoded"]
-        case .exchangeSAMLToken(let samlToken):
-            return ["encode": "xml",
-                    "Authorization": "Bearer \(samlToken)"]
         case .alertBanner, .newsAndUpdates:
             return ["Accept": "application/json;odata=verbose"]
         case .anonOutageStatus:
@@ -313,7 +308,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .fetchSAMLToken(let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable), .alertPreferencesUpdate(_, let encodable):
+        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .fetchJWTToken(let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable), .alertPreferencesUpdate(_, let encodable):
             return encode(encodable)
         default:
             return nil
@@ -326,9 +321,7 @@ public enum Router {
             return "MinVersionMock"
         case .maintenanceMode:
             return "MaintenanceModeMock"
-        case .fetchSAMLToken:
-            return "SAMLTokenMock"
-        case .exchangeSAMLToken:
+        case .fetchJWTToken:
             return "JWTTokenMock"
         case .accounts:
             return "AccountsMock"
