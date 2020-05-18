@@ -36,11 +36,11 @@ extension UIColor {
         case .peco:
             return UIColor(red: 0/255, green: 98/255, blue: 154/255, alpha: 1)
         case .pepco:
-            return .yellow //todo
+            return UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1)
         case .delmarva:
-            return .yellow //todo
+            return UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1)
         case .ace:
-            return .yellow //todo
+            return UIColor(red: 115/255, green: 115/255, blue: 115/255, alpha: 1)
         }
     }
     
