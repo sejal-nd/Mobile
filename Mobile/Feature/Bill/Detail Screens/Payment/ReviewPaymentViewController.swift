@@ -374,6 +374,21 @@ class ReviewPaymentViewController: UIViewController {
                     
                     FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
                     
+                    if self?.viewModel.billingHistoryItem == nil {
+                        var contactType = EventParameter.Value.none
+                        if !(self?.viewModel.emailAddress.value == "") && !(self?.viewModel.phoneNumber.value == "") {
+                            contactType = .both
+                        } else if self?.viewModel.emailAddress.value.count > .zero {
+                            contactType = .email
+                        } else if self?.viewModel.phoneNumber.value.count > .zero {
+                            contactType = .text
+                        } else {
+                            contactType = .none
+                        }
+                        
+                        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .alternateContact, value: contactType)])
+                    }
+                    
                     if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
                         switch bankOrCard {
                         case .bank:
