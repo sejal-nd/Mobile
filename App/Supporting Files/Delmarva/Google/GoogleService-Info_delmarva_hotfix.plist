@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>961571218027-8ts6l5r6llrc5ii1chhupfhegu5uk66s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.961571218027-8ts6l5r6llrc5ii1chhupfhegu5uk66s</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAGjVN0FJenkDVQBEmlpSqhlmRyYyk3wEo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>961571218027</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.exelon.mobile.delmarva.hotfix</string>
+	<key>PROJECT_ID</key>
+	<string>delmarva-apps</string>
+	<key>STORAGE_BUCKET</key>
+	<string>delmarva-apps.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:961571218027:ios:a418239fa99147d049872e</string>
+	<key>DATABASE_URL</key>
+	<string>https://delmarva-apps.firebaseio.com</string>
+</dict>
+</plist>
