@@ -27,7 +27,7 @@ class ForgotUsernameBGEAccountNumberViewController: KeyboardAvoidingStickyFooter
         
         title = NSLocalizedString("Forgot Username", comment: "")
         
-        viewModel.accountNumberHasTenDigits.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.accountNumberHasValidLength.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .deepGray
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -41,7 +41,7 @@ class ForgotUsernameBGEAccountNumberViewController: KeyboardAvoidingStickyFooter
         accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         
         accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
+            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasValidLength))
             .drive(onNext: { [weak self] accountNumber, hasTenDigits in
                 guard let self = self else { return }
                 if !accountNumber.isEmpty {
@@ -91,7 +91,7 @@ class ForgotUsernameBGEAccountNumberViewController: KeyboardAvoidingStickyFooter
     }
     
     @objc func onAccountNumberKeyboardDonePress() {
-        viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty()).drive(onNext: { [weak self] valid in
+        viewModel.accountNumberHasValidLength.asObservable().take(1).asDriver(onErrorDriveWith: .empty()).drive(onNext: { [weak self] valid in
             if valid {
                 self?.onContinuePress()
             } else {
