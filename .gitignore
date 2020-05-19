@@ -23,8 +23,8 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
-Mobile/Configuration/environment_preprocess.h
-Mobile/Configuration/environment.plist
+environment_preprocess.h
+environment.plist
 
 # Obj-C/Swift specific
 *.hmap

@@ -14,16 +14,30 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "67DDB77E24535D35006CD6EB"
-               BuildableName = "Delmarva.app"
-               BlueprintName = "Delmarva"
+               BlueprintIdentifier = "67DDB2D224535D2E006CD6EB"
+               BuildableName = "Pepco.app"
+               BlueprintName = "Pepco"
+               ReferencedContainer = "container:Mobile.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "67DDBC8C24535DD5006CD6EB"
+               BuildableName = "PepcoUITests.xctest"
+               BlueprintName = "PepcoUITests"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Testing"
+      buildConfiguration = "Automation"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -41,18 +55,18 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "67DDBBA424535DAE006CD6EB"
-               BuildableName = "DelmarvaUnitTests.xctest"
-               BlueprintName = "DelmarvaUnitTests"
+               BlueprintIdentifier = "67DDBC8C24535DD5006CD6EB"
+               BuildableName = "PepcoUITests.xctest"
+               BlueprintName = "PepcoUITests"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Testing"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      buildConfiguration = "Automation"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -63,21 +77,15 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "67DDB77E24535D35006CD6EB"
-            BuildableName = "Delmarva.app"
-            BlueprintName = "Delmarva"
+            BlueprintIdentifier = "67DDB2D224535D2E006CD6EB"
+            BuildableName = "Pepco.app"
+            BlueprintName = "Pepco"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-shouldLogAPI"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Testing"
+      buildConfiguration = "Automation"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -85,18 +93,18 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "67DDB77E24535D35006CD6EB"
-            BuildableName = "Delmarva.app"
-            BlueprintName = "Delmarva"
+            BlueprintIdentifier = "67DDB2D224535D2E006CD6EB"
+            BuildableName = "Pepco.app"
+            BlueprintName = "Pepco"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Testing">
+      buildConfiguration = "Automation">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Testing"
+      buildConfiguration = "Automation"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
