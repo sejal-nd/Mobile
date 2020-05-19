@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>environment</key>
+	<string>STAGE</string>
+	<key>opco</key>
+	<string>Delmarva</string>
+	<key>appName</key>
+	<string>Delmarva_STAGE</string>
+	<key>mcsInstanceName</key>
+	<string>Stage-delmarvaMBE</string>
+	<key>myAccountUrl</key>
+	<string>https://azstg.delmarva.com/MyAccount</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_delmarva_staging</string>
+	<key>gaTrackingId</key>
+	<string>UA-76742208-8</string>
+	<key>opcoUpdatesHost</key>
+	<string>azstg.delmarva.com</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.delmarva.com</string>
+	<key>appCenterId</key>
+	<string>8b361cdc-3267-42de-91d0-b1bae6342067</string>
+</dict>
+</plist>
