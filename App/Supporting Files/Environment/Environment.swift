@@ -20,6 +20,10 @@ enum OpCo: String {
         switch self {
         case .ace:
             return "Atlantic City Electric"
+        case .delmarva:
+            return "Delmarva Power"
+        case .pepco:
+            return "Pepco"
         default:
             return rawValue
         }
@@ -137,7 +141,6 @@ struct Environment {
         
         environmentName = EnvironmentName(rawValue: dict["environment"] as! String)!
         appName = dict["appName"] as! String
-        print("OPCO12: \(dict["opco"])")
         opco = OpCo(rawValue: dict["opco"] as! String)!
         mcsInstanceName = dict["mcsInstanceName"] as! String
         mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName, opco: opco)
