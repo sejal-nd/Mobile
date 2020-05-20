@@ -213,7 +213,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         view.endEditing(true)
 
         if Environment.shared.environmentName != .aut { // Otherwise all our mock data usernames would fail
-            if Environment.shared.opco != .bge && !viewModel.usernameIsValidEmailAddress {
+            if (Environment.shared.opco != .bge && Environment.shared.opco != .delmarva && Environment.shared.opco != .pepco && Environment.shared.opco != .ace) && !viewModel.usernameIsValidEmailAddress {
                 // ComEd/PECO only email validation. If not valid email then fail before making the call
                 let message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
                 showErrorAlertWith(title: nil, message: message)
