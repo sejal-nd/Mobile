@@ -87,8 +87,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         keepMeSignedInLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         keepMeSignedInLabel.textColor = .deepGray
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
-
-        usernameTextField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
+        let placeholderText = Environment.shared.opco == .bge || Environment.shared.opco == .comEd || Environment.shared.opco == .peco ? "Username / Email Address" : "Username (Email Address)"
+        usernameTextField.placeholder = NSLocalizedString(placeholderText, comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .next
         usernameTextField.textField.keyboardType = .emailAddress
