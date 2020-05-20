@@ -83,6 +83,8 @@ protocol PaymentService {
     func schedulePayment(accountNumber: String,
                          paymentAmount: Double,
                          paymentDate: Date,
+                         alternateEmail: String,
+                         alternateNumber: String,
                          walletId: String,
                          walletItem: WalletItem) -> Observable<String>
 

@@ -132,6 +132,8 @@ class HomeBillCardViewModel {
                         return self.paymentService.schedulePayment(accountNumber: object["accountNumber"] as! String,
                                                                    paymentAmount: paymentAmount,
                                                                    paymentDate: paymentDate,
+                                                                   alternateEmail: "",
+                                                                   alternateNumber: "",
                                                                    walletId: AccountsStore.shared.customerIdentifier,
                                                                    walletItem: object["walletItem"] as! WalletItem)
                             .do(onNext: { confirmationNumber in

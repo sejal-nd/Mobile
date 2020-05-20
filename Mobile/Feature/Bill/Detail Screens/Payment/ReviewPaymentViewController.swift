@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class ReviewPaymentViewController: UIViewController {
     
@@ -27,6 +28,17 @@ class ReviewPaymentViewController: UIViewController {
     
     // -- Receipt View -- //
     @IBOutlet weak var receiptView: UIView!
+    
+    // -- Additional Recipients View -- //
+    @IBOutlet weak var addAdditionalRecipients: UIView!
+    @IBOutlet weak var collapseButton: UIButton!
+    @IBOutlet weak var alternateEmailNumberView: UIView!
+    @IBOutlet weak var alternateEmailTextField: FloatLabelTextField!
+    @IBOutlet weak var alternateNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var alternateViewTextView: UITextView!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var alternateContactDivider: UIView!
+    @IBOutlet weak var addAdditionaRecipientButton: UIButton!
     
     @IBOutlet weak var amountDueTextLabel: UILabel!
     @IBOutlet weak var amountDueValueLabel: UILabel!
@@ -167,8 +179,89 @@ class ReviewPaymentViewController: UIViewController {
         footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
         footerLabel.text = viewModel.reviewPaymentFooterLabelText
         
+        // Hide additional recipient view for edit payment flow
+        if let _ = viewModel.billingHistoryItem {
+            addAdditionalRecipients.isHidden = true
+            alternateEmailNumberView.isHidden = true
+            alternateContactDivider.isHidden = true
+        } else {
+            configureAdditionalRecipientsView()
+        }
+        
         bindViewHiding()
         bindViewContent()
+    }
+    
+    func configureAdditionalRecipientsView() {
+        stackView.setCustomSpacing(20, after: receiptView)
+        stackView.setCustomSpacing(20, after: addAdditionalRecipients)
+        stackView.setCustomSpacing(47, after: alternateContactDivider)
+        
+        collapseButton.isSelected = false
+        collapseButton.setImage(#imageLiteral(resourceName: "ic_caret_down"), for: .normal)
+        collapseButton.setImage(#imageLiteral(resourceName: "ic_caret_up"), for: .selected)
+        
+        alternateEmailNumberView.isHidden = true
+        alternateEmailNumberView.backgroundColor = .softGray
+        
+        alternateViewTextView.backgroundColor = .softGray
+        alternateViewTextView.textColor = .deepGray
+        alternateViewTextView.font = SystemFont.regular.of(textStyle: .callout)
+        alternateViewTextView.text = NSLocalizedString("Add an additional email address and/or mobile phone number in the box below if you’d like us to send this payment confirmation via text message or to an email different from the one associated with your My Account. Standard messaging rates apply.", comment: "")
+        
+        addAdditionaRecipientButton.setTitleColor(.deepGray, for: .normal)
+        addAdditionaRecipientButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        alternateEmailTextField.placeholder = NSLocalizedString("Email Address (Optional)",
+                                                                comment: "")
+        alternateEmailTextField.textField.autocorrectionType = .no
+        alternateEmailTextField.textField.returnKeyType = .next
+        alternateEmailTextField.setKeyboardType(.emailAddress)
+        alternateEmailTextField.textField.isShowingAccessory = true
+        alternateEmailTextField.setError(nil)
+        alternateEmailTextField.textField.delegate = self
+        
+        viewModel.emailIsValid.drive(onNext: { [weak self] errorMessage in
+            self?.alternateEmailTextField.setError(errorMessage)
+        }).disposed(by: self.disposeBag)
+        
+        alternateEmailTextField.textField.rx.text.orEmpty.bind(to: viewModel.emailAddress).disposed(by: disposeBag)
+        
+        alternateEmailTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                // If we displayed an inline error, clear it when user edits the text
+                if self.alternateEmailTextField.errorState {
+                    self.alternateEmailTextField.setError(nil)
+                }
+            }).disposed(by: disposeBag)
+        
+        alternateEmailTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
+            .drive(onNext: { [weak self] in
+                self?.alternateNumberTextField.textField.becomeFirstResponder()
+            }).disposed(by: disposeBag)
+        
+        alternateNumberTextField.placeholder = NSLocalizedString("Phone Number (Optional)",
+                                                                 comment: "")
+        alternateNumberTextField.textField.autocorrectionType = .no
+        alternateNumberTextField.setKeyboardType(.phonePad)
+        alternateNumberTextField.textField.delegate = self
+        alternateNumberTextField.textField.isShowingAccessory = true
+        
+        alternateNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
+        
+        alternateNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
+            .drive(onNext: { [weak self] phoneNumber, hasTenDigits in
+                guard let self = self else { return }
+                if !phoneNumber.isEmpty && !hasTenDigits {
+                    self.alternateNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
+                }
+            }).disposed(by: disposeBag)
+        
+        alternateNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.alternateNumberTextField.setError(nil)
+        }).disposed(by: disposeBag)
     }
     
     func bindViewHiding() {
@@ -281,6 +374,23 @@ class ReviewPaymentViewController: UIViewController {
                     
                     FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
                     
+                    if let viewModel = self?.viewModel,
+                        viewModel.billingHistoryItem == nil {
+                        var contactType = EventParameter.Value.none
+                        if !viewModel.emailAddress.value.isEmpty &&
+                            !viewModel.phoneNumber.value.isEmpty {
+                            contactType = .both
+                        } else if !viewModel.emailAddress.value.isEmpty {
+                            contactType = .email
+                        } else if !viewModel.phoneNumber.value.isEmpty {
+                            contactType = .text
+                        } else {
+                            contactType = .none
+                        }
+                        
+                        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .alternateContact, value: contactType)])
+                    }
+                    
                     if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
                         switch bankOrCard {
                         case .bank:
@@ -327,4 +437,55 @@ class ReviewPaymentViewController: UIViewController {
         }
     }
 
+    @IBAction func collapseExpandAdditionalRecipients(_ sender: Any) {
+        self.collapseButton.isSelected = !self.collapseButton.isSelected
+        self.alternateContactDivider.isHidden = self.collapseButton.isSelected ? true : false
+        
+        // Animate expand/collapse
+        UIView.animate(withDuration: 0.3) { [unowned self] in
+            self.view.layoutIfNeeded()
+            self.alternateEmailNumberView.isHidden = self.collapseButton.isSelected ? false : true
+        }
+    }
+}
+
+extension ReviewPaymentViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        if textField == alternateNumberTextField.textField {
+            let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
+            
+            let decimalString = components.joined(separator: "") as NSString
+            let length = decimalString.length
+            
+            if length > 10 {
+                return false
+            }
+            
+            var index = 0 as Int
+            let formattedString = NSMutableString()
+            
+            if length - index > 3 {
+                let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
+                formattedString.appendFormat("(%@) ", areaCode)
+                index += 3
+            }
+            if length - index > 3 {
+                let prefix = decimalString.substring(with: NSMakeRange(index, 3))
+                formattedString.appendFormat("%@-", prefix)
+                index += 3
+            }
+            
+            let remainder = decimalString.substring(from: index)
+            formattedString.append(remainder)
+            textField.text = formattedString as String
+            
+            textField.sendActions(for: .valueChanged) // Send rx events
+            
+            return false
+        }
+        
+        return true
+    }
 }
