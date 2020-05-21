@@ -5,7 +5,7 @@
 	<key>environment</key>
 	<string>TEST</string>
 	<key>opco</key>
-	<string>Pepco</string>
+	<string>PEP</string>
 	<key>appName</key>
 	<string>Pepco_TEST</string>
 	<key>mcsInstanceName</key>

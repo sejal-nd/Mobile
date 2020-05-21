@@ -18676,7 +18676,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -18709,7 +18709,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -18777,7 +18777,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -18814,7 +18814,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -18847,7 +18847,7 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ComEd/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 9.8.8;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -18879,7 +18879,7 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Peco/Peco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -18900,12 +18900,13 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREFIX_HEADER = App/Configuration/environment_preprocess.h;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Hotfix;
 		};
@@ -18916,12 +18917,13 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Hotfix;
 		};
@@ -18931,12 +18933,13 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Hotfix;
 		};
@@ -18960,7 +18963,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -18993,7 +18996,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
@@ -19027,7 +19030,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
@@ -19061,7 +19064,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -19095,7 +19098,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -19129,7 +19132,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -19164,7 +19167,7 @@
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/PECO-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
@@ -19268,7 +19271,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -19302,7 +19305,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -19333,7 +19336,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.prodbeta;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ComEd/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 9.8.8;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -19364,7 +19367,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.prodbeta;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Peco/Peco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -19384,12 +19387,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = App/Configuration/environment_preprocess.h;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Prodbeta;
 		};
@@ -19399,12 +19403,13 @@
 				DSTROOT = /tmp/App.dst;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Prodbeta;
 		};
@@ -19413,12 +19418,13 @@
 			buildSettings = {
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Prodbeta;
 		};
@@ -19441,7 +19447,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -19473,7 +19479,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
@@ -19506,7 +19512,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
@@ -19539,7 +19545,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -19572,7 +19578,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -19605,7 +19611,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -19673,7 +19679,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -19707,7 +19713,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -19736,7 +19742,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.develop;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ComEd/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 9.8.8;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -19765,7 +19771,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.develop;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Peco/Peco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -19784,12 +19790,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = App/Configuration/environment_preprocess.h;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Automation;
 		};
@@ -19799,13 +19806,14 @@
 				DSTROOT = /tmp/App.dst;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_MAP_FILE_PATH = "$(TARGET_TEMP_DIR)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Automation;
 		};
@@ -19814,12 +19822,13 @@
 			buildSettings = {
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Automation;
 		};
@@ -19860,7 +19869,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -19911,7 +19920,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
@@ -19967,7 +19976,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
@@ -20023,7 +20032,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -20077,7 +20086,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -20131,7 +20140,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -20167,7 +20176,7 @@
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.hotfix.watchkitapp;
@@ -20204,7 +20213,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.8.0;
 				MTL_FAST_MATH = YES;
@@ -20240,7 +20249,7 @@
 				IBSC_MODULE = ComEd_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.hotfix.watchkitapp;
@@ -20274,7 +20283,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Watch Extension/Configurations/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
@@ -20310,6 +20319,7 @@
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/PECO-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
@@ -20346,6 +20356,7 @@
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/PECO-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
@@ -20382,6 +20393,7 @@
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/PECO-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
@@ -20418,6 +20430,7 @@
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/PECO-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
@@ -20454,6 +20467,7 @@
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/PECO-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
@@ -20719,6 +20733,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -20756,6 +20771,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.8.0;
 				MTL_FAST_MATH = YES;
@@ -20789,6 +20805,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.8.0;
 				MTL_FAST_MATH = YES;
@@ -20822,6 +20839,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.8.0;
 				MTL_FAST_MATH = YES;
@@ -20855,6 +20873,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.8.0;
 				MTL_FAST_MATH = YES;
@@ -20888,6 +20907,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.8.0;
 				MTL_FAST_MATH = YES;
@@ -20965,6 +20985,7 @@
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.2.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -21004,6 +21025,7 @@
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
@@ -21039,6 +21061,7 @@
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
@@ -21074,6 +21097,7 @@
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
@@ -21109,6 +21133,7 @@
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
@@ -21144,6 +21169,7 @@
 				IBSC_MODULE = BGE_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.2.0;
 				MTL_FAST_MATH = YES;
@@ -21219,7 +21245,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Watch Extension/Configurations/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 9.8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -21257,7 +21283,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Watch Extension/Configurations/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
@@ -21291,7 +21317,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Watch Extension/Configurations/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
@@ -21325,7 +21351,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Watch Extension/Configurations/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
@@ -21359,7 +21385,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Watch Extension/Configurations/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
@@ -21393,7 +21419,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Watch Extension/Configurations/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
@@ -21475,7 +21501,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -21515,6 +21541,7 @@
 				IBSC_MODULE = ComEd_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.develop.watchkitapp;
@@ -21550,6 +21577,7 @@
 				IBSC_MODULE = ComEd_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.staging.watchkitapp;
@@ -21585,6 +21613,7 @@
 				IBSC_MODULE = ComEd_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.testing.watchkitapp;
@@ -21620,6 +21649,7 @@
 				IBSC_MODULE = ComEd_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iphoneproduction.exelon.watchkitapp;
@@ -21655,6 +21685,7 @@
 				IBSC_MODULE = ComEd_Watch_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.prodbeta.watchkitapp;
@@ -21685,7 +21716,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Pepco/Pepco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -21716,7 +21747,7 @@
 				EXM_ENVIRONMENT = AUT;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Pepco/Pepco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -21748,7 +21779,7 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Pepco/Pepco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -21830,7 +21861,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Pepco/Pepco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -21872,7 +21903,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Pepco/Pepco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -21913,7 +21944,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Pepco/Pepco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -21947,7 +21978,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ACE/ACE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -21984,6 +22015,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ACE/ACE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22018,7 +22050,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ACE/ACE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22057,7 +22089,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ACE/ACE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22096,7 +22128,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ACE/ACE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22133,7 +22165,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ACE/ACE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22170,7 +22202,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ACE/ACE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22203,7 +22235,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Delmarva/Delmarva-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22235,7 +22267,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Delmarva/Delmarva-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22268,7 +22300,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Delmarva/Delmarva-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22304,7 +22336,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Delmarva/Delmarva-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22340,7 +22372,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Delmarva/Delmarva-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22374,7 +22406,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Delmarva/Delmarva-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22408,7 +22440,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Delmarva/Delmarva-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.6.0;
@@ -22461,7 +22493,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUnitTests;
@@ -22512,7 +22544,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUnitTests;
@@ -22545,7 +22577,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUnitTests;
@@ -22578,7 +22610,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUnitTests;
@@ -22610,7 +22642,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUnitTests;
@@ -22642,7 +22674,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUnitTests;
@@ -22674,7 +22706,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUnitTests;
@@ -22724,7 +22756,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUnitTests;
@@ -22775,7 +22807,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUnitTests;
@@ -22808,7 +22840,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUnitTests;
@@ -22841,7 +22873,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUnitTests;
@@ -22873,7 +22905,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUnitTests;
@@ -22905,7 +22937,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUnitTests;
@@ -22937,7 +22969,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUnitTests;
@@ -22987,7 +23019,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUnitTests;
@@ -23038,7 +23070,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUnitTests;
@@ -23071,7 +23103,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUnitTests;
@@ -23104,7 +23136,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUnitTests;
@@ -23136,7 +23168,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUnitTests;
@@ -23168,7 +23200,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUnitTests;
@@ -23200,7 +23232,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUnitTests;
@@ -23250,7 +23282,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUITests;
@@ -23307,7 +23339,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUITests;
@@ -23343,7 +23375,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUITests;
@@ -23377,7 +23409,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUITests;
@@ -23410,7 +23442,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUITests;
@@ -23443,7 +23475,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUITests;
@@ -23476,7 +23508,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PepcoUITests;
@@ -23527,7 +23559,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUITests;
@@ -23584,7 +23616,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUITests;
@@ -23620,7 +23652,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUITests;
@@ -23654,7 +23686,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUITests;
@@ -23687,7 +23719,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUITests;
@@ -23720,7 +23752,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUITests;
@@ -23753,7 +23785,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ACEUITests;
@@ -23804,7 +23836,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUITests;
@@ -23861,7 +23893,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUITests;
@@ -23897,7 +23929,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUITests;
@@ -23931,7 +23963,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUITests;
@@ -23964,7 +23996,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUITests;
@@ -23997,7 +24029,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUITests;
@@ -24030,7 +24062,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.DelmarvaUITests;
@@ -24050,12 +24082,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Develop;
 		};
@@ -24065,12 +24098,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Automation;
 		};
@@ -24080,12 +24114,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Staging;
 		};
@@ -24096,12 +24131,13 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Hotfix;
 		};
@@ -24111,12 +24147,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Testing;
 		};
@@ -24126,12 +24163,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -24141,12 +24179,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Prodbeta;
 		};
@@ -24156,12 +24195,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Develop;
 		};
@@ -24171,12 +24211,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Automation;
 		};
@@ -24186,12 +24227,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Staging;
 		};
@@ -24202,12 +24244,13 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Hotfix;
 		};
@@ -24217,12 +24260,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Testing;
 		};
@@ -24232,12 +24276,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -24247,12 +24292,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Prodbeta;
 		};
@@ -24262,12 +24308,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Develop;
 		};
@@ -24277,12 +24324,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Automation;
 		};
@@ -24292,12 +24340,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Staging;
 		};
@@ -24308,12 +24357,13 @@
 				EXM_ENVIRONMENT = HOTFIX;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Hotfix;
 		};
@@ -24323,12 +24373,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Testing;
 		};
@@ -24338,12 +24389,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -24353,12 +24405,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Prodbeta;
 		};
@@ -24374,6 +24427,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.pepco.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Pepco/Pepco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				MARKETING_VERSION = 10.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -24438,7 +24492,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -24475,7 +24529,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -24507,7 +24561,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.testing;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ComEd/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 9.8.8;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -24539,7 +24593,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Peco/Peco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -24559,12 +24613,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = App/Configuration/environment_preprocess.h;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Testing;
 		};
@@ -24574,12 +24629,13 @@
 				DSTROOT = /tmp/App.dst;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Testing;
 		};
@@ -24588,12 +24644,13 @@
 			buildSettings = {
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Testing;
 		};
@@ -24616,7 +24673,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -24648,7 +24705,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
@@ -24681,7 +24738,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
@@ -24714,7 +24771,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -24747,7 +24804,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -24780,7 +24837,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -24848,7 +24905,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -24881,7 +24938,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -24909,7 +24966,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.develop;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ComEd/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 9.8.8;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -24938,7 +24995,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.develop;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Peco/Peco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -24957,12 +25014,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = App/Configuration/environment_preprocess.h;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Develop;
 		};
@@ -24972,12 +25030,13 @@
 				DSTROOT = /tmp/App.dst;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Develop;
 		};
@@ -24986,12 +25045,13 @@
 			buildSettings = {
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Develop;
 		};
@@ -25032,7 +25092,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -25083,7 +25143,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
@@ -25135,7 +25195,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
@@ -25187,7 +25247,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -25240,7 +25300,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -25293,7 +25353,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -25371,6 +25431,7 @@
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = "Watch/Configuration/PECO-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -25523,7 +25584,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -25556,7 +25617,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -25625,7 +25686,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -25661,7 +25722,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.2.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -25694,7 +25755,7 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Peco/Peco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -25723,7 +25784,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.peco;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Peco/Peco-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
@@ -25753,7 +25814,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ComEd/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 9.8.8;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -25783,7 +25844,7 @@
 				EXM_BUNDLE_ID = com.iphoneproduction.exelon;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/ComEd/ComEd-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 9.8.8;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -25804,12 +25865,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = App/Configuration/environment_preprocess.h;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Staging;
 		};
@@ -25819,12 +25881,13 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_PREFIX_HEADER = App/Configuration/environment_preprocess.h;
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -25834,13 +25897,14 @@
 				DSTROOT = /tmp/App.dst;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_MAP_FILE_PATH = "$(TARGET_TEMP_DIR)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Staging;
 		};
@@ -25850,12 +25914,13 @@
 				DSTROOT = /tmp/App.dst;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -25864,12 +25929,13 @@
 			buildSettings = {
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Staging;
 		};
@@ -25878,12 +25944,13 @@
 			buildSettings = {
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -25906,7 +25973,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -25938,7 +26005,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -25970,7 +26037,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -26003,7 +26070,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -26036,7 +26103,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -26069,7 +26136,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -26102,7 +26169,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
@@ -26135,7 +26202,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
@@ -26168,7 +26235,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
@@ -26201,7 +26268,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
