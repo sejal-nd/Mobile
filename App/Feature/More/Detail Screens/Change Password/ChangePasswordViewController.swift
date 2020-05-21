@@ -52,18 +52,6 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService())
     
-    let toolbar: UIToolbar = {
-        let toolbar = UIToolbar()
-        let suggestPasswordButton = UIBarButtonItem(title: "Suggest Password", style: .plain, target: self, action: #selector(suggestPassword))
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        
-        let items = [suggestPasswordButton, space]
-        toolbar.setItems(items, animated: false)
-        toolbar.sizeToFit()
-        toolbar.tintColor = .actionBlue
-        return toolbar
-    }()
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default
     }
@@ -93,22 +81,18 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         currentPasswordTextField.textField.returnKeyType = .next
         currentPasswordTextField.textField.isShowingAccessory = true
         currentPasswordTextField.textField.textContentType = .password
-
+        
         newPasswordTextField.placeholder = NSLocalizedString("New Password", comment: "")
         newPasswordTextField.textField.isSecureTextEntry = true
         newPasswordTextField.textField.returnKeyType = .next
         newPasswordTextField.textField.delegate = self
         
-        if #available(iOS 12.0, *) {
-            newPasswordTextField.textField.textContentType = .newPassword
-            confirmPasswordTextField.textField.textContentType = .newPassword
-            let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
-            newPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
-            confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
-        } else {
-            newPasswordTextField.textField.inputAccessoryView = toolbar
-            confirmPasswordTextField.textField.inputAccessoryView = toolbar
-        }
+        newPasswordTextField.textField.textContentType = .newPassword
+        confirmPasswordTextField.textField.textContentType = .newPassword
+        let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
+        newPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+        confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+        
         
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
         
@@ -244,30 +228,6 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
             }))
             self?.present(alert, animated: true)
         })
-    }
-    
-    @objc private func suggestPassword() {
-        guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
-        
-        GoogleAnalytics.log(event: .strongPasswordOffer)
-        
-        presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
-            message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
-            style: .actionSheet,
-            actions: [
-                UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
-                    self?.viewModel.hasStrongPassword = true
-                    self?.viewModel.newPassword.accept(strongPassword)
-                    self?.viewModel.confirmPassword.accept(strongPassword)
-                    self?.newPasswordTextField.textField.text = strongPassword
-                    self?.confirmPasswordTextField.textField.text = strongPassword
-                    self?.newPasswordTextField.textField.backgroundColor = .autoFillYellow
-                    self?.confirmPasswordTextField.textField.backgroundColor = .autoFillYellow
-                    self?.newPasswordTextField.textField.resignFirstResponder()
-                },
-                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            ]
-        )
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
