@@ -12,9 +12,9 @@ enum OpCo: String {
     case bge = "BGE"
     case comEd = "ComEd"
     case peco = "PECO"
-    case pepco = "Pepco"
+    case pepco = "PEP"
     case ace = "ACE"
-    case delmarva = "Delmarva"
+    case delmarva = "DPL"
     
     var displayString: String {
         switch self {

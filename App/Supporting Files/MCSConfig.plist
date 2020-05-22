@@ -184,7 +184,7 @@
 		<key>Test-pepcoMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-pepco-t-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-pepco-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -195,7 +195,7 @@
 		<key>Dev-pepcoMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-pepco-d-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-pepco-d-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -243,7 +243,7 @@
 		<key>Test-aceMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-atlanticcityelectric-t-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-ace-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -254,7 +254,7 @@
 		<key>Dev-aceMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-atlanticcityelectric-d-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-ace-d-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -302,7 +302,7 @@
 		<key>Test-delmarvaMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-delmarva-t-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-dpl-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -313,7 +313,7 @@
 		<key>Dev-delmarvaMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-delmarva-d-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-dpl-d-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
