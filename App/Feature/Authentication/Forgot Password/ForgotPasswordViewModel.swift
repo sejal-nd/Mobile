@@ -21,7 +21,7 @@ class ForgotPasswordViewModel {
     }
     
     func getInstructionLabelText() -> String {
-        return NSLocalizedString("Please enter your username/email address to have a temporary password sent to your primary email address on file. The temporary password is valid only for 1 hour from the time it was requested.", comment: "")
+        return (Environment.shared.opco == .bge || Environment.shared.opco == .peco || Environment.shared.opco == .comEd) ? NSLocalizedString("Please enter your username/email address to have a temporary password sent to your primary email address on file. The temporary password is valid only for 1 hour from the time it was requested.", comment: "") : NSLocalizedString("Please enter your username and we will send a temporary password to the email address on file. Your temporary password will only be valid for 1 hour from the time it is requested.", comment: "")
     }
     
     func submitForgotPassword(onSuccess: @escaping () -> Void, onProfileNotFound: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
