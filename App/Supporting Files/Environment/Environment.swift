@@ -16,6 +16,15 @@ enum OpCo: String {
     case ace = "ACE"
     case delmarva = "DPL"
     
+    var isPHI: Bool {
+        switch self {
+        case .bge, .comEd, .peco:
+            return false
+        case .pepco, .ace, .delmarva:
+            return true
+        }
+    }
+    
     var displayString: String {
         switch self {
         case .ace:
