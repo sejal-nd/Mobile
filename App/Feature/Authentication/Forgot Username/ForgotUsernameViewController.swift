@@ -52,7 +52,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         
-        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = Environment.shared.opco.isPHI ? NSLocalizedString("Phone Number*", comment: "") : NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self

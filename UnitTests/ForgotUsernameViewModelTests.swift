@@ -154,7 +154,8 @@ class ForgotUsernameViewModelTests: XCTestCase {
     }
     
     func testAccountNumberHasValidLength() {
-        let accountNumber = Environment.shared.opco == .bge || Environment.shared.opco == .comEd || Environment.shared.opco == .peco ? "2385012311" : "23850123112"
+        let accountNumber = Environment.shared.opco.isPHI ? "23850123112" : "2385012311"
+
         viewModel.accountNumber.accept(accountNumber)
         viewModel.accountNumberHasValidLength.asObservable().single().subscribe(onNext: { valid in
             if !valid {

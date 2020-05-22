@@ -38,8 +38,9 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.textColor = .deepGray
         instructionLabel.setLineHeight(lineHeight: 24)
-        
-        usernameTextField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
+        let placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
+
+        usernameTextField.placeholder = NSLocalizedString(placeholderText, comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .done
         usernameTextField.textField.textContentType = .username
@@ -90,7 +91,9 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         }, onProfileNotFound: { [weak self] error in
             LoadingView.hide()
             guard let self = self else { return }
-            self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
+            let errorMessage = Environment.shared.opco.isPHI ? "Error: Username (Email Address) is invalid." : error
+
+            self.usernameTextField.setError(NSLocalizedString(errorMessage, comment: ""))
             self.accessibilityErrorLabel()
         }, onError: { [weak self] errorMessage in
             LoadingView.hide()
