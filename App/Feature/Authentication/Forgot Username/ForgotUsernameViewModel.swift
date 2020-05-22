@@ -83,7 +83,7 @@ class ForgotUsernameViewModel {
             return Driver.combineLatest(self.phoneNumberHasTenDigits, self.identifierHasFourDigits, self.identifierIsNumeric)
             { $0 && $1 && $2 }
         } else {
-            return Driver.combineLatest(self.phoneNumberHasTenDigits, self.accountNumberHasTenDigits)
+            return Driver.combineLatest(self.phoneNumberHasTenDigits, self.accountNumberHasValidLength)
             { $0 && $1 }
         }
     }()
@@ -105,11 +105,12 @@ class ForgotUsernameViewModel {
             return digitsOnlyString.count == text.count
         }
     
-    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> = self.accountNumber.asDriver()
+    private(set) lazy var accountNumberHasValidLength: Driver<Bool> = self.accountNumber.asDriver()
         .map { [weak self] text -> Bool in
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.count == 10
+            let accountNumberLength = (Environment.shared.opco == .bge || Environment.shared.opco == .peco || Environment.shared.opco == .comEd) ? 10 : 11
+            return digitsOnlyString.count == accountNumberLength
         }
     
     private(set) lazy var securityQuestionAnswerNotEmpty: Driver<Bool> = self.securityQuestionAnswer.asDriver()
