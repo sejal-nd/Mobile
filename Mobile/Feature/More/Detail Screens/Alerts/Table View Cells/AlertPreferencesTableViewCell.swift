@@ -73,13 +73,13 @@ class AlertPreferencesTableViewCell: UITableViewCell {
             
             switch textFieldOptions.textFieldType {
             case .string:
-                textField.textField.keyboardType = .default
+                textField.setKeyboardType(.default)
             case .number:
-                textField.textField.keyboardType = .numberPad
+                textField.setKeyboardType(.numberPad)
             case .decimal:
-                textField.textField.keyboardType = .decimalPad
+                textField.setKeyboardType(.decimalPad)
             case .currency:
-                textField.textField.keyboardType = .decimalPad
+                textField.setKeyboardType(.decimalPad)
             }
         }
     }

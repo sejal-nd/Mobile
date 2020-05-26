@@ -316,7 +316,6 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                 }
                 cell.checkbox.rx.isChecked.asDriver()
                     .distinctUntilChanged()
-                    .skip(1)
                     .drive(onNext: { cell.textField.setEnabled($0) })
                     .disposed(by: cell.disposeBag)
             }
