@@ -188,6 +188,9 @@
 		2FA7B9FC1F0548F000D660B8 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		3090A637247E428900815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A634247E41FC00815EA1 /* splash.json */; };
+		3090A638247E428E00815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A635247E425A00815EA1 /* splash.json */; };
+		3090A639247E429500815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A636247E426400815EA1 /* splash.json */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -1352,7 +1355,6 @@
 		67DDB50124535D2E006CD6EB /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
 		67DDB50224535D2E006CD6EB /* ellipses_loading_white.json in Resources */ = {isa = PBXBuildFile; fileRef = 35AE569C214AD98500F633D0 /* ellipses_loading_white.json */; };
 		67DDB50324535D2E006CD6EB /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
-		67DDB50424535D2E006CD6EB /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
 		67DDB50524535D2E006CD6EB /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
 		67DDB50624535D2E006CD6EB /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		67DDB50724535D2E006CD6EB /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading.json */; };
@@ -1909,7 +1911,6 @@
 		67DDB75724535D32006CD6EB /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
 		67DDB75824535D32006CD6EB /* ellipses_loading_white.json in Resources */ = {isa = PBXBuildFile; fileRef = 35AE569C214AD98500F633D0 /* ellipses_loading_white.json */; };
 		67DDB75924535D32006CD6EB /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
-		67DDB75A24535D32006CD6EB /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
 		67DDB75B24535D32006CD6EB /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
 		67DDB75C24535D32006CD6EB /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		67DDB75D24535D32006CD6EB /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading.json */; };
@@ -2466,7 +2467,6 @@
 		67DDB9AD24535D35006CD6EB /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
 		67DDB9AE24535D35006CD6EB /* ellipses_loading_white.json in Resources */ = {isa = PBXBuildFile; fileRef = 35AE569C214AD98500F633D0 /* ellipses_loading_white.json */; };
 		67DDB9AF24535D35006CD6EB /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
-		67DDB9B024535D35006CD6EB /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
 		67DDB9B124535D35006CD6EB /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
 		67DDB9B224535D35006CD6EB /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		67DDB9B324535D35006CD6EB /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading.json */; };
@@ -5555,6 +5555,9 @@
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "App/Feature/Outage/Detail Pages/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
+		3090A634247E41FC00815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		3090A635247E425A00815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		3090A636247E426400815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		332CC2EF55B070505882B8EF /* Pods-BGEApp-BGEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
 		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
@@ -6984,6 +6987,30 @@
 				431D9D70DC52A20FBAB8C4CF /* Pods-ACEApp-ACEUnitTests.prodbeta.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		3090A631247E410F00815EA1 /* ACE */ = {
+			isa = PBXGroup;
+			children = (
+				3090A634247E41FC00815EA1 /* splash.json */,
+			);
+			path = ACE;
+			sourceTree = "<group>";
+		};
+		3090A632247E411F00815EA1 /* DPL */ = {
+			isa = PBXGroup;
+			children = (
+				3090A635247E425A00815EA1 /* splash.json */,
+			);
+			path = DPL;
+			sourceTree = "<group>";
+		};
+		3090A633247E412E00815EA1 /* PEPCO */ = {
+			isa = PBXGroup;
+			children = (
+				3090A636247E426400815EA1 /* splash.json */,
+			);
+			path = PEPCO;
 			sourceTree = "<group>";
 		};
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
@@ -8558,6 +8585,9 @@
 		8FD5AE971E54EA8C003F640D /* Lottie Animations */ = {
 			isa = PBXGroup;
 			children = (
+				3090A633247E412E00815EA1 /* PEPCO */,
+				3090A632247E411F00815EA1 /* DPL */,
+				3090A631247E410F00815EA1 /* ACE */,
 				E8FE30AD1E7875E5009D28B7 /* BGE */,
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
@@ -10275,6 +10305,7 @@
 				67DDB4E924535D2E006CD6EB /* checkmark_blue.json in Resources */,
 				67DDB4EA24535D2E006CD6EB /* loading.json in Resources */,
 				67DDB4EB24535D2E006CD6EB /* OpenSans-Light.ttf in Resources */,
+				3090A639247E429500815EA1 /* splash.json in Resources */,
 				67DDB4EC24535D2E006CD6EB /* confetti.json in Resources */,
 				67DDB4ED24535D2E006CD6EB /* OpenSans-Regular.ttf in Resources */,
 				67D73B04246C72F500450B63 /* environment.plist in Resources */,
@@ -10297,7 +10328,6 @@
 				67DDB50124535D2E006CD6EB /* account_details.json in Resources */,
 				67DDB50224535D2E006CD6EB /* ellipses_loading_white.json in Resources */,
 				67DDB50324535D2E006CD6EB /* message_bubble_quiz.json in Resources */,
-				67DDB50424535D2E006CD6EB /* splash.json in Resources */,
 				67DDB50524535D2E006CD6EB /* buddy_particles_sparkles.json in Resources */,
 				67DDB50624535D2E006CD6EB /* Unauthenticated.storyboard in Resources */,
 				67DDB50724535D2E006CD6EB /* sm_outage_loading.json in Resources */,
@@ -10444,6 +10474,7 @@
 				67DDB74124535D32006CD6EB /* OpenSans-Light.ttf in Resources */,
 				67DDB74224535D32006CD6EB /* confetti.json in Resources */,
 				67DDB74324535D32006CD6EB /* OpenSans-Regular.ttf in Resources */,
+				3090A637247E428900815EA1 /* splash.json in Resources */,
 				67DDB74424535D32006CD6EB /* MiniWalletItemRow.xib in Resources */,
 				67DDB74524535D32006CD6EB /* full_screen_loading.json in Resources */,
 				67D73B07246C72F800450B63 /* environment.plist in Resources */,
@@ -10470,7 +10501,6 @@
 				67DDB75724535D32006CD6EB /* account_details.json in Resources */,
 				67DDB75824535D32006CD6EB /* ellipses_loading_white.json in Resources */,
 				67DDB75924535D32006CD6EB /* message_bubble_quiz.json in Resources */,
-				67DDB75A24535D32006CD6EB /* splash.json in Resources */,
 				67DDB75B24535D32006CD6EB /* buddy_particles_sparkles.json in Resources */,
 				67DDB75C24535D32006CD6EB /* Unauthenticated.storyboard in Resources */,
 				67DDB75D24535D32006CD6EB /* sm_outage_loading.json in Resources */,
@@ -10613,6 +10643,7 @@
 				67DDB99524535D35006CD6EB /* checkmark_blue.json in Resources */,
 				67DDBDA92464523C006CD6EB /* GoogleService-Info_delmarva_hotfix.plist in Resources */,
 				67DDB99624535D35006CD6EB /* loading.json in Resources */,
+				3090A638247E428E00815EA1 /* splash.json in Resources */,
 				67DDB99724535D35006CD6EB /* OpenSans-Light.ttf in Resources */,
 				67DDB99824535D35006CD6EB /* confetti.json in Resources */,
 				67D73B05246C72F700450B63 /* environment.plist in Resources */,
@@ -10637,7 +10668,6 @@
 				67DDBD892457389E006CD6EB /* DelmarvaAssets.xcassets in Resources */,
 				67DDB9AE24535D35006CD6EB /* ellipses_loading_white.json in Resources */,
 				67DDB9AF24535D35006CD6EB /* message_bubble_quiz.json in Resources */,
-				67DDB9B024535D35006CD6EB /* splash.json in Resources */,
 				67DDB9B124535D35006CD6EB /* buddy_particles_sparkles.json in Resources */,
 				67DDB9B224535D35006CD6EB /* Unauthenticated.storyboard in Resources */,
 				67DDB9B324535D35006CD6EB /* sm_outage_loading.json in Resources */,
