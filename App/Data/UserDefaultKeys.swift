@@ -44,7 +44,7 @@ struct UserDefaultKeys {
     
     static let isKeepMeSignedInChecked = "kIsKeepMeSignedInChecked"
     
-    static let doNotShowIOS9VersionWarningAgain = "kdoNotShowIOS9VersionWarningAgain" // True if iOS 9 user selects "Don't warn me again" on alert
+    static let doNotShowIOS11VersionWarningAgain = "kdoNotShowIOS11VersionWarningAgain" // True if iOS 11 user selects "Don't warn me again" on alert
     
     // Gamification
     static let prefersGameHome = "kPrefersGameHome"
