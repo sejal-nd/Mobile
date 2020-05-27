@@ -238,7 +238,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 return viewModel.isDeviceBiometricCompatible() ? 60 : 0
             case 2:
                 guard AccountsStore.shared.accounts != nil else { return 0 }
-                return (Environment.shared.opco == .bge && AccountsStore.shared.accounts.count > 1) ? 60 : 0
+                return ((Environment.shared.opco == .bge || Environment.shared.opco.isPHI) && AccountsStore.shared.accounts.count > 1) ? 60 : 0
             case 3:
                 return Environment.shared.opco == .peco ? 60 : 0
             case 4:
@@ -254,7 +254,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 return 60
             case 1:
-                return 60
+                return Environment.shared.opco.isPHI && viewModel.billingVideosUrl == nil ? .zero : 60
             case 2:
                 return 60
             default:
