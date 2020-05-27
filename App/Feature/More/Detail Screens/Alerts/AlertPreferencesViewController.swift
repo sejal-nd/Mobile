@@ -316,7 +316,6 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                 }
                 cell.checkbox.rx.isChecked.asDriver()
                     .distinctUntilChanged()
-                    .skip(1)
                     .drive(onNext: { cell.textField.setEnabled($0) })
                     .disposed(by: cell.disposeBag)
             }
@@ -343,15 +342,12 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                     .skip(1)
                     .drive(onNext: { [weak self] in self?.showBillIsReadyToggleAlert(isOn: $0) })
                     .disposed(by: cell.disposeBag)
-            case .pepco:
-                // todo
-                break
+           case .pepco:
+                break // todo
             case .ace:
-                // todo
-                break
+                break // todo
             case .delmarva:
-                // todo
-                break
+                break // todo
             }
         case .paymentDueReminder:
             toggleVariable = viewModel.paymentDue

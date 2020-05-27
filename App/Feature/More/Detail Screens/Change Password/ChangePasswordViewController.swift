@@ -212,7 +212,8 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
-            self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
+            let errorMessage = self.tempPasswordWorkflow ? NSLocalizedString("Incorrect temporary password", comment: "") : NSLocalizedString("Incorrect current password", comment: "")
+            self.currentPasswordTextField.setError(errorMessage)
             self.accessibilityErrorLabel()
             if self.resetPasswordWorkflow {
                 self.havingTroubleView.isHidden = false
