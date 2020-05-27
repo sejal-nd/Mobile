@@ -185,11 +185,17 @@ struct EventParameter {
     enum Name: String {
         case action
         case value
+        case alternateContact = "alternate_contact"
     }
     
     enum Value: String {
         case errorCode
         case screenName
+        
+        case email
+        case text
+        case both
+        case none
         
         case unenrolled_start
         case enroll_complete
@@ -244,7 +250,7 @@ struct EventParameter {
         case gas_segment_press
         case last_bill_graph_press
         case last_year_graph_press
-                
+        
         case previous_bar_press
         case current_bar_press
         case projected_bar_press

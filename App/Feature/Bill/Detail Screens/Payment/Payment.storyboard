@@ -1875,6 +1875,8 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="6Mw-ba-RdS"/>
+                                                    <constraint firstItem="JIX-3T-ziZ" firstAttribute="top" secondItem="T7w-fl-RMa" secondAttribute="bottom" constant="36" id="YJq-7q-kJI"/>
+                                                    <constraint firstItem="T7w-fl-RMa" firstAttribute="top" secondItem="WJ6-Sv-i8y" secondAttribute="top" id="fhK-0U-7ZT"/>
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GxY-Rg-QtV" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">

@@ -22,7 +22,7 @@ struct MCSAlertsService: AlertsService {
             "setDefaults": firstLogin
         ]
         
-        return MCSApi.shared.post(pathPrefix: .none, path: "noti/registration", params: params)
+        return MCSApi.shared.post(pathPrefix: .none, path: "notification/registration", params: params)
             .mapTo(())
     }
 
