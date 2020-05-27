@@ -33,6 +33,11 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     @IBOutlet weak var eBillEnrollCheckbox: Checkbox!
     @IBOutlet weak var eBillEnrollInstructions: UILabel!
     
+    @IBOutlet weak var eBillAutoEnrollView: UIView!
+    @IBOutlet weak var eBillAutoEnrollDescriptionTextField: UILabel!
+    @IBOutlet weak var eBillUnEnrollTextField: UILabel!
+    @IBOutlet weak var eBillAutoEnrollSeparator: UIView!
+    
     @IBOutlet weak var accountListView: UIView!
     @IBOutlet weak var accountListStackView: UIStackView!
     @IBOutlet weak var accountListInstructionsLabel: UILabel!
@@ -90,6 +95,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         viewModel.paperlessEbill.accept(true)
         viewModel.allQuestionsAnswered.drive(registerButton.rx.isEnabled).disposed(by: disposeBag)
         
+        self.eBillAutoEnrollView.isHidden = true
         loadSecurityQuestions()
     }
     
@@ -101,6 +107,23 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
             guard let self = self else { return }
             if self.viewModel.isPaperlessEbillEligible {
                 self.loadAccounts()
+                let opco = Environment.shared.opco
+                if opco == .bge {
+                    self.eBillEnrollView.isHidden = true
+                    self.eBillAutoEnrollView.isHidden = false
+                    self.eBillEnrollCheckbox.isChecked = true
+                    self.eBillAutoEnrollDescriptionTextField.font = SystemFont.regular.of(textStyle: .callout)
+                    self.eBillAutoEnrollDescriptionTextField.textColor = .deepGray
+                    self.eBillAutoEnrollDescriptionTextField.setLineHeight(lineHeight: 16)
+                    self.eBillAutoEnrollDescriptionTextField.text = NSLocalizedString("By creating a My Account, you'll be automatically enrolled in Paperless eBill. When your bill is ready, you'll receive an email notification rather than a paper bill.", comment: "")
+                    
+                    self.eBillUnEnrollTextField.font = SystemFont.regular.of(textStyle: .callout)
+                    self.eBillUnEnrollTextField.textColor = .deepGray
+                    self.eBillUnEnrollTextField.setLineHeight(lineHeight: 16)
+                    self.eBillUnEnrollTextField.text = NSLocalizedString("Want to receive a paper bill? Unenroll in Paperless eBill by navigating to the Bill tab and updating your Billing Options.", comment: "")
+                    
+                    self.eBillAutoEnrollSeparator.backgroundColor = .accentGray
+                }
             } else {
                 UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
                 self.scrollView.isHidden = false

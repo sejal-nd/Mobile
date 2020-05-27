@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RbL-iO-8ib">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RbL-iO-8ib">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -271,13 +272,13 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAP-dP-E5T" userLabel="Logo Background">
-                                <rect key="frame" x="0.0" y="116" width="414" height="201"/>
+                                <rect key="frame" x="0.0" y="116" width="414" height="121"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYp-HC-CYV">
-                                        <rect key="frame" x="19" y="0.0" width="376" height="201"/>
+                                        <rect key="frame" x="19" y="0.0" width="376" height="121"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="oRl-ty-kRc">
-                                                <rect key="frame" x="-126" y="21" width="502" height="160"/>
+                                                <rect key="frame" x="125" y="21" width="251" height="80"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
@@ -2561,13 +2562,13 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="841"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgk-TP-ego" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1033"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1203"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQ2-TF-Src" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="335" height="1033"/>
+                                                <rect key="frame" x="20" y="0.0" width="335" height="1203"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="z7e-zj-tcN">
-                                                        <rect key="frame" x="0.0" y="20" width="335" height="993"/>
+                                                        <rect key="frame" x="0.0" y="20" width="335" height="1163"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Security questions blah, blah...." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7V-UA-c4Y">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
@@ -2651,8 +2652,47 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                     <constraint firstItem="wch-xm-nwd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EW3-6x-xcj" secondAttribute="top" id="yqx-Co-97g"/>
                                                                 </constraints>
                                                             </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E16-AX-zei">
+                                                                <rect key="frame" x="0.0" y="640.5" width="335" height="140"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20x-Ch-uU0">
+                                                                        <rect key="frame" x="-20" y="0.0" width="375" height="1"/>
+                                                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="1" id="RGk-9B-Gap"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKS-3r-8Uz">
+                                                                        <rect key="frame" x="0.0" y="21" width="335" height="43"/>
+                                                                        <string key="text">By creating a My Account, you’ll be automatically enrolled in Paperless eBill. When your bill is ready, you’ll receive an email notification rather than a paper bill.</string>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                        <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Want to receive a paper bill? Unenroll in Paperless eBill by navigating to the Bill tab and updating your Billing Options." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbw-12-oPB">
+                                                                        <rect key="frame" x="0.0" y="84" width="335" height="56"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                        <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="MKS-3r-8Uz" firstAttribute="leading" secondItem="E16-AX-zei" secondAttribute="leading" id="67D-Ee-LIv"/>
+                                                                    <constraint firstItem="Fbw-12-oPB" firstAttribute="leading" secondItem="E16-AX-zei" secondAttribute="leading" id="Bev-8K-7HG"/>
+                                                                    <constraint firstItem="Fbw-12-oPB" firstAttribute="top" secondItem="MKS-3r-8Uz" secondAttribute="bottom" constant="20" id="DK1-va-vI2"/>
+                                                                    <constraint firstItem="MKS-3r-8Uz" firstAttribute="top" secondItem="20x-Ch-uU0" secondAttribute="bottom" constant="20" id="HOE-62-ygy"/>
+                                                                    <constraint firstItem="20x-Ch-uU0" firstAttribute="top" secondItem="E16-AX-zei" secondAttribute="top" id="QKM-HF-yZM"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Fbw-12-oPB" secondAttribute="trailing" id="Rel-zI-uy7"/>
+                                                                    <constraint firstItem="20x-Ch-uU0" firstAttribute="leading" secondItem="E16-AX-zei" secondAttribute="leading" constant="-20" id="dIh-hZ-j0P"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="MKS-3r-8Uz" secondAttribute="trailing" id="oPs-Zo-Btj"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="20x-Ch-uU0" secondAttribute="trailing" constant="-20" id="pXc-Aq-TDf"/>
+                                                                    <constraint firstItem="Fbw-12-oPB" firstAttribute="top" secondItem="MKS-3r-8Uz" secondAttribute="bottom" constant="20" id="vK4-6w-4Re"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Fbw-12-oPB" secondAttribute="bottom" id="wfi-YZ-Y38"/>
+                                                                </constraints>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFW-6U-4Nj" userLabel="Account List View">
-                                                                <rect key="frame" x="0.0" y="640.5" width="335" height="352.5"/>
+                                                                <rect key="frame" x="0.0" y="810.5" width="335" height="352.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lM1-iK-G3B">
                                                                         <rect key="frame" x="0.0" y="15" width="335" height="337.5"/>
@@ -2717,6 +2757,8 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                             </view>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="E16-AX-zei" secondAttribute="trailing" id="B5I-f7-5wR"/>
+                                                            <constraint firstItem="E16-AX-zei" firstAttribute="leading" secondItem="z7e-zj-tcN" secondAttribute="leading" id="P3V-qD-gHD"/>
                                                             <constraint firstItem="xFW-6U-4Nj" firstAttribute="leading" secondItem="z7e-zj-tcN" secondAttribute="leading" id="Ysf-eG-Zd3"/>
                                                             <constraint firstAttribute="trailing" secondItem="xFW-6U-4Nj" secondAttribute="trailing" id="ggt-uc-LVy"/>
                                                         </constraints>
@@ -2806,9 +2848,13 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="accountListStackView" destination="lM1-iK-G3B" id="k25-vB-z36"/>
                         <outlet property="accountListView" destination="xFW-6U-4Nj" id="oHY-TS-bwh"/>
                         <outlet property="accountNumColHeaderLabel" destination="EiX-I2-QoZ" id="J2p-Yb-ifF"/>
+                        <outlet property="eBillAutoEnrollDescriptionTextField" destination="MKS-3r-8Uz" id="fE0-zw-L3k"/>
+                        <outlet property="eBillAutoEnrollSeparator" destination="20x-Ch-uU0" id="InG-PB-RKd"/>
+                        <outlet property="eBillAutoEnrollView" destination="E16-AX-zei" id="80Q-pU-6tt"/>
                         <outlet property="eBillEnrollCheckbox" destination="95Q-56-UIw" id="RQN-BG-2dZ"/>
                         <outlet property="eBillEnrollInstructions" destination="wch-xm-nwd" id="1Gb-GO-q8o"/>
                         <outlet property="eBillEnrollView" destination="EW3-6x-xcj" id="bHV-Gv-XcH"/>
+                        <outlet property="eBillUnEnrollTextField" destination="Fbw-12-oPB" id="66s-4C-lRh"/>
                         <outlet property="instructionLabel" destination="H7V-UA-c4Y" id="vDL-9a-Lk6"/>
                         <outlet property="loadingIndicator" destination="Vrb-vV-DRS" id="gJL-bi-9Nk"/>
                         <outlet property="question1AnswerTextField" destination="SmR-Dv-6Aa" id="bnp-6M-0lK"/>
@@ -2828,7 +2874,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQD-Fi-2MH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1920.8" y="1696.5517241379312"/>
+            <point key="canvasLocation" x="1919.5652173913045" y="1696.2053571428571"/>
         </scene>
         <!--Large Title Navigation Controller-->
         <scene sceneID="AQa-5u-uFm">
@@ -2913,28 +2959,28 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="798"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uca-EY-U9e" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="406.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="310.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSL-w0-3zh" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="406.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="374" height="310.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="cIh-fu-Toz">
-                                                        <rect key="frame" x="91" y="10" width="192" height="192"/>
+                                                        <rect key="frame" x="139" y="10" width="96" height="96"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your registration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4Q-I4-MJm">
-                                                        <rect key="frame" x="0.0" y="222" width="374" height="27.5"/>
+                                                        <rect key="frame" x="0.0" y="126" width="374" height="27.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGO-py-Dmb">
-                                                        <rect key="frame" x="0.0" y="269.5" width="374" height="22"/>
+                                                        <rect key="frame" x="0.0" y="173.5" width="374" height="22"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-HE-SDA" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="321.5" width="374" height="55"/>
+                                                        <rect key="frame" x="0.0" y="225.5" width="374" height="55"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="s0P-Xe-fHy"/>
                                                         </constraints>
