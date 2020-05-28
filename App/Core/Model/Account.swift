@@ -58,6 +58,7 @@ struct Account: Mappable, Equatable, Hashable {
 
 struct AccountDetail: Mappable {
     let accountNumber: String
+    let nickname: String?
     let premiseNumber: String?
     let address: String?
     
@@ -131,6 +132,7 @@ struct AccountDetail: Mappable {
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
         premiseNumber = map.optionalFrom("premiseNumber")
+        nickname = map.optionalFrom("accountNickname")
         address = map.optionalFrom("address")
         
         serviceType = map.optionalFrom("serviceType")
@@ -185,6 +187,15 @@ struct AccountDetail: Mappable {
         isPTREligible = map.optionalFrom("isPTREligible")
         isPTSEligible = map.optionalFrom("isPTSEligible")
         hasThirdPartySupplier = map.optionalFrom("hasThirdPartySupplier") ?? false
+    }
+    
+    // PHI will return nickname if it exists, otherwise account number is returned
+    var displayName: String {
+        if let nickname = nickname {
+            return nickname
+        } else {
+            return accountNumber
+        }
     }
     
     // BGE only - Smart Energy Rewards enrollment status
