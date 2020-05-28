@@ -31,17 +31,17 @@ class ContactUsViewModel {
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .pepco:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
+            let localizedString = String(format: NSLocalizedString("If you see a downed power line, %@ and then call Atlantic City Electric. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .ace:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
+            let localizedString = String(format: NSLocalizedString("If you see a downed power line, %@ and then call Atlantic City Electric. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .delmarva:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
+            let localizedString = String(format: NSLocalizedString("If you see a downed power line or smell natural gas, %@ and then call Delmarva. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         }
@@ -71,11 +71,11 @@ class ContactUsViewModel {
         case .peco:
             urlString = "https://secure.peco.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
         case .pepco:
-            urlString = "todo"
+            urlString = "https://secure.pepco.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
         case .ace:
-            urlString = "todo"
+            urlString = "https://secure.atlanticcityelectric.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
         case .delmarva:
-            urlString = "todo"
+            urlString = "https://secure.delmarva.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
         }
         
         return URL(string: urlString)!
@@ -86,12 +86,7 @@ class ContactUsViewModel {
         case .bge: return NSLocalizedString("Residential", comment: "")
         case .peco: return NSLocalizedString("All Customers", comment: "")
         case .comEd: return NSLocalizedString("Residential", comment: "")
-        case .pepco:
-            return NSLocalizedString("todo", comment: "")
-        case .ace:
-            return NSLocalizedString("todo", comment: "")
-        case .delmarva:
-            return NSLocalizedString("todo", comment: "")
+        case .ace, .delmarva ,.pepco: return NSLocalizedString("All Customers", comment: "")
         }
     }
     
@@ -100,12 +95,9 @@ class ContactUsViewModel {
         case .bge: return NSLocalizedString("Business", comment: "")
         case .comEd: return NSLocalizedString("Business", comment: "")
         case .peco: return  nil
-        case .pepco:
-            return NSLocalizedString("todo", comment: "")
-        case .ace:
-            return NSLocalizedString("todo", comment: "")
-        case .delmarva:
-            return NSLocalizedString("todo", comment: "")
+        case .pepco: return nil
+        case .ace: return nil
+        case .delmarva: return nil
         }
     }
     
@@ -114,12 +106,9 @@ class ContactUsViewModel {
         case .bge: return NSLocalizedString("TTY/TTD", comment: "")
         case .comEd: return NSLocalizedString("Spanish", comment: "")
         case .peco: return nil
-        case .pepco:
-            return NSLocalizedString("todo", comment: "")
-        case .ace:
-            return NSLocalizedString("todo", comment: "")
-        case .delmarva:
-            return NSLocalizedString("todo", comment: "")
+        case .pepco: return nil
+        case .ace: return nil
+        case .delmarva: return nil
         }
     }
     
@@ -128,12 +117,9 @@ class ContactUsViewModel {
         case .bge: return nil
         case .peco: return "1-800-841-4141"
         case .comEd: return "1-800-334-7661"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return "1-877-737-2662"
+        case .ace: return "1-800-833-7476"
+        case .delmarva: return "1-800-898-8042"
         }
     }
     
@@ -142,12 +128,9 @@ class ContactUsViewModel {
         case .bge: return "1-800-685-0123"
         case .peco: return "1-800-494-4000"
         case .comEd: return "1-800-334-7661"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return "202-833-7500"
+        case .ace: return "1-800-642-3780"
+        case .delmarva: return "1-800-375-7117"
         }
     }
     
@@ -156,12 +139,9 @@ class ContactUsViewModel {
         case .bge: return "1-800-265-6177"
         case .peco: return nil
         case .comEd: return "1-877-426-6331"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return nil
+        case .ace: return nil
+        case .delmarva: return nil
         }
     }
     
@@ -170,12 +150,9 @@ class ContactUsViewModel {
         case .bge: return "1-800-735-2258"
         case .peco: return nil
         case .comEd: return "1-800-955-8237"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return nil
+        case .ace: return nil
+        case .delmarva: return nil
         }
     }
     
@@ -195,13 +172,13 @@ class ContactUsViewModel {
             webLink = "https://www.facebook.com/ComEd"
         case .pepco:
             appLink = "todo"
-            webLink = "todo"
+            webLink = "https://www.facebook.com/PepcoConnect/"
         case .ace:
             appLink = "todo"
-            webLink = "todo"
+            webLink = "https://www.facebook.com/AtlanticCityElectric/"
         case .delmarva:
             appLink = "todo"
-            webLink = "todo"
+            webLink = "https://www.facebook.com/DelmarvaPower/"
         }
         
         if let url = URL(string: appLink), UIApplication.shared.canOpenURL(url) {
@@ -216,12 +193,9 @@ class ContactUsViewModel {
         case .bge: return "https://twitter.com/mybge"
         case .peco: return "https://twitter.com/pecoconnect"
         case .comEd: return "https://twitter.com/ComEd"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return "https://twitter.com/PepcoConnect"
+        case .ace: return "https://twitter.com/ACElecConnect"
+        case .delmarva: return "https://twitter.com/DelmarvaConnect"
         }
     }
     
@@ -230,12 +204,9 @@ class ContactUsViewModel {
         case .bge: return "https://www.youtube.com/user/BaltimoreGasElectric"
         case .peco: return "https://www.youtube.com/pecoconnect"
         case .comEd: return "https://www.youtube.com/user/CommonwealthEdison/ComEd"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return "https://www.youtube.com/channel/UCniqwfISC4GJ4za-76_dsfQ"
+        case .ace: return "https://www.youtube.com/channel/UCJTEhgLnOEBuryl6c6eR0kg"
+        case .delmarva: return "https://www.youtube.com/channel/UC9Gad0-uzbXim8p1HyK4KDA"
         }
     }
     
@@ -244,12 +215,9 @@ class ContactUsViewModel {
         case .bge: return "https://www.linkedin.com/company/5115"
         case .peco: return "https://www.linkedin.com/company-beta/4678"
         case .comEd: return "https://www.linkedin.com/company/comed"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return ""
+        case .ace: return ""
+        case .delmarva: return ""
         }
     }
     
@@ -258,12 +226,9 @@ class ContactUsViewModel {
         case .bge: return nil
         case .peco: return nil
         case .comEd: return "https://www.instagram.com/ComEd/"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return "https://www.instagram.com/pepcoconnect/"
+        case .ace: return nil
+        case .delmarva: return nil
         }
     }
     
@@ -272,12 +237,9 @@ class ContactUsViewModel {
         case .bge: return nil
         case .peco: return nil
         case .comEd: return "https://www.pinterest.com/comedil/"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return nil
+        case .ace: return nil
+        case .delmarva: return nil
         }
     }
     
@@ -286,12 +248,9 @@ class ContactUsViewModel {
         case .bge: return "https://www.flickr.com/photos/mybge"
         case .peco: return "https://www.flickr.com/pecoconnect"
         case .comEd: return "https://www.flickr.com/photos/commonwealthedison"
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .pepco: return ""
+        case .ace: return ""
+        case .delmarva: return ""
         }
     }
     
@@ -312,11 +271,14 @@ class ContactUsViewModel {
                     (linkedinURL, #imageLiteral(resourceName: "ic_linkedin"), "LinkedIn", .linkedin),
                     (flickrURL, #imageLiteral(resourceName: "ic_flickr"), "Flicker", .flickr)]
         case .pepco:
-            return []
-        case .ace:
-            return []
-        case .delmarva:
-            return []
+            return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook", .facebook),
+                    (twitterURL, #imageLiteral(resourceName: "ic_twitter"), "Twitter", .twitter),
+                    (youtubeURL, #imageLiteral(resourceName: "ic_youtube"), "YouTube", .youtube),
+                    (instagramURL, #imageLiteral(resourceName: "ic_instagram"), "Instagram", .instagram)]
+        case .ace, .delmarva:
+            return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook", .facebook),
+                    (twitterURL, #imageLiteral(resourceName: "ic_twitter"), "Twitter", .twitter),
+                    (youtubeURL, #imageLiteral(resourceName: "ic_youtube"), "YouTube", .youtube)]
         }
     }
     
