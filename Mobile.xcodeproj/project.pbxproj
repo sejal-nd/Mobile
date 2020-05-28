@@ -191,6 +191,15 @@
 		3090A637247E428900815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A634247E41FC00815EA1 /* splash.json */; };
 		3090A638247E428E00815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A635247E425A00815EA1 /* splash.json */; };
 		3090A639247E429500815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A636247E426400815EA1 /* splash.json */; };
+		3090A63A247F865B00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		3090A63B247F865E00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		3090A63C247F866100815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		3090A640247F9A4000815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
+		3090A641247F9A4200815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
+		3090A643247F9A6900815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
+		3090A644247F9F4800815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		3090A645247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		3090A646247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -4441,9 +4450,6 @@
 		B5AC06791E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */; };
 		B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* PECOAssets.xcassets */; };
 		B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */; };
@@ -4816,9 +4822,6 @@
 		E89E2B5F20333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
 		E89E2B6020333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
 		E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillBreakdownViewModelTests.swift */; };
-		E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
-		E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
-		E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
 		E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B21E5C99380031D934 /* Alerts.storyboard */; };
 		E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B21E5C99380031D934 /* Alerts.storyboard */; };
 		E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4B21E5C99380031D934 /* Alerts.storyboard */; };
@@ -5558,6 +5561,7 @@
 		3090A634247E41FC00815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A635247E425A00815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A636247E426400815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
 		332CC2EF55B070505882B8EF /* Pods-BGEApp-BGEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
 		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
@@ -7013,6 +7017,14 @@
 			path = PEPCO;
 			sourceTree = "<group>";
 		};
+		3090A63D247F8EAF00815EA1 /* EditAccountNickName */ = {
+			isa = PBXGroup;
+			children = (
+				3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */,
+			);
+			path = EditAccountNickName;
+			sourceTree = "<group>";
+		};
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
@@ -7078,6 +7090,7 @@
 		352B8D72230D70BD007F8CEE /* Detail Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3090A63D247F8EAF00815EA1 /* EditAccountNickName */,
 				3559C89A22F9C54000481A87 /* Appointments */,
 				352B8D71230D70B5007F8CEE /* Alerts */,
 				35A6C6DC211CC0A300C2A58F /* Updates */,
@@ -10846,7 +10859,6 @@
 				B0B083FB21710CDB00B1C632 /* Appt_Confirmed.json in Resources */,
 				B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
 				B089571F2217455200A97965 /* account_lookup.json in Resources */,
-				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				35C913A922EB6A98009DD71A /* ButtonRow.xib in Resources */,
@@ -10855,6 +10867,7 @@
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				9C62446822C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */,
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
+				3090A643247F9A6900815EA1 /* More.storyboard in Resources */,
 				676279EF247DB11100A57FBC /* TermPolicies.html in Resources */,
 				359BDB7822D8F9B2007002B0 /* outage_reported.json in Resources */,
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
@@ -10897,9 +10910,9 @@
 				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
-				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
+				3090A63A247F865B00815EA1 /* Assets.xcassets in Resources */,
 				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
 				9C2C600F23C91E3D0033785E /* coin_bonus_point.json in Resources */,
@@ -11008,6 +11021,7 @@
 				B07E18022211D31600B6E3C7 /* outage_status.json in Resources */,
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
 				358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */,
+				3090A63C247F866100815EA1 /* Assets.xcassets in Resources */,
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				35E18A902379B95A00384614 /* StateView.xib in Resources */,
 				9CC9978C237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
@@ -11015,7 +11029,6 @@
 				9C0EA5C3237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				9C0A2C3B23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
-				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2765215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
 				B07E17DB2209F0C900B6E3C7 /* bill_comparison.json in Resources */,
@@ -11076,7 +11089,6 @@
 				B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */,
 				9C0EA5A6237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				67D73AF3246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */,
-				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B08956FB2215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
@@ -11154,6 +11166,7 @@
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
+				3090A640247F9A4000815EA1 /* More.storyboard in Resources */,
 				B07E17D92209F0C900B6E3C7 /* accounts.json in Resources */,
 				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
@@ -11176,6 +11189,7 @@
 				B07E18032211D31700B6E3C7 /* outage_status.json in Resources */,
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
 				358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */,
+				3090A63B247F865E00815EA1 /* Assets.xcassets in Resources */,
 				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
 				35E18A8F2379B95A00384614 /* StateView.xib in Resources */,
 				9CC9978B237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
@@ -11191,7 +11205,6 @@
 				B0B083F121710C8900B1C632 /* Appt_Confirmed.json in Resources */,
 				9C0EA5B9237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
-				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				35C913AA22EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */,
@@ -11253,7 +11266,6 @@
 				82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				9CEE411E23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
-				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				3559C8B72301E4FF00481A87 /* AutoPay.storyboard in Resources */,
@@ -11322,6 +11334,7 @@
 				35376C6720F8FFC8007E50F7 /* BillImpactView.xib in Resources */,
 				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
+				3090A641247F9A4200815EA1 /* More.storyboard in Resources */,
 				67D73B2A246C88E500450B63 /* GoogleService-Info_comed_hotfix.plist in Resources */,
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
@@ -13516,6 +13529,7 @@
 				67DDB3F924535D2E006CD6EB /* PaperlessEBillViewController.swift in Sources */,
 				67DDB3FA24535D2E006CD6EB /* HomeEditCardCell.swift in Sources */,
 				67DDB3FB24535D2E006CD6EB /* HomeCard.swift in Sources */,
+				3090A646247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */,
 				67DDB3FC24535D2E006CD6EB /* BudgetBillingViewModel.swift in Sources */,
 				67DDB3FD24535D2E006CD6EB /* BillComparison.swift in Sources */,
 				67DDB3FE24535D2E006CD6EB /* BillingHistoryViewController.swift in Sources */,
@@ -13958,6 +13972,7 @@
 				67DDB66624535D32006CD6EB /* OutageInfo.swift in Sources */,
 				67DDB66724535D32006CD6EB /* TemperatureSliderView.swift in Sources */,
 				67DDB66824535D32006CD6EB /* ServiceResult.swift in Sources */,
+				3090A644247F9F4800815EA1 /* EditAccountNickNameViewController.swift in Sources */,
 				67DDB66924535D32006CD6EB /* Binders.swift in Sources */,
 				67DDB66A24535D32006CD6EB /* A0SimpleKeychain.m in Sources */,
 				67DDB66B24535D32006CD6EB /* OutageMapViewController.swift in Sources */,
@@ -14375,6 +14390,7 @@
 				67DDB8BC24535D35006CD6EB /* OutageInfo.swift in Sources */,
 				67DDB8BD24535D35006CD6EB /* TemperatureSliderView.swift in Sources */,
 				67DDB8BE24535D35006CD6EB /* ServiceResult.swift in Sources */,
+				3090A645247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */,
 				67DDB8BF24535D35006CD6EB /* Binders.swift in Sources */,
 				67DDB8C024535D35006CD6EB /* A0SimpleKeychain.m in Sources */,
 				67DDB8C124535D35006CD6EB /* OutageMapViewController.swift in Sources */,
