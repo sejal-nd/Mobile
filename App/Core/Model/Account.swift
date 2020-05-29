@@ -11,6 +11,7 @@ import Mapper
 
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
+    let accountNickname: String
     let address: String?
     let premises: [Premise]
     var currentPremise: Premise?
@@ -26,6 +27,7 @@ struct Account: Mappable, Equatable, Hashable {
 
     init(map: Mapper) throws {
         accountNumber = try map.from("accountNumber")
+        accountNickname = try map.from("accountNickname")
         address = map.optionalFrom("address")
         premises = map.optionalFrom("PremiseInfo") ?? []
         
