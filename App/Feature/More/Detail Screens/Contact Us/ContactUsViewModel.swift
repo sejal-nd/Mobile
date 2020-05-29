@@ -171,13 +171,13 @@ class ContactUsViewModel {
             appLink = "fb://profile/114368811967421"
             webLink = "https://www.facebook.com/ComEd"
         case .pepco:
-            appLink = "todo"
+            appLink = "fb://profile/204880427309"
             webLink = "https://www.facebook.com/PepcoConnect/"
         case .ace:
-            appLink = "todo"
+            appLink = "fb://profile/161778507233599"
             webLink = "https://www.facebook.com/AtlanticCityElectric/"
         case .delmarva:
-            appLink = "todo"
+            appLink = "fb://profile/214492525252095"
             webLink = "https://www.facebook.com/DelmarvaPower/"
         }
         
