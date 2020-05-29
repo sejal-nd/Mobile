@@ -451,9 +451,12 @@ class ReviewPaymentViewController: UIViewController {
 
 extension ReviewPaymentViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        if textField == alternateEmailTextField.textField && (string == " ") {
+            return false
+        }
         
         if textField == alternateNumberTextField.textField {
+            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
             let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
             
             let decimalString = components.joined(separator: "") as NSString
