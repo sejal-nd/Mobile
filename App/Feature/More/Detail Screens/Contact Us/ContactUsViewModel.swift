@@ -29,14 +29,10 @@ class ContactUsViewModel {
             let localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
-        case .pepco:
+        case .pepco, .ace:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see a downed power line, %@ and then call Pepco. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
-            emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
-        case .ace:
-            let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see a downed power line, %@ and then call Atlantic City Electric. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
+            let opcoTitle = opco.displayString
+            let localizedString = String(format: NSLocalizedString("If you see a downed power line, %@ and then call %@. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString, opcoTitle)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .delmarva:
