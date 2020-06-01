@@ -84,7 +84,7 @@ class UnauthenticatedOutageViewModel {
     }
     
     var continueButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(phoneNumberTextFieldEnabled, phoneNumberHasTenDigits, accountNumberTextFieldEnabled, accountNumberHasTenDigits).map {
+        return Driver.combineLatest(phoneNumberTextFieldEnabled, phoneNumberHasTenDigits, accountNumberTextFieldEnabled, accountNumberHasValidlength).map {
             return ($0 && $1) || ($2 && $3)
         }
     }
@@ -108,9 +108,9 @@ class UnauthenticatedOutageViewModel {
         }
     }
     
-    var accountNumberHasTenDigits: Driver<Bool> {
+    var accountNumberHasValidlength: Driver<Bool> {
         return self.accountNumber.asDriver().map {
-            $0.count == 10
+            $0.count == (Environment.shared.opco.isPHI ? 11 : 10)
         }
     }
     
@@ -180,17 +180,21 @@ class UnauthenticatedOutageViewModel {
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
         case .pepco:
-            let phone1 = "todo"
+            let phone1 = "1-877-737-2662"
             phoneNumbers = [phone1]
-            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@", phone1)
         case .ace:
-            let phone1 = "todo"
+            let phone1 = "1-800-833-7476"
             phoneNumbers = [phone1]
-            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@", phone1)
         case .delmarva:
-            let phone1 = "todo"
-            phoneNumbers = [phone1]
-            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+            let phone1 = "302-454-0317"
+            let phone2 = "1-800-898-8042"
+            phoneNumbers = [phone1, phone2]
+            localizedString = String.localizedStringWithFormat("""
+            If you smell natural gas, leave the area immediately and call %@\n
+            To report a downed or sparking power line, please call %@
+            """, phone1, phone2)
         }
         
         let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])

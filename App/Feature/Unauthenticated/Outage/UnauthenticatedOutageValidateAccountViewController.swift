@@ -131,12 +131,13 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
         }).disposed(by: disposeBag)
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
+            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasValidlength))
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 if !$1 {
-                    self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+                    let errorMessage = NSLocalizedString("Account number must be \(Environment.shared.opco.isPHI ? 11 : 10) digits long.", comment: "")
+                    self.accountNumberTextField.setError(errorMessage)
                 }
                 self.accessibilityErrorLabel()
             })
@@ -297,7 +298,7 @@ extension UnauthenticatedOutageValidateAccountViewController: UITextFieldDelegat
             return false
         } else if textField == accountNumberTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Environment.shared.opco.isPHI ? 11 : 10)
         }
         
         return true
