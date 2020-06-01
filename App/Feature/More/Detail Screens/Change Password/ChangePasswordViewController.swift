@@ -168,6 +168,7 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         FirebaseUtility.logEvent(.changePasswordStart)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.setHidesBackButton(tempPasswordWorkflow, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {

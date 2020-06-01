@@ -44,65 +44,90 @@ class MoreUITests: ExelonUITestCase {
         
         let tableView = app.tables.matching(identifier: "moreTableView")
         
-        if appOpCo == .bge {
+        if appOpCo == .bge || appOpCo == .ace || appOpCo == .delmarva || appOpCo == .pepco {
             let cell = tableView.cells.element(matching: .cell, identifier: "Set Default Account")
             XCTAssertTrue(cell.isHittable)
         } else if appOpCo == .peco {
             let cell = tableView.cells.element(matching: .cell, identifier: "Release of Information")
             XCTAssertTrue(cell.isHittable)
+        } else if appOpCo == .ace || appOpCo == .delmarva || appOpCo == .pepco {
+            let cell = tableView.cells.element(matching: .cell, identifier: "Edit Account Nickname")
+            XCTAssertTrue(cell.isHittable)
         }
     }
 
     func testContactUsButtonAndLayout() {
-       let tableView = app.tables.matching(identifier: "moreTableView")
-       let cell = tableView.cells.element(matching: .cell, identifier: "Contact Us")
-       cell.tap()
-       
-       checkExistenceOfElements([
-           (.navigationBar, "Contact Us"),
-           (.staticText, "Emergency"),
-           (.button, "Submit Form"),
-           (.staticText, "Contact Us Online"),
-           (.staticText, "M-F 7AM to 7PM"),
-           (.staticText, "Use our online form to contact us with general questions. This form is for non-emergency purposes only."),
-           (.button, "Facebook"),
-           (.button, "Twitter"),
-           (.button, "Flicker"),
-           (.button, "YouTube"),
-           (.button, "LinkedIn")
-       ])
-       
-       switch appOpCo {
-       case .bge:
-           checkExistenceOfElements([
-               (.link, "1-800-685-0123"),
-               (.link, "1-800-265-6177"),
-               (.link, "1-800-735-2258"),
-               (.staticText, "Residential"),
-               (.staticText, "Business"),
-               (.staticText, "TTY/TTD"),
-               (.staticText, "If you see downed power lines or smell natural gas, leave the area immediately and then call BGE. Representatives are available 24 hours a day, 7 days a week.")
-           ])
-       case .comEd:
-           checkExistenceOfElements([
-               (.link, "1-800-334-7661"),
-               (.link, "1-877-426-6331"),
-               (.link, "1-800-955-8237"),
-               (.staticText, "Residential"),
-               (.staticText, "Business"),
-               (.staticText, "Spanish"),
-               (.staticText, "If you see downed power lines, leave the area immediately and then call ComEd. Representatives are available 24 hours a day, 7 days a week."),
-               (.button, "Instagram"),
-               (.button, "Pinterest")
-           ])
-       case .peco:
-           checkExistenceOfElements([
-               (.link, "1-800-841-4141"),
-               (.link, "1-800-494-4000"),
-               (.staticText, "All Customers"),
-               (.staticText, "If you see downed power lines or smell natural gas, leave the area immediately and then call PECO. Representatives are available 24 hours a day, 7 days a week.")
-           ])
-       }
+        let tableView = app.tables.matching(identifier: "moreTableView")
+        let cell = tableView.cells.element(matching: .cell, identifier: "Contact Us")
+        cell.tap()
+        
+        checkExistenceOfElements([
+            (.navigationBar, "Contact Us"),
+            (.staticText, "Emergency"),
+            (.button, "Submit Form"),
+            (.staticText, "Contact Us Online"),
+            (.staticText, "M-F 7AM to 7PM"),
+            (.staticText, "Use our online form to contact us with general questions. This form is for non-emergency purposes only."),
+            (.button, "Facebook"),
+            (.button, "Twitter"),
+            (.button, "Flicker"),
+            (.button, "YouTube"),
+            (.button, "LinkedIn")
+        ])
+        
+        switch appOpCo {
+        case .bge:
+            checkExistenceOfElements([
+                (.link, "1-800-685-0123"),
+                (.link, "1-800-265-6177"),
+                (.link, "1-800-735-2258"),
+                (.staticText, "Residential"),
+                (.staticText, "Business"),
+                (.staticText, "TTY/TTD"),
+                (.staticText, "If you see downed power lines or smell natural gas, leave the area immediately and then call BGE. Representatives are available 24 hours a day, 7 days a week.")
+            ])
+        case .comEd:
+            checkExistenceOfElements([
+                (.link, "1-800-334-7661"),
+                (.link, "1-877-426-6331"),
+                (.link, "1-800-955-8237"),
+                (.staticText, "Residential"),
+                (.staticText, "Business"),
+                (.staticText, "Spanish"),
+                (.staticText, "If you see downed power lines, leave the area immediately and then call ComEd. Representatives are available 24 hours a day, 7 days a week."),
+                (.button, "Instagram"),
+                (.button, "Pinterest")
+            ])
+        case .peco:
+            checkExistenceOfElements([
+                (.link, "1-800-841-4141"),
+                (.link, "1-800-494-4000"),
+                (.staticText, "All Customers"),
+                (.staticText, "If you see downed power lines or smell natural gas, leave the area immediately and then call PECO. Representatives are available 24 hours a day, 7 days a week.")
+            ])
+        case .ace:
+            checkExistenceOfElements([
+                (.link, "1-800-833-7476"),
+                (.link, "1-800-642-3780"),
+                (.staticText, "All Customers"),
+                (.staticText, "If you see a downed power line, leave the area immediately and then call Atlantic City Electric. Representatives are available 24 hours a day, 7 days a week.")
+            ])
+        case .delmarva:
+            checkExistenceOfElements([
+                (.link, "1-800-898-8042"),
+                (.link, "1-800-375-7117"),
+                (.staticText, "All Customers"),
+                (.staticText, "If you see a downed power line or smell natural gas, leave the area immediately and then call Delmarva. Representatives are available 24 hours a day, 7 days a week.")
+            ])
+        case .pepco:
+            checkExistenceOfElements([
+                (.link, "1-877-737-2662"),
+                (.link, "202-833-7500"),
+                (.staticText, "All Customers"),
+                (.staticText, "If you see a downed power line, leave the area immediately and then call Pepco. Representatives are available 24 hours a day, 7 days a week")
+                (.button, "Instagram")
+            ])
+        }
     }
     
     func testPoliciesAndTermsButtonAndLayout() {
