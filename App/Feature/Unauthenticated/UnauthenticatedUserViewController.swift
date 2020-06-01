@@ -106,11 +106,11 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
                 break
             }
         } else if let vc = segue.destination as? OutageMapViewController {
-            // TODO: Replace the correct event for report streetlight
-            let event: GoogleAnalyticsEvent = segue.identifier == "outageMapSegue" ? .viewOutageMapGuestMenu : .viewOutageMapGuestMenu
             vc.unauthenticatedExperience = true
-            GoogleAnalytics.log(event: event)
-
+            if Environment.shared.opco.isPHI {
+                GoogleAnalytics.log(event: .viewOutageMapGuestMenu)
+            }
+            
         } else if let vc = segue.destination as? ContactUsViewController {
             vc.unauthenticatedExperience = true
         } else if let vc = segue.destination as? UpdatesViewController {
