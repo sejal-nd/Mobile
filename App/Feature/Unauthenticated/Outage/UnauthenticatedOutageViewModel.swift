@@ -53,6 +53,9 @@ class UnauthenticatedOutageViewModel {
                         } else if Environment.shared.opco == .peco {
                             onError(NSLocalizedString("Gas Only Account", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: ""))
                             return
+                        } else if Environment.shared.opco == .delmarva {
+                            onError(NSLocalizedString("Gas Only Account", comment: ""), NSLocalizedString("Natural gas emergencies cannot be reported online, but we want to hear from you right away.\n\nIf you smell natural gas, leave the area immediately and call 302-454-0317", comment: ""))
+                            return
                         }
                     }
                 } else {
