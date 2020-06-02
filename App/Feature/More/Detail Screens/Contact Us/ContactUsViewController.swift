@@ -87,17 +87,24 @@ class ContactUsViewController: UIViewController {
         if Environment.shared.opco == .bge {
             emergencyNumberTextView.isHidden = true
             bgeOnlySpacer.isHidden = true
+            bgeGasNumberLabel.text = NSLocalizedString("Gas Emergency", comment: "")
+            bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
+        } else if Environment.shared.opco == .delmarva {
+            // Only the first row is needed, rest needs to be hidden
+            bgeOnlyStackView.isHidden = false
+            bgePowerLineNumber1TextView.isHidden = true
+            bgePowerLineNumber2TextView.isHidden = true
+            bgeGasNumber2TextView.isHidden = true
+            bgePowerLineLabel.isHidden = true
+            bgeGasNumberLabel.text = NSLocalizedString("Natural Gas Emergency", comment: "")
+            bgeGasNumber1TextView.text = viewModel.delmarvaGasNumber
+            // Change the height as the stack view needs to be shrinked to a smaller height
+            bgeOnlyStackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         } else {
             bgeOnlyStackView.isHidden = true
         }
+        
         bgeGasNumberLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        if Environment.shared.opco == .bge {
-            bgeGasNumberLabel.text = "Gas Emergency"
-            bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
-        } else if Environment.shared.opco == .delmarva {
-            bgeGasNumberLabel.text = "Natural Gas Emergency"
-            bgeGasNumber1TextView.text = viewModel.delmarvaGasNumber
-        }
         bgeGasNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
         bgeGasNumber1TextView.linkTapDelegate = self
         bgeGasNumber2TextView.text = viewModel.bgeGasNumber2
