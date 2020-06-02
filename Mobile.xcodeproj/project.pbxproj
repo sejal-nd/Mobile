@@ -200,9 +200,9 @@
 		3090A644247F9F4800815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		3090A645247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		3090A646247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
-		3090A64B248111BE00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		3090A64C248111BF00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		3090A64D248111C000815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		3090A6AB24864E8F00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		3090A6AC24864E9100815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		3090A6AD24864E9200815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -10312,6 +10312,7 @@
 				67DDB4E124535D2E006CD6EB /* message_bubble_unique.json in Resources */,
 				67DDB4E224535D2E006CD6EB /* Storm.storyboard in Resources */,
 				67DDB4E324535D2E006CD6EB /* Payment.storyboard in Resources */,
+				3090A6AB24864E8F00815EA1 /* Assets.xcassets in Resources */,
 				67DDB4E424535D2E006CD6EB /* outage_loading.json in Resources */,
 				67DDB4E524535D2E006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
 				67DDB4E624535D2E006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
@@ -10323,7 +10324,6 @@
 				67DDB4EC24535D2E006CD6EB /* confetti.json in Resources */,
 				67DDB4ED24535D2E006CD6EB /* OpenSans-Regular.ttf in Resources */,
 				67D73B04246C72F500450B63 /* environment.plist in Resources */,
-				3090A64B248111BE00815EA1 /* Assets.xcassets in Resources */,
 				67DDB4EE24535D2E006CD6EB /* MiniWalletItemRow.xib in Resources */,
 				67DDB4EF24535D2E006CD6EB /* full_screen_loading.json in Resources */,
 				67DDB4F024535D2E006CD6EB /* SERPTSGraphView.xib in Resources */,
@@ -10481,7 +10481,7 @@
 				67DDB73924535D32006CD6EB /* Payment.storyboard in Resources */,
 				67DDB73A24535D32006CD6EB /* outage_loading.json in Resources */,
 				67DDB73B24535D32006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
-				3090A64D248111C000815EA1 /* Assets.xcassets in Resources */,
+				3090A6AD24864E9200815EA1 /* Assets.xcassets in Resources */,
 				67DDB73C24535D32006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
 				67DDB73D24535D32006CD6EB /* maintenance.json in Resources */,
 				67DDB73F24535D32006CD6EB /* checkmark_blue.json in Resources */,
@@ -10650,6 +10650,7 @@
 				67DDB98E24535D35006CD6EB /* Storm.storyboard in Resources */,
 				67DDB98F24535D35006CD6EB /* Payment.storyboard in Resources */,
 				67DDB99024535D35006CD6EB /* outage_loading.json in Resources */,
+				3090A6AC24864E9100815EA1 /* Assets.xcassets in Resources */,
 				67DDB99124535D35006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
 				67DDB99224535D35006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
 				67DDB99324535D35006CD6EB /* maintenance.json in Resources */,
@@ -10661,7 +10662,6 @@
 				67DDB99724535D35006CD6EB /* OpenSans-Light.ttf in Resources */,
 				67DDB99824535D35006CD6EB /* confetti.json in Resources */,
 				67D73B05246C72F700450B63 /* environment.plist in Resources */,
-				3090A64C248111BF00815EA1 /* Assets.xcassets in Resources */,
 				67DDB99924535D35006CD6EB /* OpenSans-Regular.ttf in Resources */,
 				67DDB99A24535D35006CD6EB /* MiniWalletItemRow.xib in Resources */,
 				67DDB99B24535D35006CD6EB /* full_screen_loading.json in Resources */,
