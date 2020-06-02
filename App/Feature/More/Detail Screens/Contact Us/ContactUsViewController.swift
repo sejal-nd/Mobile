@@ -39,6 +39,7 @@ class ContactUsViewController: UIViewController {
     @IBOutlet weak var thirdLabel: UILabel!
     @IBOutlet weak var thirdNumberTextView: ZeroInsetDataDetectorTextView!
     
+    @IBOutlet weak var contactServiceTimingsLabel: UILabel!
     @IBOutlet var dividerLines: [UIView]!
     @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!
     
@@ -90,7 +91,13 @@ class ContactUsViewController: UIViewController {
             bgeOnlyStackView.isHidden = true
         }
         bgeGasNumberLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
+        if Environment.shared.opco == .bge {
+            bgeGasNumberLabel.text = "Gas Emergency"
+            bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
+        } else if Environment.shared.opco == .delmarva {
+            bgeGasNumberLabel.text = "Natural Gas Emergency"
+            bgeGasNumber1TextView.text = viewModel.delmarvaGasNumber
+        }
         bgeGasNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
         bgeGasNumber1TextView.linkTapDelegate = self
         bgeGasNumber2TextView.text = viewModel.bgeGasNumber2
@@ -127,6 +134,7 @@ class ContactUsViewController: UIViewController {
     func customerServiceSetup() {
         firstLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         firstLabel.text = viewModel.label1
+        contactServiceTimingsLabel.text = viewModel.contactServiceTimings
         firstNumberTextView.text = viewModel.phoneNumber2
         firstNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         firstNumberTextView.linkTapDelegate = self

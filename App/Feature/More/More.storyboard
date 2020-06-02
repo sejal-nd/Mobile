@@ -668,6 +668,7 @@
                         <outlet property="bgePowerLineLabel" destination="mxE-rp-BAb" id="Umf-Yy-PLy"/>
                         <outlet property="bgePowerLineNumber1TextView" destination="wHd-3p-gW6" id="a2e-Bu-Ihn"/>
                         <outlet property="bgePowerLineNumber2TextView" destination="Sji-cR-f48" id="h64-51-fUd"/>
+                        <outlet property="contactServiceTimingsLabel" destination="ErB-uK-T36" id="EEc-Pi-utV"/>
                         <outlet property="containerStack" destination="DvH-Sa-CNn" id="4ob-aX-Xny"/>
                         <outlet property="emergencyDescriptionLabel" destination="GQY-Y5-n2N" id="HaG-NJ-Ms5"/>
                         <outlet property="emergencyNumberTextView" destination="zmU-DR-aYZ" id="hR6-lo-Nq6"/>
