@@ -201,6 +201,10 @@ class MCSApi {
                     throw ServiceError()
                 }
                 
+                for header in response.allHeaderFields {
+                    print("\(header.key): \(header.value)")
+                }
+                
                 do {
                     let parsedData = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     let result = MCSResponseParser.parse(data: parsedData)
