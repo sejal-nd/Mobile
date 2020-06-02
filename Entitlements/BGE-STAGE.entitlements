@@ -6,7 +6,7 @@
 	<string>production</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>webcredentials:azstg.bge.com</string>
+		<string>webcredentials:azstage.bge.com</string>
 		<string>applinks:azstg-secure.bge.com</string>
 		<string>webcredentials:azstg-secure.bge.com</string>
 	</array>
