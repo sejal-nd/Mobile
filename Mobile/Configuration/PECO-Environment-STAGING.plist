@@ -11,13 +11,13 @@
 	<key>mcsInstanceName</key>
 	<string>Stage-pecoMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://azstg.peco.com/MyAccount</string>
+	<string>https://azstage.peco.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_peco_staging</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-17</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.peco.com</string>
+	<string>azstage.peco.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.peco.com</string>
 	<key>appCenterId</key>

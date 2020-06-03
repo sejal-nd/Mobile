@@ -30,6 +30,7 @@ class AppointmentDetailViewModel {
     var showProgressView: Bool {
         switch status {
         case .scheduled: return true
+        case .onOurWay: return true
         case .enRoute: return true
         case .inProgress: return true
         case .complete: return true
@@ -40,6 +41,7 @@ class AppointmentDetailViewModel {
     var showAdjustAlertPreferences: Bool {
         switch status {
         case .scheduled: return true
+        case .onOurWay: return true
         case .enRoute: return true
         case .inProgress: return true
         case .complete: return false
@@ -51,7 +53,7 @@ class AppointmentDetailViewModel {
         switch status {
         case .scheduled:
             return true
-        case .enRoute, .inProgress, .complete, .canceled:
+        case .onOurWay, .enRoute, .inProgress, .complete, .canceled:
             return false
         }
     }
@@ -64,6 +66,8 @@ class AppointmentDetailViewModel {
         switch appointment.status {
         case .scheduled:
             return scheduledApptDescription
+        case .onOurWay:
+            fallthrough
         case .enRoute:
             return NSLocalizedString("Your technician is on their way for your appointment today.", comment: "")
                 .attributedString(textAlignment: .center,
