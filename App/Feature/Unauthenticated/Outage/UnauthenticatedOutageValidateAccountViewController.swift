@@ -41,7 +41,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
         headerLabel.font = SystemFont.regular.of(textStyle: .headline)
         headerLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         
-        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = Environment.shared.opco.isPHI ? NSLocalizedString("Phone Number*", comment: "") : NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad, doneActionTarget: self, doneActionSelector: #selector(onKeyboardDonePress))
         phoneNumberTextField.textField.delegate = self
@@ -131,12 +131,13 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
         }).disposed(by: disposeBag)
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
+            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasValidlength))
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 if !$1 {
-                    self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
+                    let errorMessage = NSLocalizedString("Account number must be \(Environment.shared.opco.isPHI ? 11 : 10) digits long.", comment: "")
+                    self.accountNumberTextField.setError(errorMessage)
                 }
                 self.accessibilityErrorLabel()
             })
@@ -235,12 +236,8 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
             description = NSLocalizedString("Your Account Number is located in the upper right portion of a residential bill and the upper center portion of a commercial bill. Please enter all 10 digits, including leading zeros, but no dashes.", comment: "")
         case .peco:
             description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
-        case .pepco:
-            description = NSLocalizedString("todo.", comment: "")
-        case .ace:
-            description = NSLocalizedString("todo.", comment: "")
-        case .delmarva:
-            description = NSLocalizedString("todo.", comment: "")
+        case .ace, .delmarva, .pepco:
+            description = NSLocalizedString("Your Account Number is located in the upper-left portion of your bill. Please enter all 11 digits, but no spaces", comment: "")
         }
         let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
         navigationController?.present(infoModal, animated: true, completion: nil)
@@ -297,7 +294,7 @@ extension UnauthenticatedOutageValidateAccountViewController: UITextFieldDelegat
             return false
         } else if textField == accountNumberTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Environment.shared.opco.isPHI ? 11 : 10)
         }
         
         return true
