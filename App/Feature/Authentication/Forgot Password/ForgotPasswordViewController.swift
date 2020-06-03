@@ -91,7 +91,7 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         }, onProfileNotFound: { [weak self] error in
             LoadingView.hide()
             guard let self = self else { return }
-            let errorMessage = Environment.shared.opco.isPHI ? "Error: Username (Email Address) is invalid." : error
+            let errorMessage = Environment.shared.opco.isPHI ? "Username (Email Address) is invalid." : error
 
             self.usernameTextField.setError(NSLocalizedString(errorMessage, comment: ""))
             self.accessibilityErrorLabel()

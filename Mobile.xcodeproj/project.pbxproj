@@ -200,6 +200,9 @@
 		3090A644247F9F4800815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		3090A645247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		3090A646247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		3090A6AB24864E8F00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		3090A6AC24864E9100815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		3090A6AD24864E9200815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -1296,7 +1299,6 @@
 		67DDB4B424535D2E006CD6EB /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
 		67DDB4B524535D2E006CD6EB /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
 		67DDB4B624535D2E006CD6EB /* OutageStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB6A22D8DCEC007002B0 /* OutageStatusView.xib */; };
-		67DDB4B724535D2E006CD6EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		67DDB4B824535D2E006CD6EB /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		67DDB4B924535D2E006CD6EB /* DisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */; };
 		67DDB4BA24535D2E006CD6EB /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
@@ -1851,7 +1853,6 @@
 		67DDB70A24535D32006CD6EB /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
 		67DDB70B24535D32006CD6EB /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
 		67DDB70C24535D32006CD6EB /* OutageStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB6A22D8DCEC007002B0 /* OutageStatusView.xib */; };
-		67DDB70D24535D32006CD6EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		67DDB70E24535D32006CD6EB /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		67DDB70F24535D32006CD6EB /* DisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */; };
 		67DDB71024535D32006CD6EB /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
@@ -2407,7 +2408,6 @@
 		67DDB96024535D35006CD6EB /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
 		67DDB96124535D35006CD6EB /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
 		67DDB96224535D35006CD6EB /* OutageStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB6A22D8DCEC007002B0 /* OutageStatusView.xib */; };
-		67DDB96324535D35006CD6EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		67DDB96424535D35006CD6EB /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		67DDB96524535D35006CD6EB /* DisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */; };
 		67DDB96624535D35006CD6EB /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
@@ -10269,7 +10269,6 @@
 				67DDB4B424535D2E006CD6EB /* DailyInsightCoinView.xib in Resources */,
 				67DDB4B524535D2E006CD6EB /* DisclosureCellButton.xib in Resources */,
 				67DDB4B624535D2E006CD6EB /* OutageStatusView.xib in Resources */,
-				67DDB4B724535D2E006CD6EB /* Assets.xcassets in Resources */,
 				67DDB4B824535D2E006CD6EB /* payments.json in Resources */,
 				67DDB4B924535D2E006CD6EB /* DisclosureButton.xib in Resources */,
 				67DDB4BA24535D2E006CD6EB /* energy_tips.json in Resources */,
@@ -10313,6 +10312,7 @@
 				67DDB4E124535D2E006CD6EB /* message_bubble_unique.json in Resources */,
 				67DDB4E224535D2E006CD6EB /* Storm.storyboard in Resources */,
 				67DDB4E324535D2E006CD6EB /* Payment.storyboard in Resources */,
+				3090A6AB24864E8F00815EA1 /* Assets.xcassets in Resources */,
 				67DDB4E424535D2E006CD6EB /* outage_loading.json in Resources */,
 				67DDB4E524535D2E006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
 				67DDB4E624535D2E006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
@@ -10439,7 +10439,6 @@
 				67DDB70A24535D32006CD6EB /* DailyInsightCoinView.xib in Resources */,
 				67DDB70B24535D32006CD6EB /* DisclosureCellButton.xib in Resources */,
 				67DDB70C24535D32006CD6EB /* OutageStatusView.xib in Resources */,
-				67DDB70D24535D32006CD6EB /* Assets.xcassets in Resources */,
 				67DDB70E24535D32006CD6EB /* payments.json in Resources */,
 				67DDB70F24535D32006CD6EB /* DisclosureButton.xib in Resources */,
 				67DDB71024535D32006CD6EB /* energy_tips.json in Resources */,
@@ -10482,6 +10481,7 @@
 				67DDB73924535D32006CD6EB /* Payment.storyboard in Resources */,
 				67DDB73A24535D32006CD6EB /* outage_loading.json in Resources */,
 				67DDB73B24535D32006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
+				3090A6AD24864E9200815EA1 /* Assets.xcassets in Resources */,
 				67DDB73C24535D32006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
 				67DDB73D24535D32006CD6EB /* maintenance.json in Resources */,
 				67DDB73F24535D32006CD6EB /* checkmark_blue.json in Resources */,
@@ -10608,7 +10608,6 @@
 				67DDB96024535D35006CD6EB /* DailyInsightCoinView.xib in Resources */,
 				67DDB96124535D35006CD6EB /* DisclosureCellButton.xib in Resources */,
 				67DDB96224535D35006CD6EB /* OutageStatusView.xib in Resources */,
-				67DDB96324535D35006CD6EB /* Assets.xcassets in Resources */,
 				67DDB96424535D35006CD6EB /* payments.json in Resources */,
 				67DDB96524535D35006CD6EB /* DisclosureButton.xib in Resources */,
 				67DDB96624535D35006CD6EB /* energy_tips.json in Resources */,
@@ -10651,6 +10650,7 @@
 				67DDB98E24535D35006CD6EB /* Storm.storyboard in Resources */,
 				67DDB98F24535D35006CD6EB /* Payment.storyboard in Resources */,
 				67DDB99024535D35006CD6EB /* outage_loading.json in Resources */,
+				3090A6AC24864E9100815EA1 /* Assets.xcassets in Resources */,
 				67DDB99124535D35006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
 				67DDB99224535D35006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
 				67DDB99324535D35006CD6EB /* maintenance.json in Resources */,

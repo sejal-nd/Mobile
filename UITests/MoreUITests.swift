@@ -114,6 +114,7 @@ class MoreUITests: ExelonUITestCase {
             ])
         case .delmarva:
             checkExistenceOfElements([
+                (.link, "302-454-0317"),
                 (.link, "1-800-898-8042"),
                 (.link, "1-800-375-7117"),
                 (.staticText, "All Customers"),
@@ -126,6 +127,7 @@ class MoreUITests: ExelonUITestCase {
                 (.staticText, "All Customers"),
                 (.staticText, "If you see a downed power line, leave the area immediately and then call Pepco. Representatives are available 24 hours a day, 7 days a week")
                 (.button, "Instagram")
+                (.staticText, "M-F 7AM to 8PM"),
             ])
         }
     }

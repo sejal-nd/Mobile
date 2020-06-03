@@ -56,7 +56,9 @@ class ContactUsViewModel {
     var bgePowerLineNumber2: String {
         return "1-877-778-2222"
     }
-    
+    var delmarvaGasNumber: String {
+        return "302-454-0317"
+    }
     var onlineFormUrl: URL {
         let urlString: String
         switch Environment.shared.opco {
@@ -75,6 +77,15 @@ class ContactUsViewModel {
         }
         
         return URL(string: urlString)!
+    }
+    
+    var contactServiceTimings: String {
+        switch opco {
+        case .ace, .bge, .comEd, .peco, .delmarva:
+            return "M-F 7AM to 7PM"
+        case .pepco:
+            return "M-F 7AM to 8PM"
+        }
     }
     
     var label1: String {

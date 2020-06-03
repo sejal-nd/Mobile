@@ -39,6 +39,7 @@ class ContactUsViewController: UIViewController {
     @IBOutlet weak var thirdLabel: UILabel!
     @IBOutlet weak var thirdNumberTextView: ZeroInsetDataDetectorTextView!
     
+    @IBOutlet weak var contactServiceTimingsLabel: UILabel!
     @IBOutlet var dividerLines: [UIView]!
     @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!
     
@@ -86,11 +87,24 @@ class ContactUsViewController: UIViewController {
         if Environment.shared.opco == .bge {
             emergencyNumberTextView.isHidden = true
             bgeOnlySpacer.isHidden = true
+            bgeGasNumberLabel.text = NSLocalizedString("Gas Emergency", comment: "")
+            bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
+        } else if Environment.shared.opco == .delmarva {
+            // Only the first row is needed, rest needs to be hidden
+            bgeOnlyStackView.isHidden = false
+            bgePowerLineNumber1TextView.isHidden = true
+            bgePowerLineNumber2TextView.isHidden = true
+            bgeGasNumber2TextView.isHidden = true
+            bgePowerLineLabel.isHidden = true
+            bgeGasNumberLabel.text = NSLocalizedString("Natural Gas Emergency", comment: "")
+            bgeGasNumber1TextView.text = viewModel.delmarvaGasNumber
+            // Change the height as the stack view needs to be shrinked to a smaller height
+            bgeOnlyStackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         } else {
             bgeOnlyStackView.isHidden = true
         }
+        
         bgeGasNumberLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
         bgeGasNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
         bgeGasNumber1TextView.linkTapDelegate = self
         bgeGasNumber2TextView.text = viewModel.bgeGasNumber2
@@ -127,6 +141,7 @@ class ContactUsViewController: UIViewController {
     func customerServiceSetup() {
         firstLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         firstLabel.text = viewModel.label1
+        contactServiceTimingsLabel.text = viewModel.contactServiceTimings
         firstNumberTextView.text = viewModel.phoneNumber2
         firstNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         firstNumberTextView.linkTapDelegate = self
