@@ -284,7 +284,7 @@ class UsageViewModelTests: XCTestCase {
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
         XCTAssertRecordedElements(trimmedEvents, [
-            0.0,
+            3.0,
             134.0,
             CGFloat(134.0 * (150 / 220)),
             CGFloat(134.0 * (150 / 220)),
