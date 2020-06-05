@@ -208,7 +208,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return Environment.shared.opco == OpCo.peco ? 2 : 3
+            return 3
         case 1:
             return 6
         case 2:
