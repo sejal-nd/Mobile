@@ -61,7 +61,7 @@ class ReportOutageViewModel {
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
         case .pepco:
-            let phone1 = "877-737-2662"
+            let phone1 = "1-877-737-2662"
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@.", phone1)
         case .ace:
