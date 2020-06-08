@@ -108,7 +108,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.unauthenticatedExperience = true
             vc.hasPressedStreetlightOutageMapButton = segue.identifier == "streetlightOutageMapSegue" ? true : false
-            if Environment.shared.opco.isPHI {
+            if !Environment.shared.opco.isPHI {
                 GoogleAnalytics.log(event: .viewOutageMapGuestMenu)
             }
             
