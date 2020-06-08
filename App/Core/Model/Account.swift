@@ -11,6 +11,7 @@ import Mapper
 
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
+    let accountNickname: String?
     let address: String?
     let premises: [Premise]
     var currentPremise: Premise?
@@ -26,6 +27,7 @@ struct Account: Mappable, Equatable, Hashable {
 
     init(map: Mapper) throws {
         accountNumber = try map.from("accountNumber")
+        accountNickname = map.optionalFrom("accountNickname")
         address = map.optionalFrom("address")
         premises = map.optionalFrom("PremiseInfo") ?? []
         
@@ -43,6 +45,19 @@ struct Account: Mappable, Equatable, Hashable {
     
     var isMultipremise: Bool{
         return premises.count > 1 //TODO: could be 0 depending on whether each account has matching default premise
+    }
+    
+    // PHI will return nickname if it exists, otherwise account number is returned
+    var displayName: String {
+        if Environment.shared.opco.isPHI {
+            if let accountNickname = accountNickname {
+                return accountNickname
+            } else {
+                return accountNumber
+            }
+        } else {
+            return accountNumber
+        }
     }
     
     // Equatable

@@ -53,6 +53,9 @@ class UnauthenticatedOutageViewModel {
                         } else if Environment.shared.opco == .peco {
                             onError(NSLocalizedString("Gas Only Account", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: ""))
                             return
+                        } else if Environment.shared.opco == .delmarva {
+                            onError(NSLocalizedString("Gas Only Account", comment: ""), NSLocalizedString("Natural gas emergencies cannot be reported online, but we want to hear from you right away.\n\nIf you smell natural gas, leave the area immediately and call 302-454-0317", comment: ""))
+                            return
                         }
                     }
                 } else {
@@ -84,7 +87,7 @@ class UnauthenticatedOutageViewModel {
     }
     
     var continueButtonEnabled: Driver<Bool> {
-        return Driver.combineLatest(phoneNumberTextFieldEnabled, phoneNumberHasTenDigits, accountNumberTextFieldEnabled, accountNumberHasTenDigits).map {
+        return Driver.combineLatest(phoneNumberTextFieldEnabled, phoneNumberHasTenDigits, accountNumberTextFieldEnabled, accountNumberHasValidlength).map {
             return ($0 && $1) || ($2 && $3)
         }
     }
@@ -108,9 +111,9 @@ class UnauthenticatedOutageViewModel {
         }
     }
     
-    var accountNumberHasTenDigits: Driver<Bool> {
+    var accountNumberHasValidlength: Driver<Bool> {
         return self.accountNumber.asDriver().map {
-            $0.count == 10
+            $0.count == (Environment.shared.opco.isPHI ? 11 : 10)
         }
     }
     
@@ -151,6 +154,19 @@ class UnauthenticatedOutageViewModel {
             return NSLocalizedString("The information entered does not match our records. Please double check that the information entered is correct and try again.\n\nStill not working? Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further assistance.", comment: "")
         } else if Environment.shared.opco == .peco {
             return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-800-494-4000 for further assistance.", comment: "")
+        } else if Environment.shared.opco.isPHI {
+            var contactNumber = ""
+            switch Environment.shared.opco {
+            case .ace:
+                contactNumber = "1-800-642-3780"
+            case .delmarva:
+                contactNumber = "1-800-375-7117"
+            case .pepco:
+                contactNumber = "202-833-7500"
+            default:
+                contactNumber = ""
+            }
+            return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at \(contactNumber) for further assistance.", comment: "")
         } else {
             return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-800-334-7661 for further assistance.", comment: "")
         }
@@ -180,17 +196,21 @@ class UnauthenticatedOutageViewModel {
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
         case .pepco:
-            let phone1 = "todo"
+            let phone1 = "1-877-737-2662"
             phoneNumbers = [phone1]
-            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@", phone1)
         case .ace:
-            let phone1 = "todo"
+            let phone1 = "1-800-833-7476"
             phoneNumbers = [phone1]
-            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@", phone1)
         case .delmarva:
-            let phone1 = "todo"
-            phoneNumbers = [phone1]
-            localizedString = String.localizedStringWithFormat("todo %@", phone1)
+            let phone1 = "302-454-0317"
+            let phone2 = "1-800-898-8042"
+            phoneNumbers = [phone1, phone2]
+            localizedString = String.localizedStringWithFormat("""
+            If you smell natural gas, leave the area immediately and call %@\n
+            To report a downed or sparking power line, please call %@
+            """, phone1, phone2)
         }
         
         let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])

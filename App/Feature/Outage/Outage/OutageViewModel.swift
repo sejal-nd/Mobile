@@ -171,18 +171,22 @@ class OutageViewModel {
             let phone1 = "1-800-841-4141"
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
-            case .pepco:
-                let phone1 = "todo"
-                phoneNumbers = [phone1]
-                localizedString = String.localizedStringWithFormat("todo %@", phone1)
-            case .ace:
-                let phone1 = "todo"
-                phoneNumbers = [phone1]
-                localizedString = String.localizedStringWithFormat("todo %@", phone1)
-            case .delmarva:
-                let phone1 = "todo"
-                phoneNumbers = [phone1]
-                localizedString = String.localizedStringWithFormat("todo %@", phone1)
+        case .pepco:
+            let phone1 = "1-877-737-2662"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@", phone1)
+        case .ace:
+            let phone1 = "1-800-833-7476"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@", phone1)
+        case .delmarva:
+            let phone1 = "302-454-0317"
+            let phone2 = "1-800-898-8042"
+            phoneNumbers = [phone1, phone2]
+            localizedString = String.localizedStringWithFormat("""
+                If you smell natural gas, leave the area immediately and call %@\n
+                To report a downed or sparking power line, please call %@
+                """, phone1, phone2)
         }
         
         let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: SystemFont.regular.of(textStyle: .caption1)])

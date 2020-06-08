@@ -51,16 +51,17 @@ class SetDefaultAccountTableViewCell: UITableViewCell {
         // Account Number
         let accountNumberText: String
         if account.isDefault {
-            accountNumberText = "\(account.accountNumber) (Default)"
+            accountNumberText = "\(account.displayName) (Default)"
         } else if account.isFinaled {
-            accountNumberText = "\(account.accountNumber) (Finaled)"
+            accountNumberText = "\(account.displayName) (Finaled)"
         } else if account.isLinked {
-            accountNumberText = "\(account.accountNumber) (Linked)"
+            accountNumberText = "\(account.displayName) (Linked)"
         } else {
-            accountNumberText = account.accountNumber
+            accountNumberText = account.displayName
         }
         accountNumberLabel.text = accountNumberText
-        accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
+        
+        accountNumberLabel.accessibilityLabel = Environment.shared.opco.isPHI ? String(format: NSLocalizedString("Account %@", comment: ""), accountNumberText) : String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
         
         // If no address, use " " so that all the cells maintain equal height (nil or empty would collapse StackView)
         addressLabel.text = account.address ?? " "

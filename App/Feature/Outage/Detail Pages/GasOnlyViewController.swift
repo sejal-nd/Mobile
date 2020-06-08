@@ -35,6 +35,15 @@ class GasOnlyViewController: UIViewController {
                 To issue a Gas Emergency Order, please call %@.
                 """
                 , phone1)
+        case .delmarva:
+            let phone1 = "302-454-0317"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat(
+                """
+                Natural gas emergencies cannot be reported online, but we want to hear from you right away.
+                If you smell natural gas, leave the area immediately and call %@
+                """
+                , phone1)
         default:
             phoneNumbers = []
             localizedString = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")

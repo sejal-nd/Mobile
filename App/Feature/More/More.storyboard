@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xNU-PN-Pey">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +19,7 @@
         <!--More View Controller-->
         <scene sceneID="oEX-9V-Aoq">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="xNU-PN-Pey" customClass="MoreViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="xNU-PN-Pey" customClass="MoreViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lqc-KX-YW0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,6 +102,7 @@
                         <segue destination="zgJ-nf-2W6" kind="show" identifier="choiceIdSegue" id="N1v-ad-1hm"/>
                         <segue destination="Z3X-lP-vFg" kind="show" identifier="appointmentsSegue" id="0RI-Jn-6zB"/>
                         <segue destination="UIb-7z-3ok" kind="show" identifier="energyBuddySegue" id="Vcb-HZ-KXB"/>
+                        <segue destination="eT5-Kx-SqK" kind="show" identifier="editAccountNicknameSegue" id="mIW-jA-D3y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-a1-RXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -110,7 +112,7 @@
         <!--Contact Us-->
         <scene sceneID="yYj-Mn-8mS">
             <objects>
-                <viewController storyboardIdentifier="ContactUsViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="TYr-cP-fT5" customClass="ContactUsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactUsViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="TYr-cP-fT5" customClass="ContactUsViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h3d-35-rID">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,7 +141,7 @@
                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="zmU-DR-aYZ" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="zmU-DR-aYZ" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="226" y="0.0" width="119" height="23.5"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -212,7 +214,7 @@
                                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="u2k-45-ai6" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="u2k-45-ai6" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                                 <rect key="frame" x="110.5" y="13.5" width="234.5" height="20"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <constraints>
@@ -230,7 +232,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ke-TQ-IXO">
                                                                         <rect key="frame" x="15" y="54.5" width="345" height="47"/>
                                                                         <subviews>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="998" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="2b6-IR-LwW" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="998" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="2b6-IR-LwW" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="13.5" width="345" height="20"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <constraints>
@@ -275,7 +277,7 @@
                                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="999" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="wHd-3p-gW6" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="999" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="wHd-3p-gW6" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                                 <rect key="frame" x="151" y="13.5" width="194" height="20"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <constraints>
@@ -293,7 +295,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MfU-sz-d0Y">
                                                                         <rect key="frame" x="15" y="149" width="345" height="47"/>
                                                                         <subviews>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="999" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="998" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="Sji-cR-f48" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="999" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="998" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="Sji-cR-f48" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="13.5" width="345" height="20"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <constraints>
@@ -486,7 +488,7 @@
                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="qGi-7g-fx5" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="qGi-7g-fx5" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="80.5" y="13.5" width="264.5" height="20"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -529,7 +531,7 @@
                                                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="iKl-4P-QQ8" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="iKl-4P-QQ8" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="64" y="13.5" width="281" height="20"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -571,7 +573,7 @@
                                                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="xmG-g2-lML" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="999" horizontalCompressionResistancePriority="248" verticalCompressionResistancePriority="999" scrollEnabled="NO" text="1-800-334-7661" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="xmG-g2-lML" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="60.5" y="13.5" width="284.5" height="20"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -666,6 +668,7 @@
                         <outlet property="bgePowerLineLabel" destination="mxE-rp-BAb" id="Umf-Yy-PLy"/>
                         <outlet property="bgePowerLineNumber1TextView" destination="wHd-3p-gW6" id="a2e-Bu-Ihn"/>
                         <outlet property="bgePowerLineNumber2TextView" destination="Sji-cR-f48" id="h64-51-fUd"/>
+                        <outlet property="contactServiceTimingsLabel" destination="ErB-uK-T36" id="EEc-Pi-utV"/>
                         <outlet property="containerStack" destination="DvH-Sa-CNn" id="4ob-aX-Xny"/>
                         <outlet property="emergencyDescriptionLabel" destination="GQY-Y5-n2N" id="HaG-NJ-Ms5"/>
                         <outlet property="emergencyNumberTextView" destination="zmU-DR-aYZ" id="hR6-lo-Nq6"/>
@@ -708,7 +711,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RG6-dl-PMp" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RG6-dl-PMp" customClass="AccountInfoBar" customModule="ACE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -726,7 +729,7 @@
                                     <outlet property="delegate" destination="lU0-dY-1fs" id="y5H-CT-K6N"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-dm-UwW" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-dm-UwW" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
                                 <rect key="frame" x="177" y="429.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -736,10 +739,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjA-OG-Ig4" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjA-OG-Ig4" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="777" width="414" height="85"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-vr-7qF" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-vr-7qF" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Save Changes"/>
                                         <constraints>
@@ -800,7 +803,7 @@
         <!--Change Password-->
         <scene sceneID="9e3-Th-Q4n">
             <objects>
-                <viewController storyboardIdentifier="changePassword" title="Change Password" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="9Ug-ji-Hni" customClass="ChangePasswordViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="changePassword" title="Change Password" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="9Ug-ji-Hni" customClass="ChangePasswordViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MAy-au-tEX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -846,7 +849,7 @@
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="FYq-e2-Dnd" userLabel="Current Password View">
                                                                 <rect key="frame" x="0.0" y="84.5" width="335" height="55"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="884-Yk-5tq" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="884-Yk-5tq" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
@@ -872,7 +875,7 @@
                                                                     <constraint firstItem="Uok-hL-HCJ" firstAttribute="trailing" secondItem="884-Yk-5tq" secondAttribute="trailing" id="kF8-8l-Dlc"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-ET-G9c" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-ET-G9c" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="169.5" width="335" height="55"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
@@ -885,7 +888,7 @@
                                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="a7S-4c-NWl">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="23.5"/>
                                                                                 <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5L-gY-cdK" customClass="PasswordStrengthMeterView" customModule="BGE" customModuleProvider="target">
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5L-gY-cdK" customClass="PasswordStrengthMeterView" customModule="ACE" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="8"/>
                                                                                         <color key="backgroundColor" red="0.43137254899999999" green="0.72156862749999995" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <constraints>
@@ -1036,7 +1039,7 @@
                                                                     <constraint firstItem="s6E-HU-rP3" firstAttribute="top" secondItem="dEP-m1-FLp" secondAttribute="top" id="yW2-SY-WJe"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-5f-05z" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-5f-05z" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="535" width="335" height="55"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
@@ -1072,10 +1075,10 @@
                                     <constraint firstItem="kES-Fi-P4P" firstAttribute="centerX" secondItem="css-Si-oMh" secondAttribute="centerX" id="dEe-Lg-2cQ"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4X-tX-MzJ" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4X-tX-MzJ" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="665" width="375" height="85"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAa-Ko-ifg" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAa-Ko-ifg" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="319" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Save Password"/>
                                         <constraints>
@@ -1147,7 +1150,7 @@
         <!--BGE's Play-n-Save Pilot-->
         <scene sceneID="Wze-xw-ck4">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="UIb-7z-3ok" customClass="GameOptInOutViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="UIb-7z-3ok" customClass="GameOptInOutViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9mo-Sb-5kZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1325,10 +1328,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="A0j-bD-pHG"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="jeM-kg-O30"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PEN-D2-ZvW" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PEN-D2-ZvW" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="777" width="414" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8H-tU-LbJ" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8H-tU-LbJ" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="0EJ-xB-5LR"/>
@@ -1349,7 +1352,7 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="T4Y-bM-45Z"/>
                             </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="4gy-fg-Knx" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="4gy-fg-Knx" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
                                 <rect key="frame" x="177" y="465" width="60" height="20"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -1396,10 +1399,26 @@
             </objects>
             <point key="canvasLocation" x="4251" y="2304"/>
         </scene>
+        <!--Edit Account Nick Name View Controller-->
+        <scene sceneID="7yc-3T-RWW">
+            <objects>
+                <viewController storyboardIdentifier="EditAccountNickNameViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eT5-Kx-SqK" customClass="EditAccountNickNameViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C9P-Dj-9Zp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="njo-ht-n9o"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OnX-ZC-2dh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pzT-p3-Nvb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3284" y="4355"/>
+        </scene>
         <!--Set Default Account-->
         <scene sceneID="27j-Xl-aTB">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="Bcx-aT-Yfi" userLabel="Set Default Account" customClass="SetDefaultAccountViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="Bcx-aT-Yfi" userLabel="Set Default Account" customClass="SetDefaultAccountViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HUu-3m-wDa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1408,7 +1427,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetDefaultAccountTableViewCell" rowHeight="75" id="hRc-Eh-hx2" customClass="SetDefaultAccountTableViewCell" customModule="BGE" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetDefaultAccountTableViewCell" rowHeight="75" id="hRc-Eh-hx2" customClass="SetDefaultAccountTableViewCell" customModule="ACE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hRc-Eh-hx2" id="iNW-mg-ayX">
@@ -1431,7 +1450,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Br-5g-dxL">
                                                             <rect key="frame" x="85" y="21.5" width="309" height="32.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="1234567890" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fv-7Y-1LK">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fv-7Y-1LK">
                                                                     <rect key="frame" x="0.0" y="0.0" width="309" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
@@ -1494,10 +1513,10 @@
                                     <outlet property="delegate" destination="Bcx-aT-Yfi" id="YYY-mW-wMU"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FX4-qs-GgB" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FX4-qs-GgB" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="777" width="414" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fS0-OZ-rVd" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fS0-OZ-rVd" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="4yZ-4z-LdB"/>
@@ -1561,7 +1580,7 @@
         <!--ChoiceID View Controller-->
         <scene sceneID="IPq-II-iOr">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="zgJ-nf-2W6" customClass="BGEChoiceIDViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="zgJ-nf-2W6" customClass="BGEChoiceIDViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g48-Q2-zZ6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1569,7 +1588,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Nf-NQ-sEW">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="QaR-UQ-Qdn" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="QaR-UQ-Qdn" customClass="AccountPicker" customModule="ACE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
@@ -1598,7 +1617,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gT0-Qg-FnP">
                                                                 <rect key="frame" x="0.0" y="0.0" width="348" height="100"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="kLM-hl-RnR" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="kLM-hl-RnR" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="144" y="44" width="60" height="12"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
@@ -1619,7 +1638,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="123456" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qyk-S5-KnF" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="123456" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qyk-S5-KnF" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="278.5" y="12" width="59.5" height="33"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1651,7 +1670,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="123456" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N6G-7I-JcM" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="123456" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N6G-7I-JcM" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="278.5" y="12" width="59.5" height="33"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1758,7 +1777,7 @@
         <!--Terms & Policies-->
         <scene sceneID="Y5c-le-Fkt">
             <objects>
-                <viewController storyboardIdentifier="TermsPoliciesViewController" title="Terms &amp; Policies" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="6Py-2X-RBq" customClass="TermsPoliciesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsPoliciesViewController" title="Terms &amp; Policies" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="6Py-2X-RBq" customClass="TermsPoliciesViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MPv-q7-tvM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

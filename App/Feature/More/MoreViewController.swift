@@ -210,7 +210,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return Environment.shared.opco == OpCo.peco ? 2 : 3
         case 1:
-            return 6
+            return 7
         case 2:
             return 3
         default:
@@ -227,6 +227,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 return 60
             case 1:
                 return 60
+            case 2:
+                return Environment.shared.opco.isPHI ? .zero : 60
             default:
                 return 60
             }
@@ -238,7 +240,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 return viewModel.isDeviceBiometricCompatible() ? 60 : 0
             case 2:
                 guard AccountsStore.shared.accounts != nil else { return 0 }
-                return (Environment.shared.opco == .bge && AccountsStore.shared.accounts.count > 1) ? 60 : 0
+                return ((Environment.shared.opco == .bge || Environment.shared.opco.isPHI) && AccountsStore.shared.accounts.count > 1) ? 60 : 0
             case 3:
                 return Environment.shared.opco == .peco ? 60 : 0
             case 4:
@@ -246,6 +248,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 5:
                 let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
                 return isGameUser ? 60 : 0
+            case 6:
+                return Environment.shared.opco.isPHI ? 60 : .zero
             default:
                 return 60
             }
@@ -254,7 +258,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 return 60
             case 1:
-                return 60
+                return Environment.shared.opco.isPHI && viewModel.billingVideosUrl == nil ? .zero : 60
             case 2:
                 return 60
             default:
@@ -298,6 +302,9 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(image: #imageLiteral(resourceName: "ic_morechoiceid"), text: NSLocalizedString("Choice ID", comment: ""))
             case 5:
                 cell.configure(image: #imageLiteral(resourceName: "ic_more_gamification"), text: NSLocalizedString("BGE's Play-n-Save Pilot", comment: ""))
+            case 6:
+                cell.configure(image: #imageLiteral(resourceName: "ic_edit_nickname"), text: NSLocalizedString("Edit Account Nickname", comment: ""))
+                
             default:
                 return UITableViewCell()
             }
@@ -347,6 +354,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 performSegue(withIdentifier: "choiceIdSegue", sender: nil)
             case 5:
                 performSegue(withIdentifier: "energyBuddySegue", sender: nil)
+            case 6:
+                performSegue(withIdentifier: "editAccountNicknameSegue", sender: nil)
             default:
                 break
             }

@@ -382,11 +382,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func showIOSVersionWarning() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
             let versionAlert = UIAlertController(title: NSLocalizedString("Warning", comment: ""),
-                                                 message: NSLocalizedString("Support for your current operating system will expire in the near future.", comment: ""),
+                                                 message: NSLocalizedString("Support for your current operating system will expire in the near future.  Please update to the latest iOS version in the Settings App.", comment: ""),
                                                  preferredStyle: .alert)
             versionAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             versionAlert.addAction(UIAlertAction(title: NSLocalizedString("Don't warn me again", comment: ""), style: .cancel, handler: { _ in
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.doNotShowIOS9VersionWarningAgain)
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.doNotShowIOS11VersionWarningAgain)
             }))
             if let rootVC = self.window?.rootViewController {
                 var topmostVC = rootVC

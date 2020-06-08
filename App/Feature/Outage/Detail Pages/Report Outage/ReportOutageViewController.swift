@@ -78,8 +78,9 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         title = NSLocalizedString("Report Outage", comment: "")
         
         style()
-        
-        viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
+        if !opco.isPHI {
+            viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
+        }
         
         if unauthenticatedExperience,
             let accountNumberText = viewModel.outageStatus?.maskedAccountNumber,
@@ -134,7 +135,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: "")]
         }
         
-        phoneNumberTextField.placeholder = NSLocalizedString("Contact Number*", comment: "")
+        phoneNumberTextField.placeholder = opco.isPHI ? NSLocalizedString("Contact Number (Optional)", comment: "") : NSLocalizedString("Contact Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
@@ -167,7 +168,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         phoneExtensionTextField.textField.delegate = self
         
         // show phone extension for ComEd and PECO
-        if opco == .bge {
+        if opco == .bge || opco.isPHI {
             phoneExtensionContainerView.isHidden = true
         }
         

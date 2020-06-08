@@ -56,6 +56,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     // Remote Config Value
     private var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
     
+    private var streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
     
     // MARK: - View Life Cycle
     
@@ -106,7 +107,11 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
             }
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.unauthenticatedExperience = true
-            GoogleAnalytics.log(event: .viewOutageMapGuestMenu)
+            vc.hasPressedStreetlightOutageMapButton = segue.identifier == "streetlightOutageMapSegue" ? true : false
+            if !Environment.shared.opco.isPHI {
+                GoogleAnalytics.log(event: .viewOutageMapGuestMenu)
+            }
+            
         } else if let vc = segue.destination as? ContactUsViewController {
             vc.unauthenticatedExperience = true
         } else if let vc = segue.destination as? UpdatesViewController {
@@ -124,7 +129,8 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         
         RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
             self?.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
-            self?.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+            self?.streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
+            self?.tableView.reloadRows(at: [IndexPath(row: 2, section: 0), IndexPath(row: 3, section: 0)], with: .automatic)
         }
     }
 }
@@ -136,11 +142,17 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 3 : 4
+        return 4
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0, indexPath.row == 2, outageMapURLString.isEmpty {
+            return 0
+        } else if indexPath.section == 0, indexPath.row == 3, !Environment.shared.opco.isPHI {
+            return 0
+        } else if indexPath.section == 0, indexPath.row == 3, Environment.shared.opco.isPHI, streetlightOutageMapURLString.isEmpty {
+            return 0
+        } else if indexPath.section == 1, indexPath.row == 2, Environment.shared.opco.isPHI, billingVideosUrl == nil {
             return 0
         }
         
@@ -160,6 +172,8 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 cell.configure(image: #imageLiteral(resourceName: "ic_checkoutage"), text: NSLocalizedString("Check My Outage Status", comment: ""))
             case 2:
                 cell.configure(image: UIImage(named: "ic_mapoutagewhite"), text: NSLocalizedString("View Outage Map", comment: ""))
+            case 3:
+                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), text: NSLocalizedString("Report Streetlight Problem", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -197,6 +211,8 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 performSegue(withIdentifier: "checkOutageValidateAccount", sender: nil)
             case 2:
                 performSegue(withIdentifier: "outageMapSegue", sender: nil)
+            case 3:
+                performSegue(withIdentifier: "streetlightOutageMapSegue", sender: nil)
             default:
                 break
             }
@@ -208,7 +224,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 2:
                 FirebaseUtility.logEvent(.unauth, parameters: [EventParameter(parameterName: .action, value: .billing_videos)])
-
+                
                 UIApplication.shared.openUrlIfCan(billingVideosUrl)
             case 3:
                 performSegue(withIdentifier: "termPoliciesSegue", sender: nil)
