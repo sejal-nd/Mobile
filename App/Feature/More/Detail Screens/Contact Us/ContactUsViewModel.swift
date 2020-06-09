@@ -34,12 +34,12 @@ class ContactUsViewModel {
             let opcoTitle = opco.displayString
             let localizedString = String(format: NSLocalizedString("If you see a downed power line, %@ and then call %@. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString, opcoTitle)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+            emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .delmarva:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
             let localizedString = String(format: NSLocalizedString("If you see a downed power line or smell natural gas, %@ and then call Delmarva. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
-            emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+            emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         }
         return emergencyAttrString
     }
