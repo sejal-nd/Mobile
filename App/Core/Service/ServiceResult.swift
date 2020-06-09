@@ -33,6 +33,7 @@ enum ServiceErrorCode : String {
     case fnAccountFinaled = "FN-ACCOUNT-FINALED" // Loading outage status for finaled account
     case fnAccountNoPay = "FN-ACCOUNT-NOPAY" // Loading outage status for no-pay account
     case fnNonService = "FN-NON-SERVICE" // Loading outage status for BGE non-service agreement account
+    case fnAccountInactive = "FN-ACCOUNT-INACTIVE" // Account is no lonnger active
     case fnCustomerNotFound = "FN-CUST-NOTFOUND"
     case fnUserInvalid = "FN-USER-INVALID"
     case fnUserExists = "FN-USER-EXISTS"
