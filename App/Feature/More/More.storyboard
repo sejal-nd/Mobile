@@ -1406,10 +1406,67 @@
                     <view key="view" contentMode="scaleToFill" id="C9P-Dj-9Zp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wl4-6F-b0k" customClass="AccountPicker" customModule="ACE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9LU-In-NVt"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkm-lk-yJR" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
+                                <rect key="frame" x="20" y="124" width="374" height="55"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="42j-5m-Pd4"/>
+                                    <constraint firstAttribute="height" constant="55" id="eTm-fe-Odg"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qd-KH-lf6" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="777" width="414" height="119"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jml-YF-e9E" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="15" width="374" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="Q2Y-ak-ILn"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="Uzo-tp-1fA"/>
+                                        </constraints>
+                                        <state key="normal" title="Save Nickname"/>
+                                        <connections>
+                                            <action selector="onSavePress" destination="Bcx-aT-Yfi" eventType="touchUpInside" id="aCU-JE-4no"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Jml-YF-e9E" firstAttribute="top" secondItem="IzX-EK-otB" secondAttribute="top" constant="15" id="Bns-fQ-udG"/>
+                                    <constraint firstItem="IzX-EK-otB" firstAttribute="trailing" secondItem="Jml-YF-e9E" secondAttribute="trailing" constant="20" id="QO4-mt-hpJ"/>
+                                    <constraint firstAttribute="height" constant="119" id="VSW-vz-qse"/>
+                                    <constraint firstItem="Jml-YF-e9E" firstAttribute="leading" secondItem="IzX-EK-otB" secondAttribute="leading" constant="20" id="iBs-Ie-m9Z"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="IzX-EK-otB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="njo-ht-n9o" firstAttribute="trailing" secondItem="gkm-lk-yJR" secondAttribute="trailing" constant="20" id="3vb-x0-y7t"/>
+                            <constraint firstItem="njo-ht-n9o" firstAttribute="trailing" secondItem="wl4-6F-b0k" secondAttribute="trailing" id="4mG-sT-qD0"/>
+                            <constraint firstItem="wl4-6F-b0k" firstAttribute="leading" secondItem="njo-ht-n9o" secondAttribute="leading" id="5C7-5z-clT"/>
+                            <constraint firstItem="njo-ht-n9o" firstAttribute="trailing" secondItem="7qd-KH-lf6" secondAttribute="trailing" id="8sJ-YE-BTL"/>
+                            <constraint firstItem="gkm-lk-yJR" firstAttribute="top" secondItem="wl4-6F-b0k" secondAttribute="bottom" constant="30" id="ANH-Ur-ILc"/>
+                            <constraint firstItem="gkm-lk-yJR" firstAttribute="leading" secondItem="njo-ht-n9o" secondAttribute="leading" constant="20" id="RYZ-fT-H4F"/>
+                            <constraint firstAttribute="bottom" secondItem="7qd-KH-lf6" secondAttribute="bottom" id="fCq-th-wT9"/>
+                            <constraint firstItem="wl4-6F-b0k" firstAttribute="top" secondItem="njo-ht-n9o" secondAttribute="top" id="mDj-Oe-r2G"/>
+                            <constraint firstItem="7qd-KH-lf6" firstAttribute="leading" secondItem="C9P-Dj-9Zp" secondAttribute="leading" id="vQK-CA-jD1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="njo-ht-n9o"/>
                     </view>
                     <navigationItem key="navigationItem" id="OnX-ZC-2dh"/>
+                    <connections>
+                        <outlet property="accountPicker" destination="wl4-6F-b0k" id="LXU-IT-zxI"/>
+                        <outlet property="nickNametextField" destination="gkm-lk-yJR" id="YmZ-Er-NPw"/>
+                        <outlet property="saveNicknameButton" destination="Jml-YF-e9E" id="Rwp-Na-ciH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzT-p3-Nvb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

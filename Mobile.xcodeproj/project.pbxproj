@@ -203,6 +203,12 @@
 		3090A6AB24864E8F00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		3090A6AC24864E9100815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		3090A6AD24864E9200815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30DFE8622492641B00FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30DFE8632492641D00FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30DFE8642492641F00FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30DFE8652492642000FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30DFE8662492642200FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -5561,6 +5567,7 @@
 		3090A635247E425A00815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A636247E426400815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
+		30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
 		332CC2EF55B070505882B8EF /* Pods-BGEApp-BGEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
 		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
@@ -7020,6 +7027,7 @@
 			isa = PBXGroup;
 			children = (
 				3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */,
+				30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */,
 			);
 			path = EditAccountNickName;
 			sourceTree = "<group>";
@@ -13271,6 +13279,7 @@
 				67DDB2F424535D2E006CD6EB /* ViewedTipsViewController.swift in Sources */,
 				67DDB2F524535D2E006CD6EB /* AutoPayChangeBankViewController.swift in Sources */,
 				67DDB2F624535D2E006CD6EB /* DataDetectorTextView.swift in Sources */,
+				30DFE8642492641F00FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				67DDB2F724535D2E006CD6EB /* EmptyChildViewController.swift in Sources */,
 				67DDB2F824535D2E006CD6EB /* KeychainManager.swift in Sources */,
 				67DDBD3A24571C0B006CD6EB /* BGEAutoPayViewController.swift in Sources */,
@@ -14013,6 +14022,7 @@
 				67DDB68D24535D32006CD6EB /* GSTouchesShowingController.swift in Sources */,
 				67DDB68E24535D32006CD6EB /* MockRegistrationService.swift in Sources */,
 				67DDB68F24535D32006CD6EB /* SetDefaultAccountViewController.swift in Sources */,
+				30DFE8662492642200FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				67DDB69024535D32006CD6EB /* SERPTSViewController.swift in Sources */,
 				67DDB69124535D32006CD6EB /* StormModeHomeViewController.swift in Sources */,
 				67DDB69224535D32006CD6EB /* NotificationNames.swift in Sources */,
@@ -14431,6 +14441,7 @@
 				67DDB8E324535D35006CD6EB /* GSTouchesShowingController.swift in Sources */,
 				67DDB8E424535D35006CD6EB /* MockRegistrationService.swift in Sources */,
 				67DDB8E524535D35006CD6EB /* SetDefaultAccountViewController.swift in Sources */,
+				30DFE8652492642000FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				67DDB8E624535D35006CD6EB /* SERPTSViewController.swift in Sources */,
 				67DDB8E724535D35006CD6EB /* StormModeHomeViewController.swift in Sources */,
 				67DDB8E824535D35006CD6EB /* NotificationNames.swift in Sources */,
@@ -15333,6 +15344,7 @@
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
+				30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
 				B07E17B32208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
@@ -15750,6 +15762,7 @@
 				9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
+				30DFE8632492641D00FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				82AC2A2C1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1911F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				B52CA0B11F311524002B5674 /* GoogleAnalytics.swift in Sources */,
@@ -16167,6 +16180,7 @@
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
 				B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
 				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
+				30DFE8622492641B00FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02711FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
