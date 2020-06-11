@@ -75,12 +75,18 @@ class AppointmentDetailViewModelTests: XCTestCase {
         // In Progress
         viewModel.appointment = getAppointment(forKey: .apptInProgress)
         
-        if Environment.shared.opco == .bge {
-            XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your appointment is in progress. Estimated time of completion is 1PM.")
+        var hourAmPm: String
+        
+        switch Environment.shared.opco {
+        case .bge:
+            hourAmPm = "1PM"
+        case .peco:
+            hourAmPm = "2PM"
+        case .comEd:
+            hourAmPm = "12PM"
         }
-        else {
-            XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your appointment is in progress. Estimated time of completion is 2PM.")
-        }
+        
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your appointment is in progress. Estimated time of completion is \(hourAmPm).")
         
         // Complete
         viewModel.appointment = getAppointment(forKey: .apptComplete)
