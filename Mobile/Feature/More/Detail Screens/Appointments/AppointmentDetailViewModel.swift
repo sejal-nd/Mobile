@@ -73,7 +73,7 @@ class AppointmentDetailViewModel {
                 .attributedString(textAlignment: .center,
                                   otherAttributes: standardAttributes)
         case .inProgress:
-            let boldText = String.localizedStringWithFormat("Estimated time of completion is %@.", appointment.timeslot.formattedEndHour)
+            let boldText = String.localizedStringWithFormat("Estimated time of completion is %@.", formattedEndHour)
             let regularText = String.localizedStringWithFormat("Your appointment is in progress. %@", boldText)
             
             let attributedText = NSMutableAttributedString(string: regularText)
@@ -118,29 +118,28 @@ class AppointmentDetailViewModel {
             regularText = NSLocalizedString("Your appointment is scheduled for ", comment: "")
         }
         
-        if Environment.shared.opco == .peco || appointment.stopDate == nil {
+        if Environment.shared.opco != .peco, let stopDate = appointment.stopDate {
+            if appointment.date.isInToday(calendar: .opCo) {
+                boldText = String.localizedStringWithFormat("today between %@ - %@.",
+                                                            appointment.date.hourAmPmString,
+                                                            stopDate.hourAmPmString)
+            } else if appointment.date.isInTomorrow(calendar: .opCo) {
+                boldText = String.localizedStringWithFormat("tomorrow between %@ - %@.",
+                                                            appointment.date.hourAmPmString,
+                                                            stopDate.hourAmPmString)
+            } else {
+                boldText = String.localizedStringWithFormat("%@ between %@ - %@.",
+                                                            appointment.date.dayMonthDayString,
+                                                            appointment.date.hourAmPmString,
+                                                            stopDate.hourAmPmString)
+            }
+        } else {
             if appointment.date.isInToday(calendar: .opCo) {
                 boldText = String.localizedStringWithFormat("today between %@.", appointment.timeslot.displayString)
             } else if appointment.date.isInTomorrow(calendar: .opCo) {
                 boldText = String.localizedStringWithFormat("tomorrow between %@.", appointment.timeslot.displayString)
             } else {
                 boldText = String.localizedStringWithFormat("%@ between %@.", appointment.date.dayMonthDayString, appointment.timeslot.displayString)
-            }
-        }
-        else {
-            if appointment.date.isInToday(calendar: .opCo) {
-                boldText = String.localizedStringWithFormat("today between %@ - %@.",
-                                                            appointment.date.hourAmPmString,
-                                                            appointment.stopDate!.hourAmPmString)
-            } else if appointment.date.isInTomorrow(calendar: .opCo) {
-                boldText = String.localizedStringWithFormat("tomorrow between %@ - %@.",
-                                                            appointment.date.hourAmPmString,
-                                                            appointment.stopDate!.hourAmPmString)
-            } else {
-                boldText = String.localizedStringWithFormat("%@ between %@ - %@.",
-                                                            appointment.date.dayMonthDayString,
-                                                            appointment.date.hourAmPmString,
-                                                            appointment.stopDate!.hourAmPmString)
             }
         }
         
@@ -160,6 +159,14 @@ class AppointmentDetailViewModel {
                                     range: NSMakeRange(0, attributedText.string.count))
         
         return attributedText
+    }
+    
+    var formattedEndHour: String {
+        if Environment.shared.opco != .peco, let stopDate = appointment.stopDate {
+            return stopDate.hourAmPmString
+        } else {
+            return appointment.timeslot.formattedEndHour
+        }
     }
     
     var calendarEvent: EKEvent {
