@@ -60,6 +60,10 @@ class SplashViewController: UIViewController{
         errorTextView.tintColor = .actionBlue // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
 
+        if Environment.shared.opco.isPHI {
+            addEnquirySectionForPHI()
+        }
+        
         NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification, object: nil)
             .skip(1) // Ignore the initial notification that fires, causing a double call to checkAppVersion
             .asDriver(onErrorDriveWith: .empty())
@@ -153,6 +157,27 @@ class SplashViewController: UIViewController{
                 navigate()
             }
         }
+    }
+    
+    private func addEnquirySectionForPHI() {
+        errorTextView.constraints.first { $0.firstAnchor == errorTextView.heightAnchor}?.isActive = false
+        let separatorView = UIView().usingAutoLayout()
+        separatorView.backgroundColor = .accentGray
+        errorView.addSubview(separatorView)
+        separatorView.topAnchor.constraint(equalTo: errorTextView.bottomAnchor, constant: 22).isActive = true
+        separatorView.leadingAnchor.constraint(equalTo: errorView.leadingAnchor, constant: 22).isActive = true
+        separatorView.trailingAnchor.constraint(equalTo: errorView.trailingAnchor, constant: -22).isActive = true
+        separatorView.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        let enquiryTextView = ZeroInsetDataDetectorTextView().usingAutoLayout()
+        errorView.addSubview(enquiryTextView)
+        enquiryTextView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 10).isActive = true
+        enquiryTextView.leadingAnchor.constraint(equalTo: errorView.leadingAnchor, constant: 20).isActive = true
+        enquiryTextView.trailingAnchor.constraint(equalTo: errorView.trailingAnchor, constant: -20).isActive = true
+        enquiryTextView.bottomAnchor.constraint(equalTo: errorView.bottomAnchor, constant: -30).isActive = true
+        enquiryTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40.0).isActive = true
+        enquiryTextView.tintColor = .actionBlue // For the phone numbers
+        enquiryTextView.attributedText = viewModel.enquiryFooterText
+        enquiryTextView.isScrollEnabled = false
     }
     
     private func navigate() {
