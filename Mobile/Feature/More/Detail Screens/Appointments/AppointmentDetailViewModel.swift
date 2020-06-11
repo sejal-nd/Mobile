@@ -133,8 +133,7 @@ class AppointmentDetailViewModel {
                                                             appointment.date.hourAmPmString,
                                                             stopDate.hourAmPmString)
             }
-        }
-        else {
+        } else {
             if appointment.date.isInToday(calendar: .opCo) {
                 boldText = String.localizedStringWithFormat("today between %@.", appointment.timeslot.displayString)
             } else if appointment.date.isInTomorrow(calendar: .opCo) {
@@ -165,8 +164,7 @@ class AppointmentDetailViewModel {
     var formattedEndHour: String {
         if Environment.shared.opco != .peco, let stopDate = appointment.stopDate {
             return stopDate.hourAmPmString
-        }
-        else {
+        } else {
             return appointment.timeslot.formattedEndHour
         }
     }
