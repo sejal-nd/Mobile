@@ -195,7 +195,7 @@ class MCSApi {
                 APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
             })
             .map { [weak self] (response: HTTPURLResponse, data: Data) -> Any in
-                guard response.statusCode != 401 else {
+                if response.statusCode == 401 && !path.contains("auth/game") {
                     self?.logout()
                     NotificationCenter.default.post(name: .didReceiveInvalidAuthToken, object: self)
                     throw ServiceError()
