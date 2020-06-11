@@ -22,7 +22,7 @@ public enum Router {
     case minVersion
     case maintenanceMode
     
-    case fetchJWTToken(encodable: Encodable)
+    case fetchJWTToken(postData: Data)//(encodable: Encodable)
     
     // Registration
     case registration(encodable: Encodable)
@@ -116,17 +116,18 @@ public enum Router {
         return "https"
     }
     
+    // BGE Stage
     public var host: String {
         switch self {
         case .fetchJWTToken:
-            return "dev-apigateway.exeloncorp.com"// todo: fix in mcs config
+            return "stage-apigateway.exeloncorp.com"// todo: fix in mcs config
         case .weather:
             return "api.weather.gov"
         case .alertBanner, .newsAndUpdates:
             return "azstg.bge.com/_api/web/lists/GetByTitle('GlobalAlert')/items" // todo: fix in mcs config
         default:
             //return Environment.shared.mcsConfig.baseUrl
-            return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com" // todo fix in mcs config
+            return "mcsstg.mobileenv.bge.com" // todo fix in mcs config
         }
     }
     
@@ -143,6 +144,8 @@ public enum Router {
         case .anonOutageStatus:
             return .anon
         case .passwordChange:
+            return .anon
+        case .fetchJWTToken:
             return .anon
         default:
             return .auth
@@ -308,7 +311,10 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .fetchJWTToken(let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable), .alertPreferencesUpdate(_, let encodable):
+        case .fetchJWTToken(let postData):
+            // Custom encoding here.
+            return postData
+        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable), .alertPreferencesUpdate(_, let encodable):
             return encode(encodable)
         default:
             return nil

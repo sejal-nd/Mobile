@@ -11,10 +11,9 @@ import Foundation
 public struct NetworkingLayer {
     public static func request<T: Decodable>(router: Router,
                                              completion: @escaping (Result<T, NetworkingError>) -> ()) {
+        // todo this should be revisited once implementation is complete....
         // Ensure token exists for auth requests
-        if router.apiAccess == .auth && router.token.isEmpty
-            && T.self == NewSAMLToken.self
-            && T.self == NewJWTToken.self {
+        if router.apiAccess == .auth && router.token.isEmpty {
             dLog("No token found: Request denied.")
             completion(.failure(.invalidToken))
             return
@@ -62,18 +61,24 @@ public struct NetworkingLayer {
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 dLog(error.localizedDescription)
-                completion(.failure(.networkError))
+                DispatchQueue.main.async {
+                    completion(.failure(.networkError))
+                }
                 return
             }
             
             // Validate response if not using mock
             guard response != nil || Environment.shared.environmentName == .aut else {
-                completion(.failure(.invalidResponse))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidResponse))
+                }
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.invalidData))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
                 return
             }
             
@@ -91,10 +96,12 @@ public struct NetworkingLayer {
                 }
             } catch {
                 dLog("Failed to deocde network response:\n\n\(error)")
-                if let networkError = error as? NetworkingError {
-                    completion(.failure(networkError))
-                } else {
-                    completion(.failure(.decodingError))
+                DispatchQueue.main.async {
+                    if let networkError = error as? NetworkingError {
+                        completion(.failure(networkError))
+                    } else {
+                        completion(.failure(.decodingError))
+                    }
                 }
             }
         }

@@ -13,24 +13,19 @@ struct AnonymousService {
         NetworkingLayer.request(router: .minVersion) { (result: Result<NewVersion, NetworkingError>) in
             switch result {
             case .success(let data):
-                print("NetworkTest 1 SUCCESS: \(data) BREAK \(data.min)")
                 completion(.success(data.min))
             case .failure(let error):
-                print("NetworkTest 1 FAIL: \(error)")
                 completion(.failure(error))
             }
         }
     }
     
-    // login
     static func maintenanceMode(completion: @escaping (Result<NewMaintenanceMode, Error>) -> ()) {
         NetworkingLayer.request(router: .maintenanceMode) { (result: Result<NewMaintenanceMode, NetworkingError>) in
             switch result {
             case .success(let data):
-                print("NetworkTest 2 SUCCESS: \(data) BREAK \(data.all)")
                 completion(.success(data))
             case .failure(let error):
-                print("NetworkTest 2 FAIL: \(error)")
                 completion(.failure(error))
             }
         }

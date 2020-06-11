@@ -18,7 +18,6 @@ public struct NewMaintenanceMode: Decodable {
     public var message = "The \(Environment.shared.opco.displayString) App is currently unavailable due to maintenance."
     
     enum CodingKeys: String, CodingKey {
-        case data = "data"
         case all = "all"
         case bill = "bill"
         case alert = "alert"
@@ -30,21 +29,19 @@ public struct NewMaintenanceMode: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                 forKey: .data)
-        self.all = try data.decode(Bool.self,
-                                   forKey: .all)
-        self.bill = try data.decode(Bool.self,
-                                    forKey: .bill)
-        self.alert = try data.decode(Bool.self,
-                                     forKey: .alert)
-        self.outage = try data.decode(Bool.self,
-                                      forKey: .outage)
-        self.home = try data.decode(Bool.self,
-                                    forKey: .home)
-        self.storm = try data.decode(Bool.self,
-                                     forKey: .storm)
-        self.message = try data.decode(String.self,
-                                       forKey: .message)
+        self.all = try container.decode(Bool.self,
+                                        forKey: .all)
+        self.bill = try container.decode(Bool.self,
+                                         forKey: .bill)
+        self.alert = try container.decodeIfPresent(Bool.self,
+                                                   forKey: .alert) ?? false
+        self.outage = try container.decode(Bool.self,
+                                           forKey: .outage)
+        self.home = try container.decode(Bool.self,
+                                         forKey: .home)
+        self.storm = try container.decode(Bool.self,
+                                          forKey: .storm)
+        self.message = try container.decode(String.self,
+                                            forKey: .message)
     }
 }

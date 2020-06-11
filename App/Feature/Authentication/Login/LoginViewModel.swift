@@ -12,143 +12,90 @@ import RxCocoa
 fileprivate let kMaxUsernameChars = 255
 
 class LoginViewModel {
-
+    
     let disposeBag = DisposeBag()
-
+    
     var username = BehaviorRelay(value: "")
     var password = BehaviorRelay(value: "")
     var biometricsAutofilledPassword: String? = nil
     var keepMeSignedIn = BehaviorRelay(value: false)
     var biometricsEnabled = BehaviorRelay(value: false)
     var isLoggingIn = false
-
-    private var authService: AuthenticationService
+    
     private var biometricsService: BiometricsService
     private var registrationService: RegistrationService
-
-    init(authService: AuthenticationService, biometricsService: BiometricsService, registrationService: RegistrationService) {
-        self.authService = authService
+    
+    init(biometricsService: BiometricsService, registrationService: RegistrationService) {
         self.biometricsService = biometricsService
         self.registrationService = registrationService
-
+        
         if let username = biometricsService.getStoredUsername() {
             self.username.accept(username)
         }
         biometricsEnabled.accept(biometricsService.isBiometricsEnabled())
     }
-
+    
     func isDeviceBiometricCompatible() -> Bool {
         return biometricsService.deviceBiometryType() != nil
     }
-
+    
     func biometricsString() -> String? {
         return biometricsService.deviceBiometryType()
     }
-
+    
     func shouldPromptToEnableBiometrics() -> Bool {
         return UserDefaults.standard.bool(forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
-
+    
     func setShouldPromptToEnableBiometrics(_ prompt: Bool) {
         UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
-
+    
     func performLogin(onSuccess: @escaping (Bool, Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
             return
         }
-
+        
         isLoggingIn = true
-        AuthenticatedService.login(username: username.value, password: password.value) { [weak self] (result: Result<Void, NetworkingError>) in
-            switch result {
-            case .success(()):
-                break
-//                guard let self = self else { return }
-
-//                onSuccess(false, false)
-
-//                self.isLoggingIn = false
-                                // todo temp password
-//                let tempPassword = profileStatus.tempPassword
-//                if tempPassword {
-//                    onSuccess(tempPassword, false)
-//                    self.authService.logout()
-//                } else {
-//                    if #available(iOS 12.0, *) { }
-//                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
-//                    else {
-//                        SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
-//                    }
-
-//                    self.checkStormMode { isStormMode in
-//                        onSuccess(tempPassword, isStormMode)
-//                    }
-//                }
-            case .failure(let error):
-                print("Error new fetch login: \(error)")
-                self?.isLoggingIn = false
-
-//                onError("temp1", "temp2")
-
-//                let serviceError = error as! ServiceError
-//                if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
-//                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
-//                } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
-//                    onRegistrationNotComplete()
-//                } else {
-//                    onError(nil, error.localizedDescription)
-//                }
-//                GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
-            }
+        AuthenticatedService.login(username: username.value,
+                                   password: password.value,
+                                   shouldSaveToKeychain: keepMeSignedIn.value) { [weak self] (result: Result<Bool, NetworkingError>) in
+                                    switch result {
+                                    case .success(let hasTempPassword):
+                                        DispatchQueue.main.async {
+                                            guard let self = self else { return }
+                                            
+                                            self.isLoggingIn = false
+                                            
+                                            if hasTempPassword {
+                                                onSuccess(hasTempPassword, false)
+                                                AuthenticatedService.logout()
+                                            } else {
+                                                self.checkStormMode { isStormMode in
+                                                    onSuccess(hasTempPassword, isStormMode)
+                                                }
+                                            }
+                                        }
+                                    case .failure(let error):
+                                        DispatchQueue.main.async {
+                                            switch error {
+                                            case .endpointError(let endpointError):
+                                                if endpointError.code == ServiceErrorCode.fnAccountProtected.rawValue {
+                                                    onError(NSLocalizedString("Password Protected Account", comment: ""), endpointError.description)
+                                                } else if endpointError.code == ServiceErrorCode.fnAcctNotActivated.rawValue {
+                                                    onRegistrationNotComplete()
+                                                } else {
+                                                    onError(nil, error.localizedDescription)
+                                                }
+                                            default:
+                                                onError(nil, error.localizedDescription)
+                                            }
+                                        }
+                                    }
         }
-
-
-        authService.login(username: username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] profileStatus in
-                DispatchQueue.main.async {
-                    
-                guard let self = self else { return }
-                self.isLoggingIn = false
-                let tempPassword = profileStatus.tempPassword
-                if tempPassword {
-                    onSuccess(tempPassword, false)
-                    self.authService.logout()
-                } else {
-                    if #available(iOS 12.0, *) { }
-                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
-                    else {
-                        SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
-                    }
-
-                    self.checkStormMode { isStormMode in
-                        DispatchQueue.main.async {
-                        onSuccess(tempPassword, isStormMode)
-                        }
-                    }
-                }
-                    }
-
-            }, onError: { [weak self] error in
-                DispatchQueue.main.async {
-                    
-                
-                self?.isLoggingIn = false
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
-                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
-                    onRegistrationNotComplete()
-                } else {
-                    onError(nil, error.localizedDescription)
-                }
-                GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
-                }
-            })
-            .disposed(by: disposeBag)
     }
-
+    
     func checkStormMode(completion: @escaping (Bool) -> ()) {
         AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
             switch result {
@@ -159,19 +106,19 @@ class LoginViewModel {
             }
         }
     }
-
+    
     func getStoredUsername() -> String? {
         return biometricsService.getStoredUsername()
     }
-
+    
     func storeUsername() {
         biometricsService.setStoredUsername(username: username.value)
     }
-
+    
     func storePasswordInSecureEnclave() {
         biometricsService.setStoredPassword(password: password.value)
     }
-
+    
     func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool, Bool) -> Void, onError: @escaping (String?, String) -> Void) {
         if let username = biometricsService.getStoredUsername(), let password = biometricsService.getStoredPassword() {
             self.username.accept(username)
@@ -184,12 +131,12 @@ class LoginViewModel {
             onDidNotLoad()
         }
     }
-
+    
     func disableBiometrics() {
         biometricsService.disableBiometrics()
         biometricsEnabled.accept(false)
     }
-
+    
     func checkForMaintenance(onCompletion: @escaping () -> Void) {
         AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
             switch result {
@@ -200,7 +147,7 @@ class LoginViewModel {
             }
         }
     }
-
+    
     func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         registrationService.validateConfirmationEmail(guid)
             .observeOn(MainScheduler.instance)
@@ -215,7 +162,7 @@ class LoginViewModel {
                 }
             }).disposed(by: disposeBag)
     }
-
+    
     func resendValidationEmail(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         registrationService.resendConfirmationEmail(username.value)
             .observeOn(MainScheduler.instance)
@@ -293,5 +240,5 @@ class LoginViewModel {
         
         return numRulesMet >= 3
     }
-
+    
 }

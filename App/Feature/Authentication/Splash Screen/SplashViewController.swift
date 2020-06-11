@@ -35,7 +35,7 @@ class SplashViewController: UIViewController{
     
     var loadingTimer = Timer()
     
-    let viewModel = SplashViewModel(authService: ServiceFactory.createAuthenticationService())
+    let viewModel = SplashViewModel()
     
     var bag = DisposeBag()
     

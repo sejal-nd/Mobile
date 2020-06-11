@@ -9,6 +9,7 @@
 import Foundation
 
 struct JWTRequest: Encodable {
-    let username: String
-    let password: String
+    let postData: Data
+    //let username: String
+    //let password: String
 }
