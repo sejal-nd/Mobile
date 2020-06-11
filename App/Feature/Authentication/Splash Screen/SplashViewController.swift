@@ -32,6 +32,7 @@ class SplashViewController: UIViewController{
     var keepMeSignedIn = false
     var shortcutItem = ShortcutItem.none
     var readyForLogin = false
+    var hasSomeOccurred = false
     
     var loadingTimer = Timer()
     
@@ -60,6 +61,7 @@ class SplashViewController: UIViewController{
         errorTextView.tintColor = .actionBlue // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
 
+        // Add an enquiry section to the error view, if selected OPCO is PHI
         if Environment.shared.opco.isPHI {
             addEnquirySectionForPHI()
         }
@@ -216,7 +218,10 @@ class SplashViewController: UIViewController{
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             landing.present(alert, animated: true, completion: nil)
         } else {
-            performSegue(withIdentifier: "landingSegue", sender: self)
+            // This flag is used to check whether the API Check has succeeded or not if it fails do not proceed to landing screen
+            if !hasSomeOccurred {
+                performSegue(withIdentifier: "landingSegue", sender: self)
+            }
         }
         checkIOSVersion()
     }
@@ -228,12 +233,14 @@ class SplashViewController: UIViewController{
             } else {
                 callback()
             }
+            self?.hasSomeOccurred = false
         }, onError: { [weak self] _ in
             self?.loadingTimer.invalidate()
             self?.imageView.isHidden = true
             self?.splashAnimationContainer.isHidden = true
             self?.loadingContainerView.isHidden = true
             self?.errorView.isHidden = false
+            self?.hasSomeOccurred = true
         })
     }
     
