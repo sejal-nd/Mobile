@@ -288,7 +288,7 @@ struct BillingInfo: Mappable {
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: DateParser().extractDate)
         atReinstateFee = map.optionalFrom("atReinstateFee")
-        minPaymentAmount = try map.from("minimumPaymentAmount")
+        minPaymentAmount = map.optionalFrom("minimumPaymentAmount") ?? 0
         _maxPaymentAmount = try map.from("maximumPaymentAmount")
         _maxPaymentAmountACH = try map.from("maximumPaymentAmountACH")
         currentDueAmount = map.optionalFrom("currentDueAmount")
