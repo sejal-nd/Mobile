@@ -107,6 +107,12 @@ struct AccountDetail: Mappable {
     let electricChoiceId: String?
     let gasChoiceId: String?
     
+    // alert preference eligibility
+    let isHUAEligible: Bool?
+    let isPTREligible: Bool?
+    let isPTSEligible: Bool?
+    let hasThirdPartySupplier: Bool
+    
     // Only 3 real states to think about
     enum PrepaidStatus: String {
         // Not Enrolled
@@ -174,6 +180,11 @@ struct AccountDetail: Mappable {
         
         electricChoiceId = map.optionalFrom("electricChoiceID")
         gasChoiceId = map.optionalFrom("gasChoiceID")
+        
+        isHUAEligible = map.optionalFrom("isHUAEligible")
+        isPTREligible = map.optionalFrom("isPTREligible")
+        isPTSEligible = map.optionalFrom("isPTSEligible")
+        hasThirdPartySupplier = map.optionalFrom("hasThirdPartySupplier") ?? false
     }
     
     // BGE only - Smart Energy Rewards enrollment status
@@ -277,9 +288,9 @@ struct BillingInfo: Mappable {
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: DateParser().extractDate)
         atReinstateFee = map.optionalFrom("atReinstateFee")
-        minPaymentAmount = try map.from("minimumPaymentAmount")
-        _maxPaymentAmount = try map.from("maximumPaymentAmount")
-        _maxPaymentAmountACH = try map.from("maximumPaymentAmountACH")
+        minPaymentAmount = map.optionalFrom("minimumPaymentAmount") ?? 5
+        _maxPaymentAmount = map.optionalFrom("maximumPaymentAmount") ?? 5000
+        _maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH") ?? 100000
         currentDueAmount = map.optionalFrom("currentDueAmount")
         convenienceFee = try map.from("convenienceFee")
         turnOffNoticeExtensionStatus = map.optionalFrom("turnOffNoticeExtensionStatus")

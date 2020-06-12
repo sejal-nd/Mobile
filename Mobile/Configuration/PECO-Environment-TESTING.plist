@@ -9,7 +9,7 @@
 	<key>appName</key>
 	<string>PECO_TEST</string>
 	<key>mcsInstanceName</key>
-	<string>Test1UAT</string>
+	<string>Test-pecoMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.peco.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
@@ -17,7 +17,7 @@
 	<key>gaTrackingId</key>
 	<string>UA-76742208-17</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.peco.com</string>
+	<string>azstage.peco.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.peco.com</string>
 	<key>appCenterId</key>

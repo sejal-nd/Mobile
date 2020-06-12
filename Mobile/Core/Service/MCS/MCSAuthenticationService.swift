@@ -41,36 +41,35 @@ struct MCSAuthenticationService : AuthenticationService {
     func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
         // 1
         return fetchAuthToken(username: username, password: password)
-            .do(onNext: { _ in
-                FirebaseUtility.logEvent(.loginTokenNetworkComplete)
-            })
-            // 2
             .flatMap { tokenResponse in
-                MCSApi.shared.exchangeToken(tokenResponse.token, storeToken: stayLoggedIn)
+                MCSApi.shared.storeToken(tokenResponse.token, storeToken: stayLoggedIn)
                     .mapTo(tokenResponse.profileStatus)
-            }
-            .do(onNext: { _ in
-                FirebaseUtility.logEvent(.loginExchangeTokenNetworkComplete)
-                
-                UserDefaults.standard.set(stayLoggedIn, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-                
+        }
+        .do(onNext: { _ in
+            FirebaseUtility.logEvent(.loginTokenNetworkComplete)
+            
+            UserDefaults.standard.set(stayLoggedIn, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+            
+            
+            DispatchQueue.main.async {
                 // Clear quick actions on sign in, removing "Report Outage." It'll be re-added after
                 // loading account details on the home screen if the user has only 1 account
                 RxNotifications.shared.configureQuickActions.onNext(true)
-            })
-            // 3
+            }
+        })
+            // 2
             .flatMap { profileStatus in
                 // This will error if the first account is password protected
                 MCSAccountService().fetchAccounts().mapTo(profileStatus)
-            }
-            .do(onNext: { _ in
-                FirebaseUtility.logEvent(.loginAccountNetworkComplete)
-                
-                // Reconfigure quick actions since we now know whether or not the user is multi-account.
-                RxNotifications.shared.configureQuickActions.onNext(true)
-            }, onError: { _ in
-                self.logout()
-            })
+        }
+        .do(onNext: { _ in
+            FirebaseUtility.logEvent(.loginAccountNetworkComplete)
+            
+            // Reconfigure quick actions since we now know whether or not the user is multi-account.
+            RxNotifications.shared.configureQuickActions.onNext(true)
+        }, onError: { _ in
+            self.logout()
+        })
     }
     
     func validateLogin(username: String, password: String) -> Observable<Void> {

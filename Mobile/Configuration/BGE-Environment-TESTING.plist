@@ -9,7 +9,7 @@
 	<key>appName</key>
 	<string>BGE_TEST</string>
 	<key>mcsInstanceName</key>
-	<string>Test1UAT</string>
+	<string>Test-bgeMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.bge.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
@@ -17,7 +17,7 @@
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.bge.com</string>
+	<string>azstage.bge.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.bge.com</string>
 	<key>appCenterId</key>
