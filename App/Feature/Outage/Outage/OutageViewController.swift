@@ -183,7 +183,7 @@ class OutageViewController: AccountPickerViewController {
                 
                 // Enable / Disable Report Outage Cell
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
-                    if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService || currentAccount.isFinaled || currentAccount.serviceType == nil {
+                    if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService || outageStatus.isAccountInactive || currentAccount.isFinaled || currentAccount.serviceType == nil {
                         cell.isEnabled = false
                     } else {
                         cell.isEnabled = true
@@ -401,7 +401,7 @@ extension OutageViewController: OutageStatusDelegate {
         FirebaseUtility.logEvent(userState == .authenticated ? .authOutage : .unauthOutage, parameters: [EventParameter(parameterName: .action, value: .view_details)])
         
         switch outageState {
-        case .powerStatus(_), .reported, .unavailable:
+        case .powerStatus(_), .reported, .unavailable, .inactive:
             guard let message = viewModel.outageStatus?.outageDescription else { return }
             let alertViewController = InfoAlertController(title: NSLocalizedString("Outage Status Details", comment: ""),
                                                           message: message)
