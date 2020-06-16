@@ -39,6 +39,7 @@ struct OutageStatus: Mappable {
     let maskedAddress: String?
     let addressNumber: String?
     let unitNumber: String?
+    let status: String?
     var multipremiseAccount: Bool = false // Set locally for use in unauthenticated logic
 
     init(map: Mapper) throws {
@@ -59,8 +60,12 @@ struct OutageStatus: Mappable {
         maskedAddress = map.optionalFrom("maskedAddress")
         addressNumber = map.optionalFrom("addressNumber")
         unitNumber = map.optionalFrom("apartmentUnitNumber")
+        status = map.optionalFrom("status")
     }
     
+    var isAccountInactive: Bool {
+        return status == "NOT ACTIVE"
+    }
     
     // MARK: - Outage State
     
@@ -79,6 +84,8 @@ struct OutageStatus: Mappable {
                 return .unavailable
             } else if outageStatus.flagNoPay {
                 return .nonPayment
+            } else if outageStatus.isAccountInactive {
+                return .inactive
             }
         }
         
@@ -92,6 +99,7 @@ enum OutageState {
     case reported
     case unavailable
     case nonPayment
+    case inactive
 }
 
 struct MeterPingInfo: Mappable {
