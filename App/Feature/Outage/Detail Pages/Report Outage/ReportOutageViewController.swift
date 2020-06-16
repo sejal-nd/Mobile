@@ -98,7 +98,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             meterPingStackView.isHidden = false
             meterPingStatusContainer.isHidden = true
             
-            meterPingCurrentStatusLabel.text = NSLocalizedString("Verifying Meter Status", comment: "")
+            meterPingCurrentStatusLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: "")
             
             meterPingFuseBoxView.isHidden = true
             meterPingFuseBoxLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("I have checked my circuit breakers or fuse box and would still like to report an outage.", comment: "") : NSLocalizedString("I have checked my circuit breakers or fuse box and I would still like to report an outage.", comment: "")
@@ -221,7 +221,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Verifying meter status", comment: ""))
+                UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: ""))
             })
             
             viewModel.meterPingGetStatus(onComplete: { [weak self] meterPingInfo in
