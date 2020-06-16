@@ -19,7 +19,6 @@ class SplashViewModel{
     }
     
     func checkAppVersion(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        onSuccess(false)
         var isOutOfDate = false
         authService.getMinimumVersion()
             .observeOn(MainScheduler.instance)
