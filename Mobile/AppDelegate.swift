@@ -170,6 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         } else {
             // App was in the foreground when notification received - do nothing
+            dLog("*-*-*-*-* App was in the foreground when notification received - do nothing")
         }
     }
     
@@ -183,24 +184,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var tipIdWaitingToBeShown: String? = nil
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        tipIdWaitingToBeShown = response.notification.request.identifier
         
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome) // So app launches into Game experience
-        
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
-            guard let window = window else { return }
-            if let root = window.rootViewController, let _ = root.presentedViewController {
-                root.dismiss(animated: false) { [weak window] in
-                    guard let window = window else { return }
+        if response.notification.request.identifier == "game_weekly_reminder" {
+            tipIdWaitingToBeShown = response.notification.request.identifier
+            
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome) // So app launches into Game experience
+            
+            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+                guard let window = window else { return }
+                if let root = window.rootViewController, let _ = root.presentedViewController {
+                    root.dismiss(animated: false) { [weak window] in
+                        guard let window = window else { return }
+                        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let newTabBarController = mainStoryboard.instantiateInitialViewController()
+                        window.rootViewController = newTabBarController
+                    }
+                } else {
                     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let newTabBarController = mainStoryboard.instantiateInitialViewController()
                     window.rootViewController = newTabBarController
                 }
-            } else {
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let newTabBarController = mainStoryboard.instantiateInitialViewController()
-                window.rootViewController = newTabBarController
             }
+        }
+        else {
+            let userInfo = response.notification.request.content.userInfo
+            guard let aps = userInfo["aps"] as? [String: Any] else { return }
+            guard let alert = aps["alert"] as? [String: Any] else { return }
+            
+            var accountNumbers: [String]
+            if let accountIds = userInfo["accountIds"] as? [String] {
+                accountNumbers = accountIds
+            } else if let accountId = userInfo["accountId"] as? String {
+                accountNumbers = [accountId]
+            } else {
+                completionHandler()
+                return // Did not get account number or array of account numbers
+            }
+            
+            let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
+            AlertsStore.shared.savePushNotification(notification)
+            
+            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
+                NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
+            } else {
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
+                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
+            }
+            
+            completionHandler()
         }
     }
     
