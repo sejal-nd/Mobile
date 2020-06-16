@@ -150,23 +150,48 @@ class SplashViewModel{
         var localizedString: String = ""
         var phoneNumbers = [String]()
         
-        if Environment.shared.opco == .ace {
+        switch Environment.shared.opco {
+        case .ace:
             let phone = "1-800-833-7476"
-            phoneNumbers = [phone]
-            localizedString = String.localizedStringWithFormat(
-                """
-                For all other inquiries, please call %@ M-F 7AM to 8PM.
-                """
-                ,phone)
-        } else if Environment.shared.opco == .delmarva {
+                       phoneNumbers = [phone]
+                       localizedString = String.localizedStringWithFormat(
+                           """
+                           For all other inquiries, please call %@ M-F 7AM to 7PM.
+                           """
+                           ,phone)
+        case .bge:
+            let phone = "1-800-685-0123"
+                       phoneNumbers = [phone]
+                       localizedString = String.localizedStringWithFormat(
+                           """
+                           For all other inquiries, please call %@ M-F 7AM to 7PM.
+                           """
+                           ,phone)
+        case .comEd:
+            let phone = "1-800-334-7661"
+                       phoneNumbers = [phone]
+                       localizedString = String.localizedStringWithFormat(
+                           """
+                           For all other inquiries, please call %@ M-F 7AM to 7PM.
+                           """
+                           ,phone)
+        case .delmarva:
             let phone = "1-800-375-7117"
             phoneNumbers = [phone]
             localizedString = String.localizedStringWithFormat(
                 """
-                For all other inquiries, please call %@ M-F 7AM to 8PM.
+                For all other inquiries, please call %@ M-F 7AM to 7PM.
                 """
                 ,phone)
-        } else if Environment.shared.opco == .pepco {
+        case .peco:
+            let phone = "1-800-494-4000"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                For all other inquiries, please call %@ M-F 7AM to 7PM.
+                """
+                ,phone)
+        case .pepco:
             let phone = "202-833-7500"
             phoneNumbers = [phone]
             localizedString = String.localizedStringWithFormat(
@@ -175,7 +200,7 @@ class SplashViewModel{
                 """
                 ,phone)
         }
-        
+            
         let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
         
         for phone in phoneNumbers {

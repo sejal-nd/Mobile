@@ -59,11 +59,7 @@ class SplashViewController: UIViewController{
         
         errorTextView.tintColor = .actionBlue // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
-
-        // Add an enquiry section to the error view, if selected OPCO is PHI
-        if Environment.shared.opco.isPHI {
-            addEnquirySectionForPHI()
-        }
+        addEnquiryFooterSection()
         
         NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification, object: nil)
             .skip(1) // Ignore the initial notification that fires, causing a double call to checkAppVersion
@@ -160,7 +156,7 @@ class SplashViewController: UIViewController{
         }
     }
     
-    private func addEnquirySectionForPHI() {
+    private func addEnquiryFooterSection() {
         errorTextView.constraints.first { $0.firstAnchor == errorTextView.heightAnchor}?.isActive = false
         let separatorView = UIView().usingAutoLayout()
         separatorView.backgroundColor = .accentGray
