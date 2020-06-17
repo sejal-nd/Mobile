@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class EditAccountNickNameViewController: AccountPickerViewController {
     
@@ -17,6 +19,7 @@ class EditAccountNickNameViewController: AccountPickerViewController {
     
     /// `Save Nickname` Button
     @IBOutlet weak var saveNicknameButton: PrimaryButton!
+    
     /// `EditNicknameViewModel` Instance
     let viewModel = EditNicknameViewModel(accountService: ServiceFactory.createAccountService(),
                                           authService: ServiceFactory.createAuthenticationService(),
@@ -39,6 +42,12 @@ extension EditAccountNickNameViewController: AccountPickerDelegate {
 
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         viewModel.fetchAccountDetail(isRefresh: false)
+        if let accountNickName = accountPicker.currentAccount?.accountNickname {
+            viewModel.storedAccountNickName = accountNickName
+            viewModel.accountNickName.accept(accountNickName)
+            nickNametextField.textField.text = viewModel.accountNickName.value
+            viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
+        }
     }
 }
 
@@ -50,9 +59,38 @@ extension EditAccountNickNameViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         nickNametextField.placeholder = NSLocalizedString("Account Nickname", comment: "")
+        nickNametextField.textField.text = viewModel.accountNickName.value
         nickNametextField.textField.autocorrectionType = .no
         nickNametextField.textField.returnKeyType = .done
         nickNametextField.textField.textContentType = .nickname
+        nickNametextField.textField.delegate = self
         viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
+    }
+    
+    func onContinuePress() {
+        
+    }
+}
+
+// MARK: - UITextFieldDelegate Methods
+extension EditAccountNickNameViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        viewModel.accountNickName.accept(newString)
+        viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
+        // Restrict Username to not more than 25 characters
+        return !(newString.count > 25)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
+        if saveNicknameButton.isEnabled {
+             onContinuePress()
+             view.endEditing(true)
+        } else {
+             view.endEditing(true)
+        }
+        return false
     }
 }
