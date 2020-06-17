@@ -1,6 +1,6 @@
 //
 //  EditAccountNickNameViewController.swift
-//  BGE
+//  Mobile
 //
 //  Created by Majumdar, Amit on 28/05/20.
 //  Copyright © 2020 Exelon Corporation. All rights reserved.
@@ -21,9 +21,7 @@ class EditAccountNickNameViewController: AccountPickerViewController {
     @IBOutlet weak var saveNicknameButton: PrimaryButton!
     
     /// `EditNicknameViewModel` Instance
-    let viewModel = EditNicknameViewModel(accountService: ServiceFactory.createAccountService(),
-                                          authService: ServiceFactory.createAuthenticationService(),
-                                          usageService: ServiceFactory.createUsageService(useCache: true))
+    let viewModel = EditNicknameViewModel(accountService: ServiceFactory.createAccountService())
     
    // MARK: - View LifeCycle Methods
     override func viewDidLoad() {
@@ -35,6 +33,17 @@ class EditAccountNickNameViewController: AccountPickerViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    @IBAction func saveAction(_ sender: Any) {
+        LoadingView.show()
+        viewModel.setAccountNickname(onSuccess: {
+            print("Successful")
+            LoadingView.hide()
+        },onError: { (error) in
+            print(error)
+            LoadingView.hide()
+        })
+    }
 }
 
 // MARK: - AccountPickerDelegate Method Implementation
@@ -42,8 +51,10 @@ extension EditAccountNickNameViewController: AccountPickerDelegate {
 
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         viewModel.fetchAccountDetail(isRefresh: false)
-        if let accountNickName = accountPicker.currentAccount?.accountNickname {
+        if let accountNickName = accountPicker.currentAccount?.accountNickname,
+           let accountNumber = accountPicker.currentAccount?.accountNumber {
             viewModel.storedAccountNickName = accountNickName
+            viewModel.accountNumber = accountNumber
             viewModel.accountNickName.accept(accountNickName)
             nickNametextField.textField.text = viewModel.accountNickName.value
             viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
@@ -66,10 +77,6 @@ extension EditAccountNickNameViewController {
         nickNametextField.textField.delegate = self
         viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
     }
-    
-    func onContinuePress() {
-        
-    }
 }
 
 // MARK: - UITextFieldDelegate Methods
@@ -86,10 +93,10 @@ extension EditAccountNickNameViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
         if saveNicknameButton.isEnabled {
-             onContinuePress()
-             view.endEditing(true)
+            saveAction(saveNicknameButton)
+            view.endEditing(true)
         } else {
-             view.endEditing(true)
+            view.endEditing(true)
         }
         return false
     }

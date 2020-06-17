@@ -1,6 +1,6 @@
 //
 //  EditNicknameViewModel.swift
-//  BGE
+//  Mobile
 //
 //  Created by Majumdar, Amit on 11/06/20.
 //  Copyright © 2020 Exelon Corporation. All rights reserved.
@@ -16,8 +16,6 @@ class EditNicknameViewModel {
     let disposeBag = DisposeBag()
     
     private let accountService: AccountService
-    private let authService: AuthenticationService
-    private let usageService: UsageService
     
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
@@ -27,22 +25,21 @@ class EditNicknameViewModel {
     /// A Local variable to track the retrieved account Nick Name used for comparisons
     var storedAccountNickName = ""
     
+    /// A Local variable to store account Number
+    var accountNumber = ""
+    
     /// `EditNicknameViewModel` initializer
     /// - Parameters:
     ///   - accountService: `AccountService` instance
-    ///   - authService: `AuthenticationService` instance
-    ///   - usageService: `UsageService` instance
-    required init(accountService: AccountService, authService: AuthenticationService, usageService: UsageService) {
+    required init(accountService: AccountService) {
         self.accountService = accountService
-        self.authService = authService
-        self.usageService = usageService
-
         if AccountsStore.shared.accounts != nil && !AccountsStore.shared.accounts.isEmpty {
             let currentAccount = AccountsStore.shared.currentAccount
             if let accountNickname = currentAccount.accountNickname {
+                storedAccountNickName = accountNickname
+                accountNumber = currentAccount.accountNumber
                 accountNickName.accept(accountNickname)
             }
-            storedAccountNickName = accountNickName.value
         }
     }
     
@@ -65,5 +62,20 @@ class EditNicknameViewModel {
     
     func fetchAccountDetail(isRefresh: Bool) {
         fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
+    }
+    
+    /// Set Account Nickname
+    /// - Parameters:
+    ///   - onSuccess: onSuccess Block that will notify success case
+    ///   - onError: onError Block that will notify error case
+    func setAccountNickname(onSuccess: @escaping () -> Void,
+                            onError: @escaping (String) -> Void) {
+        accountService.setAccountNickname(nickname: accountNickName.value, accountNumber: accountNumber)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            }).disposed(by: disposeBag)
     }
 }

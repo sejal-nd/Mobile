@@ -77,6 +77,10 @@ class MockAccountService: AccountService {
         return .just(())
     }
     
+    func setAccountNickname(nickname: String, accountNumber: String) -> Observable<Void> {
+        return .just(())
+    }
+    
     func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
         let dataFile = MockJSONManager.File.ssoData
         let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
