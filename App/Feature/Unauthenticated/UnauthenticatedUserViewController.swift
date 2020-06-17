@@ -173,7 +173,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 2:
                 cell.configure(image: UIImage(named: "ic_mapoutagewhite"), text: NSLocalizedString("View Outage Map", comment: ""))
             case 3:
-                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), text: NSLocalizedString("Report Street Light Problem", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage_white"), text: NSLocalizedString("Report Street Light Problem", comment: ""))
             default:
                 return UITableViewCell()
             }
