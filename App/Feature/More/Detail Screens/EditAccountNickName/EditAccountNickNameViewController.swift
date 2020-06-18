@@ -34,15 +34,9 @@ class EditAccountNickNameViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @IBAction func saveAction(_ sender: Any) {
-        LoadingView.show()
-        viewModel.setAccountNickname(onSuccess: {
-            print("Successful")
-            LoadingView.hide()
-        },onError: { (error) in
-            print(error)
-            LoadingView.hide()
-        })
+    // MARK: - IBAction Methods
+    @IBAction func saveAction(_ sender: UIButton) {
+        performSaveOperation()
     }
 }
 
@@ -65,6 +59,7 @@ extension EditAccountNickNameViewController: AccountPickerDelegate {
 // MARK: - EditAccountNickNameViewController Private Methods
 extension EditAccountNickNameViewController {
     
+    /// This method customizes the initial layout
     private func prepareInterfaceBuilder() {
         title = NSLocalizedString("Edit Account Nickname", comment: "")
         accountPicker.delegate = self
@@ -76,6 +71,23 @@ extension EditAccountNickNameViewController {
         nickNametextField.textField.textContentType = .nickname
         nickNametextField.textField.delegate = self
         viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
+    }
+    
+    /// This method performs operation of saving a nickname
+    private func performSaveOperation() {
+        LoadingView.show()
+        view.endEditing(true)
+        viewModel.setAccountNickname(onSuccess: { [weak self] in
+            guard let self = self else { return }
+            if let text = self.nickNametextField.textField.text {
+                self.viewModel.storedAccountNickName = text
+                self.viewModel.accountNickName.accept(text)
+                self.viewModel.saveNicknameEnabled.asDriver().drive(self.saveNicknameButton.rx.isEnabled).disposed(by: self.disposeBag)
+            }
+            LoadingView.hide()
+            },onError: { (error) in
+                LoadingView.hide()
+        })
     }
 }
 

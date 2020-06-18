@@ -72,8 +72,15 @@ class EditNicknameViewModel {
                             onError: @escaping (String) -> Void) {
         accountService.setAccountNickname(nickname: accountNickName.value, accountNumber: accountNumber)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
-                onSuccess()
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.accountService.fetchAccounts()
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onNext: { __SRD in
+                        onSuccess()
+                    }, onError: { error in
+                        onError(error.localizedDescription)
+                    }).disposed(by: self.disposeBag)
             }, onError: { error in
                 onError(error.localizedDescription)
             }).disposed(by: disposeBag)
