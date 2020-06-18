@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwiftExt
 
 
-class EditNicknameViewModel {
+final class EditNicknameViewModel {
     
     let disposeBag = DisposeBag()
     

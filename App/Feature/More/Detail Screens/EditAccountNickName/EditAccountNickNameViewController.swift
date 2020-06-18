@@ -10,18 +10,19 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class EditAccountNickNameViewController: AccountPickerViewController {
+final class EditAccountNickNameViewController: AccountPickerViewController {
     
-    let disposeBag = DisposeBag()
+    /// `DisposeBag` instance
+    private let disposeBag = DisposeBag()
 
     /// `Nickname`Text Field
-    @IBOutlet weak var nickNametextField: FloatLabelTextField!
+    @IBOutlet weak private var nickNametextField: FloatLabelTextField!
     
     /// `Save Nickname` Button
-    @IBOutlet weak var saveNicknameButton: PrimaryButton!
+    @IBOutlet weak private var saveNicknameButton: PrimaryButton!
     
     /// `EditNicknameViewModel` Instance
-    let viewModel = EditNicknameViewModel(accountService: ServiceFactory.createAccountService())
+    private let viewModel = EditNicknameViewModel(accountService: ServiceFactory.createAccountService())
     
    // MARK: - View LifeCycle Methods
     override func viewDidLoad() {
@@ -85,8 +86,12 @@ extension EditAccountNickNameViewController {
                 self.viewModel.saveNicknameEnabled.asDriver().drive(self.saveNicknameButton.rx.isEnabled).disposed(by: self.disposeBag)
             }
             LoadingView.hide()
-            },onError: { (error) in
+            }, onError: { [weak self] (errorMessage)  in
                 LoadingView.hide()
+                guard let self = self else { return }
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
         })
     }
 }
