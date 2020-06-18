@@ -209,6 +209,12 @@
 		30DFE8642492641F00FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30DFE8652492642000FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30DFE8662492642200FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30DFE86B249B51D300FEFDE4 /* EditNicknameViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */; };
+		30DFE86C249B51D600FEFDE4 /* EditNicknameViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */; };
+		30DFE86D249B51DA00FEFDE4 /* EditNicknameViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */; };
+		30F82199249B6AAF0010547C /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30F8219A249B6AB10010547C /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30F8219B249B6AB20010547C /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -5568,6 +5574,7 @@
 		3090A636247E426400815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
 		30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
+		30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModelTestCase.swift; sourceTree = "<group>"; };
 		332CC2EF55B070505882B8EF /* Pods-BGEApp-BGEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
 		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
@@ -9136,6 +9143,7 @@
 				E8EC0F8D2028FA3C00956ABD /* WalletViewModelTests.swift */,
 				357757502113611000E73542 /* DateParserTests.swift */,
 				9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */,
+				30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -14600,6 +14608,7 @@
 				67DDBA3324535DAA006CD6EB /* WalletViewModelTests.swift in Sources */,
 				67DDBA3424535DAA006CD6EB /* MockRegistrationService.swift in Sources */,
 				67DDBA3524535DAA006CD6EB /* BudgetBillingInfo.swift in Sources */,
+				30F82199249B6AAF0010547C /* EditNicknameViewModel.swift in Sources */,
 				67DDBA3624535DAA006CD6EB /* PaymentViewModel.swift in Sources */,
 				67DDBA3724535DAA006CD6EB /* PaperlessEBillViewModelTests.swift in Sources */,
 				67DDBA3824535DAA006CD6EB /* AppointmentService.swift in Sources */,
@@ -14683,6 +14692,7 @@
 				67DDBA8A24535DAA006CD6EB /* MockPaymentService.swift in Sources */,
 				67DDBA8B24535DAA006CD6EB /* UsageTool.swift in Sources */,
 				67DDBA8C24535DAA006CD6EB /* AlertPreferencesViewModelTests.swift in Sources */,
+				30DFE86B249B51D300FEFDE4 /* EditNicknameViewModelTestCase.swift in Sources */,
 				67DDBA8D24535DAA006CD6EB /* UsageService.swift in Sources */,
 				67DDBA8E24535DAA006CD6EB /* LoginViewModelTests.swift in Sources */,
 				67DDBA8F24535DAA006CD6EB /* ReportedOutagesStore.swift in Sources */,
@@ -14741,6 +14751,7 @@
 				67DDBAED24535DAC006CD6EB /* StormModeHomeViewModel.swift in Sources */,
 				67DDBAEE24535DAC006CD6EB /* AuthTokenResponse.swift in Sources */,
 				67DDBAEF24535DAC006CD6EB /* BiometricsService.swift in Sources */,
+				30F8219B249B6AB20010547C /* EditNicknameViewModel.swift in Sources */,
 				67DDBAF024535DAC006CD6EB /* HomeAppointmentCardViewModel.swift in Sources */,
 				67DDBAF124535DAC006CD6EB /* UserDefaultKeys.swift in Sources */,
 				67DDBAF224535DAC006CD6EB /* AppRating.swift in Sources */,
@@ -14839,6 +14850,7 @@
 				67DDBB5024535DAC006CD6EB /* BillingHistoryItem.swift in Sources */,
 				67DDBB5124535DAC006CD6EB /* WatchSessionMananger.swift in Sources */,
 				67DDBB5224535DAC006CD6EB /* NibViews.swift in Sources */,
+				30DFE86D249B51DA00FEFDE4 /* EditNicknameViewModelTestCase.swift in Sources */,
 				67DDBB5324535DAC006CD6EB /* BGEChoiceIDViewModel.swift in Sources */,
 				67DDBB5424535DAC006CD6EB /* Top5EnergyTipsViewModel.swift in Sources */,
 				67DDBB5524535DAC006CD6EB /* CommercialUsageAlertStore.swift in Sources */,
@@ -14931,6 +14943,7 @@
 				67DDBBD524535DAE006CD6EB /* StormModeHomeViewModel.swift in Sources */,
 				67DDBBD624535DAE006CD6EB /* AuthTokenResponse.swift in Sources */,
 				67DDBBD724535DAE006CD6EB /* BiometricsService.swift in Sources */,
+				30F8219A249B6AB10010547C /* EditNicknameViewModel.swift in Sources */,
 				67DDBBD824535DAE006CD6EB /* HomeAppointmentCardViewModel.swift in Sources */,
 				67DDBBD924535DAE006CD6EB /* UserDefaultKeys.swift in Sources */,
 				67DDBBDA24535DAE006CD6EB /* AppRating.swift in Sources */,
@@ -15029,6 +15042,7 @@
 				67DDBC3824535DAE006CD6EB /* BillingHistoryItem.swift in Sources */,
 				67DDBC3924535DAE006CD6EB /* WatchSessionMananger.swift in Sources */,
 				67DDBC3A24535DAE006CD6EB /* NibViews.swift in Sources */,
+				30DFE86C249B51D600FEFDE4 /* EditNicknameViewModelTestCase.swift in Sources */,
 				67DDBC3B24535DAE006CD6EB /* BGEChoiceIDViewModel.swift in Sources */,
 				67DDBC3C24535DAE006CD6EB /* Top5EnergyTipsViewModel.swift in Sources */,
 				67DDBC3D24535DAE006CD6EB /* CommercialUsageAlertStore.swift in Sources */,
@@ -22950,6 +22964,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'";
 				MARKETING_VERSION = 10.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_MODULE_NAME = Pepco;
 				PRODUCT_NAME = Mobile;
 				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
