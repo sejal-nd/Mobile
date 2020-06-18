@@ -228,11 +228,11 @@ class AlertPreferencesViewModelTests: XCTestCase {
         case .peco:
             expectedString = NSLocalizedString("Receive an alert about weather conditions that could potentially impact PECO service in your area.", comment: "")
         case .pepco:
-            expectedString = ""
+            expectedString = "todo"
         case .ace:
-            expectedString = ""
+            expectedString = "todo"
         case .delmarva:
-            expectedString = ""
+            expectedString = "todo"
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.severeWeather.detailText,
                        expectedString)
@@ -249,11 +249,11 @@ class AlertPreferencesViewModelTests: XCTestCase {
         case .comEd, .peco:
             expectedString = NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
        case .pepco:
-            expectedString = ""
+            expectedString = "todo"
         case .ace:
-            expectedString = ""
+            expectedString = "todo"
         case .delmarva:
-            expectedString = ""
+            expectedString = "todo"
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.billIsReady.detailText,
                        expectedString)
@@ -270,11 +270,11 @@ class AlertPreferencesViewModelTests: XCTestCase {
         case .comEd, .peco:
             expectedString = NSLocalizedString("Receive an alert 1 to 7 days before your payment due date. If enrolled in AutoPay, the alert will notify you of when a payment will be deducted from your bank account.\n\nNOTE: You are responsible for payment of the total amount due on your account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
         case .pepco:
-            expectedString = ""
+            expectedString = "todo"
         case .ace:
-            expectedString = ""
+            expectedString = "todo"
         case .delmarva:
-            expectedString = ""
+            expectedString = "todo"
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.paymentDueReminder.detailText,
                        expectedString)
@@ -313,11 +313,11 @@ class AlertPreferencesViewModelTests: XCTestCase {
         case .peco:
             expectedString = NSLocalizedString("Your monthly Budget Bill payment may be adjusted every four months to keep your account current with your actual energy usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
         case .pepco:
-            expectedString = ""
+            expectedString = "todo"
         case .ace:
-            expectedString = ""
+            expectedString = "todo"
         case .delmarva:
-            expectedString = ""
+            expectedString = "todo"
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.budgetBillingReview.detailText,
                        expectedString)
@@ -347,11 +347,11 @@ class AlertPreferencesViewModelTests: XCTestCase {
         case .peco:
             expectedString = NSLocalizedString("Occasionally, PECO may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
         case .pepco:
-            expectedString = ""
+            expectedString = "todo"
         case .ace:
-            expectedString = ""
+            expectedString = "todo"
         case .delmarva:
-            expectedString = ""
+            expectedString = "todo"
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.forYourInformation.detailText,
                        expectedString)
