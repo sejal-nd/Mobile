@@ -271,11 +271,11 @@ class BillViewModelContentTests: BillViewModelTests {
         case .comEd, .peco:
             firstExpectedValue = nil
         case .pepco:
-            firstExpectedValue = "todo"
+            firstExpectedValue = nil
         case .ace:
-            firstExpectedValue = "todo"
+            firstExpectedValue = nil
         case .delmarva:
-            firstExpectedValue = "todo"
+            firstExpectedValue = nil
         }
         
         let expectedValues: [String?] = [
