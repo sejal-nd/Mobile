@@ -215,6 +215,12 @@
 		30F82199249B6AAF0010547C /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30F8219A249B6AB10010547C /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30F8219B249B6AB20010547C /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30F821A1249B70E30010547C /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		30F821A2249B70E50010547C /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		30F821A3249B70E80010547C /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		30F821A4249B71900010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
+		30F821A5249B71930010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
+		30F821A6249B71950010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -5575,6 +5581,7 @@
 		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
 		30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
 		30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModelTestCase.swift; sourceTree = "<group>"; };
+		30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameUITests.swift; sourceTree = "<group>"; };
 		332CC2EF55B070505882B8EF /* Pods-BGEApp-BGEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
 		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
@@ -6767,6 +6774,7 @@
 				E8F353B5200D19E100883CEA /* UITestExtensions.swift */,
 				B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */,
 				0E863D8520DD4703004D77EC /* TestHelper.swift */,
+				30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -14524,6 +14532,7 @@
 				67DDB9E024535DAA006CD6EB /* SharedColor.swift in Sources */,
 				67DDB9E124535DAA006CD6EB /* Weekday.swift in Sources */,
 				67DDB9E224535DAA006CD6EB /* WeatherItem.swift in Sources */,
+				30F821A1249B70E30010547C /* EditAccountNickNameViewController.swift in Sources */,
 				67DDB9E324535DAA006CD6EB /* ForgotUsername.swift in Sources */,
 				67DDB9E424535DAA006CD6EB /* Account.swift in Sources */,
 				67DDB9E524535DAA006CD6EB /* Maintenance.swift in Sources */,
@@ -14888,6 +14897,7 @@
 				67DDBB7524535DAC006CD6EB /* UsageService.swift in Sources */,
 				67DDBB7624535DAC006CD6EB /* LoginViewModelTests.swift in Sources */,
 				67DDBB7724535DAC006CD6EB /* ReportedOutagesStore.swift in Sources */,
+				30F821A3249B70E80010547C /* EditAccountNickNameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -15080,6 +15090,7 @@
 				67DDBC5D24535DAE006CD6EB /* UsageService.swift in Sources */,
 				67DDBC5E24535DAE006CD6EB /* LoginViewModelTests.swift in Sources */,
 				67DDBC5F24535DAE006CD6EB /* ReportedOutagesStore.swift in Sources */,
+				30F821A2249B70E50010547C /* EditAccountNickNameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -15094,6 +15105,7 @@
 				67DDBC9524535DD5006CD6EB /* BillUITests.swift in Sources */,
 				67DDBC9624535DD5006CD6EB /* DateUITestUtil.swift in Sources */,
 				67DDBC9724535DD5006CD6EB /* ScreenshotsUITests.swift in Sources */,
+				30F821A6249B71950010547C /* EditNicknameUITests.swift in Sources */,
 				67DDBC9824535DD5006CD6EB /* TestHelper.swift in Sources */,
 				67DDBC9924535DD5006CD6EB /* MoreUITests.swift in Sources */,
 				67DDBC9A24535DD5006CD6EB /* UITestExtensions.swift in Sources */,
@@ -15118,6 +15130,7 @@
 				67DDBCBD24535DD9006CD6EB /* BillUITests.swift in Sources */,
 				67DDBCBE24535DD9006CD6EB /* DateUITestUtil.swift in Sources */,
 				67DDBCBF24535DD9006CD6EB /* ScreenshotsUITests.swift in Sources */,
+				30F821A5249B71930010547C /* EditNicknameUITests.swift in Sources */,
 				67DDBCC024535DD9006CD6EB /* TestHelper.swift in Sources */,
 				67DDBCC124535DD9006CD6EB /* MoreUITests.swift in Sources */,
 				67DDBCC224535DD9006CD6EB /* UITestExtensions.swift in Sources */,
@@ -15142,6 +15155,7 @@
 				67DDBCE524535DDB006CD6EB /* BillUITests.swift in Sources */,
 				67DDBCE624535DDB006CD6EB /* DateUITestUtil.swift in Sources */,
 				67DDBCE724535DDB006CD6EB /* ScreenshotsUITests.swift in Sources */,
+				30F821A4249B71900010547C /* EditNicknameUITests.swift in Sources */,
 				67DDBCE824535DDB006CD6EB /* TestHelper.swift in Sources */,
 				67DDBCE924535DDB006CD6EB /* MoreUITests.swift in Sources */,
 				67DDBCEA24535DDB006CD6EB /* UITestExtensions.swift in Sources */,
