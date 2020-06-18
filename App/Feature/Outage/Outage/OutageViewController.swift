@@ -183,7 +183,7 @@ class OutageViewController: AccountPickerViewController {
                 
                 // Enable / Disable Report Outage Cell
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
-                    if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService || currentAccount.isFinaled || currentAccount.serviceType == nil {
+                    if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService || outageStatus.isAccountInactive || currentAccount.isFinaled || currentAccount.serviceType == nil {
                         cell.isEnabled = false
                     } else {
                         cell.isEnabled = true
@@ -325,7 +325,7 @@ extension OutageViewController: UITableViewDataSource {
             let detailText = (accountsLoaded && viewModel.reportedOutage != nil) ? viewModel.outageReportedDateString : nil
             cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: detailText)
         case IndexPath(row: 1, section: 0):
-            cell.configure(image: UIImage(named: "ic_streetlightoutage"), title: Environment.shared.opco.isPHI ? "Report Streetlight Problem" : "Report Streetlight Outage", detail: nil)
+            cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: "Report Street Light Problem", detail: nil)
         case IndexPath(row: 2, section: 0):
             cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
         default:
@@ -401,7 +401,7 @@ extension OutageViewController: OutageStatusDelegate {
         FirebaseUtility.logEvent(userState == .authenticated ? .authOutage : .unauthOutage, parameters: [EventParameter(parameterName: .action, value: .view_details)])
         
         switch outageState {
-        case .powerStatus(_), .reported, .unavailable:
+        case .powerStatus(_), .reported, .unavailable, .inactive:
             guard let message = viewModel.outageStatus?.outageDescription else { return }
             let alertViewController = InfoAlertController(title: NSLocalizedString("Outage Status Details", comment: ""),
                                                           message: message)

@@ -53,7 +53,7 @@ class OutageStatusView: UIView {
                 return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
             }
         }
-        return NSLocalizedString("Assessing Damage", comment: "")
+        return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
     }
     
     private var descriptionText: String {
@@ -62,7 +62,7 @@ class OutageStatusView: UIView {
         } else {
             var text = ""
             switch outageState {
-            case .unavailable:
+            case .unavailable, .inactive:
                 text = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
             case .nonPayment:
                 text = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
@@ -187,6 +187,7 @@ extension OutageStatusView {
             }
         case .unavailable:
             lottieAnimationView?.removeFromSuperview()
+            lottieAnimationView = nil
             statusImageView.isHidden = false
             statusHeightConstraint.constant = 125
             statusWidthConstraint.constant = 125
@@ -199,6 +200,7 @@ extension OutageStatusView {
             button.isHidden = true
         case .nonPayment:
             lottieAnimationView?.removeFromSuperview()
+            lottieAnimationView = nil
             statusImageView.isHidden = false
             statusHeightConstraint.constant = 125
             statusWidthConstraint.constant = 125
@@ -214,6 +216,19 @@ extension OutageStatusView {
                 button.setTitle(NSLocalizedString("Pay Bill", comment: ""), for: .normal)
                 button.layoutIfNeeded()
             }
+        case .inactive:
+            lottieAnimationView?.removeFromSuperview()
+            lottieAnimationView = nil
+            statusImageView.isHidden = false
+            statusHeightConstraint.constant = 125
+            statusWidthConstraint.constant = 125
+            
+            titleLabel.text = NSLocalizedString("Account Inactive", comment: "")
+            titleDescriptionLabel.isHidden = true
+            descriptionLabel.isHidden = false
+            detailDescriptionLabel.isHidden = true
+            detailLabel.isHidden = true
+            button.isHidden = true
         }
         
         lottieAnimationView?.frame = CGRect(x: 0, y: 1, width: animationContentView.frame.size.width, height: animationContentView.frame.size.height)
