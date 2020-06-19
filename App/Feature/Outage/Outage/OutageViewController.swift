@@ -325,7 +325,8 @@ extension OutageViewController: UITableViewDataSource {
             let detailText = (accountsLoaded && viewModel.reportedOutage != nil) ? viewModel.outageReportedDateString : nil
             cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: detailText)
         case IndexPath(row: 1, section: 0):
-            cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: "Report Street Light Problem", detail: nil)
+            let title = Environment.shared.opco.isPHI ? "Report Street Light Problem" : "Report Street Light Outage"
+            cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage"), title: title, detail: nil)
         case IndexPath(row: 2, section: 0):
             cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
         default:
