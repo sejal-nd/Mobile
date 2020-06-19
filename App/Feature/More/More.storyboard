@@ -1145,7 +1145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2A-zE-RJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3296.8000000000002" y="1838.6806596701651"/>
+            <point key="canvasLocation" x="3296.376811594203" y="1838.1696428571427"/>
         </scene>
         <!--BGE's Play-n-Save Pilot-->
         <scene sceneID="Wze-xw-ck4">
@@ -1423,7 +1423,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qd-KH-lf6" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="777" width="414" height="119"/>
+                                <rect key="frame" x="0.0" y="777" width="414" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jml-YF-e9E" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
@@ -1437,11 +1437,11 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Jml-YF-e9E" firstAttribute="top" secondItem="IzX-EK-otB" secondAttribute="top" constant="15" id="Bns-fQ-udG"/>
+                                    <constraint firstItem="Jml-YF-e9E" firstAttribute="centerX" secondItem="7qd-KH-lf6" secondAttribute="centerX" id="CGF-aY-m45"/>
                                     <constraint firstItem="IzX-EK-otB" firstAttribute="trailing" secondItem="Jml-YF-e9E" secondAttribute="trailing" constant="20" id="QO4-mt-hpJ"/>
-                                    <constraint firstAttribute="height" constant="119" id="VSW-vz-qse"/>
+                                    <constraint firstAttribute="height" constant="85" id="VSW-vz-qse"/>
                                     <constraint firstItem="Jml-YF-e9E" firstAttribute="leading" secondItem="IzX-EK-otB" secondAttribute="leading" constant="20" id="iBs-Ie-m9Z"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="IzX-EK-otB"/>
@@ -1455,7 +1455,7 @@
                             <constraint firstItem="njo-ht-n9o" firstAttribute="trailing" secondItem="7qd-KH-lf6" secondAttribute="trailing" id="8sJ-YE-BTL"/>
                             <constraint firstItem="gkm-lk-yJR" firstAttribute="top" secondItem="wl4-6F-b0k" secondAttribute="bottom" constant="30" id="ANH-Ur-ILc"/>
                             <constraint firstItem="gkm-lk-yJR" firstAttribute="leading" secondItem="njo-ht-n9o" secondAttribute="leading" constant="20" id="RYZ-fT-H4F"/>
-                            <constraint firstAttribute="bottom" secondItem="7qd-KH-lf6" secondAttribute="bottom" id="fCq-th-wT9"/>
+                            <constraint firstItem="njo-ht-n9o" firstAttribute="bottom" secondItem="7qd-KH-lf6" secondAttribute="bottom" id="fCq-th-wT9"/>
                             <constraint firstItem="wl4-6F-b0k" firstAttribute="top" secondItem="njo-ht-n9o" secondAttribute="top" id="mDj-Oe-r2G"/>
                             <constraint firstItem="7qd-KH-lf6" firstAttribute="leading" secondItem="C9P-Dj-9Zp" secondAttribute="leading" id="vQK-CA-jD1"/>
                         </constraints>
@@ -1464,6 +1464,7 @@
                     <navigationItem key="navigationItem" id="OnX-ZC-2dh"/>
                     <connections>
                         <outlet property="accountPicker" destination="wl4-6F-b0k" id="LXU-IT-zxI"/>
+                        <outlet property="footerBottomAnchor" destination="fCq-th-wT9" id="G1k-Qt-42M"/>
                         <outlet property="nickNametextField" destination="gkm-lk-yJR" id="YmZ-Er-NPw"/>
                         <outlet property="saveNicknameButton" destination="Jml-YF-e9E" id="Rwp-Na-ciH"/>
                     </connections>
@@ -1502,19 +1503,19 @@
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_residential_mini" translatesAutoresizingMaskIntoConstraints="NO" id="3f6-6r-gBr">
-                                                            <rect key="frame" x="55" y="17.5" width="40" height="40"/>
+                                                            <rect key="frame" x="55" y="27.5" width="20" height="20"/>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Br-5g-dxL">
-                                                            <rect key="frame" x="105" y="21.5" width="289" height="32.5"/>
+                                                            <rect key="frame" x="85" y="21.5" width="309" height="32.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fv-7Y-1LK">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="289" height="18"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="309" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5109 Spring Garden St Baltimore MD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRw-y2-Zbw">
-                                                                    <rect key="frame" x="0.0" y="19" width="289" height="13.5"/>
+                                                                    <rect key="frame" x="0.0" y="19" width="309" height="13.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
