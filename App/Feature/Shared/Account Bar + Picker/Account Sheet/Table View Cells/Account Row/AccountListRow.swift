@@ -156,16 +156,16 @@ class AccountListRow: UITableViewCell {
         // Account Number
         let accountNumberText: String
         if account.isDefault {
-            accountNumberText = "\(account.accountNumber) (Default)"
+            accountNumberText = "\(account.displayName) (Default)"
         } else if account.isFinaled {
-            accountNumberText = "\(account.accountNumber) (Finaled)"
+            accountNumberText = "\(account.displayName) (Finaled)"
         } else if account.isLinked {
-            accountNumberText = "\(account.accountNumber) (Linked)"
+            accountNumberText = "\(account.displayName) (Linked)"
         } else {
-            accountNumberText = account.accountNumber
+            accountNumberText = account.displayName
         }
         
-        accountNumber.text = account.accountNumber
+        accountNumber.text = accountNumberText
         accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
         
         // Accessibility
