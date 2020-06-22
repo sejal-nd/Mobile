@@ -9,7 +9,7 @@
 	<key>appName</key>
 	<string>ComEd_AUT</string>
 	<key>mcsInstanceName</key>
-	<string>Stage</string>
+	<string>Stage-comedMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.comed.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
@@ -17,7 +17,7 @@
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.comed.com</string>
+	<string>azstage.comed.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.comed.com</string>
 </dict>

@@ -13,7 +13,7 @@
 	<key>mcsInstanceName</key>
 	<string>Stage-pecoHotfixMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://azstg.peco.com/MyAccount</string>
+	<string>https://azstage.peco.com/MyAccount</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
 	<key>paymentusUrl</key>
@@ -23,7 +23,7 @@
 	<key>gaTrackingId</key>
 	<string>UA-76742208-17</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.peco.com</string>
+	<string>azstage.peco.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.peco.com</string>
 	<key>appCenterId</key>

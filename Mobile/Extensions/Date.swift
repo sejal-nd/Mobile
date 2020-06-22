@@ -87,10 +87,29 @@ extension Date {
     }
             
     @nonobjc var paymentFormatString: String {
+        
+        var paymentDate = self
+        
         if isInToday(calendar: .opCo) {
-            return DateFormatter.apiFormatterGMT.string(from: self)
+            if Environment.shared.opco == .peco {
+                let localCalendar = Calendar.current
+                let hour = localCalendar.component(.hour, from: self)
+                let minute = localCalendar.component(.minute, from: self)
+                let second = localCalendar.component(.second, from: self)
+                
+                var centralCalendar = Calendar(identifier: .gregorian)
+                if let centralTimeZone = TimeZone(identifier: "US/Central") {
+                    centralCalendar.timeZone = centralTimeZone
+                }
+                
+                if let date = centralCalendar.date(bySettingHour: hour, minute: minute, second: second, of: self) {
+                    paymentDate = date
+                }
+            }
+            
+            return DateFormatter.apiFormatterGMT.string(from: paymentDate)
         } else {
-            return DateFormatter.noonApiFormatter.string(from: self)
+            return DateFormatter.noonApiFormatter.string(from: paymentDate)
         }
     }
     

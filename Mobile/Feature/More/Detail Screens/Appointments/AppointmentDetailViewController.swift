@@ -119,7 +119,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         let bold = OpenSans.bold.of(textStyle: .headline)
         
         confirmedLabel.font = viewModel.status == .scheduled ? bold : regular
-        onOurWayLabel.font = viewModel.status == .enRoute ? bold : regular
+        onOurWayLabel.font = viewModel.status == .onOurWay || viewModel.status == .enRoute ? bold : regular
         inProgressLabel.font = viewModel.status == .inProgress ? bold : regular
         completeLabel.font = viewModel.status == .complete ? bold : regular
         
@@ -179,6 +179,8 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
             onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way step, pending", comment: "")
             inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, pending", comment: "")
             completeLabel.accessibilityLabel = NSLocalizedString("Complete step, pending", comment: "")
+        case .onOurWay:
+            fallthrough
         case .enRoute:
             onOurWayLabel.accessibilityLabel = NSLocalizedString("We are on our way", comment: "")
             inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, pending", comment: "")
@@ -223,6 +225,8 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         switch status {
         case .scheduled:
             return 67
+        case .onOurWay:
+            fallthrough
         case .enRoute:
             return 136
         case .inProgress:
@@ -269,6 +273,8 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         case .scheduled:
             animationName = "Appt_Confirmed"
             loop = false
+        case .onOurWay:
+            fallthrough
         case .enRoute:
             animationName = "Appt_otw"
             loop = true

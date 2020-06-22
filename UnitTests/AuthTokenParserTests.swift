@@ -22,7 +22,7 @@ class AuthTokenParserTests: XCTestCase {
     
     let validSuccessResponse: [String:Any] = [
         "success" : true,
-        "data":["assertion":"token_value", "profileType": "residential", "profileStatus": [:], "customerIdentifier": "1234"]
+        "data":["jwt":"token_value", "profileType": "residential", "profileStatus": [:], "customerIdentifier": "1234"]
     ]
     
     let noProfileTypeResponse: [String: Any] = [
