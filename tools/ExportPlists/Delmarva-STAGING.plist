@@ -8,7 +8,7 @@
 	<string>enterprise</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>com.exelon.mobile.delmarva.stage</key>
+		<key>com.exelon.mobile.delmarva.staging</key>
 		<string>Delmarva Staging Enterprise Dist</string>
 	</dict>
 	<key>signingCertificate</key>
