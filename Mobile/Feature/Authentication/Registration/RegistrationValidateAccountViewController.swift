@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PDTSimpleCalendar
 
 class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterViewController {
 
@@ -22,10 +23,14 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var identifierTextField: FloatLabelTextField!
-
+    @IBOutlet weak var amountDueTextField: FloatLabelTextField!
+    @IBOutlet weak var dueDateButton: DisclosureButton!
+    @IBOutlet weak var lastBillInformationLabel: UILabel!
+    
     @IBOutlet weak var questionMarkButton: UIButton!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
     
+    @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var continueButton: PrimaryButton!
 
     let viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService(), authenticationService: ServiceFactory.createAuthenticationService())
@@ -38,35 +43,109 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .deepGray
-        instructionLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
+        instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or your last bill.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        lastBillInformationLabel.textColor = .deepGray
+        lastBillInformationLabel.text = NSLocalizedString("Use one of your last two bills to find the following information:", comment: "")
+        lastBillInformationLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        if Environment.shared.opco != .bge {
-            accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
-            accountNumberTextField.textField.autocorrectionType = .no
-            accountNumberTextField.setKeyboardType(.numberPad)
-            accountNumberTextField.textField.delegate = self
-            accountNumberTextField.textField.isShowingAccessory = true
-            accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
-            questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-            
-            accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-                .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
-                .drive(onNext: { [weak self] accountNumber, hasTenDigits in
-                    guard let self = self else { return }
-                    if !accountNumber.isEmpty && !hasTenDigits {
-                        self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
-                    }
-                    self.accessibilityErrorLabel()
-                }).disposed(by: disposeBag)
-            
-            accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
-                self?.accountNumberTextField?.setError(nil)
-                self?.accessibilityErrorLabel()
+        segmentedControl.items = [NSLocalizedString("Personal", comment: ""), NSLocalizedString("Last Bill", comment: "")]
+        configureTextFields()
+        segmentedControl.selectedIndex.accept(.zero)
+    
+        viewModel.checkForMaintenance()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        GoogleAnalytics.log(event: .registerOffer)
+    }
+    
+    private func configureTextFields() {
+        
+        accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
+        accountNumberTextField.textField.autocorrectionType = .no
+        accountNumberTextField.setKeyboardType(.numberPad)
+        accountNumberTextField.textField.delegate = self
+        accountNumberTextField.textField.isShowingAccessory = true
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
+        questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+        
+        accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
+            .drive(onNext: { [weak self] accountNumber, hasTenDigits in
+                guard let self = self else { return }
+                if !accountNumber.isEmpty && !hasTenDigits {
+                    self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
+                }
+                self.accessibilityErrorLabel()
             }).disposed(by: disposeBag)
-        } else {
-            accountNumberView.isHidden = true
-        }
+        
+        accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.accountNumberTextField?.setError(nil)
+            self?.accessibilityErrorLabel()
+        }).disposed(by: disposeBag)
+        
+        
+        // Total Amount Due
+        amountDueTextField.placeholder = NSLocalizedString("Total Amount Due*", comment: "")
+        amountDueTextField.textField.autocorrectionType = .no
+        amountDueTextField.setKeyboardType(.numberPad)
+        amountDueTextField.textField.delegate = self
+        amountDueTextField.textField.isShowingAccessory = true
+        //amountDueTextField.textField.rx.text.orEmpty.bind(to: viewModel.totalAmountDue).disposed(by: disposeBag)
+       // amountDueTextField.textField.text = 0.currencyString
+        amountDueTextField.setKeyboardType(.decimalPad)
+        amountDueTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+        .withLatestFrom(Driver.zip(viewModel.totalAmountDue.asDriver(), viewModel.amountDueHasValue))
+        .drive(onNext: { [weak self] amountDue, validValue in
+            guard let self = self else { return }
+            if !validValue {
+                self.accountNumberTextField?.setError(NSLocalizedString("Amount is required field", comment: ""))
+            }
+            self.accessibilityErrorLabel()
+        }).disposed(by: disposeBag)
+        amountDueTextField.textField.rx.text.orEmpty.asObservable()
+                   .skip(1)
+                   .subscribe(onNext: { [weak self] entry in
+                       guard let self = self else { return }
+                       
+                       let amount: Double
+                       let textStr = String(entry.filter { "0123456789".contains($0) })
+                       if let intVal = Double(textStr) {
+                           amount = intVal / 100
+                       } else {
+                           amount = 0
+                       }
+                       
+                       self.amountDueTextField.textField.text = amount.currencyString
+                       self.viewModel.totalAmountDue.accept(amount)
+                   })
+                   .disposed(by: disposeBag)
+        
+        dueDateButton.descriptionText = NSLocalizedString("Due Date*", comment: "")
+        dueDateButton.valueLabel.textColor = .middleGray
+        // Payment Date
+        viewModel.paymentDateString.asDriver().drive(dueDateButton.rx.valueText).disposed(by: disposeBag)
+        dueDateButton.titleLabel?.text = ""
+        dueDateButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.view.endEditing(true)
+            
+            let calendarVC = PDTSimpleCalendarViewController()
+            calendarVC.extendedLayoutIncludesOpaqueBars = true
+            calendarVC.calendar = .opCo
+            calendarVC.delegate = self
+            calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
+            calendarVC.selectedDate = Calendar.opCo.startOfDay(for: .now)
+            
+            self.navigationController?.pushViewController(calendarVC, animated: true)
+        }).disposed(by: disposeBag)
         
         phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
@@ -88,8 +167,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
             self?.phoneNumberTextField.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
-        
-        var identifierString = "Last 4 Digits of primary account holder’s Social Security Number"
+        var identifierString = "Last 4 Digits of your Social Security Number"
         if Environment.shared.opco == .bge {
             identifierString.append(", Business Tax ID, or BGE Pin")
         } else {
@@ -131,18 +209,6 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
             self?.identifierTextField?.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
-        
-        viewModel.checkForMaintenance()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        GoogleAnalytics.log(event: .registerOffer)
     }
     
     private func accessibilityErrorLabel() {
@@ -269,4 +335,39 @@ extension RegistrationValidateAccountViewController: UITextFieldDelegate {
         return true
     }
     
+    @IBAction func segmentValueChanged(_ sender: SegmentedControl) {
+        if sender.selectedIndex.value == .zero {
+            phoneNumberTextField.isHidden = false
+            identifierTextField.isHidden = false
+            identifierDescriptionLabel.isHidden = false
+            accountNumberView.isHidden = true
+            amountDueTextField.isHidden = true
+            dueDateButton.isHidden = true
+            lastBillInformationLabel.isHidden = true
+        } else {
+            accountNumberView.isHidden = false
+            amountDueTextField.isHidden = false
+            dueDateButton.isHidden = false
+            phoneNumberTextField.isHidden = true
+            identifierTextField.isHidden = true
+            identifierDescriptionLabel.isHidden = true
+            lastBillInformationLabel.isHidden = false
+        }
+        viewModel.selectedSegmentIndex.accept(sender.selectedIndex.value)
+    }
+}
+
+// MARK: - PDTSimpleCalendarViewDelegate
+
+extension RegistrationValidateAccountViewController: PDTSimpleCalendarViewDelegate {
+    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
+        let today = Calendar.opCo.startOfDay(for: Date())
+        return date >= today
+    }
+    
+    func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
+        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
+        guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
+       viewModel.dueDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
+    }
 }

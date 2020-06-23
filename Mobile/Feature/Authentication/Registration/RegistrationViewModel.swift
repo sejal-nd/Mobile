@@ -19,6 +19,9 @@ class RegistrationViewModel {
     let phoneNumber = BehaviorRelay(value: "")
     let identifierNumber = BehaviorRelay(value: "")
     let accountNumber = BehaviorRelay(value: "")
+    let totalAmountDue =  BehaviorRelay<Double>(value: 0.00)
+    let dueDate = BehaviorRelay<Date?>(value: nil)
+    var selectedSegmentIndex = BehaviorRelay(value: 0)
     
     let username = BehaviorRelay(value: "")
     let newPassword = BehaviorRelay(value: "")
@@ -58,11 +61,26 @@ class RegistrationViewModel {
     func validateAccount(onSuccess: @escaping () -> Void,
                          onMultipleAccounts: @escaping() -> Void,
                          onError: @escaping (String, String) -> Void) {
-        let identifier: String = identifierNumber.value
+      //  let identifier: String = identifierNumber.value
+        var phoneNumber = ""
+        var identifierValue = ""
+        var accountNumber = ""
+        var dueAmount = ""
+        var dueDate = ""
         
-        registrationService.validateAccountInformation(identifier,
-                                                       phone: extractDigitsFrom(phoneNumber.value),
-                                                       accountNum: accountNumber.value)
+        if selectedSegmentIndex.value == .zero {
+             phoneNumber = extractDigitsFrom(self.phoneNumber.value)
+             identifierValue = identifierNumber.value
+        } else {
+             accountNumber = self.accountNumber.value
+            dueAmount = String(self.totalAmountDue.value)
+            dueDate = self.dueDate.value?.MMddyyyyString ?? ""
+        }
+        registrationService.validateAccountInformation(identifierValue,
+                                                       phone: phoneNumber,
+                                                       accountNum: accountNumber,
+                                                       dueAmount: dueAmount,
+                                                       dueDate: dueDate)
         	.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }
@@ -200,19 +218,15 @@ class RegistrationViewModel {
             .disposed(by: disposeBag)
     }
 
-	private(set) lazy var validateAccountContinueEnabled: Driver<Bool> = {
-		if Environment.shared.opco == .bge {
-			return Driver.combineLatest(self.phoneNumberHasTenDigits,
-			                            self.identifierHasFourDigits,
-			                            self.identifierIsNumeric)
-			{ $0 && $1 && $2 }
-		} else {
-			return Driver.combineLatest(self.phoneNumberHasTenDigits,
-			                            self.accountNumberHasTenDigits,
-			                            self.identifierHasFourDigits,
-			                            self.identifierIsNumeric)
-			{ $0 && $1 && $2 && $3 }
-		}
+    private(set) lazy var validateAccountContinueEnabled: Driver<Bool> = {
+        return Driver.combineLatest(self.phoneNumberHasTenDigits,
+                                    self.identifierHasFourDigits,
+                                    self.identifierIsNumeric,
+                                    self.accountNumberHasTenDigits,
+                                    self.segmentChanged,
+                                    self.amountDueHasValue,
+                                    self.dueDateHasValue)
+        { self.selectedSegmentIndex.value == .zero ?  $0 && $1 && $2 && $4: $3 && $4 && $5 && $6 }
     }()
 	
     func checkForMaintenance() {
@@ -221,7 +235,21 @@ class RegistrationViewModel {
             .subscribe()
             .disposed(by: disposeBag)
     }
-	
+    private(set) lazy var segmentChanged: Driver<Bool> =
+        self.selectedSegmentIndex.asDriver().map { text -> Bool in
+            return true
+    }
+    
+    private(set) lazy var paymentDateString: Driver<String> = dueDate.asDriver()
+        .map { ($0?.mmDdYyyyString ?? "") }
+    private(set) lazy var paymentAmountString = totalAmountDue.asDriver()
+         .map { $0.currencyString }
+    
+    private(set) lazy var amountDueHasValue: Driver<Bool> =
+        self.totalAmountDue.asDriver().map { $0 > 0 }
+    private(set) lazy var dueDateHasValue: Driver<Bool> =
+        self.dueDate.asDriver().map { $0 >= .now }
+       
 	private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
         self.phoneNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }

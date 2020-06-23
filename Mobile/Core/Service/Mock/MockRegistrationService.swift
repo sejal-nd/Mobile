@@ -23,7 +23,7 @@ struct MockRegistrationService: RegistrationService {
         return .just(["Hello", "Hi", "Howdy", "Aloha", "Guten tag"])
     }
     
-    func validateAccountInformation(_ identifier: String, phone: String, accountNum: String?) -> Observable<[String : Any]> {
+    func validateAccountInformation(_ identifier: String, phone: String, accountNum: String?, dueAmount: String?, dueDate: String?) -> Observable<[String : Any]> {
         return .just([:])
     }
     

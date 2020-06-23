@@ -69,12 +69,20 @@ class MCSRegistrationService: RegistrationService {
     
     func validateAccountInformation(_ identifier: String,
                                     phone: String,
-                                    accountNum: String?) -> Observable<[String: Any]> {
+                                    accountNum: String?,
+                                    dueAmount: String?,
+                                    dueDate: String?) -> Observable<[String: Any]> {
         var params = ["phone": phone] as [String : Any]
         params["identifier"] = identifier
         
         if let accountNum = accountNum, !accountNum.isEmpty {
             params["account_num"] = accountNum
+        }
+        if let dueDate = dueDate, !dueDate.isEmpty {
+            params["bill_date"] = dueDate
+        }
+        if let dueAmount = dueAmount, !dueAmount.isEmpty {
+             params["amount_due"] = dueAmount
         }
         
         return MCSApi.shared.post(pathPrefix: .anon, path: "registration/validate", params: params)
