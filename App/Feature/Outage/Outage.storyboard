@@ -811,6 +811,8 @@
                     </view>
                     <connections>
                         <outlet property="textView" destination="SlV-Md-fwM" id="xQ5-8g-6w8"/>
+                        <outlet property="textViewLeadingConstraint" destination="77A-m2-Cl5" id="6gO-BQ-mQ0"/>
+                        <outlet property="textViewTrailingConstraint" destination="qlM-av-vLA" id="OR5-0o-Oe9"/>
                         <outlet property="titleLabel" destination="vjf-rO-okh" id="DAf-9t-XEW"/>
                     </connections>
                 </viewController>
