@@ -357,8 +357,7 @@ extension RegistrationValidateAccountViewController: UITextFieldDelegate {
 
 extension RegistrationValidateAccountViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let today = Calendar.opCo.startOfDay(for: Date())
-        return date >= today
+        return true
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
