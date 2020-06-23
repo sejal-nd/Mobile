@@ -206,6 +206,8 @@
 		354838B6233E84BD00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35489DD424A20E7F0040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
+		35489DD524A248BF0040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
+		35489DD624A248C20040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
 		35510E4A2190886E00347539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
 		3559C8A422F9F68300481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		3559C8A522F9F68400481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
@@ -9988,6 +9990,7 @@
 				82119FE7203F585C00A56FEE /* MyHomeProfileViewModel.swift in Sources */,
 				9C119F6721FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
+				35489DD524A248BF0040BDE2 /* RegistrationViewModelTests.swift in Sources */,
 				82E22B651F9FC7D8001F1A1B /* EnergyTip.swift in Sources */,
 				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
@@ -10422,6 +10425,7 @@
 				E8F62C45200924570077B3DA /* ForgotPasswordViewModelTests.swift in Sources */,
 				9C119F6921FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
 				82119FE9203F585D00A56FEE /* MyHomeProfileViewModel.swift in Sources */,
+				35489DD624A248C20040BDE2 /* RegistrationViewModelTests.swift in Sources */,
 				E8F62C46200924570077B3DA /* ProfileStatus.swift in Sources */,
 				E8F62C47200924570077B3DA /* EnergyTip.swift in Sources */,
 				E8F62C48200924570077B3DA /* BankAccount.swift in Sources */,
