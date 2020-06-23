@@ -41,7 +41,8 @@ struct OutageStatus: Mappable {
     let unitNumber: String?
     let status: String?
     var multipremiseAccount: Bool = false // Set locally for use in unauthenticated logic
-
+    var isAccountInactive: Bool = false
+    
     init(map: Mapper) throws {
         flagGasOnly = map.optionalFrom("flagGasOnly") ?? false
         contactHomeNumber = map.optionalFrom("contactHomeNumber")
@@ -63,10 +64,6 @@ struct OutageStatus: Mappable {
         status = map.optionalFrom("status")
     }
     
-    var isAccountInactive: Bool {
-        return status == "NOT ACTIVE"
-    }
-    
     // MARK: - Outage State
     
     static func getOutageState(_ outageStatus: OutageStatus,
@@ -76,7 +73,9 @@ struct OutageStatus: Mappable {
         if AccountsStore.shared.accounts != nil && !AccountsStore.shared.accounts.isEmpty {
             let currentAccount = AccountsStore.shared.currentAccount
 
-            if currentAccount.isFinaled || currentAccount.serviceType == nil {
+            if outageStatus.isAccountInactive {
+                return .inactive
+            } else if currentAccount.isFinaled || currentAccount.serviceType == nil {
                 return .unavailable
             } else if hasJustReported {
                 return .reported
@@ -84,8 +83,6 @@ struct OutageStatus: Mappable {
                 return .unavailable
             } else if outageStatus.flagNoPay {
                 return .nonPayment
-            } else if outageStatus.isAccountInactive {
-                return .inactive
             }
         }
         

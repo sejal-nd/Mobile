@@ -19,19 +19,15 @@ class SplashViewModel{
     }
     
     func checkAppVersion(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        onSuccess(false)
-        
-        // todo: services not implemented
-//        var isOutOfDate = false
-//
-//        authService.getMinimumVersion()
-//            .observeOn(MainScheduler.instance)
-//            .subscribe(onNext: { versionInfo in
-//                isOutOfDate = self.checkIfOutOfDate(minVersion: versionInfo.iosObject.minVersion)
-//                onSuccess(isOutOfDate)
-//            }, onError: { err in
-//                onError(err.localizedDescription)
-//            }).disposed(by: disposeBag)
+        var isOutOfDate = false
+        authService.getMinimumVersion()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { versionInfo in
+                isOutOfDate = self.checkIfOutOfDate(minVersion: versionInfo.iosObject.minVersion)
+                onSuccess(isOutOfDate)
+            }, onError: { err in
+                onError(err.localizedDescription)
+            }).disposed(by: disposeBag)
     }
     
     func checkIfOutOfDate(minVersion:String) -> Bool {
@@ -61,11 +57,11 @@ class SplashViewModel{
         case .peco:
             return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at PECO.com.", comment: "")
         case .pepco:
-            return NSLocalizedString("todo", comment: "")
+            return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at Pepco.com.", comment: "")
         case .ace:
-            return NSLocalizedString("todo", comment: "")
+            return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at AtlanticCityElectric.com.", comment: "")
         case .delmarva:
-            return NSLocalizedString("todo", comment: "")
+            return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at Delmarva.com.", comment: "")
         }
     }
     
@@ -105,29 +101,35 @@ class SplashViewModel{
                 """
                 , leaveAreaString, phone, phone)
         case .pepco:
-            let phone = "todo"
+            let phone = "1-877-737-2662"
             phoneNumbers = [phone]
             localizedString = String.localizedStringWithFormat(
                 """
-                todo
+                 If you see a downed power line, %@ and then call %@.\n
+                 Representatives are available 24 hours a day, 7 days a week.
                 """
                 , leaveAreaString, phone, phone)
         case .ace:
-            let phone = "todo"
+            let phone = "1-800-833-7476"
             phoneNumbers = [phone]
             localizedString = String.localizedStringWithFormat(
                 """
-                todo
+                If you see a downed power line, %@ and then call %@.\n
+                Representatives are available 24 hours a day, 7 days a week.
                 """
                 , leaveAreaString, phone, phone)
         case .delmarva:
-            let phone = "todo"
-            phoneNumbers = [phone]
+            let phone1 = "1-800-898-8042"
+            let phone2 = "302-454-0317"
+
+            phoneNumbers = [phone1, phone2]
             localizedString = String.localizedStringWithFormat(
                 """
-                todo
+                If you see a downed power line or smell natural gas, %@ and then call %@.\n
+                For natural gas emergencies, call %@.\n
+                Representatives are available 24 hours a day, 7 days a week.
                 """
-                , leaveAreaString, phone, phone)
+                , leaveAreaString, phone1, phone2)
         }
         
         let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
@@ -144,4 +146,71 @@ class SplashViewModel{
         return attrString
     }
     
+    var enquiryFooterText: NSAttributedString? {
+        var localizedString: String = ""
+        var phoneNumbers = [String]()
+        
+        switch Environment.shared.opco {
+        case .ace:
+            let phone = "1-800-833-7476"
+                       phoneNumbers = [phone]
+                       localizedString = String.localizedStringWithFormat(
+                           """
+                           For all other inquiries, please call %@ M-F 7AM to 7PM.
+                           """
+                           ,phone)
+        case .bge:
+            let phone = "1-800-685-0123"
+                       phoneNumbers = [phone]
+                       localizedString = String.localizedStringWithFormat(
+                           """
+                           For all other inquiries, please call %@ M-F 7AM to 7PM.
+                           """
+                           ,phone)
+        case .comEd:
+            let phone = "1-800-334-7661"
+                       phoneNumbers = [phone]
+                       localizedString = String.localizedStringWithFormat(
+                           """
+                           For all other inquiries, please call %@ M-F 7AM to 7PM.
+                           """
+                           ,phone)
+        case .delmarva:
+            let phone = "1-800-375-7117"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                For all other inquiries, please call %@ M-F 7AM to 7PM.
+                """
+                ,phone)
+        case .peco:
+            let phone = "1-800-494-4000"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                For all other inquiries, please call %@ M-F 7AM to 7PM.
+                """
+                ,phone)
+        case .pepco:
+            let phone = "202-833-7500"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                For all other inquiries, please call %@ M-F 7AM to 8PM.
+                """
+                ,phone)
+        }
+            
+        let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
+        
+        for phone in phoneNumbers {
+            localizedString.ranges(of: phone, options: .regularExpression)
+                .map { NSRange($0, in: localizedString) }
+                .forEach {
+                    attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+            }
+        }
+        
+        return attrString
+    }
 }
