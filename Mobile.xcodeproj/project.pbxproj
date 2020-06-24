@@ -5133,6 +5133,12 @@
 		C364A87F2375DD7600C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
 		C364A8802375DD8100C7D51B /* EmptyChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */; };
 		C364A8812375DD8200C7D51B /* EmptyChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */; };
+		C37CA8E024A23F3700B6CD61 /* DailyUsageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CA8DF24A23F3700B6CD61 /* DailyUsageRequest.swift */; };
+		C37CA8E124A23F3700B6CD61 /* DailyUsageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CA8DF24A23F3700B6CD61 /* DailyUsageRequest.swift */; };
+		C37CA8E224A23F3700B6CD61 /* DailyUsageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CA8DF24A23F3700B6CD61 /* DailyUsageRequest.swift */; };
+		C37CA8E424A2424D00B6CD61 /* DailyUsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CA8E324A2424D00B6CD61 /* DailyUsageData.swift */; };
+		C37CA8E524A2424D00B6CD61 /* DailyUsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CA8E324A2424D00B6CD61 /* DailyUsageData.swift */; };
+		C37CA8E624A2424D00B6CD61 /* DailyUsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37CA8E324A2424D00B6CD61 /* DailyUsageData.swift */; };
 		C39360532491508C0054545F /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39360522491508B0054545F /* GameServiceNew.swift */; };
 		C39360542491508C0054545F /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39360522491508B0054545F /* GameServiceNew.swift */; };
 		C39360552491508C0054545F /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39360522491508B0054545F /* GameServiceNew.swift */; };
@@ -5145,6 +5151,12 @@
 		C393605D249153ED0054545F /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3936059249153ED0054545F /* NewGameUser.swift */; };
 		C393605E249153ED0054545F /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3936059249153ED0054545F /* NewGameUser.swift */; };
 		C393605F249153ED0054545F /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3936059249153ED0054545F /* NewGameUser.swift */; };
+		C3A9699124A2A18C003B08F9 /* DasilyUsageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C3A9699024A2A175003B08F9 /* DasilyUsageMock.json */; };
+		C3A9699224A2A18D003B08F9 /* DasilyUsageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C3A9699024A2A175003B08F9 /* DasilyUsageMock.json */; };
+		C3A9699324A2A190003B08F9 /* DasilyUsageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C3A9699024A2A175003B08F9 /* DasilyUsageMock.json */; };
+		C3A9699424A2A190003B08F9 /* DasilyUsageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C3A9699024A2A175003B08F9 /* DasilyUsageMock.json */; };
+		C3A9699524A2A191003B08F9 /* DasilyUsageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C3A9699024A2A175003B08F9 /* DasilyUsageMock.json */; };
+		C3A9699624A2A192003B08F9 /* DasilyUsageMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C3A9699024A2A175003B08F9 /* DasilyUsageMock.json */; };
 		C57F9A8DD814DA879A19F365 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -7072,10 +7084,13 @@
 		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
 		C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyChildViewController.swift; sourceTree = "<group>"; };
+		C37CA8DF24A23F3700B6CD61 /* DailyUsageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsageRequest.swift; sourceTree = "<group>"; };
+		C37CA8E324A2424D00B6CD61 /* DailyUsageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsageData.swift; sourceTree = "<group>"; };
 		C37FED74FAFAFB6504CB0D6F /* Pods-BGEApp-BGE.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.develop.xcconfig"; sourceTree = "<group>"; };
 		C39360522491508B0054545F /* GameServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServiceNew.swift; sourceTree = "<group>"; };
 		C3936059249153ED0054545F /* NewGameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameUser.swift; sourceTree = "<group>"; };
 		C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.testing.xcconfig"; sourceTree = "<group>"; };
+		C3A9699024A2A175003B08F9 /* DasilyUsageMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DasilyUsageMock.json; sourceTree = "<group>"; };
 		C4236F83BBBA768733D1EC93 /* Pods-BGEApp-BGEUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
 		C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C426A241C2E583E6151610D2 /* Pods-DelmarvaApp-DelmarvaUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelmarvaApp-DelmarvaUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-DelmarvaApp-DelmarvaUITests/Pods-DelmarvaApp-DelmarvaUITests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -8914,6 +8929,7 @@
 				6714489A247306C8004D2AFF /* NewBillForecastResult.swift */,
 				67144899247306C7004D2AFF /* ValidatedAccount.swift */,
 				C3936059249153ED0054545F /* NewGameUser.swift */,
+				C37CA8E324A2424D00B6CD61 /* DailyUsageData.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -8981,6 +8997,7 @@
 				671446152472E76A004D2AFF /* ScheduledPaymentUNUSEDMock.json */,
 				671446162472E76A004D2AFF /* AutoPayEnrollMock.json */,
 				671446172472E76A004D2AFF /* EnergyTipsMock.json */,
+				C3A9699024A2A175003B08F9 /* DasilyUsageMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -9029,6 +9046,7 @@
 				671448AE247306DA004D2AFF /* BillComparisonRequest.swift */,
 				671448AF247306DB004D2AFF /* GuidRequest.swift */,
 				671448AD247306DA004D2AFF /* ValidateAccountRequest.swift */,
+				C37CA8DF24A23F3700B6CD61 /* DailyUsageRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -11275,6 +11293,7 @@
 				67DDB4E524535D2E006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
 				671447A52472E76C004D2AFF /* AccountDetailsMock.json in Resources */,
 				67DDB4E624535D2E006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
+				C3A9699424A2A190003B08F9 /* DasilyUsageMock.json in Resources */,
 				6714477B2472E76C004D2AFF /* EnergyRewardsMock.json in Resources */,
 				67DDB4E724535D2E006CD6EB /* maintenance.json in Resources */,
 				67DDB4E924535D2E006CD6EB /* checkmark_blue.json in Resources */,
@@ -11474,6 +11493,7 @@
 				67DDB73D24535D32006CD6EB /* maintenance.json in Resources */,
 				671447A72472E76C004D2AFF /* AccountDetailsMock.json in Resources */,
 				67DDB73F24535D32006CD6EB /* checkmark_blue.json in Resources */,
+				C3A9699624A2A192003B08F9 /* DasilyUsageMock.json in Resources */,
 				6714477D2472E76C004D2AFF /* EnergyRewardsMock.json in Resources */,
 				67DDB74024535D32006CD6EB /* loading.json in Resources */,
 				67DDB74124535D32006CD6EB /* OpenSans-Light.ttf in Resources */,
@@ -11673,6 +11693,7 @@
 				67DDB99224535D35006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
 				671447A62472E76C004D2AFF /* AccountDetailsMock.json in Resources */,
 				67DDB99324535D35006CD6EB /* maintenance.json in Resources */,
+				C3A9699524A2A191003B08F9 /* DasilyUsageMock.json in Resources */,
 				6714477C2472E76C004D2AFF /* EnergyRewardsMock.json in Resources */,
 				67DDBDA724645171006CD6EB /* GoogleService-Info_delmarva_develop.plist in Resources */,
 				67DDB99524535D35006CD6EB /* checkmark_blue.json in Resources */,
@@ -11997,6 +12018,7 @@
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
+				C3A9699124A2A18C003B08F9 /* DasilyUsageMock.json in Resources */,
 				9C0A2C3C23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				6714479C2472E76C004D2AFF /* SSODataMock.json in Resources */,
 				B017488E2135D19B0039D0C6 /* Storm.storyboard in Resources */,
@@ -12107,6 +12129,7 @@
 				671447D42472E76C004D2AFF /* EnergyTipsMock.json in Resources */,
 				B55736471E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				6714479E2472E76C004D2AFF /* SSODataMock.json in Resources */,
+				C3A9699324A2A190003B08F9 /* DasilyUsageMock.json in Resources */,
 				359BDB7A22D8F9B2007002B0 /* outage_reported.json in Resources */,
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				B0728E4B215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
@@ -12305,6 +12328,7 @@
 				671447D32472E76C004D2AFF /* EnergyTipsMock.json in Resources */,
 				9C62446922C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */,
 				6714479D2472E76C004D2AFF /* SSODataMock.json in Resources */,
+				C3A9699224A2A18D003B08F9 /* DasilyUsageMock.json in Resources */,
 				351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				359BDB7922D8F9B2007002B0 /* outage_reported.json in Resources */,
 				B0728E4A215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
@@ -16636,6 +16660,7 @@
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				6714468E2472E76B004D2AFF /* NewBillingHistoryItem.swift in Sources */,
 				B0CB1C7E227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
+				C37CA8E424A2424D00B6CD61 /* DailyUsageData.swift in Sources */,
 				82E22B5E1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				9CB8A5ED21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				35C9139B22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
@@ -16906,6 +16931,7 @@
 				9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				B08BBFC321C8539000A899FC /* SERResult.swift in Sources */,
 				54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
+				C37CA8E024A23F3700B6CD61 /* DailyUsageRequest.swift in Sources */,
 				67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */,
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				0EF60FD520EE8104006ABC18 /* GSTouchesShowingController.swift in Sources */,
@@ -17132,6 +17158,7 @@
 				822BBBA31EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				671446902472E76B004D2AFF /* NewBillingHistoryItem.swift in Sources */,
 				9C5F786522F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
+				C37CA8E624A2424D00B6CD61 /* DailyUsageData.swift in Sources */,
 				82E9B6101FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF559A2170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
@@ -17402,6 +17429,7 @@
 				E84705F92025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				E82FF1E81F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */,
+				C37CA8E224A23F3700B6CD61 /* DailyUsageRequest.swift in Sources */,
 				B01748942135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
@@ -17628,6 +17656,7 @@
 				9CB8A5EE21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				6714468F2472E76B004D2AFF /* NewBillingHistoryItem.swift in Sources */,
 				B0CB1C7F227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
+				C37CA8E524A2424D00B6CD61 /* DailyUsageData.swift in Sources */,
 				35C9139C22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
 				9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
@@ -17898,6 +17927,7 @@
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
+				C37CA8E124A23F3700B6CD61 /* DailyUsageRequest.swift in Sources */,
 				2F5A3F811EFD870200B9E49E /* BillingHistory.swift in Sources */,
 				0EF60FD820EE8104006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F82025160F00A749A3 /* MockRegistrationService.swift in Sources */,

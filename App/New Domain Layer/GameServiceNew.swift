@@ -35,7 +35,10 @@ struct GameServiceNew {
                     }
                     UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.gameStreakDateTracker)
                     
-                    self.updateGameUser(accountNumber: accountNumber, request: GameUserRequest(gameUser: gameUser))
+                    var gameUserRequest = GameUserRequest(gameUser: gameUser)
+                    gameUserRequest.lastLogin = Date.now.apiFormatString
+                    
+                    self.updateGameUser(accountNumber: accountNumber, request: gameUserRequest)
                     
                     let pilotGroupLower = gameUser.pilotGroup?.lowercased()
                     if pilotGroupLower == "experimental" || pilotGroupLower == "test" || pilotGroupLower == "internal" {
@@ -68,5 +71,23 @@ struct GameServiceNew {
                 completion?(.failure(error))
             }
         }
+    }
+    
+    static func updateGameUserGiftSelections(accountNumber: String, completion: (((Result<NewGameUser, NetworkingError>)) -> ())? = nil) {
+        var gameUserRequest = GameUserRequest()
+        
+        gameUserRequest.selectedBackground = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none"
+        gameUserRequest.selectedHat = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none"
+        gameUserRequest.selectedAccessory = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
+        
+        updateGameUser(accountNumber: accountNumber, request: gameUserRequest, completion: completion)
+    }
+    
+    func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool, completion: @escaping (Result<[DailyUsageData], NetworkingError>) -> ()) {
+        let endDate = Date.now
+        let startDate = Calendar.current.date(byAdding: .month, value: -1, to: endDate)!
+        
+        let request = DailyUsageRequest(startDate: startDate, endDate: endDate, gas: gas)
+        NetworkingLayer.request(router: .fetchDailyUsage(accountNumber: accountNumber, premiseNumber: premiseNumber, encodable: request), completion: completion)
     }
 }

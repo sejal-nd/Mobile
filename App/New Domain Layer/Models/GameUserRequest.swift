@@ -9,25 +9,32 @@
 import Foundation
 
 struct GameUserRequest: Encodable {
-    let onboardingComplete: String
-    let optedOut: String
-    let points: String
-    let taskIndex: String
-    let pilotGroup: String?
-    let cluster: String?
-    let onboardingRentOrOwnAnswer: String?
+    var onboardingComplete: String?
+    var optedOut: String?
+    var points: String?
+    var taskIndex: String?
+    var pilotGroup: String?
+    var cluster: String?
+    var onboardingRentOrOwnAnswer: String?
+    var checkInHowDoYouFeelAnswer: String?
+    var lastLogin: String?
     
-    init(gameUser: NewGameUser) {
-        self.init(onboardingComplete: gameUser.onboardingComplete, optedOut: gameUser.optedOut, points: gameUser.points, taskIndex: gameUser.taskIndex, pilotGroup: gameUser.pilotGroup, cluster: gameUser.cluster, onboardingRentOrOwnAnswer: gameUser.onboardingRentOrOwnAnswer)
+    // Gift Selections
+    var selectedBackground: String?
+    var selectedHat: String?
+    var selectedAccessory: String?
+    
+    init() {
+        
     }
     
-    init(onboardingComplete: Bool, optedOut: Bool, points: Double, taskIndex: Int, pilotGroup: String?, cluster: String?, onboardingRentOrOwnAnswer: String?) {
-        self.onboardingComplete = String(onboardingComplete)
-        self.optedOut = String(optedOut)
-        self.points = String(points)
-        self.taskIndex = String(taskIndex)
-        self.pilotGroup = pilotGroup
-        self.cluster = cluster
-        self.onboardingRentOrOwnAnswer = onboardingRentOrOwnAnswer
+    init(gameUser: NewGameUser) {
+        self.onboardingComplete = String(gameUser.onboardingComplete)
+        self.optedOut = String(gameUser.optedOut)
+        self.points = String(gameUser.points)
+        self.taskIndex = String(gameUser.taskIndex)
+        self.pilotGroup = gameUser.pilotGroup
+        self.cluster = gameUser.cluster
+        self.onboardingRentOrOwnAnswer = gameUser.onboardingRentOrOwnAnswer
     }
 }
