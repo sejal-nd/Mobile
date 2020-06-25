@@ -23,4 +23,14 @@ extension Encodable {
     func encode(to container: inout SingleValueEncodingContainer) throws {
         try container.encode(self)
     }
+    
+    func data() -> Data {
+        let encodable = AnyEncodable(value: self)
+        
+        do {
+            return try JSONEncoder().encode(encodable)
+        } catch {
+            fatalError("Error encoding object: \(error)")
+        }
+    }
 }

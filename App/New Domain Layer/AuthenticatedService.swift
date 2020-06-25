@@ -130,15 +130,15 @@ struct AuthenticatedService {
         //                               }
         //        }
         
-        let encodedObject = JWTRequest(username: username, password: password)
+        let jwtRequest = JWTRequest(username: username, password: password)
         // encode is not working properly.
         
-        NetworkingLayer.request(router: .fetchJWTToken(encodable: encodedObject)) { (result: Result<NewSAMLToken, NetworkingError>) in
+        NetworkingLayer.request(router: .fetchJWTToken(request: jwtRequest)) { (result: Result<NewSAMLToken, NetworkingError>) in
             switch result {
             case .success(let data):
                 
                     print("NetworkTest 3 SUCCESS: \(data.token) BREAK")
-                //                       completion(.success(data.min))
+                //                        completion(.success(data.min))
                 
                 guard let token = data.token else { return }
                 
