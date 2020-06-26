@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ChangePasswordRequest: Encodable {
+public struct ChangePasswordRequest: Encodable {
     let username: String?
     let currentPassword: String
     let newPassword: String
