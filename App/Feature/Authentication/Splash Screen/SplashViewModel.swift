@@ -9,14 +9,7 @@
 import RxSwift
 import RxCocoa
 
-class SplashViewModel{
-    
-    private var authService: AuthenticationService
-    let disposeBag = DisposeBag()
-    
-    init(authService: AuthenticationService) {
-        self.authService = authService
-    }
+struct SplashViewModel{
     
     func checkAppVersion(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
         var isOutOfDate = false
@@ -49,14 +42,6 @@ class SplashViewModel{
                 }
             }
         }
-//        authService.getMaintenanceMode(postNotification: false)
-//            .observeOn(MainScheduler.instance)
-//            .subscribe(onNext: { maintenance in
-//                completion(maintenance.stormModeStatus)
-//            }, onError: { err in
-//                completion(false)
-//            })
-//            .disposed(by: disposeBag)
     }
     
     var errorTitleText: String? {

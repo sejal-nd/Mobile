@@ -117,17 +117,18 @@ public enum Router {
         return "https"
     }
     
+    // BGE Stage
     public var host: String {
         switch self {
         case .fetchJWTToken:
-            return "dev-apigateway.exeloncorp.com"// todo: fix in mcs config
+            return "stage-apigateway.exeloncorp.com"// todo: fix in mcs config
         case .weather:
             return "api.weather.gov"
         case .alertBanner, .newsAndUpdates:
             return "azstg.bge.com/_api/web/lists/GetByTitle('GlobalAlert')/items" // todo: fix in mcs config
         default:
             //return Environment.shared.mcsConfig.baseUrl
-            return "exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com" // todo fix in mcs config
+            return "mcsstg.mobileenv.bge.com" // todo fix in mcs config
         }
     }
     
@@ -144,6 +145,8 @@ public enum Router {
         case .anonOutageStatus:
             return .anon
         case .passwordChange:
+            return .anon
+        case .fetchJWTToken:
             return .anon
         default:
             return .auth
@@ -316,6 +319,7 @@ public enum Router {
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
             return postDataString.data(using: .utf8)
+
         default:
             return nil
         }

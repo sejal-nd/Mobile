@@ -894,12 +894,6 @@
 		6714469D2472E76B004D2AFF /* NewWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E02472E76A004D2AFF /* NewWallet.swift */; };
 		6714469E2472E76B004D2AFF /* NewWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E02472E76A004D2AFF /* NewWallet.swift */; };
 		6714469F2472E76B004D2AFF /* NewWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E02472E76A004D2AFF /* NewWallet.swift */; };
-		671446A02472E76B004D2AFF /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E12472E76A004D2AFF /* NewSAMLToken.swift */; };
-		671446A12472E76B004D2AFF /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E12472E76A004D2AFF /* NewSAMLToken.swift */; };
-		671446A22472E76B004D2AFF /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E12472E76A004D2AFF /* NewSAMLToken.swift */; };
-		671446A32472E76B004D2AFF /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E12472E76A004D2AFF /* NewSAMLToken.swift */; };
-		671446A42472E76B004D2AFF /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E12472E76A004D2AFF /* NewSAMLToken.swift */; };
-		671446A52472E76B004D2AFF /* NewSAMLToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E12472E76A004D2AFF /* NewSAMLToken.swift */; };
 		671446A62472E76B004D2AFF /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E22472E76A004D2AFF /* NewAccount.swift */; };
 		671446A72472E76B004D2AFF /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E22472E76A004D2AFF /* NewAccount.swift */; };
 		671446A82472E76B004D2AFF /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671445E22472E76A004D2AFF /* NewAccount.swift */; };
@@ -6448,7 +6442,6 @@
 		671445DE2472E76A004D2AFF /* NewBillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBillingHistoryItem.swift; sourceTree = "<group>"; };
 		671445DF2472E76A004D2AFF /* NewPayments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPayments.swift; sourceTree = "<group>"; };
 		671445E02472E76A004D2AFF /* NewWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWallet.swift; sourceTree = "<group>"; };
-		671445E12472E76A004D2AFF /* NewSAMLToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSAMLToken.swift; sourceTree = "<group>"; };
 		671445E22472E76A004D2AFF /* NewAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAccount.swift; sourceTree = "<group>"; };
 		671445E32472E76A004D2AFF /* NewBillPDF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBillPDF.swift; sourceTree = "<group>"; };
 		671445E42472E76A004D2AFF /* NewSharePointAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSharePointAlert.swift; sourceTree = "<group>"; };
@@ -8906,7 +8899,6 @@
 				671445DE2472E76A004D2AFF /* NewBillingHistoryItem.swift */,
 				671445DF2472E76A004D2AFF /* NewPayments.swift */,
 				671445E02472E76A004D2AFF /* NewWallet.swift */,
-				671445E12472E76A004D2AFF /* NewSAMLToken.swift */,
 				671445E22472E76A004D2AFF /* NewAccount.swift */,
 				671445E32472E76A004D2AFF /* NewBillPDF.swift */,
 				671445E42472E76A004D2AFF /* NewSharePointAlert.swift */,
@@ -14398,7 +14390,6 @@
 				67DDB2E424535D2E006CD6EB /* UnavailableView.swift in Sources */,
 				67DDB2E624535D2E006CD6EB /* TemplateCardViewModel.swift in Sources */,
 				67DDB2E724535D2E006CD6EB /* AccountInfoBar.swift in Sources */,
-				671446A32472E76B004D2AFF /* NewSAMLToken.swift in Sources */,
 				67DDB2E824535D2E006CD6EB /* AlertsViewModel.swift in Sources */,
 				67DDB2E924535D2E006CD6EB /* ProfileStatus.swift in Sources */,
 				67DDB2EA24535D2E006CD6EB /* PickerView.swift in Sources */,
@@ -15013,7 +15004,6 @@
 				67DDB59B24535D32006CD6EB /* Switch.swift in Sources */,
 				67DDB59C24535D32006CD6EB /* HomeViewModel.swift in Sources */,
 				67DDB59D24535D32006CD6EB /* OutageViewController.swift in Sources */,
-				671446A52472E76B004D2AFF /* NewSAMLToken.swift in Sources */,
 				67DDB59E24535D32006CD6EB /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				67DDB59F24535D32006CD6EB /* PECOReleaseOfInfoViewController.swift in Sources */,
 				67DDB5A024535D32006CD6EB /* HomeBillCardView.swift in Sources */,
@@ -15510,7 +15500,6 @@
 				67DDB7F124535D35006CD6EB /* Switch.swift in Sources */,
 				67DDB7F224535D35006CD6EB /* HomeViewModel.swift in Sources */,
 				67DDB7F324535D35006CD6EB /* OutageViewController.swift in Sources */,
-				671446A42472E76B004D2AFF /* NewSAMLToken.swift in Sources */,
 				67DDB7F424535D35006CD6EB /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				67DDB7F524535D35006CD6EB /* PECOReleaseOfInfoViewController.swift in Sources */,
 				67DDB7F624535D35006CD6EB /* HomeBillCardView.swift in Sources */,
@@ -16646,7 +16635,6 @@
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
 				825171B51F1D25130020A6CA /* HomeViewModel.swift in Sources */,
 				359BDB5D22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
-				671446A02472E76B004D2AFF /* NewSAMLToken.swift in Sources */,
 				54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E873DA7C1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */,
@@ -17144,7 +17132,6 @@
 				E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				224EFF1A216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
 				356C7F8121909997003E8A90 /* KeychainManager.swift in Sources */,
-				671446A22472E76B004D2AFF /* NewSAMLToken.swift in Sources */,
 				822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				E835D1D01FB63288008CE250 /* PushNotification.swift in Sources */,
 				B56DD49F1ED87AD800F0198B /* BankAccount.swift in Sources */,
@@ -17642,7 +17629,6 @@
 				E8FF085B1F7EDC240030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				359BDB5E22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
 				82EAB3451F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
-				671446A12472E76B004D2AFF /* NewSAMLToken.swift in Sources */,
 				CEA215231F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				B0336FEB21762FB400751430 /* EventStore.swift in Sources */,
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,

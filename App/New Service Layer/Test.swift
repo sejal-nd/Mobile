@@ -101,6 +101,6 @@ class NetworkTest {
     }
     
     func alert(accountNumber: String) {
-        AuthenticatedService.fetchAlertBanner(bannerOnly: true, stormOnly: false)
+//        AuthenticatedService.fetchAlertBanner(bannerOnly: true, stormOnly: false, completion: <#(Result<[NewAlert], NetworkingError>) -> ()#>)
     }
 }

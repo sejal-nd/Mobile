@@ -11,36 +11,41 @@ import Foundation
 public struct NewJWTToken: Decodable {
     public var token: String?
     
-//    public var errorCode: String?
-//    public var errorDescription: String?
+    var hasTempPassword: Bool = false
     
     enum CodingKeys: String, CodingKey {
-//        case data = "data"
-//        case meta = "meta"
-        case token = "access_token"
-        
-//        case errorCode = "code"
-//        case errorDescription = "description"
+        case token = "jwt"
+        case profileStatus
     }
     
-//    public init(from decoder: Decoder) throws {
-//        var container = try decoder.unkeyedContainer()
-//        
-//        print("containre: \(container)")
-//        
-//        self.token = try container.decode(String.self)
-////        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-////                                                 forKey: .data)
-////        self.token = try container.decode(String.self, forKey: .token)
-//        
-////        if container.contains(.meta) {
-////            let meta = try container.nestedContainer(keyedBy: CodingKeys.self,
-////                                                     forKey: .meta)
-////
-////            self.errorCode = try meta.decode(String.self,
-////                                             forKey: .errorCode)
-////            self.errorDescription = try meta.decode(String.self,
-////                                                    forKey: .errorDescription)
-////        }
-//    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.token = try container.decode(String.self,
+                                          forKey: .token)
+        let profileStatus = try container.decodeIfPresent(ProfileStatusNew.self,
+                                                          forKey: .profileStatus)
+        hasTempPassword = profileStatus?.statuses.contains(where: { $0.name == "tempPassword" }) ?? false
+    }
+    
+    // MARK: - ProfileStatus
+    private struct ProfileStatusNew: Codable {
+        let statuses: [StatusNew]
+        
+        enum CodingKeys: String, CodingKey {
+            case statuses = "status"
+        }
+    }
+
+    // MARK: - Status
+    private struct StatusNew: Codable {
+        let value: Bool?
+        let name: String
+        let dateTime: Date?
+        
+        enum CodingKeys: String, CodingKey {
+            case value = "value"
+            case name = "name"
+            case dateTime = "dateTime"
+        }
+    }
 }
