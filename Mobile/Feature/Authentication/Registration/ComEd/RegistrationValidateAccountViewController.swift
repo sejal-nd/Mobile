@@ -104,6 +104,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         amountDueTextField.textField.delegate = self
         amountDueTextField.textField.isShowingAccessory = true
         amountDueTextField.setKeyboardType(.decimalPad)
+        amountDueTextField.textField.text = 0.currencyString
         amountDueTextField.textField.rx.text.orEmpty.asObservable()
                    .skip(1)
                    .subscribe(onNext: { [weak self] entry in
@@ -136,7 +137,10 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
             calendarVC.calendar = .opCo
             calendarVC.delegate = self
             calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
+            calendarVC.firstDate = Calendar.current.date(byAdding: .year, value: -10, to: Calendar.current.startOfDay(for: .now))
+            calendarVC.lastDate = Calendar.current.date(byAdding: .year, value: 10, to: Calendar.current.startOfDay(for: .now))
             calendarVC.selectedDate = Calendar.opCo.startOfDay(for: .now)
+            calendarVC.scroll(toSelectedDate: true)
             
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
@@ -349,6 +353,7 @@ extension RegistrationValidateAccountViewController: UITextFieldDelegate {
             identifierDescriptionLabel.isHidden = true
             lastBillInformationLabel.isHidden = false
         }
+        stackView.setCustomSpacing(20, after: lastBillInformationLabel)
         viewModel.selectedSegmentIndex.accept(sender.selectedIndex.value)
     }
 }
@@ -363,6 +368,7 @@ extension RegistrationValidateAccountViewController: PDTSimpleCalendarViewDelega
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
-       viewModel.dueDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
+        dueDateButton.valueLabel.textColor = .black
+        viewModel.dueDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
     }
 }

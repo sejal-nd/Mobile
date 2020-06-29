@@ -247,8 +247,9 @@ class RegistrationViewModel {
     
     private(set) lazy var amountDueHasValue: Driver<Bool> =
         self.totalAmountDue.asDriver().map { $0 > 0 }
+    
     private(set) lazy var dueDateHasValue: Driver<Bool> =
-        self.dueDate.asDriver().map { $0 >= .now }
+        self.dueDate.asDriver().map { $0?.MMddyyyyString.count > 0}
        
 	private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
         self.phoneNumber.asDriver().map { [weak self] text -> Bool in
