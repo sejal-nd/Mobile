@@ -236,7 +236,6 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/alerts/preferences/push"
         case .appointments(let accountNumber, let premiseNumber):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/service/appointments/query"
-            
         case .passwordChange:
             return "/mobile/custom/\(apiAccess)/profile/password"
         case .accountLookup:
@@ -319,12 +318,12 @@ public enum Router {
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
             return postDataString.data(using: .utf8)
-
         default:
             return nil
         }
     }
     
+    // todo could make an extension that creates this mock file name
     public var mockFileName: String {
         switch self {
         case .minVersion:
