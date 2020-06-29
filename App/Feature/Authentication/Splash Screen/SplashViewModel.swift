@@ -33,11 +33,13 @@ struct SplashViewModel{
     
     func checkStormMode(completion: @escaping (Bool) -> ()) {
         AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
-            switch result {
-            case .success(let maintenanceMode):
-                completion(maintenanceMode.storm)
-            case .failure(_):
-                completion(false)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let maintenanceMode):
+                    completion(maintenanceMode.storm)
+                case .failure(_):
+                    completion(false)
+                }
             }
         }
     }
