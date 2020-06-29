@@ -205,6 +205,9 @@
 		354838B5233E84BC00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		354838B6233E84BD00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
+		35489DD424A20E7F0040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
+		35489DD524A248BF0040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
+		35489DD624A248C20040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
 		35510E4A2190886E00347539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
 		3559C8A422F9F68300481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		3559C8A522F9F68400481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
@@ -388,6 +391,14 @@
 		359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB622E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB722E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
+		35A2B88424A1E092004B38BC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A2B88324A1E092004B38BC /* Login.storyboard */; };
+		35A2B88524A1E0B0004B38BC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A2B88324A1E092004B38BC /* Login.storyboard */; };
+		35A2B88824A1E0E0004B38BC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */; };
+		35A2B88924A1E0E0004B38BC /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */; };
+		35A2B88B24A1E0F7004B38BC /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */; };
+		35A2B88D24A1E11E004B38BC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */; };
+		35A2B88E24A1E120004B38BC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */; };
+		35A2B88F24A1E122004B38BC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */; };
 		35A2E1B5236B74FA0080CE96 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		35A2E1B6236B74FB0080CE96 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		35A2E1B7236B74FB0080CE96 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
@@ -705,13 +716,8 @@
 		54AE06991ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* MCSRegistrationService.swift */; };
 		54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* MCSRegistrationService.swift */; };
 		54AE069B1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* MCSRegistrationService.swift */; };
-		54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */; };
 		54AE06AB1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */; };
-		54AE06AC1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */; };
-		54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
-		54AE06B21ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
-		54AE06B31ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */; };
 		54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */; };
 		54AE06B71ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */; };
@@ -1040,9 +1046,7 @@
 		8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE851E54EA49003F640D /* LoginViewController.swift */; };
 		8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE851E54EA49003F640D /* LoginViewController.swift */; };
 		8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AE851E54EA49003F640D /* LoginViewController.swift */; };
-		8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE8F1E54EA53003F640D /* Login.storyboard */; };
 		8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE8F1E54EA53003F640D /* Login.storyboard */; };
-		8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE8F1E54EA53003F640D /* Login.storyboard */; };
 		8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE981E54EAB8003F640D /* checkmark.json */; };
 		8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE981E54EAB8003F640D /* checkmark.json */; };
 		8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE981E54EAB8003F640D /* checkmark.json */; };
@@ -2604,7 +2608,6 @@
 		E8F62BDA200924410077B3DA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
 		E8F62BEA200924570077B3DA /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
 		E8F62BEB200924570077B3DA /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
-		E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
 		E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
@@ -3012,6 +3015,7 @@
 		352B19F9233BBEDD0090B442 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unauthenticated.storyboard; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelTests.swift; sourceTree = "<group>"; };
 		3559C8B52301E4FF00481A87 /* AutoPay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPay.storyboard; sourceTree = "<group>"; };
 		3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayReasonsForStoppingViewController.swift; sourceTree = "<group>"; };
 		355B10352369DB180038EAD3 /* WatchSessionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionMananger.swift; sourceTree = "<group>"; };
@@ -3056,6 +3060,9 @@
 		359BDBAB22E09D93007002B0 /* AccountInfoBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoBar.xib; sourceTree = "<group>"; };
 		359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = smallcircleload_blue.json; sourceTree = "<group>"; };
 		359BDBB422E0E6EA007002B0 /* checkmark_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark_blue.json; sourceTree = "<group>"; };
+		35A2B88324A1E092004B38BC /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationValidateAccountViewController.swift; sourceTree = "<group>"; };
 		35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPayBGE.storyboard; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
@@ -4361,7 +4368,8 @@
 		352B8D9B230D7432007F8CEE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				8FD5AE8F1E54EA53003F640D /* Login.storyboard */,
+				35A2B88124A1DF51004B38BC /* ComEd */,
+				35A2B88324A1E092004B38BC /* Login.storyboard */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				35CEB01C230D84CA00366440 /* Splash Screen */,
@@ -4781,6 +4789,23 @@
 				35C9138A22E754C8009DD71A /* Report Outage */,
 			);
 			path = "Detail Pages";
+			sourceTree = "<group>";
+		};
+		35A2B88124A1DF51004B38BC /* ComEd */ = {
+			isa = PBXGroup;
+			children = (
+				8FD5AE8F1E54EA53003F640D /* Login.storyboard */,
+			);
+			path = ComEd;
+			sourceTree = "<group>";
+		};
+		35A2B88224A1DF72004B38BC /* ComEd */ = {
+			isa = PBXGroup;
+			children = (
+				54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */,
+				54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */,
+			);
+			path = ComEd;
 			sourceTree = "<group>";
 		};
 		35A5DCBA2304400A00A82AA8 /* AutoPay ComEd PECO */ = {
@@ -5528,8 +5553,9 @@
 		9C153DB522E8F410002DA062 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */,
-				54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */,
+				35A2B88224A1DF72004B38BC /* ComEd */,
+				35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */,
+				35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */,
 				54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */,
 				54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */,
 				54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */,
@@ -5989,6 +6015,7 @@
 				E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */,
 				E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */,
 				B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */,
+				35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */,
 				E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */,
 				E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */,
 				E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */,
@@ -6880,7 +6907,6 @@
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
-				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				B01FF0AF221DFC77008CA222 /* autopay_info.json in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */,
@@ -6947,6 +6973,7 @@
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
+				35A2B88424A1E092004B38BC /* Login.storyboard in Resources */,
 				0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */,
 				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
@@ -7066,7 +7093,6 @@
 				B0EE78EC221353E700F53C56 /* report_outage.json in Resources */,
 				B0B0840621710D1500B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1E216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
-				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
 				9C0E1C992333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
@@ -7149,6 +7175,7 @@
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B8C84A1F9E3590005828B0 /* SERPTSGraphView.xib in Resources */,
 				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
+				35A2B88524A1E0B0004B38BC /* Login.storyboard in Resources */,
 				9C0A2C3823A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				0EF60FD120EE7AE8006ABC18 /* Assets.xcassets in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
@@ -7508,16 +7535,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -7527,15 +7554,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -7545,7 +7572,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		143735841FC7317CC15E5A64 /* [CP] Embed Pods Frameworks */ = {
@@ -7554,16 +7581,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -7573,15 +7600,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -7591,7 +7618,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1B5015784DB642147DE950E0 /* [CP] Embed Pods Frameworks */ = {
@@ -7600,16 +7627,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -7619,15 +7646,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -7637,7 +7664,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1F320E9F488F4AF612BF5C4D /* [CP] Embed Pods Frameworks */ = {
@@ -7646,16 +7673,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -7665,15 +7692,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -7683,7 +7710,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		21FCC9D56DC0C626A725A88B /* [CP] Check Pods Manifest.lock */ = {
@@ -7714,16 +7741,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -7734,15 +7761,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -7753,7 +7780,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		39FFA6514E02DA5EC3DEDBED /* [CP] Check Pods Manifest.lock */ = {
@@ -7872,16 +7899,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -7891,15 +7918,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -7909,7 +7936,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		55C2EBA82601F7D149265A91 /* [CP] Check Pods Manifest.lock */ = {
@@ -8028,7 +8055,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
 			);
@@ -8039,7 +8066,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */ = {
@@ -8048,7 +8075,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
 			);
@@ -8059,7 +8086,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B3D8CEF734D9D4F8B82669A /* [CP] Check Pods Manifest.lock */ = {
@@ -8155,16 +8182,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -8175,15 +8202,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -8194,7 +8221,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B94B53A494B834F78A5C29C7 /* [CP] Check Pods Manifest.lock */ = {
@@ -8225,7 +8252,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
 			);
@@ -8236,7 +8263,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */ = {
@@ -8245,16 +8272,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -8264,15 +8291,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -8282,7 +8309,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9CBF2ECCE98E33F8775740D /* [CP] Embed Pods Frameworks */ = {
@@ -8291,16 +8318,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -8311,15 +8338,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -8330,7 +8357,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -8624,6 +8651,7 @@
 				B0E9EFFB21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
 				824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
+				35A2B88824A1E0E0004B38BC /* RegistrationViewModel.swift in Sources */,
 				E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
@@ -8636,7 +8664,6 @@
 				9CD3532A22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				E8CFB8AA1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
-				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				E8400E691FE05F0C0064E242 /* MockWalletService.swift in Sources */,
 				B01748972135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
@@ -8864,7 +8891,6 @@
 				82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */,
-				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				2249C037216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
 				9CF5369E23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
 				826773411FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
@@ -8929,6 +8955,7 @@
 				9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
+				35A2B88924A1E0E0004B38BC /* RegistrationValidateAccountViewController.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */,
 				9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */,
@@ -9176,7 +9203,6 @@
 				B05E9D15217F688A0003FAB8 /* Application.swift in Sources */,
 				B0B083B8216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				B039DB7B225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
-				54AE06B21ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E881B1551F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				355B10482369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
@@ -9261,7 +9287,6 @@
 				E840BD461EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
 				82DE61071FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				E8C453251EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
-				54AE06AC1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				9C0E1C962333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
 				35C9139D22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
@@ -9269,7 +9294,9 @@
 				9CC99787237B43E800C68300 /* GameUser.swift in Sources */,
 				9CD3532322CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				35A2B88D24A1E11E004B38BC /* RegistrationViewModel.swift in Sources */,
 				C364A87F2375DD7600C7D51B /* StateView.swift in Sources */,
+				35A2B88B24A1E0F7004B38BC /* RegistrationValidateAccountViewController.swift in Sources */,
 				9C34D74E239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */,
 				826773431FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
@@ -9840,7 +9867,6 @@
 				E840BD3D1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E86414F61F1038CA00DA859A /* Premise.swift in Sources */,
 				B0E9EFFE21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
-				54AE06B31ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE6203F57D800A56FEE /* MyHomeProfileTests.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
@@ -9850,6 +9876,7 @@
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
 				0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */,
 				3559C8A922F9F69700481A87 /* HomeBillCardViewModel.swift in Sources */,
+				35A2B88E24A1E120004B38BC /* RegistrationViewModel.swift in Sources */,
 				359BDB5722D8C4CD007002B0 /* FirebaseUtility.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				35A5DCBC2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */,
@@ -9961,6 +9988,7 @@
 				82119FE7203F585C00A56FEE /* MyHomeProfileViewModel.swift in Sources */,
 				9C119F6721FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
 				B574BACD1E735412001E8A44 /* ProfileStatus.swift in Sources */,
+				35489DD524A248BF0040BDE2 /* RegistrationViewModelTests.swift in Sources */,
 				82E22B651F9FC7D8001F1A1B /* EnergyTip.swift in Sources */,
 				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
@@ -10096,6 +10124,7 @@
 				E8F62B40200924410077B3DA /* Maintenance.swift in Sources */,
 				35A5DCBD2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */,
 				E8F62B42200924410077B3DA /* AuthTokenParserTests.swift in Sources */,
+				35489DD424A20E7F0040BDE2 /* RegistrationViewModelTests.swift in Sources */,
 				E8F62B43200924410077B3DA /* Fonts.swift in Sources */,
 				E8F62B45200924410077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */,
 				E8F62B46200924410077B3DA /* MockAccountService.swift in Sources */,
@@ -10273,7 +10302,6 @@
 				35A6C6EF211DEB5600C2A58F /* UpdatesViewModel.swift in Sources */,
 				B0E9F00021EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E8F62BEB200924570077B3DA /* Premise.swift in Sources */,
-				E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE4203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
 				9C48856523D2672000E107C6 /* Weekday.swift in Sources */,
@@ -10282,6 +10310,7 @@
 				E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */,
 				E8F62BF4200924570077B3DA /* Account.swift in Sources */,
 				3559C8A822F9F69600481A87 /* HomeBillCardViewModel.swift in Sources */,
+				35A2B88F24A1E122004B38BC /* RegistrationViewModel.swift in Sources */,
 				359BDB5422D8C36E007002B0 /* FirebaseUtility.swift in Sources */,
 				E8F62BF5200924570077B3DA /* Maintenance.swift in Sources */,
 				35A5DCBE2305D30900A82AA8 /* AutoPayViewModel.swift in Sources */,
@@ -10393,6 +10422,7 @@
 				E8F62C45200924570077B3DA /* ForgotPasswordViewModelTests.swift in Sources */,
 				9C119F6921FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
 				82119FE9203F585D00A56FEE /* MyHomeProfileViewModel.swift in Sources */,
+				35489DD624A248C20040BDE2 /* RegistrationViewModelTests.swift in Sources */,
 				E8F62C46200924570077B3DA /* ProfileStatus.swift in Sources */,
 				E8F62C47200924570077B3DA /* EnergyTip.swift in Sources */,
 				E8F62C48200924570077B3DA /* BankAccount.swift in Sources */,
