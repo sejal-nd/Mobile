@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewAccountRequest: Encodable {
+public struct NewAccountRequest: Encodable {
     let username: String
     let password: String
     let accountNum: String?

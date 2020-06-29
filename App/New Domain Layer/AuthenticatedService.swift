@@ -147,22 +147,8 @@ extension AuthenticatedService {
                 return
         }
         
-        
-        
-        
-        
-        
-        
-        
-        let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
-        guard let postData = postDataString.data(using: .utf8) else { return }
-//        request.httpBody = postDataString
-
-        
-//        let encodedObject = JWTRequest(postData: postData)//username: username, password: password)
-        // encode is not working properly.
-        
-        NetworkingLayer.request(router: .fetchJWTToken(postData: postData)) { (result: Result<NewJWTToken, NetworkingError>) in
+        let jwtRequest = JWTRequest(username: username, password: password)
+        NetworkingLayer.request(router: .fetchJWTToken(request: jwtRequest)) { (result: Result<NewJWTToken, NetworkingError>) in
             switch result {
             case .success(let data):
                 

@@ -22,10 +22,10 @@ public enum Router {
     case minVersion
     case maintenanceMode
     
-    case fetchJWTToken(postData: Data)//(encodable: Encodable)
+    case fetchJWTToken(request: JWTRequest)
     
     // Registration
-    case registration(encodable: Encodable)
+    case registration(encodable: NewAccountRequest)
     case checkDuplicateRegistration(encodable: Encodable)
     case registrationQuestions
     case validateRegistration(encodable: Encodable)
@@ -107,7 +107,7 @@ public enum Router {
     // Unauthenticated
     case anonOutageStatus(encodable: Encodable)
 
-    case passwordChange(encodable: Encodable)
+    case passwordChange(request: ChangePasswordRequest)
     case accountLookup(encodable: Encodable)
     case recoverPassword(encodable: Encodable)
     case recoverUsername(encodable: Encodable)
@@ -312,12 +312,12 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .fetchJWTToken(let postData):
-            // Custom encoding here.
-            return postData
-        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable), .alertPreferencesUpdate(_, let encodable),
-             .fetchDailyUsage(_, _, let encodable):
-            return encode(encodable)
+        case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .anonOutageStatus(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
+             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable):
+            return request.data()
+        case .fetchJWTToken(let request):
+            let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
+            return postDataString.data(using: .utf8)
         default:
             return nil
         }
@@ -392,16 +392,6 @@ public enum Router {
             return "DailyUsageMock"
         default:
             return ""
-        }
-    }
-    
-    private func encode(_ encodable: Encodable) -> HTTPBody {
-        let encodable = AnyEncodable(value: encodable)
-        
-        do {
-            return try JSONEncoder().encode(encodable)
-        } catch {
-            fatalError("Error encoding object: \(error)")
         }
     }
 }
