@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Toast_Swift
 
 final class EditAccountNickNameViewController: AccountPickerViewController {
     
@@ -102,14 +103,15 @@ extension EditAccountNickNameViewController {
     private func performSaveOperation() {
         LoadingView.show()
         view.endEditing(true)
+        LoadingView.hide()
         viewModel.setAccountNickname(onSuccess: { [weak self] in
             guard let self = self else { return }
+            self.view.showToast(NSLocalizedString("Nickname saved", comment: ""))
             if let text = self.nickNametextField.textField.text {
                 self.viewModel.storedAccountNickName = text
                 self.viewModel.accountNickName.accept(text)
                 self.viewModel.saveNicknameEnabled.asDriver().drive(self.saveNicknameButton.rx.isEnabled).disposed(by: self.disposeBag)
             }
-            LoadingView.hide()
             }, onError: { [weak self] (errorMessage)  in
                 LoadingView.hide()
                 guard let self = self else { return }
