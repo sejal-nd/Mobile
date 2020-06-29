@@ -315,7 +315,7 @@ public enum Router {
         switch self {
         case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .anonOutageStatus(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
              .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable):
-            return encode(request)
+            return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
             return postDataString.data(using: .utf8)
@@ -393,16 +393,6 @@ public enum Router {
             return "DailyUsageMock"
         default:
             return ""
-        }
-    }
-    
-    private func encode(_ encodable: Encodable) -> HTTPBody {
-        let encodable = AnyEncodable(value: encodable)
-        
-        do {
-            return try JSONEncoder().encode(encodable)
-        } catch {
-            fatalError("Error encoding object: \(error)")
         }
     }
 }
