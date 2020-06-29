@@ -236,7 +236,6 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/alerts/preferences/push"
         case .appointments(let accountNumber, let premiseNumber):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/service/appointments/query"
-            
         case .passwordChange:
             return "/mobile/custom/\(apiAccess)/profile/password"
         case .accountLookup:
@@ -316,7 +315,6 @@ public enum Router {
         case .fetchJWTToken(let postData):
             // Custom encoding here.
             return postData
-        case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable), .alertPreferencesUpdate(_, let encodable):
         case .passwordChange(let encodable), .accountLookup(let encodable), .recoverPassword(let encodable), .budgetBillingUnenroll(_, let encodable), .autoPayEnroll(_, let encodable), .anonOutageStatus(let encodable), .scheduledPayment(_, let encodable), .billingHistory(_, let encodable), .payment(let encodable), .deleteWalletItem(let encodable), .compareBill(_, _, let encodable), .autoPayUnenroll(_, let encodable), .scheduledPaymentUpdate(_, _, let encodable), .homeProfileUpdate(_, _, let encodable), .alertPreferencesUpdate(_, let encodable),
              .fetchDailyUsage(_, _, let encodable):
             return encode(encodable)
@@ -325,6 +323,7 @@ public enum Router {
         }
     }
     
+    // todo could make an extension that creates this mock file name
     public var mockFileName: String {
         switch self {
         case .minVersion:
