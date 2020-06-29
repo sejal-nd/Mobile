@@ -219,7 +219,7 @@ class BillViewModel {
     let showAmountDueTooltip = Environment.shared.opco == .peco
     
     private(set) lazy var showMakeAPaymentButton: Driver<Bool> = currentAccountDetail.map {
-        $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge
+        $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge || Environment.shared.opco.isPHI
     }
     
     private(set) lazy var showBillPaidFakeButton: Driver<Bool> =
