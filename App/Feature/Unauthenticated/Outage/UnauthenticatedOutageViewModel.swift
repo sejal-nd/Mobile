@@ -66,7 +66,7 @@ class UnauthenticatedOutageViewModel {
                     }
                 }
                 onSuccess()
-            }, onError: { error in
+            }, onError: { [weak self] error in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
                     onError(NSLocalizedString("Finaled Account", comment: ""), NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: ""))
@@ -79,7 +79,9 @@ class UnauthenticatedOutageViewModel {
                 } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
                     onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: ""))
                 } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue {
-                    onError(NSLocalizedString("Error", comment: ""), self.accountNotFoundMessage)
+                    onError(NSLocalizedString("Error", comment: ""), self?.accountNotFoundMessage ?? error.localizedDescription)
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountInactive.rawValue {
+                    onError(NSLocalizedString("Error", comment: ""), self?.accountNotFoundMessage ?? error.localizedDescription)
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
@@ -150,26 +152,22 @@ class UnauthenticatedOutageViewModel {
     }
     
     var accountNotFoundMessage: String {
-        if Environment.shared.opco == .bge {
-            return NSLocalizedString("The information entered does not match our records. Please double check that the information entered is correct and try again.\n\nStill not working? Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further assistance.", comment: "")
-        } else if Environment.shared.opco == .peco {
-            return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-800-494-4000 for further assistance.", comment: "")
-        } else if Environment.shared.opco.isPHI {
-            var contactNumber = ""
-            switch Environment.shared.opco {
-            case .ace:
-                contactNumber = "1-800-642-3780"
-            case .delmarva:
-                contactNumber = "1-800-375-7117"
-            case .pepco:
-                contactNumber = "202-833-7500"
-            default:
-                contactNumber = ""
-            }
-            return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at \(contactNumber) for further assistance.", comment: "")
-        } else {
-            return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-800-334-7661 for further assistance.", comment: "")
+        var contactNumber = ""
+        switch Environment.shared.opco {
+        case .ace:
+             contactNumber = "1-800-642-3780"
+        case .bge:
+             contactNumber = "1-877-778-2222"
+        case .comEd:
+            contactNumber = "1-800-334-7661"
+        case .delmarva:
+            contactNumber = "1-800-375-7117"
+        case .peco:
+            contactNumber = "1-800-494-4000"
+        case .pepco:
+            contactNumber = "202-833-7500"
         }
+        return NSLocalizedString("The information entered does not match our records. Please double check that the information entered is correct and try again.\n\n Still not working? Outage status and report an outage may not be available for this account. Please call Customer Service at \(contactNumber) for further assistance.", comment: "")
     }
     
     var footerTextViewText: NSAttributedString {

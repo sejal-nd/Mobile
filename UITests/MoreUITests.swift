@@ -125,8 +125,8 @@ class MoreUITests: ExelonUITestCase {
                 (.link, "1-877-737-2662"),
                 (.link, "202-833-7500"),
                 (.staticText, "All Customers"),
-                (.staticText, "If you see a downed power line, leave the area immediately and then call Pepco. Representatives are available 24 hours a day, 7 days a week")
-                (.button, "Instagram")
+                (.staticText, "If you see a downed power line, leave the area immediately and then call Pepco. Representatives are available 24 hours a day, 7 days a week"),
+                (.button, "Instagram"),
                 (.staticText, "M-F 7AM to 8PM"),
             ])
         }

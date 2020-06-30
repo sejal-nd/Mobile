@@ -132,6 +132,12 @@ struct MCSAccountService: AccountService {
         return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/default", params: nil)
             .mapTo(())
     }
+    
+    func setAccountNickname(nickname: String, accountNumber: String) -> Observable<Void> {
+        let params = ["accountNickname": nickname, "accountNumber": accountNumber]
+        return MCSApi.shared.post(pathPrefix: .auth, path: "profile/update/account/nickname", params: params)
+            .mapTo(())
+    }
     #endif
     
     func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {

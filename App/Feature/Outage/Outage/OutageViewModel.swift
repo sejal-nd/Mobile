@@ -89,6 +89,12 @@ class OutageViewModel {
                         self.outageStatus = outageStatus
                         onSuccess(outageStatus)
                     }
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountInactive.rawValue {
+                    if var outageStatus = OutageStatus.from(["isAccountInactive": true]) {
+                        outageStatus.isAccountInactive = true
+                        self.outageStatus = outageStatus
+                        onSuccess(outageStatus)
+                    }
                 } else {
                     onError(serviceError)
                 }

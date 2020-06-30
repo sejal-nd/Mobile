@@ -55,7 +55,7 @@ extension Date {
         }
         return DateFormatter.hourAmPmFormatter.string(from: date)
     }
-        
+    
     @nonobjc var apiFormatString: String {
         return DateFormatter.apiFormatter.string(from: self)
     }
@@ -85,12 +85,30 @@ extension Date {
             return NSLocalizedString("Good Evening", comment: "")
         }
     }
-            
+    
     @nonobjc var paymentFormatString: String {
+        var paymentDate = self
+        
         if isInToday(calendar: .opCo) {
-            return DateFormatter.apiFormatterGMT.string(from: self)
+            if Environment.shared.opco == .peco {
+                let localCalendar = Calendar.current
+                let hour = localCalendar.component(.hour, from: self)
+                let minute = localCalendar.component(.minute, from: self)
+                let second = localCalendar.component(.second, from: self)
+                
+                var centralCalendar = Calendar(identifier: .gregorian)
+                if let centralTimeZone = TimeZone(identifier: "US/Central") {
+                    centralCalendar.timeZone = centralTimeZone
+                }
+                
+                if let date = centralCalendar.date(bySettingHour: hour, minute: minute, second: second, of: self) {
+                    paymentDate = date
+                }
+            }
+            
+            return DateFormatter.apiFormatterGMT.string(from: paymentDate)
         } else {
-            return DateFormatter.noonApiFormatter.string(from: self)
+            return DateFormatter.noonApiFormatter.string(from: paymentDate)
         }
     }
     
@@ -112,7 +130,7 @@ extension Date {
     @nonobjc var weekday: Weekday {
         guard let weekdayInt = Calendar.gmt.dateComponents([.weekday], from: self).weekday,
             let weekday = Weekday(rawValue: weekdayInt) else {
-            fatalError("Could not compute weekday from Date")
+                fatalError("Could not compute weekday from Date")
         }
         return weekday
     }
@@ -194,7 +212,7 @@ extension DateFormatter {
         dateFormatter.dateFormat = "MM-dd-yyyy"
         return dateFormatter
     }()
-
+    
     @nonobjc static let MMddyyyyHHmmFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .opCo
@@ -250,7 +268,7 @@ extension DateFormatter {
         dateFormatter.dateFormat = "ha"
         return dateFormatter
     }()
-        
+    
     @nonobjc static let apiFormatterGMT: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .gmt

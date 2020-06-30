@@ -51,7 +51,7 @@ protocol RegistrationService {
      phone			String	Account phone number
      account_num	String	Account number to register (BGE optional)
      */
-    func validateAccountInformation(_ identifier: String, phone: String, accountNum: String?) -> Observable<[String: Any]>
+    func validateAccountInformation(_ identifier: String, phone: String, accountNum: String?, dueAmount: String?, dueDate: String?) -> Observable<[String: Any]>
     
     /*
      username	String   Registered username

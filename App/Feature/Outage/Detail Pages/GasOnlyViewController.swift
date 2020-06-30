@@ -12,6 +12,9 @@ class GasOnlyViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textView: ZeroInsetDataDetectorTextView!
     
+    @IBOutlet weak var textViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textViewLeadingConstraint: NSLayoutConstraint!
+    
     var gasOnlyText: NSAttributedString {
         var localizedString: String
         let phoneNumbers: [String]
@@ -40,7 +43,7 @@ class GasOnlyViewController: UIViewController {
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat(
                 """
-                Natural gas emergencies cannot be reported online, but we want to hear from you right away.
+                We currently do not allow reporting of gas issues online but want to hear from you right away.\n
                 If you smell natural gas, leave the area immediately and call %@
                 """
                 , phone1)
@@ -79,5 +82,9 @@ class GasOnlyViewController: UIViewController {
         
         textView.textColor = .deepGray
         textView.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        let padding: CGFloat = Environment.shared.opco.isPHI ? 30.0 : 46.0
+        textViewLeadingConstraint.constant = padding
+        textViewTrailingConstraint.constant = padding
     }
 }

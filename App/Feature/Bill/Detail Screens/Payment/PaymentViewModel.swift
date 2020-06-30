@@ -133,7 +133,7 @@ class PaymentViewModel {
                                             paymentAmount: self.paymentAmount.value,
                                             paymentDate: self.paymentDate.value,
                                             alternateEmail: self.emailAddress.value,
-                                            alternateNumber: self.phoneNumber.value,
+                                            alternateNumber: self.extractDigitsFrom(self.phoneNumber.value),
                                             walletId: AccountsStore.shared.customerIdentifier,
                                             walletItem: self.selectedWalletItem.value!)
             .observeOn(MainScheduler.instance)
@@ -254,6 +254,11 @@ class PaymentViewModel {
             if text.count == .zero {
                 return true
             }
+            
+            if text.contains(" ") {
+                return false
+            }
+            
             let components = text.components(separatedBy: "@")
             
             if components.count != 2 {
@@ -276,6 +281,10 @@ class PaymentViewModel {
             if !text.isEmpty {
                 if text.count > self.kMaxUsernameChars {
                     return "Maximum of 255 characters allowed"
+                }
+                
+                if text.contains(" ") {
+                    return "Invalid email address"
                 }
                 
                 let components = text.components(separatedBy: "@")

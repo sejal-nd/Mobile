@@ -208,6 +208,13 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
                     UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
                 }))
+            } else if let phoneRange = errMessage.range(of:"d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
+                // use regular expression to check the US phone number format: start with 3 then 3 4 digits grouped together that separated by dash
+                // e.g: 202-833-7500 is valid while 1-1111111111 and 1-111-111-1111 are not
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
+                    UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
+                }))
             } else {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             }
