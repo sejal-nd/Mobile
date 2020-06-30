@@ -464,14 +464,8 @@ class BillViewModel {
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Payments Processing", comment: "")
-        case .comEd, .peco:
+        case .comEd, .peco, .pepco, .ace, .delmarva:
             return NSLocalizedString("Pending Payments", comment: "")
-        case .pepco:
-            return NSLocalizedString("todo", comment: "")
-        case .ace:
-            return NSLocalizedString("todo", comment: "")
-        case .delmarva:
-            return NSLocalizedString("todo", comment: "")
         }
     }()
     
