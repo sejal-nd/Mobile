@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>213801109502-hc5ecf3bfifq6va5m5tjkk81o5ljpf1k.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.213801109502-hc5ecf3bfifq6va5m5tjkk81o5ljpf1k</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBX0MsaUvQ8NXvzhagXhEYL0fo1RERrpig</string>
+	<key>GCM_SENDER_ID</key>
+	<string>213801109502</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.exelon.mobile.peco.hotfix</string>
+	<key>PROJECT_ID</key>
+	<string>peco-78bf2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>peco-78bf2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:213801109502:ios:6d7d7316ec26ae1a30e2af</string>
+	<key>DATABASE_URL</key>
+	<string>https://peco-78bf2.firebaseio.com</string>
+</dict>
+</plist>

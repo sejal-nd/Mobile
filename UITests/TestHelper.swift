@@ -23,6 +23,12 @@ let appOpCo: OpCo = {
         opCoName = "ComEd"
     case "PECOUITests-Runner":
         opCoName = "PECO"
+    case "PEPCOUITests-Runner":
+        opCoName = "PEP"
+    case "ACEUITests-Runner":
+        opCoName = "ACE"
+    case "DELMARVAUITests-Runner":
+        opCoName = "DPL"
     default:
         fatalError("Invalid bundle Id resolving to OpCo Name.")
     }
