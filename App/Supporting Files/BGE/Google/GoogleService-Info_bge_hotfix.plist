@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>682687804839-agqim412i77inou6hbn568559ft2o3np.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.682687804839-agqim412i77inou6hbn568559ft2o3np</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>682687804839-qi92oho0r0d8vtkm78pf1bglfp2flr6r.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBhjOhu3F8unpHvoii1xPwis-v3JGKpeCY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>682687804839</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.exelon.mobile.bge.hotfix</string>
+	<key>PROJECT_ID</key>
+	<string>baltimore-gas-and-electr-c40b2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>baltimore-gas-and-electr-c40b2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:682687804839:ios:0b04030da1effe887bf282</string>
+	<key>DATABASE_URL</key>
+	<string>https://baltimore-gas-and-electr-c40b2.firebaseio.com</string>
+</dict>
+</plist>

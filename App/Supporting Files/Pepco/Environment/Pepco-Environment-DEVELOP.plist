@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>environment</key>
+	<string>DEV</string>
+	<key>opco</key>
+	<string>PEP</string>
+	<key>appName</key>
+	<string>Pepco_DEV</string>
+	<key>mcsInstanceName</key>
+	<string>Dev-pepcoMBE</string>
+	<key>myAccountUrl</key>
+	<string>https://aztst.pepco.com/MyAccount</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_pepco_develop</string>
+	<key>gaTrackingId</key>
+	<string>UA-76742208-8</string>
+	<key>opcoUpdatesHost</key>
+	<string>azstg.pepco.com</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.pepco.com</string>
+</dict>
+</plist>
