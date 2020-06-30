@@ -25,6 +25,7 @@ public struct NewMaintenanceMode: Decodable {
         case home = "home"
         case storm = "storm"
         case message = "message"
+        case ios
     }
     
     public init(from decoder: Decoder) throws {
@@ -41,7 +42,12 @@ public struct NewMaintenanceMode: Decodable {
                                          forKey: .home)
         self.storm = try container.decode(Bool.self,
                                           forKey: .storm)
-        self.message = try container.decode(String.self,
-                                            forKey: .message)
+        
+        let iOSContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .ios)
+        if let iOSMessage = try iOSContainer.decodeIfPresent(String.self, forKey: .message), !iOSMessage.isEmpty {
+            self.message = iOSMessage
+        } else if let globalMessage = try container.decodeIfPresent(String.self, forKey: .message), !globalMessage.isEmpty {
+            self.message = globalMessage
+        }
     }
 }

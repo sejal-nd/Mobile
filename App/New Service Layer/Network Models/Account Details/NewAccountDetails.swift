@@ -32,7 +32,7 @@ public struct NewAccountDetails: Decodable {
     public var isPartialResult: Bool
     public var isPasswordProtected: Bool
     public var isCashOnly: Bool
-    public var shouldReleaseInformation: Bool?
+    public var releaseOfInformation: String?
     public var revenueClass: Bool?
     public var serviceAgreementCount: Int
     public var isSmartEnergyRewardsEnrolled: Bool
@@ -63,9 +63,9 @@ public struct NewAccountDetails: Decodable {
     public var amiAccountIdentifier: String
     public var amiCustomerIdentifier: String
     public var rateSchedule: String
-    public var peakRewards: String
+    public var peakRewards: String?
     public var isPeakRewards: Bool
-    public var electricChoiceID: String
+    public var electricChoiceID: String?
     public var isBudgetBillEligible: Bool
     public var budgetBillMessage: String?
     public var isAutoPayEligible: Bool
@@ -98,7 +98,7 @@ public struct NewAccountDetails: Decodable {
         case isPartialResult
         case isPasswordProtected
         case isCashOnly
-        case shouldReleaseInformation = "releaseOfInformation"
+        case releaseOfInformation
         case revenueClass
         case serviceAgreementCount
         case isSmartEnergyRewardsEnrolled = "smartEnergyRewardsStatus"
@@ -188,8 +188,8 @@ public struct NewAccountDetails: Decodable {
         
         self.isCashOnly = try container.decode(Bool.self,
                                           forKey: .isCashOnly)
-        self.shouldReleaseInformation = try container.decodeIfPresent(Bool.self,
-                                                                 forKey: .shouldReleaseInformation)
+        self.releaseOfInformation = try container.decodeIfPresent(String.self,
+                                                                 forKey: .releaseOfInformation)
         self.revenueClass = try container.decodeIfPresent(Bool.self,
                                                      forKey: .revenueClass)
         self.serviceAgreementCount = try container.decode(Int.self,
@@ -208,24 +208,24 @@ public struct NewAccountDetails: Decodable {
         
         self.billRouteType = try container.decode(String.self,
         forKey: .billRouteType)
-        self.isNetMetering = try container.decode(Bool.self,
-        forKey: .isNetMetering)
-        self.isEBillEligible = try container.decode(Bool.self,
-        forKey: .isEBillEligible)
+        self.isNetMetering = try container.decodeIfPresent(Bool.self,
+        forKey: .isNetMetering) ?? false
+        self.isEBillEligible = try container.decodeIfPresent(Bool.self,
+        forKey: .isEBillEligible) ?? false
         self.activeSeverance = try container.decodeIfPresent(Bool.self,
         forKey: .activeSeverance) ?? false
-        self.isAutoPay = try container.decode(Bool.self,
-        forKey: .isAutoPay)
-        self.isBudgetBill = try container.decode(Bool.self,
-        forKey: .isBudgetBill)
-        self.isSummaryBillingIneligible = try container.decode(Bool.self,
-        forKey: .isSummaryBillingIneligible)
-        self.isEdiBilling = try container.decode(Bool.self,
-        forKey: .isEdiBilling)
-        self.isEBillEnrollment = try container.decode(Bool.self,
-        forKey: .isEBillEnrollment)
-        self.isResidential = try container.decode(Bool.self,
-        forKey: .isResidential)
+        self.isAutoPay = try container.decodeIfPresent(Bool.self,
+        forKey: .isAutoPay) ?? false
+        self.isBudgetBill = try container.decodeIfPresent(Bool.self,
+        forKey: .isBudgetBill) ?? false
+        self.isSummaryBillingIneligible = try container.decodeIfPresent(Bool.self,
+        forKey: .isSummaryBillingIneligible) ?? false
+        self.isEdiBilling = try container.decodeIfPresent(Bool.self,
+        forKey: .isEdiBilling) ?? false
+        self.isEBillEnrollment = try container.decodeIfPresent(Bool.self,
+        forKey: .isEBillEnrollment) ?? false
+        self.isResidential = try container.decodeIfPresent(Bool.self,
+        forKey: .isResidential) ?? false
         self.addressLine = try container.decode(String.self,
         forKey: .addressLine)
         self.street = try container.decode(String.self,
@@ -246,24 +246,24 @@ public struct NewAccountDetails: Decodable {
         forKey: .amiCustomerIdentifier)
         self.rateSchedule = try container.decode(String.self,
         forKey: .rateSchedule)
-        self.peakRewards = try container.decode(String.self,
+        self.peakRewards = try container.decodeIfPresent(String.self,
         forKey: .peakRewards)
-        self.isPeakRewards = try container.decode(Bool.self,
-        forKey: .isPeakRewards)
-        self.electricChoiceID = try container.decode(String.self,
+        self.isPeakRewards = try container.decodeIfPresent(Bool.self,
+        forKey: .isPeakRewards) ?? false
+        self.electricChoiceID = try container.decodeIfPresent(String.self,
         forKey: .electricChoiceID)
-        self.isBudgetBillEligible = try container.decode(Bool.self,
-        forKey: .isBudgetBillEligible)
+        self.isBudgetBillEligible = try container.decodeIfPresent(Bool.self,
+        forKey: .isBudgetBillEligible) ?? false
         self.budgetBillMessage = try container.decodeIfPresent(String.self,
         forKey: .budgetBillMessage)
-        self.isAutoPayEligible = try container.decode(Bool.self,
-        forKey: .isAutoPayEligible)
+        self.isAutoPayEligible = try container.decodeIfPresent(Bool.self,
+        forKey: .isAutoPayEligible) ?? false
         self.customerNumber = try container.decode(String.self,
         forKey: .customerNumber)
         
         self.customerInfo = try container.decode(NewCustomerInfo.self,
                                             forKey: .customerInfo)
-        self.premiseInfo = try container.decode([NewPremiseInfo].self,
-        forKey: .premiseInfo)
+        self.premiseInfo = try container.decodeIfPresent([NewPremiseInfo].self,
+        forKey: .premiseInfo) ?? []
     }
 }

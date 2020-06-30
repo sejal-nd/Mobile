@@ -1,5 +1,5 @@
 //
-//  NewAccounts.swift
+//  NewAccount.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 3/24/20.
@@ -8,23 +8,78 @@
 
 import Foundation
 
-// we want this to return an array of objects as opposed to a single object.
-public struct NewAccounts: Decodable {
-    public var accounts: [NewAccount]
+public struct NewAccount: Decodable, Equatable, Hashable {
+    var accountNumber: String
+    let accountNickname: String?
+    let address: String?
+    let premises: [NewPremiseInfo]
+    var currentPremise: NewPremiseInfo?
     
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        self.accounts = try container.decode([NewAccount].self)
+    let status: String?
+    let isLinked: Bool
+    let isDefault: Bool
+    let isFinaled: Bool
+    let isResidential: Bool
+    let serviceType: String?
+    let isPasswordProtected: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case accountNumber
+        case accountNickname
+        case address
+        case premises = "PremiseInfo"
+        case status
+        case isLinked = "isLinkedProfile"
+        case isDefault = "isDefaultProfile"
+        case isFinaled = "flagFinaled"
+        case isResidential
+        case serviceType
+        case isPasswordProtected
     }
     
-    // we want this to return an array of objects as opposed to a single object.
-    public struct NewAccount: Decodable {
-        public var accountNumber: String
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        enum CodingKeys: String, CodingKey {
-            case accountNumber
+        accountNumber = try container.decode(String.self, forKey: .accountNumber)
+        accountNickname = try container.decodeIfPresent(String.self, forKey: .accountNickname)
+        address = try container.decodeIfPresent(String.self, forKey: .address)
+        premises = try container.decodeIfPresent([NewPremiseInfo].self, forKey: .premises) ?? []
+        currentPremise = premises.first
+        
+        status = try container.decodeIfPresent(String.self, forKey: .status)
+        isLinked = try container.decodeIfPresent(Bool.self, forKey: .isLinked) ?? false
+        isDefault = try container.decodeIfPresent(Bool.self, forKey: .isDefault) ?? false
+        isFinaled = try container.decodeIfPresent(Bool.self, forKey: .isFinaled) ?? false
+        isResidential = try container.decodeIfPresent(Bool.self, forKey: .isResidential) ?? false
+        serviceType = try container.decodeIfPresent(String.self, forKey: .serviceType)
+        isPasswordProtected = try container.decodeIfPresent(Bool.self, forKey: .isPasswordProtected) ?? false
+    }
+    
+    var isMultipremise: Bool {
+        return premises.count > 1 //TODO: could be 0 depending on whether each account has matching default premise
+    }
+    
+    // PHI will return nickname if it exists, otherwise account number is returned
+    var displayName: String {
+        if Environment.shared.opco.isPHI {
+            if let accountNickname = accountNickname {
+                return accountNickname
+            } else {
+                return accountNumber
+            }
+        } else {
+            return accountNumber
         }
     }
     
+    // Equatable
+    public static func ==(lhs: NewAccount, rhs: NewAccount) -> Bool {
+        return lhs.accountNumber == rhs.accountNumber
+    }
+    
+    // Hashable
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(accountNumber)
+    }
 }
 

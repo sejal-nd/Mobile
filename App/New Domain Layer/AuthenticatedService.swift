@@ -54,6 +54,22 @@ struct AuthenticatedService {
         AccountsStore.shared.customerIdentifier = nil
         StormModeStatus.shared.isOn = false
     }
+    
+    static func fetchAccounts(completion: @escaping (Result<[NewAccount], NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .accounts) { (result: Result<[NewAccount], NetworkingError>) in
+            switch result {
+            case .success(let accounts):
+                let sortedAccounts = accounts
+                    .filter { !$0.isPasswordProtected } // Filter out password protected accounts
+                    .sorted { ($0.isDefault && !$1.isDefault) || (!$0.isFinaled && $1.isFinaled) }
+                
+//                AccountsStore.shared.accounts = sortedAccounts
+                AccountsStore.shared.currentIndex = 0
+            case .failure(let error):
+                break
+            }
+        }
+    }
 
     static func fetchAccountDetails(accountNumber: String,
                                     payments: Bool = true,
@@ -177,10 +193,10 @@ extension AuthenticatedService {
 
                 UserSession.shared.token = token
                 
-                NetworkingLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
+                self.fetchAccounts { (result: Result<[NewAccount], NetworkingError>) in
                     switch result {
-                    case .success(let data):
-                        guard let accNumber = data.accounts.first?.accountNumber else { return }
+                    case .success(let accounts):
+                        guard let accNumber = accounts.first?.accountNumber else { return }
                         AuthenticatedService.fetchAccountDetails(accountNumber: accNumber) { (result: Result<NewAccountDetails, NetworkingError>) in
                             switch result {
                             case .success:
@@ -204,7 +220,7 @@ extension AuthenticatedService {
         // SET MOCK USER
         UserSession.shared.token = username
         
-        NetworkingLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
+        self.fetchAccounts { (result: Result<[NewAccount], NetworkingError>) in
             switch result {
             case .success:
                 completion(.success((false)))
