@@ -135,6 +135,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate Method Implementations
 extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -148,9 +149,9 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0, indexPath.row == 2, outageMapURLString.isEmpty {
             return 0
-        } else if indexPath.section == 0, indexPath.row == 3, !Environment.shared.opco.isPHI {
+        } else if indexPath.section == 0, indexPath.row == 3, Environment.shared.opco == .peco {
             return 0
-        } else if indexPath.section == 0, indexPath.row == 3, Environment.shared.opco.isPHI, streetlightOutageMapURLString.isEmpty {
+        } else if indexPath.section == 0, indexPath.row == 3, streetlightOutageMapURLString.isEmpty {
             return 0
         } else if indexPath.section == 1, indexPath.row == 2, Environment.shared.opco.isPHI, billingVideosUrl == nil {
             return 0
@@ -173,7 +174,8 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 2:
                 cell.configure(image: UIImage(named: "ic_mapoutagewhite"), text: NSLocalizedString("View Outage Map", comment: ""))
             case 3:
-                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage_white"), text: NSLocalizedString("Report Street Light Problem", comment: ""))
+                let text = Environment.shared.opco.isPHI ? NSLocalizedString("Report Street Light Problem", comment: "") : NSLocalizedString("Report Street Light Outage", comment: "")
+                cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage_white"), text: text)
             default:
                 return UITableViewCell()
             }
