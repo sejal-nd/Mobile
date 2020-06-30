@@ -103,13 +103,13 @@ class BillViewModel {
             .filter { $0 && !$1 }
             .mapTo(())
     
-//    private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
-//        .map { $0.0 }
-//        .filter {
-//            return !$0.isEligibleForUsageData && $0.isResidential
-//        }
-//        .mapTo(())
-//        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
+        .map { $0.0 }
+        .filter {
+            return !$0.isEligibleForUsageData && $0.isResidential
+        }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showUsageBillImpactFullError: Driver<Void> = usageBillImpactEvents.errors()
         .do(onNext: { [weak self] _ in
