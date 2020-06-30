@@ -13,7 +13,7 @@
 	<key>mcsInstanceName</key>
 	<string>Stage-comedHotfixMBE</string>
 	<key>myAccountUrl</key>
-	<string>https://azstg.comed.com/MyAccount</string>
+	<string>https://azstage.comed.com/MyAccount</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>paymentusUrl</key>
@@ -23,7 +23,7 @@
 	<key>gaTrackingId</key>
 	<string>UA-76742208-16</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.comed.com</string>
+	<string>azstage.comed.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.comed.com</string>
 	<key>appCenterId</key>

@@ -397,14 +397,14 @@ class UsageViewModel {
         }
     
     private(set) lazy var showProjectedBar: Driver<Bool> =
-        Driver.combineLatest(lastYearPreviousBillSelectedSegmentIndex.asDriver(), projectedCost, showProjectionNotAvailableBar) {
+        Driver.combineLatest(lastYearPreviousBillSelectedSegmentIndex.asDriver(), projectedCost, projectedUsage, showProjectionNotAvailableBar) {
             // Projections are only for "Previous Bill" selection
-            $0 == 1 && $1 != nil && !$2
+            $0 == 1 && ($1 != nil || $2 != nil) && !$3
         }
     
     private(set) lazy var projectedBarHeightConstraintValue: Driver<CGFloat> =
         Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
-            guard let projectedCost = projectedCost else { return 0 }
+            guard let projectedCost = projectedCost else { return 3 }
             let reference = billComparison.reference?.charges ?? 0
             let compared = billComparison.compared?.charges ?? 0
             if max(projectedCost, reference, compared) == projectedCost {

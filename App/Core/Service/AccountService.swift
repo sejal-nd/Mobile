@@ -44,6 +44,12 @@ protocol AccountService {
     /// - Parameters:
     ///   - account: the account to set as default
     func setDefaultAccount(account: Account) -> Observable<Void>
+    
+    
+    /// Sets the user's account NickName
+    /// - Parameter nickname: the new nickname to be set
+    /// - Parameter accountNumber: the accountNumber of the account
+    func setAccountNickname(nickname: String, accountNumber: String) -> Observable<Void>
     #endif
     
     /// Gets single sign-on info so that we can display the logged-in user's usage web view

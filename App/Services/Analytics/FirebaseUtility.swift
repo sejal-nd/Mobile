@@ -240,6 +240,10 @@ struct EventParameter {
         case phone_number_main
         case phone_number_emergency_gas
         case phone_number_emergency_electric
+        case phone_number_gas_1
+        case phone_number_gas_2
+        case phone_number_electric_1
+        case phone_number_electric_2
         case view_details
         case report_complete
         case map

@@ -62,7 +62,9 @@ class RegistrationViewModel {
         
         registrationService.validateAccountInformation(identifier,
                                                        phone: extractDigitsFrom(phoneNumber.value),
-                                                       accountNum: accountNumber.value)
+                                                       accountNum: accountNumber.value,
+                                                       dueAmount: "",
+                                                       dueDate: "")
         	.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }

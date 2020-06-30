@@ -180,7 +180,7 @@ class HomeViewController: AccountPickerViewController {
                         }
                         
                         switch status {
-                        case .scheduled, .inProgress, .enRoute:
+                        case .scheduled, .inProgress, .onOurWay, .enRoute:
                             self.performSegue(withIdentifier: "appointmentDetailSegue",
                                               sender: (appointments))
                         case .canceled, .complete:

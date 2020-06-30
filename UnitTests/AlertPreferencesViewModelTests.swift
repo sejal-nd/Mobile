@@ -184,11 +184,11 @@ class AlertPreferencesViewModelTests: XCTestCase {
         case .peco:
             expectedString = NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.", comment: "")
         case .pepco:
-            expectedString = NSLocalizedString("Todo", comment: "")
+            expectedString = NSLocalizedString("", comment: "")
         case .ace:
-            expectedString = NSLocalizedString("Todo", comment: "")
+            expectedString = NSLocalizedString("", comment: "")
         case .delmarva:
-            expectedString = NSLocalizedString("Todo", comment: "")
+            expectedString = NSLocalizedString("", comment: "")
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.outage.detailText,
                        expectedString)

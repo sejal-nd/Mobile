@@ -42,6 +42,8 @@ class HomeAppointmentCardViewModel {
             switch appointments[0].status {
             case .scheduled:
                 return #imageLiteral(resourceName: "ic_appt_confirmed")
+            case .onOurWay:
+                fallthrough
             case .enRoute:
                 return #imageLiteral(resourceName: "ic_appt_otw")
             case .inProgress:
@@ -101,6 +103,8 @@ class HomeAppointmentCardViewModel {
                                             range: NSMakeRange(0, attributedText.string.count))
                 
                 return attributedText
+            case .onOurWay:
+                fallthrough
             case .enRoute:
                 return NSLocalizedString("Your technician is on their way for your appointment today.", comment: "")
                     .attributedString(textAlignment: .center,
@@ -139,7 +143,7 @@ class HomeAppointmentCardViewModel {
             }
             
             switch appointments[0].status {
-            case .scheduled, .inProgress, .enRoute:
+            case .scheduled, .inProgress, .onOurWay, .enRoute:
                 return NSLocalizedString("View Details", comment: "")
             case .canceled, .complete:
                 return NSLocalizedString("Contact Us", comment: "")
