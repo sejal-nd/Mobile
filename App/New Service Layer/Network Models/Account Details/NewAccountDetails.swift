@@ -72,6 +72,8 @@ public struct NewAccountDetails: Decodable {
     public var customerNumber: String
     
     public var customerInfo: NewCustomerInfo
+    let billingInfo: NewBillingInfo
+    let serInfo: NewSERInfo
     public var premiseInfo: [NewPremiseInfo]
 
     enum CodingKeys: String, CodingKey {
@@ -137,6 +139,8 @@ public struct NewAccountDetails: Decodable {
         case customerNumber
         
         case customerInfo = "CustomerInfo"
+        case billingInfo = "BustomerInfo"
+        case serInfo = "SERInfo"
         case premiseInfo = "PremiseInfo"
     }
     
@@ -263,6 +267,8 @@ public struct NewAccountDetails: Decodable {
         
         self.customerInfo = try container.decode(NewCustomerInfo.self,
                                             forKey: .customerInfo)
+        self.billingInfo = try container.decode(NewBillingInfo.self, forKey: .billingInfo)
+        self.serInfo = try container.decode(NewSERInfo.self, forKey: .serInfo)
         self.premiseInfo = try container.decodeIfPresent([NewPremiseInfo].self,
         forKey: .premiseInfo) ?? []
     }
