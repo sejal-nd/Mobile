@@ -570,7 +570,7 @@ class BillViewController: AccountPickerViewController {
 
 		viewModel.showMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
 		viewModel.showBillPaidFakeButton.not().drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
-        Environment.shared.opco.isPHI ? makeAPaymentStatusButton.isHidden = true : viewModel.showPaymentStatusText.not().drive(makeAPaymentStatusButton.rx.isHidden).disposed(by: bag)
+        viewModel.showPaymentStatusText.not().drive(makeAPaymentStatusButton.rx.isHidden).disposed(by: bag)
         viewModel.hasBillBreakdownData.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
 
         viewModel.showAutoPay.not().drive(autoPayButton.rx.isHidden).disposed(by: bag)
