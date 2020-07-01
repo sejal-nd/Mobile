@@ -103,13 +103,13 @@ class BillViewModel {
             .filter { $0 && !$1 }
             .mapTo(())
     
-//    private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
-//        .map { $0.0 }
-//        .filter {
-//            return !$0.isEligibleForUsageData && $0.isResidential
-//        }
-//        .mapTo(())
-//        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
+        .map { $0.0 }
+        .filter {
+            return !$0.isEligibleForUsageData && $0.isResidential
+        }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showUsageBillImpactFullError: Driver<Void> = usageBillImpactEvents.errors()
         .do(onNext: { [weak self] _ in
@@ -219,7 +219,7 @@ class BillViewModel {
     let showAmountDueTooltip = Environment.shared.opco == .peco
     
     private(set) lazy var showMakeAPaymentButton: Driver<Bool> = currentAccountDetail.map {
-        $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge
+        $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge || Environment.shared.opco.isPHI
     }
     
     private(set) lazy var showBillPaidFakeButton: Driver<Bool> =
@@ -464,14 +464,8 @@ class BillViewModel {
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Payments Processing", comment: "")
-        case .comEd, .peco:
+        case .comEd, .peco, .pepco, .ace, .delmarva:
             return NSLocalizedString("Pending Payments", comment: "")
-        case .pepco:
-            return NSLocalizedString("todo", comment: "")
-        case .ace:
-            return NSLocalizedString("todo", comment: "")
-        case .delmarva:
-            return NSLocalizedString("todo", comment: "")
         }
     }()
     
