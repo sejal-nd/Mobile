@@ -17,7 +17,7 @@
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.delmarva.com</string>
+	<string>azstage.delmarva.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.delmarva.com</string>
 	<key>appCenterId</key>

@@ -17,7 +17,7 @@
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.pepco.com</string>
+	<string>azstage.pepco.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.pepco.com</string>
 	<key>appCenterId</key>
