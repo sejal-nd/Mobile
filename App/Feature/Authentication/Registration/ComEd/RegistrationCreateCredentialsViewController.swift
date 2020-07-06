@@ -44,6 +44,9 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
     @IBOutlet weak var eBillCheckBox: Checkbox!
     @IBOutlet weak var eBillEnrollInstructions: UILabel!
     
+    @IBOutlet weak var passwordEyeBall: UIButton!
+    @IBOutlet weak var confirmPasswordEyeBall: UIButton!
+    
     @IBOutlet weak var continueButton: PrimaryButton!
     
     var viewModel: RegistrationViewModel!
@@ -85,6 +88,8 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         prepareTextFieldsForInput()
         
         passwordStrengthView.isHidden = true
+        createPasswordTextField.bringSubviewToFront(passwordEyeBall)
+        confirmPasswordTextField.bringSubviewToFront(confirmPasswordEyeBall)
         
         if Environment.shared.opco == .bge || viewModel.accountType.value == "residential" {
             primaryProfileSwitchView.isHidden = true
@@ -93,6 +98,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         if self.viewModel.isPaperlessEbillEligible {
             eBillEnrollView.isHidden = false
             eBillCheckBox.rx.isChecked.bind(to: viewModel.paperlessEbill).disposed(by: disposeBag)
+            eBillCheckBox.isChecked = true
         } else {
             eBillEnrollView.isHidden = true
         }
@@ -244,7 +250,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
                 guard let self = self else { return }
                 let score = self.viewModel.getPasswordScore()
                 self.passwordStrengthMeterView.setScore(score)
-                
+                self.createPasswordTextField.checkAccessoryImageView.isHidden = true
                 if score < 2 {
                     self.passwordStrengthLabel.text = NSLocalizedString("Weak", comment: "")
                     self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength weak", comment: "")
@@ -255,6 +261,11 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
                     self.passwordStrengthLabel.text = NSLocalizedString("Strong", comment: "")
                     self.passwordStrengthLabel.accessibilityLabel = NSLocalizedString("Password strength strong", comment: "")
                 }
+            }).disposed(by: disposeBag)
+        confirmPasswordTextField.textField.rx.text.orEmpty.asDriver()
+            .drive(onNext: { [weak self] text in
+                guard let self = self else { return }
+                self.confirmPasswordTextField.checkAccessoryImageView.isHidden = true
             }).disposed(by: disposeBag)
         
         createPasswordTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
@@ -351,6 +362,29 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         }
     }
     
+    @IBAction func eyeToggleActionForPassword(_ sender: Any) {
+        if createPasswordTextField.textField.isSecureTextEntry {
+            createPasswordTextField.textField.isSecureTextEntry = false
+            passwordEyeBall.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
+            passwordEyeBall.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
+        } else {
+            createPasswordTextField.textField.isSecureTextEntry = true
+            passwordEyeBall.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
+            passwordEyeBall.accessibilityLabel = NSLocalizedString("Hide password activated", comment: "")
+        }
+    }
+    
+    @IBAction func eyeToggleActionForConfirmPassword(_ sender: Any) {
+        if confirmPasswordTextField.textField.isSecureTextEntry {
+            confirmPasswordTextField.textField.isSecureTextEntry = false
+            confirmPasswordEyeBall.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
+            confirmPasswordEyeBall.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
+        } else {
+            confirmPasswordTextField.textField.isSecureTextEntry = true
+            confirmPasswordEyeBall.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
+            confirmPasswordEyeBall.accessibilityLabel = NSLocalizedString("Hide password activated", comment: "")
+        }
+    }
 }
 
 

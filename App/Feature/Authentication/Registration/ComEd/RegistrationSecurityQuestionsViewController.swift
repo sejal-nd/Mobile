@@ -67,7 +67,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         
         bindViewModel()
         
-        if Environment.shared.opco == .bge {
+        if Environment.shared.opco == .bge || Environment.shared.opco == .comEd {
             // BGE users only need to answer 2 questions
             question3QuestionButton.isHidden = true
             question3AnswerTextField.isHidden = true

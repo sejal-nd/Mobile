@@ -40,10 +40,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUs-jP-wTI">
-                                <rect key="frame" x="29" y="242" width="356" height="85"/>
+                                <rect key="frame" x="29" y="242" width="356" height="170"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="KbH-nF-LSv">
-                                        <rect key="frame" x="135" y="0.0" width="221" height="85"/>
+                                        <rect key="frame" x="-86" y="0.0" width="442" height="170"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -90,22 +90,22 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gI-bY-LIR">
-                                <rect key="frame" x="29" y="250.5" width="356" height="395"/>
+                                <rect key="frame" x="29" y="197" width="356" height="502"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="S7q-8S-Oz3">
-                                        <rect key="frame" x="141" y="0.0" width="221" height="85"/>
+                                        <rect key="frame" x="-80" y="0.0" width="442" height="170"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" restorationIdentifier="Reload View" translatesAutoresizingMaskIntoConstraints="NO" id="dmS-k7-4Rh" customClass="ButtonControl" customModule="ComEd" customModuleProvider="target">
-                                        <rect key="frame" x="145" y="110" width="66.5" height="22"/>
+                                        <rect key="frame" x="136" y="195" width="84.5" height="44"/>
                                         <subviews>
                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Xz-UO-s4e">
-                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="22"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="84.5" height="44"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_reload" translatesAutoresizingMaskIntoConstraints="NO" id="8BE-xm-WFA" userLabel="Reload Image">
-                                                        <rect key="frame" x="0.0" y="0.0" width="18" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="36" height="44"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Retry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVv-m7-Ir4" userLabel="Reload Label">
-                                                        <rect key="frame" x="26" y="1" width="40.5" height="20.5"/>
+                                                        <rect key="frame" x="44" y="12" width="40.5" height="20.5"/>
                                                         <accessibility key="accessibilityConfiguration" label="Retry"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -132,7 +132,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wp4-Rx-Szm">
-                                        <rect key="frame" x="0.0" y="157" width="356" height="238"/>
+                                        <rect key="frame" x="0.0" y="264" width="356" height="238"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We’re unable to load the app at this time. Please try again later or visit us at PECO.com." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmW-i8-t3P">
                                                 <rect key="frame" x="22" y="25" width="211" height="50.5"/>
@@ -272,13 +272,13 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAP-dP-E5T" userLabel="Logo Background">
-                                <rect key="frame" x="0.0" y="116" width="414" height="126"/>
+                                <rect key="frame" x="0.0" y="116" width="414" height="211"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYp-HC-CYV">
-                                        <rect key="frame" x="19" y="0.0" width="376" height="126"/>
+                                        <rect key="frame" x="19" y="0.0" width="376" height="211"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="oRl-ty-kRc">
-                                                <rect key="frame" x="155" y="21" width="221" height="85"/>
+                                                <rect key="frame" x="-66" y="21" width="442" height="170"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
@@ -368,7 +368,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version x.x.x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwh-jf-fVT">
-                                <rect key="frame" x="314.5" y="824.5" width="70.5" height="16.5"/>
+                                <rect key="frame" x="317" y="827" width="68" height="14"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -559,7 +559,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                         <rect key="frame" x="30" y="0.0" width="315" height="189.5"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="NYS-Lm-p3Z">
-                                                                <rect key="frame" x="94" y="84.5" width="221" height="85"/>
+                                                                <rect key="frame" x="-127" y="-0.5" width="442" height="170"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <bool key="isElement" value="YES"/>
                                                                 </accessibility>
@@ -2260,13 +2260,13 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rW4-cP-ELi" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="756.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1078"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQ4-ZK-Lyk" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="335" height="756.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="335" height="1078"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ect-2U-ZVW">
-                                                        <rect key="frame" x="0.0" y="20" width="335" height="716.5"/>
+                                                        <rect key="frame" x="0.0" y="20" width="335" height="1038"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please create your sign in credentials." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0g-Bl-e8v">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="19.5"/>
@@ -2280,7 +2280,25 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="kbS-fU-Zq2" customClass="FloatLabelTextField" customModule="ComEd" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="134.5" width="335" height="55"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STh-Sp-ChJ" userLabel="Eyeball Button">
+                                                                        <rect key="frame" x="280" y="0.0" width="55" height="55"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="55" id="AEN-kg-ed2"/>
+                                                                        </constraints>
+                                                                        <state key="normal" image="ic_eyeball_disabled"/>
+                                                                        <connections>
+                                                                            <action selector="eyeToggleActionForPassword:" destination="OB4-E6-Bvv" eventType="touchUpInside" id="fRC-aj-YZK"/>
+                                                                            <action selector="onEyeballPress:" destination="Pib-RC-igc" eventType="touchUpInside" id="kAO-AY-L5b"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="STh-Sp-ChJ" firstAttribute="top" secondItem="kbS-fU-Zq2" secondAttribute="top" id="WXn-JI-7s8"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="STh-Sp-ChJ" secondAttribute="trailing" id="jBL-Tk-k7H"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="STh-Sp-ChJ" secondAttribute="bottom" id="tvd-ML-H8U"/>
+                                                                </constraints>
                                                             </view>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBX-9w-DNg">
                                                                 <rect key="frame" x="0.0" y="219.5" width="335" height="246"/>
@@ -2468,17 +2486,35 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="pFM-ab-DUq" customClass="FloatLabelTextField" customModule="ComEd" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="495.5" width="335" height="55"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uax-hG-htp" userLabel="Eyeball Button">
+                                                                        <rect key="frame" x="280" y="0.0" width="55" height="55"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="55" id="bbo-t1-0rJ"/>
+                                                                        </constraints>
+                                                                        <state key="normal" image="ic_eyeball_disabled"/>
+                                                                        <connections>
+                                                                            <action selector="eyeToggleActionForConfirmPassword:" destination="OB4-E6-Bvv" eventType="touchUpInside" id="R1e-Oi-Nlb"/>
+                                                                            <action selector="onEyeballPress:" destination="Pib-RC-igc" eventType="touchUpInside" id="W3x-gv-SA4"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="uax-hG-htp" firstAttribute="top" secondItem="pFM-ab-DUq" secondAttribute="top" id="9iZ-pp-DRA"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="uax-hG-htp" secondAttribute="bottom" id="EMw-3d-rQB"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="uax-hG-htp" secondAttribute="trailing" id="zKs-qG-4CJ"/>
+                                                                </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0w2-JN-dRG" userLabel="Primary Profile View">
-                                                                <rect key="frame" x="0.0" y="580.5" width="335" height="56"/>
+                                                                <rect key="frame" x="0.0" y="580.5" width="335" height="377.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="9AE-BF-nlu" customClass="Checkbox" customModule="ComEd" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="12" width="44" height="44"/>
+                                                                        <rect key="frame" x="0.0" y="333.5" width="44" height="44"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set as Primary Profile for this Account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-fu-ill">
-                                                                        <rect key="frame" x="34" y="24" width="301" height="20.5"/>
+                                                                        <rect key="frame" x="34" y="345.5" width="301" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2497,7 +2533,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6rK-Sj-lf0">
-                                                                <rect key="frame" x="0.0" y="666.5" width="335" height="50"/>
+                                                                <rect key="frame" x="0.0" y="988" width="335" height="50"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="v2i-r9-akF" customClass="Checkbox" customModule="ComEd" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="6" width="44" height="44"/>
@@ -2603,6 +2639,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                     <size key="freeformSize" width="375" height="750"/>
                     <connections>
                         <outlet property="characterCountCheck" destination="GzV-aF-jxs" id="zS7-UA-bKF"/>
+                        <outlet property="confirmPasswordEyeBall" destination="uax-hG-htp" id="iSn-Gn-Dr9"/>
                         <outlet property="confirmPasswordTextField" destination="pFM-ab-DUq" id="eRs-Bc-qxo"/>
                         <outlet property="continueButton" destination="KcD-SE-55f" id="cDg-e0-j4b"/>
                         <outlet property="createPasswordTextField" destination="kbS-fU-Zq2" id="k3A-XG-6vy"/>
@@ -2614,6 +2651,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="lowercaseCheck" destination="HKE-fe-dDq" id="Ol9-LF-Umo"/>
                         <outlet property="mustAlsoContainLabel" destination="gM1-Qg-oBt" id="uXw-Fo-Hb3"/>
                         <outlet property="numberCheck" destination="zY6-FT-cX1" id="gKy-iF-8AP"/>
+                        <outlet property="passwordEyeBall" destination="STh-Sp-ChJ" id="aTI-sA-veg"/>
                         <outlet property="passwordStrengthLabel" destination="GFQ-8R-m9s" id="693-Kr-hfm"/>
                         <outlet property="passwordStrengthMeterView" destination="qQj-sB-lyb" id="q50-3D-xcZ"/>
                         <outlet property="passwordStrengthView" destination="BBX-9w-DNg" id="u5O-jN-hmJ"/>
@@ -3016,28 +3054,28 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="798"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uca-EY-U9e" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="310.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="399.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSL-w0-3zh" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="310.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="374" height="399.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="cIh-fu-Toz">
-                                                        <rect key="frame" x="139" y="10" width="96" height="96"/>
+                                                        <rect key="frame" x="91" y="10" width="192" height="192"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your registration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4Q-I4-MJm">
-                                                        <rect key="frame" x="0.0" y="126" width="374" height="27.5"/>
+                                                        <rect key="frame" x="0.0" y="222" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGO-py-Dmb">
-                                                        <rect key="frame" x="0.0" y="173.5" width="374" height="22"/>
+                                                        <rect key="frame" x="0.0" y="265.5" width="374" height="19"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-HE-SDA" customClass="SecondaryButton" customModule="ComEd" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="225.5" width="374" height="55"/>
+                                                        <rect key="frame" x="0.0" y="314.5" width="374" height="55"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="s0P-Xe-fHy"/>
                                                         </constraints>
