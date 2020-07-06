@@ -246,7 +246,7 @@ class RegistrationViewModel {
          .map { $0.currencyString }
     
     private(set) lazy var amountDueHasValue: Driver<Bool> =
-        self.totalAmountDue.asDriver().map { $0 > 0 }
+        self.totalAmountDue.asDriver().map { $0 >= 0 }
     
     private(set) lazy var dueDateHasValue: Driver<Bool> =
         self.dueDate.asDriver().map { $0?.MMddyyyyString.count > 0}
@@ -437,7 +437,7 @@ class RegistrationViewModel {
 	private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
         let driverArray: [Driver<String>]
         let count: Int
-        if Environment.shared.opco == .bge {
+        if Environment.shared.opco == .bge || Environment.shared.opco == .comEd{
             driverArray = [self.securityAnswer1.asDriver(),
                            self.securityAnswer2.asDriver()]
             count = 2

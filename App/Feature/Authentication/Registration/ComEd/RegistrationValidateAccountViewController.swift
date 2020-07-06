@@ -100,11 +100,9 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         // Total Amount Due
         amountDueTextField.placeholder = NSLocalizedString("Total Amount Due*", comment: "")
         amountDueTextField.textField.autocorrectionType = .no
-        amountDueTextField.setKeyboardType(.numberPad)
         amountDueTextField.textField.delegate = self
         amountDueTextField.textField.isShowingAccessory = true
         amountDueTextField.setKeyboardType(.decimalPad)
-        amountDueTextField.textField.text = 0.currencyString
         amountDueTextField.textField.rx.text.orEmpty.asObservable()
                    .skip(1)
                    .subscribe(onNext: { [weak self] entry in
