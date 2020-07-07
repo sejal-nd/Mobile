@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum OutageIssueNew : String, Encodable {
+enum OutageIssue: String, Encodable {
     case allOut = "allOut"
     case partOut = "partOut"
     case flickering = "flickering"
 }
 
-enum OutageTrivalentNew : String, Encodable {
+enum OutageTrivalent: String, Encodable {
     case yes = "Yes"
     case no = "No"
     case unsure = "Unsure"
@@ -25,14 +25,13 @@ struct OutageRequest: Encodable {
     
     let accountNumber: String
     var locationId: String?
-    let reportedTime: Date
-    let issue: OutageIssueNew
+    var reportedTime: Date = .now
+    let issue: OutageIssue
     let phoneNumber: String //[0-9]{10}
     var phoneExtension: String? //ComEd and Peco
-    var isUnusual: OutageTrivalentNew? //ComEd
+    var isUnusual: OutageTrivalent? //ComEd
     var unusualMessage: String? //ComEd
-    var isNeighbor: OutageTrivalentNew? //ComEd
+    var isNeighbor: OutageTrivalent? //ComEd
     var comment: String?
-    
     
 }

@@ -44,9 +44,7 @@ class OutageViewController: AccountPickerViewController {
         return refreshControl
     }()
     
-    let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(),
-                                    outageService: ServiceFactory.createOutageService(),
-                                    authService: ServiceFactory.createAuthenticationService())
+    let viewModel = OutageViewModel()
     
     var userState: UserState = .authenticated
     
@@ -151,6 +149,7 @@ class OutageViewController: AccountPickerViewController {
     private func configureTableHeaderFooterView() {
         // Header
         outageStatusView.delegate = self
+        outageStatusView.isOutageStatusInactive = viewModel.isOutageStatusInactive
         
         // Footer
         footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
@@ -174,7 +173,7 @@ class OutageViewController: AccountPickerViewController {
             
             guard let `self` = self else { return }
             
-            if outageStatus.flagGasOnly {
+            if outageStatus.isGasOnly {
                 self.configureState(.gasOnly)
             } else {
                 self.configureState(.normal)
@@ -183,7 +182,7 @@ class OutageViewController: AccountPickerViewController {
                 
                 // Enable / Disable Report Outage Cell
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
-                    if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService || outageStatus.isAccountInactive || currentAccount.isFinaled || currentAccount.serviceType == nil {
+                    if outageStatus.isNoPay || outageStatus.isFinaled || outageStatus.isNonService || self.viewModel.isOutageStatusInactive || currentAccount.isFinaled || currentAccount.serviceType == nil {
                         cell.isEnabled = false
                     } else {
                         cell.isEnabled = true
@@ -196,19 +195,19 @@ class OutageViewController: AccountPickerViewController {
             }
             
             // If coming from shortcut, check these flags for report outage button availablility
-            if !outageStatus.flagGasOnly &&
-                !outageStatus.flagNoPay &&
-                !outageStatus.flagFinaled &&
-                !outageStatus.flagNonService &&
+            if !outageStatus.isGasOnly &&
+                !outageStatus.isNoPay &&
+                !outageStatus.isFinaled &&
+                !outageStatus.isNonService &&
                 self.shortcutItem == .reportOutage {
                 self.performSegue(withIdentifier: "reportOutageSegue", sender: self)
             }
             self.shortcutItem = .none
-            }, onError: { [weak self] serviceError in
+            }, onError: { [weak self] error in
                 self?.shortcutItem = .none
-                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                if error == NetworkingError.noNetwork {
                     self?.configureState(.noNetwork)
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+                } else if error == NetworkingError.blockAccount {
                     self?.configureState(.unavailable)
                 }
             }, onMaintenance: { [weak self] in
@@ -293,13 +292,13 @@ class OutageViewController: AccountPickerViewController {
         
         // Enable / Disable Report Outage Cell
         if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
-            if outageStatus.flagNoPay  || outageStatus.flagFinaled || outageStatus.flagNonService {
+            if outageStatus.isNoPay  || outageStatus.isFinaled || outageStatus.isNonService {
                 cell.isEnabled = false
             } else {
                 cell.isEnabled = true
             }
             
-            cell.isEnabled = !outageStatus.flagNoPay
+            cell.isEnabled = !outageStatus.isNoPay
         }
         
         self.outageStatusView.setOutageStatus(outageStatus,

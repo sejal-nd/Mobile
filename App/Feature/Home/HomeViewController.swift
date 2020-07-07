@@ -55,7 +55,6 @@ class HomeViewController: AccountPickerViewController {
                                   usageService: ServiceFactory.createUsageService(useCache: true),
                                   projectedBillUsageService: ServiceFactory.createUsageService(useCache: false),
                                   authService: ServiceFactory.createAuthenticationService(),
-                                  outageService: ServiceFactory.createOutageService(),
                                   alertsService: ServiceFactory.createAlertsService(),
                                   appointmentService: ServiceFactory.createAppointmentService(),
                                   gameService: ServiceFactory.createGameService())

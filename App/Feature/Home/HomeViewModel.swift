@@ -18,7 +18,6 @@ class HomeViewModel {
     private let usageService: UsageService
     private let projectedBillUsageService: UsageService
     private let authService: AuthenticationService
-    private let outageService: OutageService
     private let alertsService: AlertsService
     private let appointmentService: AppointmentService
     private let gameService: GameService
@@ -45,7 +44,6 @@ class HomeViewModel {
                   usageService: UsageService,
                   projectedBillUsageService: UsageService,
                   authService: AuthenticationService,
-                  outageService: OutageService,
                   alertsService: AlertsService,
                   appointmentService: AppointmentService,
                   gameService: GameService) {
@@ -57,7 +55,6 @@ class HomeViewModel {
         self.usageService = usageService
         self.projectedBillUsageService = projectedBillUsageService
         self.authService = authService
-        self.outageService = outageService
         self.alertsService = alertsService
         self.appointmentService = appointmentService
         self.gameService = gameService
@@ -105,8 +102,7 @@ class HomeViewModel {
                                        fetchTracker: projectedBillTracker)
     
     private(set) lazy var outageCardViewModel =
-        HomeOutageCardViewModel(outageService: outageService,
-                                maintenanceModeEvents: fetchDataMMEvents,
+        HomeOutageCardViewModel(maintenanceModeEvents: fetchDataMMEvents,
                                 fetchDataObservable: fetchDataObservable,
                                 fetchTracker: outageTracker)
     

@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if os(iOS)
+import Reachability
+#endif
 
 public struct NetworkingLayer {
     public static func request<T: Decodable>(router: Router,
@@ -46,7 +49,7 @@ public struct NetworkingLayer {
         if Environment.shared.environmentName == .aut {
             // Mock
             let username = UserSession.shared.token
-            let mockUser = MockDataKey(rawValue: username) ?? .default
+            let mockUser = NewMockDataKey(rawValue: username) ?? .default
             
             let configuration = URLProtocolMock.createMockURLConfiguration(path: url.absoluteString,
                                                                            mockDataFileName: router.mockFileName,
@@ -57,6 +60,31 @@ public struct NetworkingLayer {
             session = URLSession.shared
         }
         
+        #if os(iOS)
+        guard let reachability = Reachability() else {
+            completion(.failure(.noNetwork))
+            return
+        }
+        let networkStatus = reachability.connection
+        
+        switch networkStatus {
+        case .none:
+            completion(.failure(.noNetwork))
+        case .wifi, .cellular:
+            NetworkingLayer.dataTask(session: session,
+                                     urlRequest: urlRequest,
+                                     completion: completion)
+        }
+        #elseif os(watchOS)
+        NetworkingLayer.dataTask(session: session,
+                                 urlRequest: urlRequest,
+                                 completion: completion)
+        #endif
+    }
+    
+    private static func dataTask<T: Decodable>(session: URLSession,
+                                               urlRequest: URLRequest,
+                                               completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // Perform Data Task
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
@@ -85,6 +113,7 @@ public struct NetworkingLayer {
             // Log payload
             if let jsonString = String(data: data, encoding: String.Encoding.utf8) {
                 dLog("Network Payload:\n\n\(jsonString)")
+                APILog(String.self, requestId: "Test", path: "Test", method: .post, logType: .request, message: jsonString)
             }
             
             do {

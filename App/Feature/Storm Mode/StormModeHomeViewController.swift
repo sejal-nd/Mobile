@@ -215,7 +215,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     private var refreshControl: UIRefreshControl?
     
     let viewModel = StormModeHomeViewModel(authService: ServiceFactory.createAuthenticationService(),
-                                           outageService: ServiceFactory.createOutageService(),
                                            alertsService: ServiceFactory.createAlertsService())
     
     let disposeBag = DisposeBag()
@@ -505,7 +504,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             self.finalPayTitleLabel.isHidden = false
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent(outageJustReported: false)
-        }, onError: { [weak self] serviceError in
+        }, onError: { [weak self] error in
             guard let self = self else { return }
             
             if didPullToRefresh {
@@ -513,7 +512,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             }
             
             UIAccessibility.post(notification: .screenChanged, argument: nil)
-            if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+            if error == NetworkingError.noNetwork {
                 self.scrollView?.isHidden = true
                 self.noNetworkConnectionView.isHidden = false
             } else {
@@ -521,7 +520,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.noNetworkConnectionView.isHidden = true
             }
             
-            if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+            if error == NetworkingError.blockAccount {
                 self.accountDisallowView.isHidden = false
                 self.finalPayView.isHidden = true
                 self.billButton.isHidden = true
@@ -560,7 +559,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
 
         // Show/hide the top level container views
-        if currentOutageStatus.flagGasOnly {
+        if currentOutageStatus.isGasOnly {
             gasOnlyView.isHidden = false
             footerStackView.isHidden = true
             loadingContentView.isHidden = true
@@ -593,13 +592,13 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         if outageJustReported && viewModel.reportedOutage != nil {
             outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
+        } else if currentOutageStatus.isFinaled || currentOutageStatus.isNoPay || currentOutageStatus.isNonService {
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true
             finalPayView.isHidden = false
             finalPayTextView.text = viewModel.accountNonPayFinaledMessage
-            finalPayButtonContainer.isHidden = !currentOutageStatus.flagNoPay
-        } else if currentOutageStatus.activeOutage {
+            finalPayButtonContainer.isHidden = !currentOutageStatus.isNoPay
+        } else if currentOutageStatus.isActiveOutage {
             outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else { // Power is on
             outageStatusButton.setPowerOnState()

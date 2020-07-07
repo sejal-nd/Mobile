@@ -12,18 +12,15 @@ import RxSwiftExt
 
 class HomeOutageCardViewModel {
     
-    private let outageService: OutageService
     private let maintenanceModeEvents: Observable<Event<Maintenance>>
     private let fetchDataObservable: Observable<Void>
     private let fetchTracker: ActivityTracker
     
     // MARK: - Init
     
-    required init(outageService: OutageService,
-                  maintenanceModeEvents: Observable<Event<Maintenance>>,
+    required init(maintenanceModeEvents: Observable<Event<Maintenance>>,
                   fetchDataObservable: Observable<Void>,
                   fetchTracker: ActivityTracker) {
-        self.outageService = outageService
         self.maintenanceModeEvents = maintenanceModeEvents
         self.fetchDataObservable = fetchDataObservable
         self.fetchTracker = fetchTracker
@@ -55,19 +52,19 @@ class HomeOutageCardViewModel {
     private lazy var isOutstandingBalance: Driver<Bool> = self.outageStatusEvents
         .map { event in
             guard let outageStatus = event.element else { return false }
-            return outageStatus.flagFinaled || outageStatus.flagNoPay || outageStatus.flagNonService
+            return outageStatus.isFinaled || outageStatus.isNoPay || outageStatus.isNonService
         }
         .asDriver(onErrorDriveWith: .empty())
     
     private lazy var isGasOnly: Driver<Bool> = self.outageStatusEvents
-        .map { $0.element?.flagGasOnly ?? false }
+        .map { $0.element?.isGasOnly ?? false }
         .asDriver(onErrorDriveWith: .empty())
     
     private lazy var isCustomError: Driver<Bool> = self.outageStatusEvents
         .map { event in
             guard let outageStatus = event.element else { return false }
-            return outageStatus.flagFinaled || outageStatus.flagNoPay ||
-                outageStatus.flagNonService || outageStatus.flagGasOnly
+            return outageStatus.isFinaled || outageStatus.isNoPay ||
+                outageStatus.isNonService || outageStatus.isGasOnly
         }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -76,10 +73,10 @@ class HomeOutageCardViewModel {
         .map { [weak self] in
             guard AccountsStore.shared.currentIndex != nil else { return nil }
             let accountNumber = AccountsStore.shared.currentAccount.accountNumber
-            return self?.outageService.getReportedOutageResult(accountNumber: accountNumber)?.etr
+            return OutageServiceNew.getReportedOutageResult(accountNumber: accountNumber)?.etr
     }
     
-    private lazy var fetchedEtr: Driver<Date?> = self.currentOutageStatus.map { $0.etr }
+    private lazy var fetchedEtr: Driver<Date?> = self.currentOutageStatus.map { $0.estimatedRestorationDate }
     
     
     // MARK: - Show/Hide Views
@@ -105,7 +102,7 @@ class HomeOutageCardViewModel {
         .mapTo(())
     
     private(set) lazy var showGasOnly: Driver<Void> = currentOutageStatus
-        .filter { !$0.isOutstandingBalance && $0.flagGasOnly }
+        .filter { !$0.isOutstandingBalance && $0.isGasOnly }
         .mapTo(())
     
     private(set) lazy var showErrorState: Driver<Void> =  outageStatusEvents.errors()
@@ -118,7 +115,7 @@ class HomeOutageCardViewModel {
             guard let this = self else { return false }
             guard AccountsStore.shared.currentIndex != nil else { return false }
             let accountNumber = AccountsStore.shared.currentAccount.accountNumber
-            return this.outageService.getReportedOutageResult(accountNumber: accountNumber) != nil
+            return OutageServiceNew.getReportedOutageResult(accountNumber: accountNumber) != nil
         }
         .distinctUntilChanged()
     
@@ -126,10 +123,10 @@ class HomeOutageCardViewModel {
     // MARK: - View Content
 
     private(set) lazy var powerStatusImage: Driver<UIImage> = self.currentOutageStatus
-        .map { $0.activeOutage ? #imageLiteral(resourceName: "ic_lightbulb_off") : #imageLiteral(resourceName: "ic_outagestatus_on") }
+        .map { $0.isActiveOutage ? #imageLiteral(resourceName: "ic_lightbulb_off") : #imageLiteral(resourceName: "ic_outagestatus_on") }
     
     private(set) lazy var powerStatus: Driver<String> = self.currentOutageStatus
-        .map { $0.activeOutage ? "POWER IS OUT" : "POWER IS ON" }
+        .map { $0.isActiveOutage ? "POWER IS OUT" : "POWER IS ON" }
     
     private(set) lazy var etrText: Driver<String> = Driver.merge(self.storedEtr, self.fetchedEtr)
         .map {
@@ -145,7 +142,7 @@ class HomeOutageCardViewModel {
             guard let this = self else { return nil }
             guard AccountsStore.shared.currentIndex != nil else { return nil }
             let accountNumber = AccountsStore.shared.currentAccount.accountNumber
-            guard let reportedTime = this.outageService.getReportedOutageResult(accountNumber: accountNumber)?.reportedTime else {
+            guard let reportedTime = OutageServiceNew.getReportedOutageResult(accountNumber:    accountNumber)?.reportedTime else {
                 return nil
             }
             return String.localizedStringWithFormat("Outage reported %@",
@@ -157,16 +154,16 @@ class HomeOutageCardViewModel {
         .map { $0 ? NSLocalizedString("View Outage Map", comment: "") : NSLocalizedString("Report Outage", comment: "")}
 
     private(set) lazy var showEtr: Driver<Bool> = Driver
-        .merge(self.currentOutageStatus.map { $0.activeOutage }, self.outageReported.mapTo(true))
+        .merge(self.currentOutageStatus.map { $0.isActiveOutage }, self.outageReported.mapTo(true))
         .distinctUntilChanged()
     
     private(set) lazy var accountNonPayFinaledMessage: Driver<NSAttributedString> = currentOutageStatus
         .map { outageStatus -> String in
             if Environment.shared.opco == .bge {
                 return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
-            } else if outageStatus.flagFinaled {
+            } else if outageStatus.isFinaled {
                 return NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
-            } else if outageStatus.flagNoPay {
+            } else if outageStatus.isNoPay {
                 return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
             }
             return ""
@@ -187,18 +184,17 @@ class HomeOutageCardViewModel {
     // MARK: - Service
     
     private func retrieveOutageStatus() -> Observable<OutageStatus> {
-        return outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount)
-            .catchError { error -> Observable<OutageStatus> in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
-                    return .just(OutageStatus.from(["flagFinaled": true])!)
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
-                    return .just(OutageStatus.from(["flagNoPay": true])!)
-                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
-                    return .just(OutageStatus.from(["flagNonService": true])!)
-                } else {
-                    return .error(serviceError)
-                }
+        return Observable.create { observer -> Disposable in
+            OutageServiceNew.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
+                        switch result {
+                        case .success(let outageStatus):
+                            observer.onNext(outageStatus)
+                            observer.onCompleted()
+                        case .failure(let error):
+                            observer.onError(error)
+                        }
+                    }
+            return Disposables.create()
         }
     }
         
@@ -206,10 +202,10 @@ class HomeOutageCardViewModel {
 
 fileprivate extension OutageStatus {
     var isCustomError: Bool {
-        return flagFinaled || flagNoPay || flagNonService || flagGasOnly
+        return isFinaled || isNoPay || isNonService || isGasOnly
     }
     
     var isOutstandingBalance: Bool {
-        return flagFinaled || flagNoPay || flagNonService
+        return isFinaled || isNoPay || isNonService
     }
 }

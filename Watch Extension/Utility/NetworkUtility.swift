@@ -355,21 +355,17 @@ extension NetworkUtility {
             return
         }
 
-        let outageService = MCSOutageService()
-        
-        outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount).subscribe(onNext: { outageStatus in
-            dLog("Outage Status Fetched.")
-            result(.success(outageStatus))
-        }, onError: { error in
-            // handle error
-            dLog("Failed to retrieve outage status: \(error.localizedDescription)")
-            
-            //todo we need to have finaled nonpay, ect..... this will return as an error here
-            // reference outageViewModel on mobile app.
-            
-            result(.failure(.fetchError))
-        })
-            .disposed(by: disposeBag)
+        OutageServiceNew.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { networkResult in
+            switch networkResult {
+            case .success(let outageStatus):
+                dLog("Outage Status Fetched.")
+                result(.success(outageStatus))
+            case .failure(let error):
+                dLog("Failed to retrieve outage status: \(error.localizedDescription)")
+                
+                result(.failure(.fetchError))
+            }
+        }
     }
     
     /// Fetches projected usage data (striped bar graph on mobile app)

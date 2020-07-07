@@ -10,7 +10,12 @@ import Foundation
 
 // todo clean up naming to reflect differences otherwise combine into a single error.
 
-public enum NetworkingError: Error {
+public enum NetworkingError: Error, Equatable {
+    
+    public static func ==(lhs: NetworkingError, rhs: NetworkingError) -> Bool {
+        return lhs.localizedDescription == rhs.localizedDescription
+    }
+    
     case invalidToken
     case invalidURL
     case networkError // how does this differ?
@@ -19,6 +24,8 @@ public enum NetworkingError: Error {
     case decodingError
     case encodingError
     case endpointError(_ error: EndpointError) // how does this differ?
+    case noNetwork
+    case blockAccount // todo
 }
 
 // todo: below will be implemented for user facing messages.
