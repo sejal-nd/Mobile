@@ -62,10 +62,6 @@ struct MockAuthenticationService: AuthenticationService {
             })
     }
     
-    func getMinimumVersion() -> Observable<MinimumVersion> {
-        return .just(MinimumVersion())
-    }
-    
     func refreshAuthorization() -> Observable<Void> {
         return .just(())
     }

@@ -326,7 +326,6 @@
 		356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
 		356C7F8D2190A09F003E8A90 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
 		356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
-		356C7F8F2190A162003E8A90 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		356C7F902190A173003E8A90 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
 		356C7F932190A1DD003E8A90 /* MCSUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CFB8A91F87D789003E1AB5 /* MCSUsageService.swift */; };
 		356C7F942190A1F8003E8A90 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
@@ -608,7 +607,6 @@
 		35F9DD842333D2B800AAA2B2 /* BGE-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* BGE-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD882333D3C500AAA2B2 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
 		35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		35F9DD932333D83F00AAA2B2 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		35F9DD942333D84400AAA2B2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
 		35F9DD952333D84700AAA2B2 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
 		35F9DD982333D85000AAA2B2 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
@@ -668,7 +666,6 @@
 		35F9DE1223353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F9DE1123353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework */; };
 		35F9DE1523353C3A00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
 		35F9DE1623353C3E00AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
-		35F9DE1723353C4C00AAA2B2 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		35F9DE1823353C5200AAA2B2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
 		35F9DE1923353C5600AAA2B2 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
 		35F9DE1C23353C6200AAA2B2 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
@@ -1717,7 +1714,6 @@
 		67DDB32C24535D2E006CD6EB /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0472B282111011F0048C1A7 /* UsageViewController.swift */; };
 		67DDB32D24535D2E006CD6EB /* AlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F026A1FB0B5850062A348 /* AlertsService.swift */; };
 		67DDB32E24535D2E006CD6EB /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
-		67DDB32F24535D2E006CD6EB /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		67DDB33024535D2E006CD6EB /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
 		67DDB33124535D2E006CD6EB /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
 		67DDB33224535D2E006CD6EB /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
@@ -2253,7 +2249,6 @@
 		67DDB58224535D32006CD6EB /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0472B282111011F0048C1A7 /* UsageViewController.swift */; };
 		67DDB58324535D32006CD6EB /* AlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F026A1FB0B5850062A348 /* AlertsService.swift */; };
 		67DDB58424535D32006CD6EB /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
-		67DDB58524535D32006CD6EB /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		67DDB58624535D32006CD6EB /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
 		67DDB58724535D32006CD6EB /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
 		67DDB58824535D32006CD6EB /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
@@ -2799,7 +2794,6 @@
 		67DDB7D824535D35006CD6EB /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0472B282111011F0048C1A7 /* UsageViewController.swift */; };
 		67DDB7D924535D35006CD6EB /* AlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F026A1FB0B5850062A348 /* AlertsService.swift */; };
 		67DDB7DA24535D35006CD6EB /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
-		67DDB7DB24535D35006CD6EB /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		67DDB7DC24535D35006CD6EB /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
 		67DDB7DD24535D35006CD6EB /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
 		67DDB7DE24535D35006CD6EB /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
@@ -3373,7 +3367,6 @@
 		67DDBA4A24535DAA006CD6EB /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
 		67DDBA4B24535DAA006CD6EB /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
 		67DDBA4C24535DAA006CD6EB /* BillBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A63C210270820028F90F /* BillBreakdownViewModel.swift */; };
-		67DDBA4D24535DAA006CD6EB /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		67DDBA4E24535DAA006CD6EB /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		67DDBA4F24535DAA006CD6EB /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		67DDBA5024535DAA006CD6EB /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
@@ -3577,7 +3570,6 @@
 		67DDBB3224535DAC006CD6EB /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
 		67DDBB3324535DAC006CD6EB /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
 		67DDBB3424535DAC006CD6EB /* BillBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A63C210270820028F90F /* BillBreakdownViewModel.swift */; };
-		67DDBB3524535DAC006CD6EB /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		67DDBB3624535DAC006CD6EB /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		67DDBB3724535DAC006CD6EB /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		67DDBB3824535DAC006CD6EB /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
@@ -3783,7 +3775,6 @@
 		67DDBC1A24535DAE006CD6EB /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
 		67DDBC1B24535DAE006CD6EB /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
 		67DDBC1C24535DAE006CD6EB /* BillBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A63C210270820028F90F /* BillBreakdownViewModel.swift */; };
-		67DDBC1D24535DAE006CD6EB /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		67DDBC1E24535DAE006CD6EB /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		67DDBC1F24535DAE006CD6EB /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		67DDBC2024535DAE006CD6EB /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
@@ -5633,10 +5624,6 @@
 		E8EC0F8E2028FA3C00956ABD /* WalletViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0F8D2028FA3C00956ABD /* WalletViewModelTests.swift */; };
 		E8EC0F8F2028FA3C00956ABD /* WalletViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0F8D2028FA3C00956ABD /* WalletViewModelTests.swift */; };
 		E8EC0F902028FA3C00956ABD /* WalletViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0F8D2028FA3C00956ABD /* WalletViewModelTests.swift */; };
-		E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
-		E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
-		E8EDC54C1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
-		E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
 		E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
 		E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
@@ -5731,7 +5718,6 @@
 		E8F62B88200924410077B3DA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E941EB919B300BE9F21 /* LoginViewModel.swift */; };
 		E8F62B89200924410077B3DA /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
 		E8F62B8A200924410077B3DA /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
-		E8F62B8B200924410077B3DA /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		E8F62B8C200924410077B3DA /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		E8F62B8D200924410077B3DA /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
 		E8F62B8F200924410077B3DA /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
@@ -5828,7 +5814,6 @@
 		E8F62C3D200924570077B3DA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E941EB919B300BE9F21 /* LoginViewModel.swift */; };
 		E8F62C3E200924570077B3DA /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
 		E8F62C3F200924570077B3DA /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
-		E8F62C40200924570077B3DA /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		E8F62C41200924570077B3DA /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		E8F62C42200924570077B3DA /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
 		E8F62C44200924570077B3DA /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
@@ -7323,7 +7308,6 @@
 		E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSavingsViewController.swift; sourceTree = "<group>"; };
 		E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSavingsTableViewCell.swift; sourceTree = "<group>"; };
 		E8EC0F8D2028FA3C00956ABD /* WalletViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModelTests.swift; sourceTree = "<group>"; };
-		E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimumVersion.swift; sourceTree = "<group>"; };
 		E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E8EEF7151E566FD8006804D4 /* BiometricsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricsService.swift; sourceTree = "<group>"; };
@@ -10222,7 +10206,6 @@
 		B5AC06ED1E52766A00BBA4ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */,
 				2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */,
 				2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */,
 				E80D2E2B1E72FEC5002626C9 /* Account.swift */,
@@ -14256,7 +14239,6 @@
 				356C7F7A21909887003E8A90 /* AccountsStore.swift in Sources */,
 				35F9DE51233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
 				675F4E1A24B4DA4D00A828F9 /* Router.swift in Sources */,
-				356C7F8F2190A162003E8A90 /* MinimumVersion.swift in Sources */,
 				356C7F8621909EE2003E8A90 /* WalletItem.swift in Sources */,
 				675F4E1424B4D9E400A828F9 /* EndpointError.swift in Sources */,
 				35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */,
@@ -14353,7 +14335,6 @@
 				355B10372369DB190038EAD3 /* WatchSessionMananger.swift in Sources */,
 				35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */,
 				675F4E2B24B4DADF00A828F9 /* UserSession.swift in Sources */,
-				35F9DD932333D83F00AAA2B2 /* MinimumVersion.swift in Sources */,
 				675F4E2524B4DAA700A828F9 /* AnonOutageRequest.swift in Sources */,
 				675F4E5124B4DC7F00A828F9 /* PaymentRequest.swift in Sources */,
 				675F4E2824B4DAAF00A828F9 /* ChangePasswordRequest.swift in Sources */,
@@ -14459,7 +14440,6 @@
 				675F4E1624B4DA2900A828F9 /* NetworkingLayer.swift in Sources */,
 				3527DB3A234B86E000DA4553 /* BillUtility.swift in Sources */,
 				675F4E0A24B4D90A00A828F9 /* OutageService.swift in Sources */,
-				35F9DE1723353C4C00AAA2B2 /* MinimumVersion.swift in Sources */,
 				675F4E6124B501A400A828F9 /* OutageRequest.swift in Sources */,
 				35F9DE1523353C3A00AAA2B2 /* NotificationNames.swift in Sources */,
 				35F9DE2023353C7A00AAA2B2 /* BillComparison.swift in Sources */,
@@ -14600,7 +14580,6 @@
 				67DDB32C24535D2E006CD6EB /* UsageViewController.swift in Sources */,
 				67DDB32D24535D2E006CD6EB /* AlertsService.swift in Sources */,
 				67DDB32E24535D2E006CD6EB /* SSOData.swift in Sources */,
-				67DDB32F24535D2E006CD6EB /* MinimumVersion.swift in Sources */,
 				67DDB33024535D2E006CD6EB /* UsageToolCardView.swift in Sources */,
 				67DDBD3D24571CDF006CD6EB /* BGEAutoPaySettingsViewController.swift in Sources */,
 				67DDB33124535D2E006CD6EB /* UsageTool.swift in Sources */,
@@ -15098,7 +15077,6 @@
 				67DDB58224535D32006CD6EB /* UsageViewController.swift in Sources */,
 				67DDB58324535D32006CD6EB /* AlertsService.swift in Sources */,
 				67DDB58424535D32006CD6EB /* SSOData.swift in Sources */,
-				67DDB58524535D32006CD6EB /* MinimumVersion.swift in Sources */,
 				67DDB58624535D32006CD6EB /* UsageToolCardView.swift in Sources */,
 				675F4BE124AB828100A828F9 /* DailyUsageRequest.swift in Sources */,
 				67DDB58724535D32006CD6EB /* UsageTool.swift in Sources */,
@@ -15595,7 +15573,6 @@
 				67DDB7D824535D35006CD6EB /* UsageViewController.swift in Sources */,
 				67DDB7D924535D35006CD6EB /* AlertsService.swift in Sources */,
 				67DDB7DA24535D35006CD6EB /* SSOData.swift in Sources */,
-				67DDB7DB24535D35006CD6EB /* MinimumVersion.swift in Sources */,
 				67DDB7DC24535D35006CD6EB /* UsageToolCardView.swift in Sources */,
 				675F4BE024AB828100A828F9 /* DailyUsageRequest.swift in Sources */,
 				67DDB7DD24535D35006CD6EB /* UsageTool.swift in Sources */,
@@ -16115,7 +16092,6 @@
 				67DDBA4A24535DAA006CD6EB /* MCSApi.swift in Sources */,
 				67DDBA4B24535DAA006CD6EB /* MaskedString.swift in Sources */,
 				67DDBA4C24535DAA006CD6EB /* BillBreakdownViewModel.swift in Sources */,
-				67DDBA4D24535DAA006CD6EB /* MinimumVersion.swift in Sources */,
 				67DDBA4E24535DAA006CD6EB /* SharedWebCredentialService.swift in Sources */,
 				67DDBA4F24535DAA006CD6EB /* ServiceResult.swift in Sources */,
 				67DDBA5024535DAA006CD6EB /* ForgotUsernameViewModel.swift in Sources */,
@@ -16301,7 +16277,6 @@
 				67DDBB3224535DAC006CD6EB /* MCSApi.swift in Sources */,
 				67DDBB3324535DAC006CD6EB /* MaskedString.swift in Sources */,
 				67DDBB3424535DAC006CD6EB /* BillBreakdownViewModel.swift in Sources */,
-				67DDBB3524535DAC006CD6EB /* MinimumVersion.swift in Sources */,
 				67DDBB3624535DAC006CD6EB /* SharedWebCredentialService.swift in Sources */,
 				67DDBB3724535DAC006CD6EB /* ServiceResult.swift in Sources */,
 				67DDBB3824535DAC006CD6EB /* ForgotUsernameViewModel.swift in Sources */,
@@ -16491,7 +16466,6 @@
 				67DDBC1A24535DAE006CD6EB /* MCSApi.swift in Sources */,
 				67DDBC1B24535DAE006CD6EB /* MaskedString.swift in Sources */,
 				67DDBC1C24535DAE006CD6EB /* BillBreakdownViewModel.swift in Sources */,
-				67DDBC1D24535DAE006CD6EB /* MinimumVersion.swift in Sources */,
 				67DDBC1E24535DAE006CD6EB /* SharedWebCredentialService.swift in Sources */,
 				67DDBC1F24535DAE006CD6EB /* ServiceResult.swift in Sources */,
 				67DDBC2024535DAE006CD6EB /* ForgotUsernameViewModel.swift in Sources */,
@@ -16736,7 +16710,6 @@
 				B0472B292111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E83F026B1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				E80CBD0F1F98EC930039D9E7 /* SSOData.swift in Sources */,
-				E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				675F4B8824AB828100A828F9 /* ScheduledPaymentUpdateRequest.swift in Sources */,
 				B0882C9F210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				35277AFD210266BF00411297 /* UsageTool.swift in Sources */,
@@ -17217,7 +17190,6 @@
 				675F4CCE24AB828200A828F9 /* NewCompareBillResult.swift in Sources */,
 				675F4BE424AB828100A828F9 /* BillComparisonRequest.swift in Sources */,
 				E80CBD111F98EC930039D9E7 /* SSOData.swift in Sources */,
-				E8EDC54C1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				675F4E0224B3A00800A828F9 /* AnonOutageStatus.swift in Sources */,
 				B08BBFBD21C8284A00A899FC /* Payments.swift in Sources */,
 				E801BAD71E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
@@ -17724,7 +17696,6 @@
 				B0D84D5E220382EF00C70A6F /* MockAppState.swift in Sources */,
 				B0472B2A2111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E80CBD101F98EC930039D9E7 /* SSOData.swift in Sources */,
-				E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				E801BAD61E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
 				B0882CA0210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
@@ -18246,7 +18217,6 @@
 				0E7B52652191EA59006C229C /* MCSApi.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* MaskedString.swift in Sources */,
 				B094A640210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
-				E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				357757582114D65B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				E895E9AF1EBB8494003B38A1 /* ForgotUsernameViewModel.swift in Sources */,
@@ -18486,7 +18456,6 @@
 				E8F62B89200924410077B3DA /* UIViewAddShadow.swift in Sources */,
 				E8F62B8A200924410077B3DA /* MaskedString.swift in Sources */,
 				B094A641210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
-				E8F62B8B200924410077B3DA /* MinimumVersion.swift in Sources */,
 				357757592114D65C00E73542 /* SharedWebCredentialService.swift in Sources */,
 				E8F62B8C200924410077B3DA /* ServiceResult.swift in Sources */,
 				E8F62B8D200924410077B3DA /* ForgotUsernameViewModel.swift in Sources */,
@@ -18673,7 +18642,6 @@
 				E8F62C3E200924570077B3DA /* UIViewAddShadow.swift in Sources */,
 				E8F62C3F200924570077B3DA /* MaskedString.swift in Sources */,
 				B094A642210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
-				E8F62C40200924570077B3DA /* MinimumVersion.swift in Sources */,
 				3577575A2114D65C00E73542 /* SharedWebCredentialService.swift in Sources */,
 				E8F62C41200924570077B3DA /* ServiceResult.swift in Sources */,
 				E8F62C42200924570077B3DA /* ForgotUsernameViewModel.swift in Sources */,

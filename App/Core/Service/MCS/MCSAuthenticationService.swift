@@ -142,13 +142,6 @@ struct MCSAuthenticationService : AuthenticationService {
             })
     }
     
-    func getMinimumVersion() -> Observable<MinimumVersion> {
-        return MCSApi.shared.get(pathPrefix: .anon, path: "config/versions")
-            .map { json in
-                MinimumVersion.from(json as! NSDictionary)!
-            }
-    }
-    
     #if os(iOS)
     func changePassword(currentPassword: String, newPassword: String) -> Observable<Void> {
         
