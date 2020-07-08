@@ -355,7 +355,7 @@ extension NetworkUtility {
             return
         }
 
-        OutageServiceNew.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { networkResult in
+        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { networkResult in
             switch networkResult {
             case .success(let outageStatus):
                 dLog("Outage Status Fetched.")

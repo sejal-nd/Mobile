@@ -1,5 +1,5 @@
 //
-//  NewOutageViewModel.swift
+//  OutageViewModel.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 7/15/19.
@@ -44,7 +44,7 @@ class OutageViewModel {
     }
     
     func getOutageStatus(onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (NetworkingError) -> Void) {
-        OutageServiceNew.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
+        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
             switch result {
             case .success(let outageStatus):
                 self.outageStatus = outageStatus
@@ -99,9 +99,9 @@ class OutageViewModel {
     
     var reportedOutage: ReportedOutageResult? {
         if let accountNumber = accountNumber {
-            return OutageServiceNew.getReportedOutageResult(accountNumber: accountNumber)
+            return OutageService.getReportedOutageResult(accountNumber: accountNumber)
         } else {
-            return OutageServiceNew.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+            return OutageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         }
     }
     

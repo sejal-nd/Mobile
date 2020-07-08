@@ -20,7 +20,7 @@ class UnauthenticatedOutageViewModel {
     let selectedOutageStatus = BehaviorRelay<OutageStatus?>(value: nil)
     
     var reportedOutage: ReportedOutageResult? {
-        return OutageServiceNew.getReportedOutageResult(accountNumber: accountNumber.value)
+        return OutageService.getReportedOutageResult(accountNumber: accountNumber.value)
     }
     
     func fetchOutageStatus(overrideAccountNumber: String? = nil, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
@@ -29,7 +29,7 @@ class UnauthenticatedOutageViewModel {
         
         selectedOutageStatus.accept(nil)
         
-        OutageServiceNew.fetchAnonOutageStatus(phoneNumber: requestPhoneNumber,
+        OutageService.fetchAnonOutageStatus(phoneNumber: requestPhoneNumber,
                                                accountNumber: requestAccountNumber) { result in
                                                 switch result {
                                                 case .success(let outageStatus):

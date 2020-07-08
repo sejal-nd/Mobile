@@ -113,7 +113,7 @@ class ReportOutageViewModel {
             outageRequest.locationId = locationId
         }
         
-        OutageServiceNew.reportOutage(outageRequest: outageRequest) { result in
+        OutageService.reportOutage(outageRequest: outageRequest) { result in
             switch result {
             case .success:
                 onSuccess()
@@ -140,7 +140,7 @@ class ReportOutageViewModel {
             outageRequest.locationId = locationId
         }
         
-        OutageServiceNew.reportOutageAnon(outageRequest: outageRequest) { result in
+        OutageService.reportOutageAnon(outageRequest: outageRequest) { result in
             switch result {
             case .success(let reportedOutage):
                 onSuccess(reportedOutage)
@@ -151,7 +151,7 @@ class ReportOutageViewModel {
     }
     
     func meterPingGetStatus(onComplete: @escaping (MeterPingResult) -> Void, onError: @escaping () -> Void) {
-        OutageServiceNew.pingMeter(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+        OutageService.pingMeter(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
                                    premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
                                     switch result {
                                     case .success(let meterPingInfo):

@@ -1,5 +1,5 @@
 //
-//  NewOutageViewController.swift
+//  OutageViewController.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 7/12/19.

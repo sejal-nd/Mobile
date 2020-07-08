@@ -1,5 +1,5 @@
 //
-//  OutageServiceNew.swift
+//  OutageService.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 4/22/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct OutageServiceNew {
+struct OutageService {
     static func fetchOutageStatus(accountNumber: String, premiseNumber: String, completion: @escaping (Result<OutageStatus, NetworkingError>) -> ()) {
         
         NetworkingLayer.request(router: .outageStatus(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
@@ -20,21 +20,16 @@ struct OutageServiceNew {
     }
     
     static func reportOutage(outageRequest: OutageRequest, completion: @escaping (Result<ReportedOutageResult, NetworkingError>) -> ()) {
-//        let outageRequest = OutageRequest(accountNumber: outageRequest.accountNumber,
-//                                          locationId: outageRequest.locationId,
-//                                          reportedTime: outageRequest.reportedTime,
-//                                          issue: outageRequest.issue,
-//                                          phoneNumber: outageRequest.phoneNumber,
-//                                          phoneExtension: outageRequest.phoneExtension,
-//                                          isUnusual: outageRequest.isUnusual,
-//                                          unusualMessage: outageRequest.unusualMessage,
-//                                          isNeighbor: outageRequest.isNeighbor,
-//                                          comment: outageRequest.comment)
-        NetworkingLayer.request(router: .reportOutage(accountNumber: outageRequest.accountNumber, encodable: outageRequest), completion: completion)
         
-        // todo
-//        ReportedOutagesStore.shared[outageInfo.accountNumber] = reportedOutage
-
+        NetworkingLayer.request(router: .reportOutage(accountNumber: outageRequest.accountNumber, encodable: outageRequest)) { (result: Result<ReportedOutageResult, NetworkingError>) in
+            switch result {
+            case .success(let reportOutageResult):
+                ReportedOutagesStore.shared[outageRequest.accountNumber] = reportOutageResult
+                completion(.success(reportOutageResult))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     static func pingMeter(accountNumber: String, premiseNumber: String, completion: @escaping (Result<MeterPingResult, NetworkingError>) -> ()) {
@@ -49,10 +44,16 @@ struct OutageServiceNew {
     }
     
     static func reportOutageAnon(outageRequest: OutageRequest, completion: @escaping (Result<ReportedOutageResult, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .reportOutageAnon(encodable: outageRequest), completion: completion)
         
-                // todo
-        //        ReportedOutagesStore.shared[outageInfo.accountNumber] = reportedOutage
+        NetworkingLayer.request(router: .reportOutageAnon(encodable: outageRequest)) { (result: Result<ReportedOutageResult, NetworkingError>) in
+            switch result {
+            case .success(let reportOutageResult):
+                ReportedOutagesStore.shared[outageRequest.accountNumber] = reportOutageResult
+                completion(.success(reportOutageResult))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }
 

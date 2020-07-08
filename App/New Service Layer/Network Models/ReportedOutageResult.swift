@@ -1,5 +1,5 @@
 //
-//  NewReportedOutageResult.swift
+//  ReportedOutageResult.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 4/23/20.
@@ -14,6 +14,16 @@ struct ReportedOutageResult: Decodable {
 }
 
 extension ReportedOutageResult {
+    func toDict() -> NSDictionary? {
+        var dictionary = [String: Any]()
+        guard let reportedTime = reportedTime else {
+            return nil
+        }
+        dictionary["reportedTime"] = DateFormatter.yyyyMMddTHHmmssZZZZZFormatter.string(from: reportedTime)
+        dictionary["etr"] = etr?.apiFormatString
+        return dictionary as NSDictionary
+    }
+    
     static func map(from dict: NSDictionary) -> ReportedOutageResult? {
         guard let timeString = dict["reportedTime"] as? String, let etrString = dict["etr"] as? String else {
             return nil

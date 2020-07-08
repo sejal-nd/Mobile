@@ -58,7 +58,7 @@ class StormModeHomeViewModel {
     }
     
     func getOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (NetworkingError) -> Void) {
-        OutageServiceNew.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { [weak self] result in
+        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { [weak self] result in
             switch result {
             case .success(let outageStatus):
                 self?.currentOutageStatus = outageStatus
@@ -82,7 +82,7 @@ class StormModeHomeViewModel {
     
     var reportedOutage: ReportedOutageResult? {
         guard AccountsStore.shared.currentIndex != nil else { return nil }
-        return OutageServiceNew.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        return OutageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
     }
     
     var estimatedRestorationDateString: String {

@@ -73,7 +73,7 @@ class HomeOutageCardViewModel {
         .map { [weak self] in
             guard AccountsStore.shared.currentIndex != nil else { return nil }
             let accountNumber = AccountsStore.shared.currentAccount.accountNumber
-            return OutageServiceNew.getReportedOutageResult(accountNumber: accountNumber)?.etr
+            return OutageService.getReportedOutageResult(accountNumber: accountNumber)?.etr
     }
     
     private lazy var fetchedEtr: Driver<Date?> = self.currentOutageStatus.map { $0.estimatedRestorationDate }
@@ -115,7 +115,7 @@ class HomeOutageCardViewModel {
             guard let this = self else { return false }
             guard AccountsStore.shared.currentIndex != nil else { return false }
             let accountNumber = AccountsStore.shared.currentAccount.accountNumber
-            return OutageServiceNew.getReportedOutageResult(accountNumber: accountNumber) != nil
+            return OutageService.getReportedOutageResult(accountNumber: accountNumber) != nil
         }
         .distinctUntilChanged()
     
@@ -142,7 +142,7 @@ class HomeOutageCardViewModel {
             guard let this = self else { return nil }
             guard AccountsStore.shared.currentIndex != nil else { return nil }
             let accountNumber = AccountsStore.shared.currentAccount.accountNumber
-            guard let reportedTime = OutageServiceNew.getReportedOutageResult(accountNumber:    accountNumber)?.reportedTime else {
+            guard let reportedTime = OutageService.getReportedOutageResult(accountNumber:    accountNumber)?.reportedTime else {
                 return nil
             }
             return String.localizedStringWithFormat("Outage reported %@",
@@ -185,7 +185,7 @@ class HomeOutageCardViewModel {
     
     private func retrieveOutageStatus() -> Observable<OutageStatus> {
         return Observable.create { observer -> Disposable in
-            OutageServiceNew.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
+            OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
                         switch result {
                         case .success(let outageStatus):
                             observer.onNext(outageStatus)

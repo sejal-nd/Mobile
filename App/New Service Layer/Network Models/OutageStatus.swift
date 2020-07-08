@@ -1,5 +1,5 @@
 //
-//  NewOutageStatus.swift
+//  OutageStatus.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 4/23/20.
