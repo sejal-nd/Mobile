@@ -136,15 +136,6 @@ class MaintenanceModeViewModel{
                 _ = error as! ServiceError
             }
         }
-//
-//        authService.getMaintenanceMode(postNotification: false)
-//            .observeOn(MainScheduler.instance)
-//            .subscribe(onNext: { [weak self] maintenanceInfo in
-//                self?.maintenance = maintenanceInfo
-//                onSuccess(maintenanceInfo.allStatus)
-//            }, onError: { error in
-//                _ = error as! ServiceError
-//            }).disposed(by: disposeBag)
     }
 
 }
