@@ -72,7 +72,7 @@ class WalletTableViewCell: UITableViewCell {
     }
     
     
-    func bindToWalletItem(_ walletItem: WalletItem, billingInfo: BillingInfo) {
+    func bindToWalletItem(_ walletItem: WalletItem, billingInfo: NewBillingInfo) {
         accountImageView.image = walletItem.paymentMethodType.imageLarge
         nicknameLabel.text = walletItem.nickName?.uppercased()
         

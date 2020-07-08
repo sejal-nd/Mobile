@@ -39,7 +39,7 @@ class HomeWeatherViewModel {
                 return nil
             }
             
-            return AccountsStore.shared.currentAccount.currentPremise?.zipCode ?? $0.zipCode ?? self?.defaultZip
+            return AccountsStore.shared.currentAccount.currentPremise?.townDetail.code ?? $0.zipCode ?? self?.defaultZip
         }
         .unwrap()
         .toAsyncRequest { [weak self] in

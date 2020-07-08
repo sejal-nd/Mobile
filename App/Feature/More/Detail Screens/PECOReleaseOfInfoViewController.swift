@@ -83,7 +83,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         
         FirebaseUtility.logEvent(.releaseOfInfoSubmit)
         GoogleAnalytics.log(event: .releaseInfoSubmit)
-        accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.shared.currentAccount, selectedIndex: rowToIntMapping)
+        NewAccountService.rx.updatePECOReleaseOfInfoPreference(selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 LoadingView.hide()
@@ -108,7 +108,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     func fetchCurrentSelection() {
         let fetchReleaseOfInfo = { [weak self] in
             guard let self = self else { return }
-            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+            NewAccountService.rx.fetchAccountDetails()
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] accountDetail in
                     guard let self = self else { return }
@@ -137,7 +137,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         }
         
         if AccountsStore.shared.currentIndex == nil {
-            accountService.fetchAccounts()
+            NewAccountService.rx.fetchAccounts()
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] _ in
                     guard let self = self else { return }

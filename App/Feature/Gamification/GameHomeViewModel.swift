@@ -106,7 +106,7 @@ class GameHomeViewModel {
             error.accept(false)
         }
         
-        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        NewAccountService.rx.fetchAccountDetails()
             .subscribe(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
                 self.refreshing.accept(false)

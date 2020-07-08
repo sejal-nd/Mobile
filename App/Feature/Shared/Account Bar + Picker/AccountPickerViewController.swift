@@ -45,28 +45,16 @@ class AccountPickerViewController: UIViewController {
     func fetchAccounts() {
         accountPicker.setLoading(true)
         
-        AuthenticatedService.fetchAccounts {  [weak self] result in
-            switch result {
-            case .success(_):
+        NewAccountService.rx.fetchAccounts()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.accountPicker.setLoading(false)
                 self.accountPicker.refresh()
-            case .failure(_):
+            }, onError: { _ in
                 MCSApi.shared.logout()
                 NotificationCenter.default.post(name: .didReceiveAccountListError, object: self)
-            }
-        }
-        
-//        accountService.fetchAccounts()
-//            .observeOn(MainScheduler.instance)
-//            .subscribe(onNext: { [weak self] _ in
-//                guard let self = self else { return }
-//                self.accountPicker.setLoading(false)
-//                self.accountPicker.refresh()
-//            }, onError: { _ in
-//                MCSApi.shared.logout()
-//                NotificationCenter.default.post(name: .didReceiveAccountListError, object: self)
-//            }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
         
 }

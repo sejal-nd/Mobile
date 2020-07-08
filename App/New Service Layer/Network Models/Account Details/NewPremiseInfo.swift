@@ -8,21 +8,19 @@
 
 import Foundation
 
-public struct NewPremiseInfo: Decodable {
+public struct NewPremiseInfo: Decodable, Equatable, Hashable {
     public var premiseNumber: String
     
     public var peakRewards: String
     public var smartEnergyRewards: String
     
-    public var addressGeneral: String
-    public var addressLine: [String]
+    public var addressGeneral: String?
+    public var addressLine: [String]?
     
     public var streetDetail: StreetDetail
     public var townDetail: TownDetail
     
-    enum CodingKeys: String, CodingKey {
-        case premiseInfo = "PremiseInfo"
-        
+    enum CodingKeys: String, CodingKey {        
         case premiseNumber
         case peakRewards
         case smartEnergyRewards
@@ -46,15 +44,30 @@ public struct NewPremiseInfo: Decodable {
         
         let mainAddressContainer = try container.nestedContainer(keyedBy: CodingKeys.self,
                                                                  forKey: .mainAddress)
-        self.addressGeneral = try mainAddressContainer.decode(String.self,
+        self.addressGeneral = try mainAddressContainer.decodeIfPresent(String.self,
                                                               forKey: .addressGeneral)
-        self.addressLine = try mainAddressContainer.decode([String].self,
+        self.addressLine = try mainAddressContainer.decodeIfPresent([String].self,
                                                            forKey: .addressLine)
         self.streetDetail = try mainAddressContainer.decode(StreetDetail.self,
                                                             forKey: .streetDetail)
         
         self.townDetail = try mainAddressContainer.decode(TownDetail.self,
                                                           forKey: .townDetail)
+    }
+    
+    var addressLineString: String {
+        guard let addressLineArray = addressLine else { return ""}
+        return addressLineArray.joined(separator: ",")
+    }
+    
+    // Equatable
+    public static func ==(lhs: NewPremiseInfo, rhs: NewPremiseInfo) -> Bool {
+        return lhs.premiseNumber == rhs.premiseNumber
+    }
+    
+    // Hashable
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(premiseNumber)
     }
 }
 

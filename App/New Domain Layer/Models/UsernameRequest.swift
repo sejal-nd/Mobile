@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct UsernameRequest: Encodable {
+public struct UsernameRequest: Encodable {
     let username: String
 }

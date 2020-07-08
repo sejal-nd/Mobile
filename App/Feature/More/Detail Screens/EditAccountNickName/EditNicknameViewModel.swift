@@ -74,7 +74,7 @@ final class EditNicknameViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.accountService.fetchAccounts()
+                NewAccountService.rx.fetchAccounts()
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { __SRD in
                         onSuccess()

@@ -11,10 +11,10 @@ import RxSwift
 
 struct MCSAccountService: AccountService {
     
-    func fetchAccounts() -> Observable<[Account]> {
+    func fetchAccounts() -> Observable<[OldAccount]> {
         return MCSApi.shared.get(pathPrefix: .auth, path: "accounts").map { accounts in
             let accountArray = (accounts as! [[String: Any]])
-                .compactMap { Account.from($0 as NSDictionary) }
+                .compactMap { OldAccount.from($0 as NSDictionary) }
             
             guard !accountArray.isEmpty else {
                 throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue,
@@ -30,29 +30,29 @@ struct MCSAccountService: AccountService {
                 .filter { !$0.isPasswordProtected } // Filter out password protected accounts
                 .sorted { ($0.isDefault && !$1.isDefault) || (!$0.isFinaled && $1.isFinaled) }
             
-            AccountsStore.shared.accounts = sortedAccounts
-            AccountsStore.shared.currentIndex = 0
+//            AccountsStore.shared.accounts = sortedAccounts
+//            AccountsStore.shared.currentIndex = 0
             
             return sortedAccounts
         }
     }
     
     #if os(iOS)
-    func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
+    func fetchAccountDetail(account: OldAccount) -> Observable<OldAccountDetail> {
         return fetchAccountDetail(account: account, payments: false, programs: false, budgetBilling: false, alertPreferenceEligibilities: false)
     }
     
     #elseif os(watchOS)
-    func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
+    func fetchAccountDetail(account: OldAccount) -> Observable<OldAccountDetail> {
         return fetchAccountDetail(account: account, payments: true, programs: false, budgetBilling: false, alertPreferenceEligibilities: false)
     }
     #endif
     
-    func fetchAccountDetail(account: Account, alertPreferenceEligibilities: Bool) -> Observable<AccountDetail> {
+    func fetchAccountDetail(account: OldAccount, alertPreferenceEligibilities: Bool) -> Observable<OldAccountDetail> {
         return fetchAccountDetail(account: account, payments: false, programs: false, budgetBilling: false, alertPreferenceEligibilities: alertPreferenceEligibilities)
     }
     
-    private func fetchAccountDetail(account: Account, payments: Bool, programs: Bool, budgetBilling: Bool, alertPreferenceEligibilities: Bool = false) -> Observable<AccountDetail> {
+    private func fetchAccountDetail(account: OldAccount, payments: Bool, programs: Bool, budgetBilling: Bool, alertPreferenceEligibilities: Bool = false) -> Observable<OldAccountDetail> {
         var path = "accounts/\(account.accountNumber)"
         
         var queryItems = [(String, String)]()
@@ -80,7 +80,7 @@ struct MCSAccountService: AccountService {
         path.append(String(queryString))
         
         return MCSApi.shared.get(pathPrefix: .auth, path: path).map { json in
-            guard let dict = json as? NSDictionary, let accountDetail = AccountDetail.from(dict) else {
+            guard let dict = json as? NSDictionary, let accountDetail = OldAccountDetail.from(dict) else {
                 throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
             }
             
@@ -121,14 +121,14 @@ struct MCSAccountService: AccountService {
     }
     
     #if os(iOS)
-    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void> {
+    func updatePECOReleaseOfInfoPreference(account: OldAccount, selectedIndex: Int) -> Observable<Void> {
         let valueString = "0\(selectedIndex + 1)"
         let params = ["release_info_value": valueString]
         return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/preferences/release", params: params)
             .mapTo(())
     }
     
-    func setDefaultAccount(account: Account) -> Observable<Void> {
+    func setDefaultAccount(account: OldAccount) -> Observable<Void> {
         return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/default", params: nil)
             .mapTo(())
     }

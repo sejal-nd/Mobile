@@ -15,35 +15,35 @@ protocol AccountService {
 
     
     /// Fetch a page of accounts for the current customer.
-    func fetchAccounts() -> Observable<[Account]>
+    func fetchAccounts() -> Observable<[OldAccount]>
     
     
     /// Fetch an accounts detailed information.
     ///
     /// - Parameters:
     ///   - account: the account to fetch
-    func fetchAccountDetail(account: Account) -> Observable<AccountDetail>
+    func fetchAccountDetail(account: OldAccount) -> Observable<OldAccountDetail>
     
     /// Fetch an accounts detailed information.
     ///
     /// - Parameters:
     ///   - account: the account to fetch
     ///   - alertPreferenceEligibilities: boolean field to fetch alert preference eligibilities
-    func fetchAccountDetail(account: Account, alertPreferenceEligibilities: Bool) -> Observable<AccountDetail>
+    func fetchAccountDetail(account: OldAccount, alertPreferenceEligibilities: Bool) -> Observable<OldAccountDetail>
     
     #if os(iOS)
     /// Updates the Release of Information in preferences for the specified account (PECO ONLY)
     ///
     /// - Parameters:
     ///   - account: the account to update
-    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void>
+    func updatePECOReleaseOfInfoPreference(account: OldAccount, selectedIndex: Int) -> Observable<Void>
     
     
     /// Sets the user's default account to the specified account
     ///
     /// - Parameters:
     ///   - account: the account to set as default
-    func setDefaultAccount(account: Account) -> Observable<Void>
+    func setDefaultAccount(account: OldAccount) -> Observable<Void>
     
     
     /// Sets the user's account NickName

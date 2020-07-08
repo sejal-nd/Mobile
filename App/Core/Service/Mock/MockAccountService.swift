@@ -11,12 +11,12 @@ import RxSwift
 
 class MockAccountService: AccountService {
     
-    func fetchAccounts() -> Observable<[Account]> {
+    func fetchAccounts() -> Observable<[OldAccount]> {
         do {
-            let accounts: [Account] = try MockUser.current.accounts
+            let accounts: [OldAccount] = try MockUser.current.accounts
                 .map { try MockJSONManager.shared.mappableObject(fromFile: .accounts, key: $0.dataKey(forFile: .accounts)) }
             
-            AccountsStore.shared.accounts = accounts
+//            AccountsStore.shared.accounts = accounts
             AccountsStore.shared.currentIndex = 0
             AccountsStore.shared.customerIdentifier = "123"
             RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = nil
@@ -29,10 +29,10 @@ class MockAccountService: AccountService {
     
     static func loadAccountsSync() {
         do {
-            let accounts: [Account] = try MockUser.current.accounts
+            let accounts: [OldAccount] = try MockUser.current.accounts
                 .map { try MockJSONManager.shared.mappableObject(fromFile: .accounts, key: $0.dataKey(forFile: .accounts)) }
             
-            AccountsStore.shared.accounts = accounts
+//            AccountsStore.shared.accounts = accounts
             AccountsStore.shared.currentIndex = 0
             AccountsStore.shared.customerIdentifier = "123"
             RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = nil
@@ -41,7 +41,7 @@ class MockAccountService: AccountService {
         }
     }
     
-    func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
+    func fetchAccountDetail(account: OldAccount) -> Observable<OldAccountDetail> {
         let dataFile = MockJSONManager.File.accountDetails
         let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
         
@@ -55,7 +55,7 @@ class MockAccountService: AccountService {
         return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
-    func fetchAccountDetail(account: Account, alertPreferenceEligibilities: Bool) -> Observable<AccountDetail> {
+    func fetchAccountDetail(account: OldAccount, alertPreferenceEligibilities: Bool) -> Observable<OldAccountDetail> {
         let dataFile = MockJSONManager.File.accountDetails
         let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
         
@@ -69,11 +69,11 @@ class MockAccountService: AccountService {
         return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
-    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void> {
+    func updatePECOReleaseOfInfoPreference(account: OldAccount, selectedIndex: Int) -> Observable<Void> {
         return .just(())
     }
     
-    func setDefaultAccount(account: Account) -> Observable<Void> {
+    func setDefaultAccount(account: OldAccount) -> Observable<Void> {
         return .just(())
     }
     

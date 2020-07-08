@@ -53,7 +53,7 @@ class MoreViewModel {
     }
     
     func fetchAccounts() -> Observable<[Account]> {
-        return accountService.fetchAccounts()
+        return NewAccountService.rx.fetchAccounts()
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {

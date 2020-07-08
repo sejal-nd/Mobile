@@ -29,15 +29,15 @@ class BGEChoiceIDViewModel {
         electricChoiceId.accept(nil)
         gasChoiceId.accept(nil)
         loading.accept(true)
-        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        NewAccountService.rx.fetchAccountDetails()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
                 self.loading.accept(false)
-                if let elec = accountDetail.electricChoiceId {
+                if let elec = accountDetail.electricChoiceID {
                     self.electricChoiceId.accept(elec)
                 }
-                if let gas = accountDetail.gasChoiceId {
+                if let gas = accountDetail.gasChoiceID {
                     self.gasChoiceId.accept(gas)
                 }
             }, onError: { [weak self] error in

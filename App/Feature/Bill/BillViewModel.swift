@@ -66,7 +66,7 @@ class BillViewModel {
         }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
             guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
             let account = AccountsStore.shared.currentAccount
-            let accountDetail = self.accountService.fetchAccountDetail(account: account)
+            let accountDetail = NewAccountService.rx.fetchAccountDetails(accountNumber: account.accountNumber)
             let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
             return Observable.zip(accountDetail, scheduledPayment)
         })

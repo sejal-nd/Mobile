@@ -47,7 +47,7 @@ class AppointmentsViewModel {
         
         accountDetailEvents = fetchAllDataTrigger
             .toAsyncRequest {
-                accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                NewAccountService.rx.fetchAccountDetails()
         }
         
         events = accountDetailEvents

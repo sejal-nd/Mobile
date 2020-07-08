@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct NewAccountDetails: Decodable {
+public struct AccountDetail: Decodable {
     public var accountNumber: String
-    public var address: String
+    public var address: String?
     
     public var accountStatusCode: String?
     public var accountType: String
@@ -39,7 +39,7 @@ public struct NewAccountDetails: Decodable {
     
     public var amountDue: String?
     public var dueDate: Date?
-    public var serviceType: String
+    public var serviceType: String?
     public var status: String?
     
     
@@ -52,29 +52,58 @@ public struct NewAccountDetails: Decodable {
     public var isSummaryBillingIneligible: Bool
     public var isEdiBilling: Bool
     public var isResidential: Bool
+    public var isFinaled: Bool
+    public var isBGEasy: Bool
     public var isEBillEnrollment: Bool
     public var addressLine: String
     public var street: String
     public var city: String
     public var state: String
-    public var zipCode: String
+    public var zipCode: String?
     public var buildingNumber: String
-    public var premiseNumber: String
+    public var premiseNumber: String?
     public var amiAccountIdentifier: String
     public var amiCustomerIdentifier: String
     public var rateSchedule: String
     public var peakRewards: String?
     public var isPeakRewards: Bool
     public var electricChoiceID: String?
+    public var gasChoiceID: String?
+    public var isBudgetBillEnrollment: Bool
     public var isBudgetBillEligible: Bool
     public var budgetBillMessage: String?
     public var isAutoPayEligible: Bool
     public var customerNumber: String
+    public var isHourlyPricing: Bool
+    public var hasElectricSupplier: Bool
+    public var isSingleBillOption: Bool
+    public var isSupplier: Bool
+    public var isDualBillOption: Bool
+    // alert preference eligibility
+    let isHUAEligible: Bool?
+    let isPTREligible: Bool?
+    let isPTSEligible: Bool?
+    let hasThirdPartySupplier: Bool
     
     public var customerInfo: NewCustomerInfo
     let billingInfo: NewBillingInfo
     let serInfo: NewSERInfo
     public var premiseInfo: [NewPremiseInfo]
+    
+    // Only 3 real states to think about
+    enum PrepaidStatus: String, Decodable {
+        // Not Enrolled
+        case inactive = "INACTIVE"
+        case invited = "INVITED"
+        case canceled = "CANCELED"
+        case expired = "EXPIRED"
+        // Pending
+        case pending = "PENDING"
+        // Enrolled
+        case active = "ACTIVE"
+    }
+    
+    let prepaidStatus: PrepaidStatus
 
     enum CodingKeys: String, CodingKey {
         case accountNumber = "accountNumber"
@@ -119,6 +148,8 @@ public struct NewAccountDetails: Decodable {
         case isSummaryBillingIneligible
         case isEdiBilling
         case isResidential
+        case isFinaled = "flagFinaled"
+        case isBGEasy
         case isEBillEnrollment
         case addressLine
         case street
@@ -133,22 +164,34 @@ public struct NewAccountDetails: Decodable {
         case peakRewards
         case isPeakRewards
         case electricChoiceID
+        case gasChoiceID
         case isBudgetBillEligible
         case budgetBillMessage
         case isAutoPayEligible
         case customerNumber
+        case isHourlyPricing
+        case isBudgetBillEnrollment
         
         case customerInfo = "CustomerInfo"
         case billingInfo = "BustomerInfo"
         case serInfo = "SERInfo"
         case premiseInfo = "PremiseInfo"
+        case prepaidStatus = "prepaid_status"
+        case hasThirdPartySupplier
+        case isHUAEligible
+        case isPTREligible
+        case isPTSEligible
+        case hasElectricSupplier
+        case isSingleBillOption
+        case isSupplier
+        case isDualBillOption
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.accountNumber = try container.decode(String.self,
                                              forKey: .accountNumber)
-        self.address = try container.decode(String.self,
+        self.address = try container.decodeIfPresent(String.self,
                                        forKey: .address)
         
         self.accountStatusCode = try container.decodeIfPresent(String.self,
@@ -204,7 +247,7 @@ public struct NewAccountDetails: Decodable {
                                                   forKey: .amountDue)
         self.dueDate = try container.decodeIfPresent(Date.self,
                                                 forKey: .dueDate)
-        self.serviceType = try container.decode(String.self,
+        self.serviceType = try container.decodeIfPresent(String.self,
                                            forKey: .serviceType)
         self.status = try container.decodeIfPresent(String.self,
                                                forKey: .status)
@@ -230,6 +273,10 @@ public struct NewAccountDetails: Decodable {
         forKey: .isEBillEnrollment) ?? false
         self.isResidential = try container.decodeIfPresent(Bool.self,
         forKey: .isResidential) ?? false
+        self.isFinaled = try container.decodeIfPresent(Bool.self,
+        forKey: .isFinaled) ?? false
+        self.isBGEasy = try container.decodeIfPresent(Bool.self,
+        forKey: .isBGEasy) ?? false
         self.addressLine = try container.decode(String.self,
         forKey: .addressLine)
         self.street = try container.decode(String.self,
@@ -238,11 +285,11 @@ public struct NewAccountDetails: Decodable {
         forKey: .city)
         self.state = try container.decode(String.self,
         forKey: .state)
-        self.zipCode = try container.decode(String.self,
+        self.zipCode = try container.decodeIfPresent(String.self,
         forKey: .zipCode)
         self.buildingNumber = try container.decode(String.self,
         forKey: .buildingNumber)
-        self.premiseNumber = try container.decode(String.self,
+        self.premiseNumber = try container.decodeIfPresent(String.self,
         forKey: .premiseNumber)
         self.amiAccountIdentifier = try container.decode(String.self,
         forKey: .amiAccountIdentifier)
@@ -256,6 +303,10 @@ public struct NewAccountDetails: Decodable {
         forKey: .isPeakRewards) ?? false
         self.electricChoiceID = try container.decodeIfPresent(String.self,
         forKey: .electricChoiceID)
+        self.gasChoiceID = try container.decodeIfPresent(String.self,
+               forKey: .gasChoiceID)
+        self.isBudgetBillEnrollment = try container.decodeIfPresent(Bool.self,
+        forKey: .isBudgetBillEnrollment) ?? false
         self.isBudgetBillEligible = try container.decodeIfPresent(Bool.self,
         forKey: .isBudgetBillEligible) ?? false
         self.budgetBillMessage = try container.decodeIfPresent(String.self,
@@ -271,5 +322,46 @@ public struct NewAccountDetails: Decodable {
         self.serInfo = try container.decode(NewSERInfo.self, forKey: .serInfo)
         self.premiseInfo = try container.decodeIfPresent([NewPremiseInfo].self,
         forKey: .premiseInfo) ?? []
+        self.isHourlyPricing = try container.decodeIfPresent(Bool.self, forKey: .isHourlyPricing) ?? false
+        self.prepaidStatus = try container.decodeIfPresent(PrepaidStatus.self, forKey: .prepaidStatus) ?? .inactive
+        self.isHUAEligible = try container.decodeIfPresent(Bool.self, forKey: .isHUAEligible)
+        self.isPTREligible = try container.decodeIfPresent(Bool.self, forKey: .isPTREligible)
+        self.isPTSEligible = try container.decodeIfPresent(Bool.self, forKey: .isPTSEligible)
+        self.hasThirdPartySupplier = try container.decodeIfPresent(Bool.self, forKey: .hasThirdPartySupplier) ?? false
+        self.hasElectricSupplier = try container.decodeIfPresent(Bool.self, forKey: .hasElectricSupplier) ?? false
+        self.isSingleBillOption = try container.decodeIfPresent(Bool.self, forKey: .isSingleBillOption) ?? false
+        self.isSupplier = try container.decodeIfPresent(Bool.self, forKey: .isSupplier) ?? false
+        self.isDualBillOption = try container.decodeIfPresent(Bool.self, forKey: .isDualBillOption) ?? false
+    }
+    
+    var isEligibleForUsageData: Bool {
+        switch serviceType {
+        case "GAS", "ELECTRIC", "GAS/ELECTRIC":
+            return premiseNumber != nil && isResidential && !isBGEControlGroup && !isFinaled && prepaidStatus != .active
+        default:
+            return false
+        }
+    }
+    
+    // BGE only - Smart Energy Rewards enrollment status
+    var isSERAccount: Bool {
+        return premiseInfo.first?.smartEnergyRewards == "ENROLLED"
+    }
+    
+    var isBGEControlGroup: Bool {
+        return serInfo.controlGroupFlag?.uppercased() == "CONTROL"
+    }
+    
+    var eBillEnrollStatus: EBillEnrollStatus {
+        switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "finaled") {
+        case (true, _, _):
+            return .canUnenroll
+        case (false, _, true):
+            return .finaled
+        case (false, false, false):
+            return .ineligible
+        case (false, true, false):
+            return .canEnroll
+        }
     }
 }

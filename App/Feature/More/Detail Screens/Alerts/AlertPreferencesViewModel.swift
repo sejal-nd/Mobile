@@ -237,7 +237,7 @@ class AlertPreferencesViewModel {
     }
     
     func fetchAccountDetail() -> Observable<Void> {
-        return accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount, alertPreferenceEligibilities: true)
+        return NewAccountService.rx.fetchAccountDetails(alertPreferenceEligibilities: true)
             .observeOn(MainScheduler.instance)
             .do(onNext: { [weak self] accountDetail in
                 self?.accountDetail = accountDetail

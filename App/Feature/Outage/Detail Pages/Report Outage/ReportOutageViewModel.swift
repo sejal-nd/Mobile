@@ -170,7 +170,7 @@ class ReportOutageViewModel {
                 return Observable.just(premiseNumber)
             }
             else {
-                return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount).map { return $0.premiseNumber }
+                return NewAccountService.rx.fetchAccountDetails().map { return $0.premiseNumber }
             }
     }
     

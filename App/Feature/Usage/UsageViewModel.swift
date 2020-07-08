@@ -48,7 +48,7 @@ class UsageViewModel {
             !($0.element?.usageStatus ?? false)
         }
         .toAsyncRequest { [weak self] _ in
-            self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
+            NewAccountService.rx.fetchAccountDetails()
         }
     
     private lazy var commercialDataEvents: Observable<Event<SSOData>> = accountDetailEvents

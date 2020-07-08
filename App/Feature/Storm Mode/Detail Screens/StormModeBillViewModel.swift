@@ -46,7 +46,7 @@ class StormModeBillViewModel {
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                         requestSelector: { [weak self] _ in
                             guard let self = self else { return .empty() }
-                            return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                            return NewAccountService.rx.fetchAccountDetails()
                         })
 
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = fetchData

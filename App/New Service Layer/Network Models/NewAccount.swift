@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewAccount: Decodable, Equatable, Hashable {
+public struct Account: Decodable, Equatable, Hashable {
     var accountNumber: String
     let accountNickname: String?
     let address: String?
@@ -73,7 +73,7 @@ public struct NewAccount: Decodable, Equatable, Hashable {
     }
     
     // Equatable
-    public static func ==(lhs: NewAccount, rhs: NewAccount) -> Bool {
+    public static func ==(lhs: Account, rhs: Account) -> Bool {
         return lhs.accountNumber == rhs.accountNumber
     }
     

@@ -9,7 +9,7 @@
 import Foundation
 import Mapper
 
-struct Account: Mappable, Equatable, Hashable {
+struct OldAccount: Mappable, Equatable, Hashable {
     let accountNumber: String
     let accountNickname: String?
     let address: String?
@@ -61,7 +61,7 @@ struct Account: Mappable, Equatable, Hashable {
     }
     
     // Equatable
-    static func ==(lhs: Account, rhs: Account) -> Bool {
+    static func ==(lhs: OldAccount, rhs: OldAccount) -> Bool {
         return lhs.accountNumber == rhs.accountNumber
     }
     
@@ -71,7 +71,7 @@ struct Account: Mappable, Equatable, Hashable {
     }
 }
 
-struct AccountDetail: Mappable {
+struct OldAccountDetail: Mappable {
     let accountNumber: String
     let premiseNumber: String?
     let address: String?

@@ -29,11 +29,11 @@ class SetDefaultAccountViewModel {
     
     func setDefaultAccount(onSuccess: @escaping () -> Void,
                            onError: @escaping (String) -> Void) {
-        self.accountService.setDefaultAccount(account: selectedAccount.value!)
+        NewAccountService.rx.setDefaultAccount(accountNumber: selectedAccount.value!.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.accountService.fetchAccounts()
+                NewAccountService.rx.fetchAccounts()
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { __SRD in
                         onSuccess()

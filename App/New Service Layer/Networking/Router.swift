@@ -26,17 +26,19 @@ public enum Router {
     
     // Registration
     case registration(encodable: NewAccountRequest)
-    case checkDuplicateRegistration(encodable: Encodable)
+    case checkDuplicateRegistration(encodable: UsernameRequest)
     case registrationQuestions
-    case validateRegistration(encodable: Encodable)
-    case sendConfirmationEmail(encodable: Encodable)
-    case validateConfirmationEmail(encodable: Encodable)
+    case validateRegistration(encodable: ValidateAccountRequest)
+    case sendConfirmationEmail(encodable: UsernameRequest)
+    case validateConfirmationEmail(encodable: GuidRequest)
     
     case accounts
     case accountDetails(accountNumber: String, queryString: String)
+    case setDefaultAccount(accountNumber: String)
+    case setAccountNickname(request: AccountNicknameRequest)
     
     // PECO only release of info preferences
-    case updateReleaseOfInfo(accountNumber: String, encodable: Encodable)
+    case updateReleaseOfInfo(accountNumber: String, encodable: ReleaseOfInfoRequest)
     
     case weather(lat: String, long: String)
     
@@ -163,6 +165,10 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)\(queryString)"
         case .accounts:
             return "/mobile/custom/\(apiAccess)/accounts"
+        case .setDefaultAccount(let accountNumber):
+            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/default"
+        case .setAccountNickname:
+            return "/mobile/custom/\(apiAccess)/profile/update/account/nickname"
         case .updateReleaseOfInfo(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/preferences/release"
         case .minVersion:
@@ -263,10 +269,10 @@ public enum Router {
         switch self {
         case .anonOutageStatus, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions:
+        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
-             .updateReleaseOfInfo, .validateConfirmationEmail:
+             .updateReleaseOfInfo, .validateConfirmationEmail, .setDefaultAccount:
             return "PUT"
         case .paperlessUnenroll:
             return "DELETE"
@@ -313,7 +319,7 @@ public enum Router {
     public var httpBody: HTTPBody? {
         switch self {
         case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .anonOutageStatus(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
-             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable):
+             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable):
             return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
