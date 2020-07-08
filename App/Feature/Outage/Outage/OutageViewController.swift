@@ -205,9 +205,9 @@ class OutageViewController: AccountPickerViewController {
             self.shortcutItem = .none
             }, onError: { [weak self] error in
                 self?.shortcutItem = .none
-                if error == NetworkingError.noNetwork {
+                if error == .noNetwork {
                     self?.configureState(.noNetwork)
-                } else if error == NetworkingError.blockAccount {
+                } else if error == .blockAccount {
                     self?.configureState(.unavailable)
                 }
             }, onMaintenance: { [weak self] in

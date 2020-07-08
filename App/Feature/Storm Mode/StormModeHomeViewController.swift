@@ -512,7 +512,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             }
             
             UIAccessibility.post(notification: .screenChanged, argument: nil)
-            if error == NetworkingError.noNetwork {
+            if error == .noNetwork {
                 self.scrollView?.isHidden = true
                 self.noNetworkConnectionView.isHidden = false
             } else {
@@ -520,7 +520,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.noNetworkConnectionView.isHidden = true
             }
             
-            if error == NetworkingError.blockAccount {
+            if error == .blockAccount {
                 self.accountDisallowView.isHidden = false
                 self.finalPayView.isHidden = true
                 self.billButton.isHidden = true

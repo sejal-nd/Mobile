@@ -31,7 +31,7 @@ class OutageViewModel {
             switch result {
             case .success(let maintenanceMode):
                 if maintenanceMode.all {
-                    onError(NetworkingError.networkError)
+                    onError(NetworkingError.maintenanceMode)
                 } else if maintenanceMode.outage {
                     onMaintenance()
                 } else {

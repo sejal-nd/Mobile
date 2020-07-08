@@ -8,8 +8,6 @@
 
 import Foundation
 
-// todo clean up naming to reflect differences otherwise combine into a single error.
-
 public enum NetworkingError: Error, Equatable {
     case invalidToken
     case invalidURL
