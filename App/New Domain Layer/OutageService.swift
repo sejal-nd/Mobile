@@ -56,39 +56,3 @@ struct OutageService {
         }
     }
 }
-
-
-
-
-// anon outage reporting
-
-//    func reportOutageAnon(outageInfo: OutageInfo) -> Observable<ReportedOutageResult> {
-//        var params = [ReportOutageParams.AccountNumber.rawValue: outageInfo.accountNumber,
-//                      ReportOutageParams.Phone.rawValue: outageInfo.phoneNumber,
-//                      ReportOutageParams.OutageIssue.rawValue: outageInfo.issue.rawValue]
-//        if let ext = outageInfo.phoneExtension {
-//            params[ReportOutageParams.PhoneExt.rawValue] = ext
-//        }
-//        if let locationId = outageInfo.locationId {
-//            params[ReportOutageParams.LocationId.rawValue] = locationId
-//        }
-//        if let comment = outageInfo.comment, !comment.isEmpty {
-//            params[ReportOutageParams.Unusual.rawValue] = "Yes"
-//            if let data = comment.data(using: .nonLossyASCII) { // Emojis would cause request to fail
-//                params[ReportOutageParams.UnusualSpecify.rawValue] = String(data: data, encoding: .utf8)
-//            } else {
-//                params[ReportOutageParams.UnusualSpecify.rawValue] = comment
-//            }
-//        }
-//        
-//        return MCSApi.shared.post(pathPrefix: .anon, path: "outage", params: params)
-//            .map { json in
-//                guard let dict = json as? NSDictionary,
-//                    let reportedOutage = ReportedOutageResult.from(dict) else {
-//                        throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-//                }
-//
-//                ReportedOutagesStore.shared[outageInfo.accountNumber] = reportedOutage
-//                return reportedOutage
-//            }
-//    }
