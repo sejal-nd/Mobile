@@ -93,7 +93,7 @@ class LoginViewModel {
     }
     
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
             switch result {
             case .success(let maintenanceMode):
                 completion(maintenanceMode.storm)
@@ -134,7 +134,7 @@ class LoginViewModel {
     }
     
     func checkForMaintenance(onCompletion: @escaping () -> Void) {
-        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
             switch result {
             case .success(_):
                 onCompletion()

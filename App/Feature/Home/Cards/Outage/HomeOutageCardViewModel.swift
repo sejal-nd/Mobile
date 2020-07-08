@@ -12,13 +12,13 @@ import RxSwiftExt
 
 class HomeOutageCardViewModel {
     
-    private let maintenanceModeEvents: Observable<Event<Maintenance>>
+    private let maintenanceModeEvents: Observable<Event<MaintenanceMode>>
     private let fetchDataObservable: Observable<Void>
     private let fetchTracker: ActivityTracker
     
     // MARK: - Init
     
-    required init(maintenanceModeEvents: Observable<Event<Maintenance>>,
+    required init(maintenanceModeEvents: Observable<Event<MaintenanceMode>>,
                   fetchDataObservable: Observable<Void>,
                   fetchTracker: ActivityTracker) {
         self.maintenanceModeEvents = maintenanceModeEvents
@@ -31,7 +31,7 @@ class HomeOutageCardViewModel {
     private lazy var outageStatusEvents: Observable<Event<OutageStatus>> = self.maintenanceModeEvents
         .filter {
             guard let maint = $0.element else { return true }
-            return !maint.allStatus && !maint.outageStatus && !maint.homeStatus
+            return !maint.all && !maint.outage && !maint.home
         }
         .withLatestFrom(self.fetchDataObservable)
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
@@ -85,7 +85,7 @@ class HomeOutageCardViewModel {
         .asDriver().filter { $0 }.mapTo(())
     
     private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents.elements()
-        .filter { $0.outageStatus }
+        .filter { $0.outage }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     

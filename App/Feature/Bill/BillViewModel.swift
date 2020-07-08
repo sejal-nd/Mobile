@@ -54,12 +54,12 @@ class BillViewModel {
                RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchTrigger
+    private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> = fetchTrigger
         .toAsyncRequest(activityTracker: { [weak self] in self?.tracker(forState: $0) },
-                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+                        requestSelector: { [unowned self] _ in AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true) })
     
     private(set) lazy var dataEvents: Observable<Event<(AccountDetail, PaymentItem?)>> = maintenanceModeEvents
-        .filter { !($0.element?.allStatus ?? false) && !($0.element?.billStatus ?? false) }
+        .filter { !($0.element?.all ?? false) && !($0.element?.bill ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)
@@ -168,7 +168,7 @@ class BillViewModel {
     // MARK: - Show/Hide Views
     
     private(set) lazy var showMaintenanceMode: Driver<Void> = maintenanceModeEvents.elements()
-        .filter { $0.billStatus }
+        .filter { $0.bill }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     

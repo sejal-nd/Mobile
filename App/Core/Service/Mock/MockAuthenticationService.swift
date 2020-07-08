@@ -51,17 +51,6 @@ struct MockAuthenticationService: AuthenticationService {
         }
     }
     
-    func getMaintenanceMode(postNotification: Bool) -> Observable<Maintenance> {
-        let dataFile = MockJSONManager.File.maintenance
-        let key = MockAppState.current.maintenanceKey
-        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
-            .do(onNext: { maintenance in
-                if maintenance.allStatus {
-                    NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: maintenance)
-                }
-            })
-    }
-    
     func refreshAuthorization() -> Observable<Void> {
         return .just(())
     }

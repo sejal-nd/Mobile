@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
             .subscribe(onNext: { [weak self] notification in
-                self?.showMaintenanceMode(notification.object as? NewMaintenanceMode)
+                self?.showMaintenanceMode(notification.object as? MaintenanceMode)
             })
             .disposed(by: disposeBag)
         
@@ -366,7 +366,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func showMaintenanceMode(_ maintenanceInfo: NewMaintenanceMode?) {
+    func showMaintenanceMode(_ maintenanceInfo: MaintenanceMode?) {
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
             

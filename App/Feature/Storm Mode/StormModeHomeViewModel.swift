@@ -39,16 +39,31 @@ class StormModeHomeViewModel {
             // Start polling immediately
             .startWith(())
             .toAsyncRequest { [weak self] in
-                self?.authService.getMaintenanceMode(postNotification: false) ?? .empty()
+                self?.getMaintenanceMode() ?? .empty()
             }
             // Ignore errors and positive storm mode responses
             .elements()
-            .filter { !$0.stormModeStatus }
+            .filter { !$0.storm }
             // Stop polling after storm mode ends
             .take(1)
             .mapTo(())
             .asDriver(onErrorDriveWith: .empty())
             .do(onNext: { [weak self] in self?.stormModeEnded = true })
+    }
+    
+    func getMaintenanceMode() -> Observable<MaintenanceMode> {
+        return Observable.create { observer -> Disposable in
+            AnonymousService.maintenanceMode { result in
+                switch result {
+                case .success(let maintenanceMode):
+                    observer.onNext(maintenanceMode)
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            return Disposables.create()
+        }
     }
     
     func fetchData(onSuccess: @escaping () -> Void,

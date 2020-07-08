@@ -13,7 +13,7 @@ class HomeProjectedBillCardViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let maintenanceModeEvents: Observable<Event<Maintenance>>
+    private let maintenanceModeEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
     private let usageService: UsageService
     
@@ -26,7 +26,7 @@ class HomeProjectedBillCardViewModel {
     let gasForecast = BehaviorRelay<BillForecast?>(value: nil)
     
     required init(fetchData: Observable<Void>,
-                  maintenanceModeEvents: Observable<Event<Maintenance>>,
+                  maintenanceModeEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   usageService: UsageService,
                   fetchTracker: ActivityTracker) {
@@ -46,7 +46,7 @@ class HomeProjectedBillCardViewModel {
     
     private(set) lazy var showEmptyState: Driver<Void> = accountDetailEvents.elements()
         .withLatestFrom(maintenanceModeEvents)
-        { ($0.isEligibleForUsageData, $1.element?.usageStatus ?? false)}
+        { ($0.isEligibleForUsageData, $1.element?.usage ?? false)}
         .filter { !$0 && !$1 }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -54,7 +54,7 @@ class HomeProjectedBillCardViewModel {
     private lazy var accountDetailError: Observable<Void> = accountDetailEvents
         .filter { $0.error != nil }
         .withLatestFrom(maintenanceModeEvents.elements())
-        .filter { !$0.usageStatus }
+        .filter { !$0.usage }
         .mapTo(())
     
     private lazy var billForecastError: Observable<Void> = billForecastEvents
@@ -66,7 +66,7 @@ class HomeProjectedBillCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents.elements()
-        .filter { $0.usageStatus }
+        .filter { $0.usage }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -85,7 +85,7 @@ class HomeProjectedBillCardViewModel {
     // MARK: - Web Service Calls
     
     private(set) lazy var billForecastEvents = self.accountDetailEvents.elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false)}
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usage ?? false)}
         .filter { $0.isEligibleForUsageData && !$1 }
         .withLatestFrom(fetchData) { ($0.0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] pair -> ActivityTracker? in

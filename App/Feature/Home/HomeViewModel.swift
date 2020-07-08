@@ -118,34 +118,34 @@ class HomeViewModel {
         .merge(fetchDataObservable, RxNotifications.shared.recentPaymentsUpdated)
     
     // Awful maintenance mode check
-    private lazy var fetchDataMMEvents: Observable<Event<Maintenance>> = fetchData
+    private lazy var fetchDataMMEvents: Observable<Event<MaintenanceMode>> = fetchData
         .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
             return [this.appointmentTracker, this.gameTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
-        }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+        }, requestSelector: { [unowned self] _ in AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true) })
     
-    private lazy var accountDetailUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.accountDetailUpdated
+    private lazy var accountDetailUpdatedMMEvents: Observable<Event<MaintenanceMode>> = RxNotifications.shared.accountDetailUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTrackers: { [weak self] in
             guard let this = self else { return nil }
             return [this.appointmentTracker, this.gameTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
         }, requestSelector: { [weak self] _ in
             guard let self = self else { return .empty() }
-            return self.authService.getMaintenanceMode()
+            return AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)
         })
     
-    private lazy var recentPaymentsUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.recentPaymentsUpdated
+    private lazy var recentPaymentsUpdatedMMEvents: Observable<Event<MaintenanceMode>> = RxNotifications.shared.recentPaymentsUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
-        .toAsyncRequest(activityTracker: billTracker) { [weak self] _ in
-            self?.authService.getMaintenanceMode() ?? .empty()
+        .toAsyncRequest(activityTracker: billTracker) {
+            AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)
         }
     
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable
+    private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> = Observable
         .merge(fetchDataMMEvents, accountDetailUpdatedMMEvents)
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
-        .filter { !($0.element?.allStatus ?? false) && !($0.element?.homeStatus ?? false) }
+        .filter { !($0.element?.all ?? false) && !($0.element?.home ?? false) }
         .withLatestFrom(fetchTrigger)
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
@@ -161,7 +161,7 @@ class HomeViewModel {
         .merge(fetchDataMMEvents, recentPaymentsUpdatedMMEvents)
         .filter {
             guard let maint = $0.element else { return true }
-            return !maint.allStatus && !maint.billStatus && !maint.homeStatus
+            return !maint.all && !maint.bill && !maint.home
         }
         .withLatestFrom(fetchTrigger)
         .toAsyncRequest(activityTrackers: { [weak self] state in
@@ -198,14 +198,14 @@ class HomeViewModel {
         .distinctUntilChanged()
     
     private(set) lazy var showMaintenanceModeState: Driver<Bool> = Observable
-        .combineLatest(maintenanceModeEvents.map { $0.element?.homeStatus ?? false },
+        .combineLatest(maintenanceModeEvents.map { $0.element?.home ?? false },
                        accountDetailTracker.asObservable())
         { $0 && !$1 }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = maintenanceModeEvents
-        .filter { !($0.element?.allStatus ?? false) && !($0.element?.homeStatus ?? false) }
+        .filter { !($0.element?.all ?? false) && !($0.element?.home ?? false) }
         .toAsyncRequest { [weak self] _ in
             guard let this = self else { return .empty() }
             return this.alertsService.fetchOpcoUpdates(bannerOnly: true)

@@ -227,8 +227,8 @@ class UnauthenticatedOutageViewModel {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
     
-    func checkForMaintenance(onOutageOnly: @escaping (NewMaintenanceMode) -> Void, onNeither: @escaping () -> Void) {
-        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+    func checkForMaintenance(onOutageOnly: @escaping (MaintenanceMode) -> Void, onNeither: @escaping () -> Void) {
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
             switch result {
             case .success(let maintenanceMode):
                 if !maintenanceMode.all && maintenanceMode.outage {

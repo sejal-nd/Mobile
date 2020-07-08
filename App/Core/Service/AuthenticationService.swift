@@ -54,9 +54,7 @@ protocol AuthenticationService {
     ///   - newPassword: the users new password to set.
     func changePasswordAnon(username: String, currentPassword: String, newPassword: String) -> Observable<Void>
     #endif
-    
-    func getMaintenanceMode(postNotification: Bool) -> Observable<Maintenance>
-        
+            
     /// Attempt to recover a username by providing a phone number and identifier. If the
     ///     phone/identifier match an account, an array of ForgotUsernameMasked
     ///     objects is returned, which will contain a list of masked usernames
@@ -94,10 +92,4 @@ protocol AuthenticationService {
     ///   - username: the username associated with the account.
     func recoverPassword(username: String) -> Observable<Void>
     #endif
-}
-
-extension AuthenticationService {
-    func getMaintenanceMode(postNotification: Bool = true) -> Observable<Maintenance> {
-        return getMaintenanceMode(postNotification: postNotification)
-    }
 }
