@@ -90,7 +90,7 @@ public struct NetworkingLayer {
             if let error = error {
                 dLog(error.localizedDescription)
                 DispatchQueue.main.async {
-                    completion(.failure(.networkError))
+                    completion(.failure(.generic))
                 }
                 return
             }
@@ -129,7 +129,7 @@ public struct NetworkingLayer {
                     if let networkError = error as? NetworkingError {
                         completion(.failure(networkError))
                     } else {
-                        completion(.failure(.decodingError))
+                        completion(.failure(.decoding))
                     }
                 }
             }
@@ -145,11 +145,11 @@ public struct NetworkingLayer {
         
         // check for endpoint error
         if let endpointError = responseWrapper.error {
-            throw NetworkingError.endpointError(endpointError)
+            throw NetworkingError(errorCode: endpointError.code)
         }
         
         guard let data = responseWrapper.data else {
-            throw NetworkingError.decodingError
+            throw NetworkingError.decoding
         }
         
         return data

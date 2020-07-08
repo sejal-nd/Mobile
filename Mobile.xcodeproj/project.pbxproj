@@ -1404,12 +1404,12 @@
 		675F4D8924AB828200A828F9 /* EnergyRewardsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4B24AB828000A828F9 /* EnergyRewardsMock.json */; };
 		675F4D8A24AB828200A828F9 /* EnergyRewardsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4B24AB828000A828F9 /* EnergyRewardsMock.json */; };
 		675F4D8B24AB828200A828F9 /* EnergyRewardsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4B24AB828000A828F9 /* EnergyRewardsMock.json */; };
-		675F4D8C24AB828200A828F9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* minVersionMock.json */; };
-		675F4D8D24AB828200A828F9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* minVersionMock.json */; };
-		675F4D8E24AB828200A828F9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* minVersionMock.json */; };
-		675F4D8F24AB828200A828F9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* minVersionMock.json */; };
-		675F4D9024AB828200A828F9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* minVersionMock.json */; };
-		675F4D9124AB828200A828F9 /* minVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* minVersionMock.json */; };
+		675F4D8C24AB828200A828F9 /* MinVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* MinVersionMock.json */; };
+		675F4D8D24AB828200A828F9 /* MinVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* MinVersionMock.json */; };
+		675F4D8E24AB828200A828F9 /* MinVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* MinVersionMock.json */; };
+		675F4D8F24AB828200A828F9 /* MinVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* MinVersionMock.json */; };
+		675F4D9024AB828200A828F9 /* MinVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* MinVersionMock.json */; };
+		675F4D9124AB828200A828F9 /* MinVersionMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4C24AB828000A828F9 /* MinVersionMock.json */; };
 		675F4D9224AB828200A828F9 /* CompareBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4D24AB828000A828F9 /* CompareBillMock.json */; };
 		675F4D9324AB828200A828F9 /* CompareBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4D24AB828000A828F9 /* CompareBillMock.json */; };
 		675F4D9424AB828200A828F9 /* CompareBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4D24AB828000A828F9 /* CompareBillMock.json */; };
@@ -6649,7 +6649,7 @@
 		675F4B4924AB828000A828F9 /* BillPDFMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillPDFMock.json; sourceTree = "<group>"; };
 		675F4B4A24AB828000A828F9 /* AccountsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountsMock.json; sourceTree = "<group>"; };
 		675F4B4B24AB828000A828F9 /* EnergyRewardsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EnergyRewardsMock.json; sourceTree = "<group>"; };
-		675F4B4C24AB828000A828F9 /* minVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minVersionMock.json; sourceTree = "<group>"; };
+		675F4B4C24AB828000A828F9 /* MinVersionMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinVersionMock.json; sourceTree = "<group>"; };
 		675F4B4D24AB828000A828F9 /* CompareBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CompareBillMock.json; sourceTree = "<group>"; };
 		675F4B4E24AB828000A828F9 /* RecoverUsernameMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecoverUsernameMock.json; sourceTree = "<group>"; };
 		675F4B4F24AB828000A828F9 /* PaymentsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaymentsMock.json; sourceTree = "<group>"; };
@@ -9180,7 +9180,7 @@
 				675F4B4924AB828000A828F9 /* BillPDFMock.json */,
 				675F4B4A24AB828000A828F9 /* AccountsMock.json */,
 				675F4B4B24AB828000A828F9 /* EnergyRewardsMock.json */,
-				675F4B4C24AB828000A828F9 /* minVersionMock.json */,
+				675F4B4C24AB828000A828F9 /* MinVersionMock.json */,
 				675F4B4D24AB828000A828F9 /* CompareBillMock.json */,
 				675F4B4E24AB828000A828F9 /* RecoverUsernameMock.json */,
 				675F4B4F24AB828000A828F9 /* PaymentsMock.json */,
@@ -11316,7 +11316,7 @@
 				675F4DC524AB828200A828F9 /* maintenanceModeMock.json in Resources */,
 				67DDB47724535D2E006CD6EB /* AppointmentDetailViewController.xib in Resources */,
 				67DDB47824535D2E006CD6EB /* outage_status.json in Resources */,
-				675F4D8F24AB828200A828F9 /* minVersionMock.json in Resources */,
+				675F4D8F24AB828200A828F9 /* MinVersionMock.json in Resources */,
 				67DDB47924535D2E006CD6EB /* buddy_face_happy_bounce.json in Resources */,
 				67DDB47B24535D2E006CD6EB /* Usage.storyboard in Resources */,
 				67DDB47C24535D2E006CD6EB /* MiniWalletSheet.storyboard in Resources */,
@@ -11530,7 +11530,7 @@
 				675F4DE524AB828200A828F9 /* EnergyTipsMock.json in Resources */,
 				675F4DBB24AB828200A828F9 /* BillingHistoryResult.json in Resources */,
 				67DDB6D924535D32006CD6EB /* account_lookup.json in Resources */,
-				675F4D9124AB828200A828F9 /* minVersionMock.json in Resources */,
+				675F4D9124AB828200A828F9 /* MinVersionMock.json in Resources */,
 				675F4D9D24AB828200A828F9 /* RecoverUsernameMock.json in Resources */,
 				675F4DCD24AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */,
 				67DDB6DA24535D32006CD6EB /* More.storyboard in Resources */,
@@ -11730,7 +11730,7 @@
 				675F4DE424AB828200A828F9 /* EnergyTipsMock.json in Resources */,
 				675F4DBA24AB828200A828F9 /* BillingHistoryResult.json in Resources */,
 				67DDB92E24535D35006CD6EB /* bill_comparison.json in Resources */,
-				675F4D9024AB828200A828F9 /* minVersionMock.json in Resources */,
+				675F4D9024AB828200A828F9 /* MinVersionMock.json in Resources */,
 				675F4D9C24AB828200A828F9 /* RecoverUsernameMock.json in Resources */,
 				675F4DCC24AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */,
 				67DDB92F24535D35006CD6EB /* account_lookup.json in Resources */,
@@ -12203,7 +12203,7 @@
 				B0DB274E215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
 				675F4D5C24AB828200A828F9 /* PaymentMock.json in Resources */,
 				35ACCB4320EA590D0022907F /* HomeOutageCardView.xib in Resources */,
-				675F4D8C24AB828200A828F9 /* minVersionMock.json in Resources */,
+				675F4D8C24AB828200A828F9 /* MinVersionMock.json in Resources */,
 				35A6C6FA2121D64100C2A58F /* ToggleTableViewCell.xib in Resources */,
 				B5D415781F3A6C6300AC32B2 /* GoogleService-Info_bge.plist in Resources */,
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
@@ -12267,7 +12267,7 @@
 				675F4DE224AB828200A828F9 /* EnergyTipsMock.json in Resources */,
 				675F4DB824AB828200A828F9 /* BillingHistoryResult.json in Resources */,
 				B0DB2765215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
-				675F4D8E24AB828200A828F9 /* minVersionMock.json in Resources */,
+				675F4D8E24AB828200A828F9 /* MinVersionMock.json in Resources */,
 				675F4D9A24AB828200A828F9 /* RecoverUsernameMock.json in Resources */,
 				675F4DCA24AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */,
 				B07E17DB2209F0C900B6E3C7 /* bill_comparison.json in Resources */,
@@ -12467,7 +12467,7 @@
 				675F4DE124AB828200A828F9 /* EnergyTipsMock.json in Resources */,
 				675F4DB724AB828200A828F9 /* BillingHistoryResult.json in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
-				675F4D8D24AB828200A828F9 /* minVersionMock.json in Resources */,
+				675F4D8D24AB828200A828F9 /* MinVersionMock.json in Resources */,
 				675F4D9924AB828200A828F9 /* RecoverUsernameMock.json in Resources */,
 				675F4DC924AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */,
 				B0DB2764215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
