@@ -13,7 +13,6 @@ class ReportOutageViewModel {
     
     let disposeBag = DisposeBag()
     
-    private var outageService: OutageService
     private var accountService: AccountService
     
     var accountNumber: String? // Passed from UnauthenticatedOutageStatusViewController
@@ -24,8 +23,7 @@ class ReportOutageViewModel {
     var comments = BehaviorRelay(value: "")
     var reportFormHidden = BehaviorRelay(value: false)
     
-    required init(outageService: OutageService, accountService: AccountService) {
-        self.outageService = outageService
+    required init(accountService: AccountService) {
         self.accountService = accountService
     }
     
@@ -95,8 +93,8 @@ class ReportOutageViewModel {
     }
     
     lazy var shouldPingMeter: Bool = {
-        return outageStatus.activeOutage == false &&
-            outageStatus.smartMeterStatus == true
+        return outageStatus.isActiveOutage == false &&
+            outageStatus.isSmartMeter == true
     }()
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -107,24 +105,23 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.flickering
         }
         
-        var outageInfo = OutageInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
+        var outageRequest = OutageRequest(accountNumber: AccountsStore.shared.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
         if phoneExtension.value.count > 0 {
-            outageInfo.phoneExtension = phoneExtension.value
+            outageRequest.phoneExtension = phoneExtension.value
         }
         if let locationId = self.outageStatus?.locationId {
-            outageInfo.locationId = locationId
+            outageRequest.locationId = locationId
         }
         
-        outageService.reportOutage(outageInfo: outageInfo)
-            .observeOn(MainScheduler.instance)
-            .asObservable()
-            .subscribe(onNext: { _ in
+        OutageService.reportOutage(outageRequest: outageRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.outageReported : true])
-            }, onError: { error in
+            case .failure(let error):
                 onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     func reportOutageAnon(onSuccess: @escaping (ReportedOutageResult) -> Void, onError: @escaping (String) -> Void) {
@@ -135,33 +132,34 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.flickering
         }
         
-        var outageInfo = OutageInfo(accountNumber: accountNumber ?? outageStatus.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment: comments.value)
+        var outageRequest = OutageRequest(accountNumber: accountNumber ?? outageStatus.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment: comments.value)
         if phoneExtension.value.count > 0 {
-            outageInfo.phoneExtension = phoneExtension.value
+            outageRequest.phoneExtension = phoneExtension.value
         }
         if let locationId = self.outageStatus!.locationId {
-            outageInfo.locationId = locationId
+            outageRequest.locationId = locationId
         }
         
-        outageService.reportOutageAnon(outageInfo: outageInfo)
-            .observeOn(MainScheduler.instance)
-            .asObservable()
-            .subscribe(onNext: { reportedOutage in
+        OutageService.reportOutageAnon(outageRequest: outageRequest) { result in
+            switch result {
+            case .success(let reportedOutage):
                 onSuccess(reportedOutage)
-            }, onError: { error in
+            case .failure(let error):
                 onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
-    func meterPingGetStatus(onComplete: @escaping (MeterPingInfo) -> Void, onError: @escaping () -> Void) {
-        currentPremiseNumber.flatMap { self.outageService.pingMeter(account: AccountsStore.shared.currentAccount, premiseNumber: $0) }.observeOn(MainScheduler.instance)
-            .asObservable()
-            .subscribe(onNext: { meterPingInfo in
-                onComplete(meterPingInfo)
-            }, onError: { _ in
-                onError()
-            }).disposed(by: disposeBag)
+    func meterPingGetStatus(onComplete: @escaping (MeterPingResult) -> Void, onError: @escaping () -> Void) {
+        OutageService.pingMeter(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+                                   premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
+                                    switch result {
+                                    case .success(let meterPingInfo):
+                                        onComplete(meterPingInfo)
+                                    case .failure:
+                                        onError()
+                                    }
+        }
     }
     
     private lazy var currentPremiseNumber: Observable<String?> = Observable.just(AccountsStore.shared.currentAccount)

@@ -218,8 +218,7 @@ class RegistrationViewModel {
     }()
 	
     func checkForMaintenance() {
-        authenticationService
-            .getMaintenanceMode()
+        AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)
             .subscribe()
             .disposed(by: disposeBag)
     }

@@ -29,7 +29,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        if viewModel.outageStatusArray!.count == viewModel.outageStatusArray!.filter({ $0.multipremiseAccount }).count {
+        if viewModel.outageStatusArray.count == viewModel.outageStatusArray.filter({ $0.multipremiseAccount }).count {
             singleMultipremiseAccount = true
         }
         
@@ -105,7 +105,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         guard let selectedOutageStatus = viewModel.selectedOutageStatus.value else { return }
         if selectedOutageStatus.multipremiseAccount {
             // No need to query again for a multipremise account because it would just return us an array of the status info we already have
-            if selectedOutageStatus.flagGasOnly {
+            if selectedOutageStatus.isGasOnly {
                 let alertVc = UIAlertController(title: NSLocalizedString("Outage status unavailable", comment: ""), message: NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""), preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
@@ -184,13 +184,13 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.outageStatusArray!.count
+        return viewModel.outageStatusArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LookupToolResultCell", for: indexPath) as! AccountLookupToolResultCell
 
-        let outageStatus = viewModel.outageStatusArray![indexPath.row]
+        let outageStatus = viewModel.outageStatusArray[indexPath.row]
 
         var a11yLabel = ""
         if singleMultipremiseAccount {
@@ -232,7 +232,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedOutageStatus.accept(viewModel.outageStatusArray![indexPath.row])
+        viewModel.selectedOutageStatus.accept(viewModel.outageStatusArray[indexPath.row])
     }
 }
 

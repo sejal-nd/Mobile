@@ -14,11 +14,8 @@ class StormModeHomeViewModel {
     let stormModePollInterval = 30
     
     private let authService: AuthenticationService
-    private var outageService: OutageService
     private let alertsService: AlertsService
-    
-    private var currentGetOutageStatusDisposable: Disposable?
-    
+        
     private let disposeBag = DisposeBag()
     
     var currentOutageStatus: OutageStatus?
@@ -30,14 +27,9 @@ class StormModeHomeViewModel {
     var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
     
     
-    init(authService: AuthenticationService, outageService: OutageService, alertsService: AlertsService) {
+    init(authService: AuthenticationService, alertsService: AlertsService) {
         self.authService = authService
-        self.outageService = outageService
         self.alertsService = alertsService
-    }
-    
-    deinit {
-        currentGetOutageStatusDisposable?.dispose()
     }
     
     func startStormModePolling() -> Driver<Void> {
@@ -47,11 +39,11 @@ class StormModeHomeViewModel {
             // Start polling immediately
             .startWith(())
             .toAsyncRequest { [weak self] in
-                self?.authService.getMaintenanceMode(postNotification: false) ?? .empty()
+                self?.getMaintenanceMode() ?? .empty()
             }
             // Ignore errors and positive storm mode responses
             .elements()
-            .filter { !$0.stormModeStatus }
+            .filter { !$0.storm }
             // Stop polling after storm mode ends
             .take(1)
             .mapTo(())
@@ -59,42 +51,38 @@ class StormModeHomeViewModel {
             .do(onNext: { [weak self] in self?.stormModeEnded = true })
     }
     
-    func fetchData(onSuccess: @escaping () -> Void,
-                   onError: @escaping (ServiceError) -> Void) {
-        // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
-        currentGetOutageStatusDisposable?.dispose()
-        
-        getOutageStatus(onSuccess: onSuccess, onError: onError)
-        
+    func getMaintenanceMode() -> Observable<MaintenanceMode> {
+        return Observable.create { observer -> Disposable in
+            AnonymousService.maintenanceMode { result in
+                switch result {
+                case .success(let maintenanceMode):
+                    observer.onNext(maintenanceMode)
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            return Disposables.create()
+        }
     }
     
-    func getOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
+    func fetchData(onSuccess: @escaping () -> Void,
+                   onError: @escaping (NetworkingError) -> Void) {
         
-        // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
-        currentGetOutageStatusDisposable?.dispose()
-        
-        currentGetOutageStatusDisposable = outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] outageStatus in
+        getOutageStatus(onSuccess: onSuccess, onError: onError)
+    }
+    
+    func getOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (NetworkingError) -> Void) {
+        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { [weak self] result in
+            switch result {
+            case .success(let outageStatus):
                 self?.currentOutageStatus = outageStatus
                 onSuccess()
-            }, onError: { [weak self] error in
-                guard let self = self else { return }
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
-                    self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])
-                    onSuccess()
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
-                    self.currentOutageStatus = OutageStatus.from(["flagNoPay": true])
-                    onSuccess()
-                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
-                    self.currentOutageStatus = OutageStatus.from(["flagNonService": true])
-                    onSuccess()
-                } else {
-                    self.currentOutageStatus = nil
-                    onError(serviceError)
-                }
-            })
+            case .failure(let error):
+                self?.currentOutageStatus = nil
+                onError(error)
+            }
+        }
     }
     
     func getStormModeUpdate() {
@@ -109,7 +97,7 @@ class StormModeHomeViewModel {
     
     var reportedOutage: ReportedOutageResult? {
         guard AccountsStore.shared.currentIndex != nil else { return nil }
-        return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        return OutageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
     }
     
     var estimatedRestorationDateString: String {
@@ -118,7 +106,7 @@ class StormModeHomeViewModel {
                 return DateFormatter.outageOpcoDateFormatter.string(from: reportedETR)
             }
         } else {
-            if let statusETR = currentOutageStatus!.etr {
+            if let statusETR = currentOutageStatus?.estimatedRestorationDate {
                 return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
             }
         }
@@ -126,8 +114,8 @@ class StormModeHomeViewModel {
     }
     
     var outageReportedDateString: String {
-        if let reportedOutage = reportedOutage {
-            let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedOutage.reportedTime)
+        if let reportedOutage = reportedOutage, let reportedTime = reportedOutage.reportedTime {
+            let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedTime)
             return String(format: NSLocalizedString("Reported %@", comment: ""), timeString)
         }
         
@@ -163,9 +151,9 @@ class StormModeHomeViewModel {
         if Environment.shared.opco == .bge {
             return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
         } else {
-            if currentOutageStatus!.flagFinaled {
+            if currentOutageStatus!.isFinaled {
                 return NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
-            } else if currentOutageStatus!.flagNoPay {
+            } else if currentOutageStatus!.isNoPay {
                 return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
             }
         }
@@ -173,8 +161,8 @@ class StormModeHomeViewModel {
     }
     
     var reportOutageEnabled: Bool {
-        return !(currentOutageStatus?.flagFinaled ?? false ||
-            currentOutageStatus?.flagNoPay ?? false ||
-            currentOutageStatus?.flagNonService ?? false)
+        return !(currentOutageStatus?.isFinaled ?? false ||
+            currentOutageStatus?.isNoPay ?? false ||
+            currentOutageStatus?.isNonService ?? false)
     }
 }

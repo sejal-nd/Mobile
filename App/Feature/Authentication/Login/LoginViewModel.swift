@@ -80,14 +80,10 @@ class LoginViewModel {
                                     case .failure(let error):
                                         DispatchQueue.main.async {
                                             switch error {
-                                            case .endpointError(let endpointError):
-                                                if endpointError.code == ServiceErrorCode.fnAccountProtected.rawValue {
-                                                    onError(NSLocalizedString("Password Protected Account", comment: ""), endpointError.description)
-                                                } else if endpointError.code == ServiceErrorCode.fnAcctNotActivated.rawValue {
-                                                    onRegistrationNotComplete()
-                                                } else {
-                                                    onError(nil, error.localizedDescription)
-                                                }
+                                            case .passwordProtected:
+                                                onError(NSLocalizedString("Password Protected Account", comment: ""), error.description)
+                                            case .accountNotActivated:
+                                                onRegistrationNotComplete()
                                             default:
                                                 onError(nil, error.localizedDescription)
                                             }
@@ -97,7 +93,7 @@ class LoginViewModel {
     }
     
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
             switch result {
             case .success(let maintenanceMode):
                 completion(maintenanceMode.storm)
@@ -138,7 +134,7 @@ class LoginViewModel {
     }
     
     func checkForMaintenance(onCompletion: @escaping () -> Void) {
-        AnonymousService.maintenanceMode { (result: Result<NewMaintenanceMode, Error>) in
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
             switch result {
             case .success(_):
                 onCompletion()

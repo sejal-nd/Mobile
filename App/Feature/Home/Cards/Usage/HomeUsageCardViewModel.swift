@@ -13,7 +13,7 @@ class HomeUsageCardViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let maintenanceModeEvents: Observable<Event<Maintenance>>
+    private let maintenanceModeEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
     private let accountService: AccountService
     private let usageService: UsageService
@@ -33,7 +33,7 @@ class HomeUsageCardViewModel {
     let barGraphSelectionStates = BehaviorRelay(value: [BehaviorRelay(value: false), BehaviorRelay(value: false), BehaviorRelay(value: true)])
     
     required init(fetchData: Observable<Void>,
-                  maintenanceModeEvents: Observable<Event<Maintenance>>,
+                  maintenanceModeEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   accountService: AccountService,
                   usageService: UsageService,
@@ -53,7 +53,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var serResultEvents: Observable<Event<[SERResult]>> = accountDetailEvents
         .elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usage ?? false) }
         .filter { !$1 }
         .withLatestFrom(fetchData) { ($0.0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] _ in
@@ -84,7 +84,7 @@ class HomeUsageCardViewModel {
             return true // show bill comparison
         }
         .do(onNext: { [weak self] _ in self?.usageService.clearCache() })
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usage ?? false) }
         .filter { !$1 }
         .withLatestFrom(Observable.combineLatest(fetchData, electricGasSelectedSegmentIndex.asObservable()))
         { ($0.0, $1.1) }
@@ -143,7 +143,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents
         .elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usage ?? false) }
         .filter { accountDetail, isMaintenance in
             if isMaintenance {
                 return false
@@ -162,7 +162,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var showCommercialState: Driver<Void> = accountDetailEvents
         .elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usage ?? false) }
         .filter { accountDetail, isMaintenance in
             if isMaintenance {
                 return false
@@ -175,7 +175,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents
         .elements()
-        .filter { $0.usageStatus }
+        .filter { $0.usage }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -186,7 +186,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var showSmartEnergyRewards: Driver<Void> = Observable
         .combineLatest(accountDetailEvents.elements(), serResultEvents.elements())
-        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
+        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usage ?? false) }
         .filter { accountDetail, eventResults, isMaintenanceMode in
             !isMaintenanceMode &&
                 accountDetail.isResidential &&
@@ -199,7 +199,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = Observable
         .combineLatest(accountDetailEvents.elements(), serResultEvents.elements())
-        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
+        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usage ?? false) }
         .filter { accountDetail, eventResults, isMaintenanceMode in
             !isMaintenanceMode &&
                 accountDetail.isResidential &&

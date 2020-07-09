@@ -15,14 +15,12 @@ fileprivate let firstfuelSessionTimeout = 900 // 15 minutes
 
 class UsageViewModel {
     
-    private let authService: AuthenticationService
     private let accountService: AccountService
     private let usageService: UsageService
     
     // MARK: - Init
     
-    required init(authService: AuthenticationService, accountService: AccountService, usageService: UsageService) {
-        self.authService = authService
+    required init(accountService: AccountService, usageService: UsageService) {
         self.accountService = accountService
         self.usageService = usageService
     }
@@ -35,17 +33,17 @@ class UsageViewModel {
         fetchAllDataTrigger.onNext(())
     }
     
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchAllDataTrigger
+    private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> = fetchAllDataTrigger
         // Clear cache on refresh or account switch
         .do(onNext: { [weak self] in self?.usageService.clearCache() })
-        .toAsyncRequest { [weak self] in
-            self?.authService.getMaintenanceMode() ?? .empty()
+        .toAsyncRequest {
+            AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)
         }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
         .filter {
-            !($0.element?.allStatus ?? false) &&
-            !($0.element?.usageStatus ?? false)
+            !($0.element?.all ?? false) &&
+            !($0.element?.usage ?? false)
         }
         .toAsyncRequest { [weak self] _ in
             self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
@@ -176,7 +174,7 @@ class UsageViewModel {
     
     private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents
         .elements()
-        .filter { $0.usageStatus }
+        .filter { $0.usage }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
