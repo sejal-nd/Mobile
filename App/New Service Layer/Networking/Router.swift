@@ -106,7 +106,7 @@ public enum Router {
     
     // Unauthenticated
     case outageStatusAnon(request: AnonOutageRequest)
-    case reportOutageAnon(encodable: Encodable)
+    case reportOutageAnon(request: OutageRequest)
     
     case passwordChange(request: ChangePasswordRequest)
     case accountLookup(encodable: Encodable)
@@ -122,14 +122,13 @@ public enum Router {
     public var host: String {
         switch self {
         case .fetchJWTToken:
-            return "stage-apigateway.exeloncorp.com"// todo: fix in mcs config
+            return Environment.shared.mcsConfig.oAuthEndpoint
         case .weather:
             return "api.weather.gov"
         case .alertBanner, .newsAndUpdates:
             return "azstg.bge.com/_api/web/lists/GetByTitle('GlobalAlert')/items" // todo: fix in mcs config
         default:
-            //return Environment.shared.mcsConfig.baseUrl
-            return "mcsstg.mobileenv.bge.com" // todo fix in mcs config
+            return Environment.shared.mcsConfig.baseUrl
         }
     }
     

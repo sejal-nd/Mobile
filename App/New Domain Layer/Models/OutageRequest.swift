@@ -8,20 +8,20 @@
 
 import Foundation
 
-enum OutageIssue: String, Encodable {
+public enum OutageIssue: String, Encodable {
     case allOut = "allOut"
     case partOut = "partOut"
     case flickering = "flickering"
 }
 
-enum OutageTrivalent: String, Encodable {
+public enum OutageTrivalent: String, Encodable {
     case yes = "Yes"
     case no = "No"
     case unsure = "Unsure"
 }
 
 /// Representation of an outage to be reported
-struct OutageRequest: Encodable {
+public struct OutageRequest: Encodable {
     
     let accountNumber: String
     var locationId: String?
