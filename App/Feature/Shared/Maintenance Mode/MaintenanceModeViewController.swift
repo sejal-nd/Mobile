@@ -16,7 +16,7 @@ class MaintenanceModeViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    var maintenance: NewMaintenanceMode?
+    var maintenance: MaintenanceMode?
     
     private lazy var viewModel = MaintenanceModeViewModel(authService: ServiceFactory.createAuthenticationService(),
                                                           maintenance: maintenance)

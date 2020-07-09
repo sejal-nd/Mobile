@@ -48,7 +48,7 @@ class NetworkTest {
     }
     
     private func maint() {
-        NetworkingLayer.request(router: .maintenanceMode) { (result: Result<NewMaintenanceMode, NetworkingError>) in
+        NetworkingLayer.request(router: .maintenanceMode) { (result: Result<MaintenanceMode, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 2 SUCCESS: \(data) BREAK \(data.all)")

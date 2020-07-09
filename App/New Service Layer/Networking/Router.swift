@@ -107,8 +107,9 @@ public enum Router {
     case meterPing(accountNumber: String, premiseNumber: String)
     
     // Unauthenticated
-    case anonOutageStatus(encodable: Encodable)
-
+    case outageStatusAnon(request: AnonOutageRequest)
+    case reportOutageAnon(request: OutageRequest)
+    
     case passwordChange(request: ChangePasswordRequest)
     case accountLookup(encodable: Encodable)
     case recoverPassword(encodable: Encodable)
@@ -119,36 +120,24 @@ public enum Router {
         return "https"
     }
     
-    // BGE Stage
     public var host: String {
         switch self {
         case .fetchJWTToken:
-            return "stage-apigateway.exeloncorp.com"// todo: fix in mcs config
+            return Environment.shared.mcsConfig.oAuthEndpoint
         case .weather:
             return "api.weather.gov"
         case .alertBanner, .newsAndUpdates:
-            return "azstg.bge.com/_api/web/lists/GetByTitle('GlobalAlert')/items" // todo: fix in mcs config
+            return Environment.shared.mcsConfig.sharepointBaseURL
         default:
-            //return Environment.shared.mcsConfig.baseUrl
-            return "mcsstg.mobileenv.bge.com" // todo fix in mcs config
+            return Environment.shared.mcsConfig.baseUrl
         }
     }
     
     public var apiAccess: ApiAccess {
         switch self {
-        // External
         case .weather:
             return .external
-        // Anon
-        case .minVersion:
-            return .anon
-        case .maintenanceMode:
-            return .anon
-        case .anonOutageStatus:
-            return .anon
-        case .passwordChange:
-            return .anon
-        case .fetchJWTToken:
+        case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon:
             return .anon
         default:
             return .auth
@@ -157,7 +146,7 @@ public enum Router {
     
     public var path: String {
         switch self {
-        case .anonOutageStatus:
+        case .outageStatusAnon:
             return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.displayString)/outage/query"
         case .maintenanceMode:
             return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.displayString)/config/maintenance"
@@ -262,12 +251,14 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)/game/\(accountNumber)"
         case .fetchDailyUsage(let accountNumber, let premiseNumber, _):
             return "accounts/\(accountNumber)/premises/\(premiseNumber)/usage/query"
+        case .reportOutageAnon:
+            return "/mobile/custom/\(apiAccess)/outage"
         }
     }
     
     public var method: String {
         switch self {
-        case .anonOutageStatus, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage:
+        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname:
             return "GET"
@@ -301,7 +292,7 @@ public enum Router {
             return ["content-type": "application/x-www-form-urlencoded"]
         case .alertBanner, .newsAndUpdates:
             return ["Accept": "application/json;odata=verbose"]
-        case .anonOutageStatus:
+        case .outageStatusAnon, .reportOutageAnon:
             return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
                     "Content-Type": "application/json"]
         case .minVersion, .maintenanceMode:
@@ -318,8 +309,8 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .anonOutageStatus(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
-             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable):
+        case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
+             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable):
             return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
@@ -376,7 +367,9 @@ public enum Router {
             return "RecoverUsernameResultMock"
         case .outageStatus:
             return "OutageStatusMock"
-        case .reportOutage:
+        case .outageStatusAnon:
+            return "AnonOutageStatusMock"
+        case .reportOutage, .reportOutageAnon: // todo vlaidate anon is same response as auth
             return "ReportOutageMock"
         case .meterPing:
             return "MeterPingMock"

@@ -22,7 +22,7 @@ class ReportedOutagesStore {
     subscript(accountNumber: String) -> ReportedOutageResult? {
         get {
             if let report = reportsCache[accountNumber] {
-                if report.reportedTime.addingTimeInterval(reportTimeLimit) > .now {
+                if report.reportedTime?.addingTimeInterval(reportTimeLimit) > .now {
                     return report
                 } else {
                     removeReport(forAccountNumber: accountNumber)
@@ -30,9 +30,9 @@ class ReportedOutagesStore {
                 }
             } else if let reportDictionary = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.reportedOutagesDictionary),
                 let reportNSDictionary = reportDictionary[accountNumber] as? NSDictionary,
-                let report = ReportedOutageResult.from(reportNSDictionary) {
+                let report = ReportedOutageResult.map(from: reportNSDictionary) {
                 
-                if report.reportedTime.addingTimeInterval(reportTimeLimit) > .now {
+                if report.reportedTime?.addingTimeInterval(reportTimeLimit) > .now {
                     reportsCache[accountNumber] = report
                     return report
                 } else {
@@ -51,9 +51,9 @@ class ReportedOutagesStore {
                 reportDictionary = existingDict
             }
             
-            if let report = newValue {
+            if let report = newValue, let reportedTime = report.reportedTime {
                 var dict = [String: Any]()
-                dict["reportedTime"] = DateFormatter.yyyyMMddTHHmmssZZZZZFormatter.string(from: report.reportedTime)
+                dict["reportedTime"] = DateFormatter.yyyyMMddTHHmmssZZZZZFormatter.string(from: reportedTime)
                 if let etr = report.etr?.apiFormatString {
                     dict["etr"] = etr
                 }

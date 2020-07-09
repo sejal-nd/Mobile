@@ -54,12 +54,12 @@ class BillViewModel {
                RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchTrigger
+    private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> = fetchTrigger
         .toAsyncRequest(activityTracker: { [weak self] in self?.tracker(forState: $0) },
-                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+                        requestSelector: { [unowned self] _ in AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true) })
     
     private(set) lazy var dataEvents: Observable<Event<(AccountDetail, PaymentItem?)>> = maintenanceModeEvents
-        .filter { !($0.element?.allStatus ?? false) && !($0.element?.billStatus ?? false) }
+        .filter { !($0.element?.all ?? false) && !($0.element?.bill ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)
@@ -103,13 +103,13 @@ class BillViewModel {
             .filter { $0 && !$1 }
             .mapTo(())
     
-//    private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
-//        .map { $0.0 }
-//        .filter {
-//            return !$0.isEligibleForUsageData && $0.isResidential
-//        }
-//        .mapTo(())
-//        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
+        .map { $0.0 }
+        .filter {
+            return !$0.isEligibleForUsageData && $0.isResidential
+        }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showUsageBillImpactFullError: Driver<Void> = usageBillImpactEvents.errors()
         .do(onNext: { [weak self] _ in
@@ -168,7 +168,7 @@ class BillViewModel {
     // MARK: - Show/Hide Views
     
     private(set) lazy var showMaintenanceMode: Driver<Void> = maintenanceModeEvents.elements()
-        .filter { $0.billStatus }
+        .filter { $0.bill }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -219,7 +219,7 @@ class BillViewModel {
     let showAmountDueTooltip = Environment.shared.opco == .peco
     
     private(set) lazy var showMakeAPaymentButton: Driver<Bool> = currentAccountDetail.map {
-        $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge
+        $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge || Environment.shared.opco.isPHI
     }
     
     private(set) lazy var showBillPaidFakeButton: Driver<Bool> =
@@ -464,14 +464,8 @@ class BillViewModel {
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Payments Processing", comment: "")
-        case .comEd, .peco:
+        case .comEd, .peco, .pepco, .ace, .delmarva:
             return NSLocalizedString("Pending Payments", comment: "")
-        case .pepco:
-            return NSLocalizedString("todo", comment: "")
-        case .ace:
-            return NSLocalizedString("todo", comment: "")
-        case .delmarva:
-            return NSLocalizedString("todo", comment: "")
         }
     }()
     

@@ -416,13 +416,13 @@ class BillViewController: AccountPickerViewController {
         usageBillImpactContentView.isHidden = true
     }
     
-//    func showUsageBillImpactEmptyState() {
-//        usageBillImpactView.isHidden = false
-//        usageBillImpactLoadingView.isHidden = true
-//        usageBillImpactErrorView.isHidden = true
-//        usageBillImpactEmptyStateView.isHidden = false
-//        usageBillImpactContentView.isHidden = true
-//    }
+    func showUsageBillImpactEmptyState() {
+        usageBillImpactView.isHidden = false
+        usageBillImpactLoadingView.isHidden = true
+        usageBillImpactErrorView.isHidden = true
+        usageBillImpactEmptyStateView.isHidden = false
+        usageBillImpactContentView.isHidden = true
+    }
     
     func showUsageBillImpactContent() {
         usageBillImpactView.isHidden = false
@@ -516,7 +516,7 @@ class BillViewController: AccountPickerViewController {
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
         viewModel.showUsageBillImpactFullLoading.drive(onNext: { [weak self] in self?.showUsageBillImpactLoading() }).disposed(by: bag)
         viewModel.showUsageBillImpactFullError.drive(onNext: { [weak self] in self?.showUsageBillImpactError() }).disposed(by: bag)
-        //viewModel.showUsageBillImpactEmptyState.drive(onNext: { [weak self] in self?.showUsageBillImpactEmptyState() }).disposed(by: bag)
+        viewModel.showUsageBillImpactEmptyState.drive(onNext: { [weak self] in self?.showUsageBillImpactEmptyState() }).disposed(by: bag)
         viewModel.showUsageBillImpactContent.drive(onNext: { [weak self] in self?.showUsageBillImpactContent() }).disposed(by: bag)
         viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
         viewModel.showPrepaidState.drive(onNext: { [weak self] in self?.showPrepaidState() }).disposed(by: bag)
@@ -571,7 +571,6 @@ class BillViewController: AccountPickerViewController {
 		viewModel.showMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
 		viewModel.showBillPaidFakeButton.not().drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentStatusText.not().drive(makeAPaymentStatusButton.rx.isHidden).disposed(by: bag)
-        
         viewModel.hasBillBreakdownData.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
 
         viewModel.showAutoPay.not().drive(autoPayButton.rx.isHidden).disposed(by: bag)

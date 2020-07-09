@@ -45,7 +45,7 @@ extension URLProtocolMock {
     // Utility config builder.
     static func createMockURLConfiguration(path: String,
                                            mockDataFileName: String,
-                                           mockUser: MockDataKey) -> URLSessionConfiguration {
+                                           mockUser: NewMockDataKey) -> URLSessionConfiguration {
         // this is the URL we expect to call
         let url = URL(string: path)
         
@@ -59,7 +59,7 @@ extension URLProtocolMock {
             guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                 fatalError("JSON format is incorrect for \(mockDataFileName)")
             }
-            guard let nestedJSON = json[mockUser.rawValue] ?? json[MockDataKey.default.rawValue] else {
+            guard let nestedJSON = json[mockUser.rawValue] ?? json[NewMockDataKey.default.rawValue] else {
                 fatalError("Mock user key \(mockUser.rawValue) not found in nested json for: \(mockDataFileName)")
             }
             let nestedJsonData = try JSONSerialization.data(withJSONObject: nestedJSON, options: .prettyPrinted)

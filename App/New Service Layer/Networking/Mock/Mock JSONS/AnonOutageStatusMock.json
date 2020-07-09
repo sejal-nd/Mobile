@@ -1,0 +1,72 @@
+{
+  "default": {
+    "success": true,
+    "data": [
+      {
+        "accountNumber": "4893590000",
+        "maskedAccountNumber": "******0000",
+        "contactHomeNumber": "(490) 253-7461",
+        "locationId": "3237340520",
+        "flagGasOnly": false,
+        "accounts": null,
+        "address": "727 Oldham St, Baltimore, MD 21224",
+        "maskedAddress": "727 Oldh",
+        "addressNumber": "727",
+        "addressName": "OLDHAM",
+        "isPasswordProtected": false,
+        "isUserAuthenticated": true,
+        "OutageInfoBGE": {
+          "statusValue": "NOT ACTIVE",
+          "outageEstimatedRestorationTime": "2020-07-06T16:45:00-04:00",
+          "customerName": "Mavroulis,Stanley",
+          "customerLocalNumber": "(490) 253-7461",
+          "meterSerialNumber": "G159421828",
+          "workLocationMRID": "3237340520",
+          "outageDeviceId": "40104300050",
+          "addressNumber": "727",
+          "addressName": "OLDHAM",
+          "addressRegion": "4010430"
+        },
+        "outageReported": "Our records show your power is on. If not, please use the form below to report a power outage. Note: If you reported an outage within the past fifteen minutes it may not yet be reflected on this site.",
+        "status": "NOT ACTIVE",
+        "plannedOutages": null,
+        "smartMeterStatus": false,
+        "ETR": "2020-07-06T16:45:00-04:00"
+      },
+      {
+        "accountNumber": "9856950000",
+        "maskedAccountNumber": "******0000",
+        "contactHomeNumber": "(490) 253-7461",
+        "locationId": "3246410252",
+        "flagGasOnly": false,
+        "accounts": null,
+        "address": "731 Oldham St, Baltimore, MD 21224",
+        "maskedAddress": "731 Oldh",
+        "addressNumber": "731",
+        "addressName": "OLDHAM",
+        "isPasswordProtected": false,
+        "isUserAuthenticated": true,
+        "OutageInfoBGE": {
+          "statusValue": "NOT ACTIVE",
+          "outageEstimatedRestorationTime": "2020-07-06T16:45:00-04:00",
+          "customerName": "Mavroulis,Stanley",
+          "customerLocalNumber": "(490) 253-7461",
+          "meterSerialNumber": "G159598493",
+          "workLocationMRID": "3246410252",
+          "outageDeviceId": "40104300050",
+          "addressNumber": "731",
+          "addressName": "OLDHAM",
+          "addressRegion": "4010430"
+        },
+        "outageReported": "Our records show your power is on. If not, please use the form below to report a power outage. Note: If you reported an outage within the past fifteen minutes it may not yet be reflected on this site.",
+        "status": "NOT ACTIVE",
+        "plannedOutages": null,
+        "smartMeterStatus": false,
+        "ETR": "2020-07-06T16:45:00-04:00"
+      }
+    ],
+    "meta": {
+      "code": "FN-ACCT-MULTIPLE"
+    }
+  }
+}

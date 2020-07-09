@@ -34,7 +34,7 @@ class StormModeBillViewModel {
 
     private(set) lazy var billCardViewModel =
         HomeBillCardViewModel(fetchData: fetchDataObservable,
-                              fetchDataMMEvents: fetchDataObservable.mapTo(Maintenance.from([:])!).materialize(),
+                              fetchDataMMEvents: fetchDataObservable.mapTo(MaintenanceMode()).materialize(),
                               accountDetailEvents: accountDetailEvents,
                               scheduledPaymentEvents: scheduledPaymentEvents,
                               walletService: walletService,

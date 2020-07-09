@@ -11,15 +11,6 @@ import Foundation
 /// Utility class for intantiating Service Instances
 struct ServiceFactory {
 
-    static let sharedOutageService: OutageService = {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockOutageService()
-        default:
-            return MCSOutageService()
-        }
-    }()
-
     static func createAuthenticationService() -> AuthenticationService {
         switch Environment.shared.environmentName {
         case .aut:
@@ -40,10 +31,6 @@ struct ServiceFactory {
         default:
             return MCSAccountService()
         }
-    }
-
-    static func createOutageService() -> OutageService {
-        return sharedOutageService
     }
 
     static func createBillService() -> BillService {

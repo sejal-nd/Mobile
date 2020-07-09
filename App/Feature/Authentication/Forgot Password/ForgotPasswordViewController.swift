@@ -78,7 +78,11 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBAction func onSubmitPress() {
         view.endEditing(true)
-
+        // For PHI opcos, user cannot request for forgot password flow with a username, hence restricting the flow to email only
+        if !viewModel.username.value.isValidEmail() && Environment.shared.opco.isPHI {
+            usernameTextField.setError(NSLocalizedString("Username (Email Address) is invalid.", comment: ""))
+            return
+        }
         LoadingView.show()
         viewModel.submitForgotPassword(onSuccess: { [weak self] in
             LoadingView.hide()

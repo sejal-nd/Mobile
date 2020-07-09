@@ -14,7 +14,7 @@ class HomeBillCardViewModel {
     
     let bag = DisposeBag()
     
-    let fetchDataMMEvents: Observable<Event<Maintenance>>
+    let fetchDataMMEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
     let scheduledPaymentEvents: Observable<Event<PaymentItem?>>
     private let walletService: WalletService
@@ -30,7 +30,7 @@ class HomeBillCardViewModel {
     let paymentTracker = ActivityTracker()
     
     required init(fetchData: Observable<Void>,
-                  fetchDataMMEvents: Observable<Event<Maintenance>>,
+                  fetchDataMMEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   scheduledPaymentEvents: Observable<Event<PaymentItem?>>,
                   walletService: WalletService,
@@ -69,18 +69,18 @@ class HomeBillCardViewModel {
         .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated)
     
     // Awful maintenance mode check
-    private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
+    private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<MaintenanceMode>> = RxNotifications.shared.defaultWalletItemUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
-                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+                        requestSelector: { [unowned self] _ in AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true) })
     
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> =
+    private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> =
         Observable.merge(fetchDataMMEvents, defaultWalletItemUpdatedMMEvents)
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = maintenanceModeEvents
         .filter {
             guard let maint = $0.element else { return true }
-            return !maint.allStatus && !maint.billStatus && !maint.homeStatus
+            return !maint.all && !maint.bill && !maint.home
     }
     .withLatestFrom(fetchTrigger)
     .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
@@ -173,7 +173,7 @@ class HomeBillCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMaintenanceModeState: Driver<Bool> = maintenanceModeEvents
-        .map { $0.element?.billStatus ?? false }
+        .map { $0.element?.bill ?? false }
         .startWith(false)
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())

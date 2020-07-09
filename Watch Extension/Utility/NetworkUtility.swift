@@ -30,7 +30,7 @@ enum Feature {
 }
 
 struct MaintenanceModeStatus {
-    var maintenance: Maintenance
+    var maintenance: MaintenanceMode
     var feature: Feature
 }
 
@@ -220,16 +220,16 @@ extension NetworkUtility {
     
     /// Sends notification to IC, and returns a list containing the current maintenance mode status for each feature
     /// - Parameter maintenance: object returned from serivces of type `Maintenance`.
-    private func processMaintenanceMode(_ maintenance: Maintenance) -> [MaintenanceModeStatus] {
-        if maintenance.allStatus {
+    private func processMaintenanceMode(_ maintenance: MaintenanceMode) -> [MaintenanceModeStatus] {
+        if maintenance.all {
             maintenanceModeStatuses.append(MaintenanceModeStatus(maintenance: maintenance, feature: .all))
         }
         
-        if maintenance.outageStatus {
+        if maintenance.outage {
             maintenanceModeStatuses.append(MaintenanceModeStatus(maintenance: maintenance, feature: .outage))
         }
         
-        if maintenance.usageStatus {
+        if maintenance.usage {
             maintenanceModeStatuses.append(MaintenanceModeStatus(maintenance: maintenance, feature: .usage))
         }
         
@@ -325,21 +325,20 @@ extension NetworkUtility {
     /// - Note: Maintenance can be active for: all, outage, usage, or bill.  Success does not indicate whether maintenance mode is on, rather that data was successfully fetched.
     ///
     /// - Parameter result: Either `Maintenance` or `NetworkError`.
-    private func fetchMaintenanceModeStatus(result: @escaping (Result<Maintenance, NetworkError>) -> ()) {
+    private func fetchMaintenanceModeStatus(result: @escaping (Result<MaintenanceMode, NetworkError>) -> ()) {
         dLog("Fetching Maintenance Mode Status...")
         
-        let authService = MCSAuthenticationService()
         
-        authService.getMaintenanceMode()
-            .subscribe(onNext: { maintenance in
+        AnonymousService.maintenanceMode { networkResult in
+            switch networkResult {
+            case .success(let maintenanceMode):
                 dLog("Maintenance Mode Fetched.")
-                
-                result(.success(maintenance))
-            }, onError: { error in
+                result(.success(maintenanceMode))
+            case .failure(let error):
                 dLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
                 result(.failure(.fetchError))
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     /// Fetches outage data for the current account.
@@ -353,21 +352,17 @@ extension NetworkUtility {
             return
         }
 
-        let outageService = MCSOutageService()
-        
-        outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount).subscribe(onNext: { outageStatus in
-            dLog("Outage Status Fetched.")
-            result(.success(outageStatus))
-        }, onError: { error in
-            // handle error
-            dLog("Failed to retrieve outage status: \(error.localizedDescription)")
-            
-            //todo we need to have finaled nonpay, ect..... this will return as an error here
-            // reference outageViewModel on mobile app.
-            
-            result(.failure(.fetchError))
-        })
-            .disposed(by: disposeBag)
+        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { networkResult in
+            switch networkResult {
+            case .success(let outageStatus):
+                dLog("Outage Status Fetched.")
+                result(.success(outageStatus))
+            case .failure(let error):
+                dLog("Failed to retrieve outage status: \(error.localizedDescription)")
+                
+                result(.failure(.fetchError))
+            }
+        }
     }
     
     /// Fetches projected usage data (striped bar graph on mobile app)

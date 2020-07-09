@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewMeterPingResult: Decodable {
+struct MeterPingResult: Decodable {
     let pingResult: Bool
     let voltageResult: Bool
     let voltageReads: String?

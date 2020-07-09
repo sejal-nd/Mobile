@@ -12,10 +12,10 @@ import RxCocoa
 class MaintenanceModeViewModel{
     let disposeBag = DisposeBag()
 
-    private var maintenance: NewMaintenanceMode?
+    private var maintenance: MaintenanceMode?
     private var authService: AuthenticationService
     
-    init(authService: AuthenticationService, maintenance: NewMaintenanceMode?){
+    init(authService: AuthenticationService, maintenance: MaintenanceMode?){
         self.authService = authService
         self.maintenance = maintenance
     }
@@ -128,7 +128,7 @@ class MaintenanceModeViewModel{
     }()
     
     func doReload(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        AnonymousService.maintenanceMode { [weak self] (result: Result<NewMaintenanceMode, Error>) in
+        AnonymousService.maintenanceMode { [weak self] (result: Result<MaintenanceMode, Error>) in
             switch result {
             case .success(let maintenanceMode):
                 self?.maintenance = maintenanceMode
@@ -136,15 +136,6 @@ class MaintenanceModeViewModel{
                 _ = error as! ServiceError
             }
         }
-//
-//        authService.getMaintenanceMode(postNotification: false)
-//            .observeOn(MainScheduler.instance)
-//            .subscribe(onNext: { [weak self] maintenanceInfo in
-//                self?.maintenance = maintenanceInfo
-//                onSuccess(maintenanceInfo.allStatus)
-//            }, onError: { error in
-//                _ = error as! ServiceError
-//            }).disposed(by: disposeBag)
     }
 
 }
