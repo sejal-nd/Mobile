@@ -14,6 +14,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.bge.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Dev-bgeMBE</key>
 		<dict>
@@ -25,6 +27,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.bge.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-bgeMBE</key>
 		<dict>
@@ -36,6 +40,8 @@
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.bge.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-bgeHotfixMBE</key>
 		<dict>
@@ -47,6 +53,8 @@
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.bge.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Prod-bgeMBE</key>
 		<dict>
@@ -58,6 +66,8 @@
 			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>bge.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Test-comedMBE</key>
 		<dict>
@@ -69,6 +79,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.comed.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Dev-comedMBE</key>
 		<dict>
@@ -80,6 +92,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.comed.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-comedMBE</key>
 		<dict>
@@ -91,6 +105,8 @@
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.comed.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-comedHotfixMBE</key>
 		<dict>
@@ -102,6 +118,8 @@
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.comed.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Prod-comedMBE</key>
 		<dict>
@@ -113,6 +131,8 @@
 			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>comed.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Test-pecoMBE</key>
 		<dict>
@@ -124,6 +144,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.peco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Dev-pecoMBE</key>
 		<dict>
@@ -135,6 +157,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.peco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-pecoMBE</key>
 		<dict>
@@ -146,6 +170,8 @@
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.peco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-pecoHotfixMBE</key>
 		<dict>
@@ -157,6 +183,8 @@
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.peco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Prod-pecoMBE</key>
 		<dict>
@@ -168,6 +196,8 @@
 			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>peco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Test-pepcoMBE</key>
 		<dict>
@@ -179,6 +209,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.pepco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Dev-pepcoMBE</key>
 		<dict>
@@ -190,6 +222,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.pepco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-pepcoMBE</key>
 		<dict>
@@ -201,28 +235,34 @@
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.pepco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-pepcoHotfixMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>mcsstg.mobileenv.bge.com</string>
+			<string>mcsstg.mobileenv.pepco.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.pepco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Prod-pepcoMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>mcs.mobileenv.bge.com</string>
+			<string>mcs.mobileenv.pepco.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>pepco.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Test-aceMBE</key>
 		<dict>
@@ -234,6 +274,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.atlanticcityelectric.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Dev-aceMBE</key>
 		<dict>
@@ -245,6 +287,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.atlanticcityelectric.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-aceMBE</key>
 		<dict>
@@ -256,32 +300,34 @@
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.atlanticcityelectric.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-aceHotfixMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>mcsstg.mobileenv.bge.com</string>
-			<key>mobileBackendID</key>
-			<string>03adfef5-e1a8-416b-ad0e-8fff74fb04f8</string>
+			<string>mcsstg.mobileenv.atlanticcityelectric.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.atlanticcityelectric.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Prod-aceMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>mcs.mobileenv.bge.com</string>
-			<key>mobileBackendID</key>
-			<string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
+			<string>mcs.mobileenv.atlanticcityelectric.com</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>atlanticcityelectric.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Test-delmarvaMBE</key>
 		<dict>
@@ -293,6 +339,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.delmarva.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Dev-delmarvaMBE</key>
 		<dict>
@@ -304,6 +352,8 @@
 			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.delmarva.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-delmarvaMBE</key>
 		<dict>
@@ -315,32 +365,34 @@
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.delmarva.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Stage-delmarvaHotfixMBE</key>
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.bge.com</string>
-			<key>mobileBackendID</key>
-			<string>03adfef5-e1a8-416b-ad0e-8fff74fb04f8</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>azstg.delmarva.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 		<key>Prod-delmarvaMBE</key>
 		<dict>
 			<key>baseURL</key>
 			<string>mcs.mobileenv.bge.com</string>
-			<key>mobileBackendID</key>
-			<string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
+			<key>sharepointBaseURL</key>
+			<string>delmarva.com/_api/web/lists/GetByTitle(&apos;GlobalAlert&apos;)/items</string>
 		</dict>
 	</dict>
 </dict>

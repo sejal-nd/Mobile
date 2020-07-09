@@ -118,7 +118,6 @@ public enum Router {
         return "https"
     }
     
-    // BGE Stage
     public var host: String {
         switch self {
         case .fetchJWTToken:
@@ -126,7 +125,7 @@ public enum Router {
         case .weather:
             return "api.weather.gov"
         case .alertBanner, .newsAndUpdates:
-            return "azstg.bge.com/_api/web/lists/GetByTitle('GlobalAlert')/items" // todo: fix in mcs config
+            return Environment.shared.mcsConfig.sharepointBaseURL
         default:
             return Environment.shared.mcsConfig.baseUrl
         }
@@ -134,21 +133,9 @@ public enum Router {
     
     public var apiAccess: ApiAccess {
         switch self {
-        // External
         case .weather:
             return .external
-        // Anon
-        case .minVersion:
-            return .anon
-        case .maintenanceMode:
-            return .anon
-        case .outageStatusAnon:
-            return .anon
-        case .passwordChange:
-            return .anon
-        case .fetchJWTToken:
-            return .anon
-        case .reportOutageAnon:
+        case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon:
             return .anon
         default:
             return .auth
