@@ -11,7 +11,7 @@ import Foundation
 import Reachability
 #endif
 
-public struct NetworkingLayer {
+public enum NetworkingLayer {
     public static func request<T: Decodable>(router: Router,
                                              completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // todo this should be revisited once implementation is complete....
@@ -58,8 +58,13 @@ public struct NetworkingLayer {
         } else {
             // Regular
             session = URLSession.shared
+            
+            // todo this may mess up cancellation of all requests. need to be able to access this in cancel all requests.
+            // this is needed for headers for calls
+//            let new = URLSession(configuration: configureURLSession())
         }
-        
+
+        // Check Reachability on iOS
         #if os(iOS)
         guard let reachability = Reachability() else {
             completion(.failure(.noNetwork))
@@ -137,7 +142,7 @@ public struct NetworkingLayer {
         dataTask.resume()
     }
     
-    public static func decode<T: Decodable>(data: Data) throws -> T {
+    private static func decode<T: Decodable>(data: Data) throws -> T {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
         
@@ -168,6 +173,39 @@ public struct NetworkingLayer {
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }
+    }
+    
+    private static func configureURLSession() -> URLSessionConfiguration {
+        let sessionConfiguration = URLSessionConfiguration.default
+        sessionConfiguration.timeoutIntervalForRequest = 120.0
+        sessionConfiguration.timeoutIntervalForResource = 120.0
+        
+        #if os(iOS)
+        let systemVersion = UIDevice.current.systemVersion
+        #elseif os(watchOS)
+        let systemVersion = "watchOS"
+        //            let systemVersion = WKInterfaceDevice.current().systemVersion
+        #endif
+        
+        // Model Identifier
+        var modelIdentifier = "Unknown"
+        if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
+            modelIdentifier = "\(simulatorModelIdentifier) [Simulator]"
+        }
+        var sysinfo = utsname()
+        uname(&sysinfo)
+        modelIdentifier = String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
+        
+        // Set User Agent Headers
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
+            let userAgentString = "\(Environment.shared.opco.displayString) Mobile App/\(version).\(build) (iOS \(systemVersion); Apple \(modelIdentifier))"
+            sessionConfiguration.httpAdditionalHeaders = [
+                "User-Agent": userAgentString
+            ]
+        }
+        
+        return sessionConfiguration
     }
 }
 
