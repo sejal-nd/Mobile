@@ -195,16 +195,25 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).disposed(by: disposeBag)
         
         viewModel.securityQuestion1.asDriver().distinctUntilChanged().drive(onNext: { _ in
-            self.question1AnswerTextField.textField.text = ""
-            self.question1AnswerTextField.textField.becomeFirstResponder()
+            DispatchQueue.main.async {
+                self.question1AnswerTextField.textField.text = ""
+                self.question1AnswerTextField.textField.resignFirstResponder()
+                self.view.endEditing(true)
+            }
         }).disposed(by: disposeBag)
         viewModel.securityQuestion2.asDriver().distinctUntilChanged().drive(onNext: { _ in
-            self.question2AnswerTextField.textField.text = ""
-            self.question2AnswerTextField.textField.becomeFirstResponder()
+            DispatchQueue.main.async {
+                self.question2AnswerTextField.textField.text = ""
+                self.question2AnswerTextField.textField.resignFirstResponder()
+                self.view.endEditing(true)
+            }
         }).disposed(by: disposeBag)
         viewModel.securityQuestion3.asDriver().distinctUntilChanged().drive(onNext: { _ in
-            self.question3AnswerTextField.textField.text = ""
-            self.question3AnswerTextField.textField.becomeFirstResponder()
+            DispatchQueue.main.async {
+                self.question3AnswerTextField.textField.text = ""
+                self.question3AnswerTextField.textField.resignFirstResponder()
+                self.view.endEditing(true)
+            }
         }).disposed(by: disposeBag)
     }
     
