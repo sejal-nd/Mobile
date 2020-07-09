@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewForgotMaskedUsername: Decodable {
+public struct ForgotMaskedUsername: Decodable {
     let email: String?
     let question: String?
     let questionId: Int

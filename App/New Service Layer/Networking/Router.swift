@@ -109,10 +109,10 @@ public enum Router {
     case reportOutageAnon(request: OutageRequest)
     
     case passwordChange(request: ChangePasswordRequest)
-    case accountLookup(encodable: Encodable)
+    case accountLookup(request: AccountLookupRequest)
     case recoverPassword(encodable: Encodable)
-    case recoverUsername(encodable: Encodable)
-    case recoverMaskedUsername(encodable: Encodable)
+    case recoverUsername(request: RecoverUsernameRequest)
+    case recoverMaskedUsername(request: RecoverMaskedUsernameRequest)
     
     public var scheme: String {
         return "https"

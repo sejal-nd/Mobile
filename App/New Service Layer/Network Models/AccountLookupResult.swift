@@ -1,5 +1,5 @@
 //
-//  NewAccountLookupResult.swift
+//  AccountLookupResult.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 4/15/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewAccountLookupResult: Decodable {
+struct AccountLookupResult: Decodable {
     let accountNumber: String?
     let streetNumber: String?
     let unitNumber: String?

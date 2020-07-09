@@ -155,70 +155,7 @@ struct MCSAuthenticationService : AuthenticationService {
         return MCSApi.shared.put(pathPrefix: .anon, path: "profile/password", params: params)
             .mapTo(())
     }
-    #endif
     
-    
-    func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?) -> Observable<[ForgotUsernameMasked]> {
-        var params = ["phone": phone]
-        if let id = identifier {
-            params["identifier"] = id
-        }
-        
-        if let accNum = accountNumber {
-            params["account_number"] = accNum
-        }
-        
-        return MCSApi.shared.post(pathPrefix: .anon, path: "recover/username", params: params)
-            .map { json in
-                guard let maskedEntries = json as? [NSDictionary] else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                return maskedEntries.compactMap(ForgotUsernameMasked.from)
-            }
-    }
-    
-    func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String) -> Observable<String> {
-        var params = ["phone": phone,
-                      "question_id": questionId,
-                      "security_answer": questionResponse,
-                      "cipherString": cipher] as [String : Any]
-        
-        if let id = identifier {
-            params["identifier"] = id
-        }
-        
-        if let accNum = accountNumber {
-            params["account_number"] = accNum
-        }
-        
-        return MCSApi.shared.post(pathPrefix: .anon, path: "recover/username", params: params)
-            .map { data in
-                guard let unmasked = data as? String else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue,
-                                       serviceMessage: "Unable to parse response")
-                }
-                
-                return unmasked
-            }
-    }
-    
-    func lookupAccount(phone: String, identifier: String) -> Observable<[AccountLookupResult]> {
-        let params: [String: Any] = ["identifier": identifier, "phone": phone]
-        return MCSApi.shared.post(pathPrefix: .anon, path: "account/lookup", params: params)
-            .map { json in
-                guard let entries = json as? [NSDictionary] else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue,
-                                       serviceMessage: "Unable to parse response")
-                }
-                
-                return entries
-                    .compactMap { $0["AccountDetails"] as? NSDictionary }
-                    .compactMap(AccountLookupResult.from)
-            }
-    }
-    
-    #if os(iOS)
     func recoverPassword(username: String) -> Observable<Void> {
         let params = ["username" : username]
         return MCSApi.shared.post(pathPrefix: .anon, path: "recover/password", params: params)
