@@ -1,5 +1,5 @@
 //
-//  NewMinimumVersion.swift
+//  AccountDetail.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 3/9/20.
@@ -85,10 +85,10 @@ public struct AccountDetail: Decodable {
     let isPTSEligible: Bool?
     let hasThirdPartySupplier: Bool
     
-    public var customerInfo: NewCustomerInfo
-    let billingInfo: NewBillingInfo
-    let serInfo: NewSERInfo
-    public var premiseInfo: [NewPremiseInfo]
+    public var customerInfo: CustomerInfo
+    let billingInfo: BillingInfo
+    let serInfo: SERInfo
+    public var premiseInfo: [PremiseInfo]
     
     // Only 3 real states to think about
     enum PrepaidStatus: String, Decodable {
@@ -316,11 +316,11 @@ public struct AccountDetail: Decodable {
         self.customerNumber = try container.decode(String.self,
         forKey: .customerNumber)
         
-        self.customerInfo = try container.decode(NewCustomerInfo.self,
+        self.customerInfo = try container.decode(CustomerInfo.self,
                                             forKey: .customerInfo)
-        self.billingInfo = try container.decode(NewBillingInfo.self, forKey: .billingInfo)
-        self.serInfo = try container.decode(NewSERInfo.self, forKey: .serInfo)
-        self.premiseInfo = try container.decodeIfPresent([NewPremiseInfo].self,
+        self.billingInfo = try container.decode(BillingInfo.self, forKey: .billingInfo)
+        self.serInfo = try container.decode(SERInfo.self, forKey: .serInfo)
+        self.premiseInfo = try container.decodeIfPresent([PremiseInfo].self,
         forKey: .premiseInfo) ?? []
         self.isHourlyPricing = try container.decodeIfPresent(Bool.self, forKey: .isHourlyPricing) ?? false
         self.prepaidStatus = try container.decodeIfPresent(PrepaidStatus.self, forKey: .prepaidStatus) ?? .inactive

@@ -1,5 +1,5 @@
 //
-//  NewBillingInfo.swift
+//  BillingInfo.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 6/30/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewBillingInfo: Decodable {
+public struct BillingInfo: Decodable {
     let netDueAmount: Double?
     let pastDueAmount: Double?
     let pastDueRemaining: Double?

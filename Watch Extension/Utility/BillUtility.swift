@@ -10,7 +10,7 @@ import WatchKit
 
 class BillUtility {
     private let accountDetails: AccountDetail
-    private let billingInfo: NewBillingInfo
+    private let billingInfo: BillingInfo
     private let opco = Environment.shared.opco
     
     init(accountDetails: AccountDetail) {

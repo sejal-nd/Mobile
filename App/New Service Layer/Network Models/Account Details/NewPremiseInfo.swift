@@ -1,5 +1,5 @@
 //
-//  NewCustomerInfo.swift
+//  PremiseInfo.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 3/26/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewPremiseInfo: Decodable, Equatable, Hashable {
+public struct PremiseInfo: Decodable, Equatable, Hashable {
     public var premiseNumber: String
     
     public var peakRewards: String
@@ -61,7 +61,7 @@ public struct NewPremiseInfo: Decodable, Equatable, Hashable {
     }
     
     // Equatable
-    public static func ==(lhs: NewPremiseInfo, rhs: NewPremiseInfo) -> Bool {
+    public static func ==(lhs: PremiseInfo, rhs: PremiseInfo) -> Bool {
         return lhs.premiseNumber == rhs.premiseNumber
     }
     

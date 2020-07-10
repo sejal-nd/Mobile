@@ -26,7 +26,7 @@ class PremiseListRow: UITableViewCell {
 // MARK: - Cell Configuration
 
 extension PremiseListRow {
-    func configureWithPremise(_ premise: NewPremiseInfo, indexPath: IndexPath, selectedIndexPath: IndexPath?) {
+    func configureWithPremise(_ premise: PremiseInfo, indexPath: IndexPath, selectedIndexPath: IndexPath?) {
         accountNumber.text = premise.addressLineString
         
         var a11yString = ""

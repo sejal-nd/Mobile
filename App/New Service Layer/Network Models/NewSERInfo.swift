@@ -1,5 +1,5 @@
 //
-//  NewSERInfo.swift
+//  SERInfo.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 6/30/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewSERInfo: Decodable {
+public struct SERInfo: Decodable {
     let controlGroupFlag: String?
     let eventResults: [SERResult]
     

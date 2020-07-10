@@ -1,5 +1,5 @@
 //
-//  NewAccount.swift
+//  Account.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 3/24/20.
@@ -12,8 +12,8 @@ public struct Account: Decodable, Equatable, Hashable {
     var accountNumber: String
     let accountNickname: String?
     let address: String?
-    let premises: [NewPremiseInfo]
-    var currentPremise: NewPremiseInfo?
+    let premises: [PremiseInfo]
+    var currentPremise: PremiseInfo?
     
     let status: String?
     let isLinked: Bool
@@ -43,7 +43,7 @@ public struct Account: Decodable, Equatable, Hashable {
         accountNumber = try container.decode(String.self, forKey: .accountNumber)
         accountNickname = try container.decodeIfPresent(String.self, forKey: .accountNickname)
         address = try container.decodeIfPresent(String.self, forKey: .address)
-        premises = try container.decodeIfPresent([NewPremiseInfo].self, forKey: .premises) ?? []
+        premises = try container.decodeIfPresent([PremiseInfo].self, forKey: .premises) ?? []
         currentPremise = premises.first
         
         status = try container.decodeIfPresent(String.self, forKey: .status)
