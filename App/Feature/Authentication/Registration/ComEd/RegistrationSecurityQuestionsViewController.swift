@@ -197,21 +197,18 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         viewModel.securityQuestion1.asDriver().distinctUntilChanged().drive(onNext: { _ in
             DispatchQueue.main.async {
                 self.question1AnswerTextField.textField.text = ""
-                self.question1AnswerTextField.textField.resignFirstResponder()
                 self.view.endEditing(true)
             }
         }).disposed(by: disposeBag)
         viewModel.securityQuestion2.asDriver().distinctUntilChanged().drive(onNext: { _ in
             DispatchQueue.main.async {
                 self.question2AnswerTextField.textField.text = ""
-                self.question2AnswerTextField.textField.resignFirstResponder()
                 self.view.endEditing(true)
             }
         }).disposed(by: disposeBag)
         viewModel.securityQuestion3.asDriver().distinctUntilChanged().drive(onNext: { _ in
             DispatchQueue.main.async {
                 self.question3AnswerTextField.textField.text = ""
-                self.question3AnswerTextField.textField.resignFirstResponder()
                 self.view.endEditing(true)
             }
         }).disposed(by: disposeBag)
