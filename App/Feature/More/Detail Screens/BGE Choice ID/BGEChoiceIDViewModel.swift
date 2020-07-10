@@ -13,15 +13,13 @@ class BGEChoiceIDViewModel {
     
     let disposeBag = DisposeBag()
     
-    private var accountService: AccountService
     
     let loading = BehaviorRelay(value: true)
     let error = BehaviorRelay(value: false)
     let electricChoiceId = BehaviorRelay<String?>(value: nil)
     let gasChoiceId = BehaviorRelay<String?>(value: nil)
     
-    init(accountService: AccountService) {
-        self.accountService = accountService
+    init() {
 
     }
     
@@ -29,7 +27,7 @@ class BGEChoiceIDViewModel {
         electricChoiceId.accept(nil)
         gasChoiceId.accept(nil)
         loading.accept(true)
-        NewAccountService.rx.fetchAccountDetails()
+        AccountService.rx.fetchAccountDetails()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }

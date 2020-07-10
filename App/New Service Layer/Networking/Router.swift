@@ -79,6 +79,7 @@ public enum Router {
     case forecastBill(accountNumber: String, premiseNumber: String)
     
     case ssoData(accountNumber: String, premiseNumber: String)
+    case ffssoData(accountNumber: String, premiseNumber: String)
     
     case energyTips(accountNumber: String, premiseNumber: String)
     
@@ -221,6 +222,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/forecast_bill"
         case .ssoData(let accountNumber, let premiseNumber):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/ssodata"
+        case .ffssoData(let accountNumber, let premiseNumber):
+            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/ffssodata"
         case .energyTips(let accountNumber, let premiseNumber):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips"
         case .homeProfileLoad(let accountNumber, let premiseNumber), .homeProfileUpdate(let accountNumber, let premiseNumber, _):
@@ -260,7 +263,7 @@ public enum Router {
         switch self {
         case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname:
+        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
              .updateReleaseOfInfo, .validateConfirmationEmail, .setDefaultAccount:
@@ -297,7 +300,7 @@ public enum Router {
                     "Content-Type": "application/json"]
         case .minVersion, .maintenanceMode:
             return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)"]
-        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
+        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
             return ["Authorization": "Bearer \(token)"]
         case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
             return ["Authorization": "Bearer \(token)",
@@ -374,6 +377,8 @@ public enum Router {
         case .meterPing:
             return "MeterPingMock"
         case .ssoData:
+            return "SSODataMock"
+        case .ffssoData:
             return "SSODataMock"
         case .energyTips:
             return "EnergyTipsMock"

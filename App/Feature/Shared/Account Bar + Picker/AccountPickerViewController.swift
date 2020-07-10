@@ -16,9 +16,7 @@ enum AccountPickerViewControllerState {
 class AccountPickerViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
-    
-    private let accountService = ServiceFactory.createAccountService()
-    
+        
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var accountPicker: AccountPicker!
     
@@ -45,7 +43,7 @@ class AccountPickerViewController: UIViewController {
     func fetchAccounts() {
         accountPicker.setLoading(true)
         
-        NewAccountService.rx.fetchAccounts()
+        AccountService.rx.fetchAccounts()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }

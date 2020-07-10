@@ -1,5 +1,5 @@
 //
-//  NewSERResult.swift
+//  SERResult.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 6/30/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewSERResult: Decodable, Equatable {
+struct SERResult: Decodable, Equatable {
     let actualKWH: Double
     let baselineKWH: Double
     let eventStart: Date

@@ -22,8 +22,8 @@ public struct NewBillingInfo: Decodable {
     let isDisconnectNotice: Bool
     let billDate: Date?
     let convenienceFee: Double
-    let scheduledPayment: NewPaymentItem?
-    let pendingPayments: [NewPaymentItem]
+    let scheduledPayment: PaymentItem?
+    let pendingPayments: [PaymentItem]
     let atReinstateFee: Double?
     let currentDueAmount: Double?
     let turnOffNoticeExtensionStatus: String?
@@ -95,7 +95,7 @@ public struct NewBillingInfo: Decodable {
         supplyCharges = try container.decodeIfPresent(Double.self, forKey: .supplyCharges)
         taxesAndFees = try container.decodeIfPresent(Double.self, forKey: .taxesAndFees)
         
-        let paymentItems = try container.decodeIfPresent([NewPaymentItem].self, forKey: .payments)
+        let paymentItems = try container.decodeIfPresent([PaymentItem].self, forKey: .payments)
         
         scheduledPayment = paymentItems?.filter { $0.status == .scheduled }.last
         pendingPayments = paymentItems?

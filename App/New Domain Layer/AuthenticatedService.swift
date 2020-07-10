@@ -130,14 +130,14 @@ extension AuthenticatedService {
 
                 UserSession.shared.token = token
                 
-                NewAccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
+                AccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
                     switch result {
                     case .success(let accounts):
                         guard let accNumber = accounts.first?.accountNumber else {
                             completion(.failure(.invalidResponse))
                             return
                         }
-                        NewAccountService.fetchAccountDetails(accountNumber: accNumber) { (result: Result<AccountDetail, NetworkingError>) in
+                        AccountService.fetchAccountDetails(accountNumber: accNumber) { (result: Result<AccountDetail, NetworkingError>) in
                             switch result {
                             case .success:
                                 completion(.success((false)))
@@ -160,7 +160,7 @@ extension AuthenticatedService {
         // SET MOCK USER
         UserSession.shared.token = username
         
-        NewAccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
+        AccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
             switch result {
             case .success:
                 completion(.success((false)))

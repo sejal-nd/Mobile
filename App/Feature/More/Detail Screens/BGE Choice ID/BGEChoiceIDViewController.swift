@@ -30,7 +30,7 @@ class BGEChoiceIDViewController: AccountPickerViewController {
     @IBOutlet weak var errorEmptyStateView: UIView!
     @IBOutlet weak var errorEmptyStateLabel: UILabel!
     
-    let viewModel = BGEChoiceIDViewModel(accountService: ServiceFactory.createAccountService())
+    let viewModel = BGEChoiceIDViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default

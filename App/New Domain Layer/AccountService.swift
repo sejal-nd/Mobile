@@ -1,5 +1,5 @@
 //
-//  NewAccountService.swift
+//  AccountService.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 7/8/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewAccountService {
+struct AccountService {
     
     static func fetchAccounts(completion: @escaping (Result<[Account], NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .accounts) { (result: Result<[Account], NetworkingError>) in
@@ -94,19 +94,19 @@ struct NewAccountService {
     }
     #endif
     
-    static func fetchSSOData(accountNumber: String, premiseNumber: String) {
-           
+    static func fetchSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (Result<SSODataResponse, NetworkingError>) -> ()) {
+           NetworkingLayer.request(router: .ssoData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
     
-    static func fetchFirstFuelSSOData(accountNumber: String, premiseNumber: String) {
-           
+    static func fetchFirstFuelSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (Result<SSODataResponse, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .ffssoData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
     
-    static func fetchScheduledPayments(accountNumber: String) {
-           
+    static func fetchScheduledPayments(accountNumber: String, completion: @escaping (Result<[PaymentItem], NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .payments(accountNumber: accountNumber), completion: completion)
     }
     
-    static func fetchSERResults(accountNumber: String) {
-           
+    static func fetchSERResults(accountNumber: String, completion: @escaping (Result<[SERResult], NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .energyRewardsLoad(accountNumber: accountNumber), completion: completion)
     }
 }

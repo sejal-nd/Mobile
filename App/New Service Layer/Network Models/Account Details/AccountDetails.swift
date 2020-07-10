@@ -173,7 +173,7 @@ public struct AccountDetail: Decodable {
         case isBudgetBillEnrollment
         
         case customerInfo = "CustomerInfo"
-        case billingInfo = "BustomerInfo"
+        case billingInfo = "BillingInfo"
         case serInfo = "SERInfo"
         case premiseInfo = "PremiseInfo"
         case prepaidStatus = "prepaid_status"
@@ -364,4 +364,8 @@ public struct AccountDetail: Decodable {
             return .canEnroll
         }
     }
+}
+
+enum EBillEnrollStatus {
+    case canEnroll, canUnenroll, finaled, ineligible
 }

@@ -60,7 +60,7 @@ struct MCSAuthenticationService : AuthenticationService {
             // 2
             .flatMap { profileStatus in
                 // This will error if the first account is password protected
-                MCSAccountService().fetchAccounts().mapTo(profileStatus)
+                AccountService.rx.fetchAccounts().mapTo(profileStatus)
         }
         .do(onNext: { _ in
             FirebaseUtility.logEvent(.loginAccountNetworkComplete)

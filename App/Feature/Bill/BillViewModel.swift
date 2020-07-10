@@ -22,7 +22,6 @@ class BillViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let accountService: AccountService
     private let authService: AuthenticationService
     private let usageService: UsageService
 
@@ -42,8 +41,7 @@ class BillViewModel {
         }
     }
     
-    required init(accountService: AccountService, authService: AuthenticationService, usageService: UsageService) {
-        self.accountService = accountService
+    required init(authService: AuthenticationService, usageService: UsageService) {
         self.authService = authService
         self.usageService = usageService
     }
@@ -66,8 +64,8 @@ class BillViewModel {
         }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
             guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
             let account = AccountsStore.shared.currentAccount
-            let accountDetail = NewAccountService.rx.fetchAccountDetails(accountNumber: account.accountNumber)
-            let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
+            let accountDetail = AccountService.rx.fetchAccountDetails(accountNumber: account.accountNumber)
+            let scheduledPayment = AccountService.rx.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
             return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })

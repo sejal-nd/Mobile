@@ -21,7 +21,7 @@ class SetDefaultAccountViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var saveButton: PrimaryButton!
     
-    let viewModel = SetDefaultAccountViewModel(accountService: ServiceFactory.createAccountService())
+    let viewModel = SetDefaultAccountViewModel()
     
     let bag = DisposeBag()
 

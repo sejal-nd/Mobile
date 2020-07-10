@@ -20,7 +20,7 @@ class BillViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         accountService = MockAccountService()
-        viewModel = BillViewModel(accountService: accountService, authService: MockAuthenticationService(), usageService: MockUsageService())
+        viewModel = BillViewModel(authService: MockAuthenticationService(), usageService: MockUsageService())
     }
     
     func simulateRefreshPulls(at times: [Int]) {

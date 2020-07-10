@@ -9,13 +9,13 @@
 import Foundation
 import RxSwift
 
-extension NewAccountService: ReactiveCompatible {}
+extension AccountService: ReactiveCompatible {}
 
-extension Reactive where Base == NewAccountService {
+extension Reactive where Base == AccountService {
     
     static func fetchAccounts() -> Observable<[Account]> {
         return Observable.create { observer -> Disposable in
-            NewAccountService.fetchAccounts { observer.handle(result: $0) }
+            AccountService.fetchAccounts { observer.handle(result: $0) }
             return Disposables.create()
         }
     }
@@ -26,7 +26,7 @@ extension Reactive where Base == NewAccountService {
                                     budgetBilling: Bool = true,
                                     alertPreferenceEligibilities: Bool = false) -> Observable<AccountDetail> {
         return Observable.create { observer -> Disposable in
-            NewAccountService.fetchAccountDetails(accountNumber: accountNumber, payments: payments, programs: programs, budgetBilling: budgetBilling, alertPreferenceEligibilities: alertPreferenceEligibilities) { observer.handle(result: $0) }
+            AccountService.fetchAccountDetails(accountNumber: accountNumber, payments: payments, programs: programs, budgetBilling: budgetBilling, alertPreferenceEligibilities: alertPreferenceEligibilities) { observer.handle(result: $0) }
             
             return Disposables.create()
         }
@@ -35,7 +35,7 @@ extension Reactive where Base == NewAccountService {
     #if os(iOS)
     static func updatePECOReleaseOfInfoPreference(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber, selectedIndex: Int) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
-            NewAccountService.updatePECOReleaseOfInfoPreference(accountNumber: accountNumber, selectedIndex: selectedIndex) { result in
+            AccountService.updatePECOReleaseOfInfoPreference(accountNumber: accountNumber, selectedIndex: selectedIndex) { result in
                 switch result {
                 case .success(_):
                     observer.onNext(())
@@ -51,7 +51,7 @@ extension Reactive where Base == NewAccountService {
     
     static func setDefaultAccount(accountNumber: String) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
-            NewAccountService.setDefaultAccount(accountNumber: accountNumber) { result in
+            AccountService.setDefaultAccount(accountNumber: accountNumber) { result in
                 switch result {
                 case .success(_):
                     observer.onNext(())
@@ -67,7 +67,7 @@ extension Reactive where Base == NewAccountService {
     
     static func setAccountNickname(nickname: String, accountNumber: String) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
-            NewAccountService.setAccountNickname(nickname: nickname, accountNumber: accountNumber) { result in
+            AccountService.setAccountNickname(nickname: nickname, accountNumber: accountNumber) { result in
                 switch result {
                 case .success(_):
                     observer.onNext(())
@@ -81,6 +81,34 @@ extension Reactive where Base == NewAccountService {
         }
     }
     #endif
+    
+    static func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSODataResponse> {
+        return Observable.create { observer -> Disposable in
+            AccountService.fetchSSOData(accountNumber: accountNumber, premiseNumber: premiseNumber) { observer.handle(result: $0) }
+            return Disposables.create()
+        }
+    }
+    
+    static func fetchFirstFuelSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSODataResponse> {
+        return Observable.create { observer -> Disposable in
+            AccountService.fetchFirstFuelSSOData(accountNumber: accountNumber, premiseNumber: premiseNumber) { observer.handle(result: $0) }
+            return Disposables.create()
+        }
+    }
+    
+    static func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
+        return Observable.create { observer -> Disposable in
+            AccountService.fetchScheduledPayments(accountNumber: accountNumber) { observer.handle(result: $0) }
+            return Disposables.create()
+        }
+    }
+    
+    static func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {
+        return Observable.create { observer -> Disposable in
+            AccountService.fetchSERResults(accountNumber: accountNumber) { observer.handle(result: $0) }
+            return Disposables.create()
+        }
+    }
 }
 
 extension AnyObserver where Element: Decodable {

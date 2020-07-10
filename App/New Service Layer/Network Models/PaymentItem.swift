@@ -1,5 +1,5 @@
 //
-//  NewPaymentItem.swift
+//  PaymentItem.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 7/1/20.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public struct NewPaymentItem: Decodable {
+public struct PaymentItem: Decodable {
     
     let amount: Double
     let date: Date?
-    let status: NewPaymentStatus
+    let status: PaymentStatus
     
     enum CodingKeys: String, CodingKey {
         case amount = "paymentAmount"
@@ -20,7 +20,7 @@ public struct NewPaymentItem: Decodable {
         case status
     }
     
-    enum NewPaymentStatus: String, Decodable {
+    enum PaymentStatus: String, Decodable {
         case scheduled = "scheduled"
         case pending = "pending"
         case processing = "processing"
@@ -35,8 +35,8 @@ public struct NewPaymentItem: Decodable {
             statusStr = "processing"
         }
         
-        status = NewPaymentStatus(rawValue: statusStr.lowercased())! // TODO potential future refactor - throw a Decoding error with field name and type
-        date = try container.decode(Date.self, forKey: .date)
+        status = PaymentStatus(rawValue: statusStr.lowercased())! // TODO potential future refactor - throw a Decoding error with field name and type
+        date = try container.decodeIfPresent(Date.self, forKey: .date)
         
         // Scheduled payments require dates
         guard status != .scheduled || date != nil else {

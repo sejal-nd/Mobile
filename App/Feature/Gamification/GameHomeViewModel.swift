@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwiftExt
 
 class GameHomeViewModel {
-    private let accountService: AccountService
     private let gameService: GameService
     let coreDataManager = GameCoreDataManager()
     
@@ -56,8 +55,7 @@ class GameHomeViewModel {
     /// gifts to the value being tracked here, and present the popup accordingly.
     var numGiftsUnlocked: Int?
     
-    required init(accountService: AccountService, gameService: GameService) {
-        self.accountService = accountService
+    required init(gameService: GameService) {
         self.gameService = gameService
         
         debouncedPoints.asObservable()
@@ -106,7 +104,7 @@ class GameHomeViewModel {
             error.accept(false)
         }
         
-        NewAccountService.rx.fetchAccountDetails()
+        AccountService.rx.fetchAccountDetails()
             .subscribe(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
                 self.refreshing.accept(false)

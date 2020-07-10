@@ -140,8 +140,7 @@ class BillViewController: AccountPickerViewController {
     
     var refreshControl: UIRefreshControl?
     
-    let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService(),
-                                  authService: ServiceFactory.createAuthenticationService(),
+    let viewModel = BillViewModel(authService: ServiceFactory.createAuthenticationService(),
                                   usageService: ServiceFactory.createUsageService(useCache: true))
 
     var shortcutItem = ShortcutItem.none

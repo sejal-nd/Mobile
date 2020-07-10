@@ -265,7 +265,7 @@ extension NetworkUtility {
             return
         }
         
-        NewAccountService.rx.fetchAccounts().subscribe(onNext: { [weak self] accounts in
+        AccountService.rx.fetchAccounts().subscribe(onNext: { [weak self] accounts in
             // handle success
             guard let firstAccount = AccountsStore.shared.accounts.first else {
                 dLog("No first account in account list: Terminated.")
@@ -306,7 +306,7 @@ extension NetworkUtility {
                 return
         }
         
-        NewAccountService.rx.fetchAccountDetails()
+        AccountService.rx.fetchAccountDetails()
             .subscribe(onNext: { accountDetail in
                 // handle success
                 dLog("Account Details Fetched.")
