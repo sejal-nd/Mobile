@@ -265,8 +265,7 @@ extension NetworkUtility {
             return
         }
         
-        let accountService = MCSAccountService()
-        accountService.fetchAccounts().subscribe(onNext: { [weak self] accounts in
+        AccountService.rx.fetchAccounts().subscribe(onNext: { [weak self] accounts in
             // handle success
             guard let firstAccount = AccountsStore.shared.accounts.first else {
                 dLog("No first account in account list: Terminated.")
@@ -283,15 +282,15 @@ extension NetworkUtility {
             
             dLog("Accounts Fetched.")
             
-            result(.success(accounts))
-            }, onError: { error in
-                if let serviceError = error as? ServiceError, serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
-                    dLog("Failed to retrieve account list.  Password Protected Account.")
-                    result(.failure(.passwordProtected))
-                } else {
-                    dLog("Failed to retrieve account list: \(error.localizedDescription)")
-                    result(.failure(.fetchError))
-                }
+//            result(.success(accounts))
+//            }, onError: { error in
+//                if let serviceError = error as? ServiceError, serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
+//                    dLog("Failed to retrieve account list.  Password Protected Account.")
+//                    result(.failure(.passwordProtected))
+//                } else {
+//                    dLog("Failed to retrieve account list: \(error.localizedDescription)")
+//                    result(.failure(.fetchError))
+//                }
         }).disposed(by: disposeBag)
     }
     
@@ -307,12 +306,11 @@ extension NetworkUtility {
                 return
         }
         
-        let accountService = MCSAccountService()
-        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        AccountService.rx.fetchAccountDetails()
             .subscribe(onNext: { accountDetail in
                 // handle success
                 dLog("Account Details Fetched.")
-                
+
                 result(.success(accountDetail))
             }, onError: { error in
                 // handle error

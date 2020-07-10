@@ -14,19 +14,16 @@ class StormModeBillViewModel {
     let fetchData = PublishSubject<Void>()
     let fetchDataObservable: Observable<Void>
 
-    private let accountService: AccountService
     private let walletService: WalletService
     private let paymentService: PaymentService
     private let authService: AuthenticationService
 
     private let fetchTracker = ActivityTracker()
 
-    required init(accountService: AccountService,
-                  walletService: WalletService,
+    required init(walletService: WalletService,
                   paymentService: PaymentService,
                   authService: AuthenticationService) {
         self.fetchDataObservable = fetchData.share()
-        self.accountService = accountService
         self.walletService = walletService
         self.paymentService = paymentService
         self.authService = authService
@@ -46,14 +43,14 @@ class StormModeBillViewModel {
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                         requestSelector: { [weak self] _ in
                             guard let self = self else { return .empty() }
-                            return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                            return AccountService.rx.fetchAccountDetails()
                         })
 
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = fetchData
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                         requestSelector: { [weak self] _ in
                             guard let this = self else { return .empty() }
-                            return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
+                            return AccountService.rx.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
                         })
 
     private lazy var accountDetail = accountDetailEvents.elements()

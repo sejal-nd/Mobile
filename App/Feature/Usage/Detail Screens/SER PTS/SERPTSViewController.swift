@@ -39,8 +39,7 @@ class SERPTSViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        viewModel = SERPTSViewModel(accountService: ServiceFactory.createAccountService(),
-                                    accountDetail: accountDetail,
+        viewModel = SERPTSViewModel(  accountDetail: accountDetail,
                                     eventResults: eventResults)
         
         graphView.viewModel = viewModel.graphViewModel

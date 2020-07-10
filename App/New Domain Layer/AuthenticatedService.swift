@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import RxSwift
 
 // NOTE: The location of these static methods are subject to change
 
-struct AuthenticatedService {
+public struct AuthenticatedService {
     
     private static let TOKEN_KEYCHAIN_KEY = "kExelon_Token"
     #if os(iOS)
@@ -54,57 +55,9 @@ struct AuthenticatedService {
         AccountsStore.shared.customerIdentifier = nil
         StormModeStatus.shared.isOn = false
     }
-
-    static func fetchAccountDetails(accountNumber: String,
-                                    payments: Bool = true,
-                                    programs: Bool = true,
-                                    budgetBilling: Bool = true,
-                                    completion: @escaping (Result<NewAccountDetails, NetworkingError>) -> ()) {
-        
-        var queryItems = [(String, String)]()
-        if !payments {
-            queryItems.append(("payments", "false"))
-        }
-        if !programs {
-            queryItems.append(("programs", "false"))
-        }
-        if !budgetBilling {
-            queryItems.append(("budgetBilling", "false"))
-        }
-        
-        let queryStringSubSequence = queryItems
-            .map { $0.0 + "=" + $0.1 }
-            .reduce("?") { $0 + $1 + "&" }
-            .dropLast() // drop the last "&"
-        let queryString = String(queryStringSubSequence)
-        
-        
-        NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryString: queryString)) { (result: Result<NewAccountDetails, NetworkingError>) in
-            switch result {
-            case .success(let data):
-                completion(.success(data))
-//                NetworkTest.shared.wallet()
-                
-//                NetworkTest.shared.payment(accountNumber: data.accountNumber)
-                
-                
-                
-//                AuthenticatedService.fetchAlertBanner(bannerOnly: true, stormOnly: false) { (result: Result<NewSharePointAlert, NetworkingError>) in
-//                    switch result {
-//                    case .success(let data):
-//                        completion(.success(data.alerts))
-//                    case .failure(let error):
-//                        completion(.failure(error))
-//                    }
-//                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
     
     
-    // todo move from this service
+    // MARK: todo move from this service
     static func fetchAlertBanner(bannerOnly: Bool, stormOnly: Bool, completion: @escaping (Result<[NewAlert], NetworkingError>) -> ()) {
         var filterString: String
 
@@ -177,11 +130,14 @@ extension AuthenticatedService {
 
                 UserSession.shared.token = token
                 
-                NetworkingLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
+                AccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
                     switch result {
-                    case .success(let data):
-                        guard let accNumber = data.accounts.first?.accountNumber else { return }
-                        AuthenticatedService.fetchAccountDetails(accountNumber: accNumber) { (result: Result<NewAccountDetails, NetworkingError>) in
+                    case .success(let accounts):
+                        guard let accNumber = accounts.first?.accountNumber else {
+                            completion(.failure(.invalidResponse))
+                            return
+                        }
+                        AccountService.fetchAccountDetails(accountNumber: accNumber) { (result: Result<AccountDetail, NetworkingError>) in
                             switch result {
                             case .success:
                                 completion(.success((false)))
@@ -204,7 +160,7 @@ extension AuthenticatedService {
         // SET MOCK USER
         UserSession.shared.token = username
         
-        NetworkingLayer.request(router: .accounts) { (result: Result<NewAccounts, NetworkingError>) in
+        AccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
             switch result {
             case .success:
                 completion(.success((false)))
@@ -218,3 +174,6 @@ extension AuthenticatedService {
 private extension CharacterSet {
     static let rfc3986Unreserved = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~")
 }
+
+
+

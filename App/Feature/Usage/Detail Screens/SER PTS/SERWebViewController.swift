@@ -16,9 +16,7 @@ class SERWebViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
-    
-    let accountService = ServiceFactory.createAccountService()
-    
+        
     var accountDetail: AccountDetail!
     
     var viewModel: SERWebViewModel!
@@ -26,7 +24,7 @@ class SERWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = SERWebViewModel(accountService: accountService, accountDetail: accountDetail)
+        viewModel = SERWebViewModel(accountDetail: accountDetail)
         
         title = NSLocalizedString("Smart Energy Rewards", comment: "")
         

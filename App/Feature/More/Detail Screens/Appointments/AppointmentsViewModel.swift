@@ -42,12 +42,11 @@ class AppointmentsViewModel {
     private let fetchAllDataTrigger = PublishSubject<Void>()
     
     required init(initialAppointments: [Appointment],
-                  appointmentService: AppointmentService,
-                  accountService: AccountService) {
+                  appointmentService: AppointmentService) {
         
         accountDetailEvents = fetchAllDataTrigger
             .toAsyncRequest {
-                accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                AccountService.rx.fetchAccountDetails()
         }
         
         events = accountDetailEvents

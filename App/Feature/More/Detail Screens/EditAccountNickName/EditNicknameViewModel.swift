@@ -15,7 +15,6 @@ final class EditNicknameViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let accountService: AccountService
     
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
@@ -31,8 +30,7 @@ final class EditNicknameViewModel {
     /// `EditNicknameViewModel` initializer
     /// - Parameters:
     ///   - accountService: `AccountService` instance
-    required init(accountService: AccountService) {
-        self.accountService = accountService
+    required init() {
         if AccountsStore.shared.accounts != nil && !AccountsStore.shared.accounts.isEmpty {
             let currentAccount = AccountsStore.shared.currentAccount
             if let accountNickname = currentAccount.accountNickname {
@@ -70,11 +68,11 @@ final class EditNicknameViewModel {
     ///   - onError: onError Block that will notify error case
     func setAccountNickname(onSuccess: @escaping () -> Void,
                             onError: @escaping (String) -> Void) {
-        accountService.setAccountNickname(nickname: accountNickName.value, accountNumber: accountNumber)
+        AccountService.rx.setAccountNickname(nickname: accountNickName.value, accountNumber: accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.accountService.fetchAccounts()
+                AccountService.rx.fetchAccounts()
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { __SRD in
                         onSuccess()

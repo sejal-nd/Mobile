@@ -26,17 +26,19 @@ public enum Router {
     
     // Registration
     case registration(encodable: NewAccountRequest)
-    case checkDuplicateRegistration(encodable: Encodable)
+    case checkDuplicateRegistration(encodable: UsernameRequest)
     case registrationQuestions
-    case validateRegistration(encodable: Encodable)
-    case sendConfirmationEmail(encodable: Encodable)
-    case validateConfirmationEmail(encodable: Encodable)
+    case validateRegistration(encodable: ValidateAccountRequest)
+    case sendConfirmationEmail(encodable: UsernameRequest)
+    case validateConfirmationEmail(encodable: GuidRequest)
     
     case accounts
     case accountDetails(accountNumber: String, queryString: String)
+    case setDefaultAccount(accountNumber: String)
+    case setAccountNickname(request: AccountNicknameRequest)
     
     // PECO only release of info preferences
-    case updateReleaseOfInfo(accountNumber: String, encodable: Encodable)
+    case updateReleaseOfInfo(accountNumber: String, encodable: ReleaseOfInfoRequest)
     
     case weather(lat: String, long: String)
     
@@ -77,6 +79,7 @@ public enum Router {
     case forecastBill(accountNumber: String, premiseNumber: String)
     
     case ssoData(accountNumber: String, premiseNumber: String)
+    case ffssoData(accountNumber: String, premiseNumber: String)
     
     case energyTips(accountNumber: String, premiseNumber: String)
     
@@ -152,6 +155,10 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)\(queryString)"
         case .accounts:
             return "/mobile/custom/\(apiAccess)/accounts"
+        case .setDefaultAccount(let accountNumber):
+            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/default"
+        case .setAccountNickname:
+            return "/mobile/custom/\(apiAccess)/profile/update/account/nickname"
         case .updateReleaseOfInfo(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/preferences/release"
         case .minVersion:
@@ -215,6 +222,8 @@ public enum Router {
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/forecast_bill"
         case .ssoData(let accountNumber, let premiseNumber):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/ssodata"
+        case .ffssoData(let accountNumber, let premiseNumber):
+            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/ffssodata"
         case .energyTips(let accountNumber, let premiseNumber):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips"
         case .homeProfileLoad(let accountNumber, let premiseNumber), .homeProfileUpdate(let accountNumber, let premiseNumber, _):
@@ -254,10 +263,10 @@ public enum Router {
         switch self {
         case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions:
+        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
-             .updateReleaseOfInfo, .validateConfirmationEmail:
+             .updateReleaseOfInfo, .validateConfirmationEmail, .setDefaultAccount:
             return "PUT"
         case .paperlessUnenroll:
             return "DELETE"
@@ -291,7 +300,7 @@ public enum Router {
                     "Content-Type": "application/json"]
         case .minVersion, .maintenanceMode:
             return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)"]
-        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
+        case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
             return ["Authorization": "Bearer \(token)"]
         case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
             return ["Authorization": "Bearer \(token)",
@@ -304,7 +313,7 @@ public enum Router {
     public var httpBody: HTTPBody? {
         switch self {
         case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
-             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .reportOutageAnon(let request as Encodable):
+             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable):
             return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
@@ -368,6 +377,8 @@ public enum Router {
         case .meterPing:
             return "MeterPingMock"
         case .ssoData:
+            return "SSODataMock"
+        case .ffssoData:
             return "SSODataMock"
         case .energyTips:
             return "EnergyTipsMock"

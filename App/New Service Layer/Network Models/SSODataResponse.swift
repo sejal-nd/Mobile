@@ -13,6 +13,7 @@ public struct SSODataResponse: Decodable {
     public var ssoPostURL: String
     public var relayState: String
     public var samlResponse: String
+    public var username: String?
     
     enum CodingKeys: String, CodingKey {
         case data = "data"
@@ -20,6 +21,7 @@ public struct SSODataResponse: Decodable {
         case ssoPostURL = "ssoPostURL"
         case relayState = "relayState"
         case samlResponse = "samlResponse"
+        case username
     }
     
     public init(from decoder: Decoder) throws {
@@ -34,5 +36,6 @@ public struct SSODataResponse: Decodable {
                                           forKey: .relayState)
         self.samlResponse = try data.decode(String.self,
                                             forKey: .samlResponse)
+        self.username = try data.decodeIfPresent(String.self, forKey: .username)
     }
 }

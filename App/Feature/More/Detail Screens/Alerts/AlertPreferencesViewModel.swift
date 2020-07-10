@@ -13,7 +13,6 @@ class AlertPreferencesViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let accountService: AccountService
     private let alertsService: AlertsService
     private let billService: BillService
     
@@ -65,10 +64,9 @@ class AlertPreferencesViewModel {
     
     var devicePushNotificationsEnabled = false
     
-    required init(alertsService: AlertsService, billService: BillService, accountService: AccountService) {
+    required init(alertsService: AlertsService, billService: BillService) {
         self.alertsService = alertsService
         self.billService = billService
-        self.accountService = accountService
     }
     
     func toggleSectionVisibility(_ section: Int) {
@@ -237,7 +235,7 @@ class AlertPreferencesViewModel {
     }
     
     func fetchAccountDetail() -> Observable<Void> {
-        return accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount, alertPreferenceEligibilities: true)
+        return AccountService.rx.fetchAccountDetails(alertPreferenceEligibilities: true)
             .observeOn(MainScheduler.instance)
             .do(onNext: { [weak self] accountDetail in
                 self?.accountDetail = accountDetail

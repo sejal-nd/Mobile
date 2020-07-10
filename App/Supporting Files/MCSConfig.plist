@@ -11,7 +11,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -24,7 +24,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -37,7 +37,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -50,7 +50,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -63,7 +63,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
-			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -76,7 +76,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -89,7 +89,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -102,7 +102,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -115,7 +115,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -128,7 +128,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
-			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -141,7 +141,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -154,7 +154,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -167,7 +167,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -180,7 +180,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -193,7 +193,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
-			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -206,7 +206,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -219,7 +219,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -232,7 +232,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -245,7 +245,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -258,7 +258,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
-			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -271,7 +271,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -284,7 +284,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -297,7 +297,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -310,7 +310,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -323,7 +323,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
-			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -336,7 +336,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -349,7 +349,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -362,7 +362,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -375,7 +375,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
-			<string>stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
@@ -388,7 +388,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
-			<string>apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>

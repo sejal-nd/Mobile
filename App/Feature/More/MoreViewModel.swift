@@ -18,12 +18,10 @@ class MoreViewModel {
     
     private var authService: AuthenticationService
     private var biometricsService: BiometricsService
-    private var accountService: AccountService
     
-    init(authService: AuthenticationService, biometricsService: BiometricsService, accountService: AccountService) {
+    init(authService: AuthenticationService, biometricsService: BiometricsService) {
         self.authService = authService
         self.biometricsService = biometricsService
-        self.accountService = accountService
         
         // We should always have a stored username unless user skipped login, in which case this will probably change
         // in a future sprint anyway
@@ -53,7 +51,7 @@ class MoreViewModel {
     }
     
     func fetchAccounts() -> Observable<[Account]> {
-        return accountService.fetchAccounts()
+        return AccountService.rx.fetchAccounts()
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {

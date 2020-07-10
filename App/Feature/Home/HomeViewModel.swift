@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwiftExt
 
 class HomeViewModel {
-    private let accountService: AccountService
     private let weatherService: WeatherService
     private let walletService: WalletService
     private let paymentService: PaymentService
@@ -37,8 +36,7 @@ class HomeViewModel {
     let latestNewCardVersion = HomeCard.latestNewCardVersion
     let appointmentsUpdates = PublishSubject<[Appointment]>() // Bind the detail screen's poll results to this
     
-    required init(accountService: AccountService,
-                  weatherService: WeatherService,
+    required init(weatherService: WeatherService,
                   walletService: WalletService,
                   paymentService: PaymentService,
                   usageService: UsageService,
@@ -48,7 +46,6 @@ class HomeViewModel {
                   appointmentService: AppointmentService,
                   gameService: GameService) {
         self.fetchDataObservable = fetchData.share()
-        self.accountService = accountService
         self.weatherService = weatherService
         self.walletService = walletService
         self.paymentService = paymentService
@@ -83,8 +80,7 @@ class HomeViewModel {
         HomeUsageCardViewModel(fetchData: fetchDataObservable,
                                maintenanceModeEvents: maintenanceModeEvents,
                                accountDetailEvents: accountDetailEvents,
-                               accountService: accountService,
-                               usageService: usageService,
+                                            usageService: usageService,
                                fetchTracker: usageTracker)
     
     private(set) lazy var templateCardViewModel =
@@ -152,7 +148,7 @@ class HomeViewModel {
             return [this.billTracker, this.usageTracker, this.accountDetailTracker, this.projectedBillTracker]
         }, requestSelector: { [weak self] _ in
             guard let this = self else { return .empty() }
-            return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+            return AccountService.rx.fetchAccountDetails()
             // todo account details
         })
         .share(replay: 1, scope: .forever)
@@ -169,7 +165,7 @@ class HomeViewModel {
             return [this.billTracker]
         }, requestSelector: { [weak self] _ in
             guard let this = self else { return .empty() }
-            return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map {
+            return AccountService.rx.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map {
                 return $0.last
             }
         })
