@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterViewController {
+class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFooterViewController {
 
     let disposeBag = DisposeBag()
     

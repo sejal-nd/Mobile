@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Toast_Swift
 
-class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterViewController {
+class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFooterViewController {
 
     let disposeBag = DisposeBag()
 
@@ -357,7 +357,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? RegistrationSecurityQuestionsViewController {
+        if let vc = segue.destination as? RegistrationSecurityQuestionsViewControllerNew {
             vc.viewModel = viewModel
         }
     }
@@ -390,7 +390,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
 
 // MARK: - TextField Delegate
 
-extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
+extension RegistrationCreateCredentialsViewControllerNew: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         createPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import PDTSimpleCalendar
 
-class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterViewController {
+class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooterViewController {
 
     let disposeBag = DisposeBag()
     
@@ -39,7 +39,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = NSLocalizedString("Register", comment: "")
         
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
@@ -280,7 +280,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
         
-        if let vc = segue.destination as? RegistrationCreateCredentialsViewController {
+        if let vc = segue.destination as? RegistrationCreateCredentialsViewControllerNew {
             vc.viewModel = viewModel
         } else if let vc = segue.destination as? RegistrationBGEAccountNumberViewController {
             vc.viewModel = viewModel
@@ -289,7 +289,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
     
 }
 
-extension RegistrationValidateAccountViewController: UITextFieldDelegate {
+extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         
@@ -360,7 +360,7 @@ extension RegistrationValidateAccountViewController: UITextFieldDelegate {
 
 // MARK: - PDTSimpleCalendarViewDelegate
 
-extension RegistrationValidateAccountViewController: PDTSimpleCalendarViewDelegate {
+extension RegistrationValidateAccountViewControllerNew: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
         return true
     }

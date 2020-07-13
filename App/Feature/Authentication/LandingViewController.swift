@@ -119,6 +119,14 @@ class LandingViewController: UIViewController {
         performSegue(withIdentifier: "loginSegue", sender: self)
     }
     
+    @IBAction func onRegistrationInPress() {
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+            performSegue(withIdentifier: "registrationSegueNew", sender: self)
+        } else {
+            performSegue(withIdentifier: "registrationSegue", sender: self)
+        }
+    }
+    
     
     // MARK: - Helper
     
