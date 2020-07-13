@@ -195,13 +195,22 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).disposed(by: disposeBag)
         
         viewModel.securityQuestion1.asDriver().distinctUntilChanged().drive(onNext: { _ in
-            self.question1AnswerTextField.textField.text = ""
+            DispatchQueue.main.async {
+                self.question1AnswerTextField.textField.text = ""
+                self.view.endEditing(true)
+            }
         }).disposed(by: disposeBag)
         viewModel.securityQuestion2.asDriver().distinctUntilChanged().drive(onNext: { _ in
-            self.question2AnswerTextField.textField.text = ""
+            DispatchQueue.main.async {
+                self.question2AnswerTextField.textField.text = ""
+                self.view.endEditing(true)
+            }
         }).disposed(by: disposeBag)
         viewModel.securityQuestion3.asDriver().distinctUntilChanged().drive(onNext: { _ in
-            self.question3AnswerTextField.textField.text = ""
+            DispatchQueue.main.async {
+                self.question3AnswerTextField.textField.text = ""
+                self.view.endEditing(true)
+            }
         }).disposed(by: disposeBag)
     }
     
