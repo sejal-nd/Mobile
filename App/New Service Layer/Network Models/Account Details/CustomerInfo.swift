@@ -1,5 +1,5 @@
 //
-//  NewCustomerInfo.swift
+//  CustomerInfo.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 3/26/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewCustomerInfo: Decodable {
+public struct CustomerInfo: Decodable {
     public var number: String
     public var name: String
     public var firstName: String

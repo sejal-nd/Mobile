@@ -144,7 +144,11 @@ public enum NetworkingLayer {
     
     private static func decode<T: Decodable>(data: Data) throws -> T {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+        jsonDecoder.dateDecodingStrategy = .custom({ decoder -> Date in
+            let container = try decoder.singleValueContainer()
+            let dateStr = try container.decode(String.self)
+            return try DateParser().extractDate(object: dateStr)
+        })
         
         let responseWrapper = try jsonDecoder.decode(NewResponseWrapper<T>.self, from: data)
         

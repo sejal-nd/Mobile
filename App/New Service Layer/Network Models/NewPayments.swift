@@ -10,7 +10,7 @@ import Foundation
 
 public struct NewPayments: Decodable {
     public var isEbillEligible: Bool
-    public var billingInfo: NewBillingInfo
+    public var billingInfo: PaymentBillingInfo
     
     enum CodingKeys: String, CodingKey {
         case data = "data"
@@ -26,12 +26,12 @@ public struct NewPayments: Decodable {
         
         self.isEbillEligible = try data.decode(Bool.self,
                                                forKey: .isEbillEligible)
-        self.billingInfo = try data.decode(NewBillingInfo.self,
+        self.billingInfo = try data.decode(PaymentBillingInfo.self,
                                            forKey: .billingInfo)
     }
 }
 
-public struct NewBillingInfo: Decodable {
+public struct PaymentBillingInfo: Decodable {
     public var payments: [NewPayment]
 }
 

@@ -208,7 +208,7 @@ class PaymentViewModel {
         let billingInfo = accountDetail.billingInfo
         
         // Existing requirement from before Paymentus
-        if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
+        if Environment.shared.opco == .bge && accountDetail.activeSeverance {
             return false
         }
         
@@ -414,7 +414,7 @@ class PaymentViewModel {
 
     private(set) lazy var isCashOnlyUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isCashOnly }
 
-    private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isActiveSeverance }
+    private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.activeSeverance }
 
     private(set) lazy var shouldShowContent: Driver<Bool> =
         Driver.combineLatest(self.isFetching.asDriver(),
@@ -794,7 +794,7 @@ class PaymentViewModel {
         let opco = Environment.shared.opco
         
         // Only show text in these precarious situations
-        guard (opco == .bge && accountDetail.isActiveSeverance) ||
+        guard (opco == .bge && accountDetail.activeSeverance) ||
             (accountDetail.isFinaled && (opco == .bge || billingInfo.pastDueAmount > 0)) ||
             (billingInfo.restorationAmount > 0 && accountDetail.isCutOutNonPay) ||
             (billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued) else {

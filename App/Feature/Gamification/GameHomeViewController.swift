@@ -46,8 +46,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     private var refreshControl: UIRefreshControl?
     
-    let viewModel = GameHomeViewModel(accountService: ServiceFactory.createAccountService(),
-                                      gameService: ServiceFactory.createGameService())
+    let viewModel = GameHomeViewModel(gameService: ServiceFactory.createGameService())
 
     let bag = DisposeBag()
     

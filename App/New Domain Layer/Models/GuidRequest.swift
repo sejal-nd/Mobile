@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct GuidRequest: Encodable {
+public struct GuidRequest: Encodable {
     let guid: String
 }

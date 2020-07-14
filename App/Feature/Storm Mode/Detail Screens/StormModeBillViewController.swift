@@ -26,8 +26,7 @@ class StormModeBillViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = StormModeBillViewModel(accountService: ServiceFactory.createAccountService(),
-                                           walletService: ServiceFactory.createWalletService(),
+    let viewModel = StormModeBillViewModel(walletService: ServiceFactory.createWalletService(),
                                            paymentService: ServiceFactory.createPaymentService(),
                                            authService: ServiceFactory.createAuthenticationService())
     

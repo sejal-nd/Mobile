@@ -13,8 +13,6 @@ class ReportOutageViewModel {
     
     let disposeBag = DisposeBag()
     
-    private var accountService: AccountService
-    
     var accountNumber: String? // Passed from UnauthenticatedOutageStatusViewController
     var outageStatus: OutageStatus! // Passed from OutageViewController/UnauthenticatedOutageStatusViewController
     var selectedSegmentIndex = BehaviorRelay(value: 0)
@@ -23,8 +21,8 @@ class ReportOutageViewModel {
     var comments = BehaviorRelay(value: "")
     var reportFormHidden = BehaviorRelay(value: false)
     
-    required init(accountService: AccountService) {
-        self.accountService = accountService
+    required init() {
+        
     }
     
     private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
@@ -168,7 +166,7 @@ class ReportOutageViewModel {
                 return Observable.just(premiseNumber)
             }
             else {
-                return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount).map { return $0.premiseNumber }
+                return AccountService.rx.fetchAccountDetails().map { return $0.premiseNumber }
             }
     }
     

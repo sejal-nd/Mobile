@@ -15,13 +15,11 @@ fileprivate let firstfuelSessionTimeout = 900 // 15 minutes
 
 class UsageViewModel {
     
-    private let accountService: AccountService
     private let usageService: UsageService
     
     // MARK: - Init
     
-    required init(accountService: AccountService, usageService: UsageService) {
-        self.accountService = accountService
+    required init(usageService: UsageService) {
         self.usageService = usageService
     }
     
@@ -46,22 +44,21 @@ class UsageViewModel {
             !($0.element?.usage ?? false)
         }
         .toAsyncRequest { [weak self] _ in
-            self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
+            AccountService.rx.fetchAccountDetails()
         }
     
-    private lazy var commercialDataEvents: Observable<Event<SSOData>> = accountDetailEvents
+    private lazy var commercialDataEvents: Observable<Event<SSODataResponse>> = accountDetailEvents
         .elements()
-        .toAsyncRequest { [weak self] accountDetail -> Observable<SSOData> in
+        .toAsyncRequest { [weak self] accountDetail -> Observable<SSODataResponse> in
             // Start the timer. The FirstFuel session is only valid for [firstfuelSessionTimeout] seconds -
             // so we automatically reload after that amount of time.
             // Replace timer with .empty() for residential accounts
             guard !accountDetail.isResidential, let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             return Observable<Int>
                 .timer(.seconds(0), period: .seconds(firstfuelSessionTimeout), scheduler: MainScheduler.instance)
-                .flatMapLatest { [weak self] _ -> Observable<SSOData> in
+                .flatMapLatest { [weak self] _ -> Observable<SSODataResponse> in
                     guard let self = self else { return .empty() }
-                    return self.accountService
-                        .fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber,
+                    return AccountService.rx.fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber,
                                                premiseNumber: premiseNumber)
                 }
         }

@@ -25,8 +25,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     let disposeBag = DisposeBag()
     
     lazy var viewModel = AppointmentsViewModel(initialAppointments: appointments,
-                                               appointmentService: ServiceFactory.createAppointmentService(),
-                                               accountService: ServiceFactory.createAccountService())
+                                               appointmentService: ServiceFactory.createAppointmentService())
     
     override func viewDidLoad() {
         super.viewDidLoad()

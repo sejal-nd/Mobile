@@ -15,7 +15,6 @@ class HomeUsageCardViewModel {
     
     private let maintenanceModeEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
-    private let accountService: AccountService
     private let usageService: UsageService
     
     private let fetchData: Observable<Void>
@@ -35,13 +34,11 @@ class HomeUsageCardViewModel {
     required init(fetchData: Observable<Void>,
                   maintenanceModeEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
-                  accountService: AccountService,
                   usageService: UsageService,
                   fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
-        self.accountService = accountService
         self.usageService = usageService
         self.fetchTracker = fetchTracker
     }
@@ -63,7 +60,7 @@ class HomeUsageCardViewModel {
             guard accountDetail.isBGEControlGroup && accountDetail.isSERAccount else {
                 return Observable.just([])
             }
-            return self.accountService.fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+            return AccountService.rx.fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         })
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable

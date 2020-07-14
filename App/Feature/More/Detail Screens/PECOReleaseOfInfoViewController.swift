@@ -29,9 +29,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var submitButton: PrimaryButton!
-    
-    let accountService = ServiceFactory.createAccountService()
-    
+        
     var selectedRowIndex = 0
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -83,7 +81,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         
         FirebaseUtility.logEvent(.releaseOfInfoSubmit)
         GoogleAnalytics.log(event: .releaseInfoSubmit)
-        accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.shared.currentAccount, selectedIndex: rowToIntMapping)
+        AccountService.rx.updatePECOReleaseOfInfoPreference(selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 LoadingView.hide()
@@ -108,7 +106,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     func fetchCurrentSelection() {
         let fetchReleaseOfInfo = { [weak self] in
             guard let self = self else { return }
-            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+            AccountService.rx.fetchAccountDetails()
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] accountDetail in
                     guard let self = self else { return }
@@ -137,7 +135,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         }
         
         if AccountsStore.shared.currentIndex == nil {
-            accountService.fetchAccounts()
+            AccountService.rx.fetchAccounts()
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] _ in
                     guard let self = self else { return }

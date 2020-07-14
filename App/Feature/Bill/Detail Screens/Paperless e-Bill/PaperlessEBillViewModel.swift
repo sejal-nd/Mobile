@@ -23,7 +23,6 @@ enum PaperlessEBillAllAccountsCheckboxState {
 }
 
 class PaperlessEBillViewModel {
-    private var accountService: AccountService
     private var billService: BillService
     
     let initialAccountDetail: BehaviorRelay<AccountDetail>
@@ -38,8 +37,7 @@ class PaperlessEBillViewModel {
     
     let bag = DisposeBag()
     
-    init(accountService: AccountService, billService: BillService, initialAccountDetail accountDetail: AccountDetail) {
-        self.accountService = accountService
+    init(billService: BillService, initialAccountDetail accountDetail: AccountDetail) {
         self.billService = billService
         self.initialAccountDetail = BehaviorRelay(value: accountDetail)
         
@@ -95,7 +93,7 @@ class PaperlessEBillViewModel {
                 if self.initialAccountDetail.value.accountNumber == account.accountNumber {
                     return Observable.just(self.initialAccountDetail.value)
                 }
-                return self.accountService.fetchAccountDetail(account: account)
+                return AccountService.rx.fetchAccountDetails(accountNumber: account.accountNumber)
                     .retry(2)
                     .map { $0 }
                     .catchErrorJustReturn(nil)

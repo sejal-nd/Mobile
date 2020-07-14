@@ -29,7 +29,7 @@ public struct NewSharePointAlert: Decodable {
 //
 //        self.isEbillEligible = try data.decode([NewAlert].self,
 //                                               forKey: .isEbillEligible)
-//        self.billingInfo = try data.decode(NewBillingInfo.self,
+//        self.billingInfo = try data.decode(BillingInfo.self,
 //                                           forKey: .billingInfo)
     }
 }

@@ -16,12 +16,12 @@ class MoreViewModel {
     var username = BehaviorRelay(value: "")
     var password = BehaviorRelay(value: "")
     
+    private var authService: AuthenticationService
     private var biometricsService: BiometricsService
-    private var accountService: AccountService
     
-    init(biometricsService: BiometricsService, accountService: AccountService) {
+    init(authService: AuthenticationService, biometricsService: BiometricsService) {
+        self.authService = authService
         self.biometricsService = biometricsService
-        self.accountService = accountService
         
         // We should always have a stored username unless user skipped login, in which case this will probably change
         // in a future sprint anyway
@@ -51,20 +51,19 @@ class MoreViewModel {
     }
     
     func fetchAccounts() -> Observable<[Account]> {
-        return accountService.fetchAccounts()
+        return AccountService.rx.fetchAccounts()
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        AuthenticatedService.validateLogin(username: username.value, password: password.value) { [weak self] result in
-            switch result {
-            case .success:
+        authService.validateLogin(username: username.value, password: password.value).observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.biometricsService.setStoredPassword(password: self.password.value)
                 onSuccess()
-            case .failure(let error):
-                onError(error.localizedDescription)
-            }
-        }
+                }, onError: { (error: Error) in
+                    onError(error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
     }
     
     let billingVideosUrl: URL? = {

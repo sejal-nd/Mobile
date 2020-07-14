@@ -15,7 +15,7 @@ fileprivate let jsTimeoutInterval: TimeInterval = 15 // 15 seconds
 class CommercialUsageViewModel {
     
     let accountDetail: Observable<AccountDetail>
-    let ssoData: Observable<SSOData>
+    let ssoData: Observable<SSODataResponse>
     let errorTrigger: PublishSubject<Error>
     let tabs = BehaviorRelay(value: Tab.allCases)
     let selectedIndex = BehaviorRelay(value: 0)
@@ -26,7 +26,7 @@ class CommercialUsageViewModel {
     let disposeBag = DisposeBag()
     
     init(accountDetail: Observable<AccountDetail>,
-         ssoData: Observable<SSOData>,
+         ssoData: Observable<SSODataResponse>,
          errorTrigger: PublishSubject<Error>) {
         self.accountDetail = accountDetail
         self.ssoData = ssoData
@@ -35,7 +35,7 @@ class CommercialUsageViewModel {
         accountDetail
             .map { accountDetail -> [Tab] in
                 if !accountDetail.isAMIAccount || accountDetail.isFinaled ||
-                    accountDetail.isActiveSeverance || accountDetail.serviceType?.uppercased() == "GAS" {
+                    accountDetail.activeSeverance || accountDetail.serviceType?.uppercased() == "GAS" {
                     return Tab.allCases.filter { $0 != .operatingSchedule }
                 } else {
                     return Tab.allCases
@@ -54,8 +54,8 @@ class CommercialUsageViewModel {
 
         return String(format: jsString,
                       ssoData.samlResponse,
-                      ssoData.relayState.absoluteString,
-                      ssoData.ssoPostURL.absoluteString)
+                      ssoData.relayState,
+                      ssoData.ssoPostURL)
     }
     .asDriver(onErrorDriveWith: .empty())
     
