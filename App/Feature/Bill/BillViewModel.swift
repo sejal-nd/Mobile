@@ -186,7 +186,7 @@ class BillViewModel {
     
     private(set) lazy var showCreditScenario: Driver<Bool> = currentAccountDetail.map {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return false }
-        return netDueAmount < 0 && Environment.shared.opco == .bge
+        return netDueAmount < 0 && (Environment.shared.opco == .bge || Environment.shared.opco.isPHI)
     }
     
     private(set) lazy var showTotalAmountAndLedger: Driver<Bool> =
@@ -364,15 +364,9 @@ class BillViewModel {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return "--" }
         
         switch Environment.shared.opco {
-        case .bge: // For credit scenario we want to show the positive number
+        case .ace, .bge, .delmarva, .pepco: // For credit scenario we want to show the positive number
             return abs(netDueAmount).currencyString
         case .comEd, .peco:
-            return max(netDueAmount, 0).currencyString
-        case .pepco:
-            return max(netDueAmount, 0).currencyString
-        case .ace:
-            return max(netDueAmount, 0).currencyString
-        case .delmarva:
             return max(netDueAmount, 0).currencyString
         }
     }
