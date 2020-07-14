@@ -21,13 +21,14 @@ struct AnonymousService {
     }
     
     static func maintenanceMode(shouldPostNotification: Bool = false, completion: @escaping (Result<MaintenanceMode, Error>) -> ()) {
+        print("maint start")
         NetworkingLayer.request(router: .maintenanceMode) { (result: Result<MaintenanceMode, NetworkingError>) in
             switch result {
             case .success(let maintenanceMode):
                 if maintenanceMode.all && shouldPostNotification {
                     NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: maintenanceMode)
                 }
-                
+                print("maint succeed")
                 completion(.success(maintenanceMode))
             case .failure(let error):
                 completion(.failure(error))

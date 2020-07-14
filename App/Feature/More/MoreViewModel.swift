@@ -16,11 +16,9 @@ class MoreViewModel {
     var username = BehaviorRelay(value: "")
     var password = BehaviorRelay(value: "")
     
-    private var authService: AuthenticationService
     private var biometricsService: BiometricsService
     
-    init(authService: AuthenticationService, biometricsService: BiometricsService) {
-        self.authService = authService
+    init(biometricsService: BiometricsService) {
         self.biometricsService = biometricsService
         
         // We should always have a stored username unless user skipped login, in which case this will probably change
@@ -55,15 +53,17 @@ class MoreViewModel {
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        authService.validateLogin(username: username.value, password: password.value).observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.biometricsService.setStoredPassword(password: self.password.value)
-                onSuccess()
-                }, onError: { (error: Error) in
-                    onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+        AuthenticatedService.validateLogin(username: username.value,
+                                           password: password.value) { [weak self] result in
+                                            switch result {
+                                            case .success:
+                                                guard let self = self else { return }
+                                                self.biometricsService.setStoredPassword(password: self.password.value)
+                                                onSuccess()
+                                            case .failure(let error):
+                                                onError(error.localizedDescription)
+                                            }
+        }
     }
     
     let billingVideosUrl: URL? = {

@@ -35,6 +35,7 @@ struct NewResponseWrapper<T: Decodable>: Decodable {
                 print("DECODE DATA")
                 self.data = try container.decode(T.self, forKey: .data)
                 print("DATA: \(data)")
+                
             }
         } else { // no response wrapper
             print("no data")

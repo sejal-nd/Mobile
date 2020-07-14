@@ -9,7 +9,10 @@
 import Foundation
 #if os(iOS)
 import Reachability
+#elseif os(watchOS)
+import WatchKit
 #endif
+
 
 public enum NetworkingLayer {
     public static func request<T: Decodable>(router: Router,
@@ -61,30 +64,12 @@ public enum NetworkingLayer {
             
             // todo this may mess up cancellation of all requests. need to be able to access this in cancel all requests.
             // this is needed for headers for calls
-//            let new = URLSession(configuration: configureURLSession())
+            //session = URLSession(configuration: configureURLSession())
         }
-
-        // Check Reachability on iOS
-        #if os(iOS)
-        guard let reachability = Reachability() else {
-            completion(.failure(.noNetwork))
-            return
-        }
-        let networkStatus = reachability.connection
         
-        switch networkStatus {
-        case .none:
-            completion(.failure(.noNetwork))
-        case .wifi, .cellular:
-            NetworkingLayer.dataTask(session: session,
-                                     urlRequest: urlRequest,
-                                     completion: completion)
-        }
-        #elseif os(watchOS)
         NetworkingLayer.dataTask(session: session,
                                  urlRequest: urlRequest,
                                  completion: completion)
-        #endif
     }
     
     private static func dataTask<T: Decodable>(session: URLSession,
@@ -92,7 +77,16 @@ public enum NetworkingLayer {
                                                completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // Perform Data Task
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
-            if let error = error {
+            if let error = error as NSError? {
+                print("ERRROR: \(error)")
+                print("Error2: \(error.localizedDescription)")
+                if error.domain == NSURLErrorDomain,
+                    error.code == NSURLErrorNotConnectedToInternet {
+                    DispatchQueue.main.async {
+                        completion(.failure(.noNetwork))
+                    }
+                }
+                
                 dLog(error.localizedDescription)
                 DispatchQueue.main.async {
                     completion(.failure(.generic))
@@ -165,7 +159,8 @@ public enum NetworkingLayer {
     }
     
     public static func cancelAllTasks() {
-        URLSession.shared.getAllTasks { tasks in
+        let urlSession = URLSession.shared//URLSession(configuration: configureURLSession())
+        urlSession.getAllTasks { tasks in
             tasks.forEach { $0.cancel() }
         }
         dLog("Cancelled all URL Session requests.")
@@ -187,8 +182,7 @@ public enum NetworkingLayer {
         #if os(iOS)
         let systemVersion = UIDevice.current.systemVersion
         #elseif os(watchOS)
-        let systemVersion = "watchOS"
-        //            let systemVersion = WKInterfaceDevice.current().systemVersion
+        let systemVersion = WKInterfaceDevice.current().systemVersion
         #endif
         
         // Model Identifier
@@ -198,7 +192,7 @@ public enum NetworkingLayer {
         }
         var sysinfo = utsname()
         uname(&sysinfo)
-        modelIdentifier = String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
+        modelIdentifier = String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)?.trimmingCharacters(in: .controlCharacters) ?? ""
         
         // Set User Agent Headers
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,

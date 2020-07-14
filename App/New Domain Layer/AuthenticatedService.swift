@@ -60,6 +60,7 @@ public struct AuthenticatedService {
         return !UserSession.shared.token.isEmpty
     }
     
+    // todo need to verify cancelAllTasks for network actually works becuase we changed the network configuration
     static func logout() {
         NetworkingLayer.cancelAllTasks()
         
