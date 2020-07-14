@@ -12,32 +12,6 @@ import RxSwift
 /// to deal with authentication related service routines such as 
 /// login/logout.
 protocol AuthenticationService {
-    
-    #if os(iOS)
-    /// Authenticate a user with the supplied credentials.
-    ///
-    /// - Parameters:
-    ///   - username: the username to authenticate with.
-    ///   - password: the password to authenticate with.
-    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus>
-    
-    /// Validate login credentials
-    ///
-    /// - Parameters:
-    ///   - username: the suername to authenticate with.
-    ///   - password: the password to authenticate with.
-    func validateLogin(username: String, password: String) -> Observable<Void>
-    #endif
-    
-    /// Check if the user is authenticated
-    func isAuthenticated() -> Bool
-    
-    /// Log out the currently logged in user
-    ///
-    /// Note that this operation can and should have the side effect of removing
-    /// any cached information related to the user, either in memory or on disk.
-    func logout()
-    
     #if os(iOS)
     /// Change the currently logged in users password.
     ///

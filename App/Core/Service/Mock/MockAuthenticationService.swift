@@ -13,28 +13,7 @@ struct MockAuthenticationService: AuthenticationService {
     
     let invalidUsername = "invalid@test.com"
     let invalidPassword = "invalid"
-    
-    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
-        if username != invalidUsername && password != invalidPassword {
-            MockUser.current = MockUser(username: username)
-            return .just(ProfileStatus())
-        } else {
-            return .error(ServiceError(serviceCode: ServiceErrorCode.fnPwdInvalid.rawValue, serviceMessage: "Invalid credentials"))
-        }
-    }
-    
-    func validateLogin(username: String, password: String) -> Observable<Void> {
-        return .error(ServiceError())
-    }
-    
-    func isAuthenticated() -> Bool {
-        return false
-    }
-    
-    func logout() {
 
-    }
-    
     func changePassword(currentPassword: String, newPassword: String) -> Observable<Void> {
         if currentPassword != invalidPassword {
             return .just(())
