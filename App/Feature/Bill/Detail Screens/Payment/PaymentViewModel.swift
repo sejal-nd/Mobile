@@ -221,7 +221,7 @@ class PaymentViewModel {
         }
         
         // If not one of the above precarious states...
-        if Environment.shared.opco == .bge { // BGE can always future date
+        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI { // BGE can always future date
             return true
         } else { // ComEd/PECO can only future date if the due date has not passed
             return isDueDateInTheFuture
@@ -330,7 +330,7 @@ class PaymentViewModel {
         
         let today = Calendar.opCo.startOfDay(for: .now)
         switch Environment.shared.opco {
-        case .bge:
+        case .ace, .bge, .delmarva, .pepco:
             let minDate = today
             var maxDate: Date
             switch selectedWalletItem.value?.bankOrCard {
@@ -348,26 +348,7 @@ class PaymentViewModel {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
                 return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
             }
-        case .pepco:
-            // todo
-            if let dueDate = accountDetail.value.billingInfo.dueByDate {
-                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
-            }
-        case .ace:
-            // todo
-            if let dueDate = accountDetail.value.billingInfo.dueByDate {
-                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
-            }
-        case .delmarva:
-            // todo
-            if let dueDate = accountDetail.value.billingInfo.dueByDate {
-                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
-            }
         }
-        
         return false // Will never execute
     }
     
@@ -457,7 +438,7 @@ class PaymentViewModel {
             if walletItem.bankOrCard == .bank {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
-                if Environment.shared.opco == .bge {
+                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -475,7 +456,7 @@ class PaymentViewModel {
             } else {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
-                if Environment.shared.opco == .bge {
+                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -716,18 +697,9 @@ class PaymentViewModel {
 
     private(set) lazy var isOverpaying: Driver<Bool> = {
         switch Environment.shared.opco {
-        case .bge:
+        case .ace, .bge, .delmarva, .pepco:
             return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver(), resultSelector: <)
         case .comEd, .peco:
-            return Driver.just(false)
-        case .pepco:
-            // todo
-            return Driver.just(false)
-        case .ace:
-            // todo
-            return Driver.just(false)
-        case .delmarva:
-            // todo
             return Driver.just(false)
         }
     }()
