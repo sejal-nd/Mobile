@@ -182,8 +182,6 @@ class MCSApi {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if isAuthenticated() {
             request.setValue("Bearer \(accessToken!)", forHTTPHeaderField: "Authorization")
-        } else {
-            request.setValue("Basic \(Environment.shared.mcsConfig.anonymousKey)", forHTTPHeaderField: "Authorization")
         }
         
         print("OLD URL: \(url)")

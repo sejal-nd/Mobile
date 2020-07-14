@@ -287,10 +287,7 @@ public enum Router {
         case .alertBanner, .newsAndUpdates:
             return ["Accept": "application/json;odata=verbose"]
         case .outageStatusAnon, .reportOutageAnon:
-            return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
-                    "Content-Type": "application/json"]
-        case .minVersion, .maintenanceMode:
-            return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)"]
+            return ["Content-Type": "application/json"]
         case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
             return ["Authorization": "Bearer \(token)"]
         case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
