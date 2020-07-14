@@ -47,9 +47,10 @@ class MCSBillService: BillService {
             .do(onNext: { RxNotifications.shared.accountDetailUpdated.onNext(()) })
     }
     
-    func fetchBillPdf(accountNumber: String, billDate: Date) -> Observable<String> {
+    func fetchBillPdf(accountNumber: String, billDate: Date, documentID: String) -> Observable<String> {
         let dateString = DateFormatter.yyyyMMddFormatter.string(from: billDate)
-        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/billing/\(dateString)/pdf", logResponseBody: false)
+        let path = Environment.shared.opco.isPHI ? "accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "accounts/\(accountNumber)/billing/\(dateString)/pdf"
+        return MCSApi.shared.get(pathPrefix: .auth, path: path, logResponseBody: false)
             .map { response in
                 guard let dict = response as? NSDictionary, let dataString = dict.object(forKey: "billImageData") as? String else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)

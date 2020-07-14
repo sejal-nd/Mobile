@@ -840,6 +840,7 @@ class BillViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         case let (vc as ViewBillViewController, accountDetail as AccountDetail):
             vc.viewModel.billDate = accountDetail.billingInfo.billDate
+            vc.viewModel.documentID = accountDetail.billingInfo.documentID
             vc.viewModel.isCurrent = true
         case let (vc as BGEAutoPayViewController, accountDetail as AccountDetail):
             vc.delegate = self
