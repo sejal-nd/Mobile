@@ -283,7 +283,7 @@ struct BillingInfo: Mappable {
     let deliveryCharges: Double?
     let supplyCharges: Double?
     let taxesAndFees: Double?
-    
+    let documentID: String?
     let minPaymentAmount: Double
     // These are both private because the `maxPaymentAmount(bankOrCard:)` function should be used instead
     private let _maxPaymentAmount: Double
@@ -314,7 +314,7 @@ struct BillingInfo: Mappable {
         deliveryCharges = map.optionalFrom("deliveryCharges")
         supplyCharges = map.optionalFrom("supplyCharges")
         taxesAndFees = map.optionalFrom("taxesAndFees")
-        
+        documentID = map.optionalFrom("documentID")
         let paymentDicts: [NSDictionary]? = map.optionalFrom("payments") {
             guard let array = $0 as? [NSDictionary] else {
                 throw MapperError.convertibleError(value: $0, type: Array<NSDictionary>.self)

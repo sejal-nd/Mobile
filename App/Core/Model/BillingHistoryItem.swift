@@ -74,6 +74,7 @@ struct BillingHistoryItem: Mappable {
     let confirmationNumber: String?
     let convenienceFee: Double?
     let totalAmount: Double?
+    let documentID: String?
     
     let isAutoPayPayment: Bool
     let isFuelFundDonation: Bool
@@ -98,7 +99,7 @@ struct BillingHistoryItem: Mappable {
         description = map.optionalFrom("description")
         maskedWalletItemAccountNumber = map.optionalFrom("masked_wallet_item_account_number", transformation: extractLast4)
         paymentId = map.optionalFrom("payment_id")
-        
+        documentID = map.optionalFrom("documentID")
         // Historical payments send "confirmation_number". For Paymentus, the paymentId is the confirmation number
         if let confNum: String = map.optionalFrom("confirmation_number") {
             confirmationNumber = confNum

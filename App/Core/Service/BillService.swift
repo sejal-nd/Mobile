@@ -47,7 +47,8 @@ protocol BillService {
     /// - Parameters:
     ///   - accountNumber: The account to get the bill for
     ///   - billDate: From account detail endpoint: BillingInfo.billDate
-    func fetchBillPdf(accountNumber: String, billDate: Date) -> Observable<String>
+    ///   - documentID: From account detail endpoint: BillingInfo.documentID
+    func fetchBillPdf(accountNumber: String, billDate: Date, documentID: String) -> Observable<String>
     
     /// Get the BillingHistoryItems for display
     ///
