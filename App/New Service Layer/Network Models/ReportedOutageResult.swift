@@ -11,6 +11,13 @@ import Foundation
 struct ReportedOutageResult: Decodable {
     let reportedTime: Date?
     let etr: Date?
+    var etrMessage: String? = nil
+    
+    enum CodingKeys: String, CodingKey {
+        case reportedTime
+        case etr
+        case etrMessage = "etr_message"
+    }
 }
 
 extension ReportedOutageResult {
