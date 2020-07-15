@@ -13,12 +13,15 @@ public struct NewCompareBillResult: Decodable {
     public var currencySymbol: String
     public var temperatureUnit: String
     
-    public var referenceBill: NewBill
-    public var comparedBill: NewBill
+    public var referenceBill: NewBill?
+    public var comparedBill: NewBill?
     public var billAnalysisResults: [NewBillAnalysisResult]
     
+    public var billPeriodCostDifference = 0.0
+    public var weatherCostDifference = 0.0
+    public var otherCostDifference = 0.0
+    
     enum CodingKeys: String, CodingKey {
-        case data = "data"
         case meterUnit = "meterUnit"
         case currencySymbol = "currencySymbol"
         case temperatureUnit = "temperatureUnit"
@@ -29,23 +32,31 @@ public struct NewCompareBillResult: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                 forKey: .data)
         
-        self.meterUnit = try data.decode(String.self,
+        self.meterUnit = try container.decode(String.self,
                                          forKey: .meterUnit)
-        self.currencySymbol = try data.decode(String.self,
+        self.currencySymbol = try container.decode(String.self,
                                               forKey: .currencySymbol)
-        self.temperatureUnit = try data.decode(String.self,
+        self.temperatureUnit = try container.decode(String.self,
                                                forKey: .temperatureUnit)
         
-        self.referenceBill = try data.decode(NewBill.self,
+        self.referenceBill = try container.decodeIfPresent(NewBill.self,
                                              forKey: .referenceBill)
-        self.comparedBill = try data.decode(NewBill.self,
+        self.comparedBill = try container.decodeIfPresent(NewBill.self,
                                             forKey: .comparedBill)
         
-        self.billAnalysisResults = try data.decode([NewBillAnalysisResult].self,
-                                                   forKey: .billAnalysisResults)
+        self.billAnalysisResults = try container.decodeIfPresent([NewBillAnalysisResult].self,
+                                                   forKey: .billAnalysisResults) ?? []
+        
+        for result in billAnalysisResults {
+            if result.analysisName == "NUM_DAYS" {
+                billPeriodCostDifference = result.costDifferenceExplained
+            } else if result.analysisName == "WEATHER" {
+                weatherCostDifference = result.costDifferenceExplained
+            } else if result.analysisName == "OTHER" {
+                otherCostDifference = result.costDifferenceExplained
+            }
+        }
     }
 }
 
@@ -54,8 +65,8 @@ public struct NewBill: Decodable {
     public var usage: Double
     public var startDate: Date
     public var endDate: Date
-    public var averageTemperature: Double
-    public var ratePlan: String
+    public var averageTemperature: Double?
+    public var ratePlan: String?
 }
 
 public struct NewBillAnalysisResult: Decodable {

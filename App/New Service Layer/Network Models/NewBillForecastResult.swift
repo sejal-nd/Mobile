@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewBillForecastResult {
+struct NewBillForecastResult: Decodable {
     let electric: NewBillForecast?
     let gas: NewBillForecast?
     

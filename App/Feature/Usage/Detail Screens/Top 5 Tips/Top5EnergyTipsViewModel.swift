@@ -10,14 +10,11 @@ import RxSwift
 
 class Top5EnergyTipsViewModel {
     
-    private let usageService: UsageService
     
-    let energyTips: Observable<[EnergyTip]>
+    let energyTips: Observable<[NewEnergyTip]>
     
-    init(usageService: UsageService, accountDetail: AccountDetail) {
-        self.usageService = usageService
-        
-        energyTips = usageService
+    init(accountDetail: AccountDetail) {
+        energyTips = UsageServiceNew.rx
             .fetchEnergyTips(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
             .map { Array($0.prefix(5)) }
     }

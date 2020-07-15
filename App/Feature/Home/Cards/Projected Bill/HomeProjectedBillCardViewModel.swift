@@ -15,25 +15,22 @@ class HomeProjectedBillCardViewModel {
     
     private let maintenanceModeEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
-    private let usageService: UsageService
     
     private let fetchData: Observable<Void>
     
     let fetchTracker: ActivityTracker
     
     let electricGasSelectedSegmentIndex = BehaviorRelay(value: 0)
-    let electricForecast = BehaviorRelay<BillForecast?>(value: nil)
-    let gasForecast = BehaviorRelay<BillForecast?>(value: nil)
+    let electricForecast = BehaviorRelay<NewBillForecast?>(value: nil)
+    let gasForecast = BehaviorRelay<NewBillForecast?>(value: nil)
     
     required init(fetchData: Observable<Void>,
                   maintenanceModeEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
-                  usageService: UsageService,
                   fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
-        self.usageService = usageService
         self.fetchTracker = fetchTracker
     }
     
@@ -90,9 +87,9 @@ class HomeProjectedBillCardViewModel {
         .withLatestFrom(fetchData) { ($0.0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] pair -> ActivityTracker? in
             return self?.fetchTracker
-        }, requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
+        }, requestSelector: { [weak self] pair -> Observable<NewBillForecastResult> in
             guard let this = self else { return .empty() }
-            return this.usageService.fetchBillForecast(accountNumber: pair.0.accountNumber,
+            return UsageServiceNew.rx.fetchBillForecast(accountNumber: pair.0.accountNumber,
                                                        premiseNumber: pair.0.premiseNumber!)
         })
     
@@ -100,7 +97,7 @@ class HomeProjectedBillCardViewModel {
     
     private(set) lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billForecastDriver: Driver<BillForecastResult> = self.billForecastEvents.elements().asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var billForecastDriver: Driver<NewBillForecastResult> = self.billForecastEvents.elements().asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var isGas: Driver<Bool> = Driver
         .combineLatest(accountDetailDriver, electricGasSelectedSegmentIndex.asDriver())

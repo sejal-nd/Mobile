@@ -25,7 +25,7 @@ class EnergyTipTableViewCell: UITableViewCell {
         bodyLabel.font = SystemFont.regular.of(textStyle: .body)
     }
     
-    func configure(with energyTip: EnergyTip, index: Int) {
+    func configure(with energyTip: NewEnergyTip, index: Int) {
         iconImageView.image = energyTip.image
         iconImageView.isHidden = energyTip.image == nil
         titleLabel.text = String.localizedStringWithFormat("Tip #%d: %@", index + 1, energyTip.title)

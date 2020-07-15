@@ -32,7 +32,7 @@ class GameHomeViewModel {
     
     var fetchDisposable: Disposable?
     
-    let weeklyInsightViewModel = WeeklyInsightViewModel(gameService: ServiceFactory.createGameService(), usageService: ServiceFactory.createUsageService(useCache: false))
+    let weeklyInsightViewModel = WeeklyInsightViewModel(gameService: ServiceFactory.createGameService())
     let weeklyInsightEndDate = BehaviorRelay<Date?>(value: nil)
     let weeklyInsightPublishSubject = PublishSubject<Void>()
     

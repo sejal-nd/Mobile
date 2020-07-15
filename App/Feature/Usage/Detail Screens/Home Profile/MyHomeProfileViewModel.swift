@@ -21,9 +21,8 @@ class MyHomeProfileViewModel {
         return numberOfChildrenOptions.map { $0 == 10 ? "\($0)+" : "\($0)" }
     }
     
-    let initialHomeProfile: Observable<HomeProfile>
+    let initialHomeProfile: Observable<HomeProfileLoadNew>
     let accountDetail: AccountDetail
-    let usageService: UsageService
     
     let numberOfChildren = BehaviorRelay<Int?>(value: nil)
     let numberOfAdults = BehaviorRelay<Int?>(value: nil)
@@ -34,12 +33,11 @@ class MyHomeProfileViewModel {
     let saveAction: Observable<Void>
     let saveTracker = ActivityTracker()
     
-    init(usageService: UsageService, accountDetail: AccountDetail, saveAction: Observable<Void>) {
-        self.usageService = usageService
+    init(accountDetail: AccountDetail, saveAction: Observable<Void>) {
         self.accountDetail = accountDetail
         self.saveAction = saveAction
         
-        initialHomeProfile = usageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
+        initialHomeProfile = UsageServiceNew.rx.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
             .share(replay: 1)
     }
     
@@ -58,13 +56,15 @@ class MyHomeProfileViewModel {
             }
     }
     
-    private(set) lazy var updatedHomeProfile: Observable<HomeProfile> = Observable
+    private(set) lazy var updatedHomeProfile: Observable<HomeProfileUpdateRequest> = Observable
         .combineLatest(self.numberOfChildren.asObservable(),
                        self.numberOfAdults.asObservable(),
                        self.homeSizeEntry.asObservable().map { $0.flatMap(Int.init) },
                        self.heatType.asObservable(),
                        self.homeType.asObservable())
-        .map(HomeProfile.init)
+        .map {
+            HomeProfileUpdateRequest(numberOfChildren: $0.0, numberOfAdults: $0.1, squareFeet: $0.2, heatType: $0.3, homeType: $0.4)
+    }
     
     private(set) lazy var enableSave: Observable<Bool> = Observable.combineLatest(self.initialHomeProfile,
                                                                                   self.updatedHomeProfile,
@@ -111,13 +111,11 @@ class MyHomeProfileViewModel {
         .withLatestFrom(self.updatedHomeProfile)
         .flatMapLatest { [weak self] updatedHomeProfile -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
-            return self.usageService.updateHomeProfile(accountNumber: self.accountDetail.accountNumber,
-                                                       premiseNumber: self.accountDetail.premiseNumber!,
-                                                       homeProfile: updatedHomeProfile)
+            return UsageServiceNew.rx.updateHomeProfile(accountNumber: self.accountDetail.accountNumber, premiseNumber: self.accountDetail.premiseNumber!, request: updatedHomeProfile)
                 .trackActivity(self.saveTracker)
                 .materialize()
-        }
-        .share()
+    }
+    .share()
     
     private(set) lazy var saveSuccess: Driver<Void> = self.save.elements()
         .do(onNext: { GoogleAnalytics.log(event: .homeProfileConfirmation) })

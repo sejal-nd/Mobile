@@ -112,8 +112,13 @@ public struct NetworkingLayer {
             
             // Log payload
             if let jsonString = String(data: data, encoding: String.Encoding.utf8) {
-                dLog("Network Payload:\n\n\(jsonString)")
-                APILog(String.self, requestId: "Test", path: "Test", method: .post, logType: .request, message: jsonString)
+                if let methodStr = urlRequest.httpMethod,
+                    let method = HttpMethod(rawValue: methodStr) {
+                    APILog(String.self, requestId: "Test", path: "Test", method: method, logType: .request, message: jsonString)
+                }
+                else {
+                    dLog("Network Payload:\n\n\(jsonString)")
+                }
             }
             
             do {
@@ -124,7 +129,7 @@ public struct NetworkingLayer {
                     completion(.success(responseObject))
                 }
             } catch {
-                dLog("Failed to deocde network response:\n\n\(error)")
+                dLog("Failed to deocde network response for \(urlRequest):\n\n\(error)")
                 DispatchQueue.main.async {
                     if let networkError = error as? NetworkingError {
                         completion(.failure(networkError))

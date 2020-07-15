@@ -18,17 +18,13 @@ class HomeWeatherViewModel {
     
     let accountDetailEvents: Observable<Event<AccountDetail>>
     let weatherService: WeatherService
-    let usageService: UsageService
-    
     let accountDetailTracker: ActivityTracker
     
     init(accountDetailEvents: Observable<Event<AccountDetail>>,
          weatherService: WeatherService,
-         usageService: UsageService,
          accountDetailTracker: ActivityTracker) {
         self.accountDetailEvents = accountDetailEvents
         self.weatherService = weatherService
-        self.usageService = usageService
         self.accountDetailTracker = accountDetailTracker
     }
     
@@ -131,7 +127,7 @@ class HomeWeatherViewModel {
             let randomIndex = Int.random(in: 0...2)
             let tipName = weatherItem.isHighTemperature ? hotTips[randomIndex] : coldTips[randomIndex]
             
-            return this.usageService.fetchEnergyTipByName(accountNumber: accountDetail.accountNumber,
+            return UsageServiceNew.rx.fetchEnergyTipByName(accountNumber: accountDetail.accountNumber,
                                                           premiseNumber: premiseNumber,
                                                           tipName: tipName)
                 .map { $0.body }

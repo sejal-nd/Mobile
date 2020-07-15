@@ -11,7 +11,7 @@ import WatchKit
 class UsageInterfaceController: WKInterfaceController {
     
     enum State {
-        case loaded(BillForecast)
+        case loaded(NewBillForecast)
         case nextForecast(Int)
         case loading
         case maintenanceMode
@@ -44,8 +44,8 @@ class UsageInterfaceController: WKInterfaceController {
     @IBOutlet var mainprojectedBillValueLabel: WKInterfaceLabel!
     @IBOutlet var mainbillPeriodValueLabel: WKInterfaceLabel!
         
-    private var electricForecast: BillForecast?
-    private var gasForecast: BillForecast?
+    private var electricForecast: NewBillForecast?
+    private var gasForecast: NewBillForecast?
     
     private var isElectricSelected = true
     private var isModeledForOpower = true
@@ -343,7 +343,7 @@ class UsageInterfaceController: WKInterfaceController {
             configureAccountDetails(accountDetails, accounts: accounts)
         } else if let account = notification.object as? Account {
             updateAccountInterface(account, animationDuration: 1.0)
-        } else if let billForecast = notification.object as? BillForecastResult {
+        } else if let billForecast = notification.object as? NewBillForecastResult {
                 configureBillForecast(billForecast)
         } else if let maintenanceModeStatus = notification.object as? MaintenanceModeStatus {
             configureMaintenanceModeStatus(maintenanceModeStatus)
@@ -369,7 +369,7 @@ class UsageInterfaceController: WKInterfaceController {
         }
     }
     
-    private func setElectricState(electric: BillForecast, startDate: Date) {
+    private func setElectricState(electric: NewBillForecast, startDate: Date) {
         let today = Calendar.opCo.startOfDay(for: Date())
         let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
         if daysSinceBillingStart < 7 {
@@ -385,7 +385,7 @@ class UsageInterfaceController: WKInterfaceController {
         }
     }
     
-    private func setGasState(gas: BillForecast, startDate: Date) {
+    private func setGasState(gas: NewBillForecast, startDate: Date) {
         let today = Calendar.opCo.startOfDay(for: Date())
         let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
         if daysSinceBillingStart < 7 {
@@ -452,7 +452,7 @@ extension UsageInterfaceController {
         }
     }
     
-    private func configureBillForecast(_ billForecast: BillForecastResult) {
+    private func configureBillForecast(_ billForecast: NewBillForecastResult) {
         accountGroup.setHidden(false)
         
         // Determine if data is avilable

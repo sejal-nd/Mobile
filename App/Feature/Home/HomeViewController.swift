@@ -51,8 +51,6 @@ class HomeViewController: AccountPickerViewController {
     let viewModel = HomeViewModel(weatherService: ServiceFactory.createWeatherService(),
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
-                                  usageService: ServiceFactory.createUsageService(useCache: true),
-                                  projectedBillUsageService: ServiceFactory.createUsageService(useCache: false),
                                   authService: ServiceFactory.createAuthenticationService(),
                                   alertsService: ServiceFactory.createAlertsService(),
                                   appointmentService: ServiceFactory.createAppointmentService(),
