@@ -103,7 +103,7 @@ public enum Router {
     case appointments(accountNumber: String, premiseNumber: String)
     
     // Outage
-    case outageStatus(accountNumber: String, premiseNumber: String)
+    case outageStatus(accountNumber: String, summaryQueryItem: URLQueryItem? = nil)
     case reportOutage(accountNumber: String, encodable: Encodable)
     case meterPing(accountNumber: String, premiseNumber: String)
     
@@ -243,11 +243,7 @@ public enum Router {
         case .recoverUsername, .recoverMaskedUsername:
             return "/mobile/custom/\(apiAccess)/recover/username"
         case .outageStatus(let accountNumber, _):
-            // todo add the following
-//                     if StormModeStatus.shared.isOn && Environment.shared.opco != .bge {
-//                         path.append("&summary=true")
-//                    }
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage?meterPing=false"
+            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage"
         case .reportOutage(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage"
         case .meterPing(let accountNumber, let premiseNumber):
@@ -287,6 +283,12 @@ public enum Router {
             return [URLQueryItem(name: "$select", value: "Title,Message,Enable,CustomerType,Created,Modified"),
                     URLQueryItem(name: "$orderby", value: "Modified desc"),
                     additionalQueryItem]
+        case .outageStatus(_, let summaryQueryItem):
+             var queryItems = [URLQueryItem(name: "meterPing", value: "false")]
+             if let summaryQueryItem = summaryQueryItem {
+                queryItems.append(summaryQueryItem)
+             }
+            return queryItems
         default:
             return []
         }

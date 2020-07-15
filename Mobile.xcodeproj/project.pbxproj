@@ -3945,6 +3945,15 @@
 		67F9514524BE3A9D009B5F07 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
 		67F9514624BE3A9E009B5F07 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
 		67F9514724BE3A9F009B5F07 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
+		67F9514A24BF4388009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514B24BF438C009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514C24BF438C009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514D24BF438E009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514E24BF438E009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514F24BF438F009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9515024BF4390009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9515124BF4391009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9515224BF4392009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -6774,6 +6783,7 @@
 		67F950C024B64249009B5F07 /* AnonymousService+RX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnonymousService+RX.swift"; sourceTree = "<group>"; };
 		67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotMaskedUsernames.swift; sourceTree = "<group>"; };
 		67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResults.swift; sourceTree = "<group>"; };
+		67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusContainer.swift; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6918FF23DD2B6EFEC03153D8 /* Pods-ACEApp-ACEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -9149,6 +9159,7 @@
 				675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */,
 				675F4B2D24AB828000A828F9 /* NewMinimumVersion.swift */,
 				675F4DFF24B3A00800A828F9 /* AnonOutageStatus.swift */,
+				67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */,
 				675F4B2E24AB828000A828F9 /* OutageStatus.swift */,
 				675F4B2F24AB828000A828F9 /* MaintenanceMode.swift */,
 				675F4B3024AB828000A828F9 /* GenericResponse.swift */,
@@ -9176,10 +9187,10 @@
 		675F4B3824AB828000A828F9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				675F4B3924AB828000A828F9 /* NetworkingError.swift */,
-				675F4B3A24AB828000A828F9 /* Mock */,
 				675F4B5C24AB828100A828F9 /* Router.swift */,
 				675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */,
+				675F4B3924AB828000A828F9 /* NetworkingError.swift */,
+				675F4B3A24AB828000A828F9 /* Mock */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -14440,6 +14451,7 @@
 				356C7F772190979C003E8A90 /* Date.swift in Sources */,
 				C3087AA824B67042005AE544 /* AccountService.swift in Sources */,
 				356C7F9A2190A2EF003E8A90 /* ShortUUIDGenerator.swift in Sources */,
+				67F9514F24BF438F009B5F07 /* OutageStatusContainer.swift in Sources */,
 				C3B6557824ABE6780048C64B /* BillingInfo.swift in Sources */,
 				C3B6559424AD255A0048C64B /* NetworkingError.swift in Sources */,
 				C3087ADF24B67ECE005AE544 /* GuidRequest.swift in Sources */,
@@ -14531,6 +14543,7 @@
 				35F9DDA62333D88F00AAA2B2 /* Date+Now.swift in Sources */,
 				35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */,
 				35F9DDBE2333D91D00AAA2B2 /* KeychainManager.swift in Sources */,
+				67F9514B24BF438C009B5F07 /* OutageStatusContainer.swift in Sources */,
 				35F9DDB32333D8D900AAA2B2 /* AuthTokenParser.swift in Sources */,
 				35F9DD9E2333D86600AAA2B2 /* SSOData.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
@@ -14600,6 +14613,7 @@
 				675F4E1224B4D9E000A828F9 /* EndpointError.swift in Sources */,
 				35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */,
 				67F950CD24B78901009B5F07 /* ValidatedAccount.swift in Sources */,
+				67F9514D24BF438E009B5F07 /* OutageStatusContainer.swift in Sources */,
 				35F9DE1623353C3E00AAA2B2 /* Logger.swift in Sources */,
 				C3087AD124B67472005AE544 /* UsernameRequest.swift in Sources */,
 				35F9DE1D23353C6B00AAA2B2 /* WalletItem.swift in Sources */,
@@ -14841,6 +14855,7 @@
 				67DDB35124535D2E006CD6EB /* HttpMethod.swift in Sources */,
 				67DDB35224535D2E006CD6EB /* CommercialUsageViewController.swift in Sources */,
 				675F4C8724AB828100A828F9 /* MeterPingResult.swift in Sources */,
+				67F9515024BF4390009B5F07 /* OutageStatusContainer.swift in Sources */,
 				675F4BA324AB828100A828F9 /* UsernameRequest.swift in Sources */,
 				67DDB35324535D2E006CD6EB /* EnergyTipTableViewCell.swift in Sources */,
 				67DDB35424535D2E006CD6EB /* Logger.swift in Sources */,
@@ -15369,6 +15384,7 @@
 				67DDB5C424535D32006CD6EB /* GiftInventory.swift in Sources */,
 				675F4C1724AB828100A828F9 /* AuthenticatedService.swift in Sources */,
 				675F4BBD24AB828100A828F9 /* BudgetBillingUnenrollRequest.swift in Sources */,
+				67F9515224BF4392009B5F07 /* OutageStatusContainer.swift in Sources */,
 				67DDB5C524535D32006CD6EB /* GovWeatherService.swift in Sources */,
 				67DDB5C624535D32006CD6EB /* ToastView.swift in Sources */,
 				67DDB5C724535D32006CD6EB /* Appointment.swift in Sources */,
@@ -15868,6 +15884,7 @@
 				67DDB81A24535D35006CD6EB /* GiftInventory.swift in Sources */,
 				675F4C1624AB828100A828F9 /* AuthenticatedService.swift in Sources */,
 				675F4BBC24AB828100A828F9 /* BudgetBillingUnenrollRequest.swift in Sources */,
+				67F9515124BF4391009B5F07 /* OutageStatusContainer.swift in Sources */,
 				67DDB81B24535D35006CD6EB /* GovWeatherService.swift in Sources */,
 				67DDB81C24535D35006CD6EB /* ToastView.swift in Sources */,
 				67DDB81D24535D35006CD6EB /* Appointment.swift in Sources */,
@@ -17013,6 +17030,7 @@
 				9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
+				67F9514A24BF4388009B5F07 /* OutageStatusContainer.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				675F4C6624AB828100A828F9 /* DailyUsageData.swift in Sources */,
 				9CA4FA652385BFC700E33E7C /* GiftsViewController.swift in Sources */,
@@ -17511,6 +17529,7 @@
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
 				9CA4FA672385BFC700E33E7C /* GiftsViewController.swift in Sources */,
 				359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */,
+				67F9514E24BF438E009B5F07 /* OutageStatusContainer.swift in Sources */,
 				675F4C6824AB828100A828F9 /* DailyUsageData.swift in Sources */,
 				54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -17988,6 +18007,7 @@
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				9C28D39D2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				675F4C1924AB828100A828F9 /* WeatherServiceNew.swift in Sources */,
+				67F9514C24BF438C009B5F07 /* OutageStatusContainer.swift in Sources */,
 				9CBE9E332374A25E00E14222 /* GameHomeViewModel.swift in Sources */,
 				9CABF6BA239719CE00B07B01 /* QuizAnswerView.swift in Sources */,
 				E835D1CF1FB63288008CE250 /* PushNotification.swift in Sources */,

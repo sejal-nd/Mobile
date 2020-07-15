@@ -38,7 +38,7 @@ public enum NetworkingLayer {
         }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
-        print("URL: \(url)")
+        print("URL: \(url.absoluteString)")
         // Set HTTP BODY
         if let httpBody = router.httpBody {
             urlRequest.httpBody = httpBody
