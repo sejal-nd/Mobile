@@ -243,6 +243,10 @@ public enum Router {
         case .recoverUsername, .recoverMaskedUsername:
             return "/mobile/custom/\(apiAccess)/recover/username"
         case .outageStatus(let accountNumber, _):
+            // todo add the following
+//                     if StormModeStatus.shared.isOn && Environment.shared.opco != .bge {
+//                         path.append("&summary=true")
+//                    }
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage?meterPing=false"
         case .reportOutage(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage"
@@ -299,7 +303,7 @@ public enum Router {
             return ["Content-Type": "application/json"]
         case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
             return ["Authorization": "Bearer \(token)"]
-        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
+        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus:
             return ["Authorization": "Bearer \(token)",
                     "Content-Type": "application/json"]
         default:
