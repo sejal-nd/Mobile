@@ -104,13 +104,12 @@ public enum Router {
     
     // Outage
     case outageStatus(accountNumber: String, summaryQueryItem: URLQueryItem? = nil)
+    case outageStatusAnon(request: AnonOutageRequest)
     case meterPing(accountNumber: String, premiseNumber: String? = nil)
     case reportOutage(accountNumber: String, encodable: Encodable)
-    
-    // Unauthenticated
-    case outageStatusAnon(request: AnonOutageRequest)
     case reportOutageAnon(request: OutageRequest)
-    
+
+    // Unauthenticated    
     case passwordChange(request: ChangePasswordRequest)
     case accountLookup(request: AccountLookupRequest)
     case recoverPassword(encodable: Encodable)
