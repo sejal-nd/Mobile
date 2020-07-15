@@ -31,7 +31,7 @@ class UsageViewModel {
     
     private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> = fetchAllDataTrigger
         // Clear cache on refresh or account switch
-        .do(onNext: { [weak self] in UsageServiceNew.clearCache() })
+        .do(onNext: { [weak self] in UsageService.clearCache() })
         .toAsyncRequest {
             AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)
         }
@@ -68,7 +68,7 @@ class UsageViewModel {
                                                                          ssoData: commercialDataEvents.elements(),
                                                                          errorTrigger: commercialErrorTrigger)
     
-    private lazy var billAnalysisEvents: Observable<Event<(NewCompareBillResult, NewBillForecastResult?)>> = Observable
+    private lazy var billAnalysisEvents: Observable<Event<(CompareBillResult, BillForecastResult?)>> = Observable
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
                        lastYearPreviousBillSelectedSegmentIndex.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
@@ -78,15 +78,15 @@ class UsageViewModel {
             let isGas = self.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasIndex)
             
-            let billComparison = UsageServiceNew.rx
+            let billComparison = UsageService.rx
                 .compareBill(accountNumber: accountDetail.accountNumber,
                                      premiseNumber: accountDetail.premiseNumber!,
                                      yearAgo: yearsIndex == 0,
                                      gas: isGas)
             
-            let billForecast: Observable<NewBillForecastResult?>
+            let billForecast: Observable<BillForecastResult?>
             if accountDetail.isAMIAccount {
-                billForecast = UsageServiceNew.rx.fetchBillForecast(accountNumber: accountDetail.accountNumber,
+                billForecast = UsageService.rx.fetchBillForecast(accountNumber: accountDetail.accountNumber,
                                                                    premiseNumber: accountDetail.premiseNumber!)
                     .map { $0 }
                     .catchErrorJustReturn(nil)
@@ -102,11 +102,11 @@ class UsageViewModel {
     private(set) lazy var accountDetail: Driver<AccountDetail> = accountDetailEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var billComparison: Driver<NewCompareBillResult> = billAnalysisEvents.elements()
+    private lazy var billComparison: Driver<CompareBillResult> = billAnalysisEvents.elements()
         .map { $0.0 }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var billForecast: Driver<NewBillForecastResult?> = billAnalysisEvents.elements()
+    private lazy var billForecast: Driver<BillForecastResult?> = billAnalysisEvents.elements()
         .map { $1 }
         .asDriver(onErrorDriveWith: .empty())
     

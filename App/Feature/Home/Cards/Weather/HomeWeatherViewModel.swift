@@ -127,7 +127,7 @@ class HomeWeatherViewModel {
             let randomIndex = Int.random(in: 0...2)
             let tipName = weatherItem.isHighTemperature ? hotTips[randomIndex] : coldTips[randomIndex]
             
-            return UsageServiceNew.rx.fetchEnergyTipByName(accountNumber: accountDetail.accountNumber,
+            return UsageService.rx.fetchEnergyTipByName(accountNumber: accountDetail.accountNumber,
                                                           premiseNumber: premiseNumber,
                                                           tipName: tipName)
                 .map { $0.body }

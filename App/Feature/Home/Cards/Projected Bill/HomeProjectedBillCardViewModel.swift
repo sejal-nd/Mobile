@@ -21,8 +21,8 @@ class HomeProjectedBillCardViewModel {
     let fetchTracker: ActivityTracker
     
     let electricGasSelectedSegmentIndex = BehaviorRelay(value: 0)
-    let electricForecast = BehaviorRelay<NewBillForecast?>(value: nil)
-    let gasForecast = BehaviorRelay<NewBillForecast?>(value: nil)
+    let electricForecast = BehaviorRelay<BillForecast?>(value: nil)
+    let gasForecast = BehaviorRelay<BillForecast?>(value: nil)
     
     required init(fetchData: Observable<Void>,
                   maintenanceModeEvents: Observable<Event<MaintenanceMode>>,
@@ -87,9 +87,9 @@ class HomeProjectedBillCardViewModel {
         .withLatestFrom(fetchData) { ($0.0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] pair -> ActivityTracker? in
             return self?.fetchTracker
-        }, requestSelector: { [weak self] pair -> Observable<NewBillForecastResult> in
+        }, requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
             guard let this = self else { return .empty() }
-            return UsageServiceNew.rx.fetchBillForecast(accountNumber: pair.0.accountNumber,
+            return UsageService.rx.fetchBillForecast(accountNumber: pair.0.accountNumber,
                                                        premiseNumber: pair.0.premiseNumber!)
         })
     
@@ -97,7 +97,7 @@ class HomeProjectedBillCardViewModel {
     
     private(set) lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billForecastDriver: Driver<NewBillForecastResult> = self.billForecastEvents.elements().asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var billForecastDriver: Driver<BillForecastResult> = self.billForecastEvents.elements().asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var isGas: Driver<Bool> = Driver
         .combineLatest(accountDetailDriver, electricGasSelectedSegmentIndex.asDriver())

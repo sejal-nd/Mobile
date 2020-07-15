@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct NewCompareBillResult: Decodable {
+public struct CompareBillResult: Decodable {
     public var meterUnit: String
     public var currencySymbol: String
     public var temperatureUnit: String
     
-    public var referenceBill: NewBill?
-    public var comparedBill: NewBill?
-    public var billAnalysisResults: [NewBillAnalysisResult]
+    public var referenceBill: Bill?
+    public var comparedBill: Bill?
+    public var billAnalysisResults: [BillAnalysisResult]
     
     public var billPeriodCostDifference = 0.0
     public var weatherCostDifference = 0.0
@@ -40,12 +40,12 @@ public struct NewCompareBillResult: Decodable {
         self.temperatureUnit = try container.decode(String.self,
                                                forKey: .temperatureUnit)
         
-        self.referenceBill = try container.decodeIfPresent(NewBill.self,
+        self.referenceBill = try container.decodeIfPresent(Bill.self,
                                              forKey: .referenceBill)
-        self.comparedBill = try container.decodeIfPresent(NewBill.self,
+        self.comparedBill = try container.decodeIfPresent(Bill.self,
                                             forKey: .comparedBill)
         
-        self.billAnalysisResults = try container.decodeIfPresent([NewBillAnalysisResult].self,
+        self.billAnalysisResults = try container.decodeIfPresent([BillAnalysisResult].self,
                                                    forKey: .billAnalysisResults) ?? []
         
         for result in billAnalysisResults {
@@ -60,7 +60,7 @@ public struct NewCompareBillResult: Decodable {
     }
 }
 
-public struct NewBill: Decodable {
+public struct Bill: Decodable {
     public var charges: Double
     public var usage: Double
     public var startDate: Date
@@ -69,44 +69,7 @@ public struct NewBill: Decodable {
     public var ratePlan: String?
 }
 
-public struct NewBillAnalysisResult: Decodable {
+public struct BillAnalysisResult: Decodable {
     public var analysisName: String
     public var costDifferenceExplained: Double
 }
-
-//
-//"data": {
-//    "meterUnit": "KWH",
-//    "currencySymbol": "$",
-//    "temperatureUnit": "FAHRENHEIT",
-//    "analysisResults": [
-//    {
-//    "analysisName": "NUM_DAYS",
-//    "costDifferenceExplained": 8.4
-//    },
-//    {
-//    "analysisName": "WEATHER",
-//    "costDifferenceExplained": -7.79
-//    },
-//    {
-//    "analysisName": "OTHER",
-//    "costDifferenceExplained": -33.27
-//    }
-//    ],
-//    "reference": {
-//        "charges": 89.15,
-//        "usage": 658,
-//        "startDate": "2020-01-31",
-//        "endDate": "2020-03-01",
-//        "averageTemperature": 41.9,
-//        "ratePlan": "R_PTR"
-//    },
-//    "compared": {
-//        "charges": 121.81,
-//        "usage": 915,
-//        "startDate": "2019-01-31",
-//        "endDate": "2019-02-28",
-//        "averageTemperature": 36.6,
-//        "ratePlan": "R_PTR"
-//    }
-//}

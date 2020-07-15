@@ -16,36 +16,6 @@ public struct HomeProfile: Decodable, Fillable, Equatable {
     public var numberOfAdults: Int?
     public var numberOfChildren: Int?
     
-    enum CodingKeys: String, CodingKey {
-        case data = "data"
-        
-        case customerId = "customerId"
-        case dwellingType = "dwellingType"
-        case squareFeet = "squareFeet"
-        case heatType = "heatType"
-        case numberOfAdults = "numberOfAdults"
-        case numberOfChildren = "numberOfChildren"
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                 forKey: .data)
-        
-        self.customerId = try data.decode(Int.self,
-                                          forKey: .customerId)
-        self.dwellingType = try data.decodeIfPresent(HomeType.self,
-                                            forKey: .dwellingType)
-        self.squareFeet = try data.decodeIfPresent(Int.self,
-                                          forKey: .squareFeet)
-        self.heatType = try data.decodeIfPresent(HeatType.self,
-                                        forKey: .heatType)
-        self.numberOfAdults = try data.decodeIfPresent(Int.self,
-                                              forKey: .numberOfAdults)
-        self.numberOfChildren = try data.decodeIfPresent(Int.self,
-                                                forKey: .numberOfChildren)
-    }
-    
     public static func ==(lhs: HomeProfile, rhs: HomeProfile) -> Bool {
         return lhs.numberOfChildren == rhs.numberOfChildren &&
             lhs.numberOfAdults == rhs.numberOfAdults &&

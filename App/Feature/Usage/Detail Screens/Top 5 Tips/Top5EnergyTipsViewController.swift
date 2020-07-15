@@ -19,7 +19,7 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
     var accountDetail: AccountDetail!
     
     private lazy var viewModel = Top5EnergyTipsViewModel(accountDetail: self.accountDetail)
-    var energyTips = [NewEnergyTip]()
+    var energyTips = [EnergyTip]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -52,7 +52,7 @@ final class NetworkUtility {
     public var defaultAccount: Account?
     public var outageStatus: OutageStatus?
     public var accountDetails: AccountDetail?
-    public var billForecast: NewBillForecastResult?
+    public var billForecast: BillForecastResult?
     public var maintenanceModeStatuses = [MaintenanceModeStatus]()
     public var error: (NetworkError, Feature)?
     
@@ -368,7 +368,7 @@ extension NetworkUtility {
     /// Fetches projected usage data (striped bar graph on mobile app)
     /// - Parameter accountDetail: contains specific info about a users selected account.
     /// - Parameter result: Either `BillForecastResult` or `NetworkError`.
-    private func fetchUsageData(accountDetail: AccountDetail, result: @escaping (Result<NewBillForecastResult, NetworkError>) -> ()) {
+    private func fetchUsageData(accountDetail: AccountDetail, result: @escaping (Result<BillForecastResult, NetworkError>) -> ()) {
         dLog("Fetching Usage Data...")
         
         guard accountDetail.isAMIAccount else {
@@ -388,7 +388,7 @@ extension NetworkUtility {
         }
         let accountNumber = accountDetail.accountNumber
         
-        UsageServiceNew.rx.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
+        UsageService.rx.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
             dLog("Usage Data Fetched.")
             result(.success(billForecastResult))
         }, onError: { usageError in

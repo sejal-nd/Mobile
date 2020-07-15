@@ -68,7 +68,7 @@ class BillViewModel {
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     
-    private lazy var usageBillImpactEvents: Observable<Event<NewCompareBillResult>> = Observable
+    private lazy var usageBillImpactEvents: Observable<Event<CompareBillResult>> = Observable
         .combineLatest(dataEvents.elements().map { $0.0 }.filter { $0.isEligibleForUsageData },
                        compareToLastYear.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
@@ -78,7 +78,7 @@ class BillViewModel {
                 self.usageBillImpactLoading.onNext(true)
             }
             let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasIndex)
-            return UsageServiceNew.rx.compareBill(accountNumber: accountDetail.accountNumber,
+            return UsageService.rx.compareBill(accountNumber: accountDetail.accountNumber,
                                                          premiseNumber: accountDetail.premiseNumber!,
                                                          yearAgo: compareToLastYear,
                                                          gas: isGas)
@@ -153,7 +153,7 @@ class BillViewModel {
         .asDriver(onErrorDriveWith: Driver.empty())
     
 
-    private(set) lazy var currentBillComparison: Driver<NewCompareBillResult> = usageBillImpactEvents
+    private(set) lazy var currentBillComparison: Driver<CompareBillResult> = usageBillImpactEvents
         .elements()
         .asDriver(onErrorDriveWith: .empty())
     

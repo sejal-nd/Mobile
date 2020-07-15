@@ -21,7 +21,7 @@ class MyHomeProfileViewModel {
         return numberOfChildrenOptions.map { $0 == 10 ? "\($0)+" : "\($0)" }
     }
     
-    let initialHomeProfile: Observable<HomeProfileLoadNew>
+    let initialHomeProfile: Observable<HomeProfile>
     let accountDetail: AccountDetail
     
     let numberOfChildren = BehaviorRelay<Int?>(value: nil)
@@ -37,7 +37,7 @@ class MyHomeProfileViewModel {
         self.accountDetail = accountDetail
         self.saveAction = saveAction
         
-        initialHomeProfile = UsageServiceNew.rx.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
+        initialHomeProfile = UsageService.rx.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
             .share(replay: 1)
     }
     
@@ -111,7 +111,7 @@ class MyHomeProfileViewModel {
         .withLatestFrom(self.updatedHomeProfile)
         .flatMapLatest { [weak self] updatedHomeProfile -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
-            return UsageServiceNew.rx.updateHomeProfile(accountNumber: self.accountDetail.accountNumber, premiseNumber: self.accountDetail.premiseNumber!, request: updatedHomeProfile)
+            return UsageService.rx.updateHomeProfile(accountNumber: self.accountDetail.accountNumber, premiseNumber: self.accountDetail.premiseNumber!, request: updatedHomeProfile)
                 .trackActivity(self.saveTracker)
                 .materialize()
     }

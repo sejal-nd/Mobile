@@ -21,7 +21,7 @@ class WeeklyInsightViewModel {
     let error = BehaviorRelay<Bool>(value: false)
 
     let usageData = BehaviorRelay<[DailyUsage]?>(value: nil)
-    let billForecast = BehaviorRelay<NewBillForecastResult?>(value: nil)
+    let billForecast = BehaviorRelay<BillForecastResult?>(value: nil)
     
     let selectedSegmentIndex = BehaviorRelay<Int>(value: 0)
     
@@ -68,7 +68,7 @@ class WeeklyInsightViewModel {
     }
     
     func fetchBillForecast() -> Observable<Void> {
-        return UsageServiceNew.rx.fetchBillForecast(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
+        return UsageService.rx.fetchBillForecast(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
             .do(onNext: { [weak self] billForecast in
                 self?.billForecast.accept(billForecast)
             })

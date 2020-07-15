@@ -60,7 +60,7 @@ class HomeUsageCardViewModel {
             return AccountService.rx.fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         })
     
-    private(set) lazy var billComparisonEvents: Observable<Event<NewCompareBillResult>> = Observable
+    private(set) lazy var billComparisonEvents: Observable<Event<CompareBillResult>> = Observable
         .merge(accountDetailBillComparisonEvents, segmentedControlChanged)
         .share(replay: 1)
     
@@ -77,12 +77,12 @@ class HomeUsageCardViewModel {
             
             return true // show bill comparison
         }
-    .do(onNext: { [weak self] _ in UsageServiceNew.clearCache() })
+    .do(onNext: { [weak self] _ in UsageService.clearCache() })
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usage ?? false) }
         .filter { !$1 }
         .withLatestFrom(Observable.combineLatest(fetchData, electricGasSelectedSegmentIndex.asObservable()))
         { ($0.0, $1.1) }
-        .toAsyncRequest { [weak self] data -> Observable<NewCompareBillResult> in
+        .toAsyncRequest { [weak self] data -> Observable<CompareBillResult> in
             let (accountDetail, segmentIndex) = data
             guard let self = self else { return .empty() }
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
@@ -94,7 +94,7 @@ class HomeUsageCardViewModel {
                 gas = segmentIndex == 1
             }
             
-            return UsageServiceNew.rx.compareBill(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
+            return UsageService.rx.compareBill(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
                 .trackActivity(self.fetchTracker)
         }
     
@@ -102,7 +102,7 @@ class HomeUsageCardViewModel {
         .skip(1)
         .withLatestFrom(accountDetailEvents.elements())
         { ($0, $1) }
-        .toAsyncRequest { [weak self] segmentIndex, accountDetail -> Observable<NewCompareBillResult> in
+        .toAsyncRequest { [weak self] segmentIndex, accountDetail -> Observable<CompareBillResult> in
             guard let self = self else { return .empty() }
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             
@@ -113,11 +113,11 @@ class HomeUsageCardViewModel {
                 gas = segmentIndex == 1
             }
             
-            return UsageServiceNew.rx.compareBill(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
+            return UsageService.rx.compareBill(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
                 .trackActivity(self.billComparisonTracker)
         }
     
-    private(set) lazy var billComparisonDriver: Driver<NewCompareBillResult> = self.billComparisonEvents.elements().asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var billComparisonDriver: Driver<CompareBillResult> = self.billComparisonEvents.elements().asDriver(onErrorDriveWith: .empty())
     
     
     // MARK: Bill Comparison

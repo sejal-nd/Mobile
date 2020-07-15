@@ -39,7 +39,7 @@ public struct HomeProfileUpdateRequest: Encodable, Fillable, Equatable {
             lhs.dwellingType == rhs.dwellingType
     }
     
-    public static func ==(lhs: HomeProfileUpdateRequest, rhs: HomeProfileLoadNew) -> Bool {
+    public static func ==(lhs: HomeProfileUpdateRequest, rhs: HomeProfile) -> Bool {
         return lhs.childCount == rhs.numberOfChildren &&
             lhs.adultCount == rhs.numberOfAdults &&
             lhs.squareFeet == rhs.squareFeet &&

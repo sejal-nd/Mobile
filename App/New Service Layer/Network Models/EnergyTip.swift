@@ -1,5 +1,5 @@
 //
-//  NewEnergyTip.swift
+//  EnergyTip.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 7/14/20.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit // TODO: should probably remove UIKit from model class
 
-public struct NewEnergyTip: Decodable, Equatable {
+public struct EnergyTip: Decodable, Equatable {
     let title: String
     let image: UIImage?
     let body: String
@@ -28,7 +28,7 @@ public struct NewEnergyTip: Decodable, Equatable {
         image = nil // TODO: how to implement this?
     }
     
-    public static func ==(lhs: NewEnergyTip, rhs: NewEnergyTip) -> Bool {
+    public static func ==(lhs: EnergyTip, rhs: EnergyTip) -> Bool {
         return lhs.title == rhs.title &&
             lhs.image == rhs.image &&
             lhs.body == rhs.body

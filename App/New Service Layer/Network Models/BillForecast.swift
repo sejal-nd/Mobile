@@ -1,5 +1,5 @@
 //
-//  NewBillForecast.swift
+//  BillForecast.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 5/18/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewBillForecast: Decodable {
+struct BillForecast: Decodable {
     let errorMessage: String?
     
     // These all need to be optional because to account for the state where errorMessage is passed

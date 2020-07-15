@@ -111,7 +111,7 @@ class GameOnboardingStep2ViewController: UIViewController {
         }
         
         LoadingView.show()
-        UsageServiceNew.rx.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
+        UsageService.rx.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { homeProfile in
                 updateGameUser(homeProfile.isFilled ? "COMPLETE" : "NOT COMPLETE")
