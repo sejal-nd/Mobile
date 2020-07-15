@@ -67,7 +67,7 @@ to just update the build script directly if it's a permanent change.
 
 PROPERTIES_FILE='version.properties'
 PROJECT_DIR="."
-ASSET_DIR="$PROJECT_DIR/App/Resources/"
+ASSET_DIR="$PROJECT_DIR/App/Resources/Assets/"
 PROJECT="Mobile.xcworkspace"
 CONFIGURATION=""
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
