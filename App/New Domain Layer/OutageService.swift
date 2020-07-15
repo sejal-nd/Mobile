@@ -52,7 +52,7 @@ struct OutageService {
         }
     }
     
-    static func pingMeter(accountNumber: String, premiseNumber: String, completion: @escaping (Result<MeterPingResult, NetworkingError>) -> ()) {
+    static func pingMeter(accountNumber: String, premiseNumber: String?, completion: @escaping (Result<MeterPingResult, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .meterPing(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
     

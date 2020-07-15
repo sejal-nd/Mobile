@@ -104,8 +104,8 @@ public enum Router {
     
     // Outage
     case outageStatus(accountNumber: String, summaryQueryItem: URLQueryItem? = nil)
+    case meterPing(accountNumber: String, premiseNumber: String? = nil)
     case reportOutage(accountNumber: String, encodable: Encodable)
-    case meterPing(accountNumber: String, premiseNumber: String)
     
     // Unauthenticated
     case outageStatusAnon(request: AnonOutageRequest)
@@ -247,7 +247,11 @@ public enum Router {
         case .reportOutage(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage"
         case .meterPing(let accountNumber, let premiseNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises\(premiseNumber)/outage"
+            if let premiseNumber = premiseNumber {
+                return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/outage/ping"
+            } else {
+                return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage/ping"
+            }
         case .fetchGameUser(let accountNumber):
             return "/mobile/custom/\(apiAccess)/game/\(accountNumber)"
         case .updateGameUser(let accountNumber, _):

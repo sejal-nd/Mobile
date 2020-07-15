@@ -11,8 +11,8 @@ import Foundation
 public struct PremiseInfo: Decodable, Equatable, Hashable {
     public var premiseNumber: String
     
-    public var peakRewards: String
-    public var smartEnergyRewards: String
+    public var peakRewards: String?
+    public var smartEnergyRewards: String?
     
     public var addressGeneral: String?
     public var addressLine: [String]?
@@ -25,7 +25,7 @@ public struct PremiseInfo: Decodable, Equatable, Hashable {
         case peakRewards
         case smartEnergyRewards
         
-        case mainAddress = "mainAddress"
+        case mainAddress
         case addressGeneral
         case addressLine
         case streetDetail
@@ -37,9 +37,9 @@ public struct PremiseInfo: Decodable, Equatable, Hashable {
         
         self.premiseNumber = try container.decode(String.self,
                                                   forKey: .premiseNumber)
-        self.peakRewards = try container.decode(String.self,
+        self.peakRewards = try container.decodeIfPresent(String.self,
                                                 forKey: .peakRewards)
-        self.smartEnergyRewards = try container.decode(String.self,
+        self.smartEnergyRewards = try container.decodeIfPresent(String.self,
                                                        forKey: .smartEnergyRewards)
         
         let mainAddressContainer = try container.nestedContainer(keyedBy: CodingKeys.self,
@@ -72,15 +72,15 @@ public struct PremiseInfo: Decodable, Equatable, Hashable {
 }
 
 public struct StreetDetail: Decodable {
-    public var mRID: String
-    public var name: String
-    public var suffix: String
+    public var mRID: String?
+    public var name: String?
+    public var suffix: String?
 }
 
 public struct TownDetail: Decodable {
-    public var code: String
-    public var name: String
-    public var stateOrProvince: String
+    public var code: String?
+    public var name: String?
+    public var stateOrProvince: String?
 }
 
 

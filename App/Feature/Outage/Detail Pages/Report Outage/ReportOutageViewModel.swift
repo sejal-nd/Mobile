@@ -150,7 +150,7 @@ class ReportOutageViewModel {
     
     func meterPingGetStatus(onComplete: @escaping (MeterPingResult) -> Void, onError: @escaping () -> Void) {
         OutageService.pingMeter(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-                                   premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
+                                   premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber) { result in
                                     switch result {
                                     case .success(let meterPingInfo):
                                         onComplete(meterPingInfo)
