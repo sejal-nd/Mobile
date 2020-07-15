@@ -188,24 +188,25 @@
 		2FA7B9FC1F0548F000D660B8 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		301DE1F224BF069F00992CA4 /* ACEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD8A245738B8006CD6EB /* ACEAssets.xcassets */; };
+		301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		301DE1F724BF0A7500992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		301DE1F824BF0A7600992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		301DE1F924BF0A7800992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		301DE1FA24BF0A7900992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		301DE1FB24BF0A7A00992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		3062CFF724B6DF3B000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF624B6DF3B000176EC /* landing_video.mp4 */; };
 		3062CFF924B6DF8F000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF824B6DF8E000176EC /* landing_video.mp4 */; };
 		3062CFFB24B6DFB4000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFFA24B6DFB4000176EC /* landing_video.mp4 */; };
 		3090A637247E428900815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A634247E41FC00815EA1 /* splash.json */; };
 		3090A638247E428E00815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A635247E425A00815EA1 /* splash.json */; };
 		3090A639247E429500815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A636247E426400815EA1 /* splash.json */; };
-		3090A63A247F865B00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		3090A63B247F865E00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		3090A63C247F866100815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		3090A640247F9A4000815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
 		3090A641247F9A4200815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
 		3090A643247F9A6900815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
 		3090A644247F9F4800815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		3090A645247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		3090A646247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
-		3090A6AB24864E8F00815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		3090A6AC24864E9100815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
-		3090A6AD24864E9200815EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30DFE8622492641B00FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30DFE8632492641D00FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
@@ -3223,7 +3224,6 @@
 		67DDBD6424572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6324572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard */; };
 		67DDBD6824573696006CD6EB /* LaunchScreen-ACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6724573696006CD6EB /* LaunchScreen-ACE.storyboard */; };
 		67DDBD892457389E006CD6EB /* DelmarvaAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD872457389E006CD6EB /* DelmarvaAssets.xcassets */; };
-		67DDBD8C245738CF006CD6EB /* ACEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD8A245738B8006CD6EB /* ACEAssets.xcassets */; };
 		67DDBD9824630B8A006CD6EB /* GoogleService-Info_ace.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9724630B85006CD6EB /* GoogleService-Info_ace.plist */; };
 		67DDBD9A24630C37006CD6EB /* GoogleService-Info_ace_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9924630C37006CD6EB /* GoogleService-Info_ace_develop.plist */; };
 		67DDBD9C24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9B24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist */; };
@@ -10403,7 +10403,7 @@
 				67DDB4E124535D2E006CD6EB /* message_bubble_unique.json in Resources */,
 				67DDB4E224535D2E006CD6EB /* Storm.storyboard in Resources */,
 				67DDB4E324535D2E006CD6EB /* Payment.storyboard in Resources */,
-				3090A6AB24864E8F00815EA1 /* Assets.xcassets in Resources */,
+				301DE1F924BF0A7800992CA4 /* Assets.xcassets in Resources */,
 				67DDB4E424535D2E006CD6EB /* outage_loading.json in Resources */,
 				67DDB4E524535D2E006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
 				67DDB4E624535D2E006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
@@ -10572,7 +10572,7 @@
 				67DDB73924535D32006CD6EB /* Payment.storyboard in Resources */,
 				67DDB73A24535D32006CD6EB /* outage_loading.json in Resources */,
 				67DDB73B24535D32006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
-				3090A6AD24864E9200815EA1 /* Assets.xcassets in Resources */,
+				301DE1FB24BF0A7A00992CA4 /* Assets.xcassets in Resources */,
 				67DDB73C24535D32006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
 				67DDB73D24535D32006CD6EB /* maintenance.json in Resources */,
 				67DDB73F24535D32006CD6EB /* checkmark_blue.json in Resources */,
@@ -10583,6 +10583,7 @@
 				3090A637247E428900815EA1 /* splash.json in Resources */,
 				67DDB74424535D32006CD6EB /* MiniWalletItemRow.xib in Resources */,
 				67DDB74524535D32006CD6EB /* full_screen_loading.json in Resources */,
+				301DE1F224BF069F00992CA4 /* ACEAssets.xcassets in Resources */,
 				67D73B07246C72F800450B63 /* environment.plist in Resources */,
 				67DDB74624535D32006CD6EB /* SERPTSGraphView.xib in Resources */,
 				67DDB74724535D32006CD6EB /* bill_forecast.json in Resources */,
@@ -10598,7 +10599,6 @@
 				67DDB74F24535D32006CD6EB /* HomeOutageCardView.xib in Resources */,
 				67DDB75024535D32006CD6EB /* ToggleTableViewCell.xib in Resources */,
 				67DDB75224535D32006CD6EB /* MaintenanceModeView.xib in Resources */,
-				67DDBD8C245738CF006CD6EB /* ACEAssets.xcassets in Resources */,
 				67DDBDA224630D7F006CD6EB /* GoogleService-Info_ace_testing.plist in Resources */,
 				67DDBD9824630B8A006CD6EB /* GoogleService-Info_ace.plist in Resources */,
 				67DDB75324535D32006CD6EB /* Bill.storyboard in Resources */,
@@ -10741,7 +10741,7 @@
 				67DDB98E24535D35006CD6EB /* Storm.storyboard in Resources */,
 				67DDB98F24535D35006CD6EB /* Payment.storyboard in Resources */,
 				67DDB99024535D35006CD6EB /* outage_loading.json in Resources */,
-				3090A6AC24864E9100815EA1 /* Assets.xcassets in Resources */,
+				301DE1FA24BF0A7900992CA4 /* Assets.xcassets in Resources */,
 				67DDB99124535D35006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
 				67DDB99224535D35006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
 				67DDB99324535D35006CD6EB /* maintenance.json in Resources */,
@@ -11005,7 +11005,6 @@
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
-				3090A63A247F865B00815EA1 /* Assets.xcassets in Resources */,
 				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
 				9C2C600F23C91E3D0033785E /* coin_bonus_point.json in Resources */,
@@ -11058,6 +11057,7 @@
 				9C88942223C39F2B002E46A7 /* confetti.json in Resources */,
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				35C9139F22E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
+				301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */,
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				E8B8C8481F9E358F005828B0 /* SERPTSGraphView.xib in Resources */,
 				B07E17EA2209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
@@ -11113,7 +11113,7 @@
 				B07E18022211D31600B6E3C7 /* outage_status.json in Resources */,
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
 				358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */,
-				3090A63C247F866100815EA1 /* Assets.xcassets in Resources */,
+				301DE1F824BF0A7600992CA4 /* Assets.xcassets in Resources */,
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				35E18A902379B95A00384614 /* StateView.xib in Resources */,
 				9CC9978C237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
@@ -11281,7 +11281,7 @@
 				B07E18032211D31700B6E3C7 /* outage_status.json in Resources */,
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
 				358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */,
-				3090A63B247F865E00815EA1 /* Assets.xcassets in Resources */,
+				301DE1F724BF0A7500992CA4 /* Assets.xcassets in Resources */,
 				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
 				35E18A8F2379B95A00384614 /* StateView.xib in Resources */,
 				9CC9978B237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
