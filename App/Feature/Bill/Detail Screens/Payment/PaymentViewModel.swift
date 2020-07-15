@@ -724,8 +724,8 @@ class PaymentViewModel {
         !$0.isAutoPay && $0.isAutoPayEligible && !StormModeStatus.shared.isOn
     }
 
-    private(set) lazy var totalPaymentLabelText: Driver<String> = isOverpayingBank.map {
-        $0 ? NSLocalizedString("Payment Amount", comment: ""): NSLocalizedString("Total Payment", comment: "")
+    private(set) lazy var totalPaymentLabelText: Driver<String> = isOverpayingBank.map {_ in
+       NSLocalizedString("Total Payment", comment: "")
     }
 
     private(set) lazy var totalPaymentDisplayString: Driver<String?> = Driver
