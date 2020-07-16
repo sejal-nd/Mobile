@@ -103,7 +103,25 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.flickering
         }
         
-        var outageRequest = OutageRequest(accountNumber: AccountsStore.shared.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
+        var outageRequest = OutageRequest(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+        issue: outageIssue,
+        phoneNumber: extractDigitsFrom(phoneNumber.value))
+        
+        var comment: String? = nil
+        let unwrappedComment = comments.value
+        if !unwrappedComment.isEmpty {
+            if let data = unwrappedComment.data(using: .nonLossyASCII) { // Emojis would cause request to fail
+                comment = String(data: data, encoding: .utf8)
+            } else {
+                comment = unwrappedComment
+            }
+        }
+        
+        if let comment = comment {
+            outageRequest.isUnusual = OutageTrivalent.yes
+            outageRequest.comment = comment
+        }
+        
         if phoneExtension.value.count > 0 {
             outageRequest.phoneExtension = phoneExtension.value
         }
@@ -130,13 +148,34 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.flickering
         }
         
-        var outageRequest = OutageRequest(accountNumber: accountNumber ?? outageStatus.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment: comments.value)
+        
+        var outageRequest = OutageRequest(accountNumber: accountNumber ?? outageStatus.accountNumber!,
+                                          issue: outageIssue,
+                                          phoneNumber: extractDigitsFrom(phoneNumber.value))
+        
+        var comment = ""
+        let unwrappedComment = comments.value
+        if !unwrappedComment.isEmpty {
+            if let data = unwrappedComment.data(using: .nonLossyASCII) { // Emojis would cause request to fail
+                comment = String(data: data, encoding: .utf8) ?? ""
+            } else {
+                comment = unwrappedComment
+            }
+        }
+        
+        if !comment.isEmpty {
+            outageRequest.isUnusual = .yes
+            outageRequest.comment = comment
+        }
+        
         if phoneExtension.value.count > 0 {
             outageRequest.phoneExtension = phoneExtension.value
         }
-        if let locationId = self.outageStatus!.locationId {
+        if let locationId = self.outageStatus?.locationId {
             outageRequest.locationId = locationId
         }
+        
+        print("Anon outage request: \(outageRequest)")
         
         OutageService.reportOutageAnon(outageRequest: outageRequest) { result in
             switch result {

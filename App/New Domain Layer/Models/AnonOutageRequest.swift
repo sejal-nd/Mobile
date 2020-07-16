@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Used for outage status
 public struct AnonOutageRequest: Encodable {
     let phoneNumber: String?
     let accountNumber: String?

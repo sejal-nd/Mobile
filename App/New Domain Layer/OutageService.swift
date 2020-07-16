@@ -41,7 +41,7 @@ struct OutageService {
     
     static func reportOutage(outageRequest: OutageRequest, completion: @escaping (Result<ReportedOutageResult, NetworkingError>) -> ()) {
         
-        NetworkingLayer.request(router: .reportOutage(accountNumber: outageRequest.accountNumber, encodable: outageRequest)) { (result: Result<ReportedOutageResult, NetworkingError>) in
+        NetworkingLayer.request(router: .reportOutage(accountNumber: outageRequest.accountNumber, request: outageRequest)) { (result: Result<ReportedOutageResult, NetworkingError>) in
             switch result {
             case .success(let reportOutageResult):
                 ReportedOutagesStore.shared[outageRequest.accountNumber] = reportOutageResult

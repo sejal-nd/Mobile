@@ -9096,7 +9096,6 @@
 				675F4AF924AB828000A828F9 /* HomeProfileUpdateRequest.swift */,
 				675F4AFA24AB828000A828F9 /* AlertPreferencesRequest.swift */,
 				675F4AFB24AB828000A828F9 /* GameUserRequest.swift */,
-				675F4AFC24AB828000A828F9 /* OutageRequest.swift */,
 				675F4AFD24AB828000A828F9 /* GuidRequest.swift */,
 				675F4AFE24AB828000A828F9 /* DailyUsageRequest.swift */,
 				675F4AFF24AB828000A828F9 /* BillComparisonRequest.swift */,
@@ -9107,6 +9106,7 @@
 				675F4B0424AB828000A828F9 /* ChangePasswordRequest.swift */,
 				675F4B0524AB828000A828F9 /* AnyEncodable.swift */,
 				C3087A9F24B662C6005AE544 /* ReleaseOfInfoPreferenceRequest.swift */,
+				675F4AFC24AB828000A828F9 /* OutageRequest.swift */,
 				675F4DF824B378FD00A828F9 /* AnonOutageRequest.swift */,
 			);
 			path = Models;

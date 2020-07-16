@@ -106,7 +106,7 @@ public enum Router {
     case outageStatus(accountNumber: String, summaryQueryItem: URLQueryItem? = nil)
     case outageStatusAnon(request: AnonOutageRequest)
     case meterPing(accountNumber: String, premiseNumber: String? = nil)
-    case reportOutage(accountNumber: String, encodable: Encodable)
+    case reportOutage(accountNumber: String, request: OutageRequest)
     case reportOutageAnon(request: OutageRequest)
 
     // Unauthenticated    
@@ -258,7 +258,7 @@ public enum Router {
         case .fetchDailyUsage(let accountNumber, let premiseNumber, _):
             return "accounts/\(accountNumber)/premises/\(premiseNumber)/usage/query"
         case .reportOutageAnon:
-            return "/mobile/custom/\(apiAccess)/outage"
+            return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.rawValue)/outage"
         }
     }
     
