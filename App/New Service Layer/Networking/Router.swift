@@ -300,10 +300,10 @@ public enum Router {
     // todo: this may change to switch off of api access... I believe all vlaues below are derived from auth, anon, admin.  Hold off on changing this for now tho... need to dig deeper.
     public var httpHeaders: HTTPHeaders? {
         switch self {
+            case .alertBanner, .newsAndUpdates:
+                return ["Accept": "application/json;odata=verbose"]
         case .fetchJWTToken:
             return ["content-type": "application/x-www-form-urlencoded"]
-        case .alertBanner, .newsAndUpdates:
-            return ["Accept": "application/json;odata=verbose"]
         case .outageStatusAnon, .reportOutageAnon:
             return ["Content-Type": "application/json"]
         case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
@@ -314,6 +314,12 @@ public enum Router {
         default:
             return nil
         }
+        
+//        if apiAccess == .auth {
+//            // Add Bearer.
+//        }
+        
+        // then make default application/json
     }
     
     public var httpBody: HTTPBody? {
