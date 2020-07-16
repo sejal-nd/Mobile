@@ -188,6 +188,7 @@
 		2FA7B9FC1F0548F000D660B8 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		301DE1FC24C04ADA00992CA4 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		3062CFF724B6DF3B000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF624B6DF3B000176EC /* landing_video.mp4 */; };
 		3062CFF924B6DF8F000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF824B6DF8E000176EC /* landing_video.mp4 */; };
 		3062CFFB24B6DFB4000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFFA24B6DFB4000176EC /* landing_video.mp4 */; };
@@ -14743,6 +14744,7 @@
 				67DDBA6724535DAA006CD6EB /* UsageViewModel.swift in Sources */,
 				67DDBA6824535DAA006CD6EB /* BillingHistoryItem.swift in Sources */,
 				67DDBA6924535DAA006CD6EB /* WatchSessionMananger.swift in Sources */,
+				301DE1FC24C04ADA00992CA4 /* BGEAutoPayViewModel.swift in Sources */,
 				67DDBA6A24535DAA006CD6EB /* NibViews.swift in Sources */,
 				67DDBA6C24535DAA006CD6EB /* Top5EnergyTipsViewModel.swift in Sources */,
 				67DDBA6D24535DAA006CD6EB /* CommercialUsageAlertStore.swift in Sources */,
