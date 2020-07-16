@@ -12,7 +12,7 @@ extension TimeZone {
     static let opCo: TimeZone = {
 
         switch appOpCo {
-        case .bge, .peco:
+        case .ace, .bge, .delmarva, .peco, .pepco:
             return TimeZone(identifier: "America/New_York")!
         case .comEd:
             return TimeZone(identifier: "America/Chicago")!

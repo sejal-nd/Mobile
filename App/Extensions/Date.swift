@@ -388,19 +388,10 @@ extension Calendar {
 extension TimeZone {
     static let opCo: TimeZone = {
         switch Environment.shared.opco {
-        case .bge, .peco :
+        case .ace, .bge, .delmarva, .peco, .pepco :
             return TimeZone(identifier: "America/New_York")!
         case .comEd:
             return TimeZone(identifier: "America/Chicago")!
-        case .pepco:
-            // todo
-            return TimeZone(identifier: "America/New_York")!
-        case .ace:
-            // todo
-            return TimeZone(identifier: "America/New_York")!
-        case .delmarva:
-            // todo
-            return TimeZone(identifier: "America/New_York")!
         }
     }()
     
