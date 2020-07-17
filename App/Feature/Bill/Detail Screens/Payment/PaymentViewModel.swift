@@ -69,7 +69,7 @@ class PaymentViewModel {
         paymentAmount = BehaviorRelay(value: billingHistoryItem?.amountPaid ?? netDueAmount)
         
         // May be updated later...see computeDefaultPaymentDate()
-        paymentDate = BehaviorRelay(value: Environment.shared.opco.isPHI ? .now :  billingHistoryItem?.date ?? .now)
+        paymentDate = BehaviorRelay(value: billingHistoryItem?.date ?? .now)
     }
 
     // MARK: - Service Calls
