@@ -1,5 +1,5 @@
 //
-//  AnonOutageStatusContainer.swift
+//  OutageStatusContainer.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 7/6/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AnonOutageStatusContainer: Decodable {
+struct OutageStatusContainer: Decodable {
     var statuses = [OutageStatus]()
     
     public init(from decoder: Decoder) throws {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RecoverMaskedUsernameRequest: Encodable {
+public struct RecoverMaskedUsernameRequest: Encodable {
     let phone: String
     let identifier: String
     let accountNumber: String

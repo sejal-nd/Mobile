@@ -9,9 +9,29 @@
 import Foundation
 
 struct OutageService {
-    static func fetchOutageStatus(accountNumber: String, premiseNumber: String, completion: @escaping (Result<OutageStatus, NetworkingError>) -> ()) {
-        
-        NetworkingLayer.request(router: .outageStatus(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
+    static func fetchOutageStatus(accountNumber: String, premiseNumberString: String, completion: @escaping (Result<OutageStatus, NetworkingError>) -> ()) {
+        var summaryQueryItem: URLQueryItem? = nil
+        if StormModeStatus.shared.isOn && Environment.shared.opco != .bge {
+            summaryQueryItem = URLQueryItem(name: "&summary", value: "true")
+        }
+        NetworkingLayer.request(router: .outageStatus(accountNumber: accountNumber, summaryQueryItem: summaryQueryItem)) { (result: Result<OutageStatusContainer, NetworkingError>) in
+            switch result {
+            case .success(let outageStatusContainer):
+                let statuses = outageStatusContainer.statuses
+                
+                if statuses.count == 1 {
+                    completion(.success(statuses[0]))
+                } else {
+                    guard let outageStatusForPremise = statuses.filter({ $0.premiseNumber == premiseNumberString }).first else {
+                        completion(.failure(.decoding))
+                        return
+                    }
+                    completion(.success(outageStatusForPremise))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }        
     }
     
     // todo may want to relocate ect?
@@ -21,7 +41,7 @@ struct OutageService {
     
     static func reportOutage(outageRequest: OutageRequest, completion: @escaping (Result<ReportedOutageResult, NetworkingError>) -> ()) {
         
-        NetworkingLayer.request(router: .reportOutage(accountNumber: outageRequest.accountNumber, encodable: outageRequest)) { (result: Result<ReportedOutageResult, NetworkingError>) in
+        NetworkingLayer.request(router: .reportOutage(accountNumber: outageRequest.accountNumber, request: outageRequest)) { (result: Result<ReportedOutageResult, NetworkingError>) in
             switch result {
             case .success(let reportOutageResult):
                 ReportedOutagesStore.shared[outageRequest.accountNumber] = reportOutageResult
@@ -32,13 +52,13 @@ struct OutageService {
         }
     }
     
-    static func pingMeter(accountNumber: String, premiseNumber: String, completion: @escaping (Result<MeterPingResult, NetworkingError>) -> ()) {
+    static func pingMeter(accountNumber: String, premiseNumber: String?, completion: @escaping (Result<MeterPingResult, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .meterPing(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
     
     // MARK: Anon
     
-    static func fetchAnonOutageStatus(phoneNumber: String?, accountNumber: String?, completion: @escaping (Result<AnonOutageStatus, NetworkingError>) -> ()) {
+    static func fetchAnonOutageStatus(phoneNumber: String?, accountNumber: String?, completion: @escaping (Result<AnonOutageStatusContainer, NetworkingError>) -> ()) {
         let anonOutageRequest = AnonOutageRequest(phoneNumber: phoneNumber, accountNumber: accountNumber)
         NetworkingLayer.request(router: .outageStatusAnon(request: anonOutageRequest), completion: completion)
     }

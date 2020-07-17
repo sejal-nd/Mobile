@@ -36,6 +36,31 @@ public struct AuthenticatedService {
         }
     }
     
+    static func validateLogin(username: String,
+                              password: String,
+                              completion: @escaping (Result<Void, NetworkingError>) -> ()) {
+        guard let username = username.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved),
+            let password = password.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved) else {
+                return
+        }
+        
+        let jwtRequest = JWTRequest(username: username, password: password)
+        NetworkingLayer.request(router: .fetchJWTToken(request: jwtRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // todo may need to be fixed... not confident in implementation
+    static func isLoggedIn() -> Bool {
+        return !UserSession.shared.token.isEmpty
+    }
+    
+    // todo need to verify cancelAllTasks for network actually works becuase we changed the network configuration
     static func logout() {
         NetworkingLayer.cancelAllTasks()
         

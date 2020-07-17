@@ -313,7 +313,6 @@
 		356C7F8821909F46003E8A90 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
 		356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
 		356C7F8D2190A09F003E8A90 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
-		356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
 		356C7F902190A173003E8A90 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
 		356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		356C7F9A2190A2EF003E8A90 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
@@ -594,7 +593,6 @@
 		35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35F9DD952333D84700AAA2B2 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
-		35F9DD982333D85000AAA2B2 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
 		35F9DD992333D85400AAA2B2 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		35F9DD9E2333D86600AAA2B2 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
@@ -641,7 +639,6 @@
 		35F9DE1523353C3A00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
 		35F9DE1623353C3E00AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		35F9DE1923353C5600AAA2B2 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
-		35F9DE1C23353C6200AAA2B2 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
 		35F9DE1D23353C6B00AAA2B2 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		35F9DE2223353C8100AAA2B2 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
 		35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
@@ -995,12 +992,12 @@
 		675F4C2724AB828100A828F9 /* UsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0A24AB828000A828F9 /* UsageService.swift */; };
 		675F4C2824AB828100A828F9 /* UsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0A24AB828000A828F9 /* UsageService.swift */; };
 		675F4C2924AB828100A828F9 /* UsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0A24AB828000A828F9 /* UsageService.swift */; };
-		675F4C2A24AB828100A828F9 /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		675F4C2B24AB828100A828F9 /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		675F4C2C24AB828100A828F9 /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		675F4C2D24AB828100A828F9 /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		675F4C2E24AB828100A828F9 /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		675F4C2F24AB828100A828F9 /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
+		675F4C2A24AB828100A828F9 /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		675F4C2B24AB828100A828F9 /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		675F4C2C24AB828100A828F9 /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		675F4C2D24AB828100A828F9 /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		675F4C2E24AB828100A828F9 /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		675F4C2F24AB828100A828F9 /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
 		675F4C3024AB828100A828F9 /* CustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0F24AB828000A828F9 /* CustomerInfo.swift */; };
 		675F4C3124AB828100A828F9 /* CustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0F24AB828000A828F9 /* CustomerInfo.swift */; };
 		675F4C3224AB828100A828F9 /* CustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0F24AB828000A828F9 /* CustomerInfo.swift */; };
@@ -1175,12 +1172,12 @@
 		675F4CDB24AB828200A828F9 /* VoidDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2B24AB828000A828F9 /* VoidDecodable.swift */; };
 		675F4CDC24AB828200A828F9 /* VoidDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2B24AB828000A828F9 /* VoidDecodable.swift */; };
 		675F4CDD24AB828200A828F9 /* VoidDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2B24AB828000A828F9 /* VoidDecodable.swift */; };
-		675F4CDE24AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* NewForgotMaskedUsername.swift */; };
-		675F4CDF24AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* NewForgotMaskedUsername.swift */; };
-		675F4CE024AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* NewForgotMaskedUsername.swift */; };
-		675F4CE124AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* NewForgotMaskedUsername.swift */; };
-		675F4CE224AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* NewForgotMaskedUsername.swift */; };
-		675F4CE324AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* NewForgotMaskedUsername.swift */; };
+		675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
+		675F4CDF24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
+		675F4CE024AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
+		675F4CE124AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
+		675F4CE224AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
+		675F4CE324AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
 		675F4CE424AB828200A828F9 /* NewMinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2D24AB828000A828F9 /* NewMinimumVersion.swift */; };
 		675F4CE524AB828200A828F9 /* NewMinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2D24AB828000A828F9 /* NewMinimumVersion.swift */; };
 		675F4CE624AB828200A828F9 /* NewMinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2D24AB828000A828F9 /* NewMinimumVersion.swift */; };
@@ -1223,12 +1220,12 @@
 		675F4D0B24AB828200A828F9 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */; };
 		675F4D0C24AB828200A828F9 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */; };
 		675F4D0D24AB828200A828F9 /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */; };
-		675F4D0E24AB828200A828F9 /* NewAccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* NewAccountLookupResult.swift */; };
-		675F4D0F24AB828200A828F9 /* NewAccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* NewAccountLookupResult.swift */; };
-		675F4D1024AB828200A828F9 /* NewAccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* NewAccountLookupResult.swift */; };
-		675F4D1124AB828200A828F9 /* NewAccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* NewAccountLookupResult.swift */; };
-		675F4D1224AB828200A828F9 /* NewAccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* NewAccountLookupResult.swift */; };
-		675F4D1324AB828200A828F9 /* NewAccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* NewAccountLookupResult.swift */; };
+		675F4D0E24AB828200A828F9 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
+		675F4D0F24AB828200A828F9 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
+		675F4D1024AB828200A828F9 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
+		675F4D1124AB828200A828F9 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
+		675F4D1224AB828200A828F9 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
+		675F4D1324AB828200A828F9 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
 		675F4D1424AB828200A828F9 /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
 		675F4D1524AB828200A828F9 /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
 		675F4D1624AB828200A828F9 /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
@@ -1403,12 +1400,12 @@
 		675F4DBF24AB828200A828F9 /* AlertPreferencesLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5424AB828000A828F9 /* AlertPreferencesLoadMock.json */; };
 		675F4DC024AB828200A828F9 /* AlertPreferencesLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5424AB828000A828F9 /* AlertPreferencesLoadMock.json */; };
 		675F4DC124AB828200A828F9 /* AlertPreferencesLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5424AB828000A828F9 /* AlertPreferencesLoadMock.json */; };
-		675F4DC224AB828200A828F9 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* maintenanceModeMock.json */; };
-		675F4DC324AB828200A828F9 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* maintenanceModeMock.json */; };
-		675F4DC424AB828200A828F9 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* maintenanceModeMock.json */; };
-		675F4DC524AB828200A828F9 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* maintenanceModeMock.json */; };
-		675F4DC624AB828200A828F9 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* maintenanceModeMock.json */; };
-		675F4DC724AB828200A828F9 /* maintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* maintenanceModeMock.json */; };
+		675F4DC224AB828200A828F9 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* MaintenanceModeMock.json */; };
+		675F4DC324AB828200A828F9 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* MaintenanceModeMock.json */; };
+		675F4DC424AB828200A828F9 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* MaintenanceModeMock.json */; };
+		675F4DC524AB828200A828F9 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* MaintenanceModeMock.json */; };
+		675F4DC624AB828200A828F9 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* MaintenanceModeMock.json */; };
+		675F4DC724AB828200A828F9 /* MaintenanceModeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5524AB828000A828F9 /* MaintenanceModeMock.json */; };
 		675F4DC824AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5624AB828000A828F9 /* ForecastMonthlyBillMock.json */; };
 		675F4DC924AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5624AB828000A828F9 /* ForecastMonthlyBillMock.json */; };
 		675F4DCA24AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B5624AB828000A828F9 /* ForecastMonthlyBillMock.json */; };
@@ -1657,7 +1654,6 @@
 		67DDB32124535D2E006CD6EB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
 		67DDB32224535D2E006CD6EB /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		67DDB32324535D2E006CD6EB /* BudgetBillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */; };
-		67DDB32424535D2E006CD6EB /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
 		67DDB32524535D2E006CD6EB /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
 		67DDB32624535D2E006CD6EB /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		67DDB32724535D2E006CD6EB /* AccountInfoBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */; };
@@ -2177,7 +2173,6 @@
 		67DDB57724535D32006CD6EB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
 		67DDB57824535D32006CD6EB /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		67DDB57924535D32006CD6EB /* BudgetBillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */; };
-		67DDB57A24535D32006CD6EB /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
 		67DDB57B24535D32006CD6EB /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
 		67DDB57C24535D32006CD6EB /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		67DDB57D24535D32006CD6EB /* AccountInfoBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */; };
@@ -2707,7 +2702,6 @@
 		67DDB7CD24535D35006CD6EB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
 		67DDB7CE24535D35006CD6EB /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		67DDB7CF24535D35006CD6EB /* BudgetBillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */; };
-		67DDB7D024535D35006CD6EB /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
 		67DDB7D124535D35006CD6EB /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
 		67DDB7D224535D35006CD6EB /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		67DDB7D324535D35006CD6EB /* AccountInfoBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */; };
@@ -3179,7 +3173,7 @@
 		67DDB9E024535DAA006CD6EB /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		67DDB9E124535DAA006CD6EB /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		67DDB9E224535DAA006CD6EB /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */; };
-		67DDB9E324535DAA006CD6EB /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
+		67DDB9E324535DAA006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDB9E424535DAA006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDB9E524535DAA006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDB9E624535DAA006CD6EB /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -3369,7 +3363,7 @@
 		67DDBAC824535DAC006CD6EB /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		67DDBAC924535DAC006CD6EB /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		67DDBACA24535DAC006CD6EB /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */; };
-		67DDBACB24535DAC006CD6EB /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
+		67DDBACB24535DAC006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDBACC24535DAC006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDBACD24535DAC006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDBACE24535DAC006CD6EB /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -3563,7 +3557,7 @@
 		67DDBBB024535DAE006CD6EB /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		67DDBBB124535DAE006CD6EB /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		67DDBBB224535DAE006CD6EB /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */; };
-		67DDBBB324535DAE006CD6EB /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
+		67DDBBB324535DAE006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDBBB424535DAE006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDBBB524535DAE006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDBBB624535DAE006CD6EB /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -3863,6 +3857,51 @@
 		67F950C924B64260009B5F07 /* AnonymousService+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950C024B64249009B5F07 /* AnonymousService+RX.swift */; };
 		67F950CA24B64261009B5F07 /* AnonymousService+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950C024B64249009B5F07 /* AnonymousService+RX.swift */; };
 		67F950CB24B64262009B5F07 /* AnonymousService+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950C024B64249009B5F07 /* AnonymousService+RX.swift */; };
+		67F950CD24B78901009B5F07 /* ValidatedAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2424AB828000A828F9 /* ValidatedAccount.swift */; };
+		67F950D024B78907009B5F07 /* ValidateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF624AB828000A828F9 /* ValidateAccountRequest.swift */; };
+		67F950D124B78909009B5F07 /* ValidateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF624AB828000A828F9 /* ValidateAccountRequest.swift */; };
+		67F950D224B789B9009B5F07 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
+		67F950D324B789B9009B5F07 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
+		67F950D424B789BA009B5F07 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
+		67F950D624B789C0009B5F07 /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */; };
+		67F950D724B789C1009B5F07 /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */; };
+		67F950D824B78DE8009B5F07 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
+		67F950D924B78DE9009B5F07 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
+		67F950DA24B78DEA009B5F07 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
+		67F950DF24B793C7009B5F07 /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */; };
+		67F950E024B793D7009B5F07 /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */; };
+		67F950E124B793D7009B5F07 /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */; };
+		67F950E324B793DA009B5F07 /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */; };
+		67F950E524B793DB009B5F07 /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */; };
+		67F950E624B793DC009B5F07 /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */; };
+		67F950E724B793DD009B5F07 /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */; };
+		67F950E824B795E0009B5F07 /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0024AB828000A828F9 /* AccountLookupRequest.swift */; };
+		67F950E924B795E1009B5F07 /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0024AB828000A828F9 /* AccountLookupRequest.swift */; };
+		67F950EC24B7A56C009B5F07 /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */; };
+		67F950ED24B7A57A009B5F07 /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */; };
+		67F950EE24B7A57A009B5F07 /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */; };
+		67F950EF24B7A57B009B5F07 /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */; };
+		67F950F024B7A57C009B5F07 /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */; };
+		67F950F124B7A57D009B5F07 /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */; };
+		67F950F224B7A57E009B5F07 /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */; };
+		67F950F324B7A57F009B5F07 /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */; };
+		67F950F424B7A57F009B5F07 /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */; };
+		67F9514324BE3A78009B5F07 /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */; };
+		67F9514424BE3A79009B5F07 /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */; };
+		67F9514524BE3A9D009B5F07 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
+		67F9514624BE3A9E009B5F07 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
+		67F9514724BE3A9F009B5F07 /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
+		67F9514A24BF4388009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514B24BF438C009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514C24BF438C009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514D24BF438E009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514E24BF438E009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9514F24BF438F009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9515024BF4390009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9515124BF4391009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9515224BF4392009B5F07 /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */; };
+		67F9515324BF779B009B5F07 /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */; };
+		67F9515524BF77B1009B5F07 /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
@@ -5229,15 +5268,15 @@
 		C3B6554324ABB9890048C64B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2324AB828000A828F9 /* Account.swift */; };
 		C3B6554424ABB98A0048C64B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2324AB828000A828F9 /* Account.swift */; };
 		C3B6554524ABB98D0048C64B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2324AB828000A828F9 /* Account.swift */; };
-		C3B6554624ABB9960048C64B /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		C3B6554724ABB9970048C64B /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		C3B6554824ABB9990048C64B /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		C3B6554924ABB99B0048C64B /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		C3B6554A24ABB9A00048C64B /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		C3B6554B24ABB9A20048C64B /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		C3B6554C24ABB9A40048C64B /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		C3B6554D24ABB9A50048C64B /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
-		C3B6554E24ABB9A60048C64B /* NewPremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */; };
+		C3B6554624ABB9960048C64B /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		C3B6554724ABB9970048C64B /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		C3B6554824ABB9990048C64B /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		C3B6554924ABB99B0048C64B /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		C3B6554A24ABB9A00048C64B /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		C3B6554B24ABB9A20048C64B /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		C3B6554C24ABB9A40048C64B /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		C3B6554D24ABB9A50048C64B /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
+		C3B6554E24ABB9A60048C64B /* PremiseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0E24AB828000A828F9 /* PremiseInfo.swift */; };
 		C3B6555024ABD9320048C64B /* NewSERInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6554F24ABD9310048C64B /* NewSERInfo.swift */; };
 		C3B6555124ABD9320048C64B /* NewSERInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6554F24ABD9310048C64B /* NewSERInfo.swift */; };
 		C3B6555224ABD9320048C64B /* NewSERInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6554F24ABD9310048C64B /* NewSERInfo.swift */; };
@@ -5676,10 +5715,6 @@
 		E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */; };
 		E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */; };
 		E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */; };
-		E8CA07E51E9D391400A1D431 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
-		E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
-		E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
-		E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
 		E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */; };
 		E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */; };
 		E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */; };
@@ -5745,7 +5780,7 @@
 		E8F62B35200924410077B3DA /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
 		E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
 		E8F62B3B200924410077B3DA /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
-		E8F62B3E200924410077B3DA /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
+		E8F62B3E200924410077B3DA /* (null) in Sources */ = {isa = PBXBuildFile; };
 		E8F62B42200924410077B3DA /* AuthTokenParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */; };
 		E8F62B43200924410077B3DA /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		E8F62B45200924410077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
@@ -5831,7 +5866,7 @@
 		E8F62BEA200924570077B3DA /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
 		E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
 		E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
-		E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
+		E8F62BF3200924570077B3DA /* (null) in Sources */ = {isa = PBXBuildFile; };
 		E8F62BF7200924570077B3DA /* AuthTokenParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */; };
 		E8F62BF8200924570077B3DA /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		E8F62BFA200924570077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
@@ -6567,7 +6602,7 @@
 		675F4B0824AB828000A828F9 /* WeatherServiceNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherServiceNew.swift; sourceTree = "<group>"; };
 		675F4B0924AB828000A828F9 /* PaymentServiceNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentServiceNew.swift; sourceTree = "<group>"; };
 		675F4B0A24AB828000A828F9 /* UsageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageService.swift; sourceTree = "<group>"; };
-		675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPremiseInfo.swift; sourceTree = "<group>"; };
+		675F4B0E24AB828000A828F9 /* PremiseInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PremiseInfo.swift; sourceTree = "<group>"; };
 		675F4B0F24AB828000A828F9 /* CustomerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerInfo.swift; sourceTree = "<group>"; };
 		675F4B1024AB828000A828F9 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
 		675F4B1124AB828000A828F9 /* SSODataResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSODataResponse.swift; sourceTree = "<group>"; };
@@ -6597,7 +6632,7 @@
 		675F4B2924AB828000A828F9 /* CompareBillResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareBillResult.swift; sourceTree = "<group>"; };
 		675F4B2A24AB828000A828F9 /* NewBillingHistoryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBillingHistoryResult.swift; sourceTree = "<group>"; };
 		675F4B2B24AB828000A828F9 /* VoidDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidDecodable.swift; sourceTree = "<group>"; };
-		675F4B2C24AB828000A828F9 /* NewForgotMaskedUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForgotMaskedUsername.swift; sourceTree = "<group>"; };
+		675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotMaskedUsername.swift; sourceTree = "<group>"; };
 		675F4B2D24AB828000A828F9 /* NewMinimumVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMinimumVersion.swift; sourceTree = "<group>"; };
 		675F4B2E24AB828000A828F9 /* OutageStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatus.swift; sourceTree = "<group>"; };
 		675F4B2F24AB828000A828F9 /* MaintenanceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceMode.swift; sourceTree = "<group>"; };
@@ -6605,7 +6640,7 @@
 		675F4B3124AB828000A828F9 /* NewJWTToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewJWTToken.swift; sourceTree = "<group>"; };
 		675F4B3224AB828000A828F9 /* NewWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWeather.swift; sourceTree = "<group>"; };
 		675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScheduledPayment.swift; sourceTree = "<group>"; };
-		675F4B3424AB828000A828F9 /* NewAccountLookupResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAccountLookupResult.swift; sourceTree = "<group>"; };
+		675F4B3424AB828000A828F9 /* AccountLookupResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResult.swift; sourceTree = "<group>"; };
 		675F4B3524AB828000A828F9 /* UsageTip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageTip.swift; sourceTree = "<group>"; };
 		675F4B3624AB828000A828F9 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		675F4B3724AB828000A828F9 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -6635,7 +6670,7 @@
 		675F4B5224AB828000A828F9 /* AccountDetailsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountDetailsMock.json; sourceTree = "<group>"; };
 		675F4B5324AB828000A828F9 /* BillingHistoryResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BillingHistoryResult.json; sourceTree = "<group>"; };
 		675F4B5424AB828000A828F9 /* AlertPreferencesLoadMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlertPreferencesLoadMock.json; sourceTree = "<group>"; };
-		675F4B5524AB828000A828F9 /* maintenanceModeMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = maintenanceModeMock.json; sourceTree = "<group>"; };
+		675F4B5524AB828000A828F9 /* MaintenanceModeMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MaintenanceModeMock.json; sourceTree = "<group>"; };
 		675F4B5624AB828000A828F9 /* ForecastMonthlyBillMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForecastMonthlyBillMock.json; sourceTree = "<group>"; };
 		675F4B5724AB828000A828F9 /* WalletMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WalletMock.json; sourceTree = "<group>"; };
 		675F4B5824AB828000A828F9 /* ScheduledPaymentUNUSEDMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ScheduledPaymentUNUSEDMock.json; sourceTree = "<group>"; };
@@ -6715,6 +6750,9 @@
 		67DDBDBC246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_pepco_testing.plist"; sourceTree = "<group>"; };
 		67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OpCo.swift"; sourceTree = "<group>"; };
 		67F950C024B64249009B5F07 /* AnonymousService+RX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnonymousService+RX.swift"; sourceTree = "<group>"; };
+		67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotMaskedUsernames.swift; sourceTree = "<group>"; };
+		67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResults.swift; sourceTree = "<group>"; };
+		67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusContainer.swift; sourceTree = "<group>"; };
 		68E8FD0F58481547F29B7FDE /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		6918FF23DD2B6EFEC03153D8 /* Pods-ACEApp-ACEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -7356,7 +7394,6 @@
 		E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPaySettingsViewController.swift; sourceTree = "<group>"; };
 		E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayChangeBankViewController.swift; sourceTree = "<group>"; };
 		E8CA07E01E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameResultViewController.swift; sourceTree = "<group>"; };
-		E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsername.swift; sourceTree = "<group>"; };
 		E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableFormSheetViewController.swift; sourceTree = "<group>"; };
 		E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModelTests.swift; sourceTree = "<group>"; };
@@ -9023,7 +9060,6 @@
 				675F4AF924AB828000A828F9 /* HomeProfileUpdateRequest.swift */,
 				675F4AFA24AB828000A828F9 /* AlertPreferencesRequest.swift */,
 				675F4AFB24AB828000A828F9 /* GameUserRequest.swift */,
-				675F4AFC24AB828000A828F9 /* OutageRequest.swift */,
 				675F4AFD24AB828000A828F9 /* GuidRequest.swift */,
 				675F4AFE24AB828000A828F9 /* DailyUsageRequest.swift */,
 				675F4AFF24AB828000A828F9 /* BillComparisonRequest.swift */,
@@ -9034,6 +9070,7 @@
 				675F4B0424AB828000A828F9 /* ChangePasswordRequest.swift */,
 				675F4B0524AB828000A828F9 /* AnyEncodable.swift */,
 				C3087A9F24B662C6005AE544 /* ReleaseOfInfoPreferenceRequest.swift */,
+				675F4AFC24AB828000A828F9 /* OutageRequest.swift */,
 				675F4DF824B378FD00A828F9 /* AnonOutageRequest.swift */,
 			);
 			path = Models;
@@ -9084,16 +9121,19 @@
 				675F4B2924AB828000A828F9 /* CompareBillResult.swift */,
 				675F4B2A24AB828000A828F9 /* NewBillingHistoryResult.swift */,
 				675F4B2B24AB828000A828F9 /* VoidDecodable.swift */,
-				675F4B2C24AB828000A828F9 /* NewForgotMaskedUsername.swift */,
+				67F950DE24B793C7009B5F07 /* ForgotMaskedUsernames.swift */,
+				675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */,
 				675F4B2D24AB828000A828F9 /* NewMinimumVersion.swift */,
 				675F4DFF24B3A00800A828F9 /* AnonOutageStatus.swift */,
+				67F9514924BF4387009B5F07 /* OutageStatusContainer.swift */,
 				675F4B2E24AB828000A828F9 /* OutageStatus.swift */,
 				675F4B2F24AB828000A828F9 /* MaintenanceMode.swift */,
 				675F4B3024AB828000A828F9 /* GenericResponse.swift */,
 				675F4B3124AB828000A828F9 /* NewJWTToken.swift */,
 				675F4B3224AB828000A828F9 /* NewWeather.swift */,
 				675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */,
-				675F4B3424AB828000A828F9 /* NewAccountLookupResult.swift */,
+				67F950EB24B7A56C009B5F07 /* AccountLookupResults.swift */,
+				675F4B3424AB828000A828F9 /* AccountLookupResult.swift */,
 				675F4B3524AB828000A828F9 /* UsageTip.swift */,
 				675F4B1B24AB828000A828F9 /* NewResponseWrapper.swift */,
 				C3087AF724BDE8E2005AE544 /* EnergyTip.swift */,
@@ -9104,7 +9144,7 @@
 		675F4B0D24AB828000A828F9 /* Account Details */ = {
 			isa = PBXGroup;
 			children = (
-				675F4B0E24AB828000A828F9 /* NewPremiseInfo.swift */,
+				675F4B0E24AB828000A828F9 /* PremiseInfo.swift */,
 				675F4B0F24AB828000A828F9 /* CustomerInfo.swift */,
 				675F4B1024AB828000A828F9 /* AccountDetails.swift */,
 			);
@@ -9114,10 +9154,10 @@
 		675F4B3824AB828000A828F9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				675F4B3924AB828000A828F9 /* NetworkingError.swift */,
-				675F4B3A24AB828000A828F9 /* Mock */,
 				675F4B5C24AB828100A828F9 /* Router.swift */,
 				675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */,
+				675F4B3924AB828000A828F9 /* NetworkingError.swift */,
+				675F4B3A24AB828000A828F9 /* Mock */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -9161,7 +9201,7 @@
 				675F4B5224AB828000A828F9 /* AccountDetailsMock.json */,
 				675F4B5324AB828000A828F9 /* BillingHistoryResult.json */,
 				675F4B5424AB828000A828F9 /* AlertPreferencesLoadMock.json */,
-				675F4B5524AB828000A828F9 /* maintenanceModeMock.json */,
+				675F4B5524AB828000A828F9 /* MaintenanceModeMock.json */,
 				675F4B5624AB828000A828F9 /* ForecastMonthlyBillMock.json */,
 				675F4B5724AB828000A828F9 /* WalletMock.json */,
 				675F4B5824AB828000A828F9 /* ScheduledPaymentUNUSEDMock.json */,
@@ -10266,7 +10306,6 @@
 				2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */,
 				2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */,
 				B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */,
-				E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */,
 				E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */,
 				54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */,
 				B56DD49C1ED87AD800F0198B /* BankAccount.swift */,
@@ -11279,7 +11318,7 @@
 			files = (
 				67DDB47624535D2E006CD6EB /* Maintenance.storyboard in Resources */,
 				675F4DAD24AB828200A828F9 /* SSODataMock.json in Resources */,
-				675F4DC524AB828200A828F9 /* maintenanceModeMock.json in Resources */,
+				675F4DC524AB828200A828F9 /* MaintenanceModeMock.json in Resources */,
 				67DDB47724535D2E006CD6EB /* AppointmentDetailViewController.xib in Resources */,
 				67DDB47824535D2E006CD6EB /* outage_status.json in Resources */,
 				675F4D8F24AB828200A828F9 /* MinVersionMock.json in Resources */,
@@ -11558,7 +11597,7 @@
 				67DDB70E24535D32006CD6EB /* payments.json in Resources */,
 				67DDB70F24535D32006CD6EB /* DisclosureButton.xib in Resources */,
 				67DDB71024535D32006CD6EB /* energy_tips.json in Resources */,
-				675F4DC724AB828200A828F9 /* maintenanceModeMock.json in Resources */,
+				675F4DC724AB828200A828F9 /* MaintenanceModeMock.json in Resources */,
 				67DDB71124535D32006CD6EB /* TitleTableViewCell.xib in Resources */,
 				67DDB71224535D32006CD6EB /* coin_bonus_point.json in Resources */,
 				67DDB71424535D32006CD6EB /* Appt_Canceled.json in Resources */,
@@ -11759,7 +11798,7 @@
 				67DDB96424535D35006CD6EB /* payments.json in Resources */,
 				67DDB96524535D35006CD6EB /* DisclosureButton.xib in Resources */,
 				67DDB96624535D35006CD6EB /* energy_tips.json in Resources */,
-				675F4DC624AB828200A828F9 /* maintenanceModeMock.json in Resources */,
+				675F4DC624AB828200A828F9 /* MaintenanceModeMock.json in Resources */,
 				67DDB96724535D35006CD6EB /* TitleTableViewCell.xib in Resources */,
 				67DDB96824535D35006CD6EB /* coin_bonus_point.json in Resources */,
 				67DDB96A24535D35006CD6EB /* Appt_Canceled.json in Resources */,
@@ -12023,7 +12062,7 @@
 				B07E18042211D31700B6E3C7 /* outage_status.json in Resources */,
 				9C0EA5B5237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */,
-				675F4DC224AB828200A828F9 /* maintenanceModeMock.json in Resources */,
+				675F4DC224AB828200A828F9 /* MaintenanceModeMock.json in Resources */,
 				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
@@ -12298,7 +12337,7 @@
 				67D73B02246C72F300450B63 /* environment.plist in Resources */,
 				9CD3533622CABDB900165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6D22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
-				675F4DC424AB828200A828F9 /* maintenanceModeMock.json in Resources */,
+				675F4DC424AB828200A828F9 /* MaintenanceModeMock.json in Resources */,
 				B0B0840421710D1500B1C632 /* Appt_otw.json in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */,
@@ -12499,7 +12538,7 @@
 				9C62445D22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
 				67D73AFF246C72F000450B63 /* environment.plist in Resources */,
 				B0B083F021710C8900B1C632 /* Appt_otw.json in Resources */,
-				675F4DC324AB828200A828F9 /* maintenanceModeMock.json in Resources */,
+				675F4DC324AB828200A828F9 /* MaintenanceModeMock.json in Resources */,
 				9CD3533722CABDB900165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6C22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
@@ -12774,16 +12813,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -12793,15 +12832,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -12811,7 +12850,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		143735841FC7317CC15E5A64 /* [CP] Embed Pods Frameworks */ = {
@@ -12820,16 +12859,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -12839,15 +12878,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -12857,7 +12896,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1B5015784DB642147DE950E0 /* [CP] Embed Pods Frameworks */ = {
@@ -12866,16 +12905,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -12885,15 +12924,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -12903,7 +12942,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1F320E9F488F4AF612BF5C4D /* [CP] Embed Pods Frameworks */ = {
@@ -12912,16 +12951,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -12931,15 +12970,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -12949,7 +12988,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		21FCC9D56DC0C626A725A88B /* [CP] Check Pods Manifest.lock */ = {
@@ -12980,16 +13019,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13000,15 +13039,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13019,7 +13058,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		39FFA6514E02DA5EC3DEDBED /* [CP] Check Pods Manifest.lock */ = {
@@ -13050,16 +13089,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DelmarvaApp-Delmarva/Pods-DelmarvaApp-Delmarva-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-DelmarvaApp-Delmarva/Pods-DelmarvaApp-Delmarva-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13069,15 +13108,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13087,7 +13126,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DelmarvaApp-Delmarva/Pods-DelmarvaApp-Delmarva-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DelmarvaApp-Delmarva/Pods-DelmarvaApp-Delmarva-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3B7A666D5001D243402B938F /* [CP] Check Pods Manifest.lock */ = {
@@ -13206,16 +13245,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13225,15 +13264,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13243,7 +13282,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		55C0F53228F370F2593AEE10 /* [CP] Check Pods Manifest.lock */ = {
@@ -13384,16 +13423,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PepcoApp-Pepco/Pods-PepcoApp-Pepco-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-PepcoApp-Pepco/Pods-PepcoApp-Pepco-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13403,15 +13442,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13421,7 +13460,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PepcoApp-Pepco/Pods-PepcoApp-Pepco-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PepcoApp-Pepco/Pods-PepcoApp-Pepco-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		67DDB9D724535DAA006CD6EB /* [CP] Check Pods Manifest.lock */ = {
@@ -13452,16 +13491,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PepcoApp-PepcoUnitTests/Pods-PepcoApp-PepcoUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-PepcoApp-PepcoUnitTests/Pods-PepcoApp-PepcoUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13472,15 +13511,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13491,7 +13530,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PepcoApp-PepcoUnitTests/Pods-PepcoApp-PepcoUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PepcoApp-PepcoUnitTests/Pods-PepcoApp-PepcoUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		67DDBC8F24535DD5006CD6EB /* [CP] Check Pods Manifest.lock */ = {
@@ -13522,16 +13561,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PepcoApp-PepcoUITests/Pods-PepcoApp-PepcoUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-PepcoApp-PepcoUITests/Pods-PepcoApp-PepcoUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13541,15 +13580,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13559,7 +13598,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PepcoApp-PepcoUITests/Pods-PepcoApp-PepcoUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PepcoApp-PepcoUITests/Pods-PepcoApp-PepcoUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		67DDBD0C24535F6C006CD6EB /* Run Script */ = {
@@ -13613,16 +13652,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ACEApp-ACEUITests/Pods-ACEApp-ACEUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ACEApp-ACEUITests/Pods-ACEApp-ACEUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13632,15 +13671,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13650,7 +13689,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ACEApp-ACEUITests/Pods-ACEApp-ACEUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ACEApp-ACEUITests/Pods-ACEApp-ACEUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6CD2BABE4AFAB7CD35D474EA /* [CP] Check Pods Manifest.lock */ = {
@@ -13681,16 +13720,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ACEApp-ACE/Pods-ACEApp-ACE-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ACEApp-ACE/Pods-ACEApp-ACE-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13700,15 +13739,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13718,7 +13757,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ACEApp-ACE/Pods-ACEApp-ACE-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ACEApp-ACE/Pods-ACEApp-ACE-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		768439059C4370CCACAEB59F /* [CP] Check Pods Manifest.lock */ = {
@@ -13771,7 +13810,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
 			);
@@ -13782,7 +13821,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */ = {
@@ -13791,7 +13830,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
 			);
@@ -13802,7 +13841,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8EC4849EC2A64AF2F41B3687 /* [CP] Check Pods Manifest.lock */ = {
@@ -13877,16 +13916,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DelmarvaApp-DelmarvaUnitTests/Pods-DelmarvaApp-DelmarvaUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-DelmarvaApp-DelmarvaUnitTests/Pods-DelmarvaApp-DelmarvaUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13897,15 +13936,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13916,7 +13955,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DelmarvaApp-DelmarvaUnitTests/Pods-DelmarvaApp-DelmarvaUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DelmarvaApp-DelmarvaUnitTests/Pods-DelmarvaApp-DelmarvaUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A15D3E6BBA549029029114FD /* [CP] Check Pods Manifest.lock */ = {
@@ -13947,16 +13986,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DelmarvaApp-DelmarvaUITests/Pods-DelmarvaApp-DelmarvaUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-DelmarvaApp-DelmarvaUITests/Pods-DelmarvaApp-DelmarvaUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -13966,15 +14005,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -13984,7 +14023,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DelmarvaApp-DelmarvaUITests/Pods-DelmarvaApp-DelmarvaUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DelmarvaApp-DelmarvaUITests/Pods-DelmarvaApp-DelmarvaUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B58B5B6A1E51728B0051FD5F /* Run Script */ = {
@@ -14036,16 +14075,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -14056,15 +14095,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -14075,7 +14114,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B94B53A494B834F78A5C29C7 /* [CP] Check Pods Manifest.lock */ = {
@@ -14106,7 +14145,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
 			);
@@ -14117,7 +14156,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E5D45D22794F9993C6EFB50D /* [CP] Embed Pods Frameworks */ = {
@@ -14126,16 +14165,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -14146,15 +14185,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -14165,7 +14204,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */ = {
@@ -14174,16 +14213,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -14193,15 +14232,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -14211,7 +14250,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9CBF2ECCE98E33F8775740D /* [CP] Embed Pods Frameworks */ = {
@@ -14220,16 +14259,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -14240,15 +14279,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -14259,7 +14298,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -14309,6 +14348,7 @@
 				C3087AF624BCF199005AE544 /* HomeProfileUpdateRequest.swift in Sources */,
 				675F4E1424B4D9E400A828F9 /* EndpointError.swift in Sources */,
 				35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */,
+				67F9514424BE3A79009B5F07 /* ForgotMaskedUsernames.swift in Sources */,
 				35F9DE4D2339152900AAA2B2 /* Constants.swift in Sources */,
 				C3087AD224B67473005AE544 /* UsernameRequest.swift in Sources */,
 				356C7F902190A173003E8A90 /* SSOData.swift in Sources */,
@@ -14321,6 +14361,7 @@
 				675F4E2724B4DAA900A828F9 /* AnonOutageRequest.swift in Sources */,
 				675F4E5324B4DC8200A828F9 /* PaymentRequest.swift in Sources */,
 				675F4E2A24B4DAB200A828F9 /* ChangePasswordRequest.swift in Sources */,
+				67F950D424B789BA009B5F07 /* AccountLookupResult.swift in Sources */,
 				B0D84D602204987800C70A6F /* Date+Now.swift in Sources */,
 				356C7F9C2190A3CE003E8A90 /* AuthTokenResponse.swift in Sources */,
 				9CCE3E4C21BB17E40008E1AF /* StormModeStatus.swift in Sources */,
@@ -14332,12 +14373,16 @@
 				356C7F8421909E97003E8A90 /* DateParser.swift in Sources */,
 				675F4E0E24B4D91900A828F9 /* NetworkingError.swift in Sources */,
 				675F4E5F24B4F91500A828F9 /* MeterPingResult.swift in Sources */,
+				67F950D724B789C1009B5F07 /* RecoverUsernameRequest.swift in Sources */,
+				67F950D124B78909009B5F07 /* ValidateAccountRequest.swift in Sources */,
 				675F4E2124B4DA9500A828F9 /* JWTRequest.swift in Sources */,
 				356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */,
 				35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */,
 				675F4E1724B4DA2A00A828F9 /* NetworkingLayer.swift in Sources */,
 				3527DB38234B86E000DA4553 /* BillUtility.swift in Sources */,
+				67F950F124B7A57D009B5F07 /* AccountLookupResults.swift in Sources */,
 				675F4E0B24B4D90C00A828F9 /* OutageService.swift in Sources */,
+				67F9514724BE3A9F009B5F07 /* ForgotMaskedUsername.swift in Sources */,
 				356C7F7621909783003E8A90 /* ServiceResult.swift in Sources */,
 				35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */,
 				67F950BF24B634E0009B5F07 /* NewMinimumVersion.swift in Sources */,
@@ -14358,10 +14403,9 @@
 				B0E9F00421F28ADB0086A82A /* SequenceForEach.swift in Sources */,
 				356C7F9D2190A436003E8A90 /* URLSession+Rx.swift in Sources */,
 				356C7F9B2190A37F003E8A90 /* MCSAuthenticationService.swift in Sources */,
-				356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */,
 				C3087ADC24B67EC4005AE544 /* ValidateAccountRequest.swift in Sources */,
 				356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */,
-				C3B6554924ABB99B0048C64B /* NewPremiseInfo.swift in Sources */,
+				C3B6554924ABB99B0048C64B /* PremiseInfo.swift in Sources */,
 				C3B6559D24AD45030048C64B /* AccountDetails.swift in Sources */,
 				9CBE9E26237473C200E14222 /* Weekday.swift in Sources */,
 				C3087AAE24B6711A005AE544 /* NetworkingLayer.swift in Sources */,
@@ -14383,6 +14427,7 @@
 				C3087B3024BE31BB005AE544 /* VoidDecodable.swift in Sources */,
 				C3087AA824B67042005AE544 /* AccountService.swift in Sources */,
 				356C7F9A2190A2EF003E8A90 /* ShortUUIDGenerator.swift in Sources */,
+				67F9514F24BF438F009B5F07 /* OutageStatusContainer.swift in Sources */,
 				C3B6557824ABE6780048C64B /* BillingInfo.swift in Sources */,
 				C3B6559424AD255A0048C64B /* NetworkingError.swift in Sources */,
 				C3087ADF24B67ECE005AE544 /* GuidRequest.swift in Sources */,
@@ -14393,6 +14438,7 @@
 				35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */,
 				356C7F8221909997003E8A90 /* KeychainManager.swift in Sources */,
 				35FB502F234D091000C50162 /* UIColor.swift in Sources */,
+				67F950DA24B78DEA009B5F07 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				675F4E2424B4DAA000A828F9 /* NewAccountRequest.swift in Sources */,
 				356C7FA02190A46E003E8A90 /* HttpMethod.swift in Sources */,
 				35E7C8022190805C00BA13C6 /* UsageInterfaceController.swift in Sources */,
@@ -14434,11 +14480,14 @@
 				C3087AE024B67ED3005AE544 /* AccountNicknameRequest.swift in Sources */,
 				35F9DD932333D83F00AAA2B2 /* (null) in Sources */,
 				675F4E2B24B4DADF00A828F9 /* UserSession.swift in Sources */,
+				67F950E024B793D7009B5F07 /* ForgotMaskedUsernames.swift in Sources */,
 				675F4E2524B4DAA700A828F9 /* AnonOutageRequest.swift in Sources */,
 				675F4E5124B4DC7F00A828F9 /* PaymentRequest.swift in Sources */,
 				675F4E2824B4DAAF00A828F9 /* ChangePasswordRequest.swift in Sources */,
 				35F9DDAC2333D8AF00AAA2B2 /* ServiceResult.swift in Sources */,
 				35F9DDA82333D89E00AAA2B2 /* AuthenticationService.swift in Sources */,
+				67F950D224B789B9009B5F07 /* AccountLookupResult.swift in Sources */,
+				67F9514524BE3A9D009B5F07 /* ForgotMaskedUsername.swift in Sources */,
 				C3087AB924B671A1005AE544 /* MockUser.swift in Sources */,
 				35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */,
 				C3B6558224ACD9080048C64B /* PaymentItem.swift in Sources */,
@@ -14454,6 +14503,7 @@
 				C3087AF424BCF197005AE544 /* HomeProfileUpdateRequest.swift in Sources */,
 				675F4E1524B4DA2800A828F9 /* NetworkingLayer.swift in Sources */,
 				675F4E0924B4D90800A828F9 /* OutageService.swift in Sources */,
+				67F950ED24B7A57A009B5F07 /* AccountLookupResults.swift in Sources */,
 				3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */,
 				35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */,
 				67F950BD24B634DE009B5F07 /* NewMinimumVersion.swift in Sources */,
@@ -14475,12 +14525,14 @@
 				35F9DDA62333D88F00AAA2B2 /* Date+Now.swift in Sources */,
 				35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */,
 				35F9DDBE2333D91D00AAA2B2 /* KeychainManager.swift in Sources */,
+				67F9514B24BF438C009B5F07 /* OutageStatusContainer.swift in Sources */,
+				67F9515324BF779B009B5F07 /* RecoverUsernameRequest.swift in Sources */,
 				35F9DDB32333D8D900AAA2B2 /* AuthTokenParser.swift in Sources */,
 				35F9DD9E2333D86600AAA2B2 /* SSOData.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				C3087ADB24B67EC3005AE544 /* ValidateAccountRequest.swift in Sources */,
 				35F9DDAF2333D8C300AAA2B2 /* MCSApi.swift in Sources */,
-				C3B6554624ABB9960048C64B /* NewPremiseInfo.swift in Sources */,
+				C3B6554624ABB9960048C64B /* PremiseInfo.swift in Sources */,
 				C3B6559B24AD45000048C64B /* AccountDetails.swift in Sources */,
 				9CBE9E27237473C400E14222 /* Weekday.swift in Sources */,
 				C3087AAC24B67117005AE544 /* NetworkingLayer.swift in Sources */,
@@ -14493,6 +14545,7 @@
 				C3B6553E24ABB9800048C64B /* Account.swift in Sources */,
 				35F9DD952333D84700AAA2B2 /* ProfileStatus.swift in Sources */,
 				C3087AE424B78789005AE544 /* SSODataResponse.swift in Sources */,
+				67F9515524BF77B1009B5F07 /* AnonymousService.swift in Sources */,
 				35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */,
 				35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */,
 				C3087AB224B6717B005AE544 /* ReleaseOfInfoPreferenceRequest.swift in Sources */,
@@ -14507,8 +14560,8 @@
 				35F9DDB72333D8F100AAA2B2 /* Date.swift in Sources */,
 				35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */,
 				35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */,
-				35F9DD982333D85000AAA2B2 /* ForgotUsername.swift in Sources */,
 				675F4E2224B4DA9E00A828F9 /* NewAccountRequest.swift in Sources */,
+				67F950D824B78DE8009B5F07 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				35FB5030234D091100C50162 /* UIColor.swift in Sources */,
 				35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */,
 				35F9DDBC2333D90D00AAA2B2 /* URLSession+Rx.swift in Sources */,
@@ -14521,6 +14574,7 @@
 				C3087B2824BE1596005AE544 /* HomeProfile.swift in Sources */,
 				675F4E1B24B4DA6C00A828F9 /* NewResponseWrapper.swift in Sources */,
 				35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */,
+				67F950E924B795E1009B5F07 /* AccountLookupRequest.swift in Sources */,
 				35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */,
 				675F4E4224B4DC2400A828F9 /* NewMockDataKey.swift in Sources */,
 			);
@@ -14546,6 +14600,8 @@
 				35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */,
 				675F4E1224B4D9E000A828F9 /* EndpointError.swift in Sources */,
 				35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */,
+				67F950CD24B78901009B5F07 /* ValidatedAccount.swift in Sources */,
+				67F9514D24BF438E009B5F07 /* OutageStatusContainer.swift in Sources */,
 				35F9DE1623353C3E00AAA2B2 /* Logger.swift in Sources */,
 				C3087AD124B67472005AE544 /* UsernameRequest.swift in Sources */,
 				C3087B2024BE154E005AE544 /* CompareBillResult.swift in Sources */,
@@ -14558,6 +14614,7 @@
 				675F4E2624B4DAA800A828F9 /* AnonOutageRequest.swift in Sources */,
 				675F4E5224B4DC8000A828F9 /* PaymentRequest.swift in Sources */,
 				675F4E2924B4DAB100A828F9 /* ChangePasswordRequest.swift in Sources */,
+				67F950D324B789B9009B5F07 /* AccountLookupResult.swift in Sources */,
 				35F9DE3123353CE300AAA2B2 /* HttpMethod.swift in Sources */,
 				35F9DE2F23353CD800AAA2B2 /* AuthenticationService.swift in Sources */,
 				35F9DE3523353CFD00AAA2B2 /* AccountsStore.swift in Sources */,
@@ -14570,12 +14627,15 @@
 				C3087AB624B67195005AE544 /* UserSession.swift in Sources */,
 				675F4E0D24B4D91800A828F9 /* NetworkingError.swift in Sources */,
 				35F9DE2B23353CC700AAA2B2 /* AuthTokenParser.swift in Sources */,
+				67F950D624B789C0009B5F07 /* RecoverUsernameRequest.swift in Sources */,
+				67F950D024B78907009B5F07 /* ValidateAccountRequest.swift in Sources */,
 				675F4E5E24B4F91400A828F9 /* MeterPingResult.swift in Sources */,
 				675F4E2024B4DA9400A828F9 /* JWTRequest.swift in Sources */,
 				C3087AF524BCF198005AE544 /* HomeProfileUpdateRequest.swift in Sources */,
 				35F9DE3A23353D2600AAA2B2 /* NumberFormatter.swift in Sources */,
 				675F4E1624B4DA2900A828F9 /* NetworkingLayer.swift in Sources */,
 				3527DB3A234B86E000DA4553 /* BillUtility.swift in Sources */,
+				67F950EF24B7A57B009B5F07 /* AccountLookupResults.swift in Sources */,
 				675F4E0A24B4D90A00A828F9 /* OutageService.swift in Sources */,
 				675F4E6124B501A400A828F9 /* OutageRequest.swift in Sources */,
 				67F950BE24B634DF009B5F07 /* NewMinimumVersion.swift in Sources */,
@@ -14590,6 +14650,7 @@
 				675F4E5B24B4F8FD00A828F9 /* ReportedOutageResult.swift in Sources */,
 				35F9DE57233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */,
+				67F9514624BE3A9E009B5F07 /* ForgotMaskedUsername.swift in Sources */,
 				35F9DE0D23353A5300AAA2B2 /* BillInterfaceController.swift in Sources */,
 				C3087B2F24BE31BA005AE544 /* VoidDecodable.swift in Sources */,
 				35F9DE2823353CB100AAA2B2 /* MCSAuthenticationService.swift in Sources */,
@@ -14598,7 +14659,8 @@
 				35F9DE0E23353A5700AAA2B2 /* ExtensionDelegate.swift in Sources */,
 				C3087ADA24B67EC2005AE544 /* ValidateAccountRequest.swift in Sources */,
 				35F9DE4223353D5F00AAA2B2 /* KeychainManager.swift in Sources */,
-				C3B6554B24ABB9A20048C64B /* NewPremiseInfo.swift in Sources */,
+				67F9514324BE3A78009B5F07 /* ForgotMaskedUsernames.swift in Sources */,
+				C3B6554B24ABB9A20048C64B /* PremiseInfo.swift in Sources */,
 				C3B6559C24AD45010048C64B /* AccountDetails.swift in Sources */,
 				675F4E5524B4DCC300A828F9 /* AnyEncodable.swift in Sources */,
 				35F9DE0B23353A5300AAA2B2 /* OutageInterfaceController.swift in Sources */,
@@ -14626,8 +14688,8 @@
 				C3087AAA24B670AC005AE544 /* AccountService+Rx.swift in Sources */,
 				C3B6555524ABD9320048C64B /* NewSERInfo.swift in Sources */,
 				35F9DE3B23353D2900AAA2B2 /* Date.swift in Sources */,
-				35F9DE1C23353C6200AAA2B2 /* ForgotUsername.swift in Sources */,
 				675F4E2324B4DA9F00A828F9 /* NewAccountRequest.swift in Sources */,
+				67F950D924B78DE9009B5F07 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				35FB5031234D091100C50162 /* UIColor.swift in Sources */,
 				35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */,
 				35F9DE4023353D4C00AAA2B2 /* URLSession+Rx.swift in Sources */,
@@ -14639,6 +14701,7 @@
 				C3087B2A24BE15E3005AE544 /* HomeProfile.swift in Sources */,
 				C3087ABF24B671DE005AE544 /* NewResponseWrapper.swift in Sources */,
 				35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */,
+				67F950E824B795E0009B5F07 /* AccountLookupRequest.swift in Sources */,
 				35F9DE3F23353D4500AAA2B2 /* SequenceForEach.swift in Sources */,
 				675F4E4324B4DC2500A828F9 /* NewMockDataKey.swift in Sources */,
 			);
@@ -14670,6 +14733,7 @@
 				67DDB2EB24535D2E006CD6EB /* ZeroInsetDataDetectorTextView.swift in Sources */,
 				67DDB2EC24535D2E006CD6EB /* LoginViewController.swift in Sources */,
 				675F4BFD24AB828100A828F9 /* PaymentRequest.swift in Sources */,
+				67F950E524B793DB009B5F07 /* ForgotMaskedUsernames.swift in Sources */,
 				67DDB2EE24535D2E006CD6EB /* InsetTextField.swift in Sources */,
 				675F4C9F24AB828100A828F9 /* NewPayments.swift in Sources */,
 				67DDB2EF24535D2E006CD6EB /* HomeEditViewController.swift in Sources */,
@@ -14710,7 +14774,7 @@
 				67DDB31024535D2E006CD6EB /* PeakRewardsViewController.swift in Sources */,
 				67DDB31124535D2E006CD6EB /* HomeEditRestoreDefaultCell.swift in Sources */,
 				67DDB31324535D2E006CD6EB /* UpdatesViewModel.swift in Sources */,
-				675F4C2D24AB828100A828F9 /* NewPremiseInfo.swift in Sources */,
+				675F4C2D24AB828100A828F9 /* PremiseInfo.swift in Sources */,
 				67DDB31424535D2E006CD6EB /* ButtonRow.swift in Sources */,
 				67DDB31524535D2E006CD6EB /* Checkbox.swift in Sources */,
 				C3B6556924ABD9790048C64B /* SERResult.swift in Sources */,
@@ -14725,7 +14789,6 @@
 				67DDB32124535D2E006CD6EB /* MockUser.swift in Sources */,
 				67DDB32224535D2E006CD6EB /* MCSAuthenticationService.swift in Sources */,
 				67DDB32324535D2E006CD6EB /* BudgetBillingInfo.swift in Sources */,
-				67DDB32424535D2E006CD6EB /* ForgotUsername.swift in Sources */,
 				67DDB32524535D2E006CD6EB /* MockPeakRewardsService.swift in Sources */,
 				67DDB32624535D2E006CD6EB /* WalletViewModel.swift in Sources */,
 				67DDB32724535D2E006CD6EB /* AccountInfoBarCell.swift in Sources */,
@@ -14781,6 +14844,7 @@
 				67DDB35124535D2E006CD6EB /* HttpMethod.swift in Sources */,
 				67DDB35224535D2E006CD6EB /* CommercialUsageViewController.swift in Sources */,
 				675F4C8724AB828100A828F9 /* MeterPingResult.swift in Sources */,
+				67F9515024BF4390009B5F07 /* OutageStatusContainer.swift in Sources */,
 				675F4BA324AB828100A828F9 /* UsernameRequest.swift in Sources */,
 				67DDB35324535D2E006CD6EB /* EnergyTipTableViewCell.swift in Sources */,
 				67DDB35424535D2E006CD6EB /* Logger.swift in Sources */,
@@ -14852,7 +14916,7 @@
 				675F4B7924AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */,
 				675F4C5D24AB828100A828F9 /* NewAutoPayResult.swift in Sources */,
 				675F4CF924AB828200A828F9 /* GenericResponse.swift in Sources */,
-				675F4CE124AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */,
+				675F4CE124AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				675F4E0324B3A00800A828F9 /* AnonOutageStatus.swift in Sources */,
 				67DDB38B24535D2E006CD6EB /* GameOnboardingIntroViewController.swift in Sources */,
 				67DDB38C24535D2E006CD6EB /* ViewControllerAlertable.swift in Sources */,
@@ -14999,13 +15063,14 @@
 				67DDB40024535D2E006CD6EB /* GameTaskStore.swift in Sources */,
 				67DDB40124535D2E006CD6EB /* HomeUsageCardView.swift in Sources */,
 				675F4CE724AB828200A828F9 /* NewMinimumVersion.swift in Sources */,
-				675F4D1124AB828200A828F9 /* NewAccountLookupResult.swift in Sources */,
+				675F4D1124AB828200A828F9 /* AccountLookupResult.swift in Sources */,
 				67DDB40224535D2E006CD6EB /* LineHeightLabel.swift in Sources */,
 				67DDB40324535D2E006CD6EB /* ForgotUsernameResultViewController.swift in Sources */,
 				67DDB40424535D2E006CD6EB /* PaymentusFormViewController.swift in Sources */,
 				67DDB40524535D2E006CD6EB /* SERPTSGraphView.swift in Sources */,
 				675F4BA924AB828100A828F9 /* WalletItemDeleteRequest.swift in Sources */,
 				67DDB40624535D2E006CD6EB /* CreditCard.swift in Sources */,
+				67F950F224B7A57E009B5F07 /* AccountLookupResults.swift in Sources */,
 				67DDB40724535D2E006CD6EB /* LandingViewController.swift in Sources */,
 				67DDB40824535D2E006CD6EB /* FadeSubviews.swift in Sources */,
 				675F4B6D24AB828100A828F9 /* RegistrationServiceNew.swift in Sources */,
@@ -15185,6 +15250,7 @@
 				67DDB55524535D32006CD6EB /* AdjustThermostatViewController.swift in Sources */,
 				67DDB55624535D32006CD6EB /* UINavigationBackButton.swift in Sources */,
 				67DDB55724535D32006CD6EB /* Top5EnergyTipsViewController.swift in Sources */,
+				67F950E724B793DD009B5F07 /* ForgotMaskedUsernames.swift in Sources */,
 				67DDB55924535D32006CD6EB /* HomeProjectedBillCardViewModel.swift in Sources */,
 				67DDB55A24535D32006CD6EB /* GameService.swift in Sources */,
 				67DDB55B24535D32006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
@@ -15219,7 +15285,6 @@
 				67DDB57724535D32006CD6EB /* MockUser.swift in Sources */,
 				67DDB57824535D32006CD6EB /* MCSAuthenticationService.swift in Sources */,
 				67DDB57924535D32006CD6EB /* BudgetBillingInfo.swift in Sources */,
-				67DDB57A24535D32006CD6EB /* ForgotUsername.swift in Sources */,
 				67DDB57B24535D32006CD6EB /* MockPeakRewardsService.swift in Sources */,
 				67DDB57C24535D32006CD6EB /* WalletViewModel.swift in Sources */,
 				67DDB57D24535D32006CD6EB /* AccountInfoBarCell.swift in Sources */,
@@ -15258,6 +15323,7 @@
 				67DDB59A24535D32006CD6EB /* UIViewUsingAutoLayout.swift in Sources */,
 				67DDB59B24535D32006CD6EB /* Switch.swift in Sources */,
 				67DDB59C24535D32006CD6EB /* HomeViewModel.swift in Sources */,
+				67F950F424B7A57F009B5F07 /* AccountLookupResults.swift in Sources */,
 				67DDB59D24535D32006CD6EB /* OutageViewController.swift in Sources */,
 				67DDB59E24535D32006CD6EB /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				67DDB59F24535D32006CD6EB /* PECOReleaseOfInfoViewController.swift in Sources */,
@@ -15304,6 +15370,7 @@
 				67DDB5C424535D32006CD6EB /* GiftInventory.swift in Sources */,
 				675F4C1724AB828100A828F9 /* AuthenticatedService.swift in Sources */,
 				675F4BBD24AB828100A828F9 /* BudgetBillingUnenrollRequest.swift in Sources */,
+				67F9515224BF4392009B5F07 /* OutageStatusContainer.swift in Sources */,
 				67DDB5C524535D32006CD6EB /* GovWeatherService.swift in Sources */,
 				67DDB5C624535D32006CD6EB /* ToastView.swift in Sources */,
 				67DDB5C724535D32006CD6EB /* Appointment.swift in Sources */,
@@ -15364,7 +15431,7 @@
 				675F4DFE24B378FD00A828F9 /* AnonOutageRequest.swift in Sources */,
 				67DDB5F124535D32006CD6EB /* HomeUpdateView.swift in Sources */,
 				67DDB5F224535D32006CD6EB /* MiniWalletSheetViewController.swift in Sources */,
-				675F4C2F24AB828100A828F9 /* NewPremiseInfo.swift in Sources */,
+				675F4C2F24AB828100A828F9 /* PremiseInfo.swift in Sources */,
 				67DDB5F324535D32006CD6EB /* BillBreakdownViewController.swift in Sources */,
 				C3087A9E24B65B0A005AE544 /* AccountService.swift in Sources */,
 				67DDB5F524535D32006CD6EB /* BillBreakdownViewModel.swift in Sources */,
@@ -15579,7 +15646,7 @@
 				675F4BED24AB828100A828F9 /* AccountLookupRequest.swift in Sources */,
 				67DDB6A624535D32006CD6EB /* NibViews.swift in Sources */,
 				67DDB6A724535D32006CD6EB /* TemperatureScaleStore.swift in Sources */,
-				675F4CE324AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */,
+				675F4CE324AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				67DDB6A824535D32006CD6EB /* ObservableExtensions.swift in Sources */,
 				67DDB6A924535D32006CD6EB /* SharedWebCredentialService.swift in Sources */,
 				675F4CD724AB828200A828F9 /* NewBillingHistoryResult.swift in Sources */,
@@ -15614,7 +15681,7 @@
 				67DDB6BF24535D32006CD6EB /* HomeWeatherView.swift in Sources */,
 				675F4D0124AB828200A828F9 /* NewJWTToken.swift in Sources */,
 				67DDB6C024535D32006CD6EB /* AlertsViewController.swift in Sources */,
-				675F4D1324AB828200A828F9 /* NewAccountLookupResult.swift in Sources */,
+				675F4D1324AB828200A828F9 /* AccountLookupResult.swift in Sources */,
 				67DDB6C124535D32006CD6EB /* LargeTitleNavigationController.swift in Sources */,
 				67DDB6C224535D32006CD6EB /* Version.swift in Sources */,
 				C3087B0024BDE8E2005AE544 /* EnergyTip.swift in Sources */,
@@ -15679,6 +15746,7 @@
 				67DDB7AB24535D35006CD6EB /* AdjustThermostatViewController.swift in Sources */,
 				67DDB7AC24535D35006CD6EB /* UINavigationBackButton.swift in Sources */,
 				67DDB7AD24535D35006CD6EB /* Top5EnergyTipsViewController.swift in Sources */,
+				67F950E624B793DC009B5F07 /* ForgotMaskedUsernames.swift in Sources */,
 				67DDB7AF24535D35006CD6EB /* HomeProjectedBillCardViewModel.swift in Sources */,
 				67DDB7B024535D35006CD6EB /* GameService.swift in Sources */,
 				67DDB7B124535D35006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
@@ -15713,7 +15781,6 @@
 				67DDB7CD24535D35006CD6EB /* MockUser.swift in Sources */,
 				67DDB7CE24535D35006CD6EB /* MCSAuthenticationService.swift in Sources */,
 				67DDB7CF24535D35006CD6EB /* BudgetBillingInfo.swift in Sources */,
-				67DDB7D024535D35006CD6EB /* ForgotUsername.swift in Sources */,
 				67DDB7D124535D35006CD6EB /* MockPeakRewardsService.swift in Sources */,
 				67DDB7D224535D35006CD6EB /* WalletViewModel.swift in Sources */,
 				67DDB7D324535D35006CD6EB /* AccountInfoBarCell.swift in Sources */,
@@ -15752,6 +15819,7 @@
 				67DDB7F024535D35006CD6EB /* UIViewUsingAutoLayout.swift in Sources */,
 				67DDB7F124535D35006CD6EB /* Switch.swift in Sources */,
 				67DDB7F224535D35006CD6EB /* HomeViewModel.swift in Sources */,
+				67F950F324B7A57F009B5F07 /* AccountLookupResults.swift in Sources */,
 				67DDB7F324535D35006CD6EB /* OutageViewController.swift in Sources */,
 				67DDB7F424535D35006CD6EB /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				67DDB7F524535D35006CD6EB /* PECOReleaseOfInfoViewController.swift in Sources */,
@@ -15798,6 +15866,7 @@
 				67DDB81A24535D35006CD6EB /* GiftInventory.swift in Sources */,
 				675F4C1624AB828100A828F9 /* AuthenticatedService.swift in Sources */,
 				675F4BBC24AB828100A828F9 /* BudgetBillingUnenrollRequest.swift in Sources */,
+				67F9515124BF4391009B5F07 /* OutageStatusContainer.swift in Sources */,
 				67DDB81B24535D35006CD6EB /* GovWeatherService.swift in Sources */,
 				67DDB81C24535D35006CD6EB /* ToastView.swift in Sources */,
 				67DDB81D24535D35006CD6EB /* Appointment.swift in Sources */,
@@ -15858,7 +15927,7 @@
 				675F4DFD24B378FD00A828F9 /* AnonOutageRequest.swift in Sources */,
 				67DDB84724535D35006CD6EB /* HomeUpdateView.swift in Sources */,
 				67DDB84824535D35006CD6EB /* MiniWalletSheetViewController.swift in Sources */,
-				675F4C2E24AB828100A828F9 /* NewPremiseInfo.swift in Sources */,
+				675F4C2E24AB828100A828F9 /* PremiseInfo.swift in Sources */,
 				67DDB84924535D35006CD6EB /* BillBreakdownViewController.swift in Sources */,
 				C3087A9D24B65B0A005AE544 /* AccountService.swift in Sources */,
 				67DDB84B24535D35006CD6EB /* BillBreakdownViewModel.swift in Sources */,
@@ -16073,7 +16142,7 @@
 				675F4BEC24AB828100A828F9 /* AccountLookupRequest.swift in Sources */,
 				67DDB8FC24535D35006CD6EB /* NibViews.swift in Sources */,
 				67DDB8FD24535D35006CD6EB /* TemperatureScaleStore.swift in Sources */,
-				675F4CE224AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */,
+				675F4CE224AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				67DDB8FE24535D35006CD6EB /* ObservableExtensions.swift in Sources */,
 				67DDB8FF24535D35006CD6EB /* SharedWebCredentialService.swift in Sources */,
 				675F4CD624AB828200A828F9 /* NewBillingHistoryResult.swift in Sources */,
@@ -16108,7 +16177,7 @@
 				67DDB91524535D35006CD6EB /* HomeWeatherView.swift in Sources */,
 				675F4D0024AB828200A828F9 /* NewJWTToken.swift in Sources */,
 				67DDB91624535D35006CD6EB /* AlertsViewController.swift in Sources */,
-				675F4D1224AB828200A828F9 /* NewAccountLookupResult.swift in Sources */,
+				675F4D1224AB828200A828F9 /* AccountLookupResult.swift in Sources */,
 				67DDB91724535D35006CD6EB /* LargeTitleNavigationController.swift in Sources */,
 				67DDB91824535D35006CD6EB /* Version.swift in Sources */,
 				C3087AFF24BDE8E2005AE544 /* EnergyTip.swift in Sources */,
@@ -16137,9 +16206,10 @@
 				67DDB9E124535DAA006CD6EB /* Weekday.swift in Sources */,
 				67DDB9E224535DAA006CD6EB /* WeatherItem.swift in Sources */,
 				30F821A1249B70E30010547C /* EditAccountNickNameViewController.swift in Sources */,
-				67DDB9E324535DAA006CD6EB /* ForgotUsername.swift in Sources */,
+				67DDB9E324535DAA006CD6EB /* (null) in Sources */,
 				67DDB9E424535DAA006CD6EB /* (null) in Sources */,
 				67DDB9E524535DAA006CD6EB /* (null) in Sources */,
+				67DDB9E424535DAA006CD6EB /* (null) in Sources */,
 				67DDB9E624535DAA006CD6EB /* HomeBillCardViewModel.swift in Sources */,
 				675F4E4B24B4DC2F00A828F9 /* NewMockDataKey.swift in Sources */,
 				67DDB9E724535DAA006CD6EB /* FirebaseUtility.swift in Sources */,
@@ -16273,7 +16343,7 @@
 				67DDBA6A24535DAA006CD6EB /* NibViews.swift in Sources */,
 				67DDBA6C24535DAA006CD6EB /* Top5EnergyTipsViewModel.swift in Sources */,
 				67DDBA6D24535DAA006CD6EB /* CommercialUsageAlertStore.swift in Sources */,
-				C3B6554C24ABB9A40048C64B /* NewPremiseInfo.swift in Sources */,
+				C3B6554C24ABB9A40048C64B /* PremiseInfo.swift in Sources */,
 				67DDBA6E24535DAA006CD6EB /* WeatherService.swift in Sources */,
 				67DDBA6F24535DAA006CD6EB /* NumberFormatter.swift in Sources */,
 				67DDBA7024535DAA006CD6EB /* RxNotifications.swift in Sources */,
@@ -16323,9 +16393,10 @@
 				67DDBAC924535DAC006CD6EB /* Weekday.swift in Sources */,
 				67DDBACA24535DAC006CD6EB /* WeatherItem.swift in Sources */,
 				C3B6559724AD255F0048C64B /* NetworkingError.swift in Sources */,
-				67DDBACB24535DAC006CD6EB /* ForgotUsername.swift in Sources */,
+				67DDBACB24535DAC006CD6EB /* (null) in Sources */,
 				67DDBACC24535DAC006CD6EB /* (null) in Sources */,
 				67DDBACD24535DAC006CD6EB /* (null) in Sources */,
+				67DDBACC24535DAC006CD6EB /* (null) in Sources */,
 				67DDBACE24535DAC006CD6EB /* HomeBillCardViewModel.swift in Sources */,
 				67DDBACF24535DAC006CD6EB /* FirebaseUtility.swift in Sources */,
 				67DDBAD024535DAC006CD6EB /* AuthTokenParserTests.swift in Sources */,
@@ -16448,7 +16519,7 @@
 				67DDBB4A24535DAC006CD6EB /* Application.swift in Sources */,
 				67DDBB4B24535DAC006CD6EB /* PeakRewardsSummary.swift in Sources */,
 				67DDBB4C24535DAC006CD6EB /* ActivityTracker.swift in Sources */,
-				C3B6554E24ABB9A60048C64B /* NewPremiseInfo.swift in Sources */,
+				C3B6554E24ABB9A60048C64B /* PremiseInfo.swift in Sources */,
 				67DDBB4D24535DAC006CD6EB /* PaperlessEBillViewModel.swift in Sources */,
 				67DDBB4E24535DAC006CD6EB /* GoogleAnalytics.swift in Sources */,
 				67DDBB4F24535DAC006CD6EB /* UsageViewModel.swift in Sources */,
@@ -16510,9 +16581,10 @@
 				67DDBBB124535DAE006CD6EB /* Weekday.swift in Sources */,
 				67DDBBB224535DAE006CD6EB /* WeatherItem.swift in Sources */,
 				C3B6559624AD255D0048C64B /* NetworkingError.swift in Sources */,
-				67DDBBB324535DAE006CD6EB /* ForgotUsername.swift in Sources */,
+				67DDBBB324535DAE006CD6EB /* (null) in Sources */,
 				67DDBBB424535DAE006CD6EB /* (null) in Sources */,
 				67DDBBB524535DAE006CD6EB /* (null) in Sources */,
+				67DDBBB424535DAE006CD6EB /* (null) in Sources */,
 				67DDBBB624535DAE006CD6EB /* HomeBillCardViewModel.swift in Sources */,
 				67DDBBB724535DAE006CD6EB /* FirebaseUtility.swift in Sources */,
 				67DDBBB824535DAE006CD6EB /* AuthTokenParserTests.swift in Sources */,
@@ -16635,7 +16707,7 @@
 				67DDBC3224535DAE006CD6EB /* Application.swift in Sources */,
 				67DDBC3324535DAE006CD6EB /* PeakRewardsSummary.swift in Sources */,
 				67DDBC3424535DAE006CD6EB /* ActivityTracker.swift in Sources */,
-				C3B6554D24ABB9A50048C64B /* NewPremiseInfo.swift in Sources */,
+				C3B6554D24ABB9A50048C64B /* PremiseInfo.swift in Sources */,
 				67DDBC3524535DAE006CD6EB /* PaperlessEBillViewModel.swift in Sources */,
 				67DDBC3624535DAE006CD6EB /* GoogleAnalytics.swift in Sources */,
 				67DDBC3724535DAE006CD6EB /* UsageViewModel.swift in Sources */,
@@ -16842,7 +16914,6 @@
 				675F4E0024B3A00800A828F9 /* AnonOutageStatus.swift in Sources */,
 				E801BAD51E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
 				E840BD3F1EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
-				E8CA07E51E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				B0CB1C1F2270DE240081F99B /* MockPeakRewardsService.swift in Sources */,
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				B0DB2760215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
@@ -16918,6 +16989,7 @@
 				9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
+				67F9514A24BF4388009B5F07 /* OutageStatusContainer.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				675F4C6624AB828100A828F9 /* DailyUsageData.swift in Sources */,
 				9CA4FA652385BFC700E33E7C /* GiftsViewController.swift in Sources */,
@@ -17047,7 +17119,8 @@
 				B0D7860D2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
 				359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */,
 				C3087A8824B63D03005AE544 /* AccountService+Rx.swift in Sources */,
-				675F4CDE24AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */,
+				675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
+				675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
@@ -17125,6 +17198,7 @@
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
+				67F950DF24B793C7009B5F07 /* ForgotMaskedUsernames.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */,
 				9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
@@ -17139,11 +17213,12 @@
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				2F036CF01F1EA7D5000DECBE /* WeatherService.swift in Sources */,
+				67F950EC24B7A56C009B5F07 /* AccountLookupResults.swift in Sources */,
 				9CC9978E237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */,
 				675F4C0024AB828100A828F9 /* ChangePasswordRequest.swift in Sources */,
 				B07D247B20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				675F4C1E24AB828100A828F9 /* PaymentServiceNew.swift in Sources */,
-				675F4D0E24AB828200A828F9 /* NewAccountLookupResult.swift in Sources */,
+				675F4D0E24AB828200A828F9 /* AccountLookupResult.swift in Sources */,
 				675F4CF024AB828200A828F9 /* MaintenanceMode.swift in Sources */,
 				E882B7ED1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				B0A830892146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,
@@ -17239,7 +17314,7 @@
 				E87C41301FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				359BDB3822D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				B0A79B0720E2BD1100E04DD8 /* Version.swift in Sources */,
-				675F4C2A24AB828100A828F9 /* NewPremiseInfo.swift in Sources */,
+				675F4C2A24AB828100A828F9 /* PremiseInfo.swift in Sources */,
 				675F4CBA24AB828200A828F9 /* NewSharePointAlert.swift in Sources */,
 				9CA1381D238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
@@ -17338,7 +17413,6 @@
 				9C153DCB22E8F6CE002DA062 /* Checkbox.swift in Sources */,
 				E840BD411EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				359BDB2A22D398F0007002B0 /* UIColor+Image.swift in Sources */,
-				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFB2102325100411297 /* UsageViewModel.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -17410,6 +17484,7 @@
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
 				9CA4FA672385BFC700E33E7C /* GiftsViewController.swift in Sources */,
 				359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */,
+				67F9514E24BF438E009B5F07 /* OutageStatusContainer.swift in Sources */,
 				675F4C6824AB828100A828F9 /* DailyUsageData.swift in Sources */,
 				54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -17536,7 +17611,8 @@
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				9C0EA5AA237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
 				C3087A8E24B63D03005AE544 /* AccountService+Rx.swift in Sources */,
-				675F4CE024AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */,
+				675F4CE024AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
+				675F4CE024AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				9C5F096D23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				829E058D1FA7928E00697633 /* Fillable.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
@@ -17615,6 +17691,7 @@
 				82EAB33A1F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* BiometricsService.swift in Sources */,
+				67F950E324B793DA009B5F07 /* ForgotMaskedUsernames.swift in Sources */,
 				82A18E5E1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				359BDB5F22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
 				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
@@ -17629,11 +17706,12 @@
 				B0D84D4222023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				9C7C902923B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				2F036CF21F1EA7D5000DECBE /* WeatherService.swift in Sources */,
+				67F950F024B7A57C009B5F07 /* AccountLookupResults.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				675F4C0224AB828100A828F9 /* ChangePasswordRequest.swift in Sources */,
 				2FA7B9FC1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				675F4C2024AB828100A828F9 /* PaymentServiceNew.swift in Sources */,
-				675F4D1024AB828200A828F9 /* NewAccountLookupResult.swift in Sources */,
+				675F4D1024AB828200A828F9 /* AccountLookupResult.swift in Sources */,
 				675F4CF224AB828200A828F9 /* MaintenanceMode.swift in Sources */,
 				9CC99790237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */,
 				B0A8308B2146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,
@@ -17731,7 +17809,7 @@
 				B0E9EFFD21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */,
-				675F4C2C24AB828100A828F9 /* NewPremiseInfo.swift in Sources */,
+				675F4C2C24AB828100A828F9 /* PremiseInfo.swift in Sources */,
 				675F4CBC24AB828200A828F9 /* NewSharePointAlert.swift in Sources */,
 				9CA1381F238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				9CD3532022CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
@@ -17837,7 +17915,6 @@
 				E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				675F4B8924AB828100A828F9 /* ScheduledPaymentUpdateRequest.swift in Sources */,
-				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFA2102325000411297 /* UsageViewModel.swift in Sources */,
 				9CEE412623722B8A005A4AD3 /* Weekday.swift in Sources */,
 				9CBCE75723D5EEF400DA4BF8 /* ViewedTipTableViewCell.swift in Sources */,
@@ -17881,6 +17958,7 @@
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				9C28D39D2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				675F4C1924AB828100A828F9 /* WeatherServiceNew.swift in Sources */,
+				67F9514C24BF438C009B5F07 /* OutageStatusContainer.swift in Sources */,
 				9CBE9E332374A25E00E14222 /* GameHomeViewModel.swift in Sources */,
 				9CABF6BA239719CE00B07B01 /* QuizAnswerView.swift in Sources */,
 				E835D1CF1FB63288008CE250 /* PushNotification.swift in Sources */,
@@ -18030,7 +18108,7 @@
 				35C0F1D2233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				C3087A8B24B63D03005AE544 /* AccountService+Rx.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
-				675F4CDF24AB828200A828F9 /* NewForgotMaskedUsername.swift in Sources */,
+				675F4CDF24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				9C0EA5A9237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
 				9C5F096C23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
@@ -18108,6 +18186,7 @@
 				82EAB3391F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
+				67F950E124B793D7009B5F07 /* ForgotMaskedUsernames.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				82A18E5D1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				E882B7EE1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
@@ -18122,12 +18201,13 @@
 				9C7C902823B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				2FA7B9FB1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
+				67F950EE24B7A57A009B5F07 /* AccountLookupResults.swift in Sources */,
 				B0A8308A2146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,
 				9CC9978F237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */,
 				675F4C0124AB828100A828F9 /* ChangePasswordRequest.swift in Sources */,
 				E876A8571ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				675F4C1F24AB828100A828F9 /* PaymentServiceNew.swift in Sources */,
-				675F4D0F24AB828200A828F9 /* NewAccountLookupResult.swift in Sources */,
+				675F4D0F24AB828200A828F9 /* AccountLookupResult.swift in Sources */,
 				675F4CF124AB828200A828F9 /* MaintenanceMode.swift in Sources */,
 				824004CB1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				35A6C6CF211C8F0500C2A58F /* TitleTableViewCell.swift in Sources */,
@@ -18223,7 +18303,7 @@
 				359BDB3922D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				B0A79B0820E2BD1100E04DD8 /* Version.swift in Sources */,
-				675F4C2B24AB828100A828F9 /* NewPremiseInfo.swift in Sources */,
+				675F4C2B24AB828100A828F9 /* PremiseInfo.swift in Sources */,
 				675F4CBB24AB828200A828F9 /* NewSharePointAlert.swift in Sources */,
 				9CA1381E238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
@@ -18248,7 +18328,6 @@
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
 				9C48856323D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BA2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
-				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				3559C8A922F9F69700481A87 /* HomeBillCardViewModel.swift in Sources */,
 				35A2B88E24A1E120004B38BC /* RegistrationViewModel.swift in Sources */,
 				359BDB5722D8C4CD007002B0 /* FirebaseUtility.swift in Sources */,
@@ -18369,7 +18448,7 @@
 				54AE06971ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A261FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
 				B05E9D16217F688A0003FAB8 /* Application.swift in Sources */,
-				C3B6554724ABB9970048C64B /* NewPremiseInfo.swift in Sources */,
+				C3B6554724ABB9970048C64B /* PremiseInfo.swift in Sources */,
 				C3B6557124ABE6780048C64B /* BillingInfo.swift in Sources */,
 				82AC2A281FAB76F500EACB3B /* PeakRewardsSummary.swift in Sources */,
 				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
@@ -18482,7 +18561,7 @@
 				9C48856423D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BB2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62B3B200924410077B3DA /* SharedColor.swift in Sources */,
-				E8F62B3E200924410077B3DA /* ForgotUsername.swift in Sources */,
+				E8F62B3E200924410077B3DA /* (null) in Sources */,
 				3559C8A722F9F69600481A87 /* HomeBillCardViewModel.swift in Sources */,
 				359BDB5322D8C36D007002B0 /* FirebaseUtility.swift in Sources */,
 				35A5DCBD2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */,
@@ -18602,7 +18681,7 @@
 				E8F62B99200924410077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62B9A200924410077B3DA /* RegistrationService.swift in Sources */,
 				B05E9D17217F688A0003FAB8 /* Application.swift in Sources */,
-				C3B6554A24ABB9A00048C64B /* NewPremiseInfo.swift in Sources */,
+				C3B6554A24ABB9A00048C64B /* PremiseInfo.swift in Sources */,
 				C3B6557424ABE6780048C64B /* BillingInfo.swift in Sources */,
 				E8F62B9B200924410077B3DA /* PeakRewardsViewModel.swift in Sources */,
 				E8F62B9C200924410077B3DA /* PeakRewardsSummary.swift in Sources */,
@@ -18665,7 +18744,7 @@
 				9C48856523D2672000E107C6 /* Weekday.swift in Sources */,
 				B07E17BC2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */,
-				E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */,
+				E8F62BF3200924570077B3DA /* (null) in Sources */,
 				3559C8A822F9F69600481A87 /* HomeBillCardViewModel.swift in Sources */,
 				35A2B88F24A1E122004B38BC /* RegistrationViewModel.swift in Sources */,
 				359BDB5422D8C36E007002B0 /* FirebaseUtility.swift in Sources */,
@@ -18785,7 +18864,7 @@
 				E8F62C4E200924570077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62C4F200924570077B3DA /* RegistrationService.swift in Sources */,
 				B05E9D18217F688A0003FAB8 /* Application.swift in Sources */,
-				C3B6554824ABB9990048C64B /* NewPremiseInfo.swift in Sources */,
+				C3B6554824ABB9990048C64B /* PremiseInfo.swift in Sources */,
 				C3B6557724ABE6780048C64B /* BillingInfo.swift in Sources */,
 				E8F62C50200924570077B3DA /* PeakRewardsViewModel.swift in Sources */,
 				E8F62C51200924570077B3DA /* PeakRewardsSummary.swift in Sources */,

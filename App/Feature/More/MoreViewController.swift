@@ -41,7 +41,7 @@ class MoreViewController: UIViewController {
         }
     }
 
-    let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService())
+    let viewModel = MoreViewModel(biometricsService: ServiceFactory.createBiometricsService())
     
     private var biometricsPasswordRetryCount = 0
     
@@ -173,9 +173,8 @@ class MoreViewController: UIViewController {
     private func logout(action: UIAlertAction) {
         FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .sign_out)])
             
-        let authService = ServiceFactory.createAuthenticationService()
-        authService.logout()
-        
+        AuthenticatedService.logout()
+
         RxNotifications.shared.configureQuickActions.onNext(false)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
         (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()

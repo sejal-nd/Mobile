@@ -8,8 +8,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-bge-t-ams-01.azure-api.net/legacy</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -21,8 +19,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-bge-d-ams-01.azure-api.net/legacy</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -34,8 +30,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.bge.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -47,8 +41,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.bge.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -60,8 +52,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcs.mobileenv.bge.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -73,8 +63,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-comed-t-ams-01.azure-api.net/legacy</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -86,8 +74,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-comed-d-ams-01.azure-api.net/legacy</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -99,8 +85,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.comed.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -112,8 +96,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.comed.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -125,8 +107,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcs.mobileenv.comed.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -138,8 +118,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-peco-t-ams-01.azure-api.net/legacy</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -151,8 +129,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-peco-d-ams-01.azure-api.net/legacy</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -164,8 +140,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.peco.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -177,8 +151,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.peco.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -190,8 +162,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcs.mobileenv.peco.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -203,8 +173,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-pepco-t-ams-01.azure-api.net</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -216,8 +184,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-pepco-d-ams-01.azure-api.net</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -229,8 +195,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.pepco.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -242,8 +206,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.pepco.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -255,8 +217,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcs.mobileenv.pepco.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -268,8 +228,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-ace-t-ams-01.azure-api.net</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -281,8 +239,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-ace-d-ams-01.azure-api.net</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -294,8 +250,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.atlanticcityelectric.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -307,8 +261,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.atlanticcityelectric.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -320,8 +272,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcs.mobileenv.atlanticcityelectric.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -333,8 +283,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-dpl-t-ams-01.azure-api.net</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -346,8 +294,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-dpl-d-ams-01.azure-api.net</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>dev-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -359,8 +305,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.delmarva.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -372,8 +316,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcsstg.mobileenv.bge.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>stage-apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>
@@ -385,8 +327,6 @@
 		<dict>
 			<key>baseURL</key>
 			<string>mcs.mobileenv.bge.com</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>apigateway.exeloncorp.com</string>
 			<key>paymentusUrl</key>

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RecoverUsernameRequest: Encodable {
+public struct RecoverUsernameRequest: Encodable {
     let phone: String
     let identifier: String?
     let accountNumber: String?

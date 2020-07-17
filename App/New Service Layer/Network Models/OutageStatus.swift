@@ -22,6 +22,7 @@ struct OutageStatus: Decodable {
     
     // Unauthenticated fields
     let accountNumber: String?
+    let premiseNumber: String?
     let maskedAccountNumber: String?
     let maskedAddress: String?
     let addressNumber: String?
@@ -41,6 +42,7 @@ struct OutageStatus: Decodable {
         case estimatedRestorationDate = "ETR"
         case locationId = "locationId"
         case accountNumber = "accountNumber"
+        case premiseNumber = "premiseNumber"
         case maskedAccountNumber = "maskedAccountNumber"
         case maskedAddress = "maskedAddress"
         case addressNumber = "addressNumber"
@@ -73,6 +75,8 @@ struct OutageStatus: Decodable {
                                                         forKey: .locationId)
         self.accountNumber = try container.decodeIfPresent(String.self,
                                                            forKey: .accountNumber)
+        self.premiseNumber = try container.decodeIfPresent(String.self,
+                                                           forKey: .premiseNumber)
         self.maskedAccountNumber = try container.decodeIfPresent(String.self,
                                                                  forKey: .maskedAccountNumber)
         self.maskedAddress = try container.decodeIfPresent(String.self,

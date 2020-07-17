@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AccountLookupRequest: Encodable {
+public struct AccountLookupRequest: Encodable {
     let phone: String
     let identifier: String
 }

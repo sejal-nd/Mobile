@@ -49,13 +49,11 @@ class RegistrationViewModel {
     var accounts = BehaviorRelay<[AccountLookupResult]>(value: [])
     
     var registrationService: RegistrationService
-    var authenticationService: AuthenticationService
     
     var hasStrongPassword = false // Keeps track of strong password for Analytics
     
-    required init(registrationService: RegistrationService, authenticationService: AuthenticationService) {
+    required init(registrationService: RegistrationService) {
         self.registrationService = registrationService
-        self.authenticationService = authenticationService
     }
     
     func validateAccount(onSuccess: @escaping () -> Void,
@@ -196,26 +194,22 @@ class RegistrationViewModel {
     }
     
     func loadAccounts(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        authenticationService.lookupAccount(phone: extractDigitsFrom(phoneNumber.value), identifier: identifierNumber.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] array in
-                self?.accounts.accept(array)
+        let accountLookupRequest = AccountLookupRequest(phone: extractDigitsFrom(phoneNumber.value),
+                                                        identifier: identifierNumber.value)
+        
+        AnonymousService.lookupAccount(request: accountLookupRequest) { [weak self] result in
+            switch result {
+            case .success(let accountLookupResults):
+                self?.accounts.accept(accountLookupResults.accountLookupResults)
                 onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                
-                switch (serviceError.serviceCode) {
-                case ServiceErrorCode.fnNotFound.rawValue:
+            case .failure(let error):
+                if error == NetworkingError.accountLookupNotFound {
                     onError(NSLocalizedString("No Account Found", comment: ""), error.localizedDescription)
-                    
-                case ServiceErrorCode.tcUnknown.rawValue:
-                    fallthrough
-                    
-                default:
+                } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
 
     private(set) lazy var validateAccountContinueEnabled: Driver<Bool> = {

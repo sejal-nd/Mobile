@@ -32,13 +32,13 @@ class UnauthenticatedOutageViewModel {
         OutageService.fetchAnonOutageStatus(phoneNumber: requestPhoneNumber,
                                                accountNumber: requestAccountNumber) { result in
                                                 switch result {
-                                                case .success(let outageStatus):
-                                                    let outageStatuses = outageStatus.statuses
+                                                case .success(let anonOutageStatusContainer):
+                                                    let outageStatuses = anonOutageStatusContainer.statuses
                                                     if outageStatuses.isEmpty { // Should never happen, but just in case
                                                         onError(NSLocalizedString("Error", comment: ""), NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: ""))
                                                     } else if outageStatuses.count == 1 {
-                                                        self.selectedOutageStatus.accept(outageStatus.statuses.first!)
-                                                        if outageStatus.statuses.first!.isGasOnly {
+                                                        self.selectedOutageStatus.accept(outageStatuses.first!)
+                                                        if outageStatuses.first!.isGasOnly {
                                                             switch Environment.shared.opco {
                                                             case .bge:
                                                                 onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""))

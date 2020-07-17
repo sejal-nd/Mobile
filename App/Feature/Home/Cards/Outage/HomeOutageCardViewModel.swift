@@ -185,7 +185,7 @@ class HomeOutageCardViewModel {
     
     private func retrieveOutageStatus() -> Observable<OutageStatus> {
         return Observable.create { observer -> Disposable in
-            OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
+            OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumberString: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
                         switch result {
                         case .success(let outageStatus):
                             observer.onNext(outageStatus)

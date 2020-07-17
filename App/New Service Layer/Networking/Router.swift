@@ -104,19 +104,18 @@ public enum Router {
     case appointments(accountNumber: String, premiseNumber: String)
     
     // Outage
-    case outageStatus(accountNumber: String, premiseNumber: String)
-    case reportOutage(accountNumber: String, encodable: Encodable)
-    case meterPing(accountNumber: String, premiseNumber: String)
-    
-    // Unauthenticated
+    case outageStatus(accountNumber: String, summaryQueryItem: URLQueryItem? = nil)
     case outageStatusAnon(request: AnonOutageRequest)
+    case meterPing(accountNumber: String, premiseNumber: String? = nil)
+    case reportOutage(accountNumber: String, request: OutageRequest)
     case reportOutageAnon(request: OutageRequest)
-    
+
+    // Unauthenticated    
     case passwordChange(request: ChangePasswordRequest)
-    case accountLookup(encodable: Encodable)
+    case accountLookup(request: AccountLookupRequest)
     case recoverPassword(encodable: Encodable)
-    case recoverUsername(encodable: Encodable)
-    case recoverMaskedUsername(encodable: Encodable)
+    case recoverUsername(request: RecoverUsernameRequest)
+    case recoverMaskedUsername(request: RecoverMaskedUsernameRequest)
     
     public var scheme: String {
         return "https"
@@ -246,11 +245,15 @@ public enum Router {
         case .recoverUsername, .recoverMaskedUsername:
             return "/mobile/custom/\(apiAccess)/recover/username"
         case .outageStatus(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage?meterPing=false"
+            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage"
         case .reportOutage(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage"
         case .meterPing(let accountNumber, let premiseNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises\(premiseNumber)/outage"
+            if let premiseNumber = premiseNumber {
+                return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/outage/ping"
+            } else {
+                return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage/ping"
+            }
         case .fetchGameUser(let accountNumber):
             return "/mobile/custom/\(apiAccess)/game/\(accountNumber)"
         case .updateGameUser(let accountNumber, _):
@@ -258,7 +261,7 @@ public enum Router {
         case .fetchDailyUsage(let accountNumber, let premiseNumber, _):
             return "accounts/\(accountNumber)/premises/\(premiseNumber)/usage/query"
         case .reportOutageAnon:
-            return "/mobile/custom/\(apiAccess)/outage"
+            return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.rawValue)/outage"
         }
     }
     
@@ -286,6 +289,12 @@ public enum Router {
             return [URLQueryItem(name: "$select", value: "Title,Message,Enable,CustomerType,Created,Modified"),
                     URLQueryItem(name: "$orderby", value: "Modified desc"),
                     additionalQueryItem]
+        case .outageStatus(_, let summaryQueryItem):
+             var queryItems = [URLQueryItem(name: "meterPing", value: "false")]
+             if let summaryQueryItem = summaryQueryItem {
+                queryItems.append(summaryQueryItem)
+             }
+            return queryItems
         default:
             return []
         }
@@ -294,23 +303,26 @@ public enum Router {
     // todo: this may change to switch off of api access... I believe all vlaues below are derived from auth, anon, admin.  Hold off on changing this for now tho... need to dig deeper.
     public var httpHeaders: HTTPHeaders? {
         switch self {
+            case .alertBanner, .newsAndUpdates:
+                return ["Accept": "application/json;odata=verbose"]
         case .fetchJWTToken:
             return ["content-type": "application/x-www-form-urlencoded"]
-        case .alertBanner, .newsAndUpdates:
-            return ["Accept": "application/json;odata=verbose"]
         case .outageStatusAnon, .reportOutageAnon:
-            return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)",
-                    "Content-Type": "application/json"]
-        case .minVersion, .maintenanceMode:
-            return ["Authorization": "Basic \(Environment.shared.mcsConfig.anonymousKey)"]
+            return ["Content-Type": "application/json"]
         case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
             return ["Authorization": "Bearer \(token)"]
-        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
+        case .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage:
             return ["Authorization": "Bearer \(token)",
                     "Content-Type": "application/json"]
         default:
             return nil
         }
+        
+//        if apiAccess == .auth {
+//            // Add Bearer.
+//        }
+        
+        // then make default application/json
     }
     
     public var httpBody: HTTPBody? {

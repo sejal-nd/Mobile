@@ -352,10 +352,11 @@ extension NetworkUtility {
             return
         }
 
-        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { networkResult in
+        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumberString: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { networkResult in
             switch networkResult {
             case .success(let outageStatus):
                 dLog("Outage Status Fetched.")
+
                 result(.success(outageStatus))
             case .failure(let error):
                 dLog("Failed to retrieve outage status: \(error.localizedDescription)")

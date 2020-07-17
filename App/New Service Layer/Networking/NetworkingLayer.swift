@@ -9,9 +9,12 @@
 import Foundation
 #if os(iOS)
 import Reachability
+#elseif os(watchOS)
+import WatchKit
 #endif
 
-public struct NetworkingLayer {
+
+public enum NetworkingLayer {
     public static func request<T: Decodable>(router: Router,
                                              completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // todo this should be revisited once implementation is complete....
@@ -35,7 +38,7 @@ public struct NetworkingLayer {
         }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
-        print("URL: \(url)")
+        print("URL: \(url.absoluteString)")
         // Set HTTP BODY
         if let httpBody = router.httpBody {
             urlRequest.httpBody = httpBody
@@ -58,28 +61,15 @@ public struct NetworkingLayer {
         } else {
             // Regular
             session = URLSession.shared
+            
+            // todo this may mess up cancellation of all requests. need to be able to access this in cancel all requests.
+            // this is needed for headers for calls
+            //session = URLSession(configuration: configureURLSession())
         }
         
-        #if os(iOS)
-        guard let reachability = Reachability() else {
-            completion(.failure(.noNetwork))
-            return
-        }
-        let networkStatus = reachability.connection
-        
-        switch networkStatus {
-        case .none:
-            completion(.failure(.noNetwork))
-        case .wifi, .cellular:
-            NetworkingLayer.dataTask(session: session,
-                                     urlRequest: urlRequest,
-                                     completion: completion)
-        }
-        #elseif os(watchOS)
         NetworkingLayer.dataTask(session: session,
                                  urlRequest: urlRequest,
                                  completion: completion)
-        #endif
     }
     
     private static func dataTask<T: Decodable>(session: URLSession,
@@ -87,7 +77,16 @@ public struct NetworkingLayer {
                                                completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // Perform Data Task
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
-            if let error = error {
+            if let error = error as NSError? {
+                print("ERRROR: \(error)")
+                print("Error2: \(error.localizedDescription)")
+                if error.domain == NSURLErrorDomain,
+                    error.code == NSURLErrorNotConnectedToInternet {
+                    DispatchQueue.main.async {
+                        completion(.failure(.noNetwork))
+                    }
+                }
+                
                 dLog(error.localizedDescription)
                 DispatchQueue.main.async {
                     completion(.failure(.generic))
@@ -142,7 +141,7 @@ public struct NetworkingLayer {
         dataTask.resume()
     }
     
-    public static func decode<T: Decodable>(data: Data) throws -> T {
+    private static func decode<T: Decodable>(data: Data) throws -> T {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .custom({ decoder -> Date in
             let container = try decoder.singleValueContainer()
@@ -165,7 +164,8 @@ public struct NetworkingLayer {
     }
     
     public static func cancelAllTasks() {
-        URLSession.shared.getAllTasks { tasks in
+        let urlSession = URLSession.shared//URLSession(configuration: configureURLSession())
+        urlSession.getAllTasks { tasks in
             tasks.forEach { $0.cancel() }
         }
         dLog("Cancelled all URL Session requests.")
@@ -177,6 +177,38 @@ public struct NetworkingLayer {
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }
+    }
+    
+    private static func configureURLSession() -> URLSessionConfiguration {
+        let sessionConfiguration = URLSessionConfiguration.default
+        sessionConfiguration.timeoutIntervalForRequest = 120.0
+        sessionConfiguration.timeoutIntervalForResource = 120.0
+        
+        #if os(iOS)
+        let systemVersion = UIDevice.current.systemVersion
+        #elseif os(watchOS)
+        let systemVersion = WKInterfaceDevice.current().systemVersion
+        #endif
+        
+        // Model Identifier
+        var modelIdentifier = "Unknown"
+        if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
+            modelIdentifier = "\(simulatorModelIdentifier) [Simulator]"
+        }
+        var sysinfo = utsname()
+        uname(&sysinfo)
+        modelIdentifier = String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)?.trimmingCharacters(in: .controlCharacters) ?? ""
+        
+        // Set User Agent Headers
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
+            let userAgentString = "\(Environment.shared.opco.displayString) Mobile App/\(version).\(build) (iOS \(systemVersion); Apple \(modelIdentifier))"
+            sessionConfiguration.httpAdditionalHeaders = [
+                "User-Agent": userAgentString
+            ]
+        }
+        
+        return sessionConfiguration
     }
 }
 
