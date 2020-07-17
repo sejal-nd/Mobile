@@ -188,7 +188,6 @@
 		2FA7B9FC1F0548F000D660B8 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
-		301DE1FC24C04ADA00992CA4 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		301DE1F224BF069F00992CA4 /* ACEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD8A245738B8006CD6EB /* ACEAssets.xcassets */; };
 		301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		301DE1F724BF0A7500992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
@@ -196,6 +195,7 @@
 		301DE1F924BF0A7800992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		301DE1FA24BF0A7900992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		301DE1FB24BF0A7A00992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		301DE1FC24C04ADA00992CA4 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		3062CFF724B6DF3B000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF624B6DF3B000176EC /* landing_video.mp4 */; };
 		3062CFF924B6DF8F000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF824B6DF8E000176EC /* landing_video.mp4 */; };
 		3062CFFB24B6DFB4000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFFA24B6DFB4000176EC /* landing_video.mp4 */; };
@@ -20325,7 +20325,7 @@
 			baseConfigurationReference = 74BC6BE94C3772072ACD9FBB /* Pods-PepcoApp-Pepco.develop.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200122;
@@ -20355,7 +20355,7 @@
 			baseConfigurationReference = 0DBA7E20387193E8FA19255B /* Pods-PepcoApp-Pepco.automation.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200122;
