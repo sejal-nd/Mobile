@@ -803,7 +803,7 @@ class BillViewController: AccountPickerViewController {
     }
     
     func navigateToAutoPay(accountDetail: AccountDetail) {
-        if Environment.shared.opco == .bge {
+        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI  {
             if accountDetail.isBGEasy {
                 self.performSegue(withIdentifier: "viewBGEasySegue", sender: accountDetail)
             } else {

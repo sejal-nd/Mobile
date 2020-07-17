@@ -195,6 +195,7 @@
 		301DE1F924BF0A7800992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		301DE1FA24BF0A7900992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		301DE1FB24BF0A7A00992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
+		301DE1FC24C04ADA00992CA4 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		3062CFF724B6DF3B000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF624B6DF3B000176EC /* landing_video.mp4 */; };
 		3062CFF924B6DF8F000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF824B6DF8E000176EC /* landing_video.mp4 */; };
 		3062CFFB24B6DFB4000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFFA24B6DFB4000176EC /* landing_video.mp4 */; };
@@ -14743,6 +14744,7 @@
 				67DDBA6724535DAA006CD6EB /* UsageViewModel.swift in Sources */,
 				67DDBA6824535DAA006CD6EB /* BillingHistoryItem.swift in Sources */,
 				67DDBA6924535DAA006CD6EB /* WatchSessionMananger.swift in Sources */,
+				301DE1FC24C04ADA00992CA4 /* BGEAutoPayViewModel.swift in Sources */,
 				67DDBA6A24535DAA006CD6EB /* NibViews.swift in Sources */,
 				67DDBA6C24535DAA006CD6EB /* Top5EnergyTipsViewModel.swift in Sources */,
 				67DDBA6D24535DAA006CD6EB /* CommercialUsageAlertStore.swift in Sources */,
@@ -20323,7 +20325,7 @@
 			baseConfigurationReference = 74BC6BE94C3772072ACD9FBB /* Pods-PepcoApp-Pepco.develop.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200122;
@@ -20353,7 +20355,7 @@
 			baseConfigurationReference = 0DBA7E20387193E8FA19255B /* Pods-PepcoApp-Pepco.automation.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				COMPRESS_PNG_FILES = YES;
 				CURRENT_PROJECT_VERSION = 20200122;
