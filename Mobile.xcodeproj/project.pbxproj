@@ -24616,7 +24616,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.staging.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -24652,7 +24652,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.testing.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Testing Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -24688,7 +24688,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Watchkit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -24724,7 +24724,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.prodbeta.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Production Beta Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -24759,7 +24759,7 @@
 				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.hotfix.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Hotfix Watchkit App Enterprise Dist";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Headers";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -24910,7 +24910,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit WatchkitExtension Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Watchkit WatchkitExtension Enterpris";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -24944,7 +24944,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Watchkit WatchkitExtension Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Testing Watchkit WatchkitExtension Enterpris";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -24978,7 +24978,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25012,7 +25012,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta WatchkitExt Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Production Beta WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25047,7 +25047,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit WatchkitExtension Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Hotfix Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
@@ -25200,7 +25200,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.staging.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25236,7 +25236,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.testing.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Testing Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25272,7 +25272,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Watchkit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25308,7 +25308,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.prodbeta.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25343,7 +25343,7 @@
 				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.hotfix.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Hotfix Watchkit App Enterprise Dist";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Headers";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -25494,7 +25494,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit WatchkitExtension Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25528,7 +25528,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Watchkit WatchkitExtension Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Testing Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25562,7 +25562,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25596,7 +25596,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta WatchkitExt Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25631,7 +25631,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit WatchkitExtension Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Hotfix Watchkit WatchkitExtension Enterpris";
 				SDKROOT = watchos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
@@ -25784,7 +25784,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.staging.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Staging Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25820,7 +25820,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.testing.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Testing Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25856,7 +25856,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Watchkit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25892,7 +25892,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.prodbeta.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta Watchkit App Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25927,7 +25927,7 @@
 				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.hotfix.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit App Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Hotfix Watchkit App Enterprise Dist";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Headers";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -26078,7 +26078,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit WatchkitExtension Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Staging Watchkit WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -26112,7 +26112,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Watchkit WatchkitExtension Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Testing Watchkit WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -26146,7 +26146,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -26180,7 +26180,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta WatchkitExt Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -26215,7 +26215,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit WatchkitExtension Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Hotfix Watchkit WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
