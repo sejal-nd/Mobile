@@ -10,21 +10,6 @@ import Foundation
 
 public struct NewForecastBillContainer: Decodable {
     public var forecastMonthlyBills: [NewForecastBill]
-    
-    enum CodingKeys: String, CodingKey {
-        case data = "data"
-        
-        case forecastMonthlyBills = "forecastMonthlyBills"
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                 forKey: .data)
-        
-        self.forecastMonthlyBills = try data.decode([NewForecastBill].self,
-                                                             forKey: .forecastMonthlyBills) // may be wrong
-    }
 }
 
 public struct NewForecastBill: Decodable {

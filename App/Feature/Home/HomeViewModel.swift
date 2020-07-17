@@ -14,8 +14,6 @@ class HomeViewModel {
     private let weatherService: WeatherService
     private let walletService: WalletService
     private let paymentService: PaymentService
-    private let usageService: UsageService
-    private let projectedBillUsageService: UsageService
     private let authService: AuthenticationService
     private let alertsService: AlertsService
     private let appointmentService: AppointmentService
@@ -39,8 +37,6 @@ class HomeViewModel {
     required init(weatherService: WeatherService,
                   walletService: WalletService,
                   paymentService: PaymentService,
-                  usageService: UsageService,
-                  projectedBillUsageService: UsageService,
                   authService: AuthenticationService,
                   alertsService: AlertsService,
                   appointmentService: AppointmentService,
@@ -49,8 +45,6 @@ class HomeViewModel {
         self.weatherService = weatherService
         self.walletService = walletService
         self.paymentService = paymentService
-        self.usageService = usageService
-        self.projectedBillUsageService = projectedBillUsageService
         self.authService = authService
         self.alertsService = alertsService
         self.appointmentService = appointmentService
@@ -63,7 +57,6 @@ class HomeViewModel {
     private(set) lazy var weatherViewModel =
         HomeWeatherViewModel(accountDetailEvents: accountDetailEvents,
                              weatherService: weatherService,
-                             usageService: usageService,
                              accountDetailTracker: accountDetailTracker)
     
     private(set) lazy var billCardViewModel =
@@ -80,7 +73,6 @@ class HomeViewModel {
         HomeUsageCardViewModel(fetchData: fetchDataObservable,
                                maintenanceModeEvents: maintenanceModeEvents,
                                accountDetailEvents: accountDetailEvents,
-                                            usageService: usageService,
                                fetchTracker: usageTracker)
     
     private(set) lazy var templateCardViewModel =
@@ -94,7 +86,6 @@ class HomeViewModel {
         HomeProjectedBillCardViewModel(fetchData: fetchDataObservable,
                                        maintenanceModeEvents: maintenanceModeEvents,
                                        accountDetailEvents: accountDetailEvents,
-                                       usageService: projectedBillUsageService,
                                        fetchTracker: projectedBillTracker)
     
     private(set) lazy var outageCardViewModel =

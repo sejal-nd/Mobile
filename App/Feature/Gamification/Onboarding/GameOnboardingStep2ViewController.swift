@@ -25,7 +25,6 @@ class GameOnboardingStep2ViewController: UIViewController {
     let bag = DisposeBag()
     
     let gameService = ServiceFactory.createGameService()
-    let usageService = ServiceFactory.createUsageService(useCache: false)
     
     // Passed from Step1
     var step1Response: String!
@@ -112,7 +111,7 @@ class GameOnboardingStep2ViewController: UIViewController {
         }
         
         LoadingView.show()
-        usageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
+        UsageService.rx.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { homeProfile in
                 updateGameUser(homeProfile.isFilled ? "COMPLETE" : "NOT COMPLETE")

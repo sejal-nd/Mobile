@@ -389,7 +389,7 @@ extension NetworkUtility {
         }
         let accountNumber = accountDetail.accountNumber
         
-        MCSUsageService(useCache: false).fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
+        UsageService.rx.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
             dLog("Usage Data Fetched.")
             result(.success(billForecastResult))
         }, onError: { usageError in

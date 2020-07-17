@@ -23,7 +23,6 @@ class BillViewModel {
     let disposeBag = DisposeBag()
     
     private let authService: AuthenticationService
-    private let usageService: UsageService
 
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let refreshTracker = ActivityTracker()
@@ -41,9 +40,8 @@ class BillViewModel {
         }
     }
     
-    required init(authService: AuthenticationService, usageService: UsageService) {
+    required init(authService: AuthenticationService) {
         self.authService = authService
-        self.usageService = usageService
     }
     
     private lazy var fetchTrigger = Observable
@@ -70,7 +68,7 @@ class BillViewModel {
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     
-    private lazy var usageBillImpactEvents: Observable<Event<BillComparison>> = Observable
+    private lazy var usageBillImpactEvents: Observable<Event<CompareBillResult>> = Observable
         .combineLatest(dataEvents.elements().map { $0.0 }.filter { $0.isEligibleForUsageData },
                        compareToLastYear.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
@@ -80,7 +78,7 @@ class BillViewModel {
                 self.usageBillImpactLoading.onNext(true)
             }
             let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasIndex)
-            return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
+            return UsageService.rx.compareBill(accountNumber: accountDetail.accountNumber,
                                                          premiseNumber: accountDetail.premiseNumber!,
                                                          yearAgo: compareToLastYear,
                                                          gas: isGas)
@@ -155,7 +153,7 @@ class BillViewModel {
         .asDriver(onErrorDriveWith: Driver.empty())
     
 
-    private(set) lazy var currentBillComparison: Driver<BillComparison> = usageBillImpactEvents
+    private(set) lazy var currentBillComparison: Driver<CompareBillResult> = usageBillImpactEvents
         .elements()
         .asDriver(onErrorDriveWith: .empty())
     
@@ -571,7 +569,7 @@ class BillViewModel {
     // MARK: Up/Down Arrow Image Drivers
     
     private(set) lazy var reasonsWhyLabelText: Driver<String?> = currentBillComparison.map {
-            guard let reference = $0.reference, let compared = $0.compared else {
+            guard let reference = $0.referenceBill, let compared = $0.comparedBill else {
                 return NSLocalizedString("Reasons Why Your Bill is...", comment: "")
             }
             let currentCharges = reference.charges
@@ -597,7 +595,7 @@ class BillViewModel {
                                    electricGasSelectedIndex: self.electricGasSelectedSegmentIndex.value)
             let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
             
-            guard let reference = billComparison.reference, let compared = billComparison.compared else {
+            guard let reference = billComparison.referenceBill, let compared = billComparison.comparedBill else {
                 return NSAttributedString(string: String.localizedStringWithFormat("Data not available to explain likely reasons for changes in your %@ charges.", gasOrElectricString))
             }
                         
@@ -650,7 +648,7 @@ class BillViewModel {
         { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
             guard let self = self else { return nil }
             
-            guard let reference = billComparison.reference, let compared = billComparison.compared else {
+            guard let reference = billComparison.referenceBill, let compared = billComparison.comparedBill else {
                 return NSLocalizedString("Data not available.", comment: "")
             }
             
@@ -734,7 +732,7 @@ class BillViewModel {
             return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString)
     }
     
-    private(set) lazy var noPreviousData: Driver<Bool> = currentBillComparison.map { $0.compared == nil }
+    private(set) lazy var noPreviousData: Driver<Bool> = currentBillComparison.map { $0.comparedBill == nil }
     
     //MARK: - Enrollment
     

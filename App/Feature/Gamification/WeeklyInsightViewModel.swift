@@ -12,7 +12,6 @@ import RxSwiftExt
 
 class WeeklyInsightViewModel {
     private let gameService: GameService
-    private let usageService: UsageService
     
     let bag = DisposeBag()
     
@@ -28,9 +27,8 @@ class WeeklyInsightViewModel {
     
     var fetchDisposable: Disposable?
         
-    required init(gameService: GameService, usageService: UsageService) {
+    required init(gameService: GameService) {
         self.gameService = gameService
-        self.usageService = usageService
     }
     
     deinit {
@@ -70,7 +68,7 @@ class WeeklyInsightViewModel {
     }
     
     func fetchBillForecast() -> Observable<Void> {
-        return usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
+        return UsageService.rx.fetchBillForecast(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
             .do(onNext: { [weak self] billForecast in
                 self?.billForecast.accept(billForecast)
             })

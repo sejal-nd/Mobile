@@ -69,15 +69,6 @@ struct ServiceFactory {
         }
     }
 
-    static func createUsageService(useCache: Bool) -> UsageService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockUsageService(useCache: useCache)
-        default:
-            return MCSUsageService(useCache: useCache)
-        }
-    }
-
     static func createAlertsService() -> AlertsService {
         switch Environment.shared.environmentName {
         case .aut:

@@ -15,7 +15,6 @@ class HomeProjectedBillCardViewModel {
     
     private let maintenanceModeEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
-    private let usageService: UsageService
     
     private let fetchData: Observable<Void>
     
@@ -28,12 +27,10 @@ class HomeProjectedBillCardViewModel {
     required init(fetchData: Observable<Void>,
                   maintenanceModeEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
-                  usageService: UsageService,
                   fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
-        self.usageService = usageService
         self.fetchTracker = fetchTracker
     }
     
@@ -92,7 +89,7 @@ class HomeProjectedBillCardViewModel {
             return self?.fetchTracker
         }, requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
             guard let this = self else { return .empty() }
-            return this.usageService.fetchBillForecast(accountNumber: pair.0.accountNumber,
+            return UsageService.rx.fetchBillForecast(accountNumber: pair.0.accountNumber,
                                                        premiseNumber: pair.0.premiseNumber!)
         })
     
