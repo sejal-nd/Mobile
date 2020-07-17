@@ -69,7 +69,7 @@ class PaymentViewModel {
         paymentAmount = BehaviorRelay(value: billingHistoryItem?.amountPaid ?? netDueAmount)
         
         // May be updated later...see computeDefaultPaymentDate()
-        paymentDate = BehaviorRelay(value: billingHistoryItem?.date ?? .now)
+        paymentDate = BehaviorRelay(value: Environment.shared.opco.isPHI ? .now :  billingHistoryItem?.date ?? .now)
     }
 
     // MARK: - Service Calls
@@ -187,7 +187,7 @@ class PaymentViewModel {
             
             // All the other states boil down to the due date being in the future
             if let dueDate = billingInfo.dueByDate {
-                paymentDate.accept(isDueDateInTheFuture ? dueDate : .now)
+                paymentDate.accept(Environment.shared.opco.isPHI ? .now : isDueDateInTheFuture ? dueDate : .now)
             } else { // Should never get here?
                 paymentDate.accept(.now)
             }
