@@ -10,7 +10,7 @@
         <!--ReportOutageInterfaceController-->
         <scene sceneID="1RF-hm-hR3">
             <objects>
-                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a" customClass="ReportOutageInterfaceController" customModule="Pepco_Watch_Extension">
+                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a" customClass="ReportOutageInterfaceController" customModule="Pepco_watchOS_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="BKS-FI-22X">
                             <items>
@@ -28,7 +28,7 @@
         <!--AccountListInterfaceController-->
         <scene sceneID="QsP-lO-Kwh">
             <objects>
-                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="Pepco_Watch_Extension">
+                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="Pepco_watchOS_Extension">
                     <items>
                         <table alignment="left" id="sgx-CZ-A51">
                             <items>

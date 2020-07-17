@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097.2" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="watch38"/>
     <dependencies>
+        <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
     </dependencies>
@@ -9,7 +10,7 @@
         <!--Outage-->
         <scene sceneID="hol-pR-2GK">
             <objects>
-                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="Delmarva_Watch_Extension">
+                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="Delmarva_watchOS_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Qu5-Yb-MPl">
                             <items>

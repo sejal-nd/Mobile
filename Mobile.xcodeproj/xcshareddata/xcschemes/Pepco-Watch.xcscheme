@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "67EDC28C24C1E684001A8494"
-               BuildableName = "Pepco.app"
+               BuildableName = "Pepco-Watch.app"
                BlueprintName = "Pepco-Watch"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67EDC28C24C1E684001A8494"
-            BuildableName = "Pepco.app"
+            BuildableName = "Pepco-Watch.app"
             BlueprintName = "Pepco-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67EDC28C24C1E684001A8494"
-            BuildableName = "Pepco.app"
+            BuildableName = "Pepco-Watch.app"
             BlueprintName = "Pepco-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
@@ -89,7 +89,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67EDC28C24C1E684001A8494"
-            BuildableName = "Pepco.app"
+            BuildableName = "Pepco-Watch.app"
             BlueprintName = "Pepco-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>

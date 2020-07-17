@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "67EDC32324C1EBCC001A8494"
-               BuildableName = "ACE.app"
+               BuildableName = "ACE-Watch.app"
                BlueprintName = "ACE-Watch"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67EDC32324C1EBCC001A8494"
-            BuildableName = "ACE.app"
+            BuildableName = "ACE-Watch.app"
             BlueprintName = "ACE-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67EDC32324C1EBCC001A8494"
-            BuildableName = "ACE.app"
+            BuildableName = "ACE-Watch.app"
             BlueprintName = "ACE-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
@@ -89,7 +89,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67EDC32324C1EBCC001A8494"
-            BuildableName = "ACE.app"
+            BuildableName = "ACE-Watch.app"
             BlueprintName = "ACE-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>

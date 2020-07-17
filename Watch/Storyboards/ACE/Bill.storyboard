@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097.2" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="watch44"/>
     <dependencies>
+        <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
     </dependencies>
@@ -9,7 +10,7 @@
         <!--Bill-->
         <scene sceneID="0SA-xD-T2x">
             <objects>
-                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="ACE_Watch_Extension">
+                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="ACE_watchOS_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="tax-4C-a6R">
                             <items>

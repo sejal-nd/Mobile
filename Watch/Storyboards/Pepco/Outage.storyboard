@@ -10,7 +10,7 @@
         <!--Outage-->
         <scene sceneID="hol-pR-2GK">
             <objects>
-                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="Pepco_Watch_Extension">
+                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="Pepco_watchOS_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Qu5-Yb-MPl">
                             <items>

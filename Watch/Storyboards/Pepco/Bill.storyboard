@@ -10,7 +10,7 @@
         <!--Bill-->
         <scene sceneID="0SA-xD-T2x">
             <objects>
-                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="Pepco_Watch_Extension">
+                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="Pepco_watchOS_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="tax-4C-a6R">
                             <items>
