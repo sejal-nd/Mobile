@@ -10,6 +10,10 @@
 	<dict>
 		<key>com.exelon.mobile.pepco.staging</key>
 		<string>Pepco Staging Enterprise Dist</string>
+		<key>com.exelon.mobile.pepco.staging.watchkitapp</key>
+		<string>Pepco Staging Watchkit App Enterprise Dist</string>
+		<key>com.exelon.mobile.pepco.staging.watchkitapp.watchkitextension</key>
+		<string>Pepco Staging Watchkit WatchkitExtension Enterprise</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>

@@ -10,6 +10,10 @@
 	<dict>
 		<key>com.exelon.mobile.ace.hotfix</key>
 		<string>ACE Hotfix Enterprise Dist</string>
+		<key>com.exelon.mobile.ace.hotfix.watchkitapp.watchkitextension</key>
+		<string>ACE Hotfix Watchkit WatchkitExtension Enterprise</string>
+		<key>com.exelon.mobile.ace.hotfix.watchkitapp</key>
+		<string>ACE Hotfix Watchkit App Enterprise Dist</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>

@@ -10,6 +10,10 @@
 	<dict>
 		<key>com.exelon.mobile.ace.testing</key>
 		<string>ACE Testing Enterprise Dist</string>
+		<key>com.exelon.mobile.ace.testing.watchkitapp</key>
+		<string>ACE Testing Watchkit App Enterprise Dist</string>
+		<key>com.exelon.mobile.ace.testing.watchkitapp.watchkitextension</key>
+		<string>ACE Testing Watchkit WatchkitExtension Enterprise</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>
