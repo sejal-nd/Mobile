@@ -24910,7 +24910,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Watchkit WatchkitExtension Enterpris";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Staging Watchkit WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -24944,7 +24944,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Testing Watchkit WatchkitExtension Enterpris";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Testing Watchkit WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -25631,7 +25631,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Hotfix Watchkit WatchkitExtension Enterpris";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Hotfix Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
