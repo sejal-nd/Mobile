@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15400" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097.2" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="watch44"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
     </dependencies>
     <scenes>
         <!--Bill-->
         <scene sceneID="0SA-xD-T2x">
             <objects>
-                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="PECO_Watch_Extension">
+                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="PECO_watchOS_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="tax-4C-a6R">
                             <items>
@@ -222,13 +222,13 @@
             <point key="canvasLocation" x="954" y="-311"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.0" green="0.63529411764705879" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="Loading_white" width="16" height="16"/>
         <image name="alert" width="26" height="26"/>
         <image name="autoPay" width="51" height="52"/>
-        <image name="outageUnavailable" width="100" height="101"/>
+        <image name="outageUnavailable" width="49" height="49"/>
         <image name="paymentConfirmation" width="48" height="48"/>
         <image name="residential_mini_white" width="20" height="20"/>
     </resources>
-    <color key="tintColor" red="0.0" green="0.63529411764705879" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
