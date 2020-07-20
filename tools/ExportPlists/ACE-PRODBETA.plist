@@ -13,7 +13,7 @@
 		<key>com.exelon.mobile.ace.prodbeta.watchkitapp</key>
 		<string>ACE Production Beta Watchkit App Enterprise Dist</string>
 		<key>com.exelon.mobile.ace.prodbeta.watchkitapp.watchkitextension</key>
-		<string>ACE Production Beta WatchkitExt Enterprise Dist</string>
+		<string>ACE Production Beta WatchkitExtension Enterprise</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>
