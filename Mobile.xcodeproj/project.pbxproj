@@ -9046,10 +9046,10 @@
 			children = (
 				675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */,
 				675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */,
+				675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */,
 				675F4AEF24AB828000A828F9 /* CompareBillRequest.swift */,
 				675F4AF024AB828000A828F9 /* ScheduledPaymentUpdateRequest.swift */,
 				675F4AF124AB828000A828F9 /* BillingHistoryRequest.swift */,
-				675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */,
 				675F4AF324AB828000A828F9 /* NewAccountRequest.swift */,
 				675F4AF424AB828000A828F9 /* UsernameRequest.swift */,
 				C3087AD324B67CBF005AE544 /* AccountNicknameRequest.swift */,

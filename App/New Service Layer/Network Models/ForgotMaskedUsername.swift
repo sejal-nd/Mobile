@@ -18,6 +18,6 @@ public struct ForgotMaskedUsername: Decodable {
         case email
         case question
         case questionId = "question_id"
-        case cipher
+        case cipher = "cipherString"
     }
 }

@@ -41,7 +41,6 @@ class ForgotUsernameViewModel {
                 self.maskedUsernames = forgotMaskedUsernameRequest.maskedUsernames
                 onSuccess()
                 GoogleAnalytics.log(event: .forgotUsernameAccountValidate)
-                fatalError()
             case .failure(let error):
                 if error == .accountNotFound || error == .profileNotFound {
                     onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
@@ -71,7 +70,6 @@ class ForgotUsernameViewModel {
             switch result {
             case .success(let username):
                 onSuccess(username)
-                fatalError()
             case .failure(let error):
                 if error == .incorrectSecurityQuestion {
                     onAnswerNoMatch(error.localizedDescription)

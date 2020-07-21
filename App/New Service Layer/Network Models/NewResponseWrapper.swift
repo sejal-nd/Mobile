@@ -21,6 +21,7 @@ struct NewResponseWrapper<T: Decodable>: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         print("NEW RESPONSE WRAPPER")
+                
         // response contains data wrapper
         if container.contains(.success) {
             print("Contains Data")

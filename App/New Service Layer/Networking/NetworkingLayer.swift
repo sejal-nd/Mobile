@@ -142,6 +142,8 @@ public enum NetworkingLayer {
     }
     
     private static func decode<T: Decodable>(data: Data) throws -> T {
+        print("RAW DATA: \(String(decoding: data, as: UTF8.self))")
+        
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .custom({ decoder -> Date in
             let container = try decoder.singleValueContainer()

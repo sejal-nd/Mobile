@@ -11,7 +11,7 @@ import Foundation
 public struct RecoverMaskedUsernameRequest: Encodable {
     let phone: String
     let identifier: String
-    let accountNumber: String
+    let accountNumber: String?
     
     enum CodingKeys: String, CodingKey {
         case phone

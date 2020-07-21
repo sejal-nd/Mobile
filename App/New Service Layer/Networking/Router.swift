@@ -138,7 +138,7 @@ public enum Router {
         switch self {
         case .weather:
             return .external
-        case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon:
+        case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername:
             return .anon
         default:
             return .auth
@@ -243,7 +243,7 @@ public enum Router {
         case .recoverPassword:
             return "/mobile/custom/\(apiAccess)/recover/password"
         case .recoverUsername, .recoverMaskedUsername:
-            return "/mobile/custom/\(apiAccess)/recover/username"
+            return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.rawValue)/recover/username"
         case .outageStatus(let accountNumber, _):
             return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage"
         case .reportOutage(let accountNumber, _):
@@ -307,7 +307,7 @@ public enum Router {
                 return ["Accept": "application/json;odata=verbose"]
         case .fetchJWTToken:
             return ["content-type": "application/x-www-form-urlencoded"]
-        case .outageStatusAnon, .reportOutageAnon:
+        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername:
             return ["Content-Type": "application/json"]
         case .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments:
             return ["Authorization": "Bearer \(token)"]
@@ -328,7 +328,7 @@ public enum Router {
     public var httpBody: HTTPBody? {
         switch self {
         case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
-             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable):
+             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable):
             return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
