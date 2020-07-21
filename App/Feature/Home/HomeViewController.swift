@@ -123,7 +123,11 @@ class HomeViewController: AccountPickerViewController {
                 self.setCards(oldCards: oldCards, newCards: newCards)
                 
                 // Refresh if not first load and new card(s) added
-                if !oldCards.isEmpty && !Set(newCards).subtracting(oldCards).isEmpty {
+//                if !oldCards.isEmpty && !Set(newCards).subtracting(oldCards).isEmpty {
+//                    self.viewModel.fetchData.onNext(())
+//                }
+                
+                if !Set(newCards).subtracting(oldCards).isEmpty {
                     self.viewModel.fetchData.onNext(())
                 }
             })
