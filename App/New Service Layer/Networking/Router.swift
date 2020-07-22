@@ -17,6 +17,15 @@ public enum Router {
         case anon
         case auth
         case external
+        
+        public var path: String {
+            switch self {
+            case .anon:
+                return "\(rawValue)/\(Environment.shared.opco.displayString)"
+            default:
+                return rawValue
+            }
+        }
     }
     
     case minVersion
@@ -134,6 +143,15 @@ public enum Router {
         }
     }
     
+    private var basePath: String {
+        if Environment.shared.environmentName != .test && Environment.shared.opco.isPHI {
+            // Project specific environment
+            return "/phimobile/mobile/custom"
+        } else {
+            return "/mobile/custom"
+        }
+    }
+    
     public var apiAccess: ApiAccess {
         switch self {
         case .weather:
@@ -148,120 +166,120 @@ public enum Router {
     public var path: String {
         switch self {
         case .outageStatusAnon:
-            return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.displayString)/outage/query"
+            return "\(basePath)/\(apiAccess.path)/outage/query"
         case .maintenanceMode:
-            return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.displayString)/config/maintenance"
+            return "\(basePath)/\(apiAccess.path)/config/maintenance"
         case .accountDetails(let accountNumber, let queryString):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)\(queryString)"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)\(queryString)"
         case .accounts:
-            return "/mobile/custom/\(apiAccess)/accounts"
+            return "\(basePath)/\(apiAccess.path)/accounts"
         case .setDefaultAccount(let accountNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/default"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/default"
         case .setAccountNickname:
-            return "/mobile/custom/\(apiAccess)/profile/update/account/nickname"
+            return "\(basePath)/\(apiAccess.path)/profile/update/account/nickname"
         case .updateReleaseOfInfo(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/preferences/release"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/preferences/release"
         case .minVersion:
-            return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.displayString)/config/versions"
+            return "\(basePath)/\(apiAccess.path)/config/versions"
         case .fetchJWTToken:
             return "/eu/oauth2/token"
         case .registration:
-            return "/mobile/custom/\(apiAccess)/registration"
+            return "\(basePath)/\(apiAccess.path)/registration"
         case .checkDuplicateRegistration:
-            return "/mobile/custom/\(apiAccess)/registration/duplicate"
+            return "\(basePath)/\(apiAccess.path)/registration/duplicate"
         case .registrationQuestions:
-            return "/mobile/custom/\(apiAccess)/registration/questions"
+            return "\(basePath)/\(apiAccess.path)/registration/questions"
         case .validateRegistration:
-            return "/mobile/custom/\(apiAccess)/registration/validate"
+            return "\(basePath)/\(apiAccess.path)/registration/validate"
         case .sendConfirmationEmail:
-            return "/mobile/custom/\(apiAccess)/registration/confirmation"
+            return "\(basePath)/\(apiAccess.path)/registration/confirmation"
         case .validateConfirmationEmail:
-            return "/mobile/custom/\(apiAccess)/registration/confirmation"
+            return "\(basePath)/\(apiAccess.path)/registration/confirmation"
         case .weather(let lat, let long):
             return "/points/\(lat),\(long)/forecast/hourly"
         case .wallet:
-            return "/mobile/custom/\(apiAccess)/wallet/query"
+            return "\(basePath)/\(apiAccess.path)/wallet/query"
         case .payments(let accountNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/payments"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments"
         case .alertBanner, .newsAndUpdates:
             return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
         case .billPDF(let accountNumber, let date):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
         case .scheduledPayment(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/payments/schedule"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/schedule"
         case .scheduledPaymentUpdate(let accountNumber, let paymentId, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/payments/schedule/\(paymentId)"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/schedule/\(paymentId)"
         case .scheduledPaymentDelete(let accountNumber, let paymentId, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/payments/schedule/\(paymentId)"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/schedule/\(paymentId)"
         case .billingHistory(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/billing/history"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/history"
         case .payment:
-            return "/mobile/custom/\(apiAccess)/encryptionkey"
+            return "\(basePath)/\(apiAccess.path)/encryptionkey"
         case .deleteWalletItem:
-            return "/mobile/custom/\(apiAccess)/wallet/delete"
+            return "\(basePath)/\(apiAccess.path)/wallet/delete"
         case .compareBill(let accountNumber, let premiseNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/compare_bills"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/compare_bills"
         case .autoPayInfo(let accountNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/payments/recurring"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/recurring"
         case .autoPayEnroll(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/payments/recurring"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/recurring"
         case .autoPayUnenroll(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/payments/recurring/delete"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/recurring/delete"
         case .paperlessEnroll(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/billing/paperless"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/paperless"
         case .paperlessUnenroll(let accountNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/billing/paperless"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/paperless"
         case .budgetBillingInfo(let accountNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/billing/budget"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/budget"
         case .budgetBillingEnroll(let accountNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/billing/budget"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/budget"
         case .budgetBillingUnenroll(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/billing/budget/delete"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/budget/delete"
         case .forecastBill(let accountNumber, let premiseNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/forecast_bill"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/forecast_bill"
         case .ssoData(let accountNumber, let premiseNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/ssodata"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/ssodata"
         case .ffssoData(let accountNumber, let premiseNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/ffssodata"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/ffssodata"
         case .energyTips(let accountNumber, let premiseNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips"
         case .energyTip(let accountNumber, let premiseNumber, let tipName):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips/\(tipName)"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips/\(tipName)"
         case .homeProfileLoad(let accountNumber, let premiseNumber), .homeProfileUpdate(let accountNumber, let premiseNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile"
         case .energyRewardsLoad(let accountNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/programs"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/programs"
         case .alertPreferencesLoad(let accountNumber), .alertPreferencesUpdate(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/alerts/preferences/push"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/alerts/preferences/push"
         case .appointments(let accountNumber, let premiseNumber):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/service/appointments/query"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/service/appointments/query"
         case .passwordChange:
-            return "/mobile/custom/\(apiAccess)/profile/password"
+            return "\(basePath)/\(apiAccess.path)/profile/password"
         case .accountLookup:
-            return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.rawValue)/account/lookup"
+            return "\(basePath)/\(apiAccess.path)/account/lookup"
         case .recoverPassword:
-            return "/mobile/custom/\(apiAccess)/recover/password"
+            return "\(basePath)/\(apiAccess.path)/recover/password"
         case .recoverUsername, .recoverMaskedUsername:
-            return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.rawValue)/recover/username"
+            return "\(basePath)/\(apiAccess.path)/recover/username"
         case .outageStatus(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/outage"
         case .reportOutage(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/outage"
         case .meterPing(let accountNumber, let premiseNumber):
             if let premiseNumber = premiseNumber {
-                return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/premises/\(premiseNumber)/outage/ping"
+                return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/outage/ping"
             } else {
-                return "/mobile/custom/\(apiAccess)/accounts/\(accountNumber)/outage/ping"
+                return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/outage/ping"
             }
         case .fetchGameUser(let accountNumber):
-            return "/mobile/custom/\(apiAccess)/game/\(accountNumber)"
+            return "\(basePath)/\(apiAccess.path)/game/\(accountNumber)"
         case .updateGameUser(let accountNumber, _):
-            return "/mobile/custom/\(apiAccess)/game/\(accountNumber)"
+            return "\(basePath)/\(apiAccess.path)/game/\(accountNumber)"
         case .fetchDailyUsage(let accountNumber, let premiseNumber, _):
             return "accounts/\(accountNumber)/premises/\(premiseNumber)/usage/query"
         case .reportOutageAnon:
-            return "/mobile/custom/\(apiAccess)/\(Environment.shared.opco.rawValue)/outage"
+            return "\(basePath)/\(apiAccess.path)/outage"
         }
     }
     
@@ -318,7 +336,7 @@ public enum Router {
             return nil
         }
         
-//        if apiAccess == .auth {
+//        if apiAccess.path == .auth {
 //            // Add Bearer.
 //        }
         
