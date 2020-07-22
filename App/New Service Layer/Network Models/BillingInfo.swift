@@ -32,6 +32,7 @@ public struct BillingInfo: Decodable {
     let deliveryCharges: Double?
     let supplyCharges: Double?
     let taxesAndFees: Double?
+    let documentID: String?
     
     let minPaymentAmount: Double
     // These are both private because the `maxPaymentAmount(bankOrCard:)` function should be used instead
@@ -66,6 +67,7 @@ public struct BillingInfo: Decodable {
         case maxPaymentAmount = "maximumPaymentAmount"
         case maxPaymentAmountACH = "maximumPaymentAmountACH"
         case payments
+        case documentID
     }
     
     public init(from decoder: Decoder) throws {
@@ -89,6 +91,7 @@ public struct BillingInfo: Decodable {
         currentDueAmount = try container.decodeIfPresent(Double.self, forKey: .currentDueAmount)
         convenienceFee = try container.decode(Double.self, forKey: .convenienceFee)
         turnOffNoticeExtensionStatus = try container.decodeIfPresent(String.self, forKey: .turnOffNoticeExtensionStatus)
+        documentID = try container.decodeIfPresent(String.self, forKey: .documentID)
         turnOffNoticeExtendedDueDate = try container.decodeIfPresent(Date.self, forKey: .turnOffNoticeExtendedDueDate)
         turnOffNoticeDueDate = try container.decodeIfPresent(Date.self, forKey: .turnOffNoticeDueDate)
         deliveryCharges = try container.decodeIfPresent(Double.self, forKey: .deliveryCharges)

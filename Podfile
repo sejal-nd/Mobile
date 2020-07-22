@@ -180,6 +180,42 @@ target 'ComEd-Watch Extension' do
   shared_pods
 end
 
+target 'Pepco-Watch' do
+  platform :watchos, '4.0'
+  use_frameworks!
+end
+
+target 'Pepco-Watch Extension' do
+  platform :watchos, '4.0'
+  use_frameworks!
+
+  shared_pods
+end
+
+target 'Delmarva-Watch' do
+  platform :watchos, '4.0'
+  use_frameworks!
+end
+
+target 'Delmarva-Watch Extension' do
+  platform :watchos, '4.0'
+  use_frameworks!
+
+  shared_pods
+end
+
+target 'ACE-Watch' do
+  platform :watchos, '4.0'
+  use_frameworks!
+end
+
+target 'ACE-Watch Extension' do
+  platform :watchos, '4.0'
+  use_frameworks!
+
+  shared_pods
+end
+
 # Removes the project warnings after a `pod install`
 post_install do |installer|
     installer.pods_project.build_configurations.each do |config|

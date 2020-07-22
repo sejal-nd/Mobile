@@ -194,6 +194,7 @@ class BillingHistoryViewController: UIViewController {
                     
                     let vc = billStoryboard.instantiateViewController(withIdentifier: "viewBill") as! ViewBillViewController
                     vc.viewModel.billDate = billingHistoryItem.date
+                    vc.viewModel.documentID = billingHistoryItem.documentID
                     return vc
                 }
             } else {

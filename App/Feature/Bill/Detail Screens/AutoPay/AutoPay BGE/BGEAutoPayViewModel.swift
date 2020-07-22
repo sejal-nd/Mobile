@@ -264,11 +264,23 @@ class BGEAutoPayViewModel {
     
     var learnMoreDescriptionText: String {
         if accountDetail.isResidential {
-            return NSLocalizedString("""
-            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
-            
-            AutoPay will charge the amount billed each month or the maximum amount specified, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
-            """, comment: "")
+            if Environment.shared.opco.isPHI {
+                let formatText = """
+                           Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
+                           
+                           AutoPay will charge the amount billed each month or the maximum amount specified, up to a limit of %@, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
+                           """
+                let maxPaymentAmountString = accountDetail.billingInfo
+                    .maxPaymentAmount(bankOrCard: .bank)
+                    .currencyNoDecimalString
+                return String(format: formatText, maxPaymentAmountString)
+            } else {
+                return NSLocalizedString("""
+                Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
+                
+                AutoPay will charge the amount billed each month or the maximum amount specified, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
+                """, comment: "")
+            }
         } else {
             let formatText = """
             Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
@@ -279,11 +291,6 @@ class BGEAutoPayViewModel {
                 .maxPaymentAmount(bankOrCard: .bank)
                 .currencyNoDecimalString
             return String(format: formatText, maxPaymentAmountString)
-//            return NSLocalizedString("""
-//            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
-//
-//            AutoPay will charge the amount billed each month or the maximum amount specified, up to a limit of $500,000, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
-//            """, comment: "")
         }
     }
     

@@ -264,34 +264,32 @@ extension NetworkUtility {
             result(.failure(.missingToken))
             return
         }
-        
-        AccountService.rx.fetchAccounts().subscribe(onNext: { [weak self] accounts in
-            // handle success
-            guard let firstAccount = AccountsStore.shared.accounts.first else {
-                dLog("No first account in account list: Terminated.")
-                result(.failure(.invalidAccount))
-                return
+
+        AccountService.fetchAccounts { networkResult in
+            switch networkResult {
+            case .success(let accounts):
+                guard let firstAccount = accounts.first else {
+                    dLog("No first account in account list: Terminated.")
+                    result(.failure(.invalidAccount))
+                    return
+                }
+                
+                if AccountsStore.shared.currentIndex == nil {
+                    AccountsStore.shared.currentIndex = 0
+                }
+                
+                self.defaultAccount = firstAccount
+                self.notificationCenter.post(name: .defaultAccountDidUpdate, object: firstAccount)
+            case .failure(let error):
+                if error == .passwordProtected {
+                    dLog("Failed to retrieve account list.  Password Protected Account.")
+                    result(.failure(.passwordProtected))
+                } else {
+                    dLog("Failed to retrieve account list: \(error.localizedDescription)")
+                    result(.failure(.fetchError))
+                }
             }
-            
-            if AccountsStore.shared.currentIndex == nil {
-                AccountsStore.shared.currentIndex = 0
-            }
-            
-            self?.defaultAccount = firstAccount
-            self?.notificationCenter.post(name: .defaultAccountDidUpdate, object: firstAccount)
-            
-            dLog("Accounts Fetched.")
-            
-//            result(.success(accounts))
-//            }, onError: { error in
-//                if let serviceError = error as? ServiceError, serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
-//                    dLog("Failed to retrieve account list.  Password Protected Account.")
-//                    result(.failure(.passwordProtected))
-//                } else {
-//                    dLog("Failed to retrieve account list: \(error.localizedDescription)")
-//                    result(.failure(.fetchError))
-//                }
-        }).disposed(by: disposeBag)
+        }
     }
     
     /// Fetches key info about an account, specifically if the account is password protected.  Also required for fetching usage data.
@@ -306,18 +304,16 @@ extension NetworkUtility {
                 return
         }
         
-        AccountService.rx.fetchAccountDetails()
-            .subscribe(onNext: { accountDetail in
-                // handle success
+        AccountService.fetchAccountDetails { networkResult in
+            switch networkResult {
+            case .success(let accountDetail):
                 dLog("Account Details Fetched.")
-
                 result(.success(accountDetail))
-            }, onError: { error in
-                // handle error
+            case .failure(let error):
                 dLog("Failed to Fetch Account Details. \(error.localizedDescription)")
                 result(.failure(.fetchError))
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     /// Fetches maintenance mode status.
@@ -389,14 +385,16 @@ extension NetworkUtility {
         }
         let accountNumber = accountDetail.accountNumber
         
-        UsageService.rx.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
-            dLog("Usage Data Fetched.")
-            result(.success(billForecastResult))
-        }, onError: { usageError in
-            dLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
-            result(.failure(.fetchError))
-        })
-            .disposed(by: disposeBag)
+        UsageService.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber) { networkResult in
+            switch networkResult {
+            case .success(let billForecastResult):
+                dLog("Usage Data Fetched.")
+                result(.success(billForecastResult))
+            case .failure(let error):
+                dLog("Failed to retrieve usage data: \(error.localizedDescription)")
+                result(.failure(.fetchError))
+            }
+        }
     }
     
 }

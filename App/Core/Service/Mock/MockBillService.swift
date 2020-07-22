@@ -65,7 +65,7 @@ class MockBillService: BillService {
         }
     }
     
-    func fetchBillPdf(accountNumber: String, billDate: Date) -> Observable<String> {
+    func fetchBillPdf(accountNumber: String, billDate: Date, documentID: String) -> Observable<String> {
         let dataFile = MockJSONManager.File.billPdf
         let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
         return MockJSONManager.shared.rx.jsonObject(fromFile: dataFile, key: key)

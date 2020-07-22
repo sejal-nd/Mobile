@@ -19,6 +19,9 @@ class RegistrationViewModel {
     let phoneNumber = BehaviorRelay(value: "")
     let identifierNumber = BehaviorRelay(value: "")
     let accountNumber = BehaviorRelay(value: "")
+    let totalAmountDue =  BehaviorRelay<Double>(value: 0.00)
+    let dueDate = BehaviorRelay<Date?>(value: nil)
+    var selectedSegmentIndex = BehaviorRelay(value: 0)
     
     let username = BehaviorRelay(value: "")
     let newPassword = BehaviorRelay(value: "")
@@ -56,14 +59,27 @@ class RegistrationViewModel {
     func validateAccount(onSuccess: @escaping () -> Void,
                          onMultipleAccounts: @escaping() -> Void,
                          onError: @escaping (String, String) -> Void) {
-        let identifier: String = identifierNumber.value
+      //  let identifier: String = identifierNumber.value
+        var phoneNumber = ""
+        var identifierValue = ""
+        var accountNumber = ""
+        var dueAmount = ""
+        var dueDate = ""
         
-        registrationService.validateAccountInformation(identifier,
-                                                       phone: extractDigitsFrom(phoneNumber.value),
-                                                       accountNum: accountNumber.value,
-                                                       dueAmount: "",
-                                                       dueDate: "")
-        	.observeOn(MainScheduler.instance)
+        if selectedSegmentIndex.value == .zero {
+             phoneNumber = extractDigitsFrom(self.phoneNumber.value)
+             identifierValue = identifierNumber.value
+        } else {
+             accountNumber = self.accountNumber.value
+            dueAmount = String(self.totalAmountDue.value)
+            dueDate = self.dueDate.value?.yyyyMMddString ?? ""
+        }
+        registrationService.validateAccountInformation(identifierValue,
+                                                       phone: phoneNumber,
+                                                       accountNum: accountNumber,
+                                                       dueAmount: dueAmount,
+                                                       dueDate: dueDate)
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }
                 let types = data["type"] as? [String]
@@ -196,37 +212,48 @@ class RegistrationViewModel {
         }
     }
 
-	private(set) lazy var validateAccountContinueEnabled: Driver<Bool> = {
-		if Environment.shared.opco == .bge {
-			return Driver.combineLatest(self.phoneNumberHasTenDigits,
-			                            self.identifierHasFourDigits,
-			                            self.identifierIsNumeric)
-			{ $0 && $1 && $2 }
-		} else {
-			return Driver.combineLatest(self.phoneNumberHasTenDigits,
-			                            self.accountNumberHasTenDigits,
-			                            self.identifierHasFourDigits,
-			                            self.identifierIsNumeric)
-			{ $0 && $1 && $2 && $3 }
-		}
+    private(set) lazy var validateAccountContinueEnabled: Driver<Bool> = {
+        return Driver.combineLatest(self.phoneNumberHasTenDigits,
+                                    self.identifierHasFourDigits,
+                                    self.identifierIsNumeric,
+                                    self.accountNumberHasTenDigits,
+                                    self.segmentChanged,
+                                    self.amountDueHasValue,
+                                    self.dueDateHasValue)
+        { self.selectedSegmentIndex.value == .zero ?  $0 && $1 && $2 && $4: $3 && $4 && $5 && $6 }
     }()
-	
+    
     func checkForMaintenance() {
         AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)
             .subscribe()
             .disposed(by: disposeBag)
     }
-	
-	private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
+    private(set) lazy var segmentChanged: Driver<Bool> =
+        self.selectedSegmentIndex.asDriver().map { text -> Bool in
+            return true
+    }
+    
+    private(set) lazy var paymentDateString: Driver<String> = dueDate.asDriver()
+        .map { ($0?.mmDdYyyyString ?? "") }
+    private(set) lazy var paymentAmountString = totalAmountDue.asDriver()
+         .map { $0.currencyString }
+    
+    private(set) lazy var amountDueHasValue: Driver<Bool> =
+        self.totalAmountDue.asDriver().map { $0 >= 0 }
+    
+    private(set) lazy var dueDateHasValue: Driver<Bool> =
+        self.dueDate.asDriver().map { $0?.MMddyyyyString.count > 0}
+       
+    private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
         self.phoneNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.count == 10
         }
-	
+    
     private(set) lazy var identifierHasFourDigits: Driver<Bool> =
         self.identifierNumber.asDriver().map { $0.count == 4 }
-	
+    
     private(set) lazy var identifierIsNumeric: Driver<Bool> =
         self.identifierNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }
@@ -247,8 +274,8 @@ class RegistrationViewModel {
     
     private(set) lazy var newUsernameHasText: Driver<Bool> =
         self.username.asDriver().map { !$0.isEmpty }
-	
-	private(set) lazy var newUsernameIsValidBool: Driver<Bool> =
+    
+    private(set) lazy var newUsernameIsValidBool: Driver<Bool> =
         self.username.asDriver().map { text -> Bool in
             if text.count > kMaxUsernameChars {
                 return false
@@ -270,8 +297,8 @@ class RegistrationViewModel {
             
             return true
         }
-	
-	private(set) lazy var newUsernameIsValid: Driver<String?> =
+    
+    private(set) lazy var newUsernameIsValid: Driver<String?> =
         self.username.asDriver().map { text -> String? in
             if !text.isEmpty {
                 if text.count > kMaxUsernameChars {
@@ -295,18 +322,18 @@ class RegistrationViewModel {
             
             return nil
         }
-	
-	private(set) lazy var newPasswordHasText: Driver<Bool> =
+    
+    private(set) lazy var newPasswordHasText: Driver<Bool> =
         self.newPassword.asDriver().map{ !$0.isEmpty }
-	
-	private(set) lazy var characterCountValid: Driver<Bool> = self.newPassword.asDriver()
-		.map{ $0.components(separatedBy: .whitespacesAndNewlines).joined() }
-		.map{ 8...16 ~= $0.count }
-	
-	private(set) lazy var usernameMaxCharacters: Driver<Bool> =
+    
+    private(set) lazy var characterCountValid: Driver<Bool> = self.newPassword.asDriver()
+        .map{ $0.components(separatedBy: .whitespacesAndNewlines).joined() }
+        .map{ 8...16 ~= $0.count }
+    
+    private(set) lazy var usernameMaxCharacters: Driver<Bool> =
         self.username.asDriver().map { $0.count > kMaxUsernameChars }
-	
-	private(set) lazy var containsUppercaseLetter: Driver<Bool> =
+    
+    private(set) lazy var containsUppercaseLetter: Driver<Bool> =
         self.newPassword.asDriver().map { text -> Bool in
             let regex = try! NSRegularExpression(pattern: ".*[A-Z].*",
                                                  options: NSRegularExpression.Options.useUnixLineSeparators)
@@ -314,8 +341,8 @@ class RegistrationViewModel {
                                     options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
                                     range: NSMakeRange(0, text.count)) != nil
         }
-	
-	private(set) lazy var containsLowercaseLetter: Driver<Bool> =
+    
+    private(set) lazy var containsLowercaseLetter: Driver<Bool> =
         self.newPassword.asDriver().map { text -> Bool in
             let regex = try! NSRegularExpression(pattern: ".*[a-z].*",
                                                  options: NSRegularExpression.Options.useUnixLineSeparators)
@@ -323,34 +350,34 @@ class RegistrationViewModel {
                                     options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
                                     range: NSMakeRange(0, text.count)) != nil
         }
-	
-	private(set) lazy var containsNumber: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
-		let regex = try! NSRegularExpression(pattern: ".*[0-9].*",
+    
+    private(set) lazy var containsNumber: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
+        let regex = try! NSRegularExpression(pattern: ".*[0-9].*",
                                              options: NSRegularExpression.Options.useUnixLineSeparators)
-		return regex.firstMatch(in: text,
+        return regex.firstMatch(in: text,
                                 options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
                                 range: NSMakeRange(0, text.count)) != nil
-	}
-	
-	private(set) lazy var containsSpecialCharacter: Driver<Bool> = self.newPassword.asDriver()
-		.map{ text -> String in
-			return text.components(separatedBy: .whitespacesAndNewlines).joined()
-		}
-		.map { text -> Bool in
-			let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-			return regex.firstMatch(in: text,
+    }
+    
+    private(set) lazy var containsSpecialCharacter: Driver<Bool> = self.newPassword.asDriver()
+        .map{ text -> String in
+            return text.components(separatedBy: .whitespacesAndNewlines).joined()
+        }
+        .map { text -> Bool in
+            let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
+            return regex.firstMatch(in: text,
                                     options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
                                     range: NSMakeRange(0, text.count)) != nil
-	}
-	
-	private(set) lazy var passwordMatchesUsername: Driver<Bool> =
+    }
+    
+    private(set) lazy var passwordMatchesUsername: Driver<Bool> =
         Driver.combineLatest(self.newPassword.asDriver(),
                              self.username.asDriver())
         { newPassword, username -> Bool in
             newPassword.lowercased() == username.lowercased() && !newPassword.isEmpty
         }
-	
-	private(set) lazy var newPasswordIsValid: Driver<Bool> =
+    
+    private(set) lazy var newPasswordIsValid: Driver<Bool> =
         Driver.combineLatest([self.characterCountValid,
                               self.containsLowercaseLetter,
                               self.containsUppercaseLetter,
@@ -365,8 +392,8 @@ class RegistrationViewModel {
             }
             return false
         }
-	
-	private(set) lazy var everythingValid: Driver<Bool> =
+    
+    private(set) lazy var everythingValid: Driver<Bool> =
         Driver.combineLatest([self.passwordMatchesUsername,
                             self.characterCountValid,
                             self.containsUppercaseLetter,
@@ -384,7 +411,7 @@ class RegistrationViewModel {
             }
             return false
         }
-	
+    
     func getPasswordScore() -> Int32 {
         var score: Int32 = -1
         if !newPassword.value.isEmpty {
@@ -400,10 +427,10 @@ class RegistrationViewModel {
         .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
         { $0 && $1 && $2 }
     
-	private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
+    private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
         let driverArray: [Driver<String>]
         let count: Int
-        if Environment.shared.opco == .bge {
+        if Environment.shared.opco == .bge || Environment.shared.opco == .comEd{
             driverArray = [self.securityAnswer1.asDriver(),
                            self.securityAnswer2.asDriver()]
             count = 2
