@@ -11,7 +11,6 @@ import Foundation
 public enum NetworkingLayer {
     public static func request<T: Decodable>(router: Router,
                                              completion: @escaping (Result<T, NetworkingError>) -> ()) {
-        // todo this should be revisited once implementation is complete....
         // Ensure token exists for auth requests
         if router.apiAccess == .auth && router.token.isEmpty {
             dLog("No token found: Request denied.")
