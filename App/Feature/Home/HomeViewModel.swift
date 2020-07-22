@@ -303,7 +303,27 @@ class HomeViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var cardPreferenceChanges = Observable
-        .combineLatest(HomeCardPrefsStore.shared.listObservable, prepaidStatus)
+        .combineLatest(HomeCardPrefsStore.shared.listObservable, prepaidStatus, accountDetailEvents.elements())
+        .map({ (cards, prepaidStatus, accountDetails) -> ([HomeCard], AccountDetail.PrepaidStatus) in
+            var newCards = cards
+            if Environment.shared.opco == .bge && accountDetails.isResidential {
+                switch accountDetails.peakRewards {
+                case "ACTIVE"?, "ECOBEE WIFI"?:
+                    break
+                default:
+                    for (index, card) in newCards.enumerated() {
+                        switch card {
+                        case .template:
+                            newCards.remove(at: index)
+                        default:
+                            break
+                        }
+                    }
+                }
+            }
+            
+            return (newCards, prepaidStatus)
+        })
         .scan(([HomeCard](), [HomeCard]())) { oldCards, newData in
             var (newCards, prepaidStatus) = newData
             
