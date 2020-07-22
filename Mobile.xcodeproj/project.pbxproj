@@ -1201,6 +1201,19 @@
 		673FA0FA24C8A52700210BCD /* AnonymousService+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0F024C8A52700210BCD /* AnonymousService+RX.swift */; };
 		673FA0FB24C8A52700210BCD /* AnonymousService+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0F024C8A52700210BCD /* AnonymousService+RX.swift */; };
 		673FA0FC24C8A52700210BCD /* AnonymousService+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0F024C8A52700210BCD /* AnonymousService+RX.swift */; };
+		673FA0FD24C8ACCA00210BCD /* DailyUsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1824AB828000A828F9 /* DailyUsageData.swift */; };
+		673FA0FF24C8AF8F00210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10024C8B00500210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10124C8B00600210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10224C8B00700210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10324C8B00700210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10424C8B00800210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10524C8B00A00210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10624C8B00C00210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10724C8B00C00210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10824C8B00E00210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10924C8B00E00210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		673FA10A24C8B01000210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
 		675F47B324AB6C7300A828F9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A2B88324A1E092004B38BC /* Login.storyboard */; };
 		675F47B724AB6C9700A828F9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A2B88324A1E092004B38BC /* Login.storyboard */; };
 		675F47B824AB6CB700A828F9 /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */; };
@@ -7334,6 +7347,7 @@
 		673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotMaskedUsernames.swift; sourceTree = "<group>"; };
 		673FA0E324C89A1900210BCD /* AccountLookupResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResults.swift; sourceTree = "<group>"; };
 		673FA0F024C8A52700210BCD /* AnonymousService+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnonymousService+RX.swift"; path = "App/AnonymousService+RX.swift"; sourceTree = SOURCE_ROOT; };
+		673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionConfiguration.swift; sourceTree = "<group>"; };
 		675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationValidateAccountViewControllerNew.swift; sourceTree = "<group>"; };
 		675F47C824AB747200A828F9 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		675F4AE824AB828000A828F9 /* OutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageService.swift; sourceTree = "<group>"; };
@@ -10107,6 +10121,7 @@
 				675F4B5C24AB828100A828F9 /* Router.swift */,
 				675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */,
 				675F4B3924AB828000A828F9 /* NetworkingError.swift */,
+				673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */,
 				675F4B3A24AB828000A828F9 /* Mock */,
 			);
 			path = Networking;
@@ -15781,6 +15796,7 @@
 				C3087AC324B67204005AE544 /* JWTRequest.swift in Sources */,
 				356C7F8721909EFC003E8A90 /* UserDefaultKeys.swift in Sources */,
 				673FA04C24C8956100210BCD /* ForgotMaskedUsername.swift in Sources */,
+				673FA10424C8B00800210BCD /* URLSessionConfiguration.swift in Sources */,
 				C3087AE224B67ED5005AE544 /* AccountNicknameRequest.swift in Sources */,
 				675F4E2D24B4DAE100A828F9 /* UserSession.swift in Sources */,
 				35E7C8072190805C00BA13C6 /* OutageInterfaceController.swift in Sources */,
@@ -16036,6 +16052,7 @@
 				C3087ADD24B67ECA005AE544 /* GuidRequest.swift in Sources */,
 				C3087AA924B670AB005AE544 /* AccountService+Rx.swift in Sources */,
 				C3B6555224ABD9320048C64B /* NewSERInfo.swift in Sources */,
+				673FA10024C8B00500210BCD /* URLSessionConfiguration.swift in Sources */,
 				35F9DDB72333D8F100AAA2B2 /* Date.swift in Sources */,
 				35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */,
 				35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */,
@@ -16098,6 +16115,7 @@
 				35F9DE1D23353C6B00AAA2B2 /* WalletItem.swift in Sources */,
 				355B10382369DB190038EAD3 /* WatchSessionMananger.swift in Sources */,
 				C3087AC224B67203005AE544 /* JWTRequest.swift in Sources */,
+				673FA10224C8B00700210BCD /* URLSessionConfiguration.swift in Sources */,
 				C3087AE124B67ED4005AE544 /* AccountNicknameRequest.swift in Sources */,
 				675F4E2C24B4DAE000A828F9 /* UserSession.swift in Sources */,
 				35F9DE4123353D5400AAA2B2 /* Optional+Comparable.swift in Sources */,
@@ -16423,6 +16441,7 @@
 				67DDB38724535D2E006CD6EB /* ForgotPasswordViewController.swift in Sources */,
 				67DDB38824535D2E006CD6EB /* AccountListRow.swift in Sources */,
 				C3087AD724B67CBF005AE544 /* AccountNicknameRequest.swift in Sources */,
+				673FA10524C8B00A00210BCD /* URLSessionConfiguration.swift in Sources */,
 				67DDB38924535D2E006CD6EB /* KeychainKeys.swift in Sources */,
 				675F4CC324AB828200A828F9 /* HomeProfile.swift in Sources */,
 				675F4C9924AB828100A828F9 /* NewBillingHistoryItem.swift in Sources */,
@@ -17023,6 +17042,7 @@
 				67DDB62C24535D32006CD6EB /* Array+OptionalLookup.swift in Sources */,
 				67DDB62D24535D32006CD6EB /* AppointmentsViewController.swift in Sources */,
 				67DDB62E24535D32006CD6EB /* AccountLookupToolViewController.swift in Sources */,
+				673FA10924C8B00E00210BCD /* URLSessionConfiguration.swift in Sources */,
 				67DDB62F24535D32006CD6EB /* FirebaseUtility.swift in Sources */,
 				67DDB63024535D32006CD6EB /* SafariViewController.swift in Sources */,
 				67DDB63324535D32006CD6EB /* SeparatorLineView.swift in Sources */,
@@ -17522,6 +17542,7 @@
 				67DDB88224535D35006CD6EB /* Array+OptionalLookup.swift in Sources */,
 				67DDB88324535D35006CD6EB /* AppointmentsViewController.swift in Sources */,
 				67DDB88424535D35006CD6EB /* AccountLookupToolViewController.swift in Sources */,
+				673FA10724C8B00C00210BCD /* URLSessionConfiguration.swift in Sources */,
 				67DDB88524535D35006CD6EB /* FirebaseUtility.swift in Sources */,
 				67DDB88624535D35006CD6EB /* SafariViewController.swift in Sources */,
 				67DDB88924535D35006CD6EB /* SeparatorLineView.swift in Sources */,
@@ -18463,6 +18484,7 @@
 				67EDC2D324C1E690001A8494 /* NibViews.swift in Sources */,
 				673F9F5024C8926A00210BCD /* ReportedOutageResult.swift in Sources */,
 				673FA06424C8956200210BCD /* NewBillingHistoryResult.swift in Sources */,
+				673FA10624C8B00C00210BCD /* URLSessionConfiguration.swift in Sources */,
 				673F9F6824C892CF00210BCD /* AccountNicknameRequest.swift in Sources */,
 				673F9FD224C894CA00210BCD /* AccountLookupRequest.swift in Sources */,
 				673FA00524C894DA00210BCD /* DailyUsageRequest.swift in Sources */,
@@ -18522,6 +18544,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				673FA10A24C8B01000210BCD /* URLSessionConfiguration.swift in Sources */,
 				67EDC34624C1EBD9001A8494 /* Maintenance.swift in Sources */,
 				673F9FAC24C8942200210BCD /* CompareBillResult.swift in Sources */,
 				67EDC34724C1EBD9001A8494 /* Premise.swift in Sources */,
@@ -18807,6 +18830,7 @@
 				67EDC3F424C1EBFF001A8494 /* UserDefaultKeys.swift in Sources */,
 				673FA07324C8956300210BCD /* NewBudgetBilling.swift in Sources */,
 				673FA08024C8956300210BCD /* MaintenanceMode.swift in Sources */,
+				673FA10824C8B00E00210BCD /* URLSessionConfiguration.swift in Sources */,
 				673FA07024C8956300210BCD /* EnergyRewardsNew.swift in Sources */,
 				673F9FAB24C8942200210BCD /* CompareBillResult.swift in Sources */,
 				673F9F4E24C8925300210BCD /* Account.swift in Sources */,
@@ -19225,6 +19249,7 @@
 				673FA0E424C89A1900210BCD /* AccountLookupResults.swift in Sources */,
 				389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				2F036CF01F1EA7D5000DECBE /* WeatherService.swift in Sources */,
+				673FA0FF24C8AF8F00210BCD /* URLSessionConfiguration.swift in Sources */,
 				9CC9978E237B4A0200C68300 /* HomeGameOnboardingCardView.swift in Sources */,
 				675F4C0024AB828100A828F9 /* ChangePasswordRequest.swift in Sources */,
 				B07D247B20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
@@ -19313,6 +19338,7 @@
 				825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				67F950FC24BCA111009B5F07 /* RegistrationValidateAccountViewControllerNew.swift in Sources */,
 				E8039FF31EFB040E004DB789 /* MCSPaymentService.swift in Sources */,
+				673FA0FD24C8ACCA00210BCD /* DailyUsageData.swift in Sources */,
 				B0A8308D2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				B0882CAD210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				B0B083BD216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
@@ -19722,6 +19748,7 @@
 				B0D84D4222023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				9C7C902923B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				2F036CF21F1EA7D5000DECBE /* WeatherService.swift in Sources */,
+				673FA10324C8B00700210BCD /* URLSessionConfiguration.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				675F4C0224AB828100A828F9 /* ChangePasswordRequest.swift in Sources */,
 				2FA7B9FC1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
@@ -20220,6 +20247,7 @@
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				675F4BDD24AB828100A828F9 /* DailyUsageRequest.swift in Sources */,
 				9C7C902823B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
+				673FA10124C8B00600210BCD /* URLSessionConfiguration.swift in Sources */,
 				2FA7B9FB1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				B0A8308A2146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,
