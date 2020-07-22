@@ -84,6 +84,9 @@ class AppointmentDetailViewModelTests: XCTestCase {
             hourAmPm = "2PM"
         case .comEd:
             hourAmPm = "12PM"
+        case .pepco, .delmarva, .ace:
+            // todo
+            hourAmPm = "1PM"
         }
         
         XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your appointment is in progress. Estimated time of completion is \(hourAmPm).")

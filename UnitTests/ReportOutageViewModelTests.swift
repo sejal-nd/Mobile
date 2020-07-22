@@ -42,6 +42,12 @@ class ReportOutageViewModelTests: XCTestCase {
             expectedString = NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
         case .peco:
             expectedString = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
+        case .pepco:
+            expectedString = ""
+        case .ace:
+            expectedString = ""
+        case .delmarva:
+            expectedString = ""
         }
         XCTAssertEqual(expectedString, viewModel.footerTextViewText.string)
     }
