@@ -150,7 +150,7 @@ public enum NetworkingLayer {
             return try DateParser().extractDate(object: dateStr)
         }
 
-         if let responseWrapper = try? jsonDecoder.decode(NewResponseContainer.self, from: data) {
+         if let responseWrapper = try? jsonDecoder.decode(ApigeeResponseContainer.self, from: data) {
             // Azure decode
             
             if let endpointError = responseWrapper.error {

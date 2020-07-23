@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct EndpointError: Decodable {
+public struct AzureError: Decodable {
     public var code: String
     public var description: String
     public var context: String?
