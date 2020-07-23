@@ -42,6 +42,7 @@ class HomeViewController: AccountPickerViewController {
     var projectedBillCardView: HomeProjectedBillCardView?
     var outageCardView: HomeOutageCardView?
     var topPersonalizeButton: ConversationalButton?
+    var opcoIdentityView: OpcoIdentityCardView!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
@@ -131,7 +132,18 @@ class HomeViewController: AccountPickerViewController {
         
         // Create weather card
         weatherView = .create(withViewModel: viewModel.weatherViewModel)
-        mainStackView.insertArrangedSubview(weatherView, at: 0)
+
+        if Environment.shared.opco.isPHI {
+            // Create Opco Identifier Card
+            opcoIdentityView = .create(withViewModel: viewModel.opcoIdentityViewModel)
+            mainStackView.insertArrangedSubview(opcoIdentityView, at: 0)
+            mainStackView.insertArrangedSubview(weatherView, at: 1)
+            opcoIdentityView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
+            opcoIdentityView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
+            opcoIdentityView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        } else {
+            mainStackView.insertArrangedSubview(weatherView, at: 0)
+        }
         weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
         weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
         
@@ -756,7 +768,14 @@ extension HomeViewController: AccountPickerDelegate {
         // enable refresh control once accounts list loads
         setRefreshControlEnabled(enabled: true)
         viewModel.fetchData.onNext(())
-
+        
+        if let account = accountPicker.currentAccount {
+            if Environment.shared.opco.isPHI {
+                if let opcoType = account.opcoType {
+                    opcoIdentityView.configure(nickname: account.accountNickname ?? "", opco: opcoType)
+                }
+            }
+        }
         let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
         let prefersGameHome = UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome)
         let onboardingCompleteLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
