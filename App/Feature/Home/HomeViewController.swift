@@ -15,6 +15,7 @@ import SafariServices
 
 fileprivate let editHomeSegueId = "editHomeSegue"
 fileprivate let colorBackgroundViewHeight: CGFloat = 342
+fileprivate let opcoIdentityViewHeight: CGFloat = 100
 
 class HomeViewController: AccountPickerViewController {
     
@@ -43,6 +44,7 @@ class HomeViewController: AccountPickerViewController {
     var outageCardView: HomeOutageCardView?
     var topPersonalizeButton: ConversationalButton?
     var opcoIdentityView: OpcoIdentityCardView!
+    var opcoIdentityViewHeightConstraint: NSLayoutConstraint!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
@@ -135,12 +137,13 @@ class HomeViewController: AccountPickerViewController {
 
         if Environment.shared.opco.isPHI {
             // Create Opco Identifier Card
-            opcoIdentityView = .create(withViewModel: viewModel.opcoIdentityViewModel)
+            opcoIdentityView = .create()
             mainStackView.insertArrangedSubview(opcoIdentityView, at: 0)
             mainStackView.insertArrangedSubview(weatherView, at: 1)
             opcoIdentityView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
             opcoIdentityView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
-            opcoIdentityView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            opcoIdentityViewHeightConstraint = opcoIdentityView.heightAnchor.constraint(equalToConstant: opcoIdentityViewHeight)
+            opcoIdentityViewHeightConstraint.isActive = true
         } else {
             mainStackView.insertArrangedSubview(weatherView, at: 0)
         }
@@ -771,9 +774,17 @@ extension HomeViewController: AccountPickerDelegate {
         
         if let account = accountPicker.currentAccount {
             if Environment.shared.opco.isPHI {
-                if let opcoType = account.opcoType {
-                    opcoIdentityView.configure(nickname: account.accountNickname ?? "", opco: opcoType)
+                if accountPicker.accounts.count == 1 && account.accountNickname?.count == .zero {
+                    opcoIdentityViewHeightConstraint.constant = .zero
+                } else {
+                    opcoIdentityViewHeightConstraint.constant = opcoIdentityViewHeight
+                    if let opcoType = account.opcoType {
+                        opcoIdentityView.configure(nickname: account.accountNickname ?? "",
+                                                   opco: opcoType,
+                                                   hasMultipleAccounts: (accountPicker.accounts.count > 1))
+                    }
                 }
+                
             }
         }
         let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)

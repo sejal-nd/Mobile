@@ -66,9 +66,6 @@ class HomeViewModel {
     private(set) lazy var appointmentCardViewModel =
         HomeAppointmentCardViewModel(appointments: appointments)
     
-    private(set) lazy var opcoIdentityViewModel =
-        OpcoIdentityViewModel(accountService: accountService)
-    
     private(set) lazy var weatherViewModel =
         HomeWeatherViewModel(accountDetailEvents: accountDetailEvents,
                              weatherService: weatherService,

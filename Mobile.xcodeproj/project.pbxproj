@@ -212,12 +212,6 @@
 		30636F1324C8366E00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
 		30636F1424C8366F00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
 		30636F1524C8367200CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
-		30636F1724C83F4F00CCBFAE /* OpcoIdentityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F1624C83F4F00CCBFAE /* OpcoIdentityViewModel.swift */; };
-		30636F1824C845E000CCBFAE /* OpcoIdentityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F1624C83F4F00CCBFAE /* OpcoIdentityViewModel.swift */; };
-		30636F1924C845E300CCBFAE /* OpcoIdentityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F1624C83F4F00CCBFAE /* OpcoIdentityViewModel.swift */; };
-		30636F1A24C845E500CCBFAE /* OpcoIdentityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F1624C83F4F00CCBFAE /* OpcoIdentityViewModel.swift */; };
-		30636F1B24C845E600CCBFAE /* OpcoIdentityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F1624C83F4F00CCBFAE /* OpcoIdentityViewModel.swift */; };
-		30636F1C24C845E900CCBFAE /* OpcoIdentityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F1624C83F4F00CCBFAE /* OpcoIdentityViewModel.swift */; };
 		3090A637247E428900815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A634247E41FC00815EA1 /* splash.json */; };
 		3090A638247E428E00815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A635247E425A00815EA1 /* splash.json */; };
 		3090A639247E429500815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A636247E426400815EA1 /* splash.json */; };
@@ -5991,7 +5985,6 @@
 		3062CFFA24B6DFB4000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoIdentityCardView.swift; sourceTree = "<group>"; };
 		30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpcoIdentityCardView.xib; sourceTree = "<group>"; };
-		30636F1624C83F4F00CCBFAE /* OpcoIdentityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoIdentityViewModel.swift; sourceTree = "<group>"; };
 		3090A634247E41FC00815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A635247E425A00815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A636247E426400815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -7622,7 +7615,6 @@
 			children = (
 				30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */,
 				30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */,
-				30636F1624C83F4F00CCBFAE /* OpcoIdentityViewModel.swift */,
 			);
 			path = OpcoIdentityCardView;
 			sourceTree = "<group>";
@@ -14716,7 +14708,6 @@
 				67DDB41F24535D2E006CD6EB /* HomeWeatherViewModel.swift in Sources */,
 				67DDB42024535D2E006CD6EB /* BudgetBillingViewController.swift in Sources */,
 				67DDB42124535D2E006CD6EB /* StormModeBillViewController.swift in Sources */,
-				30636F1A24C845E500CCBFAE /* OpcoIdentityViewModel.swift in Sources */,
 				67DDB42324535D2E006CD6EB /* TermsPoliciesViewController.swift in Sources */,
 				67DDB42424535D2E006CD6EB /* Premise.swift in Sources */,
 				67DDB42524535D2E006CD6EB /* ForgotUsernameViewController.swift in Sources */,
@@ -15132,7 +15123,6 @@
 				67DDB66D24535D32006CD6EB /* PasswordStrengthMeterView.swift in Sources */,
 				67DDB66E24535D32006CD6EB /* BiometricsService.swift in Sources */,
 				67DDB66F24535D32006CD6EB /* LocalizedString.swift in Sources */,
-				30636F1C24C845E900CCBFAE /* OpcoIdentityViewModel.swift in Sources */,
 				67DDB67024535D32006CD6EB /* GameSurveyViewController.swift in Sources */,
 				67DDB67124535D32006CD6EB /* BillViewModel.swift in Sources */,
 				67DDB67224535D32006CD6EB /* UnauthenticatedUserViewController.swift in Sources */,
@@ -15556,7 +15546,6 @@
 				67DDB8C324535D35006CD6EB /* PasswordStrengthMeterView.swift in Sources */,
 				67DDB8C424535D35006CD6EB /* BiometricsService.swift in Sources */,
 				67DDB8C524535D35006CD6EB /* LocalizedString.swift in Sources */,
-				30636F1B24C845E600CCBFAE /* OpcoIdentityViewModel.swift in Sources */,
 				67DDB8C624535D35006CD6EB /* GameSurveyViewController.swift in Sources */,
 				67DDB8C724535D35006CD6EB /* BillViewModel.swift in Sources */,
 				67DDB8C824535D35006CD6EB /* UnauthenticatedUserViewController.swift in Sources */,
@@ -16871,7 +16860,6 @@
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */,
 				9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */,
-				30636F1724C83F4F00CCBFAE /* OpcoIdentityViewModel.swift in Sources */,
 				B08BBFC321C8539000A899FC /* SERResult.swift in Sources */,
 				54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */,
@@ -17294,7 +17282,6 @@
 				2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */,
 				0EF60FDB20EE8105006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F92025160F00A749A3 /* MockRegistrationService.swift in Sources */,
-				30636F1924C845E300CCBFAE /* OpcoIdentityViewModel.swift in Sources */,
 				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				E82FF1E81F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */,
 				B01748942135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
@@ -17717,7 +17704,6 @@
 				9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				675F47C424AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift in Sources */,
-				30636F1824C845E000CCBFAE /* OpcoIdentityViewModel.swift in Sources */,
 				9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
@@ -24592,7 +24578,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -24632,7 +24618,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.develop.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24668,7 +24654,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.staging.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24704,7 +24690,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.testing.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24740,7 +24726,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24776,7 +24762,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.prodbeta.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24812,7 +24798,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.hotfix.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "Pepco Hotfix Watchkit App Enterprise Dist";
