@@ -22,6 +22,7 @@ class OpcoIdentityCardView: UIView {
     func styleViews() {
         backgroundColor = .primaryColor
         accountNickname.textColor = .white
+        accountNickname.font = SystemFont.semibold.of(textStyle: .subheadline)
         accountNickname.isAccessibilityElement = true
         accessibilityElements = [accountNickname] as [UIView]
     }

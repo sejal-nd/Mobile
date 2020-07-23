@@ -31,6 +31,8 @@ class HomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var personalizeButton: UIButton!
     
+    var termsAndConditionsButton: UIButton!
+    
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
     var gameOnboardingCardView: HomeGameOnboardingCardView?
@@ -144,6 +146,16 @@ class HomeViewController: AccountPickerViewController {
             opcoIdentityView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
             opcoIdentityViewHeightConstraint = opcoIdentityView.heightAnchor.constraint(equalToConstant: opcoIdentityViewHeight)
             opcoIdentityViewHeightConstraint.isActive = true
+            // Add a terms & conditions Button at the end of the stack for PHI ocpos
+            termsAndConditionsButton = UIButton()
+            termsAndConditionsButton.setTitle("Policies & Terms", for: .normal)
+            termsAndConditionsButton.setTitleColor(.actionBlue, for: .normal)
+            termsAndConditionsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+            termsAndConditionsButton.rx.tap.asDriver()
+                .drive(onNext: { [weak self] in
+                    print("Terms")
+                }).disposed(by: bag)
+            contentStackView.insertArrangedSubview(termsAndConditionsButton, at: contentStackView.subviews.count)
         } else {
             mainStackView.insertArrangedSubview(weatherView, at: 0)
         }
