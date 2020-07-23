@@ -39,13 +39,9 @@ public struct AuthenticatedService {
     static func validateLogin(username: String,
                               password: String,
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
-        guard let username = username.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved),
-            let password = password.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved) else {
-                return
-        }
-        
-        let jwtRequest = JWTRequest(username: username, password: password)
-        NetworkingLayer.request(router: .fetchJWTToken(request: jwtRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
+        let tokenRequest = TokenRequest(username: "\(Environment.shared.opco.rawValue)\\\(username)",
+                                       password: password)
+        NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
             switch result {
             case .success:
                 completion(.success(()))
@@ -120,23 +116,20 @@ extension AuthenticatedService {
                                      password: String,
                                      shouldSaveToKeychain: Bool,
                                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
-        guard let username = username.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved),
-            let password = password.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved) else {
-                return
-        }
-        
-        let jwtRequest = JWTRequest(username: username, password: password)
-        NetworkingLayer.request(router: .fetchJWTToken(request: jwtRequest)) { (result: Result<NewJWTToken, NetworkingError>) in
+        let tokenRequest = TokenRequest(username: "\(Environment.shared.opco.rawValue)\\\(username)",
+                                        password: password)
+        print("TOKEN REQUEST EXAMPLE: \(tokenRequest)")
+        NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
-            case .success(let data):
+            case .success(let tokenResponse):
                 
                 // Handle Temp Password
-                if data.hasTempPassword {
-                    completion(.success(data.hasTempPassword))
-                    return
-                }
+//                if data.hasTempPassword {
+//                    completion(.success(data.hasTempPassword))
+//                    return
+//                }
                 
-                guard let token = data.token else { return }
+                guard let token = tokenResponse.token else { return }
                 
                 #if os(iOS)
                 if shouldSaveToKeychain {
@@ -147,7 +140,7 @@ extension AuthenticatedService {
                     tokenKeychain.setString(token, forKey: TOKEN_KEYCHAIN_KEY)
                     
                     // Login on Apple Watch
-                    if let token = data.token {
+                    if let token = tokenResponse.token {
                         try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : token])
                     }
                 }
@@ -175,6 +168,7 @@ extension AuthenticatedService {
                     }
                 }
             case .failure(let error):
+                print("FAILURE@@@")
                 completion(.failure(error))
             }
         }

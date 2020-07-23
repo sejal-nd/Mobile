@@ -26,43 +26,32 @@ class UserSession {
     
     private init() {
         
-        // todo fetch keep me signed in stuff
     }
 
 
     
     var token = ""
+
+    
+    var refreshDate = Date()
     
     
-    func enabledKeepMeSignedIn() {
-        // save token to keychain here
+    
+    
+}
+
+
+enum TestUserSession {
+    
+    static var token: String {
+        return ""
     }
     
-    // may want to live somewhere else.
+    private static var refreshDate: Date {
+        return Date()
+    }
     
-//    var account: Account?
-//    
-//    var details: AccountDetail?
-//    
-//    var accounts = [Account]()
-    
-    
-    
-    
-//    var accounts: [Account]!
-//    var currentIndex: Int!
-//    var customerIdentifier: String!
-//
-//    // Private init protects against another instance being accidentally instantiated
-//    private init() {
-//        // Load from disk
-//        guard let customerId = UserDefaults.standard.string(forKey: UserDefaultKeys.customerIdentifier) else { return }
-//        customerIdentifier = customerId
-//    }
-//
-//    var currentAccount: Account {
-//        let currentAccount = accounts[currentIndex]
-//        return currentAccount
-//    }
-    
+    static var isRefreshTokenExpired: Bool {
+        return Date() > TestUserSession.refreshDate
+    }
 }

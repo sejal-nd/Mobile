@@ -56,9 +56,20 @@ public enum NetworkingLayer {
             session = URLSession.default
         }
         
-        NetworkingLayer.dataTask(session: session,
-                                 urlRequest: urlRequest,
-                                 completion: completion)
+        // Check refresh token
+//        if router.apiAccess == .auth && TestUserSession.isRefreshTokenExpired {
+            // Refresh
+            
+            // perform request
+            
+            // retry 3 times
+            
+            // loggout
+//        } else {
+            NetworkingLayer.dataTask(session: session,
+                                     urlRequest: urlRequest,
+                                     completion: completion)
+//        }
     }
     
     private static func dataTask<T: Decodable>(session: URLSession,
@@ -129,29 +140,48 @@ public enum NetworkingLayer {
         }
         dataTask.resume()
     }
-    
+
     private static func decode<T: Decodable>(data: Data) throws -> T {
-        print("RAW DATA: \(String(decoding: data, as: UTF8.self))")
-        
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({ decoder -> Date in
+        jsonDecoder.dateDecodingStrategy = .custom() { decoder -> Date in
             let container = try decoder.singleValueContainer()
             let dateStr = try container.decode(String.self)
+            print("Test 199")
             return try DateParser().extractDate(object: dateStr)
-        })
-        
-        let responseWrapper = try jsonDecoder.decode(NewResponseWrapper<T>.self, from: data)
-        
-        // check for endpoint error
-        if let endpointError = responseWrapper.error {
-            throw NetworkingError(errorCode: endpointError.code)
         }
-        
-        guard let data = responseWrapper.data else {
+
+         if let responseWrapper = try? jsonDecoder.decode(NewResponseContainer.self, from: data) {
+            // Azure decode
+            
+            if let endpointError = responseWrapper.error {
+                throw NetworkingError(errorCode: endpointError.code)
+            }
+            
+            guard let responseData = responseWrapper.data else {
+                throw NetworkingError.decoding
+            }
+            
+            if let response = try? jsonDecoder.decode(T.self, from: responseData) {
+                // Default decode
+                print("response decoded")
+                return response
+            }
+            
+            print("throw container response")
+            throw NetworkingError.decoding
+        } else if (try? jsonDecoder.decode(ApigeeError.self, from: data)) != nil {
+            // Apigee decode
+            print("throw apigee response")
+            throw NetworkingError.invalidToken
+        } else if let response = try? jsonDecoder.decode(T.self, from: data) {
+            // Default decode
+            
+            print("return default response")
+            return response
+        } else {
+            print("throw decoding response")
             throw NetworkingError.decoding
         }
-        
-        return data
     }
     
     public static func cancelAllTasks() {
