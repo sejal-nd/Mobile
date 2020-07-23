@@ -89,6 +89,7 @@ struct MCSConfig {
     let anonymousKey: String
     let oAuthEndpoint: String // The Layer 7 token endpoint
     let paymentusUrl: String
+    var projectEnvironmentPath = ""
     
     init(mcsInstanceName: String, opco: OpCo) {
         let configPath = Bundle.main.path(forResource: "MCSConfig", ofType: "plist")!
@@ -99,6 +100,7 @@ struct MCSConfig {
         baseUrl = mobileBackend["baseURL"] as! String
         anonymousKey = mobileBackend["anonymousKey"] as! String
         oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
+        projectEnvironmentPath = mobileBackend["projectEnvironmentPath"] as? String ?? ""
         
         let opcoStr: String
         let opcoNum: String

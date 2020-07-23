@@ -18763,6 +18763,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
@@ -18776,7 +18777,7 @@
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -19268,6 +19269,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
@@ -19280,7 +19282,7 @@
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -19686,6 +19688,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
@@ -19698,6 +19701,7 @@
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -26784,6 +26788,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
@@ -26796,6 +26801,7 @@
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -27477,6 +27483,7 @@
 				CURRENT_PROJECT_VERSION = 20200121;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
@@ -27489,7 +27496,7 @@
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -27583,6 +27590,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/BGE/BGE-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
@@ -27596,7 +27604,7 @@
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;

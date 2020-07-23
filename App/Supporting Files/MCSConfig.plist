@@ -183,6 +183,8 @@
 		</dict>
 		<key>Test-pepcoMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-pepco-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
@@ -242,6 +244,8 @@
 		</dict>
 		<key>Test-aceMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-ace-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
@@ -301,6 +305,8 @@
 		</dict>
 		<key>Test-delmarvaMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-dpl-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
