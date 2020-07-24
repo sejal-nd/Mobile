@@ -9,7 +9,7 @@
 import Foundation
 
 public enum NetworkingError: Error, Equatable {
-    case invalidToken
+    case invalidToken // Login - tokens out of sync with server or expired
     case invalidURL
     case invalidResponse
     case invalidData
