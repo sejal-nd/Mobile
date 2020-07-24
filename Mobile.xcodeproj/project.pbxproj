@@ -2011,6 +2011,18 @@
 		67A18B7C24CA0EAC00F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B7D24CA0EAD00F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B7E24CA0EAE00F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
+		67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9124CB354700F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9224CB354800F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9324CB354900F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9424CB354900F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9524CB354A00F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9624CB354A00F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9724CB354C00F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9824CB354C00F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9924CB354D00F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9A24CB354E00F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A18B9B24CB354F00F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
 		67D73AE3246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
@@ -7479,6 +7491,7 @@
 		675F4E3B24B4DC1900A828F9 /* NewMockDataKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMockDataKey.swift; sourceTree = "<group>"; };
 		676279EE247DB11100A57FBC /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		67A18B7224CA0EA100F7A77B /* ApigeeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApigeeError.swift; sourceTree = "<group>"; };
+		67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequest.swift; sourceTree = "<group>"; };
 		67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetworkConnectionView.swift; sourceTree = "<group>"; };
 		67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetworkConnectionView.xib; sourceTree = "<group>"; };
 		67D73AEF246C480500450B63 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillingHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -10033,6 +10046,7 @@
 				675F4AF524AB828000A828F9 /* WalletItemDeleteRequest.swift */,
 				675F4AF624AB828000A828F9 /* ValidateAccountRequest.swift */,
 				675F4AF724AB828000A828F9 /* TokenRequest.swift */,
+				67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */,
 				675F4AF824AB828000A828F9 /* BudgetBillingUnenrollRequest.swift */,
 				675F4AF924AB828000A828F9 /* HomeProfileUpdateRequest.swift */,
 				675F4AFA24AB828000A828F9 /* AlertPreferencesRequest.swift */,
@@ -15854,6 +15868,7 @@
 				C3087AC624B6720C005AE544 /* NewAccountRequest.swift in Sources */,
 				675F4E5924B4F8F600A828F9 /* AnonOutageStatus.swift in Sources */,
 				C3087B2924BE159B005AE544 /* HomeProfile.swift in Sources */,
+				67A18B9524CB354A00F7A77B /* RefreshTokenRequest.swift in Sources */,
 				67A18B7824CA0EA900F7A77B /* ApigeeError.swift in Sources */,
 				9CB8A5F121DEC22200880DE9 /* Logger.swift in Sources */,
 				C3B6559A24AD26390048C64B /* AzureError.swift in Sources */,
@@ -16037,6 +16052,7 @@
 				C3B6554624ABB9960048C64B /* PremiseInfo.swift in Sources */,
 				C3B6559B24AD45000048C64B /* AccountDetails.swift in Sources */,
 				9CBE9E27237473C400E14222 /* Weekday.swift in Sources */,
+				67A18B9124CB354700F7A77B /* RefreshTokenRequest.swift in Sources */,
 				C3087AAC24B67117005AE544 /* NetworkingLayer.swift in Sources */,
 				673FA0B524C8956700210BCD /* NewWeather.swift in Sources */,
 				673FA0A424C8956700210BCD /* DailyUsageData.swift in Sources */,
@@ -16175,6 +16191,7 @@
 				673F9FEA24C894D800210BCD /* GameUserRequest.swift in Sources */,
 				C3087AC424B6720A005AE544 /* NewAccountRequest.swift in Sources */,
 				C3B6559924AD26370048C64B /* AzureError.swift in Sources */,
+				67A18B9324CB354900F7A77B /* RefreshTokenRequest.swift in Sources */,
 				67A18B7624CA0EA700F7A77B /* ApigeeError.swift in Sources */,
 				C3B6556524ABD9790048C64B /* SERResult.swift in Sources */,
 				675F4E5824B4F8F600A828F9 /* AnonOutageStatus.swift in Sources */,
@@ -16586,6 +16603,7 @@
 				67DDB3EA24535D2E006CD6EB /* MaintenanceModeViewController.swift in Sources */,
 				675F4BAF24AB828100A828F9 /* ValidateAccountRequest.swift in Sources */,
 				67DDB3EB24535D2E006CD6EB /* GSTouchesShowingGestureRecognizer.swift in Sources */,
+				67A18B9624CB354A00F7A77B /* RefreshTokenRequest.swift in Sources */,
 				67DDB3EC24535D2E006CD6EB /* ChangePasswordViewController.swift in Sources */,
 				67DDB3ED24535D2E006CD6EB /* OverrideViewModel.swift in Sources */,
 				675F4C3924AB828100A828F9 /* AccountDetails.swift in Sources */,
@@ -16913,6 +16931,7 @@
 				67DDB5B824535D32006CD6EB /* UIViewDashedBorders.swift in Sources */,
 				67DDB5B924535D32006CD6EB /* UpdatesTableViewCell.swift in Sources */,
 				67DDB5BA24535D32006CD6EB /* GameEnrollmentViewController.swift in Sources */,
+				67A18B9A24CB354E00F7A77B /* RefreshTokenRequest.swift in Sources */,
 				67DDB5BB24535D32006CD6EB /* HomeOutageCardView.swift in Sources */,
 				67DDB5BC24535D32006CD6EB /* WalletService.swift in Sources */,
 				67DDB5BD24535D32006CD6EB /* PaperlessEBillViewModel.swift in Sources */,
@@ -17414,6 +17433,7 @@
 				67DDB80E24535D35006CD6EB /* UIViewDashedBorders.swift in Sources */,
 				67DDB80F24535D35006CD6EB /* UpdatesTableViewCell.swift in Sources */,
 				67DDB81024535D35006CD6EB /* GameEnrollmentViewController.swift in Sources */,
+				67A18B9824CB354C00F7A77B /* RefreshTokenRequest.swift in Sources */,
 				67DDB81124535D35006CD6EB /* HomeOutageCardView.swift in Sources */,
 				67DDB81224535D35006CD6EB /* WalletService.swift in Sources */,
 				67DDB81324535D35006CD6EB /* PaperlessEBillViewModel.swift in Sources */,
@@ -18430,6 +18450,7 @@
 				673F9F8024C892F900210BCD /* ReleaseOfInfoPreferenceRequest.swift in Sources */,
 				673F9F9E24C8940B00210BCD /* PaymentItem.swift in Sources */,
 				67EDC2B824C1E690001A8494 /* (null) in Sources */,
+				67A18B9724CB354C00F7A77B /* RefreshTokenRequest.swift in Sources */,
 				673F9F7A24C892F100210BCD /* ChangePasswordRequest.swift in Sources */,
 				673FA05F24C8956200210BCD /* NewPayments.swift in Sources */,
 				673F9FCD24C8946900210BCD /* NewMockDataKey.swift in Sources */,
@@ -18707,6 +18728,7 @@
 				673F9F6124C892C100210BCD /* CompareBillRequest.swift in Sources */,
 				67EDC37F24C1EBD9001A8494 /* UIColor.swift in Sources */,
 				67EDC38024C1EBD9001A8494 /* SignInInterfaceController.swift in Sources */,
+				67A18B9B24CB354F00F7A77B /* RefreshTokenRequest.swift in Sources */,
 				673FA01624C894DC00210BCD /* RecoverPasswordRequest.swift in Sources */,
 				67EDC38124C1EBD9001A8494 /* URLSession+Rx.swift in Sources */,
 				67EDC38224C1EBD9001A8494 /* MCSAuthenticationService.swift in Sources */,
@@ -18736,6 +18758,7 @@
 				673FA08324C8956300210BCD /* NewWeather.swift in Sources */,
 				67EDC3C124C1EBFF001A8494 /* WalletItem.swift in Sources */,
 				67EDC3C224C1EBFF001A8494 /* AnalyticUtility.swift in Sources */,
+				67A18B9924CB354D00F7A77B /* RefreshTokenRequest.swift in Sources */,
 				67EDC3C324C1EBFF001A8494 /* AccountsStore.swift in Sources */,
 				67EDC3C424C1EBFF001A8494 /* (null) in Sources */,
 				673F9F8124C892FA00210BCD /* ReleaseOfInfoPreferenceRequest.swift in Sources */,
@@ -19380,6 +19403,7 @@
 				675F4C2A24AB828100A828F9 /* PremiseInfo.swift in Sources */,
 				675F4CBA24AB828200A828F9 /* NewSharePointAlert.swift in Sources */,
 				9CA1381D238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
+				67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 				675F4B8224AB828100A828F9 /* CompareBillRequest.swift in Sources */,
@@ -19880,6 +19904,7 @@
 				675F4C2C24AB828100A828F9 /* PremiseInfo.swift in Sources */,
 				675F4CBC24AB828200A828F9 /* NewSharePointAlert.swift in Sources */,
 				9CA1381F238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
+				67A18B9424CB354900F7A77B /* RefreshTokenRequest.swift in Sources */,
 				9CD3532022CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				B07E17D62209F0A000B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				675F4B8424AB828100A828F9 /* CompareBillRequest.swift in Sources */,
@@ -20380,6 +20405,7 @@
 				675F4C2B24AB828100A828F9 /* PremiseInfo.swift in Sources */,
 				675F4CBB24AB828200A828F9 /* NewSharePointAlert.swift in Sources */,
 				9CA1381E238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
+				67A18B9224CB354800F7A77B /* RefreshTokenRequest.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 				675F4B8324AB828100A828F9 /* CompareBillRequest.swift in Sources */,

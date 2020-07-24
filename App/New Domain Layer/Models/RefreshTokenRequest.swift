@@ -8,29 +8,25 @@
 
 import Foundation
 
-public struct TokenRequest: Encodable {
+public struct RefreshTokenRequest: Encodable {
     public init(clientId: String,
                 clientSecret: String,
-                username: String,
-                password: String) {
+                refreshToken: String) {
         self.clientId = clientId
         self.clientSecret = clientSecret
-        self.grantType = "password"
-        self.username = username
-        self.password = password
+        self.grantType = "refresh_token"
+        self.refreshToken = refreshToken
     }
     
     var clientId: String
     var clientSecret: String
     var grantType = "password"
-    let username: String
-    let password: String
+    let refreshToken: String
     
     enum CodingKeys: String, CodingKey {
         case clientId = "client_id"
         case clientSecret = "client_secret"
         case grantType = "grant_type"
-        case username
-        case password
+        case refreshToken
     }
 }

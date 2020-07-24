@@ -32,7 +32,7 @@ public enum Router {
     case maintenanceMode
     
     case fetchToken(request: TokenRequest)
-    case refreshToken(request: TokenRequest)
+    case refreshToken(request: RefreshTokenRequest)
     
     // Registration
     case registration(encodable: NewAccountRequest)
