@@ -62,32 +62,34 @@ class MaintenanceModeViewModel{
                 """
             , leaveAreaString, phone)
         case .pepco:
-            let phone = "todo"
+            let phone = "1-877-737-2662"
             phoneNumbers = [phone]
             localizedString = String.localizedStringWithFormat(
                 """
                 If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
                 Representatives are available 24 hours a day, 7 days a week.
                 """
-            , leaveAreaString, phone)
+                , leaveAreaString, phone)
         case .ace:
-            let phone = "todo"
+            let phone = "1-800-833-7476"
             phoneNumbers = [phone]
             localizedString = String.localizedStringWithFormat(
                 """
-                If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
+                If you see a downed power line, %@ and then call %@\n
                 Representatives are available 24 hours a day, 7 days a week.
                 """
-            , leaveAreaString, phone)
+                , leaveAreaString, phone)
         case .delmarva:
-            let phone = "todo"
-            phoneNumbers = [phone]
+            let phone1 = "1-800-898-8042"
+            let phone2 = "302-454-0317"
+            phoneNumbers = [phone1, phone2]
             localizedString = String.localizedStringWithFormat(
                 """
-                If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
+                If you see a downed power line or smell natural gas, %@ and then call %@.\n
+                For natural gas emergencies, call %@.\n
                 Representatives are available 24 hours a day, 7 days a week.
                 """
-            , leaveAreaString, phone)
+                , leaveAreaString, phone1, phone2)
         }
         
         let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
@@ -106,6 +108,7 @@ class MaintenanceModeViewModel{
     
     let footerLabelText: NSAttributedString = {
         let phoneString: String
+        var timings = "7AM to 7PM"
         switch Environment.shared.opco {
         case .bge:
             phoneString = "1-800-685-0123"
@@ -114,14 +117,15 @@ class MaintenanceModeViewModel{
         case .peco:
             phoneString = "1-800-494-4000"
         case .pepco:
-            phoneString = "todo"
+            phoneString = "202-833-7500"
+            timings = "7AM to 8PM"
         case .ace:
-            phoneString = "todo"
+            phoneString = "1-800-642-3780"
         case .delmarva:
-            phoneString = "todo"
+            phoneString = "1-800-375-7117"
         }
         
-        let localizedString = String.localizedStringWithFormat("For all other inquiries, please call %@ M-F 7AM to 7PM", phoneString)
+        let localizedString = String.localizedStringWithFormat("For all other inquiries, please call %@ M-F %@", phoneString, timings)
         let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
         attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phoneString))
         return attrString
