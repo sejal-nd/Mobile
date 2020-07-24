@@ -8,9 +8,13 @@
 
 import UIKit
 
-class OpcoIdentityCardView: UIView {
-        
+final class OpcoIdentityCardView: UIView {
+    // MARK: - IBOutlets
+    
+    /// `UILabel` instance to show nickname
     @IBOutlet private weak var accountNickname: UILabel!
+    
+    /// `UIIMageView` instance to show logo for selectetd opco
     @IBOutlet private weak var logo: UIImageView!
     
     static func create() -> OpcoIdentityCardView {
@@ -19,14 +23,20 @@ class OpcoIdentityCardView: UIView {
         return view
     }
     
-    func styleViews() {
+    /// This function styles view
+    private func styleViews() {
         backgroundColor = .primaryColor
         accountNickname.textColor = .white
         accountNickname.font = SystemFont.semibold.of(textStyle: .subheadline)
         accountNickname.isAccessibilityElement = true
-        accessibilityElements = [accountNickname] as [UIView]
+        accessibilityElements = [accountNickname, logo] as [UIView]
     }
     
+    /// This method is used to configure `OpcoIdentityCardView`
+    /// - Parameters:
+    ///   - nickname: `nickname`
+    ///   - opco: `opco`
+    ///   - hasMultipleAccounts: `flag` to identify whether the account has multiple accounts tagged to it
     func configure(nickname: String, opco: OpCo, hasMultipleAccounts: Bool) {
         // Account has a nickname and has multiple accounts attached to it
         if !nickname.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && hasMultipleAccounts {
@@ -43,6 +53,8 @@ class OpcoIdentityCardView: UIView {
         }
     }
     
+    /// This function sets opco logo
+    /// - Parameter opco: `opco`
     private func setOpcoLogo(opco: OpCo) {
         switch opco {
         case .ace:

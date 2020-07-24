@@ -793,10 +793,9 @@ extension HomeViewController: AccountPickerDelegate {
         
         if let account = accountPicker.currentAccount {
             if Environment.shared.opco.isPHI {
-                if accountPicker.accounts.count == 1 && account.accountNickname?.count == .zero {
-                    opcoIdentityViewHeightConstraint.constant = .zero
+                if accountPicker.accounts.count > 1 && account.accountNickname?.count == .zero {
+                    mainStackView.removeArrangedSubview(opcoIdentityView)
                 } else {
-                    opcoIdentityViewHeightConstraint.constant = opcoIdentityViewHeight
                     if let opcoType = account.opcoType {
                         opcoIdentityView.configure(nickname: account.accountNickname ?? "",
                                                    opco: opcoType,

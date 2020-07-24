@@ -17,7 +17,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnM-GZ-tUz">
                     <rect key="frame" x="15" y="50" width="0.0" height="0.0"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="sgb-OT-QL1"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="sgb-OT-QL1"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -31,7 +31,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="PnM-GZ-tUz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Xyh-7d-SeR"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="V0R-ro-a0g" secondAttribute="trailing" constant="15" id="grl-Tu-thW"/>
