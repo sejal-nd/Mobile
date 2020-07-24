@@ -15,7 +15,7 @@ import SafariServices
 
 fileprivate let editHomeSegueId = "editHomeSegue"
 fileprivate let colorBackgroundViewHeight: CGFloat = 342
-fileprivate let opcoIdentityViewHeight: CGFloat = 100
+fileprivate let opcoIdentityViewHeight: CGFloat = 73
 
 class HomeViewController: AccountPickerViewController {
     
@@ -153,7 +153,7 @@ class HomeViewController: AccountPickerViewController {
             termsAndConditionsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
             termsAndConditionsButton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
-                    print("Terms")
+                    self?.onTermsAndPolicyPress()
                 }).disposed(by: bag)
             contentStackView.insertArrangedSubview(termsAndConditionsButton, at: contentStackView.subviews.count)
         } else {
@@ -314,6 +314,13 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
     }
+    
+    private func onTermsAndPolicyPress() {
+        let moreStoryboard = UIStoryboard(name: "More", bundle: Bundle.main)
+        let termsAndPoliciesViewController = moreStoryboard.instantiateViewController(withIdentifier: "TermsPoliciesViewController")
+        navigationController?.pushViewController(termsAndPoliciesViewController, animated: true)
+    }
+    
     @IBAction func tempPresentAccount(_ sender: Any) {
         guard let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() else { return }
         vc.modalPresentationStyle = .overCurrentContext

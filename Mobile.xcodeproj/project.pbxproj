@@ -24876,7 +24876,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -24914,7 +24914,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.develop.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -24948,7 +24948,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -24982,7 +24982,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -25016,7 +25016,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -25050,7 +25050,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -25085,7 +25085,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -25162,7 +25162,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -25202,7 +25202,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.develop.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25238,7 +25238,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.staging.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25274,7 +25274,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.testing.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25310,7 +25310,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25346,7 +25346,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.prodbeta.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25382,7 +25382,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.hotfix.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "ACE Hotfix Watchkit App Enterprise Dist";
@@ -25460,7 +25460,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -25498,7 +25498,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.develop.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25532,7 +25532,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25566,7 +25566,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25600,7 +25600,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25634,7 +25634,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25669,7 +25669,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25746,7 +25746,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -25786,7 +25786,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.develop.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25822,7 +25822,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.staging.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25858,7 +25858,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.testing.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25894,7 +25894,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25930,7 +25930,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.prodbeta.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25966,7 +25966,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.hotfix.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Hotfix Watchkit App Enterprise Dist";
@@ -26044,7 +26044,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -26082,7 +26082,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.develop.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26116,7 +26116,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26150,7 +26150,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26184,7 +26184,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26218,7 +26218,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26253,7 +26253,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
