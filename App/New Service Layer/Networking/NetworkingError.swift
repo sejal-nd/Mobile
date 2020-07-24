@@ -9,6 +9,7 @@
 import Foundation
 
 public enum NetworkingError: Error, Equatable {
+    // Network Layer Errors
     case invalidToken // Login - tokens out of sync with server or expired
     case invalidURL
     case invalidResponse
