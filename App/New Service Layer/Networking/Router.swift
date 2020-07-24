@@ -301,7 +301,7 @@ public enum Router {
     }
     
     public var token: String {
-        return UserSession.shared.token
+        return UserSession.token
     }
     
     // todo: this may change to switch off of api access... I believe all vlaues below are derived from auth, anon, admin.  Hold off on changing this for now tho... need to dig deeper.
@@ -357,10 +357,8 @@ public enum Router {
             return "MinVersionMock"
         case .maintenanceMode:
             return "MaintenanceModeMock"
-        case .fetchToken:
+        case .fetchToken, .refreshToken:
             return "TokenMock"
-        case .refreshToken:
-            return "RefreshToken"
         case .accounts:
             return "AccountsMock"
         case .weather:

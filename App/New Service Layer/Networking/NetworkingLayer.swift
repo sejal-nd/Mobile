@@ -44,7 +44,7 @@ public enum NetworkingLayer {
         let session: URLSession
         if Environment.shared.environmentName == .aut {
             // Mock
-            let username = UserSession.shared.token
+            let username = UserSession.token
             let mockUser = NewMockDataKey(rawValue: username) ?? .default
             
             let configuration = URLProtocolMock.createMockURLConfiguration(path: url.absoluteString,

@@ -13,7 +13,12 @@ import RxSwift
 
 public struct AuthenticatedService {
     
-    private static let TOKEN_KEYCHAIN_KEY = "kExelon_Token"
+    private static let tokenKeychainKey = "jwtToken"
+    private static let tokenExpirationDateKeychainKey = "jwtTokenExpirationDate"
+    private static let refreshTokenKeychainKey = "jwtRefreshToken"
+    private static let refreshTokenExpirationDateKeychainKey = "jwtRefreshTokenExpirationDate"
+    private static let refreshTokenIssuedDateKeychainKey = "jwtRefreshTokenIssuedDate"
+    
     #if os(iOS)
     private static let tokenKeychain = A0SimpleKeychain()
     #elseif os(watchOS)
@@ -55,22 +60,14 @@ public struct AuthenticatedService {
     
     // todo may need to be fixed... not confident in implementation
     static func isLoggedIn() -> Bool {
-        return !UserSession.shared.token.isEmpty
+        return !UserSession.token.isEmpty
     }
     
     // todo need to verify cancelAllTasks for network actually works becuase we changed the network configuration
     static func logout() {
         NetworkingLayer.cancelAllTasks()
         
-        #if os(iOS)
-        AuthenticatedService.tokenKeychain.deleteEntry(forKey: AuthenticatedService.TOKEN_KEYCHAIN_KEY)
-        #elseif os(watchOS)
-        AuthenticatedService.tokenKeychain[AuthenticatedService.TOKEN_KEYCHAIN_KEY] = nil
-        #endif
-        UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameAccountNumber)
-        
-        UserSession.shared.token = "" // This might be wrong
-        
+        UserSession.deleteSession()
         
         // We may not even use accounts store anymore.
         AccountsStore.shared.accounts = nil
@@ -132,25 +129,11 @@ extension AuthenticatedService {
 //                    completion(.success(data.hasTempPassword))
 //                    return
 //                }
-                
-                guard let token = tokenResponse.token else { return }
-                
-                #if os(iOS)
-                if shouldSaveToKeychain {
-                    // Save Keep Me Signed In status
-                    UserDefaults.standard.set(shouldSaveToKeychain,
-                                              forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-                    // Save to keychain
-                    tokenKeychain.setString(token, forKey: TOKEN_KEYCHAIN_KEY)
-                    
-                    // Login on Apple Watch
-                    if let token = tokenResponse.token {
-                        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : token])
-                    }
+                do {
+                    try UserSession.createSession(tokenResponse: tokenResponse)
+                } catch {
+                    completion(.failure(.invalidToken))
                 }
-                #endif
-
-                UserSession.shared.token = token
                 
                 AccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
                     switch result {
@@ -180,9 +163,13 @@ extension AuthenticatedService {
 
     private static func performLoginMock(username: String,
                                          completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
-        // SET MOCK USER
-        UserSession.shared.token = username
-        
+        // Set mock user
+        do {
+            try UserSession.createSession(mockUsername: username)
+        } catch {
+            completion(.failure(.invalidToken))
+        }
+
         AccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
             switch result {
             case .success:

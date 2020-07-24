@@ -1734,12 +1734,12 @@
 		675F4D4D24AB828200A828F9 /* AlertBannerMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4124AB828000A828F9 /* AlertBannerMock.json */; };
 		675F4D4E24AB828200A828F9 /* AlertBannerMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4124AB828000A828F9 /* AlertBannerMock.json */; };
 		675F4D4F24AB828200A828F9 /* AlertBannerMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4124AB828000A828F9 /* AlertBannerMock.json */; };
-		675F4D5024AB828200A828F9 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* JWTTokenMock.json */; };
-		675F4D5124AB828200A828F9 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* JWTTokenMock.json */; };
-		675F4D5224AB828200A828F9 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* JWTTokenMock.json */; };
-		675F4D5324AB828200A828F9 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* JWTTokenMock.json */; };
-		675F4D5424AB828200A828F9 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* JWTTokenMock.json */; };
-		675F4D5524AB828200A828F9 /* JWTTokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* JWTTokenMock.json */; };
+		675F4D5024AB828200A828F9 /* TokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* TokenMock.json */; };
+		675F4D5124AB828200A828F9 /* TokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* TokenMock.json */; };
+		675F4D5224AB828200A828F9 /* TokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* TokenMock.json */; };
+		675F4D5324AB828200A828F9 /* TokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* TokenMock.json */; };
+		675F4D5424AB828200A828F9 /* TokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* TokenMock.json */; };
+		675F4D5524AB828200A828F9 /* TokenMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4224AB828000A828F9 /* TokenMock.json */; };
 		675F4D5624AB828200A828F9 /* HomeProfileLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4324AB828000A828F9 /* HomeProfileLoadMock.json */; };
 		675F4D5724AB828200A828F9 /* HomeProfileLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4324AB828000A828F9 /* HomeProfileLoadMock.json */; };
 		675F4D5824AB828200A828F9 /* HomeProfileLoadMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B4324AB828000A828F9 /* HomeProfileLoadMock.json */; };
@@ -7457,7 +7457,7 @@
 		675F4B3F24AB828000A828F9 /* GenericResponseMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GenericResponseMock.json; sourceTree = "<group>"; };
 		675F4B4024AB828000A828F9 /* AccountLookupMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountLookupMock.json; sourceTree = "<group>"; };
 		675F4B4124AB828000A828F9 /* AlertBannerMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlertBannerMock.json; sourceTree = "<group>"; };
-		675F4B4224AB828000A828F9 /* JWTTokenMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JWTTokenMock.json; sourceTree = "<group>"; };
+		675F4B4224AB828000A828F9 /* TokenMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TokenMock.json; sourceTree = "<group>"; };
 		675F4B4324AB828000A828F9 /* HomeProfileLoadMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeProfileLoadMock.json; sourceTree = "<group>"; };
 		675F4B4424AB828000A828F9 /* PaymentMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaymentMock.json; sourceTree = "<group>"; };
 		675F4B4524AB828000A828F9 /* WeatherMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WeatherMock.json; sourceTree = "<group>"; };
@@ -10175,7 +10175,7 @@
 				675F4B3F24AB828000A828F9 /* GenericResponseMock.json */,
 				675F4B4024AB828000A828F9 /* AccountLookupMock.json */,
 				675F4B4124AB828000A828F9 /* AlertBannerMock.json */,
-				675F4B4224AB828000A828F9 /* JWTTokenMock.json */,
+				675F4B4224AB828000A828F9 /* TokenMock.json */,
 				675F4B4324AB828000A828F9 /* HomeProfileLoadMock.json */,
 				675F4B4424AB828000A828F9 /* PaymentMock.json */,
 				675F4B4524AB828000A828F9 /* WeatherMock.json */,
@@ -12530,7 +12530,7 @@
 				67DDB48524535D2E006CD6EB /* HomeUpdateView.xib in Resources */,
 				67D73AEB246C47EF00450B63 /* NoNetworkConnectionView.xib in Resources */,
 				67DDB48624535D2E006CD6EB /* WebViewController.xib in Resources */,
-				675F4D5324AB828200A828F9 /* JWTTokenMock.json in Resources */,
+				675F4D5324AB828200A828F9 /* TokenMock.json in Resources */,
 				67DDB48724535D2E006CD6EB /* ButtonRow.xib in Resources */,
 				67DDBDBB246463B7006CD6EB /* GoogleService-Info_pepco_staging.plist in Resources */,
 				67DDB48824535D2E006CD6EB /* AlertPreferencesLanguageCell.xib in Resources */,
@@ -12796,7 +12796,7 @@
 				67DDB71524535D32006CD6EB /* Appt_Inprogress.json in Resources */,
 				67DDB71624535D32006CD6EB /* sm_outage.json in Resources */,
 				67DDB71724535D32006CD6EB /* UINavigationBackButton.xib in Resources */,
-				675F4D5524AB828200A828F9 /* JWTTokenMock.json in Resources */,
+				675F4D5524AB828200A828F9 /* TokenMock.json in Resources */,
 				67DDB71824535D32006CD6EB /* opco_updates.json in Resources */,
 				67DDB71924535D32006CD6EB /* peak_rewards_summary.json in Resources */,
 				675F4D3124AB828200A828F9 /* OutageStatusMock.json in Resources */,
@@ -12996,7 +12996,7 @@
 				67DDB96B24535D35006CD6EB /* Appt_Inprogress.json in Resources */,
 				67DDB96C24535D35006CD6EB /* sm_outage.json in Resources */,
 				67DDB96D24535D35006CD6EB /* UINavigationBackButton.xib in Resources */,
-				675F4D5424AB828200A828F9 /* JWTTokenMock.json in Resources */,
+				675F4D5424AB828200A828F9 /* TokenMock.json in Resources */,
 				67DDB96E24535D35006CD6EB /* opco_updates.json in Resources */,
 				67DDB96F24535D35006CD6EB /* peak_rewards_summary.json in Resources */,
 				675F4D3024AB828200A828F9 /* OutageStatusMock.json in Resources */,
@@ -13446,7 +13446,7 @@
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				67D73AFD246C72EE00450B63 /* environment.plist in Resources */,
 				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
-				675F4D5024AB828200A828F9 /* JWTTokenMock.json in Resources */,
+				675F4D5024AB828200A828F9 /* TokenMock.json in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
@@ -13615,7 +13615,7 @@
 				9C0EA5A6237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				67D73AF3246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */,
 				B08956FB2215D11B00A97965 /* energy_tips.json in Resources */,
-				675F4D5224AB828200A828F9 /* JWTTokenMock.json in Resources */,
+				675F4D5224AB828200A828F9 /* TokenMock.json in Resources */,
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				675F4D2E24AB828200A828F9 /* OutageStatusMock.json in Resources */,
@@ -13815,7 +13815,7 @@
 				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				B07E17E52209F0CA00B6E3C7 /* payments.json in Resources */,
 				67D73AF2246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */,
-				675F4D5124AB828200A828F9 /* JWTTokenMock.json in Resources */,
+				675F4D5124AB828200A828F9 /* TokenMock.json in Resources */,
 				B08956FA2215D11B00A97965 /* energy_tips.json in Resources */,
 				9C0EA5A5237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				675F4D2D24AB828200A828F9 /* OutageStatusMock.json in Resources */,
