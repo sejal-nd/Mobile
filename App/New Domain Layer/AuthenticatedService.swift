@@ -39,8 +39,10 @@ public struct AuthenticatedService {
     static func validateLogin(username: String,
                               password: String,
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
-        let tokenRequest = TokenRequest(username: "\(Environment.shared.opco.rawValue)\\\(username)",
-                                       password: password)
+        let tokenRequest = TokenRequest(clientId: Environment.shared.mcsConfig.clientID,
+                                        clientSecret: Environment.shared.mcsConfig.clientSecret,
+                                        username: "\(Environment.shared.opco.rawValue)\\\(username)",
+                                        password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
             switch result {
             case .success:
@@ -116,7 +118,9 @@ extension AuthenticatedService {
                                      password: String,
                                      shouldSaveToKeychain: Bool,
                                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
-        let tokenRequest = TokenRequest(username: "\(Environment.shared.opco.rawValue)\\\(username)",
+        let tokenRequest = TokenRequest(clientId: Environment.shared.mcsConfig.clientID,
+                                        clientSecret: Environment.shared.mcsConfig.clientSecret,
+                                        username: "\(Environment.shared.opco.rawValue)\\\(username)",
                                         password: password)
         print("TOKEN REQUEST EXAMPLE: \(tokenRequest)")
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in

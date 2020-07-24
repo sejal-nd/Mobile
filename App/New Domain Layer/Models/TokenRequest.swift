@@ -9,8 +9,8 @@
 import Foundation
 
 public struct TokenRequest: Encodable {
-    public init(clientId: String = "WbCpJpfgV64WTTDg",
-                clientSecret: String = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL",
+    public init(clientId: String,
+                clientSecret: String,
                 grantType: String = "password",
                 username: String,
                 password: String) {
@@ -21,8 +21,8 @@ public struct TokenRequest: Encodable {
         self.password = password
     }
     
-    var clientId = ""
-    var clientSecret = ""
+    var clientId: String
+    var clientSecret: String
     var grantType = "password"
     let username: String
     let password: String
