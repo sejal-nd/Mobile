@@ -10,3 +10,4 @@
 protocol Fillable {
     var isFilled: Bool { get }
 }
+
