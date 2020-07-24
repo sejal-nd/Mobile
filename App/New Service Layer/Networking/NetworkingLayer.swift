@@ -56,20 +56,60 @@ public enum NetworkingLayer {
             session = URLSession.default
         }
         
+        var retryCount = 3
+        
+        // todo this may create an infinite loop
+        
         // Check refresh token
-//        if router.apiAccess == .auth && TestUserSession.isRefreshTokenExpired {
-            // Refresh
+        if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Environment.shared.environmentName != .aut {
+            // token expired
+            print("token expired")
+
+            // Decrease retry counter
+            retryCount -= 1
             
-            // perform request
+            // Refresh Token
+            let refreshTokenRequest = RefreshTokenRequest(clientId: Environment.shared.mcsConfig.clientID,
+                                                          clientSecret: Environment.shared.mcsConfig.clientSecret,
+                                                          refreshToken: UserSession.refreshToken)
             
-            // retry 3 times
+            NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+                switch result {
+                case .success(let tokenResponse):
+                    do {
+                        // Create new user session
+                        try UserSession.createSession(tokenResponse: tokenResponse)
+                        
+                        // Perform initial request
+                        NetworkingLayer.dataTask(session: session,
+                                                 urlRequest: urlRequest,
+                                                 completion: completion)
+                    } catch {
+                        // Delete user session
+                        UserSession.deleteSession()
+                        completion(.failure(.invalidToken))
+                    }
+                case .failure(let error):
+                    // Delete user session
+                    UserSession.deleteSession()
+                    completion(.failure(error))
+                }
+            }
+        } else if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Environment.shared.environmentName != .aut {
+            // refresh expired
+            print("refresh token expired ")
             
-            // loggout
-//        } else {
+            // Delete user session
+            UserSession.deleteSession()
+            completion(.failure(.invalidToken))
+        } else {
+            print("TOKEN ELSE")
+            
+            // Perform initial request
             NetworkingLayer.dataTask(session: session,
                                      urlRequest: urlRequest,
                                      completion: completion)
-//        }
+        }
     }
     
     private static func dataTask<T: Decodable>(session: URLSession,

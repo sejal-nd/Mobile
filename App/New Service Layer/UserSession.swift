@@ -19,6 +19,14 @@ enum UserSession {
     private static let tokenExpirationDateKeychainKey = "jwtTokenExpirationDate"
     private static let refreshTokenKeychainKey = "jwtRefreshToken"
     private static let refreshTokenExpirationDateKeychainKey = "jwtRefreshTokenExpirationDate"
+
+    static var isTokenExpired: Bool {
+        return tokenExpirationDate > Date()
+    }
+    
+    static var isRefreshTokenExpired: Bool {
+        return refreshTokenExpirationDate > Date()
+    }
     
     static var token: String {
         var token = ""
