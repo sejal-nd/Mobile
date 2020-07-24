@@ -63,31 +63,20 @@ class LoginViewModel {
                                    shouldSaveToKeychain: keepMeSignedIn.value) { [weak self] (result: Result<Bool, NetworkingError>) in
                                     switch result {
                                     case .success(let hasTempPassword):
-                                        DispatchQueue.main.async {
-                                            guard let self = self else { return }
-                                            
-                                            self.isLoggingIn = false
-                                            
-                                            if hasTempPassword {
-                                                onSuccess(hasTempPassword, false)
-                                                AuthenticatedService.logout()
-                                            } else {
-                                                self.checkStormMode { isStormMode in
-                                                    onSuccess(hasTempPassword, isStormMode)
-                                                }
+                                        guard let self = self else { return }
+                                        
+                                        self.isLoggingIn = false
+                                        
+                                        if hasTempPassword {
+                                            onSuccess(hasTempPassword, false)
+                                            AuthenticatedService.logout()
+                                        } else {
+                                            self.checkStormMode { isStormMode in
+                                                onSuccess(hasTempPassword, isStormMode)
                                             }
                                         }
                                     case .failure(let error):
-                                        DispatchQueue.main.async {
-                                            switch error {
-                                            case .passwordProtected:
-                                                onError(NSLocalizedString("Password Protected Account", comment: ""), error.description)
-                                            case .accountNotActivated:
-                                                onRegistrationNotComplete()
-                                            default:
-                                                onError(nil, error.localizedDescription)
-                                            }
-                                        }
+                                        onError(error.title, error.description)
                                     }
         }
     }
