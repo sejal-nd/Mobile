@@ -38,7 +38,7 @@ public enum NetworkingLayer {
         }
         
         // Add Headers
-        NetworkingLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
+        NetworkingLayer.addHTTPHeaders(router.httpHeaders, request: &urlRequest)
         
         // Configure URL Session (Mock or regular)
         let session: URLSession
@@ -231,10 +231,10 @@ public enum NetworkingLayer {
         dLog("Cancelled all URL Session requests.")
     }
     
-    private static func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?,
+    private static func addHTTPHeaders(_ httpHeaders: HTTPHeaders,
                                              request: inout URLRequest) {
-        guard let headers = additionalHeaders else { return }
-        for (key, value) in headers {
+        guard !httpHeaders.isEmpty else { return }
+        for (key, value) in httpHeaders {
             request.setValue(value, forHTTPHeaderField: key)
         }
     }

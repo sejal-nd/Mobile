@@ -304,22 +304,23 @@ public enum Router {
         return UserSession.token
     }
     
-    // todo: this may change to switch off of api access... I believe all vlaues below are derived from auth, anon, admin.  Hold off on changing this for now tho... need to dig deeper.
-    public var httpHeaders: HTTPHeaders? {
-        var headers: HTTPHeaders? = nil
-
+    public var httpHeaders: HTTPHeaders {
+        var headers: HTTPHeaders = [:]
+        
         switch self {
         case .alertBanner, .newsAndUpdates:
-            headers?["Accept"] = "application/json;odata=verbose"
+            headers["Accept"] = "application/json;odata=verbose"
         case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .fetchToken, .refreshToken:
-            headers?["Content-Type"] = "application/json"
+            headers["Content-Type"] = "application/json"
         default:
             break
         }
         
         if apiAccess == .auth {
-            headers?["Authorization"] = "Bearer \(token)"
+            headers["Authorization"] = "Bearer \(token)"
         }
+        
+        print("Headers: \(headers)")
         
         return headers
     }

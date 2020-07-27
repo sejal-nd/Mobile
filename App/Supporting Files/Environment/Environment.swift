@@ -91,7 +91,7 @@ struct MCSConfig {
     let sharepointBaseURL: String
     var projectEnvironmentPath = ""
     
-    var clientID: String {
+    var clientSecret: String {
         var id = ""
         switch Environment.shared.environmentName {
         case .aut, .test, .dev:
@@ -104,7 +104,7 @@ struct MCSConfig {
         return id
     }
     
-    var clientSecret: String {
+    var clientID: String {
         var secret = ""
         switch Environment.shared.environmentName {
         case .aut, .test, .dev:
