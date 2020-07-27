@@ -373,12 +373,8 @@ class HomeBillCardViewModel {
                     text = NSLocalizedString("You have processing payments", comment: "")
                 case .comEd, .peco:
                     text = NSLocalizedString("You have pending payments", comment: "")
-                case .pepco:
-                    text = NSLocalizedString("todo", comment: "")
-                case .ace:
-                    text = NSLocalizedString("todo", comment: "")
-                case .delmarva:
-                    text = NSLocalizedString("todo", comment: "")
+                case .ace, .delmarva, .pepco:
+                    text = NSLocalizedString("You have pending payments", comment: "")
                 }
                 return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .headline),
                                                                      .foregroundColor: textColor])
