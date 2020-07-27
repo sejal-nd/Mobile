@@ -66,7 +66,7 @@ class MaintenanceModeViewModel{
             phoneNumbers = [phone]
             localizedString = String.localizedStringWithFormat(
                 """
-                If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
+                If you see a downed power line, %@ and then call %@\n
                 Representatives are available 24 hours a day, 7 days a week.
                 """
                 , leaveAreaString, phone)
@@ -125,7 +125,7 @@ class MaintenanceModeViewModel{
             phoneString = "1-800-375-7117"
         }
         
-        let localizedString = String.localizedStringWithFormat("For all other inquiries, please call %@ M-F %@", phoneString, timings)
+        let localizedString = String.localizedStringWithFormat("For all other inquiries, please call %@ M-F %@.", phoneString, timings)
         let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
         attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phoneString))
         return attrString
