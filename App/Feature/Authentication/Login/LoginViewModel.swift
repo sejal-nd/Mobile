@@ -18,7 +18,6 @@ class LoginViewModel {
     var username = BehaviorRelay(value: "")
     var password = BehaviorRelay(value: "")
     var biometricsAutofilledPassword: String? = nil
-    var keepMeSignedIn = BehaviorRelay(value: false)
     var biometricsEnabled = BehaviorRelay(value: false)
     var isLoggingIn = false
     
@@ -59,8 +58,7 @@ class LoginViewModel {
         
         isLoggingIn = true
         AuthenticatedService.login(username: username.value,
-                                   password: password.value,
-                                   shouldSaveToKeychain: keepMeSignedIn.value) { [weak self] (result: Result<Bool, NetworkingError>) in
+                                   password: password.value) { [weak self] (result: Result<Bool, NetworkingError>) in
                                     switch result {
                                     case .success(let hasTempPassword):
                                         guard let self = self else { return }

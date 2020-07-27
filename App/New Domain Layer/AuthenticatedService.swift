@@ -27,13 +27,11 @@ public struct AuthenticatedService {
     
     static func login(username: String,
                       password: String,
-                      shouldSaveToKeychain: Bool,
                       completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
         
         if Environment.shared.environmentName != .aut {
             performLogin(username: username,
                          password: password,
-                         shouldSaveToKeychain: shouldSaveToKeychain,
                          completion: completion)
         } else {
             performLoginMock(username: username,
@@ -113,7 +111,6 @@ extension AuthenticatedService {
     
     private static func performLogin(username: String,
                                      password: String,
-                                     shouldSaveToKeychain: Bool,
                                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
         let tokenRequest = TokenRequest(clientId: Environment.shared.mcsConfig.clientID,
                                         clientSecret: Environment.shared.mcsConfig.clientSecret,

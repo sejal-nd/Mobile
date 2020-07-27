@@ -399,7 +399,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
     func launchMainApp(isStormMode: Bool) {
         FirebaseUtility.setUserProperty(.isBiometricsEnabled, value: viewModel.biometricsEnabled.value.description)
-        FirebaseUtility.setUserProperty(.isKeepMeSignedInEnabled, value: viewModel.keepMeSignedIn.value.description)
 
         FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
         GoogleAnalytics.log(event: .loginComplete)

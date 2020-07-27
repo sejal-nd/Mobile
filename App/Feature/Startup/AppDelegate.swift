@@ -100,8 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Set "Report Outage" quick action for unauthenticated users
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked) &&
-            UserDefaults.standard.bool(forKey:  UserDefaultKeys.hasAcceptedTerms) {
+        if UserDefaults.standard.bool(forKey:  UserDefaultKeys.hasAcceptedTerms) {
             configureQuickActions(isAuthenticated: false)
         }
         
@@ -347,7 +346,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
             
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
             self.configureQuickActions(isAuthenticated: false)
         }
     }
@@ -361,7 +359,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
             
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
             self.configureQuickActions(isAuthenticated: false)
         }
     }
@@ -564,7 +561,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked) {
+        if AuthenticatedService.isLoggedIn() {
             // Single account, keep me signed in
             let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
             let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)

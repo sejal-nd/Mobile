@@ -249,7 +249,6 @@ enum AnalyticsOutageSource {
 }
 
 enum GoogleAnalyticsDimension: UInt {
-    case keepMeSignedIn = 3
     case fingerprintUsed = 4
     case errorCode = 5
     case otpEnabled = 6

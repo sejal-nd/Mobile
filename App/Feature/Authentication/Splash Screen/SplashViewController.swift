@@ -29,7 +29,6 @@ class SplashViewController: UIViewController{
     @IBOutlet weak var retryButton: ButtonControl!
     
     var performDeepLink = false
-    var keepMeSignedIn = false
     var shortcutItem = ShortcutItem.none
     var readyForLogin = false
     
@@ -72,7 +71,6 @@ class SplashViewController: UIViewController{
             .disposed(by: bag)
         
         if AuthenticatedService.isLoggedIn() {
-            self.keepMeSignedIn = true
             self.imageView.isHidden = false
             self.splashAnimationContainer.isHidden = true
         } else {
@@ -93,7 +91,7 @@ class SplashViewController: UIViewController{
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if !keepMeSignedIn && splashAnimationView == nil {
+        if !AuthenticatedService.isLoggedIn() && splashAnimationView == nil {
             splashAnimationView = AnimationView(name: "splash")
             splashAnimationView!.frame.size = splashAnimationContainer.frame.size
             splashAnimationView!.loopMode = .playOnce
@@ -125,7 +123,7 @@ class SplashViewController: UIViewController{
         
         readyForLogin = true
         
-        if keepMeSignedIn {
+        if AuthenticatedService.isLoggedIn() {
             viewModel.checkStormMode { [weak self] isStormMode in
                 guard let this = self else { return }
                 this.loadingTimer.invalidate()

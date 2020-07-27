@@ -18,7 +18,6 @@ struct FirebaseUtility {
         case errorNonFatal
         
         case login
-        case keepMeSignedIn
         
         case autoPay
         case budgetBill
@@ -83,7 +82,6 @@ struct FirebaseUtility {
     
     /// Name of user property -> Mapped directly to Firebase
     enum UserProperty: String {
-        case isKeepMeSignedInEnabled
         case isBiometricsEnabled
         
         case isControlGroup
