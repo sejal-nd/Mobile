@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +16,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MaintenanceModeView" customModule="BGE" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MaintenanceModeView" customModule="ACE" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="iN0-l3-epB" id="FZr-WY-33r"/>
                 <outlet property="detailLabel" destination="22Z-U5-hHf" id="Bk1-XB-5VT"/>
@@ -37,19 +35,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vx-F6-RTB">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="plk-KV-juc">
-                            <rect key="frame" x="29" y="25" width="317" height="472.5"/>
+                            <rect key="frame" x="29" y="98" width="317" height="471"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="88x-aH-OQP">
-                                    <rect key="frame" x="0.0" y="0.0" width="317" height="284"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="317" height="282.5"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_maint_mode_white" translatesAutoresizingMaskIntoConstraints="NO" id="CBa-iG-eug">
                                             <rect key="frame" x="96" y="8" width="125" height="126"/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" restorationIdentifier="Reload View" translatesAutoresizingMaskIntoConstraints="NO" id="GGR-69-hpb" userLabel="Reload Button" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="119.5" y="169" width="78.5" height="20.5"/>
+                                        <view contentMode="scaleToFill" restorationIdentifier="Reload View" translatesAutoresizingMaskIntoConstraints="NO" id="GGR-69-hpb" userLabel="Reload Button" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
+                                            <rect key="frame" x="119.5" y="160" width="78.5" height="20.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f4F-IA-Aj6">
                                                     <rect key="frame" x="0.0" y="0.0" width="78.5" height="20.5"/>
@@ -85,13 +83,16 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Maintenance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgx-50-2me">
-                                            <rect key="frame" x="101.5" y="218.5" width="114" height="25"/>
+                                            <rect key="frame" x="101.5" y="204.5" width="114" height="25"/>
                                             <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22Z-U5-hHf">
-                                            <rect key="frame" x="29" y="245.5" width="259" height="38.5"/>
+                                            <rect key="frame" x="29" y="231.5" width="259" height="51"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="51" id="6hb-Bw-q3L"/>
+                                            </constraints>
                                             <string key="text">Billing is currently unavailable due to
 maintenance.</string>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
@@ -104,11 +105,11 @@ maintenance.</string>
                                         <constraint firstItem="22Z-U5-hHf" firstAttribute="centerX" secondItem="88x-aH-OQP" secondAttribute="centerX" id="85V-8N-ybb"/>
                                         <constraint firstItem="22Z-U5-hHf" firstAttribute="leading" secondItem="88x-aH-OQP" secondAttribute="leading" priority="999" constant="29" id="AfF-lO-F0Q"/>
                                         <constraint firstAttribute="trailing" secondItem="22Z-U5-hHf" secondAttribute="trailing" priority="999" constant="29" id="HVu-j5-4wU"/>
-                                        <constraint firstItem="GGR-69-hpb" firstAttribute="top" secondItem="CBa-iG-eug" secondAttribute="bottom" constant="35" id="LEC-lR-r1e"/>
+                                        <constraint firstItem="GGR-69-hpb" firstAttribute="top" secondItem="CBa-iG-eug" secondAttribute="bottom" constant="26" id="LEC-lR-r1e"/>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="NS7-TR-p5O"/>
                                         <constraint firstItem="GGR-69-hpb" firstAttribute="centerX" secondItem="88x-aH-OQP" secondAttribute="centerX" id="PEg-7v-03T"/>
                                         <constraint firstAttribute="width" priority="999" constant="460" id="aVs-C1-qNF"/>
-                                        <constraint firstItem="Rgx-50-2me" firstAttribute="top" secondItem="GGR-69-hpb" secondAttribute="bottom" constant="29" id="dhm-lb-PIR"/>
+                                        <constraint firstItem="Rgx-50-2me" firstAttribute="top" secondItem="GGR-69-hpb" secondAttribute="bottom" constant="24" id="dhm-lb-PIR"/>
                                         <constraint firstItem="Rgx-50-2me" firstAttribute="centerX" secondItem="88x-aH-OQP" secondAttribute="centerX" id="gjg-WE-6E2"/>
                                         <constraint firstItem="CBa-iG-eug" firstAttribute="centerX" secondItem="88x-aH-OQP" secondAttribute="centerX" id="iUZ-tA-xdY"/>
                                         <constraint firstAttribute="bottom" secondItem="22Z-U5-hHf" secondAttribute="bottom" id="ogS-4y-DOn"/>
@@ -117,9 +118,9 @@ maintenance.</string>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjN-RG-fyz">
-                                    <rect key="frame" x="0.0" y="314" width="317" height="158.5"/>
+                                    <rect key="frame" x="0.0" y="312.5" width="317" height="158.5"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4A1-zL-FUI" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4A1-zL-FUI" customClass="DataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                             <rect key="frame" x="22" y="22" width="273" height="114.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <string key="text">If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123 
@@ -144,8 +145,9 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                         </stackView>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="plk-KV-juc" firstAttribute="centerX" secondItem="9Vx-F6-RTB" secondAttribute="centerX" id="BWZ-kb-VaS"/>
+                        <constraint firstItem="plk-KV-juc" firstAttribute="centerY" secondItem="9Vx-F6-RTB" secondAttribute="centerY" id="Gio-MQ-MuT"/>
                         <constraint firstItem="plk-KV-juc" firstAttribute="leading" secondItem="9Vx-F6-RTB" secondAttribute="leading" constant="29" id="HNh-7E-7mB"/>
-                        <constraint firstItem="plk-KV-juc" firstAttribute="top" secondItem="9Vx-F6-RTB" secondAttribute="top" constant="25" id="OjC-p0-QEZ"/>
                         <constraint firstAttribute="trailing" secondItem="plk-KV-juc" secondAttribute="trailing" constant="29" id="jrB-5o-FWZ"/>
                         <constraint firstAttribute="bottom" secondItem="plk-KV-juc" secondAttribute="bottom" constant="25" id="nFc-zI-McQ"/>
                         <constraint firstItem="plk-KV-juc" firstAttribute="centerX" secondItem="9Vx-F6-RTB" secondAttribute="centerX" id="v6n-qu-dVG"/>
