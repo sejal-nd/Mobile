@@ -8,6 +8,7 @@
 
 import Foundation
 
+// todo this will be extracted to a playground once we have this in a swift package.
 class NetworkTest {
     static let shared = NetworkTest()
     
