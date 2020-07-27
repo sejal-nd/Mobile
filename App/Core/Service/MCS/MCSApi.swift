@@ -175,7 +175,7 @@ class MCSApi {
         APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .request, message: bodyString)
         
         // Build Request
-        let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)\(Environment.shared.mcsConfig.projectEnvironmentPath)/mobile/custom/\(path)")!
+        let url = URL(string: "https://\(Environment.shared.mcsConfig.baseUrl)\(Environment.shared.mcsConfig.projectEnvironmentPath)/mobile/custom/\(path)")!
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.httpBody = requestBody

@@ -1999,6 +1999,8 @@
 		676279F2247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
 		676279F3247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
 		676279F4247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
+		678B621224CF4F75009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
+		678B621324CF4F7E009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
 		67D73AE3246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
@@ -16169,6 +16171,7 @@
 				673FA0F424C8A52700210BCD /* AnonymousService+RX.swift in Sources */,
 				35F9DE0D23353A5300AAA2B2 /* BillInterfaceController.swift in Sources */,
 				C3087B2F24BE31BA005AE544 /* VoidDecodable.swift in Sources */,
+				678B621224CF4F75009F8A6B /* AnonymousService.swift in Sources */,
 				35F9DE2823353CB100AAA2B2 /* MCSAuthenticationService.swift in Sources */,
 				35F9DE3823353D1300AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */,
@@ -18502,6 +18505,7 @@
 				673F9FB624C8943F00210BCD /* NewResponseWrapper.swift in Sources */,
 				673F9FC524C8945C00210BCD /* NetworkingError.swift in Sources */,
 				673F9F8924C8931500210BCD /* CustomerInfo.swift in Sources */,
+				678B621324CF4F7E009F8A6B /* AnonymousService.swift in Sources */,
 				673F9F5624C8929600210BCD /* BillingInfo.swift in Sources */,
 				673FA0EB24C89A1900210BCD /* AccountLookupResults.swift in Sources */,
 				673FA05D24C8956200210BCD /* AlertPreferencesNew.swift in Sources */,
