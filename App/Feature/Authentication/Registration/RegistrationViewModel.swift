@@ -59,48 +59,31 @@ class RegistrationViewModel {
     func validateAccount(onSuccess: @escaping () -> Void,
                          onMultipleAccounts: @escaping() -> Void,
                          onError: @escaping (String, String) -> Void) {
-      //  let identifier: String = identifierNumber.value
-        var phoneNumber = ""
-        var identifierValue = ""
-        var accountNumber = ""
-        var dueAmount = ""
-        var dueDate = ""
         
+        var validateAccountRequest: ValidateAccountRequest
         if selectedSegmentIndex.value == .zero {
-             phoneNumber = extractDigitsFrom(self.phoneNumber.value)
-             identifierValue = identifierNumber.value
+            validateAccountRequest = ValidateAccountRequest(identifier: identifierNumber.value,
+                                                            phoneNumber: extractDigitsFrom(self.phoneNumber.value))
         } else {
-             accountNumber = self.accountNumber.value
-            dueAmount = String(self.totalAmountDue.value)
-            dueDate = self.dueDate.value?.yyyyMMddString ?? ""
+            validateAccountRequest = ValidateAccountRequest(accountNumber: self.accountNumber.value,
+                                                            billDate: String(self.totalAmountDue.value),
+                                                            amountDue: self.dueDate.value?.yyyyMMddString ?? "")
         }
-        registrationService.validateAccountInformation(identifierValue,
-                                                       phone: phoneNumber,
-                                                       accountNum: accountNumber,
-                                                       dueAmount: dueAmount,
-                                                       dueDate: dueDate)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] data in
-                guard let self = self else { return }
-                let types = data["type"] as? [String]
-                self.accountType.accept(types?.first ?? "")
-                self.isPaperlessEbillEligible = (data["ebill"] as? Bool) ?? false
                 
+        RegistrationServiceNew.validateRegistration(request: validateAccountRequest) { [weak self] result in
+            switch result {
+            case .success(let validatedAccount):
+                self?.accountType.accept(validatedAccount.type?.first ?? "")
+                self?.isPaperlessEbillEligible = validatedAccount.isEbill
                 onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue {
-                    onError(NSLocalizedString("Invalid Information", comment: ""), NSLocalizedString("The information entered does not match our records. Please try again.", comment: ""))
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountMultiple.rawValue {
+            case .failure(let error):
+                if error == .multiAccount {
                     onMultipleAccounts()
-                } else if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
-                    onError(NSLocalizedString("Profile Exists", comment: ""), NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: ""))
                 } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                    onError(error.title, error.description)
                 }
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     func verifyUniqueUsername(onSuccess: @escaping () -> Void,

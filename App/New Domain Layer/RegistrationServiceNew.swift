@@ -21,7 +21,7 @@ struct RegistrationServiceNew {
         NetworkingLayer.request(router: .registrationQuestions, completion: completion)
     }
     
-    static func validateRegistration(request: ValidateAccountRequest, completion: @escaping (Result<ValidatedAccount, NetworkingError>) -> ()) {
+    static func validateRegistration(request: ValidateAccountRequest, completion: @escaping (Result<ValidatedAccountResponse, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .validateRegistration(encodable: request), completion: completion)
     }
     
