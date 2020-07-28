@@ -42,15 +42,6 @@ struct ServiceFactory {
         }
     }
 
-    static func createRegistrationService() -> RegistrationService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockRegistrationService()
-        default:
-            return MCSRegistrationService()
-        }
-    }
-
     static func createPaymentService() -> PaymentService {
         switch Environment.shared.environmentName {
         case .aut:

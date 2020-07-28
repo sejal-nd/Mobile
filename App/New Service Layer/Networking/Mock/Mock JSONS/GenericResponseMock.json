@@ -1,8 +1,16 @@
 {
-  "default": {
-    "success": true,
-    "data": {
-      "confirmationNumber": "CB30486449"
+    "default": {
+        "success": true,
+        "data": {
+            "confirmationNumber": "CB30486449"
+        }
+    },
+    "error": {
+        "success": false,
+        "meta": {
+            "code": "FN-PROF-EXISTS",
+            "description": null,
+            "context": "62c69300-d0f4-11ea-960c-1b7e29b41cd1"
+        }
     }
-  }
 }

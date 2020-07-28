@@ -47,14 +47,8 @@ class RegistrationViewModel {
     var securityQuestions: [String]?
     
     var accounts = BehaviorRelay<[AccountLookupResult]>(value: [])
-    
-    var registrationService: RegistrationService
-    
+        
     var hasStrongPassword = false // Keeps track of strong password for Analytics
-    
-    required init(registrationService: RegistrationService) {
-        self.registrationService = registrationService
-    }
     
     func validateAccount(onSuccess: @escaping () -> Void,
                          onMultipleAccounts: @escaping() -> Void,
@@ -70,7 +64,7 @@ class RegistrationViewModel {
                                                             amountDue: self.dueDate.value?.yyyyMMddString ?? "")
         }
                 
-        RegistrationServiceNew.validateRegistration(request: validateAccountRequest) { [weak self] result in
+        RegistrationService.validateRegistration(request: validateAccountRequest) { [weak self] result in
             switch result {
             case .success(let validatedAccount):
                 self?.accountType.accept(validatedAccount.type?.first ?? "")
@@ -89,10 +83,8 @@ class RegistrationViewModel {
     func verifyUniqueUsername(onSuccess: @escaping () -> Void,
                               onEmailAlreadyExists: @escaping () -> Void,
                               onError: @escaping (String, String) -> Void) {
-        
         let usernameReqeust = UsernameRequest(username: username.value)
-        
-        RegistrationServiceNew.checkDuplicateRegistration(request: usernameReqeust) { [weak self] result in
+        RegistrationService.checkDuplicateRegistration(request: usernameReqeust) { [weak self] result in
             switch result {
             case .success:
                 if #available(iOS 12.0, *) {
@@ -120,68 +112,44 @@ class RegistrationViewModel {
     }
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        registrationService.createNewAccount(username: username.value,
-                                             password: newPassword.value,
-                                             accountNum: accountNumber.value,
-                                             identifier: identifierNumber.value,
-                                             phone: extractDigitsFrom(phoneNumber.value),
-                                             question1: securityQuestion1.value!,
-                                             answer1: securityAnswer1.value,
-                                             question2: securityQuestion2.value!,
-                                             answer2: securityAnswer2.value,
-                                             question3: securityQuestion3.value ?? "", // "" for BGE since no 3rd question
-                                             answer3: securityAnswer3.value,
-                                             isPrimary: primaryProfile.value ? "true" : "false",
-                                             isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        let newAccountRequest = NewAccountRequest(username: username.value,
+                                                  password: newPassword.value,
+                                                  accountNumber: accountNumber.value,
+                                                  identifier: identifierNumber.value,
+                                                  phone: extractDigitsFrom(phoneNumber.value),
+                                                  question1: securityQuestion1.value ?? "",
+                                                  answer1: securityAnswer1.value,
+                                                  question2: securityQuestion2.value ?? "",
+                                                  answer2: securityAnswer2.value,
+                                                  question3: securityQuestion3.value ?? "",
+                                                  answer3: securityAnswer3.value,
+                                                  isPrimary: primaryProfile.value ? "true" : "false",
+                                                  shouldEnrollEbill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
+        RegistrationService.createAccount(request: newAccountRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                
-                switch (serviceError.serviceCode) {
-                case ServiceErrorCode.fnAccountMultiple.rawValue:
-                    onError(NSLocalizedString("Multiple Accounts", comment: ""), error.localizedDescription)
-            
-                case ServiceErrorCode.fnCustomerNotFound.rawValue:
-                    onError(NSLocalizedString("Customer Not Found", comment: ""), error.localizedDescription)
-                    
-                case ServiceErrorCode.fnUserInvalid.rawValue:
-                    onError(NSLocalizedString("User Invalid", comment: ""), error.localizedDescription)
-                    
-                case ServiceErrorCode.fnUserExists.rawValue:
-                    onError(NSLocalizedString("User Exists", comment: ""), error.localizedDescription)
-                    
-                case ServiceErrorCode.fnProfileExists.rawValue:
-                    onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
-                    
-                case ServiceErrorCode.tcUnknown.rawValue:
-                    fallthrough
-                    
-                default:
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
-                }
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.title, error.description)
+            }
+        }
     }
     
     func loadSecurityQuestions(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        registrationService.loadSecretQuestions()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] array in
-                guard let self = self else { return }
-                self.securityQuestions = array
+        RegistrationService.getRegistrationQuestions { [weak self] result in
+            switch result {
+            case .success(let securityQuestions):
+                self?.securityQuestions = securityQuestions
                 onSuccess()
-            }, onError: { error in
-                onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.title, error.description)
+            }
+        }
     }
     
     func loadAccounts(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let accountLookupRequest = AccountLookupRequest(phone: extractDigitsFrom(phoneNumber.value),
                                                         identifier: identifierNumber.value)
-        
         AnonymousService.lookupAccount(request: accountLookupRequest) { [weak self] result in
             switch result {
             case .success(let accountLookupResults):

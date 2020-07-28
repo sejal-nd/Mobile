@@ -35,7 +35,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var continueButton: PrimaryButton!
 
-    let viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    let viewModel = RegistrationViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
