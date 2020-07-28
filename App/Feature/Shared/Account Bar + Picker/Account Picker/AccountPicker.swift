@@ -127,7 +127,6 @@ class AccountPicker: UIControl {
     func refresh(force: Bool = false) {
         if force || shouldRefresh {
             currentAccount = AccountsStore.shared.currentAccount
-            delegate?.accountPickerDidChangeAccount(self)
             
             let isSingleAccount = accounts.count == 1 && !isMultiPremise
             multiAccountView.isHidden = isSingleAccount
@@ -180,6 +179,7 @@ class AccountPicker: UIControl {
             }
 
             accessibilityLabel = a11yDescription
+            delegate?.accountPickerDidChangeAccount(self)
         }
     }
     

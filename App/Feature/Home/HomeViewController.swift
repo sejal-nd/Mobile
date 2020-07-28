@@ -15,6 +15,7 @@ import SafariServices
 
 fileprivate let editHomeSegueId = "editHomeSegue"
 fileprivate let colorBackgroundViewHeight: CGFloat = 342
+fileprivate let opcoIdentityViewHeight: CGFloat = 73
 
 class HomeViewController: AccountPickerViewController {
     
@@ -30,6 +31,8 @@ class HomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var personalizeButton: UIButton!
     
+    var termsAndConditionsButton: UIButton!
+    
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
     var gameOnboardingCardView: HomeGameOnboardingCardView?
@@ -42,6 +45,8 @@ class HomeViewController: AccountPickerViewController {
     var projectedBillCardView: HomeProjectedBillCardView?
     var outageCardView: HomeOutageCardView?
     var topPersonalizeButton: ConversationalButton?
+    var opcoIdentityView: OpcoIdentityCardView!
+    var opcoIdentityViewHeightConstraint: NSLayoutConstraint!
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
@@ -131,7 +136,29 @@ class HomeViewController: AccountPickerViewController {
         
         // Create weather card
         weatherView = .create(withViewModel: viewModel.weatherViewModel)
-        mainStackView.insertArrangedSubview(weatherView, at: 0)
+
+        if Environment.shared.opco.isPHI {
+            // Create Opco Identifier Card
+            opcoIdentityView = .create()
+            mainStackView.insertArrangedSubview(opcoIdentityView, at: 0)
+            mainStackView.insertArrangedSubview(weatherView, at: 1)
+            opcoIdentityView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
+            opcoIdentityView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
+            opcoIdentityViewHeightConstraint = opcoIdentityView.heightAnchor.constraint(equalToConstant: opcoIdentityViewHeight)
+            opcoIdentityViewHeightConstraint.isActive = true
+            // Add a terms & conditions Button at the end of the stack for PHI ocpos
+            termsAndConditionsButton = UIButton()
+            termsAndConditionsButton.setTitle("Policies & Terms", for: .normal)
+            termsAndConditionsButton.setTitleColor(.actionBlue, for: .normal)
+            termsAndConditionsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+            termsAndConditionsButton.rx.tap.asDriver()
+                .drive(onNext: { [weak self] in
+                    self?.onTermsAndPolicyPress()
+                }).disposed(by: bag)
+            contentStackView.insertArrangedSubview(termsAndConditionsButton, at: contentStackView.subviews.count)
+        } else {
+            mainStackView.insertArrangedSubview(weatherView, at: 0)
+        }
         weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
         weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
         
@@ -287,6 +314,13 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
     }
+    
+    private func onTermsAndPolicyPress() {
+        let moreStoryboard = UIStoryboard(name: "More", bundle: Bundle.main)
+        let termsAndPoliciesViewController = moreStoryboard.instantiateViewController(withIdentifier: "TermsPoliciesViewController")
+        navigationController?.pushViewController(termsAndPoliciesViewController, animated: true)
+    }
+    
     @IBAction func tempPresentAccount(_ sender: Any) {
         guard let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() else { return }
         vc.modalPresentationStyle = .overCurrentContext
@@ -756,7 +790,21 @@ extension HomeViewController: AccountPickerDelegate {
         // enable refresh control once accounts list loads
         setRefreshControlEnabled(enabled: true)
         viewModel.fetchData.onNext(())
-
+        
+        if let account = accountPicker.currentAccount {
+            if Environment.shared.opco.isPHI {
+                if accountPicker.accounts.count > 1 && account.accountNickname?.count == .zero {
+                    mainStackView.removeArrangedSubview(opcoIdentityView)
+                } else {
+                    if let opcoType = account.opcoType {
+                        opcoIdentityView.configure(nickname: account.accountNickname ?? "",
+                                                   opco: opcoType,
+                                                   hasMultipleAccounts: (accountPicker.accounts.count > 1))
+                    }
+                }
+                
+            }
+        }
         let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
         let prefersGameHome = UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome)
         let onboardingCompleteLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
