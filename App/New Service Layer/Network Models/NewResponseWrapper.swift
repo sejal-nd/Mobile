@@ -32,11 +32,14 @@ struct NewResponseWrapper<T: Decodable>: Decodable {
                 print("ERROR")
                 let container = try decoder.singleValueContainer()
                 self.error = try container.decode(EndpointError.self)
-            } else {
+            } else if container.contains(.data) {
                 print("DECODE DATA")
                 self.data = try container.decode(T.self, forKey: .data)
                 print("DATA: \(data)")
-                
+            } else {
+                print("no data")
+                let container = try decoder.singleValueContainer()
+                self.data = try container.decode(T.self)
             }
         } else { // no response wrapper
             print("no data")

@@ -1,0 +1,27 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "multipleCustomers": false,
+      "type": [
+        "residential"
+      ],
+      "accounts": [
+        {
+          "accountNumber": "******0014",
+          "fullAccountNumber": "5664240014",
+          "street": "3843",
+          "unit": "2"
+        },
+        {
+          "accountNumber": "******0046",
+          "fullAccountNumber": "1182150046",
+          "street": "3012",
+          "unit": null
+        }
+      ],
+      "ebill": false,
+      "eBillAccounts": []
+    }
+  }
+}

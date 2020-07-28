@@ -28,7 +28,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
     
     @IBOutlet weak var continueButton: PrimaryButton!
 
-    let viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    let viewModel = RegistrationViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()

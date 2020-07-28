@@ -21,7 +21,7 @@ public enum Router {
         public var path: String {
             switch self {
             case .anon:
-                return "\(rawValue)/\(Environment.shared.opco.rawValue)"
+                return "\(rawValue)/\(Environment.shared.opco.rawValue.uppercased())"
             default:
                 return rawValue
             }
@@ -34,12 +34,12 @@ public enum Router {
     case fetchJWTToken(request: JWTRequest)
     
     // Registration
-    case registration(encodable: NewAccountRequest)
-    case checkDuplicateRegistration(encodable: UsernameRequest)
+    case validateRegistration(request: ValidateAccountRequest)
+    case checkDuplicateRegistration(request: UsernameRequest)
     case registrationQuestions
-    case validateRegistration(encodable: ValidateAccountRequest)
-    case sendConfirmationEmail(encodable: UsernameRequest)
-    case validateConfirmationEmail(encodable: GuidRequest)
+    case register(request: NewAccountRequest)
+    case sendConfirmationEmail(request: UsernameRequest)
+    case validateConfirmationEmail(request: GuidRequest)
     
     case accounts
     case accountDetails(accountNumber: String, queryString: String)
@@ -156,7 +156,7 @@ public enum Router {
         switch self {
         case .weather:
             return .external
-        case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup:
+        case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail:
             return .anon
         default:
             return .auth
@@ -183,7 +183,7 @@ public enum Router {
             return "\(basePath)/\(apiAccess.path)/config/versions"
         case .fetchJWTToken:
             return "/eu/oauth2/token"
-        case .registration:
+        case .register:
             return "\(basePath)/\(apiAccess.path)/registration"
         case .checkDuplicateRegistration:
             return "\(basePath)/\(apiAccess.path)/registration/duplicate"
@@ -285,7 +285,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon:
+        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .register, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname:
             return "GET"
@@ -302,22 +302,22 @@ public enum Router {
     }
     
     // todo: this may change to switch off of api access... I believe all vlaues below are derived from auth, anon, admin.  Hold off on changing this for now tho... need to dig deeper.
-    public var httpHeaders: HTTPHeaders? {
-        var headers: HTTPHeaders? = nil
+    public var httpHeaders: HTTPHeaders {
+        var headers: HTTPHeaders = [:]
 
         switch self {
         case .alertBanner, .newsAndUpdates:
-            headers?["Accept"] = "application/json;odata=verbose"
+            headers["Accept"] = "application/json;odata=verbose"
         case .fetchJWTToken:
-            headers?["content-type"] = "application/x-www-form-urlencoded"
-        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage:
-            headers?["Content-Type"] = "application/json"
+            headers["content-type"] = "application/x-www-form-urlencoded"
+        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .validateConfirmationEmail:
+            headers["Content-Type"] = "application/json"
         default:
             break
         }
         
         if apiAccess == .auth {
-            headers?["Authorization"] = "Bearer \(token)"
+            headers["Authorization"] = "Bearer \(token)"
         }
         
         return headers
@@ -343,7 +343,7 @@ public enum Router {
     public var httpBody: HTTPBody? {
         switch self {
         case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
-             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .accountLookup(let request as Encodable):
+             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .accountLookup(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .register(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable):
             return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
@@ -421,10 +421,14 @@ public enum Router {
             return "AlertPreferencesLoadMock"
         case .appointments:
             return "AppointmentsMock"
-        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate, .alertPreferencesUpdate:
+        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .checkDuplicateRegistration, .sendConfirmationEmail, .validateConfirmationEmail, .register:
             return "GenericResponseMock"
         case .fetchDailyUsage:
             return "DailyUsageMock"
+        case .validateRegistration:
+            return "ValidateRegistrationMock"
+        case .registrationQuestions:
+            return "RegistrationQuestionsMock"
         default:
             return ""
         }

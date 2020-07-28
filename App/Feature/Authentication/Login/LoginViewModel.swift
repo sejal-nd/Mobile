@@ -23,11 +23,9 @@ class LoginViewModel {
     var isLoggingIn = false
     
     private var biometricsService: BiometricsService
-    private var registrationService: RegistrationService
     
-    init(biometricsService: BiometricsService, registrationService: RegistrationService) {
+    init(biometricsService: BiometricsService) {
         self.biometricsService = biometricsService
-        self.registrationService = registrationService
         
         if let username = biometricsService.getStoredUsername() {
             self.username.accept(username)
@@ -145,29 +143,27 @@ class LoginViewModel {
     }
     
     func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        registrationService.validateConfirmationEmail(guid)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        let guidRequest = GuidRequest(guid: guid)
+        RegistrationService.validateConfirmationEmail(request: guidRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { err in
-                let serviceError = err as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
-                    onError(NSLocalizedString("Your verification link is no longer valid", comment: ""), NSLocalizedString("If you have already verified your account, please sign in to access your account. If your link has expired, please re-register.", comment: ""))
-                } else {
-                    onError(NSLocalizedString("Error", comment: ""), err.localizedDescription)
-                }
-            }).disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.title, error.description)
+            }
+        }
     }
     
     func resendValidationEmail(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        registrationService.resendConfirmationEmail(username.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        let usernameRequest = UsernameRequest(username: username.value)
+        RegistrationService.sendConfirmationEmail(request: usernameRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { err in
-                onError(err.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     // MARK: - New Email/Password Validation Requirement
