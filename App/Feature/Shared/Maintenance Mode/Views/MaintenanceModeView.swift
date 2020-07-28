@@ -52,7 +52,7 @@ class MaintenanceModeView: UIView {
     
     @IBInspectable var sectionName: String = "" {
         didSet {
-            detailLabel.text = String.localizedStringWithFormat("%@ is currently unavailable due to maintenance.", sectionName)
+            detailLabel.text = String.localizedStringWithFormat("%@ is currently unavailable due to scheduled maintenance.", sectionName)
         }
     }
     
@@ -72,6 +72,10 @@ class MaintenanceModeView: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.translatesAutoresizingMaskIntoConstraints = true
         addSubview(containerView)
+        containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         containerView.backgroundColor = .primaryColor
         reloadButton.isAccessibilityElement = true
         reloadButton.accessibilityLabel = NSLocalizedString("Reload", comment: "")
@@ -82,15 +86,21 @@ class MaintenanceModeView: UIView {
         styleViews()
         infoTextView.attributedText = infoText
         infoTextView.accessibilityLabel = infoText.string
+        scheduledMaintenanceLabel.text = scheduledMaintenanceText
+        scheduledMaintenanceLabel.accessibilityLabel = scheduledMaintenanceText
     }
     
     func styleViews() {
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
-        scheduledMaintenanceLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        scheduledMaintenanceLabel.font = OpenSans.semibold.of(textStyle: .title3)
         detailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         infoTextContainerView.layer.cornerRadius = 8.0
         infoTextContainerView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
         infoTextView.tintColor = .actionBlue
+    }
+    
+    var scheduledMaintenanceText: String {
+        return NSLocalizedString("Scheduled Maintenance", comment: "")
     }
     
     let infoText: NSAttributedString = {
@@ -130,29 +140,34 @@ class MaintenanceModeView: UIView {
                 """
                 , leaveAreaString, phone)
         case .pepco:
-            let phone = "todo"
+            let phone = "1-877-737-2662"
             phoneNumbers = [phone]
             localizedString = String.localizedStringWithFormat(
                 """
-            todo
-            """
+                If you see a downed power line, %@ and then call %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
                 , leaveAreaString, phone)
         case .ace:
-            let phone = "todo"
+            let phone = "1-800-833-7476"
             phoneNumbers = [phone]
             localizedString = String.localizedStringWithFormat(
                 """
-            todo
-            """
+                If you see a downed power line, %@ and then call %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
                 , leaveAreaString, phone)
         case .delmarva:
-            let phone = "todo"
-            phoneNumbers = [phone]
+            let phone1 = "1-800-898-8042"
+            let phone2 = "302-454-0317"
+            phoneNumbers = [phone1, phone2]
             localizedString = String.localizedStringWithFormat(
                 """
-            todo
-            """
-                , leaveAreaString, phone)
+                If you see a downed power line or smell natural gas, %@ and then call %@.\n
+                For natural gas emergencies, call %@.\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+                , leaveAreaString, phone1, phone2)
         }
         
         let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
