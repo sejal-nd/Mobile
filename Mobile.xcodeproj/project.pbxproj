@@ -2008,6 +2008,18 @@
 		678B621924CF6AD1009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
 		678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
 		678B621B24CF6AD3009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
+		678B621D24D08FC6009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B621E24D08FC7009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622024D08FC8009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622124D08FC9009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622224D08FCA009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622324D08FCB009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622424D08FCB009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622624D08FCD009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622724D08FCE009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622924D08FD0009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622A24D08FD0009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
+		678B622B24D08FD1009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
 		67D73AE3246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
@@ -7476,6 +7488,7 @@
 		675F4E3B24B4DC1900A828F9 /* NewMockDataKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMockDataKey.swift; sourceTree = "<group>"; };
 		676279EE247DB11100A57FBC /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidateRegistrationMock.json; sourceTree = "<group>"; };
+		678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckDuplicateRegistrationMock.json; sourceTree = "<group>"; };
 		67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetworkConnectionView.swift; sourceTree = "<group>"; };
 		67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetworkConnectionView.xib; sourceTree = "<group>"; };
 		67D73AEF246C480500450B63 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillingHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -10184,6 +10197,7 @@
 				675F4B5A24AB828100A828F9 /* EnergyTipsMock.json */,
 				C3087B0124BDEE8B005AE544 /* EnergyTipMock.json */,
 				678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */,
+				678B621C24D08FC0009F8A6B /* CheckDuplicateRegistrationMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -12423,6 +12437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */,
+				678B622324D08FCB009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 				C3087B0724BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				678B621624CF6ACF009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				356C7F2F21908BBA003E8A90 /* README.md in Resources */,
@@ -12452,6 +12467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
+				678B621E24D08FC7009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 				C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
@@ -12481,6 +12497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35F9DE4323353D6700AAA2B2 /* MCSConfig.plist in Resources */,
+				678B622124D08FC9009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 				C3087B0524BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				678B621824CF6AD0009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				35F9DDF5233539C300AAA2B2 /* ComEdAssets.xcassets in Resources */,
@@ -12513,6 +12530,7 @@
 				678B621524CF6ACE009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				67DDB48324535D2E006CD6EB /* account_lookup.json in Resources */,
 				67DDB48424535D2E006CD6EB /* More.storyboard in Resources */,
+				678B622424D08FCB009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 				675F4D3B24AB828200A828F9 /* AppointmentsMock.json in Resources */,
 				67DDB48524535D2E006CD6EB /* HomeUpdateView.xib in Resources */,
 				67D73AEB246C47EF00450B63 /* NoNetworkConnectionView.xib in Resources */,
@@ -12836,6 +12854,7 @@
 				67DDB74324535D32006CD6EB /* OpenSans-Regular.ttf in Resources */,
 				3090A637247E428900815EA1 /* splash.json in Resources */,
 				67DDB74424535D32006CD6EB /* MiniWalletItemRow.xib in Resources */,
+				678B622A24D08FD0009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 				67DDB74524535D32006CD6EB /* full_screen_loading.json in Resources */,
 				301DE1F224BF069F00992CA4 /* ACEAssets.xcassets in Resources */,
 				67D73B07246C72F800450B63 /* environment.plist in Resources */,
@@ -13036,6 +13055,7 @@
 				67DDB99624535D35006CD6EB /* loading.json in Resources */,
 				3090A638247E428E00815EA1 /* splash.json in Resources */,
 				67DDB99724535D35006CD6EB /* OpenSans-Light.ttf in Resources */,
+				678B622724D08FCE009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 				67DDB99824535D35006CD6EB /* confetti.json in Resources */,
 				67D73B05246C72F700450B63 /* environment.plist in Resources */,
 				67DDB99924535D35006CD6EB /* OpenSans-Regular.ttf in Resources */,
@@ -13252,6 +13272,7 @@
 				67EDC30224C1E96F001A8494 /* PepcoAssets.xcassets in Resources */,
 				67EDC2F124C1E690001A8494 /* MCSConfig.plist in Resources */,
 				67EDC2F224C1E690001A8494 /* environment.plist in Resources */,
+				678B622624D08FCD009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13279,6 +13300,7 @@
 				67EDC38B24C1EBD9001A8494 /* Assets.xcassets in Resources */,
 				67EDC38E24C1EBD9001A8494 /* MCSConfig.plist in Resources */,
 				67EDC38F24C1EBD9001A8494 /* environment.plist in Resources */,
+				678B622B24D08FD1009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13306,6 +13328,7 @@
 				67EDC40624C1EBFF001A8494 /* MCSConfig.plist in Resources */,
 				67EDC41524C1EC76001A8494 /* DelmarvaAssets.xcassets in Resources */,
 				67EDC40724C1EBFF001A8494 /* environment.plist in Resources */,
+				678B622924D08FD0009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13414,6 +13437,7 @@
 				B08957262217496D00A97965 /* bill_pdf.json in Resources */,
 				359BDB6622D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				675F4DB624AB828200A828F9 /* BillingHistoryResult.json in Resources */,
+				678B621D24D08FC6009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				67D73AE8246C47EF00450B63 /* NoNetworkConnectionView.xib in Resources */,
@@ -13642,6 +13666,7 @@
 				35B9609B22B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				675F4D9424AB828200A828F9 /* CompareBillMock.json in Resources */,
 				B089572F2217596400A97965 /* billing_history.json in Resources */,
+				678B622224D08FCA009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 				B08957092215FE7900A97965 /* recover_username.json in Resources */,
 				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
 				9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */,
@@ -13907,6 +13932,7 @@
 				9C0EA5B3237DAD2900D1E18F /* buddy_body.json in Resources */,
 				B07D247820C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				675F4D3F24AB828200A828F9 /* GenericResponseMock.json in Resources */,
+				678B622024D08FC8009F8A6B /* CheckDuplicateRegistrationMock.json in Resources */,
 				3575232E22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				359BDB7C22D8F9B2007002B0 /* outage_on.json in Resources */,
 				675F4DD524AB828200A828F9 /* ScheduledPaymentUNUSEDMock.json in Resources */,

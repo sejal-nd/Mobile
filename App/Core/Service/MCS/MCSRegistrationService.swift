@@ -50,12 +50,6 @@ class MCSRegistrationService: RegistrationService {
             .mapTo(())
     }
     
-    func checkForDuplicateAccount(_ username: String) -> Observable<Void> {
-        let params = ["username": username] as [String : Any]
-        return MCSApi.shared.post(pathPrefix: .anon, path: "registration/duplicate", params: params)
-            .mapTo(())
-    }
-    
     func loadSecretQuestions() -> Observable<[String]> {
         return MCSApi.shared.get(pathPrefix: .anon, path: "registration/questions")
             .map { json in
@@ -66,35 +60,7 @@ class MCSRegistrationService: RegistrationService {
                 return questions
             }
     }
-    
-    func validateAccountInformation(_ identifier: String,
-                                    phone: String,
-                                    accountNum: String?,
-                                    dueAmount: String?,
-                                    dueDate: String?) -> Observable<[String: Any]> {
-        var params = ["phone": phone] as [String : Any]
-        params["identifier"] = identifier
-        
-        if let accountNum = accountNum, !accountNum.isEmpty {
-            params["account_num"] = accountNum
-        }
-        if let dueDate = dueDate, !dueDate.isEmpty {
-            params["bill_date"] = dueDate
-        }
-        if let dueAmount = dueAmount, !dueAmount.isEmpty {
-             params["amount_due"] = dueAmount
-        }
-        
-        return MCSApi.shared.post(pathPrefix: .anon, path: "registration/validate", params: params)
-            .map { json in
-                guard let dict = json as? [String : Any] else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                return dict
-            }
-    }
-    
+
     func resendConfirmationEmail(_ username: String) -> Observable<Void> {
         let params = ["username": username] as [String: Any]
         return MCSApi.shared.post(pathPrefix: .anon, path: "registration/confirmation", params: params)

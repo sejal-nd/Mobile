@@ -39,20 +39,8 @@ protocol RegistrationService {
                           isPrimary: String,
                           isEnrollEBill: String) -> Observable<Void>
     
-    /*
-     username	String   Username to check for uniqueness
-     */
-    func checkForDuplicateAccount(_ username: String) -> Observable<Void>
-    
     func loadSecretQuestions() -> Observable<[String]>
-    
-    /*
-     identifier		String	Last 4 of SSN, Tax ID or BGE Pin
-     phone			String	Account phone number
-     account_num	String	Account number to register (BGE optional)
-     */
-    func validateAccountInformation(_ identifier: String, phone: String, accountNum: String?, dueAmount: String?, dueDate: String?) -> Observable<[String: Any]>
-    
+
     /*
      username	String   Registered username
      */

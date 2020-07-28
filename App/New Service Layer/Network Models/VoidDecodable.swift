@@ -9,5 +9,5 @@
 import Foundation
 
 public struct VoidDecodable: Decodable {
-    
+    var success: Bool? = nil
 }

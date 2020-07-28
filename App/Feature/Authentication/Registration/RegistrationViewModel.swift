@@ -89,16 +89,19 @@ class RegistrationViewModel {
     func verifyUniqueUsername(onSuccess: @escaping () -> Void,
                               onEmailAlreadyExists: @escaping () -> Void,
                               onError: @escaping (String, String) -> Void) {
-        registrationService.checkForDuplicateAccount(username.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
+        
+        let usernameReqeust = UsernameRequest(username: username.value)
+        
+        RegistrationServiceNew.checkDuplicateRegistration(request: usernameReqeust) { [weak self] result in
+            switch result {
+            case .success:
                 if #available(iOS 12.0, *) {
                     onSuccess()
                 } else { // Manually save to SWC if iOS 11
-                    guard let this = self else { return }
-                    SharedWebCredentials.save(credential: (this.username.value, this.newPassword.value), domain: Environment.shared.associatedDomain) { [weak this] error in
+                    guard let `self` = self else { return }
+                    SharedWebCredentials.save(credential: (self.username.value, self.newPassword.value), domain: Environment.shared.associatedDomain) { [weak self] error in
                         DispatchQueue.main.async {
-                            if error != nil, this?.hasStrongPassword ?? false {
+                            if error != nil, self?.hasStrongPassword ?? false {
                                 onError(NSLocalizedString("Failed to Save Password", comment: ""), NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
                             } else {
                                 onSuccess()
@@ -106,15 +109,14 @@ class RegistrationViewModel {
                         }
                     }
                 }
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
+            case .failure(let error):
+                if error == .userExists {
                     onEmailAlreadyExists()
                 } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                    onError(error.title, error.description)
                 }
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {

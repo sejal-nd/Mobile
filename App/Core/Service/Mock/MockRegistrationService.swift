@@ -15,22 +15,10 @@ struct MockRegistrationService: RegistrationService {
         return .just(())
     }
     
-    func checkForDuplicateAccount(_ username: String) -> Observable<Void> {
-        return .just(())
-    }
-    
     func loadSecretQuestions() -> Observable<[String]> {
         return .just(["Hello", "Hi", "Howdy", "Aloha", "Guten tag"])
     }
-    
-    func validateAccountInformation(_ identifier: String, phone: String, accountNum: String?, dueAmount: String?, dueDate: String?) -> Observable<[String : Any]> {
-        if phone.count == 10 && identifier.count == 4 {
-            return .just([:])
-        } else {
-            return .error(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue))
-        }
-    }
-    
+
     func resendConfirmationEmail(_ username: String) -> Observable<Void> {
         return .just(())
     }
