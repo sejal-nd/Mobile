@@ -1999,6 +1999,8 @@
 		676279F2247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
 		676279F3247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
 		676279F4247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
+		678B623924D0ACCE009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
+		678B623A24D0ACD1009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
 		67A18B7324CA0EA100F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B7424CA0EA500F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B7524CA0EA600F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
@@ -16271,6 +16273,7 @@
 				35F9DE3F23353D4500AAA2B2 /* SequenceForEach.swift in Sources */,
 				675F4E4324B4DC2500A828F9 /* NewMockDataKey.swift in Sources */,
 				673F9FE224C894D800210BCD /* RecoverPasswordRequest.swift in Sources */,
+				678B623924D0ACCE009F8A6B /* AnonymousService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18492,6 +18495,7 @@
 				673FA05A24C8956200210BCD /* NewBudgetBilling.swift in Sources */,
 				67EDC2C524C1E690001A8494 /* (null) in Sources */,
 				673FA05E24C8956200210BCD /* NewBillingHistoryItem.swift in Sources */,
+				678B623A24D0ACD1009F8A6B /* AnonymousService.swift in Sources */,
 				673FA06524C8956200210BCD /* ForgotMaskedUsername.swift in Sources */,
 				673FA0DE24C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
 				67EDC2C624C1E690001A8494 /* Environment.swift in Sources */,

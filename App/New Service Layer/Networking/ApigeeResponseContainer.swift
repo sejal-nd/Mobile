@@ -24,7 +24,7 @@ struct ApigeeResponseContainer: Decodable {
         let isSuccess = try container.decodeIfPresent(Bool.self, forKey: .success) ?? false
         
         if isSuccess {
-            self.data = try container.decode(Data.self, forKey: .data)
+            self.data = try container.decodeIfPresent(Data.self, forKey: .data)
         } else {
             let container = try decoder.singleValueContainer()
             self.error = try container.decode(AzureError.self)

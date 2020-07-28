@@ -10,7 +10,7 @@ import Foundation
 
 public struct AzureError: Decodable {
     public var code: String
-    public var description: String
+    public var description: String?
     public var context: String?
     
     enum CodingKeys: String, CodingKey {
@@ -28,8 +28,8 @@ public struct AzureError: Decodable {
         
         self.code = try metaContainer.decode(String.self,
                                              forKey: .code)
-        self.description = try metaContainer.decode(String.self,
-                                                    forKey: .description)
+        self.description = try metaContainer.decodeIfPresent(String.self,
+                                                             forKey: .description)
         self.context = try metaContainer.decodeIfPresent(String.self,
                                                          forKey: .context)
     }
