@@ -32,7 +32,7 @@ class RegistrationConfirmationViewControllerNew: DismissableFormSheetViewControl
         bodyLabel.font = SystemFont.regular.of(textStyle: .body)
         
         let boldString = NSLocalizedString("Having trouble?", comment: "")
-        let fullString = NSLocalizedString("A verification email has been sent to \(emailAddress).\n\nClick on the link in the email from \(Environment.shared.opco.rawValue) within 48 hours. Once the link expires, you’ll be required to start the registration process from the beginning.\n\n\(boldString)", comment: "")
+        let fullString = NSLocalizedString("A verification email has been sent to \(registeredUsername ?? "").\n\nClick on the link in the email from \(Environment.shared.opco.rawValue) within 48 hours. Once the link expires, you’ll be required to start the registration process from the beginning.\n\n\(boldString)", comment: "")
         let attrString = NSMutableAttributedString(string: fullString)
         attrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .body), range: (fullString as NSString).range(of: boldString))
         
