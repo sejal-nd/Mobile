@@ -156,7 +156,7 @@ class LoginViewModel {
                 if serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
                     onError(NSLocalizedString("Your verification link is no longer valid", comment: ""), NSLocalizedString("If you have already verified your account, please sign in to access your account. If your link has expired, please re-register.", comment: ""))
                 } else {
-                    onError(NSLocalizedString("Error", comment: ""), err.localizedDescription)
+                    onError(NSLocalizedString("We're sorry, we weren't able to process your request.", comment: ""), "An error occurred and we weren't able to process your request. Please try again later.")
                 }
             }).disposed(by: disposeBag)
     }
