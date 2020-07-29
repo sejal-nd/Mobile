@@ -59,7 +59,7 @@ public enum Router {
         
     // Billing
     
-    case billPDF(accountNumber: String, date: Date)
+    case billPDF(accountNumber: String, date: Date, documentID: String)
     
     case scheduledPayment(accountNumber: String, encodable: Encodable)
     case scheduledPaymentUpdate(accountNumber: String, paymentId: String, encodable: Encodable)
@@ -77,7 +77,7 @@ public enum Router {
     case autoPayEnroll(accountNumber: String, encodable: Encodable)
     case autoPayUnenroll(accountNumber: String, encodable: Encodable) // todo - Mock + model
     
-    case paperlessEnroll(accountNumber: String, encodable: Encodable)
+    case paperlessEnroll(accountNumber: String, request: EmailRequest)
     case paperlessUnenroll(accountNumber: String) // todo - Mock + model
     
     case budgetBillingInfo(accountNumber: String)
@@ -203,9 +203,9 @@ public enum Router {
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments"
         case .alertBanner, .newsAndUpdates:
             return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
-        case .billPDF(let accountNumber, let date):
+        case .billPDF(let accountNumber, let date, let documentID):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
-            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
+            return Environment.shared.opco.isPHI ? "accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "accounts/\(accountNumber)/billing/\(dateString)/pdf"
         case .scheduledPayment(let accountNumber, _):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/schedule"
         case .scheduledPaymentUpdate(let accountNumber, let paymentId, _):
@@ -343,7 +343,7 @@ public enum Router {
     public var httpBody: HTTPBody? {
         switch self {
         case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
-             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .accountLookup(let request as Encodable):
+             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .accountLookup(let request as Encodable), .paperlessEnroll(_, let request as Encodable):
             return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"

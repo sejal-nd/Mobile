@@ -21,7 +21,7 @@ class PaymentViewModel {
     private let paymentService: PaymentService
 
     let accountDetail: BehaviorRelay<AccountDetail>
-    let billingHistoryItem: BillingHistoryItem?
+    let billingHistoryItem: NewBillingHistoryItem?
     
     let isFetching = BehaviorRelay(value: false)
     let isError = BehaviorRelay(value: false)
@@ -48,14 +48,14 @@ class PaymentViewModel {
     init(walletService: WalletService,
          paymentService: PaymentService,
          accountDetail: AccountDetail,
-         billingHistoryItem: BillingHistoryItem?) {
+         billingHistoryItem: NewBillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = BehaviorRelay(value: accountDetail)
         self.billingHistoryItem = billingHistoryItem
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
-            paymentId.accept(billingHistoryItem.paymentId)
+            paymentId.accept(billingHistoryItem.paymentID)
             selectedWalletItem.accept(WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,
                                                   nickName: NSLocalizedString("Current Payment Method", comment: ""),
                                                   paymentMethodType: billingHistoryItem.paymentMethodType,

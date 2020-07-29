@@ -16,11 +16,11 @@ class BillingHistoryDetailsViewModel {
     
     private let paymentService: PaymentService
     private let accountDetail: AccountDetail
-    private let billingHistoryItem: BillingHistoryItem
+    private let billingHistoryItem: NewBillingHistoryItem
     
     required init(paymentService: PaymentService,
                   accountDetail: AccountDetail,
-                  billingHistoryItem: BillingHistoryItem) {
+                  billingHistoryItem: NewBillingHistoryItem) {
         self.paymentService = paymentService
         self.accountDetail = accountDetail
         self.billingHistoryItem = billingHistoryItem
@@ -29,7 +29,7 @@ class BillingHistoryDetailsViewModel {
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         paymentService.cancelPayment(accountNumber: accountDetail.accountNumber,
                                      paymentAmount: billingHistoryItem.amountPaid ?? 0,
-                                     paymentId: billingHistoryItem.paymentId!)
+                                     paymentId: billingHistoryItem.paymentID!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

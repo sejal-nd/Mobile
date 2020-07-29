@@ -24,15 +24,6 @@ struct ServiceFactory {
         return BiometricsService()
     }
 
-    static func createBillService() -> BillService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockBillService()
-        default:
-            return MCSBillService()
-        }
-    }
-
     static func createWalletService() -> WalletService {
         switch Environment.shared.environmentName {
         case .aut:

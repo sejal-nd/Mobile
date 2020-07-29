@@ -12,10 +12,10 @@ public struct NewBudgetBilling: Decodable {
     public var isBudgetBillingAvailable: Bool
     public var isEnrolled: Bool
     public var averageMonthlyBill: Double
-    public var budgetBill: Double
-    public var budgetBillDifference: Double
-    public var budgetBillBalance: Double
-    public var budgetBillPayoff: Double
+    public var budgetBill: Double?
+    public var budgetBillDifference: Double?
+    public var budgetBillBalance: Double?
+    public var budgetBillPayoff: Double?
     public var programStatusCode: String
     public var programCode: String
     public var programStartDate: Date
@@ -48,13 +48,13 @@ public struct NewBudgetBilling: Decodable {
         
         self.averageMonthlyBill = try data.decode(Double.self,
                                                   forKey: .averageMonthlyBill)
-        self.budgetBill = try data.decode(Double.self,
+        self.budgetBill = try data.decodeIfPresent(Double.self,
                                           forKey: .budgetBill)
-        self.budgetBillDifference = try data.decode(Double.self,
+        self.budgetBillDifference = try data.decodeIfPresent(Double.self,
                                                     forKey: .budgetBillDifference)
-        self.budgetBillBalance = try data.decode(Double.self,
+        self.budgetBillBalance = try data.decodeIfPresent(Double.self,
                                                  forKey: .budgetBillBalance)
-        self.budgetBillPayoff = try data.decode(Double.self,
+        self.budgetBillPayoff = try data.decodeIfPresent(Double.self,
                                                 forKey: .budgetBillPayoff)
         
         self.programStatusCode = try data.decode(String.self,

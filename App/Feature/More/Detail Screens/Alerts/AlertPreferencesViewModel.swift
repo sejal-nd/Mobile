@@ -14,7 +14,6 @@ class AlertPreferencesViewModel {
     let disposeBag = DisposeBag()
     
     private let alertsService: AlertsService
-    private let billService: BillService
     
     var accountDetail: AccountDetail! // Passed from AlertsViewController
     
@@ -64,9 +63,8 @@ class AlertPreferencesViewModel {
     
     var devicePushNotificationsEnabled = false
     
-    required init(alertsService: AlertsService, billService: BillService) {
+    required init(alertsService: AlertsService) {
         self.alertsService = alertsService
-        self.billService = billService
     }
     
     func toggleSectionVisibility(_ section: Int) {
@@ -421,8 +419,7 @@ class AlertPreferencesViewModel {
     }
     
     private func enrollPaperlessEBill() -> Observable<Void> {
-        return billService
-            .enrollPaperlessBilling(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+        return BillServiceNew.rx.enrollPaperlessBilling(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
                                     email: accountDetail.customerInfo.emailAddress)
     }
     

@@ -18,7 +18,7 @@ class ViewBillViewController: UIViewController {
 
     var documentController: UIDocumentInteractionController?
     
-    let viewModel = ViewBillViewModel(billService: ServiceFactory.createBillService())
+    let viewModel = ViewBillViewModel()
     
     var webView: WKWebView!
     

@@ -15,7 +15,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     
     // Passed from BillingHistoryViewController
     var accountDetail: AccountDetail!
-    var billingHistoryItem: BillingHistoryItem!
+    var billingHistoryItem: NewBillingHistoryItem!
 
     var viewModel: BillingHistoryDetailsViewModel!
     

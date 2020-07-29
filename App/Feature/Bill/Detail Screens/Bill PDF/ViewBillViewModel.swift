@@ -12,9 +12,7 @@ import RxCocoa
 class ViewBillViewModel {
     
     private let disposeBag = DisposeBag()
-    
-    private var billService: BillService
-    
+        
     var documentID: String?
 
     var billDate: Date!
@@ -23,12 +21,11 @@ class ViewBillViewModel {
     var pdfFileUrl: URL?
     var isCurrent: Bool = false
     
-    init(billService: BillService) {
-        self.billService = billService
+    init() {
     }
     
     func fetchBillPDFData(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.fetchBillPdf(accountNumber: AccountsStore.shared.currentAccount.accountNumber, billDate: billDate, documentID: documentID ?? "")
+        BillServiceNew.rx.fetchBillPdf(accountNumber: AccountsStore.shared.currentAccount.accountNumber, billDate: billDate, documentID: documentID ?? "")
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] billDataString in
                 if let pdfData = Data(base64Encoded: billDataString, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) {

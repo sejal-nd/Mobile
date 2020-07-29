@@ -12,57 +12,6 @@ import Foundation
 
 struct PaymentServiceNew {
     
-    static func budgetBillingInfo(accountNumber: String) {
-        NetworkingLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber)) { (result: Result<NewBudgetBilling, NetworkingError>) in
-            switch result {
-            case .success(let data):
-
-                // fetch accounts todo
-
-                print("NetworkTest POST BUDGET BILL INFO SUCCESS: \(data.isEnrolled) BREAK")
-
-            case .failure(let error):
-                print("NetworkTest POST BUDGET BILL INFO FAIL: \(error)")
-                //                completion(.failure(error))
-            }
-        }
-    }
-    
-    static func budgetBillingEnroll(accountNumber: String) {
-        NetworkingLayer.request(router: .budgetBillingEnroll(accountNumber: accountNumber)) { (result: Result<GenericResponse, NetworkingError>) in
-            switch result {
-            case .success(let data):
-
-                // fetch accounts todo
-
-                print("NetworkTest POST BUDGET BILL ENROLL SUCCESS: \(data.success) BREAK")
-
-            case .failure(let error):
-                print("NetworkTest POST BUDGET BILL UNENROLL FAIL: \(error)")
-                //                completion(.failure(error))
-            }
-        }
-    }
-    
-    static func budgetBillingUnenroll(accountNumber: String, reason: String) {
-        let encodedObject = BudgetBillingUnenrollRequest(reason: reason, comment: "")
-        
-        NetworkingLayer.request(router: .budgetBillingUnenroll(accountNumber: accountNumber, encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
-            switch result {
-            case .success(let data):
-                
-                // fetch accounts todo
-                
-                print("NetworkTest POST BUDGET BILL UNENROLL SUCCESS: \(data.success) BREAK")
-                
-            case .failure(let error):
-                print("NetworkTest POST BUDGET BILL UNENROLL FAIL: \(error)")
-                //                completion(.failure(error))
-            }
-        }
-    }
-
-    
 //    static func autoPayUnenroll(accountNumber: String, reason: String) {
 //
 //    let httpBodyParameters: [String: Any] = ["reason": reason,
@@ -270,45 +219,6 @@ struct PaymentServiceNew {
             //                    //                completion(.failure(error))
             //                }
             //            }
-    }
-    
-    
-    static func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) {
-        
-        let startDateString = DateFormatter.yyyyMMddFormatter.string(from: startDate)
-        let endDateString = DateFormatter.yyyyMMddFormatter.string(from: endDate)
-        
-//        var httpBodyParameters = [
-//            "start_date": startDateString,
-//            "end_date": endDateString,
-//            "statement_type": "03"
-//        ]
-        
-        let opCo = Environment.shared.opco
-        var billerId: String?
-        if opCo == .comEd || opCo == .peco {
-            billerId = "\(opCo.rawValue)Registered"
-        }
-        
-        
-        
-        let encodedObject = BillingHistoryRequest(startDate: startDateString,
-                                                  endDate: endDateString,
-                                                  statementType: "03",
-                                                  billerId: billerId)
-            print("REQ SCHEDULE")
-            NetworkingLayer.request(router: .billingHistory(accountNumber: accountNumber, encodable: encodedObject)) { (result: Result<NewBillingHistoryResult, NetworkingError>) in
-                switch result {
-                case .success(let data):
-                    
-                    // fetch accounts todo
-                    
-                    print("NetworkTest POST 2 SUCCESS: \(data.billingHistoryItems.count) BREAK")
-                case .failure(let error):
-                    print("NetworkTest POST 2 FAIL: \(error)")
-                    //                completion(.failure(error))
-                }
-            }
     }
     
     static func schedulePayment(accountNumber: String,
