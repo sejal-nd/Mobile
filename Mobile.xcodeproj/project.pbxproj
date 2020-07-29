@@ -197,6 +197,9 @@
 		301DE1FA24BF0A7900992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		301DE1FB24BF0A7A00992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		301DE1FC24C04ADA00992CA4 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
+		30353FC024D1831C0060DE5D /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FBF24D1831C0060DE5D /* sm_outage.json */; };
+		30353FC124D1831C0060DE5D /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FBF24D1831C0060DE5D /* sm_outage.json */; };
+		30353FC224D1831C0060DE5D /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FBF24D1831C0060DE5D /* sm_outage.json */; };
 		3062CFF724B6DF3B000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF624B6DF3B000176EC /* landing_video.mp4 */; };
 		3062CFF924B6DF8F000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF824B6DF8E000176EC /* landing_video.mp4 */; };
 		3062CFFB24B6DFB4000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFFA24B6DFB4000176EC /* landing_video.mp4 */; };
@@ -1363,7 +1366,6 @@
 		67DDB4BC24535D2E006CD6EB /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
 		67DDB4BE24535D2E006CD6EB /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F321710CD700B1C632 /* Appt_Canceled.json */; };
 		67DDB4BF24535D2E006CD6EB /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F421710CD800B1C632 /* Appt_Inprogress.json */; };
-		67DDB4C024535D2E006CD6EB /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage.json */; };
 		67DDB4C124535D2E006CD6EB /* UINavigationBackButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F39D1F02F30E007BFA82 /* UINavigationBackButton.xib */; };
 		67DDB4C224535D2E006CD6EB /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
 		67DDB4C324535D2E006CD6EB /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
@@ -1912,7 +1914,6 @@
 		67DDB71224535D32006CD6EB /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
 		67DDB71424535D32006CD6EB /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F321710CD700B1C632 /* Appt_Canceled.json */; };
 		67DDB71524535D32006CD6EB /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F421710CD800B1C632 /* Appt_Inprogress.json */; };
-		67DDB71624535D32006CD6EB /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage.json */; };
 		67DDB71724535D32006CD6EB /* UINavigationBackButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F39D1F02F30E007BFA82 /* UINavigationBackButton.xib */; };
 		67DDB71824535D32006CD6EB /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
 		67DDB71924535D32006CD6EB /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
@@ -2462,7 +2463,6 @@
 		67DDB96824535D35006CD6EB /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
 		67DDB96A24535D35006CD6EB /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F321710CD700B1C632 /* Appt_Canceled.json */; };
 		67DDB96B24535D35006CD6EB /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F421710CD800B1C632 /* Appt_Inprogress.json */; };
-		67DDB96C24535D35006CD6EB /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage.json */; };
 		67DDB96D24535D35006CD6EB /* UINavigationBackButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F39D1F02F30E007BFA82 /* UINavigationBackButton.xib */; };
 		67DDB96E24535D35006CD6EB /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
 		67DDB96F24535D35006CD6EB /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
@@ -5980,6 +5980,7 @@
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "App/Feature/Outage/Detail Pages/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
+		30353FBF24D1831C0060DE5D /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
 		3062CFF624B6DF3B000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		3062CFF824B6DF8E000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		3062CFFA24B6DFB4000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
@@ -7638,6 +7639,7 @@
 		3090A633247E412E00815EA1 /* PEPCO */ = {
 			isa = PBXGroup;
 			children = (
+				30353FBF24D1831C0060DE5D /* sm_outage.json */,
 				3090A636247E426400815EA1 /* splash.json */,
 			);
 			path = PEPCO;
@@ -11134,7 +11136,6 @@
 				67DDBDBD246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist in Resources */,
 				67DDB4BE24535D2E006CD6EB /* Appt_Canceled.json in Resources */,
 				67DDB4BF24535D2E006CD6EB /* Appt_Inprogress.json in Resources */,
-				67DDB4C024535D2E006CD6EB /* sm_outage.json in Resources */,
 				67DDBD0A24535EE6006CD6EB /* PepcoAssets.xcassets in Resources */,
 				67DDB4C124535D2E006CD6EB /* UINavigationBackButton.xib in Resources */,
 				67DDB4C224535D2E006CD6EB /* opco_updates.json in Resources */,
@@ -11187,6 +11188,7 @@
 				67DDB4F324535D2E006CD6EB /* ellipses_loading.json in Resources */,
 				67DDB4F424535D2E006CD6EB /* buddy_body.json in Resources */,
 				67DDB4F524535D2E006CD6EB /* Assets.xcassets in Resources */,
+				30353FC024D1831C0060DE5D /* sm_outage.json in Resources */,
 				67DDB4F624535D2E006CD6EB /* Alerts.storyboard in Resources */,
 				67DDB4F724535D2E006CD6EB /* AccountDetailsView.xib in Resources */,
 				67DDB4F824535D2E006CD6EB /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
@@ -11303,7 +11305,6 @@
 				67DDB71224535D32006CD6EB /* coin_bonus_point.json in Resources */,
 				67DDB71424535D32006CD6EB /* Appt_Canceled.json in Resources */,
 				67DDB71524535D32006CD6EB /* Appt_Inprogress.json in Resources */,
-				67DDB71624535D32006CD6EB /* sm_outage.json in Resources */,
 				67DDB71724535D32006CD6EB /* UINavigationBackButton.xib in Resources */,
 				67DDB71824535D32006CD6EB /* opco_updates.json in Resources */,
 				67DDB71924535D32006CD6EB /* peak_rewards_summary.json in Resources */,
@@ -11357,6 +11358,7 @@
 				67DDB74A24535D32006CD6EB /* buddy_body.json in Resources */,
 				67DDBD6824573696006CD6EB /* LaunchScreen-ACE.storyboard in Resources */,
 				67DDB74B24535D32006CD6EB /* Assets.xcassets in Resources */,
+				30353FC224D1831C0060DE5D /* sm_outage.json in Resources */,
 				67DDB74C24535D32006CD6EB /* Alerts.storyboard in Resources */,
 				67DDB74D24535D32006CD6EB /* AccountDetailsView.xib in Resources */,
 				67DDB74E24535D32006CD6EB /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
@@ -11473,7 +11475,6 @@
 				67DDB96824535D35006CD6EB /* coin_bonus_point.json in Resources */,
 				67DDB96A24535D35006CD6EB /* Appt_Canceled.json in Resources */,
 				67DDB96B24535D35006CD6EB /* Appt_Inprogress.json in Resources */,
-				67DDB96C24535D35006CD6EB /* sm_outage.json in Resources */,
 				67DDB96D24535D35006CD6EB /* UINavigationBackButton.xib in Resources */,
 				67DDB96E24535D35006CD6EB /* opco_updates.json in Resources */,
 				67DDB96F24535D35006CD6EB /* peak_rewards_summary.json in Resources */,
@@ -11527,6 +11528,7 @@
 				67DDB99E24535D35006CD6EB /* OutageStatusButton.xib in Resources */,
 				67DDB99F24535D35006CD6EB /* ellipses_loading.json in Resources */,
 				67DDB9A024535D35006CD6EB /* buddy_body.json in Resources */,
+				30353FC124D1831C0060DE5D /* sm_outage.json in Resources */,
 				67DDB9A124535D35006CD6EB /* Assets.xcassets in Resources */,
 				67DDB9A224535D35006CD6EB /* Alerts.storyboard in Resources */,
 				67DDB9A324535D35006CD6EB /* AccountDetailsView.xib in Resources */,
