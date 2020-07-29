@@ -24,7 +24,7 @@ class AppointmentDetailViewModel {
     }
     
     var status: Appointment.Status {
-        return appointment.status
+        return appointment.statusType
     }
     
     var showProgressView: Bool {
@@ -34,7 +34,7 @@ class AppointmentDetailViewModel {
         case .enRoute: return true
         case .inProgress: return true
         case .complete: return true
-        case .canceled: return false
+        case .canceled, .none: return false
         }
     }
     
@@ -45,7 +45,7 @@ class AppointmentDetailViewModel {
         case .enRoute: return true
         case .inProgress: return true
         case .complete: return false
-        case .canceled: return false
+        case .canceled, .none: return false
         }
     }
     
@@ -53,7 +53,7 @@ class AppointmentDetailViewModel {
         switch status {
         case .scheduled:
             return true
-        case .onOurWay, .enRoute, .inProgress, .complete, .canceled:
+        case .onOurWay, .enRoute, .inProgress, .complete, .canceled, .none:
             return false
         }
     }
@@ -63,7 +63,9 @@ class AppointmentDetailViewModel {
             [.font: OpenSans.regular.of(textStyle: .headline),
              .foregroundColor: UIColor.blackText]
         
-        switch appointment.status {
+        let statusType = appointment.statusType
+        
+        switch statusType {
         case .scheduled:
             return scheduledApptDescription
         case .onOurWay:
@@ -104,6 +106,10 @@ class AppointmentDetailViewModel {
             let attributedText = NSMutableAttributedString(attributedString: regularText.attributedString(textAlignment: .center, otherAttributes: standardAttributes))
             attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline), range: (regularText as NSString).range(of: boldText))
             return attributedText
+        case .none:
+            return NSLocalizedString("", comment: "")
+            .attributedString(textAlignment: .center,
+                              otherAttributes: standardAttributes)
         }
     }
     
@@ -185,11 +191,11 @@ class AppointmentDetailViewModel {
         
         var alarms = [EKAlarm]()
         let now = Date.now
-        if let alarmTime1 = Calendar.opCo.date(byAdding: DateComponents(day: -1), to: appointment.startTime), alarmTime1 > now {
+        if let appointmentStartTime = appointment.startTime, let alarmTime1 = Calendar.opCo.date(byAdding: DateComponents(day: -1), to: appointmentStartTime), alarmTime1 > now {
             alarms.append(EKAlarm(absoluteDate: alarmTime1))
         }
         
-        if let alarmTime2 = Calendar.opCo.date(byAdding: DateComponents(hour: -1), to: appointment.startTime), alarmTime2 > now {
+        if let appointmentStartTime = appointment.startTime, let alarmTime2 = Calendar.opCo.date(byAdding: DateComponents(hour: -1), to: appointmentStartTime), alarmTime2 > now {
             alarms.append(EKAlarm(absoluteDate: alarmTime2))
         }
         event.alarms = alarms
