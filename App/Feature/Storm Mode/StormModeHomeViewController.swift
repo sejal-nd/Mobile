@@ -79,7 +79,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var phone2Label: UILabel!
     @IBOutlet weak var contactGroup2StackView: UIStackView! {
         didSet {
-            contactGroup2StackView.isHidden = Environment.shared.opco != .bge
+            contactGroup2StackView.isHidden = Environment.shared.opco != .bge && Environment.shared.opco != .delmarva
         }
     }
     @IBOutlet weak var group2Label: UILabel! {
@@ -405,14 +405,18 @@ class StormModeHomeViewController: AccountPickerViewController {
             group1Label.text = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call", comment: "")
             phone1Label.text = "1-800-841-4141"
         case .pepco:
-            group1Label.text = NSLocalizedString("todo", comment: "")
-            phone1Label.text = "todo"
+            group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
+            phone1Label.text = "1-877-737-2662"
         case .ace:
-            group1Label.text = NSLocalizedString("todo", comment: "")
-            phone1Label.text = "todo"
+            group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
+            phone1Label.text = "1-800-833-7476"
         case .delmarva:
-            group1Label.text = NSLocalizedString("todo", comment: "")
-            phone1Label.text = "todo"
+            group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and then call ", comment: "")
+            group2Label.text = NSLocalizedString("To report a downed or sparking power line, please call ", comment: "")
+        
+            phone1Label.text = "302-454-0317"
+            phone3Label.text = "1-800-898-8042"
+            phone4Button.isHidden = true
         }
         
         phone1Button.accessibilityLabel = phone1Label.text
@@ -528,7 +532,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             } else {
                 self.accountDisallowView.isHidden = true
                 self.finalPayView.isHidden = false
-                self.finalPayTitleLabel.isHidden = true
+                self.finalPayTitleLabel.isHidden = false
+                self.finalPayTitleLabel.text = NSLocalizedString("Outage Unavailable", comment: "")
                 self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
                 self.billButton.isHidden = false
             }
