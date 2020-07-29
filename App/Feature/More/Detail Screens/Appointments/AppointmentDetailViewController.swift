@@ -80,7 +80,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func update(withAppointment appointment: Appointment) {
-        let currApptStatus = viewModel.appointment.status
+        let currApptStatus = viewModel.appointment.statusType
         viewModel.appointment = appointment
         if viewHasLoaded {
             self.playProgressAnimation(fromStatus: currApptStatus)
@@ -193,7 +193,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
             onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way step, complete", comment: "")
             inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, complete", comment: "")
             completeLabel.accessibilityLabel = NSLocalizedString("Appointment complete", comment: "")
-        case .canceled:
+        case .canceled, .none:
             // Do nothing, these labels are not displayed
             break
         }
@@ -284,7 +284,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         case .complete:
             animationName = "Appt_Complete"
             loop = false
-        case .canceled:
+        case .canceled, .none:
             animationName = "Appt_Canceled"
             loop = false
         }

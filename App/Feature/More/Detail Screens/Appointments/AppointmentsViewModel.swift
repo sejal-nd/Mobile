@@ -41,8 +41,7 @@ class AppointmentsViewModel {
     
     private let fetchAllDataTrigger = PublishSubject<Void>()
     
-    required init(initialAppointments: [Appointment],
-                  appointmentService: AppointmentService) {
+    required init(initialAppointments: [Appointment]) {
         
         accountDetailEvents = fetchAllDataTrigger
             .toAsyncRequest {
@@ -52,7 +51,7 @@ class AppointmentsViewModel {
         events = accountDetailEvents
             .elements()
             .toAsyncRequest {
-                appointmentService.fetchAppointments(accountNumber: $0.accountNumber, premiseNumber: $0.premiseNumber!)
+                AppointmentService.rx.fetchAppointments(accountNumber: $0.accountNumber, premiseNumber: $0.premiseNumber ?? "")
         }.do(onNext: { event in
             self.setLoading(loading: false)
         })

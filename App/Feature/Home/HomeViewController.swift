@@ -52,7 +52,6 @@ class HomeViewController: AccountPickerViewController {
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
                                   alertsService: ServiceFactory.createAlertsService(),
-                                  appointmentService: ServiceFactory.createAppointmentService(),
                                   gameService: ServiceFactory.createGameService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -170,8 +169,10 @@ class HomeViewController: AccountPickerViewController {
                         let status: Appointment.Status
                         if appointments.count > 1 {
                             status = .scheduled
+                        } else if let unwrappedStatus = Appointment.Status(rawValue: appointment.status) {
+                            status = unwrappedStatus
                         } else {
-                            status = appointment.status
+                            status = .canceled
                         }
                         
                         switch status {
@@ -180,6 +181,8 @@ class HomeViewController: AccountPickerViewController {
                                               sender: (appointments))
                         case .canceled, .complete:
                             UIApplication.shared.openPhoneNumberIfCan(self.viewModel.appointmentCardViewModel.contactNumber)
+                        case .none:
+                            return
                         }
                     })
                     .disposed(by: appointmentCardView.disposeBag)
