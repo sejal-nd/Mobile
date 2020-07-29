@@ -16,17 +16,14 @@ class StormModeBillViewModel {
 
     private let walletService: WalletService
     private let paymentService: PaymentService
-    private let authService: AuthenticationService
 
     private let fetchTracker = ActivityTracker()
 
     required init(walletService: WalletService,
-                  paymentService: PaymentService,
-                  authService: AuthenticationService) {
+                  paymentService: PaymentService) {
         self.fetchDataObservable = fetchData.share()
         self.walletService = walletService
         self.paymentService = paymentService
-        self.authService = authService
     }
 
     private(set) lazy var billCardViewModel =
@@ -36,7 +33,6 @@ class StormModeBillViewModel {
                               scheduledPaymentEvents: scheduledPaymentEvents,
                               walletService: walletService,
                               paymentService: paymentService,
-                              authService: authService,
                               fetchTracker: fetchTracker)
 
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = fetchData

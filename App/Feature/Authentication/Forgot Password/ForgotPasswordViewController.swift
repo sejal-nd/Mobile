@@ -21,7 +21,7 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     @IBOutlet weak var submitButton: PrimaryButton!
     
-    let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
+    let viewModel = ForgotPasswordViewModel()
     
     let disposeBag = DisposeBag()
     

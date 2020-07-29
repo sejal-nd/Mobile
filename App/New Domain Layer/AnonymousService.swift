@@ -38,7 +38,6 @@ struct AnonymousService {
     
     
     static func recoverMaskedUsername(request: RecoverMaskedUsernameRequest, completion: @escaping (Result<ForgotMaskedUsernames, NetworkingError>) -> ()) {
-        
         NetworkingLayer.request(router: .recoverMaskedUsername(request: request), completion: completion)
     }
     
@@ -46,10 +45,19 @@ struct AnonymousService {
         NetworkingLayer.request(router: .recoverUsername(request: request), completion: completion)
     }
     
+    static func recoverPassword(request: UsernameRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .recoverPassword(request: request), completion: completion)
+    }
+    
+    static func changePassword(request: ChangePasswordRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .passwordChange(request: request), completion: completion)
+    }
+    
+    // todo
     static func lookupAccount(request: AccountLookupRequest, completion: @escaping (Result<AccountLookupResults, NetworkingError>) -> ()) {
-        
         NetworkingLayer.request(router: .accountLookup(request: request), completion: completion)
     }
+    
 }
 
 

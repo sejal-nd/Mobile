@@ -27,9 +27,7 @@ class BillingHistoryViewModel {
         let now = Date.now
         let lastYear = Calendar.opCo.date(byAdding: .month, value: monthsBackward, to: now)!
         let theFuture = Calendar.opCo.date(byAdding: .month, value: monthsForward, to: now)!
-        
-//        PaymentServiceNew.fetchBillingHistory(accountNumber: AccountsStore.shared.currentAccount.accountNumber, startDate: lastYear, endDate: theFuture)
-        
+                
         BillServiceNew.rx.fetchBillingHistory(accountNumber: AccountsStore.shared.currentAccount.accountNumber, startDate: lastYear, endDate: theFuture)
             .subscribe(onNext: { [weak self] billingHistory in
                 self?.billingHistory = billingHistory

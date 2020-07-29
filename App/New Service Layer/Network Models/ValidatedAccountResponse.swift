@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct ValidatedAccount: Decodable {
+struct ValidatedAccountResponse: Decodable {
     let type: [String]?
-    let eBill: Bool?
+    var isEbill: Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+        case type
+        case isEbill = "ebill"
+    }
 }

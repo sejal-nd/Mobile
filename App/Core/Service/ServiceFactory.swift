@@ -11,15 +11,6 @@ import Foundation
 /// Utility class for intantiating Service Instances
 struct ServiceFactory {
 
-    static func createAuthenticationService() -> AuthenticationService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockAuthenticationService()
-        default:
-            return MCSAuthenticationService()
-        }
-    }
-
     static func createBiometricsService() -> BiometricsService {
         return BiometricsService()
     }
@@ -30,15 +21,6 @@ struct ServiceFactory {
             return MockWalletService()
         default:
             return MCSWalletService()
-        }
-    }
-
-    static func createRegistrationService() -> RegistrationService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockRegistrationService()
-        default:
-            return MCSRegistrationService()
         }
     }
 

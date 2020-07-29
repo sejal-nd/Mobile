@@ -161,10 +161,10 @@ public enum NetworkingLayer {
         dLog("Cancelled all URL Session requests.")
     }
     
-    private static func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?,
+    private static func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders,
                                              request: inout URLRequest) {
-        guard let headers = additionalHeaders else { return }
-        for (key, value) in headers {
+        guard !additionalHeaders.isEmpty else { return }
+        for (key, value) in additionalHeaders {
             request.setValue(value, forHTTPHeaderField: key)
         }
     }

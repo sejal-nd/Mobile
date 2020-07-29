@@ -8,8 +8,19 @@
 
 import Foundation
 
+// BROKEN
 public struct ValidateAccountRequest: Encodable {
-    let phone: String
-    let identifier: String
-    let accountNum: String?
+    var identifier: String = ""
+    var phoneNumber: String = ""
+    var accountNumber: String? = nil
+    var billDate: String? = nil
+    var amountDue: String? = nil
+    
+    enum CodingKeys: String, CodingKey {
+        case identifier = "identifier"
+        case phoneNumber = "phone"
+        case accountNumber = "account_num"
+        case billDate = "bill_date"
+        case amountDue = "amount_due"
+    }
 }

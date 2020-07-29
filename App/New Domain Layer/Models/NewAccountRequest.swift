@@ -11,7 +11,7 @@ import Foundation
 public struct NewAccountRequest: Encodable {
     let username: String
     let password: String
-    let accountNum: String?
+    let accountNumber: String?
     let identifier: String
     let phone: String
     let question1: String
@@ -21,5 +21,21 @@ public struct NewAccountRequest: Encodable {
     let question3: String
     let answer3: String
     let isPrimary: String
-    let isEnrollEBill: String
+    let shouldEnrollEbill: String
+    
+    enum CodingKeys: String, CodingKey {
+        case username
+        case password
+        case accountNumber = "account_num"
+        case identifier
+        case phone
+        case question1
+        case answer1
+        case question2
+        case answer2
+        case question3
+        case answer3
+        case isPrimary
+        case shouldEnrollEbill = "enroll_ebill"
+    }
 }

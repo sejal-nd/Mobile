@@ -77,25 +77,24 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     }
     
     @IBAction func onResendEmailPress() {
-        if let username = registeredUsername {
-            let registrationService = ServiceFactory.createRegistrationService()
+        guard let username = registeredUsername else { return }
+        LoadingView.show()
+        
+        let usernameRequest = UsernameRequest(username: username)
+        RegistrationService.sendConfirmationEmail(request: usernameRequest) { [weak self] result in
+            switch result {
+            case .success:
+                FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .resend_email)])
+                self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
+                GoogleAnalytics.log(event: .registerResendEmail)
+            case .failure(let error):
+                let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertVc, animated: true, completion: nil)
+            }
             
-            LoadingView.show()
-            registrationService.resendConfirmationEmail(username)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] in
-                    LoadingView.hide()
-                    FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .resend_email)])
-                    self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
-                    GoogleAnalytics.log(event: .registerResendEmail)
-                }, onError: { [weak self] err in
-                    LoadingView.hide()
-                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self?.present(alertVc, animated: true, completion: nil)
-                })
-                .disposed(by: disposeBag)
+            LoadingView.hide()
         }
     }
-
+    
 }
