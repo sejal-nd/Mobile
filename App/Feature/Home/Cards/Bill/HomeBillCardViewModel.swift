@@ -371,9 +371,7 @@ class HomeBillCardViewModel {
                 switch Environment.shared.opco {
                 case .bge:
                     text = NSLocalizedString("You have processing payments", comment: "")
-                case .comEd, .peco:
-                    text = NSLocalizedString("You have pending payments", comment: "")
-                case .ace, .delmarva, .pepco:
+                case .ace, .comEd, .delmarva, .peco, .pepco:
                     text = NSLocalizedString("You have pending payments", comment: "")
                 }
                 return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .headline),
