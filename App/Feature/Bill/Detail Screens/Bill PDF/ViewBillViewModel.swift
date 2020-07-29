@@ -38,8 +38,12 @@ class ViewBillViewModel {
                     onError(errMessage.localizedDescription)
                     guard let self = self else { return }
                     let screenView: GoogleAnalyticsEvent = self.isCurrent ? .billViewCurrentError : .billViewPastError
-                    let serviceError = errMessage as! ServiceError
-                    GoogleAnalytics.log(event: screenView, dimensions: [.errorCode: serviceError.serviceCode])
+                    if let serviceError = errMessage as? ServiceError {
+                        GoogleAnalytics.log(event: screenView, dimensions: [.errorCode: serviceError.serviceCode])
+                    }
+//                    else if let networkError = errMessage as? NetworkingError {
+//                        GoogleAnalytics.log(event: screenView, dimensions: [.errorCode: networkError.]) TODO: get error code?
+//                    }
             })
             .disposed(by: disposeBag)
     }

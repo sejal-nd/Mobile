@@ -9,24 +9,15 @@
 import Foundation
 
 public struct GenericResponse: Decodable {
-    public var success: Bool
     public var confirmationNumber: String?
     
     enum CodingKeys: String, CodingKey {
-        case data = "data"
-        
-        case success = "success"
         case confirmationNumber = "confirmationNumber"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                 forKey: .data)
-        
-        self.success = try data.decode(Bool.self,
-                                       forKey: .success)
-        self.confirmationNumber = try data.decodeIfPresent(String.self,
+        self.confirmationNumber = try container.decodeIfPresent(String.self,
                                                            forKey: .confirmationNumber)
     }
 }

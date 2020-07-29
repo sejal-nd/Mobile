@@ -119,7 +119,7 @@ struct PaymentServiceNew {
                     
                     // fetch accounts todo
                     
-                    print("NetworkTest POST 4 SUCCESS: \(data.success) BREAK")
+                    print("NetworkTest POST 4 SUCCESS")
                     
                 case .failure(let error):
                     print("NetworkTest POST 4 FAIL: \(error)")

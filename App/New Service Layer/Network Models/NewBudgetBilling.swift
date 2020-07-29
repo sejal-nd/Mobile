@@ -21,8 +21,6 @@ public struct NewBudgetBilling: Decodable {
     public var programStartDate: Date
     
     enum CodingKeys: String, CodingKey {
-        case data = "data"
-        
         case isBudgetBillingAvailable = "isBudgetBillingAvailable"
         case isEnrolled = "enrolled"
         case averageMonthlyBill = "averageMonthlyBill"
@@ -37,32 +35,29 @@ public struct NewBudgetBilling: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                 forKey: .data)
         
-        
-        self.isBudgetBillingAvailable = try data.decode(Bool.self,
+        self.isBudgetBillingAvailable = try container.decode(Bool.self,
                                                         forKey: .isBudgetBillingAvailable)
-        self.isEnrolled = try data.decode(Bool.self,
+        self.isEnrolled = try container.decode(Bool.self,
                                           forKey: .isEnrolled)
         
-        self.averageMonthlyBill = try data.decode(Double.self,
+        self.averageMonthlyBill = try container.decode(Double.self,
                                                   forKey: .averageMonthlyBill)
-        self.budgetBill = try data.decodeIfPresent(Double.self,
+        self.budgetBill = try container.decodeIfPresent(Double.self,
                                           forKey: .budgetBill)
-        self.budgetBillDifference = try data.decodeIfPresent(Double.self,
+        self.budgetBillDifference = try container.decodeIfPresent(Double.self,
                                                     forKey: .budgetBillDifference)
-        self.budgetBillBalance = try data.decodeIfPresent(Double.self,
+        self.budgetBillBalance = try container.decodeIfPresent(Double.self,
                                                  forKey: .budgetBillBalance)
-        self.budgetBillPayoff = try data.decodeIfPresent(Double.self,
+        self.budgetBillPayoff = try container.decodeIfPresent(Double.self,
                                                 forKey: .budgetBillPayoff)
         
-        self.programStatusCode = try data.decode(String.self,
+        self.programStatusCode = try container.decode(String.self,
                                                  forKey: .programStatusCode)
-        self.programCode = try data.decode(String.self,
+        self.programCode = try container.decode(String.self,
                                            forKey: .programCode)
         
-        self.programStartDate = try data.decode(Date.self,
+        self.programStartDate = try container.decode(Date.self,
                                                 forKey: .programStartDate)
     }
 }

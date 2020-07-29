@@ -205,7 +205,7 @@ public enum Router {
             return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
         case .billPDF(let accountNumber, let date, let documentID):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
-            return Environment.shared.opco.isPHI ? "accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "accounts/\(accountNumber)/billing/\(dateString)/pdf"
+            return Environment.shared.opco.isPHI ? "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
         case .scheduledPayment(let accountNumber, _):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/schedule"
         case .scheduledPaymentUpdate(let accountNumber, let paymentId, _):
