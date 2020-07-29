@@ -55,12 +55,6 @@ struct MCSAuthenticationService : AuthenticationService {
         return MCSApi.shared.put(pathPrefix: .anon, path: "profile/password", params: params)
             .mapTo(())
     }
-    
-    func recoverPassword(username: String) -> Observable<Void> {
-        let params = ["username" : username]
-        return MCSApi.shared.post(pathPrefix: .anon, path: "recover/password", params: params)
-            .mapTo(())
-    }
     #endif
 
 }

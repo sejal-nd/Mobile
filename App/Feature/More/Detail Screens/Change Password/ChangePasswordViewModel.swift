@@ -213,14 +213,15 @@ class ChangePasswordViewModel {
     }
     
     func submitForgotPassword(username: String, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        authService.recoverPassword(username: username)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        let usernameRequest = UsernameRequest(username: username)
+        AnonymousService.recoverPassword(request: usernameRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                onError(serviceError.localizedDescription)
-            }).disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
 
 }

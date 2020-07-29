@@ -28,12 +28,4 @@ protocol AuthenticationService {
     ///   - newPassword: the users new password to set.
     func changePasswordAnon(username: String, currentPassword: String, newPassword: String) -> Observable<Void>
     #endif
-
-    #if os(iOS)
-    /// Reset a password by providing your username
-    ///
-    /// - Parameters:
-    ///   - username: the username associated with the account.
-    func recoverPassword(username: String) -> Observable<Void>
-    #endif
 }

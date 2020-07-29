@@ -30,18 +30,4 @@ struct MockAuthenticationService: AuthenticationService {
         }
     }
     
-    func refreshAuthorization() -> Observable<Void> {
-        return .just(())
-    }
-    
-    func recoverPassword(username: String) -> Observable<Void> {
-        if username.lowercased() == "error" {
-            return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnProfNotFound.rawValue))
-                .delay(.seconds(1), scheduler: MainScheduler.instance)
-        } else {
-            return Observable.just(())
-                .delay(.seconds(1), scheduler: MainScheduler.instance)
-        }
-    }
-    
 }
