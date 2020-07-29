@@ -177,28 +177,28 @@ class SplashViewModel{
                            ,phone)
         case .delmarva:
             let phone = "1-800-375-7117"
-            phoneNumbers = [phone]
-            localizedString = String.localizedStringWithFormat(
-                """
-                For all other inquiries, please call %@ M-F 7AM to 7PM.
-                """
-                ,phone)
+                    phoneNumbers = [phone]
+                    localizedString = String.localizedStringWithFormat(
+                            """
+                            For all other inquiries, please call %@ M-F 7AM to 7PM.
+                            """
+                            ,phone)
         case .peco:
             let phone = "1-800-494-4000"
-            phoneNumbers = [phone]
-            localizedString = String.localizedStringWithFormat(
-                """
-                For all other inquiries, please call %@ M-F 7AM to 7PM.
-                """
-                ,phone)
+                    phoneNumbers = [phone]
+                    localizedString = String.localizedStringWithFormat(
+                            """
+                            For all other inquiries, please call %@ M-F 7AM to 7PM.
+                            """
+                            ,phone)
         case .pepco:
             let phone = "202-833-7500"
-            phoneNumbers = [phone]
-            localizedString = String.localizedStringWithFormat(
-                """
-                For all other inquiries, please call %@ M-F 7AM to 8PM.
-                """
-                ,phone)
+                    phoneNumbers = [phone]
+                    localizedString = String.localizedStringWithFormat(
+                            """
+                            For all other inquiries, please call %@ M-F 7AM to 8PM.
+                            """
+                            ,phone)
         }
             
         let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
