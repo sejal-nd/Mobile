@@ -15,7 +15,6 @@ class HomeViewModel {
     private let walletService: WalletService
     private let paymentService: PaymentService
     private let alertsService: AlertsService
-    private let appointmentService: AppointmentService
     private let gameService: GameService
     
     let fetchData = PublishSubject<Void>()
@@ -37,14 +36,12 @@ class HomeViewModel {
                   walletService: WalletService,
                   paymentService: PaymentService,
                   alertsService: AlertsService,
-                  appointmentService: AppointmentService,
                   gameService: GameService) {
         self.fetchDataObservable = fetchData.share()
         self.weatherService = weatherService
         self.walletService = walletService
         self.paymentService = paymentService
         self.alertsService = alertsService
-        self.appointmentService = appointmentService
         self.gameService = gameService
     }
     
@@ -211,9 +208,7 @@ class HomeViewModel {
                 return .empty()
             }
             
-            return self.appointmentService
-                .fetchAppointments(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-                                   premiseNumber: premiseNumber)
+            return AppointmentService.rx.fetchAppointments(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: premiseNumber)
         })
         .share(replay: 1, scope: .forever)
     
