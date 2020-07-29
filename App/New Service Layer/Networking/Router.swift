@@ -56,7 +56,7 @@ public enum Router {
     case payments(accountNumber: String)
     
     case alertBanner(additionalQueryItem: URLQueryItem)
-        
+    
     // Billing
     
     case billPDF(accountNumber: String, date: Date)
@@ -118,7 +118,7 @@ public enum Router {
     case meterPing(accountNumber: String, premiseNumber: String? = nil)
     case reportOutage(accountNumber: String, request: OutageRequest)
     case reportOutageAnon(request: OutageRequest)
-
+    
     // Unauthenticated    
     case passwordChange(request: ChangePasswordRequest)
     case accountLookup(request: AccountLookupRequest)
@@ -156,7 +156,7 @@ public enum Router {
         switch self {
         case .weather:
             return .external
-            case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .recoverPassword:
+        case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .recoverPassword:
             return .anon
         default:
             return .auth
@@ -285,7 +285,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .register, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .recoverPassword:
+        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .register, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname:
             return "GET"
@@ -310,7 +310,7 @@ public enum Router {
             headers["Accept"] = "application/json;odata=verbose"
         case .fetchJWTToken:
             headers["content-type"] = "application/x-www-form-urlencoded"
-        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .validateConfirmationEmail, .recoverPassword:
+        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .validateConfirmationEmail, .recoverPassword, .passwordChange:
             headers["Content-Type"] = "application/json"
         default:
             break
@@ -343,7 +343,7 @@ public enum Router {
     public var httpBody: HTTPBody? {
         switch self {
         case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable),
-             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .accountLookup(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .register(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .recoverPassword(let request as Encodable):
+             .fetchDailyUsage(_, _, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .register(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable):
             return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
@@ -421,7 +421,7 @@ public enum Router {
             return "AlertPreferencesLoadMock"
         case .appointments:
             return "AppointmentsMock"
-        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .checkDuplicateRegistration, .sendConfirmationEmail, .validateConfirmationEmail, .register, .recoverPassword:
+        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .checkDuplicateRegistration, .sendConfirmationEmail, .validateConfirmationEmail, .register, .recoverPassword, .passwordChange:
             return "GenericResponseMock"
         case .fetchDailyUsage:
             return "DailyUsageMock"

@@ -18,15 +18,13 @@ class ChangePasswordViewModel {
     var confirmPassword = BehaviorRelay(value: "")
     
     private var userDefaults: UserDefaults
-    private var authService: AuthenticationService
     private var biometricsService: BiometricsService
     
     // Keeps track of strong password for Analytics
     var hasStrongPassword = false
     
-    required init(userDefaults: UserDefaults, authService: AuthenticationService, biometricsService: BiometricsService) {
+    required init(userDefaults: UserDefaults, biometricsService: BiometricsService) {
         self.userDefaults = userDefaults
-        self.authService = authService
         self.biometricsService = biometricsService
     }
     
@@ -147,43 +145,12 @@ class ChangePasswordViewModel {
                                               onPasswordNoMatch: @escaping () -> Void,
                                               onError: @escaping (String) -> Void) {
         if anon {
-            authService.changePasswordAnon(username: resetPasswordUsername ?? biometricsService.getStoredUsername()!,
-                                           currentPassword: currentPassword.value,
-                                           newPassword: newPassword.value)
-                .observeOn(MainScheduler.instance)
-                .asObservable()
-                .subscribe(onNext: { [weak self] _ in
-                    guard let self = self else { return }
-                    
-                    if self.biometricsService.isBiometricsEnabled() {
-                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
-                    }
-                    
-                    if #available(iOS 12.0, *) { }
-                        // Save to SWC if iOS 11. iOS 12 should handle this automagically.
-                    else {
-                        if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
-                            SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
-                        }
-                    }
-                    
-                    FirebaseUtility.logEvent(.changePasswordNetworkComplete)
-                    
-                    onSuccess()
-                }, onError: { (error: Error) in
-                    let serviceError = error as! ServiceError
-                    
-                    if serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue {
-                        onPasswordNoMatch()
-                    } else {
-                        onError(error.localizedDescription)
-                    }
-                })
-                .disposed(by: disposeBag)
-        } else {
-            authService.changePassword(currentPassword: currentPassword.value, newPassword: newPassword.value)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] _ in
+            let changePasswordReqeust = ChangePasswordRequest(username: resetPasswordUsername ?? biometricsService.getStoredUsername() ?? "",
+                                                              currentPassword: currentPassword.value,
+                                                              newPassword: newPassword.value)
+            AnonymousService.changePassword(request: changePasswordReqeust) { [weak self] result in
+                switch result {
+                case .success:
                     guard let self = self else { return }
                     if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
@@ -200,15 +167,44 @@ class ChangePasswordViewModel {
                     FirebaseUtility.logEvent(.changePasswordNetworkComplete)
                     
                     onSuccess()
-                }, onError: { (error: Error) in
-                    let serviceError = error as! ServiceError
-                    if serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue {
+                case .failure(let error):
+                    if error == .noPasswordMatch {
                         onPasswordNoMatch()
                     } else {
-                        onError(error.localizedDescription)
+                        onError(error.description)
                     }
-                })
-                .disposed(by: disposeBag)
+                }
+            }
+        } else {
+            let changePasswordReqeust = ChangePasswordRequest(currentPassword: currentPassword.value,
+                                                              newPassword: newPassword.value)
+            AnonymousService.changePassword(request: changePasswordReqeust) { [weak self] result in
+                switch result {
+                case .success:
+                    guard let self = self else { return }
+                    if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
+                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
+                    }
+                    
+                    if #available(iOS 12.0, *) { }
+                        // Save to SWC if iOS 11. iOS 12 should handle this automagically.
+                    else {
+                        if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
+                            SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                        }
+                    }
+                    
+                    FirebaseUtility.logEvent(.changePasswordNetworkComplete)
+                    
+                    onSuccess()
+                case .failure(let error):
+                    if error == .noPasswordMatch {
+                        onPasswordNoMatch()
+                    } else {
+                        onError(error.description)
+                    }
+                }
+            }
         }
     }
     

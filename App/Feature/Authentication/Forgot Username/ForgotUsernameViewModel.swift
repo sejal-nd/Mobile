@@ -12,8 +12,6 @@ import RxCocoa
 class ForgotUsernameViewModel {
     let disposeBag = DisposeBag()
     
-    private var authService: AuthenticationService
-    
     let phoneNumber = BehaviorRelay(value: "")
     let identifierNumber = BehaviorRelay(value: "")
     let accountNumber = BehaviorRelay(value: "")
@@ -22,11 +20,7 @@ class ForgotUsernameViewModel {
     var selectedUsernameIndex = 0
     
     let securityQuestionAnswer = BehaviorRelay(value: "")
-    
-    required init(authService: AuthenticationService) {
-        self.authService = authService
-    }
-    
+
     func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let acctNum: String? = accountNumber.value.isEmpty ? nil : accountNumber.value
         let identifier: String? = identifierNumber.value.isEmpty ? nil : identifierNumber.value
