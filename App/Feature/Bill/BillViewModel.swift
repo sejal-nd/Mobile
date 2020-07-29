@@ -22,8 +22,6 @@ class BillViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let authService: AuthenticationService
-
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
@@ -38,10 +36,6 @@ class BillViewModel {
         case .refresh: return refreshTracker
         case .switchAccount: return switchAccountsTracker
         }
-    }
-    
-    required init(authService: AuthenticationService) {
-        self.authService = authService
     }
     
     private lazy var fetchTrigger = Observable

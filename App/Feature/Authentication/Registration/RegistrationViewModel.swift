@@ -156,11 +156,7 @@ class RegistrationViewModel {
                 self?.accounts.accept(accountLookupResults.accountLookupResults)
                 onSuccess()
             case .failure(let error):
-                if error == NetworkingError.accountLookupNotFound {
-                    onError(NSLocalizedString("No Account Found", comment: ""), error.localizedDescription)
-                } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
-                }
+                onError(error.title, error.description)
             }
         }
     }

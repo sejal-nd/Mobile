@@ -14,7 +14,6 @@ class HomeViewModel {
     private let weatherService: WeatherService
     private let walletService: WalletService
     private let paymentService: PaymentService
-    private let authService: AuthenticationService
     private let alertsService: AlertsService
     private let appointmentService: AppointmentService
     private let gameService: GameService
@@ -37,7 +36,6 @@ class HomeViewModel {
     required init(weatherService: WeatherService,
                   walletService: WalletService,
                   paymentService: PaymentService,
-                  authService: AuthenticationService,
                   alertsService: AlertsService,
                   appointmentService: AppointmentService,
                   gameService: GameService) {
@@ -45,7 +43,6 @@ class HomeViewModel {
         self.weatherService = weatherService
         self.walletService = walletService
         self.paymentService = paymentService
-        self.authService = authService
         self.alertsService = alertsService
         self.appointmentService = appointmentService
         self.gameService = gameService
@@ -66,7 +63,6 @@ class HomeViewModel {
                               scheduledPaymentEvents: scheduledPaymentEvents,
                               walletService: walletService,
                               paymentService: paymentService,
-                              authService: authService,
                               fetchTracker: billTracker)
     
     private(set) lazy var usageCardViewModel =

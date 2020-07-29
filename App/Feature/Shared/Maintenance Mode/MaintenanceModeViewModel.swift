@@ -13,10 +13,8 @@ class MaintenanceModeViewModel{
     let disposeBag = DisposeBag()
 
     private var maintenance: MaintenanceMode?
-    private var authService: AuthenticationService
     
-    init(authService: AuthenticationService, maintenance: MaintenanceMode?){
-        self.authService = authService
+    init(maintenance: MaintenanceMode?){
         self.maintenance = maintenance
     }
     

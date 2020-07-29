@@ -13,7 +13,6 @@ class StormModeHomeViewModel {
     
     let stormModePollInterval = 30
     
-    private let authService: AuthenticationService
     private let alertsService: AlertsService
         
     private let disposeBag = DisposeBag()
@@ -27,8 +26,7 @@ class StormModeHomeViewModel {
     var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
     
     
-    init(authService: AuthenticationService, alertsService: AlertsService) {
-        self.authService = authService
+    init(alertsService: AlertsService) {
         self.alertsService = alertsService
     }
     

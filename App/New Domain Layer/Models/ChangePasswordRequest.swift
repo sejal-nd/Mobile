@@ -9,16 +9,10 @@
 import Foundation
 
 public struct ChangePasswordRequest: Encodable {
-    let username: String?
+    // username must not be nil for anon call
+    var username: String? = nil
     let currentPassword: String
     let newPassword: String
-    
-    // username must not be nil for anon call
-    init(username: String? = nil, currentPassword: String, newPassword: String) {
-        self.username = username
-        self.currentPassword = currentPassword
-        self.newPassword = newPassword
-    }
     
     enum CodingKeys: String, CodingKey {
         case username

@@ -11,32 +11,27 @@ import RxCocoa
 
 class ForgotPasswordViewModel {
     let disposeBag = DisposeBag()
-    
-    let authService: AuthenticationService
-    
+        
     let username = BehaviorRelay(value: "")
-    
-    required init(authService: AuthenticationService) {
-        self.authService = authService
-    }
     
     func getInstructionLabelText() -> String {
         return (Environment.shared.opco == .bge || Environment.shared.opco == .peco || Environment.shared.opco == .comEd) ? NSLocalizedString("Please enter your username/email address to have a temporary password sent to your primary email address on file. The temporary password is valid only for 1 hour from the time it was requested.", comment: "") : NSLocalizedString("Please enter your username and we will send a temporary password to the email address on file. Your temporary password will only be valid for 1 hour from the time it is requested.", comment: "")
     }
     
     func submitForgotPassword(onSuccess: @escaping () -> Void, onProfileNotFound: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
-        authService.recoverPassword(username: username.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        let usernameRequest = UsernameRequest(username: username.value)
+        AnonymousService.recoverPassword(request: usernameRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
-                    onProfileNotFound(serviceError.localizedDescription)
+            case .failure(let error):
+                if error == .profileNotFound {
+                    onProfileNotFound(error.description)
                 } else {
-                    onError(serviceError.localizedDescription)
+                    onError(error.description)
                 }
-            }).disposed(by: disposeBag)
+            }
+        }
     }
     
     private(set) lazy var submitButtonEnabled: Driver<Bool> = self.username.asDriver().map { $0.count > 0 }

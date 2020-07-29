@@ -19,7 +19,6 @@ class HomeBillCardViewModel {
     let scheduledPaymentEvents: Observable<Event<PaymentItem?>>
     private let walletService: WalletService
     private let paymentService: PaymentService
-    private let authService: AuthenticationService
     
     let submitOneTouchPay = PublishSubject<Void>()
     
@@ -35,7 +34,6 @@ class HomeBillCardViewModel {
                   scheduledPaymentEvents: Observable<Event<PaymentItem?>>,
                   walletService: WalletService,
                   paymentService: PaymentService,
-                  authService: AuthenticationService,
                   fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.fetchDataMMEvents = fetchDataMMEvents
@@ -43,7 +41,6 @@ class HomeBillCardViewModel {
         self.scheduledPaymentEvents = scheduledPaymentEvents
         self.walletService = walletService
         self.paymentService = paymentService
-        self.authService = authService
         self.fetchTracker = fetchTracker
         
         oneTouchPayResult

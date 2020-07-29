@@ -12,7 +12,7 @@ import RxCocoa
 
 class ForgotUsernameBGEAccountNumberViewController: KeyboardAvoidingStickyFooterViewController {
     
-    let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
+    let viewModel = ForgotUsernameViewModel()
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
