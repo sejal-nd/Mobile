@@ -27,12 +27,6 @@ enum OpCo: String {
     
     var displayString: String {
         switch self {
-        case .bge:
-            return "BGE"
-        case .comEd:
-            return "ComEd"
-        case .peco:
-            return "PECO"
         case .ace:
             return "Atlantic City Electric"
         case .delmarva:
