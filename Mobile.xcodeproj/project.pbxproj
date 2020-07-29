@@ -902,7 +902,6 @@
 		673F9FD224C894CA00210BCD /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0024AB828000A828F9 /* AccountLookupRequest.swift */; };
 		673F9FD324C894CB00210BCD /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0024AB828000A828F9 /* AccountLookupRequest.swift */; };
 		673F9FD424C894CD00210BCD /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0024AB828000A828F9 /* AccountLookupRequest.swift */; };
-		673F9FD524C894D700210BCD /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
 		673F9FD624C894D700210BCD /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		673F9FD724C894D700210BCD /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */; };
 		673F9FD824C894D700210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF024AB828000A828F9 /* ScheduledPaymentUpdateRequest.swift */; };
@@ -915,7 +914,6 @@
 		673F9FDF24C894D700210BCD /* BillComparisonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AFF24AB828000A828F9 /* BillComparisonRequest.swift */; };
 		673F9FE024C894D700210BCD /* AutoPayEnrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0124AB828000A828F9 /* AutoPayEnrollRequest.swift */; };
 		673F9FE124C894D700210BCD /* ReleaseOfInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0224AB828000A828F9 /* ReleaseOfInfoRequest.swift */; };
-		673F9FE224C894D800210BCD /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
 		673F9FE324C894D800210BCD /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		673F9FE424C894D800210BCD /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */; };
 		673F9FE524C894D800210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF024AB828000A828F9 /* ScheduledPaymentUpdateRequest.swift */; };
@@ -928,7 +926,6 @@
 		673F9FEC24C894D800210BCD /* BillComparisonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AFF24AB828000A828F9 /* BillComparisonRequest.swift */; };
 		673F9FED24C894D800210BCD /* AutoPayEnrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0124AB828000A828F9 /* AutoPayEnrollRequest.swift */; };
 		673F9FEE24C894D800210BCD /* ReleaseOfInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0224AB828000A828F9 /* ReleaseOfInfoRequest.swift */; };
-		673F9FEF24C894D900210BCD /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
 		673F9FF024C894D900210BCD /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		673F9FF124C894D900210BCD /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */; };
 		673F9FF224C894D900210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF024AB828000A828F9 /* ScheduledPaymentUpdateRequest.swift */; };
@@ -941,7 +938,6 @@
 		673F9FF924C894D900210BCD /* BillComparisonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AFF24AB828000A828F9 /* BillComparisonRequest.swift */; };
 		673F9FFA24C894D900210BCD /* AutoPayEnrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0124AB828000A828F9 /* AutoPayEnrollRequest.swift */; };
 		673F9FFB24C894D900210BCD /* ReleaseOfInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0224AB828000A828F9 /* ReleaseOfInfoRequest.swift */; };
-		673F9FFC24C894DA00210BCD /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
 		673F9FFD24C894DA00210BCD /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		673F9FFE24C894DA00210BCD /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */; };
 		673F9FFF24C894DA00210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF024AB828000A828F9 /* ScheduledPaymentUpdateRequest.swift */; };
@@ -954,7 +950,6 @@
 		673FA00624C894DA00210BCD /* BillComparisonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AFF24AB828000A828F9 /* BillComparisonRequest.swift */; };
 		673FA00724C894DA00210BCD /* AutoPayEnrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0124AB828000A828F9 /* AutoPayEnrollRequest.swift */; };
 		673FA00824C894DA00210BCD /* ReleaseOfInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0224AB828000A828F9 /* ReleaseOfInfoRequest.swift */; };
-		673FA00924C894DB00210BCD /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
 		673FA00A24C894DB00210BCD /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		673FA00B24C894DB00210BCD /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */; };
 		673FA00C24C894DB00210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF024AB828000A828F9 /* ScheduledPaymentUpdateRequest.swift */; };
@@ -967,7 +962,6 @@
 		673FA01324C894DB00210BCD /* BillComparisonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AFF24AB828000A828F9 /* BillComparisonRequest.swift */; };
 		673FA01424C894DB00210BCD /* AutoPayEnrollRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0124AB828000A828F9 /* AutoPayEnrollRequest.swift */; };
 		673FA01524C894DB00210BCD /* ReleaseOfInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0224AB828000A828F9 /* ReleaseOfInfoRequest.swift */; };
-		673FA01624C894DC00210BCD /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
 		673FA01724C894DC00210BCD /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		673FA01824C894DC00210BCD /* RecoverUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF224AB828000A828F9 /* RecoverUsernameRequest.swift */; };
 		673FA01924C894DC00210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF024AB828000A828F9 /* ScheduledPaymentUpdateRequest.swift */; };
@@ -1255,12 +1249,6 @@
 		675F4B7324AB828100A828F9 /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameServiceNew.swift */; };
 		675F4B7424AB828100A828F9 /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameServiceNew.swift */; };
 		675F4B7524AB828100A828F9 /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameServiceNew.swift */; };
-		675F4B7624AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
-		675F4B7724AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
-		675F4B7824AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
-		675F4B7924AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
-		675F4B7A24AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
-		675F4B7B24AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */; };
 		675F4B7C24AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		675F4B7D24AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		675F4B7E24AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
@@ -7343,7 +7331,6 @@
 		675F4AE924AB828000A828F9 /* AnonymousService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnonymousService.swift; sourceTree = "<group>"; };
 		675F4AEA24AB828000A828F9 /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		675F4AEB24AB828000A828F9 /* GameServiceNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameServiceNew.swift; sourceTree = "<group>"; };
-		675F4AED24AB828000A828F9 /* RecoverPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverPasswordRequest.swift; sourceTree = "<group>"; };
 		675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverMaskedUsernameRequest.swift; sourceTree = "<group>"; };
 		675F4AEF24AB828000A828F9 /* CompareBillRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareBillRequest.swift; sourceTree = "<group>"; };
 		675F4AF024AB828000A828F9 /* ScheduledPaymentUpdateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledPaymentUpdateRequest.swift; sourceTree = "<group>"; };
@@ -9991,6 +9978,7 @@
 				675F4B0824AB828000A828F9 /* WeatherServiceNew.swift */,
 				675F4B0924AB828000A828F9 /* PaymentServiceNew.swift */,
 				675F4B0A24AB828000A828F9 /* UsageService.swift */,
+				679C6EA224D1B54800535DE7 /* UnauthenticatedService.swift */,
 			);
 			path = "New Domain Layer";
 			sourceTree = "<group>";
@@ -15899,7 +15887,6 @@
 				C3B6557824ABE6780048C64B /* BillingInfo.swift in Sources */,
 				C3B6559424AD255A0048C64B /* NetworkingError.swift in Sources */,
 				C3087ADF24B67ECE005AE544 /* GuidRequest.swift in Sources */,
-				673F9FEF24C894D900210BCD /* RecoverPasswordRequest.swift in Sources */,
 				C3087B1124BDEFA3005AE544 /* AnyObserver.swift in Sources */,
 				C3087B2124BE154E005AE544 /* CompareBillResult.swift in Sources */,
 				C3087AAB24B670B0005AE544 /* AccountService+Rx.swift in Sources */,
@@ -15947,6 +15934,7 @@
 				C3087B1724BDF0D5005AE544 /* UsageService+Rx.swift in Sources */,
 				673FA0A624C8956700210BCD /* NewPaymentResult.swift in Sources */,
 				C3087ACA24B67288005AE544 /* ChangePasswordRequest.swift in Sources */,
+				679C6EA424D1B54C00535DE7 /* UnauthenticatedService.swift in Sources */,
 				35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */,
 				675F4E1324B4D9E100A828F9 /* EndpointError.swift in Sources */,
 				35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */,
@@ -16044,7 +16032,6 @@
 				355B104A2369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
 				C3B6553E24ABB9800048C64B /* Account.swift in Sources */,
 				35F9DD952333D84700AAA2B2 /* ProfileStatus.swift in Sources */,
-				673F9FD524C894D700210BCD /* RecoverPasswordRequest.swift in Sources */,
 				673F9FD824C894D700210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */,
 				C3087AE424B78789005AE544 /* SSODataResponse.swift in Sources */,
 				35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */,
@@ -16220,6 +16207,7 @@
 				35F9DE1923353C5600AAA2B2 /* ProfileStatus.swift in Sources */,
 				C3087B2C24BE31AD005AE544 /* CompareBillRequest.swift in Sources */,
 				C3B6557524ABE6780048C64B /* BillingInfo.swift in Sources */,
+				679C6EA624D1B54E00535DE7 /* UnauthenticatedService.swift in Sources */,
 				C3B6559224AD25570048C64B /* NetworkingError.swift in Sources */,
 				C3087ADE24B67ECC005AE544 /* GuidRequest.swift in Sources */,
 				C3087AAA24B670AC005AE544 /* AccountService+Rx.swift in Sources */,
@@ -16411,6 +16399,7 @@
 				67DDB36824535D2E006CD6EB /* GiftsViewController.swift in Sources */,
 				67DDB36924535D2E006CD6EB /* HomePrepaidCardViewModel.swift in Sources */,
 				67DDB36A24535D2E006CD6EB /* BillService.swift in Sources */,
+				679C6EAA24D1B55100535DE7 /* UnauthenticatedService.swift in Sources */,
 				67DDB36B24535D2E006CD6EB /* MyHomeProfileViewModel.swift in Sources */,
 				67DDB36C24535D2E006CD6EB /* AppointmentDetailViewController.swift in Sources */,
 				67DDB36D24535D2E006CD6EB /* Top5EnergyTipsViewModel.swift in Sources */,
@@ -16453,7 +16442,6 @@
 				675F4CC324AB828200A828F9 /* HomeProfile.swift in Sources */,
 				675F4C9924AB828100A828F9 /* NewBillingHistoryItem.swift in Sources */,
 				67DDB38A24535D2E006CD6EB /* WhatIsBudgetBillingViewController.swift in Sources */,
-				675F4B7924AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */,
 				673FA0F724C8A52700210BCD /* AnonymousService+RX.swift in Sources */,
 				675F4C5D24AB828100A828F9 /* NewAutoPayResult.swift in Sources */,
 				675F4CF924AB828200A828F9 /* GenericResponse.swift in Sources */,
@@ -16903,6 +16891,7 @@
 				67DDB5BB24535D32006CD6EB /* HomeOutageCardView.swift in Sources */,
 				67DDB5BC24535D32006CD6EB /* WalletService.swift in Sources */,
 				67DDB5BD24535D32006CD6EB /* PaperlessEBillViewModel.swift in Sources */,
+				679C6EAE24D1B55400535DE7 /* UnauthenticatedService.swift in Sources */,
 				67DDB5BE24535D32006CD6EB /* GiftsViewController.swift in Sources */,
 				67DDB5BF24535D32006CD6EB /* HomePrepaidCardViewModel.swift in Sources */,
 				67DDB5C024535D32006CD6EB /* BillService.swift in Sources */,
@@ -16941,7 +16930,6 @@
 				67DDB5DB24535D32006CD6EB /* MCSWalletService.swift in Sources */,
 				C3087A9524B63D03005AE544 /* AccountService+Rx.swift in Sources */,
 				67DDB5DD24535D32006CD6EB /* ForgotPasswordViewController.swift in Sources */,
-				675F4B7B24AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */,
 				67DDB5DE24535D32006CD6EB /* AccountListRow.swift in Sources */,
 				675F4D1F24AB828200A828F9 /* Test.swift in Sources */,
 				67DDB5DF24535D32006CD6EB /* KeychainKeys.swift in Sources */,
@@ -17400,6 +17388,7 @@
 				67DDB81124535D35006CD6EB /* HomeOutageCardView.swift in Sources */,
 				67DDB81224535D35006CD6EB /* WalletService.swift in Sources */,
 				67DDB81324535D35006CD6EB /* PaperlessEBillViewModel.swift in Sources */,
+				679C6EAC24D1B55200535DE7 /* UnauthenticatedService.swift in Sources */,
 				67DDB81424535D35006CD6EB /* GiftsViewController.swift in Sources */,
 				67DDB81524535D35006CD6EB /* HomePrepaidCardViewModel.swift in Sources */,
 				67DDB81624535D35006CD6EB /* BillService.swift in Sources */,
@@ -17438,7 +17427,6 @@
 				67DDB83124535D35006CD6EB /* MCSWalletService.swift in Sources */,
 				C3087A9324B63D03005AE544 /* AccountService+Rx.swift in Sources */,
 				67DDB83324535D35006CD6EB /* ForgotPasswordViewController.swift in Sources */,
-				675F4B7A24AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */,
 				67DDB83424535D35006CD6EB /* AccountListRow.swift in Sources */,
 				675F4D1E24AB828200A828F9 /* Test.swift in Sources */,
 				67DDB83524535D35006CD6EB /* KeychainKeys.swift in Sources */,
@@ -18518,7 +18506,6 @@
 				673F9F5F24C892BF00210BCD /* CompareBillRequest.swift in Sources */,
 				67EDC2E324C1E690001A8494 /* UIColor.swift in Sources */,
 				67EDC2E424C1E690001A8494 /* SignInInterfaceController.swift in Sources */,
-				673F9FFC24C894DA00210BCD /* RecoverPasswordRequest.swift in Sources */,
 				67EDC2E524C1E690001A8494 /* URLSession+Rx.swift in Sources */,
 				67EDC2E624C1E690001A8494 /* MCSAuthenticationService.swift in Sources */,
 				673F9FC224C8945800210BCD /* NetworkingLayer.swift in Sources */,
@@ -18811,6 +18798,7 @@
 				673FA0BA24C8984200210BCD /* AccountService+Rx.swift in Sources */,
 				673F9F6924C892CF00210BCD /* AccountNicknameRequest.swift in Sources */,
 				67EDC3F024C1EBFF001A8494 /* (null) in Sources */,
+				679C6EAD24D1B55300535DE7 /* UnauthenticatedService.swift in Sources */,
 				673F9F5D24C892B500210BCD /* AccountService.swift in Sources */,
 				67EDC3F124C1EBFF001A8494 /* (null) in Sources */,
 				673F9F5424C8927E00210BCD /* AccountDetails.swift in Sources */,
@@ -18831,7 +18819,6 @@
 				673F9F4E24C8925300210BCD /* Account.swift in Sources */,
 				67EDC3F524C1EBFF001A8494 /* Logger.swift in Sources */,
 				673F9F9324C8932F00210BCD /* BillForecast.swift in Sources */,
-				673FA00924C894DB00210BCD /* RecoverPasswordRequest.swift in Sources */,
 				673F9F7E24C892F600210BCD /* AnyEncodable.swift in Sources */,
 				673F9F7B24C892F200210BCD /* ChangePasswordRequest.swift in Sources */,
 				67EDC3F624C1EBFF001A8494 /* (null) in Sources */,
@@ -19052,7 +19039,6 @@
 				9CE549712399941300025BD5 /* GameRewardViewController.swift in Sources */,
 				E83F02751FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
-				675F4B7624AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */,
 				675F4B5E24AB828100A828F9 /* OutageService.swift in Sources */,
 				E8039FF11EFB0405004DB789 /* PaymentService.swift in Sources */,
 				9C5F096F23A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
@@ -19079,6 +19065,7 @@
 				B05E9D13217F688A0003FAB8 /* Application.swift in Sources */,
 				67F950FE24BCA111009B5F07 /* RegistrationSecurityQuestionsViewControllerNew.swift in Sources */,
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
+				679C6EA324D1B54800535DE7 /* UnauthenticatedService.swift in Sources */,
 				B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				3559C8BA23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
 				CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
@@ -19551,7 +19538,6 @@
 				82D5994D1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				9C5F097123A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
-				675F4B7824AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */,
 				675F4B6024AB828100A828F9 /* OutageService.swift in Sources */,
 				B05E9D15217F688A0003FAB8 /* Application.swift in Sources */,
 				B0B083B8216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
@@ -19577,6 +19563,7 @@
 				C3087B1024BDEFA3005AE544 /* AnyObserver.swift in Sources */,
 				E873DA651EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				B0030D0A2097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
+				679C6EA824D1B55000535DE7 /* UnauthenticatedService.swift in Sources */,
 				E83F02721FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
@@ -20049,7 +20036,6 @@
 				54DF4BCD1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				E8039FF61EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				E8039FF91EFB0420004DB789 /* PaymentService.swift in Sources */,
-				675F4B7724AB828100A828F9 /* RecoverPasswordRequest.swift in Sources */,
 				675F4B5F24AB828100A828F9 /* OutageService.swift in Sources */,
 				9C5F097023A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
 				54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
@@ -20073,6 +20059,7 @@
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				9CEE412223722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				C3087B0E24BDEFA3005AE544 /* AnyObserver.swift in Sources */,
+				679C6EA524D1B54D00535DE7 /* UnauthenticatedService.swift in Sources */,
 				B07269362127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				E87926DB1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				3559C8BB23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,

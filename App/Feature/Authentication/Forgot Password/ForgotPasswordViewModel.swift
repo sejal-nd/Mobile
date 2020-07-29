@@ -25,18 +25,19 @@ class ForgotPasswordViewModel {
     }
     
     func submitForgotPassword(onSuccess: @escaping () -> Void, onProfileNotFound: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
-        authService.recoverPassword(username: username.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        let usernameRequest = UsernameRequest(username: username.value)
+        AnonymousService.recoverPassword(request: usernameRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
-                    onProfileNotFound(serviceError.localizedDescription)
+            case .failure(let error):
+                if error == .profileNotFound {
+                    onProfileNotFound(error.description)
                 } else {
-                    onError(serviceError.localizedDescription)
+                    onError(error.description)
                 }
-            }).disposed(by: disposeBag)
+            }
+        }
     }
     
     private(set) lazy var submitButtonEnabled: Driver<Bool> = self.username.asDriver().map { $0.count > 0 }

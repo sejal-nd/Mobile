@@ -23,19 +23,4 @@ struct CodyUnauthenticatedServiceNew {
             }
         }
     }
-    
-    static func recoverPassword(request: RecoverPasswordRequest, completion: @escaping (Result<Void, NetworkingError>) -> ()) {
-        
-        NetworkingLayer.request(router: .recoverPassword(encodable: request)) { (result: Result<VoidDecodable, NetworkingError>) in
-            switch result {
-            case .success(let data):
-                print("recoverPassword SUCCESS: \(data)")
-                completion(.success(()))
-                
-            case .failure(let error):
-                print("recoverPassword FAIL: \(error)")
-                completion(.failure(error))
-            }
-        }
-    }
 }
