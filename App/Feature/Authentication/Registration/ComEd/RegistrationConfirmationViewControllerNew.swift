@@ -40,7 +40,7 @@ class RegistrationConfirmationViewControllerNew: DismissableFormSheetViewControl
         style.minimumLineHeight = 25
         attrString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, fullString.count))
         
-        let secondaryString = "\n\nCheck your spam/junk mail folder or send the verification email again."
+        let secondaryString = "\n\nCheck your spam/junk mail folder and add \(emailAddress) to your safe sender list or send the verification email again."
         let secondaryAttrString = NSMutableAttributedString(string: secondaryString)
         secondaryAttrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .body), range: (secondaryString as NSString).range(of: boldString))
         
