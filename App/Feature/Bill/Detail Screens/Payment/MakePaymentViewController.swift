@@ -91,7 +91,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     
     var viewModel: PaymentViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
-    var billingHistoryItem: BillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
+    var billingHistoryItem: NewBillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
     
     var hasPrecariousOtherAmountBeenSelected = false
     

@@ -21,7 +21,7 @@ class BillingHistoryViewController: UIViewController {
     @IBOutlet weak var emptyStateLabel: UILabel!
     @IBOutlet weak var emptyStateAutoPayButton: SecondaryButton!
     
-    let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
+    let viewModel = BillingHistoryViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default
@@ -132,7 +132,7 @@ class BillingHistoryViewController: UIViewController {
     func viewControllerToPush(forTappedIndexPath indexPath: IndexPath) -> UIViewController? {
         let billStoryboard = UIStoryboard(name: "Bill", bundle: nil)
         
-        func billingHistoryDetailsVc(_ billingHistoryItem: BillingHistoryItem) -> UIViewController {
+        func billingHistoryDetailsVc(_ billingHistoryItem: NewBillingHistoryItem) -> UIViewController {
             let vc = billStoryboard.instantiateViewController(withIdentifier: "billingHistoryDetails") as! BillingHistoryDetailsViewController
             vc.accountDetail = viewModel.accountDetail
             vc.billingHistoryItem = billingHistoryItem
@@ -210,7 +210,7 @@ class BillingHistoryViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
         vc.viewModel.accountDetail = viewModel.accountDetail
-        vc.viewModel.billingHistory = BillingHistory(upcoming: viewModel.billingHistory!.upcoming, past: [])
+        vc.viewModel.billingHistory = NewBillingHistoryResult(upcoming: viewModel.billingHistory!.upcoming, past: [])
         vc.viewModel.viewingMoreActivity = true
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -225,7 +225,7 @@ class BillingHistoryViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
         vc.viewModel.accountDetail = viewModel.accountDetail
-        vc.viewModel.billingHistory = BillingHistory(upcoming: [], past: viewModel.billingHistory!.past)
+        vc.viewModel.billingHistory = NewBillingHistoryResult(upcoming: [], past: viewModel.billingHistory!.past)
         vc.viewModel.viewingMoreActivity = true
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -394,7 +394,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let billingHistoryItem: BillingHistoryItem
+        let billingHistoryItem: NewBillingHistoryItem
         if indexPath.section == 0 {
             if indexPath.row == 0 && viewModel.shouldShowAutoPayCell {
                 return autoPayTableViewCell(indexPath: indexPath)

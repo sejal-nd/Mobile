@@ -65,7 +65,7 @@ class BudgetBillingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, billService: ServiceFactory.createBillService(), alertsService: ServiceFactory.createAlertsService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, alertsService: ServiceFactory.createAlertsService())
         
         title = NSLocalizedString("Budget Billing", comment: "")
         
@@ -174,30 +174,29 @@ class BudgetBillingViewController: UIViewController {
         loadingIndicator.isHidden = false
         bgeEnrolledInfoContainerView.isHidden = true
         stickyFooterView.isHidden = true
-        viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBillingInfo) in
+        viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: NewBudgetBilling) in
             guard let self = self else { return }
             
-            self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
+            self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill.currencyString
             self.scrollView.isHidden = false
             self.loadingIndicator.isHidden = true
             self.stickyFooterView.isHidden = false
             
             if Environment.shared.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
-                self.monthlyAmountLabel.text = budgetBillingInfo.budgetBill ?? budgetBillingInfo.averageMonthlyBill
+                self.monthlyAmountLabel.text = budgetBillingInfo.budgetBill?.currencyString ?? budgetBillingInfo.averageMonthlyBill.currencyString
                 self.lastPaymentDateLabel.text = self.accountDetail.billingInfo.lastPaymentDate?.mmDdYyyyString
-                self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff
-                self.currentBalanceLabel.text = budgetBillingInfo.budgetBillBalance
-                self.accDifferenceLabel.text = budgetBillingInfo.budgetBillDifference
+                self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff?.currencyString
+                self.currentBalanceLabel.text = budgetBillingInfo.budgetBillBalance?.currencyString
+                self.accDifferenceLabel.text = budgetBillingInfo.budgetBillDifference?.currencyString
                 self.bgeEnrolledInfoContainerView.isHidden = false
                 
-                if let budgetBillDifference = budgetBillingInfo.budgetBillDifference {
-                    if budgetBillingInfo.budgetBillDifferenceDecimal < 0 {
-                        self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
-                    } else if budgetBillingInfo.budgetBillDifferenceDecimal > 0 {
-                        self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
-                    } else {
-                        self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
-                    }
+                let budgetBillDifference = budgetBillingInfo.budgetBillDifference ?? 0
+                if budgetBillDifference < 0 {
+                    self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
+                } else if budgetBillDifference > 0 {
+                    self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
+                } else {
+                    self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
                 }
                 
 //                if budgetBillingInfo.isUSPPParticipant {

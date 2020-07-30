@@ -1,17 +1,21 @@
 //
-//  SchedulePaymentCancelRequest.swift
+//  ReleaseOfInfoPreference.swift
 //  Mobile
 //
-//  Created by Joseph Erlandson on 4/17/20.
+//  Created by Cody Dillon on 7/8/20.
 //  Copyright © 2020 Exelon Corporation. All rights reserved.
 //
 
 import Foundation
 
-struct SchedulePaymentCancelRequest: Encodable {
-    let paymentAmount: String
+public struct ReleaseOfInfoRequest: Encodable {
+    let value: String
     
     enum CodingKeys: String, CodingKey {
-        case paymentAmount = "payment_amount"
+        case value = "release_info_value"
+    }
+    
+    init(selectedIndex: Int) {
+        self.value = "0\(selectedIndex + 1)"
     }
 }
