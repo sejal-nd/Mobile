@@ -162,7 +162,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                 LoadingView.show()
                 self?.viewModel.validateRegistration(guid: guid, onSuccess: { [weak self] in
                     LoadingView.hide()
-                    self?.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
+                    self?.view.showToast(NSLocalizedString("Thank you for verifying your account.", comment: ""))
                     GoogleAnalytics.log(event: .registerAccountVerify)
                 }, onError: { [weak self] title, message in
                     LoadingView.hide()

@@ -106,7 +106,8 @@ class RegistrationViewModel {
                 } else if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
                     onError(NSLocalizedString("Profile Exists", comment: ""), NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: ""))
                 } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("We're sorry, we weren't able to process your request.", comment: ""),
+                            "An error occurred and we weren't able to process your request. Please try again later.")
                 }
             })
             .disposed(by: disposeBag)
@@ -137,7 +138,7 @@ class RegistrationViewModel {
                 if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
                     onEmailAlreadyExists()
                 } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("We're sorry, we weren't able to process your request.", comment: ""), "An error occurred and we weren't able to process your request. Please try again later.")
                 }
             })
             .disposed(by: disposeBag)
@@ -184,7 +185,7 @@ class RegistrationViewModel {
                     fallthrough
                     
                 default:
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("We're sorry, we weren't able to process your request.", comment: ""), "An error occurred and we weren't able to process your request. Please try again later.")
                 }
             })
             .disposed(by: disposeBag)

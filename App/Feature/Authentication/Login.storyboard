@@ -3052,7 +3052,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i8W-g4-AU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1921" y="2534"/>
+            <point key="canvasLocation" x="1745" y="2583"/>
         </scene>
         <!--unauthenticatedUserViewController-->
         <scene sceneID="Gcx-Ua-f53">
@@ -4028,8 +4028,8 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="stickyFooterBottomConstraint" destination="KC2-3m-YUi" id="2Ia-Rg-1ND"/>
                         <outlet property="streetNumColHeaderLabel" destination="3Oe-6Z-18y" id="A2I-iC-UM8"/>
                         <outlet property="unitNumColHeaderLabel" destination="rBF-LT-wB7" id="onh-Kh-aPc"/>
-                        <segue destination="Thq-rF-nbh" kind="presentation" identifier="loadRegistrationConfirmationSegue" id="ZUB-9F-7VI"/>
                         <segue destination="DSR-mt-1gD" kind="presentation" identifier="securityQuestionSegue" id="rc5-B5-rKb"/>
+                        <segue destination="Thq-rF-nbh" kind="presentation" identifier="loadRegistrationConfirmationSegue" id="yZt-0Y-CGp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QWP-J6-BuH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4261,7 +4261,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="rDh-g1-gVE"/>
-        <segue reference="ZUB-9F-7VI"/>
+        <segue reference="yZt-0Y-CGp"/>
         <segue reference="rc5-B5-rKb"/>
         <segue reference="He9-IH-khb"/>
         <segue reference="6eI-mv-PAf"/>
