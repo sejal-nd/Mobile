@@ -8,8 +8,12 @@
 
 import Foundation
 
-struct SchedulePaymentCancelRequest: Encodable {
+public struct SchedulePaymentCancelRequest: Encodable {
     let paymentAmount: String
+    
+    init(paymentAmount: Double) {
+        self.paymentAmount = String(format: "%.02f", paymentAmount)
+    }
     
     enum CodingKeys: String, CodingKey {
         case paymentAmount = "payment_amount"

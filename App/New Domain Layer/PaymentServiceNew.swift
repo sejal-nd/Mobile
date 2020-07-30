@@ -10,90 +10,36 @@ import Foundation
 
 // NOTE: The location of these static methods are subject to change
 
-struct PaymentServiceNew {
+public struct PaymentServiceNew {
     
-//    static func autoPayUnenroll(accountNumber: String, reason: String) {
-//
-//    let httpBodyParameters: [String: Any] = ["reason": reason,
-//                                             "comments": ""]
-//        
-//        do {
-//            let httpBody = try JSONSerialization.data(withJSONObject: httpBodyParameters)
-//            print("REQ SCHEDULE")
-//            
-//            ServiceLayer.request(router: .autoPayUnenroll(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<TODO, Error>) in
-//                switch result {
-//                case .success(let data):
-//                    
-//                    // fetch accounts todo
-//                    
-//                    print("NetworkTest POST 5  UNENROLL SUCCESS: \(data.message) BREAK")
-//                    
-//                case .failure(let error):
-//                    print("NetworkTest POST 5 UNENROLL FAIL: \(error)")
-//                    //                completion(.failure(error))
-//                }
-//            }
-//        } catch let error {
-//            print("Error encoding values: \(error)")
-//            print("REQ ERROR")
-//        }
-//    }
-    
-    // POST.
-    static func autoPay(accountNumber: String,
-                        walletItemId: String?,
-                        amountType: AmountType,
-                        amountThreshold: String,
-                        paymentDaysBeforeDue: String) {
-//        var httpBodyParameters = ["amount_type": amountType.rawValue,
-//                                  "payment_date_type": "before due",
-//                                  "payment_days_before_due": paymentDaysBeforeDue,
-//                                  "auto_pay_request_type": "Start"]
-//
-//        if let walletId = walletItemId {
-//            httpBodyParameters["wallet_item_id"] = walletId
-//        }
-//        if amountType == .upToAmount {
-//            httpBodyParameters["amount_threshold"] = amountThreshold
-//        }
-        
-        let encodedObject = AutoPayEnrollRequest(amountType: amountType.rawValue,
-                                                 paymentDateType: "before due",
-                                                 paymentDaysBeforeDue: paymentDaysBeforeDue,
-                                                 requestType: "Start", walletItemId: walletItemId,
-                                                 amountThreshold: amountType == .upToAmount ? amountThreshold : nil)
-        
-            NetworkingLayer.request(router: .autoPayEnroll(accountNumber: accountNumber, encodable: encodedObject)) { (result: Result<NewAutoPayResult, NetworkingError>) in
-                switch result {
-                case .success(let data):
-                    
-                    // fetch accounts todo
-                    
-                    print("NetworkTest POST 5 SUCCESS: \(data.message) BREAK")
-                    
-                case .failure(let error):
-                    print("NetworkTest POST 5 FAIL: \(error)")
-                    //                completion(.failure(error))
-                }
-            }
+    static func autoPayInfo(accountNumber: String, completion: @escaping (Result<NewBGEAutoPayInfo, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .autoPayInfo(accountNumber: accountNumber), completion: completion)
     }
     
-//    static func autoPayInfo(accountNumber: String) {
-//        ServiceLayer.request(router: .autoPayInfo(accountNumber: accountNumber)) { (result: Result<TODO, Error>) in
-//            switch result {
-//            case .success(let data):
-//
-//                // fetch accounts todo
-//
-//                print("NetworkTest POST 5 INFO SUCCESS: \(data.message) BREAK")
-//
-//            case .failure(let error):
-//                print("NetworkTest POST 5 INFO FAIL: \(error)")
-//                //                completion(.failure(error))
-//            }
-//        }
-//    }
+    static func autoPayEnroll(accountNumber: String, request: AutoPayEnrollRequest, completion: @escaping (Result<NewAutoPayResult, NetworkingError>) -> ()) {
+        var router: Router
+        
+        if request.isUpdate {
+            router = .updateAutoPay(accountNumber: accountNumber, request: request)
+        }
+        else {
+            router = .autoPayEnroll(accountNumber: accountNumber, request: request)
+        }
+        
+        NetworkingLayer.request(router: router, completion: completion)
+    }
+    
+    static func enrollAutoPayBGE(accountNumber: String, request: AutoPayEnrollBGERequest, completion: @escaping (Result<NewAutoPayResult, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .autoPayEnrollBGE(accountNumber: accountNumber, request: request), completion: completion)
+    }
+    
+    static func updateAutoPayBGE(accountNumber: String, request: AutoPayEnrollBGERequest, completion: @escaping (Result<NewAutoPayResult, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .updateAutoPayBGE(accountNumber: accountNumber, request: request), completion: completion)
+    }
+    
+    static func autoPayUnenroll(accountNumber: String, request: AutoPayUnenrollRequest, completion: @escaping (Result<NewAutoPayResult, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .autoPayUnenroll(accountNumber: accountNumber, request: request), completion: completion)
+    }
     
     static func deleteWalletItem(walletItem : WalletItem) {
         let opCo = Environment.shared.opco
@@ -221,125 +167,15 @@ struct PaymentServiceNew {
             //            }
     }
     
-    static func schedulePayment(accountNumber: String,
-                                paymentAmount: Double,
-                                paymentDate: Date,
-                                walletId: String,
-                                walletItem: WalletItem) {
-        print("payment service schedule")
-        let opCo = Environment.shared.opco
-        
-//        let httpBodyParameters: [String: Any] = [
-//            "payment_amount": String.init(format: "%.02f", paymentAmount),
-//            "payment_date": paymentDate.paymentFormatString,
-//            "payment_category_type": walletItem.bankOrCard == .bank ? "Check" : "Credit",
-//            "wallet_id": walletId,
-//            "wallet_item_id": walletItem.walletItemId ?? "",
-//            "is_existing_account": !walletItem.isTemporary,
-//            "biller_id": "\(opCo.rawValue)Registered",
-//            "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber ?? ""
-//        ]
-        
-        let encodedObject = ScheduledPaymentUpdateRequest(paymentAmount: String.init(format: "%.02f", paymentAmount),
-                                                          paymentDate: paymentDate.paymentFormatString,
-                                                          paymentCategoryType: walletItem.bankOrCard == .bank ? "Check" : "Credit",
-                                                          walletId: walletId,
-                                                          billerId: "\(opCo.rawValue)Registered",
-            walletItemId: walletItem.walletItemId ?? "",
-            isExistingAccount: !walletItem.isTemporary,
-            maskedWalletItemAccountNumber: walletItem.maskedWalletItemAccountNumber ?? "")
-        
-            NetworkingLayer.request(router: .scheduledPayment(accountNumber: accountNumber,
-                                                           encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
-                                                            switch result {
-                                                            case .success(let data):
-                                                                
-                                                                // fetch accounts todo
-                                                                
-                                                                print("NetworkTest POST 1 SUCCESS: \(data.confirmationNumber) BREAK")
-                                                            case .failure(let error):
-                                                                print("NetworkTest POST 1 FAIL: \(error)")
-                                                                //                completion(.failure(error))
-                                                            }
-            }
-
+    static func schedulePayment(accountNumber: String, request: ScheduledPaymentUpdateRequest, completion: @escaping (Result<GenericResponse, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .scheduledPayment(accountNumber: accountNumber, request: request), completion: completion)
     }
     
-    static func cancelSchduledPayment(accountNumber: String, paymentAmount: Double, paymentId: String) {
-//        let httpBodyParameters: [String: Any] = [
-//            "payment_amount":
-//        ]
-        
-        let encodedObject = SchedulePaymentCancelRequest(paymentAmount: String.init(format: "%.02f", paymentAmount))
-
-            NetworkingLayer.request(router: .scheduledPaymentDelete(accountNumber: accountNumber, paymentId: paymentId,
-                                                                 encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
-                                                                    switch result {
-                                                                    case .success(let data):
-                                                                        
-                                                                        // fetch accounts todo
-                                                                        
-                                                                        print("NetworkTest POST 1 CANCEL SUCCESS: \(data.confirmationNumber) BREAK")
-                                                                    case .failure(let error):
-                                                                        print("NetworkTest POST 1 CANCEL FAIL: \(error)")
-                                                                        //                completion(.failure(error))
-                                                                    }
-            }
-        
+    static func cancelSchduledPayment(accountNumber: String, paymentId: String, request: SchedulePaymentCancelRequest, completion: @escaping (Result<GenericResponse, NetworkingError>) -> ()) {
+            NetworkingLayer.request(router: .scheduledPaymentDelete(accountNumber: accountNumber, paymentId: paymentId, request: request), completion: completion)
     }
     
-    static func updateScheduledPayment(paymentId: String,
-                                       accountNumber: String,
-                                       paymentAmount: Double,
-                                       paymentDate: Date,
-                                       walletId: String,
-                                       walletItem: WalletItem) {
-        let opCo = Environment.shared.opco
-//        var httpBodyParameters: [String: Any] = [
-//            "payment_amount": String.init(format: "%.02f", paymentAmount),
-//            "payment_date": paymentDate.paymentFormatString,
-//            "payment_category_type": walletItem.bankOrCard == .bank ? "Check" : "Credit",
-//            "payment_id": paymentId,
-//            "wallet_id": walletId,
-//            "biller_id": "\(opCo.rawValue)Registered"
-//        ]
-//
-//        if !walletItem.isEditingItem, let walletItemId = walletItem.walletItemId { // User selected a new payment method
-//            httpBodyParameters["wallet_item_id"] = walletItemId
-//            httpBodyParameters["is_existing_account"] = !walletItem.isTemporary
-//            httpBodyParameters["masked_wallet_item_account_number"] = walletItem.maskedWalletItemAccountNumber ?? ""
-//        }
-
-        var  newWalletItemId: String? = nil
-        var isExistingAccount: Bool? = nil
-        var maskedWalletItemAccountNumber: String? = nil
-        if !walletItem.isEditingItem, let walletItemId = walletItem.walletItemId { // User selected a new payment method
-            newWalletItemId = walletItemId
-            isExistingAccount = !walletItem.isTemporary
-            maskedWalletItemAccountNumber = walletItem.maskedWalletItemAccountNumber ?? ""
-        }
-        
-        let encodedObject = ScheduledPaymentUpdateRequest(paymentAmount: String.init(format: "%.02f", paymentAmount),
-                                                          paymentDate: paymentDate.paymentFormatString, paymentCategoryType: walletItem.bankOrCard == .bank ? "Check" : "Credit",
-                                                          paymentId: paymentId,
-                                                          walletId: walletId, billerId: "\(opCo.rawValue)Registered",
-            walletItemId: newWalletItemId, isExistingAccount: isExistingAccount,
-            maskedWalletItemAccountNumber: maskedWalletItemAccountNumber)
-        
-            print("REQ SCHEDULE")
-            NetworkingLayer.request(router: .scheduledPaymentUpdate(accountNumber: accountNumber, paymentId: paymentId, encodable: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
-                switch result {
-                case .success(let data):
-
-                    // fetch accounts todo
-
-                    print("NetworkTest POST 1 UPDATE SUCCESS: \(data.confirmationNumber) BREAK")
-                case .failure(let error):
-                    print("NetworkTest POST 1 UPDDATE FAIL: \(error)")
-                    //                completion(.failure(error))
-                }
-            }
-
+    static func updateScheduledPayment(paymentId: String, accountNumber: String, request: ScheduledPaymentUpdateRequest, completion: @escaping (Result<GenericResponse, NetworkingError>) -> ()) {
+            NetworkingLayer.request(router: .scheduledPaymentUpdate(accountNumber: accountNumber, paymentId: paymentId, request: request), completion: completion)
     }
-    
 }

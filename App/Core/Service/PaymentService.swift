@@ -15,7 +15,7 @@ protocol PaymentService {
     /// - Parameters:
     ///   - accountNumber: The account to get the info for
     func fetchBGEAutoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo>
-    
+
     
     /// Enroll in AutoPay (BGE only)
     ///

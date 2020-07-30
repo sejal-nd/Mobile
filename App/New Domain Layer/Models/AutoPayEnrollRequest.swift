@@ -1,27 +1,50 @@
 //
-//  AutopayRequest.swift
+//  AutoPayEnrollRequest.swift
 //  Mobile
 //
-//  Created by Joseph Erlandson on 4/17/20.
+//  Created by Cody Dillon on 7/30/20.
 //  Copyright © 2020 Exelon Corporation. All rights reserved.
 //
 
 import Foundation
 
-struct AutoPayEnrollRequest: Encodable {
-    let amountType: String
-    let paymentDateType: String
-    let paymentDaysBeforeDue: String
+public struct AutoPayEnrollRequest: Encodable {
+    
+    let bankDetails: BankDetails
     let requestType: String
-    let walletItemId: String?
-    let amountThreshold: String?
+    
+    init(nameOfAccount: String,
+         bankAccountType: String,
+         routingNumber: String,
+         bankAccountNumber: String,
+         isUpdate: Bool) {
+        
+        bankDetails = BankDetails(nameOfAccount: nameOfAccount, bankAccountType: bankAccountType, routingNumber: routingNumber, bankAccountNumber: bankAccountNumber)
+        requestType = isUpdate ? "Update": "Start"
+    }
     
     enum CodingKeys: String, CodingKey {
-        case amountType = "amount_type"
-        case paymentDateType = "payment_date_type"
-        case paymentDaysBeforeDue = "payment_days_before_due"
+        case bankDetails = "bank_details"
         case requestType = "auto_pay_request_type"
-        case walletItemId = "wallet_item_id"
-        case amountThreshold = "amount_threshold"
+    }
+    
+    var isUpdate: Bool {
+        return requestType == "Update"
+    }
+}
+
+struct BankDetails: Encodable {
+    let nameOfAccount: String
+    let bankAccountType: String
+    let routingNumber: String
+    let bankAccountNumber: String
+    let bankName = "N/A"
+    
+    enum CodingKeys: String, CodingKey {
+        case nameOfAccount = "name_on_account"
+        case bankAccountType = "bank_account_type"
+        case routingNumber = "routing_number"
+        case bankAccountNumber = "bank_account_number"
+        case bankName = "bank_name"
     }
 }

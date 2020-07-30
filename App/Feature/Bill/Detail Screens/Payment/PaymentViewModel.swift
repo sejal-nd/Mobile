@@ -121,21 +121,16 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
                          onSuccess: @escaping () -> Void,
                          onError: @escaping (ServiceError) -> Void) {
-//        
-//        
-//        PaymentServiceNew.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
-//                                          paymentAmount: self.paymentAmount.value,
-//                                          paymentDate: self.paymentDate.value,
-//                                          walletId: AccountsStore.shared.customerIdentifier,
-//                                          walletItem: self.selectedWalletItem.value!)
-//        
-        self.paymentService.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
-                                            paymentAmount: self.paymentAmount.value,
-                                            paymentDate: self.paymentDate.value,
-                                            alternateEmail: self.emailAddress.value,
-                                            alternateNumber: self.extractDigitsFrom(self.phoneNumber.value),
-                                            walletId: AccountsStore.shared.customerIdentifier,
-                                            walletItem: self.selectedWalletItem.value!)
+
+        let walletItem = self.selectedWalletItem.value!
+        let scheduleRequest = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount.value,
+                                                            paymentDate: paymentDate.value,
+                                                            paymentId: paymentId.value!,
+                                                            walletItem: walletItem,
+                                                            alternateEmail: self.emailAddress.value,
+                                                            alternatePhoneNumber: self.extractDigitsFrom(self.phoneNumber.value))
+        
+        PaymentServiceNew.rx.schedulePayment(accountNumber: accountDetail.value.accountNumber, request: scheduleRequest)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] confirmationNumber in
                 self?.confirmationNumber = confirmationNumber
@@ -147,9 +142,9 @@ class PaymentViewModel {
     }
 
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber,
-                                     paymentAmount: paymentAmount.value,
-                                     paymentId: paymentId.value!)
+        let cancelRequest = SchedulePaymentCancelRequest(paymentAmount: paymentAmount.value)
+        
+        PaymentServiceNew.rx.cancelSchduledPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, request: cancelRequest)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -160,12 +155,9 @@ class PaymentViewModel {
     }
 
     func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        self.paymentService.updatePayment(paymentId: self.paymentId.value!,
-                                          accountNumber: self.accountDetail.value.accountNumber,
-                                          paymentAmount: self.paymentAmount.value,
-                                          paymentDate: self.paymentDate.value,
-                                          walletId: AccountsStore.shared.customerIdentifier,
-                                          walletItem: self.selectedWalletItem.value!)
+        let walletItem = self.selectedWalletItem.value!
+        let updateRequest = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount.value, paymentDate: paymentDate.value, paymentId: paymentId.value!, walletItem: walletItem)
+        PaymentServiceNew.rx.updateScheduledPayment(paymentId: paymentId.value!, accountNumber: accountDetail.value.accountNumber, request: updateRequest)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] confirmationNumber in
                 self?.confirmationNumber = confirmationNumber
