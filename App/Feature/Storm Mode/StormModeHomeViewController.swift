@@ -238,13 +238,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         switch Environment.shared.opco {
         case .bge:
             gradientColor = .bgeGreen
-        case .comEd, .peco:
-            gradientColor = .primaryColor
-        case .pepco:
-            gradientColor = .primaryColor
-        case .ace:
-            gradientColor = .primaryColor
-        case .delmarva:
+        case .ace, .comEd, .delmarva, .peco, .pepco:
             gradientColor = .primaryColor
         }
         
@@ -430,16 +424,12 @@ class StormModeHomeViewController: AccountPickerViewController {
         case .bge:
             gasOnlyPhone1Label.text = "1-800-685-0123"
             gasOnlyPhone2Label.text = "1-877-778-7798"
-        case .comEd:
+        case .ace, .comEd, .pepco:
             gasOnlyPhone1Label.text = ""
         case .peco:
             gasOnlyPhone1Label.text = "1-800-841-4141"
-        case .pepco:
-            gasOnlyPhone1Label.text = "todo"
-        case .ace:
-            gasOnlyPhone1Label.text = "todo"
         case .delmarva:
-            gasOnlyPhone1Label.text = "todo"
+            gasOnlyPhone1Label.text = "302-454-0317"
         }
         
         gasOnlyPhone1Button.accessibilityLabel = gasOnlyPhone1Label.text
@@ -529,11 +519,17 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.accountDisallowView.isHidden = false
                 self.finalPayView.isHidden = true
                 self.billButton.isHidden = true
-            } else {
+            } else if serviceError.serviceCode == ServiceErrorCode.fnAccountInactive.rawValue {
                 self.accountDisallowView.isHidden = true
                 self.finalPayView.isHidden = false
                 self.finalPayTitleLabel.isHidden = false
-                self.finalPayTitleLabel.text = NSLocalizedString("Outage Unavailable", comment: "")
+                self.finalPayTitleLabel.text = NSLocalizedString("Account Inactive", comment: "")
+                self.finalPayTextView.text = NSLocalizedString("Outage Status and Outage reporting are not available for this account.", comment: "")
+                self.billButton.isHidden = false
+            } else {
+                self.accountDisallowView.isHidden = true
+                self.finalPayView.isHidden = false
+                self.finalPayTitleLabel.isHidden = true
                 self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
                 self.billButton.isHidden = false
             }
