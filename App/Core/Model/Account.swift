@@ -367,3 +367,15 @@ struct BillingInfo: Mappable {
 enum EBillEnrollStatus {
     case canEnroll, canUnenroll, finaled, ineligible
 }
+
+struct AccountResult: Mappable {
+    let accountNumber: String?
+    let streetNumber: String?
+    let unitNumber: String?
+    
+    init(map: Mapper) throws {
+        accountNumber = map.optionalFrom("fullAccountNumber")
+        streetNumber = map.optionalFrom("street")
+        unitNumber = map.optionalFrom("unit")
+    }
+}

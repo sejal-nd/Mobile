@@ -27,6 +27,10 @@ class RegistrationViewModel {
     let newPassword = BehaviorRelay(value: "")
     let confirmPassword = BehaviorRelay(value: "")
     
+    var multipleAccounts = [AccountResult]()
+    let selectedAccount = BehaviorRelay<AccountResult?>(value: nil)
+    var hasMultipleAccount = false
+    
     var accountType = BehaviorRelay(value: "")
     
     var primaryProfile = BehaviorRelay<Bool>(value: false)
@@ -87,7 +91,10 @@ class RegistrationViewModel {
                 let types = data["type"] as? [String]
                 self.accountType.accept(types?.first ?? "")
                 self.isPaperlessEbillEligible = (data["ebill"] as? Bool) ?? false
-                
+                self.hasMultipleAccount = (data["multipleCustomers"] as? Bool) ?? false
+                guard let accountsArray = data["accounts"] as? [NSDictionary] else { return }
+                let accounts: [AccountResult] = accountsArray.compactMap(AccountResult.from)
+                self.multipleAccounts = accounts
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
@@ -137,9 +144,10 @@ class RegistrationViewModel {
     }
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+        let accountNumber = self.hasMultipleAccount ? selectedAccount.value?.accountNumber ?? "": self.accountNumber.value
         registrationService.createNewAccount(username: username.value,
                                              password: newPassword.value,
-                                             accountNum: accountNumber.value,
+                                             accountNum: accountNumber,
                                              identifier: identifierNumber.value,
                                              phone: extractDigitsFrom(phoneNumber.value),
                                              question1: securityQuestion1.value!,
@@ -453,4 +461,7 @@ class RegistrationViewModel {
             return emptiesRemoved.count == count
         }
     }()
+    
+    private(set) lazy var selectAccountButtonEnabled: Driver<Bool> =
+           self.selectedAccount.asDriver().isNil().not()
 }

@@ -258,8 +258,12 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountValidation)
-            
-            self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+            if self?.viewModel.hasMultipleAccount ?? false {
+                self?.performSegue(withIdentifier: "chooseAccountSegue", sender: self)
+            } else {
+                self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+            }
+           
         }, onMultipleAccounts:  { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountValidation)
@@ -283,6 +287,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         if let vc = segue.destination as? RegistrationCreateCredentialsViewControllerNew {
             vc.viewModel = viewModel
         } else if let vc = segue.destination as? RegistrationBGEAccountNumberViewController {
+            vc.viewModel = viewModel
+        } else if let vc = segue.destination as? RegistrationChooseAccountViewController {
             vc.viewModel = viewModel
         }
     }
