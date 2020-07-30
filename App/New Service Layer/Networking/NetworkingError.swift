@@ -16,6 +16,7 @@ public enum NetworkingError: Error, Equatable {
     case decoding
     case noNetwork
     case generic
+    case reverseGeocodeFailure
     
     // FN Service Errors
     case invalidProfile
