@@ -322,12 +322,6 @@
 		355B10492369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		355B104A2369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		355B104B2369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
-		355FA2A924CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FA2A824CEE10A004A6B77 /* RegistrationConfirmationViewControllerNew.swift */; };
-		355FA2AA24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FA2A824CEE10A004A6B77 /* RegistrationConfirmationViewControllerNew.swift */; };
-		355FA2AB24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FA2A824CEE10A004A6B77 /* RegistrationConfirmationViewControllerNew.swift */; };
-		355FA2AC24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FA2A824CEE10A004A6B77 /* RegistrationConfirmationViewControllerNew.swift */; };
-		355FA2AD24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FA2A824CEE10A004A6B77 /* RegistrationConfirmationViewControllerNew.swift */; };
-		355FA2AE24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FA2A824CEE10A004A6B77 /* RegistrationConfirmationViewControllerNew.swift */; };
 		356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		356C7F2F21908BBA003E8A90 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		356C7F752190974A003E8A90 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
@@ -6017,7 +6011,6 @@
 		3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayReasonsForStoppingViewController.swift; sourceTree = "<group>"; };
 		355B10352369DB180038EAD3 /* WatchSessionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionMananger.swift; sourceTree = "<group>"; };
 		355B10452369E54E0038EAD3 /* KeychainKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
-		355FA2A824CEE10A004A6B77 /* RegistrationConfirmationViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationConfirmationViewControllerNew.swift; sourceTree = "<group>"; };
 		356C7F3121908E2A003E8A90 /* environment_preprocess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
 		356C7F8021909997003E8A90 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		356C7FA92190D93F003E8A90 /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
@@ -8755,7 +8748,6 @@
 				675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */,
 				3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */,
 				35E1F85724ADA49900574065 /* RegistrationSecurityQuestionsViewControllerNew.swift */,
-				355FA2A824CEE10A004A6B77 /* RegistrationConfirmationViewControllerNew.swift */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -14410,7 +14402,6 @@
 				30636F1324C8366E00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				67DDB2F124535D2E006CD6EB /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				67DDB2F224535D2E006CD6EB /* ConversationalButton.swift in Sources */,
-				355FA2AC24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */,
 				67DDB2F324535D2E006CD6EB /* SurveyMonkeyManager.m in Sources */,
 				67DDB2F424535D2E006CD6EB /* ViewedTipsViewController.swift in Sources */,
 				67DDB2F524535D2E006CD6EB /* AutoPayChangeBankViewController.swift in Sources */,
@@ -14893,7 +14884,6 @@
 				67DDB58324535D32006CD6EB /* AlertsService.swift in Sources */,
 				67DDB58424535D32006CD6EB /* SSOData.swift in Sources */,
 				67DDB58524535D32006CD6EB /* MinimumVersion.swift in Sources */,
-				355FA2AE24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */,
 				67DDB58624535D32006CD6EB /* UsageToolCardView.swift in Sources */,
 				67DDB58724535D32006CD6EB /* UsageTool.swift in Sources */,
 				67DDB58824535D32006CD6EB /* Weekday.swift in Sources */,
@@ -15317,7 +15307,6 @@
 				67DDB7D924535D35006CD6EB /* AlertsService.swift in Sources */,
 				67DDB7DA24535D35006CD6EB /* SSOData.swift in Sources */,
 				67DDB7DB24535D35006CD6EB /* MinimumVersion.swift in Sources */,
-				355FA2AD24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */,
 				67DDB7DC24535D35006CD6EB /* UsageToolCardView.swift in Sources */,
 				67DDB7DD24535D35006CD6EB /* UsageTool.swift in Sources */,
 				67DDB7DE24535D35006CD6EB /* Weekday.swift in Sources */,
@@ -16775,7 +16764,6 @@
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				B0D7860D2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
 				359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */,
-				355FA2A924CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
@@ -17198,7 +17186,6 @@
 				0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				9C0EA5AA237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
-				355FA2AB24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */,
 				9C5F096D23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				829E058D1FA7928E00697633 /* Fillable.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
@@ -17621,7 +17608,6 @@
 				359BDB8422DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */,
 				B0D7860E2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
 				54C1DF071F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
-				355FA2AA24CEE10C004A6B77 /* RegistrationConfirmationViewControllerNew.swift in Sources */,
 				35277B02210794B400411297 /* UnavailableView.swift in Sources */,
 				35C0F1D2233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,

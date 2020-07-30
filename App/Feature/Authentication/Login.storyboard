@@ -3052,7 +3052,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i8W-g4-AU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1790" y="2579"/>
+            <point key="canvasLocation" x="1745" y="2583"/>
         </scene>
         <!--unauthenticatedUserViewController-->
         <scene sceneID="Gcx-Ua-f53">
@@ -4028,142 +4028,16 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="streetNumColHeaderLabel" destination="3Oe-6Z-18y" id="A2I-iC-UM8"/>
                         <outlet property="unitNumColHeaderLabel" destination="rBF-LT-wB7" id="onh-Kh-aPc"/>
                         <segue destination="DSR-mt-1gD" kind="presentation" identifier="securityQuestionSegue" id="rc5-B5-rKb"/>
-                        <segue destination="U7C-we-ySw" kind="presentation" identifier="loadRegistrationConfirmationSegue" id="zje-IT-GNi"/>
+                        <segue destination="Thq-rF-nbh" kind="presentation" identifier="loadRegistrationConfirmationSegue" id="yZt-0Y-CGp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QWP-J6-BuH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="705" y="3759"/>
         </scene>
-        <!--Registration Confirmation View Controller New-->
-        <scene sceneID="pYV-hf-DQQ">
-            <objects>
-                <viewController id="U7C-we-ySw" customClass="RegistrationConfirmationViewControllerNew" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="chN-Pb-lvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4x-M0-dff" userLabel="Nav Bar View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FuP-2x-a1H">
-                                        <rect key="frame" x="9" y="0.0" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="XEb-et-D64"/>
-                                            <constraint firstAttribute="width" constant="44" id="Z0h-0x-bZE"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Button" image="ic_close"/>
-                                        <connections>
-                                            <action selector="onXPress:" destination="U7C-we-ySw" eventType="touchUpInside" id="Maq-6P-TX5"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="FuP-2x-a1H" firstAttribute="leading" secondItem="p4x-M0-dff" secondAttribute="leading" constant="9" id="6IG-S3-ejR"/>
-                                    <constraint firstAttribute="height" constant="44" id="C5B-1l-L8E"/>
-                                    <constraint firstItem="FuP-2x-a1H" firstAttribute="top" secondItem="p4x-M0-dff" secondAttribute="top" id="gsP-fN-lSE"/>
-                                </constraints>
-                            </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hub-bR-s8X">
-                                <rect key="frame" x="0.0" y="44" width="414" height="798"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUQ-n2-Das" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="310.5"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tat-oN-beR" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="310.5"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="IKV-kD-81R">
-                                                        <rect key="frame" x="139" y="10" width="96" height="96"/>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your registration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJa-Pd-9aI">
-                                                        <rect key="frame" x="0.0" y="126" width="374" height="27.5"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keZ-Ms-0GV">
-                                                        <rect key="frame" x="0.0" y="173.5" width="374" height="22"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
-                                                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3S-o6-Ptw" customClass="SecondaryButton" customModule="ACE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="225.5" width="374" height="55"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="55" id="2fM-Qj-JhV"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Resend Email"/>
-                                                        <connections>
-                                                            <action selector="onResendEmailPress" destination="U7C-we-ySw" eventType="touchUpInside" id="Xtd-PH-kfA"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="keZ-Ms-0GV" firstAttribute="centerX" secondItem="tat-oN-beR" secondAttribute="centerX" id="92o-Ff-Bee"/>
-                                                    <constraint firstItem="IKV-kD-81R" firstAttribute="top" secondItem="tat-oN-beR" secondAttribute="top" constant="10" id="GIc-Ge-JHG"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Kkw-x9-fkb"/>
-                                                    <constraint firstItem="keZ-Ms-0GV" firstAttribute="leading" secondItem="tat-oN-beR" secondAttribute="leading" id="SbG-KP-kZ0"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Q3S-o6-Ptw" secondAttribute="bottom" constant="30" id="UoS-2o-mRl"/>
-                                                    <constraint firstAttribute="trailing" secondItem="wJa-Pd-9aI" secondAttribute="trailing" id="ZkS-s9-kf1"/>
-                                                    <constraint firstItem="keZ-Ms-0GV" firstAttribute="top" secondItem="wJa-Pd-9aI" secondAttribute="bottom" constant="20" id="bVm-be-r4Q"/>
-                                                    <constraint firstAttribute="trailing" secondItem="keZ-Ms-0GV" secondAttribute="trailing" id="dlN-yz-2JC"/>
-                                                    <constraint firstItem="wJa-Pd-9aI" firstAttribute="top" secondItem="IKV-kD-81R" secondAttribute="bottom" constant="20" id="huW-fq-BK9"/>
-                                                    <constraint firstItem="wJa-Pd-9aI" firstAttribute="leading" secondItem="tat-oN-beR" secondAttribute="leading" id="n0w-kU-XUo"/>
-                                                    <constraint firstItem="IKV-kD-81R" firstAttribute="centerX" secondItem="tat-oN-beR" secondAttribute="centerX" id="o2E-Up-Ej9"/>
-                                                    <constraint firstItem="Q3S-o6-Ptw" firstAttribute="leading" secondItem="tat-oN-beR" secondAttribute="leading" id="ts9-7Y-ahO"/>
-                                                    <constraint firstItem="Q3S-o6-Ptw" firstAttribute="top" secondItem="keZ-Ms-0GV" secondAttribute="bottom" constant="30" id="whe-7u-fWy"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Q3S-o6-Ptw" secondAttribute="trailing" id="ybo-Ad-CXc"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="tat-oN-beR" firstAttribute="leading" secondItem="WUQ-n2-Das" secondAttribute="leading" priority="999" constant="20" id="2Su-Sj-t8m"/>
-                                            <constraint firstAttribute="trailing" secondItem="tat-oN-beR" secondAttribute="trailing" priority="999" constant="20" id="2aU-rC-iJU"/>
-                                            <constraint firstItem="tat-oN-beR" firstAttribute="top" secondItem="WUQ-n2-Das" secondAttribute="top" id="T9N-wf-79o"/>
-                                            <constraint firstItem="tat-oN-beR" firstAttribute="centerX" secondItem="WUQ-n2-Das" secondAttribute="centerX" id="uQh-6n-kNi"/>
-                                            <constraint firstAttribute="bottom" secondItem="tat-oN-beR" secondAttribute="bottom" id="xSl-NL-vw0"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="WUQ-n2-Das" firstAttribute="top" secondItem="hub-bR-s8X" secondAttribute="top" id="NFo-38-lKD"/>
-                                    <constraint firstItem="WUQ-n2-Das" firstAttribute="centerX" secondItem="hub-bR-s8X" secondAttribute="centerX" id="Tme-7s-Dkm"/>
-                                    <constraint firstAttribute="trailing" secondItem="WUQ-n2-Das" secondAttribute="trailing" id="c7K-ZV-JzI"/>
-                                    <constraint firstAttribute="bottom" secondItem="WUQ-n2-Das" secondAttribute="bottom" id="odM-dC-oTs"/>
-                                    <constraint firstItem="WUQ-n2-Das" firstAttribute="leading" secondItem="hub-bR-s8X" secondAttribute="leading" id="yFd-Ew-tdQ"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="hub-bR-s8X" firstAttribute="leading" secondItem="BMY-86-Yyt" secondAttribute="leading" id="26d-iO-8cb"/>
-                            <constraint firstItem="BMY-86-Yyt" firstAttribute="trailing" secondItem="p4x-M0-dff" secondAttribute="trailing" id="Php-Ah-hcS"/>
-                            <constraint firstItem="p4x-M0-dff" firstAttribute="top" secondItem="BMY-86-Yyt" secondAttribute="top" id="SIK-FO-Zgy"/>
-                            <constraint firstItem="p4x-M0-dff" firstAttribute="leading" secondItem="BMY-86-Yyt" secondAttribute="leading" id="Vxv-Or-vSs"/>
-                            <constraint firstAttribute="bottom" secondItem="hub-bR-s8X" secondAttribute="bottom" id="bAo-6s-OB9"/>
-                            <constraint firstItem="hub-bR-s8X" firstAttribute="top" secondItem="p4x-M0-dff" secondAttribute="bottom" id="niD-jw-m0L"/>
-                            <constraint firstItem="BMY-86-Yyt" firstAttribute="trailing" secondItem="hub-bR-s8X" secondAttribute="trailing" id="u7t-Ef-c0Y"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="BMY-86-Yyt"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="F0m-5N-Pwd"/>
-                    <connections>
-                        <outlet property="bodyLabel" destination="keZ-Ms-0GV" id="GBX-Xr-scm"/>
-                        <outlet property="titleLabel" destination="wJa-Pd-9aI" id="748-It-U49"/>
-                        <outlet property="xButton" destination="FuP-2x-a1H" id="rmD-dk-HNv"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gHI-kS-wUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="703" y="4471"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="yZt-0Y-CGp"/>
         <segue reference="rc5-B5-rKb"/>
         <segue reference="He9-IH-khb"/>
         <segue reference="6eI-mv-PAf"/>

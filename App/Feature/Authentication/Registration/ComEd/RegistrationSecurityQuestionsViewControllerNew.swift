@@ -286,7 +286,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
             default:
                 vc.questionNumber = 0
             }
-        } else if let vc = segue.destination as? RegistrationConfirmationViewControllerNew {
+        } else if let vc = segue.destination as? RegistrationConfirmationViewController {
             vc.registeredUsername = viewModel.username.value
         }
     }
