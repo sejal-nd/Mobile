@@ -200,6 +200,9 @@
 		30353FC024D1831C0060DE5D /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FBF24D1831C0060DE5D /* sm_outage.json */; };
 		30353FC124D1831C0060DE5D /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FBF24D1831C0060DE5D /* sm_outage.json */; };
 		30353FC224D1831C0060DE5D /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FBF24D1831C0060DE5D /* sm_outage.json */; };
+		30353FC424D292C10060DE5D /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FC324D292C10060DE5D /* sm_outage_loading.json */; };
+		30353FC524D292C10060DE5D /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FC324D292C10060DE5D /* sm_outage_loading.json */; };
+		30353FC624D292C10060DE5D /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FC324D292C10060DE5D /* sm_outage_loading.json */; };
 		3062CFF724B6DF3B000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF624B6DF3B000176EC /* landing_video.mp4 */; };
 		3062CFF924B6DF8F000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF824B6DF8E000176EC /* landing_video.mp4 */; };
 		3062CFFB24B6DFB4000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFFA24B6DFB4000176EC /* landing_video.mp4 */; };
@@ -1426,7 +1429,6 @@
 		67DDB50324535D2E006CD6EB /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
 		67DDB50524535D2E006CD6EB /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
 		67DDB50624535D2E006CD6EB /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
-		67DDB50724535D2E006CD6EB /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading.json */; };
 		67DDB50824535D2E006CD6EB /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		67DDB50924535D2E006CD6EB /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
 		67DDB50A24535D2E006CD6EB /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
@@ -1975,7 +1977,6 @@
 		67DDB75924535D32006CD6EB /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
 		67DDB75B24535D32006CD6EB /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
 		67DDB75C24535D32006CD6EB /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
-		67DDB75D24535D32006CD6EB /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading.json */; };
 		67DDB75E24535D32006CD6EB /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		67DDB75F24535D32006CD6EB /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
 		67DDB76024535D32006CD6EB /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
@@ -2524,7 +2525,6 @@
 		67DDB9AF24535D35006CD6EB /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
 		67DDB9B124535D35006CD6EB /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
 		67DDB9B224535D35006CD6EB /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
-		67DDB9B324535D35006CD6EB /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading.json */; };
 		67DDB9B424535D35006CD6EB /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		67DDB9B524535D35006CD6EB /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
 		67DDB9B624535D35006CD6EB /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
@@ -5981,6 +5981,7 @@
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
 		30353FBF24D1831C0060DE5D /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
+		30353FC324D292C10060DE5D /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
 		3062CFF624B6DF3B000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		3062CFF824B6DF8E000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		3062CFFA24B6DFB4000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
@@ -7639,6 +7640,7 @@
 		3090A633247E412E00815EA1 /* PEPCO */ = {
 			isa = PBXGroup;
 			children = (
+				30353FC324D292C10060DE5D /* sm_outage_loading.json */,
 				30353FBF24D1831C0060DE5D /* sm_outage.json */,
 				3090A636247E426400815EA1 /* splash.json */,
 			);
@@ -11165,6 +11167,7 @@
 				67DDB4DE24535D2E006CD6EB /* checkmark.json in Resources */,
 				67DDB4DF24535D2E006CD6EB /* OpenSans-Semibold.ttf in Resources */,
 				67DDB4E024535D2E006CD6EB /* FirstFuelWidget.html in Resources */,
+				30353FC424D292C10060DE5D /* sm_outage_loading.json in Resources */,
 				67DDB4E124535D2E006CD6EB /* message_bubble_unique.json in Resources */,
 				67DDB4E224535D2E006CD6EB /* Storm.storyboard in Resources */,
 				67DDB4E324535D2E006CD6EB /* Payment.storyboard in Resources */,
@@ -11202,7 +11205,6 @@
 				67DDB50324535D2E006CD6EB /* message_bubble_quiz.json in Resources */,
 				67DDB50524535D2E006CD6EB /* buddy_particles_sparkles.json in Resources */,
 				67DDB50624535D2E006CD6EB /* Unauthenticated.storyboard in Resources */,
-				67DDB50724535D2E006CD6EB /* sm_outage_loading.json in Resources */,
 				67DDB50824535D2E006CD6EB /* TitleTableViewHeaderView.xib in Resources */,
 				67DDB50924535D2E006CD6EB /* buddy_face_normal.json in Resources */,
 				67DDB50A24535D2E006CD6EB /* appointments.json in Resources */,
@@ -11335,6 +11337,7 @@
 				67DDB73624535D32006CD6EB /* FirstFuelWidget.html in Resources */,
 				67DDB73724535D32006CD6EB /* message_bubble_unique.json in Resources */,
 				67DDB73824535D32006CD6EB /* Storm.storyboard in Resources */,
+				30353FC624D292C10060DE5D /* sm_outage_loading.json in Resources */,
 				67DDB73924535D32006CD6EB /* Payment.storyboard in Resources */,
 				67DDB73A24535D32006CD6EB /* outage_loading.json in Resources */,
 				67DDB73B24535D32006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
@@ -11376,7 +11379,6 @@
 				67DDB75924535D32006CD6EB /* message_bubble_quiz.json in Resources */,
 				67DDB75B24535D32006CD6EB /* buddy_particles_sparkles.json in Resources */,
 				67DDB75C24535D32006CD6EB /* Unauthenticated.storyboard in Resources */,
-				67DDB75D24535D32006CD6EB /* sm_outage_loading.json in Resources */,
 				67DDB75E24535D32006CD6EB /* TitleTableViewHeaderView.xib in Resources */,
 				67DDB75F24535D32006CD6EB /* buddy_face_normal.json in Resources */,
 				67DDB76024535D32006CD6EB /* appointments.json in Resources */,
@@ -11505,6 +11507,7 @@
 				67DDB98B24535D35006CD6EB /* OpenSans-Semibold.ttf in Resources */,
 				67DDB98C24535D35006CD6EB /* FirstFuelWidget.html in Resources */,
 				67DDB98D24535D35006CD6EB /* message_bubble_unique.json in Resources */,
+				30353FC524D292C10060DE5D /* sm_outage_loading.json in Resources */,
 				67DDB98E24535D35006CD6EB /* Storm.storyboard in Resources */,
 				67DDB98F24535D35006CD6EB /* Payment.storyboard in Resources */,
 				67DDB99024535D35006CD6EB /* outage_loading.json in Resources */,
@@ -11544,7 +11547,6 @@
 				67DDB9AF24535D35006CD6EB /* message_bubble_quiz.json in Resources */,
 				67DDB9B124535D35006CD6EB /* buddy_particles_sparkles.json in Resources */,
 				67DDB9B224535D35006CD6EB /* Unauthenticated.storyboard in Resources */,
-				67DDB9B324535D35006CD6EB /* sm_outage_loading.json in Resources */,
 				67DDB9B424535D35006CD6EB /* TitleTableViewHeaderView.xib in Resources */,
 				67DDB9B524535D35006CD6EB /* buddy_face_normal.json in Resources */,
 				67DDB9B624535D35006CD6EB /* appointments.json in Resources */,
