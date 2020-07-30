@@ -58,7 +58,7 @@ class WalletViewModelTests: XCTestCase {
     }
         
     func testEmptyFooterLabelText() {
-        XCTAssertEqual(viewModel.emptyFooterLabelString, NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: ""))
+        XCTAssertEqual(viewModel.emptyFooterLabelString, Environment.shared.opco.isPHI ? NSLocalizedString("We accept: VISA, MasterCard, Discover and American Express Credit Cards or Check Cards.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "") : NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: ""))
     }
     
 }
