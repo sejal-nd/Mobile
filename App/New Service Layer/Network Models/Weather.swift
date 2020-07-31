@@ -1,47 +1,56 @@
 //
-//  WeatherItem.swift
+//  NewWeather.swift
 //  Mobile
 //
-//  Created by Samuel Francis on 2/4/19.
-//  Copyright © 2019 Exelon Corporation. All rights reserved.
+//  Created by Joseph Erlandson on 3/27/20.
+//  Copyright © 2020 Exelon Corporation. All rights reserved.
 //
 
 import Foundation
-import Mapper
 
-struct WeatherItem: Mappable {
-    let temperature: Int
-    let iconName: String
-    let accessibilityName: String
+public struct Weather: Decodable {
+    public var temperature: Int?
+    public var iconName: String
+    public let accessibilityName: String
     
-    init(map: Mapper) throws {
-        let periods = try map.from("properties.periods") { json -> [[String: Any]] in
-            guard let array = json as? [[String: Any]] else {
-                throw MapperError.convertibleError(value: json, type: [[String: Any]].self)
-            }
-            
-            return array
-        }
+    public init(from decoder: Decoder) throws {
+        let rawResponse = try RawServerResponse(from: decoder)
         
-        if let temp = periods.first?["temperature"] as? Int {
-            self.temperature = temp
-        } else if let tempStr = periods.first?["temperature"] as? String, let temp = Int(tempStr) {
-            self.temperature = temp
-        } else {
-            throw  MapperError.convertibleError(value: map, type: WeatherItem.self)
-        }
+        self.temperature = rawResponse.properties.periods.first?.temperature
+        let isDaytime = rawResponse.properties.periods.first?.isDaytime ?? false
+        let iconString = rawResponse.properties.periods.first?.iconName ?? ""
         
-        guard let iconString = periods.first?["icon"] as? String,
-            let isDaytime = periods.first?["isDaytime"] as? Bool else {
-            throw MapperError.convertibleError(value: map, type: WeatherItem.self)
-        }
-        
-        let forecastData = WeatherItem.forecastData(iconString: iconString, isDaytime: isDaytime)
+        let forecastData = Weather.forecastData(iconString: iconString, isDaytime: isDaytime)
         
         self.iconName = forecastData.0
         self.accessibilityName = forecastData.1
     }
+}
+
+fileprivate struct RawServerResponse: Decodable {
+    var properties: Properties
     
+    struct Properties: Decodable {
+        var periods:  [Periods]
+    }
+    
+    struct Periods: Decodable {
+        var temperature: Int?
+        var isDaytime: Bool?
+        public var iconName: String?
+        
+        
+        enum CodingKeys: String, CodingKey {
+            case temperature
+            case isDaytime
+            case iconName = "icon"
+        }
+    }
+}
+
+// MARK: - Legacy Logic
+
+extension Weather {
     private static func forecastData(iconString: String, isDaytime: Bool) -> (String, String) {
         guard let iconName = WeatherIconNames.allCases.first(where: { iconString.contains($0.rawValue) }) else {
             return (WeatherIconNames.unknown.rawValue, "")
@@ -113,3 +122,34 @@ enum WeatherIconNames: String, CaseIterable {
     case blizzard = "blizzard"
     case unknown = "unknown"
 }
+
+
+
+//
+//"properties": {
+//"updated": "2020-03-27T02:33:54+00:00",
+//"units": "us",
+//"forecastGenerator": "HourlyForecastGenerator",
+//"generatedAt": "2020-03-27T14:49:43+00:00",
+//"updateTime": "2020-03-27T02:33:54+00:00",
+//"validTimes": "2020-03-26T20:00:00+00:00/P7DT5H",
+//"elevation": {
+//    "value": 39.014400000000002,
+//    "unitCode": "unit:m"
+//},
+//"periods": [
+//    {
+//        "number": 1,
+//        "name": "",
+//        "startTime": "2020-03-27T10:00:00-04:00",
+//        "endTime": "2020-03-27T11:00:00-04:00",
+//        "isDaytime": true,
+//        "temperature": 57,
+//        "temperatureUnit": "F",
+//        "temperatureTrend": null,
+//        "windSpeed": "6 mph",
+//        "windDirection": "NW",
+//        "icon": "https://api.weather.gov/icons/land/day/rain_showers,20?size=small",
+//        "shortForecast": "Slight Chance Rain Showers",
+//        "detailedForecast": ""
+//    }

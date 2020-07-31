@@ -33,15 +33,6 @@ struct ServiceFactory {
         }
     }
 
-    static func createWeatherService() -> WeatherService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockWeatherService()
-        default:
-            return GovWeatherService()
-        }
-    }
-
     static func createAlertsService() -> AlertsService {
         switch Environment.shared.environmentName {
         case .aut:
