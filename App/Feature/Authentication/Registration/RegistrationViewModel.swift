@@ -92,9 +92,10 @@ class RegistrationViewModel {
                 self.accountType.accept(types?.first ?? "")
                 self.isPaperlessEbillEligible = (data["ebill"] as? Bool) ?? false
                 self.hasMultipleAccount = (data["multipleCustomers"] as? Bool) ?? false
-                guard let accountsArray = data["accounts"] as? [NSDictionary] else { return }
+                if let accountsArray = data["accounts"] as? [NSDictionary] {
                 let accounts: [AccountResult] = accountsArray.compactMap(AccountResult.from)
                 self.multipleAccounts = accounts
+                }
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
