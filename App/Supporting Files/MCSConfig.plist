@@ -196,6 +196,8 @@
 		</dict>
 		<key>Dev-pepcoMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-pepco-d-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
@@ -207,6 +209,8 @@
 		</dict>
 		<key>Stage-pepcoMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://mcsstg.mobileenv.pepco.com</string>
 			<key>anonymousKey</key>
@@ -257,6 +261,8 @@
 		</dict>
 		<key>Dev-aceMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-ace-d-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
@@ -268,6 +274,8 @@
 		</dict>
 		<key>Stage-aceMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://mcsstg.mobileenv.atlanticcityelectric.com</string>
 			<key>anonymousKey</key>
@@ -318,6 +326,8 @@
 		</dict>
 		<key>Dev-delmarvaMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-dpl-d-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
@@ -329,6 +339,8 @@
 		</dict>
 		<key>Stage-delmarvaMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://mcsstg.mobileenv.delmarva.com</string>
 			<key>anonymousKey</key>
