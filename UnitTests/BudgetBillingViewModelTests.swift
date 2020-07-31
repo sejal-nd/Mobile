@@ -21,7 +21,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     }
     
     func testGetBudgetBillingInfoSuccess() {
-        viewModel = BudgetBillingViewModel(accountDetail: .default, billService: MockBillService(), alertsService: MockAlertsService())
+        viewModel = BudgetBillingViewModel(accountDetail: .default, alertsService: MockAlertsService())
         viewModel.getBudgetBillingInfo(onSuccess: { info in
             // Pass
         }, onError: { errMessage in
@@ -37,7 +37,7 @@ class BudgetBillingViewModelTests: XCTestCase {
                                                                 "maximumPaymentAmountACH": 100000,
                                                                 "convenienceFee": 5.95],
                                                 "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, alertsService: MockAlertsService())
         viewModel.getBudgetBillingInfo(onSuccess: { info in
             XCTFail("Fetching budget billing info should fail")
         }, onError: { errMessage in
@@ -46,7 +46,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     }
     
     func testEnrollSuccess() {
-        viewModel = BudgetBillingViewModel(accountDetail: .default, billService: MockBillService(), alertsService: MockAlertsService())
+        viewModel = BudgetBillingViewModel(accountDetail: .default, alertsService: MockAlertsService())
         viewModel.enroll(onSuccess: { 
             // Pass
         }, onError: { errMessage in
@@ -62,7 +62,7 @@ class BudgetBillingViewModelTests: XCTestCase {
                                                                 "maximumPaymentAmountACH": 100000,
                                                                 "convenienceFee": 5.95],
                                                 "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, alertsService: MockAlertsService())
         viewModel.enroll(onSuccess: {
             XCTFail("Enrollment should fail")
         }, onError: { errMessage in
@@ -71,7 +71,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     }
     
     func testUnenrollSuccess() {
-        viewModel = BudgetBillingViewModel(accountDetail: .default, billService: MockBillService(), alertsService: MockAlertsService())
+        viewModel = BudgetBillingViewModel(accountDetail: .default, alertsService: MockAlertsService())
         viewModel.selectedUnenrollmentReason.accept(1)
         viewModel.unenroll(onSuccess: {
             // Pass
@@ -88,7 +88,7 @@ class BudgetBillingViewModelTests: XCTestCase {
                                                                 "maximumPaymentAmountACH": 100000,
                                                                 "convenienceFee": 5.95],
                                                 "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, alertsService: MockAlertsService())
         viewModel.unenroll(onSuccess: {
             XCTFail("Enrollment should fail")
         }, onError: { errMessage in

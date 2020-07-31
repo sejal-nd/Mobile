@@ -22,7 +22,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testShouldEnrollPaperlessEBill() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         if Environment.shared.opco == .bge {
             XCTAssertFalse(viewModel.shouldEnrollPaperlessEBill, "shouldEnrollPaperlessEBill should always be false for BGE users")
@@ -35,7 +34,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     func testFetchData() {
         if Environment.shared.opco != .comEd { // BGE/PECO logic
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                                  billService: MockBillService(),
                                                   accountService: MockAccountService())
             viewModel.accountDetail = .default
             
@@ -58,7 +56,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
             })
         } else { // ComEd also fetches language preference
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                                  billService: MockBillService(),
                                                   accountService: MockAccountService())
             viewModel.accountDetail = .default
             
@@ -87,7 +84,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testSaveChanges() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         viewModel.accountDetail = .default
         
@@ -106,7 +102,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     func testSaveChangesWithLanguageChange() {
         if Environment.shared.opco == .comEd { // Only ComEd has the language preference
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                                  billService: MockBillService(),
                                                   accountService: MockAccountService())
             viewModel.accountDetail = .default
             viewModel.initialEnglishValue = false
@@ -128,7 +123,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     func testSaveChangesWithEbillEnroll() {
         if Environment.shared.opco != .bge { // Only ComEd/PECO perform eBill changes
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                                  billService: MockBillService(),
                                                   accountService: MockAccountService())
             viewModel.accountDetail = .default
             viewModel.initialBillReadyValue = false
@@ -149,7 +143,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testSaveButtonEnabled() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expect = expectation(description: "callback")
         
@@ -173,7 +166,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testOutageDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString: String
         switch Environment.shared.opco {
@@ -196,7 +188,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testScheduledMaintDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString: String
         switch Environment.shared.opco {
@@ -217,7 +208,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testSevereWeatherDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString: String
         switch Environment.shared.opco {
@@ -240,7 +230,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testBillReadyDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString: String
         switch Environment.shared.opco {
@@ -261,7 +250,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testPaymentDueDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString: String
         switch Environment.shared.opco {
@@ -282,7 +270,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testPaymentPostedDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString = NSLocalizedString("Receive a confirmation when your payment has posted to your account. We will include the date and the amount of the posting, as well as your updated total account balance.", comment: "")
         
@@ -292,7 +279,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testPaymentPastDueDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString = NSLocalizedString("Receive a friendly reminder 1 day after your due date when you are late in making a payment.", comment: "")
         
@@ -302,7 +288,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testBudgetBillingDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString: String
         switch Environment.shared.opco {
@@ -325,7 +310,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testAppointmentTrackingDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString = NSLocalizedString("Receive notifications such as confirmations, reminders, and relevant status updates for your scheduled service appointment.", comment: "")
         
@@ -336,7 +320,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     func testForYourInfoDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
-                                              billService: MockBillService(),
                                               accountService: MockAccountService())
         let expectedString: String
         switch Environment.shared.opco {

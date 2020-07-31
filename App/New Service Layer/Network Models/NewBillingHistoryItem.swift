@@ -13,13 +13,13 @@ public struct NewBillingHistoryItem: Codable {
     let billerID: String?
     let ccfGas: String?
     let chargeAmount: String?
-    let date: String?
+    let date: Date
     let welcomeDescription: String?
     let kwhElec: String?
     let maskedWalletItemAccountNumber: String?
     let outstandingBalance: String?
     let paymentID: String?
-    let status: String?
+    let statusString: String?
     let totalAmountDue: Double?
     let walletID: String?
     let walletItemID: String?
@@ -46,7 +46,7 @@ public struct NewBillingHistoryItem: Codable {
         case maskedWalletItemAccountNumber = "masked_wallet_item_account_number"
         case outstandingBalance = "outstanding_balance"
         case paymentID = "payment_id"
-        case status = "status"
+        case statusString = "status"
         case totalAmountDue = "total_amount_due"
         case walletID = "wallet_id"
         case walletItemID = "wallet_item_id"
@@ -61,5 +61,81 @@ public struct NewBillingHistoryItem: Codable {
         case paymentMethod = "payment_method"
         case flagAllowDeletes = "flag_allow_deletes"
         case flagAllowEdits = "flag_allow_edits"
+    }
+    
+    var isAutoPayPayment: Bool {
+        return channelCode == "SCHEDULED_PAYMENT"
+    }
+    
+    var isFuelFundDonation: Bool {
+        return channelCode == "FFD"
+    }
+    
+    var isBillPDF: Bool {
+        return type == "billing"
+    }
+    
+    var paymentMethodType: PaymentMethodType? {
+        if let paymentTypeStr = paymentType {
+            return paymentMethodTypeForPaymentusString(paymentTypeStr)
+        }
+        
+        return nil
+    }
+    
+    var status: NewBillingHistoryStatus {
+        return NewBillingHistoryStatus(identifier: statusString)
+    }
+    
+    enum NewBillingHistoryStatus: String, Codable {
+        case scheduled
+        case pending
+        case success
+        case failed
+        case canceled
+        case returned
+        case refunded
+        case unknown
+        
+        init(identifier: String?) {
+            guard let id = identifier?.lowercased() else {
+                self = .unknown
+                return
+            }
+            
+            switch id {
+            case "scheduled":
+                self = .scheduled
+            case "pending":
+                self = .pending
+            case "posted", "accepted":
+                self = .success
+            case "failed", "declined":
+                self = .failed
+            case "cancelled", "void":
+                self = .canceled
+            case "returned":
+                self = .returned
+            case "refunded":
+                self = .refunded
+            default:
+                self = .unknown
+            }
+        }
+    }
+    
+    var isFuture: Bool {
+        if isBillPDF { // EM-2638: Bills should always be in the past
+            return false
+        }
+        
+        switch status {
+        case .scheduled, .pending:
+            return true
+        case .success, .failed, .canceled, .returned, .refunded, .unknown:
+            return false
+        default:
+            return false
+        }
     }
 }

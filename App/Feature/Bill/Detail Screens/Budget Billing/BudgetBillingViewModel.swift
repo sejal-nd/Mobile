@@ -13,7 +13,6 @@ class BudgetBillingViewModel {
     
     let disposeBag = DisposeBag()
     
-    private var billService: BillService
     private var alertsService: AlertsService
 
     let accountDetail: AccountDetail!
@@ -22,17 +21,16 @@ class BudgetBillingViewModel {
     
     let selectedUnenrollmentReason = BehaviorRelay(value: -1)
     
-    required init(accountDetail: AccountDetail, billService: BillService, alertsService: AlertsService) {
+    required init(accountDetail: AccountDetail, alertsService: AlertsService) {
         self.accountDetail = accountDetail
-        self.billService = billService
         self.alertsService = alertsService
     }
     
-    func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
-        billService.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber)
+    func getBudgetBillingInfo(onSuccess: @escaping (NewBudgetBilling) -> Void, onError: @escaping (String) -> Void) {
+        BillServiceNew.rx.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] billingInfo in
-                self?.averageMonthlyBill = billingInfo.averageMonthlyBill
+                self?.averageMonthlyBill = billingInfo.averageMonthlyBill.currencyString
                 onSuccess(billingInfo)
             }, onError: { error in
                 onError(error.localizedDescription)
@@ -41,7 +39,7 @@ class BudgetBillingViewModel {
     }
     
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
+        BillServiceNew.rx.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
@@ -66,7 +64,7 @@ class BudgetBillingViewModel {
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: reasonString(forIndex: selectedUnenrollmentReason.value))
+        BillServiceNew.rx.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: reasonString(forIndex: selectedUnenrollmentReason.value))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)

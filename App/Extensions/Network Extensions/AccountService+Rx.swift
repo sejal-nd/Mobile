@@ -100,7 +100,7 @@ extension Reactive where Base == AccountService {
         return Observable.create { observer -> Disposable in
             AccountService.fetchScheduledPayments(accountNumber: accountNumber) { observer.handle(result: $0) }
             return Disposables.create()
-        }
+        }.catchErrorJustReturn([]) // TODO: This should be replaced with original logic once API is fixed
     }
     
     static func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {

@@ -23,8 +23,6 @@ enum PaperlessEBillAllAccountsCheckboxState {
 }
 
 class PaperlessEBillViewModel {
-    private var billService: BillService
-    
     let initialAccountDetail: BehaviorRelay<AccountDetail>
     let accounts: BehaviorRelay<[Account]>
     
@@ -37,8 +35,7 @@ class PaperlessEBillViewModel {
     
     let bag = DisposeBag()
     
-    init(billService: BillService, initialAccountDetail accountDetail: AccountDetail) {
-        self.billService = billService
+    init(initialAccountDetail accountDetail: AccountDetail) {
         self.initialAccountDetail = BehaviorRelay(value: accountDetail)
         
         switch Environment.shared.opco {
@@ -123,7 +120,7 @@ class PaperlessEBillViewModel {
     
     func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {
         let enrollObservables = accountsToEnroll.value.map {
-            billService.enrollPaperlessBilling(accountNumber: $0,
+            BillServiceNew.rx.enrollPaperlessBilling(accountNumber: $0,
                                                email: initialAccountDetail.value.customerInfo.emailAddress)
                 .do(onNext: {GoogleAnalytics.log(event: .eBillEnrollComplete)})
             }
@@ -133,7 +130,7 @@ class PaperlessEBillViewModel {
                 GoogleAnalytics.log(event: .eBillEnrollOffer) }
         
         let unenrollObservables = accountsToUnenroll.value.map {
-            billService.unenrollPaperlessBilling(accountNumber: $0)
+            BillServiceNew.rx.unenrollPaperlessBilling(accountNumber: $0)
                 .do(onNext: {GoogleAnalytics.log(event: .eBillUnEnrollComplete)})
             }
             .doEach { _ in
