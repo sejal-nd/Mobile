@@ -87,7 +87,12 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         keepMeSignedInLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         keepMeSignedInLabel.textColor = .deepGray
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
-        let placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
+        var placeholderText = "Username / Email Address"
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+            placeholderText = "Email"
+        } else {
+            placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
+        }
         usernameTextField.placeholder = NSLocalizedString(placeholderText, comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .next
@@ -139,8 +144,11 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         forgotUsernamePasswordButton.titleLabel?.numberOfLines = 0
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
+        let forgotUsernamePasswordButtonTitle = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+            ? "Forgot your email or password?"
+            : "Forgot your username or password?"
         UIView.performWithoutAnimation { // Prevents ugly setTitle animation
-            self.forgotUsernamePasswordButton.setTitle(NSLocalizedString("Forgot your username or password?", comment: ""), for: .normal)
+            self.forgotUsernamePasswordButton.setTitle(NSLocalizedString(forgotUsernamePasswordButtonTitle, comment: ""), for: .normal)
             self.forgotUsernamePasswordButton.layoutIfNeeded()
         }
 
@@ -356,7 +364,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         view.endEditing(true)
 
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Forgot Username", comment: ""), style: .default, handler: { _ in
+        let forgotUsername = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+                  ? "Forgot Email"
+                  : "Forgot Username"
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString(forgotUsername, comment: ""), style: .default, handler: { _ in
             self.forgotUsername()
         }))
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Forgot Password", comment: ""), style: .default, handler: { _ in
