@@ -109,6 +109,7 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         
         primaryProfileLabel.textColor = .deepGray
         primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
+        primaryProfileLabel.text = NSLocalizedString("Set as primary profile for this account", comment: "")
         
         primaryProfileCheckbox.rx.isChecked.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
         
