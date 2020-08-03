@@ -43,7 +43,7 @@ class GasOnlyViewController: UIViewController {
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat(
                 """
-                We currently do not allow reporting of gas issues online but want to hear from you right away.\n
+                Natural gas emergencies cannot be reported online, but want to hear from you right away.\n
                 If you smell natural gas, leave the area immediately and call %@
                 """
                 , phone1)

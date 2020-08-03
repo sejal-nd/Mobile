@@ -75,7 +75,7 @@ extension UIColor {
         case .peco:
             return UIColor(red: 0/255, green: 162/255, blue: 255/255, alpha: 1)
         case .pepco, .ace, .delmarva:
-            return .primaryColor
+            return .roseQuartz
         }
     }
     

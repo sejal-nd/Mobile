@@ -135,10 +135,13 @@ class StormModeHomeViewModel {
     }
         
     var gasOnlyMessage: String {
-        let firstLine = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
+        var firstLine = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
         let secondLine: String?
         switch Environment.shared.opco {
-        case .bge, .delmarva:
+        case .bge:
+            secondLine = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
+        case .delmarva:
+            firstLine = NSLocalizedString("Natural gas emergencies cannot be reported online, but want to hear from you right away.", comment: "")
             secondLine = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
         case .peco:
             secondLine = NSLocalizedString("To issue a Gas Emergency Order, please call", comment: "")
