@@ -152,7 +152,7 @@ class SplashViewModel{
         
         switch Environment.shared.opco {
         case .ace:
-            let phone = "1-800-833-7476"
+            let phone = "1-800-642-3780"
                        phoneNumbers = [phone]
                        localizedString = String.localizedStringWithFormat(
                            """
