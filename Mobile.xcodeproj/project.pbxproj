@@ -4310,7 +4310,6 @@
 		67EDC29524C1E684001A8494 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		67EDC29724C1E684001A8494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		67EDC2AA24C1E690001A8494 /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
-		67EDC2AB24C1E690001A8494 /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		67EDC2AC24C1E690001A8494 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		67EDC2AD24C1E690001A8494 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		67EDC2AE24C1E690001A8494 /* AnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */; };
@@ -18426,7 +18425,6 @@
 			files = (
 				67EDC2AA24C1E690001A8494 /* Maintenance.swift in Sources */,
 				673F9FAA24C8942100210BCD /* CompareBillResult.swift in Sources */,
-				67EDC2AB24C1E690001A8494 /* Premise.swift in Sources */,
 				67EDC2AC24C1E690001A8494 /* Fillable.swift in Sources */,
 				67EDC2AD24C1E690001A8494 /* WalletItem.swift in Sources */,
 				673FA00624C894DA00210BCD /* BillComparisonRequest.swift in Sources */,

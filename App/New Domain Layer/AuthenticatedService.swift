@@ -122,10 +122,10 @@ extension AuthenticatedService {
             case .success(let tokenResponse):
                 
                 // Handle Temp Password
-//                if data.hasTempPassword {
-//                    completion(.success(data.hasTempPassword))
-//                    return
-//                }
+                if tokenResponse.profileStatus?.tempPassword ?? false {
+                    completion(.success(true))
+                    return
+                }
                 do {
                     try UserSession.createSession(tokenResponse: tokenResponse)
                 } catch {
