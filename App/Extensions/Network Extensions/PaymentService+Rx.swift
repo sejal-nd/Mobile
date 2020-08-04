@@ -10,20 +10,20 @@ import Foundation
 import RxSwift
 import RxSwiftExt
 
-extension PaymentServiceNew: ReactiveCompatible {}
+extension PaymentService: ReactiveCompatible {}
 
-extension Reactive where Base == PaymentServiceNew {
+extension Reactive where Base == PaymentService {
     
-    static func autoPayInfo(accountNumber: String) -> Observable<NewBGEAutoPayInfo> {
+    static func autoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo> {
         return Observable.create { observer -> Disposable in
-            PaymentServiceNew.autoPayInfo(accountNumber: accountNumber) { observer.handle(result: $0) }
+            PaymentService.autoPayInfo(accountNumber: accountNumber) { observer.handle(result: $0) }
             return Disposables.create()
         }
     }
     
     static func autoPayEnroll(accountNumber: String, request: AutoPayEnrollRequest) -> Observable<Void> {
-        return Observable<NewAutoPayResult>.create { observer -> Disposable in
-            PaymentServiceNew.autoPayEnroll(accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
+        return Observable<AutoPayResult>.create { observer -> Disposable in
+            PaymentService.autoPayEnroll(accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
             return Disposables.create()
         }
         .mapTo(())
@@ -33,8 +33,19 @@ extension Reactive where Base == PaymentServiceNew {
     }
     
     static func autoPayEnrollBGE(accountNumber: String, request: AutoPayEnrollBGERequest) -> Observable<Void> {
-        return Observable<NewAutoPayResult>.create { observer -> Disposable in
-            PaymentServiceNew.enrollAutoPayBGE(accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
+        return Observable<AutoPayResult>.create { observer -> Disposable in
+            PaymentService.enrollAutoPayBGE(accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
+            return Disposables.create()
+        }
+        .mapTo(())
+        .do(onNext: {
+            RxNotifications.shared.accountDetailUpdated.onNext(())
+        })
+    }
+    
+    static func updateAutoPayBGE(accountNumber: String, request: AutoPayEnrollBGERequest) -> Observable<Void> {
+        return Observable<AutoPayResult>.create { observer -> Disposable in
+            PaymentService.updateAutoPayBGE(accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
             return Disposables.create()
         }
         .mapTo(())
@@ -44,8 +55,8 @@ extension Reactive where Base == PaymentServiceNew {
     }
     
     static func autoPayUnenroll(accountNumber: String, request: AutoPayUnenrollRequest) -> Observable<Void> {
-        return Observable<NewAutoPayResult>.create { observer -> Disposable in
-            PaymentServiceNew.autoPayUnenroll(accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
+        return Observable<AutoPayResult>.create { observer -> Disposable in
+            PaymentService.autoPayUnenroll(accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
             return Disposables.create()
         }
         .mapTo(())
@@ -54,12 +65,12 @@ extension Reactive where Base == PaymentServiceNew {
         })
     }
     
-    static func schedulePayment(accountNumber: String, request: ScheduledPaymentUpdateRequest) -> Observable<String?> {
+    static func schedulePayment(accountNumber: String, request: ScheduledPaymentUpdateRequest) -> Observable<String> {
         return Observable<GenericResponse>.create { observer -> Disposable in
-            PaymentServiceNew.schedulePayment(accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
+            PaymentService.schedulePayment(accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
             return Disposables.create()
         }
-        .map { $0.confirmationNumber }
+        .map { $0.confirmationNumber! }
         .do(onNext: { _ in
             RxNotifications.shared.recentPaymentsUpdated.onNext(())
             AppRating.logRatingEvent()
@@ -68,7 +79,7 @@ extension Reactive where Base == PaymentServiceNew {
     
     static func cancelSchduledPayment(accountNumber: String, paymentId: String, request: SchedulePaymentCancelRequest) -> Observable<Void> {
         return Observable<GenericResponse>.create { observer -> Disposable in
-            PaymentServiceNew.cancelSchduledPayment(accountNumber: accountNumber, paymentId: paymentId, request: request) { observer.handle(result: $0) }
+            PaymentService.cancelSchduledPayment(accountNumber: accountNumber, paymentId: paymentId, request: request) { observer.handle(result: $0) }
             return Disposables.create()
         }
         .mapTo(())
@@ -80,7 +91,7 @@ extension Reactive where Base == PaymentServiceNew {
     
     static func updateScheduledPayment(paymentId: String, accountNumber: String, request: ScheduledPaymentUpdateRequest) -> Observable<String?> {
         return Observable<GenericResponse>.create { observer -> Disposable in
-            PaymentServiceNew.updateScheduledPayment(paymentId: paymentId, accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
+            PaymentService.updateScheduledPayment(paymentId: paymentId, accountNumber: accountNumber, request: request) { observer.handle(result: $0) }
             return Disposables.create()
         }
         .map { $0.confirmationNumber }

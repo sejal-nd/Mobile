@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewAutoPayResult: Decodable {
+public struct AutoPayResult: Decodable {
     public var header: String
     public var message: String
     

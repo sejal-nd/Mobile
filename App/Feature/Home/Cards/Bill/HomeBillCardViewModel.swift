@@ -18,7 +18,6 @@ class HomeBillCardViewModel {
     let accountDetailEvents: Observable<Event<AccountDetail>>
     let scheduledPaymentEvents: Observable<Event<PaymentItem?>>
     private let walletService: WalletService
-    private let paymentService: PaymentService
     
     let submitOneTouchPay = PublishSubject<Void>()
     
@@ -33,14 +32,12 @@ class HomeBillCardViewModel {
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   scheduledPaymentEvents: Observable<Event<PaymentItem?>>,
                   walletService: WalletService,
-                  paymentService: PaymentService,
                   fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.fetchDataMMEvents = fetchDataMMEvents
         self.accountDetailEvents = accountDetailEvents
         self.scheduledPaymentEvents = scheduledPaymentEvents
         self.walletService = walletService
-        self.paymentService = paymentService
         self.fetchTracker = fetchTracker
         
         oneTouchPayResult
@@ -126,13 +123,10 @@ class HomeBillCardViewModel {
                     requestSelector: { [unowned self] (object: [String: Any]) in
                         let paymentAmount = object["paymentAmount"] as! Double
                         let paymentDate = object["paymentDate"] as! Date
-                        return self.paymentService.schedulePayment(accountNumber: object["accountNumber"] as! String,
-                                                                   paymentAmount: paymentAmount,
-                                                                   paymentDate: paymentDate,
-                                                                   alternateEmail: "",
-                                                                   alternateNumber: "",
-                                                                   walletId: AccountsStore.shared.customerIdentifier,
-                                                                   walletItem: object["walletItem"] as! WalletItem)
+                        
+                        let request = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount, paymentDate: paymentDate, walletItem: object["walletItem"] as! WalletItem, alternateEmail: "", alternatePhoneNumber: "")
+                        
+                        return PaymentService.rx.schedulePayment(accountNumber: object["accountNumber"] as! String, request: request)
                             .do(onNext: { confirmationNumber in
                                 let paymentDetails = PaymentDetails(amount: paymentAmount,
                                                                     date: paymentDate,

@@ -9,54 +9,54 @@
 import Foundation
 import RxSwift
 
-extension BillServiceNew: ReactiveCompatible {}
+extension BillService: ReactiveCompatible {}
 
-extension Reactive where Base == BillServiceNew {
-    static func fetchBudgetBillingInfo(accountNumber: String) -> Observable<NewBudgetBilling> {
+extension Reactive where Base == BillService {
+    static func fetchBudgetBillingInfo(accountNumber: String) -> Observable<BudgetBilling> {
         return Observable.create { observer -> Disposable in
-            BillServiceNew.fetchBudgetBillingInfo(accountNumber: accountNumber) { observer.handle(result: $0) }
+            BillService.fetchBudgetBillingInfo(accountNumber: accountNumber) { observer.handle(result: $0) }
             return Disposables.create()
         }
     }
     
     static func enrollBudgetBilling(accountNumber: String) -> Observable<Void> {
         return Observable<GenericResponse>.create { observer -> Disposable in
-            BillServiceNew.enrollBudgetBilling(accountNumber: accountNumber) { observer.handle(result: $0) }
+            BillService.enrollBudgetBilling(accountNumber: accountNumber) { observer.handle(result: $0) }
             return Disposables.create()
         }.map { _ in ()}
     }
     
     static func unenrollBudgetBilling(accountNumber: String, reason: String) -> Observable<Void> {
         return Observable<GenericResponse>.create { observer -> Disposable in
-            BillServiceNew.unenrollBudgetBilling(accountNumber: accountNumber, reason: reason) { observer.handle(result: $0) }
+            BillService.unenrollBudgetBilling(accountNumber: accountNumber, reason: reason) { observer.handle(result: $0) }
             return Disposables.create()
         }.map { _ in ()}
     }
     
     static func enrollPaperlessBilling(accountNumber: String, email: String?) -> Observable<Void> {
         return Observable<VoidDecodable>.create { observer -> Disposable in
-            BillServiceNew.enrollPaperlessBilling(accountNumber: accountNumber, email: email) { observer.handle(result: $0) }
+            BillService.enrollPaperlessBilling(accountNumber: accountNumber, email: email) { observer.handle(result: $0) }
             return Disposables.create()
         }.map { _ in ()}
     }
     
     static func unenrollPaperlessBilling(accountNumber: String) -> Observable<Void> {
         return Observable<VoidDecodable>.create { observer -> Disposable in
-            BillServiceNew.unenrollPaperlessBilling(accountNumber: accountNumber) { observer.handle(result: $0) }
+            BillService.unenrollPaperlessBilling(accountNumber: accountNumber) { observer.handle(result: $0) }
             return Disposables.create()
         }.map { _ in ()}
     }
     
     static func fetchBillPdf(accountNumber: String, billDate: Date, documentID: String) -> Observable<String> {
         return Observable.create { observer -> Disposable in
-            BillServiceNew.fetchBillPdf(accountNumber: accountNumber, billDate: billDate, documentID: documentID) { observer.handle(result: $0) }
+            BillService.fetchBillPdf(accountNumber: accountNumber, billDate: billDate, documentID: documentID) { observer.handle(result: $0) }
             return Disposables.create()
         }
     }
     
-    static func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) -> Observable<NewBillingHistoryResult> {
+    static func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) -> Observable<BillingHistoryResult> {
         return Observable.create { observer -> Disposable in
-            BillServiceNew.fetchBillingHistory(accountNumber: accountNumber, startDate: startDate, endDate: endDate) { observer.handle(result: $0) }
+            BillService.fetchBillingHistory(accountNumber: accountNumber, startDate: startDate, endDate: endDate) { observer.handle(result: $0) }
             return Disposables.create()
         }
     }

@@ -11,7 +11,7 @@ import Foundation
 public struct ScheduledPaymentUpdateRequest: Encodable {
     let paymentAmount: String
     let paymentDate: String
-    let paymentId: String
+    let paymentId: String?
     let paymentCategoryType: String
     let walletId: String
     let billerId: String
@@ -23,7 +23,7 @@ public struct ScheduledPaymentUpdateRequest: Encodable {
     
     init(paymentAmount: Double,
              paymentDate: Date,
-             paymentId: String,
+             paymentId: String? = nil,
              walletId: String = AccountsStore.shared.customerIdentifier,
              walletItem: WalletItem,
              alternateEmail: String? = nil,

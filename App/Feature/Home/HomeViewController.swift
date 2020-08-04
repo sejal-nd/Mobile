@@ -50,7 +50,6 @@ class HomeViewController: AccountPickerViewController {
     
     let viewModel = HomeViewModel(weatherService: ServiceFactory.createWeatherService(),
                                   walletService: ServiceFactory.createWalletService(),
-                                  paymentService: ServiceFactory.createPaymentService(),
                                   alertsService: ServiceFactory.createAlertsService(),
                                   gameService: ServiceFactory.createGameService())
     

@@ -91,7 +91,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     
     var viewModel: PaymentViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
-    var billingHistoryItem: NewBillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
+    var billingHistoryItem: BillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
     
     var hasPrecariousOtherAmountBeenSelected = false
     
@@ -102,7 +102,9 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail, billingHistoryItem: billingHistoryItem)
+        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(),
+                                     accountDetail: accountDetail,
+                                     billingHistoryItem: billingHistoryItem)
         
         navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
         

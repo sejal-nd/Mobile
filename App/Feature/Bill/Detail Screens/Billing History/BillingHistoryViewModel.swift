@@ -17,7 +17,7 @@ class BillingHistoryViewModel {
     
     // Pass these in
     var accountDetail: AccountDetail!
-    var billingHistory: NewBillingHistoryResult? // Passed in when viewing "More Activity", otherwise it's fetched here
+    var billingHistory: BillingHistoryResult? // Passed in when viewing "More Activity", otherwise it's fetched here
     var viewingMoreActivity = false // Pass true to indicate "More Activity" screen
 
     init() {
@@ -28,7 +28,7 @@ class BillingHistoryViewModel {
         let lastYear = Calendar.opCo.date(byAdding: .month, value: monthsBackward, to: now)!
         let theFuture = Calendar.opCo.date(byAdding: .month, value: monthsForward, to: now)!
                 
-        BillServiceNew.rx.fetchBillingHistory(accountNumber: AccountsStore.shared.currentAccount.accountNumber, startDate: lastYear, endDate: theFuture)
+        BillService.rx.fetchBillingHistory(accountNumber: AccountsStore.shared.currentAccount.accountNumber, startDate: lastYear, endDate: theFuture)
             .subscribe(onNext: { [weak self] billingHistory in
                 self?.billingHistory = billingHistory
                 success()

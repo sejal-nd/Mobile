@@ -26,8 +26,8 @@ class BudgetBillingViewModel {
         self.alertsService = alertsService
     }
     
-    func getBudgetBillingInfo(onSuccess: @escaping (NewBudgetBilling) -> Void, onError: @escaping (String) -> Void) {
-        BillServiceNew.rx.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber)
+    func getBudgetBillingInfo(onSuccess: @escaping (BudgetBilling) -> Void, onError: @escaping (String) -> Void) {
+        BillService.rx.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] billingInfo in
                 self?.averageMonthlyBill = billingInfo.averageMonthlyBill.currencyString
@@ -39,7 +39,7 @@ class BudgetBillingViewModel {
     }
     
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        BillServiceNew.rx.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
+        BillService.rx.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
@@ -64,7 +64,7 @@ class BudgetBillingViewModel {
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        BillServiceNew.rx.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: reasonString(forIndex: selectedUnenrollmentReason.value))
+        BillService.rx.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: reasonString(forIndex: selectedUnenrollmentReason.value))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)

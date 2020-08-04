@@ -36,7 +36,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         amountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
     }
 
-    func configureWith(item: NewBillingHistoryItem) {
+    func configureWith(item: BillingHistoryItem) {
         let dateString = item.date.shortMonthDayAndYearString
         dateLabel.text = item.date.mmDdYyyyString
                 

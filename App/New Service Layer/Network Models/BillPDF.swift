@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct BillPDFNew: Decodable {
+public struct BillPDF: Decodable {
     public var imageData: String
     public var contentType: String
     

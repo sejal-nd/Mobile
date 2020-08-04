@@ -10,13 +10,13 @@ import Foundation
 
 // NOTE: The location of these static methods are subject to change
 
-public struct PaymentServiceNew {
+public struct PaymentService {
     
-    static func autoPayInfo(accountNumber: String, completion: @escaping (Result<NewBGEAutoPayInfo, NetworkingError>) -> ()) {
+    static func autoPayInfo(accountNumber: String, completion: @escaping (Result<BGEAutoPayInfo, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .autoPayInfo(accountNumber: accountNumber), completion: completion)
     }
     
-    static func autoPayEnroll(accountNumber: String, request: AutoPayEnrollRequest, completion: @escaping (Result<NewAutoPayResult, NetworkingError>) -> ()) {
+    static func autoPayEnroll(accountNumber: String, request: AutoPayEnrollRequest, completion: @escaping (Result<AutoPayResult, NetworkingError>) -> ()) {
         var router: Router
         
         if request.isUpdate {
@@ -29,15 +29,15 @@ public struct PaymentServiceNew {
         NetworkingLayer.request(router: router, completion: completion)
     }
     
-    static func enrollAutoPayBGE(accountNumber: String, request: AutoPayEnrollBGERequest, completion: @escaping (Result<NewAutoPayResult, NetworkingError>) -> ()) {
+    static func enrollAutoPayBGE(accountNumber: String, request: AutoPayEnrollBGERequest, completion: @escaping (Result<AutoPayResult, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .autoPayEnrollBGE(accountNumber: accountNumber, request: request), completion: completion)
     }
     
-    static func updateAutoPayBGE(accountNumber: String, request: AutoPayEnrollBGERequest, completion: @escaping (Result<NewAutoPayResult, NetworkingError>) -> ()) {
+    static func updateAutoPayBGE(accountNumber: String, request: AutoPayEnrollBGERequest, completion: @escaping (Result<AutoPayResult, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .updateAutoPayBGE(accountNumber: accountNumber, request: request), completion: completion)
     }
     
-    static func autoPayUnenroll(accountNumber: String, request: AutoPayUnenrollRequest, completion: @escaping (Result<NewAutoPayResult, NetworkingError>) -> ()) {
+    static func autoPayUnenroll(accountNumber: String, request: AutoPayUnenrollRequest, completion: @escaping (Result<AutoPayResult, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .autoPayUnenroll(accountNumber: accountNumber, request: request), completion: completion)
     }
     
@@ -73,7 +73,7 @@ public struct PaymentServiceNew {
                 }
             }
             
-            //            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, Error>) in
+            //            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<BillingHistoryResult, Error>) in
             //                                                                            switch result {
             //                case .success(let data):
             //
@@ -139,7 +139,7 @@ public struct PaymentServiceNew {
         
             print("REQ SCHEDULE")
             
-            NetworkingLayer.request(router: .payment(encodable: encodedObject)) { (result: Result<NewPaymentResult, NetworkingError>) in
+            NetworkingLayer.request(router: .payment(encodable: encodedObject)) { (result: Result<PaymentResult, NetworkingError>) in
                 switch result {
                 case .success(let data):
                     
@@ -153,7 +153,7 @@ public struct PaymentServiceNew {
                 }
             }
             
-            //            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<NewBillingHistoryResult, Error>) in
+            //            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<BillingHistoryResult, Error>) in
             //                                                                            switch result {
             //                case .success(let data):
             //

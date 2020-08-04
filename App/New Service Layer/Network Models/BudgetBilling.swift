@@ -1,5 +1,5 @@
 //
-//  NewBudgetBilling.swift
+//  BudgetBilling.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 4/8/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewBudgetBilling: Decodable {
+public struct BudgetBilling: Decodable {
     public var isBudgetBillingAvailable: Bool
     public var isEnrolled: Bool
     public var averageMonthlyBill: Double

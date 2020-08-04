@@ -26,8 +26,7 @@ class StormModeBillViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = StormModeBillViewModel(walletService: ServiceFactory.createWalletService(),
-                                           paymentService: ServiceFactory.createPaymentService())
+    let viewModel = StormModeBillViewModel(walletService: ServiceFactory.createWalletService())
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

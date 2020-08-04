@@ -1,5 +1,5 @@
 //
-//  BillServiceNew.swift
+//  BillService.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 7/24/20.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct BillServiceNew {
-    static func fetchBudgetBillingInfo(accountNumber: String, completion: @escaping (Result<NewBudgetBilling, NetworkingError>) -> ()) {
+struct BillService {
+    static func fetchBudgetBillingInfo(accountNumber: String, completion: @escaping (Result<BudgetBilling, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber), completion: completion)
     }
     
@@ -49,7 +49,7 @@ struct BillServiceNew {
         NetworkingLayer.request(router: .billPDF(accountNumber: accountNumber, date: billDate, documentID: documentID), completion: completion)
     }
     
-    static func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date, completion: @escaping (Result<NewBillingHistoryResult, NetworkingError>) -> ()) {
+    static func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date, completion: @escaping (Result<BillingHistoryResult, NetworkingError>) -> ()) {
             
             let startDateString = DateFormatter.yyyyMMddFormatter.string(from: startDate)
             let endDateString = DateFormatter.yyyyMMddFormatter.string(from: endDate)

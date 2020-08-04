@@ -24,15 +24,6 @@ struct ServiceFactory {
         }
     }
 
-    static func createPaymentService() -> PaymentService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockPaymentService()
-        default:
-            return MCSPaymentService()
-        }
-    }
-
     static func createWeatherService() -> WeatherService {
         switch Environment.shared.environmentName {
         case .aut:

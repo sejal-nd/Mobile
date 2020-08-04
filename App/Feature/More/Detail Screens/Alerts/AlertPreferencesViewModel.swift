@@ -419,7 +419,7 @@ class AlertPreferencesViewModel {
     }
     
     private func enrollPaperlessEBill() -> Observable<Void> {
-        return BillServiceNew.rx.enrollPaperlessBilling(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+        return BillService.rx.enrollPaperlessBilling(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
                                     email: accountDetail.customerInfo.emailAddress)
     }
     

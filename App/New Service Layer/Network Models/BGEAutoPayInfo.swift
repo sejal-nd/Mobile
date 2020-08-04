@@ -8,16 +8,16 @@
 
 import Foundation
 
-enum NewAmountType: String, Decodable {
+enum AmountType: String, Decodable {
     case upToAmount = "upto amount"
     case amountDue = "amount due"
 }
 
-public struct NewBGEAutoPayInfo: Decodable {
+public struct BGEAutoPayInfo: Decodable {
     let walletItemId: String?
     let paymentAccountNickname: String?
     let paymentAccountLast4: String?
-    let amountType: NewAmountType?
+    let amountType: AmountType?
     let amountThreshold: Double?
     let paymentDaysBeforeDue: Int?
     let confirmationNumber: String

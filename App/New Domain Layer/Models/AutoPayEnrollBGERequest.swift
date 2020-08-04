@@ -15,6 +15,23 @@ public struct AutoPayEnrollBGERequest: Encodable {
     let requestType: String
     let walletItemId: String?
     let amountThreshold: String?
+    let confirmationNumber: String?
+    
+    init(amountType: String,
+         paymentDateType: String = "before due",
+         paymentDaysBeforeDue: String,
+         isUpdate: Bool,
+         walletItemId: String?,
+         amountThreshold: String?,
+         confirmationNumber: String? = nil) {
+        self.amountType = amountType
+        self.paymentDateType = paymentDateType
+        self.paymentDaysBeforeDue = paymentDaysBeforeDue
+        self.requestType = isUpdate ? "Update" : "Start"
+        self.walletItemId = walletItemId
+        self.amountThreshold = amountThreshold
+        self.confirmationNumber = confirmationNumber
+    }
     
     enum CodingKeys: String, CodingKey {
         case amountType = "amount_type"

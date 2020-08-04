@@ -13,7 +13,6 @@ import RxSwiftExt
 class HomeViewModel {
     private let weatherService: WeatherService
     private let walletService: WalletService
-    private let paymentService: PaymentService
     private let alertsService: AlertsService
     private let gameService: GameService
     
@@ -34,13 +33,11 @@ class HomeViewModel {
     
     required init(weatherService: WeatherService,
                   walletService: WalletService,
-                  paymentService: PaymentService,
                   alertsService: AlertsService,
                   gameService: GameService) {
         self.fetchDataObservable = fetchData.share()
         self.weatherService = weatherService
         self.walletService = walletService
-        self.paymentService = paymentService
         self.alertsService = alertsService
         self.gameService = gameService
     }
@@ -59,7 +56,6 @@ class HomeViewModel {
                               accountDetailEvents: accountDetailEvents,
                               scheduledPaymentEvents: scheduledPaymentEvents,
                               walletService: walletService,
-                              paymentService: paymentService,
                               fetchTracker: billTracker)
     
     private(set) lazy var usageCardViewModel =
