@@ -312,7 +312,6 @@
 		356C7F902190A173003E8A90 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
 		356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		356C7F9A2190A2EF003E8A90 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
-		356C7F9B2190A37F003E8A90 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		356C7F9C2190A3CE003E8A90 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		356C7F9D2190A436003E8A90 /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
 		356C7F9E2190A446003E8A90 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
@@ -600,7 +599,6 @@
 		35F9DDAA2333D8A600AAA2B2 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
 		35F9DDAC2333D8AF00AAA2B2 /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		35F9DDAF2333D8C300AAA2B2 /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
-		35F9DDB02333D8C600AAA2B2 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		35F9DDB32333D8D900AAA2B2 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		35F9DDB42333D8DC00AAA2B2 /* MCSResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* MCSResponseParser.swift */; };
 		35F9DDB52333D8E000AAA2B2 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
@@ -637,7 +635,6 @@
 		35F9DE1D23353C6B00AAA2B2 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
 		35F9DE2223353C8100AAA2B2 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
 		35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
-		35F9DE2823353CB100AAA2B2 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		35F9DE2B23353CC700AAA2B2 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		35F9DE2C23353CCA00AAA2B2 /* MCSResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* MCSResponseParser.swift */; };
 		35F9DE2D23353CCE00AAA2B2 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
@@ -2138,7 +2135,6 @@
 		67DDB31F24535D2E006CD6EB /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
 		67DDB32024535D2E006CD6EB /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
 		67DDB32124535D2E006CD6EB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
-		67DDB32224535D2E006CD6EB /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		67DDB32524535D2E006CD6EB /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
 		67DDB32624535D2E006CD6EB /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		67DDB32724535D2E006CD6EB /* AccountInfoBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */; };
@@ -2630,7 +2626,6 @@
 		67DDB57524535D32006CD6EB /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
 		67DDB57624535D32006CD6EB /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
 		67DDB57724535D32006CD6EB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
-		67DDB57824535D32006CD6EB /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		67DDB57B24535D32006CD6EB /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
 		67DDB57C24535D32006CD6EB /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		67DDB57D24535D32006CD6EB /* AccountInfoBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */; };
@@ -3130,7 +3125,6 @@
 		67DDB7CB24535D35006CD6EB /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
 		67DDB7CC24535D35006CD6EB /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
 		67DDB7CD24535D35006CD6EB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
-		67DDB7CE24535D35006CD6EB /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		67DDB7D124535D35006CD6EB /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
 		67DDB7D224535D35006CD6EB /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		67DDB7D324535D35006CD6EB /* AccountInfoBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */; };
@@ -4251,7 +4245,6 @@
 		67EDC2E324C1E690001A8494 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB502E234D091000C50162 /* UIColor.swift */; };
 		67EDC2E424C1E690001A8494 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
 		67EDC2E524C1E690001A8494 /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
-		67EDC2E624C1E690001A8494 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		67EDC2E724C1E690001A8494 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAA1782367454F0053E58A /* NetworkUtility.swift */; };
 		67EDC2E824C1E690001A8494 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		67EDC2E924C1E690001A8494 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
@@ -4329,7 +4322,6 @@
 		67EDC37F24C1EBD9001A8494 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB502E234D091000C50162 /* UIColor.swift */; };
 		67EDC38024C1EBD9001A8494 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
 		67EDC38124C1EBD9001A8494 /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
-		67EDC38224C1EBD9001A8494 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		67EDC38324C1EBD9001A8494 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAA1782367454F0053E58A /* NetworkUtility.swift */; };
 		67EDC38424C1EBD9001A8494 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		67EDC38524C1EBD9001A8494 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
@@ -4398,7 +4390,6 @@
 		67EDC3F724C1EBFF001A8494 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB502E234D091000C50162 /* UIColor.swift */; };
 		67EDC3F824C1EBFF001A8494 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
 		67EDC3F924C1EBFF001A8494 /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
-		67EDC3FA24C1EBFF001A8494 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		67EDC3FB24C1EBFF001A8494 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAA1782367454F0053E58A /* NetworkUtility.swift */; };
 		67EDC3FC24C1EBFF001A8494 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		67EDC3FD24C1EBFF001A8494 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
@@ -5993,9 +5984,6 @@
 		E80043661E6A11E7005CF531 /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
 		E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E80043721E6A13FC005CF531 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
-		E801BAD51E8C439500550F99 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
-		E801BAD61E8C439500550F99 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
-		E801BAD71E8C439500550F99 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
 		E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
 		E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
 		E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802AB3E1E85936700981D18 /* LineHeightLabel.swift */; };
@@ -7992,7 +7980,6 @@
 		E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordStrengthMeterView.swift; sourceTree = "<group>"; };
 		E80043551E68CDCB005CF531 /* IndividualBorders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualBorders.swift; sourceTree = "<group>"; };
 		E800435E1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModelTests.swift; sourceTree = "<group>"; };
-		E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCSAuthenticationService.swift; sourceTree = "<group>"; };
 		E802AB3E1E85936700981D18 /* LineHeightLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineHeightLabel.swift; sourceTree = "<group>"; };
 		E8067C901EC3C257004C2724 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		E80CBD0E1F98EC930039D9E7 /* SSOData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSOData.swift; sourceTree = "<group>"; };
@@ -11239,7 +11226,6 @@
 			children = (
 				E83F02741FB0BFD20062A348 /* MCSAlertsService.swift */,
 				B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */,
-				E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */,
 				54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */,
 				82AC2A291FAB78E700EACB3B /* MCSPeakRewardsService.swift */,
 			);
@@ -15729,7 +15715,6 @@
 				673FA04724C8956100210BCD /* NewWallet.swift in Sources */,
 				B0E9F00421F28ADB0086A82A /* SequenceForEach.swift in Sources */,
 				356C7F9D2190A436003E8A90 /* URLSession+Rx.swift in Sources */,
-				356C7F9B2190A37F003E8A90 /* MCSAuthenticationService.swift in Sources */,
 				C3087ADC24B67EC4005AE544 /* ValidateAccountRequest.swift in Sources */,
 				C336046F24D327F2002CF260 /* PaymentService.swift in Sources */,
 				356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */,
@@ -15951,7 +15936,6 @@
 				35FB5030234D091100C50162 /* UIColor.swift in Sources */,
 				35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */,
 				35F9DDBC2333D90D00AAA2B2 /* URLSession+Rx.swift in Sources */,
-				35F9DDB02333D8C600AAA2B2 /* MCSAuthenticationService.swift in Sources */,
 				673F9FD924C894D700210BCD /* BillingHistoryRequest.swift in Sources */,
 				35BAA17A2367454F0053E58A /* NetworkUtility.swift in Sources */,
 				673FA0D824C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
@@ -16068,7 +16052,6 @@
 				C336047724D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
 				C3087B2F24BE31BA005AE544 /* VoidDecodable.swift in Sources */,
 				678B621224CF4F75009F8A6B /* AnonymousService.swift in Sources */,
-				35F9DE2823353CB100AAA2B2 /* MCSAuthenticationService.swift in Sources */,
 				35F9DE3823353D1300AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */,
 				35F9DE0E23353A5700AAA2B2 /* ExtensionDelegate.swift in Sources */,
@@ -16220,7 +16203,6 @@
 				67DDB31F24535D2E006CD6EB /* ForgotPasswordViewModel.swift in Sources */,
 				67DDB32024535D2E006CD6EB /* ChangePasswordViewModel.swift in Sources */,
 				67DDB32124535D2E006CD6EB /* MockUser.swift in Sources */,
-				67DDB32224535D2E006CD6EB /* MCSAuthenticationService.swift in Sources */,
 				67DDB32524535D2E006CD6EB /* MockPeakRewardsService.swift in Sources */,
 				67DDB32624535D2E006CD6EB /* WalletViewModel.swift in Sources */,
 				67DDB32724535D2E006CD6EB /* AccountInfoBarCell.swift in Sources */,
@@ -16702,7 +16684,6 @@
 				67DDB57524535D32006CD6EB /* ForgotPasswordViewModel.swift in Sources */,
 				67DDB57624535D32006CD6EB /* ChangePasswordViewModel.swift in Sources */,
 				67DDB57724535D32006CD6EB /* MockUser.swift in Sources */,
-				67DDB57824535D32006CD6EB /* MCSAuthenticationService.swift in Sources */,
 				67DDB57B24535D32006CD6EB /* MockPeakRewardsService.swift in Sources */,
 				67DDB57C24535D32006CD6EB /* WalletViewModel.swift in Sources */,
 				67DDB57D24535D32006CD6EB /* AccountInfoBarCell.swift in Sources */,
@@ -17184,7 +17165,6 @@
 				67DDB7CB24535D35006CD6EB /* ForgotPasswordViewModel.swift in Sources */,
 				67DDB7CC24535D35006CD6EB /* ChangePasswordViewModel.swift in Sources */,
 				67DDB7CD24535D35006CD6EB /* MockUser.swift in Sources */,
-				67DDB7CE24535D35006CD6EB /* MCSAuthenticationService.swift in Sources */,
 				67DDB7D124535D35006CD6EB /* MockPeakRewardsService.swift in Sources */,
 				67DDB7D224535D35006CD6EB /* WalletViewModel.swift in Sources */,
 				67DDB7D324535D35006CD6EB /* AccountInfoBarCell.swift in Sources */,
@@ -18334,7 +18314,6 @@
 				67EDC2E324C1E690001A8494 /* UIColor.swift in Sources */,
 				67EDC2E424C1E690001A8494 /* SignInInterfaceController.swift in Sources */,
 				67EDC2E524C1E690001A8494 /* URLSession+Rx.swift in Sources */,
-				67EDC2E624C1E690001A8494 /* MCSAuthenticationService.swift in Sources */,
 				673F9FC224C8945800210BCD /* NetworkingLayer.swift in Sources */,
 				67EDC2E724C1E690001A8494 /* NetworkUtility.swift in Sources */,
 				C336045B24D2E887002CF260 /* EmailRequest.swift in Sources */,
@@ -18507,7 +18486,6 @@
 				67EDC37F24C1EBD9001A8494 /* UIColor.swift in Sources */,
 				67EDC38024C1EBD9001A8494 /* SignInInterfaceController.swift in Sources */,
 				67EDC38124C1EBD9001A8494 /* URLSession+Rx.swift in Sources */,
-				67EDC38224C1EBD9001A8494 /* MCSAuthenticationService.swift in Sources */,
 				673F9FC424C8945900210BCD /* NetworkingLayer.swift in Sources */,
 				673FA0E224C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
 				67EDC38324C1EBD9001A8494 /* NetworkUtility.swift in Sources */,
@@ -18681,7 +18659,6 @@
 				673F9F5124C8926B00210BCD /* ReportedOutageResult.swift in Sources */,
 				673FA08424C8956300210BCD /* NewScheduledPayment.swift in Sources */,
 				673FA07D24C8956300210BCD /* BillingHistoryResult.swift in Sources */,
-				67EDC3FA24C1EBFF001A8494 /* MCSAuthenticationService.swift in Sources */,
 				673F9F9924C8933A00210BCD /* MeterPingResult.swift in Sources */,
 				673FA0BD24C8984800210BCD /* AnyObserver.swift in Sources */,
 				673F9F6F24C892D900210BCD /* JWTRequest.swift in Sources */,
@@ -18778,7 +18755,6 @@
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				B04DDF7521FFB0A800594ACF /* MockUser.swift in Sources */,
 				675F4E0024B3A00800A828F9 /* AnonOutageStatus.swift in Sources */,
-				E801BAD51E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
 				B0CB1C1F2270DE240081F99B /* MockPeakRewardsService.swift in Sources */,
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				B0DB2760215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
@@ -19262,7 +19238,6 @@
 				675F4BE424AB828100A828F9 /* BillComparisonRequest.swift in Sources */,
 				E80CBD111F98EC930039D9E7 /* SSOData.swift in Sources */,
 				675F4E0224B3A00800A828F9 /* AnonOutageStatus.swift in Sources */,
-				E801BAD71E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
 				B0882CA1210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				E8BCB9BC1EFAE79700779588 /* BGEAutoPayViewModel.swift in Sources */,
 				9C153DCB22E8F6CE002DA062 /* Checkbox.swift in Sources */,
@@ -19754,7 +19729,6 @@
 				B0D84D5E220382EF00C70A6F /* MockAppState.swift in Sources */,
 				B0472B2A2111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E80CBD101F98EC930039D9E7 /* SSOData.swift in Sources */,
-				E801BAD61E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
 				B0882CA0210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
 				675F4B8924AB828100A828F9 /* ScheduledPaymentUpdateRequest.swift in Sources */,
