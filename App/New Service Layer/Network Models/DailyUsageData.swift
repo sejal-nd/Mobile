@@ -9,7 +9,7 @@
 import Foundation
 
 struct DailyUsageData: Decodable {
-    var dailyUsage: [NewDailyUsage]
+    var dailyUsage: [DailyUsage]
     var unit: String
     
     enum CodingKeys: String, CodingKey {
@@ -34,16 +34,6 @@ struct DailyUsageData: Decodable {
             self.unit = unit
         }
         
-        self.dailyUsage = try intervalsContainer.decode([NewDailyUsage].self)
-    }
-}
-
-struct NewDailyUsage: Decodable {
-    var date: Date
-    var amount: Double
-    
-    enum CodingKeys: String, CodingKey {
-        case date = "start"
-        case amount = "usage"
+        self.dailyUsage = try intervalsContainer.decode([DailyUsage].self)
     }
 }

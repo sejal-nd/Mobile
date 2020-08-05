@@ -13,7 +13,6 @@ import RxSwiftExt
 class HomeViewModel {
     private let walletService: WalletService
     private let alertsService: AlertsService
-    private let gameService: GameService
     
     let fetchData = PublishSubject<Void>()
     let fetchDataObservable: Observable<Void>
@@ -31,12 +30,10 @@ class HomeViewModel {
     let appointmentsUpdates = PublishSubject<[Appointment]>() // Bind the detail screen's poll results to this
     
     required init(walletService: WalletService,
-                  alertsService: AlertsService,
-                  gameService: GameService) {
+                  alertsService: AlertsService) {
         self.fetchDataObservable = fetchData.share()
         self.walletService = walletService
         self.alertsService = alertsService
-        self.gameService = gameService
     }
     
     private(set) lazy var appointmentCardViewModel =
@@ -235,7 +232,7 @@ class HomeViewModel {
                 return .just(nil)
             }
             
-            return self.gameService.fetchGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+            return GameService.rx.fetchGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         })
         .share(replay: 1, scope: .forever)
     
