@@ -27,6 +27,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     @IBOutlet weak var dueDateButton: DisclosureButton!
     @IBOutlet weak var lastBillInformationLabel: UILabel!
     
+    @IBOutlet weak var illustrationImageView: UIImageView!
+    
     @IBOutlet weak var questionMarkButton: UIButton!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
     
@@ -45,19 +47,24 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .deepGray
-        instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or your last bill.", comment: "")
+        instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or bill details.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         lastBillInformationLabel.textColor = .deepGray
         lastBillInformationLabel.text = NSLocalizedString("Use one of your last two bills to find the following information:", comment: "")
         lastBillInformationLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         segmentedControl.items = [NSLocalizedString("Personal", comment: ""),
-                                  NSLocalizedString("Last Bill", comment: "")]
+                                  NSLocalizedString("Bill Details", comment: "")]
         configureTextFields()
         stackView.setCustomSpacing(20, after: instructionLabel)
         stackView.setCustomSpacing(20, after: segmentContainer)
         segmentedControl.selectedIndex.accept(.zero)
-    
+        switch Environment.shared.opco {
+            case .comEd:
+                illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
+            default:
+                illustrationImageView.isHidden = true
+            }
         viewModel.checkForMaintenance()
     }
     
@@ -165,11 +172,11 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        var identifierString = "Last 4 Digits of your Social Security Number"
+        var identifierString = "Last 4 digits of your Social Security Number"
         if Environment.shared.opco == .bge {
             identifierString.append(", Business Tax ID, or BGE Pin")
         } else {
-            identifierString.append(" or Business Tax ID.")
+            identifierString.append(" or Business Tax ID")
         }
         identifierDescriptionLabel.textColor = .deepGray
         identifierDescriptionLabel.text = NSLocalizedString(identifierString, comment: "")
@@ -350,6 +357,7 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
             amountDueTextField.isHidden = true
             dueDateButton.isHidden = true
             lastBillInformationLabel.isHidden = true
+            illustrationImageView.isHidden = true
         } else {
             accountNumberView.isHidden = false
             amountDueTextField.isHidden = false
@@ -358,6 +366,7 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
             identifierTextField.isHidden = true
             identifierDescriptionLabel.isHidden = true
             lastBillInformationLabel.isHidden = false
+            illustrationImageView.isHidden = false
         }
         stackView.setCustomSpacing(20, after: lastBillInformationLabel)
         viewModel.selectedSegmentIndex.accept(sender.selectedIndex.value)
