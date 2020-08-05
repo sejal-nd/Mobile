@@ -100,7 +100,16 @@ extension Reactive where Base == AccountService {
         return Observable.create { observer -> Disposable in
             AccountService.fetchScheduledPayments(accountNumber: accountNumber) { observer.handle(result: $0) }
             return Disposables.create()
-        }.catchErrorJustReturn([]) // TODO: This should be replaced with original logic once API is fixed
+        }.catchError { error in
+            let networkError = error as? NetworkingError ?? NetworkingError.unknown
+            if Environment.shared.opco == .bge && networkError == .accountLookupNotFound {
+                return Observable.just([])
+            } else if (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) && networkError == .failed {
+                return Observable.just([])
+            } else {
+                throw networkError
+            }
+        }
     }
     
     static func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {

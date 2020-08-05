@@ -1,5 +1,5 @@
 //
-//  NewBillingHistoryItem.swift
+//  BillingHistoryItem.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 4/6/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewBillingHistoryItem: Codable {
+public struct BillingHistoryItem: Codable {
     let amountPaid: Double?
     let billerID: String?
     let ccfGas: String?
@@ -83,11 +83,11 @@ public struct NewBillingHistoryItem: Codable {
         return nil
     }
     
-    var status: NewBillingHistoryStatus {
-        return NewBillingHistoryStatus(identifier: statusString)
+    var status: BillingHistoryStatus {
+        return BillingHistoryStatus(identifier: statusString)
     }
     
-    enum NewBillingHistoryStatus: String, Codable {
+    enum BillingHistoryStatus: String, Codable {
         case scheduled
         case pending
         case success

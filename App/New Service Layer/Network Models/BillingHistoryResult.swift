@@ -8,11 +8,11 @@
 
 import Foundation
 
-public struct NewBillingHistoryResult: Decodable {
-    public var billingHistoryItems: [NewBillingHistoryItem]
-    public let upcoming: [NewBillingHistoryItem]
-    public let past: [NewBillingHistoryItem]
-    public let mostRecentSixMonths: [NewBillingHistoryItem]
+public struct BillingHistoryResult: Decodable {
+    public var billingHistoryItems: [BillingHistoryItem]
+    public let upcoming: [BillingHistoryItem]
+    public let past: [BillingHistoryItem]
+    public let mostRecentSixMonths: [BillingHistoryItem]
     
     enum CodingKeys: String, CodingKey {
         case billingHistoryItems = "billing_and_payment_history"
@@ -20,7 +20,7 @@ public struct NewBillingHistoryResult: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        billingHistoryItems = try container.decode([NewBillingHistoryItem].self,
+        billingHistoryItems = try container.decode([BillingHistoryItem].self,
                                                    forKey: .billingHistoryItems)
         
         upcoming = billingHistoryItems.filter{ $0.isFuture }.sorted(by: { $0.date < $1.date })
@@ -35,7 +35,7 @@ public struct NewBillingHistoryResult: Decodable {
         }
     }
     
-    init(upcoming: [NewBillingHistoryItem], past: [NewBillingHistoryItem]) {
+    init(upcoming: [BillingHistoryItem], past: [BillingHistoryItem]) {
         self.billingHistoryItems = upcoming + past
         self.upcoming = upcoming
         self.past = past

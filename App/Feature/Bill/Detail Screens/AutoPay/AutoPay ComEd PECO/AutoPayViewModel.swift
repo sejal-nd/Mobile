@@ -30,13 +30,11 @@ class AutoPayViewModel {
     let termsAndConditionsCheck: BehaviorRelay<Bool>
     let selectedUnenrollmentReason = BehaviorRelay<String?>(value: nil)
     
-    let paymentService: PaymentService
     let walletService: WalletService
     
     var bankName = ""
     
-    required init(withPaymentService paymentService: PaymentService, walletService: WalletService, accountDetail: AccountDetail) {
-        self.paymentService = paymentService
+    required init(walletService: WalletService, accountDetail: AccountDetail) {
         self.walletService = walletService
         self.accountDetail = accountDetail
         enrollmentStatus = BehaviorRelay(value: accountDetail.isAutoPay ? .enrolled : .unenrolled)
@@ -45,28 +43,24 @@ class AutoPayViewModel {
     
     func enroll() -> Observable<Bool> {
         let bankAccountType = checkingSavingsSegmentedControlIndex.value == 0 ? "checking" : "saving"
-        return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
-                                              nameOfAccount: nameOnAccount.value,
-                                              bankAccountType: bankAccountType,
-                                              routingNumber: routingNumber.value,
-                                              bankAccountNumber: accountNumber.value,
-                                              isUpdate: false).map { _ in true }
+        
+        let enrollRequest = AutoPayEnrollRequest(nameOfAccount: nameOnAccount.value, bankAccountType: bankAccountType, routingNumber: routingNumber.value, bankAccountNumber: accountNumber.value, isUpdate: false)
+        
+        return PaymentService.rx.autoPayEnroll(accountNumber: accountDetail.accountNumber, request: enrollRequest).map { _ in true }
     }
     
     func changeBank() -> Observable<Bool> {
         let bankAccountType = checkingSavingsSegmentedControlIndex.value == 0 ? "checking" : "saving"
-        return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
-                                              nameOfAccount: nameOnAccount.value,
-                                              bankAccountType: bankAccountType,
-                                              routingNumber: routingNumber.value,
-                                              bankAccountNumber: accountNumber.value,
-                                              isUpdate: true).map { _ in true }
+        
+        let enrollRequest = AutoPayEnrollRequest(nameOfAccount: nameOnAccount.value, bankAccountType: bankAccountType, routingNumber: routingNumber.value, bankAccountNumber: accountNumber.value, isUpdate: true)
+        
+        return PaymentService.rx.autoPayEnroll(accountNumber: accountDetail.accountNumber, request: enrollRequest).map { _ in true }
     }
     
     func unenroll() -> Observable<Bool> {
         GoogleAnalytics.log(event: .autoPayUnenrollOffer)
-        return paymentService.unenrollFromAutoPay(accountNumber: accountDetail.accountNumber,
-                                                  reason: selectedUnenrollmentReason.value!).map { _ in false }
+        let unenrollRequest = AutoPayUnenrollRequest(reason: selectedUnenrollmentReason.value!)
+        return PaymentService.rx.autoPayUnenroll(accountNumber: accountNumber.value, request: unenrollRequest).map { _ in false }
     }
     
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {

@@ -8,6 +8,6 @@
 
 import Foundation
 
-public struct NewPaymentResult: Decodable {
+public struct PaymentResult: Decodable {
     public var data: String
 }

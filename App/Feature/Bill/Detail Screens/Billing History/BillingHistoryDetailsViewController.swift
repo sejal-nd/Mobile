@@ -15,7 +15,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     
     // Passed from BillingHistoryViewController
     var accountDetail: AccountDetail!
-    var billingHistoryItem: NewBillingHistoryItem!
+    var billingHistoryItem: BillingHistoryItem!
 
     var viewModel: BillingHistoryDetailsViewModel!
     
@@ -67,8 +67,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         title = NSLocalizedString("Payment Details", comment: "")
         
-        viewModel = BillingHistoryDetailsViewModel(paymentService: ServiceFactory.createPaymentService(),
-                                                   accountDetail: accountDetail,
+        viewModel = BillingHistoryDetailsViewModel(accountDetail: accountDetail,
                                                    billingHistoryItem: billingHistoryItem)
         
         styleViews()

@@ -18,10 +18,9 @@ class PaymentViewModel {
     private let kMaxUsernameChars = 255
     
     private let walletService: WalletService
-    private let paymentService: PaymentService
 
     let accountDetail: BehaviorRelay<AccountDetail>
-    let billingHistoryItem: NewBillingHistoryItem?
+    let billingHistoryItem: BillingHistoryItem?
     
     let isFetching = BehaviorRelay(value: false)
     let isError = BehaviorRelay(value: false)
@@ -46,11 +45,9 @@ class PaymentViewModel {
     var confirmationNumber: String?
 
     init(walletService: WalletService,
-         paymentService: PaymentService,
          accountDetail: AccountDetail,
-         billingHistoryItem: NewBillingHistoryItem?) {
+         billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
-        self.paymentService = paymentService
         self.accountDetail = BehaviorRelay(value: accountDetail)
         self.billingHistoryItem = billingHistoryItem
         
@@ -121,21 +118,15 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
                          onSuccess: @escaping () -> Void,
                          onError: @escaping (ServiceError) -> Void) {
-//        
-//        
-//        PaymentServiceNew.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
-//                                          paymentAmount: self.paymentAmount.value,
-//                                          paymentDate: self.paymentDate.value,
-//                                          walletId: AccountsStore.shared.customerIdentifier,
-//                                          walletItem: self.selectedWalletItem.value!)
-//        
-        self.paymentService.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
-                                            paymentAmount: self.paymentAmount.value,
-                                            paymentDate: self.paymentDate.value,
-                                            alternateEmail: self.emailAddress.value,
-                                            alternateNumber: self.extractDigitsFrom(self.phoneNumber.value),
-                                            walletId: AccountsStore.shared.customerIdentifier,
-                                            walletItem: self.selectedWalletItem.value!)
+
+        let walletItem = self.selectedWalletItem.value!
+        let scheduleRequest = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount.value,
+                                                            paymentDate: paymentDate.value,
+                                                            walletItem: walletItem,
+                                                            alternateEmail: self.emailAddress.value,
+                                                            alternatePhoneNumber: self.extractDigitsFrom(self.phoneNumber.value))
+        
+        PaymentService.rx.schedulePayment(accountNumber: accountDetail.value.accountNumber, request: scheduleRequest)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] confirmationNumber in
                 self?.confirmationNumber = confirmationNumber
@@ -147,9 +138,9 @@ class PaymentViewModel {
     }
 
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber,
-                                     paymentAmount: paymentAmount.value,
-                                     paymentId: paymentId.value!)
+        let cancelRequest = SchedulePaymentCancelRequest(paymentAmount: paymentAmount.value)
+        
+        PaymentService.rx.cancelSchduledPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, request: cancelRequest)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -160,12 +151,9 @@ class PaymentViewModel {
     }
 
     func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        self.paymentService.updatePayment(paymentId: self.paymentId.value!,
-                                          accountNumber: self.accountDetail.value.accountNumber,
-                                          paymentAmount: self.paymentAmount.value,
-                                          paymentDate: self.paymentDate.value,
-                                          walletId: AccountsStore.shared.customerIdentifier,
-                                          walletItem: self.selectedWalletItem.value!)
+        let walletItem = self.selectedWalletItem.value!
+        let updateRequest = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount.value, paymentDate: paymentDate.value, paymentId: paymentId.value!, walletItem: walletItem)
+        PaymentService.rx.updateScheduledPayment(paymentId: paymentId.value!, accountNumber: accountDetail.value.accountNumber, request: updateRequest)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] confirmationNumber in
                 self?.confirmationNumber = confirmationNumber

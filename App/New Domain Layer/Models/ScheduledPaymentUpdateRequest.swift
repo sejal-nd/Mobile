@@ -8,16 +8,39 @@
 
 import Foundation
 
-struct ScheduledPaymentUpdateRequest: Encodable {
+public struct ScheduledPaymentUpdateRequest: Encodable {
     let paymentAmount: String
     let paymentDate: String
+    let paymentId: String?
     let paymentCategoryType: String
-    var paymentId: String?
     let walletId: String
     let billerId: String
     let walletItemId: String?
     let isExistingAccount: Bool?
     let maskedWalletItemAccountNumber: String?
+    let alternateEmail: String?
+    let alternatePhoneNumber: String?
+    
+    init(paymentAmount: Double,
+             paymentDate: Date,
+             paymentId: String? = nil,
+             walletId: String = AccountsStore.shared.customerIdentifier,
+             walletItem: WalletItem,
+             alternateEmail: String? = nil,
+             alternatePhoneNumber: String? = nil) {
+        self.paymentAmount = String.init(format: "%.02f", paymentAmount)
+        self.paymentDate = paymentDate.paymentFormatString
+        self.paymentCategoryType = walletItem.bankOrCard == .bank ? "Check" : "Credit"
+        self.walletId = walletId
+        self.paymentId = paymentId
+        self.billerId = "\(Environment.shared.opco.rawValue)Registered"
+        self.walletItemId = walletItem.walletItemId
+        self.isExistingAccount = !walletItem.isTemporary
+        self.maskedWalletItemAccountNumber = walletItem.maskedWalletItemAccountNumber
+        
+        self.alternateEmail = alternateEmail
+        self.alternatePhoneNumber = alternatePhoneNumber
+    }
     
     enum CodingKeys: String, CodingKey {
         case paymentAmount = "payment_amount"
@@ -29,5 +52,8 @@ struct ScheduledPaymentUpdateRequest: Encodable {
         case walletItemId = "wallet_item_id"
         case isExistingAccount = "is_existing_account"
         case maskedWalletItemAccountNumber = "masked_wallet_item_account_number"
+        
+        case alternateEmail = "email_id"
+        case alternatePhoneNumber = "mobile_phone_number"
     }
 }

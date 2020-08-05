@@ -174,7 +174,7 @@ class BudgetBillingViewController: UIViewController {
         loadingIndicator.isHidden = false
         bgeEnrolledInfoContainerView.isHidden = true
         stickyFooterView.isHidden = true
-        viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: NewBudgetBilling) in
+        viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBilling) in
             guard let self = self else { return }
             
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill.currencyString

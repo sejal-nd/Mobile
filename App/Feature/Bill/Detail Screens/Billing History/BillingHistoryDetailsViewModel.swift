@@ -14,22 +14,20 @@ class BillingHistoryDetailsViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let paymentService: PaymentService
     private let accountDetail: AccountDetail
-    private let billingHistoryItem: NewBillingHistoryItem
+    private let billingHistoryItem: BillingHistoryItem
     
-    required init(paymentService: PaymentService,
-                  accountDetail: AccountDetail,
-                  billingHistoryItem: NewBillingHistoryItem) {
-        self.paymentService = paymentService
+    required init(accountDetail: AccountDetail,
+                  billingHistoryItem: BillingHistoryItem) {
         self.accountDetail = accountDetail
         self.billingHistoryItem = billingHistoryItem
     }
     
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.cancelPayment(accountNumber: accountDetail.accountNumber,
-                                     paymentAmount: billingHistoryItem.amountPaid ?? 0,
-                                     paymentId: billingHistoryItem.paymentID!)
+        
+        let cancelRequest = SchedulePaymentCancelRequest(paymentAmount: billingHistoryItem.amountPaid ?? 0)
+        
+        PaymentService.rx.cancelSchduledPayment(accountNumber: accountDetail.accountNumber, paymentId: billingHistoryItem.paymentID!, request: cancelRequest)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

@@ -8,26 +8,21 @@
 
 import Foundation
 
-public struct NewAutoPayResult: Decodable {
+public struct AutoPayResult: Decodable {
     public var header: String
     public var message: String
     
     enum CodingKeys: String, CodingKey {
-        case data = "data"
-        
         case header = "header"
         case message = "message"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                 forKey: .data)
         
-        
-        self.header = try data.decode(String.self,
+        self.header = try container.decode(String.self,
                                       forKey: .header)
-        self.message = try data.decode(String.self,
+        self.message = try container.decode(String.self,
                                        forKey: .message)
     }
 }

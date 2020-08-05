@@ -147,7 +147,7 @@ class PaymentusFormViewController: UIViewController {
 //                self?.showError()
 //            }).disposed(by: disposeBag)
         
-        PaymentServiceNew.pay(customerId: AccountsStore.shared.customerIdentifier,
+        PaymentService.pay(customerId: AccountsStore.shared.customerIdentifier,
                               bankOrCard: bankOrCard,
                               temporary: temporary,
                               isWalletEmpty: isWalletEmpty,

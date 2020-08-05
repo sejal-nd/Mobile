@@ -23,7 +23,6 @@ class BGEAutoPayViewModel {
     
     let disposeBag = DisposeBag()
     
-    private var paymentService: PaymentService
     private var walletService: WalletService
 
     let isLoading = BehaviorRelay(value: false)
@@ -48,8 +47,7 @@ class BGEAutoPayViewModel {
     let numberOfDaysBeforeDueDate = BehaviorRelay(value: 0)
     // ---------------- //
 
-    required init(paymentService: PaymentService, walletService: WalletService, accountDetail: AccountDetail) {
-        self.paymentService = paymentService
+    required init(walletService: WalletService, accountDetail: AccountDetail) {
         self.walletService = walletService
         self.accountDetail = accountDetail
 
@@ -90,7 +88,7 @@ class BGEAutoPayViewModel {
     }
     
     func fetchAutoPayInfo() -> Observable<Void> {
-        return paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        return PaymentService.rx.autoPayInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
             .do(onNext: { autoPayInfo in
                 self.confirmationNumber = autoPayInfo.confirmationNumber
@@ -125,11 +123,10 @@ class BGEAutoPayViewModel {
     
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
-        paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber,
-                                          walletItemId: selectedWalletItem.value?.walletItemId,
-                                          amountType: amountToPay.value,
-                                          amountThreshold: amountNotToExceed.value.twoDecimalString,
-                                          paymentDaysBeforeDue: String(daysBefore))
+        
+        let request = AutoPayEnrollBGERequest(amountType: amountToPay.value.rawValue, paymentDaysBeforeDue: String(daysBefore), isUpdate: false, walletItemId: selectedWalletItem.value?.walletItemId, amountThreshold: amountNotToExceed.value.twoDecimalString)
+        
+        PaymentService.rx.autoPayEnrollBGE(accountNumber: accountDetail.accountNumber, request: request)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -141,12 +138,10 @@ class BGEAutoPayViewModel {
     
     func update(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
-        paymentService.updateAutoPaySettingsBGE(accountNumber: accountDetail.accountNumber,
-                                          walletItemId: selectedWalletItem.value?.walletItemId,
-                                          confirmationNumber: confirmationNumber!,
-                                          amountType: amountToPay.value,
-                                          amountThreshold: amountNotToExceed.value.twoDecimalString,
-                                          paymentDaysBeforeDue: String(daysBefore))
+        
+        let request = AutoPayEnrollBGERequest(amountType: amountToPay.value.rawValue, paymentDaysBeforeDue: String(daysBefore), isUpdate: true, walletItemId: selectedWalletItem.value?.walletItemId, amountThreshold: amountNotToExceed.value.twoDecimalString, confirmationNumber: confirmationNumber)
+        
+        PaymentService.rx.updateAutoPayBGE(accountNumber: accountDetail.accountNumber, request: request)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -157,7 +152,7 @@ class BGEAutoPayViewModel {
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber, confirmationNumber: confirmationNumber!)
+        PaymentService.rx.autoPayUnenroll(accountNumber: accountDetail.accountNumber, request: AutoPayUnenrollRequest(confirmationNumber: confirmationNumber!))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()

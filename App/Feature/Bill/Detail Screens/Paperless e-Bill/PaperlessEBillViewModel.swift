@@ -120,7 +120,7 @@ class PaperlessEBillViewModel {
     
     func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {
         let enrollObservables = accountsToEnroll.value.map {
-            BillServiceNew.rx.enrollPaperlessBilling(accountNumber: $0,
+            BillService.rx.enrollPaperlessBilling(accountNumber: $0,
                                                email: initialAccountDetail.value.customerInfo.emailAddress)
                 .do(onNext: {GoogleAnalytics.log(event: .eBillEnrollComplete)})
             }
@@ -130,7 +130,7 @@ class PaperlessEBillViewModel {
                 GoogleAnalytics.log(event: .eBillEnrollOffer) }
         
         let unenrollObservables = accountsToUnenroll.value.map {
-            BillServiceNew.rx.unenrollPaperlessBilling(accountNumber: $0)
+            BillService.rx.unenrollPaperlessBilling(accountNumber: $0)
                 .do(onNext: {GoogleAnalytics.log(event: .eBillUnEnrollComplete)})
             }
             .doEach { _ in
