@@ -17,19 +17,16 @@ class HomeWeatherViewModel {
     let defaultZip : String? = Environment.shared.opco == .bge ? "20201" : nil
     
     let accountDetailEvents: Observable<Event<AccountDetail>>
-    let weatherService: WeatherService
     let accountDetailTracker: ActivityTracker
     
     init(accountDetailEvents: Observable<Event<AccountDetail>>,
-         weatherService: WeatherService,
          accountDetailTracker: ActivityTracker) {
         self.accountDetailEvents = accountDetailEvents
-        self.weatherService = weatherService
         self.accountDetailTracker = accountDetailTracker
     }
     
     //MARK: - Weather
-    private lazy var weatherEvents: Observable<Event<WeatherItem>> = accountDetailEvents.elements()
+    private lazy var weatherEvents: Observable<Event<Weather>> = accountDetailEvents.elements()
         .map { [weak self] in
             guard AccountsStore.shared.currentIndex != nil else {
                 return nil
@@ -39,7 +36,7 @@ class HomeWeatherViewModel {
         }
         .unwrap()
         .toAsyncRequest { [weak self] in
-            self?.weatherService.fetchWeather(address: $0) ?? .empty()
+            WeatherService.rx.getWeather(address: $0)
         }
     
     private(set) lazy var greeting: Driver<String?> = Observable<Int>
@@ -144,7 +141,7 @@ class HomeWeatherViewModel {
         .asDriver(onErrorDriveWith: .empty())
 }
 
-fileprivate extension WeatherItem {
+fileprivate extension Weather {
     
     var isHighTemperature: Bool {
         switch Environment.shared.opco {

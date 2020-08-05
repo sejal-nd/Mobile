@@ -147,8 +147,8 @@ public enum Router {
     }
     
     private var basePath: String {
-        if Environment.shared.environmentName != .test && Environment.shared.opco.isPHI {
-            // Project specific environment
+        if Environment.shared.environmentName == .test || Environment.shared.environmentName == .stage && Environment.shared.opco.isPHI {
+            // Project specific environment - DIRTY SOLUTION
             return "/phimobile/mobile/custom"
         } else {
             return "/mobile/custom"
@@ -199,7 +199,10 @@ public enum Router {
         case .validateConfirmationEmail:
             return "\(basePath)/\(apiAccess.path)/registration/confirmation"
         case .weather(let lat, let long):
-            return "/points/\(lat),\(long)/forecast/hourly"
+            return "/gridpoints/LWX/\(lat),\(long)/forecast/hourly"
+            // NOTE THIS IS BROKEN: See API: https://www.weather.gov/documentation/services-web-api#/default/get_gridpoints__wfo___x___y__forecast_hourly
+            // Additional info in solution: https://stackoverflow.com/questions/54791204/how-do-i-get-the-hourly-forecast-from-api-weather-gov-for-texas-stations-or-zone
+            // LIST OF WFO: https://en.wikipedia.org/wiki/List_of_National_Weather_Service_Weather_Forecast_Offices
         case .wallet:
             return "\(basePath)/\(apiAccess.path)/wallet/query"
         case .payments(let accountNumber):

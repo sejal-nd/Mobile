@@ -68,7 +68,7 @@ class NetworkTest {
 //            }
 //        }
         
-        NetworkingLayer.request(router: .weather(lat: "39.295", long: "-76.624")) { (result: Result<NewWeather, NetworkingError>) in
+        NetworkingLayer.request(router: .weather(lat: "39.295", long: "-76.624")) { (result: Result<Weather, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 9 SUCCESS: \(data) BREAK \(data.temperature)")
