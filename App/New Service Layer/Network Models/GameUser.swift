@@ -1,5 +1,5 @@
 //
-//  NewGameUser.swift
+//  GameUser.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 6/10/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewGameUser: Decodable {
+struct GameUser: Decodable {
     var onboardingComplete: Bool
     var optedOut: Bool
     var points: Double

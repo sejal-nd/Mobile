@@ -41,7 +41,7 @@ class WeeklyInsightViewController: UIViewController {
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     
-    let viewModel = WeeklyInsightViewModel(gameService: ServiceFactory.createGameService())
+    let viewModel = WeeklyInsightViewModel()
     
     let bag = DisposeBag()
     

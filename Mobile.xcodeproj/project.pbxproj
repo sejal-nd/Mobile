@@ -962,7 +962,7 @@
 		673FA02024C894DC00210BCD /* BillComparisonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AFF24AB828000A828F9 /* BillComparisonRequest.swift */; };
 		673FA02124C894DC00210BCD /* AutoPayEnrollBGERequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0124AB828000A828F9 /* AutoPayEnrollBGERequest.swift */; };
 		673FA02224C894DC00210BCD /* SchedulePaymentCancelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0224AB828000A828F9 /* SchedulePaymentCancelRequest.swift */; };
-		673FA02324C8956000210BCD /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
+		673FA02324C8956000210BCD /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
 		673FA02424C8956000210BCD /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1424AB828000A828F9 /* NewForecastBill.swift */; };
 		673FA02524C8956000210BCD /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1524AB828000A828F9 /* EnergyRewardsNew.swift */; };
 		673FA02624C8956000210BCD /* AutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1624AB828000A828F9 /* AutoPayResult.swift */; };
@@ -987,7 +987,7 @@
 		673FA03924C8956000210BCD /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */; };
 		673FA03A24C8956000210BCD /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
 		673FA03B24C8956000210BCD /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
-		673FA03C24C8956100210BCD /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
+		673FA03C24C8956100210BCD /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
 		673FA03D24C8956100210BCD /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1424AB828000A828F9 /* NewForecastBill.swift */; };
 		673FA03E24C8956100210BCD /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1524AB828000A828F9 /* EnergyRewardsNew.swift */; };
 		673FA03F24C8956100210BCD /* AutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1624AB828000A828F9 /* AutoPayResult.swift */; };
@@ -1012,7 +1012,7 @@
 		673FA05224C8956100210BCD /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */; };
 		673FA05324C8956100210BCD /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
 		673FA05424C8956100210BCD /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
-		673FA05524C8956200210BCD /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
+		673FA05524C8956200210BCD /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
 		673FA05624C8956200210BCD /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1424AB828000A828F9 /* NewForecastBill.swift */; };
 		673FA05724C8956200210BCD /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1524AB828000A828F9 /* EnergyRewardsNew.swift */; };
 		673FA05824C8956200210BCD /* AutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1624AB828000A828F9 /* AutoPayResult.swift */; };
@@ -1037,7 +1037,7 @@
 		673FA06B24C8956200210BCD /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */; };
 		673FA06C24C8956200210BCD /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
 		673FA06D24C8956200210BCD /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
-		673FA06E24C8956300210BCD /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
+		673FA06E24C8956300210BCD /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
 		673FA06F24C8956300210BCD /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1424AB828000A828F9 /* NewForecastBill.swift */; };
 		673FA07024C8956300210BCD /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1524AB828000A828F9 /* EnergyRewardsNew.swift */; };
 		673FA07124C8956300210BCD /* AutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1624AB828000A828F9 /* AutoPayResult.swift */; };
@@ -1062,7 +1062,7 @@
 		673FA08424C8956300210BCD /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */; };
 		673FA08524C8956300210BCD /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
 		673FA08624C8956300210BCD /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
-		673FA08724C8956500210BCD /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
+		673FA08724C8956500210BCD /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
 		673FA08824C8956500210BCD /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1424AB828000A828F9 /* NewForecastBill.swift */; };
 		673FA08924C8956500210BCD /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1524AB828000A828F9 /* EnergyRewardsNew.swift */; };
 		673FA08A24C8956500210BCD /* AutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1624AB828000A828F9 /* AutoPayResult.swift */; };
@@ -1087,7 +1087,7 @@
 		673FA09D24C8956500210BCD /* NewScheduledPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3324AB828000A828F9 /* NewScheduledPayment.swift */; };
 		673FA09E24C8956500210BCD /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
 		673FA09F24C8956500210BCD /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
-		673FA0A024C8956700210BCD /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
+		673FA0A024C8956700210BCD /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
 		673FA0A124C8956700210BCD /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1424AB828000A828F9 /* NewForecastBill.swift */; };
 		673FA0A224C8956700210BCD /* EnergyRewardsNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1524AB828000A828F9 /* EnergyRewardsNew.swift */; };
 		673FA0A324C8956700210BCD /* AutoPayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1624AB828000A828F9 /* AutoPayResult.swift */; };
@@ -1175,7 +1175,6 @@
 		673FA0F924C8A52700210BCD /* AnonymousService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0F024C8A52700210BCD /* AnonymousService+Rx.swift */; };
 		673FA0FA24C8A52700210BCD /* AnonymousService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0F024C8A52700210BCD /* AnonymousService+Rx.swift */; };
 		673FA0FB24C8A52700210BCD /* AnonymousService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0F024C8A52700210BCD /* AnonymousService+Rx.swift */; };
-		673FA0FC24C8A52700210BCD /* AnonymousService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0F024C8A52700210BCD /* AnonymousService+Rx.swift */; };
 		673FA0FD24C8ACCA00210BCD /* DailyUsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1824AB828000A828F9 /* DailyUsageData.swift */; };
 		673FA0FF24C8AF8F00210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
 		673FA10024C8B00500210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
@@ -1231,12 +1230,12 @@
 		675F4B6D24AB828100A828F9 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEA24AB828000A828F9 /* RegistrationService.swift */; };
 		675F4B6E24AB828100A828F9 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEA24AB828000A828F9 /* RegistrationService.swift */; };
 		675F4B6F24AB828100A828F9 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEA24AB828000A828F9 /* RegistrationService.swift */; };
-		675F4B7024AB828100A828F9 /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameServiceNew.swift */; };
-		675F4B7124AB828100A828F9 /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameServiceNew.swift */; };
-		675F4B7224AB828100A828F9 /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameServiceNew.swift */; };
-		675F4B7324AB828100A828F9 /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameServiceNew.swift */; };
-		675F4B7424AB828100A828F9 /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameServiceNew.swift */; };
-		675F4B7524AB828100A828F9 /* GameServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameServiceNew.swift */; };
+		675F4B7024AB828100A828F9 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		675F4B7124AB828100A828F9 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		675F4B7224AB828100A828F9 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		675F4B7324AB828100A828F9 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		675F4B7424AB828100A828F9 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		675F4B7524AB828100A828F9 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
 		675F4B7C24AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		675F4B7D24AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
 		675F4B7E24AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
@@ -1434,12 +1433,12 @@
 		675F4C4524AB828100A828F9 /* ReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1224AB828000A828F9 /* ReportedOutageResult.swift */; };
 		675F4C4624AB828100A828F9 /* ReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1224AB828000A828F9 /* ReportedOutageResult.swift */; };
 		675F4C4724AB828100A828F9 /* ReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1224AB828000A828F9 /* ReportedOutageResult.swift */; };
-		675F4C4824AB828100A828F9 /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
-		675F4C4924AB828100A828F9 /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
-		675F4C4A24AB828100A828F9 /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
-		675F4C4B24AB828100A828F9 /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
-		675F4C4C24AB828100A828F9 /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
-		675F4C4D24AB828100A828F9 /* NewGameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* NewGameUser.swift */; };
+		675F4C4824AB828100A828F9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
+		675F4C4924AB828100A828F9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
+		675F4C4A24AB828100A828F9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
+		675F4C4B24AB828100A828F9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
+		675F4C4C24AB828100A828F9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
+		675F4C4D24AB828100A828F9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1324AB828000A828F9 /* GameUser.swift */; };
 		675F4C4E24AB828100A828F9 /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1424AB828000A828F9 /* NewForecastBill.swift */; };
 		675F4C4F24AB828100A828F9 /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1424AB828000A828F9 /* NewForecastBill.swift */; };
 		675F4C5024AB828100A828F9 /* NewForecastBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1424AB828000A828F9 /* NewForecastBill.swift */; };
@@ -1962,6 +1961,30 @@
 		676279F2247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
 		676279F3247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
 		676279F4247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
+		67893A9724DB1E26000143D6 /* GameService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893A9624DB1E26000143D6 /* GameService+Rx.swift */; };
+		67893A9924DB1E2B000143D6 /* GameService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893A9624DB1E26000143D6 /* GameService+Rx.swift */; };
+		67893A9B24DB1E2C000143D6 /* GameService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893A9624DB1E26000143D6 /* GameService+Rx.swift */; };
+		67893A9D24DB1E2E000143D6 /* GameService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893A9624DB1E26000143D6 /* GameService+Rx.swift */; };
+		67893A9F24DB1E30000143D6 /* GameService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893A9624DB1E26000143D6 /* GameService+Rx.swift */; };
+		67893AA124DB1E32000143D6 /* GameService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893A9624DB1E26000143D6 /* GameService+Rx.swift */; };
+		67893AA324DB2051000143D6 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		67893AA424DB2052000143D6 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		67893AA524DB2053000143D6 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		67893AA624DB2054000143D6 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		67893AA724DB2055000143D6 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		67893AA824DB2056000143D6 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEB24AB828000A828F9 /* GameService.swift */; };
+		67893AB024DB248C000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893AB124DB2491000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893AB224DB2491000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893AB324DB2492000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893AB424DB2493000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893AB524DB2493000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893AB624DB24D8000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893AB724DB24D9000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893AB824DB24DA000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893AB924DB24DB000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893ABA24DB24DC000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
+		67893ABB24DB24DD000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
 		678B621224CF4F75009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
 		678B621324CF4F7E009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
 		678B621524CF6ACE009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
@@ -2094,7 +2117,6 @@
 		67DDB30024535D2E006CD6EB /* UINavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */; };
 		67DDB30124535D2E006CD6EB /* Top5EnergyTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */; };
 		67DDB30324535D2E006CD6EB /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
-		67DDB30424535D2E006CD6EB /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E292374988100E14222 /* GameService.swift */; };
 		67DDB30524535D2E006CD6EB /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		67DDB30624535D2E006CD6EB /* UIColor+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB2722D398F0007002B0 /* UIColor+Image.swift */; };
 		67DDB30724535D2E006CD6EB /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C2211C7ADE00C2A58F /* TitleTableViewCell.swift */; };
@@ -2113,7 +2135,6 @@
 		67DDB31B24535D2E006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		67DDB31C24535D2E006CD6EB /* HomeEditEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */; };
 		67DDB31D24535D2E006CD6EB /* WatchSessionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionMananger.swift */; };
-		67DDB31E24535D2E006CD6EB /* MCSGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E2D23749B9900E14222 /* MCSGameService.swift */; };
 		67DDB31F24535D2E006CD6EB /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
 		67DDB32024535D2E006CD6EB /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
 		67DDB32124535D2E006CD6EB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
@@ -2246,7 +2267,6 @@
 		67DDB3B224535D2E006CD6EB /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
 		67DDB3B324535D2E006CD6EB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		67DDB3B424535D2E006CD6EB /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
-		67DDB3B524535D2E006CD6EB /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E352374AC5100E14222 /* MockGameService.swift */; };
 		67DDB3B624535D2E006CD6EB /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
 		67DDB3B724535D2E006CD6EB /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
 		67DDB3B824535D2E006CD6EB /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */; };
@@ -2282,7 +2302,6 @@
 		67DDB3DD24535D2E006CD6EB /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */; };
 		67DDB3DE24535D2E006CD6EB /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* SheetView.swift */; };
 		67DDB3E124535D2E006CD6EB /* PaymentConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B8DA01F0D233E008B375D /* PaymentConfirmationViewController.swift */; };
-		67DDB3E224535D2E006CD6EB /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
 		67DDB3E324535D2E006CD6EB /* HomeUsageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */; };
 		67DDB3E424535D2E006CD6EB /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
 		67DDB3E524535D2E006CD6EB /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
@@ -2353,7 +2372,6 @@
 		67DDB42E24535D2E006CD6EB /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
 		67DDB43024535D2E006CD6EB /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
 		67DDB43124535D2E006CD6EB /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
-		67DDB43324535D2E006CD6EB /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
 		67DDB43524535D2E006CD6EB /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		67DDB43624535D2E006CD6EB /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		67DDB43724535D2E006CD6EB /* GSTouchesShowingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF60FB620EE78F6006ABC18 /* GSTouchesShowingController.swift */; };
@@ -2590,7 +2608,6 @@
 		67DDB55624535D32006CD6EB /* UINavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */; };
 		67DDB55724535D32006CD6EB /* Top5EnergyTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */; };
 		67DDB55924535D32006CD6EB /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
-		67DDB55A24535D32006CD6EB /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E292374988100E14222 /* GameService.swift */; };
 		67DDB55B24535D32006CD6EB /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		67DDB55C24535D32006CD6EB /* UIColor+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB2722D398F0007002B0 /* UIColor+Image.swift */; };
 		67DDB55D24535D32006CD6EB /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C2211C7ADE00C2A58F /* TitleTableViewCell.swift */; };
@@ -2610,7 +2627,6 @@
 		67DDB57124535D32006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		67DDB57224535D32006CD6EB /* HomeEditEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */; };
 		67DDB57324535D32006CD6EB /* WatchSessionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionMananger.swift */; };
-		67DDB57424535D32006CD6EB /* MCSGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E2D23749B9900E14222 /* MCSGameService.swift */; };
 		67DDB57524535D32006CD6EB /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
 		67DDB57624535D32006CD6EB /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
 		67DDB57724535D32006CD6EB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
@@ -2745,7 +2761,6 @@
 		67DDB60824535D32006CD6EB /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
 		67DDB60924535D32006CD6EB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		67DDB60A24535D32006CD6EB /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
-		67DDB60B24535D32006CD6EB /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E352374AC5100E14222 /* MockGameService.swift */; };
 		67DDB60C24535D32006CD6EB /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
 		67DDB60D24535D32006CD6EB /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
 		67DDB60E24535D32006CD6EB /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */; };
@@ -2783,7 +2798,6 @@
 		67DDB63424535D32006CD6EB /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* SheetView.swift */; };
 		67DDB63524535D32006CD6EB /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
 		67DDB63724535D32006CD6EB /* PaymentConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B8DA01F0D233E008B375D /* PaymentConfirmationViewController.swift */; };
-		67DDB63824535D32006CD6EB /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
 		67DDB63924535D32006CD6EB /* HomeUsageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */; };
 		67DDB63A24535D32006CD6EB /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
 		67DDB63B24535D32006CD6EB /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
@@ -2855,7 +2869,6 @@
 		67DDB68424535D32006CD6EB /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
 		67DDB68624535D32006CD6EB /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
 		67DDB68724535D32006CD6EB /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
-		67DDB68924535D32006CD6EB /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
 		67DDB68B24535D32006CD6EB /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		67DDB68C24535D32006CD6EB /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		67DDB68D24535D32006CD6EB /* GSTouchesShowingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF60FB620EE78F6006ABC18 /* GSTouchesShowingController.swift */; };
@@ -3095,7 +3108,6 @@
 		67DDB7AC24535D35006CD6EB /* UINavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */; };
 		67DDB7AD24535D35006CD6EB /* Top5EnergyTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */; };
 		67DDB7AF24535D35006CD6EB /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
-		67DDB7B024535D35006CD6EB /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E292374988100E14222 /* GameService.swift */; };
 		67DDB7B124535D35006CD6EB /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		67DDB7B224535D35006CD6EB /* UIColor+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB2722D398F0007002B0 /* UIColor+Image.swift */; };
 		67DDB7B324535D35006CD6EB /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C2211C7ADE00C2A58F /* TitleTableViewCell.swift */; };
@@ -3115,7 +3127,6 @@
 		67DDB7C724535D35006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		67DDB7C824535D35006CD6EB /* HomeEditEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */; };
 		67DDB7C924535D35006CD6EB /* WatchSessionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionMananger.swift */; };
-		67DDB7CA24535D35006CD6EB /* MCSGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E2D23749B9900E14222 /* MCSGameService.swift */; };
 		67DDB7CB24535D35006CD6EB /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
 		67DDB7CC24535D35006CD6EB /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
 		67DDB7CD24535D35006CD6EB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
@@ -3250,7 +3261,6 @@
 		67DDB85E24535D35006CD6EB /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
 		67DDB85F24535D35006CD6EB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		67DDB86024535D35006CD6EB /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
-		67DDB86124535D35006CD6EB /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E352374AC5100E14222 /* MockGameService.swift */; };
 		67DDB86224535D35006CD6EB /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
 		67DDB86324535D35006CD6EB /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
 		67DDB86424535D35006CD6EB /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */; };
@@ -3288,7 +3298,6 @@
 		67DDB88A24535D35006CD6EB /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* SheetView.swift */; };
 		67DDB88B24535D35006CD6EB /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */; };
 		67DDB88D24535D35006CD6EB /* PaymentConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B8DA01F0D233E008B375D /* PaymentConfirmationViewController.swift */; };
-		67DDB88E24535D35006CD6EB /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
 		67DDB88F24535D35006CD6EB /* HomeUsageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */; };
 		67DDB89024535D35006CD6EB /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
 		67DDB89124535D35006CD6EB /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
@@ -3360,7 +3369,6 @@
 		67DDB8DA24535D35006CD6EB /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
 		67DDB8DC24535D35006CD6EB /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
 		67DDB8DD24535D35006CD6EB /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
-		67DDB8DF24535D35006CD6EB /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
 		67DDB8E124535D35006CD6EB /* RegistrationSecurityQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */; };
 		67DDB8E224535D35006CD6EB /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		67DDB8E324535D35006CD6EB /* GSTouchesShowingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF60FB620EE78F6006ABC18 /* GSTouchesShowingController.swift */; };
@@ -3620,8 +3628,8 @@
 		67DDBA2024535DAA006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		67DDBA2224535DAA006CD6EB /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainManager.swift */; };
 		67DDBA2324535DAA006CD6EB /* SERPTSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */; };
-		67DDBA2424535DAA006CD6EB /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
-		67DDBA2524535DAA006CD6EB /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
+		67DDBA2424535DAA006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
+		67DDBA2524535DAA006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDBA2624535DAA006CD6EB /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
 		67DDBA2724535DAA006CD6EB /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		67DDBA2824535DAA006CD6EB /* MockAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228877001FC611990024D7F0 /* MockAlertsService.swift */; };
@@ -3795,8 +3803,8 @@
 		67DDBB0824535DAC006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		67DDBB0A24535DAC006CD6EB /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainManager.swift */; };
 		67DDBB0B24535DAC006CD6EB /* SERPTSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */; };
-		67DDBB0C24535DAC006CD6EB /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
-		67DDBB0D24535DAC006CD6EB /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
+		67DDBB0C24535DAC006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
+		67DDBB0D24535DAC006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDBB0E24535DAC006CD6EB /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
 		67DDBB0F24535DAC006CD6EB /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		67DDBB1024535DAC006CD6EB /* MockAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228877001FC611990024D7F0 /* MockAlertsService.swift */; };
@@ -3972,8 +3980,8 @@
 		67DDBBF024535DAE006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		67DDBBF224535DAE006CD6EB /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainManager.swift */; };
 		67DDBBF324535DAE006CD6EB /* SERPTSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */; };
-		67DDBBF424535DAE006CD6EB /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
-		67DDBBF524535DAE006CD6EB /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
+		67DDBBF424535DAE006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
+		67DDBBF524535DAE006CD6EB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		67DDBBF624535DAE006CD6EB /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
 		67DDBBF724535DAE006CD6EB /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		67DDBBF824535DAE006CD6EB /* MockAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228877001FC611990024D7F0 /* MockAlertsService.swift */; };
@@ -4943,27 +4951,15 @@
 		9CBE9E26237473C200E14222 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		9CBE9E27237473C400E14222 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		9CBE9E28237473C400E14222 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
-		9CBE9E2A2374988100E14222 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E292374988100E14222 /* GameService.swift */; };
-		9CBE9E2B2374988100E14222 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E292374988100E14222 /* GameService.swift */; };
-		9CBE9E2C2374988100E14222 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E292374988100E14222 /* GameService.swift */; };
-		9CBE9E2E23749B9900E14222 /* MCSGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E2D23749B9900E14222 /* MCSGameService.swift */; };
-		9CBE9E2F23749B9900E14222 /* MCSGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E2D23749B9900E14222 /* MCSGameService.swift */; };
-		9CBE9E3023749B9900E14222 /* MCSGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E2D23749B9900E14222 /* MCSGameService.swift */; };
 		9CBE9E322374A25E00E14222 /* GameHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */; };
 		9CBE9E332374A25E00E14222 /* GameHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */; };
 		9CBE9E342374A25E00E14222 /* GameHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */; };
-		9CBE9E362374AC5100E14222 /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E352374AC5100E14222 /* MockGameService.swift */; };
-		9CBE9E372374AC5100E14222 /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E352374AC5100E14222 /* MockGameService.swift */; };
-		9CBE9E382374AC5100E14222 /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE9E352374AC5100E14222 /* MockGameService.swift */; };
 		9CC48011220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48012220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48013220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC87B1B23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */; };
 		9CC87B1C23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */; };
 		9CC87B1D23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */; };
-		9CC99785237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
-		9CC99786237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
-		9CC99787237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
 		9CC9978A237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */; };
 		9CC9978B237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */; };
 		9CC9978C237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */; };
@@ -5040,9 +5036,6 @@
 		9CEE412523722B8A005A4AD3 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		9CEE412623722B8A005A4AD3 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		9CEE412723722B8A005A4AD3 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
-		9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
-		9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
-		9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
 		9CF0E06823BA650100C151F5 /* SurveyMonkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */; };
 		9CF0E06923BA650100C151F5 /* SurveyMonkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */; };
 		9CF0E06A23BA650100C151F5 /* SurveyMonkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */; };
@@ -7230,7 +7223,7 @@
 		675F4AE824AB828000A828F9 /* OutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageService.swift; sourceTree = "<group>"; };
 		675F4AE924AB828000A828F9 /* AnonymousService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnonymousService.swift; sourceTree = "<group>"; };
 		675F4AEA24AB828000A828F9 /* RegistrationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
-		675F4AEB24AB828000A828F9 /* GameServiceNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameServiceNew.swift; sourceTree = "<group>"; };
+		675F4AEB24AB828000A828F9 /* GameService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverMaskedUsernameRequest.swift; sourceTree = "<group>"; };
 		675F4AEF24AB828000A828F9 /* CompareBillRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareBillRequest.swift; sourceTree = "<group>"; };
 		675F4AF024AB828000A828F9 /* ScheduledPaymentUpdateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledPaymentUpdateRequest.swift; sourceTree = "<group>"; };
@@ -7264,7 +7257,7 @@
 		675F4B1024AB828000A828F9 /* AccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetails.swift; sourceTree = "<group>"; };
 		675F4B1124AB828000A828F9 /* SSODataResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSODataResponse.swift; sourceTree = "<group>"; };
 		675F4B1224AB828000A828F9 /* ReportedOutageResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportedOutageResult.swift; sourceTree = "<group>"; };
-		675F4B1324AB828000A828F9 /* NewGameUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameUser.swift; sourceTree = "<group>"; };
+		675F4B1324AB828000A828F9 /* GameUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		675F4B1424AB828000A828F9 /* NewForecastBill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewForecastBill.swift; sourceTree = "<group>"; };
 		675F4B1524AB828000A828F9 /* EnergyRewardsNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyRewardsNew.swift; sourceTree = "<group>"; };
 		675F4B1624AB828000A828F9 /* AutoPayResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayResult.swift; sourceTree = "<group>"; };
@@ -7341,6 +7334,8 @@
 		675F4E2E24B4DB3500A828F9 /* AnonOutageStatusMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AnonOutageStatusMock.json; sourceTree = "<group>"; };
 		675F4E3B24B4DC1900A828F9 /* NewMockDataKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMockDataKey.swift; sourceTree = "<group>"; };
 		676279EE247DB11100A57FBC /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
+		67893A9624DB1E26000143D6 /* GameService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameService+Rx.swift"; sourceTree = "<group>"; };
+		67893AAF24DB248C000143D6 /* DailyUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
 		678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidateRegistrationMock.json; sourceTree = "<group>"; };
 		678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RegistrationQuestionsMock.json; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
@@ -7670,14 +7665,10 @@
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTask.swift; sourceTree = "<group>"; };
 		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		9CBE9E292374988100E14222 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
-		9CBE9E2D23749B9900E14222 /* MCSGameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSGameService.swift; sourceTree = "<group>"; };
 		9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeViewModel.swift; sourceTree = "<group>"; };
-		9CBE9E352374AC5100E14222 /* MockGameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGameService.swift; sourceTree = "<group>"; };
 		9CC48010220A142900393CC7 /* outage_status.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_status.json; sourceTree = "<group>"; };
 		9CC48017220A442900393CC7 /* meter_ping_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = meter_ping_info.json; sourceTree = "<group>"; };
 		9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewCell.swift; sourceTree = "<group>"; };
-		9CC99784237B43E800C68300 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameOnboardingCardView.xib; sourceTree = "<group>"; };
 		9CC9978D237B4A0200C68300 /* HomeGameOnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameOnboardingCardView.swift; sourceTree = "<group>"; };
 		9CC99792237B6A9300C68300 /* GameOnboardingIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOnboardingIntroViewController.swift; sourceTree = "<group>"; };
@@ -7700,7 +7691,6 @@
 		9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyInsightCoinView.xib; sourceTree = "<group>"; };
 		9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyInsightCoinView.swift; sourceTree = "<group>"; };
 		9CEE412423722B8A005A4AD3 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
-		9CEE412823722CA8005A4AD3 /* DailyUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
 		9CF0E06623BA650100C151F5 /* SurveyMonkeyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyMonkeyManager.h; sourceTree = "<group>"; };
 		9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurveyMonkeyManager.m; sourceTree = "<group>"; };
 		9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewController.swift; sourceTree = "<group>"; };
@@ -9865,8 +9855,7 @@
 				675F4AE824AB828000A828F9 /* OutageService.swift */,
 				675F4AE924AB828000A828F9 /* AnonymousService.swift */,
 				675F4AEA24AB828000A828F9 /* RegistrationService.swift */,
-				675F4AEB24AB828000A828F9 /* GameServiceNew.swift */,
-				675F4AEC24AB828000A828F9 /* Models */,
+				675F4AEB24AB828000A828F9 /* GameService.swift */,
 				675F4B0724AB828000A828F9 /* AuthenticatedService.swift */,
 				C3087A9824B65B0A005AE544 /* AccountService.swift */,
 				675F4B0824AB828000A828F9 /* WeatherService.swift */,
@@ -9874,6 +9863,7 @@
 				C3DF2B9C24CB32D000A6D4EC /* BillService.swift */,
 				675F4B0A24AB828000A828F9 /* UsageService.swift */,
 				679C6EB024D1E84E00535DE7 /* AppointmentService.swift */,
+				675F4AEC24AB828000A828F9 /* Models */,
 			);
 			path = "New Domain Layer";
 			sourceTree = "<group>";
@@ -9941,6 +9931,7 @@
 				C3B6556F24ABE6780048C64B /* BillingInfo.swift */,
 				675F4B2924AB828000A828F9 /* CompareBillResult.swift */,
 				675F4B1824AB828000A828F9 /* DailyUsageData.swift */,
+				67893AAF24DB248C000143D6 /* DailyUsage.swift */,
 				675F4B2824AB828000A828F9 /* EndpointError.swift */,
 				675F4B1524AB828000A828F9 /* EnergyRewardsNew.swift */,
 				C3087AF724BDE8E2005AE544 /* EnergyTip.swift */,
@@ -9957,7 +9948,7 @@
 				675F4B2524AB828000A828F9 /* BillPDF.swift */,
 				675F4B1924AB828000A828F9 /* BudgetBilling.swift */,
 				675F4B1424AB828000A828F9 /* NewForecastBill.swift */,
-				675F4B1324AB828000A828F9 /* NewGameUser.swift */,
+				675F4B1324AB828000A828F9 /* GameUser.swift */,
 				675F4B3124AB828000A828F9 /* NewJWTToken.swift */,
 				675F4B2D24AB828000A828F9 /* NewMinimumVersion.swift */,
 				675F4B1A24AB828000A828F9 /* NewPaymentResult.swift */,
@@ -11008,7 +10999,6 @@
 				228877001FC611990024D7F0 /* MockAlertsService.swift */,
 				E8400E631FE05ED70064E242 /* MockWalletService.swift */,
 				B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */,
-				9CBE9E352374AC5100E14222 /* MockGameService.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -11175,7 +11165,6 @@
 				B5AC06E91E52755800BBA4ED /* ServiceResult.swift */,
 				54EDD2D91ECE236000CAB8A6 /* WalletService.swift */,
 				82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */,
-				9CBE9E292374988100E14222 /* GameService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -11185,14 +11174,9 @@
 			children = (
 				E83F026F1FB0B9E10062A348 /* AlertPreferences.swift */,
 				B56DD49C1ED87AD800F0198B /* BankAccount.swift */,
-				E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */,
 				2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */,
-				2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */,
-				E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */,
 				B56DD4A11ED87AE200F0198B /* CreditCard.swift */,
-				9CEE412823722CA8005A4AD3 /* DailyUsage.swift */,
 				9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */,
-				9CC99784237B43E800C68300 /* GameUser.swift */,
 				B094A34C20D9442400E81303 /* HomeCard.swift */,
 				E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */,
 				82AC2A1D1FAB66D800EACB3B /* PeakRewardsSummary.swift */,
@@ -11217,9 +11201,9 @@
 				C3087B1524BDF0D5005AE544 /* UsageService+Rx.swift */,
 				C3DF2BA924CB42BB00A6D4EC /* BillService+Rx.swift */,
 				C3DF2BB624CB42CE00A6D4EC /* PaymentService+Rx.swift */,
-				679C6EBD24D1EBCA00535DE7 /* AppointmentService+RX.swift */,
 				679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */,
 				679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */,
+				67893A9624DB1E26000143D6 /* GameService+Rx.swift */,
 			);
 			path = "Network Extensions";
 			sourceTree = "<group>";
@@ -11258,7 +11242,6 @@
 				E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */,
 				54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */,
 				82AC2A291FAB78E700EACB3B /* MCSPeakRewardsService.swift */,
-				9CBE9E2D23749B9900E14222 /* MCSGameService.swift */,
 			);
 			path = MCS;
 			sourceTree = "<group>";
@@ -15666,6 +15649,7 @@
 				35F9DE51233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
 				673F9FFB24C894D900210BCD /* SchedulePaymentCancelRequest.swift in Sources */,
 				C3087ACC24B6728A005AE544 /* ChangePasswordRequest.swift in Sources */,
+				67893AA524DB2053000143D6 /* GameService.swift in Sources */,
 				675F4E1A24B4DA4D00A828F9 /* Router.swift in Sources */,
 				673FA04A24C8956100210BCD /* NewSharePointAlert.swift in Sources */,
 				356C7F8621909EE2003E8A90 /* WalletItem.swift in Sources */,
@@ -15774,12 +15758,13 @@
 				B0E9F00121EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				C3087AB424B6717D005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
 				673F9FF724C894D900210BCD /* GameUserRequest.swift in Sources */,
-				673FA03C24C8956100210BCD /* NewGameUser.swift in Sources */,
+				673FA03C24C8956100210BCD /* GameUser.swift in Sources */,
 				356C7F9E2190A446003E8A90 /* AuthTokenParser.swift in Sources */,
 				356C7F78219097D0003E8A90 /* Environment.swift in Sources */,
 				356C7F772190979C003E8A90 /* Date.swift in Sources */,
 				C3087B3024BE31BB005AE544 /* VoidDecodable.swift in Sources */,
 				C3087AA824B67042005AE544 /* AccountService.swift in Sources */,
+				67893AB824DB24DA000143D6 /* DailyUsage.swift in Sources */,
 				673FA04124C8956100210BCD /* BudgetBilling.swift in Sources */,
 				673FA04E24C8956100210BCD /* MaintenanceMode.swift in Sources */,
 				673FA03E24C8956100210BCD /* EnergyRewardsNew.swift in Sources */,
@@ -15951,6 +15936,7 @@
 				C3087AA624B6703F005AE544 /* AccountService.swift in Sources */,
 				35F9DDAA2333D8A600AAA2B2 /* HttpMethod.swift in Sources */,
 				C3B6557224ABE6780048C64B /* BillingInfo.swift in Sources */,
+				67893AA324DB2051000143D6 /* GameService.swift in Sources */,
 				C3087B2B24BE31AC005AE544 /* CompareBillRequest.swift in Sources */,
 				C3B6559024AD25550048C64B /* NetworkingError.swift in Sources */,
 				C3087ADD24B67ECA005AE544 /* GuidRequest.swift in Sources */,
@@ -15970,7 +15956,7 @@
 				35BAA17A2367454F0053E58A /* NetworkUtility.swift in Sources */,
 				673FA0D824C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
 				C3B6559F24AD4B700048C64B /* CustomerInfo.swift in Sources */,
-				673FA0A024C8956700210BCD /* NewGameUser.swift in Sources */,
+				673FA0A024C8956700210BCD /* GameUser.swift in Sources */,
 				673FA0A224C8956700210BCD /* EnergyRewardsNew.swift in Sources */,
 				673FA0A324C8956700210BCD /* AutoPayResult.swift in Sources */,
 				35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */,
@@ -15982,6 +15968,7 @@
 				675F4E1B24B4DA6C00A828F9 /* NewResponseWrapper.swift in Sources */,
 				35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */,
 				35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */,
+				67893AB624DB24D8000143D6 /* DailyUsage.swift in Sources */,
 				675F4E4224B4DC2400A828F9 /* NewMockDataKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -15993,7 +15980,7 @@
 				C3087B3224BE31C9005AE544 /* BillForecast.swift in Sources */,
 				673F9FE524C894D800210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */,
 				675F4E3924B4DBD200A828F9 /* URLProtocolMock.swift in Sources */,
-				673FA02324C8956000210BCD /* NewGameUser.swift in Sources */,
+				673FA02324C8956000210BCD /* GameUser.swift in Sources */,
 				35F9DE3323353CEF00AAA2B2 /* ServiceResult.swift in Sources */,
 				673F9FE324C894D800210BCD /* RecoverMaskedUsernameRequest.swift in Sources */,
 				C3087AAF24B6716E005AE544 /* Router.swift in Sources */,
@@ -16009,6 +15996,7 @@
 				35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */,
 				675F4E1224B4D9E000A828F9 /* EndpointError.swift in Sources */,
 				673FA03124C8956000210BCD /* NewSharePointAlert.swift in Sources */,
+				67893AB724DB24D9000143D6 /* DailyUsage.swift in Sources */,
 				35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */,
 				673FA02624C8956000210BCD /* AutoPayResult.swift in Sources */,
 				35F9DE1623353C3E00AAA2B2 /* Logger.swift in Sources */,
@@ -16136,6 +16124,7 @@
 				35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */,
 				35F9DE4023353D4C00AAA2B2 /* URLSession+Rx.swift in Sources */,
 				35F9DE2C23353CCA00AAA2B2 /* MCSResponseParser.swift in Sources */,
+				67893AA424DB2052000143D6 /* GameService.swift in Sources */,
 				673F9FEC24C894D800210BCD /* BillComparisonRequest.swift in Sources */,
 				673FA02524C8956000210BCD /* EnergyRewardsNew.swift in Sources */,
 				679C6EBA24D1E85F00535DE7 /* AppointmentService.swift in Sources */,
@@ -16207,7 +16196,6 @@
 				675F4BF724AB828100A828F9 /* SchedulePaymentCancelRequest.swift in Sources */,
 				675F4C3F24AB828100A828F9 /* SSODataResponse.swift in Sources */,
 				67DDB30324535D2E006CD6EB /* HomeProjectedBillCardViewModel.swift in Sources */,
-				67DDB30424535D2E006CD6EB /* GameService.swift in Sources */,
 				67DDB30524535D2E006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
 				675F4B8B24AB828100A828F9 /* ScheduledPaymentUpdateRequest.swift in Sources */,
 				67DDB30624535D2E006CD6EB /* UIColor+Image.swift in Sources */,
@@ -16229,7 +16217,6 @@
 				67DDB31B24535D2E006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */,
 				67DDB31C24535D2E006CD6EB /* HomeEditEmptyCell.swift in Sources */,
 				67DDB31D24535D2E006CD6EB /* WatchSessionMananger.swift in Sources */,
-				67DDB31E24535D2E006CD6EB /* MCSGameService.swift in Sources */,
 				67DDB31F24535D2E006CD6EB /* ForgotPasswordViewModel.swift in Sources */,
 				67DDB32024535D2E006CD6EB /* ChangePasswordViewModel.swift in Sources */,
 				67DDB32124535D2E006CD6EB /* MockUser.swift in Sources */,
@@ -16314,6 +16301,7 @@
 				67DDB36924535D2E006CD6EB /* HomePrepaidCardViewModel.swift in Sources */,
 				67DDB36B24535D2E006CD6EB /* MyHomeProfileViewModel.swift in Sources */,
 				67DDB36C24535D2E006CD6EB /* AppointmentDetailViewController.swift in Sources */,
+				67893AB324DB2492000143D6 /* DailyUsage.swift in Sources */,
 				67DDB36D24535D2E006CD6EB /* Top5EnergyTipsViewModel.swift in Sources */,
 				67DDB36E24535D2E006CD6EB /* GiftInventory.swift in Sources */,
 				675F4DF524AB828200A828F9 /* NetworkingLayer.swift in Sources */,
@@ -16374,6 +16362,7 @@
 				67DDB39B24535D2E006CD6EB /* HomeUpdateView.swift in Sources */,
 				67DDB39C24535D2E006CD6EB /* MiniWalletSheetViewController.swift in Sources */,
 				675F4C1524AB828100A828F9 /* AuthenticatedService.swift in Sources */,
+				67893A9D24DB1E2E000143D6 /* GameService+Rx.swift in Sources */,
 				675F4DEF24AB828200A828F9 /* Router.swift in Sources */,
 				67DDB39D24535D2E006CD6EB /* BillBreakdownViewController.swift in Sources */,
 				67DDB39F24535D2E006CD6EB /* BillBreakdownViewModel.swift in Sources */,
@@ -16403,7 +16392,6 @@
 				67DDB3B224535D2E006CD6EB /* GameTask.swift in Sources */,
 				67DDB3B324535D2E006CD6EB /* AutoPayViewModel.swift in Sources */,
 				67DDB3B424535D2E006CD6EB /* DisclosureButton.swift in Sources */,
-				67DDB3B524535D2E006CD6EB /* MockGameService.swift in Sources */,
 				675F4CB724AB828200A828F9 /* BillPDF.swift in Sources */,
 				67DDB3B624535D2E006CD6EB /* WeeklyInsightViewModel.swift in Sources */,
 				C3B6555924ABD9320048C64B /* NewSERInfo.swift in Sources */,
@@ -16453,7 +16441,6 @@
 				67DDB3DE24535D2E006CD6EB /* SheetView.swift in Sources */,
 				675F4BB524AB828100A828F9 /* JWTRequest.swift in Sources */,
 				67DDB3E124535D2E006CD6EB /* PaymentConfirmationViewController.swift in Sources */,
-				67DDB3E224535D2E006CD6EB /* GameUser.swift in Sources */,
 				67DDB3E324535D2E006CD6EB /* HomeUsageCardViewModel.swift in Sources */,
 				675F4CD524AB828200A828F9 /* BillingHistoryResult.swift in Sources */,
 				675F47BB24AB6CBE00A828F9 /* RegistrationViewModel.swift in Sources */,
@@ -16534,7 +16521,7 @@
 				67DDB41E24535D2E006CD6EB /* HomeGameOnboardingCardView.swift in Sources */,
 				675F4C4524AB828100A828F9 /* ReportedOutageResult.swift in Sources */,
 				67DDB41F24535D2E006CD6EB /* HomeWeatherViewModel.swift in Sources */,
-				675F4B7324AB828100A828F9 /* GameServiceNew.swift in Sources */,
+				675F4B7324AB828100A828F9 /* GameService.swift in Sources */,
 				675F4B6124AB828100A828F9 /* OutageService.swift in Sources */,
 				675F4CCF24AB828200A828F9 /* CompareBillResult.swift in Sources */,
 				C3087AA324B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
@@ -16561,7 +16548,6 @@
 				67DDB42E24535D2E006CD6EB /* GameOptInOutViewController.swift in Sources */,
 				67DDB43024535D2E006CD6EB /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				67DDB43124535D2E006CD6EB /* RecentPaymentsStore.swift in Sources */,
-				67DDB43324535D2E006CD6EB /* DailyUsage.swift in Sources */,
 				C336046724D31EA9002CF260 /* AutoPayEnrollRequest.swift in Sources */,
 				67DDB43524535D2E006CD6EB /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				67DDB43624535D2E006CD6EB /* AuthTokenResponse.swift in Sources */,
@@ -16570,7 +16556,7 @@
 				C3087A9C24B65B0A005AE544 /* AccountService.swift in Sources */,
 				67DDB43924535D2E006CD6EB /* SetDefaultAccountViewController.swift in Sources */,
 				67D73AFA246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */,
-				675F4C4B24AB828100A828F9 /* NewGameUser.swift in Sources */,
+				675F4C4B24AB828100A828F9 /* GameUser.swift in Sources */,
 				67DDB43A24535D2E006CD6EB /* SERPTSViewController.swift in Sources */,
 				67DDB43B24535D2E006CD6EB /* StormModeHomeViewController.swift in Sources */,
 				67DDB43C24535D2E006CD6EB /* NotificationNames.swift in Sources */,
@@ -16687,7 +16673,6 @@
 				67DDB55724535D32006CD6EB /* Top5EnergyTipsViewController.swift in Sources */,
 				673FA0E124C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
 				67DDB55924535D32006CD6EB /* HomeProjectedBillCardViewModel.swift in Sources */,
-				67DDB55A24535D32006CD6EB /* GameService.swift in Sources */,
 				67DDB55B24535D32006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
 				67DDB55C24535D32006CD6EB /* UIColor+Image.swift in Sources */,
 				675F4C5F24AB828100A828F9 /* AutoPayResult.swift in Sources */,
@@ -16710,10 +16695,9 @@
 				67D73AFC246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */,
 				67DDB57124535D32006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */,
 				67DDB57224535D32006CD6EB /* HomeEditEmptyCell.swift in Sources */,
-				675F4B7524AB828100A828F9 /* GameServiceNew.swift in Sources */,
+				675F4B7524AB828100A828F9 /* GameService.swift in Sources */,
 				67DDB57324535D32006CD6EB /* WatchSessionMananger.swift in Sources */,
 				675F4C0B24AB828100A828F9 /* AnyEncodable.swift in Sources */,
-				67DDB57424535D32006CD6EB /* MCSGameService.swift in Sources */,
 				675F4CA724AB828100A828F9 /* NewWallet.swift in Sources */,
 				67DDB57524535D32006CD6EB /* ForgotPasswordViewModel.swift in Sources */,
 				67DDB57624535D32006CD6EB /* ChangePasswordViewModel.swift in Sources */,
@@ -16804,7 +16788,6 @@
 				675F4C1724AB828100A828F9 /* AuthenticatedService.swift in Sources */,
 				675F4BBD24AB828100A828F9 /* BudgetBillingUnenrollRequest.swift in Sources */,
 				C3DF2BC124CB42CE00A6D4EC /* PaymentService+Rx.swift in Sources */,
-				67DDB5C524535D32006CD6EB /* GovWeatherService.swift in Sources */,
 				67DDB5C624535D32006CD6EB /* ToastView.swift in Sources */,
 				67DDB5C824535D32006CD6EB /* AdjustThermostatViewModel.swift in Sources */,
 				675F4C2324AB828100A828F9 /* PaymentService.swift in Sources */,
@@ -16886,13 +16869,12 @@
 				67DDB60824535D32006CD6EB /* GameTask.swift in Sources */,
 				67DDB60924535D32006CD6EB /* AutoPayViewModel.swift in Sources */,
 				67DDB60A24535D32006CD6EB /* DisclosureButton.swift in Sources */,
-				67DDB60B24535D32006CD6EB /* MockGameService.swift in Sources */,
 				67DDB60C24535D32006CD6EB /* WeeklyInsightViewModel.swift in Sources */,
 				67DDB60D24535D32006CD6EB /* IntrinsicHeightTableView.swift in Sources */,
 				67DDB60E24535D32006CD6EB /* SetReminderViewController.swift in Sources */,
 				67DDB60F24535D32006CD6EB /* SplashViewController.swift in Sources */,
 				67DDB61024535D32006CD6EB /* HomeProjectedBillCardView.swift in Sources */,
-				675F4C4D24AB828100A828F9 /* NewGameUser.swift in Sources */,
+				675F4C4D24AB828100A828F9 /* GameUser.swift in Sources */,
 				67DDB61124535D32006CD6EB /* MockJSONManager.swift in Sources */,
 				675F4BAB24AB828100A828F9 /* WalletItemDeleteRequest.swift in Sources */,
 				675F4CDD24AB828200A828F9 /* VoidDecodable.swift in Sources */,
@@ -16930,6 +16912,7 @@
 				67DDB62B24535D32006CD6EB /* EnergyBuddyView.swift in Sources */,
 				675F4D2B24AB828200A828F9 /* NetworkingError.swift in Sources */,
 				67DDB62C24535D32006CD6EB /* Array+OptionalLookup.swift in Sources */,
+				67893AA124DB1E32000143D6 /* GameService+Rx.swift in Sources */,
 				67DDB62D24535D32006CD6EB /* AppointmentsViewController.swift in Sources */,
 				67DDB62E24535D32006CD6EB /* AccountLookupToolViewController.swift in Sources */,
 				673FA10924C8B00E00210BCD /* URLSessionConfiguration.swift in Sources */,
@@ -16939,7 +16922,6 @@
 				67DDB63424535D32006CD6EB /* SheetView.swift in Sources */,
 				67DDB63524535D32006CD6EB /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				67DDB63724535D32006CD6EB /* PaymentConfirmationViewController.swift in Sources */,
-				67DDB63824535D32006CD6EB /* GameUser.swift in Sources */,
 				67DDB63924535D32006CD6EB /* HomeUsageCardViewModel.swift in Sources */,
 				675F4BA524AB828100A828F9 /* UsernameRequest.swift in Sources */,
 				675F4C8324AB828100A828F9 /* BillForecastResult.swift in Sources */,
@@ -16966,6 +16948,7 @@
 				67DDB64B24535D32006CD6EB /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				675F4C9B24AB828100A828F9 /* BillingHistoryItem.swift in Sources */,
 				67DDB64C24535D32006CD6EB /* AlertsStore.swift in Sources */,
+				67893AB524DB2493000143D6 /* DailyUsage.swift in Sources */,
 				67DDB64D24535D32006CD6EB /* OpcoUpdate.swift in Sources */,
 				67DDB64E24535D32006CD6EB /* GiftCollectionViewCell.swift in Sources */,
 				67DDB64F24535D32006CD6EB /* PaperlessEBillViewController.swift in Sources */,
@@ -17036,7 +17019,6 @@
 				675F4B9324AB828100A828F9 /* BillingHistoryRequest.swift in Sources */,
 				67DDB68624535D32006CD6EB /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				67DDB68724535D32006CD6EB /* RecentPaymentsStore.swift in Sources */,
-				67DDB68924535D32006CD6EB /* DailyUsage.swift in Sources */,
 				67DDB68B24535D32006CD6EB /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				67DDB68C24535D32006CD6EB /* AuthTokenResponse.swift in Sources */,
 				67DDB68D24535D32006CD6EB /* GSTouchesShowingController.swift in Sources */,
@@ -17173,7 +17155,6 @@
 				67DDB7AD24535D35006CD6EB /* Top5EnergyTipsViewController.swift in Sources */,
 				673FA0DF24C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
 				67DDB7AF24535D35006CD6EB /* HomeProjectedBillCardViewModel.swift in Sources */,
-				67DDB7B024535D35006CD6EB /* GameService.swift in Sources */,
 				67DDB7B124535D35006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
 				67DDB7B224535D35006CD6EB /* UIColor+Image.swift in Sources */,
 				675F4C5E24AB828100A828F9 /* AutoPayResult.swift in Sources */,
@@ -17196,10 +17177,9 @@
 				67D73AFB246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */,
 				67DDB7C724535D35006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */,
 				67DDB7C824535D35006CD6EB /* HomeEditEmptyCell.swift in Sources */,
-				675F4B7424AB828100A828F9 /* GameServiceNew.swift in Sources */,
+				675F4B7424AB828100A828F9 /* GameService.swift in Sources */,
 				67DDB7C924535D35006CD6EB /* WatchSessionMananger.swift in Sources */,
 				675F4C0A24AB828100A828F9 /* AnyEncodable.swift in Sources */,
-				67DDB7CA24535D35006CD6EB /* MCSGameService.swift in Sources */,
 				675F4CA624AB828100A828F9 /* NewWallet.swift in Sources */,
 				67DDB7CB24535D35006CD6EB /* ForgotPasswordViewModel.swift in Sources */,
 				67DDB7CC24535D35006CD6EB /* ChangePasswordViewModel.swift in Sources */,
@@ -17290,7 +17270,6 @@
 				675F4C1624AB828100A828F9 /* AuthenticatedService.swift in Sources */,
 				675F4BBC24AB828100A828F9 /* BudgetBillingUnenrollRequest.swift in Sources */,
 				C3DF2BBF24CB42CE00A6D4EC /* PaymentService+Rx.swift in Sources */,
-				67DDB81B24535D35006CD6EB /* GovWeatherService.swift in Sources */,
 				67DDB81C24535D35006CD6EB /* ToastView.swift in Sources */,
 				67DDB81E24535D35006CD6EB /* AdjustThermostatViewModel.swift in Sources */,
 				675F4C2224AB828100A828F9 /* PaymentService.swift in Sources */,
@@ -17372,13 +17351,12 @@
 				67DDB85E24535D35006CD6EB /* GameTask.swift in Sources */,
 				67DDB85F24535D35006CD6EB /* AutoPayViewModel.swift in Sources */,
 				67DDB86024535D35006CD6EB /* DisclosureButton.swift in Sources */,
-				67DDB86124535D35006CD6EB /* MockGameService.swift in Sources */,
 				67DDB86224535D35006CD6EB /* WeeklyInsightViewModel.swift in Sources */,
 				67DDB86324535D35006CD6EB /* IntrinsicHeightTableView.swift in Sources */,
 				67DDB86424535D35006CD6EB /* SetReminderViewController.swift in Sources */,
 				67DDB86524535D35006CD6EB /* SplashViewController.swift in Sources */,
 				67DDB86624535D35006CD6EB /* HomeProjectedBillCardView.swift in Sources */,
-				675F4C4C24AB828100A828F9 /* NewGameUser.swift in Sources */,
+				675F4C4C24AB828100A828F9 /* GameUser.swift in Sources */,
 				67DDB86724535D35006CD6EB /* MockJSONManager.swift in Sources */,
 				675F4BAA24AB828100A828F9 /* WalletItemDeleteRequest.swift in Sources */,
 				675F4CDC24AB828200A828F9 /* VoidDecodable.swift in Sources */,
@@ -17416,6 +17394,7 @@
 				67DDB88124535D35006CD6EB /* EnergyBuddyView.swift in Sources */,
 				675F4D2A24AB828200A828F9 /* NetworkingError.swift in Sources */,
 				67DDB88224535D35006CD6EB /* Array+OptionalLookup.swift in Sources */,
+				67893A9F24DB1E30000143D6 /* GameService+Rx.swift in Sources */,
 				67DDB88324535D35006CD6EB /* AppointmentsViewController.swift in Sources */,
 				67DDB88424535D35006CD6EB /* AccountLookupToolViewController.swift in Sources */,
 				673FA10724C8B00C00210BCD /* URLSessionConfiguration.swift in Sources */,
@@ -17425,7 +17404,6 @@
 				67DDB88A24535D35006CD6EB /* SheetView.swift in Sources */,
 				67DDB88B24535D35006CD6EB /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				67DDB88D24535D35006CD6EB /* PaymentConfirmationViewController.swift in Sources */,
-				67DDB88E24535D35006CD6EB /* GameUser.swift in Sources */,
 				67DDB88F24535D35006CD6EB /* HomeUsageCardViewModel.swift in Sources */,
 				675F4BA424AB828100A828F9 /* UsernameRequest.swift in Sources */,
 				675F4C8224AB828100A828F9 /* BillForecastResult.swift in Sources */,
@@ -17452,6 +17430,7 @@
 				67DDB8A124535D35006CD6EB /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				675F4C9A24AB828100A828F9 /* BillingHistoryItem.swift in Sources */,
 				67DDB8A224535D35006CD6EB /* AlertsStore.swift in Sources */,
+				67893AB424DB2493000143D6 /* DailyUsage.swift in Sources */,
 				67DDB8A324535D35006CD6EB /* OpcoUpdate.swift in Sources */,
 				67DDB8A424535D35006CD6EB /* GiftCollectionViewCell.swift in Sources */,
 				67DDB8A524535D35006CD6EB /* PaperlessEBillViewController.swift in Sources */,
@@ -17522,7 +17501,6 @@
 				675F4B9224AB828100A828F9 /* BillingHistoryRequest.swift in Sources */,
 				67DDB8DC24535D35006CD6EB /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				67DDB8DD24535D35006CD6EB /* RecentPaymentsStore.swift in Sources */,
-				67DDB8DF24535D35006CD6EB /* DailyUsage.swift in Sources */,
 				67DDB8E124535D35006CD6EB /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				67DDB8E224535D35006CD6EB /* AuthTokenResponse.swift in Sources */,
 				67DDB8E324535D35006CD6EB /* GSTouchesShowingController.swift in Sources */,
@@ -17677,8 +17655,8 @@
 				67DDBA2024535DAA006CD6EB /* UIAlertController+PaymentusErrors.swift in Sources */,
 				67DDBA2224535DAA006CD6EB /* KeychainManager.swift in Sources */,
 				67DDBA2324535DAA006CD6EB /* SERPTSViewModel.swift in Sources */,
-				67DDBA2524535DAA006CD6EB /* GovWeatherService.swift in Sources */,
-				67DDBA2424535DAA006CD6EB /* MockBillService.swift in Sources */,
+				67DDBA2524535DAA006CD6EB /* (null) in Sources */,
+				67DDBA2424535DAA006CD6EB /* (null) in Sources */,
 				67DDBA2624535DAA006CD6EB /* MockJSONManager.swift in Sources */,
 				67DDBA2724535DAA006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
 				C3B6559524AD255C0048C64B /* NetworkingError.swift in Sources */,
@@ -17846,8 +17824,8 @@
 				67DDBB0A24535DAC006CD6EB /* KeychainManager.swift in Sources */,
 				67DDBB0B24535DAC006CD6EB /* SERPTSViewModel.swift in Sources */,
 				C3B6557E24ABE6780048C64B /* BillingInfo.swift in Sources */,
-				67DDBB0D24535DAC006CD6EB /* GovWeatherService.swift in Sources */,
-				67DDBB0C24535DAC006CD6EB /* MockBillService.swift in Sources */,
+				67DDBB0D24535DAC006CD6EB /* (null) in Sources */,
+				67DDBB0C24535DAC006CD6EB /* (null) in Sources */,
 				675F47D324AB748100A828F9 /* PaymentViewModel.swift in Sources */,
 				67DDBB0E24535DAC006CD6EB /* MockJSONManager.swift in Sources */,
 				67DDBB0F24535DAC006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
@@ -18017,8 +17995,8 @@
 				67DDBBF224535DAE006CD6EB /* KeychainManager.swift in Sources */,
 				67DDBBF324535DAE006CD6EB /* SERPTSViewModel.swift in Sources */,
 				C3B6557C24ABE6780048C64B /* BillingInfo.swift in Sources */,
-				67DDBBF524535DAE006CD6EB /* GovWeatherService.swift in Sources */,
-				67DDBBF424535DAE006CD6EB /* MockBillService.swift in Sources */,
+				67DDBBF524535DAE006CD6EB /* (null) in Sources */,
+				67DDBBF424535DAE006CD6EB /* (null) in Sources */,
 				675F47D024AB747E00A828F9 /* PaymentViewModel.swift in Sources */,
 				67DDBBF624535DAE006CD6EB /* MockJSONManager.swift in Sources */,
 				67DDBBF724535DAE006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
@@ -18228,6 +18206,7 @@
 				67EDC2B424C1E690001A8494 /* (null) in Sources */,
 				67EDC2B524C1E690001A8494 /* (null) in Sources */,
 				67EDC2B624C1E690001A8494 /* WatchSessionMananger.swift in Sources */,
+				67893AA624DB2054000143D6 /* GameService.swift in Sources */,
 				67EDC2B724C1E690001A8494 /* Optional+Comparable.swift in Sources */,
 				673F9F8024C892F900210BCD /* ReleaseOfInfoRequest.swift in Sources */,
 				673F9F9E24C8940B00210BCD /* PaymentItem.swift in Sources */,
@@ -18280,7 +18259,7 @@
 				67EDC2C624C1E690001A8494 /* Environment.swift in Sources */,
 				67EDC2C724C1E690001A8494 /* ShortUUIDGenerator.swift in Sources */,
 				673FA0F824C8A52700210BCD /* AnonymousService+Rx.swift in Sources */,
-				673FA05524C8956200210BCD /* NewGameUser.swift in Sources */,
+				673FA05524C8956200210BCD /* GameUser.swift in Sources */,
 				673FA05C24C8956200210BCD /* AppointmentsContainer.swift in Sources */,
 				67EDC2C824C1E690001A8494 /* UsageInterfaceController.swift in Sources */,
 				67EDC2C924C1E690001A8494 /* ReportOutageInterfaceController.swift in Sources */,
@@ -18344,6 +18323,7 @@
 				67EDC2E024C1E690001A8494 /* UserDefaultKeys.swift in Sources */,
 				C336047024D327F3002CF260 /* PaymentService.swift in Sources */,
 				673F9F7124C892DD00210BCD /* HomeProfileUpdateRequest.swift in Sources */,
+				67893AB924DB24DB000143D6 /* DailyUsage.swift in Sources */,
 				67EDC2E124C1E690001A8494 /* Logger.swift in Sources */,
 				C336046824D31EA9002CF260 /* AutoPayEnrollRequest.swift in Sources */,
 				673F9F5924C892A400210BCD /* OutageService.swift in Sources */,
@@ -18388,6 +18368,7 @@
 				673FA01824C894DC00210BCD /* RecoverUsernameRequest.swift in Sources */,
 				673FA0D524C899CD00210BCD /* OutageStatusContainer.swift in Sources */,
 				67EDC34A24C1EBD9001A8494 /* AnalyticUtility.swift in Sources */,
+				67893AA824DB2056000143D6 /* GameService.swift in Sources */,
 				67EDC34B24C1EBD9001A8494 /* AccountsStore.swift in Sources */,
 				673FA0C424C898BC00210BCD /* UsageService.swift in Sources */,
 				673F9FCA24C8946300210BCD /* URLProtocolMock.swift in Sources */,
@@ -18453,7 +18434,7 @@
 				673FA09724C8956500210BCD /* ForgotMaskedUsername.swift in Sources */,
 				67EDC36224C1EBD9001A8494 /* Environment.swift in Sources */,
 				67EDC36324C1EBD9001A8494 /* ShortUUIDGenerator.swift in Sources */,
-				673FA08724C8956500210BCD /* NewGameUser.swift in Sources */,
+				673FA08724C8956500210BCD /* GameUser.swift in Sources */,
 				673FA08E24C8956500210BCD /* AppointmentsContainer.swift in Sources */,
 				67EDC36424C1EBD9001A8494 /* UsageInterfaceController.swift in Sources */,
 				67EDC36524C1EBD9001A8494 /* ReportOutageInterfaceController.swift in Sources */,
@@ -18488,6 +18469,7 @@
 				673FA01F24C894DC00210BCD /* DailyUsageRequest.swift in Sources */,
 				67EDC37024C1EBD9001A8494 /* MCSApi.swift in Sources */,
 				67EDC37124C1EBD9001A8494 /* Weekday.swift in Sources */,
+				67893ABB24DB24DD000143D6 /* DailyUsage.swift in Sources */,
 				673F9F5524C8927F00210BCD /* AccountDetails.swift in Sources */,
 				67EDC37224C1EBD9001A8494 /* (null) in Sources */,
 				67EDC37324C1EBD9001A8494 /* KeychainKeys.swift in Sources */,
@@ -18609,6 +18591,7 @@
 				67EDC3DB24C1EBFF001A8494 /* ShortUUIDGenerator.swift in Sources */,
 				67EDC3DC24C1EBFF001A8494 /* UsageInterfaceController.swift in Sources */,
 				673FA07F24C8956300210BCD /* NewMinimumVersion.swift in Sources */,
+				67893ABA24DB24DC000143D6 /* DailyUsage.swift in Sources */,
 				673F9FC924C8946300210BCD /* URLProtocolMock.swift in Sources */,
 				C336049124D339FA002CF260 /* RxNotifications.swift in Sources */,
 				67EDC3DD24C1EBFF001A8494 /* ReportOutageInterfaceController.swift in Sources */,
@@ -18623,6 +18606,7 @@
 				67EDC3E224C1EBFF001A8494 /* AnimateWithDuration+Completion.swift in Sources */,
 				67EDC3E324C1EBFF001A8494 /* (null) in Sources */,
 				67EDC3E424C1EBFF001A8494 /* KeychainManager.swift in Sources */,
+				67893AA724DB2055000143D6 /* GameService.swift in Sources */,
 				67EDC3E524C1EBFF001A8494 /* AuthTokenParser.swift in Sources */,
 				673F9F6C24C892D400210BCD /* ValidateAccountRequest.swift in Sources */,
 				673F9FB424C8943300210BCD /* OutageStatus.swift in Sources */,
@@ -18669,7 +18653,7 @@
 				673F9F7824C892EC00210BCD /* PaymentRequest.swift in Sources */,
 				673F9FC324C8945800210BCD /* NetworkingLayer.swift in Sources */,
 				673FA01124C894DB00210BCD /* GameUserRequest.swift in Sources */,
-				673FA06E24C8956300210BCD /* NewGameUser.swift in Sources */,
+				673FA06E24C8956300210BCD /* GameUser.swift in Sources */,
 				67EDC3F224C1EBFF001A8494 /* HttpMethod.swift in Sources */,
 				673F9F8D24C8931D00210BCD /* PremiseInfo.swift in Sources */,
 				C3DF2BC024CB42CE00A6D4EC /* PaymentService+Rx.swift in Sources */,
@@ -18765,7 +18749,6 @@
 				E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
-				9CBE9E2A2374988100E14222 /* GameService.swift in Sources */,
 				E807A9E52022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				359BDB2822D398F0007002B0 /* UIColor+Image.swift in Sources */,
 				675F4C9624AB828100A828F9 /* BillingHistoryItem.swift in Sources */,
@@ -18789,7 +18772,6 @@
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				355B103B2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
-				9CBE9E2E23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				675F4CCC24AB828200A828F9 /* CompareBillResult.swift in Sources */,
 				675F4BE224AB828100A828F9 /* BillComparisonRequest.swift in Sources */,
@@ -18944,9 +18926,11 @@
 				E83F02701FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
+				67893A9724DB1E26000143D6 /* GameService+Rx.swift in Sources */,
 				9CA4FA602385A2B900E33E7C /* GameProgressBar.swift in Sources */,
 				E8127B261EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
+				67893AB024DB248C000143D6 /* DailyUsage.swift in Sources */,
 				B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				B0649A5F214834380041B299 /* StormModeStatus.swift in Sources */,
 				8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
@@ -18961,7 +18945,6 @@
 				9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
-				9CBE9E362374AC5100E14222 /* MockGameService.swift in Sources */,
 				9CAC5952239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				9CAA4D58239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
@@ -19012,9 +18995,8 @@
 				675F4D0224AB828200A828F9 /* Weather.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
-				9CC99785237B43E800C68300 /* GameUser.swift in Sources */,
 				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
-				675F4B7024AB828100A828F9 /* GameServiceNew.swift in Sources */,
+				675F4B7024AB828100A828F9 /* GameService.swift in Sources */,
 				675F4B6A24AB828100A828F9 /* RegistrationService.swift in Sources */,
 				358BD21920F8FDAE00DA2012 /* BillImpactView.swift in Sources */,
 				C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */,
@@ -19079,7 +19061,7 @@
 				9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
-				675F4C4824AB828100A828F9 /* NewGameUser.swift in Sources */,
+				675F4C4824AB828100A828F9 /* GameUser.swift in Sources */,
 				675F4C4224AB828100A828F9 /* ReportedOutageResult.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				C300793C2436669F00A9BEB0 /* LocalizedString.swift in Sources */,
@@ -19122,7 +19104,6 @@
 				673FA0F124C8A52700210BCD /* AnonymousService+Rx.swift in Sources */,
 				675F4C5A24AB828100A828F9 /* AutoPayResult.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
-				9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				675F4BC424AB828100A828F9 /* AlertPreferencesRequest.swift in Sources */,
 				54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */,
@@ -19245,14 +19226,12 @@
 				C3087A9B24B65B0A005AE544 /* AccountService.swift in Sources */,
 				9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
-				9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				82EAB33E1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				675F4BCC24AB828100A828F9 /* GameUserRequest.swift in Sources */,
 				9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
 				E807A9E72022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				35A6C7002121DAE600C2A58F /* MoreViewModel.swift in Sources */,
-				9CBE9E2C2374988100E14222 /* GameService.swift in Sources */,
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				675F4C9824AB828100A828F9 /* BillingHistoryItem.swift in Sources */,
@@ -19277,7 +19256,6 @@
 				B0DB2762215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
 				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				82DE610C1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
-				9CBE9E3023749B9900E14222 /* MCSGameService.swift in Sources */,
 				E83F026D1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				B0472B2B2111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				675F4CCE24AB828200A828F9 /* CompareBillResult.swift in Sources */,
@@ -19372,9 +19350,8 @@
 				35C913A522EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
 				B0DB2759215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				35277AFF2102686100411297 /* UsageTool.swift in Sources */,
-				9C72424E21E5061900E5946B /* GovWeatherService.swift in Sources */,
 				C3087AA224B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
-				C3087AA224B662C6005AE544 /* ReleaseOfInfoPreferenceRequest.swift in Sources */,
+				C3087AA224B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
 				9CB8A5EF21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				54DF4BCE1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* MCSApi.swift in Sources */,
@@ -19446,7 +19423,6 @@
 				675F4C8024AB828100A828F9 /* BillForecastResult.swift in Sources */,
 				9C28D38A227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				675F4CA424AB828100A828F9 /* NewWallet.swift in Sources */,
-				9CBE9E382374AC5100E14222 /* MockGameService.swift in Sources */,
 				9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				9CAA4D5A239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
@@ -19494,14 +19470,14 @@
 				675F4B7E24AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				35C9139D22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
-				9CC99787237B43E800C68300 /* GameUser.swift in Sources */,
 				675F4D0424AB828200A828F9 /* Weather.swift in Sources */,
 				9CD3532322CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
+				67893A9B24DB1E2C000143D6 /* GameService+Rx.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				35A2B88D24A1E11E004B38BC /* RegistrationViewModel.swift in Sources */,
 				C364A87F2375DD7600C7D51B /* StateView.swift in Sources */,
 				35A2B88B24A1E0F7004B38BC /* RegistrationValidateAccountViewController.swift in Sources */,
-				675F4B7224AB828100A828F9 /* GameServiceNew.swift in Sources */,
+				675F4B7224AB828100A828F9 /* GameService.swift in Sources */,
 				675F4B6C24AB828100A828F9 /* RegistrationService.swift in Sources */,
 				9C34D74E239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */,
 				679C6EC224D1EBCF00535DE7 /* AppointmentService+Rx.swift in Sources */,
@@ -19533,6 +19509,7 @@
 				675F4B9624AB828100A828F9 /* RecoverUsernameRequest.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				675F4BAE24AB828100A828F9 /* ValidateAccountRequest.swift in Sources */,
+				67893AB224DB2491000143D6 /* DailyUsage.swift in Sources */,
 				C336047824D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
 				35C913AF22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
 				E8B8C84E1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */,
@@ -19568,7 +19545,7 @@
 				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				44A373441F211522005E227B /* TemplateCardView.swift in Sources */,
 				C3381A0824291ADE00EA7062 /* SERWebViewController.swift in Sources */,
-				675F4C4A24AB828100A828F9 /* NewGameUser.swift in Sources */,
+				675F4C4A24AB828100A828F9 /* GameUser.swift in Sources */,
 				675F4C4424AB828100A828F9 /* ReportedOutageResult.swift in Sources */,
 				B0CB1C8D227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */,
 				B07D247D20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
@@ -19737,7 +19714,6 @@
 				675F4BCB24AB828100A828F9 /* GameUserRequest.swift in Sources */,
 				E807A9E62022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				35A6C6FF2121DAE500C2A58F /* MoreViewModel.swift in Sources */,
-				9CBE9E2B2374988100E14222 /* GameService.swift in Sources */,
 				359BDB2922D398F0007002B0 /* UIColor+Image.swift in Sources */,
 				9CD3532B22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				675F4C9724AB828100A828F9 /* BillingHistoryItem.swift in Sources */,
@@ -19762,7 +19738,6 @@
 				67D73AF8246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */,
 				9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
 				355B103A2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
-				9CBE9E2F23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
 				675F4CCD24AB828200A828F9 /* CompareBillResult.swift in Sources */,
@@ -19863,8 +19838,7 @@
 				35376C6920F8FFD1007E50F7 /* BillImpactView.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				C3087AA124B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
-				B07E17BF2208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
-				C3087AA124B662C6005AE544 /* ReleaseOfInfoPreferenceRequest.swift in Sources */,
+				C3087AA124B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
 				82AC2A1B1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				54EDD2D61ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
@@ -19936,7 +19910,6 @@
 				675F4C7F24AB828100A828F9 /* BillForecastResult.swift in Sources */,
 				B0D84D4322023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				675F4CA324AB828100A828F9 /* NewWallet.swift in Sources */,
-				9CBE9E372374AC5100E14222 /* MockGameService.swift in Sources */,
 				9CAC5953239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				9CAA4D59239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
@@ -19982,16 +19955,16 @@
 				E841F3AB1F02F316007BFA82 /* PickerView.swift in Sources */,
 				E82FF1F31F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				675F4B7D24AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */,
+				67893A9924DB1E2B000143D6 /* GameService+Rx.swift in Sources */,
 				0D79C6CA1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				829E058C1FA7928E00697633 /* Fillable.swift in Sources */,
 				675F4D0324AB828200A828F9 /* Weather.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
-				9CC99786237B43E800C68300 /* GameUser.swift in Sources */,
 				0EF60FD720EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				C364A87E2375DD7400C7D51B /* StateView.swift in Sources */,
 				679C6EC024D1EBCE00535DE7 /* AppointmentService+Rx.swift in Sources */,
-				675F4B7124AB828100A828F9 /* GameServiceNew.swift in Sources */,
+				675F4B7124AB828100A828F9 /* GameService.swift in Sources */,
 				675F4B6B24AB828100A828F9 /* RegistrationService.swift in Sources */,
 				82DE61061FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				9C28D389227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
@@ -20018,6 +19991,7 @@
 				C3087AFA24BDE8E2005AE544 /* EnergyTip.swift in Sources */,
 				675F4DED24AB828200A828F9 /* Router.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
+				67893AB124DB2491000143D6 /* DailyUsage.swift in Sources */,
 				C336047624D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
 				675F4B9524AB828100A828F9 /* RecoverUsernameRequest.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
@@ -20055,7 +20029,7 @@
 				E882B7EE1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				C3381A0724291ADD00EA7062 /* SERWebViewController.swift in Sources */,
 				B07D247C20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
-				675F4C4924AB828100A828F9 /* NewGameUser.swift in Sources */,
+				675F4C4924AB828100A828F9 /* GameUser.swift in Sources */,
 				675F4C4324AB828100A828F9 /* ReportedOutageResult.swift in Sources */,
 				C300793D2436669F00A9BEB0 /* LocalizedString.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
@@ -20101,7 +20075,6 @@
 				9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				675F4BC524AB828100A828F9 /* AlertPreferencesRequest.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
-				9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				0EF60FD820EE8104006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				675F4C8B24AB828100A828F9 /* AppointmentsContainer.swift in Sources */,
 				E82FF1E71F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */,
@@ -20240,8 +20213,6 @@
 				9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				355B10442369E48D0038EAD3 /* KeychainManager.swift in Sources */,
 				9CE700AF231865AA00191C05 /* SERPTSViewModel.swift in Sources */,
-				9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */,
-				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
 				B04DDF7F2200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				823AA54B20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,

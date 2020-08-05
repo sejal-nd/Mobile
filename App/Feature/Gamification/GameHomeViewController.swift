@@ -46,7 +46,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     private var refreshControl: UIRefreshControl?
     
-    let viewModel = GameHomeViewModel(gameService: ServiceFactory.createGameService())
+    let viewModel = GameHomeViewModel()
 
     let bag = DisposeBag()
     
@@ -290,7 +290,7 @@ class GameHomeViewController: AccountPickerViewController {
         }).disposed(by: bag)
         
         viewModel.usageData.asDriver().drive(onNext: { [weak self] array in
-            guard let usageArray = array, usageArray.count > 0 else { return }
+            guard let usageArray = array, usageArray.dailyUsage.count > 0 else { return }
             self?.layoutCoinViews(usageArray: usageArray)
         }).disposed(by: bag)
         
@@ -306,7 +306,7 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.shouldShowWeeklyInsightUnreadIndicator.not().drive(weeklyInsightUnreadIndicator.rx.isHidden).disposed(by: bag)
     }
     
-    func layoutCoinViews(usageArray: [DailyUsage]) {
+    func layoutCoinViews(usageArray: DailyUsageData) {
         coinStack.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
@@ -315,16 +315,16 @@ class GameHomeViewController: AccountPickerViewController {
         var matchFound = false // If we've already found a data point, that means any subsequent placeholder view is a missing data point
         var date = Calendar.current.startOfDay(for: Date.now) // Based on user's timezone so their current "today" is always displayed
         while coinViews.count < 7 {
-            if let match = usageArray.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
+            if let match = usageArray.dailyUsage.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
                 matchFound = true
                 
                 let lastWeek = Calendar.current.date(byAdding: .day, value: -7, to: date)!
-                let lastWeekMatch = usageArray.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: lastWeek) }).first
+                let lastWeekMatch = usageArray.dailyUsage.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: lastWeek) }).first
 
                 let accountNumber = viewModel.accountDetail.value!.accountNumber
                 let canCollect = viewModel.coreDataManager.getCollectedCoin(accountNumber: accountNumber, date: match.date, gas: viewModel.selectedSegmentIndex == 1) == nil
 
-                let view = DailyInsightCoinView(usage: match, lastWeekUsage: lastWeekMatch, canCollect: canCollect)
+                let view = DailyInsightCoinView(dailyUsageData: usageArray, usage: match, lastWeekUsage: lastWeekMatch, canCollect: canCollect)
                 view.delegate = self
                 coinViews.append(view)
             } else {
@@ -603,7 +603,7 @@ class GameHomeViewController: AccountPickerViewController {
                 .delay(.milliseconds(500))
                 .drive(onNext: { [weak self] in
                     self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
-                    self?.viewModel.updateGameUserAnalytic(forKey: "pilotHomeProfileCompletion")
+                    self?.viewModel.updateGameUserAnalytic(pilotHomeProfileCompletion: String(true))
                 })
                 .disposed(by: vc.disposeBag)
             didGoToHomeProfile = true
@@ -738,7 +738,7 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
     
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         if didChangeStatus == .enroll {
-            viewModel.updateGameUserAnalytic(forKey: "pilotEBillEnrollment")
+            viewModel.updateGameUserAnalytic(pilotEBillEnrollment: String(true))
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(NSLocalizedString("Enrolled in Paperless eBill", comment: ""))
