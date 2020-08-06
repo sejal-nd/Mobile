@@ -48,12 +48,12 @@ class HomeBillCardViewModel {
                     GoogleAnalytics.log(event: .oneTouchBankComplete)
                 case (.bank, let error):
                     GoogleAnalytics.log(event: .oneTouchBankError,
-                                        dimensions: [.errorCode: (error as! ServiceError).serviceCode])
+                                        dimensions: [.errorCode: (error as? ServiceError)?.serviceCode ?? ""])
                 case (.card, nil):
                     GoogleAnalytics.log(event: .oneTouchCardComplete)
                 case (.card, let error):
                     GoogleAnalytics.log(event: .oneTouchCardError,
-                                        dimensions: [.errorCode: (error as! ServiceError).serviceCode])
+                                        dimensions: [.errorCode: (error as? ServiceError)?.serviceCode ?? ""])
                 }
             })
             .disposed(by: bag)

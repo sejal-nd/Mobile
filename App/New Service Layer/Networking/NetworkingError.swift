@@ -51,6 +51,16 @@ public enum NetworkingError: Error, Equatable {
     case failed // ComEd/PECO /payments endpoint with no scheduled payments
     case noEventResults // BGE /programs endpoint with no eventResults
     
+    // Paymentus Errors
+    case blockedPaymentMethod
+    case blockedUtilityAccount
+    case blockedPaymentType
+    case duplicatePayment
+    case paymentAccountVelocityBank
+    case paymentAccountVelocityCard
+    case utilityAccountVelocity
+    case walletItemIdTimeout
+    
     init(errorCode: String) {
         switch errorCode {
         case "INVALID-PROFILE-TYPE":
@@ -115,6 +125,22 @@ public enum NetworkingError: Error, Equatable {
             self = .failed
         case "FUNCTIONAL ERROR":
             self = .noEventResults
+        case "xmlPayment.declined":
+            self = .blockedPaymentMethod
+        case "accountNumber.suspended":
+            self = .blockedUtilityAccount
+        case "paymentMethodType.blocked":
+            self = .blockedPaymentType
+        case "xmlPayment.duplicate":
+            self = .duplicatePayment
+        case "pmBankAccount.tooManyPerPaymentMethodType":
+            self = .paymentAccountVelocityBank
+        case "pmCreditCardNumber.tooManyPerPaymentMethodType":
+            self = .paymentAccountVelocityCard
+        case "accountNumber.tooManyPerPaymentType":
+            self = .utilityAccountVelocity
+        case "tokenizedProfile.notProcessed":
+            self = .walletItemIdTimeout
         default:
             self = .generic
         }
@@ -127,10 +153,14 @@ public enum NetworkingError: Error, Equatable {
 extension NetworkingError: LocalizedError {
     public var title: String {
         return NSLocalizedString("Todo Title", comment: "Error title")
+        
+        
     }
     
     public var description: String {
         return NSLocalizedString("todo error dec", comment: "Error description")
+    
+        
         //        switch self {
         //        case .tooShort:
         //            return NSLocalizedString(
