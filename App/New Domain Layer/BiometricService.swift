@@ -1,21 +1,20 @@
 //
-//  BiometricsService.swift
-//  Mobile
+//  BiometricService.swift
+//  BGE
 //
-//  Created by Marc Shilling on 2/16/17.
-//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//  Created by Joseph Erlandson on 8/6/20.
+//  Copyright © 2020 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
 import LocalAuthentication
 
-class BiometricsService {
+enum BiometricService {
     
-    final private let KEYCHAIN_KEY = "kExelon_PW"
+    private static let keychainKey = "kExelon_PW"
     
-    private let keychain = A0SimpleKeychain()
-    
-    init() {
+    private static var keychain: A0SimpleKeychain {
+        let keychain = A0SimpleKeychain()
         keychain.useAccessControl = true
         keychain.defaultAccessiblity = A0SimpleKeychainItemAccessible.whenPasscodeSetThisDeviceOnly
         
@@ -40,9 +39,11 @@ class BiometricsService {
                 dLog("Failed to set resource values: \(error.localizedDescription)")
             }
         }
+        
+        return keychain
     }
     
-    func deviceBiometryType() -> String? {
+    static func deviceBiometryType() -> String? {
         let context = LAContext()
         
         var error: NSError?
@@ -56,33 +57,33 @@ class BiometricsService {
         return nil
     }
     
-    func isBiometricsEnabled() -> Bool {
+    static func isBiometricsEnabled() -> Bool {
         return deviceBiometryType() != nil && UserDefaults.standard.bool(forKey: UserDefaultKeys.isBiometricsEnabled)
     }
     
-    func getStoredUsername() -> String? {
+    static func getStoredUsername() -> String? {
         return UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
     }
     
-    func setStoredUsername(username: String) {
+    static func setStoredUsername(username: String) {
         UserDefaults.standard.set(username, forKey: UserDefaultKeys.loggedInUsername)
     }
     
-    func getStoredPassword() -> String? {
+    static func getStoredPassword() -> String? {
         var promptString = ""
         if let username = getStoredUsername() {
             promptString = String(format: NSLocalizedString("Sign in as %@", comment: ""), username)
         }
-        return keychain.string(forKey: KEYCHAIN_KEY, promptMessage: promptString)
+        return keychain.string(forKey: keychainKey, promptMessage: promptString)
     }
     
-    func setStoredPassword(password: String) {
-        keychain.setString(password, forKey: KEYCHAIN_KEY)
+    static func setStoredPassword(password: String) {
+        keychain.setString(password, forKey: keychainKey)
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.isBiometricsEnabled)
     }
     
-    func disableBiometrics() {
-        keychain.deleteEntry(forKey: KEYCHAIN_KEY)
+    static func disableBiometrics() {
+        keychain.deleteEntry(forKey: keychainKey)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isBiometricsEnabled)
     }
     

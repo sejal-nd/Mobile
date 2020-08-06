@@ -10,11 +10,6 @@ import Foundation
 
 /// Utility class for intantiating Service Instances
 struct ServiceFactory {
-
-    static func createBiometricsService() -> BiometricsService {
-        return BiometricsService()
-    }
-
     static func createWalletService() -> WalletService {
         switch Environment.shared.environmentName {
         case .aut:
