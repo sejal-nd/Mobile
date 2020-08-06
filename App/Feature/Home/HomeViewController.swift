@@ -805,10 +805,15 @@ extension HomeViewController: AccountPickerDelegate {
                             if accountNickname != account.accountNumber {
                                 nickname = accountNickname
                             }
-                            opcoIdentityView.resetNickname()
-                            opcoIdentityView.configure(nickname: nickname,
-                                                       opco: opcoType,
-                                                       hasMultipleAccounts: (accountPicker.accounts.count > 1))
+                            if nickname.isEmpty && accountPicker.accounts.count == 1 {
+                                opcoIdentityView.reset()
+                                mainStackView.removeArrangedSubview(opcoIdentityView)
+                            } else {
+                                opcoIdentityView.resetNickname()
+                                opcoIdentityView.configure(nickname: nickname,
+                                                               opco: opcoType,
+                                                hasMultipleAccounts: (accountPicker.accounts.count > 1))
+                            }
                         }
                     }
                 }
