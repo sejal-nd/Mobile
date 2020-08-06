@@ -9,9 +9,7 @@
 import Foundation
 import RxSwift
 
-// NOTE: The location of these static methods are subject to change
-
-public struct AuthenticatedService {
+public enum AuthenticatedService {
     
     private static let TOKEN_KEYCHAIN_KEY = "kExelon_Token"
     #if os(iOS)
@@ -55,12 +53,10 @@ public struct AuthenticatedService {
         }
     }
     
-    // todo may need to be fixed... not confident in implementation
     static func isLoggedIn() -> Bool {
         return !UserSession.shared.token.isEmpty
     }
     
-    // todo need to verify cancelAllTasks for network actually works becuase we changed the network configuration
     static func logout() {
         NetworkingLayer.cancelAllTasks()
         
@@ -72,7 +68,6 @@ public struct AuthenticatedService {
         UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameAccountNumber)
         
         UserSession.shared.token = "" // This might be wrong
-        
         
         // We may not even use accounts store anymore.
         AccountsStore.shared.accounts = nil

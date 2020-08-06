@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-struct WeatherService {
+enum WeatherService {
     static func getWeather(address: String, completion: @escaping (Result<Weather, NetworkingError>) -> ()) {
         let reverseGeocoder = CLGeocoder()
         

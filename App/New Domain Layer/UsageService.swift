@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UsageService {
+enum UsageService {
     
     static func compareBill(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool, completion: @escaping (Result<CompareBillResult, NetworkingError>) -> ()) {
         let encodedObject = CompareBillRequest(compareWith: yearAgo ? "YEAR_AGO" : "PREVIOUS",
@@ -16,7 +16,7 @@ struct UsageService {
         NetworkingLayer.request(router: .compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, encodable: encodedObject), completion: completion)
     }
     
-//    TODO: implement caching
+    // TODO: implement caching
     static func fetchBillForecast(accountNumber: String, premiseNumber: String, useCache: Bool = false, completion: @escaping (Result<BillForecastResult, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .forecastBill(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
