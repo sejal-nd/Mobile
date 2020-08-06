@@ -34,7 +34,6 @@ enum OutageService {
         }        
     }
     
-    // todo may want to relocate ect?
     static func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult? {
         return ReportedOutagesStore.shared[accountNumber]
     }
