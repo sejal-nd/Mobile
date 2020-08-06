@@ -127,19 +127,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 firstLogin = true
             }
             
-            let alertsService = ServiceFactory.createAlertsService()
-            alertsService.register(token: token, firstLogin: firstLogin)
-                .subscribe(onNext: {
+            let alertRegistrationRequest = AlertRegistrationRequest(notificationToken: token,
+                                                                    notificationProvider: "APNS",
+                                                                    mobileClient: AlertRegistrationRequest.MobileClient(id: Bundle.main.bundleIdentifier ?? "",
+                                                                                                                        version: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""),
+                                                                    setDefaults: firstLogin)
+            AlertService.register(request: alertRegistrationRequest) { result in
+                switch result {
+                case .success:
                     dLog("*-*-*-*-* Registered token with MCS")
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
                         UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
-                }, onError: { err in
-                    dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
-                })
-                .disposed(by: disposeBag)
+                case .failure(let error):
+                    dLog("*-*-*-*-* Failed to register token with MCS with error: \(error.localizedDescription)")
+                }
+            }
         }
     }
     

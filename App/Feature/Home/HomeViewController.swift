@@ -48,8 +48,7 @@ class HomeViewController: AccountPickerViewController {
     
     var alertLottieAnimation = AnimationView(name: "alert_icon")
     
-    let viewModel = HomeViewModel(walletService: ServiceFactory.createWalletService(),
-                                  alertsService: ServiceFactory.createAlertsService())
+    let viewModel = HomeViewModel(walletService: ServiceFactory.createWalletService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -722,7 +721,7 @@ class HomeViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         case let (vc as TotalSavingsViewController, eventResults as [SERResult]):
             vc.eventResults = eventResults
-        case let (vc as UpdatesDetailViewController, update as OpcoUpdate):
+        case let (vc as UpdatesDetailViewController, update as Alert):
             vc.opcoUpdate = update
         case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):
             vc.viewModel.outageStatus = currentOutageStatus

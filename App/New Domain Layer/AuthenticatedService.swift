@@ -80,36 +80,6 @@ public struct AuthenticatedService {
         AccountsStore.shared.customerIdentifier = nil
         StormModeStatus.shared.isOn = false
     }
-    
-    
-    // MARK: todo move from this service
-    static func fetchAlertBanner(bannerOnly: Bool, stormOnly: Bool, completion: @escaping (Result<[NewAlert], NetworkingError>) -> ()) {
-        var filterString: String
-
-        if bannerOnly {
-            filterString = "(Enable eq 1) and (CustomerType eq 'Banner')"
-        } else if stormOnly {
-            filterString = "(Enable eq 1) and (CustomerType eq 'Storm')"
-        } else {
-            filterString = "(Enable eq 1) and ((CustomerType eq 'All')"
-            ["Banner", "PeakRewards", "Peak Time Savings", "Smart Energy Rewards", "Storm"]
-                .forEach {
-                    filterString += "or (CustomerType eq '\($0)')"
-            }
-            filterString += ")"
-        }
-        
-        let queryItem = URLQueryItem(name: "$filter", value: filterString)
-        
-        NetworkingLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<NewSharePointAlert, NetworkingError>) in
-            switch result {
-            case .success(let data):
-                completion(.success(data.alerts))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
 }
 
 // MARK: Private methods

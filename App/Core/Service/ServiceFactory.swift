@@ -24,15 +24,6 @@ struct ServiceFactory {
         }
     }
 
-    static func createAlertsService() -> AlertsService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockAlertsService()
-        default:
-            return MCSAlertsService()
-        }
-    }
-
     static func createPeakRewardsService() -> PeakRewardsService {
         switch Environment.shared.environmentName {
         case .aut:

@@ -214,7 +214,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     private var loadingLottieAnimation = AnimationView(name: "sm_outage_loading")
     private var refreshControl: UIRefreshControl?
     
-    let viewModel = StormModeHomeViewModel(alertsService: ServiceFactory.createAlertsService())
+    let viewModel = StormModeHomeViewModel()
     
     let disposeBag = DisposeBag()
     var stormModePollingDisposable: Disposable?

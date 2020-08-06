@@ -12,7 +12,6 @@ import RxSwiftExt
 
 class HomeViewModel {
     private let walletService: WalletService
-    private let alertsService: AlertsService
     
     let fetchData = PublishSubject<Void>()
     let fetchDataObservable: Observable<Void>
@@ -29,11 +28,9 @@ class HomeViewModel {
     let latestNewCardVersion = HomeCard.latestNewCardVersion
     let appointmentsUpdates = PublishSubject<[Appointment]>() // Bind the detail screen's poll results to this
     
-    required init(walletService: WalletService,
-                  alertsService: AlertsService) {
+    required init(walletService: WalletService) {
         self.fetchDataObservable = fetchData.share()
         self.walletService = walletService
-        self.alertsService = alertsService
     }
     
     private(set) lazy var appointmentCardViewModel =
@@ -173,11 +170,11 @@ class HomeViewModel {
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = maintenanceModeEvents
+    private(set) lazy var importantUpdate: Driver<Alert?> = maintenanceModeEvents
         .filter { !($0.element?.all ?? false) && !($0.element?.home ?? false) }
         .toAsyncRequest { [weak self] _ in
             guard let this = self else { return .empty() }
-            return this.alertsService.fetchOpcoUpdates(bannerOnly: true)
+            return AlertService.rx.fetchAlertBanner(bannerOnly: true, stormOnly: false)
                 .map { $0.first }
                 .catchError { _ in .just(nil) }
         }

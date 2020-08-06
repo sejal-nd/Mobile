@@ -12,8 +12,6 @@ import RxCocoa
 class BudgetBillingViewModel {
     
     let disposeBag = DisposeBag()
-    
-    private var alertsService: AlertsService
 
     let accountDetail: AccountDetail!
 
@@ -21,9 +19,8 @@ class BudgetBillingViewModel {
     
     let selectedUnenrollmentReason = BehaviorRelay(value: -1)
     
-    required init(accountDetail: AccountDetail, alertsService: AlertsService) {
+    required init(accountDetail: AccountDetail) {
         self.accountDetail = accountDetail
-        self.alertsService = alertsService
     }
     
     func getBudgetBillingInfo(onSuccess: @escaping (BudgetBilling) -> Void, onError: @escaping (String) -> Void) {
@@ -45,20 +42,21 @@ class BudgetBillingViewModel {
                 guard let self = self else { return }
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
                 if Environment.shared.opco != .bge {
-                    self.alertsService.enrollBudgetBillingNotification(accountNumber: self.accountDetail.accountNumber)
-                        .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { _ in
+                    let alertPreferencesRequest = AlertPreferencesRequest(alertPreferenceRequests: [AlertPreferencesRequest.AlertRequest(isActive: true, type: "push", programName: "Budget Billing")])
+                    AlertService.setAlertPreferences(accountNumber: self.accountDetail.accountNumber, request: alertPreferencesRequest) { result in
+                        switch result {
+                        case .success:
                             dLog("Enrolled in the budget billing push notification")
-                            onSuccess()
-                        }, onError: { error in
+                        case .failure:
                             dLog("Failed to enroll in the budget billing push notification")
-                            onSuccess()
-                        }).disposed(by: self.disposeBag)
+                        }
+                        onSuccess()
+                    }
                 } else {
                     onSuccess()
                 }
-            }, onError: { error in
-                onError(error.localizedDescription)
+                }, onError: { error in
+                    onError(error.localizedDescription)
             })
             .disposed(by: disposeBag)
     }

@@ -16,41 +16,36 @@ class UpdatesViewModel {
     let reloadTableViewEvent = PublishSubject<Void>()
     let a11yScreenChangedEvent = PublishSubject<Void>()
 
-    let alertsService: AlertsService
-
     let selectedSegmentIndex = BehaviorRelay(value: 0)
 
     let isFetchingUpdates = BehaviorRelay(value: false)
     let isUpdatesError = BehaviorRelay(value: false)
     let isNoNetworkConnection = BehaviorRelay(value: false)
 
-    var currentOpcoUpdates = BehaviorRelay<[OpcoUpdate]?>(value: nil)
+    var currentOpcoUpdates = BehaviorRelay<[Alert]?>(value: nil)
 
-    required init(alertsService: AlertsService) {
-        self.alertsService = alertsService
-    }
-    
     /// Should Succeed allows us to unit test a failure
     func fetchData() {
         isFetchingUpdates.accept(true)
         isUpdatesError.accept(false)
         isNoNetworkConnection.accept(false)
         
-        alertsService.fetchOpcoUpdates()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] opcoUpdates in
-                self?.currentOpcoUpdates.accept(opcoUpdates)
+        AlertService.fetchAlertBanner(bannerOnly: false, stormOnly: false) { [weak self] result in
+            switch result {
+            case .success(let updates):
+                self?.currentOpcoUpdates.accept(updates)
                 self?.isFetchingUpdates.accept(false)
                 self?.isNoNetworkConnection.accept(false)
                 self?.reloadTableViewEvent.onNext(())
                 self?.a11yScreenChangedEvent.onNext(())
-                }, onError: { [weak self] err in
-                    self?.isFetchingUpdates.accept(false)
-                    self?.isUpdatesError.accept(true)
-                    if let error = err as? ServiceError {
-                        self?.isNoNetworkConnection.accept(error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue)
-                    }
-            }).disposed(by: self.disposeBag)
+            case .failure(let error):
+                self?.isFetchingUpdates.accept(false)
+                self?.isUpdatesError.accept(true)
+                if error == .noNetwork {
+                    self?.isNoNetworkConnection.accept(true)
+                }
+            }
+        }
     }
 
     private(set) lazy var shouldShowLoadingIndicator: Driver<Bool> = self.isFetchingUpdates.asDriver()
