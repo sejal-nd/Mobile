@@ -794,15 +794,24 @@ extension HomeViewController: AccountPickerDelegate {
         if let account = accountPicker.currentAccount {
             if Environment.shared.opco.isPHI {
                 if accountPicker.accounts.count > 1 && account.accountNickname?.count == .zero {
+                    opcoIdentityView.reset()
                     mainStackView.removeArrangedSubview(opcoIdentityView)
                 } else {
                     if let opcoType = account.opcoType {
-                        opcoIdentityView.configure(nickname: account.accountNickname ?? "",
-                                                   opco: opcoType,
-                                                   hasMultipleAccounts: (accountPicker.accounts.count > 1))
+                        mainStackView.insertArrangedSubview(opcoIdentityView, at: 0)
+                        mainStackView.insertArrangedSubview(weatherView, at: 1)
+                        if let accountNickname = account.accountNickname {
+                            var nickname = ""
+                            if accountNickname != account.accountNumber {
+                                nickname = accountNickname
+                            }
+                            opcoIdentityView.resetNickname()
+                            opcoIdentityView.configure(nickname: nickname,
+                                                       opco: opcoType,
+                                                       hasMultipleAccounts: (accountPicker.accounts.count > 1))
+                        }
                     }
                 }
-                
             }
         }
         let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
