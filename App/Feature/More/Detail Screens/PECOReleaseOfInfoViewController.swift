@@ -81,34 +81,34 @@ class PECOReleaseOfInfoViewController: UIViewController {
         
         FirebaseUtility.logEvent(.releaseOfInfoSubmit)
         GoogleAnalytics.log(event: .releaseInfoSubmit)
-        AccountService.rx.updatePECOReleaseOfInfoPreference(selectedIndex: rowToIntMapping)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
+        
+        AccountService.updatePECOReleaseOfInfoPreference(selectedIndex: rowToIntMapping) { [weak self] result in
+            switch result {
+            case .success:
                 LoadingView.hide()
                 guard let self = self else { return }
-                
                 FirebaseUtility.logEvent(.releaseOfInfoNetworkComplete)
                 
                 FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .release_of_info_complete)])
                 
                 self.delegate?.pecoReleaseOfInfoViewControllerDidUpdate(self)
                 self.navigationController?.popViewController(animated: true)
-            }, onError: { [weak self] error in
+            case .failure(let error):
                 LoadingView.hide()
-                guard let self = self else { return }
-                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
+                let alertVc = UIAlertController(title: error.title, message: error.description, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
+                self?.present(alertVc, animated: true, completion: nil)
+                
+            }
+        }
     }
     
     func fetchCurrentSelection() {
         let fetchReleaseOfInfo = { [weak self] in
             guard let self = self else { return }
-            AccountService.rx.fetchAccountDetails()
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] accountDetail in
+            AccountService.fetchAccountDetails { [weak self] result in
+                switch result {
+                case .success(let accountDetail):
                     guard let self = self else { return }
                     if let selectedRelease = accountDetail.releaseOfInformation {
                         if let releaseOfInfoInt = Int(selectedRelease) {
@@ -125,29 +125,31 @@ class PECOReleaseOfInfoViewController: UIViewController {
                     self.loadingIndicator.isHidden = true
                     self.tableView.isHidden = false
                     UIAccessibility.post(notification: .screenChanged, argument: self.tableView)
-                }, onError: { [weak self] error in
+                case .failure:
                     guard let self = self else { return }
                     self.errorLabel.isHidden = false
                     self.loadingIndicator.isHidden = true
                     UIAccessibility.post(notification: .screenChanged, argument: self.view)
-                })
-                .disposed(by: self.disposeBag)
+                }
+                
+            }
         }
         
         if AccountsStore.shared.currentIndex == nil {
-            AccountService.rx.fetchAccounts()
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] _ in
+            AccountService.fetchAccounts { [weak self] result in
+                switch result {
+                case .success:
                     guard let self = self else { return }
                     let currentAccount = AccountsStore.shared.currentAccount
                     self.accountInfoBar.configure(accountNumberText: currentAccount.accountNumber, addressText: currentAccount.address)
                     fetchReleaseOfInfo()
-                }, onError: { [weak self] error in
+                case .failure:
                     guard let self = self else { return }
                     self.errorLabel.isHidden = false
                     self.loadingIndicator.isHidden = true
-                })
-                .disposed(by: disposeBag)
+                    
+                }
+            }
         } else {
             fetchReleaseOfInfo()
         }

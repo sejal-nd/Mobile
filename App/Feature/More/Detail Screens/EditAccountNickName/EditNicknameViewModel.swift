@@ -68,19 +68,20 @@ final class EditNicknameViewModel {
     ///   - onError: onError Block that will notify error case
     func setAccountNickname(onSuccess: @escaping () -> Void,
                             onError: @escaping (String) -> Void) {
-        AccountService.rx.setAccountNickname(nickname: accountNickName.value, accountNumber: accountNumber)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                AccountService.rx.fetchAccounts()
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { __SRD in
+        AccountService.setAccountNickname(nickname: accountNickName.value, accountNumber: accountNumber) { nicknameResult in
+            switch nicknameResult {
+            case .success:
+                AccountService.fetchAccounts { accountsResult in
+                    switch accountsResult {
+                    case .success:
                         onSuccess()
-                    }, onError: { error in
-                        onError(error.localizedDescription)
-                    }).disposed(by: self.disposeBag)
-            }, onError: { error in
-                onError(error.localizedDescription)
-            }).disposed(by: disposeBag)
+                    case .failure(let error):
+                        onError(error.description)
+                    }
+                }
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
 }
