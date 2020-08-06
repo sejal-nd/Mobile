@@ -1,0 +1,27 @@
+{
+    "default": {
+        "success": true,
+        "data": {
+            "registerResult": {
+                "id": "60f5cadd-9558-431e-a748-88cb6a9935cf",
+                "targetId": "BGE_6554701000",
+                "notificationToken": "ffz1cGOh3xg:APA91bHOs1quXOfpUBgrVIwxg8QcreVoQ8KRFvhjCP12LVTXRZ_kJQbLVLEaGVkmnVLDPgiysHCG4qdiRsXCkhMdv907KPB0oTufBtX6wtxOTXNU8CQNDzimnOVvoHL9J48Rat7puOZs",
+                "notificationProvider": "GCM",
+                "mobileClient": {
+                    "id": "com.exelon.mobile.bge.testing",
+                    "version": "1.1.0",
+                    "platform": "ANDROID"
+                },
+                "modifiedOn": "2017-10-11T17:15:22.922Z"
+            }
+        }
+    },
+    "error": {
+        "success": false,
+        "meta": {
+            "code": 400,
+            "description": "Error registering device for push notification. We can't create the device because of the following problems: The notification provider GCM1 isn't valid. Only APNS, GCM, SYNIVERSE, WNS are supported. Specify valid properties and try again.",
+            "context": "005MoZr3n3oA9T3_Rll3id0001Cv0002UC"
+        }
+    }
+}

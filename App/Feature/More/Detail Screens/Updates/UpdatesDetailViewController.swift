@@ -12,7 +12,7 @@ class UpdatesDetailViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var label: UILabel!
     
-    var opcoUpdate: OpcoUpdate!
+    var opcoUpdate: Alert!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default

@@ -16,12 +16,14 @@ public enum Router {
         case admin
         case anon
         case auth
-        case external
+        case none
         
         public var path: String {
             switch self {
             case .anon:
                 return "\(rawValue)/\(Environment.shared.opco.rawValue.uppercased())"
+            case .none:
+                return ""
             default:
                 return rawValue
             }
@@ -54,9 +56,7 @@ public enum Router {
     case wallet
     
     case payments(accountNumber: String)
-    
-    case alertBanner(additionalQueryItem: URLQueryItem)
-    
+        
     // Billing
     
     case billPDF(accountNumber: String, date: Date, documentID: String)
@@ -107,9 +107,13 @@ public enum Router {
     case updateGameUser(accountNumber: String, request: GameUserRequest)
     case fetchDailyUsage(accountNumber: String, premiseNumber: String, request: DailyUsageRequest)
     
-    // Alert Preferences
+    // Alerts
+    case registerForAlerts(request: AlertRegistrationRequest)
     case alertPreferencesLoad(accountNumber: String)
-    case alertPreferencesUpdate(accountNumber: String, encodable: Encodable)
+    case alertPreferencesUpdate(accountNumber: String, request: AlertPreferencesRequest)
+    case fetchAlertLanguage(accountNumber: String)
+    case setAlertLanguage(accountNumber: String, request: AlertLanguageRequest)
+    case alertBanner(additionalQueryItem: URLQueryItem)
     
     case newsAndUpdates(additionalQueryItem: URLQueryItem)
     
@@ -157,8 +161,8 @@ public enum Router {
     
     public var apiAccess: ApiAccess {
         switch self {
-        case .weather:
-            return .external
+        case .weather, .registerForAlerts:
+            return .none
         case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .recoverPassword:
             return .anon
         default:
@@ -260,8 +264,12 @@ public enum Router {
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile"
         case .energyRewardsLoad(let accountNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/programs"
+        case .registerForAlerts:
+            return "\(basePath)/noti/\(apiAccess.path)/notification/registration"
         case .alertPreferencesLoad(let accountNumber), .alertPreferencesUpdate(let accountNumber, _):
-            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/alerts/preferences/push"
+            return "\(basePath)/pref/\(apiAccess.path)/accounts/\(accountNumber)/alerts/preferences/push"
+        case .fetchAlertLanguage(let accountNumber), .setAlertLanguage(let accountNumber, _):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/alerts/accounts"
         case .appointments(let accountNumber, let premiseNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/service/appointments/query"
         case .passwordChange:
@@ -295,12 +303,12 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .register, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon:
+        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .register, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname:
+        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname, .fetchAlertLanguage:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
-             .updateReleaseOfInfo, .validateConfirmationEmail, .setDefaultAccount, .updateAutoPay, .updateAutoPayBGE:
+             .updateReleaseOfInfo, .validateConfirmationEmail, .setDefaultAccount, .updateAutoPay, .updateAutoPayBGE, .setAlertLanguage:
             return "PUT"
         case .paperlessUnenroll:
             return "DELETE"
@@ -320,7 +328,7 @@ public enum Router {
             headers["Accept"] = "application/json;odata=verbose"
         case .fetchJWTToken:
             headers["content-type"] = "application/x-www-form-urlencoded"
-        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .updateAutoPay, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .validateConfirmationEmail, .recoverPassword, .passwordChange, .fetchGameUser, .updateGameUser, .fetchDailyUsage:
+        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .payment, .deleteWalletItem, .compareBill, .autoPayEnroll, .updateAutoPay, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .validateConfirmationEmail, .recoverPassword, .passwordChange, .fetchGameUser, .updateGameUser, .fetchDailyUsage, .registerForAlerts, .fetchAlertLanguage, .setAlertLanguage:
             headers["Content-Type"] = "application/json"
         default:
             break
@@ -352,7 +360,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .register(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable):
+        case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .payment(let request as Encodable), .deleteWalletItem(let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .register(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable):
             return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
@@ -430,7 +438,7 @@ public enum Router {
             return "AlertPreferencesLoadMock"
         case .appointments:
             return "AppointmentsMock"
-        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .checkDuplicateRegistration, .sendConfirmationEmail, .validateConfirmationEmail, .register, .recoverPassword, .passwordChange:
+        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .checkDuplicateRegistration, .sendConfirmationEmail, .validateConfirmationEmail, .register, .recoverPassword, .passwordChange, .fetchAlertLanguage, .setAlertLanguage:
             return "GenericResponseMock"
         case .validateRegistration:
             return "ValidateRegistrationMock"
@@ -442,6 +450,8 @@ public enum Router {
             return "UpdateGameUserMock" // todo
         case .fetchDailyUsage:
             return "DailyUsageMock"
+        case .registerForAlerts: 
+            return "RegisterForAlertsMock"
         default:
             return ""
         }
