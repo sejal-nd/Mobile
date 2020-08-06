@@ -17,6 +17,12 @@ final class OpcoIdentityCardView: UIView {
     /// `UIIMageView` instance to show logo for selectetd opco
     @IBOutlet private weak var logo: UIImageView!
     
+    /// `NSLayoutConstraint` instance to manipulate width of `accountNickname`
+    private var widthConstraint: NSLayoutConstraint?
+    
+    /// `NSLayoutConstraint` instance to manipulate distance in `accountNickname` and `logo`
+    @IBOutlet private var logoLeadingAnchor: NSLayoutConstraint?
+    
     static func create() -> OpcoIdentityCardView {
         let view = Bundle.main.loadViewFromNib() as OpcoIdentityCardView
         view.styleViews()
@@ -32,12 +38,27 @@ final class OpcoIdentityCardView: UIView {
         accessibilityElements = [accountNickname, logo] as [UIView]
     }
     
+    /// This method layouts interface based on availability of nickname
+    /// - Parameter nickname: `accountNickName`
+    private func layoutInterface(_ nickname: String) {
+        if !nickname.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            widthConstraint = accountNickname.widthAnchor.constraint(lessThanOrEqualToConstant: 228)
+            widthConstraint?.isActive = true
+            logoLeadingAnchor?.isActive = false
+        } else {
+            widthConstraint?.isActive = false
+            logoLeadingAnchor?.isActive = true
+        }
+    }
+    
     /// This method is used to configure `OpcoIdentityCardView`
     /// - Parameters:
     ///   - nickname: `nickname`
     ///   - opco: `opco`
     ///   - hasMultipleAccounts: `flag` to identify whether the account has multiple accounts tagged to it
     func configure(nickname: String, opco: OpCo, hasMultipleAccounts: Bool) {
+        // Layout Interface
+        layoutInterface(nickname)
         // Account has a nickname and has multiple accounts attached to it
         if !nickname.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && hasMultipleAccounts {
             accountNickname.text = nickname
@@ -66,5 +87,18 @@ final class OpcoIdentityCardView: UIView {
         default:
             break
         }
+    }
+    
+    /// Reset all set values
+    func reset() {
+        logo.image = nil
+        accountNickname.text = ""
+        widthConstraint?.isActive = false
+        logoLeadingAnchor?.isActive = true
+    }
+    
+    /// This func resets nickname
+    func resetNickname() {
+        accountNickname.text = ""
     }
 }

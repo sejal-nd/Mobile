@@ -421,8 +421,8 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         // Edit Payment Detail View
         paymentStatusValueLabel.text = billingHistoryItem?.statusString?.capitalized
         confirmationNumberValueTextView.text = billingHistoryItem?.confirmationNumber
-        
-        footerLabel.text = viewModel.walletFooterLabelText
+        let footerLabelText = viewModel.walletFooterLabelText
+        footerLabel.text = footerLabelText
         
         // Sticky Footer Payment View
         viewModel.totalPaymentDisplayString.map { $0 ?? "--" }
