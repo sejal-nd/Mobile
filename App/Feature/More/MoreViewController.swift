@@ -173,7 +173,7 @@ class MoreViewController: UIViewController {
     private func logout(action: UIAlertAction) {
         FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .sign_out)])
             
-        AuthenticatedService.logout()
+        AuthenticationService.logout()
 
         RxNotifications.shared.configureQuickActions.onNext(false)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)

@@ -1369,12 +1369,12 @@
 		675F4C0824AB828100A828F9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
 		675F4C0A24AB828100A828F9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
 		675F4C0B24AB828100A828F9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
-		675F4C1224AB828100A828F9 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticatedService.swift */; };
-		675F4C1324AB828100A828F9 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticatedService.swift */; };
-		675F4C1424AB828100A828F9 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticatedService.swift */; };
-		675F4C1524AB828100A828F9 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticatedService.swift */; };
-		675F4C1624AB828100A828F9 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticatedService.swift */; };
-		675F4C1724AB828100A828F9 /* AuthenticatedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticatedService.swift */; };
+		675F4C1224AB828100A828F9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		675F4C1324AB828100A828F9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		675F4C1424AB828100A828F9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		675F4C1524AB828100A828F9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		675F4C1624AB828100A828F9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		675F4C1724AB828100A828F9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
 		675F4C1824AB828100A828F9 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0824AB828000A828F9 /* WeatherService.swift */; };
 		675F4C1924AB828100A828F9 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0824AB828000A828F9 /* WeatherService.swift */; };
 		675F4C1A24AB828100A828F9 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0824AB828000A828F9 /* WeatherService.swift */; };
@@ -7218,7 +7218,7 @@
 		675F4B0324AB828000A828F9 /* PaymentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
 		675F4B0424AB828000A828F9 /* ChangePasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequest.swift; sourceTree = "<group>"; };
 		675F4B0524AB828000A828F9 /* AnyEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
-		675F4B0724AB828000A828F9 /* AuthenticatedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedService.swift; sourceTree = "<group>"; };
+		675F4B0724AB828000A828F9 /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		675F4B0824AB828000A828F9 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		675F4B0924AB828000A828F9 /* PaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
 		675F4B0A24AB828000A828F9 /* UsageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageService.swift; sourceTree = "<group>"; };
@@ -9830,7 +9830,7 @@
 				675F4AE924AB828000A828F9 /* AnonymousService.swift */,
 				675F4AEA24AB828000A828F9 /* RegistrationService.swift */,
 				675F4AEB24AB828000A828F9 /* GameService.swift */,
-				675F4B0724AB828000A828F9 /* AuthenticatedService.swift */,
+				675F4B0724AB828000A828F9 /* AuthenticationService.swift */,
 				C3087A9824B65B0A005AE544 /* AccountService.swift */,
 				675F4B0824AB828000A828F9 /* WeatherService.swift */,
 				675F4B0924AB828000A828F9 /* PaymentService.swift */,
@@ -16337,7 +16337,7 @@
 				675F4CC924AB828200A828F9 /* EndpointError.swift in Sources */,
 				67DDB39B24535D2E006CD6EB /* HomeUpdateView.swift in Sources */,
 				67DDB39C24535D2E006CD6EB /* MiniWalletSheetViewController.swift in Sources */,
-				675F4C1524AB828100A828F9 /* AuthenticatedService.swift in Sources */,
+				675F4C1524AB828100A828F9 /* AuthenticationService.swift in Sources */,
 				67893A9D24DB1E2E000143D6 /* GameService+Rx.swift in Sources */,
 				675F4DEF24AB828200A828F9 /* Router.swift in Sources */,
 				67DDB39D24535D2E006CD6EB /* BillBreakdownViewController.swift in Sources */,
@@ -16760,7 +16760,7 @@
 				67DDB5C224535D32006CD6EB /* AppointmentDetailViewController.swift in Sources */,
 				67DDB5C324535D32006CD6EB /* Top5EnergyTipsViewModel.swift in Sources */,
 				67DDB5C424535D32006CD6EB /* GiftInventory.swift in Sources */,
-				675F4C1724AB828100A828F9 /* AuthenticatedService.swift in Sources */,
+				675F4C1724AB828100A828F9 /* AuthenticationService.swift in Sources */,
 				675F4BBD24AB828100A828F9 /* BudgetBillingUnenrollRequest.swift in Sources */,
 				C3DF2BC124CB42CE00A6D4EC /* PaymentService+Rx.swift in Sources */,
 				67DDB5C624535D32006CD6EB /* ToastView.swift in Sources */,
@@ -17240,7 +17240,7 @@
 				67DDB81824535D35006CD6EB /* AppointmentDetailViewController.swift in Sources */,
 				67DDB81924535D35006CD6EB /* Top5EnergyTipsViewModel.swift in Sources */,
 				67DDB81A24535D35006CD6EB /* GiftInventory.swift in Sources */,
-				675F4C1624AB828100A828F9 /* AuthenticatedService.swift in Sources */,
+				675F4C1624AB828100A828F9 /* AuthenticationService.swift in Sources */,
 				675F4BBC24AB828100A828F9 /* BudgetBillingUnenrollRequest.swift in Sources */,
 				C3DF2BBF24CB42CE00A6D4EC /* PaymentService+Rx.swift in Sources */,
 				67DDB81C24535D35006CD6EB /* ToastView.swift in Sources */,
@@ -19057,7 +19057,7 @@
 				C3087B1624BDF0D5005AE544 /* UsageService+Rx.swift in Sources */,
 				35C913A322EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
 				9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
-				675F4C1224AB828100A828F9 /* AuthenticatedService.swift in Sources */,
+				675F4C1224AB828100A828F9 /* AuthenticationService.swift in Sources */,
 				675F4C6024AB828100A828F9 /* BillForecast.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				35A2B88924A1E0E0004B38BC /* RegistrationValidateAccountViewController.swift in Sources */,
@@ -19541,7 +19541,7 @@
 				C3087B1A24BDF0D5005AE544 /* UsageService+Rx.swift in Sources */,
 				35ACCB4B20EA7ABD0022907F /* HomeOutageCardView.swift in Sources */,
 				82837D161F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
-				675F4C1424AB828100A828F9 /* AuthenticatedService.swift in Sources */,
+				675F4C1424AB828100A828F9 /* AuthenticationService.swift in Sources */,
 				675F4C6224AB828100A828F9 /* BillForecast.swift in Sources */,
 				E8C453291EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				9C37BA932388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
@@ -20022,7 +20022,7 @@
 				35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */,
 				9C62447122C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				35C913A422EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
-				675F4C1324AB828100A828F9 /* AuthenticatedService.swift in Sources */,
+				675F4C1324AB828100A828F9 /* AuthenticationService.swift in Sources */,
 				675F4C6124AB828100A828F9 /* BillForecast.swift in Sources */,
 				9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,

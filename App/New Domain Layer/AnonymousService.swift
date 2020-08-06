@@ -21,21 +21,18 @@ enum AnonymousService {
     }
     
     static func maintenanceMode(shouldPostNotification: Bool = false, completion: @escaping (Result<MaintenanceMode, Error>) -> ()) {
-        print("maint start")
         NetworkingLayer.request(router: .maintenanceMode) { (result: Result<MaintenanceMode, NetworkingError>) in
             switch result {
             case .success(let maintenanceMode):
                 if maintenanceMode.all && shouldPostNotification {
                     NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: maintenanceMode)
                 }
-                print("maint succeed")
                 completion(.success(maintenanceMode))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
-    
     
     static func recoverMaskedUsername(request: RecoverMaskedUsernameRequest, completion: @escaping (Result<ForgotMaskedUsernames, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .recoverMaskedUsername(request: request), completion: completion)
@@ -53,27 +50,8 @@ enum AnonymousService {
         NetworkingLayer.request(router: .passwordChange(request: request), completion: completion)
     }
     
-    // todo
     static func lookupAccount(request: AccountLookupRequest, completion: @escaping (Result<AccountLookupResults, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .accountLookup(request: request), completion: completion)
     }
     
 }
-
-
-// Account Lookup
-
-//static func lookupAccount(request: AccountLookupRequest, completion: @escaping (Result<NewAccountLookupResult, NetworkingError>) -> ()) {
-//
-//    NetworkingLayer.request(router: .accountLookup(encodable: request)) { (result: Result<NewAccountLookupResult, NetworkingError>) in
-//        switch result {
-//        case .success(let data):
-//            print("lookupAccount SUCCESS: \(data)")
-//            completion(.success(data))
-//
-//        case .failure(let error):
-//            print("lookupAccount FAIL: \(error)")
-//            completion(.failure(error))
-//        }
-//    }
-//}

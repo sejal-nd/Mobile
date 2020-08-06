@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-public enum AuthenticatedService {
+public enum AuthenticationService {
     
     private static let TOKEN_KEYCHAIN_KEY = "kExelon_Token"
     #if os(iOS)
@@ -61,9 +61,9 @@ public enum AuthenticatedService {
         NetworkingLayer.cancelAllTasks()
         
         #if os(iOS)
-        AuthenticatedService.tokenKeychain.deleteEntry(forKey: AuthenticatedService.TOKEN_KEYCHAIN_KEY)
+        AuthenticationService.tokenKeychain.deleteEntry(forKey: AuthenticationService.TOKEN_KEYCHAIN_KEY)
         #elseif os(watchOS)
-        AuthenticatedService.tokenKeychain[AuthenticatedService.TOKEN_KEYCHAIN_KEY] = nil
+        AuthenticationService.tokenKeychain[AuthenticationService.TOKEN_KEYCHAIN_KEY] = nil
         #endif
         UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameAccountNumber)
         
@@ -79,7 +79,7 @@ public enum AuthenticatedService {
 
 // MARK: Private methods
     
-extension AuthenticatedService {
+extension AuthenticationService {
     
     private static func performLogin(username: String,
                                      password: String,

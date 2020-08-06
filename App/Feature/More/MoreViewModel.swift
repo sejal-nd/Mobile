@@ -50,7 +50,7 @@ class MoreViewModel {
     }
     
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        AuthenticatedService.validateLogin(username: username.value,
+        AuthenticationService.validateLogin(username: username.value,
                                            password: password.value) { [weak self] result in
                                             switch result {
                                             case .success:

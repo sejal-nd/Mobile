@@ -71,7 +71,7 @@ class SplashViewController: UIViewController{
             })
             .disposed(by: bag)
         
-        if AuthenticatedService.isLoggedIn() {
+        if AuthenticationService.isLoggedIn() {
             self.keepMeSignedIn = true
             self.imageView.isHidden = false
             self.splashAnimationContainer.isHidden = true

@@ -52,7 +52,7 @@ class LoginViewModel {
         }
         
         isLoggingIn = true
-        AuthenticatedService.login(username: username.value,
+        AuthenticationService.login(username: username.value,
                                    password: password.value,
                                    shouldSaveToKeychain: keepMeSignedIn.value) { [weak self] (result: Result<Bool, NetworkingError>) in
                                     switch result {
@@ -64,7 +64,7 @@ class LoginViewModel {
                                             
                                             if hasTempPassword {
                                                 onSuccess(hasTempPassword, false)
-                                                AuthenticatedService.logout()
+                                                AuthenticationService.logout()
                                             } else {
                                                 self.checkStormMode { isStormMode in
                                                     onSuccess(hasTempPassword, isStormMode)
