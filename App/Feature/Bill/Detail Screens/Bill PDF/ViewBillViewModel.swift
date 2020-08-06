@@ -25,27 +25,19 @@ class ViewBillViewModel {
     }
     
     func fetchBillPDFData(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        BillService.rx.fetchBillPdf(accountNumber: AccountsStore.shared.currentAccount.accountNumber, billDate: billDate, documentID: documentID ?? "")
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] billDataString in
+        BillService.fetchBillPdf(accountNumber: AccountsStore.shared.currentAccount.accountNumber, billDate: billDate, documentID: documentID ?? "") { [weak self] result in
+            switch result {
+            case .success(let billDataString):
                 if let pdfData = Data(base64Encoded: billDataString, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) {
                     self?.pdfData = pdfData
                     onSuccess()
                 } else {
                     onError("Could not parse PDF Data")
                 }
-                }, onError: { [weak self] errMessage in
-                    onError(errMessage.localizedDescription)
-                    guard let self = self else { return }
-                    let screenView: GoogleAnalyticsEvent = self.isCurrent ? .billViewCurrentError : .billViewPastError
-                    if let serviceError = errMessage as? ServiceError {
-                        GoogleAnalytics.log(event: screenView, dimensions: [.errorCode: serviceError.serviceCode])
-                    }
-//                    else if let networkError = errMessage as? NetworkingError {
-//                        GoogleAnalytics.log(event: screenView, dimensions: [.errorCode: networkError.]) TODO: get error code?
-//                    }
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     func downloadPDFToTempDirectory(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {

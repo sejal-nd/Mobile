@@ -110,13 +110,15 @@ class GameOnboardingStep2ViewController: UIViewController {
         }
         
         LoadingView.show()
-        UsageService.rx.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { homeProfile in
+        
+        UsageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber ?? "") { [weak self] result in
+            switch result {
+            case .success(let homeProfile):
                 updateGameUser(homeProfile.isFilled ? "COMPLETE" : "NOT COMPLETE")
-            }, onError: { _ in
+            case .failure:
                 updateGameUser("UNKNOWN")
-            }).disposed(by: bag)
+            }
+        }
     }
     
     private func resetAllButtons() {

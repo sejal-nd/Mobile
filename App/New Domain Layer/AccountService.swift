@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AccountService {
+enum AccountService {
     
     static func fetchAccounts(completion: @escaping (Result<[Account], NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .accounts) { (result: Result<[Account], NetworkingError>) in

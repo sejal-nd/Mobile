@@ -41,7 +41,7 @@ class MoreViewController: UIViewController {
         }
     }
 
-    let viewModel = MoreViewModel(biometricsService: ServiceFactory.createBiometricsService())
+    let viewModel = MoreViewModel()
     
     private var biometricsPasswordRetryCount = 0
     

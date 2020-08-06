@@ -21,24 +21,20 @@ class LoginViewModel {
     var keepMeSignedIn = BehaviorRelay(value: false)
     var biometricsEnabled = BehaviorRelay(value: false)
     var isLoggingIn = false
-    
-    private var biometricsService: BiometricsService
-    
-    init(biometricsService: BiometricsService) {
-        self.biometricsService = biometricsService
         
-        if let username = biometricsService.getStoredUsername() {
+    init() {
+        if let username = BiometricService.getStoredUsername() {
             self.username.accept(username)
         }
-        biometricsEnabled.accept(biometricsService.isBiometricsEnabled())
+        biometricsEnabled.accept(BiometricService.isBiometricsEnabled())
     }
     
     func isDeviceBiometricCompatible() -> Bool {
-        return biometricsService.deviceBiometryType() != nil
+        return BiometricService.deviceBiometryType() != nil
     }
     
     func biometricsString() -> String? {
-        return biometricsService.deviceBiometryType()
+        return BiometricService.deviceBiometryType()
     }
     
     func shouldPromptToEnableBiometrics() -> Bool {
@@ -102,19 +98,19 @@ class LoginViewModel {
     }
     
     func getStoredUsername() -> String? {
-        return biometricsService.getStoredUsername()
+        return BiometricService.getStoredUsername()
     }
     
     func storeUsername() {
-        biometricsService.setStoredUsername(username: username.value)
+        BiometricService.setStoredUsername(username: username.value)
     }
     
     func storePasswordInSecureEnclave() {
-        biometricsService.setStoredPassword(password: password.value)
+        BiometricService.setStoredPassword(password: password.value)
     }
     
     func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool, Bool) -> Void, onError: @escaping (String?, String) -> Void) {
-        if let username = biometricsService.getStoredUsername(), let password = biometricsService.getStoredPassword() {
+        if let username = BiometricService.getStoredUsername(), let password = BiometricService.getStoredPassword() {
             self.username.accept(username)
             biometricsAutofilledPassword = password
             self.password.accept(password)
@@ -127,7 +123,7 @@ class LoginViewModel {
     }
     
     func disableBiometrics() {
-        biometricsService.disableBiometrics()
+        BiometricService.disableBiometrics()
         biometricsEnabled.accept(false)
     }
     

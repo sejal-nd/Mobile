@@ -126,14 +126,14 @@ class BGEAutoPayViewModel {
         
         let request = AutoPayEnrollBGERequest(amountType: amountToPay.value.rawValue, paymentDaysBeforeDue: String(daysBefore), isUpdate: false, walletItemId: selectedWalletItem.value?.walletItemId, amountThreshold: amountNotToExceed.value.twoDecimalString)
         
-        PaymentService.rx.autoPayEnrollBGE(accountNumber: accountDetail.accountNumber, request: request)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        PaymentService.enrollAutoPayBGE(accountNumber: accountDetail.accountNumber, request: request) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { error in
-                onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     func update(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -141,25 +141,25 @@ class BGEAutoPayViewModel {
         
         let request = AutoPayEnrollBGERequest(amountType: amountToPay.value.rawValue, paymentDaysBeforeDue: String(daysBefore), isUpdate: true, walletItemId: selectedWalletItem.value?.walletItemId, amountThreshold: amountNotToExceed.value.twoDecimalString, confirmationNumber: confirmationNumber)
         
-        PaymentService.rx.updateAutoPayBGE(accountNumber: accountDetail.accountNumber, request: request)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        PaymentService.updateAutoPayBGE(accountNumber: accountDetail.accountNumber, request: request) { result in
+                        switch result {
+            case .success:
                 onSuccess()
-            }, onError: { error in
-                onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        PaymentService.rx.autoPayUnenroll(accountNumber: accountDetail.accountNumber, request: AutoPayUnenrollRequest(confirmationNumber: confirmationNumber!))
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        PaymentService.autoPayUnenroll(accountNumber: accountDetail.accountNumber, request: AutoPayUnenrollRequest(confirmationNumber: confirmationNumber ?? "")) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { error in
-                onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     private(set) lazy var showBottomLabel: Driver<Bool> =

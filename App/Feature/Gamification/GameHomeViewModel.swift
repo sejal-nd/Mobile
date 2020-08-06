@@ -109,18 +109,19 @@ class GameHomeViewModel {
             error.accept(false)
         }
         
-        AccountService.rx.fetchAccountDetails()
-            .subscribe(onNext: { [weak self] accountDetail in
-                guard let self = self else { return }
-                self.refreshing.accept(false)
-                self.accountDetail.accept(accountDetail)
-                self.fetchGameUser()
-                self.fetchDailyUsage()
-            }, onError: { [weak self] error in
+        AccountService.fetchAccountDetails { [weak self] result in
+            switch result {
+            case .success(let accountDetail):
+                self?.refreshing.accept(false)
+                self?.accountDetail.accept(accountDetail)
+                self?.fetchGameUser()
+                self?.fetchDailyUsage()
+            case .failure:
                 self?.loading.accept(false)
                 self?.refreshing.accept(false)
                 self?.error.accept(true)
-            }).disposed(by: bag)
+            }
+        }
     }
     
     func fetchGameUser() {

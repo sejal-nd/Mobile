@@ -434,9 +434,8 @@ class HomeBillCardView: UIView {
             return ($0, $1)
         }
         .map { [weak self] error, walletItem in
-            let err = error as! ServiceError
             return UIAlertController.paymentusErrorAlertController(
-                forError: err,
+                forError: error as? NetworkingError ?? .unknown,
                 walletItem: walletItem!,
                 customMessageForSessionExpired: NSLocalizedString("Please try to Slide to Pay again.", comment: ""),
                 callHandler: { _ in

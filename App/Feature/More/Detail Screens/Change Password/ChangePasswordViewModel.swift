@@ -18,14 +18,12 @@ class ChangePasswordViewModel {
     var confirmPassword = BehaviorRelay(value: "")
     
     private var userDefaults: UserDefaults
-    private var biometricsService: BiometricsService
     
     // Keeps track of strong password for Analytics
     var hasStrongPassword = false
     
-    required init(userDefaults: UserDefaults, biometricsService: BiometricsService) {
+    required init(userDefaults: UserDefaults) {
         self.userDefaults = userDefaults
-        self.biometricsService = biometricsService
     }
     
     private(set) lazy var currentPasswordHasText: Driver<Bool> = self.currentPassword.asDriver()
@@ -107,7 +105,7 @@ class ChangePasswordViewModel {
                         onError: @escaping (String) -> Void) {
         // If Strong Password: force save to SWC prior to changing users passwords, on failure abort.
         if hasStrongPassword && !resetPasswordWorkflow {
-            if let loggedInUsername = biometricsService.getStoredUsername() {
+            if let loggedInUsername = BiometricService.getStoredUsername() {
                 SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value),
                                           domain: Environment.shared.associatedDomain) { [weak self] error in
                     DispatchQueue.main.async {
@@ -145,15 +143,15 @@ class ChangePasswordViewModel {
                                               onPasswordNoMatch: @escaping () -> Void,
                                               onError: @escaping (String) -> Void) {
         if anon {
-            let changePasswordReqeust = ChangePasswordRequest(username: resetPasswordUsername ?? biometricsService.getStoredUsername() ?? "",
+            let changePasswordReqeust = ChangePasswordRequest(username: resetPasswordUsername ?? BiometricService.getStoredUsername() ?? "",
                                                               currentPassword: currentPassword.value,
                                                               newPassword: newPassword.value)
             AnonymousService.changePassword(request: changePasswordReqeust) { [weak self] result in
                 switch result {
                 case .success:
                     guard let self = self else { return }
-                    if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
-                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
+                    if BiometricService.isBiometricsEnabled() { // Store the new password in the keychain
+                        BiometricService.setStoredPassword(password: self.newPassword.value)
                     }
                     
                     if #available(iOS 12.0, *) { }
@@ -182,8 +180,8 @@ class ChangePasswordViewModel {
                 switch result {
                 case .success:
                     guard let self = self else { return }
-                    if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
-                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
+                    if BiometricService.isBiometricsEnabled() { // Store the new password in the keychain
+                        BiometricService.setStoredPassword(password: self.newPassword.value)
                     }
                     
                     if #available(iOS 12.0, *) { }

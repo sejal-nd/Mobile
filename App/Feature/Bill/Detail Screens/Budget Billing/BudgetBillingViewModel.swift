@@ -24,27 +24,26 @@ class BudgetBillingViewModel {
     }
     
     func getBudgetBillingInfo(onSuccess: @escaping (BudgetBilling) -> Void, onError: @escaping (String) -> Void) {
-        BillService.rx.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] billingInfo in
+        BillService.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber) { [weak self] result in
+            switch result {
+            case .success(let billingInfo):
                 self?.averageMonthlyBill = billingInfo.averageMonthlyBill.currencyString
                 onSuccess(billingInfo)
-            }, onError: { error in
-                onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        BillService.rx.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
+        BillService.enrollBudgetBilling(accountNumber: accountDetail.accountNumber) { [weak self] result in
+            switch result {
+            case .success:
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
                 if Environment.shared.opco != .bge {
                     let alertPreferencesRequest = AlertPreferencesRequest(alertPreferenceRequests: [AlertPreferencesRequest.AlertRequest(isActive: true, type: "push", programName: "Budget Billing")])
-                    AlertService.setAlertPreferences(accountNumber: self.accountDetail.accountNumber, request: alertPreferencesRequest) { result in
-                        switch result {
+                    AlertService.setAlertPreferences(accountNumber: self?.accountDetail.accountNumber ?? "", request: alertPreferencesRequest) { alertResult in
+                        switch alertResult {
                         case .success:
                             dLog("Enrolled in the budget billing push notification")
                         case .failure:
@@ -55,22 +54,22 @@ class BudgetBillingViewModel {
                 } else {
                     onSuccess()
                 }
-                }, onError: { error in
-                    onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        BillService.rx.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: reasonString(forIndex: selectedUnenrollmentReason.value))
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        BillService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: reasonString(forIndex: selectedUnenrollmentReason.value)) { result in
+            switch result {
+            case .success:
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
                 onSuccess()
-            }, onError: { error in
+            case .failure(let error):
                 onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     private(set) lazy var reasonForStoppingUnenrollButtonEnabled: Driver<Bool> =

@@ -27,22 +27,23 @@ class BGEChoiceIDViewModel {
         electricChoiceId.accept(nil)
         gasChoiceId.accept(nil)
         loading.accept(true)
-        AccountService.rx.fetchAccountDetails()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] accountDetail in
-                guard let self = self else { return }
-                self.loading.accept(false)
+        
+        AccountService.fetchAccountDetails { [weak self] result in
+            switch result {
+            case .success(let accountDetail):
+                self?.loading.accept(false)
                 if let elec = accountDetail.electricChoiceID {
-                    self.electricChoiceId.accept(elec)
+                    self?.electricChoiceId.accept(elec)
                 }
                 if let gas = accountDetail.gasChoiceID {
-                    self.gasChoiceId.accept(gas)
+                    self?.gasChoiceId.accept(gas)
                 }
-            }, onError: { [weak self] error in
+            case .failure:
                 self?.loading.accept(false)
                 self?.error.accept(true)
-            })
-            .disposed(by: self.disposeBag)
+                
+            }
+        }
     }
     
     private(set) lazy var shouldShowDividerLine: Driver<Bool> =

@@ -27,14 +27,14 @@ class BillingHistoryDetailsViewModel {
         
         let cancelRequest = SchedulePaymentCancelRequest(paymentAmount: billingHistoryItem.amountPaid ?? 0)
         
-        PaymentService.rx.cancelSchduledPayment(accountNumber: accountDetail.accountNumber, paymentId: billingHistoryItem.paymentID!, request: cancelRequest)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        PaymentService.cancelSchduledPayment(accountNumber: accountDetail.accountNumber, paymentId: billingHistoryItem.paymentID ?? "", request: cancelRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { err in
-                onError(err.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     var paymentMethodAccessibilityLabel: String? {
