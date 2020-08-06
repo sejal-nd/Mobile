@@ -28,14 +28,15 @@ class BillingHistoryViewModel {
         let lastYear = Calendar.opCo.date(byAdding: .month, value: monthsBackward, to: now)!
         let theFuture = Calendar.opCo.date(byAdding: .month, value: monthsForward, to: now)!
                 
-        BillService.rx.fetchBillingHistory(accountNumber: AccountsStore.shared.currentAccount.accountNumber, startDate: lastYear, endDate: theFuture)
-            .subscribe(onNext: { [weak self] billingHistory in
+        BillService.fetchBillingHistory(accountNumber: AccountsStore.shared.currentAccount.accountNumber, startDate: lastYear, endDate: theFuture) { [weak self] result in
+            switch result {
+            case .success(let billingHistory):
                 self?.billingHistory = billingHistory
                 success()
-            }, onError: { error in
+            case .failure(let error):
                 failure(error)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     var shouldShowAutoPayCell: Bool {
