@@ -139,7 +139,7 @@ class PaperlessEBillViewModel {
                 GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
         
         var changedStatus: PaperlessEBillChangedStatus
-        if Environment.shared.opco == .bge {
+        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
             changedStatus = !enrollObservables.isEmpty ? .enroll : .unenroll
         } else { // EM-1780 ComEd/PECO should always show Mixed
             changedStatus = .mixed
