@@ -38,7 +38,7 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var cashOnlyTableHeaderLabel: UILabel!
     @IBOutlet weak var tableViewFooter: UILabel!
 
-    let viewModel = WalletViewModel(walletService: ServiceFactory.createWalletService())
+    let viewModel = WalletViewModel()
 
     var selectedWalletItem: WalletItem?
     var shouldPopToRootOnSave = false

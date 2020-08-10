@@ -14,13 +14,10 @@ class StormModeBillViewModel {
     let fetchData = PublishSubject<Void>()
     let fetchDataObservable: Observable<Void>
 
-    private let walletService: WalletService
-
     private let fetchTracker = ActivityTracker()
 
-    required init(walletService: WalletService) {
+    required init() {
         self.fetchDataObservable = fetchData.share()
-        self.walletService = walletService
     }
 
     private(set) lazy var billCardViewModel =
@@ -28,8 +25,7 @@ class StormModeBillViewModel {
                               fetchDataMMEvents: fetchDataObservable.mapTo(MaintenanceMode()).materialize(),
                               accountDetailEvents: accountDetailEvents,
                               scheduledPaymentEvents: scheduledPaymentEvents,
-                              walletService: walletService,
-                              fetchTracker: fetchTracker)
+                                          fetchTracker: fetchTracker)
 
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = fetchData
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },

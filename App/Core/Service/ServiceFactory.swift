@@ -10,14 +10,6 @@ import Foundation
 
 /// Utility class for intantiating Service Instances
 struct ServiceFactory {
-    static func createWalletService() -> WalletService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return MockWalletService()
-        default:
-            return MCSWalletService()
-        }
-    }
 
     static func createPeakRewardsService() -> PeakRewardsService {
         switch Environment.shared.environmentName {

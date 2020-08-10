@@ -39,9 +39,7 @@ class PaymentusFormViewController: UIViewController {
     var editingDefaultItem = false // We need to know if user is editing the default so we can properly fire the `defaultWalletItemUpdated` notification
     weak var popToViewController: UIViewController? // Pop to this view controller on new item save
     var shouldPopToRootOnSave = false
-    
-    let walletService: WalletService = ServiceFactory.createWalletService()
-    
+        
     init(bankOrCard: BankOrCard, temporary: Bool, isWalletEmpty: Bool = false, walletItemId: String? = nil) {
         self.bankOrCard = bankOrCard
         self.temporary = temporary
@@ -124,34 +122,27 @@ class PaymentusFormViewController: UIViewController {
     }
     
     func fetchEncryptionKey() {
-//        let walletService = ServiceFactory.createWalletService()
-//        walletService.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier,
-//                                               bankOrCard: bankOrCard,
-//                                               temporary: temporary,
-//                                               isWalletEmpty: isWalletEmpty,
-//                                               walletItemId: walletItemId)
-//            .subscribe(onNext: { [weak self] key in
-//                guard let self = self else { return }
-//
-//                var urlComponents = URLComponents(string: Environment.shared.mcsConfig.paymentusUrl)
-//                urlComponents?.queryItems = [
-//                    URLQueryItem(name: "authToken", value: key)
-//                ]
-//                if let components = urlComponents, let url = components.url {
-//                    let request = URLRequest(url: url)
-//                    self.webView.load(request)
-//                } else {
-//                    self.showError()
-//                }
-//            }, onError: { [weak self] err in
-//                self?.showError()
-//            }).disposed(by: disposeBag)
-        
-        PaymentService.pay(customerId: AccountsStore.shared.customerIdentifier,
-                              bankOrCard: bankOrCard,
-                              temporary: temporary,
-                              isWalletEmpty: isWalletEmpty,
-                              walletItemId: walletItemId)
+        WalletService.rx.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier,
+                                               bankOrCard: bankOrCard,
+                                               temporary: temporary,
+                                               isWalletEmpty: isWalletEmpty,
+                                               walletItemId: walletItemId)
+            .subscribe(onNext: { [weak self] key in
+                guard let self = self else { return }
+
+                var urlComponents = URLComponents(string: Environment.shared.mcsConfig.paymentusUrl)
+                urlComponents?.queryItems = [
+                    URLQueryItem(name: "authToken", value: key)
+                ]
+                if let components = urlComponents, let url = components.url {
+                    let request = URLRequest(url: url)
+                    self.webView.load(request)
+                } else {
+                    self.showError()
+                }
+            }, onError: { [weak self] err in
+                self?.showError()
+            }).disposed(by: disposeBag)
     }
     
     func showWebView() {
@@ -229,21 +220,22 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         paymentMethodType = bankOrCard == .bank ? .ach : .unknown("Credit Card")
                     }
                     
-                    let walletItem = WalletItem(walletItemId: pmDetailsJson["Token"] as? String,
-                                                maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String,
-                                                nickName: nickname,
-                                                paymentMethodType: paymentMethodType,
-                                                isDefault: didSetDefault,
-                                                isTemporary: temporary)
+//                    let walletItem = WalletItem(walletItemId: pmDetailsJson["Token"] as? String,
+//                                                maskedAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String,
+//                                                nickName: nickname,
+//                                                paymentMethodType: paymentMethodType,
+//                                                isDefault: didSetDefault,
+//                                                isTemporary: temporary)
+                    let walletItem = WalletItem(walletItemId: pmDetailsJson["Token"] as? String, maskedAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, paymentMethodType: paymentMethodType, isDefault: didSetDefault, isTemporary: temporary)
                     
                     if walletItemId != nil { // Editing Payment Method
                         if !temporary {
-                            walletService.updateWalletItemMCS(walletItem)
+                            WalletService.updateWalletItem(walletItem)
                         }
                         delegate?.didEditWalletItem()
                     } else { // Adding Payment Method
                         if !temporary {
-                            walletService.addWalletItemMCS(walletItem)
+                            WalletService.addWalletItem(walletItem)
                         }
                         delegate?.didAddWalletItem(walletItem)
                     }

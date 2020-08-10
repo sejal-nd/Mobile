@@ -29,13 +29,10 @@ class AutoPayViewModel {
     let confirmAccountNumber = BehaviorRelay(value: "")
     let termsAndConditionsCheck: BehaviorRelay<Bool>
     let selectedUnenrollmentReason = BehaviorRelay<String?>(value: nil)
-    
-    let walletService: WalletService
-    
+        
     var bankName = ""
     
-    required init(walletService: WalletService, accountDetail: AccountDetail) {
-        self.walletService = walletService
+    required init(accountDetail: AccountDetail) {
         self.accountDetail = accountDetail
         enrollmentStatus = BehaviorRelay(value: accountDetail.isAutoPay ? .enrolled : .unenrolled)
         termsAndConditionsCheck = BehaviorRelay(value: Environment.shared.opco != .comEd)
@@ -64,7 +61,7 @@ class AutoPayViewModel {
     }
     
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
-        walletService.fetchBankName(routingNumber: routingNumber.value)
+        WalletService.rx.fetchBankName(routingNumber: routingNumber.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] bankName in
                 self?.bankName = bankName

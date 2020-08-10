@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewScheduledPayment: Encodable {
+public struct ScheduledPayment: Encodable {
     public var paymentType: String
     public var walletId: String
     public var walletItemId: String

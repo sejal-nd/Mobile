@@ -91,7 +91,7 @@ class MiniWalletItemRow: UITableViewCell {
         
         paymentTypeImageView.image = walletItem.paymentMethodType.imageMini
         paymentTypeImageView.isAccessibilityElement = false
-        titleLabel.text = walletItem.isDefault ? "**** \(walletItem.maskedWalletItemAccountNumber ?? "") (Default)" : "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
+        titleLabel.text = walletItem.isDefault ? "**** \(walletItem.maskedAccountNumber ?? "") (Default)" : "**** \(walletItem.maskedAccountNumber ?? "")"
         subtitleLabel.text = walletItem.nickName
         
         // Accessibility
