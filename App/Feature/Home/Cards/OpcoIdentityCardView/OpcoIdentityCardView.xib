@@ -16,15 +16,12 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnM-GZ-tUz">
                     <rect key="frame" x="15" y="50" width="0.0" height="0.0"/>
-                    <constraints>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="sgb-OT-QL1"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V0R-ro-a0g">
-                    <rect key="frame" x="248" y="28" width="112" height="44"/>
+                    <rect key="frame" x="20" y="28" width="112" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="112" id="2QR-mo-u3Y"/>
                         <constraint firstAttribute="height" constant="44" id="F7B-fK-npL"/>
@@ -33,8 +30,9 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="V0R-ro-a0g" firstAttribute="leading" secondItem="PnM-GZ-tUz" secondAttribute="trailing" constant="5" id="XoS-Mf-xxA"/>
                 <constraint firstItem="PnM-GZ-tUz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Xyh-7d-SeR"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="V0R-ro-a0g" secondAttribute="trailing" constant="15" id="grl-Tu-thW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V0R-ro-a0g" secondAttribute="trailing" constant="15" id="grl-Tu-thW"/>
                 <constraint firstItem="PnM-GZ-tUz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="jIj-he-TP1"/>
                 <constraint firstItem="V0R-ro-a0g" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uwW-hO-BFq"/>
             </constraints>
@@ -43,6 +41,7 @@
             <connections>
                 <outlet property="accountNickname" destination="PnM-GZ-tUz" id="l17-3l-7TY"/>
                 <outlet property="logo" destination="V0R-ro-a0g" id="hWI-w9-AzH"/>
+                <outlet property="logoLeadingAnchor" destination="XoS-Mf-xxA" id="unG-eF-tVS"/>
             </connections>
             <point key="canvasLocation" x="58.695652173913047" y="-4.0178571428571423"/>
         </view>
