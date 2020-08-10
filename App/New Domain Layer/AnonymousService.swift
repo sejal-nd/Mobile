@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AnonymousService {
+enum AnonymousService {
     static func checkMinVersion(completion: @escaping (Result<String, Error>) -> ()) {
         NetworkingLayer.request(router: .minVersion) { (result: Result<NewVersion, NetworkingError>) in
             switch result {

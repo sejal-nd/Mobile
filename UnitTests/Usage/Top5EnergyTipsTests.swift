@@ -66,7 +66,7 @@ class Top5EnergyTipsTests: XCTestCase {
         scheduler.start()
         
         XCTAssert(!zip(observer.events, expectedValues)
-            .map { ($0.0.value.error as! ServiceError).serviceMessage == $0.1 }
+            .map { ($0.0.value.error as? ServiceError).serviceMessage == $0.1 }
             .contains(false))
     }
 }

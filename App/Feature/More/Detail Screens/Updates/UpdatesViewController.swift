@@ -24,7 +24,7 @@ class UpdatesViewController: UIViewController {
 
     var unauthenticatedExperience = false
     
-    let viewModel = UpdatesViewModel(alertsService: ServiceFactory.createAlertsService())
+    let viewModel = UpdatesViewModel()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default

@@ -11,8 +11,6 @@ import RxCocoa
 import RxSwiftExt
 
 class WeeklyInsightViewModel {
-    private let gameService: GameService
-    
     let bag = DisposeBag()
     
     var accountDetail: AccountDetail! // Passed from GameHomeViewController
@@ -20,16 +18,12 @@ class WeeklyInsightViewModel {
     let loading = BehaviorRelay<Bool>(value: false)
     let error = BehaviorRelay<Bool>(value: false)
 
-    let usageData = BehaviorRelay<[DailyUsage]?>(value: nil)
+    let usageData = BehaviorRelay<DailyUsageData?>(value: nil)
     let billForecast = BehaviorRelay<BillForecastResult?>(value: nil)
     
     let selectedSegmentIndex = BehaviorRelay<Int>(value: 0)
     
     var fetchDisposable: Disposable?
-        
-    required init(gameService: GameService) {
-        self.gameService = gameService
-    }
     
     deinit {
         fetchDisposable?.dispose()
@@ -60,9 +54,9 @@ class WeeklyInsightViewModel {
     
     func fetchDailyUsageData() -> Observable<Void> {
         let fetchGas = accountDetail.serviceType?.uppercased() == "GAS" || selectedSegmentIndex.value == 1
-        return gameService.fetchDailyUsage(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!, gas: fetchGas)
-            .do(onNext: { [weak self] usageData in
-                self?.usageData.accept(usageData)
+        return GameService.rx.fetchDailyUsage(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber ?? "", gas: fetchGas)
+            .do(onNext: { [weak self] data in
+                self?.usageData.accept(data)
             })
             .mapTo(())
     }
@@ -90,7 +84,7 @@ class WeeklyInsightViewModel {
     }
         
     private lazy var thisWeekData: Driver<[DailyUsage]?> = self.usageData.asDriver().map { [weak self] in
-        guard let self = self, let usageData = $0, let mostRecentDataDate = usageData.first?.date else { return nil }
+        guard let self = self, let usageData = $0, let mostRecentDataDate = usageData.dailyUsage.first?.date else { return nil }
         
         let now = Calendar.opCo.startOfDay(for: Date.now)
         let mostRecentSaturday = now.previousSaturday()
@@ -105,7 +99,7 @@ class WeeklyInsightViewModel {
         if endDate == nil { return nil }
         
         if let startDate = Calendar.opCo.date(byAdding: .day, value: -6, to: endDate!) {
-            var filtered = usageData.filter {
+            var filtered = usageData.dailyUsage.filter {
                 $0.date >= startDate && $0.date <= endDate!
             }
             filtered.reverse() // Oldest to most recent
@@ -127,7 +121,7 @@ class WeeklyInsightViewModel {
     }
     
     private lazy var lastWeekData: Driver<[DailyUsage]?> = self.usageData.asDriver().map { [weak self] in
-        guard let self = self, let usageData = $0, let mostRecentDataDate = usageData.first?.date else { return nil }
+        guard let self = self, let usageData = $0, let mostRecentDataDate = usageData.dailyUsage.first?.date else { return nil }
         
         let now = Calendar.opCo.startOfDay(for: Date.now)
         let mostRecentSaturday = now.previousSaturday()
@@ -143,7 +137,7 @@ class WeeklyInsightViewModel {
         
         if let end = Calendar.opCo.date(byAdding: .day, value: -7, to: currentWeekEndDate!),
             let start = Calendar.opCo.date(byAdding: .day, value: -6, to: end) {
-            var filtered = usageData.filter {
+            var filtered = usageData.dailyUsage.filter {
                 $0.date >= start && $0.date <= end
             }
             filtered.reverse()  // Oldest to most recent

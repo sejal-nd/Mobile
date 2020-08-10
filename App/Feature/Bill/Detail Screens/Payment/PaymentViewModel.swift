@@ -115,7 +115,7 @@ class PaymentViewModel {
 
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
                          onSuccess: @escaping () -> Void,
-                         onError: @escaping (ServiceError) -> Void) {
+                         onError: @escaping (NetworkingError) -> Void) {
 
         let walletItem = self.selectedWalletItem.value!
         let scheduleRequest = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount.value,
@@ -123,43 +123,43 @@ class PaymentViewModel {
                                                             walletItem: walletItem,
                                                             alternateEmail: self.emailAddress.value,
                                                             alternatePhoneNumber: self.extractDigitsFrom(self.phoneNumber.value))
-        
-        PaymentService.rx.schedulePayment(accountNumber: accountDetail.value.accountNumber, request: scheduleRequest)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] confirmationNumber in
-                self?.confirmationNumber = confirmationNumber
+        PaymentService.schedulePayment(accountNumber: accountDetail.value.accountNumber, request: scheduleRequest) { [weak self] result in
+            switch result {
+            case .success(let confirmationNumber):
+                self?.confirmationNumber = confirmationNumber.confirmationNumber
                 onSuccess()
-            }, onError: { err in
-                onError(err as! ServiceError)
-            })
-            .disposed(by: self.disposeBag)
+            case .failure(let error):
+                onError(error)
+            }
+        }
     }
 
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let cancelRequest = SchedulePaymentCancelRequest(paymentAmount: paymentAmount.value)
         
-        PaymentService.rx.cancelSchduledPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, request: cancelRequest)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        PaymentService.cancelSchduledPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value ?? "", request: cancelRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { err in
-                onError(err.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+            
+        }
     }
 
-    func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
+    func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (NetworkingError) -> Void) {
         let walletItem = self.selectedWalletItem.value!
         let updateRequest = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount.value, paymentDate: paymentDate.value, paymentId: paymentId.value!, walletItem: walletItem)
-        PaymentService.rx.updateScheduledPayment(paymentId: paymentId.value!, accountNumber: accountDetail.value.accountNumber, request: updateRequest)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] confirmationNumber in
-                self?.confirmationNumber = confirmationNumber
+        PaymentService.updateScheduledPayment(paymentId: paymentId.value ?? "", accountNumber: accountDetail.value.accountNumber, request: updateRequest) { [weak self] result in
+            switch result {
+            case .success(let confirmationNumber):
+                self?.confirmationNumber = confirmationNumber.confirmationNumber
                 onSuccess()
-            }, onError: { err in
-                onError(err as! ServiceError)
-            })
-            .disposed(by: self.disposeBag)
+            case .failure(let error):
+                onError(error)
+            }
+        }
     }
     
     // MARK: - Payment Date Stuff

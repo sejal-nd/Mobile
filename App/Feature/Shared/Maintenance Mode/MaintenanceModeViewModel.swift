@@ -130,8 +130,8 @@ class MaintenanceModeViewModel{
             switch result {
             case .success(let maintenanceMode):
                 self?.maintenance = maintenanceMode
-            case .failure(let error):
-                _ = error as! ServiceError
+            case .failure:
+                break
             }
         }
     }

@@ -8,9 +8,7 @@
 
 import Foundation
 
-// NOTE: The location of these static methods are subject to change
-
-public struct PaymentService {
+public enum PaymentService {
     
     static func autoPayInfo(accountNumber: String, completion: @escaping (Result<BGEAutoPayInfo, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .autoPayInfo(accountNumber: accountNumber), completion: completion)
@@ -43,13 +41,6 @@ public struct PaymentService {
     
     static func deleteWalletItem(walletItem : WalletItem) {
         let opCo = Environment.shared.opco
-//        let httpBodyParameters: [String: Any] = [
-//            "account_number": AccountsStore.shared.accounts[0].accountNumber,
-//            "wallet_item_id": walletItem.walletItemId ?? "",
-//            "masked_wallet_item_acc_num": walletItem.maskedAccountNumber ?? "",
-//            "biller_id": "\(opCo.rawValue)Registered",
-//            "payment_category_type": walletItem.bankOrCard == .bank ? "check" : "credit"
-//        ]
         
         let encodedObject = WalletItemDeleteRequest(accountNumber: AccountsStore.shared.accounts[0].accountNumber,
                                                     walletItemId: walletItem.walletItemId ?? "",

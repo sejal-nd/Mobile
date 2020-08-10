@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct OutageService {
+enum OutageService {
     static func fetchOutageStatus(accountNumber: String, premiseNumberString: String, completion: @escaping (Result<OutageStatus, NetworkingError>) -> ()) {
         var summaryQueryItem: URLQueryItem? = nil
         if StormModeStatus.shared.isOn && Environment.shared.opco != .bge {

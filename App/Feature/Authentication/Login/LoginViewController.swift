@@ -33,7 +33,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var biometricLabel: UILabel!
     @IBOutlet weak var biometricButton: ButtonControl!
 
-    var viewModel = LoginViewModel(biometricsService: ServiceFactory.createBiometricsService())
+    var viewModel = LoginViewModel()
     var viewAlreadyAppeared = false
     var forgotUsernamePopulated = false
     

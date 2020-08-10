@@ -127,19 +127,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 firstLogin = true
             }
             
-            let alertsService = ServiceFactory.createAlertsService()
-            alertsService.register(token: token, firstLogin: firstLogin)
-                .subscribe(onNext: {
+            let alertRegistrationRequest = AlertRegistrationRequest(notificationToken: token,
+                                                                    notificationProvider: "APNS",
+                                                                    mobileClient: AlertRegistrationRequest.MobileClient(id: Bundle.main.bundleIdentifier ?? "",
+                                                                                                                        version: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""),
+                                                                    setDefaults: firstLogin)
+            AlertService.register(request: alertRegistrationRequest) { result in
+                switch result {
+                case .success:
                     dLog("*-*-*-*-* Registered token with MCS")
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
                         UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
-                }, onError: { err in
-                    dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
-                })
-                .disposed(by: disposeBag)
+                case .failure(let error):
+                    dLog("*-*-*-*-* Failed to register token with MCS with error: \(error.localizedDescription)")
+                }
+            }
         }
     }
     
@@ -300,8 +305,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if userDefaults.bool(forKey: UserDefaultKeys.hasRunBefore) == false {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
-            let biometricsService = ServiceFactory.createBiometricsService()
-            biometricsService.disableBiometrics()
+            BiometricService.disableBiometrics()
 
             MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
             

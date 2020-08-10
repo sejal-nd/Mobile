@@ -1,16 +1,17 @@
 //
-//  GameServiceNew.swift
+//  GameService.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 6/10/20.
 //  Copyright © 2020 Exelon Corporation. All rights reserved.
 //
 
+#if os(iOS)
 import Foundation
 
-struct GameServiceNew {
-    static func fetchGameUser(accountNumber: String, completion: @escaping (Result<NewGameUser?, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .fetchGameUser(accountNumber: accountNumber)) { (result: Result<NewGameUser?, NetworkingError>) in
+enum GameService {
+    static func fetchGameUser(accountNumber: String, completion: @escaping (Result<GameUser?, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .fetchGameUser(accountNumber: accountNumber)) { (result: Result<GameUser?, NetworkingError>) in
             switch result {
             case .success(let data):
                 
@@ -50,19 +51,17 @@ struct GameServiceNew {
                     } else {
                         completion(.success(nil))
                     }
-                }
-                else {
+                } else {
                     completion(.success(nil))
                 }
-                
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    static func updateGameUser(accountNumber: String, request: GameUserRequest, completion: (((Result<NewGameUser, NetworkingError>)) -> ())? = nil) {
-        NetworkingLayer.request(router: .updateGameUser(accountNumber: accountNumber, encodable: request)) { (result: Result<NewGameUser, NetworkingError>) in
+    static func updateGameUser(accountNumber: String, request: GameUserRequest, completion: (((Result<GameUser, NetworkingError>)) -> ())? = nil) {
+        NetworkingLayer.request(router: .updateGameUser(accountNumber: accountNumber, request: request)) { (result: Result<GameUser, NetworkingError>) in
             switch result {
             case .success(let user):
                 completion?(.success(user))
@@ -73,7 +72,7 @@ struct GameServiceNew {
         }
     }
     
-    static func updateGameUserGiftSelections(accountNumber: String, completion: (((Result<NewGameUser, NetworkingError>)) -> ())? = nil) {
+    static func updateGameUserGiftSelections(accountNumber: String, completion: (((Result<GameUser, NetworkingError>)) -> ())? = nil) {
         var gameUserRequest = GameUserRequest()
         
         gameUserRequest.selectedBackground = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none"
@@ -83,11 +82,12 @@ struct GameServiceNew {
         updateGameUser(accountNumber: accountNumber, request: gameUserRequest, completion: completion)
     }
     
-    func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool, completion: @escaping (Result<[DailyUsageData], NetworkingError>) -> ()) {
+    static func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool, completion: @escaping (Result<DailyUsageData, NetworkingError>) -> ()) {
         let endDate = Date.now
         let startDate = Calendar.current.date(byAdding: .month, value: -1, to: endDate)!
         
-        let request = DailyUsageRequest(startDate: startDate, endDate: endDate, gas: gas)
-        NetworkingLayer.request(router: .fetchDailyUsage(accountNumber: accountNumber, premiseNumber: premiseNumber, encodable: request), completion: completion)
+        let request = DailyUsageRequest(startDate: startDate, endDate: endDate, isGas: gas)
+        NetworkingLayer.request(router: .fetchDailyUsage(accountNumber: accountNumber, premiseNumber: premiseNumber, request: request), completion: completion)
     }
 }
+#endif

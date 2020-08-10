@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BillService {
+enum BillService {
     static func fetchBudgetBillingInfo(accountNumber: String, completion: @escaping (Result<BudgetBilling, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .budgetBillingInfo(accountNumber: accountNumber), completion: completion)
     }

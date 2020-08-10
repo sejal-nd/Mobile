@@ -35,13 +35,13 @@ class HomeUpdateView: UIView {
         }
     }
     
-    static func create(withUpdate update: OpcoUpdate) -> HomeUpdateView {
+    static func create(withUpdate update: Alert) -> HomeUpdateView {
         let view = Bundle.main.loadViewFromNib() as HomeUpdateView
         view.configure(withUpdate: update)
         return view
     }
     
-    func configure(withUpdate update: OpcoUpdate) {
+    func configure(withUpdate update: Alert) {
         titleLabel.text = update.title
         descriptionLabel.text = update.message
         button.accessibilityLabel = String(format: "%@, %@", update.title, update.message)

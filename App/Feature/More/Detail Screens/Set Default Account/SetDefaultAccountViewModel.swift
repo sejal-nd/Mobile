@@ -25,20 +25,21 @@ class SetDefaultAccountViewModel {
     
     func setDefaultAccount(onSuccess: @escaping () -> Void,
                            onError: @escaping (String) -> Void) {
-        AccountService.rx.setDefaultAccount(accountNumber: selectedAccount.value!.accountNumber)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                AccountService.rx.fetchAccounts()
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { __SRD in
+        AccountService.setDefaultAccount(accountNumber: selectedAccount.value?.accountNumber ?? "") { defaultAccountResult in
+            switch defaultAccountResult {
+            case .success:
+                AccountService.fetchAccounts { accountsResult in
+                    switch accountsResult {
+                    case .success:
                         onSuccess()
-                    }, onError: { error in
-                        onError(error.localizedDescription)
-                    }).disposed(by: self.bag)
-            }, onError: { error in
-                onError(error.localizedDescription)
-            }).disposed(by: bag)
+                    case .failure(let error):
+                        onError(error.description)
+                    }
+                }
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     private(set) lazy var saveButtonEnabled: Driver<Bool> =

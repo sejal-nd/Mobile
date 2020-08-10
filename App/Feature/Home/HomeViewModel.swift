@@ -11,10 +11,6 @@ import RxCocoa
 import RxSwiftExt
 
 class HomeViewModel {
-    
-    private let alertsService: AlertsService
-    private let gameService: GameService
-    
     let fetchData = PublishSubject<Void>()
     let fetchDataObservable: Observable<Void>
     
@@ -30,11 +26,9 @@ class HomeViewModel {
     let latestNewCardVersion = HomeCard.latestNewCardVersion
     let appointmentsUpdates = PublishSubject<[Appointment]>() // Bind the detail screen's poll results to this
     
-    required init(alertsService: AlertsService,
-                  gameService: GameService) {
+
+    required init() {
         self.fetchDataObservable = fetchData.share()
-        self.alertsService = alertsService
-        self.gameService = gameService
     }
     
     private(set) lazy var appointmentCardViewModel =
@@ -173,11 +167,11 @@ class HomeViewModel {
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = maintenanceModeEvents
+    private(set) lazy var importantUpdate: Driver<Alert?> = maintenanceModeEvents
         .filter { !($0.element?.all ?? false) && !($0.element?.home ?? false) }
         .toAsyncRequest { [weak self] _ in
             guard let this = self else { return .empty() }
-            return this.alertsService.fetchOpcoUpdates(bannerOnly: true)
+            return AlertService.rx.fetchAlertBanner(bannerOnly: true, stormOnly: false)
                 .map { $0.first }
                 .catchError { _ in .just(nil) }
         }
@@ -232,7 +226,7 @@ class HomeViewModel {
                 return .just(nil)
             }
             
-            return self.gameService.fetchGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+            return GameService.rx.fetchGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         })
         .share(replay: 1, scope: .forever)
     

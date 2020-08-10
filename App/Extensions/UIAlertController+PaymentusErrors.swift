@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIAlertController {
-    static func paymentusErrorAlertController(forError error: ServiceError,
+    static func paymentusErrorAlertController(forError error: NetworkingError,
                                               walletItem: WalletItem,
                                               customMessageForSessionExpired: String? = nil,
                                               okHandler: @escaping ((UIAlertAction) -> ()) = { _ in },
@@ -18,8 +18,8 @@ extension UIAlertController {
         let message: String
         var includeCallCTA = false
         
-        switch error.serviceCode {
-        case ServiceErrorCode.blockedPaymentMethod.rawValue:
+        switch error {
+        case .blockedPaymentMethod:
             title = NSLocalizedString("Payment Method Declined", comment: "")
             if walletItem.bankOrCard == .bank {
                 message = NSLocalizedString("Please select another payment method. The previously selected payment method has been disabled and is not available.", comment: "")
@@ -30,27 +30,27 @@ extension UIAlertController {
                     message = NSLocalizedString("Please select another payment method. Card was declined.", comment: "")
                 }
             }
-        case ServiceErrorCode.blockedUtilityAccount.rawValue:
+        case .blockedUtilityAccount:
             title = NSLocalizedString("Unable to process electronic payments", comment: "")
             message = String.localizedStringWithFormat("Your utility account has been disabled and electronic payments are not available at this time. Please review other payment options, or contact %@ customer service for further assistance.", Environment.shared.opco.displayString)
             includeCallCTA = true
-        case ServiceErrorCode.blockedPaymentType.rawValue:
+        case .blockedPaymentType:
             title = NSLocalizedString("Payment Method Unavailable", comment: "")
             message = String.localizedStringWithFormat("%@ payments are not available on your account at this time. Please select another payment method or contact %@ customer service.", walletItem.paymentMethodType.displayString, Environment.shared.opco.displayString)
             includeCallCTA = true
-        case ServiceErrorCode.duplicatePayment.rawValue:
+        case .duplicatePayment:
             title = NSLocalizedString("Duplicate Payment", comment: "")
             message = String.localizedStringWithFormat("Recent transaction blocked due to duplicate payment. Matching amount using the same %@ was submitted within the last 24 hours.", walletItem.paymentCategoryType.displayString)
-        case ServiceErrorCode.paymentAccountVelocityBank.rawValue:
+        case .paymentAccountVelocityBank:
             fallthrough
-        case ServiceErrorCode.paymentAccountVelocityCard.rawValue:
+        case .paymentAccountVelocityCard:
             title = NSLocalizedString("Please select another payment method", comment: "")
             message = NSLocalizedString("Electronic payments with this payment method are not available at this time due to overuse.", comment: "")
-        case ServiceErrorCode.utilityAccountVelocity.rawValue:
+        case .utilityAccountVelocity:
             title = NSLocalizedString("Unable to process electronic payments", comment: "")
             message = String.localizedStringWithFormat("Electronic payments for your utility account are not available at this time due to overuse. Please review other payment options, or contact %@ customer service for further assistance.", Environment.shared.opco.displayString)
             includeCallCTA = true
-        case ServiceErrorCode.walletItemIdTimeout.rawValue:
+        case .walletItemIdTimeout:
             title = NSLocalizedString("Session Expired", comment: "")
             message = customMessageForSessionExpired ?? NSLocalizedString("Please attempt to make your payment again.", comment: "")
         default:

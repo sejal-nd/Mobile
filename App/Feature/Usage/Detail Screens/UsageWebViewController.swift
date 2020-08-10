@@ -41,9 +41,9 @@ class UsageWebViewController: UIViewController {
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
         if let premiseNum = accountDetail.premiseNumber {
-            AccountService.rx.fetchSSOData(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNum)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] ssoData in
+            AccountService.fetchSSOData(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNum) { [weak self] result in
+                switch result {
+                case .success(let ssoData):
                     let js = "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(ssoData.relayState)'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
                     self?.webView.evaluateJavaScript(js, completionHandler: { (resp, err) in
                         if err != nil {
@@ -53,10 +53,11 @@ class UsageWebViewController: UIViewController {
                             self?.webView.isHidden = false
                         }
                     })
-                }, onError: { [weak self] err in
+                case .failure:
                     self?.loadingIndicator.isHidden = true
                     self?.errorLabel.isHidden = false
-                }).disposed(by: disposeBag)
+                }
+            }
         }
         
     }

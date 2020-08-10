@@ -10,9 +10,7 @@ import UIKit
 import XLPagerTabStrip
 
 class GiftsViewController: ButtonBarPagerTabStripViewController {
-    
-    let gameService = ServiceFactory.createGameService()
-    
+        
     var giftSelectionsChanged = false
     
     override func viewDidLoad() {
@@ -60,8 +58,7 @@ class GiftsViewController: ButtonBarPagerTabStripViewController {
         
         if giftSelectionsChanged {
             FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .gifts_changed)])
-            _ = self.gameService.updateGameUserGiftSelections(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-                .subscribe()
+            GameService.updateGameUserGiftSelections(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         }
     }
     
