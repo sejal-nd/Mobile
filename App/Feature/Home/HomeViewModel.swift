@@ -11,8 +11,6 @@ import RxCocoa
 import RxSwiftExt
 
 class HomeViewModel {
-    private let walletService: WalletService
-    
     let fetchData = PublishSubject<Void>()
     let fetchDataObservable: Observable<Void>
     
@@ -28,9 +26,9 @@ class HomeViewModel {
     let latestNewCardVersion = HomeCard.latestNewCardVersion
     let appointmentsUpdates = PublishSubject<[Appointment]>() // Bind the detail screen's poll results to this
     
-    required init(walletService: WalletService) {
+
+    required init() {
         self.fetchDataObservable = fetchData.share()
-        self.walletService = walletService
     }
     
     private(set) lazy var appointmentCardViewModel =
@@ -45,8 +43,7 @@ class HomeViewModel {
                               fetchDataMMEvents: fetchDataMMEvents,
                               accountDetailEvents: accountDetailEvents,
                               scheduledPaymentEvents: scheduledPaymentEvents,
-                              walletService: walletService,
-                              fetchTracker: billTracker)
+                                          fetchTracker: billTracker)
     
     private(set) lazy var usageCardViewModel =
         HomeUsageCardViewModel(fetchData: fetchDataObservable,

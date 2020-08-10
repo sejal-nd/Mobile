@@ -102,8 +102,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(),
-                                     accountDetail: accountDetail,
+        viewModel = PaymentViewModel(accountDetail: accountDetail,
                                      billingHistoryItem: billingHistoryItem)
         
         navigationItem.backBarButtonItem?.accessibilityLabel = "Back"

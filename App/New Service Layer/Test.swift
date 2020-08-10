@@ -79,10 +79,10 @@ class NetworkTest {
     }
     
     func wallet() {
-        NetworkingLayer.request(router: .wallet) { (result: Result<NewWallet, NetworkingError>) in
+        NetworkingLayer.request(router: .wallet()) { (result: Result<Wallet, NetworkingError>) in
             switch result {
             case .success(let data):
-                print("NetworkTest 10 SUCCESS: \(data) BREAK \(data.walletItems.first?.id)")
+                print("NetworkTest 10 SUCCESS: \(data) BREAK \(data.walletItems.first?.walletItemId)")
             case .failure(let error):
                 print("NetworkTest 10 FAIL: \(error)")
             }
@@ -90,7 +90,7 @@ class NetworkTest {
     }
     
     func payment(accountNumber: String) {
-        NetworkingLayer.request(router: .payments(accountNumber: accountNumber)) { (result: Result<NewPayments, NetworkingError>) in
+        NetworkingLayer.request(router: .payments(accountNumber: accountNumber)) { (result: Result<Payments, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 11 SUCCESS: \(data) BREAK \(data.billingInfo.payments.first?.amount)")

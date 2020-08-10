@@ -17,7 +17,7 @@ public struct ScheduledPaymentUpdateRequest: Encodable {
     let billerId: String
     let walletItemId: String?
     let isExistingAccount: Bool?
-    let maskedWalletItemAccountNumber: String?
+    let maskedAccountNumber: String?
     let alternateEmail: String?
     let alternatePhoneNumber: String?
     
@@ -36,7 +36,7 @@ public struct ScheduledPaymentUpdateRequest: Encodable {
         self.billerId = "\(Environment.shared.opco.rawValue)Registered"
         self.walletItemId = walletItem.walletItemId
         self.isExistingAccount = !walletItem.isTemporary
-        self.maskedWalletItemAccountNumber = walletItem.maskedWalletItemAccountNumber
+        self.maskedAccountNumber = walletItem.maskedAccountNumber
         
         self.alternateEmail = alternateEmail
         self.alternatePhoneNumber = alternatePhoneNumber
@@ -51,7 +51,7 @@ public struct ScheduledPaymentUpdateRequest: Encodable {
         case billerId = "biller_id"
         case walletItemId = "wallet_item_id"
         case isExistingAccount = "is_existing_account"
-        case maskedWalletItemAccountNumber = "masked_wallet_item_account_number"
+        case maskedAccountNumber = "masked_wallet_item_account_number"
         
         case alternateEmail = "email_id"
         case alternatePhoneNumber = "mobile_phone_number"

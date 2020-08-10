@@ -17,7 +17,7 @@ class HomeBillCardViewModel {
     let fetchDataMMEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
     let scheduledPaymentEvents: Observable<Event<PaymentItem?>>
-    private let walletService: WalletService
+    
     
     let submitOneTouchPay = PublishSubject<Void>()
     
@@ -31,13 +31,11 @@ class HomeBillCardViewModel {
                   fetchDataMMEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   scheduledPaymentEvents: Observable<Event<PaymentItem?>>,
-                  walletService: WalletService,
                   fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.fetchDataMMEvents = fetchDataMMEvents
         self.accountDetailEvents = accountDetailEvents
         self.scheduledPaymentEvents = scheduledPaymentEvents
-        self.walletService = walletService
         self.fetchTracker = fetchTracker
         
         oneTouchPayResult
@@ -80,7 +78,7 @@ class HomeBillCardViewModel {
     .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                     requestSelector: { [weak self] _ in
                         guard let this = self else { return .empty() }
-                        return this.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
+                        return WalletService.rx.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
     })
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
@@ -583,7 +581,7 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var bankCreditCardNumberText: Driver<String?> = walletItemDriver.map {
-        guard let maskedNumber = $0?.maskedWalletItemAccountNumber else { return nil }
+        guard let maskedNumber = $0?.maskedAccountNumber else { return nil }
         return "**** " + maskedNumber
     }
     
@@ -594,7 +592,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var bankCreditCardButtonAccessibilityLabel: Driver<String?> = walletItemDriver.map {
         guard let walletItem = $0,
-            let maskedNumber = walletItem.maskedWalletItemAccountNumber else { return nil }
+            let maskedNumber = walletItem.maskedAccountNumber else { return nil }
         
         let imageLabel: String
         switch walletItem.bankOrCard {

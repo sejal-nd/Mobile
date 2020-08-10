@@ -39,7 +39,7 @@ class BillingHistoryDetailsViewModel {
     
     var paymentMethodAccessibilityLabel: String? {
         guard let paymentMethodType = billingHistoryItem.paymentMethodType,
-            let maskedAcctNum = billingHistoryItem.maskedWalletItemAccountNumber,
+            let maskedAcctNum = billingHistoryItem.maskedAccountNumber,
             !maskedAcctNum.isEmpty else { return nil }
         
         return paymentMethodType.accessibilityString +
@@ -52,7 +52,7 @@ class BillingHistoryDetailsViewModel {
     }
     
     var paymentMethodString: String? {
-        guard let maskedAcctNum = billingHistoryItem.maskedWalletItemAccountNumber,
+        guard let maskedAcctNum = billingHistoryItem.maskedAccountNumber,
             !maskedAcctNum.isEmpty else { return nil }
         return "**** \(maskedAcctNum)"
     }
