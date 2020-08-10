@@ -26,12 +26,17 @@ public enum NetworkingLayer {
         components.queryItems = router.parameters
         
         guard let url = components.url else {
+            dLog("Invalid URL: Request denied.")
             completion(.failure(.invalidURL))
             return
         }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
-        print("URL: \(url.absoluteString)")
+
+        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+            dLog("📬 URL: \(url.absoluteString)")
+        }
+        
         // Set HTTP BODY
         if let httpBody = router.httpBody {
             urlRequest.httpBody = httpBody
@@ -67,8 +72,7 @@ public enum NetworkingLayer {
         // Perform Data Task
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error as NSError? {
-                print("ERRROR: \(error)")
-                print("Error2: \(error.localizedDescription)")
+                dLog("❌ Data task error: \(error)\n\n\(error.localizedDescription)")
                 if error.domain == NSURLErrorDomain,
                     error.code == NSURLErrorNotConnectedToInternet {
                     DispatchQueue.main.async {
@@ -85,6 +89,7 @@ public enum NetworkingLayer {
             
             // Validate response if not using mock
             guard response != nil || Environment.shared.environmentName == .aut else {
+                dLog("❌ Data task empty response.")
                 DispatchQueue.main.async {
                     completion(.failure(.invalidResponse))
                 }
@@ -92,6 +97,7 @@ public enum NetworkingLayer {
             }
             
             guard let data = data else {
+                dLog("❌ Data task invalid data.")
                 DispatchQueue.main.async {
                     completion(.failure(.invalidData))
                 }
@@ -102,10 +108,7 @@ public enum NetworkingLayer {
             if let jsonString = String(data: data, encoding: String.Encoding.utf8) {
                 if let methodStr = urlRequest.httpMethod,
                     let method = HttpMethod(rawValue: methodStr) {
-                    APILog(String.self, requestId: "Test", path: "Test", method: method, logType: .request, message: jsonString)
-                }
-                else {
-                    dLog("Network Payload:\n\n\(jsonString)")
+                    APILog(NetworkingLayer.self, path: urlRequest.url?.absoluteString ?? "", method: method, logType: .request, message: jsonString)
                 }
             }
             
@@ -117,7 +120,7 @@ public enum NetworkingLayer {
                     completion(.success(responseObject))
                 }
             } catch {
-                dLog("Failed to deocde network response for \(urlRequest):\n\n\(error)")
+                dLog("❌ Failed to deocde network response for \(urlRequest.url?.absoluteString ?? ""):\n\n\(error)")
                 DispatchQueue.main.async {
                     if let networkError = error as? NetworkingError {
                         completion(.failure(networkError))
@@ -131,8 +134,10 @@ public enum NetworkingLayer {
     }
     
     private static func decode<T: Decodable>(data: Data) throws -> T {
-        print("RAW DATA: \(String(decoding: data, as: UTF8.self))")
-        
+        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+            dLog("📬 Data Response: \(String(decoding: data, as: UTF8.self))")
+        }
+                
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .custom({ decoder -> Date in
             let container = try decoder.singleValueContainer()
@@ -158,7 +163,7 @@ public enum NetworkingLayer {
         URLSession.default.getAllTasks { tasks in
             tasks.forEach { $0.cancel() }
         }
-        dLog("Cancelled all URL Session requests.")
+        dLog("🛑 Cancelled all URL Session requests.")
     }
     
     private static func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders,

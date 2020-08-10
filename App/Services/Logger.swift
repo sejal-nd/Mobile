@@ -48,7 +48,7 @@ func dLog(_ message: @autoclosure () -> String? = nil,
 fileprivate let chunkSize = 800
 
 func APILog<T>(_ callerType: @autoclosure () -> T.Type,
-               requestId: @autoclosure () -> String,
+               requestId: @autoclosure () -> String = "",
                path: @autoclosure () -> String?,
                method: @autoclosure () -> HttpMethod,
                logType: @autoclosure () -> LogType,
