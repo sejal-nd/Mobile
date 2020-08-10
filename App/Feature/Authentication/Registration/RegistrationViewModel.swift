@@ -72,6 +72,10 @@ class RegistrationViewModel {
         var dueAmount = ""
         var dueDate = ""
         
+        if let accountNumberValue = selectedAccount.value?.accountNumber {
+            accountNumber = accountNumberValue
+        }
+        
         if selectedSegmentIndex.value == .zero {
              phoneNumber = extractDigitsFrom(self.phoneNumber.value)
              identifierValue = identifierNumber.value
@@ -80,6 +84,7 @@ class RegistrationViewModel {
             dueAmount = String(self.totalAmountDue.value)
             dueDate = self.dueDate.value?.yyyyMMddString ?? ""
         }
+        
         registrationService.validateAccountInformation(identifierValue,
                                                        phone: phoneNumber,
                                                        accountNum: accountNumber,
@@ -91,10 +96,12 @@ class RegistrationViewModel {
                 let types = data["type"] as? [String]
                 self.accountType.accept(types?.first ?? "")
                 self.isPaperlessEbillEligible = (data["ebill"] as? Bool) ?? false
-                self.hasMultipleAccount = (data["multipleCustomers"] as? Bool) ?? false
-                if let accountsArray = data["accounts"] as? [NSDictionary] {
-                let accounts: [AccountResult] = accountsArray.compactMap(AccountResult.from)
-                self.multipleAccounts = accounts
+                if !self.hasMultipleAccount {
+                    self.hasMultipleAccount = (data["multipleCustomers"] as? Bool) ?? false
+                    if let accountsArray = data["accounts"] as? [NSDictionary] {
+                        let accounts: [AccountResult] = accountsArray.compactMap(AccountResult.from)
+                        self.multipleAccounts = accounts
+                    }
                 }
                 onSuccess()
             }, onError: { error in
