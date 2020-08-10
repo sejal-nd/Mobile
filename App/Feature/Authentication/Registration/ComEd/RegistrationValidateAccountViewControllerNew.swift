@@ -172,7 +172,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        var identifierString = "Last 4 digits of your Social Security Number"
+        var identifierString = "Last 4 digits of your Social Security number"
         if Environment.shared.opco == .bge {
             identifierString.append(", Business Tax ID, or BGE Pin")
         } else {
