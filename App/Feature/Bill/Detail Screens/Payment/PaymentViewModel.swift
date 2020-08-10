@@ -17,7 +17,7 @@ class PaymentViewModel {
     
     private let kMaxUsernameChars = 255
     
-    private let walletService: WalletService
+    
 
     let accountDetail: BehaviorRelay<AccountDetail>
     let billingHistoryItem: BillingHistoryItem?
@@ -44,16 +44,14 @@ class PaymentViewModel {
 
     var confirmationNumber: String?
 
-    init(walletService: WalletService,
-         accountDetail: AccountDetail,
+    init(accountDetail: AccountDetail,
          billingHistoryItem: BillingHistoryItem?) {
-        self.walletService = walletService
         self.accountDetail = BehaviorRelay(value: accountDetail)
         self.billingHistoryItem = billingHistoryItem
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
             paymentId.accept(billingHistoryItem.paymentID)
-            selectedWalletItem.accept(WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,
+            selectedWalletItem.accept(WalletItem(maskedAccountNumber: billingHistoryItem.maskedAccountNumber,
                                                   nickName: NSLocalizedString("Current Payment Method", comment: ""),
                                                   paymentMethodType: billingHistoryItem.paymentMethodType,
                                                   isEditingItem: true))
@@ -73,7 +71,7 @@ class PaymentViewModel {
 
     func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
         isFetching.accept(true)
-        walletService.fetchWalletItems()
+        WalletService.rx.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] walletItems in
                 guard let self = self else { return }
@@ -596,7 +594,7 @@ class PaymentViewModel {
 
     private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return "" }
-        return "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
+        return "**** \(walletItem.maskedAccountNumber ?? "")"
     }
 
     private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {

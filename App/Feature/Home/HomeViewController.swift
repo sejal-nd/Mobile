@@ -48,7 +48,7 @@ class HomeViewController: AccountPickerViewController {
     
     var alertLottieAnimation = AnimationView(name: "alert_icon")
     
-    let viewModel = HomeViewModel(walletService: ServiceFactory.createWalletService(),
+    let viewModel = HomeViewModel(
                                   alertsService: ServiceFactory.createAlertsService(),
                                   gameService: ServiceFactory.createGameService())
     

@@ -12,9 +12,7 @@ import RxCocoa
 class WalletViewModel {
     
     let disposeBag = DisposeBag()
-    
-    let walletService: WalletService!
-    
+        
     var accountDetail: AccountDetail! // Passed from BillViewController
     
     let fetchWalletItems = PublishSubject<Void>()
@@ -22,9 +20,7 @@ class WalletViewModel {
     let walletItems = BehaviorRelay<[WalletItem]?>(value: nil)
     let isFetchingWalletItems: Driver<Bool>
     
-    required init(walletService: WalletService) {
-        self.walletService = walletService
-        
+    required init() {
         isFetchingWalletItems = fetchingWalletItemsTracker.asDriver()
         
         walletItemEvents
@@ -34,14 +30,14 @@ class WalletViewModel {
     }
     
     lazy var walletItemEvents: Observable<Event<[WalletItem]>> = self.fetchWalletItems.flatMapLatest { [unowned self] in
-        self.walletService
+        WalletService.rx
             .fetchWalletItems()
             .trackActivity(self.fetchingWalletItemsTracker)
             .materialize()
     }.share()
     
     func deleteWalletItem(walletItem: WalletItem, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.deletePaymentMethod(walletItem: walletItem)
+        WalletService.rx.deletePaymentMethod(walletItem: walletItem)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

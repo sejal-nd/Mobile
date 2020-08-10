@@ -23,8 +23,6 @@ class BGEAutoPayViewModel {
     
     let disposeBag = DisposeBag()
     
-    private var walletService: WalletService
-
     let isLoading = BehaviorRelay(value: false)
     let isError = BehaviorRelay(value: false)
     
@@ -47,8 +45,7 @@ class BGEAutoPayViewModel {
     let numberOfDaysBeforeDueDate = BehaviorRelay(value: 0)
     // ---------------- //
 
-    required init(walletService: WalletService, accountDetail: AccountDetail) {
-        self.walletService = walletService
+    required init(accountDetail: AccountDetail) {
         self.accountDetail = accountDetail
 
         initialEnrollmentStatus = BehaviorRelay(value: accountDetail.isAutoPay ? .enrolled : .unenrolled)
@@ -79,7 +76,7 @@ class BGEAutoPayViewModel {
     }
     
     func fetchWalletItems() -> Observable<Void> {
-        return walletService.fetchWalletItems()
+        return WalletService.rx.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .do(onNext: { [weak self] walletItems in
                 self?.walletItems = walletItems
@@ -96,7 +93,7 @@ class BGEAutoPayViewModel {
                 // Sync up our view model with the existing AutoPay settings
                 if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4 {
                     self.selectedWalletItem.accept(WalletItem(walletItemId: walletItemId,
-                                                               maskedWalletItemAccountNumber: masked4,
+                                                               maskedAccountNumber: masked4,
                                                                nickName: autoPayInfo.paymentAccountNickname,
                                                                paymentMethodType: .ach,
                                                                bankName: nil,
@@ -211,7 +208,7 @@ class BGEAutoPayViewModel {
     
     private(set) lazy var walletItemAccountNumberText: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let item = $0 else { return "" }
-        if let last4Digits = item.maskedWalletItemAccountNumber {
+        if let last4Digits = item.maskedAccountNumber {
             return "**** \(last4Digits)"
         }
         return ""

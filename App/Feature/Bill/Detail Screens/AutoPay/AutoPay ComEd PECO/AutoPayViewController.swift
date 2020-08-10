@@ -54,7 +54,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     
     var accountDetail: AccountDetail!
 
-    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(walletService: ServiceFactory.createWalletService(), accountDetail: self.accountDetail) }()
+    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel( accountDetail: self.accountDetail) }()
 
     
     // MARK: - View Life Cycle

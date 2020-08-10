@@ -54,7 +54,7 @@ class BGEAutoPayViewController: UIViewController {
     
     var accountDetail: AccountDetail! // Passed from BillViewController
     
-    lazy var viewModel: BGEAutoPayViewModel = BGEAutoPayViewModel(walletService: ServiceFactory.createWalletService(), accountDetail: accountDetail)
+    lazy var viewModel: BGEAutoPayViewModel = BGEAutoPayViewModel( accountDetail: accountDetail)
     
     override func viewDidLoad() {
         super.viewDidLoad()
