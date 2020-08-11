@@ -136,6 +136,16 @@ public enum Router {
     case recoverUsername(request: RecoverUsernameRequest)
     case recoverMaskedUsername(request: RecoverMaskedUsernameRequest)
     
+    // Peak Rewards
+    case peakRewardsSummary(accountNumber: String, premiseNumber: String)
+    case peakRewardsOverrides(accountNumber: String, premiseNumber: String)
+    case scheduleOverride(accountNumber: String, premiseNumber: String, deviceSerialNumber: String, request: DateRequest)
+    case deleteOverride(accountNumber: String, premiseNumber: String, deviceSerialNumber: String)
+    case deviceSettings(accountNumber: String, premiseNumber: String, deviceSerialNumber: String)
+    case updateDeviceSettings(accountNumber: String, premiseNumber: String, deviceSerialNumber: String, request: SmartThermostatDeviceSettings)
+    case thermostatSchedule(accountNumber: String, premiseNumber: String, deviceSerialNumber: String)
+    case updateThermostatSchedule(accountNumber: String, premiseNumber: String, deviceSerialNumber: String, request: Encodable)
+    
     public var scheme: String {
         return "https"
     }
@@ -304,22 +314,40 @@ public enum Router {
         case .updateGameUser(let accountNumber, _):
             return "\(basePath)/\(apiAccess.path)/game/\(accountNumber)"
         case .fetchDailyUsage(let accountNumber, let premiseNumber, _):
-            return "accounts/\(accountNumber)/premises/\(premiseNumber)/usage/query"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/query"
         case .reportOutageAnon:
             return "\(basePath)/\(apiAccess.path)/outage"
+            
+            
+        case .peakRewardsSummary(let accountNumber, let premiseNumber):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak"
+        case .peakRewardsOverrides(let accountNumber, let premiseNumber):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak/override"
+        case .scheduleOverride(let accountNumber, let premiseNumber, let deviceSerialNumber, _):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak/devices/\(deviceSerialNumber)/override"
+        case .deleteOverride(let accountNumber, let premiseNumber, let deviceSerialNumber):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak/devices/\(deviceSerialNumber)/override"
+        case .deviceSettings(let accountNumber, let premiseNumber, let deviceSerialNumber):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak/devices/\(deviceSerialNumber)/settings"
+        case .updateDeviceSettings(let accountNumber, let premiseNumber, let deviceSerialNumber, _):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak/devices/\(deviceSerialNumber)/settings"
+        case .thermostatSchedule(let accountNumber, let premiseNumber, let deviceSerialNumber):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak/devices/\(deviceSerialNumber)/schedule"
+        case .updateThermostatSchedule(let accountNumber, let premiseNumber, let deviceSerialNumber, _):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak/devices/\(deviceSerialNumber)/schedule"
         }
     }
     
     public var method: String {
         switch self {
-        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .deleteWalletItem, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .register, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey:
+        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .register, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname, .fetchAlertLanguage, .bankName:
+        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
              .updateReleaseOfInfo, .validateConfirmationEmail, .setDefaultAccount, .updateAutoPay, .updateAutoPayBGE, .setAlertLanguage, .updateWalletItem:
             return "PUT"
-        case .paperlessUnenroll:
+        case .paperlessUnenroll, .deleteOverride:
             return "DELETE"
         }
     }
@@ -337,7 +365,7 @@ public enum Router {
             headers["Accept"] = "application/json;odata=verbose"
         case .fetchJWTToken:
             headers["content-type"] = "application/x-www-form-urlencoded"
-        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .updateAutoPay, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .validateConfirmationEmail, .recoverPassword, .passwordChange, .fetchGameUser, .updateGameUser, .fetchDailyUsage, .registerForAlerts, .fetchAlertLanguage, .setAlertLanguage, .walletEncryptionKey, .deleteWalletItem, .updateWalletItem, .addWalletItem:
+        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .updateAutoPay, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .validateConfirmationEmail, .recoverPassword, .passwordChange, .fetchGameUser, .updateGameUser, .fetchDailyUsage, .registerForAlerts, .fetchAlertLanguage, .setAlertLanguage, .walletEncryptionKey, .deleteWalletItem, .updateWalletItem, .addWalletItem, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .deleteOverride:
             headers["Content-Type"] = "application/json"
         default:
             break
@@ -369,7 +397,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .register(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable):
+        case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .register(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable), .scheduleOverride(_, _, _, let request as Encodable), .updateDeviceSettings(_, _, _, let request as Encodable), .updateThermostatSchedule(_, _, _, let request as Encodable):
             return request.data()
         case .fetchJWTToken(let request):
             let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
@@ -461,6 +489,10 @@ public enum Router {
             return "DailyUsageMock"
         case .registerForAlerts: 
             return "RegisterForAlertsMock"
+        case .peakRewardsSummary:
+            return "PeakRewardsSummaryMock"
+        case .peakRewardsOverrides:
+            return "PeakRewardsOverridesMock"
         default:
             return ""
         }

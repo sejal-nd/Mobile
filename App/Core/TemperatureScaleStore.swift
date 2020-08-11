@@ -10,17 +10,6 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-enum TemperatureScale: Int {
-    case fahrenheit, celsius
-    
-    var displayString: String {
-        switch self {
-        case .fahrenheit: return "°F"
-        case .celsius: return "°C"
-        }
-    }
-}
-
 final class TemperatureScaleStore {
     
     static let shared = TemperatureScaleStore()

@@ -1,24 +1,19 @@
 //
 //  PeakRewardsSummary.swift
-//  Mobile
+//  BGE
 //
-//  Created by Sam Francis on 11/2/17.
-//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//  Created by Cody Dillon on 8/10/20.
+//  Copyright © 2020 Exelon Corporation. All rights reserved.
 //
 
-import Mapper
+import Foundation
 
-struct PeakRewardsSummary: Mappable {
+struct PeakRewardsSummary: Codable {
     let devices: [SmartThermostatDevice]
     let programs: [PeakRewardsProgram]
-    
-    init(map: Mapper) throws {
-        devices = try map.from("devices")
-        programs = try map.from("programs")
-    }
 }
 
-struct SmartThermostatDevice: Mappable, Equatable {
+struct SmartThermostatDevice: Codable, Equatable {
     let serialNumber: String
     let programNames: [String]
     let emergencyFlag: String
@@ -26,13 +21,13 @@ struct SmartThermostatDevice: Mappable, Equatable {
     let type: String
     let inventoryId: Int
     
-    init(map: Mapper) throws {
-        serialNumber = try map.from("serialNumber")
-        programNames = try map.from("programs")
-        emergencyFlag = try map.from("emergencyFlag")
-        name = try map.from("name")
-        type = try map.from("type")
-        inventoryId = try map.from("inventoryId")
+    enum CodingKeys: String, CodingKey {
+        case serialNumber
+        case programNames = "programs"
+        case emergencyFlag
+        case name
+        case type
+        case inventoryId
     }
     
     static func ==(lhs: SmartThermostatDevice, rhs: SmartThermostatDevice) -> Bool {
@@ -46,7 +41,7 @@ struct SmartThermostatDevice: Mappable, Equatable {
 
 }
 
-struct PeakRewardsProgram: Mappable {
+struct PeakRewardsProgram: Codable {
     let name: String
     let displayName: String
     let isActive: Bool
@@ -54,57 +49,34 @@ struct PeakRewardsProgram: Mappable {
     let gearName: String
     let startDate: Date?
     let stopDate: Date?
-    
-    init(map: Mapper) throws {
-        name = try map.from("name")
-        displayName = try map.from("displayName")
-        isActive = try map.from("isActive")
-        status = try map.from("status") {
-            guard let string = $0 as? String else {
-                throw MapperError.convertibleError(value: $0, type: String.self)
-            }
-            
-            guard let status = PeakRewardsProgramStatus(rawValue: string) else {
-                throw MapperError.convertibleError(value: string, type: PeakRewardsProgramStatus.self)
-            }
-            
-            return status
-        }
-        gearName = try map.from("gearName")
-
-        startDate = map.optionalFrom("startDate", transformation: DateParser().extractDate)
-        stopDate = map.optionalFrom("stopDate", transformation: DateParser().extractDate)
-    }
 }
 
-enum PeakRewardsProgramStatus: String {
+enum PeakRewardsProgramStatus: String, Codable {
     case active = "Active"
     case inactive = "Inactive"
 }
 
-struct PeakRewardsOverride: Mappable, Equatable {
+struct PeakRewardsOverride: Decodable, Equatable {
     let serialNumber: String
     let status: OverrideStatus?
     let start: Date?
     let stop: Date?
     
-    init(map: Mapper) throws {
-        status = map.optionalFrom("status") {
-            guard let string = $0 as? String else {
-                throw MapperError.convertibleError(value: $0, type: String.self)
-            }
-            
-            guard let status = OverrideStatus(rawValue: string) else {
-                throw MapperError.convertibleError(value: string, type: OverrideStatus.self)
-            }
-            
-            return status
-        }
-        
-        start = map.optionalFrom("start", transformation: DateParser().extractDate)
-        stop = map.optionalFrom("stop", transformation: DateParser().extractDate)
-        
-        serialNumber = try map.from("device.serialNumber")
+     enum CodingKeys: String, CodingKey {
+        case device
+        case serialNumber
+        case status
+        case start
+        case stop
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+                
+        serialNumber = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .device).decode(String.self, forKey: .serialNumber)
+        status = try container.decode(OverrideStatus.self, forKey: .status)
+        start = try container.decode(Date.self, forKey: .start)
+        stop = try container.decode(Date.self, forKey: .stop)
     }
     
     static func ==(lhs: PeakRewardsOverride, rhs: PeakRewardsOverride) -> Bool {
@@ -116,23 +88,16 @@ struct PeakRewardsOverride: Mappable, Equatable {
     
 }
 
-enum OverrideStatus: String {
+enum OverrideStatus: String, Codable {
     case scheduled = "Scheduled"
     case active = "Active"
 }
 
-struct SmartThermostatDeviceSettings: Mappable {
+public struct SmartThermostatDeviceSettings: Codable {
     let temp: Temperature
     let mode: SmartThermostatMode
     let fan: SmartThermostatFan
     let hold: Bool
-    
-    init(map: Mapper) throws {
-        temp = try map.from("temp", transformation: tempMapper)
-        mode = try map.from("mode")
-        fan = try map.from("fan")
-        hold = try map.from("hold")
-    }
     
     init(temp: Temperature = Temperature(value: 70.0, scale: .fahrenheit),
          mode: SmartThermostatMode = .off,
@@ -152,7 +117,7 @@ struct SmartThermostatDeviceSettings: Mappable {
     }
 }
 
-enum SmartThermostatFan: String {
+enum SmartThermostatFan: String, Codable {
     case auto = "AUTO"
     case circulate = "CIRCULATE"
     case on = "ON"
@@ -173,7 +138,7 @@ enum SmartThermostatFan: String {
     }
 }
 
-enum SmartThermostatMode: String {
+enum SmartThermostatMode: String, Codable {
     case cool = "COOL"
     case heat = "HEAT"
     case off = "OFF"
@@ -195,18 +160,11 @@ enum SmartThermostatMode: String {
 
 }
 
-struct SmartThermostatDeviceSchedule: Mappable {
+struct SmartThermostatDeviceSchedule: Codable {
     let wakeInfo: SmartThermostatPeriodInfo
     let leaveInfo: SmartThermostatPeriodInfo
     let returnInfo: SmartThermostatPeriodInfo
     let sleepInfo: SmartThermostatPeriodInfo
-    
-    init(map: Mapper) throws {
-        wakeInfo = try map.from("wake")
-        leaveInfo = try map.from("leave")
-        returnInfo = try map.from("return")
-        sleepInfo = try map.from("sleep")
-    }
     
     init(wakeInfo: SmartThermostatPeriodInfo,
          leaveInfo: SmartThermostatPeriodInfo,
@@ -243,16 +201,9 @@ struct SmartThermostatDeviceSchedule: Mappable {
             return SmartThermostatDeviceSchedule(wakeInfo: wakeInfo, leaveInfo: leaveInfo, returnInfo: returnInfo, sleepInfo: info)
         }
     }
-    
-    func toDictionary() -> [String: Any] {
-        return ["wake": wakeInfo.toDictionary(),
-                "leave": leaveInfo.toDictionary(),
-                "return": returnInfo.toDictionary(),
-                "sleep": sleepInfo.toDictionary()]
-    }
 }
 
-enum SmartThermostatPeriod: String {
+enum SmartThermostatPeriod: String, Codable {
     case wake = "wake"
     case leave = "leave"
     case `return` = "return"
@@ -268,19 +219,13 @@ enum SmartThermostatPeriod: String {
     }
 }
 
-struct SmartThermostatPeriodInfo: Mappable {
+struct SmartThermostatPeriodInfo: Codable {
     let coolTemp: Temperature
     let heatTemp: Temperature
     let startTime: Date
     
     var startTimeDisplayString: String {
         return DateFormatter.hmmaFormatter.string(from: startTime)
-    }
-    
-    init(map: Mapper) throws {
-        coolTemp = try map.from("coolTemp", transformation: tempMapper)
-        heatTemp = try map.from("heatTemp", transformation: tempMapper)
-        startTime = try map.from("startTime", transformation: DateParser().extractDate)
     }
     
     init(startTime: Date,
@@ -290,15 +235,17 @@ struct SmartThermostatPeriodInfo: Mappable {
         self.coolTemp = coolTemp
         self.heatTemp = heatTemp
     }
-    
-    func toDictionary() -> [String: Any] {
-        return ["coolTemp": coolTemp.fahrenheit, "heatTemp": heatTemp.fahrenheit, "startTime": DateFormatter.HHmmFormatter.string(from: startTime)]
-    }
 }
 
-struct Temperature: Equatable {
+struct Temperature: Codable, Equatable {
     
     private let fahrenheitValue: Double
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let tempStr = try container.decode(String.self)
+        self.init(value: Double(tempStr)!, scale: .fahrenheit)
+    }
     
     init(value: Double, scale: TemperatureScale) {
         switch scale {
@@ -335,15 +282,13 @@ struct Temperature: Equatable {
     }
 }
 
-fileprivate let tempMapper: (Any) throws -> Temperature = { v in
-    guard let valueString = v as? String else {
-        throw MapperError.convertibleError(value: v, type: String.self)
+enum TemperatureScale: Int, Codable {
+    case fahrenheit, celsius
+    
+    var displayString: String {
+        switch self {
+        case .fahrenheit: return "°F"
+        case .celsius: return "°C"
+        }
     }
-    guard let value = Double(valueString) else {
-        throw MapperError.convertibleError(value: valueString, type: Double.self)
-    }
-    return Temperature(value: value, scale: .fahrenheit)
 }
-
-
-
