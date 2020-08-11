@@ -62,6 +62,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         switch Environment.shared.opco {
             case .comEd:
                 illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
+            case .ace, .delmarva, .pepco:
+                illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_PHI")
             default:
                 illustrationImageView.isHidden = true
             }
