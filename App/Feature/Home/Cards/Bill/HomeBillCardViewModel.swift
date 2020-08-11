@@ -551,24 +551,9 @@ class HomeBillCardViewModel {
                                       attributes: grayAttributes)
         default:
             guard let dueByDate = accountDetail.billingInfo.dueByDate else { return nil }
-            let calendar = Calendar.opCo
-            
-            let date1 = calendar.startOfDay(for: .now)
-            let date2 = calendar.startOfDay(for: dueByDate)
-            
-            guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
-                return nil
-            }
-            
-            if days > 0 {
-                let localizedText = NSLocalizedString("Total Amount Due in %d Day%@", comment: "")
-                return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                          attributes: grayAttributes)
-            } else {
-                let localizedText = NSLocalizedString("Total Amount Due on %@", comment: "")
-                return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                          attributes: grayAttributes)
-            }
+            let localizedText = NSLocalizedString("Total Amount Due on %@", comment: "")
+            return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
+                                      attributes: grayAttributes)
         }
     }
     
