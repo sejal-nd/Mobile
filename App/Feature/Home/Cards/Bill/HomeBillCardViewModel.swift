@@ -241,7 +241,7 @@ class HomeBillCardViewModel {
                 return .paymentScheduled
             }
             
-            if opco == .bge && billingInfo.netDueAmount < 0 {
+            if opco == .bge || opco.isPHI && billingInfo.netDueAmount < 0 {
                 return .credit
             }
             
@@ -547,8 +547,8 @@ class HomeBillCardViewModel {
                                           attributes: grayAttributes)
             }
         case .credit:
-            return NSAttributedString(string: NSLocalizedString("No Amount Due", comment: ""),
-                                      attributes: grayAttributes)
+            return Environment.shared.opco.isPHI ? NSAttributedString(string: NSLocalizedString("You have no amount due", comment: ""), attributes: grayAttributes) :
+                NSAttributedString(string: NSLocalizedString("No Amount Due", comment: ""), attributes: grayAttributes)
         default:
             guard let dueByDate = accountDetail.billingInfo.dueByDate else { return nil }
             let localizedText = NSLocalizedString("Total Amount Due on %@", comment: "")
@@ -660,6 +660,9 @@ class HomeBillCardViewModel {
     private(set) lazy var amountFont: Driver<UIFont> = billState
         .map { $0 == .paymentPending ? OpenSans.semibold.of(textStyle: .largeTitle): OpenSans.semibold.of(textStyle: .largeTitle) }
     
+    private(set) lazy var amountColor: Driver<UIColor> = billState
+        .map { Environment.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .deepGray) : .deepGray }
+
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
         Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
             .map { accountDetail, scheduledPayment in

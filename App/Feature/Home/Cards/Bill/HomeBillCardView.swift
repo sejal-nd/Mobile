@@ -177,7 +177,7 @@ class HomeBillCardView: UIView {
         minimumPaymentLabel.textColor = .deepGray
         minimumPaymentLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
-        amountLabel.textColor = .deepGray
+        viewModel.amountColor.drive(amountLabel.rx.textColor).disposed(by: bag)
         amountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
         
         dueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
