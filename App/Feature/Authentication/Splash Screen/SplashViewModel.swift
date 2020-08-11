@@ -26,7 +26,7 @@ struct SplashViewModel{
     
     func checkIfOutOfDate(minVersion:String) -> Bool {
         let dictionary = Bundle.main.infoDictionary!
-        let currentVersion = dictionary["CFBundleShortVersionString"] as! String
+        let currentVersion = dictionary["CFBundleShortVersionString"] as? String ?? ""
         
         return minVersion.compare(currentVersion, options: .numeric) == .orderedDescending
     }

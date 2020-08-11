@@ -17,15 +17,13 @@ enum BiometricService {
         let keychain = A0SimpleKeychain()
         keychain.useAccessControl = true
         keychain.defaultAccessiblity = A0SimpleKeychainItemAccessible.whenPasscodeSetThisDeviceOnly
-        
-        /* We use the following to detect a user who restored from backup onto a new device. In that case,
-         * the UserDefaults would have persisted, but the keychain where the password was stored would have been wiped.
-         * That puts us in a bad position where we think Biometrics are enabled but it actually isn't. So we use this method
-         * of storing a file with the isExcludedFromBackup attribute, and reset the relevant UserDefaults when the file
-         * does not exist. */
+        return keychain
+    }
+    
+    static func disableBiometricsOnFreshInstall() {
         let manager = FileManager.default
-        var fileUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("FirstLaunchOnNewDevice")
-        if !manager.fileExists(atPath: fileUrl.path) {
+        if var fileUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("FirstLaunchOnNewDevice"),
+            !manager.fileExists(atPath: fileUrl.path) {
             disableBiometrics()
             UserDefaults.standard.set(true, forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
             
@@ -39,8 +37,6 @@ enum BiometricService {
                 dLog("Failed to set resource values: \(error.localizedDescription)")
             }
         }
-        
-        return keychain
     }
     
     static func deviceBiometryType() -> String? {

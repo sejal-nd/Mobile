@@ -303,6 +303,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         userDefaults.set(false, forKey: UserDefaultKeys.inMainApp)
         
+        BiometricService.disableBiometricsOnFreshInstall()
+        
         if userDefaults.bool(forKey: UserDefaultKeys.hasRunBefore) == false {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
             BiometricService.disableBiometrics()
