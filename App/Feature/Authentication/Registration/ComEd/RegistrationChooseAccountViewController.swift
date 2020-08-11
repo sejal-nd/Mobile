@@ -88,7 +88,23 @@ class RegistrationChooseAccountViewController: UIViewController {
     }
     
     @IBAction func onSelectAccountPress() {
-        self.performSegue(withIdentifier: "createCredentialsMultipleAccountSegue", sender: self)
+        LoadingView.show()
+        viewModel.validateAccount(onSuccess: { [weak self] in
+            LoadingView.hide()
+            GoogleAnalytics.log(event: .registerAccountValidation)
+            self?.performSegue(withIdentifier: "createCredentialsMultipleAccountSegue", sender: self)
+            }, onMultipleAccounts:  { [weak self] in
+                LoadingView.hide()
+                GoogleAnalytics.log(event: .registerAccountValidation)
+                self?.performSegue(withIdentifier: "createCredentialsMultipleAccountSegue", sender: self)
+            }, onError: { [weak self] (title, message) in
+                LoadingView.hide()
+                
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertController, animated: true, completion: nil)
+        })
+        
     }
     
     // MARK: - Navigation

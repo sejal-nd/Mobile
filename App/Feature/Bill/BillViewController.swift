@@ -901,10 +901,10 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
         var toastMessage: String
         switch didChangeStatus {
         case .enroll:
-            toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
+            toastMessage = Environment.shared.opco.isPHI ? NSLocalizedString("Paperless eBill changes saved", comment: "") : NSLocalizedString("Enrolled in Paperless eBill", comment: "")
             showDelayedToast(withMessage: toastMessage)
         case .unenroll:
-            toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
+            toastMessage = Environment.shared.opco.isPHI ? NSLocalizedString("Paperless eBill changes saved", comment: "") : NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
             showDelayedToast(withMessage: toastMessage)
         case .mixed: // ComEd/PECO only
             let action = InfoAlertAction(ctaText: NSLocalizedString("I understand", comment: ""))

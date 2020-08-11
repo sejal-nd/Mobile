@@ -59,7 +59,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
         title = NSLocalizedString("Register", comment: "")
         
         instructionLabel.textColor = .deepGray
-        instructionLabel.text = NSLocalizedString("Next, select your security questions.\n\nIf you forget your sign in credentials, you’ll be able to recover them by providing the answers to the security questions you choose in this step.", comment: "")
+        instructionLabel.text = NSLocalizedString("Next, select your security questions.\n\nIf you forget your sign-in credentials, you’ll be able to recover them by providing the answers to the security questions you choose in this step.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.setLineHeight(lineHeight: 24)
         
