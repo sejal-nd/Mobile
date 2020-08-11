@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct WalletItem: Decodable, Equatable {
     public var walletItemId: String?
