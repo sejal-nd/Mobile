@@ -5823,6 +5823,18 @@
 		C338281324E1C19900F133C5 /* DateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338280824E1BF9900F133C5 /* DateRequest.swift */; };
 		C338281424E1C19A00F133C5 /* DateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338280824E1BF9900F133C5 /* DateRequest.swift */; };
 		C338281624E1CEE100F133C5 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		C338281A24E2FDE000F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338281B24E2FDE900F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338281C24E2FDEA00F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338281D24E2FDEB00F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338281E24E2FDEC00F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338281F24E2FDED00F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338282024E2FDEF00F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338282124E2FDF000F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338282224E2FDF000F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338282324E2FDF100F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338282424E2FDF300F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338282524E2FDF500F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
 		C35630934D9C14C670A6E89D /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		C35672A7243694BF000D77E4 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
 		C35672A8243694BF000D77E4 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
@@ -7902,6 +7914,7 @@
 		C33827FB24E1904D00F133C5 /* PeakRewardsSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsSummary.swift; sourceTree = "<group>"; };
 		C338280824E1BF9900F133C5 /* DateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRequest.swift; sourceTree = "<group>"; };
 		C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PeakRewardsService+Rx.swift"; sourceTree = "<group>"; };
+		C338281924E2FDE000F133C5 /* WalletItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		C361710423943454FDB6587F /* Pods-PECOApp-PECOUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
@@ -9952,6 +9965,7 @@
 				C3B6554F24ABD9310048C64B /* NewSERInfo.swift */,
 				675F4B2624AB828000A828F9 /* SharePointAlert.swift */,
 				675F4B2224AB828000A828F9 /* Wallet.swift */,
+				C338281924E2FDE000F133C5 /* WalletItem.swift */,
 				675F4B2E24AB828000A828F9 /* OutageStatus.swift */,
 				673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */,
 				C3B6557F24ACD9080048C64B /* PaymentItem.swift */,
@@ -15768,6 +15782,7 @@
 				C3087ADF24B67ECE005AE544 /* GuidRequest.swift in Sources */,
 				C3087B1124BDEFA3005AE544 /* AnyObserver.swift in Sources */,
 				C3087B2124BE154E005AE544 /* CompareBillResult.swift in Sources */,
+				C338281F24E2FDED00F133C5 /* WalletItem.swift in Sources */,
 				C3087AAB24B670B0005AE544 /* AccountService+Rx.swift in Sources */,
 				673FA03D24C8956100210BCD /* NewForecastBill.swift in Sources */,
 				C3B6555824ABD9320048C64B /* NewSERInfo.swift in Sources */,
@@ -15840,6 +15855,7 @@
 				35F9DDAC2333D8AF00AAA2B2 /* ServiceResult.swift in Sources */,
 				673FA0A124C8956700210BCD /* NewForecastBill.swift in Sources */,
 				C33827EE24DDDB9C00F133C5 /* StringResult.swift in Sources */,
+				C338281B24E2FDE900F133C5 /* WalletItem.swift in Sources */,
 				673FA0CB24C899CD00210BCD /* OutageStatusContainer.swift in Sources */,
 				C3087AB924B671A1005AE544 /* MockUser.swift in Sources */,
 				673FA0A824C8956700210BCD /* AlertPreferences.swift in Sources */,
@@ -16072,6 +16088,7 @@
 				673FA02A24C8956000210BCD /* AppointmentsContainer.swift in Sources */,
 				35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */,
 				673FA0F424C8A52700210BCD /* AnonymousService+Rx.swift in Sources */,
+				C338281D24E2FDEB00F133C5 /* WalletItem.swift in Sources */,
 				35F9DE0D23353A5300AAA2B2 /* BillInterfaceController.swift in Sources */,
 				C336047724D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
 				C3087B2F24BE31BA005AE544 /* VoidDecodable.swift in Sources */,
@@ -16306,6 +16323,7 @@
 				C338280224E1B3E500F133C5 /* PeakRewardsSummary.swift in Sources */,
 				67DDB36524535D2E006CD6EB /* HomeOutageCardView.swift in Sources */,
 				C320FDA924DC64720012E4ED /* WalletRequest.swift in Sources */,
+				C338282024E2FDEF00F133C5 /* WalletItem.swift in Sources */,
 				67DDB36724535D2E006CD6EB /* PaperlessEBillViewModel.swift in Sources */,
 				67DDB36824535D2E006CD6EB /* GiftsViewController.swift in Sources */,
 				67DDB36924535D2E006CD6EB /* HomePrepaidCardViewModel.swift in Sources */,
@@ -17027,6 +17045,7 @@
 				67893AD424DB360A000143D6 /* AlertRegistrationRequest.swift in Sources */,
 				67DDB68324535D32006CD6EB /* MiniWalletSheetViewModel.swift in Sources */,
 				67DDB68424535D32006CD6EB /* GameOptInOutViewController.swift in Sources */,
+				C338282424E2FDF300F133C5 /* WalletItem.swift in Sources */,
 				675F4B9324AB828100A828F9 /* BillingHistoryRequest.swift in Sources */,
 				67DDB68624535D32006CD6EB /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				67DDB68724535D32006CD6EB /* RecentPaymentsStore.swift in Sources */,
@@ -17508,6 +17527,7 @@
 				67893AD224DB3609000143D6 /* AlertRegistrationRequest.swift in Sources */,
 				67DDB8D924535D35006CD6EB /* MiniWalletSheetViewModel.swift in Sources */,
 				67DDB8DA24535D35006CD6EB /* GameOptInOutViewController.swift in Sources */,
+				C338282224E2FDF000F133C5 /* WalletItem.swift in Sources */,
 				675F4B9224AB828100A828F9 /* BillingHistoryRequest.swift in Sources */,
 				67DDB8DC24535D35006CD6EB /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				67DDB8DD24535D35006CD6EB /* RecentPaymentsStore.swift in Sources */,
@@ -18327,6 +18347,7 @@
 				673F9F9824C8933A00210BCD /* MeterPingResult.swift in Sources */,
 				67EDC2E824C1E690001A8494 /* StormModeStatus.swift in Sources */,
 				67EDC2E924C1E690001A8494 /* OutageInterfaceController.swift in Sources */,
+				C338282124E2FDF000F133C5 /* WalletItem.swift in Sources */,
 				673FA00224C894DA00210BCD /* BudgetBillingUnenrollRequest.swift in Sources */,
 				C320FDC424DC74060012E4ED /* WalletItemRequest.swift in Sources */,
 				673F9F5C24C892B400210BCD /* AccountService.swift in Sources */,
@@ -18371,6 +18392,7 @@
 				67EDC35124C1EBD9001A8494 /* (null) in Sources */,
 				C338281424E1C19A00F133C5 /* DateRequest.swift in Sources */,
 				67EDC35224C1EBD9001A8494 /* WatchSessionMananger.swift in Sources */,
+				C338282524E2FDF500F133C5 /* WalletItem.swift in Sources */,
 				67EDC35324C1EBD9001A8494 /* Optional+Comparable.swift in Sources */,
 				673F9F8224C892FB00210BCD /* ReleaseOfInfoRequest.swift in Sources */,
 				673F9FA024C8940D00210BCD /* PaymentItem.swift in Sources */,
@@ -18611,6 +18633,7 @@
 				67EDC3E924C1EBFF001A8494 /* Weekday.swift in Sources */,
 				67893B0924DB431A000143D6 /* Alert.swift in Sources */,
 				67EDC3EA24C1EBFF001A8494 /* (null) in Sources */,
+				C338282324E2FDF100F133C5 /* WalletItem.swift in Sources */,
 				673FA00C24C894DB00210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */,
 				673FA07924C8956300210BCD /* Wallet.swift in Sources */,
 				67EDC3EB24C1EBFF001A8494 /* KeychainKeys.swift in Sources */,
@@ -18983,6 +19006,7 @@
 				359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */,
 				C3087A8824B63D03005AE544 /* AccountService+Rx.swift in Sources */,
 				675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
+				C338281A24E2FDE000F133C5 /* WalletItem.swift in Sources */,
 				675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
@@ -19580,6 +19604,7 @@
 				67893ACE24DB3606000143D6 /* AlertRegistrationRequest.swift in Sources */,
 				224EFF22216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				82AEF2E11F5F50F40057E7ED /* RxNotifications.swift in Sources */,
+				C338281E24E2FDEC00F133C5 /* WalletItem.swift in Sources */,
 				B0CB1C86227CB4510081F99B /* TabCollectionViewCell.swift in Sources */,
 				C3087B1A24BDF0D5005AE544 /* UsageService+Rx.swift in Sources */,
 				35ACCB4B20EA7ABD0022907F /* HomeOutageCardView.swift in Sources */,
@@ -20061,6 +20086,7 @@
 				67893ACB24DB3604000143D6 /* AlertRegistrationRequest.swift in Sources */,
 				224EFF21216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				9C7774862368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
+				C338281C24E2FDEA00F133C5 /* WalletItem.swift in Sources */,
 				82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				C3087B1824BDF0D5005AE544 /* UsageService+Rx.swift in Sources */,
 				35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */,
