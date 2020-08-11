@@ -241,7 +241,7 @@ class HomeBillCardViewModel {
                 return .paymentScheduled
             }
             
-            if opco == .bge || opco.isPHI && billingInfo.netDueAmount < 0 {
+            if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {
                 return .credit
             }
             
@@ -340,7 +340,7 @@ class HomeBillCardViewModel {
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
                                                                                      accountDetailDriver,
                                                                                      walletItemDriver)
-    { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
+    { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil }
         .distinctUntilChanged()
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }

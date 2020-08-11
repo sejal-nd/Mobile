@@ -154,7 +154,6 @@ class HomeBillCardView: UIView {
         reinstatementFeeLabel.textColor = .deepGray
         reinstatementFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        bankCreditNumberButton.layer.borderColor = UIColor.accentGray.cgColor
         bankCreditNumberButton.layer.borderWidth = 1
         bankCreditNumberButton.layer.cornerRadius = 15
 
