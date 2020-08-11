@@ -489,6 +489,10 @@ public enum Router {
             return "DailyUsageMock"
         case .registerForAlerts: 
             return "RegisterForAlertsMock"
+        case .peakRewardsSummary:
+            return "PeakRewardsSummaryMock"
+        case .peakRewardsOverrides:
+            return "PeakRewardsOverridesMock"
         default:
             return ""
         }

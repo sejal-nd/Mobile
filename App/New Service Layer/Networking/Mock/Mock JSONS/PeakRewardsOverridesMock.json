@@ -1,0 +1,17 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      [
+          {
+              "device": {
+                  "serialNumber": "123"
+              },
+              "status": "Scheduled",
+              "start": "2019-01-01T10:00:00-05:00",
+              "stop": "2019-01-01T15:00:00-05:00"
+          }
+      ]
+    }
+  }
+}

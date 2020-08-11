@@ -5835,6 +5835,30 @@
 		C338282324E2FDF100F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
 		C338282424E2FDF300F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
 		C338282524E2FDF500F133C5 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281924E2FDE000F133C5 /* WalletItem.swift */; };
+		C338282724E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338282924E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338282A24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338282B24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338282C24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338282D24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338282E24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338282F24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338283024E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338283124E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338283224E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
+		C338283424E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283624E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283724E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283824E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283924E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283A24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283B24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283C24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283D24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283E24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C338283F24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
 		C35630934D9C14C670A6E89D /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		C35672A7243694BF000D77E4 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
 		C35672A8243694BF000D77E4 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
@@ -7915,6 +7939,8 @@
 		C338280824E1BF9900F133C5 /* DateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRequest.swift; sourceTree = "<group>"; };
 		C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PeakRewardsService+Rx.swift"; sourceTree = "<group>"; };
 		C338281924E2FDE000F133C5 /* WalletItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
+		C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PeakRewardsSummaryMock.json; sourceTree = "<group>"; };
+		C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PeakRewardsOverridesMock.json; sourceTree = "<group>"; };
 		C361710423943454FDB6587F /* Pods-PECOApp-PECOUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
@@ -10058,6 +10084,8 @@
 				675F4B5724AB828000A828F9 /* WalletMock.json */,
 				675F4B4524AB828000A828F9 /* WeatherMock.json */,
 				67893AF224DB3825000143D6 /* RegisterForAlertsMock.json */,
+				C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */,
+				C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */,
 			);
 			path = "Mock JSONS";
 			sourceTree = "<group>";
@@ -12262,10 +12290,12 @@
 				356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */,
 				C3087B0724BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				678B623224D09A1F009F8A6B /* RegistrationQuestionsMock.json in Resources */,
+				C338283924E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				678B621624CF6ACF009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				356C7F2F21908BBA003E8A90 /* README.md in Resources */,
 				35F9DD6B2333C87F00AAA2B2 /* PECOAssets.xcassets in Resources */,
 				356C7FAE2190DC63003E8A90 /* MCSConfig.plist in Resources */,
+				C338282C24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67D73B03246C72F500450B63 /* environment.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12292,10 +12322,12 @@
 				35F9DD682333C85C00AAA2B2 /* README.md in Resources */,
 				C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
+				C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
 				35F9DD5D2333C45900AAA2B2 /* BGEAssets.xcassets in Resources */,
 				35F9DD882333D3C500AAA2B2 /* MCSConfig.plist in Resources */,
+				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67D73B00246C72F100450B63 /* environment.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12322,10 +12354,12 @@
 				35F9DE4323353D6700AAA2B2 /* MCSConfig.plist in Resources */,
 				C3087B0524BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				678B623024D09A1E009F8A6B /* RegistrationQuestionsMock.json in Resources */,
+				C338283724E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				678B621824CF6AD0009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				35F9DDF5233539C300AAA2B2 /* ComEdAssets.xcassets in Resources */,
 				35F9DE4B2335413800AAA2B2 /* README.md in Resources */,
 				35F9DE482335413200AAA2B2 /* Assets.xcassets in Resources */,
+				C338282A24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67D73B01246C72F300450B63 /* environment.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12350,6 +12384,7 @@
 				67DDB48024535D2E006CD6EB /* AccountInfoBarCell.xib in Resources */,
 				67DDB48124535D2E006CD6EB /* Appt_Confirmed.json in Resources */,
 				67DDB48224535D2E006CD6EB /* bill_comparison.json in Resources */,
+				C338282D24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				678B621524CF6ACE009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				67DDB48324535D2E006CD6EB /* account_lookup.json in Resources */,
 				67DDB48424535D2E006CD6EB /* More.storyboard in Resources */,
@@ -12488,6 +12523,7 @@
 				67DDB4F224535D2E006CD6EB /* OutageStatusButton.xib in Resources */,
 				67DDB4F324535D2E006CD6EB /* ellipses_loading.json in Resources */,
 				67DDB4F424535D2E006CD6EB /* buddy_body.json in Resources */,
+				C338283A24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				67DDB4F524535D2E006CD6EB /* Assets.xcassets in Resources */,
 				67DDB4F624535D2E006CD6EB /* Alerts.storyboard in Resources */,
 				67DDB4F724535D2E006CD6EB /* AccountDetailsView.xib in Resources */,
@@ -12569,6 +12605,7 @@
 				67DDB6DE24535D32006CD6EB /* AlertPreferencesLanguageCell.xib in Resources */,
 				675F4D3D24AB828200A828F9 /* AppointmentsMock.json in Resources */,
 				67DDB6DF24535D32006CD6EB /* HomePrepaidCardView.xib in Resources */,
+				C338283124E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67DDBD9C24630CB1006CD6EB /* GoogleService-Info_ace_hotfix.plist in Resources */,
 				67DDB6E024535D32006CD6EB /* OpenSans-Bold.ttf in Resources */,
 				67DDB6E124535D32006CD6EB /* FloatLabelTextView.xib in Resources */,
@@ -12664,6 +12701,7 @@
 				67DDB73824535D32006CD6EB /* Storm.storyboard in Resources */,
 				67DDB73924535D32006CD6EB /* Payment.storyboard in Resources */,
 				67DDB73A24535D32006CD6EB /* outage_loading.json in Resources */,
+				C338283E24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				67DDB73B24535D32006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
 				301DE1FB24BF0A7A00992CA4 /* Assets.xcassets in Resources */,
 				67DDB73C24535D32006CD6EB /* PaperlessEBillAccountView.xib in Resources */,
@@ -12770,6 +12808,7 @@
 				67DDB93424535D35006CD6EB /* AlertPreferencesLanguageCell.xib in Resources */,
 				675F4D3C24AB828200A828F9 /* AppointmentsMock.json in Resources */,
 				67DDBDA5246450F8006CD6EB /* GoogleService-Info_delmarva.plist in Resources */,
+				C338282F24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67DDB93524535D35006CD6EB /* HomePrepaidCardView.xib in Resources */,
 				67DDB93624535D35006CD6EB /* OpenSans-Bold.ttf in Resources */,
 				67DDB93724535D35006CD6EB /* FloatLabelTextView.xib in Resources */,
@@ -12865,6 +12904,7 @@
 				67DDB98D24535D35006CD6EB /* message_bubble_unique.json in Resources */,
 				67DDB98E24535D35006CD6EB /* Storm.storyboard in Resources */,
 				67DDB98F24535D35006CD6EB /* Payment.storyboard in Resources */,
+				C338283C24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				67DDB99024535D35006CD6EB /* outage_loading.json in Resources */,
 				301DE1FA24BF0A7900992CA4 /* Assets.xcassets in Resources */,
 				67DDB99124535D35006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
@@ -13092,6 +13132,8 @@
 			files = (
 				67EDC2EE24C1E690001A8494 /* README.md in Resources */,
 				67EDC2EF24C1E690001A8494 /* Assets.xcassets in Resources */,
+				C338282E24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
+				C338283B24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				67EDC30224C1E96F001A8494 /* PepcoAssets.xcassets in Resources */,
 				67EDC2F124C1E690001A8494 /* MCSConfig.plist in Resources */,
 				67EDC2F224C1E690001A8494 /* environment.plist in Resources */,
@@ -13120,6 +13162,8 @@
 			files = (
 				67EDC41424C1EC70001A8494 /* ACEAssets.xcassets in Resources */,
 				67EDC38A24C1EBD9001A8494 /* README.md in Resources */,
+				C338283224E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
+				C338283F24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				67EDC38B24C1EBD9001A8494 /* Assets.xcassets in Resources */,
 				67EDC38E24C1EBD9001A8494 /* MCSConfig.plist in Resources */,
 				67EDC38F24C1EBD9001A8494 /* environment.plist in Resources */,
@@ -13148,6 +13192,8 @@
 			files = (
 				67EDC40224C1EBFF001A8494 /* README.md in Resources */,
 				67EDC40324C1EBFF001A8494 /* Assets.xcassets in Resources */,
+				C338283024E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
+				C338283D24E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				67EDC40624C1EBFF001A8494 /* MCSConfig.plist in Resources */,
 				67EDC41524C1EC76001A8494 /* DelmarvaAssets.xcassets in Resources */,
 				67EDC40724C1EBFF001A8494 /* environment.plist in Resources */,
@@ -13256,6 +13302,7 @@
 				675F4DDA24AB828200A828F9 /* AutoPayEnrollMock.json in Resources */,
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
+				C338283424E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				359BDBAC22E09D93007002B0 /* AccountInfoBar.xib in Resources */,
 				B08957262217496D00A97965 /* bill_pdf.json in Resources */,
@@ -13275,6 +13322,7 @@
 				C3381A062424064100EA7062 /* PTRWidget.html in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
+				C338282724E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
@@ -13407,6 +13455,7 @@
 				B0B12604221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				822BBBA61EFC1A01004EBBAB /* WebViewController.xib in Resources */,
+				C338282B24E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */,
 				675F4D7024AB828200A828F9 /* BudgetBillingMock.json in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
@@ -13515,6 +13564,7 @@
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
+				C338283824E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				9C0EA5BD237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
@@ -13640,6 +13690,7 @@
 				359BDBB222E0E6E4007002B0 /* smallcircleload_blue.json in Resources */,
 				675F4D5D24AB828200A828F9 /* PaymentMock.json in Resources */,
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
+				C338282924E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				359BB2812148518C00FBAD83 /* sm_outage_loading.json in Resources */,
 				9C97DB1C20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
@@ -13739,6 +13790,7 @@
 				9C0A2C3D23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				B07E17E12209F0CA00B6E3C7 /* account_details.json in Resources */,
 				352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
+				C338283624E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD21032155AD85505077D /* splash.json in Resources */,
 				675F4D3324AB828200A828F9 /* ReportOutageMock.json in Resources */,
