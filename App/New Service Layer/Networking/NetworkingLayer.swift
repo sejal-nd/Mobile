@@ -43,13 +43,13 @@ public enum NetworkingLayer {
         }
         
         // Add Headers
-        NetworkingLayer.addAdditionalHeaders(router.httpHeaders, request: &urlRequest)
+        NetworkingLayer.addHTTPHeaders(router.httpHeaders, request: &urlRequest)
         
         // Configure URL Session (Mock or regular)
         let session: URLSession
         if Environment.shared.environmentName == .aut {
             // Mock
-            let username = UserSession.shared.token
+            let username = UserSession.token
             let mockUser = NewMockDataKey(rawValue: username) ?? .default
             
             let configuration = URLProtocolMock.createMockURLConfiguration(path: url.absoluteString,
@@ -61,9 +61,60 @@ public enum NetworkingLayer {
             session = URLSession.default
         }
         
-        NetworkingLayer.dataTask(session: session,
-                                 urlRequest: urlRequest,
-                                 completion: completion)
+        var retryCount = 3
+        
+        // todo this may create an infinite loop
+        
+        // Check refresh token
+        if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Environment.shared.environmentName != .aut {
+            // token expired
+            print("token expired")
+
+            // Decrease retry counter
+            retryCount -= 1
+            
+            // Refresh Token
+            let refreshTokenRequest = RefreshTokenRequest(clientId: Environment.shared.mcsConfig.clientID,
+                                                          clientSecret: Environment.shared.mcsConfig.clientSecret,
+                                                          refreshToken: UserSession.refreshToken)
+            
+            NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+                switch result {
+                case .success(let tokenResponse):
+                    do {
+                        // Create new user session
+                        try UserSession.createSession(tokenResponse: tokenResponse)
+                        
+                        // Perform initial request
+                        NetworkingLayer.dataTask(session: session,
+                                                 urlRequest: urlRequest,
+                                                 completion: completion)
+                    } catch {
+                        // Delete user session
+                        UserSession.deleteSession()
+                        completion(.failure(.invalidToken))
+                    }
+                case .failure(let error):
+                    // Delete user session
+                    UserSession.deleteSession()
+                    completion(.failure(error))
+                }
+            }
+        } else if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Environment.shared.environmentName != .aut {
+            // refresh expired
+            print("refresh token expired ")
+            
+            // Delete user session
+            UserSession.deleteSession()
+            completion(.failure(.invalidToken))
+        } else {
+            print("TOKEN ELSE")
+            
+            // Perform initial request
+            NetworkingLayer.dataTask(session: session,
+                                     urlRequest: urlRequest,
+                                     completion: completion)
+        }
     }
     
     private static func dataTask<T: Decodable>(session: URLSession,
@@ -132,31 +183,52 @@ public enum NetworkingLayer {
         }
         dataTask.resume()
     }
-    
+
     private static func decode<T: Decodable>(data: Data) throws -> T {
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
             dLog("📬 Data Response: \(String(decoding: data, as: UTF8.self))")
         }
-                
+
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({ decoder -> Date in
+        jsonDecoder.dateDecodingStrategy = .custom() { decoder -> Date in
             let container = try decoder.singleValueContainer()
             let dateStr = try container.decode(String.self)
+            print("Test 199")
             return try DateParser().extractDate(object: dateStr)
-        })
-        
-        let responseWrapper = try jsonDecoder.decode(NewResponseWrapper<T>.self, from: data)
-        
-        // check for endpoint error
-        if let endpointError = responseWrapper.error {
-            throw NetworkingError(errorCode: endpointError.code)
         }
-        
-        guard let data = responseWrapper.data else {
+
+         if let responseWrapper = try? jsonDecoder.decode(ApigeeResponseContainer.self, from: data) {
+            // Azure decode
+            
+            if let endpointError = responseWrapper.error {
+                throw NetworkingError(errorCode: endpointError.code)
+            }
+            
+            guard let responseData = responseWrapper.data else {
+                throw NetworkingError.decoding
+            }
+            
+            if let response = try? jsonDecoder.decode(T.self, from: responseData) {
+                // Default decode
+                print("response decoded")
+                return response
+            }
+            
+            print("throw container response")
+            throw NetworkingError.decoding
+        } else if (try? jsonDecoder.decode(ApigeeError.self, from: data)) != nil {
+            // Apigee decode
+            print("throw apigee response")
+            throw NetworkingError.invalidToken
+        } else if let response = try? jsonDecoder.decode(T.self, from: data) {
+            // Default decode
+            
+            print("return default response")
+            return response
+        } else {
+            print("throw decoding response")
             throw NetworkingError.decoding
         }
-        
-        return data
     }
     
     public static func cancelAllTasks() {
@@ -166,10 +238,10 @@ public enum NetworkingLayer {
         dLog("🛑 Cancelled all URL Session requests.")
     }
     
-    private static func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders,
+    private static func addHTTPHeaders(_ httpHeaders: HTTPHeaders,
                                              request: inout URLRequest) {
-        guard !additionalHeaders.isEmpty else { return }
-        for (key, value) in additionalHeaders {
+        guard !httpHeaders.isEmpty else { return }
+        for (key, value) in httpHeaders {
             request.setValue(value, forHTTPHeaderField: key)
         }
     }

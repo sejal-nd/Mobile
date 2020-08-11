@@ -10,7 +10,7 @@ import Foundation
 
 enum RegistrationService {
     static func createAccount(request: NewAccountRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .register(request: request), completion: completion)
+        NetworkingLayer.request(router: .registration(request: request), completion: completion)
     }
     
     static func checkDuplicateRegistration(request: UsernameRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {

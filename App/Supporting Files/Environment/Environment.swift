@@ -91,6 +91,33 @@ struct MCSConfig {
     let sharepointBaseURL: String
     var projectEnvironmentPath = ""
     
+    var clientSecret: String {
+        var id = ""
+        switch Environment.shared.environmentName {
+        case .aut, .test, .dev:
+            id = "WbCpJpfgV64WTTDg"
+        case .stage, .hotfix:
+            id = "61MnQzuXNLdlsBOu"
+        case .prodbeta, .prod:
+            id = ""
+        }
+        return id
+    }
+    
+    var clientID: String {
+        var secret = ""
+        switch Environment.shared.environmentName {
+        case .aut, .test, .dev:
+            secret = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
+        case .stage, .hotfix:
+            secret = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"
+        case .prodbeta, .prod:
+            secret = ""
+        }
+        return secret
+    }
+    
+    
     init(mcsInstanceName: String, opco: OpCo) {
         let configPath = Bundle.main.path(forResource: "MCSConfig", ofType: "plist")!
         let dict = NSDictionary(contentsOfFile: configPath)

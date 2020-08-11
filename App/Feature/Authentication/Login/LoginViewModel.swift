@@ -18,7 +18,6 @@ class LoginViewModel {
     var username = BehaviorRelay(value: "")
     var password = BehaviorRelay(value: "")
     var biometricsAutofilledPassword: String? = nil
-    var keepMeSignedIn = BehaviorRelay(value: false)
     var biometricsEnabled = BehaviorRelay(value: false)
     var isLoggingIn = false
         
@@ -52,36 +51,25 @@ class LoginViewModel {
         }
         
         isLoggingIn = true
+
         AuthenticationService.login(username: username.value,
-                                   password: password.value,
-                                   shouldSaveToKeychain: keepMeSignedIn.value) { [weak self] (result: Result<Bool, NetworkingError>) in
+                                   password: password.value) { [weak self] (result: Result<Bool, NetworkingError>) in
                                     switch result {
                                     case .success(let hasTempPassword):
-                                        DispatchQueue.main.async {
-                                            guard let self = self else { return }
-                                            
-                                            self.isLoggingIn = false
-                                            
-                                            if hasTempPassword {
-                                                onSuccess(hasTempPassword, false)
-                                                AuthenticationService.logout()
-                                            } else {
-                                                self.checkStormMode { isStormMode in
-                                                    onSuccess(hasTempPassword, isStormMode)
-                                                }
+                                        guard let self = self else { return }
+                                        
+                                        self.isLoggingIn = false
+                                        
+                                        if hasTempPassword {
+                                            onSuccess(hasTempPassword, false)
+                                            AuthenticationService.logout()
+                                        } else {
+                                            self.checkStormMode { isStormMode in
+                                                onSuccess(hasTempPassword, isStormMode)
                                             }
                                         }
                                     case .failure(let error):
-                                        DispatchQueue.main.async {
-                                            switch error {
-                                            case .passwordProtected:
-                                                onError(NSLocalizedString("Password Protected Account", comment: ""), error.description)
-                                            case .accountNotActivated:
-                                                onRegistrationNotComplete()
-                                            default:
-                                                onError(nil, error.localizedDescription)
-                                            }
-                                        }
+                                        onError(error.title, error.description)
                                     }
         }
     }

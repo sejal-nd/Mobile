@@ -8,61 +8,122 @@
 
 import Foundation
 
-class UserSession {
-//    enum State {
-//        case loggedIn
-//        case loggedOut
-//    }
-//
-//    var state: State {
-//        if token.isEmpty {
-//            return .loggedOut
-//        } else {
-//            return .loggedIn
-//        }
-//    }
+enum UserSession {
+    #if os(iOS)
+    private static let tokenKeychain = A0SimpleKeychain()
+    #elseif os(watchOS)
+    private static let tokenKeychain = KeychainManager.shared
+    #endif
     
-    static let shared = UserSession()
+    private static let tokenKeychainKey = "jwtToken"
+    private static let tokenExpirationDateKeychainKey = "jwtTokenExpirationDate"
+    private static let refreshTokenKeychainKey = "jwtRefreshToken"
+    private static let refreshTokenExpirationDateKeychainKey = "jwtRefreshTokenExpirationDate"
+
+    static var isTokenExpired: Bool {
+        return tokenExpirationDate > Date()
+    }
     
-    private init() {
+    static var isRefreshTokenExpired: Bool {
+        return refreshTokenExpirationDate > Date()
+    }
+    
+    static var token: String {
+        var token = ""
+        #if os(iOS)
+        token = tokenKeychain.string(forKey: tokenKeychainKey) ?? ""
+        #elseif watchOS
+        token = tokenKeychain[tokenKeychainKey]
+        #endif
+        return token
+    }
+    
+    static var tokenExpirationDate: Date {
+        var tokenExpirationDateString = ""
+        #if os(iOS)
+        tokenExpirationDateString = tokenKeychain.string(forKey: tokenExpirationDateKeychainKey) ?? ""
+        #elseif watchOS
+        tokenExpirationDateString = tokenKeychain[tokenExpirationDateKeychainKey]
+        #endif
+        return Date(timeIntervalSince1970: (tokenExpirationDateString as NSString).doubleValue)
+    }
+    
+    static var refreshToken: String {
+        var refreshToken = ""
+        #if os(iOS)
+        refreshToken = tokenKeychain.string(forKey: refreshTokenKeychainKey) ?? ""
+        #elseif watchOS
+        refreshToken = tokenKeychain[refreshTokenKeychainKey]
+        #endif
+        return refreshToken
+    }
+    
+    static var refreshTokenExpirationDate: Date {
+        var refreshTokenExpirationDateString = ""
+        #if os(iOS)
+        refreshTokenExpirationDateString = tokenKeychain.string(forKey: tokenExpirationDateKeychainKey) ?? ""
+        #elseif watchOS
+        refreshTokenExpirationDateString = tokenKeychain[refreshTokenExpirationDateKeychainKey]
+        #endif
+        return Date(timeIntervalSince1970: (refreshTokenExpirationDateKeychainKey as NSString).doubleValue)
+    }
+}
+
+// MARK: - Create / Delete User Session
+
+extension UserSession {
+    static func createSession(tokenResponse: TokenResponse? = nil, mockUsername: String? = nil) throws {
+        guard let tokenResponse = tokenResponse,
+            let token = tokenResponse.token,
+            let tokenExpiryTime = tokenResponse.expiresIn,
+            let refreshToken = tokenResponse.refreshToken,
+            let refreshTokenExpiryTime = tokenResponse.refreshTokenExpiresIn else {
+                if let mockUsername = mockUsername {
+                    // Mock
+                    #if os(iOS)
+                    // Save to keychain
+                    tokenKeychain.setString(mockUsername, forKey: tokenKeychainKey)
+                    #elseif os(watchOS)
+                    tokenKeychain[UserSession.tokenKeychainKey] = mockUsername
+                    #endif
+                    return
+                } else {
+                    throw NetworkingError.invalidToken
+                }
+        }
         
-        // todo fetch keep me signed in stuff
+        #if os(iOS)
+        // Save to keychain
+        tokenKeychain.setString(token, forKey: tokenKeychainKey)
+        tokenKeychain.setString(tokenExpiryTime, forKey: tokenExpirationDateKeychainKey)
+        tokenKeychain.setString(refreshToken, forKey: refreshTokenKeychainKey)
+        tokenKeychain.setString(refreshTokenExpiryTime, forKey: refreshTokenExpirationDateKeychainKey)
+        
+        // Login on Apple Watch
+        if let token = tokenResponse.token {
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : token])
+        }
+        #elseif os(watchOS)
+        tokenKeychain[UserSession.tokenKeychainKey] = token
+        tokenKeychain[UserSession.tokenExpirationDateKeychainKey] = tokenExpiryTime
+        tokenKeychain[UserSession.refreshTokenKeychainKey] = refreshToken
+        tokenKeychain[UserSession.refreshTokenExpirationDateKeychainKey] = refreshTokenExpiryTime
+        #endif
+        // todo investigate how we save this to apple watch
     }
-
-
     
-    var token = ""
-    
-    
-    func enabledKeepMeSignedIn() {
-        // save token to keychain here
+    static func deleteSession() {
+        #if os(iOS)
+        tokenKeychain.deleteEntry(forKey: UserSession.tokenKeychainKey)
+        tokenKeychain.deleteEntry(forKey: UserSession.tokenExpirationDateKeychainKey)
+        tokenKeychain.deleteEntry(forKey: UserSession.refreshTokenKeychainKey)
+        tokenKeychain.deleteEntry(forKey: UserSession.refreshTokenExpirationDateKeychainKey)
+        #elseif os(watchOS)
+        tokenKeychain[UserSession.tokenKeychainKey] = nil
+        tokenKeychain[UserSession.tokenExpirationDateKeychainKey] = nil
+        tokenKeychain[UserSession.refreshTokenKeychainKey] = nil
+        tokenKeychain[UserSession.refreshTokenExpirationDateKeychainKey] = nil
+        #endif
+        UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameAccountNumber)
     }
-    
-    // may want to live somewhere else.
-    
-//    var account: Account?
-//    
-//    var details: AccountDetail?
-//    
-//    var accounts = [Account]()
-    
-    
-    
-    
-//    var accounts: [Account]!
-//    var currentIndex: Int!
-//    var customerIdentifier: String!
-//
-//    // Private init protects against another instance being accidentally instantiated
-//    private init() {
-//        // Load from disk
-//        guard let customerId = UserDefaults.standard.string(forKey: UserDefaultKeys.customerIdentifier) else { return }
-//        customerIdentifier = customerId
-//    }
-//
-//    var currentAccount: Account {
-//        let currentAccount = accounts[currentIndex]
-//        return currentAccount
-//    }
-    
 }

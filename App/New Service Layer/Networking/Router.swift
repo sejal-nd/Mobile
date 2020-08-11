@@ -33,13 +33,14 @@ public enum Router {
     case minVersion
     case maintenanceMode
     
-    case fetchJWTToken(request: JWTRequest)
+    case fetchToken(request: TokenRequest)
+    case refreshToken(request: RefreshTokenRequest)
     
     // Registration
     case validateRegistration(request: ValidateAccountRequest)
     case checkDuplicateRegistration(request: UsernameRequest)
     case registrationQuestions
-    case register(request: NewAccountRequest)
+    case registration(request: NewAccountRequest)
     case sendConfirmationEmail(request: UsernameRequest)
     case validateConfirmationEmail(request: GuidRequest)
     
@@ -152,7 +153,7 @@ public enum Router {
     
     public var host: String {
         switch self {
-        case .fetchJWTToken:
+        case .fetchToken, .refreshToken:
             return Environment.shared.mcsConfig.oAuthEndpoint
         case .weather:
             return "api.weather.gov"
@@ -176,7 +177,7 @@ public enum Router {
         switch self {
         case .weather, .registerForAlerts:
             return .none
-        case .minVersion, .maintenanceMode, .fetchJWTToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .recoverPassword, .bankName:
+            case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName:
             return .anon
         default:
             return .auth
@@ -201,9 +202,11 @@ public enum Router {
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/preferences/release"
         case .minVersion:
             return "\(basePath)/\(apiAccess.path)/config/versions"
-        case .fetchJWTToken:
-            return "/eu/oauth2/token"
-        case .register:
+        case .fetchToken:
+            return "/eu/digital/v1/oauth/token"
+        case .refreshToken:
+            return "/eu/digital/v1/oauth/refresh"
+        case .registration:
             return "\(basePath)/\(apiAccess.path)/registration"
         case .checkDuplicateRegistration:
             return "\(basePath)/\(apiAccess.path)/registration/duplicate"
@@ -340,7 +343,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .outageStatusAnon, .fetchJWTToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .register, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule:
+        case .outageStatusAnon, .fetchToken, .refreshToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule:
             return "GET"
@@ -353,19 +356,16 @@ public enum Router {
     }
     
     public var token: String {
-        return UserSession.shared.token
+        return UserSession.token
     }
-    
-    // todo: this may change to switch off of api access... I believe all vlaues below are derived from auth, anon, admin.  Hold off on changing this for now tho... need to dig deeper.
+
     public var httpHeaders: HTTPHeaders {
         var headers: HTTPHeaders = [:]
         
         switch self {
         case .alertBanner, .newsAndUpdates:
             headers["Accept"] = "application/json;odata=verbose"
-        case .fetchJWTToken:
-            headers["content-type"] = "application/x-www-form-urlencoded"
-        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .updateAutoPay, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .register, .sendConfirmationEmail, .validateConfirmationEmail, .recoverPassword, .passwordChange, .fetchGameUser, .updateGameUser, .fetchDailyUsage, .registerForAlerts, .fetchAlertLanguage, .setAlertLanguage, .walletEncryptionKey, .deleteWalletItem, .updateWalletItem, .addWalletItem, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .deleteOverride:
+        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .updateAutoPay, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .validateConfirmationEmail, .recoverPassword, .passwordChange, .fetchGameUser, .updateGameUser, .fetchDailyUsage, .registerForAlerts, .fetchAlertLanguage, .setAlertLanguage, .walletEncryptionKey, .deleteWalletItem, .updateWalletItem, .addWalletItem, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .deleteOverride, .fetchToken, .refreshToken:
             headers["Content-Type"] = "application/json"
         default:
             break
@@ -374,6 +374,8 @@ public enum Router {
         if apiAccess == .auth {
             headers["Authorization"] = "Bearer \(token)"
         }
+        
+        print("Headers: \(headers)")
         
         return headers
     }
@@ -397,11 +399,8 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .register(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable), .scheduleOverride(_, _, _, let request as Encodable), .updateDeviceSettings(_, _, _, let request as Encodable), .updateThermostatSchedule(_, _, _, let request as Encodable):
+            case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .registration(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable), .scheduleOverride(_, _, _, let request as Encodable), .updateDeviceSettings(_, _, _, let request as Encodable), .updateThermostatSchedule(_, _, _, let request as Encodable), .fetchToken(let request as Encodable), .refreshToken(let request as Encodable):
             return request.data()
-        case .fetchJWTToken(let request):
-            let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(request.username)&password=\(request.password)"
-            return postDataString.data(using: .utf8)
         default:
             return nil
         }
@@ -413,8 +412,8 @@ public enum Router {
             return "MinVersionMock"
         case .maintenanceMode:
             return "MaintenanceModeMock"
-        case .fetchJWTToken:
-            return "JWTTokenMock"
+        case .fetchToken, .refreshToken:
+            return "TokenMock"
         case .accounts:
             return "AccountsMock"
         case .weather:
@@ -475,7 +474,7 @@ public enum Router {
             return "AlertPreferencesLoadMock"
         case .appointments:
             return "AppointmentsMock"
-        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .checkDuplicateRegistration, .sendConfirmationEmail, .validateConfirmationEmail, .register, .recoverPassword, .passwordChange, .fetchAlertLanguage, .setAlertLanguage:
+        case .deleteWalletItem, .budgetBillingEnroll, .budgetBillingUnenroll, .paperlessEnroll, .paperlessUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .checkDuplicateRegistration, .sendConfirmationEmail, .validateConfirmationEmail, .registration, .recoverPassword, .passwordChange, .fetchAlertLanguage, .setAlertLanguage:
             return "GenericResponseMock"
         case .validateRegistration:
             return "ValidateRegistrationMock"

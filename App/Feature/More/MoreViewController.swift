@@ -176,7 +176,6 @@ class MoreViewController: UIViewController {
         AuthenticationService.logout()
 
         RxNotifications.shared.configureQuickActions.onNext(false)
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
         (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
     

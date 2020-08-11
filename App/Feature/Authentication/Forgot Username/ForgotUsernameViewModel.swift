@@ -36,12 +36,10 @@ class ForgotUsernameViewModel {
                 onSuccess()
                 GoogleAnalytics.log(event: .forgotUsernameAccountValidate)
             case .failure(let error):
-                if error == .accountNotFound || error == .profileNotFound {
-                    onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
-                } else if error == .multiAccount {
+                if error == .multiAccount {
                     onNeedAccountNumber()
                 } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                    onError(error.title, error.description)
                 }
             }
         }
