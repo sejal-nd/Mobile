@@ -107,7 +107,7 @@ class AlertsViewController: AccountPickerViewController {
     private func loadAlerts() {
         tableView.isHidden = false
         
-        if AccountsStore.shared.accounts.count == 1 || Environment.shared.opco == .bge {
+        if AccountsStore.shared.accounts.count == 1 {
             accountPicker.isHidden = true
         }
         
