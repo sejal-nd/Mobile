@@ -205,7 +205,7 @@ public enum PaymentMethodType {
         }
     }
     
-    var imageLarge: UIImage {
+    var imageLarge: UIImage { // TODO: should probably move UIKit elements somewhere else?
         switch self {
         case .visa:
             return #imageLiteral(resourceName: "ic_visa_large")
@@ -222,7 +222,7 @@ public enum PaymentMethodType {
         }
     }
     
-    var imageMini: UIImage {
+    var imageMini: UIImage { // TODO: should probably move UIKit elements somewhere else?
         switch self {
         case .visa:
             return #imageLiteral(resourceName: "ic_visa_mini")
