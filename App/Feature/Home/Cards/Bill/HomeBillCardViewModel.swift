@@ -696,12 +696,12 @@ class HomeBillCardViewModel {
                 }
                 
                 return String.localizedStringWithFormat("Your confirmation number is %@", payment.confirmationNumber)
-            case .pepco:
-                return NSLocalizedString("todo", comment: "")
-            case .ace:
-                return NSLocalizedString("todo", comment: "")
-            case .delmarva:
-                return NSLocalizedString("todo", comment: "")
+            case .ace, .delmarva, .pepco:
+                guard let payment = RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] else {
+                    return nil
+                }
+                
+                return String.localizedStringWithFormat("Your confirmation number is %@. It may take 24 hours for your payment status to update.", payment.confirmationNumber)
             }
     }
     
