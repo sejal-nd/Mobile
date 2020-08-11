@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 
 class SmartThermostatScheduleViewModel {
-    private let peakRewardsService: PeakRewardsService
     private let accountDetail: AccountDetail
     
     private let schedule: SmartThermostatDeviceSchedule
@@ -33,8 +32,7 @@ class SmartThermostatScheduleViewModel {
             accountDetail.premiseNumber!
     }
     
-    init(peakRewardsService: PeakRewardsService, accountDetail: AccountDetail, device: SmartThermostatDevice, period: SmartThermostatPeriod, schedule: SmartThermostatDeviceSchedule) {
-        self.peakRewardsService = peakRewardsService
+    init(accountDetail: AccountDetail, device: SmartThermostatDevice, period: SmartThermostatPeriod, schedule: SmartThermostatDeviceSchedule) {
         self.accountDetail = accountDetail
         self.schedule = schedule
         self.device = device
@@ -101,9 +99,9 @@ class SmartThermostatScheduleViewModel {
         .flatMapLatest { [weak self] periodInfo -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
             let updatedSchedule = self.schedule.newSchedule(forPeriod: self.period, info: periodInfo)
-            return self.peakRewardsService.updateSmartThermostatSchedule(forDevice: self.device,
-                                                                         accountNumber: self.accountDetail.accountNumber,
+            return PeakRewardsService.rx.updateSmartThermostatSchedule(accountNumber: self.accountDetail.accountNumber,
                                                                          premiseNumber: self.premiseNumber,
+                                                                         deviceSerialNumber: self.device.serialNumber,
                                                                          schedule: updatedSchedule)
                 .trackActivity(self.saveTracker)
                 .materialize()

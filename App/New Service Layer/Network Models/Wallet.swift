@@ -62,7 +62,7 @@ public struct WalletItem: Decodable, Equatable {
         paymentMethodType = PaymentMethodType(methodType)
         bankName = try container.decodeIfPresent(String.self, forKey: .bankName)
         isDefault = try container.decode(Bool.self, forKey: .isDefault)
-        expirationDate = try container.decode(Date.self, forKey: .expirationDate)
+        expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
     }
     
     // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
