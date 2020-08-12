@@ -148,38 +148,144 @@ public enum NetworkingError: Error, Equatable {
     }
 }
 
+// MARK: User Facing Error Messaging
 
-
-// todo: below will be implemented for user facing messages.
 extension NetworkingError: LocalizedError {
     public var title: String {
-        return NSLocalizedString("Todo Title", comment: "Error title")
-        
-        
+        switch self {
+        case .inactive:
+            return NSLocalizedString("Inactive Account", comment: "Error title")
+        case .notCustomer, .invalidUser:
+            return NSLocalizedString("No Data Found", comment: "Error title")
+        case .userExists:
+            return NSLocalizedString("Email Already Registered", comment: "Error title")
+        case .maintenanceMode:
+            return NSLocalizedString("Service Unavailable", comment: "Error title")
+        case .expiredTempPassword:
+            return NSLocalizedString("Expired Temporary Password", comment: "Error title")
+        case .blockAccount:
+            return NSLocalizedString("Data Unavailable", comment: "Error title")
+        case .peakRewardsOverridesNotFound:
+            return NSLocalizedString("Overrides Not Found", comment: "Error title")
+        case .peakRewardsDuplicateOverrides:
+            return NSLocalizedString("Duplicate Override", comment: "Error title")
+        case .failed:
+            return NSLocalizedString("Scheduled Payments Not Found", comment: "Error title")
+        case .noEventResults:
+            return NSLocalizedString("No Results Found", comment: "Error title")
+        case .accountNotActivated:
+            return NSLocalizedString("Your Account Needs to be Activated", comment: "Error title")
+        case .incorrectSecurityQuestion:
+            return NSLocalizedString("Answer Doesn't Match", comment: "Error title")
+        case .profileNotFound, .accountNotFound:
+            return NSLocalizedString("No Account Found", comment: "Error title")
+        case .lockedForgotPassword:
+            return NSLocalizedString("Account Locked", comment: "Error title")
+        case .passwordProtected:
+            return NSLocalizedString("Password Protected", comment: "Error title")
+        case .duplicatePaymentMethod:
+            return NSLocalizedString("Duplicate Payment Method", comment: "Error title")
+        case .finaled:
+            return NSLocalizedString("Finaled Account", comment: "Error title")
+        case .noPay:
+            return NSLocalizedString("Finaled for Non-Pay", comment: "Error title")
+        case .noService:
+            return NSLocalizedString("Non-Service Agreement", comment: "Error title")
+        case .invalidToken:
+            return NSLocalizedString("Expired Session", comment: "Error title")
+        case .noNetwork:
+            return NSLocalizedString("No Network Connection", comment: "Error title")
+        case .noPasswordMatch, .invalidPassword:
+            return NSLocalizedString("Wrong Username or Password", comment: "Error title")
+        case .loginLocked:
+            return NSLocalizedString("Password Protected Account", comment: "Error title")
+        case .reverseGeocodeFailure:
+            return NSLocalizedString("Address Not Found", comment: "Error title")
+        case .multipleAccountNumbers, .multiAccount:
+            return NSLocalizedString("Multiple Accounts Found", comment: "Error title")
+        case .blockedPaymentMethod:
+            return NSLocalizedString("Payment Method Blocked", comment: "Error title")
+        case .blockedUtilityAccount:
+            return NSLocalizedString("Account Blocked", comment: "Error title")
+        case .blockedPaymentType:
+            return NSLocalizedString("Payment Type Blocked", comment: "Error title")
+        case .duplicatePayment:
+            return NSLocalizedString("Duplicate Payment", comment: "Error title")
+        case .paymentAccountVelocityBank, .paymentAccountVelocityCard:
+            return NSLocalizedString("Payment Issue", comment: "Error title")
+        case .walletItemIdTimeout:
+            return NSLocalizedString("Password Protected Account", comment: "Error title")
+        case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .noProfileExists, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+            return NSLocalizedString("Sorry, That Didn't Quite Work.", comment: "Error title")
+        }
     }
     
     public var description: String {
-        return NSLocalizedString("todo error dec", comment: "Error description")
-    
-        
-        //        switch self {
-        //        case .tooShort:
-        //            return NSLocalizedString(
-        //                "Your username needs to be at least 4 characters long",
-        //                comment: ""
-        //            )
-        //        case .tooLong:
-        //            return NSLocalizedString(
-        //                "Your username can't be longer than 14 characters",
-        //                comment: ""
-        //            )
-        //        case .invalidCharacterFound(let character):
-        //            let format = NSLocalizedString(
-        //                "Your username can't contain the character '%@'",
-        //                comment: ""
-        //            )
-        //
-        //            return String(format: format, String(character))
-        //        }
+        switch self {
+        case .inactive:
+            return NSLocalizedString("We can’t load data for this account because it is no longer active.", comment: "Error description")
+        case .notCustomer, .invalidUser:
+            return NSLocalizedString("There was no data associated with this account.", comment: "Error description")
+        case .userExists:
+            return NSLocalizedString("This email is already associated with another account. Please use a different email.", comment: "Error description")
+        case .maintenanceMode:
+            return NSLocalizedString("Our backend systems are currently being updated and can’t provide data at this time. Please try again later.", comment: "Error description")
+        case .expiredTempPassword:
+            return NSLocalizedString("Your temporary password has expired.", comment: "Error description")
+        case .blockAccount:
+            return NSLocalizedString("This data is unavailable for this account.", comment: "Error description")
+        case .peakRewardsOverridesNotFound:
+            return NSLocalizedString("No overrides were found. Please try again later.", comment: "Error description")
+        case .peakRewardsDuplicateOverrides:
+            return NSLocalizedString("This override is already scheduled.", comment: "Error description")
+        case .failed:
+            return NSLocalizedString("No scheduled payments were found for this account.", comment: "Error description")
+        case .noEventResults:
+            return NSLocalizedString("No events were found for this account.", comment: "Error description")
+        case .accountNotActivated:
+            return NSLocalizedString("Find and click on the link in the email from \(Environment.shared.opco.displayString) within 48 hours from the time you registered. Once the link expires, you’ll need to re-register your account.", comment: "Error description")
+        case .incorrectSecurityQuestion:
+            return NSLocalizedString("Sorry, the answer to the security question isn’t right. Too many tries may result in your account becoming locked for 15 minutes.", comment: "Error description")
+        case .profileNotFound, .accountNotFound:
+            return NSLocalizedString("Sorry, we couldn’t find an account with that email address.", comment: "Error description")
+        case .lockedForgotPassword:
+            return NSLocalizedString("Access to this account is locked because of too many incorrect security question attempts. It may be locked out for the next 15 minutes. Please try again later.", comment: "Error description")
+        case .passwordProtected:
+            return NSLocalizedString("Your account is password protected and can’t be accessed through this app.", comment: "Error description")
+        case .duplicatePaymentMethod:
+            return NSLocalizedString("This payment method is already saved to your wallet.", comment: "Error description")
+        case .finaled:
+            return NSLocalizedString("We can’t load the outage status for this account because it’s been closed.", comment: "Error description")
+        case .noPay:
+            return NSLocalizedString("We can’t load the outage status for this account because it’s been closed for non-payment and is no longer connected to your premise address.", comment: "Error description")
+        case .noService:
+            return NSLocalizedString("We can’t load the outage status for this account due to a non-service agreement.", comment: "Error description")
+        case .invalidToken:
+            return NSLocalizedString("You’ve been signed out. To start a new session, please sign in.", comment: "Error description")
+        case .noNetwork:
+            return NSLocalizedString("Please make sure you’re connected to the internet and refresh to try again.", comment: "Error description")
+        case .noPasswordMatch, .invalidPassword:
+            return NSLocalizedString("Sorry, that username or password isn’t right, please try again.", comment: "Error description")
+        case .loginLocked:
+            return NSLocalizedString("Your account is password protected and can’t be accessed through this app.", comment: "Error description")
+        case .reverseGeocodeFailure:
+            return NSLocalizedString("Please try again later.", comment: "Error description")
+        case .multipleAccountNumbers, .multiAccount:
+            return NSLocalizedString("Multiple Accounts Found", comment: "Error description")
+        case .blockedPaymentMethod:
+            return NSLocalizedString("Please try a different payment method.", comment: "Error description")
+        case .blockedUtilityAccount:
+            return NSLocalizedString("Account Blocked", comment: "Error description")
+        case .blockedPaymentType:
+            return NSLocalizedString("Please try a different payment type.", comment: "Error description")
+        case .duplicatePayment:
+            return NSLocalizedString("We found a duplicate payment.", comment: "Error description")
+        case .paymentAccountVelocityBank, .paymentAccountVelocityCard:
+            return NSLocalizedString("Please try again later.", comment: "Error description")
+        case .walletItemIdTimeout:
+            return NSLocalizedString("Your account is password protected and can’t be accessed through this app.", comment: "Error description")
+        case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .noProfileExists, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+            return NSLocalizedString("Please try again later.", comment: "Error description")
+        }
     }
 }
