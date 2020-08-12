@@ -196,7 +196,7 @@ extension NetworkingError: LocalizedError {
         case .noNetwork:
             return NSLocalizedString("No Network Connection", comment: "Error title")
         case .noPasswordMatch, .invalidPassword:
-            return NSLocalizedString("Wrong Username or Password", comment: "Error title")
+            return NSLocalizedString("Wrong Password", comment: "Error title")
         case .loginLocked:
             return NSLocalizedString("Password Protected Account", comment: "Error title")
         case .reverseGeocodeFailure:
@@ -265,7 +265,7 @@ extension NetworkingError: LocalizedError {
         case .noNetwork:
             return NSLocalizedString("Please make sure you’re connected to the internet and refresh to try again.", comment: "Error description")
         case .noPasswordMatch, .invalidPassword:
-            return NSLocalizedString("Sorry, that username or password isn’t right, please try again.", comment: "Error description")
+            return NSLocalizedString("Sorry, that password isn’t right.", comment: "Error description")
         case .loginLocked:
             return NSLocalizedString("Your account is password protected and can’t be accessed through this app.", comment: "Error description")
         case .reverseGeocodeFailure:
