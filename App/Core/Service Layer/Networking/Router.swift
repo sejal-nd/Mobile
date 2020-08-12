@@ -365,10 +365,8 @@ public enum Router {
         switch self {
         case .alertBanner, .newsAndUpdates:
             headers["Accept"] = "application/json;odata=verbose"
-        case .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .accounts, .accountDetails, .wallet, .payments, .billPDF, .budgetBillingEnroll, .autoPayInfo, .paperlessUnenroll, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .updateAutoPay, .paperlessEnroll, .scheduledPaymentUpdate, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .homeProfileUpdate, .alertPreferencesUpdate, .outageStatus, .meterPing, .reportOutage, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .validateConfirmationEmail, .recoverPassword, .passwordChange, .fetchGameUser, .updateGameUser, .fetchDailyUsage, .registerForAlerts, .fetchAlertLanguage, .setAlertLanguage, .walletEncryptionKey, .deleteWalletItem, .updateWalletItem, .addWalletItem, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .deleteOverride, .fetchToken, .refreshToken:
-            headers["Content-Type"] = "application/json"
         default:
-            break
+            headers["Content-Type"] = "application/json"
         }
         
         if apiAccess == .auth {

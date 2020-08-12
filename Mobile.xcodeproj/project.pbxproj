@@ -797,9 +797,9 @@
 		673F9FB324C8943200210BCD /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2E24AB828000A828F9 /* OutageStatus.swift */; };
 		673F9FB424C8943300210BCD /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2E24AB828000A828F9 /* OutageStatus.swift */; };
 		673F9FB524C8943400210BCD /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2E24AB828000A828F9 /* OutageStatus.swift */; };
-		673F9FB624C8943F00210BCD /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
-		673F9FB724C8944000210BCD /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
-		673F9FB824C8944000210BCD /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
+		673F9FB624C8943F00210BCD /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
+		673F9FB724C8944000210BCD /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
+		673F9FB824C8944000210BCD /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
 		673F9FB924C8944400210BCD /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087AF724BDE8E2005AE544 /* EnergyTip.swift */; };
 		673F9FBA24C8944500210BCD /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087AF724BDE8E2005AE544 /* EnergyTip.swift */; };
 		673F9FBB24C8944600210BCD /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087AF724BDE8E2005AE544 /* EnergyTip.swift */; };
@@ -1381,12 +1381,12 @@
 		675F4C6924AB828100A828F9 /* DailyUsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1824AB828000A828F9 /* DailyUsageData.swift */; };
 		675F4C6A24AB828100A828F9 /* DailyUsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1824AB828000A828F9 /* DailyUsageData.swift */; };
 		675F4C6B24AB828100A828F9 /* DailyUsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1824AB828000A828F9 /* DailyUsageData.swift */; };
-		675F4C7824AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
-		675F4C7924AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
-		675F4C7A24AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
-		675F4C7B24AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
-		675F4C7C24AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
-		675F4C7D24AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
+		675F4C7824AB828100A828F9 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
+		675F4C7924AB828100A828F9 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
+		675F4C7A24AB828100A828F9 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
+		675F4C7B24AB828100A828F9 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
+		675F4C7C24AB828100A828F9 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
+		675F4C7D24AB828100A828F9 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
 		675F4C7E24AB828100A828F9 /* BillForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1C24AB828000A828F9 /* BillForecastResult.swift */; };
 		675F4C7F24AB828100A828F9 /* BillForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1C24AB828000A828F9 /* BillForecastResult.swift */; };
 		675F4C8024AB828100A828F9 /* BillForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1C24AB828000A828F9 /* BillForecastResult.swift */; };
@@ -1781,7 +1781,7 @@
 		675F4E1824B4DA4A00A828F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5C24AB828100A828F9 /* Router.swift */; };
 		675F4E1924B4DA4B00A828F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5C24AB828100A828F9 /* Router.swift */; };
 		675F4E1A24B4DA4D00A828F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5C24AB828100A828F9 /* Router.swift */; };
-		675F4E1B24B4DA6C00A828F9 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
+		675F4E1B24B4DA6C00A828F9 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
 		675F4E1F24B4DA9300A828F9 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF724AB828000A828F9 /* TokenRequest.swift */; };
 		675F4E2024B4DA9400A828F9 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF724AB828000A828F9 /* TokenRequest.swift */; };
 		675F4E2124B4DA9500A828F9 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF724AB828000A828F9 /* TokenRequest.swift */; };
@@ -5412,9 +5412,9 @@
 		C3087ABB24B671AB005AE544 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5B24AB828100A828F9 /* URLProtocolMock.swift */; };
 		C3087ABC24B671AC005AE544 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5B24AB828100A828F9 /* URLProtocolMock.swift */; };
 		C3087ABD24B671AD005AE544 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5B24AB828100A828F9 /* URLProtocolMock.swift */; };
-		C3087ABE24B671DD005AE544 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
-		C3087ABF24B671DE005AE544 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
-		C3087AC024B671DF005AE544 /* ApigeeResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */; };
+		C3087ABE24B671DD005AE544 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
+		C3087ABF24B671DE005AE544 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
+		C3087AC024B671DF005AE544 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
 		C3087AC224B67203005AE544 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF724AB828000A828F9 /* TokenRequest.swift */; };
 		C3087AC324B67204005AE544 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF724AB828000A828F9 /* TokenRequest.swift */; };
 		C3087AC424B6720A005AE544 /* AccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF324AB828000A828F9 /* AccountRequest.swift */; };
@@ -7107,7 +7107,7 @@
 		675F4B1624AB828000A828F9 /* AutoPayResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayResult.swift; sourceTree = "<group>"; };
 		675F4B1724AB828000A828F9 /* BillForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillForecast.swift; sourceTree = "<group>"; };
 		675F4B1824AB828000A828F9 /* DailyUsageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyUsageData.swift; sourceTree = "<group>"; };
-		675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApigeeResponseContainer.swift; sourceTree = "<group>"; };
+		675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AzureResponseContainer.swift; sourceTree = "<group>"; };
 		675F4B1C24AB828000A828F9 /* BillForecastResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillForecastResult.swift; sourceTree = "<group>"; };
 		675F4B1D24AB828000A828F9 /* MeterPingResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeterPingResult.swift; sourceTree = "<group>"; };
 		675F4B1E24AB828000A828F9 /* AppointmentsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentsContainer.swift; sourceTree = "<group>"; };
@@ -9848,7 +9848,7 @@
 			children = (
 				675F4B5C24AB828100A828F9 /* Router.swift */,
 				675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */,
-				675F4B1B24AB828000A828F9 /* ApigeeResponseContainer.swift */,
+				675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */,
 				67A18B7224CA0EA100F7A77B /* ApigeeError.swift */,
 				675F4B2824AB828000A828F9 /* AzureError.swift */,
 				675F4B3924AB828000A828F9 /* NetworkingError.swift */,
@@ -15631,7 +15631,7 @@
 				67893BA424E314C0000143D6 /* Weather.swift in Sources */,
 				C3087ABD24B671AD005AE544 /* URLProtocolMock.swift in Sources */,
 				673F9FF924C894D900210BCD /* BillComparisonRequest.swift in Sources */,
-				C3087AC024B671DF005AE544 /* ApigeeResponseContainer.swift in Sources */,
+				C3087AC024B671DF005AE544 /* AzureResponseContainer.swift in Sources */,
 				673FA04024C8956100210BCD /* DailyUsageData.swift in Sources */,
 				C3087B3324BE31CA005AE544 /* BillForecast.swift in Sources */,
 				675F4E4424B4DC2600A828F9 /* NewMockDataKey.swift in Sources */,
@@ -15801,15 +15801,15 @@
 				67893BD224E318DF000143D6 /* String+DateParser.swift in Sources */,
 				C3087ABB24B671AB005AE544 /* URLProtocolMock.swift in Sources */,
 				673FA0A924C8956700210BCD /* BillingHistoryItem.swift in Sources */,
-				C3087ABE24B671DD005AE544 /* ApigeeResponseContainer.swift in Sources */,
+				C3087ABE24B671DD005AE544 /* AzureResponseContainer.swift in Sources */,
 				673FA0A924C8956700210BCD /* BillingHistoryItem.swift in Sources */,
-				C3087ABE24B671DD005AE544 /* ApigeeResponseContainer.swift in Sources */,
+				C3087ABE24B671DD005AE544 /* AzureResponseContainer.swift in Sources */,
 				C3087B2824BE1596005AE544 /* HomeProfile.swift in Sources */,
 				673FA0AA24C8956700210BCD /* Payments.swift in Sources */,
-				675F4E1B24B4DA6C00A828F9 /* ApigeeResponseContainer.swift in Sources */,
+				675F4E1B24B4DA6C00A828F9 /* AzureResponseContainer.swift in Sources */,
 				67893BAE24E314C2000143D6 /* BudgetBilling.swift in Sources */,
 				673FA0AA24C8956700210BCD /* Payments.swift in Sources */,
-				675F4E1B24B4DA6C00A828F9 /* ApigeeResponseContainer.swift in Sources */,
+				675F4E1B24B4DA6C00A828F9 /* AzureResponseContainer.swift in Sources */,
 				35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */,
 				C33827FD24E1B3DF00F133C5 /* PeakRewardsSummary.swift in Sources */,
 				35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */,
@@ -15989,7 +15989,7 @@
 				C3087ABC24B671AC005AE544 /* URLProtocolMock.swift in Sources */,
 				673FA03A24C8956000210BCD /* AccountLookupResult.swift in Sources */,
 				C3087B2A24BE15E3005AE544 /* HomeProfile.swift in Sources */,
-				C3087ABF24B671DE005AE544 /* ApigeeResponseContainer.swift in Sources */,
+				C3087ABF24B671DE005AE544 /* AzureResponseContainer.swift in Sources */,
 				35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */,
 				35F9DE3F23353D4500AAA2B2 /* SequenceForEach.swift in Sources */,
 				675F4E4324B4DC2500A828F9 /* NewMockDataKey.swift in Sources */,
@@ -16272,7 +16272,7 @@
 				67DDB3D824535D2E006CD6EB /* AccountLookupToolViewController.swift in Sources */,
 				67DDB3D924535D2E006CD6EB /* FirebaseUtility.swift in Sources */,
 				675F4C0324AB828100A828F9 /* ChangePasswordRequest.swift in Sources */,
-				675F4C7B24AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */,
+				675F4C7B24AB828100A828F9 /* AzureResponseContainer.swift in Sources */,
 				675F4BC124AB828100A828F9 /* HomeProfileUpdateRequest.swift in Sources */,
 				67DDB3DA24535D2E006CD6EB /* SafariViewController.swift in Sources */,
 				67DDB3DD24535D2E006CD6EB /* SeparatorLineView.swift in Sources */,
@@ -16658,7 +16658,7 @@
 				675F4B8124AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				67DDB5E024535D32006CD6EB /* WhatIsBudgetBillingViewController.swift in Sources */,
 				67DDB5E124535D32006CD6EB /* GameOnboardingIntroViewController.swift in Sources */,
-				675F4C7D24AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */,
+				675F4C7D24AB828100A828F9 /* AzureResponseContainer.swift in Sources */,
 				67DDB5E224535D32006CD6EB /* ViewControllerAlertable.swift in Sources */,
 				67DDB5E324535D32006CD6EB /* RadioSelectionTableViewCell.swift in Sources */,
 				67DDB5E424535D32006CD6EB /* BGEAutoPayViewModel.swift in Sources */,
@@ -17134,7 +17134,7 @@
 				675F4B8024AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				67DDB83624535D35006CD6EB /* WhatIsBudgetBillingViewController.swift in Sources */,
 				67DDB83724535D35006CD6EB /* GameOnboardingIntroViewController.swift in Sources */,
-				675F4C7C24AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */,
+				675F4C7C24AB828100A828F9 /* AzureResponseContainer.swift in Sources */,
 				67DDB83824535D35006CD6EB /* ViewControllerAlertable.swift in Sources */,
 				67DDB83924535D35006CD6EB /* RadioSelectionTableViewCell.swift in Sources */,
 				67DDB83A24535D35006CD6EB /* BGEAutoPayViewModel.swift in Sources */,
@@ -18074,7 +18074,7 @@
 				673FA00424C894DA00210BCD /* GameUserRequest.swift in Sources */,
 				673F9F7D24C892F500210BCD /* AnyEncodable.swift in Sources */,
 				67EDC2D924C1E690001A8494 /* NotificationNames.swift in Sources */,
-				673F9FB624C8943F00210BCD /* ApigeeResponseContainer.swift in Sources */,
+				673F9FB624C8943F00210BCD /* AzureResponseContainer.swift in Sources */,
 				673F9FC524C8945C00210BCD /* NetworkingError.swift in Sources */,
 				673F9F8924C8931500210BCD /* CustomerInfo.swift in Sources */,
 				678B621324CF4F7E009F8A6B /* AnonymousService.swift in Sources */,
@@ -18263,7 +18263,7 @@
 				67A18B7E24CA0EAE00F7A77B /* ApigeeError.swift in Sources */,
 				673F9F7F24C892F600210BCD /* AnyEncodable.swift in Sources */,
 				67EDC37524C1EBD9001A8494 /* NotificationNames.swift in Sources */,
-				673F9FB824C8944000210BCD /* ApigeeResponseContainer.swift in Sources */,
+				673F9FB824C8944000210BCD /* AzureResponseContainer.swift in Sources */,
 				673F9FC724C8945E00210BCD /* NetworkingError.swift in Sources */,
 				673F9F8B24C8931600210BCD /* CustomerInfo.swift in Sources */,
 				673F9F5824C8929800210BCD /* BillingInfo.swift in Sources */,
@@ -18391,7 +18391,7 @@
 				673F9F6C24C892D400210BCD /* ValidateAccountRequest.swift in Sources */,
 				673F9FB424C8943300210BCD /* OutageStatus.swift in Sources */,
 				67EDC3E724C1EBFF001A8494 /* NibViews.swift in Sources */,
-				673F9FB724C8944000210BCD /* ApigeeResponseContainer.swift in Sources */,
+				673F9FB724C8944000210BCD /* AzureResponseContainer.swift in Sources */,
 				67EDC3E924C1EBFF001A8494 /* Weekday.swift in Sources */,
 				67893B0924DB431A000143D6 /* Alert.swift in Sources */,
 				67EDC3EA24C1EBFF001A8494 /* (null) in Sources */,
@@ -18514,7 +18514,7 @@
 				B06B40FD20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				673FA0D724C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
-				675F4C7824AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */,
+				675F4C7824AB828100A828F9 /* AzureResponseContainer.swift in Sources */,
 				B0DB2752215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06823BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
@@ -18991,7 +18991,7 @@
 				B06B40FF20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3421F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				9C10B4DD22E23A9A00B0851B /* ForgotPasswordViewModel.swift in Sources */,
-				675F4C7A24AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */,
+				675F4C7A24AB828100A828F9 /* AzureResponseContainer.swift in Sources */,
 				B0DB2754215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				673FA0CE24C899CD00210BCD /* OutageStatusContainer.swift in Sources */,
 				B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
@@ -19463,7 +19463,7 @@
 				9C62446422C28A4600F14DA0 /* InsetTextField.swift in Sources */,
 				B06B40FE20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
-				675F4C7924AB828100A828F9 /* ApigeeResponseContainer.swift in Sources */,
+				675F4C7924AB828100A828F9 /* AzureResponseContainer.swift in Sources */,
 				B0DB2753215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				673FA0CC24C899CD00210BCD /* OutageStatusContainer.swift in Sources */,
