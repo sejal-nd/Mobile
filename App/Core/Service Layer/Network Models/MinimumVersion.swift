@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewVersion: Decodable {
+public struct MinimumVersion: Decodable {
     public var min = "0.0.0"
     
     enum CodingKeys: String, CodingKey {

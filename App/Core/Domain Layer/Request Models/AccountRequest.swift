@@ -1,5 +1,5 @@
 //
-//  NewAccountRequest.swift
+//  AccountRequest.swift
 //  Mobile
 //
 //  Created by Cody Dillon on 5/7/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NewAccountRequest: Encodable {
+public struct AccountRequest: Encodable {
     let username: String
     let password: String
     let accountNumber: String?

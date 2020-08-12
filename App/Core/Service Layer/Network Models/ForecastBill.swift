@@ -8,11 +8,11 @@
 
 import Foundation
 
-public struct NewForecastBillContainer: Decodable {
-    public var forecastMonthlyBills: [NewForecastBill]
+public struct ForecastBillContainer: Decodable {
+    public var forecastMonthlyBills: [ForecastBill]
 }
 
-public struct NewForecastBill: Decodable {
+public struct ForecastBill: Decodable {
     public var billingStartDate: Date?
     public var billingEndDate: Date?
     public var calculationDate: Date?

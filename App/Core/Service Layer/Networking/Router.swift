@@ -40,7 +40,7 @@ public enum Router {
     case validateRegistration(request: ValidateAccountRequest)
     case checkDuplicateRegistration(request: UsernameRequest)
     case registrationQuestions
-    case registration(request: NewAccountRequest)
+    case registration(request: AccountRequest)
     case sendConfirmationEmail(request: UsernameRequest)
     case validateConfirmationEmail(request: GuidRequest)
     

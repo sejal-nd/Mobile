@@ -38,7 +38,7 @@ class NetworkTest {
 //    }
     
     private func minVersion() {
-        NetworkingLayer.request(router: .minVersion) { (result: Result<NewVersion, NetworkingError>) in
+        NetworkingLayer.request(router: .minVersion) { (result: Result<MinimumVersion, NetworkingError>) in
             switch result {
             case .success(let data):
                 print("NetworkTest 1 SUCCESS: \(data) BREAK \(data.min)")

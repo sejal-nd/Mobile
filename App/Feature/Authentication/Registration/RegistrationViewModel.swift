@@ -112,7 +112,7 @@ class RegistrationViewModel {
     }
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        let newAccountRequest = NewAccountRequest(username: username.value,
+        let accountRequest = AccountRequest(username: username.value,
                                                   password: newPassword.value,
                                                   accountNumber: accountNumber.value,
                                                   identifier: identifierNumber.value,
@@ -125,7 +125,7 @@ class RegistrationViewModel {
                                                   answer3: securityAnswer3.value,
                                                   isPrimary: primaryProfile.value ? "true" : "false",
                                                   shouldEnrollEbill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
-        RegistrationService.createAccount(request: newAccountRequest) { result in
+        RegistrationService.createAccount(request: accountRequest) { result in
             switch result {
             case .success:
                 onSuccess()

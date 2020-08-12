@@ -9,7 +9,7 @@
 import Foundation
 
 enum RegistrationService {
-    static func createAccount(request: NewAccountRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
+    static func createAccount(request: AccountRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .registration(request: request), completion: completion)
     }
     
