@@ -235,7 +235,7 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
                         String(format: "https://hourlypricing.comed.com/rrtpmobile/servlet?type=home&account=%@", accountDetail.accountNumber) :
-                        "https://www.comedmarketplace.com/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app"
+                        "https://secure.comed.com/marketplace/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app"
                 } else {
                     return "http://comed.com/BusinessSavings"
                 }
