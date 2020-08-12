@@ -239,7 +239,7 @@ class RegistrationViewModel {
         return Driver.combineLatest(self.phoneNumberHasTenDigits,
                                     self.identifierHasFourDigits,
                                     self.identifierIsNumeric,
-                                    self.accountNumberHasTenDigits,
+                                    self.accountNumberHasValidLength,
                                     self.segmentChanged,
                                     self.amountDueHasValue,
                                     self.dueDateHasValue)
@@ -285,11 +285,11 @@ class RegistrationViewModel {
             return digitsOnlyString.count == text.count
         }
     
-    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> =
+    private(set) lazy var accountNumberHasValidLength: Driver<Bool> =
         self.accountNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.count == 10
+            return Environment.shared.opco.isPHI ? digitsOnlyString.count == 11 : digitsOnlyString.count == 10
         }
     
     private func extractDigitsFrom(_ string: String) -> String {
