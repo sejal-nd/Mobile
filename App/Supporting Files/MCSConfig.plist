@@ -9,7 +9,7 @@
 			<key>baseURL</key>
 			<string>xze-e-n-eudapi-bge-t-ams-01.azure-api.net</string>
 			<key>oauthEndpoint</key>
-			<string>api-development.exeloncorp.com</string>
+			<string>api-stage.exeloncorp.com</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 			<key>sharepointBaseURL</key>
