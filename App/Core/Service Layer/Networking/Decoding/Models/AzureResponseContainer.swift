@@ -22,8 +22,10 @@ struct AzureResponseContainer<T: Decodable>: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let isSuccess = try container.decodeIfPresent(Bool.self, forKey: .success) ?? false
-        
+        print("is ssuccess:\(isSuccess)")
         if isSuccess {
+            print("data: \(try? container.decodeIfPresent(T.self, forKey: .data))")
+            
             self.data = try container.decodeIfPresent(T.self, forKey: .data)
         } else {
             let container = try decoder.singleValueContainer()

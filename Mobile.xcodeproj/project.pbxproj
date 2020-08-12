@@ -9846,13 +9846,9 @@
 		675F4B3824AB828000A828F9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				67D5621C24E4642600852551 /* Decoding */,
 				675F4B5C24AB828100A828F9 /* Router.swift */,
 				675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */,
-				675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */,
-				67A18B7224CA0EA100F7A77B /* ApigeeError.swift */,
-				675F4B2824AB828000A828F9 /* AzureError.swift */,
-				675F4B3924AB828000A828F9 /* NetworkingError.swift */,
-				67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */,
 				673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */,
 				675F4B3A24AB828000A828F9 /* Mock */,
 			);
@@ -9912,6 +9908,26 @@
 				C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */,
 			);
 			path = "Mock JSONS";
+			sourceTree = "<group>";
+		};
+		67D5621C24E4642600852551 /* Decoding */ = {
+			isa = PBXGroup;
+			children = (
+				67D5621F24E4643A00852551 /* Models */,
+			);
+			path = Decoding;
+			sourceTree = "<group>";
+		};
+		67D5621F24E4643A00852551 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */,
+				67A18B7224CA0EA100F7A77B /* ApigeeError.swift */,
+				675F4B2824AB828000A828F9 /* AzureError.swift */,
+				675F4B3924AB828000A828F9 /* NetworkingError.swift */,
+				67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		67D73ADF246C47EF00450B63 /* No Network Connection */ = {
