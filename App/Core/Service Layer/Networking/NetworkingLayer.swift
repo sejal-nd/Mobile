@@ -170,7 +170,6 @@ public enum NetworkingLayer {
                     completion(.success(responseObject))
                 }
             } catch {
-                dLog("❌ Failed to deocde network response for \(urlRequest.url?.absoluteString ?? ""):\n\n\(error)")
                 DispatchQueue.main.async {
                     if let networkError = error as? NetworkingError {
                         completion(.failure(networkError))
@@ -200,19 +199,21 @@ public enum NetworkingLayer {
             print("Azure decode")
             
             if let endpointError = responseWrapper.error {
+                dLog("❌ Error: \(endpointError)\n\nCode: \(endpointError.code)\nContext: \(endpointError.context ?? "")\nDescription: \(endpointError.description ?? "")")
                 throw NetworkingError(errorCode: endpointError.code)
             }
             
             guard let responseData = responseWrapper.data else {
+                dLog("❌ Failed to decode network response data")
                 throw NetworkingError.decoding
             }
             
             print("success container response")
 
             return responseData
-        } else if (try? jsonDecoder.decode(ApigeeError.self, from: data)) != nil {
+        } else if let error = try? jsonDecoder.decode(ApigeeError.self, from: data) {
             // Apigee decode
-            print("throw apigee response")
+            dLog("❌ Invalid Token: \(error) \n\n\(error.errorDescription)")
             throw NetworkingError.invalidToken
         } else if let response = try? jsonDecoder.decode(T.self, from: data) {
             // Default decode
@@ -220,6 +221,8 @@ public enum NetworkingLayer {
             print("return default response")
             return response
         } else {
+            dLog("❌ Failed to decode network response")
+
             print("throw decoding response")
             throw NetworkingError.decoding
         }
