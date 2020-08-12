@@ -195,8 +195,9 @@ public enum NetworkingLayer {
             return dateString.extractDate() ?? Date()
         }
 
-         if let responseWrapper = try? jsonDecoder.decode(ApigeeResponseContainer.self, from: data) {
+         if let responseWrapper = try? jsonDecoder.decode(AzureResponseContainer<T>.self, from: data) {
             // Azure decode
+            print("Azure decode")
             
             if let endpointError = responseWrapper.error {
                 throw NetworkingError(errorCode: endpointError.code)
@@ -206,14 +207,9 @@ public enum NetworkingLayer {
                 throw NetworkingError.decoding
             }
             
-            if let response = try? jsonDecoder.decode(T.self, from: responseData) {
-                // Default decode
-                print("response decoded")
-                return response
-            }
-            
-            print("throw container response")
-            throw NetworkingError.decoding
+            print("success container response")
+
+            return responseData
         } else if (try? jsonDecoder.decode(ApigeeError.self, from: data)) != nil {
             // Apigee decode
             print("throw apigee response")
