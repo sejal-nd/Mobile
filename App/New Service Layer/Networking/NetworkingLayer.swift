@@ -157,9 +157,8 @@ public enum NetworkingLayer {
             
             // Log payload
             if let jsonString = String(data: data, encoding: String.Encoding.utf8) {
-                if let methodStr = urlRequest.httpMethod,
-                    let method = HttpMethod(rawValue: methodStr) {
-                    APILog(NetworkingLayer.self, path: urlRequest.url?.absoluteString ?? "", method: method, logType: .request, message: jsonString)
+                if let methodStr = urlRequest.httpMethod {
+                    APILog(NetworkingLayer.self, path: urlRequest.url?.absoluteString ?? "", method: methodStr, logType: .request, message: jsonString)
                 }
             }
             
@@ -192,9 +191,8 @@ public enum NetworkingLayer {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .custom() { decoder -> Date in
             let container = try decoder.singleValueContainer()
-            let dateStr = try container.decode(String.self)
-            print("Test 199")
-            return try DateParser().extractDate(object: dateStr)
+            let dateString = try container.decode(String.self)
+            return dateString.extractDate() ?? Date()
         }
 
          if let responseWrapper = try? jsonDecoder.decode(ApigeeResponseContainer.self, from: data) {

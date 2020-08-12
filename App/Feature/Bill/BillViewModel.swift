@@ -78,8 +78,8 @@ class BillViewModel {
                                                          gas: isGas)
         }
     
-    private(set) lazy var accountDetailError: Driver<ServiceError?> = dataEvents.errors()
-        .map { $0 as? ServiceError }
+    private(set) lazy var accountDetailError: Driver<NetworkingError?> = dataEvents.errors()
+        .map { $0 as? NetworkingError }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showLoadedState: Driver<Void> = dataEvents

@@ -48,13 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.keyWindow?.layer.speed = 200
             UIView.setAnimationsEnabled(false)
         }
-        
-        // Set mock maintenance mode state based on launch argument
-        if let key = processInfo.arguments.lazy.compactMap(MockDataKey.init).first,
-            processInfo.arguments.contains("UITest") {
-            MockAppState.current = MockAppState(maintenanceKey: key)
-        }
-        
+
         if let appInfo = Bundle.main.infoDictionary,
             let shortVersionString = appInfo["CFBundleShortVersionString"] as? String {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
@@ -285,7 +279,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         WatchSessionManager.shared.start()
 
         // Send jwt to watch if available
-        guard MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken else { return }
+        guard AuthenticationService.isLoggedIn() else { return }
+        let accessToken = UserSession.token
         try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
     }
 
@@ -308,7 +303,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
             BiometricService.disableBiometrics()
 
-            MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
+            AuthenticationService.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }

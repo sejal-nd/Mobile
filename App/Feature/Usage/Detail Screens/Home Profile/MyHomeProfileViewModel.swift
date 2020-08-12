@@ -122,7 +122,7 @@ class MyHomeProfileViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var saveErrors: Driver<String> = self.save.errors()
-        .map { ($0 as? ServiceError)?.serviceCode ?? $0.localizedDescription }
+        .map { ($0 as? NetworkingError)?.description ?? $0.localizedDescription }
         .asDriver(onErrorDriveWith: .empty())
     
     

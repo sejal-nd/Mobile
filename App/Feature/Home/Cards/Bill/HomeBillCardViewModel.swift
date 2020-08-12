@@ -46,12 +46,12 @@ class HomeBillCardViewModel {
                     GoogleAnalytics.log(event: .oneTouchBankComplete)
                 case (.bank, let error):
                     GoogleAnalytics.log(event: .oneTouchBankError,
-                                        dimensions: [.errorCode: (error as? ServiceError)?.serviceCode ?? ""])
+                                        dimensions: [.errorCode: (error as? NetworkingError)?.title ?? ""])
                 case (.card, nil):
                     GoogleAnalytics.log(event: .oneTouchCardComplete)
                 case (.card, let error):
                     GoogleAnalytics.log(event: .oneTouchCardError,
-                                        dimensions: [.errorCode: (error as? ServiceError)?.serviceCode ?? ""])
+                                        dimensions: [.errorCode: (error as? NetworkingError)?.title ?? ""])
                 }
             })
             .disposed(by: bag)
@@ -82,7 +82,7 @@ class HomeBillCardViewModel {
     })
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0 as? NetworkingError) == .noNetwork }
     
     private(set) lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
     

@@ -74,7 +74,7 @@ public struct WalletItem: Decodable, Equatable {
         }
         
         self.bankName = bankName
-        self.expirationDate = try? DateParser().extractDate(object: expirationDate)
+        self.expirationDate = expirationDate?.extractDate()
         self.isDefault = isDefault
         self.isTemporary = isTemporary
         self.isEditingItem = isEditingItem

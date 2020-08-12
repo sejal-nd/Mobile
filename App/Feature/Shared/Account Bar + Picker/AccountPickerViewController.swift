@@ -49,7 +49,7 @@ class AccountPickerViewController: UIViewController {
                 self?.accountPicker.setLoading(false)
                 self?.accountPicker.refresh()
             case .failure:
-                MCSApi.shared.logout()
+                AuthenticationService.logout()
                 NotificationCenter.default.post(name: .didReceiveAccountListError, object: self)
             }
         }

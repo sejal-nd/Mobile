@@ -80,10 +80,10 @@ class StormModeBillViewModel {
         .asDriver(onErrorDriveWith: .empty())
 
     private lazy var accountDetailNoNetwork: Observable<Bool> = accountDetailEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0.error as? NetworkingError) == .noNetwork }
 
     private lazy var recentPaymentsNoNetwork: Observable<Bool> = scheduledPaymentEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0.error as? NetworkingError) == .noNetwork }
 
     private(set) lazy var showNoNetworkConnectionView: Driver<Bool> = Observable
         .combineLatest(accountDetailNoNetwork, recentPaymentsNoNetwork) { $0 || $1 }

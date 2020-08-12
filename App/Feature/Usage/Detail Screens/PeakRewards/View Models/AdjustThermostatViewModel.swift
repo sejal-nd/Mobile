@@ -94,6 +94,6 @@ class AdjustThermostatViewModel {
         .do(onNext: { GoogleAnalytics.log(event: .adjustThermToast) })
     
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
-        .map { ($0 as? ServiceError)?.errorDescription ?? "" }
+        .map { ($0 as? NetworkingError)?.description ?? "" }
     
 }

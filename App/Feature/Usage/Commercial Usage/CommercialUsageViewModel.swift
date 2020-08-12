@@ -49,7 +49,7 @@ class CommercialUsageViewModel {
         guard let self = self else { return "" }
         self.jsTimeout = Timer.scheduledTimer(withTimeInterval: jsTimeoutInterval, repeats: false, block: { _ in
             dLog("Did not observe expected redirect within \(jsTimeoutInterval) seconds")
-            self.errorTrigger.onNext(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
+            self.errorTrigger.onNext(NetworkingError.generic)
         })
 
         return String(format: jsString,

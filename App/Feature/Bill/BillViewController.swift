@@ -431,8 +431,8 @@ class BillViewController: AccountPickerViewController {
         usageBillImpactContentView.setInnerLoadingState(false)
     }
     
-    func showErrorState(error: ServiceError?) {
-        if error?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+    func showErrorState(error: NetworkingError?) {
+        if error == .noNetwork {
             scrollView?.isHidden = true
             noNetworkConnectionView.isHidden = false
         } else {
@@ -447,7 +447,7 @@ class BillViewController: AccountPickerViewController {
         prepaidView.isHidden = true
         maintenanceModeView.isHidden = true
         
-        if error?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+        if error == .blockAccount {
             genericErrorView.isHidden = true
             accountDisallowView.isHidden = false
         } else {

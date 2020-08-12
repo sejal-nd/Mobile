@@ -22,12 +22,12 @@ class AppointmentsViewModel {
         .do(onNext: { [weak self] error in
             self?.setLoading(loading: false)
         })
-        .map { ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0 as? NetworkingError) != .noNetwork }
         .asDriver(onErrorDriveWith: .empty())
     
     private (set) lazy var showNoNetworkState: Driver<Bool> = Observable
         .merge(accountDetailEvents.errors(), events.errors())
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0 as? NetworkingError) == .noNetwork }
         .asDriver(onErrorDriveWith: .empty())
     
     private (set) lazy var showEmptyState: Driver<Bool> = appointments

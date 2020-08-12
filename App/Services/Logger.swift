@@ -50,7 +50,7 @@ fileprivate let chunkSize = 800
 func APILog<T>(_ callerType: @autoclosure () -> T.Type,
                requestId: @autoclosure () -> String = "",
                path: @autoclosure () -> String?,
-               method: @autoclosure () -> HttpMethod,
+               method: @autoclosure () -> String,
                logType: @autoclosure () -> LogType,
                message: @autoclosure () -> String?) {
     
@@ -64,7 +64,7 @@ func APILog<T>(_ callerType: @autoclosure () -> T.Type,
     let callerName = "\(callerType())"
     let requestId = requestId()
     let path = path() ?? ""
-    let method = method().rawValue
+    let method = method()
     let logType = logType()
     
     guard let message = message(), !message.isEmpty else {

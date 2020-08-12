@@ -139,10 +139,10 @@ class HomeViewModel {
         .share(replay: 1, scope: .forever)
 
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = accountDetailEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0.error as? NetworkingError) == .noNetwork }
     
     private lazy var accountDetailAccountDisallow: Observable<Bool> = accountDetailEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue }
+        .map { ($0.error as? NetworkingError) == .blockAccount }
     
     private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = Driver
         .combineLatest(accountDetailNoNetworkConnection.asDriver(onErrorDriveWith: .empty()),

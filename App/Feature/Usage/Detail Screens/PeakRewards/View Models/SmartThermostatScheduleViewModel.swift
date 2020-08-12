@@ -125,7 +125,7 @@ class SmartThermostatScheduleViewModel {
             GoogleAnalytics.log(event: pageView)
         })
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
-        .map { ($0 as? ServiceError)?.errorDescription ?? "" }
+        .map { ($0 as? NetworkingError)?.description ?? "" }
     
     var didYouKnowText: String {
         switch self.period {

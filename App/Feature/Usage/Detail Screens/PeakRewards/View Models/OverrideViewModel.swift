@@ -134,11 +134,11 @@ class OverrideViewModel {
     
     private(set) lazy var error: Observable<(String?, String?)> = Observable.merge(self.saveEvents.errors(), self.cancelEvents.errors())
         .map {
-            guard let error = $0 as? ServiceError else {
+            guard let error = $0 as? NetworkingError else {
                 return (NSLocalizedString("Error", comment: ""), $0.localizedDescription)
             }
             
-            if error.serviceCode == ServiceErrorCode.fnOverExists.rawValue {
+            if error == .peakRewardsDuplicateOverrides {
                 return ("Override Already Active", nil)
             }
             

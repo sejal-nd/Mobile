@@ -148,8 +148,8 @@ class UsageViewModel {
     private(set) lazy var showMainErrorState: Driver<Void> = Observable
         .merge(accountDetailEvents.errors(), commercialDataEvents.errors(), commercialErrorTrigger.asObservable())
         .filter {
-            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue &&
-            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue
+            ($0 as? NetworkingError) != .noNetwork &&
+            ($0 as? NetworkingError) != .blockAccount
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -157,13 +157,13 @@ class UsageViewModel {
     
     private(set) lazy var showAccountDisallowState: Driver<Void> = accountDetailEvents
         .filter { $0.error != nil }
-        .filter { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue }
+        .filter { ($0.error as? NetworkingError) == .blockAccount }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showNoNetworkState: Driver<Void> = Observable
         .merge(accountDetailEvents.errors(), billAnalysisEvents.errors())
-        .filter { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .filter { ($0 as? NetworkingError) == .noNetwork }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
