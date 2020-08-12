@@ -95,7 +95,7 @@ struct MCSConfig {
         var id = ""
         switch Environment.shared.environmentName {
         case .aut, .test, .dev:
-            id = "WbCpJpfgV64WTTDg"
+            id = "61MnQzuXNLdlsBOu"//"WbCpJpfgV64WTTDg" - commented out due to CIS takeover of stage
         case .stage, .hotfix:
             id = "61MnQzuXNLdlsBOu"
         case .prodbeta, .prod:
@@ -108,7 +108,7 @@ struct MCSConfig {
         var secret = ""
         switch Environment.shared.environmentName {
         case .aut, .test, .dev:
-            secret = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
+            secret = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"//"zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL" - commented out due to CIS takeover of stage
         case .stage, .hotfix:
             secret = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"
         case .prodbeta, .prod:
