@@ -206,7 +206,7 @@ extension NetworkingError: LocalizedError {
         case .blockedPaymentMethod:
             return NSLocalizedString("Payment Method Blocked", comment: "Error title")
         case .blockedUtilityAccount:
-            return NSLocalizedString("Account Blocked", comment: "Error title")
+            return NSLocalizedString("Locked Account", comment: "Error title")
         case .blockedPaymentType:
             return NSLocalizedString("Payment Type Blocked", comment: "Error title")
         case .duplicatePayment:
@@ -275,7 +275,7 @@ extension NetworkingError: LocalizedError {
         case .blockedPaymentMethod:
             return NSLocalizedString("Please try a different payment method.", comment: "Error description")
         case .blockedUtilityAccount:
-            return NSLocalizedString("Account Blocked", comment: "Error description")
+            return NSLocalizedString("Your account is locked from making payments. Please call customer service.", comment: "Error description")
         case .blockedPaymentType:
             return NSLocalizedString("Please try a different payment type.", comment: "Error description")
         case .duplicatePayment:
