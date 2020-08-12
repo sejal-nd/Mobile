@@ -9850,6 +9850,7 @@
 				675F4B5C24AB828100A828F9 /* Router.swift */,
 				675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */,
 				673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */,
+				67D5621F24E4643A00852551 /* Models */,
 				675F4B3A24AB828000A828F9 /* Mock */,
 			);
 			path = Networking;
@@ -9913,7 +9914,6 @@
 		67D5621C24E4642600852551 /* Decoding */ = {
 			isa = PBXGroup;
 			children = (
-				67D5621F24E4643A00852551 /* Models */,
 			);
 			path = Decoding;
 			sourceTree = "<group>";

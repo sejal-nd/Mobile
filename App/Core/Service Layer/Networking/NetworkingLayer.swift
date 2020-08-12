@@ -63,12 +63,11 @@ public enum NetworkingLayer {
         
         var retryCount = 3
         
-        // todo this may create an infinite loop
-        
+        #warning("This may create an infinite loop")
         // Check refresh token
         if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Environment.shared.environmentName != .aut {
             // token expired
-            print("token expired")
+            dLog("📬 Token expired... Refreshing...")
 
             // Decrease retry counter
             retryCount -= 1
@@ -102,14 +101,12 @@ public enum NetworkingLayer {
             }
         } else if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Environment.shared.environmentName != .aut {
             // refresh expired
-            print("refresh token expired ")
+            dLog("❌ Refresh Token Expired... Logging user out...")
             
             // Delete user session
             UserSession.deleteSession()
             completion(.failure(.invalidToken))
         } else {
-            print("TOKEN ELSE")
-            
             // Perform initial request
             NetworkingLayer.dataTask(session: session,
                                      urlRequest: urlRequest,
@@ -196,7 +193,6 @@ public enum NetworkingLayer {
 
          if let responseWrapper = try? jsonDecoder.decode(AzureResponseContainer<T>.self, from: data) {
             // Azure decode
-            print("Azure decode")
             
             if let endpointError = responseWrapper.error {
                 dLog("❌ Error: \(endpointError)\n\nCode: \(endpointError.code)\nContext: \(endpointError.context ?? "")\nDescription: \(endpointError.description ?? "")")
@@ -208,8 +204,6 @@ public enum NetworkingLayer {
                 throw NetworkingError.decoding
             }
             
-            print("success container response")
-
             return responseData
         } else if let error = try? jsonDecoder.decode(ApigeeError.self, from: data) {
             // Apigee decode
@@ -217,13 +211,9 @@ public enum NetworkingLayer {
             throw NetworkingError.invalidToken
         } else if let response = try? jsonDecoder.decode(T.self, from: data) {
             // Default decode
-            
-            print("return default response")
             return response
         } else {
             dLog("❌ Failed to decode network response")
-
-            print("throw decoding response")
             throw NetworkingError.decoding
         }
     }
