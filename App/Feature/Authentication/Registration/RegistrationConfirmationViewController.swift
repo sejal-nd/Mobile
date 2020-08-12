@@ -55,7 +55,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
             attrString.append(secondaryAttrString)
             bodyLabel.attributedText = attrString
         } else {
-            iconImageView.image = #imageLiteral(resourceName: "ic_confirmation_mini")
+            iconImageView.image = #imageLiteral(resourceName: "img_confirmation")
             let boldString = NSLocalizedString("If you do not verify your registration within 48 hours, you will be requested to register again.", comment: "")
             let fullString = NSLocalizedString("Please check your email for a confirmation message to verify your registration. That email will contain a link. Please complete your registration and validate your email address by clicking the link.\n\nIf your email address is not verified, your Paperless eBill enrollment will not be completed.\n\n\(boldString)\n\nPlease be sure to check your spam/junk mail folders and add \(emailAddress) to your safe sender list. Did not receive the confirmation email?", comment: "")
             let attrString = NSMutableAttributedString(string: fullString)
