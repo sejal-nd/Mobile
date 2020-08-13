@@ -8,17 +8,55 @@
 
 import Foundation
 
-enum UsageService {
+struct UsageService {
     
-    static func compareBill(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool, completion: @escaping (Result<CompareBillResult, NetworkingError>) -> ()) {
+    private static var cache = UsageCache()
+    
+    static func compareBill(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool, useCache: Bool = true, completion: @escaping (Result<CompareBillResult, NetworkingError>) -> ()) {
         let encodedObject = CompareBillRequest(compareWith: yearAgo ? "YEAR_AGO" : "PREVIOUS",
                                                fuelType: gas ? "GAS" : "ELEC")
-        NetworkingLayer.request(router: .compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, encodable: encodedObject), completion: completion)
+        
+        // Pull from cache if possible
+        let cacheParams = UsageCache.ComparisonParams(accountNumber: accountNumber,
+                                                             premiseNumber: premiseNumber,
+                                                             yearAgo: yearAgo,
+                                                             gas: gas)
+        
+        if let cachedData = cache[cacheParams] {
+            completion(.success(cachedData))
+        } else {
+            NetworkingLayer.request(router: .compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, encodable: encodedObject)) { (result: Result<CompareBillResult, NetworkingError>) in
+                switch result {
+                case .success(let compareBillResult):
+                    if useCache {
+                        let params = UsageCache.ComparisonParams(accountNumber: accountNumber, premiseNumber: premiseNumber, yearAgo: yearAgo, gas: gas)
+                        self.cache[params] = compareBillResult
+                    }
+                default:
+                    break
+                }
+            }
+        }
     }
     
-    // TODO: implement caching
-    static func fetchBillForecast(accountNumber: String, premiseNumber: String, useCache: Bool = false, completion: @escaping (Result<BillForecastResult, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .forecastBill(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
+    static func fetchBillForecast(accountNumber: String, premiseNumber: String, useCache: Bool = true, completion: @escaping (Result<BillForecastResult, NetworkingError>) -> ()) {
+        
+        let params = UsageCache.ForecastParams(accountNumber: accountNumber, premiseNumber: premiseNumber)
+        if let cachedData = cache[params] {
+            completion(.success(cachedData))
+        } else {
+            NetworkingLayer.request(router: .forecastBill(accountNumber: accountNumber, premiseNumber: premiseNumber)) { (result: Result<BillForecastResult, NetworkingError>) in
+                switch result {
+                case .success(let compareBillResult):
+                    if useCache {
+                        let params = UsageCache.ForecastParams(accountNumber: accountNumber, premiseNumber: premiseNumber)
+                        self.cache[params] = compareBillResult
+                    }
+                default:
+                    break
+                }
+            }
+        }
     }
     
     static func fetchHomeProfile(accountNumber: String, premiseNumber: String, completion: @escaping (Result<HomeProfile, NetworkingError>) -> ()) {
@@ -38,6 +76,38 @@ enum UsageService {
     }
     
     static func clearCache() {
-        // TODO: implement caching
+        cache.clear()
+    }
+}
+
+private struct UsageCache {
+    private var comparisonCache = [ComparisonParams: CompareBillResult]()
+    private var forecastCache = [ForecastParams: BillForecastResult]()
+    
+    mutating func clear() {
+        comparisonCache.removeAll()
+        forecastCache.removeAll()
+    }
+    
+    subscript(comparisonParams: ComparisonParams) -> CompareBillResult? {
+        get { return comparisonCache[comparisonParams] }
+        set { comparisonCache[comparisonParams] = newValue }
+    }
+    
+    subscript(forecastParams: ForecastParams) -> BillForecastResult? {
+        get { return forecastCache[forecastParams] }
+        set { forecastCache[forecastParams] = newValue }
+    }
+    
+    struct ComparisonParams: Hashable {
+        let accountNumber: String
+        let premiseNumber: String
+        let yearAgo: Bool
+        let gas: Bool
+    }
+    
+    struct ForecastParams: Hashable {
+        let accountNumber: String
+        let premiseNumber: String
     }
 }

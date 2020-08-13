@@ -90,7 +90,8 @@ class HomeProjectedBillCardViewModel {
         }, requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
             guard let this = self else { return .empty() }
             return UsageService.rx.fetchBillForecast(accountNumber: pair.0.accountNumber,
-                                                       premiseNumber: pair.0.premiseNumber!)
+                                                     premiseNumber: pair.0.premiseNumber!,
+                                                     useCache: false)
         })
     
     // MARK: - View Content

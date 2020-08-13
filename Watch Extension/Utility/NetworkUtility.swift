@@ -385,7 +385,7 @@ extension NetworkUtility {
         }
         let accountNumber = accountDetail.accountNumber
         
-        UsageService.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber) { networkResult in
+        UsageService.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber, useCache: false) { networkResult in
             switch networkResult {
             case .success(let billForecastResult):
                 dLog("Usage Data Fetched.")

@@ -13,14 +13,14 @@ extension UsageService: ReactiveCompatible {}
 
 extension Reactive where Base == UsageService {
     
-    static func compareBill(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> Observable<CompareBillResult> {
+    static func compareBill(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool, useCache: Bool = true) -> Observable<CompareBillResult> {
         return Observable.create { observer -> Disposable in
-            UsageService.compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, yearAgo: yearAgo, gas: gas) { observer.handle(result: $0) }
+            UsageService.compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, yearAgo: yearAgo, gas: gas, useCache: useCache) { observer.handle(result: $0) }
             return Disposables.create()
         }
     }
     
-    static func fetchBillForecast(accountNumber: String, premiseNumber: String, useCache: Bool = false) -> Observable<BillForecastResult> {
+    static func fetchBillForecast(accountNumber: String, premiseNumber: String, useCache: Bool = true) -> Observable<BillForecastResult> {
         return Observable.create { observer -> Disposable in
             UsageService.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber, useCache: useCache) { observer.handle(result: $0) }
             return Disposables.create()
