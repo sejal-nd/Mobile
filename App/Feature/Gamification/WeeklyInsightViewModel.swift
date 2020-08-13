@@ -62,7 +62,7 @@ class WeeklyInsightViewModel {
     }
     
     func fetchBillForecast() -> Observable<Void> {
-        return UsageService.rx.fetchBillForecast(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
+        return UsageService.rx.fetchBillForecast(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!, useCache: false)
             .do(onNext: { [weak self] billForecast in
                 self?.billForecast.accept(billForecast)
             })
