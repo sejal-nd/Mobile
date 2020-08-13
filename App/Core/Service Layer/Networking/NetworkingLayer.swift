@@ -34,7 +34,7 @@ public enum NetworkingLayer {
         urlRequest.httpMethod = router.method
 
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            dLog("📬 URL: \(url.absoluteString)")
+            dLog("\n\n\n📬 URL: \(url.absoluteString)")
         }
         
         // Set HTTP BODY
@@ -188,7 +188,7 @@ public enum NetworkingLayer {
             // Azure decode
             
             if let endpointError = responseWrapper.error {
-                dLog("❌ Error: \(endpointError)\n\nCode: \(endpointError.code)\nContext: \(endpointError.context ?? "")\nDescription: \(endpointError.description ?? "")")
+                dLog("❌ Endpoint Error:\n\nError Code: \(endpointError.code)\nAzure Context: \(endpointError.context ?? "")\nError Description: \(endpointError.description ?? "")")
                 
                 // Log user out
                 if endpointError.code == "401" {
