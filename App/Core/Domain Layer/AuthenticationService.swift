@@ -80,7 +80,6 @@ public enum AuthenticationService {
 // MARK: Private methods
     
 extension AuthenticationService {
-    
     private static func performLogin(username: String,
                                      password: String,
                                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
