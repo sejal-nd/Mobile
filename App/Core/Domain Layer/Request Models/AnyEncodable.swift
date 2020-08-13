@@ -27,6 +27,10 @@ extension Encodable {
     func data() -> Data {
         let encodable = AnyEncodable(value: self)
         
+        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+            dLog("Request Body:\n\(encodable)")
+        }
+            
         do {
             return try JSONEncoder().encode(encodable)
         } catch {

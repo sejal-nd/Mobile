@@ -165,7 +165,7 @@ public enum Router {
     }
     
     private var basePath: String {
-        if Environment.shared.environmentName == .test || Environment.shared.environmentName == .stage && Environment.shared.opco.isPHI {
+        if Environment.shared.environmentName == .test && Environment.shared.opco.isPHI {
             // Project specific environment - DIRTY SOLUTION
             return "/phimobile/mobile/custom"
         } else {
@@ -373,6 +373,10 @@ public enum Router {
             headers["Authorization"] = "Bearer \(token)"
         }
                 
+        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+            dLog("HTTP headers:\n\(headers)")
+        }
+        
         return headers
     }
     

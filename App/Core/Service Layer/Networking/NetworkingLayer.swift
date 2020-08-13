@@ -151,14 +151,7 @@ public enum NetworkingLayer {
                 }
                 return
             }
-            
-            // Log payload
-            if let jsonString = String(data: data, encoding: String.Encoding.utf8) {
-                if let methodStr = urlRequest.httpMethod {
-                    APILog(NetworkingLayer.self, path: urlRequest.url?.absoluteString ?? "", method: methodStr, logType: .request, message: jsonString)
-                }
-            }
-            
+
             do {
                 let responseObject: T = try decode(data: data)
                 
@@ -181,7 +174,7 @@ public enum NetworkingLayer {
 
     private static func decode<T: Decodable>(data: Data) throws -> T {
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            dLog("📬 Data Response: \(String(decoding: data, as: UTF8.self))")
+            dLog("📬 Data Response:\n\(String(decoding: data, as: UTF8.self))")
         }
 
         let jsonDecoder = JSONDecoder()

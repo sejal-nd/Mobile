@@ -1778,22 +1778,10 @@
 		675F4E1524B4DA2800A828F9 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */; };
 		675F4E1624B4DA2900A828F9 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */; };
 		675F4E1724B4DA2A00A828F9 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */; };
-		675F4E1824B4DA4A00A828F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5C24AB828100A828F9 /* Router.swift */; };
-		675F4E1924B4DA4B00A828F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5C24AB828100A828F9 /* Router.swift */; };
-		675F4E1A24B4DA4D00A828F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5C24AB828100A828F9 /* Router.swift */; };
-		675F4E1B24B4DA6C00A828F9 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
 		675F4E1F24B4DA9300A828F9 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF724AB828000A828F9 /* TokenRequest.swift */; };
-		675F4E2024B4DA9400A828F9 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF724AB828000A828F9 /* TokenRequest.swift */; };
-		675F4E2124B4DA9500A828F9 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF724AB828000A828F9 /* TokenRequest.swift */; };
-		675F4E2224B4DA9E00A828F9 /* AccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF324AB828000A828F9 /* AccountRequest.swift */; };
-		675F4E2324B4DA9F00A828F9 /* AccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF324AB828000A828F9 /* AccountRequest.swift */; };
-		675F4E2424B4DAA000A828F9 /* AccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF324AB828000A828F9 /* AccountRequest.swift */; };
 		675F4E2524B4DAA700A828F9 /* AnonOutageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4DF824B378FD00A828F9 /* AnonOutageRequest.swift */; };
 		675F4E2624B4DAA800A828F9 /* AnonOutageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4DF824B378FD00A828F9 /* AnonOutageRequest.swift */; };
 		675F4E2724B4DAA900A828F9 /* AnonOutageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4DF824B378FD00A828F9 /* AnonOutageRequest.swift */; };
-		675F4E2824B4DAAF00A828F9 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0424AB828000A828F9 /* ChangePasswordRequest.swift */; };
-		675F4E2924B4DAB100A828F9 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0424AB828000A828F9 /* ChangePasswordRequest.swift */; };
-		675F4E2A24B4DAB200A828F9 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0424AB828000A828F9 /* ChangePasswordRequest.swift */; };
 		675F4E2B24B4DADF00A828F9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3724AB828000A828F9 /* UserSession.swift */; };
 		675F4E2C24B4DAE000A828F9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3724AB828000A828F9 /* UserSession.swift */; };
 		675F4E2D24B4DAE100A828F9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3724AB828000A828F9 /* UserSession.swift */; };
@@ -1830,7 +1818,6 @@
 		675F4E5124B4DC7F00A828F9 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0324AB828000A828F9 /* PaymentRequest.swift */; };
 		675F4E5224B4DC8000A828F9 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0324AB828000A828F9 /* PaymentRequest.swift */; };
 		675F4E5324B4DC8200A828F9 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0324AB828000A828F9 /* PaymentRequest.swift */; };
-		675F4E5424B4DCC200A828F9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
 		675F4E5524B4DCC300A828F9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
 		675F4E5724B4F8F500A828F9 /* AnonOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4DFF24B3A00800A828F9 /* AnonOutageStatus.swift */; };
 		675F4E5824B4F8F600A828F9 /* AnonOutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4DFF24B3A00800A828F9 /* AnonOutageStatus.swift */; };
@@ -2002,7 +1989,6 @@
 		67893BD124E318DE000143D6 /* String+DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893BC624E318D1000143D6 /* String+DateParser.swift */; };
 		67893BD224E318DF000143D6 /* String+DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893BC624E318D1000143D6 /* String+DateParser.swift */; };
 		678B621224CF4F75009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
-		678B621324CF4F7E009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
 		678B621524CF6ACE009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
 		678B621624CF6ACF009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
 		678B621724CF6ACF009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
@@ -2022,7 +2008,6 @@
 		678B623624D09A22009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
 		678B623724D09A23009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
 		678B623824D09A24009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
-		678B623924D0ACCE009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
 		678B623A24D0ACD1009F8A6B /* AnonymousService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AE924AB828000A828F9 /* AnonymousService.swift */; };
 		679C6EB124D1E84E00535DE7 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EB024D1E84E00535DE7 /* AppointmentService.swift */; };
 		679C6EB224D1E85900535DE7 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EB024D1E84E00535DE7 /* AppointmentService.swift */; };
@@ -5438,21 +5423,12 @@
 		C3087AA924B670AB005AE544 /* AccountService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087A8724B63D03005AE544 /* AccountService+Rx.swift */; };
 		C3087AAA24B670AC005AE544 /* AccountService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087A8724B63D03005AE544 /* AccountService+Rx.swift */; };
 		C3087AAB24B670B0005AE544 /* AccountService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087A8724B63D03005AE544 /* AccountService+Rx.swift */; };
-		C3087AAC24B67117005AE544 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */; };
-		C3087AAD24B67119005AE544 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */; };
-		C3087AAE24B6711A005AE544 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */; };
 		C3087AAF24B6716E005AE544 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5C24AB828100A828F9 /* Router.swift */; };
 		C3087AB024B6716F005AE544 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5C24AB828100A828F9 /* Router.swift */; };
 		C3087AB124B67172005AE544 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5C24AB828100A828F9 /* Router.swift */; };
 		C3087AB224B6717B005AE544 /* ReleaseOfInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087A9F24B662C6005AE544 /* ReleaseOfInfoRequest.swift */; };
 		C3087AB324B6717C005AE544 /* ReleaseOfInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087A9F24B662C6005AE544 /* ReleaseOfInfoRequest.swift */; };
 		C3087AB424B6717D005AE544 /* ReleaseOfInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087A9F24B662C6005AE544 /* ReleaseOfInfoRequest.swift */; };
-		C3087AB524B67194005AE544 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3724AB828000A828F9 /* UserSession.swift */; };
-		C3087AB624B67195005AE544 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3724AB828000A828F9 /* UserSession.swift */; };
-		C3087AB724B67196005AE544 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3724AB828000A828F9 /* UserSession.swift */; };
-		C3087ABB24B671AB005AE544 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5B24AB828100A828F9 /* URLProtocolMock.swift */; };
-		C3087ABC24B671AC005AE544 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5B24AB828100A828F9 /* URLProtocolMock.swift */; };
-		C3087ABD24B671AD005AE544 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B5B24AB828100A828F9 /* URLProtocolMock.swift */; };
 		C3087ABE24B671DD005AE544 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
 		C3087ABF24B671DE005AE544 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
 		C3087AC024B671DF005AE544 /* AzureResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1B24AB828000A828F9 /* AzureResponseContainer.swift */; };
@@ -5465,7 +5441,6 @@
 		C3087ACB24B67289005AE544 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0424AB828000A828F9 /* ChangePasswordRequest.swift */; };
 		C3087ACC24B6728A005AE544 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0424AB828000A828F9 /* ChangePasswordRequest.swift */; };
 		C3087ACD24B672C8005AE544 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
-		C3087ACE24B672C8005AE544 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
 		C3087ACF24B672C9005AE544 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
 		C3087AD024B67470005AE544 /* UsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF424AB828000A828F9 /* UsernameRequest.swift */; };
 		C3087AD124B67472005AE544 /* UsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AF424AB828000A828F9 /* UsernameRequest.swift */; };
@@ -5838,17 +5813,11 @@
 		C3B6558D24ACD9080048C64B /* PaymentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6557F24ACD9080048C64B /* PaymentItem.swift */; };
 		C3B6558E24ACD9080048C64B /* PaymentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6557F24ACD9080048C64B /* PaymentItem.swift */; };
 		C3B6558F24AD25530048C64B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
-		C3B6559024AD25550048C64B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
 		C3B6559124AD25560048C64B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
-		C3B6559224AD25570048C64B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
 		C3B6559324AD25590048C64B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
-		C3B6559424AD255A0048C64B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
 		C3B6559524AD255C0048C64B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
 		C3B6559624AD255D0048C64B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
 		C3B6559724AD255F0048C64B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
-		C3B6559824AD25BE0048C64B /* AzureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2824AB828000A828F9 /* AzureError.swift */; };
-		C3B6559924AD26370048C64B /* AzureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2824AB828000A828F9 /* AzureError.swift */; };
-		C3B6559A24AD26390048C64B /* AzureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2824AB828000A828F9 /* AzureError.swift */; };
 		C3B6559B24AD45000048C64B /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1024AB828000A828F9 /* AccountDetails.swift */; };
 		C3B6559C24AD45010048C64B /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1024AB828000A828F9 /* AccountDetails.swift */; };
 		C3B6559D24AD45030048C64B /* AccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1024AB828000A828F9 /* AccountDetails.swift */; };
@@ -11851,7 +11820,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "Exelon Corporation";
 				TargetAttributes = {
 					087630DD1E72F5D000FA7020 = {
@@ -13340,7 +13309,6 @@
 				67D73AF3246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */,
 				B08956FB2215D11B00A97965 /* energy_tips.json in Resources */,
 				678B621724CF6ACF009F8A6B /* ValidateRegistrationMock.json in Resources */,
-				675F4D5224AB828200A828F9 /* TokenMock.json in Resources */,
 				675F4D5224AB828200A828F9 /* TokenMock.json in Resources */,
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
@@ -15579,7 +15547,6 @@
 				673F9FFB24C894D900210BCD /* SchedulePaymentCancelRequest.swift in Sources */,
 				C3087ACC24B6728A005AE544 /* ChangePasswordRequest.swift in Sources */,
 				67893AA524DB2053000143D6 /* GameService.swift in Sources */,
-				675F4E1A24B4DA4D00A828F9 /* Router.swift in Sources */,
 				673FA04A24C8956100210BCD /* SharePointAlert.swift in Sources */,
 				C3087AF624BCF199005AE544 /* HomeProfileUpdateRequest.swift in Sources */,
 				673FA03F24C8956100210BCD /* AutoPayResult.swift in Sources */,
@@ -15587,8 +15554,6 @@
 				67893ACF24DB3607000143D6 /* AlertRegistrationRequest.swift in Sources */,
 				675F4E1424B4D9E400A828F9 /* AzureError.swift in Sources */,
 				67893AE924DB374A000143D6 /* AlertLanguageRequest.swift in Sources */,
-				673FA04824C8956100210BCD /* ValidatedAccountResponse.swift in Sources */,
-				675F4E1424B4D9E400A828F9 /* AzureError.swift in Sources */,
 				673FA04824C8956100210BCD /* ValidatedAccountResponse.swift in Sources */,
 				67D5625B24E597DA00852551 /* WalletService.swift in Sources */,
 				35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */,
@@ -15610,14 +15575,12 @@
 				679C6EC324D1EBD000535DE7 /* AppointmentService+Rx.swift in Sources */,
 				C33827F224DDDBA200F133C5 /* StringResult.swift in Sources */,
 				673FA04924C8956100210BCD /* BillPDF.swift in Sources */,
-				675F4E2A24B4DAB200A828F9 /* ChangePasswordRequest.swift in Sources */,
 				C320FDE124DDD4B80012E4ED /* WalletEncryptionKeyRequest.swift in Sources */,
 				B0D84D602204987800C70A6F /* Date+Now.swift in Sources */,
 				9CCE3E4C21BB17E40008E1AF /* StormModeStatus.swift in Sources */,
 				C3087B2424BE155F005AE544 /* UsageService.swift in Sources */,
 				C3B6558824ACD9080048C64B /* PaymentItem.swift in Sources */,
 				C3DF2BAF24CB42BB00A6D4EC /* BillService+Rx.swift in Sources */,
-				C3087AB724B67196005AE544 /* UserSession.swift in Sources */,
 				67893AC224DB2FA3000143D6 /* AlertService.swift in Sources */,
 				C336045924D2E883002CF260 /* EmailRequest.swift in Sources */,
 				673F9FF324C894D900210BCD /* BillingHistoryRequest.swift in Sources */,
@@ -15628,7 +15591,6 @@
 				C336048624D333CB002CF260 /* BGEAutoPayInfo.swift in Sources */,
 				675F4E5F24B4F91500A828F9 /* MeterPingResult.swift in Sources */,
 				673FA05024C8956100210BCD /* TokenResponse.swift in Sources */,
-				675F4E2124B4DA9500A828F9 /* TokenRequest.swift in Sources */,
 				35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */,
 				67893BB724E314D0000143D6 /* PaymentResult.swift in Sources */,
 				673FA04D24C8956100210BCD /* MinimumVersion.swift in Sources */,
@@ -15652,7 +15614,6 @@
 				67A18B9524CB354A00F7A77B /* RefreshTokenRequest.swift in Sources */,
 				67A18B7824CA0EA900F7A77B /* ApigeeError.swift in Sources */,
 				9CB8A5F121DEC22200880DE9 /* Logger.swift in Sources */,
-				C3B6559A24AD26390048C64B /* AzureError.swift in Sources */,
 				C3B6556824ABD9790048C64B /* SERResult.swift in Sources */,
 				35F9DE55233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				67893BCE24E318DC000143D6 /* String+DateParser.swift in Sources */,
@@ -15671,7 +15632,6 @@
 				673F9FF124C894D900210BCD /* RecoverUsernameRequest.swift in Sources */,
 				9CBE9E26237473C200E14222 /* Weekday.swift in Sources */,
 				C336048F24D339F7002CF260 /* RxNotifications.swift in Sources */,
-				C3087AAE24B6711A005AE544 /* NetworkingLayer.swift in Sources */,
 				673F9FD124C894C900210BCD /* AccountLookupRequest.swift in Sources */,
 				67893BA324E314C0000143D6 /* ScheduledPayment.swift in Sources */,
 				673F9FF424C894D900210BCD /* WalletItemDeleteRequest.swift in Sources */,
@@ -15703,7 +15663,6 @@
 				673FA03E24C8956100210BCD /* EnergyRewardsNew.swift in Sources */,
 				356C7F9A2190A2EF003E8A90 /* ShortUUIDGenerator.swift in Sources */,
 				C3B6557824ABE6780048C64B /* BillingInfo.swift in Sources */,
-				C3B6559424AD255A0048C64B /* NetworkingError.swift in Sources */,
 				C3087ADF24B67ECE005AE544 /* GuidRequest.swift in Sources */,
 				C3087B1124BDEFA3005AE544 /* AnyObserver.swift in Sources */,
 				C3087B2124BE154E005AE544 /* CompareBillResult.swift in Sources */,
@@ -15718,7 +15677,6 @@
 				356C7F8221909997003E8A90 /* KeychainManager.swift in Sources */,
 				673F9FF524C894D900210BCD /* BudgetBillingUnenrollRequest.swift in Sources */,
 				35FB502F234D091000C50162 /* UIColor.swift in Sources */,
-				675F4E2424B4DAA000A828F9 /* AccountRequest.swift in Sources */,
 				67D5623824E592A500852551 /* PeakRewardsService.swift in Sources */,
 				673FA04B24C8956100210BCD /* BillingHistoryResult.swift in Sources */,
 				35E7C8022190805C00BA13C6 /* UsageInterfaceController.swift in Sources */,
@@ -15727,7 +15685,6 @@
 				C338280E24E1C19400F133C5 /* DateRequest.swift in Sources */,
 				356C7F8D2190A09F003E8A90 /* ProfileStatus.swift in Sources */,
 				67893BA424E314C0000143D6 /* Weather.swift in Sources */,
-				C3087ABD24B671AD005AE544 /* URLProtocolMock.swift in Sources */,
 				673F9FF924C894D900210BCD /* BillComparisonRequest.swift in Sources */,
 				C3087AC024B671DF005AE544 /* AzureResponseContainer.swift in Sources */,
 				673FA04024C8956100210BCD /* DailyUsageData.swift in Sources */,
@@ -15753,7 +15710,6 @@
 				35F9DE52233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
 				673FA0B024C8956700210BCD /* ForgotMaskedUsername.swift in Sources */,
 				35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */,
-				675F4E1824B4DA4A00A828F9 /* Router.swift in Sources */,
 				C3087B1724BDF0D5005AE544 /* UsageService+Rx.swift in Sources */,
 				C336047524D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
 				C336046224D31EA9002CF260 /* AutoPayEnrollRequest.swift in Sources */,
@@ -15776,7 +15732,6 @@
 				675F4E2524B4DAA700A828F9 /* AnonOutageRequest.swift in Sources */,
 				675F4E5124B4DC7F00A828F9 /* PaymentRequest.swift in Sources */,
 				673F9FDD24C894D700210BCD /* GameUserRequest.swift in Sources */,
-				675F4E2824B4DAAF00A828F9 /* ChangePasswordRequest.swift in Sources */,
 				673FA0A124C8956700210BCD /* ForecastBill.swift in Sources */,
 				C33827EE24DDDB9C00F133C5 /* StringResult.swift in Sources */,
 				67893BAF24E314C2000143D6 /* ScheduledPayment.swift in Sources */,
@@ -15793,9 +15748,7 @@
 				67A18B7424CA0EA500F7A77B /* ApigeeError.swift in Sources */,
 				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
 				C3087B2624BE158E005AE544 /* BillForecastResult.swift in Sources */,
-				C3087AB524B67194005AE544 /* UserSession.swift in Sources */,
 				675F4E0C24B4D91700A828F9 /* NetworkingError.swift in Sources */,
-				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
 				675F4E5D24B4F91300A828F9 /* MeterPingResult.swift in Sources */,
 				675F4E1F24B4DA9300A828F9 /* TokenRequest.swift in Sources */,
 				C3087AF424BCF197005AE544 /* HomeProfileUpdateRequest.swift in Sources */,
@@ -15817,7 +15770,6 @@
 				673FA0B424C8956700210BCD /* TokenResponse.swift in Sources */,
 				675F4E5724B4F8F500A828F9 /* AnonOutageStatus.swift in Sources */,
 				35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
-				C3B6559824AD25BE0048C64B /* AzureError.swift in Sources */,
 				673F9FDB24C894D700210BCD /* BudgetBillingUnenrollRequest.swift in Sources */,
 				67D5623424E592A200852551 /* PeakRewardsService.swift in Sources */,
 				673F9FD624C894D700210BCD /* RecoverMaskedUsernameRequest.swift in Sources */,
@@ -15855,15 +15807,12 @@
 				C3B6559B24AD45000048C64B /* AccountDetails.swift in Sources */,
 				9CBE9E27237473C400E14222 /* Weekday.swift in Sources */,
 				67A18B9124CB354700F7A77B /* RefreshTokenRequest.swift in Sources */,
-				C3087AAC24B67117005AE544 /* NetworkingLayer.swift in Sources */,
 				C320FDA424DC646D0012E4ED /* WalletRequest.swift in Sources */,
 				673FA0A424C8956700210BCD /* DailyUsageData.swift in Sources */,
 				C3087ACD24B672C8005AE544 /* AnyEncodable.swift in Sources */,
 				673FA0AB24C8956700210BCD /* Wallet.swift in Sources */,
 				673FA0E524C89A1900210BCD /* AccountLookupResults.swift in Sources */,
-				675F4E5424B4DCC200A828F9 /* AnyEncodable.swift in Sources */,
 				673F9FDC24C894D700210BCD /* AlertPreferencesRequest.swift in Sources */,
-				9CBE9E27237473C400E14222 /* Weekday.swift in Sources */,
 				C3087AF924BDE8E2005AE544 /* EnergyTip.swift in Sources */,
 				673F9FDF24C894D700210BCD /* BillComparisonRequest.swift in Sources */,
 				355B104A2369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
@@ -15881,7 +15830,6 @@
 				C3B6557224ABE6780048C64B /* BillingInfo.swift in Sources */,
 				67893AA324DB2051000143D6 /* GameService.swift in Sources */,
 				C3087B2B24BE31AC005AE544 /* CompareBillRequest.swift in Sources */,
-				C3B6559024AD25550048C64B /* NetworkingError.swift in Sources */,
 				C3087ADD24B67ECA005AE544 /* GuidRequest.swift in Sources */,
 				C3087AA924B670AB005AE544 /* AccountService+Rx.swift in Sources */,
 				C3B6555224ABD9320048C64B /* SERInfo.swift in Sources */,
@@ -15890,7 +15838,6 @@
 				35F9DDB72333D8F100AAA2B2 /* Date.swift in Sources */,
 				35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */,
 				35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */,
-				675F4E2224B4DA9E00A828F9 /* AccountRequest.swift in Sources */,
 				35FB5030234D091100C50162 /* UIColor.swift in Sources */,
 				35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */,
 				673F9FD924C894D700210BCD /* BillingHistoryRequest.swift in Sources */,
@@ -15902,17 +15849,11 @@
 				673FA0A324C8956700210BCD /* AutoPayResult.swift in Sources */,
 				35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */,
 				67893BD224E318DF000143D6 /* String+DateParser.swift in Sources */,
-				C3087ABB24B671AB005AE544 /* URLProtocolMock.swift in Sources */,
-				673FA0A924C8956700210BCD /* BillingHistoryItem.swift in Sources */,
-				C3087ABE24B671DD005AE544 /* AzureResponseContainer.swift in Sources */,
 				673FA0A924C8956700210BCD /* BillingHistoryItem.swift in Sources */,
 				C3087ABE24B671DD005AE544 /* AzureResponseContainer.swift in Sources */,
 				C3087B2824BE1596005AE544 /* HomeProfile.swift in Sources */,
 				673FA0AA24C8956700210BCD /* Payments.swift in Sources */,
-				675F4E1B24B4DA6C00A828F9 /* AzureResponseContainer.swift in Sources */,
 				67893BAE24E314C2000143D6 /* BudgetBilling.swift in Sources */,
-				673FA0AA24C8956700210BCD /* Payments.swift in Sources */,
-				675F4E1B24B4DA6C00A828F9 /* AzureResponseContainer.swift in Sources */,
 				35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */,
 				C33827FD24E1B3DF00F133C5 /* PeakRewardsSummary.swift in Sources */,
 				35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */,
@@ -15937,15 +15878,12 @@
 				675F4E0724B4D31400A828F9 /* OutageStatus.swift in Sources */,
 				35F9DE3E23353D4000AAA2B2 /* Fillable.swift in Sources */,
 				35F9DE53233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
-				675F4E1924B4DA4B00A828F9 /* Router.swift in Sources */,
 				C3087B1924BDF0D5005AE544 /* UsageService+Rx.swift in Sources */,
 				673F9FED24C894D800210BCD /* AutoPayEnrollBGERequest.swift in Sources */,
 				C3087ACB24B67289005AE544 /* ChangePasswordRequest.swift in Sources */,
 				675F4E1224B4D9E000A828F9 /* AzureError.swift in Sources */,
 				673FA03124C8956000210BCD /* SharePointAlert.swift in Sources */,
 				67893AB724DB24D9000143D6 /* DailyUsage.swift in Sources */,
-				675F4E1224B4D9E000A828F9 /* AzureError.swift in Sources */,
-				673FA03124C8956000210BCD /* SharePointAlert.swift in Sources */,
 				67893BA924E314C1000143D6 /* ScheduledPayment.swift in Sources */,
 				35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */,
 				673FA02624C8956000210BCD /* AutoPayResult.swift in Sources */,
@@ -15968,7 +15906,6 @@
 				675F4E5224B4DC8000A828F9 /* PaymentRequest.swift in Sources */,
 				673F9FE724C894D800210BCD /* WalletItemDeleteRequest.swift in Sources */,
 				673FA03024C8956000210BCD /* BillPDF.swift in Sources */,
-				675F4E2924B4DAB100A828F9 /* ChangePasswordRequest.swift in Sources */,
 				673FA03324C8956000210BCD /* ForgotMaskedUsername.swift in Sources */,
 				C320FDB324DC66100012E4ED /* BankName.swift in Sources */,
 				67D5625224E5955E00852551 /* PeakRewardsService+Rx.swift in Sources */,
@@ -15984,17 +15921,12 @@
 				C336045724D2E87E002CF260 /* EmailRequest.swift in Sources */,
 				C3087B2524BE158D005AE544 /* BillForecastResult.swift in Sources */,
 				673F9FE424C894D800210BCD /* RecoverUsernameRequest.swift in Sources */,
-				C3087AB624B67195005AE544 /* UserSession.swift in Sources */,
 				673F9FD024C894C800210BCD /* AccountLookupRequest.swift in Sources */,
 				C336048424D333CB002CF260 /* BGEAutoPayInfo.swift in Sources */,
 				675F4E0D24B4D91800A828F9 /* NetworkingError.swift in Sources */,
 				675F4E5E24B4F91400A828F9 /* MeterPingResult.swift in Sources */,
 				67893B0F24DB431F000143D6 /* Alert.swift in Sources */,
 				673FA02F24C8956000210BCD /* ValidatedAccountResponse.swift in Sources */,
-				675F4E2024B4DA9400A828F9 /* TokenRequest.swift in Sources */,
-				673FA02B24C8956000210BCD /* AlertPreferences.swift in Sources */,
-				673FA02F24C8956000210BCD /* ValidatedAccountResponse.swift in Sources */,
-				675F4E2024B4DA9400A828F9 /* TokenRequest.swift in Sources */,
 				673FA02B24C8956000210BCD /* AlertPreferences.swift in Sources */,
 				C3087AF524BCF198005AE544 /* HomeProfileUpdateRequest.swift in Sources */,
 				35F9DE3A23353D2600AAA2B2 /* NumberFormatter.swift in Sources */,
@@ -16011,7 +15943,6 @@
 				35F9DE3923353D1900AAA2B2 /* Date+Now.swift in Sources */,
 				673F9FEA24C894D800210BCD /* GameUserRequest.swift in Sources */,
 				C3087AC424B6720A005AE544 /* AccountRequest.swift in Sources */,
-				C3B6559924AD26370048C64B /* AzureError.swift in Sources */,
 				67A18B9324CB354900F7A77B /* RefreshTokenRequest.swift in Sources */,
 				67A18B7624CA0EA700F7A77B /* ApigeeError.swift in Sources */,
 				C3B6556524ABD9790048C64B /* SERResult.swift in Sources */,
@@ -16041,17 +15972,13 @@
 				673FA03724C8956000210BCD /* TokenResponse.swift in Sources */,
 				C336048E24D339F6002CF260 /* RxNotifications.swift in Sources */,
 				673FA02E24C8956000210BCD /* Wallet.swift in Sources */,
-				673FA03724C8956000210BCD /* TokenResponse.swift in Sources */,
-				673FA02E24C8956000210BCD /* Wallet.swift in Sources */,
 				35F9DE4223353D5F00AAA2B2 /* KeychainManager.swift in Sources */,
 				C3B6554B24ABB9A20048C64B /* PremiseInfo.swift in Sources */,
 				C3B6559C24AD45010048C64B /* AccountDetails.swift in Sources */,
 				675F4E5524B4DCC300A828F9 /* AnyEncodable.swift in Sources */,
 				673FA03424C8956000210BCD /* MinimumVersion.swift in Sources */,
 				35F9DE0B23353A5300AAA2B2 /* OutageInterfaceController.swift in Sources */,
-				C3087AAD24B67119005AE544 /* NetworkingLayer.swift in Sources */,
 				C320FDA624DC646E0012E4ED /* WalletRequest.swift in Sources */,
-				C3087ACE24B672C8005AE544 /* AnyEncodable.swift in Sources */,
 				9CBE9E28237473C400E14222 /* Weekday.swift in Sources */,
 				355B104B2369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
 				C3087AFB24BDE8E2005AE544 /* EnergyTip.swift in Sources */,
@@ -16072,14 +15999,12 @@
 				C3087B2C24BE31AD005AE544 /* CompareBillRequest.swift in Sources */,
 				67D5625624E596DE00852551 /* WalletService+Rx.swift in Sources */,
 				C3B6557524ABE6780048C64B /* BillingInfo.swift in Sources */,
-				C3B6559224AD25570048C64B /* NetworkingError.swift in Sources */,
 				C3087ADE24B67ECC005AE544 /* GuidRequest.swift in Sources */,
 				C3087AAA24B670AC005AE544 /* AccountService+Rx.swift in Sources */,
 				C3B6555524ABD9320048C64B /* SERInfo.swift in Sources */,
 				67893B1C24DB4526000143D6 /* AlertService+Rx.swift in Sources */,
 				35F9DE3B23353D2900AAA2B2 /* Date.swift in Sources */,
 				673FA0DA24C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
-				675F4E2324B4DA9F00A828F9 /* AccountRequest.swift in Sources */,
 				35FB5031234D091100C50162 /* UIColor.swift in Sources */,
 				673FA03224C8956000210BCD /* BillingHistoryResult.swift in Sources */,
 				35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */,
@@ -16094,14 +16019,12 @@
 				C3B655A124AD4B720048C64B /* CustomerInfo.swift in Sources */,
 				C320FDC024DC74060012E4ED /* WalletItemRequest.swift in Sources */,
 				35BAA17B2367454F0053E58A /* NetworkUtility.swift in Sources */,
-				C3087ABC24B671AC005AE544 /* URLProtocolMock.swift in Sources */,
 				673FA03A24C8956000210BCD /* AccountLookupResult.swift in Sources */,
 				C3087B2A24BE15E3005AE544 /* HomeProfile.swift in Sources */,
 				C3087ABF24B671DE005AE544 /* AzureResponseContainer.swift in Sources */,
 				35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */,
 				35F9DE3F23353D4500AAA2B2 /* SequenceForEach.swift in Sources */,
 				675F4E4324B4DC2500A828F9 /* NewMockDataKey.swift in Sources */,
-				678B623924D0ACCE009F8A6B /* AnonymousService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16156,7 +16079,6 @@
 				67DDB2FF24535D2E006CD6EB /* AdjustThermostatViewController.swift in Sources */,
 				67DDB30024535D2E006CD6EB /* UINavigationBackButton.swift in Sources */,
 				67DDB30124535D2E006CD6EB /* Top5EnergyTipsViewController.swift in Sources */,
-				675F4BF724AB828100A828F9 /* SchedulePaymentCancelRequest.swift in Sources */,
 				675F4BF724AB828100A828F9 /* SchedulePaymentCancelRequest.swift in Sources */,
 				675F4C3F24AB828100A828F9 /* SSODataResponse.swift in Sources */,
 				67DDB30324535D2E006CD6EB /* HomeProjectedBillCardViewModel.swift in Sources */,
@@ -16390,7 +16312,6 @@
 				675F4C5124AB828100A828F9 /* ForecastBill.swift in Sources */,
 				67DDBD3924571BEF006CD6EB /* BGEasyViewController.swift in Sources */,
 				67DDB3DE24535D2E006CD6EB /* SheetView.swift in Sources */,
-				675F4BB524AB828100A828F9 /* TokenRequest.swift in Sources */,
 				675F4BB524AB828100A828F9 /* TokenRequest.swift in Sources */,
 				67DDB3E124535D2E006CD6EB /* PaymentConfirmationViewController.swift in Sources */,
 				67DDB3E324535D2E006CD6EB /* HomeUsageCardViewModel.swift in Sources */,
@@ -16834,8 +16755,6 @@
 				C320FDBA24DC661A0012E4ED /* BankName.swift in Sources */,
 				675F4CA124AB828100A828F9 /* Payments.swift in Sources */,
 				675F4BB724AB828100A828F9 /* TokenRequest.swift in Sources */,
-				675F4CA124AB828100A828F9 /* Payments.swift in Sources */,
-				675F4BB724AB828100A828F9 /* TokenRequest.swift in Sources */,
 				67DDB61624535D32006CD6EB /* FloatLabelTextField.swift in Sources */,
 				675F4BDB24AB828100A828F9 /* GuidRequest.swift in Sources */,
 				67DDB61724535D32006CD6EB /* CommercialUsageViewModel.swift in Sources */,
@@ -17011,8 +16930,6 @@
 				67DDB6A924535D32006CD6EB /* SharedWebCredentialService.swift in Sources */,
 				675F4CD724AB828200A828F9 /* BillingHistoryResult.swift in Sources */,
 				675F4CCB24AB828200A828F9 /* AzureError.swift in Sources */,
-				675F4CD724AB828200A828F9 /* BillingHistoryResult.swift in Sources */,
-				675F4CCB24AB828200A828F9 /* AzureError.swift in Sources */,
 				67DDB6AA24535D32006CD6EB /* PremiseListRow.swift in Sources */,
 				67DDB6AC24535D32006CD6EB /* AppRating.swift in Sources */,
 				67DDB6AD24535D32006CD6EB /* BillAlertBannerView.swift in Sources */,
@@ -17029,7 +16946,6 @@
 				675F4CEF24AB828200A828F9 /* OutageStatus.swift in Sources */,
 				C3B6558D24ACD9080048C64B /* PaymentItem.swift in Sources */,
 				67893BC924E318D8000143D6 /* String+DateParser.swift in Sources */,
-				675F4CEF24AB828200A828F9 /* OutageStatus.swift in Sources */,
 				67DDB6B724535D32006CD6EB /* StormModeBillViewModel.swift in Sources */,
 				67DDB6B824535D32006CD6EB /* UsageToolTopCardView.swift in Sources */,
 				67DDB6B924535D32006CD6EB /* AppointmentsViewModel.swift in Sources */,
@@ -17313,8 +17229,6 @@
 				C320FDB824DC66160012E4ED /* BankName.swift in Sources */,
 				675F4CA024AB828100A828F9 /* Payments.swift in Sources */,
 				675F4BB624AB828100A828F9 /* TokenRequest.swift in Sources */,
-				675F4CA024AB828100A828F9 /* Payments.swift in Sources */,
-				675F4BB624AB828100A828F9 /* TokenRequest.swift in Sources */,
 				67DDB86C24535D35006CD6EB /* FloatLabelTextField.swift in Sources */,
 				675F4BDA24AB828100A828F9 /* GuidRequest.swift in Sources */,
 				67DDB86D24535D35006CD6EB /* CommercialUsageViewModel.swift in Sources */,
@@ -17490,8 +17404,6 @@
 				67DDB8FF24535D35006CD6EB /* SharedWebCredentialService.swift in Sources */,
 				675F4CD624AB828200A828F9 /* BillingHistoryResult.swift in Sources */,
 				675F4CCA24AB828200A828F9 /* AzureError.swift in Sources */,
-				675F4CD624AB828200A828F9 /* BillingHistoryResult.swift in Sources */,
-				675F4CCA24AB828200A828F9 /* AzureError.swift in Sources */,
 				67DDB90024535D35006CD6EB /* PremiseListRow.swift in Sources */,
 				67DDB90224535D35006CD6EB /* AppRating.swift in Sources */,
 				67DDB90324535D35006CD6EB /* BillAlertBannerView.swift in Sources */,
@@ -17508,7 +17420,6 @@
 				675F4CEE24AB828200A828F9 /* OutageStatus.swift in Sources */,
 				C3B6558B24ACD9080048C64B /* PaymentItem.swift in Sources */,
 				67893BCB24E318DA000143D6 /* String+DateParser.swift in Sources */,
-				675F4CEE24AB828200A828F9 /* OutageStatus.swift in Sources */,
 				67DDB90D24535D35006CD6EB /* StormModeBillViewModel.swift in Sources */,
 				67DDB90E24535D35006CD6EB /* UsageToolTopCardView.swift in Sources */,
 				67DDB90F24535D35006CD6EB /* AppointmentsViewModel.swift in Sources */,
@@ -17551,7 +17462,6 @@
 				67DDB9E324535DAA006CD6EB /* (null) in Sources */,
 				67DDB9E424535DAA006CD6EB /* (null) in Sources */,
 				67DDB9E524535DAA006CD6EB /* (null) in Sources */,
-				67DDB9E424535DAA006CD6EB /* (null) in Sources */,
 				67DDB9E624535DAA006CD6EB /* HomeBillCardViewModel.swift in Sources */,
 				675F4E4B24B4DC2F00A828F9 /* NewMockDataKey.swift in Sources */,
 				67DDB9E724535DAA006CD6EB /* FirebaseUtility.swift in Sources */,
@@ -17698,7 +17608,6 @@
 				67DDBACB24535DAC006CD6EB /* (null) in Sources */,
 				67DDBACC24535DAC006CD6EB /* (null) in Sources */,
 				67DDBACD24535DAC006CD6EB /* (null) in Sources */,
-				67DDBACC24535DAC006CD6EB /* (null) in Sources */,
 				67DDBACE24535DAC006CD6EB /* HomeBillCardViewModel.swift in Sources */,
 				67DDBACF24535DAC006CD6EB /* FirebaseUtility.swift in Sources */,
 				67DDBAD024535DAC006CD6EB /* AuthTokenParserTests.swift in Sources */,
@@ -17845,7 +17754,6 @@
 				67DDBBB324535DAE006CD6EB /* (null) in Sources */,
 				67DDBBB424535DAE006CD6EB /* (null) in Sources */,
 				67DDBBB524535DAE006CD6EB /* (null) in Sources */,
-				67DDBBB424535DAE006CD6EB /* (null) in Sources */,
 				67DDBBB624535DAE006CD6EB /* HomeBillCardViewModel.swift in Sources */,
 				67DDBBB724535DAE006CD6EB /* FirebaseUtility.swift in Sources */,
 				67DDBBB824535DAE006CD6EB /* AuthTokenParserTests.swift in Sources */,
@@ -18076,7 +17984,6 @@
 				673F9F9224C8932E00210BCD /* BillForecast.swift in Sources */,
 				673FA06924C8956200210BCD /* TokenResponse.swift in Sources */,
 				C336047B24D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
-				673FA06924C8956200210BCD /* TokenResponse.swift in Sources */,
 				67EDC2B024C1E690001A8494 /* (null) in Sources */,
 				67893BB524E314CE000143D6 /* PaymentResult.swift in Sources */,
 				67893BCC24E318DA000143D6 /* String+DateParser.swift in Sources */,
@@ -18100,7 +18007,6 @@
 				67893B0B24DB431C000143D6 /* Alert.swift in Sources */,
 				67893B9E24E314BE000143D6 /* Weather.swift in Sources */,
 				C338281024E1C19500F133C5 /* DateRequest.swift in Sources */,
-				673F9F6E24C892D800210BCD /* TokenRequest.swift in Sources */,
 				67EDC2B924C1E690001A8494 /* (null) in Sources */,
 				673F9FFF24C894DA00210BCD /* ScheduledPaymentUpdateRequest.swift in Sources */,
 				673FA00024C894DA00210BCD /* BillingHistoryRequest.swift in Sources */,
@@ -18137,7 +18043,6 @@
 				67EDC2C524C1E690001A8494 /* (null) in Sources */,
 				673FA05E24C8956200210BCD /* BillingHistoryItem.swift in Sources */,
 				C3DF2BA424CB32D000A6D4EC /* BillService.swift in Sources */,
-				673FA05E24C8956200210BCD /* BillingHistoryItem.swift in Sources */,
 				678B623A24D0ACD1009F8A6B /* AnonymousService.swift in Sources */,
 				673FA06524C8956200210BCD /* ForgotMaskedUsername.swift in Sources */,
 				673FA0DE24C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
@@ -18171,8 +18076,6 @@
 				673FA00124C894DA00210BCD /* WalletItemDeleteRequest.swift in Sources */,
 				673FA06224C8956200210BCD /* BillPDF.swift in Sources */,
 				673F9FA724C8941C00210BCD /* AzureError.swift in Sources */,
-				673FA06224C8956200210BCD /* BillPDF.swift in Sources */,
-				673F9FA724C8941C00210BCD /* AzureError.swift in Sources */,
 				673F9FC124C8945500210BCD /* Router.swift in Sources */,
 				67EDC2D324C1E690001A8494 /* NibViews.swift in Sources */,
 				673F9F5024C8926A00210BCD /* ReportedOutageResult.swift in Sources */,
@@ -18197,7 +18100,6 @@
 				673F9FB624C8943F00210BCD /* AzureResponseContainer.swift in Sources */,
 				673F9FC524C8945C00210BCD /* NetworkingError.swift in Sources */,
 				673F9F8924C8931500210BCD /* CustomerInfo.swift in Sources */,
-				678B621324CF4F7E009F8A6B /* AnonymousService.swift in Sources */,
 				673F9F5624C8929600210BCD /* BillingInfo.swift in Sources */,
 				673FA0EB24C89A1900210BCD /* AccountLookupResults.swift in Sources */,
 				673FA05D24C8956200210BCD /* AlertPreferences.swift in Sources */,
@@ -18270,7 +18172,6 @@
 				C336047F24D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
 				673FA09B24C8956500210BCD /* TokenResponse.swift in Sources */,
 				67893B9024E314BB000143D6 /* BudgetBilling.swift in Sources */,
-				673FA09B24C8956500210BCD /* TokenResponse.swift in Sources */,
 				67EDC34C24C1EBD9001A8494 /* (null) in Sources */,
 				67EDC34D24C1EBD9001A8494 /* BillInterfaceController.swift in Sources */,
 				67EDC34E24C1EBD9001A8494 /* Constants.swift in Sources */,
@@ -18358,8 +18259,6 @@
 				67EDC36B24C1EBD9001A8494 /* (null) in Sources */,
 				67EDC36C24C1EBD9001A8494 /* KeychainManager.swift in Sources */,
 				673FA01B24C894DC00210BCD /* WalletItemDeleteRequest.swift in Sources */,
-				673FA09424C8956500210BCD /* BillPDF.swift in Sources */,
-				673F9FA924C8941E00210BCD /* AzureError.swift in Sources */,
 				673FA09424C8956500210BCD /* BillPDF.swift in Sources */,
 				673F9FA924C8941E00210BCD /* AzureError.swift in Sources */,
 				673F9FBF24C8945300210BCD /* Router.swift in Sources */,
@@ -18597,7 +18496,6 @@
 				673F9F6F24C892D900210BCD /* TokenRequest.swift in Sources */,
 				67D5623C24E592A800852551 /* PeakRewardsService.swift in Sources */,
 				C320FDC624DC74060012E4ED /* WalletItemRequest.swift in Sources */,
-				673F9F6F24C892D900210BCD /* TokenRequest.swift in Sources */,
 				67EDC3FB24C1EBFF001A8494 /* NetworkUtility.swift in Sources */,
 				673F9F6024C892C000210BCD /* CompareBillRequest.swift in Sources */,
 				673FA0C724C8991600210BCD /* AnonymousService.swift in Sources */,
@@ -18892,7 +18790,6 @@
 				C3087A8824B63D03005AE544 /* AccountService+Rx.swift in Sources */,
 				675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				C338281A24E2FDE000F133C5 /* WalletItem.swift in Sources */,
-				675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
@@ -19256,7 +19153,6 @@
 				B0DB2759215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				35277AFF2102686100411297 /* UsageTool.swift in Sources */,
 				C3087AA224B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
-				C3087AA224B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
 				9CB8A5EF21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				54DF4BCE1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				675F4DF424AB828200A828F9 /* NetworkingLayer.swift in Sources */,
@@ -19359,7 +19255,6 @@
 				67D5623724E592A400852551 /* PeakRewardsService.swift in Sources */,
 				9C0EA5AA237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
 				C3087A8E24B63D03005AE544 /* AccountService+Rx.swift in Sources */,
-				675F4CE024AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				675F4CE024AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				9C5F096D23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				829E058D1FA7928E00697633 /* Fillable.swift in Sources */,
@@ -19738,7 +19633,6 @@
 				35376C6920F8FFD1007E50F7 /* BillImpactView.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				C3087AA124B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
-				C3087AA124B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				675F4DF324AB828200A828F9 /* NetworkingLayer.swift in Sources */,
 				C338280B24E1C19000F133C5 /* DateRequest.swift in Sources */,
@@ -19964,7 +19858,6 @@
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				675F4C5B24AB828100A828F9 /* AutoPayResult.swift in Sources */,
 				675F47C424AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift in Sources */,
-				675F47C424AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift in Sources */,
 				9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				675F4BC524AB828100A828F9 /* AlertPreferencesRequest.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
@@ -19988,7 +19881,6 @@
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533A22CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
 				9C7774822368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
-				675F4CC724AB828200A828F9 /* AzureError.swift in Sources */,
 				675F4CC724AB828200A828F9 /* AzureError.swift in Sources */,
 				9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */,
 				35A6C6D7211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
