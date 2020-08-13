@@ -2091,6 +2091,44 @@
 		67D5623124E58D8300852551 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
 		67D5623224E58D8400852551 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
 		67D5623324E58D8400852551 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		67D5623424E592A200852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623524E592A300852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623624E592A300852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623724E592A400852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623824E592A500852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623924E592A600852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623A24E592A700852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623B24E592A700852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623C24E592A800852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623D24E592A900852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623E24E592AA00852551 /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33827F924E18F8800F133C5 /* PeakRewardsService.swift */; };
+		67D5623F24E592C700852551 /* WeatherService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */; };
+		67D5624024E592C800852551 /* WeatherService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */; };
+		67D5624124E592CA00852551 /* WeatherService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */; };
+		67D5624224E592CB00852551 /* WeatherService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */; };
+		67D5624324E592CC00852551 /* WeatherService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EE424D1FE7B00535DE7 /* WeatherService+Rx.swift */; };
+		67D5624424E5931B00852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5624524E5931C00852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5624624E5931D00852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5624B24E5932100852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5624C24E5932200852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5624D24E5932200852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5624F24E5955A00852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5625024E5955C00852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5625124E5955D00852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5625224E5955E00852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5625324E5955E00852551 /* PeakRewardsService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C338281524E1CEE100F133C5 /* PeakRewardsService+Rx.swift */; };
+		67D5625424E596DB00852551 /* WalletService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDC924DC81410012E4ED /* WalletService+Rx.swift */; };
+		67D5625524E596DD00852551 /* WalletService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDC924DC81410012E4ED /* WalletService+Rx.swift */; };
+		67D5625624E596DE00852551 /* WalletService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDC924DC81410012E4ED /* WalletService+Rx.swift */; };
+		67D5625724E596DF00852551 /* WalletService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDC924DC81410012E4ED /* WalletService+Rx.swift */; };
+		67D5625824E597D700852551 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
+		67D5625A24E597D900852551 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
+		67D5625B24E597DA00852551 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
+		67D5625C24E597DA00852551 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
+		67D5625D24E597DB00852551 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
+		67D5625E24E597DC00852551 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
+		67D5625F24E5997F00852551 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
 		67D73AE3246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
@@ -4081,7 +4119,6 @@
 		67EDC29124C1E684001A8494 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
 		67EDC29524C1E684001A8494 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		67EDC29724C1E684001A8494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
-		67EDC2AA24C1E690001A8494 /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		67EDC2AC24C1E690001A8494 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		67EDC2AE24C1E690001A8494 /* AnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */; };
 		67EDC2AF24C1E690001A8494 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
@@ -4147,8 +4184,6 @@
 		67EDC32924C1EBCC001A8494 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
 		67EDC32E24C1EBCC001A8494 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		67EDC33024C1EBCC001A8494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
-		67EDC34624C1EBD9001A8494 /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
-		67EDC34724C1EBD9001A8494 /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		67EDC34824C1EBD9001A8494 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		67EDC34A24C1EBD9001A8494 /* AnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */; };
 		67EDC34B24C1EBD9001A8494 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
@@ -13786,10 +13821,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -13832,10 +13867,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -13878,10 +13913,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -13924,10 +13959,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -13992,10 +14027,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -14062,10 +14097,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -14218,10 +14253,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -14396,10 +14431,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -14464,10 +14499,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -14534,10 +14569,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -14664,12 +14699,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Pepco-Watch Extension/Pods-Pepco-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-watchOS/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -14728,12 +14769,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ACE-Watch Extension/Pods-ACE-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-watchOS/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -14792,12 +14839,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Delmarva-Watch Extension/Pods-Delmarva-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-watchOS/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -14817,10 +14870,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -14885,10 +14938,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -14970,12 +15023,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-watchOS/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -14990,12 +15049,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-watchOS/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -15081,10 +15146,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -15151,10 +15216,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -15240,10 +15305,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -15305,12 +15370,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-watchOS/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -15330,10 +15401,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -15378,10 +15449,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -15424,10 +15495,10 @@
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay-iOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt-iOS/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -15492,7 +15563,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				675F4E3A24B4DBD300A828F9 /* URLProtocolMock.swift in Sources */,
+				67D5625124E5955D00852551 /* PeakRewardsService+Rx.swift in Sources */,
 				C320FDB524DC66120012E4ED /* BankName.swift in Sources */,
+				67D5625524E596DD00852551 /* WalletService+Rx.swift in Sources */,
 				35E7C8052190805C00BA13C6 /* AccountListInterfaceController.swift in Sources */,
 				673FA04424C8956100210BCD /* AlertPreferences.swift in Sources */,
 				C3087AB124B67172005AE544 /* Router.swift in Sources */,
@@ -15517,6 +15590,7 @@
 				673FA04824C8956100210BCD /* ValidatedAccountResponse.swift in Sources */,
 				675F4E1424B4D9E400A828F9 /* AzureError.swift in Sources */,
 				673FA04824C8956100210BCD /* ValidatedAccountResponse.swift in Sources */,
+				67D5625B24E597DA00852551 /* WalletService.swift in Sources */,
 				35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */,
 				35F9DE4D2339152900AAA2B2 /* Constants.swift in Sources */,
 				673FA04F24C8956100210BCD /* GenericResponse.swift in Sources */,
@@ -15645,6 +15719,7 @@
 				673F9FF524C894D900210BCD /* BudgetBillingUnenrollRequest.swift in Sources */,
 				35FB502F234D091000C50162 /* UIColor.swift in Sources */,
 				675F4E2424B4DAA000A828F9 /* AccountRequest.swift in Sources */,
+				67D5623824E592A500852551 /* PeakRewardsService.swift in Sources */,
 				673FA04B24C8956100210BCD /* BillingHistoryResult.swift in Sources */,
 				35E7C8022190805C00BA13C6 /* UsageInterfaceController.swift in Sources */,
 				35BAA1792367454F0053E58A /* NetworkUtility.swift in Sources */,
@@ -15712,6 +15787,7 @@
 				35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */,
 				C3B6558224ACD9080048C64B /* PaymentItem.swift in Sources */,
 				C3087B2224BE155D005AE544 /* UsageService.swift in Sources */,
+				67D5625324E5955E00852551 /* PeakRewardsService+Rx.swift in Sources */,
 				67893ABE24DB2FA0000143D6 /* AlertService.swift in Sources */,
 				673FA0A724C8956700210BCD /* AppointmentsContainer.swift in Sources */,
 				67A18B7424CA0EA500F7A77B /* ApigeeError.swift in Sources */,
@@ -15743,6 +15819,7 @@
 				35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				C3B6559824AD25BE0048C64B /* AzureError.swift in Sources */,
 				673F9FDB24C894D700210BCD /* BudgetBillingUnenrollRequest.swift in Sources */,
+				67D5623424E592A200852551 /* PeakRewardsService.swift in Sources */,
 				673F9FD624C894D700210BCD /* RecoverMaskedUsernameRequest.swift in Sources */,
 				C3B6556224ABD9790048C64B /* SERResult.swift in Sources */,
 				673FA0B824C8956700210BCD /* UsageTip.swift in Sources */,
@@ -15767,6 +15844,7 @@
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				67893BBB24E314D4000143D6 /* PaymentResult.swift in Sources */,
 				673FA0AF24C8956700210BCD /* BillingHistoryResult.swift in Sources */,
+				67D5625824E597D700852551 /* WalletService.swift in Sources */,
 				C3087ADB24B67EC3005AE544 /* ValidateAccountRequest.swift in Sources */,
 				673F9FCE24C894C600210BCD /* AccountLookupRequest.swift in Sources */,
 				C336048224D333CB002CF260 /* BGEAutoPayInfo.swift in Sources */,
@@ -15808,6 +15886,7 @@
 				C3087AA924B670AB005AE544 /* AccountService+Rx.swift in Sources */,
 				C3B6555224ABD9320048C64B /* SERInfo.swift in Sources */,
 				673FA10024C8B00500210BCD /* URLSessionConfiguration.swift in Sources */,
+				67D5625724E596DF00852551 /* WalletService+Rx.swift in Sources */,
 				35F9DDB72333D8F100AAA2B2 /* Date.swift in Sources */,
 				35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */,
 				35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */,
@@ -15892,6 +15971,7 @@
 				675F4E2924B4DAB100A828F9 /* ChangePasswordRequest.swift in Sources */,
 				673FA03324C8956000210BCD /* ForgotMaskedUsername.swift in Sources */,
 				C320FDB324DC66100012E4ED /* BankName.swift in Sources */,
+				67D5625224E5955E00852551 /* PeakRewardsService+Rx.swift in Sources */,
 				67893BAA24E314C1000143D6 /* Weather.swift in Sources */,
 				35F9DE3523353CFD00AAA2B2 /* AccountsStore.swift in Sources */,
 				673F9FE824C894D800210BCD /* BudgetBillingUnenrollRequest.swift in Sources */,
@@ -15923,6 +16003,7 @@
 				675F4E0A24B4D90A00A828F9 /* OutageService.swift in Sources */,
 				675F4E6124B501A400A828F9 /* OutageRequest.swift in Sources */,
 				C3087B0F24BDEFA3005AE544 /* AnyObserver.swift in Sources */,
+				67D5623624E592A300852551 /* PeakRewardsService.swift in Sources */,
 				35F9DE1523353C3A00AAA2B2 /* NotificationNames.swift in Sources */,
 				679C6EDB24D1F0AE00535DE7 /* Appointment.swift in Sources */,
 				35F9DE4523353D9C00AAA2B2 /* UserDefaultKeys.swift in Sources */,
@@ -15947,6 +16028,7 @@
 				C336047724D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
 				C3087B2F24BE31BA005AE544 /* VoidDecodable.swift in Sources */,
 				678B621224CF4F75009F8A6B /* AnonymousService.swift in Sources */,
+				67D5625A24E597D900852551 /* WalletService.swift in Sources */,
 				35F9DE3823353D1300AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */,
 				35F9DE0E23353A5700AAA2B2 /* ExtensionDelegate.swift in Sources */,
@@ -15988,6 +16070,7 @@
 				673FA03524C8956000210BCD /* MaintenanceMode.swift in Sources */,
 				35F9DE1923353C5600AAA2B2 /* ProfileStatus.swift in Sources */,
 				C3087B2C24BE31AD005AE544 /* CompareBillRequest.swift in Sources */,
+				67D5625624E596DE00852551 /* WalletService+Rx.swift in Sources */,
 				C3B6557524ABE6780048C64B /* BillingInfo.swift in Sources */,
 				C3B6559224AD25570048C64B /* NetworkingError.swift in Sources */,
 				C3087ADE24B67ECC005AE544 /* GuidRequest.swift in Sources */,
@@ -16040,6 +16123,7 @@
 				67DDB2E624535D2E006CD6EB /* TemplateCardViewModel.swift in Sources */,
 				67DDB2E724535D2E006CD6EB /* AccountInfoBar.swift in Sources */,
 				67DDB2E824535D2E006CD6EB /* AlertsViewModel.swift in Sources */,
+				67D5625F24E5997F00852551 /* AnyEncodable.swift in Sources */,
 				67DDB2E924535D2E006CD6EB /* ProfileStatus.swift in Sources */,
 				675F4C2724AB828100A828F9 /* UsageService.swift in Sources */,
 				67DDB2EA24535D2E006CD6EB /* PickerView.swift in Sources */,
@@ -16057,6 +16141,7 @@
 				67DDB2F324535D2E006CD6EB /* SurveyMonkeyManager.m in Sources */,
 				67DDB2F424535D2E006CD6EB /* ViewedTipsViewController.swift in Sources */,
 				679C6EC424D1EBD100535DE7 /* AppointmentService+Rx.swift in Sources */,
+				67D5624124E592CA00852551 /* WeatherService+Rx.swift in Sources */,
 				67DDB2F524535D2E006CD6EB /* AutoPayChangeBankViewController.swift in Sources */,
 				67DDB2F624535D2E006CD6EB /* DataDetectorTextView.swift in Sources */,
 				30DFE8642492641F00FEFDE4 /* EditNicknameViewModel.swift in Sources */,
@@ -16103,6 +16188,7 @@
 				67DDB32924535D2E006CD6EB /* LoginTermsPoliciesViewController.swift in Sources */,
 				67DDB32B24535D2E006CD6EB /* OverrideViewController.swift in Sources */,
 				67DDB32C24535D2E006CD6EB /* UsageViewController.swift in Sources */,
+				67D5623924E592A600852551 /* PeakRewardsService.swift in Sources */,
 				67DDB33024535D2E006CD6EB /* UsageToolCardView.swift in Sources */,
 				67DDBD3D24571CDF006CD6EB /* BGEAutoPaySettingsViewController.swift in Sources */,
 				67DDB33124535D2E006CD6EB /* UsageTool.swift in Sources */,
@@ -16397,6 +16483,7 @@
 				C3087AA324B662C6005AE544 /* ReleaseOfInfoRequest.swift in Sources */,
 				67DDB42024535D2E006CD6EB /* BudgetBillingViewController.swift in Sources */,
 				67DDB42124535D2E006CD6EB /* StormModeBillViewController.swift in Sources */,
+				67D5624624E5931D00852551 /* PeakRewardsService+Rx.swift in Sources */,
 				679C6EB724D1E85D00535DE7 /* AppointmentService.swift in Sources */,
 				67DDB42324535D2E006CD6EB /* TermsPoliciesViewController.swift in Sources */,
 				67DDB42524535D2E006CD6EB /* ForgotUsernameViewController.swift in Sources */,
@@ -16595,6 +16682,7 @@
 				67DDB58F24535D32006CD6EB /* AlertRow.swift in Sources */,
 				679C6EE224D1F0B400535DE7 /* Appointment.swift in Sources */,
 				67DDB59024535D32006CD6EB /* LoginViewModel.swift in Sources */,
+				67D5623D24E592A900852551 /* PeakRewardsService.swift in Sources */,
 				67DDB59124535D32006CD6EB /* GameOnboardingStep2ViewController.swift in Sources */,
 				C320FDD424DC81410012E4ED /* WalletService+Rx.swift in Sources */,
 				67DDB59224535D32006CD6EB /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -16631,6 +16719,7 @@
 				67DDB5AE24535D32006CD6EB /* QuizAnswerView.swift in Sources */,
 				67DDB5AF24535D32006CD6EB /* Control.swift in Sources */,
 				67DDB5B024535D32006CD6EB /* WalletTableViewCell.swift in Sources */,
+				67D5624324E592CC00852551 /* WeatherService+Rx.swift in Sources */,
 				67DDB5B124535D32006CD6EB /* HomeAppointmentCardView.swift in Sources */,
 				67DDB5B224535D32006CD6EB /* AccountPicker.swift in Sources */,
 				67DDB5B324535D32006CD6EB /* PushNotification.swift in Sources */,
@@ -16867,6 +16956,7 @@
 				67DDB67724535D32006CD6EB /* StormModeBillViewController.swift in Sources */,
 				C3087AD924B67CBF005AE544 /* AccountNicknameRequest.swift in Sources */,
 				67DDB67924535D32006CD6EB /* TermsPoliciesViewController.swift in Sources */,
+				67D5624D24E5932200852551 /* PeakRewardsService+Rx.swift in Sources */,
 				67DDB67B24535D32006CD6EB /* ForgotUsernameViewController.swift in Sources */,
 				67DDB67C24535D32006CD6EB /* SecondaryButton.swift in Sources */,
 				67DDB67D24535D32006CD6EB /* ContactUsViewModel.swift in Sources */,
@@ -17071,6 +17161,7 @@
 				67DDB7E524535D35006CD6EB /* AlertRow.swift in Sources */,
 				679C6EE024D1F0B100535DE7 /* Appointment.swift in Sources */,
 				67DDB7E624535D35006CD6EB /* LoginViewModel.swift in Sources */,
+				67D5623B24E592A700852551 /* PeakRewardsService.swift in Sources */,
 				67DDB7E724535D35006CD6EB /* GameOnboardingStep2ViewController.swift in Sources */,
 				C320FDD224DC81410012E4ED /* WalletService+Rx.swift in Sources */,
 				67DDB7E824535D35006CD6EB /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -17107,6 +17198,7 @@
 				67DDB80424535D35006CD6EB /* QuizAnswerView.swift in Sources */,
 				67DDB80524535D35006CD6EB /* Control.swift in Sources */,
 				67DDB80624535D35006CD6EB /* WalletTableViewCell.swift in Sources */,
+				67D5624224E592CB00852551 /* WeatherService+Rx.swift in Sources */,
 				67DDB80724535D35006CD6EB /* HomeAppointmentCardView.swift in Sources */,
 				67DDB80824535D35006CD6EB /* AccountPicker.swift in Sources */,
 				67DDB80924535D35006CD6EB /* PushNotification.swift in Sources */,
@@ -17343,6 +17435,7 @@
 				67DDB8CD24535D35006CD6EB /* StormModeBillViewController.swift in Sources */,
 				C3087AD824B67CBF005AE544 /* AccountNicknameRequest.swift in Sources */,
 				67DDB8CF24535D35006CD6EB /* TermsPoliciesViewController.swift in Sources */,
+				67D5624B24E5932100852551 /* PeakRewardsService+Rx.swift in Sources */,
 				67DDB8D124535D35006CD6EB /* ForgotUsernameViewController.swift in Sources */,
 				67DDB8D224535D35006CD6EB /* SecondaryButton.swift in Sources */,
 				67DDB8D324535D35006CD6EB /* ContactUsViewModel.swift in Sources */,
@@ -17965,7 +18058,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67EDC2AA24C1E690001A8494 /* Maintenance.swift in Sources */,
 				C336049024D339F9002CF260 /* RxNotifications.swift in Sources */,
 				673F9FAA24C8942100210BCD /* CompareBillResult.swift in Sources */,
 				C320FDD124DC81410012E4ED /* WalletService+Rx.swift in Sources */,
@@ -18054,6 +18146,7 @@
 				67EDC2C724C1E690001A8494 /* ShortUUIDGenerator.swift in Sources */,
 				673FA0F824C8A52700210BCD /* AnonymousService+Rx.swift in Sources */,
 				673FA05524C8956200210BCD /* GameUser.swift in Sources */,
+				67D5623A24E592A700852551 /* PeakRewardsService.swift in Sources */,
 				673FA05C24C8956200210BCD /* AppointmentsContainer.swift in Sources */,
 				67EDC2C824C1E690001A8494 /* UsageInterfaceController.swift in Sources */,
 				67EDC2C924C1E690001A8494 /* ReportOutageInterfaceController.swift in Sources */,
@@ -18074,6 +18167,7 @@
 				673F9F8324C892FE00210BCD /* OutageRequest.swift in Sources */,
 				67EDC2CF24C1E690001A8494 /* (null) in Sources */,
 				67EDC2D024C1E690001A8494 /* KeychainManager.swift in Sources */,
+				67D5625024E5955C00852551 /* PeakRewardsService+Rx.swift in Sources */,
 				673FA00124C894DA00210BCD /* WalletItemDeleteRequest.swift in Sources */,
 				673FA06224C8956200210BCD /* BillPDF.swift in Sources */,
 				673F9FA724C8941C00210BCD /* AzureError.swift in Sources */,
@@ -18115,6 +18209,7 @@
 				67EDC2DD24C1E690001A8494 /* (null) in Sources */,
 				C33827F424DDDBA500F133C5 /* StringResult.swift in Sources */,
 				673F9F6524C892CA00210BCD /* UsernameRequest.swift in Sources */,
+				67D5625C24E597DA00852551 /* WalletService.swift in Sources */,
 				67EDC2DF24C1E690001A8494 /* Date.swift in Sources */,
 				67EDC2E024C1E690001A8494 /* UserDefaultKeys.swift in Sources */,
 				67893B9C24E314BE000143D6 /* BudgetBilling.swift in Sources */,
@@ -18155,15 +18250,14 @@
 			files = (
 				673FA10A24C8B01000210BCD /* URLSessionConfiguration.swift in Sources */,
 				C336049224D339FC002CF260 /* RxNotifications.swift in Sources */,
-				67EDC34624C1EBD9001A8494 /* Maintenance.swift in Sources */,
 				673F9FAC24C8942200210BCD /* CompareBillResult.swift in Sources */,
-				67EDC34724C1EBD9001A8494 /* Premise.swift in Sources */,
 				67EDC34824C1EBD9001A8494 /* Fillable.swift in Sources */,
 				67893AD524DB360B000143D6 /* AlertRegistrationRequest.swift in Sources */,
 				673FA02024C894DC00210BCD /* BillComparisonRequest.swift in Sources */,
 				673F9F8824C8930700210BCD /* AnonOutageRequest.swift in Sources */,
 				673FA09F24C8956500210BCD /* UsageTip.swift in Sources */,
 				673FA08A24C8956500210BCD /* AutoPayResult.swift in Sources */,
+				67D5623E24E592AA00852551 /* PeakRewardsService.swift in Sources */,
 				673FA01824C894DC00210BCD /* RecoverUsernameRequest.swift in Sources */,
 				673FA0D524C899CD00210BCD /* OutageStatusContainer.swift in Sources */,
 				67EDC34A24C1EBD9001A8494 /* AnalyticUtility.swift in Sources */,
@@ -18193,6 +18287,7 @@
 				673F9F8224C892FB00210BCD /* ReleaseOfInfoRequest.swift in Sources */,
 				673F9FA024C8940D00210BCD /* PaymentItem.swift in Sources */,
 				67EDC35424C1EBD9001A8494 /* (null) in Sources */,
+				67D5624F24E5955A00852551 /* PeakRewardsService+Rx.swift in Sources */,
 				673F9F7C24C892F200210BCD /* ChangePasswordRequest.swift in Sources */,
 				673FA09124C8956500210BCD /* Payments.swift in Sources */,
 				673F9FCB24C8946700210BCD /* NewMockDataKey.swift in Sources */,
@@ -18294,6 +18389,7 @@
 				673F9FC724C8945E00210BCD /* NetworkingError.swift in Sources */,
 				673F9F8B24C8931600210BCD /* CustomerInfo.swift in Sources */,
 				673F9F5824C8929800210BCD /* BillingInfo.swift in Sources */,
+				67D5625E24E597DC00852551 /* WalletService.swift in Sources */,
 				673FA08F24C8956500210BCD /* AlertPreferences.swift in Sources */,
 				67EDC37624C1EBD9001A8494 /* AccountTableRowController.swift in Sources */,
 				67EDC37724C1EBD9001A8494 /* (null) in Sources */,
@@ -18362,6 +18458,7 @@
 				673FA07A24C8956300210BCD /* ValidatedAccountResponse.swift in Sources */,
 				67EDC3C924C1EBFF001A8494 /* (null) in Sources */,
 				67EDC3CA24C1EBFF001A8494 /* WatchSessionMananger.swift in Sources */,
+				67D5625424E596DB00852551 /* WalletService+Rx.swift in Sources */,
 				673FA0E024C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
 				673FA08124C8956300210BCD /* GenericResponse.swift in Sources */,
 				673F9FA824C8941D00210BCD /* AzureError.swift in Sources */,
@@ -18445,6 +18542,7 @@
 				673F9F7224C892DE00210BCD /* HomeProfileUpdateRequest.swift in Sources */,
 				673F9FD324C894CB00210BCD /* AccountLookupRequest.swift in Sources */,
 				673FA00E24C894DB00210BCD /* WalletItemDeleteRequest.swift in Sources */,
+				67D5625D24E597DB00852551 /* WalletService.swift in Sources */,
 				673FA0C324C898BB00210BCD /* UsageService.swift in Sources */,
 				673FA08524C8956300210BCD /* AccountLookupResult.swift in Sources */,
 				C336046A24D31EA9002CF260 /* AutoPayEnrollRequest.swift in Sources */,
@@ -18497,11 +18595,13 @@
 				673FA0BD24C8984800210BCD /* AnyObserver.swift in Sources */,
 				C320FDB924DC66190012E4ED /* BankName.swift in Sources */,
 				673F9F6F24C892D900210BCD /* TokenRequest.swift in Sources */,
+				67D5623C24E592A800852551 /* PeakRewardsService.swift in Sources */,
 				C320FDC624DC74060012E4ED /* WalletItemRequest.swift in Sources */,
 				673F9F6F24C892D900210BCD /* TokenRequest.swift in Sources */,
 				67EDC3FB24C1EBFF001A8494 /* NetworkUtility.swift in Sources */,
 				673F9F6024C892C000210BCD /* CompareBillRequest.swift in Sources */,
 				673FA0C724C8991600210BCD /* AnonymousService.swift in Sources */,
+				67D5624C24E5932200852551 /* PeakRewardsService+Rx.swift in Sources */,
 				C3DF2BA624CB32D000A6D4EC /* BillService.swift in Sources */,
 				673FA01324C894DB00210BCD /* BillComparisonRequest.swift in Sources */,
 				673F9F9624C8933600210BCD /* BillForecastResult.swift in Sources */,
@@ -19185,6 +19285,7 @@
 				E873DA771EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				675F4CD424AB828200A828F9 /* BillingHistoryResult.swift in Sources */,
 				B07269372127579C009B2BFF /* HomeUpdateView.swift in Sources */,
+				67D5624024E592C800852551 /* WeatherService+Rx.swift in Sources */,
 				675F4CC224AB828200A828F9 /* HomeProfile.swift in Sources */,
 				675F4B6624AB828100A828F9 /* AnonymousService.swift in Sources */,
 				E87926DC1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
@@ -19255,6 +19356,7 @@
 				E841F3AC1F02F316007BFA82 /* PickerView.swift in Sources */,
 				E82FF1F41F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
+				67D5623724E592A400852551 /* PeakRewardsService.swift in Sources */,
 				9C0EA5AA237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
 				C3087A8E24B63D03005AE544 /* AccountService+Rx.swift in Sources */,
 				675F4CE024AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
@@ -19321,6 +19423,7 @@
 				9C34D74A239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				675F4D2224AB828200A828F9 /* UserSession.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
+				67D5624524E5931C00852551 /* PeakRewardsService+Rx.swift in Sources */,
 				9C62446122C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
 				B0AD7FF0205841C80090B40D /* SequenceForEach.swift in Sources */,
@@ -19486,6 +19589,7 @@
 				E87C413F1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
+				67D5623524E592A300852551 /* PeakRewardsService.swift in Sources */,
 				9CD3532222CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				9C62446422C28A4600F14DA0 /* InsetTextField.swift in Sources */,
@@ -19901,6 +20005,7 @@
 				8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				675F4B9B24AB828100A828F9 /* AccountRequest.swift in Sources */,
 				821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
+				67D5623F24E592C700852551 /* WeatherService+Rx.swift in Sources */,
 				B06B08832226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				B596062B1F7C1F4A00515B72 /* AppRating.swift in Sources */,
 				675F4D2724AB828200A828F9 /* NetworkingError.swift in Sources */,
@@ -19909,6 +20014,7 @@
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				825171A41F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				B0A8308E2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
+				67D5624424E5931B00852551 /* PeakRewardsService+Rx.swift in Sources */,
 				B0882CAE210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				B0B083BE216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,

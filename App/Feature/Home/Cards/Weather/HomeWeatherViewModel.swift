@@ -49,7 +49,7 @@ class HomeWeatherViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var weatherTemp: Driver<String?> = weatherEvents.elements()
-        .map { "\($0.temperature)°F" }
+        .map { "\($0.temperature ?? 0)°F" }
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
     

@@ -73,7 +73,9 @@ extension Reactive where Base == PaymentService {
         .map { $0.confirmationNumber! }
         .do(onNext: { _ in
             RxNotifications.shared.recentPaymentsUpdated.onNext(())
+            #if os(iOS)
             AppRating.logRatingEvent()
+            #endif
         })
     }
     
@@ -85,7 +87,9 @@ extension Reactive where Base == PaymentService {
         .mapTo(())
         .do(onNext: { _ in
             RxNotifications.shared.recentPaymentsUpdated.onNext(())
+            #if os(iOS)
             AppRating.logRatingEvent()
+            #endif
         })
     }
     
@@ -97,7 +101,9 @@ extension Reactive where Base == PaymentService {
         .map { $0.confirmationNumber }
         .do(onNext: { _ in
             RxNotifications.shared.recentPaymentsUpdated.onNext(())
+            #if os(iOS)
             AppRating.logRatingEvent()
+            #endif
         })
     }
 }

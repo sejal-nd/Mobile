@@ -401,7 +401,7 @@ class ReviewPaymentViewController: UIViewController {
                     }
                     
                     self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-                }, onError: { [weak self] error in
+                }, onError: { error in
                     handleError(error)
             })
         }

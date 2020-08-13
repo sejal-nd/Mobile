@@ -111,7 +111,7 @@ class GameOnboardingStep2ViewController: UIViewController {
         
         LoadingView.show()
         
-        UsageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber ?? "") { [weak self] result in
+        UsageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber ?? "") { result in
             switch result {
             case .success(let homeProfile):
                 updateGameUser(homeProfile.isFilled ? "COMPLETE" : "NOT COMPLETE")

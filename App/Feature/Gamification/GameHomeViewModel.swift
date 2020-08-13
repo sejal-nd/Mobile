@@ -79,7 +79,7 @@ class GameHomeViewModel {
                         }
                         self.inFlightCoins.removeAll()
                         self.gameUser.accept(gameUser)
-                    case .failure(let error):
+                    case .failure:
                         guard let self = self else { return }
                         for tuple in self.inFlightCoins {
                             self.debouncedCoinQueue.removeAll(where: { $0 == tuple })

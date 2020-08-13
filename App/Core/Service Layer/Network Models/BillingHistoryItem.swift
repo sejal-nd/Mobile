@@ -134,8 +134,6 @@ public struct BillingHistoryItem: Codable {
             return true
         case .success, .failed, .canceled, .returned, .refunded, .unknown:
             return false
-        default:
-            return false
         }
     }
 }
