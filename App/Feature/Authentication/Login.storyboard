@@ -1207,7 +1207,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKi-cA-6tr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1885.5999999999999" y="850.52473763118451"/>
+            <point key="canvasLocation" x="-301" y="2262"/>
         </scene>
         <!--Account Lookup Tool-->
         <scene sceneID="6VS-rO-B5F">
@@ -3314,11 +3314,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="stickyFooterBottomConstraint" destination="lW8-2l-Wwa" id="rY5-dv-iJN"/>
                         <segue destination="ueA-xd-0Gb" kind="show" identifier="createCredentialsSegue" id="PqP-gN-czM"/>
                         <segue destination="mUI-y0-ZYJ" kind="show" identifier="chooseAccountSegue" id="tNW-C1-9Bi"/>
+                        <segue destination="Y17-A0-L8c" kind="show" identifier="bgeAccountNumberSegue" id="35a-iJ-7qY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7pU-HB-qop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="706" y="2290"/>
+            <point key="canvasLocation" x="988" y="2345"/>
         </scene>
         <!--Register-->
         <scene sceneID="32L-pA-zHB">
@@ -3742,7 +3743,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elq-DA-IcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="705" y="3088"/>
+            <point key="canvasLocation" x="321" y="3047"/>
         </scene>
         <!--Registration Security Questions View Controller New-->
         <scene sceneID="MdC-BM-z0m">
@@ -4261,15 +4262,16 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzH-ab-mhW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="2991"/>
+            <point key="canvasLocation" x="-736" y="2910"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rDh-g1-gVE"/>
+        <segue reference="PqP-gN-czM"/>
         <segue reference="yZt-0Y-CGp"/>
         <segue reference="rc5-B5-rKb"/>
-        <segue reference="He9-IH-khb"/>
+        <segue reference="GYT-tJ-2IP"/>
         <segue reference="6eI-mv-PAf"/>
+        <segue reference="35a-iJ-7qY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ic_check" width="13" height="10"/>
