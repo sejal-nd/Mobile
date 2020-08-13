@@ -174,9 +174,6 @@ class MoreViewController: UIViewController {
         FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .sign_out)])
             
         AuthenticationService.logout()
-
-        RxNotifications.shared.configureQuickActions.onNext(false)
-        (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
     
     // MARK: - Navigation

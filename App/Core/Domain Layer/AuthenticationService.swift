@@ -68,6 +68,9 @@ public enum AuthenticationService {
         AccountsStore.shared.currentIndex = nil
         AccountsStore.shared.customerIdentifier = nil
         StormModeStatus.shared.isOn = false
+        
+        RxNotifications.shared.configureQuickActions.onNext(false)
+        (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
 }
 

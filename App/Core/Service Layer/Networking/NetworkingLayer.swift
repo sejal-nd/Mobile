@@ -100,11 +100,11 @@ public enum NetworkingLayer {
                 }
             }
         } else if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Environment.shared.environmentName != .aut {
-            // refresh expired
+            // Refresh expired
             dLog("❌ Refresh Token Expired... Logging user out...")
             
-            // Delete user session
-            UserSession.deleteSession()
+            // Log Out
+            AuthenticationService.logout()
             completion(.failure(.invalidToken))
         } else {
             // Perform initial request
@@ -196,6 +196,12 @@ public enum NetworkingLayer {
             
             if let endpointError = responseWrapper.error {
                 dLog("❌ Error: \(endpointError)\n\nCode: \(endpointError.code)\nContext: \(endpointError.context ?? "")\nDescription: \(endpointError.description ?? "")")
+                
+                // Log user out
+                if endpointError.code == "401" {
+                    AuthenticationService.logout()
+                }
+                
                 throw NetworkingError(errorCode: endpointError.code)
             }
             
