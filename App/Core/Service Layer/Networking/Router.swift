@@ -33,6 +33,7 @@ public enum Router {
     case minVersion
     case maintenanceMode
     
+    // Apigee
     case fetchToken(request: TokenRequest)
     case refreshToken(request: RefreshTokenRequest)
     
@@ -44,6 +45,7 @@ public enum Router {
     case sendConfirmationEmail(request: UsernameRequest)
     case validateConfirmationEmail(request: GuidRequest)
     
+    // Account
     case accounts
     case accountDetails(accountNumber: String, queryString: String)
     case setDefaultAccount(accountNumber: String)
@@ -52,10 +54,10 @@ public enum Router {
     // PECO only release of info preferences
     case updateReleaseOfInfo(accountNumber: String, encodable: ReleaseOfInfoRequest)
     
+    // Gov Weather
     case weather(lat: String, long: String)
     
     // Wallet
-    
     case wallet(request: WalletRequest = WalletRequest())
     case addWalletItem(request: WalletItemRequest)
     case updateWalletItem(request: WalletItemRequest)
@@ -63,20 +65,15 @@ public enum Router {
     case bankName(routingNumber: String)
     case walletEncryptionKey(request: WalletEncryptionKeyRequest)
     
-    case payments(accountNumber: String)
-        
     // Billing
-    
     case billPDF(accountNumber: String, date: Date, documentID: String)
-    
+    case payments(accountNumber: String)
     case scheduledPayment(accountNumber: String, request: ScheduledPaymentUpdateRequest)
     case scheduledPaymentUpdate(accountNumber: String, paymentId: String, request: ScheduledPaymentUpdateRequest)
     case scheduledPaymentDelete(accountNumber: String, paymentId: String, request: SchedulePaymentCancelRequest)
-    
     case billingHistory(accountNumber: String, encodable: Encodable)
-    
-    case compareBill(accountNumber: String, premiseNumber: String, encodable: Encodable)
-    
+        
+    // Auto Pay
     case autoPayInfo(accountNumber: String) // todo - Mock + model
     case autoPayEnrollBGE(accountNumber: String, request: AutoPayEnrollBGERequest)
     case updateAutoPayBGE(accountNumber: String, request: AutoPayEnrollBGERequest)
@@ -84,27 +81,28 @@ public enum Router {
     case updateAutoPay(accountNumber: String, request: AutoPayEnrollRequest)
     case autoPayUnenroll(accountNumber: String, request: AutoPayUnenrollRequest) // todo - Mock + model
     
+    // Paperless
     case paperlessEnroll(accountNumber: String, request: EmailRequest)
     case paperlessUnenroll(accountNumber: String) // todo - Mock + model
     
+    // Budget Bill
     case budgetBillingInfo(accountNumber: String)
     case budgetBillingEnroll(accountNumber: String)
     case budgetBillingUnenroll(accountNumber: String, encodable: Encodable)
     
     // Usage
-    case forecastBill(accountNumber: String, premiseNumber: String)
-    
     case ssoData(accountNumber: String, premiseNumber: String)
     case ffssoData(accountNumber: String, premiseNumber: String)
-    
+    case forecastBill(accountNumber: String, premiseNumber: String)
+    case compareBill(accountNumber: String, premiseNumber: String, encodable: Encodable)
     case energyTips(accountNumber: String, premiseNumber: String)
     case energyTip(accountNumber: String, premiseNumber: String, tipName: String)
     
+    // Home Profile
     case homeProfileLoad(accountNumber: String, premiseNumber: String)
     case homeProfileUpdate(accountNumber: String, premiseNumber: String, encodable: HomeProfileUpdateRequest)
     
     case energyRewardsLoad(accountNumber: String)
-    // todo energyRewardsUpdate
     
     // Gamification
     case fetchGameUser(accountNumber: String)
@@ -119,8 +117,10 @@ public enum Router {
     case setAlertLanguage(accountNumber: String, request: AlertLanguageRequest)
     case alertBanner(additionalQueryItem: URLQueryItem)
     
+    // News & Updates
     case newsAndUpdates(additionalQueryItem: URLQueryItem)
-    
+
+    // Appointments
     case appointments(accountNumber: String, premiseNumber: String)
     
     // Outage
@@ -372,9 +372,7 @@ public enum Router {
         if apiAccess == .auth {
             headers["Authorization"] = "Bearer \(token)"
         }
-        
-        print("Headers: \(headers)")
-        
+                
         return headers
     }
     
