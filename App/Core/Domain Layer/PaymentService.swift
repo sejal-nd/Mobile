@@ -39,46 +39,6 @@ public enum PaymentService {
         NetworkingLayer.request(router: .autoPayUnenroll(accountNumber: accountNumber, request: request), completion: completion)
     }
     
-    static func deleteWalletItem(walletItem : WalletItem) {
-        let opCo = Environment.shared.opco
-        
-        let encodedObject = WalletItemDeleteRequest(accountNumber: AccountsStore.shared.accounts[0].accountNumber,
-                                                    walletItemId: walletItem.walletItemId ?? "",
-                                                    maskedAccountNumber: walletItem.maskedAccountNumber ?? "",
-                                                    billerId: "\(opCo.rawValue)Registered",
-                                                    paymentCategoryType: walletItem.bankOrCard == .bank ? "check" : "credit")
-        
-        print("REQ SCHEDULE")
-            
-            NetworkingLayer.request(router: .deleteWalletItem(request: encodedObject)) { (result: Result<GenericResponse, NetworkingError>) in
-                switch result {
-                case .success(let data):
-                    
-                    // fetch accounts todo
-                    
-                    print("NetworkTest POST 4 SUCCESS")
-                    
-                case .failure(let error):
-                    print("NetworkTest POST 4 FAIL: \(error)")
-                    //                completion(.failure(error))
-                }
-            }
-            
-            //            ServiceLayer.request(router: .billingHistory(accountNumber: accountNumber, httpBody: httpBody)) { (result: Result<BillingHistoryResult, Error>) in
-            //                                                                            switch result {
-            //                case .success(let data):
-            //
-            //                    // fetch accounts todo
-            //
-            //                    print("NetworkTest POST 2 SUCCESS: \(data.billingHistoryItems.count) BREAK")
-            //                case .failure(let error):
-            //                    print("NetworkTest POST 2 FAIL: \(error)")
-            //                    //                completion(.failure(error))
-            //                }
-            //            }
-
-    }
-    
     static func schedulePayment(accountNumber: String, request: ScheduledPaymentUpdateRequest, completion: @escaping (Result<GenericResponse, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .scheduledPayment(accountNumber: accountNumber, request: request), completion: completion)
     }

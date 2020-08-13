@@ -56,28 +56,7 @@ enum AccountService {
         let queryString = String(queryStringSubSequence)
         
         
-        NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryString: queryString)) { (result: Result<AccountDetail, NetworkingError>) in
-            switch result {
-            case .success(let data):
-                completion(.success(data))
-                //                NetworkTest.shared.wallet()
-                
-                //                NetworkTest.shared.payment(accountNumber: data.accountNumber)
-                
-                
-                
-                //                AuthenticatedService.fetchAlertBanner(bannerOnly: true, stormOnly: false) { (result: Result<NewSharePointAlert, NetworkingError>) in
-                //                    switch result {
-                //                    case .success(let data):
-                //                        completion(.success(data.alerts))
-                //                    case .failure(let error):
-                //                        completion(.failure(error))
-                //                    }
-            //                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryString: queryString), completion: completion)
     }
     
     #if os(iOS)
