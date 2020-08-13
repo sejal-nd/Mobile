@@ -9,7 +9,6 @@
 import Foundation
 
 public struct SSODataResponse: Decodable {
-    public var utilityCustomerId: String
     public var ssoPostURL: String
     public var relayState: String
     public var samlResponse: String
