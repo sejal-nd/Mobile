@@ -152,8 +152,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         }).disposed(by: disposeBag)
         
         // Phone number
-        let placeholder = Environment.shared.opco.isPHI ? NSLocalizedString("Phone Number*", comment: "") : NSLocalizedString("Primary Phone Number*", comment: "")
-        phoneNumberTextField.placeholder = placeholder
+        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
