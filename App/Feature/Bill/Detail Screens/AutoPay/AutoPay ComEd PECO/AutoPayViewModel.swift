@@ -61,14 +61,15 @@ class AutoPayViewModel {
     }
     
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
-        WalletService.rx.fetchBankName(routingNumber: routingNumber.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] bankName in
-                self?.bankName = bankName
+        WalletService.fetchBankName(routingNumber: routingNumber.value) { [weak self] result in
+            switch result {
+            case .success(let bankName):
+                self?.bankName = bankName.value
                 onSuccess()
-            }, onError: { (error: Error) in
+            case .failure:
                 onError()
-            }).disposed(by: bag)
+            }
+        }
     }
 
     private(set) lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()

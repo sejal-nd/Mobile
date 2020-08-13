@@ -37,14 +37,14 @@ class WalletViewModel {
     }.share()
     
     func deleteWalletItem(walletItem: WalletItem, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        WalletService.rx.deletePaymentMethod(walletItem: walletItem)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        WalletService.deletePaymentMethod(walletItem: walletItem) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { err in
-                onError(err.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     private(set) lazy var hasExpiredWalletItem = self.walletItemEvents.elements()

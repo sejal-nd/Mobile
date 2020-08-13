@@ -2085,6 +2085,12 @@
 		67A18B9A24CB354E00F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
 		67A18B9B24CB354F00F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
 		67A732AA24D35E0F00D0BF32 /* GovWeatherErrorTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */; };
+		67D5622E24E58D8000852551 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		67D5622F24E58D8100852551 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		67D5623024E58D8200852551 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		67D5623124E58D8300852551 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		67D5623224E58D8400852551 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
+		67D5623324E58D8400852551 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0724AB828000A828F9 /* AuthenticationService.swift */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
 		67D73AE3246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
@@ -15596,6 +15602,7 @@
 				67893BA324E314C0000143D6 /* ScheduledPayment.swift in Sources */,
 				673F9FF424C894D900210BCD /* WalletItemDeleteRequest.swift in Sources */,
 				673FA05324C8956100210BCD /* AccountLookupResult.swift in Sources */,
+				67D5623124E58D8300852551 /* AuthenticationService.swift in Sources */,
 				673F9FF024C894D900210BCD /* RecoverMaskedUsernameRequest.swift in Sources */,
 				C3087ACF24B672C9005AE544 /* AnyEncodable.swift in Sources */,
 				673F9FF824C894D900210BCD /* DailyUsageRequest.swift in Sources */,
@@ -15698,6 +15705,7 @@
 				673FA0A124C8956700210BCD /* ForecastBill.swift in Sources */,
 				C33827EE24DDDB9C00F133C5 /* StringResult.swift in Sources */,
 				67893BAF24E314C2000143D6 /* ScheduledPayment.swift in Sources */,
+				67D5623324E58D8400852551 /* AuthenticationService.swift in Sources */,
 				C338281B24E2FDE900F133C5 /* WalletItem.swift in Sources */,
 				673FA0CB24C899CD00210BCD /* OutageStatusContainer.swift in Sources */,
 				673FA0A824C8956700210BCD /* AlertPreferences.swift in Sources */,
@@ -15877,6 +15885,7 @@
 				35F9DE4123353D5400AAA2B2 /* Optional+Comparable.swift in Sources */,
 				675F4E2624B4DAA800A828F9 /* AnonOutageRequest.swift in Sources */,
 				67893AE724DB3747000143D6 /* AlertLanguageRequest.swift in Sources */,
+				67D5623224E58D8400852551 /* AuthenticationService.swift in Sources */,
 				675F4E5224B4DC8000A828F9 /* PaymentRequest.swift in Sources */,
 				673F9FE724C894D800210BCD /* WalletItemDeleteRequest.swift in Sources */,
 				673FA03024C8956000210BCD /* BillPDF.swift in Sources */,
@@ -18021,6 +18030,7 @@
 				673FA05924C8956200210BCD /* DailyUsageData.swift in Sources */,
 				673F9F4D24C8925300210BCD /* Account.swift in Sources */,
 				673F9FB324C8943200210BCD /* OutageStatus.swift in Sources */,
+				67D5623024E58D8200852551 /* AuthenticationService.swift in Sources */,
 				673F9FAD24C8942600210BCD /* VoidDecodable.swift in Sources */,
 				673FA0BC24C8984800210BCD /* AnyObserver.swift in Sources */,
 				673F9F8F24C8932100210BCD /* SSODataResponse.swift in Sources */,
@@ -18170,6 +18180,7 @@
 				67EDC34C24C1EBD9001A8494 /* (null) in Sources */,
 				67EDC34D24C1EBD9001A8494 /* BillInterfaceController.swift in Sources */,
 				67EDC34E24C1EBD9001A8494 /* Constants.swift in Sources */,
+				67D5622E24E58D8000852551 /* AuthenticationService.swift in Sources */,
 				C338280724E1B3EC00F133C5 /* PeakRewardsSummary.swift in Sources */,
 				C3DF2BC224CB42CE00A6D4EC /* PaymentService+Rx.swift in Sources */,
 				673FA0C124C8984E00210BCD /* UsageService+Rx.swift in Sources */,
@@ -18372,6 +18383,7 @@
 				67EDC3D024C1EBFF001A8494 /* (null) in Sources */,
 				67EDC3D124C1EBFF001A8494 /* (null) in Sources */,
 				67EDC3D224C1EBFF001A8494 /* Date+DueBy.swift in Sources */,
+				67D5622F24E58D8100852551 /* AuthenticationService.swift in Sources */,
 				67EDC3D324C1EBFF001A8494 /* NumberFormatter.swift in Sources */,
 				67EDC3D424C1EBFF001A8494 /* (null) in Sources */,
 				673F9FBC24C8944D00210BCD /* UserSession.swift in Sources */,

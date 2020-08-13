@@ -71,15 +71,17 @@ class PaymentViewModel {
 
     func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
         isFetching.accept(true)
-        WalletService.rx.fetchWalletItems()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] walletItems in
+        
+        WalletService.fetchWalletItems { [weak self] result in
+            switch result {
+            case .success(let walletItemContainer):
                 guard let self = self else { return }
+                let walletItems = walletItemContainer.walletItems
                 self.isFetching.accept(false)
                 
                 self.walletItems.accept(walletItems)
                 let defaultWalletItem = walletItems.first(where: { $0.isDefault })
-
+                
                 if initialFetch {
                     if self.paymentId.value == nil { // If not modifiying payment
                         self.computeDefaultPaymentDate()
@@ -99,18 +101,20 @@ class PaymentViewModel {
                         }
                     }
                 }
-
+                
                 if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
                     self.selectedWalletItem.accept(nil)
                     self.wouldBeSelectedWalletItemIsExpired.accept(true)
                 }
-
+                
                 onSuccess?()
-            }, onError: { [weak self] _ in
+            case .failure:
                 self?.isFetching.accept(false)
                 self?.isError.accept(true)
                 onError?()
-            }).disposed(by: disposeBag)
+            }
+            
+        }
     }
 
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void,

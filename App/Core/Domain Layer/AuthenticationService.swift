@@ -70,7 +70,10 @@ public enum AuthenticationService {
         StormModeStatus.shared.isOn = false
         
         RxNotifications.shared.configureQuickActions.onNext(false)
+        
+        #if os(iOS)
         (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
+        #endif
     }
 }
 
@@ -85,7 +88,6 @@ extension AuthenticationService {
                                         clientSecret: Environment.shared.mcsConfig.clientSecret,
                                         username: "\(Environment.shared.opco.rawValue)\\\(username)",
                                         password: password)
-        print("TOKEN REQUEST EXAMPLE: \(tokenRequest)")
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
             case .success(let tokenResponse):
@@ -121,7 +123,6 @@ extension AuthenticationService {
                     }
                 }
             case .failure(let error):
-                print("FAILURE@@@")
                 completion(.failure(error))
             }
         }

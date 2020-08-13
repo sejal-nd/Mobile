@@ -122,17 +122,14 @@ class PaymentusFormViewController: UIViewController {
     }
     
     func fetchEncryptionKey() {
-        WalletService.rx.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier,
-                                               bankOrCard: bankOrCard,
-                                               temporary: temporary,
-                                               isWalletEmpty: isWalletEmpty,
-                                               walletItemId: walletItemId)
-            .subscribe(onNext: { [weak self] key in
+        WalletService.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier, bankOrCard: bankOrCard, temporary: temporary, isWalletEmpty: isWalletEmpty, walletItemId: walletItemId) { [weak self] result in
+            switch result {
+            case .success(let key):
                 guard let self = self else { return }
-
+                
                 var urlComponents = URLComponents(string: Environment.shared.mcsConfig.paymentusUrl)
                 urlComponents?.queryItems = [
-                    URLQueryItem(name: "authToken", value: key)
+                    URLQueryItem(name: "authToken", value: key.value)
                 ]
                 if let components = urlComponents, let url = components.url {
                     let request = URLRequest(url: url)
@@ -140,9 +137,10 @@ class PaymentusFormViewController: UIViewController {
                 } else {
                     self.showError()
                 }
-            }, onError: { [weak self] err in
+            case .failure:
                 self?.showError()
-            }).disposed(by: disposeBag)
+            }
+        }
     }
     
     func showWebView() {
