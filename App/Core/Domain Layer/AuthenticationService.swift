@@ -42,7 +42,7 @@ public enum AuthenticationService {
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
         let tokenRequest = TokenRequest(clientId: Environment.shared.mcsConfig.clientID,
                                         clientSecret: Environment.shared.mcsConfig.clientSecret,
-                                        username: "\(Environment.shared.opco.rawValue)\\\(username)",
+                                        username: "\(Environment.shared.opco.rawValue.uppercased())\\\(username)",
                                         password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
             switch result {
@@ -85,7 +85,7 @@ extension AuthenticationService {
                                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
         let tokenRequest = TokenRequest(clientId: Environment.shared.mcsConfig.clientID,
                                         clientSecret: Environment.shared.mcsConfig.clientSecret,
-                                        username: "\(Environment.shared.opco.rawValue)\\\(username)",
+                                        username: "\(Environment.shared.opco.rawValue.uppercased())\\\(username)",
                                         password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
