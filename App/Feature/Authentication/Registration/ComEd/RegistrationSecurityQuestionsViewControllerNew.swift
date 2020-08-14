@@ -67,7 +67,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
         
         bindViewModel()
         
-        if Environment.shared.opco == .bge || Environment.shared.opco == .comEd {
+        if Environment.shared.opco == .bge || RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             // BGE users only need to answer 2 questions
             question3QuestionButton.isHidden = true
             question3AnswerTextField.isHidden = true
