@@ -1,12 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "ic_nousage_1.pdf",
+      "filename" : "ic_nousage.pdf",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }
