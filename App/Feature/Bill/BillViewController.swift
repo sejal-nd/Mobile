@@ -727,11 +727,15 @@ class BillViewController: AccountPickerViewController {
 			.withLatestFrom(viewModel.currentAccountDetail)
 			.drive(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
-                if !accountDetail.isResidential && Environment.shared.opco != .bge {
-					self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: accountDetail)
-				} else {
-					self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
-				}
+                if Environment.shared.opco.isPHI {
+                    self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
+                } else {
+                    if !accountDetail.isResidential && Environment.shared.opco != .bge {
+                        self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: accountDetail)
+                    } else {
+                        self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
+                    }
+                }
 			})
 			.disposed(by: bag)
 
