@@ -51,7 +51,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
             questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
             
             accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-                .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
+                .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasValidLength))
                 .drive(onNext: { [weak self] accountNumber, hasTenDigits in
                     guard let self = self else { return }
                     if !accountNumber.isEmpty && !hasTenDigits {

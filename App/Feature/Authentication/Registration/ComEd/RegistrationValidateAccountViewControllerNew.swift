@@ -41,7 +41,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = NSLocalizedString("Register", comment: "")
         
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
@@ -60,13 +60,15 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         stackView.setCustomSpacing(20, after: segmentContainer)
         segmentedControl.selectedIndex.accept(.zero)
         switch Environment.shared.opco {
-            case .comEd:
-                illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
-            case .ace, .delmarva, .pepco:
-                illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_PHI")
-            default:
-                illustrationImageView.isHidden = true
-            }
+        case .comEd:
+            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
+        case .ace, .delmarva, .pepco:
+            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_PHI")
+        case .peco:
+            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_peco.pdf")
+        default:
+            illustrationImageView.isHidden = true
+        }
         viewModel.checkForMaintenance()
     }
     
@@ -91,11 +93,12 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
-            .drive(onNext: { [weak self] accountNumber, hasTenDigits in
+            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasValidLength))
+            .drive(onNext: { [weak self] accountNumber, hasValidLength in
                 guard let self = self else { return }
-                if !accountNumber.isEmpty && !hasTenDigits {
-                    self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
+                if !accountNumber.isEmpty && !hasValidLength {
+                    let errorMessage = Environment.shared.opco.isPHI ? NSLocalizedString("Account number must be 11 digits long", comment: "") : NSLocalizedString("Account number must be 10 digits long", comment: "")
+                    self.accountNumberTextField?.setError(errorMessage)
                 }
                 self.accessibilityErrorLabel()
             }).disposed(by: disposeBag)
@@ -252,7 +255,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         case .peco:
             description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
         case .pepco, .delmarva, .ace:
-            description = NSLocalizedString("todo", comment: "")
+            description = NSLocalizedString("Your Account Number is located in the upper-left portion of your bill. Please enter all 11 digits, but no spaces.", comment: "")
         }
         let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
         
@@ -344,7 +347,7 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == accountNumberTextField?.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Environment.shared.opco.isPHI ? 11 : 10)
         }
         
         return true

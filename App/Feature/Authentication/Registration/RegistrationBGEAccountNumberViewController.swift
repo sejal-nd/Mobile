@@ -40,7 +40,7 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
+            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasValidLength))
             .drive(onNext: { [weak self] accountNumber, hasTenDigits in
                 guard let self = self else { return }
                 if !accountNumber.isEmpty && !hasTenDigits {
@@ -55,7 +55,7 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        viewModel.accountNumberHasTenDigits.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.accountNumberHasValidLength.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
     }
 
     private func accessibilityErrorLabel() {
@@ -69,7 +69,7 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
     }
     
 	@objc func onAccountNumberKeyboardDonePress() {
-		viewModel.accountNumberHasTenDigits
+		viewModel.accountNumberHasValidLength
             .asObservable()
             .take(1)
             .asDriver(onErrorDriveWith: .empty())
@@ -118,12 +118,8 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
             description = NSLocalizedString("Your Account Number is located in the upper right portion of a residential bill and the upper center portion of a commercial bill. Please enter all 10 digits, including leading zeros, but no dashes.", comment: "")
         case .peco:
             description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
-        case .pepco:
-            description = NSLocalizedString("todo", comment: "")
-        case .ace:
-            description = NSLocalizedString("todo", comment: "")
-        case .delmarva:
-            description = NSLocalizedString("todo", comment: "")
+        case .ace, .delmarva, .pepco:
+            description = NSLocalizedString("Your Account Number is located in the upper-left portion of your bill. Please enter all 11 digits, but no spaces.", comment: "")
         }
         let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
         self.navigationController?.present(infoModal, animated: true, completion: nil)

@@ -368,7 +368,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version x.x.x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwh-jf-fVT">
-                                <rect key="frame" x="314.5" y="824.5" width="70.5" height="16.5"/>
+                                <rect key="frame" x="317" y="827" width="68" height="14"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1207,7 +1207,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKi-cA-6tr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1885.5999999999999" y="850.52473763118451"/>
+            <point key="canvasLocation" x="-301" y="2262"/>
         </scene>
         <!--Account Lookup Tool-->
         <scene sceneID="6VS-rO-B5F">
@@ -2962,28 +2962,28 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="798"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uca-EY-U9e" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="310.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="303.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSL-w0-3zh" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="310.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="374" height="303.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="cIh-fu-Toz">
                                                         <rect key="frame" x="139" y="10" width="96" height="96"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your registration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4Q-I4-MJm">
-                                                        <rect key="frame" x="0.0" y="126" width="374" height="27.5"/>
+                                                        <rect key="frame" x="0.0" y="126" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGO-py-Dmb">
-                                                        <rect key="frame" x="0.0" y="173.5" width="374" height="22"/>
+                                                        <rect key="frame" x="0.0" y="169.5" width="374" height="19"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-HE-SDA" customClass="SecondaryButton" customModule="ACE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="225.5" width="374" height="55"/>
+                                                        <rect key="frame" x="0.0" y="218.5" width="374" height="55"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="s0P-Xe-fHy"/>
                                                         </constraints>
@@ -3046,6 +3046,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                     <navigationItem key="navigationItem" id="98j-d7-tjz"/>
                     <connections>
                         <outlet property="bodyLabel" destination="BGO-py-Dmb" id="fRn-Fb-2U7"/>
+                        <outlet property="iconImageView" destination="cIh-fu-Toz" id="16D-hJ-62L"/>
                         <outlet property="titleLabel" destination="A4Q-I4-MJm" id="ubS-Qm-ffP"/>
                         <outlet property="xButton" destination="0I3-lu-s6n" id="gM1-gX-p6A"/>
                     </connections>
@@ -3314,11 +3315,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="stickyFooterBottomConstraint" destination="lW8-2l-Wwa" id="rY5-dv-iJN"/>
                         <segue destination="ueA-xd-0Gb" kind="show" identifier="createCredentialsSegue" id="PqP-gN-czM"/>
                         <segue destination="mUI-y0-ZYJ" kind="show" identifier="chooseAccountSegue" id="tNW-C1-9Bi"/>
+                        <segue destination="Y17-A0-L8c" kind="show" identifier="bgeAccountNumberSegue" id="35a-iJ-7qY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7pU-HB-qop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="706" y="2290"/>
+            <point key="canvasLocation" x="988" y="2345"/>
         </scene>
         <!--Register-->
         <scene sceneID="32L-pA-zHB">
@@ -3742,7 +3744,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elq-DA-IcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="705" y="3088"/>
+            <point key="canvasLocation" x="321" y="3047"/>
         </scene>
         <!--Registration Security Questions View Controller New-->
         <scene sceneID="MdC-BM-z0m">
@@ -4261,15 +4263,16 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzH-ab-mhW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="2991"/>
+            <point key="canvasLocation" x="-736" y="2910"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rDh-g1-gVE"/>
+        <segue reference="PqP-gN-czM"/>
         <segue reference="yZt-0Y-CGp"/>
         <segue reference="rc5-B5-rKb"/>
-        <segue reference="He9-IH-khb"/>
+        <segue reference="GYT-tJ-2IP"/>
         <segue reference="6eI-mv-PAf"/>
+        <segue reference="35a-iJ-7qY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ic_check" width="13" height="10"/>

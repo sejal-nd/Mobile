@@ -107,14 +107,14 @@ class AlertsViewController: AccountPickerViewController {
     private func loadAlerts() {
         tableView.isHidden = false
         
-        if AccountsStore.shared.accounts.count == 1 || Environment.shared.opco == .bge {
+        if AccountsStore.shared.accounts.count == 1 {
             accountPicker.isHidden = true
         }
         
         viewModel.fetchAlertsFromDisk()
         
         // Don't push straight to prefs for ComEd/PECO multi-account users
-        if shortcutToPrefs && (Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1) {
+        if shortcutToPrefs && AccountsStore.shared.accounts.count == 1 {
             performSegue(withIdentifier: "preferencesSegue", sender: nil)
         }
         

@@ -37,7 +37,7 @@ class MCSRegistrationService: RegistrationService {
                       "set_primary": isPrimary,
                       "enroll_ebill": isEnrollEBill] as [String : Any]
         
-        if opCo != .bge && opCo != .comEd {
+        if opCo != .bge && !RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             params["question3"] = question3
             params["answer3"] = answer3
         }
