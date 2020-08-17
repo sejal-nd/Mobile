@@ -41,7 +41,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = NSLocalizedString("Register", comment: "")
         
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
@@ -60,13 +60,15 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         stackView.setCustomSpacing(20, after: segmentContainer)
         segmentedControl.selectedIndex.accept(.zero)
         switch Environment.shared.opco {
-            case .comEd:
-                illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
+        case .comEd:
+            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
+        case .ace, .delmarva, .pepco:
+            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_PHI")
         case .peco:
             illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_peco.pdf")
-            default:
-                illustrationImageView.isHidden = true
-            }
+        default:
+            illustrationImageView.isHidden = true
+        }
         viewModel.checkForMaintenance()
     }
     
