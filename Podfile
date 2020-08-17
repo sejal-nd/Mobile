@@ -2,7 +2,6 @@ inhibit_all_warnings! # ignore all warnings from all pods
 
 def shared_pods # Shared in both iOS and WatchOS
   pod 'RxSwift', '5.1.0'
-  pod 'ModelMapper', '10.0.0'
   pod 'RxSwiftExt', '5.2.0'
 end
 

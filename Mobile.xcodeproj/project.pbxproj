@@ -2114,6 +2114,35 @@
 		67D5625D24E597DB00852551 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
 		67D5625E24E597DC00852551 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
 		67D5625F24E5997F00852551 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0524AB828000A828F9 /* AnyEncodable.swift */; };
+		67D5626324EADA7E00852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
+		67D5626724EADA9700852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
+		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
+		67D5626B24EADAC900852551 /* GameTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626A24EADAC900852551 /* GameTaskType.swift */; };
+		67D5626C24EADDC200852551 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
+		67D5626D24EADDC200852551 /* GameTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626A24EADAC900852551 /* GameTaskType.swift */; };
+		67D5626E24EADDC200852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
+		67D5626F24EADDC200852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
+		67D5627024EADDC200852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
+		67D5627124EADDC300852551 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
+		67D5627224EADDC300852551 /* GameTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626A24EADAC900852551 /* GameTaskType.swift */; };
+		67D5627324EADDC300852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
+		67D5627424EADDC300852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
+		67D5627524EADDC300852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
+		67D5627624EADDC300852551 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
+		67D5627724EADDC300852551 /* GameTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626A24EADAC900852551 /* GameTaskType.swift */; };
+		67D5627824EADDC300852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
+		67D5627924EADDC300852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
+		67D5627A24EADDC300852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
+		67D5627B24EADDC400852551 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
+		67D5627C24EADDC400852551 /* GameTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626A24EADAC900852551 /* GameTaskType.swift */; };
+		67D5627D24EADDC400852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
+		67D5627E24EADDC400852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
+		67D5627F24EADDC400852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
+		67D5628024EADDC500852551 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
+		67D5628124EADDC500852551 /* GameTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626A24EADAC900852551 /* GameTaskType.swift */; };
+		67D5628224EADDC500852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
+		67D5628324EADDC500852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
+		67D5628424EADDC500852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
 		67D73AE3246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
@@ -2315,7 +2344,6 @@
 		67DDB3AD24535D2E006CD6EB /* GameOnboardingStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */; };
 		67DDB3AE24535D2E006CD6EB /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
 		67DDB3B124535D2E006CD6EB /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
-		67DDB3B224535D2E006CD6EB /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
 		67DDB3B324535D2E006CD6EB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		67DDB3B424535D2E006CD6EB /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
 		67DDB3B624535D2E006CD6EB /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
@@ -2780,7 +2808,6 @@
 		67DDB60324535D32006CD6EB /* GameOnboardingStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */; };
 		67DDB60424535D32006CD6EB /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
 		67DDB60724535D32006CD6EB /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
-		67DDB60824535D32006CD6EB /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
 		67DDB60924535D32006CD6EB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		67DDB60A24535D32006CD6EB /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
 		67DDB60C24535D32006CD6EB /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
@@ -3251,7 +3278,6 @@
 		67DDB85924535D35006CD6EB /* GameOnboardingStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */; };
 		67DDB85A24535D35006CD6EB /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
 		67DDB85D24535D35006CD6EB /* IndividualBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043551E68CDCB005CF531 /* IndividualBorders.swift */; };
-		67DDB85E24535D35006CD6EB /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
 		67DDB85F24535D35006CD6EB /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		67DDB86024535D35006CD6EB /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
 		67DDB86224535D35006CD6EB /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
@@ -4799,8 +4825,6 @@
 		9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
 		9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
 		9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
-		9CB7E8DE23980BA4001FBAB9 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
-		9CB7E8DF23980BA4001FBAB9 /* GameTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */; };
 		9CB8A5ED21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		9CB8A5EE21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		9CB8A5EF21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
@@ -7207,6 +7231,10 @@
 		67A18B7224CA0EA100F7A77B /* ApigeeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApigeeError.swift; sourceTree = "<group>"; };
 		67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequest.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
+		67D5626224EADA7E00852551 /* GameTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTip.swift; sourceTree = "<group>"; };
+		67D5626624EADA9600852551 /* GameQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuiz.swift; sourceTree = "<group>"; };
+		67D5626824EADAA700852551 /* GameSurvery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurvery.swift; sourceTree = "<group>"; };
+		67D5626A24EADAC900852551 /* GameTaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTaskType.swift; sourceTree = "<group>"; };
 		67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetworkConnectionView.swift; sourceTree = "<group>"; };
 		67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetworkConnectionView.xib; sourceTree = "<group>"; };
 		67D73AEF246C480500450B63 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillingHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -9940,6 +9968,18 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		67D5626124EADA6300852551 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */,
+				67D5626A24EADAC900852551 /* GameTaskType.swift */,
+				67D5626224EADA7E00852551 /* GameTip.swift */,
+				67D5626624EADA9600852551 /* GameQuiz.swift */,
+				67D5626824EADAA700852551 /* GameSurvery.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		67D73ADF246C47EF00450B63 /* No Network Connection */ = {
 			isa = PBXGroup;
 			children = (
@@ -10762,6 +10802,7 @@
 		9CEE411723722222005A4AD3 /* Gamification */ = {
 			isa = PBXGroup;
 			children = (
+				67D5626124EADA6300852551 /* Models */,
 				9CEE411823722444005A4AD3 /* Game.storyboard */,
 				9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */,
 				9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */,
@@ -10771,7 +10812,6 @@
 				9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */,
 				9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */,
 				9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */,
-				9CB7E8DC23980BA4001FBAB9 /* GameTask.swift */,
 				9CC99791237B63C500C68300 /* Onboarding */,
 				9CE549742399942200025BD5 /* Popup Modals */,
 				9CA4FA632385B8AB00E33E7C /* Views */,
@@ -13785,7 +13825,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -13803,7 +13842,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -13831,7 +13869,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -13849,7 +13886,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -13877,7 +13913,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -13895,7 +13930,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -13923,7 +13957,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -13941,7 +13974,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -13991,7 +14023,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -14010,7 +14041,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -14061,7 +14091,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-DelmarvaApp-Delmarva/Pods-DelmarvaApp-Delmarva-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -14079,7 +14108,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -14217,7 +14245,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -14235,7 +14262,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -14395,7 +14421,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PepcoApp-Pepco/Pods-PepcoApp-Pepco-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -14413,7 +14438,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -14463,7 +14487,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PepcoApp-PepcoUnitTests/Pods-PepcoApp-PepcoUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -14482,7 +14505,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -14533,7 +14555,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PepcoApp-PepcoUITests/Pods-PepcoApp-PepcoUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -14551,7 +14572,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -14666,7 +14686,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Pepco-Watch Extension/Pods-Pepco-Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
@@ -14674,7 +14693,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -14736,7 +14754,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ACE-Watch Extension/Pods-ACE-Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
@@ -14744,7 +14761,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -14806,7 +14822,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Delmarva-Watch Extension/Pods-Delmarva-Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
@@ -14814,7 +14829,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -14834,7 +14848,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ACEApp-ACEUITests/Pods-ACEApp-ACEUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -14852,7 +14865,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -14902,7 +14914,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ACEApp-ACE/Pods-ACEApp-ACE-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -14920,7 +14931,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -14990,7 +15000,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
@@ -14998,7 +15007,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -15016,7 +15024,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
@@ -15024,7 +15031,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -15110,7 +15116,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-DelmarvaApp-DelmarvaUnitTests/Pods-DelmarvaApp-DelmarvaUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -15129,7 +15134,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -15180,7 +15184,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-DelmarvaApp-DelmarvaUITests/Pods-DelmarvaApp-DelmarvaUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -15198,7 +15201,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -15269,7 +15271,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -15288,7 +15289,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -15337,7 +15337,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay-watchOS/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
@@ -15345,7 +15344,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -15365,7 +15363,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ACEApp-ACEUnitTests/Pods-ACEApp-ACEUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -15384,7 +15381,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -15413,7 +15409,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -15431,7 +15426,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -15459,7 +15453,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -15478,7 +15471,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -16085,6 +16077,7 @@
 				675F4B8B24AB828100A828F9 /* ScheduledPaymentUpdateRequest.swift in Sources */,
 				C320FDD824DDAB210012E4ED /* WalletService.swift in Sources */,
 				67DDB30624535D2E006CD6EB /* UIColor+Image.swift in Sources */,
+				67D5627824EADDC300852551 /* GameTip.swift in Sources */,
 				67DDB30724535D2E006CD6EB /* TitleTableViewCell.swift in Sources */,
 				67DDB30824535D2E006CD6EB /* GameCoreDataManager.swift in Sources */,
 				67DDB30924535D2E006CD6EB /* PrepaidCardView.swift in Sources */,
@@ -16195,6 +16188,7 @@
 				C320FDB624DC66130012E4ED /* BankName.swift in Sources */,
 				67DDB37524535D2E006CD6EB /* BillingHistoryDetailsViewModel.swift in Sources */,
 				67DDB37724535D2E006CD6EB /* OneTouchSlider.swift in Sources */,
+				67D5627624EADDC300852551 /* GameTask.swift in Sources */,
 				67DDB37924535D2E006CD6EB /* HomeViewController.swift in Sources */,
 				67DDB37B24535D2E006CD6EB /* DismissableFormSheetViewController.swift in Sources */,
 				67DDB37C24535D2E006CD6EB /* Date+Now.swift in Sources */,
@@ -16263,12 +16257,12 @@
 				C320FDC324DC74060012E4ED /* WalletItemRequest.swift in Sources */,
 				675F4C1B24AB828100A828F9 /* WeatherService.swift in Sources */,
 				67DDB3B124535D2E006CD6EB /* IndividualBorders.swift in Sources */,
-				67DDB3B224535D2E006CD6EB /* GameTask.swift in Sources */,
 				67DDB3B324535D2E006CD6EB /* AutoPayViewModel.swift in Sources */,
 				67DDB3B424535D2E006CD6EB /* DisclosureButton.swift in Sources */,
 				675F4CB724AB828200A828F9 /* BillPDF.swift in Sources */,
 				67DDB3B624535D2E006CD6EB /* WeeklyInsightViewModel.swift in Sources */,
 				C3B6555924ABD9320048C64B /* SERInfo.swift in Sources */,
+				67D5627A24EADDC300852551 /* GameSurvery.swift in Sources */,
 				67DDB3B724535D2E006CD6EB /* IntrinsicHeightTableView.swift in Sources */,
 				675F4CB124AB828200A828F9 /* ValidatedAccountResponse.swift in Sources */,
 				67DDB3B824535D2E006CD6EB /* SetReminderViewController.swift in Sources */,
@@ -16378,6 +16372,7 @@
 				67893B2224DC7B81000143D6 /* BiometricService.swift in Sources */,
 				67DDB40B24535D2E006CD6EB /* SequenceForEach.swift in Sources */,
 				675F4BC724AB828100A828F9 /* AlertPreferencesRequest.swift in Sources */,
+				67D5627724EADDC300852551 /* GameTaskType.swift in Sources */,
 				67DDB40D24535D2E006CD6EB /* AppointmentDetailViewModel.swift in Sources */,
 				67DDB40E24535D2E006CD6EB /* BankAccount.swift in Sources */,
 				67DDB40F24535D2E006CD6EB /* AlertPreferencesTableViewCell.swift in Sources */,
@@ -16398,6 +16393,7 @@
 				67DDB41E24535D2E006CD6EB /* HomeGameOnboardingCardView.swift in Sources */,
 				675F4C4524AB828100A828F9 /* ReportedOutageResult.swift in Sources */,
 				67DDB41F24535D2E006CD6EB /* HomeWeatherViewModel.swift in Sources */,
+				67D5627924EADDC300852551 /* GameQuiz.swift in Sources */,
 				675F4B7324AB828100A828F9 /* GameService.swift in Sources */,
 				675F4B6124AB828100A828F9 /* OutageService.swift in Sources */,
 				675F4CCF24AB828200A828F9 /* CompareBillResult.swift in Sources */,
@@ -16548,6 +16544,7 @@
 				67DDB55224535D32006CD6EB /* ReportOutageViewController.swift in Sources */,
 				67DDB55324535D32006CD6EB /* Optional+Comparable.swift in Sources */,
 				67DDB55524535D32006CD6EB /* AdjustThermostatViewController.swift in Sources */,
+				67D5628424EADDC500852551 /* GameSurvery.swift in Sources */,
 				67DDB55624535D32006CD6EB /* UINavigationBackButton.swift in Sources */,
 				67DDB55724535D32006CD6EB /* Top5EnergyTipsViewController.swift in Sources */,
 				673FA0E124C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
@@ -16594,6 +16591,7 @@
 				675F4CE924AB828200A828F9 /* MinimumVersion.swift in Sources */,
 				67DDB58924535D32006CD6EB /* MainTabBarController.swift in Sources */,
 				675F4E4124B4DC1900A828F9 /* NewMockDataKey.swift in Sources */,
+				67D5628324EADDC500852551 /* GameQuiz.swift in Sources */,
 				67DDB58A24535D32006CD6EB /* GameQuizViewController.swift in Sources */,
 				67DDB58B24535D32006CD6EB /* UsageViewModel.swift in Sources */,
 				C336048B24D333CB002CF260 /* BGEAutoPayInfo.swift in Sources */,
@@ -16736,7 +16734,6 @@
 				67DDB60324535D32006CD6EB /* GameOnboardingStep1ViewController.swift in Sources */,
 				67DDB60424535D32006CD6EB /* SplashViewModel.swift in Sources */,
 				67DDB60724535D32006CD6EB /* IndividualBorders.swift in Sources */,
-				67DDB60824535D32006CD6EB /* GameTask.swift in Sources */,
 				67DDB60924535D32006CD6EB /* AutoPayViewModel.swift in Sources */,
 				67DDB60A24535D32006CD6EB /* DisclosureButton.swift in Sources */,
 				67DDB60C24535D32006CD6EB /* WeeklyInsightViewModel.swift in Sources */,
@@ -16845,6 +16842,7 @@
 				67DDB65D24535D32006CD6EB /* LandingViewController.swift in Sources */,
 				67DDB65E24535D32006CD6EB /* FadeSubviews.swift in Sources */,
 				675F4D2524AB828200A828F9 /* UserSession.swift in Sources */,
+				67D5628224EADDC500852551 /* GameTip.swift in Sources */,
 				675F4C4124AB828100A828F9 /* SSODataResponse.swift in Sources */,
 				675F4E0524B3A00800A828F9 /* AnonOutageStatus.swift in Sources */,
 				67DDB66024535D32006CD6EB /* UpdatesDetailViewController.swift in Sources */,
@@ -16895,6 +16893,7 @@
 				67DDB68724535D32006CD6EB /* RecentPaymentsStore.swift in Sources */,
 				67DDB68B24535D32006CD6EB /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				67DDB68D24535D32006CD6EB /* GSTouchesShowingController.swift in Sources */,
+				67D5628024EADDC500852551 /* GameTask.swift in Sources */,
 				67DDB68F24535D32006CD6EB /* SetDefaultAccountViewController.swift in Sources */,
 				30DFE8662492642200FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				67DDB69024535D32006CD6EB /* SERPTSViewController.swift in Sources */,
@@ -16936,6 +16935,7 @@
 				67DDB6AE24535D32006CD6EB /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				67DDB6AF24535D32006CD6EB /* LoadingView.swift in Sources */,
 				67DDB6B024535D32006CD6EB /* AutoPayViewController.swift in Sources */,
+				67D5628124EADDC500852551 /* GameTaskType.swift in Sources */,
 				67DDB6B124535D32006CD6EB /* Date.swift in Sources */,
 				67DDB6B224535D32006CD6EB /* AppDelegate.swift in Sources */,
 				67DDB6B324535D32006CD6EB /* ContactUsViewController.swift in Sources */,
@@ -17022,6 +17022,7 @@
 				67DDB7A824535D35006CD6EB /* ReportOutageViewController.swift in Sources */,
 				67DDB7A924535D35006CD6EB /* Optional+Comparable.swift in Sources */,
 				67DDB7AB24535D35006CD6EB /* AdjustThermostatViewController.swift in Sources */,
+				67D5627F24EADDC400852551 /* GameSurvery.swift in Sources */,
 				67DDB7AC24535D35006CD6EB /* UINavigationBackButton.swift in Sources */,
 				67DDB7AD24535D35006CD6EB /* Top5EnergyTipsViewController.swift in Sources */,
 				673FA0DF24C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */,
@@ -17068,6 +17069,7 @@
 				675F4CE824AB828200A828F9 /* MinimumVersion.swift in Sources */,
 				67DDB7DF24535D35006CD6EB /* MainTabBarController.swift in Sources */,
 				675F4E4024B4DC1900A828F9 /* NewMockDataKey.swift in Sources */,
+				67D5627E24EADDC400852551 /* GameQuiz.swift in Sources */,
 				67DDB7E024535D35006CD6EB /* GameQuizViewController.swift in Sources */,
 				67DDB7E124535D35006CD6EB /* UsageViewModel.swift in Sources */,
 				C336048924D333CB002CF260 /* BGEAutoPayInfo.swift in Sources */,
@@ -17210,7 +17212,6 @@
 				67DDB85924535D35006CD6EB /* GameOnboardingStep1ViewController.swift in Sources */,
 				67DDB85A24535D35006CD6EB /* SplashViewModel.swift in Sources */,
 				67DDB85D24535D35006CD6EB /* IndividualBorders.swift in Sources */,
-				67DDB85E24535D35006CD6EB /* GameTask.swift in Sources */,
 				67DDB85F24535D35006CD6EB /* AutoPayViewModel.swift in Sources */,
 				67DDB86024535D35006CD6EB /* DisclosureButton.swift in Sources */,
 				67DDB86224535D35006CD6EB /* WeeklyInsightViewModel.swift in Sources */,
@@ -17319,6 +17320,7 @@
 				67DDB8B324535D35006CD6EB /* LandingViewController.swift in Sources */,
 				67DDB8B424535D35006CD6EB /* FadeSubviews.swift in Sources */,
 				675F4D2424AB828200A828F9 /* UserSession.swift in Sources */,
+				67D5627D24EADDC400852551 /* GameTip.swift in Sources */,
 				675F4C4024AB828100A828F9 /* SSODataResponse.swift in Sources */,
 				675F4E0424B3A00800A828F9 /* AnonOutageStatus.swift in Sources */,
 				67DDB8B624535D35006CD6EB /* UpdatesDetailViewController.swift in Sources */,
@@ -17369,6 +17371,7 @@
 				67DDB8DD24535D35006CD6EB /* RecentPaymentsStore.swift in Sources */,
 				67DDB8E124535D35006CD6EB /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				67DDB8E324535D35006CD6EB /* GSTouchesShowingController.swift in Sources */,
+				67D5627B24EADDC400852551 /* GameTask.swift in Sources */,
 				67DDB8E524535D35006CD6EB /* SetDefaultAccountViewController.swift in Sources */,
 				30DFE8652492642000FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				67DDB8E624535D35006CD6EB /* SERPTSViewController.swift in Sources */,
@@ -17410,6 +17413,7 @@
 				67DDB90424535D35006CD6EB /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				67DDB90524535D35006CD6EB /* LoadingView.swift in Sources */,
 				67DDB90624535D35006CD6EB /* AutoPayViewController.swift in Sources */,
+				67D5627C24EADDC400852551 /* GameTaskType.swift in Sources */,
 				67DDB90724535D35006CD6EB /* Date.swift in Sources */,
 				67DDB90824535D35006CD6EB /* AppDelegate.swift in Sources */,
 				67DDB90924535D35006CD6EB /* ContactUsViewController.swift in Sources */,
@@ -18561,6 +18565,7 @@
 				35A2B88824A1E0E0004B38BC /* RegistrationViewModel.swift in Sources */,
 				675F4BCA24AB828100A828F9 /* GameUserRequest.swift in Sources */,
 				E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
+				67D5626924EADAA700852551 /* GameSurvery.swift in Sources */,
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
 				359BDB2822D398F0007002B0 /* UIColor+Image.swift in Sources */,
@@ -18766,6 +18771,8 @@
 				9C62445F22C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				B0CB1C8B227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */,
 				9C119F6421FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
+				67D5626724EADA9700852551 /* GameQuiz.swift in Sources */,
+				67D5626B24EADAC900852551 /* GameTaskType.swift in Sources */,
 				82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				675F4D1424AB828200A828F9 /* UsageTip.swift in Sources */,
 				C3DF2BAA24CB42BB00A6D4EC /* BillService+Rx.swift in Sources */,
@@ -18828,6 +18835,7 @@
 				826773411FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				8267733D1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				67893B8F24E314AC000143D6 /* Weather.swift in Sources */,
+				67D5626324EADA7E00852551 /* GameTip.swift in Sources */,
 				E89983E11F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				E835D1C91FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				C3087AF824BDE8E2005AE544 /* EnergyTip.swift in Sources */,
@@ -19061,6 +19069,7 @@
 				67893BA524E314C0000143D6 /* BudgetBilling.swift in Sources */,
 				67893B2124DC7B80000143D6 /* BiometricService.swift in Sources */,
 				82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
+				67D5627124EADDC300852551 /* GameTask.swift in Sources */,
 				82DE610C1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
 				B0472B2B2111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				675F4CCE24AB828200A828F9 /* CompareBillResult.swift in Sources */,
@@ -19099,6 +19108,7 @@
 				C320FDCE24DC81410012E4ED /* WalletService+Rx.swift in Sources */,
 				CEA215241F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				B0336FEC21762FB400751430 /* EventStore.swift in Sources */,
+				67D5627224EADDC300852551 /* GameTaskType.swift in Sources */,
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
 				82E22B601F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				675F4CB024AB828100A828F9 /* ValidatedAccountResponse.swift in Sources */,
@@ -19214,7 +19224,6 @@
 				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
-				9CB7E8DF23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				35C9139822E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				675F4C0824AB828100A828F9 /* AnyEncodable.swift in Sources */,
 				675F4CAA24AB828100A828F9 /* Account.swift in Sources */,
@@ -19301,6 +19310,7 @@
 				675F4DEE24AB828200A828F9 /* Router.swift in Sources */,
 				C3087AFC24BDE8E2005AE544 /* EnergyTip.swift in Sources */,
 				9CC87B1D23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */,
+				67D5627324EADDC300852551 /* GameTip.swift in Sources */,
 				675F4B9624AB828100A828F9 /* RecoverUsernameRequest.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				675F4BAE24AB828100A828F9 /* ValidateAccountRequest.swift in Sources */,
@@ -19361,6 +19371,7 @@
 				E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				675F4BF624AB828100A828F9 /* SchedulePaymentCancelRequest.swift in Sources */,
 				E876A8581ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
+				67D5627424EADDC300852551 /* GameQuiz.swift in Sources */,
 				35A6C6D0211C8F0500C2A58F /* TitleTableViewCell.swift in Sources */,
 				E88B8DA31F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
 				675F4DE824AB828200A828F9 /* URLProtocolMock.swift in Sources */,
@@ -19394,6 +19405,7 @@
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				E87C414D1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				675F4C8C24AB828100A828F9 /* AppointmentsContainer.swift in Sources */,
+				67D5627524EADDC300852551 /* GameSurvery.swift in Sources */,
 				826773331FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				9C62447622C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
 				35C0F1D3233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
@@ -19534,6 +19546,7 @@
 				9CCE3E4721B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				67D73AF8246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */,
 				67893B2524DC7B86000143D6 /* BiometricService.swift in Sources */,
+				67D5626C24EADDC200852551 /* GameTask.swift in Sources */,
 				9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
 				355B103A2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
 				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
@@ -19572,6 +19585,7 @@
 				826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				35ACCB4820EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
+				67D5626D24EADDC200852551 /* GameTaskType.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				675F4CAF24AB828100A828F9 /* ValidatedAccountResponse.swift in Sources */,
 				825171B61F1D25130020A6CA /* HomeViewModel.swift in Sources */,
@@ -19690,7 +19704,6 @@
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
-				9CB7E8DE23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				675F4C0724AB828100A828F9 /* AnyEncodable.swift in Sources */,
 				675F4CA924AB828100A828F9 /* Account.swift in Sources */,
 				675F4C7F24AB828100A828F9 /* BillForecastResult.swift in Sources */,
@@ -19774,6 +19787,7 @@
 				C3087AFA24BDE8E2005AE544 /* EnergyTip.swift in Sources */,
 				675F4DED24AB828200A828F9 /* Router.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
+				67D5626E24EADDC200852551 /* GameTip.swift in Sources */,
 				67893AB124DB2491000143D6 /* DailyUsage.swift in Sources */,
 				C336047624D32D13002CF260 /* AutoPayUnenrollRequest.swift in Sources */,
 				675F4B9524AB828100A828F9 /* RecoverUsernameRequest.swift in Sources */,
@@ -19834,6 +19848,7 @@
 				824004CB1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				35A6C6CF211C8F0500C2A58F /* TitleTableViewCell.swift in Sources */,
 				E88B8DA21F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
+				67D5626F24EADDC200852551 /* GameQuiz.swift in Sources */,
 				675F4BF524AB828100A828F9 /* SchedulePaymentCancelRequest.swift in Sources */,
 				54C1DEFD1F02B8FB00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				35A6C6E1211CC16C00C2A58F /* UpdatesViewController.swift in Sources */,
@@ -19867,6 +19882,7 @@
 				B01748932135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
+				67D5627024EADDC200852551 /* GameSurvery.swift in Sources */,
 				E87C414C1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				826773321FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				359BDB7022D8DCF6007002B0 /* OutageStatusView.swift in Sources */,
