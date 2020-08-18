@@ -12,17 +12,8 @@ import RxSwift
 extension WeatherService: ReactiveCompatible {}
 extension Reactive where Base == WeatherService {
     static func getWeather(address: String) -> Observable<Weather> {
-        print("Retrieving weather service info: ADDRESS\(address)")
         return Observable.create { observer -> Disposable in
-            WeatherService.getWeather(address: address) { result in
-                switch result {
-                case .success(let weather):
-                    observer.onNext(weather)
-                    observer.onCompleted()
-                case .failure(let error):
-                    observer.onError(error)
-                }
-            }
+            WeatherService.getWeather(address: address) { observer.handle(result: $0) }
             return Disposables.create()
         }
     }

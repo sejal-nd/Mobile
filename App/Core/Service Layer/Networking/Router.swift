@@ -219,10 +219,7 @@ public enum Router {
         case .validateConfirmationEmail:
             return "\(basePath)/\(apiAccess.path)/registration/confirmation"
         case .weather(let lat, let long):
-            return "/gridpoints/LWX/\(lat),\(long)/forecast/hourly"
-            // NOTE THIS IS BROKEN: See API: https://www.weather.gov/documentation/services-web-api#/default/get_gridpoints__wfo___x___y__forecast_hourly
-            // Additional info in solution: https://stackoverflow.com/questions/54791204/how-do-i-get-the-hourly-forecast-from-api-weather-gov-for-texas-stations-or-zone
-        // LIST OF WFO: https://en.wikipedia.org/wiki/List_of_National_Weather_Service_Weather_Forecast_Offices
+            return "/points/\(lat),\(long)/forecast/hourly"
         case .wallet:
             return "\(basePath)/\(apiAccess.path)/wallet/query"
         case .addWalletItem:
