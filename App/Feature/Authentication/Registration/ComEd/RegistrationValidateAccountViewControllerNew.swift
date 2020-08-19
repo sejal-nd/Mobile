@@ -49,6 +49,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         instructionLabel.textColor = .deepGray
         instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or bill details.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.setLineHeight(lineHeight: 24)
         lastBillInformationLabel.textColor = .deepGray
         lastBillInformationLabel.text = NSLocalizedString("Use one of your last two bills to find the following information:", comment: "")
         lastBillInformationLabel.font = SystemFont.regular.of(textStyle: .headline)

@@ -36,23 +36,32 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         bodyLabel.font = SystemFont.regular.of(textStyle: .body)
         if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             iconImageView.image = #imageLiteral(resourceName: "ic_registration_confirmation")
-            let boldString = NSLocalizedString("Having trouble?", comment: "")
-            let fullString = NSLocalizedString("A verification email has been sent to \(registeredUsername ?? "").\n\nClick on the link in the email from \(Environment.shared.opco.displayString) within 48 hours. Once the link expires, you’ll be required to start the registration process from the beginning.\n\n\(boldString)", comment: "")
+            
+            let fullString = NSLocalizedString("A verification email has been sent to \(registeredUsername ?? "").\n\nClick on the link in the email from \(Environment.shared.opco.displayString) within 48 hours. Once the link expires, you’ll be required to start the registration process from the beginning.\n\n", comment: "")
             let attrString = NSMutableAttributedString(string: fullString)
-            attrString.addAttribute(.font, value: SystemFont.bold.of(textStyle: .body), range: (fullString as NSString).range(of: boldString))
             
             let style = NSMutableParagraphStyle()
-            style.minimumLineHeight = 25
+            style.minimumLineHeight = 24
             attrString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, fullString.count))
             
-            let secondaryString = "\n\nCheck your spam/junk mail folder and add \n\(emailAddress) to your safe sender list or send the verification email again."
-            let secondaryAttrString = NSMutableAttributedString(string: secondaryString)
-            secondaryAttrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .body), range: (secondaryString as NSString).range(of: boldString))
+            let boldString = NSLocalizedString("\nHaving trouble?\n\n", comment: "")
+            let secondaryAttrString = NSMutableAttributedString(string: boldString)
+            secondaryAttrString.addAttribute(.font, value: SystemFont.bold.of(textStyle: .body), range: (boldString as NSString).range(of: boldString))
             
             let secondaryStyle = NSMutableParagraphStyle()
             secondaryStyle.minimumLineHeight = 15
-            secondaryAttrString.addAttribute(.paragraphStyle, value: secondaryStyle, range: NSMakeRange(0, secondaryString.count))
+            secondaryStyle.maximumLineHeight = 15
+            secondaryAttrString.addAttribute(.paragraphStyle, value: secondaryStyle, range: NSMakeRange(0, boldString.count))
+            
+            let tertiaryString = "Check your spam/junk mail folder and add \n\(emailAddress) to your safe sender list or send the verification email again."
+            let tertiaryAttributedString = NSMutableAttributedString(string: tertiaryString)
+            let tertiaryStyle = NSMutableParagraphStyle()
+            tertiaryStyle.minimumLineHeight = 24
+            tertiaryAttributedString.addAttribute(.paragraphStyle, value: tertiaryStyle, range: NSMakeRange(0, tertiaryString.count))
+            
             attrString.append(secondaryAttrString)
+            attrString.append(tertiaryAttributedString)
+            
             bodyLabel.attributedText = attrString
         } else {
             iconImageView.image = #imageLiteral(resourceName: "img_confirmation")
