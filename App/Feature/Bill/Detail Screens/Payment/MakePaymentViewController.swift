@@ -287,6 +287,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.shouldShowPaymentDateView.not().drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowPastDueLabel.not().drive(paymentDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.isPaymentDateValid.drive(paymentDateErrorView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isSelectedPaymentDateBeyondDueDate.not().drive(paymentDateErrorView.rx.isHidden).disposed(by: disposeBag)
         paymentDateButton.descriptionText = NSLocalizedString("Payment Date*", comment: "")
         paymentDateButton.isEnabled = viewModel.canEditPaymentDate
         viewModel.shouldShowSameDayPaymentWarning.not().drive(sameDayPaymentWarningView.rx.isHidden).disposed(by: disposeBag)
@@ -422,8 +423,8 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         // Edit Payment Detail View
         paymentStatusValueLabel.text = billingHistoryItem?.statusString?.capitalized
         confirmationNumberValueTextView.text = billingHistoryItem?.confirmationNumber
-        
-        footerLabel.text = viewModel.walletFooterLabelText
+        let footerLabelText = viewModel.walletFooterLabelText
+        footerLabel.text = footerLabelText
         
         // Sticky Footer Payment View
         viewModel.totalPaymentDisplayString.map { $0 ?? "--" }
@@ -671,5 +672,11 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
         viewModel.paymentDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
+        if Environment.shared.opco.isPHI {
+            viewModel.selectedDate.accept(date)
+            paymentDateErrorLabel.textColor = .errorRed
+            paymentDateErrorLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            paymentDateErrorLabel.text = NSLocalizedString("The selected date is past your bill's due date and could result in a late payment.", comment: "")
+        }
     }
 }

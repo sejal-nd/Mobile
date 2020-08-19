@@ -726,10 +726,17 @@ class BillViewModel {
     
     private(set) lazy var showPaperlessEnrolledView: Driver<Bool> = currentAccountDetail.map {
         // Always hide for ComEd/PECO commercial customers
-        if !$0.isResidential && Environment.shared.opco != .bge {
-            return false
+        var showPaperlessEnrolledView = false
+        if Environment.shared.opco.isPHI {
+            showPaperlessEnrolledView = $0.eBillEnrollStatus == .canUnenroll
+        } else {
+            if !$0.isResidential && Environment.shared.opco != .bge {
+                showPaperlessEnrolledView = false
+            } else {
+                showPaperlessEnrolledView = $0.eBillEnrollStatus == .canUnenroll
+            }
         }
-        return $0.eBillEnrollStatus == .canUnenroll
+        return showPaperlessEnrolledView
     }
     
     private(set) lazy var showAutoPayEnrolledView: Driver<Bool> = currentAccountDetail.map {

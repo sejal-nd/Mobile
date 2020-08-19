@@ -21,6 +21,8 @@ public struct Account: Decodable, Equatable, Hashable {
     let isFinaled: Bool
     let isResidential: Bool
     let serviceType: String?
+    let utilityCode: String?
+
     let isPasswordProtected: Bool
     
     enum CodingKeys: String, CodingKey {
@@ -34,6 +36,7 @@ public struct Account: Decodable, Equatable, Hashable {
         case isFinaled = "flagFinaled"
         case isResidential
         case serviceType
+        case utilityCode
         case isPasswordProtected
     }
     
@@ -52,6 +55,7 @@ public struct Account: Decodable, Equatable, Hashable {
         isFinaled = try container.decodeIfPresent(Bool.self, forKey: .isFinaled) ?? false
         isResidential = try container.decodeIfPresent(Bool.self, forKey: .isResidential) ?? false
         serviceType = try container.decodeIfPresent(String.self, forKey: .serviceType)
+        utilityCode = try container.decodeIfPresent(String.self, forKey: .utilityCode)
         isPasswordProtected = try container.decodeIfPresent(Bool.self, forKey: .isPasswordProtected) ?? false
     }
     
@@ -71,6 +75,27 @@ public struct Account: Decodable, Equatable, Hashable {
             return accountNumber
         }
     }
+    
+    
+    /// For PHI ocpos, this variable will return the opco type tagged to a a particular account
+    /// Note: Currently the functionality is extended only for PHI opcos
+    var opcoType: OpCo? {
+        if Environment.shared.opco.isPHI,
+           let utilityCode = utilityCode {
+            switch utilityCode {
+            case "ACE":
+                return .ace
+            case "DPL":
+                return .delmarva
+            case "PEP":
+                return .pepco
+            default:
+                return nil
+            }
+        }
+       return nil
+    }
+
     
     // Equatable
     public static func ==(lhs: Account, rhs: Account) -> Bool {

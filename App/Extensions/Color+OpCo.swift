@@ -36,7 +36,7 @@ extension UIColor {
         case .peco:
             return UIColor(red: 0/255, green: 98/255, blue: 154/255, alpha: 1)
         case .ace, .delmarva, .pepco:
-            return .middleGray
+            return UIColor(red: 0/255, green: 89/255, blue: 154/255, alpha: 1)
         }
     }
     
@@ -48,12 +48,8 @@ extension UIColor {
             return UIColor(red: 187/255, green: 21/255, blue: 65/255, alpha: 1)
         case .peco:
             return UIColor(red: 0/255, green: 111/255, blue: 174/255, alpha: 1)
-        case .pepco:
-            return .yellow //todo
-        case .delmarva:
-            return .yellow //todo
-        case .ace:
-            return .yellow //todo
+        case .pepco, .ace, .delmarva:
+            return .primaryColor
         }
     }
     
@@ -65,12 +61,8 @@ extension UIColor {
             return UIColor(red: 61/255, green: 3/255, blue: 17/255, alpha: 1)
         case .peco:
             return UIColor(red: 0/255, green: 35/255, blue: 55/255, alpha: 1)
-        case .pepco:
-            return .yellow //todo
-        case .delmarva:
-            return .yellow //todo
-        case .ace:
-            return .yellow //todo
+        case .pepco, .ace, .delmarva:
+            return .primaryColor
         }
     }
     
@@ -82,12 +74,8 @@ extension UIColor {
             return .primaryColor
         case .peco:
             return UIColor(red: 0/255, green: 162/255, blue: 255/255, alpha: 1)
-        case .pepco:
-            return .yellow //todo
-        case .delmarva:
-            return .yellow //todo
-        case .ace:
-            return .yellow //todo
+        case .pepco, .ace, .delmarva:
+            return .roseQuartz
         }
     }
     

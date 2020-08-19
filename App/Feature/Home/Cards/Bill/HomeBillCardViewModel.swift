@@ -230,7 +230,7 @@ class HomeBillCardViewModel {
                 return .paymentScheduled
             }
             
-            if opco == .bge && billingInfo.netDueAmount < 0 {
+            if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {
                 return .credit
             }
             
@@ -360,14 +360,8 @@ class HomeBillCardViewModel {
                 switch Environment.shared.opco {
                 case .bge:
                     text = NSLocalizedString("You have processing payments", comment: "")
-                case .comEd, .peco:
+                case .ace, .comEd, .delmarva, .peco, .pepco:
                     text = NSLocalizedString("You have pending payments", comment: "")
-                case .pepco:
-                    text = NSLocalizedString("todo", comment: "")
-                case .ace:
-                    text = NSLocalizedString("todo", comment: "")
-                case .delmarva:
-                    text = NSLocalizedString("todo", comment: "")
                 }
                 return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .headline),
                                                                      .foregroundColor: textColor])
@@ -542,28 +536,13 @@ class HomeBillCardViewModel {
                                           attributes: grayAttributes)
             }
         case .credit:
-            return NSAttributedString(string: NSLocalizedString("No Amount Due", comment: ""),
-                                      attributes: grayAttributes)
+            return Environment.shared.opco.isPHI ? NSAttributedString(string: NSLocalizedString("You have no amount due", comment: ""), attributes: grayAttributes) :
+                NSAttributedString(string: NSLocalizedString("No Amount Due", comment: ""), attributes: grayAttributes)
         default:
             guard let dueByDate = accountDetail.billingInfo.dueByDate else { return nil }
-            let calendar = Calendar.opCo
-            
-            let date1 = calendar.startOfDay(for: .now)
-            let date2 = calendar.startOfDay(for: dueByDate)
-            
-            guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
-                return nil
-            }
-            
-            if days > 0 {
-                let localizedText = NSLocalizedString("Total Amount Due in %d Day%@", comment: "")
-                return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                          attributes: grayAttributes)
-            } else {
-                let localizedText = NSLocalizedString("Total Amount Due on %@", comment: "")
-                return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                          attributes: grayAttributes)
-            }
+            let localizedText = NSLocalizedString("Total Amount Due on %@", comment: "")
+            return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
+                                      attributes: grayAttributes)
         }
     }
     
@@ -670,6 +649,9 @@ class HomeBillCardViewModel {
     private(set) lazy var amountFont: Driver<UIFont> = billState
         .map { $0 == .paymentPending ? OpenSans.semibold.of(textStyle: .largeTitle): OpenSans.semibold.of(textStyle: .largeTitle) }
     
+    private(set) lazy var amountColor: Driver<UIColor> = billState
+        .map { Environment.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .deepGray) : .deepGray }
+
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
         Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
             .map { accountDetail, scheduledPayment in
@@ -703,12 +685,12 @@ class HomeBillCardViewModel {
                 }
                 
                 return String.localizedStringWithFormat("Your confirmation number is %@", payment.confirmationNumber)
-            case .pepco:
-                return NSLocalizedString("todo", comment: "")
-            case .ace:
-                return NSLocalizedString("todo", comment: "")
-            case .delmarva:
-                return NSLocalizedString("todo", comment: "")
+            case .ace, .delmarva, .pepco:
+                guard let payment = RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] else {
+                    return nil
+                }
+                
+                return String.localizedStringWithFormat("Your confirmation number is %@. It may take 24 hours for your payment status to update.", payment.confirmationNumber)
             }
     }
     

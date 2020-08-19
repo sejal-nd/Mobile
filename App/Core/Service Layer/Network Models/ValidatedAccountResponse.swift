@@ -10,10 +10,14 @@ import Foundation
 
 struct ValidatedAccountResponse: Decodable {
     let type: [String]?
-    var isEbill: Bool = false
+    var isEbill: Bool? = false
+    var multipleCustomers: Bool? = false
+    var accounts: [AccountResult]
     
     enum CodingKeys: String, CodingKey {
         case type
         case isEbill = "ebill"
+        case multipleCustomers
+        case accounts
     }
 }

@@ -870,21 +870,18 @@ class UsageViewModel {
                 break
             case .pepco:
                 // todo
-                usageTools.insert(.hourlyPricing, at: 1)
                 
                 if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
                     usageTools.append(.peakTimeSavings)
                 }
             case .ace:
                 // todo
-                usageTools.insert(.hourlyPricing, at: 1)
                 
                 if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
                     usageTools.append(.peakTimeSavings)
                 }
             case .delmarva:
                 // todo
-                usageTools.insert(.hourlyPricing, at: 1)
                 
                 if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
                     usageTools.append(.peakTimeSavings)
