@@ -37,8 +37,9 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         super.viewDidLoad()
         
         addCloseButton()
-        
-        title = NSLocalizedString("Forgot Username", comment: "")
+        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+                        ? NSLocalizedString("Forgot Email", comment: "")
+                        : NSLocalizedString("Forgot Username", comment: "")
         
         if Environment.shared.opco == .bge {
             accountNumberContainerView.isHidden = true

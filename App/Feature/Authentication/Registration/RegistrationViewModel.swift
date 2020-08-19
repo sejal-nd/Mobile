@@ -27,6 +27,10 @@ class RegistrationViewModel {
     let newPassword = BehaviorRelay(value: "")
     let confirmPassword = BehaviorRelay(value: "")
     
+    var multipleAccounts = [AccountResult]()
+    let selectedAccount = BehaviorRelay<AccountResult?>(value: nil)
+    var hasMultipleAccount = false
+    
     var accountType = BehaviorRelay(value: "")
     
     var primaryProfile = BehaviorRelay<Bool>(value: false)
@@ -55,6 +59,10 @@ class RegistrationViewModel {
                          onError: @escaping (String, String) -> Void) {
         
         var validateAccountRequest: ValidateAccountRequest
+        if let accountNumberValue = selectedAccount.value?.accountNumber {
+            accountNumber.accept(accountNumberValue)
+        }
+        
         if selectedSegmentIndex.value == .zero {
             validateAccountRequest = ValidateAccountRequest(identifier: identifierNumber.value,
                                                             phoneNumber: extractDigitsFrom(self.phoneNumber.value))
@@ -67,8 +75,14 @@ class RegistrationViewModel {
         RegistrationService.validateRegistration(request: validateAccountRequest) { [weak self] result in
             switch result {
             case .success(let validatedAccount):
-                self?.accountType.accept(validatedAccount.type?.first ?? "")
-                self?.isPaperlessEbillEligible = validatedAccount.isEbill
+                guard let self = self else { return }
+                
+                self.accountType.accept(validatedAccount.type?.first ?? "")
+                self.isPaperlessEbillEligible = validatedAccount.isEbill ?? false
+                if !self.hasMultipleAccount {
+                    self.hasMultipleAccount = validatedAccount.multipleCustomers ?? false
+                    self.multipleAccounts = validatedAccount.accounts
+                }
                 onSuccess()
             case .failure(let error):
                 if error == .multiAccount {
@@ -112,19 +126,20 @@ class RegistrationViewModel {
     }
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+        let accountNumber = self.hasMultipleAccount ? selectedAccount.value?.accountNumber ?? "": self.accountNumber.value
         let accountRequest = AccountRequest(username: username.value,
-                                                  password: newPassword.value,
-                                                  accountNumber: accountNumber.value,
-                                                  identifier: identifierNumber.value,
-                                                  phone: extractDigitsFrom(phoneNumber.value),
-                                                  question1: securityQuestion1.value ?? "",
-                                                  answer1: securityAnswer1.value,
-                                                  question2: securityQuestion2.value ?? "",
-                                                  answer2: securityAnswer2.value,
-                                                  question3: securityQuestion3.value ?? "",
-                                                  answer3: securityAnswer3.value,
-                                                  isPrimary: primaryProfile.value ? "true" : "false",
-                                                  shouldEnrollEbill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
+                                            password: newPassword.value,
+                                            accountNumber: accountNumber,
+                                            identifier: identifierNumber.value,
+                                            phone: extractDigitsFrom(phoneNumber.value),
+                                            question1: securityQuestion1.value ?? "",
+                                            answer1: securityAnswer1.value,
+                                            question2: securityQuestion2.value ?? "",
+                                            answer2: securityAnswer2.value,
+                                            question3: securityQuestion3.value ?? "",
+                                            answer3: securityAnswer3.value,
+                                            isPrimary: primaryProfile.value ? "true" : "false",
+                                            shouldEnrollEbill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
         RegistrationService.createAccount(request: accountRequest) { result in
             switch result {
             case .success:
@@ -165,7 +180,7 @@ class RegistrationViewModel {
         return Driver.combineLatest(self.phoneNumberHasTenDigits,
                                     self.identifierHasFourDigits,
                                     self.identifierIsNumeric,
-                                    self.accountNumberHasTenDigits,
+                                    self.accountNumberHasValidLength,
                                     self.segmentChanged,
                                     self.amountDueHasValue,
                                     self.dueDateHasValue)
@@ -210,11 +225,11 @@ class RegistrationViewModel {
             return digitsOnlyString.count == text.count
         }
     
-    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> =
+    private(set) lazy var accountNumberHasValidLength: Driver<Bool> =
         self.accountNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.count == 10
+            return Environment.shared.opco.isPHI ? digitsOnlyString.count == 11 : digitsOnlyString.count == 10
         }
     
     private func extractDigitsFrom(_ string: String) -> String {
@@ -379,7 +394,7 @@ class RegistrationViewModel {
     private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
         let driverArray: [Driver<String>]
         let count: Int
-        if Environment.shared.opco == .bge || Environment.shared.opco == .comEd{
+        if Environment.shared.opco == .bge || RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             driverArray = [self.securityAnswer1.asDriver(),
                            self.securityAnswer2.asDriver()]
             count = 2
@@ -395,4 +410,7 @@ class RegistrationViewModel {
             return emptiesRemoved.count == count
         }
     }()
+    
+    private(set) lazy var selectAccountButtonEnabled: Driver<Bool> =
+           self.selectedAccount.asDriver().isNil().not()
 }

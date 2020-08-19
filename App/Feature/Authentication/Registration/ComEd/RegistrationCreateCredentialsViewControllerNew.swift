@@ -104,11 +104,12 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         }
         
         eBillEnrollInstructions.textColor = .deepGray
-        eBillEnrollInstructions.text = NSLocalizedString("Enroll me in Paperless eBill - an easy, convenient, simple and secure way to receive your bill online.", comment: "")
+        eBillEnrollInstructions.text = NSLocalizedString("Enroll me in Paperless eBill - an easy, convenient, simple, and secure way to receive your bill online instead of in the mail.", comment: "")
         eBillEnrollInstructions.font = SystemFont.regular.of(textStyle: .headline)
         
         primaryProfileLabel.textColor = .deepGray
         primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
+        primaryProfileLabel.text = NSLocalizedString("Set as primary profile for this account", comment: "")
         
         primaryProfileCheckbox.rx.isChecked.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
         

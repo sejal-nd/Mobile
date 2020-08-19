@@ -454,9 +454,9 @@ class AlertPreferencesViewModel {
     
     var showAccountInfoBar: Bool {
         switch Environment.shared.opco {
-        case .bge, .pepco, .ace, .delmarva: // todo:
+        case .pepco, .ace, .delmarva: // todo:
             return false
-        case .comEd, .peco:
+        case .bge, .comEd, .peco:
             return true
         }
     }

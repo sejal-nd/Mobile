@@ -59,7 +59,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
         title = NSLocalizedString("Register", comment: "")
         
         instructionLabel.textColor = .deepGray
-        instructionLabel.text = NSLocalizedString("Please select your security questions and enter each corresponding answer. All security answers are case insensitive.", comment: "")
+        instructionLabel.text = NSLocalizedString("Next, select your security questions.\n\nIf you forget your sign-in credentials, you’ll be able to recover them by providing the answers to the security questions you choose in this step.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.setLineHeight(lineHeight: 24)
         
@@ -67,7 +67,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
         
         bindViewModel()
         
-        if Environment.shared.opco == .bge || Environment.shared.opco == .comEd {
+        if Environment.shared.opco == .bge || RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             // BGE users only need to answer 2 questions
             question3QuestionButton.isHidden = true
             question3AnswerTextField.isHidden = true

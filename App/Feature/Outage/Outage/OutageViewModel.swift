@@ -150,7 +150,7 @@ class OutageViewModel {
             let phone2 = "1-800-898-8042"
             phoneNumbers = [phone1, phone2]
             localizedString = String.localizedStringWithFormat("""
-                If you smell natural gas, leave the area immediately and call %@\n
+                If you smell natural gas, leave the area immediately and then call %@\n
                 To report a downed or sparking power line, please call %@
                 """, phone1, phone2)
         }

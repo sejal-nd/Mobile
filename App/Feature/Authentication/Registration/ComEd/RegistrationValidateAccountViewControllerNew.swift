@@ -27,6 +27,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     @IBOutlet weak var dueDateButton: DisclosureButton!
     @IBOutlet weak var lastBillInformationLabel: UILabel!
     
+    @IBOutlet weak var illustrationImageView: UIImageView!
+    
     @IBOutlet weak var questionMarkButton: UIButton!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
     
@@ -39,25 +41,35 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = NSLocalizedString("Register", comment: "")
         
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .deepGray
-        instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or your last bill.", comment: "")
+        instructionLabel.text = NSLocalizedString("To start, let's find your residential or business service account using your personal/business information or bill details.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.setLineHeight(lineHeight: 24)
         lastBillInformationLabel.textColor = .deepGray
         lastBillInformationLabel.text = NSLocalizedString("Use one of your last two bills to find the following information:", comment: "")
         lastBillInformationLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         segmentedControl.items = [NSLocalizedString("Personal", comment: ""),
-                                  NSLocalizedString("Last Bill", comment: "")]
+                                  NSLocalizedString("Bill Details", comment: "")]
         configureTextFields()
         stackView.setCustomSpacing(20, after: instructionLabel)
         stackView.setCustomSpacing(20, after: segmentContainer)
         segmentedControl.selectedIndex.accept(.zero)
-    
+        switch Environment.shared.opco {
+        case .comEd:
+            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
+        case .ace, .delmarva, .pepco:
+            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_PHI")
+        case .peco:
+            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_peco.pdf")
+        default:
+            illustrationImageView.isHidden = true
+        }
         viewModel.checkForMaintenance()
     }
     
@@ -82,11 +94,12 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
-            .drive(onNext: { [weak self] accountNumber, hasTenDigits in
+            .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasValidLength))
+            .drive(onNext: { [weak self] accountNumber, hasValidLength in
                 guard let self = self else { return }
-                if !accountNumber.isEmpty && !hasTenDigits {
-                    self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
+                if !accountNumber.isEmpty && !hasValidLength {
+                    let errorMessage = Environment.shared.opco.isPHI ? NSLocalizedString("Account number must be 11 digits long", comment: "") : NSLocalizedString("Account number must be 10 digits long", comment: "")
+                    self.accountNumberTextField?.setError(errorMessage)
                 }
                 self.accessibilityErrorLabel()
             }).disposed(by: disposeBag)
@@ -165,11 +178,11 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        var identifierString = "Last 4 Digits of your Social Security Number"
+        var identifierString = "Last 4 digits of your Social Security number"
         if Environment.shared.opco == .bge {
             identifierString.append(", Business Tax ID, or BGE Pin")
         } else {
-            identifierString.append(" or Business Tax ID.")
+            identifierString.append(" or Business Tax ID")
         }
         identifierDescriptionLabel.textColor = .deepGray
         identifierDescriptionLabel.text = NSLocalizedString(identifierString, comment: "")
@@ -243,7 +256,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         case .peco:
             description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
         case .pepco, .delmarva, .ace:
-            description = NSLocalizedString("todo", comment: "")
+            description = NSLocalizedString("Your Account Number is located in the upper-left portion of your bill. Please enter all 11 digits, but no spaces.", comment: "")
         }
         let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
         
@@ -258,8 +271,12 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountValidation)
-            
-            self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+            if self?.viewModel.hasMultipleAccount ?? false {
+                self?.performSegue(withIdentifier: "chooseAccountSegue", sender: self)
+            } else {
+                self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+            }
+           
         }, onMultipleAccounts:  { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountValidation)
@@ -283,6 +300,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         if let vc = segue.destination as? RegistrationCreateCredentialsViewControllerNew {
             vc.viewModel = viewModel
         } else if let vc = segue.destination as? RegistrationBGEAccountNumberViewController {
+            vc.viewModel = viewModel
+        } else if let vc = segue.destination as? RegistrationChooseAccountViewController {
             vc.viewModel = viewModel
         }
     }
@@ -329,7 +348,7 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == accountNumberTextField?.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Environment.shared.opco.isPHI ? 11 : 10)
         }
         
         return true
@@ -344,6 +363,7 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
             amountDueTextField.isHidden = true
             dueDateButton.isHidden = true
             lastBillInformationLabel.isHidden = true
+            illustrationImageView.isHidden = true
         } else {
             accountNumberView.isHidden = false
             amountDueTextField.isHidden = false
@@ -352,6 +372,7 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
             identifierTextField.isHidden = true
             identifierDescriptionLabel.isHidden = true
             lastBillInformationLabel.isHidden = false
+            illustrationImageView.isHidden = false
         }
         stackView.setCustomSpacing(20, after: lastBillInformationLabel)
         viewModel.selectedSegmentIndex.accept(sender.selectedIndex.value)

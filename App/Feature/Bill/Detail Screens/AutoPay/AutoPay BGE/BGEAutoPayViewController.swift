@@ -145,7 +145,8 @@ class BGEAutoPayViewController: UIViewController {
         termsSwitch.accessibilityLabel = termsLabel.text
         
         bottomLabel.textColor = .deepGray
-        bottomLabel.text = viewModel.bottomLabelText
+        let bottomLabelText = viewModel.bottomLabelText
+        bottomLabel.text = bottomLabelText
         bottomLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         settingsTitleLabel.textColor = .deepGray

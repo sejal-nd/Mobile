@@ -145,40 +145,22 @@ fileprivate extension Weather {
     
     var isHighTemperature: Bool {
         switch Environment.shared.opco {
-        case .bge:
+        case .ace, .bge, .delmarva, .pepco:
             return temperature >= 86
         case .comEd:
             return temperature >= 81
         case .peco:
-            return temperature >= 80
-        case .pepco:
-            // todo
-            return temperature >= 80
-        case .ace:
-            // todo
-            return temperature >= 80
-        case .delmarva:
-            // todo
             return temperature >= 80
         }
     }
     
     var isLowTemperature: Bool {
         switch Environment.shared.opco {
-        case .bge:
+        case .ace, .bge, .delmarva, .pepco:
             return temperature <= 32
         case .comEd:
             return temperature <= 21
         case .peco:
-            return temperature <= 27
-        case .pepco:
-            // todo
-            return temperature <= 27
-        case .ace:
-            // todo
-            return temperature <= 27
-        case .delmarva:
-            // todo
             return temperature <= 27
         }
     }

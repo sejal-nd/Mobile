@@ -32,6 +32,7 @@ class PaymentViewModel {
     let amountDue: BehaviorRelay<Double>
     let paymentAmount: BehaviorRelay<Double>
     let paymentDate: BehaviorRelay<Date>
+    let selectedDate: BehaviorRelay<Date>
 
     let termsConditionsSwitchValue = BehaviorRelay(value: false)
     let overpayingSwitchValue = BehaviorRelay(value: false)
@@ -65,6 +66,9 @@ class PaymentViewModel {
         
         // May be updated later...see computeDefaultPaymentDate()
         paymentDate = BehaviorRelay(value: billingHistoryItem?.date ?? .now)
+        
+        // Default it to current Date
+        selectedDate =  BehaviorRelay(value: .now)
     }
 
     // MARK: - Service Calls
@@ -219,7 +223,7 @@ class PaymentViewModel {
         }
         
         // If not one of the above precarious states...
-        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI { // BGE can always future date
+        if Environment.shared.opco == .bge { // BGE can always future date
             return true
         } else { // ComEd/PECO can only future date if the due date has not passed
             return isDueDateInTheFuture
@@ -361,6 +365,14 @@ class PaymentViewModel {
             return self.shouldCalendarDateBeEnabled(paymentDate)
         }
     
+    /// This will identify whether the payment date is in future
+    private(set) lazy var isSelectedPaymentDateBeyondDueDate: Driver<Bool> =
+        selectedDate.asDriver().map { [weak self] date in
+            guard let self = self else { return false }
+            return Environment.shared.opco.isPHI && (self.accountDetail.value.billingInfo.dueByDate < date) && self.canEditPaymentDate
+       }
+    
+      
     private(set) lazy var shouldShowSameDayPaymentWarning: Driver<Bool> =
         self.paymentDate.asDriver().map { date in
             return date.isInToday(calendar: .opCo)

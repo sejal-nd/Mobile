@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JTT-Dp-43F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JTT-Dp-43F">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
         <!--Make a Payment-->
         <scene sceneID="4YC-01-oiK">
             <objects>
-                <viewController storyboardIdentifier="makeAPayment" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="JTT-Dp-43F" customClass="MakePaymentViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="makeAPayment" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="JTT-Dp-43F" customClass="MakePaymentViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y2h-Df-AJw"/>
                         <viewControllerLayoutGuide type="bottom" id="W4n-me-PZ7"/>
@@ -34,7 +34,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HTg-Wg-dRf" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1261"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="qaq-lY-eSq" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="qaq-lY-eSq" customClass="AccountInfoBar" customModule="ACE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
@@ -190,7 +190,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="l5T-Ny-dZ6" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="l5T-Ny-dZ6" customClass="ZeroInsetDataDetectorTextView" customModule="ACE" customModuleProvider="target">
                                                                                 <rect key="frame" x="295" y="4.5" width="10" height="37.5"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -222,7 +222,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7u0-TQ-xu1">
                                                         <rect key="frame" x="20" y="349" width="335" height="100.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaQ-tE-Mxh" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaQ-tE-Mxh" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="81"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5RC-V2-kq3">
@@ -292,7 +292,7 @@
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="yhS-Pj-U2W"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wx-EA-3fy" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wx-EA-3fy" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="469.5" width="335" height="55"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwA-2N-eLN">
@@ -339,7 +339,7 @@
                                                                             </stackView>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="Tmx-Ej-HeH" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="Tmx-Ej-HeH" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="45.5" width="335" height="55"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </view>
@@ -367,7 +367,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3c-4R-Poh" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3c-4R-Poh" customClass="DisclosureButton" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="20.5" width="335" height="55"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" priority="999" constant="55" id="hSw-4g-Xie"/>
@@ -376,7 +376,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g81-lu-JGF">
                                                                         <rect key="frame" x="0.0" y="81.5" width="335" height="50"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid payment date." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-qR-gdz">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid payment date." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-qR-gdz">
                                                                                 <rect key="frame" x="14" y="0.0" width="307" height="50"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                 <nil key="textColor"/>
@@ -433,7 +433,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lcj-kv-2YV">
                                                                 <rect key="frame" x="0.0" y="40.5" width="335" height="140"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WtE-3Q-eZT" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WtE-3Q-eZT" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="bank_building_mini" translatesAutoresizingMaskIntoConstraints="NO" id="EXR-g0-D7J">
@@ -461,7 +461,7 @@
                                                                             <constraint firstItem="EXR-g0-D7J" firstAttribute="centerY" secondItem="WtE-3Q-eZT" secondAttribute="centerY" id="qTT-Ic-ezc"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zx7-pt-08g" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zx7-pt-08g" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="80" width="335" height="60"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="credit_card_mini" translatesAutoresizingMaskIntoConstraints="NO" id="1Jy-0G-fk7">
@@ -504,7 +504,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="Lcj-kv-2YV" secondAttribute="trailing" id="nNr-3E-jH3"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfM-gq-ctI" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfM-gq-ctI" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
                                                         <rect key="frame" x="107" y="1073" width="161.5" height="28"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_delete" translatesAutoresizingMaskIntoConstraints="NO" id="UPe-3R-edc">
@@ -538,7 +538,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAo-pD-iqA" userLabel="Footer Label Container" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAo-pD-iqA" userLabel="Footer Label Container" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="1121" width="375" height="85"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATT-Pv-XiX">
@@ -610,7 +610,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2Ok-Ap-srl">
                                 <rect key="frame" x="0.0" y="1638.5" width="375" height="161.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUW-Qp-frN" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUW-Qp-frN" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="161.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1b6-BW-pIw">
@@ -655,7 +655,7 @@
                                                                     <constraint firstItem="MKp-hw-sUE" firstAttribute="leading" secondItem="eq0-Jf-Vaw" secondAttribute="leading" id="u4w-9U-BMc"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R89-fx-aPa" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R89-fx-aPa" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="188" y="21.5" width="147" height="55"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Continue"/>
                                                                 <constraints>
@@ -695,7 +695,7 @@
                                     <constraint firstAttribute="height" priority="250" id="fXw-uE-o4G"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="vVI-JJ-ceS" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="vVI-JJ-ceS" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
                                 <rect key="frame" x="157.5" y="894" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -799,7 +799,7 @@
         <!--Review Payment-->
         <scene sceneID="j0X-h3-aw1">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="6kZ-1f-4Jk" customClass="ReviewPaymentViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="6kZ-1f-4Jk" customClass="ReviewPaymentViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vMZ-eo-OSw"/>
                         <viewControllerLayoutGuide type="bottom" id="GfN-aG-uRn"/>
@@ -1313,11 +1313,11 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gu0-ai-uGz">
                                                         <rect key="frame" x="0.0" y="849" width="375" height="340"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="av3-rL-Qad" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="av3-rL-Qad" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="260" width="335" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Is8-n6-Rdo" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Is8-n6-Rdo" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="170" width="335" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
@@ -1354,7 +1354,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7y-ry-gn4">
                                                         <rect key="frame" x="20" y="1284" width="335" height="57.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="Gqd-YA-KiF" customClass="Checkbox" customModule="BGE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="Gqd-YA-KiF" customClass="Checkbox" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="-7" width="44" height="44"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <accessibility key="accessibilityConfiguration">
@@ -1382,7 +1382,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gr0-XX-eAz">
                                                         <rect key="frame" x="20" y="1388.5" width="335" height="57.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="6Sz-gH-R1i" customClass="Checkbox" customModule="BGE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="6Sz-gH-R1i" customClass="Checkbox" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="-7" width="44" height="44"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <accessibility key="accessibilityConfiguration">
@@ -1410,7 +1410,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lOb-Vo-ahE">
                                                         <rect key="frame" x="20" y="1493" width="335" height="119.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="YVg-B0-1dw" customClass="Checkbox" customModule="BGE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="YVg-B0-1dw" customClass="Checkbox" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="-7" width="44" height="44"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <accessibility key="accessibilityConfiguration">
@@ -1445,7 +1445,7 @@
                                                             <constraint firstItem="ztd-2d-pYz" firstAttribute="top" secondItem="lOb-Vo-ahE" secondAttribute="top" id="z9J-mZ-7y3"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4Z-6u-eyD" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4Z-6u-eyD" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="1659.5" width="375" height="128"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KK9-YL-EWP">
@@ -1510,10 +1510,10 @@
                                     <constraint firstAttribute="bottom" secondItem="aAE-xu-8vr" secondAttribute="bottom" id="qAE-4h-htw"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bb7-Ho-BWi" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bb7-Ho-BWi" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="1581" width="375" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZ7-gc-eKE" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZ7-gc-eKE" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="335" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Submit Payment"/>
                                         <constraints>
@@ -1611,7 +1611,7 @@
         <!--Payment Confirmation View Controller-->
         <scene sceneID="WSg-P7-HcY">
             <objects>
-                <viewController id="Vrf-g3-tVr" customClass="PaymentConfirmationViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vrf-g3-tVr" customClass="PaymentConfirmationViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EM9-Ip-s6Q"/>
                         <viewControllerLayoutGuide type="bottom" id="U3D-wF-dlF"/>
@@ -1849,7 +1849,7 @@
                                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D1-iQ-Hbb" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D1-iQ-Hbb" customClass="SecondaryButton" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="24.5" width="354" height="55"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Enroll in AutoPay"/>
                                                                 <constraints>
@@ -1879,7 +1879,7 @@
                                                     <constraint firstItem="T7w-fl-RMa" firstAttribute="top" secondItem="WJ6-Sv-i8y" secondAttribute="top" id="fhK-0U-7ZT"/>
                                                 </constraints>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GxY-Rg-QtV" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GxY-Rg-QtV" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="646.5" width="414" height="76.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsw-Al-Iy1">
