@@ -29,186 +29,31 @@ def iOS_UITestPods
   pod 'surveymonkey-ios-sdk', '2.0.5'
 end
 
-abstract_target 'BGEApp' do
+abstract_target 'EUMobileApp' do
     platform :ios, '11.0'
     use_frameworks!
 
     iOS_pods
     shared_pods
 
-    target 'BGE' do
+    target 'EUMobile' do
     end
 
-    target 'BGEUnitTests' do
+    target 'EUMobileUnitTests' do
         iOS_UnitTestPods
     end
 
-    target 'BGEUITests' do
+    target 'EUMobileUITests' do
         iOS_UITestPods
     end
 end
 
-abstract_target 'ComEdApp' do
-    platform :ios, '11.0'
-    use_frameworks!
-
-    iOS_pods
-    shared_pods
-
-    target 'ComEd' do
-    end
-
-    target 'ComEdUnitTests' do
-        iOS_UnitTestPods
-    end
-
-    target 'ComEdUITests' do
-        iOS_UITestPods
-    end
-end
-
-abstract_target 'PECOApp' do
-    platform :ios, '11.0'
-    use_frameworks!
-
-    iOS_pods
-    shared_pods
-
-    target 'PECO' do
-    end
-
-    target 'PECOUnitTests' do
-        iOS_UnitTestPods
-    end
-
-    target 'PECOUITests' do
-        iOS_UITestPods
-    end
-end
-
-abstract_target 'PepcoApp' do
-    platform :ios, '11.0'
-    use_frameworks!
-
-    iOS_pods
-    shared_pods
-
-    target 'Pepco' do
-    end
-
-    target 'PepcoUnitTests' do
-        iOS_UnitTestPods
-    end
-
-    target 'PepcoUITests' do
-        iOS_UITestPods
-    end
-end
-
-abstract_target 'DelmarvaApp' do
-    platform :ios, '11.0'
-    use_frameworks!
-
-    iOS_pods
-    shared_pods
-
-    target 'Delmarva' do
-    end
-
-    target 'DelmarvaUnitTests' do
-        iOS_UnitTestPods
-    end
-
-    target 'DelmarvaUITests' do
-        iOS_UITestPods
-    end
-end
-
-abstract_target 'ACEApp' do
-    platform :ios, '11.0'
-    use_frameworks!
-
-    iOS_pods
-    shared_pods
-
-    target 'ACE' do
-    end
-
-    target 'ACEUnitTests' do
-        iOS_UnitTestPods
-    end
-
-    target 'ACEUITests' do
-        iOS_UITestPods
-    end
-end
-
-target 'PECO-Watch' do
+target 'EUMobile-Watch' do
   platform :watchos, '4.0'
   use_frameworks!
 end
 
-target 'PECO-Watch Extension' do
-  platform :watchos, '4.0'
-  use_frameworks!
-
-  shared_pods
-end
-
-target 'BGE-Watch' do
-  platform :watchos, '4.0'
-  use_frameworks!
-end
-
-target 'BGE-Watch Extension' do
-  platform :watchos, '4.0'
-  use_frameworks!
-
-  shared_pods
-end
-
-target 'ComEd-Watch' do
-  platform :watchos, '4.0'
-  use_frameworks!
-end
-
-target 'ComEd-Watch Extension' do
-  platform :watchos, '4.0'
-  use_frameworks!
-
-  shared_pods
-end
-
-target 'Pepco-Watch' do
-  platform :watchos, '4.0'
-  use_frameworks!
-end
-
-target 'Pepco-Watch Extension' do
-  platform :watchos, '4.0'
-  use_frameworks!
-
-  shared_pods
-end
-
-target 'Delmarva-Watch' do
-  platform :watchos, '4.0'
-  use_frameworks!
-end
-
-target 'Delmarva-Watch Extension' do
-  platform :watchos, '4.0'
-  use_frameworks!
-
-  shared_pods
-end
-
-target 'ACE-Watch' do
-  platform :watchos, '4.0'
-  use_frameworks!
-end
-
-target 'ACE-Watch Extension' do
+target 'EUMobile-Watch Extension' do
   platform :watchos, '4.0'
   use_frameworks!
 

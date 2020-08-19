@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
-               BuildableName = "BGE-Watch.app"
-               BlueprintName = "BGE-Watch"
+               BuildableName = "EUMobile-Watch.app"
+               BlueprintName = "EUMobile-Watch"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,15 +29,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-               BuildableName = "BGE.app"
-               BlueprintName = "BGE"
+               BuildableName = "EUMobile.app"
+               BlueprintName = "EUMobile"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Develop"
+      buildConfiguration = "Automation-BGE"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -45,7 +45,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Staging"
+      buildConfiguration = "Staging-BGE"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
-            BuildableName = "BGE-Watch.app"
-            BlueprintName = "BGE-Watch"
+            BuildableName = "EUMobile-Watch.app"
+            BlueprintName = "EUMobile-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
@@ -74,7 +74,7 @@
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Production Beta-BGE"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -86,8 +86,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
-            BuildableName = "BGE-Watch.app"
-            BlueprintName = "BGE-Watch"
+            BuildableName = "EUMobile-Watch.app"
+            BlueprintName = "EUMobile-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
@@ -95,17 +95,17 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
-            BuildableName = "BGE-Watch.app"
-            BlueprintName = "BGE-Watch"
+            BuildableName = "EUMobile-Watch.app"
+            BlueprintName = "EUMobile-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Develop">
+      buildConfiguration = "Automation-BGE">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Production Beta-BGE"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

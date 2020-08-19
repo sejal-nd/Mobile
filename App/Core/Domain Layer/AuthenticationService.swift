@@ -40,9 +40,9 @@ public enum AuthenticationService {
     static func validateLogin(username: String,
                               password: String,
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
-        let tokenRequest = TokenRequest(clientId: Environment.shared.mcsConfig.clientID,
-                                        clientSecret: Environment.shared.mcsConfig.clientSecret,
-                                        username: "\(Environment.shared.opco.rawValue.uppercased())\\\(username)",
+        let tokenRequest = TokenRequest(clientId: Environment.shared.clientID,
+                                        clientSecret: Environment.shared.clientSecret,
+                                        username: "\(Environment.shared.opco.rawValue)\\\(username)",
                                         password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
             switch result {
@@ -83,9 +83,9 @@ extension AuthenticationService {
     private static func performLogin(username: String,
                                      password: String,
                                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
-        let tokenRequest = TokenRequest(clientId: Environment.shared.mcsConfig.clientID,
-                                        clientSecret: Environment.shared.mcsConfig.clientSecret,
-                                        username: "\(Environment.shared.opco.rawValue.uppercased())\\\(username)",
+        let tokenRequest = TokenRequest(clientId: Environment.shared.clientID,
+                                        clientSecret: Environment.shared.clientSecret,
+                                        username: "\(Environment.shared.opco.rawValue)\\\(username)",
                                         password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {

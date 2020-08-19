@@ -10,7 +10,7 @@ import Foundation
 
 enum OpCo: String {
     case bge = "BGE"
-    case comEd = "ComEd"
+    case comEd = "COMED"
     case peco = "PECO"
     case pepco = "PEP"
     case ace = "ACE"
@@ -27,6 +27,8 @@ enum OpCo: String {
     
     var displayString: String {
         switch self {
+        case .comEd:
+            return "ComEd"
         case .ace:
             return "Atlantic City Electric"
         case .delmarva:
@@ -84,12 +86,47 @@ enum EnvironmentName: String {
     case hotfix = "HOTFIX"
 }
 
-struct MCSConfig {
+struct InfoPlist: Codable {
+    let displayName: String
+    let baseURL: String
+    let oauthURL: String
+    let alertURL: String
+    let accountURL: String
+    let paymentURL: String
+    let associatedDomain: String
+    let googleAnalyticID: String
+    let appCenterID: String
+    let buildFlavor: String
+    let environmentTier: String
+    
+    enum CodingKeys: String, CodingKey {
+        case displayName = "Build Display Name"
+        case baseURL = "Base URL"
+        case oauthURL = "OAuth URL"
+        case alertURL = "Alert URL"
+        case accountURL = "Account URL"
+        case paymentURL = "Payment URL"
+        case associatedDomain = "Associated Domain"
+        case googleAnalyticID = "Google Analytics ID"
+        case appCenterID = "App Center ID"
+        case buildFlavor = "Build Flavor"
+        case environmentTier = "Environment Tier"
+    }
+}
+
+struct Environment {
+    static let shared = Environment()
+    
+    let environmentName: EnvironmentName
+    let opco: OpCo
+    let myAccountUrl: String
+    let gaTrackingId: String
+    let associatedDomain: String
+    let appCenterId: String?
     let baseUrl: String
-    let oAuthEndpoint: String // The Layer 7 token endpoint
+    let oAuthEndpoint: String
     let paymentusUrl: String
     let sharepointBaseURL: String
-    var projectEnvironmentPath = ""
     
     var clientSecret: String {
         var id = ""
@@ -117,77 +154,28 @@ struct MCSConfig {
         return secret
     }
     
-    
-    init(mcsInstanceName: String, opco: OpCo) {
-        let configPath = Bundle.main.path(forResource: "MCSConfig", ofType: "plist")!
-        let dict = NSDictionary(contentsOfFile: configPath)
-        let mobileBackends = dict?["mobileBackends"] as! [String: Any]
-        let mobileBackend = mobileBackends[mcsInstanceName] as! [String: Any]
-        
-        baseUrl = mobileBackend["baseURL"] as! String
-        oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
-        sharepointBaseURL = mobileBackend["sharepointBaseURL"] as! String
-        projectEnvironmentPath = mobileBackend["projectEnvironmentPath"] as? String ?? ""
-        
-        let opcoStr: String
-        let opcoNum: String
-        switch opco {
-        case .bge:
-            opcoStr = "bge"
-            opcoNum = "620"
-        case .comEd:
-            opcoStr = "comd"
-            opcoNum = "623"
-        case .peco:
-            opcoStr = "peco"
-            opcoNum = "622"
-        case .pepco:
-            opcoStr = "todo"
-            opcoNum = "todo"
-        case .ace:
-            opcoStr = "todo"
-            opcoNum = "todo"
-        case .delmarva:
-            opcoStr = "todo"
-            opcoNum = "todo"
-        }
-        let paymentusUrlFormat = mobileBackend["paymentusUrl"] as! String
-        paymentusUrl = paymentusUrlFormat.replacingOccurrences(of: "%@", with: opcoStr)
-            .replacingOccurrences(of: "%d", with: opcoNum)
-    }
-}
-
-struct Environment {
-    
-    static let shared = Environment()
-    
-    let environmentName: EnvironmentName
-    let appName: String
-    let opco: OpCo
-    let mcsInstanceName: String
-    let mcsConfig: MCSConfig
-    let myAccountUrl: String
-    let gaTrackingId: String
-    let firebaseConfigFile: String
-    let opcoUpdatesHost: String
-    let associatedDomain: String
-    let appCenterId: String?
-    
     private init() {
-        let path = Bundle.main.path(forResource: "environment", ofType: "plist")!
-        let dict = NSDictionary(contentsOfFile: path)!
+        let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist")
+        let plistURL = URL(fileURLWithPath: plistPath!)
+        let decoder = PropertyListDecoder()
         
-        environmentName = EnvironmentName(rawValue: dict["environment"] as! String)!
-        appName = dict["appName"] as! String
-        opco = OpCo(rawValue: dict["opco"] as! String)!
-        mcsInstanceName = dict["mcsInstanceName"] as! String
-        mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName, opco: opco)
-        myAccountUrl = dict["myAccountUrl"] as! String
-        gaTrackingId = dict["gaTrackingId"] as! String
-        firebaseConfigFile = dict["firebaseConfigFile"] as! String
-        opcoUpdatesHost = dict["opcoUpdatesHost"] as! String
-        associatedDomain = dict["associatedDomain"] as! String
-        appCenterId = dict["appCenterId"] as? String
+        do {
+            let data = try Data(contentsOf: plistURL)
+            let infoPlist = try decoder.decode(InfoPlist.self, from: data)
+            
+            environmentName = EnvironmentName(rawValue: infoPlist.environmentTier)!
+            opco = OpCo(rawValue: infoPlist.buildFlavor)!
+            baseUrl = infoPlist.baseURL
+            oAuthEndpoint = infoPlist.oauthURL
+            paymentusUrl = infoPlist.paymentURL
+            sharepointBaseURL = infoPlist.alertURL
+            myAccountUrl = infoPlist.accountURL
+            gaTrackingId = infoPlist.googleAnalyticID
+            associatedDomain = infoPlist.associatedDomain
+            appCenterId = infoPlist.appCenterID
+        } catch {
+            fatalError("Could not get data from plist: \(error)")
+        }
     }
 }
 

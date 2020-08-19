@@ -53,7 +53,7 @@ struct WalletService {
                                   isWalletEmpty: Bool,
                                   walletItemId: String? = nil, completion: @escaping (Result<StringResult, NetworkingError>) -> ()) {
         
-        var strParam = "pageView=mobile;postMessagePmDetailsOrigin=\(Environment.shared.mcsConfig.paymentusUrl);"
+        var strParam = "pageView=mobile;postMessagePmDetailsOrigin=\(Environment.shared.paymentusUrl);"
         if temporary {
             strParam += "nickname=false;primaryPM=false;"
         } else {

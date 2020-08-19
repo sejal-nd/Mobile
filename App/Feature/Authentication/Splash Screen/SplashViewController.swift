@@ -92,7 +92,7 @@ class SplashViewController: UIViewController{
         super.viewDidLayoutSubviews()
 
         if !AuthenticationService.isLoggedIn() && splashAnimationView == nil {
-            splashAnimationView = AnimationView(name: "splash")
+            splashAnimationView = AnimationView(name: "splash-Flavor\(Environment.shared.opco.rawValue)")
             splashAnimationView!.frame.size = splashAnimationContainer.frame.size
             splashAnimationView!.loopMode = .playOnce
             splashAnimationView!.contentMode = .scaleAspectFit

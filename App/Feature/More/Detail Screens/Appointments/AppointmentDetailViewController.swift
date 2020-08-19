@@ -271,21 +271,21 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         let loop: Bool
         switch viewModel.status {
         case .scheduled:
-            animationName = "Appt_Confirmed"
+            animationName = "Appt_Confirmed-Flavor\(Environment.shared.opco.rawValue)"
             loop = false
         case .onOurWay:
             fallthrough
         case .enRoute:
-            animationName = "Appt_otw"
+            animationName = "Appt_otw-Flavor\(Environment.shared.opco.rawValue)"
             loop = true
         case .inProgress:
-            animationName = "Appt_Inprogress"
+            animationName = "Appt_Inprogress-Flavor\(Environment.shared.opco.rawValue)"
             loop = false
         case .complete:
-            animationName = "Appt_Complete"
+            animationName = "Appt_Complete-Flavor\(Environment.shared.opco.rawValue)"
             loop = false
         case .canceled, .none:
-            animationName = "Appt_Canceled"
+            animationName = "Appt_Canceled-Flavor\(Environment.shared.opco.rawValue)"
             loop = false
         }
         

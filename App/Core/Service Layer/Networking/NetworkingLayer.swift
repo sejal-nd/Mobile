@@ -73,8 +73,8 @@ public enum NetworkingLayer {
             retryCount -= 1
             
             // Refresh Token
-            let refreshTokenRequest = RefreshTokenRequest(clientId: Environment.shared.mcsConfig.clientID,
-                                                          clientSecret: Environment.shared.mcsConfig.clientSecret,
+            let refreshTokenRequest = RefreshTokenRequest(clientId: Environment.shared.clientID,
+                                                          clientSecret: Environment.shared.clientSecret,
                                                           refreshToken: UserSession.refreshToken)
             
             NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in

@@ -51,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         dLog("Environment " + Environment.shared.environmentName.rawValue)
-        dLog("AppName" + Environment.shared.appName)
         
         if let appCenterId = Environment.shared.appCenterId {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])

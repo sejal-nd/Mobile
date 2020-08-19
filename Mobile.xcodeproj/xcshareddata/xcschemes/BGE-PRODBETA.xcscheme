@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-               BuildableName = "BGE.app"
-               BlueprintName = "BGE"
+               BuildableName = "EUMobile.app"
+               BlueprintName = "EUMobile"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,8 +31,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "BGE.app"
-            BlueprintName = "BGE"
+            BuildableName = "EUMobile.app"
+            BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -42,8 +42,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B5AC06D41E52238900BBA4ED"
-               BuildableName = "BGEUnitTests.xctest"
-               BlueprintName = "BGEUnitTests"
+               BuildableName = "EUMobileUnitTests.xctest"
+               BlueprintName = "EUMobileUnitTests"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "BGE.app"
-            BlueprintName = "BGE"
+            BuildableName = "EUMobile.app"
+            BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -87,8 +87,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "BGE.app"
-            BlueprintName = "BGE"
+            BuildableName = "EUMobile.app"
+            BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-               BuildableName = "BGE.app"
-               BlueprintName = "BGE"
+               BuildableName = "EUMobile.app"
+               BlueprintName = "EUMobile"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "BGE.app"
-            BlueprintName = "BGE"
+            BuildableName = "EUMobile.app"
+            BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "BGE.app"
-            BlueprintName = "BGE"
+            BuildableName = "EUMobile.app"
+            BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
