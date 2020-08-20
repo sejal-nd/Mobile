@@ -8243,7 +8243,7 @@
 				BASE_URL = "xze-e-n-eudapi-comed-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
-				BUNDLE_ID = com.exelon.mobile.comed.testing;
+				BUNDLE_ID = com.exelon.mobile.comed.develop;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -9925,7 +9925,7 @@
 				BASE_URL = "xze-e-n-eudapi-bge-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
-				BUNDLE_ID = com.exelon.mobile.bge.testing;
+				BUNDLE_ID = com.exelon.mobile.bge.develop;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
