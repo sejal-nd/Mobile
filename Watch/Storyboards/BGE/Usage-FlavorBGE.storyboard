@@ -10,7 +10,7 @@
         <!--Usage-->
         <scene sceneID="dHc-uN-uYT">
             <objects>
-                <controller identifier="UsageInterfaceController" title="Usage" id="h9L-49-ru4" customClass="UsageInterfaceController" customModule="BGE_watchOS_Extension">
+                <controller identifier="UsageInterfaceController" title="Usage" id="h9L-49-ru4" customClass="UsageInterfaceController" customModule="EUMobile_Watch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="dxx-ys-Ed4">
                             <items>

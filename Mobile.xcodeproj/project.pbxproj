@@ -44,8 +44,8 @@
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* BillUtility.swift */; };
-		352B19F8233BBE710090B442 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F7233BBE710090B442 /* Outage.storyboard */; };
-		352B19FA233BBEDD0090B442 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F9233BBEDD0090B442 /* Usage.storyboard */; };
+		352B19F8233BBE710090B442 /* Outage-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F7233BBE710090B442 /* Outage-FlavorBGE.storyboard */; };
+		352B19FA233BBEDD0090B442 /* Usage-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F9233BBEDD0090B442 /* Usage-FlavorBGE.storyboard */; };
 		352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35489DD524A248BF0040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
@@ -126,7 +126,7 @@
 		35B9609D22B7BC79003BCC97 /* PremiseListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */; };
 		35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
 		35BAA17A2367454F0053E58A /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAA1782367454F0053E58A /* NetworkUtility.swift */; };
-		35BAA18F2368B5AA0053E58A /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA18E2368B5AA0053E58A /* Bill.storyboard */; };
+		35BAA18F2368B5AA0053E58A /* Bill-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA18E2368B5AA0053E58A /* Bill-FlavorBGE.storyboard */; };
 		35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
 		35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */; };
@@ -139,8 +139,8 @@
 		35CEB03B230D985D00366440 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
 		35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35F9DD3D2333C34200AAA2B2 /* EUMobile-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		35F9DD5C2333C45300AAA2B2 /* BGEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* BGEAssets.xcassets */; };
-		35F9DD5D2333C45900AAA2B2 /* BGEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* BGEAssets.xcassets */; };
+		35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */; };
+		35F9DD5D2333C45900AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */; };
 		35F9DD672333C85B00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DD682333C85C00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -154,7 +154,7 @@
 		35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
-		35F9DD842333D2B800AAA2B2 /* BGE-watchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* BGE-watchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD882333D3C500AAA2B2 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
 		35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -174,7 +174,7 @@
 		35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
-		35F9DDC523340C9B00AAA2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDC423340C8600AAA2B2 /* Main.storyboard */; };
+		35F9DDC523340C9B00AAA2B2 /* Main-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */; };
 		35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DE52233A583700AAA2B2 /* AnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */; };
 		35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
@@ -435,6 +435,12 @@
 		67D5632824EDC6F600852551 /* sm_outage_loading-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2802148518C00FBAD83 /* sm_outage_loading-FlavorCOMED.json */; };
 		67D5632924EDC6F600852551 /* sm_outage-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2682146F06D00FBAD83 /* sm_outage-FlavorCOMED.json */; };
 		67D5632A24EDC6F600852551 /* splash-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash-FlavorCOMED.json */; };
+		67D5633124EEFAA100852551 /* Main-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */; };
+		67D5633224EEFAA100852551 /* Outage-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1822368B20F0053E58A /* Outage-FlavorCOMED.storyboard */; };
+		67D5633324EEFAA100852551 /* Usage-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1842368B22C0053E58A /* Usage-FlavorCOMED.storyboard */; };
+		67D5633424EEFAA100852551 /* Bill-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1902368B5C80053E58A /* Bill-FlavorCOMED.storyboard */; };
+		67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */; };
+		67D5633624EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
 		67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AE0246C47EF00450B63 /* NoNetworkConnectionView.swift */; };
 		67D73AE8246C47EF00450B63 /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */; };
@@ -1115,7 +1121,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				35F9DD842333D2B800AAA2B2 /* BGE-watchOS Extension.appex in Embed App Extensions */,
+				35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1259,8 +1265,8 @@
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
 		3527DB37234B86E000DA4553 /* BillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUtility.swift; sourceTree = "<group>"; };
-		352B19F7233BBE710090B442 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Outage.storyboard; path = Watch/Storyboards/BGE/Outage.storyboard; sourceTree = SOURCE_ROOT; };
-		352B19F9233BBEDD0090B442 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
+		352B19F7233BBE710090B442 /* Outage-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Outage-FlavorBGE.storyboard"; path = "Watch/Storyboards/BGE/Outage-FlavorBGE.storyboard"; sourceTree = SOURCE_ROOT; };
+		352B19F9233BBEDD0090B442 /* Usage-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorBGE.storyboard"; sourceTree = "<group>"; };
 		352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unauthenticated.storyboard; sourceTree = "<group>"; };
 		3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCreateCredentialsViewControllerNew.swift; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1336,13 +1342,13 @@
 		35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiseListRow.swift; sourceTree = "<group>"; };
 		35B960BE22C2A15A003BCC97 /* AccountListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountListRow.swift; sourceTree = "<group>"; };
 		35BAA1782367454F0053E58A /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
-		35BAA1822368B20F0053E58A /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
-		35BAA1842368B22C0053E58A /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
+		35BAA1822368B20F0053E58A /* Outage-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
+		35BAA1842368B22C0053E58A /* Usage-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
 		35BAA1882368B29A0053E58A /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
 		35BAA18A2368B2A50053E58A /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		35BAA18C2368B2BB0053E58A /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
-		35BAA18E2368B5AA0053E58A /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
-		35BAA1902368B5C80053E58A /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
+		35BAA18E2368B5AA0053E58A /* Bill-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorBGE.storyboard"; sourceTree = "<group>"; };
+		35BAA1902368B5C80053E58A /* Bill-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
 		35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigUtility.swift; sourceTree = "<group>"; };
 		35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniWalletSheet.storyboard; sourceTree = "<group>"; };
 		35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletSheetViewController.swift; sourceTree = "<group>"; };
@@ -1376,14 +1382,14 @@
 		35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillInterfaceController.swift; sourceTree = "<group>"; };
 		35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageInterfaceController.swift; sourceTree = "<group>"; };
 		35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EUMobile-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35F9DD2F2333C34100AAA2B2 /* BGE-watchOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BGE-watchOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35F9DD5B2333C45300AAA2B2 /* BGEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BGEAssets.xcassets; sourceTree = "<group>"; };
+		35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "EUMobile-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorBGE.xcassets"; sourceTree = "<group>"; };
 		35F9DD5F2333C49600AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DD612333C74100AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DD692333C87A00AAA2B2 /* PECOAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PECOAssets.xcassets; sourceTree = "<group>"; };
-		35F9DDC423340C8600AAA2B2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		35F9DDF3233539B400AAA2B2 /* ComEdAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ComEdAssets.xcassets; sourceTree = "<group>"; };
-		35F9DDF7233539E100AAA2B2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-FlavorBGE.storyboard"; sourceTree = "<group>"; };
+		35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorCOMED.xcassets"; sourceTree = "<group>"; };
+		35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
 		35F9DE1123353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ComEd_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticUtility.swift; sourceTree = "<group>"; };
 		35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageInterfaceController.swift; sourceTree = "<group>"; };
@@ -3797,8 +3803,8 @@
 			children = (
 				35E7C7BE21907F2E00BA13C6 /* README.md */,
 				35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */,
-				35F9DD5B2333C45300AAA2B2 /* BGEAssets.xcassets */,
-				35F9DDF3233539B400AAA2B2 /* ComEdAssets.xcassets */,
+				35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */,
+				35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */,
 				35F9DD692333C87A00AAA2B2 /* PECOAssets.xcassets */,
 				67EDC30024C1E96A001A8494 /* PepcoAssets.xcassets */,
 				67EDC31324C1EB4C001A8494 /* ACEAssets.xcassets */,
@@ -3900,10 +3906,10 @@
 		35F9DDC323340C5900AAA2B2 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
-				35F9DDC423340C8600AAA2B2 /* Main.storyboard */,
-				352B19F7233BBE710090B442 /* Outage.storyboard */,
-				352B19F9233BBEDD0090B442 /* Usage.storyboard */,
-				35BAA18E2368B5AA0053E58A /* Bill.storyboard */,
+				35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */,
+				352B19F7233BBE710090B442 /* Outage-FlavorBGE.storyboard */,
+				352B19F9233BBEDD0090B442 /* Usage-FlavorBGE.storyboard */,
+				35BAA18E2368B5AA0053E58A /* Bill-FlavorBGE.storyboard */,
 			);
 			path = BGE;
 			sourceTree = "<group>";
@@ -3911,10 +3917,10 @@
 		35F9DDF6233539CA00AAA2B2 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
-				35F9DDF7233539E100AAA2B2 /* Main.storyboard */,
-				35BAA1822368B20F0053E58A /* Outage.storyboard */,
-				35BAA1842368B22C0053E58A /* Usage.storyboard */,
-				35BAA1902368B5C80053E58A /* Bill.storyboard */,
+				35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */,
+				35BAA1822368B20F0053E58A /* Outage-FlavorCOMED.storyboard */,
+				35BAA1842368B22C0053E58A /* Usage-FlavorCOMED.storyboard */,
+				35BAA1902368B5C80053E58A /* Bill-FlavorCOMED.storyboard */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -5160,7 +5166,7 @@
 				B5AC06D51E52238900BBA4ED /* EUMobileUnitTests.xctest */,
 				087630DE1E72F5D000FA7020 /* EUMobileUITests.xctest */,
 				35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */,
-				35F9DD2F2333C34100AAA2B2 /* BGE-watchOS Extension.appex */,
+				35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5502,7 +5508,7 @@
 			);
 			name = "EUMobile-Watch Extension";
 			productName = "BGE-Watch Extension";
-			productReference = 35F9DD2F2333C34100AAA2B2 /* BGE-watchOS Extension.appex */;
+			productReference = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		B58B5AC01E4E28740051FD5F /* EUMobile */ = {
@@ -5632,14 +5638,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67D5633224EEFAA100852551 /* Outage-FlavorCOMED.storyboard in Resources */,
 				671448C8247423DE004D2AFF /* environment.plist in Resources */,
-				352B19F8233BBE710090B442 /* Outage.storyboard in Resources */,
-				35F9DDC523340C9B00AAA2B2 /* Main.storyboard in Resources */,
-				352B19FA233BBEDD0090B442 /* Usage.storyboard in Resources */,
+				352B19F8233BBE710090B442 /* Outage-FlavorBGE.storyboard in Resources */,
+				35F9DDC523340C9B00AAA2B2 /* Main-FlavorBGE.storyboard in Resources */,
+				67D5633124EEFAA100852551 /* Main-FlavorCOMED.storyboard in Resources */,
+				352B19FA233BBEDD0090B442 /* Usage-FlavorBGE.storyboard in Resources */,
+				67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
-				35F9DD5C2333C45300AAA2B2 /* BGEAssets.xcassets in Resources */,
+				35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
+				67D5633424EEFAA100852551 /* Bill-FlavorCOMED.storyboard in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
-				35BAA18F2368B5AA0053E58A /* Bill.storyboard in Resources */,
+				67D5633324EEFAA100852551 /* Usage-FlavorCOMED.storyboard in Resources */,
+				35BAA18F2368B5AA0053E58A /* Bill-FlavorBGE.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5651,9 +5662,10 @@
 				C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */,
 				678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */,
 				C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
+				67D5633624EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				678B621A24CF6AD2009F8A6B /* ValidateRegistrationMock.json in Resources */,
 				35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */,
-				35F9DD5D2333C45900AAA2B2 /* BGEAssets.xcassets in Resources */,
+				35F9DD5D2333C45900AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
 				35F9DD882333D3C500AAA2B2 /* MCSConfig.plist in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67D73B00246C72F100450B63 /* environment.plist in Resources */,
@@ -7300,7 +7312,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -7481,7 +7493,7 @@
 				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -7666,7 +7678,7 @@
 				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -7802,14 +7814,14 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 10.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "BGE-Watch";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit App Enterprise Dist";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Headers";
 				SDKROOT = watchos;
@@ -7847,7 +7859,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -7924,7 +7936,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -7960,7 +7972,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -7994,7 +8006,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8028,7 +8040,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8062,7 +8074,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta WatchkitExt Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8131,7 +8143,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8141,7 +8153,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8170,7 +8182,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8178,7 +8190,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8205,7 +8217,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8213,7 +8225,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8240,7 +8252,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8248,7 +8260,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8275,7 +8287,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8283,7 +8295,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8401,7 +8413,7 @@
 				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -8574,7 +8586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8584,7 +8596,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8664,7 +8676,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8785,7 +8797,7 @@
 				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -8921,7 +8933,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8929,7 +8941,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -8963,7 +8975,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -9085,7 +9097,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -9178,7 +9190,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -9186,7 +9198,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -9220,7 +9232,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -9343,7 +9355,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -9438,14 +9450,14 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 10.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "BGE-Watch";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit App Enterprise Dist";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Headers";
 				SDKROOT = watchos;
@@ -9483,7 +9495,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit WatchkitExtension Enterprise";
 				SDKROOT = watchos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -9594,7 +9606,7 @@
 				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -9687,7 +9699,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -9695,7 +9707,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -9729,7 +9741,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -9842,7 +9854,7 @@
 				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "48c6faa5-6279-47c2-ac55-339f55816cb0";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -9935,7 +9947,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = BGE_Watch_Extension;
+				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -9943,7 +9955,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EUMobile-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -9977,7 +9989,7 @@
 				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "BGE-watchOS Extension";
+				PRODUCT_NAME = "EUMobile-Watch Extension";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta WatchkitExt Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -10095,7 +10107,7 @@
 				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -10311,7 +10323,7 @@
 				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "1b730eab-cc27-4537-9ebf-6b8e34daa7a3";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -10432,7 +10444,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EUMobile;
 				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";

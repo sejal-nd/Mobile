@@ -10,7 +10,7 @@
         <!--Outage-->
         <scene sceneID="hol-pR-2GK">
             <objects>
-                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="BGE_watchOS_Extension">
+                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="EUMobile_Watch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Qu5-Yb-MPl">
                             <items>

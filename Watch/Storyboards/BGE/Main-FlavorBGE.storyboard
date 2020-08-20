@@ -10,7 +10,7 @@
         <!--ReportOutageInterfaceController-->
         <scene sceneID="1RF-hm-hR3">
             <objects>
-                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a" customClass="ReportOutageInterfaceController" customModule="ComEd_watchOS_Extension">
+                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a" customClass="ReportOutageInterfaceController" customModule="EUMobile_Watch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="BKS-FI-22X">
                             <items>
@@ -28,15 +28,15 @@
         <!--AccountListInterfaceController-->
         <scene sceneID="QsP-lO-Kwh">
             <objects>
-                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="ComEd_watchOS_Extension">
+                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="EUMobile_Watch_Extension">
                     <items>
                         <table alignment="left" id="sgx-CZ-A51">
                             <items>
-                                <tableRow identifier="AccountTableRowController" id="Orz-c5-1Ov" customClass="AccountTableRowController" customModule="ComEd_Watch" customModuleProvider="target">
+                                <tableRow identifier="AccountTableRowController" id="Orz-c5-1Ov" customClass="AccountTableRowController" customModule="EUMobile_Watch" customModuleProvider="target">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="sdA-I2-UIm">
                                         <items>
                                             <imageView width="24" height="1" alignment="left" image="checkmark_white" contentMode="scaleAspectFit" id="eSW-rz-UXJ"/>
-                                            <imageView width="43" height="1" alignment="left" image="residential" contentMode="scaleAspectFit" id="4fA-v9-H5C"/>
+                                            <imageView width="35" height="35" alignment="left" verticalAlignment="center" image="residential" contentMode="scaleAspectFit" id="4fA-v9-H5C"/>
                                             <group alignment="left" verticalAlignment="center" layout="vertical" id="hib-PY-eAc">
                                                 <items>
                                                     <label width="1" alignment="left" text="Labellllllll" id="ccU-dk-XKg">
@@ -71,7 +71,7 @@
         <!--SignInInterfaceController-->
         <scene sceneID="MbM-Z9-klW">
             <objects>
-                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="ComEd_watchOS_Extension">
+                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="EUMobile_Watch_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="RQM-iB-7iQ">
                             <items>
@@ -91,7 +91,7 @@
             <point key="canvasLocation" x="273" y="-655"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.95686274509803915" green="0.0" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.40000000000000002" green="0.70196078431372544" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="checkmark_white" width="24" height="24"/>
         <image name="reportOutageSignIn" width="70" height="86"/>
