@@ -190,6 +190,8 @@ if [ -n "$SCHEME" ]; then
     target_scheme=$SCHEME
 fi
 
+echo "Scheme set: $target_scheme"
+
 if [ -n "$APP_CENTER_APP" ]; then
     echo "App center app has been specified via args -- overriding default of $target_app_center_app with $APP_CENTER_APP"
     target_app_name=$APP_CENTER_APP
