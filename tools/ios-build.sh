@@ -20,7 +20,6 @@ Usage:
 ------- Required Arguments ------
 
 --opco                    - BGE, PECO, or ComEd, ACE, Pepco, Delmarva
---build-number            - Integer, will be appended to the base version number
 
 --configuration           - Testing, Staging, Prodbeta, Hotfix, or Release
 
@@ -65,13 +64,9 @@ to just update the build script directly if it's a permanent change.
                           - Options: ${stagingMBEs[*]}
 "
 
-PROPERTIES_FILE='version.properties'
-PROJECT_DIR="."
-ASSET_DIR="$PROJECT_DIR/App/Resources/Assets/"
 PROJECT="Mobile.xcworkspace"
 CONFIGURATION=""
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
-BUILD_NUMBER=
 SCHEME=
 APP_CENTER_APP=
 APP_CENTER_API_TOKEN=
@@ -90,7 +85,6 @@ NOWSECURE_API_TOKEN=
 # Parse arguments.
 for i in "$@"; do
     case $1 in
-        --build-number) BUILD_NUMBER="$2"; shift ;;
         --scheme) SCHEME="$2"; shift ;;
         --project) PROJECT="$2"; shift ;;
         --configuration) CONFIGURATION="$2"; shift ;;
@@ -153,10 +147,7 @@ elif [[ "$BUILD_BRANCH" == "refs/heads/master" ]]; then
   CONFIGURATION="Release"
 fi
 
-if [ -z "$BUILD_NUMBER" ]; then
-    echo "Missing argument: build-number"
-    exit 1
-elif [ -z "$CONFIGURATION" ]; then
+if [ -z "$CONFIGURATION" ]; then
     echo "Missing argument: configuration"
     exit 1
 elif [ -z "$OPCO" ]; then
@@ -170,19 +161,6 @@ if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
 fi
 
-
-if [ -f "$PROPERTIES_FILE" ]; then
-  echo "$PROPERTIES_FILE found."
-
-  while IFS='=' read -r key value
-  do
-    key=$(echo $key | tr '.' '_')
-    eval "${key}='${value}'"
-  done < "$PROPERTIES_FILE"
-else
-  echo "$PROPERTIES_FILE not found."
-fi
-
 echo "Executing the following phases: $target_phases"
 
 # Project configurations & schemes
@@ -191,9 +169,6 @@ echo "Executing the following phases: $target_phases"
 #   Staging - STAGING
 #   Release - PROD
 #   Prodbeta - PRODBETA
-
-
-current_icon_set="${ASSET_DIR}${OPCO}Assets.xcassets/AppIcon.appiconset"
 
 target_bundle_id=
 target_app_name=
@@ -204,55 +179,6 @@ target_version_number=
 
 OPCO_LOWERCASE=$(echo "$OPCO" | tr '[:upper:]' '[:lower:]')
 
-if [ "$OPCO" == "BGE" ]; then
-    target_version_number=$BGE_VERSION_NUMBER
-elif [ "$OPCO" == "ComEd" ]; then
-    target_version_number=$COMED_VERSION_NUMBER
-elif [ "$OPCO" == "PECO" ]; then
-    target_version_number=$PECO_VERSION_NUMBER
-elif [ "$OPCO" == "Pepco" ]; then
-    target_version_number=$PEPCO_VERSION_NUMBER
-elif [ "$OPCO" == "Delmarva" ]; then
-    target_version_number=$DELMARVA_VERSION_NUMBER
-elif [ "$OPCO" == "ACE" ]; then
-    target_version_number=$ACE_VERSION_NUMBER
-fi
-
-if [ "$CONFIGURATION" == "Testing" ]; then
-    target_app_name="$OPCO Testing"
-    target_icon_asset="tools/$OPCO/testing"
-    target_scheme="$OPCO-TESTING"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO"
-    target_version_number="$target_version_number.$BUILD_NUMBER-testing"
-elif [ "$CONFIGURATION" == "Staging" ]; then
-    target_app_name="$OPCO Staging"
-    target_icon_asset="tools/$OPCO/staging"
-    target_scheme="$OPCO-STAGING"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$OPCO"
-    target_version_number="$target_version_number.$BUILD_NUMBER-staging"
-elif [ "$CONFIGURATION" == "Prodbeta" ]; then
-    target_app_name="$OPCO Prodbeta"
-    target_icon_asset="tools/$OPCO/prodbeta"
-    target_scheme="$OPCO-PRODBETA"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
-    target_version_number="$target_version_number.$BUILD_NUMBER-prodbeta"
-elif [ "$CONFIGURATION" == "Hotfix" ]; then
-    target_app_name="$OPCO Hotfix"
-    target_icon_asset="tools/$OPCO/hotfix"
-    target_scheme="$OPCO-HOTFIX"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
-    target_version_number="$target_version_number.$BUILD_NUMBER-hotfix"
-elif [ "$CONFIGURATION" == "Release" ]; then
-    target_app_name="$OPCO"
-    target_icon_asset="tools/$OPCO/release"
-    target_scheme="$OPCO-RELEASE"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
-else
-    echo "Invalid argument: configuration"
-    echo "    value must be either \"Testing\", \"Staging\", \"Prodbeta\", \"Hotfix\", or \"Release\""
-    exit 1
-fi
-
 if [ -n "$SCHEME" ]; then
     echo "Scheme has been specified via args -- overriding default of $target_scheme with $SCHEME"
     target_scheme=$SCHEME
@@ -262,71 +188,6 @@ if [ -n "$APP_CENTER_APP" ]; then
     echo "App center app has been specified via args -- overriding default of $target_app_center_app with $APP_CENTER_APP"
     target_app_name=$APP_CENTER_APP
 fi
-
-
-if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]]; then
-
-	echo "Replacing app icon set..."
-	subs=`ls $target_icon_asset`
-
-	for i in $subs; do
-		if [[ $i == *.png ]]; then
-			echo "    Updating: $i"
-			rm -rf "$current_icon_set/$i"
-			cp "$target_icon_asset/$i" "$current_icon_set"
-		fi
-	done
-	echo "App Icon updated:"
-	echo "   Replaced current_icon_set=$current_icon_set"
-	echo "   with: "
-	echo "   AppIconSet=$target_icon_asset"
-
-	echo "Updating plist $PROJECT_DIR/App/Supporting\ Files/$OPCO/$OPCO-Info.plist"
-    echo "Updating plist $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist"
-    echo "Updating plist $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist"
-
-	# Update Bundle ID, App Name, App Version, and Icons
-	plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/App/Supporting\ Files/$OPCO/$OPCO-Info.plist
-	plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/App/Supporting\ Files/$OPCO/$OPCO-Info.plist
-	plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/App/Supporting\ Files/$OPCO/$OPCO-Info.plist
-
-
-    plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
-    plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
-    plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
-
-    plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
-    plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
-    plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
-
-
-	echo "$PROJECT_DIR/App/Supporting\ Files/$OPCO/$OPCO-Info.plist updated:"
-	echo "   CFBundleVersion=$BUILD_NUMBER"
-	echo "   CFBundleName=$target_app_name"
-	echo "   CFBundleShortVersionString=$target_version_number"
-	echo ""
-
-	if [[ ( "$CONFIGURATION" == "Staging"  ||  "$CONFIGURATION" == "Testing" ||  "$CONFIGURATION" == "Hotfix" ) &&  "$OVERRIDE_MBE" != "" ]]; then
-        if find_in_array $OVERRIDE_MBE "${stagingMBEs[@]}"; then
-
-            if [ "$CONFIGURATION" == "Staging" ]; then
-                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/App/Supporting\ Files/$OPCO/Environment/$OPCO-Environment-STAGING.plist
-                echo "Updating plist $PROJECT_DIR/App/Supporting\ Files/$OPCO/Environment/$OPCO-Environment-STAGING.plist"
-            elif [ "$CONFIGURATION" == "Hotfix" ]; then
-                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/App/Supporting\ Files/$OPCO/Environment/$OPCO-Environment-HOTFIX.plist
-                echo "Updating plist $PROJECT_DIR/App/Supporting\ Files/$OPCO/Environment/$OPCO-Environment-HOTFIX.plist"
-            else
-                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/App/Supporting\ Files/$OPCO/Environment/$OPCO-Environment-TESTING.plist
-                echo "Updating plist $PROJECT_DIR/App/Supporting\ Files/$OPCO/Environment/$OPCO-Environment-TESTING.plist"
-            fi
-            echo "   mcsInstanceName=$OVERRIDE_MBE"
-        else
-            echo "Specified Stage MBE $OVERRIDE_MBE was not found"
-            exit 1
-        fi
-    fi
-fi
-
 
 # Check VSTS xcode version. If set to 10, change it to 11. This branch requires 11+ to run.
 if xcodebuild -version | grep -q "Xcode 10"; then
