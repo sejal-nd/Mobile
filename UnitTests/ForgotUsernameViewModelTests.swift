@@ -153,16 +153,18 @@ class ForgotUsernameViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
     }
     
-    func testAccountNumberHasTenDigits() {
-        viewModel.accountNumber.accept("2385012311")
-        viewModel.accountNumberHasTenDigits.asObservable().single().subscribe(onNext: { valid in
+    func testAccountNumberHasValidLength() {
+        let accountNumber = Environment.shared.opco.isPHI ? "23850123112" : "2385012311"
+
+        viewModel.accountNumber.accept(accountNumber)
+        viewModel.accountNumberHasValidLength.asObservable().single().subscribe(onNext: { valid in
             if !valid {
-                XCTFail("Account number \"2385012311\" should pass the 10 digit check")
+                XCTFail("Account number \"\(accountNumber)\" should pass the \(accountNumber.count) digit check")
             }
         }).disposed(by: disposeBag)
         
         viewModel.accountNumber.accept("21254")
-        viewModel.accountNumberHasTenDigits.asObservable().single().subscribe(onNext: { valid in
+        viewModel.accountNumberHasValidLength.asObservable().single().subscribe(onNext: { valid in
             if valid {
                 XCTFail("Account number \"21254\" should fail the NotEmpty check")
             }

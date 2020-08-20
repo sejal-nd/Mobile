@@ -270,6 +270,12 @@ class BillViewModelContentTests: BillViewModelTests {
             firstExpectedValue = "You are enrolled in BGEasy"
         case .comEd, .peco:
             firstExpectedValue = nil
+        case .pepco:
+            firstExpectedValue = "todo"
+        case .ace:
+            firstExpectedValue = "todo"
+        case .delmarva:
+            firstExpectedValue = "todo"
         }
         
         let expectedValues: [String?] = [
