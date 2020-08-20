@@ -37,7 +37,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Testing-BGE"
+      buildConfiguration = "Automation-BGE"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
@@ -100,7 +100,7 @@
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Testing-BGE"
+      buildConfiguration = "Automation-BGE"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -117,10 +117,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Testing-BGE">
+      buildConfiguration = "Automation-BGE">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Testing-BGE"
+      buildConfiguration = "Automation-BGE"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
