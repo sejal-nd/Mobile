@@ -7798,7 +7798,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85393D72BF0D58EB222D6793 /* Pods-EUMobile-Watch.hotfix-bge.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-HOTFIX";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -7834,6 +7834,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C4EBA4F22D3952F04F15489 /* Pods-EUMobile-Watch Extension.hotfix-bge.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-HOTFIX";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.hotfix.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7868,6 +7869,7 @@
 			baseConfigurationReference = 3FD3118686EEE5E68066C101 /* Pods-EUMobile-Watch Extension.automation-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7947,6 +7949,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C49ACDAEA64149B8CDB7740 /* Pods-EUMobile-Watch Extension.testing-bge.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.testing.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7981,6 +7984,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 861A0309F587F45FAA57CAA2 /* Pods-EUMobile-Watch Extension.staging-bge.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8015,6 +8019,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE93228EC1D97D5F1CA05E39 /* Pods-EUMobile-Watch Extension.production beta-bge.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8049,6 +8054,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 25EE28FB5A274E3F91751C4D /* Pods-EUMobile-Watch Extension.production-bge.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8084,7 +8090,7 @@
 			baseConfigurationReference = 2C9152BB1B80F2204DE3849E /* Pods-EUMobile-Watch.automation-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -8164,7 +8170,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 639B72AB36CFA3B2A89822AB /* Pods-EUMobile-Watch.testing-bge.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -8199,7 +8205,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D5E37566A70318121E60F8D8 /* Pods-EUMobile-Watch.staging-bge.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -8234,7 +8240,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A4964C32DD442A8E3F73D83 /* Pods-EUMobile-Watch.production beta-bge.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -8269,7 +8275,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9922BBB33C6F2F49A1042D4E /* Pods-EUMobile-Watch.production-bge.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -8527,7 +8533,7 @@
 			baseConfigurationReference = 1420449F90646CC84E3CAFC3 /* Pods-EUMobile-Watch.automation-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -8608,6 +8614,7 @@
 			baseConfigurationReference = 442A2F484271DD4190FF853F /* Pods-EUMobile-Watch Extension.automation-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8915,7 +8922,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79BA7A5401AC7B83A28CE042 /* Pods-EUMobile-Watch.testing-comed.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -8950,6 +8957,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F4A88446FD6A3C7713D13687 /* Pods-EUMobile-Watch Extension.testing-comed.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.testing.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9172,7 +9180,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C1F24379D20CF9BB17C3824D /* Pods-EUMobile-Watch.staging-comed.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -9207,6 +9215,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0EF447ACA6C432A81FCE83DA /* Pods-EUMobile-Watch Extension.staging-comed.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9429,7 +9438,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 59A97C93B7D81E00AC54E1D9 /* Pods-EUMobile-Watch.hotfix-comed.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-HOTFIX";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -9465,6 +9474,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD229C1489DAA22420A646AA /* Pods-EUMobile-Watch Extension.hotfix-comed.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-HOTFIX";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.hotfix.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9676,7 +9686,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4085B06295820BCC99687BEE /* Pods-EUMobile-Watch.production beta-comed.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -9711,6 +9721,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 570BBEA6012E9EECA68C7FE3 /* Pods-EUMobile-Watch Extension.production beta-comed.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9924,7 +9935,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB7090464872325DDE88E994 /* Pods-EUMobile-Watch.production-comed.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -9959,6 +9970,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E55D391D3FAF0A192D506A6E /* Pods-EUMobile-Watch Extension.production-comed.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.iphoneproduction.exelon.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
