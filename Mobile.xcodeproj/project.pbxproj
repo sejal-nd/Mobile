@@ -5473,6 +5473,7 @@
 				35F9DD212333C33F00AAA2B2 /* Resources */,
 				35F9DD872333D2B800AAA2B2 /* Embed App Extensions */,
 				35F9DD592333C3FB00AAA2B2 /* Frameworks */,
+				67D5632F24EECD1600852551 /* Set Build Number */,
 			);
 			buildRules = (
 			);
@@ -5493,6 +5494,7 @@
 				35F9DD2C2333C34100AAA2B2 /* Frameworks */,
 				35F9DD2D2333C34100AAA2B2 /* Resources */,
 				8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */,
+				67D5633024EECD2200852551 /* Set Build Number */,
 			);
 			buildRules = (
 			);
@@ -5513,6 +5515,7 @@
 				B58B5ABF1E4E28740051FD5F /* Resources */,
 				F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */,
 				35F9DD4D2333C34200AAA2B2 /* Embed Watch Content */,
+				67D5632E24EECD0000852551 /* Set Build Number */,
 			);
 			buildRules = (
 			);
@@ -6025,6 +6028,60 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		67D5632E24EECD0000852551 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nbundleVersion=`\"$git\" rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersion\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		67D5632F24EECD1600852551 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nbundleVersion=`\"$git\" rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersion\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		67D5633024EECD2200852551 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nbundleVersion=`\"$git\" rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersion\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
 		};
 		6CD2BABE4AFAB7CD35D474EA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -7171,6 +7228,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -7200,6 +7258,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -7222,12 +7281,12 @@
 			baseConfigurationReference = BE756815CD4F129A19E64059 /* Pods-EUMobileApp-EUMobile.hotfix-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-HOTFIX";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
@@ -7237,7 +7296,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -7360,6 +7419,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -7383,6 +7443,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -7403,13 +7464,13 @@
 			baseConfigurationReference = C0AB120CFF1C6D7CF4A6DE58 /* Pods-EUMobileApp-EUMobile.production-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -7417,7 +7478,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7537,6 +7598,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -7566,6 +7628,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
@@ -7587,11 +7650,11 @@
 			baseConfigurationReference = 98D87AAC32035576AFE614ED /* Pods-EUMobileApp-EUMobile.testing-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
@@ -7600,7 +7663,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7735,7 +7798,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -7744,7 +7807,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "BGE-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit App Enterprise Dist";
@@ -7773,7 +7836,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -7781,7 +7844,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -7833,7 +7896,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -7856,7 +7919,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -7887,14 +7950,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -7921,14 +7984,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -7955,14 +8018,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -7989,14 +8052,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -8049,7 +8112,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8073,7 +8136,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8104,7 +8167,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -8112,7 +8175,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8139,7 +8202,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -8147,7 +8210,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8174,7 +8237,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -8182,7 +8245,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8209,7 +8272,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -8217,7 +8280,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8271,6 +8334,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8300,6 +8364,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -8321,11 +8386,11 @@
 			baseConfigurationReference = FA16D75A8C3CB917FF0A16D9 /* Pods-EUMobileApp-EUMobile.automation-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CODE_SIGN_IDENTITY = "Apple Development: Jeremy Sloane (32KC7LCEJC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -8333,7 +8398,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8490,7 +8555,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8514,7 +8579,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8571,7 +8636,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8594,7 +8659,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8652,6 +8717,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8681,6 +8747,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
@@ -8702,11 +8769,11 @@
 			baseConfigurationReference = A80FC12007B3A4A203AF87CA /* Pods-EUMobileApp-EUMobile.testing-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
@@ -8715,7 +8782,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8851,7 +8918,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -8859,7 +8926,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8886,14 +8953,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -8947,6 +9014,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8976,6 +9044,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -8998,12 +9067,12 @@
 			baseConfigurationReference = 0112EE26095C41C0EA59534D /* Pods-EUMobileApp-EUMobile.staging-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
@@ -9012,7 +9081,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -9106,7 +9175,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -9114,7 +9183,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -9141,14 +9210,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -9202,6 +9271,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -9231,6 +9301,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -9253,12 +9324,12 @@
 			baseConfigurationReference = 849EFF0291D234EF746502D0 /* Pods-EUMobileApp-EUMobile.hotfix-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-HOTFIX";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
@@ -9268,7 +9339,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -9363,7 +9434,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -9372,7 +9443,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "BGE-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Watchkit App Enterprise Dist";
@@ -9401,7 +9472,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_ENVIRONMENT = HOTFIX;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -9409,7 +9480,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -9462,6 +9533,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -9485,6 +9557,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -9505,20 +9578,20 @@
 			baseConfigurationReference = 874275C57E44D256C153D855 /* Pods-EUMobileApp-EUMobile.production beta-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -9611,7 +9684,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -9619,7 +9692,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -9646,14 +9719,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -9707,6 +9780,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -9730,6 +9804,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -9750,13 +9825,13 @@
 			baseConfigurationReference = 9B958439C7F48D2A5F2CFA25 /* Pods-EUMobileApp-EUMobile.production-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -9764,7 +9839,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -9857,7 +9932,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -9865,7 +9940,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -9892,14 +9967,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "BGE-watchOS Extension";
@@ -9953,6 +10028,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -9982,6 +10058,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -10003,11 +10080,11 @@
 			baseConfigurationReference = 8431DBE360E63F13515185C3 /* Pods-EUMobileApp-EUMobile.automation-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CODE_SIGN_IDENTITY = "Apple Development: Jeremy Sloane (32KC7LCEJC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -10015,7 +10092,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10173,6 +10250,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -10196,6 +10274,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -10216,20 +10295,20 @@
 			baseConfigurationReference = 28FB8E77EC4AB0196A4883EC /* Pods-EUMobileApp-EUMobile.production beta-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-PROD.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10282,6 +10361,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -10311,6 +10391,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -10333,12 +10414,12 @@
 			baseConfigurationReference = FDA1940805C55C21DDF72680 /* Pods-EUMobileApp-EUMobile.staging-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
@@ -10347,7 +10428,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 9.9.0;
+				MARKETING_VERSION = 10.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
