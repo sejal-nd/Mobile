@@ -1,17 +1,6 @@
 #!/usr/bin/env bash
 
 
-# Reads in the mobile cloud config file directly, filtering out prod instances
-# Have to convert to json first
-
-plutil -convert json -e json App/MCSConfig.plist
-
-string_of_mbes="$(jq -r '.mobileBackends|keys[]' < App/Supporting\ Files/MCSConfig.json | grep -v Prod)"
-
-stagingMBEs=($string_of_mbes)
-
-rm App/Supporting\ Files/MCSConfig.json
-
 echo "
 Exelon Utilities Mobile Build Script for iOS
 
@@ -76,7 +65,6 @@ APP_CENTER_GROUP=
 OPCO=
 PHASE=
 BUILD_BRANCH=
-OVERRIDE_MBE=
 AZURE_DEVOPS_TOKEN=
 RELEASE_NOTES_PR_NUMBER=
 RELEASE_NOTES_CONTENT=
@@ -96,7 +84,6 @@ for i in "$@"; do
         --opco) OPCO="$2"; shift ;;
         --phase) PHASE="$2"; shift ;;
         --build-branch) BUILD_BRANCH="$2"; shift ;;
-        --override-mbe) OVERRIDE_MBE="$2"; shift ;;
         --azuredevopstoken) AZURE_DEVOPS_TOKEN="$2"; shift ;;
         --releasenotesprnumber) RELEASE_NOTES_PR_NUMBER="$2"; shift ;;
         --releasenotescontent) RELEASE_NOTES_CONTENT="$2"; shift ;;
