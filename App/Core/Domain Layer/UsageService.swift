@@ -32,8 +32,10 @@ struct UsageService {
                         let params = UsageCache.ComparisonParams(accountNumber: accountNumber, premiseNumber: premiseNumber, yearAgo: yearAgo, gas: gas)
                         self.cache[params] = compareBillResult
                     }
-                default:
-                    break
+                    
+                    completion(.success(compareBillResult))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
         }
@@ -47,13 +49,15 @@ struct UsageService {
         } else {
             NetworkingLayer.request(router: .forecastBill(accountNumber: accountNumber, premiseNumber: premiseNumber)) { (result: Result<BillForecastResult, NetworkingError>) in
                 switch result {
-                case .success(let compareBillResult):
+                case .success(let billForecast):
                     if useCache {
                         let params = UsageCache.ForecastParams(accountNumber: accountNumber, premiseNumber: premiseNumber)
-                        self.cache[params] = compareBillResult
+                        self.cache[params] = billForecast
                     }
-                default:
-                    break
+                    
+                    completion(.success(billForecast))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
         }
