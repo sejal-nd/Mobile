@@ -49,8 +49,6 @@ to just update the build script directly if it's a permanent change.
 --project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
 --phase                   - cocoapods, build, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
---override-mbe            - Override the default MBE for testing or staging builds only
-                          - Options: ${stagingMBEs[*]}
 "
 
 PROJECT="Mobile.xcworkspace"
@@ -165,6 +163,27 @@ target_app_center_app=
 target_version_number=
 
 OPCO_LOWERCASE=$(echo "$OPCO" | tr '[:upper:]' '[:lower:]')
+
+if [ "$CONFIGURATION" == "Testing" ]; then
+    target_scheme="$OPCO-TESTING"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO"
+elif [ "$CONFIGURATION" == "Staging" ]; then
+    target_scheme="$OPCO-STAGING"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$OPCO"
+elif [ "$CONFIGURATION" == "Prodbeta" ]; then
+    target_scheme="$OPCO-PRODBETA"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
+elif [ "$CONFIGURATION" == "Hotfix" ]; then
+    target_scheme="$OPCO-HOTFIX"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
+elif [ "$CONFIGURATION" == "Release" ]; then
+    target_scheme="$OPCO-RELEASE"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
+else
+    echo "Invalid argument: configuration"
+    echo "    value must be either \"Testing\", \"Staging\", \"Prodbeta\", \"Hotfix\", or \"Release\""
+    exit 1
+fi
 
 if [ -n "$SCHEME" ]; then
     echo "Scheme has been specified via args -- overriding default of $target_scheme with $SCHEME"
