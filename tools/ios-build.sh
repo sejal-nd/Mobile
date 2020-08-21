@@ -177,7 +177,7 @@ elif [ "$CONFIGURATION" == "Hotfix" ]; then
     target_scheme="$OPCO-HOTFIX"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
 elif [ "$CONFIGURATION" == "Release" ]; then
-    target_scheme="$OPCO-RELEASE"
+    target_scheme="$OPCO-PROD"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
 else
     echo "Invalid argument: configuration"
