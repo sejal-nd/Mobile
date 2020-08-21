@@ -30,6 +30,7 @@ class RegistrationChooseAccountViewController: UIViewController {
         instructionLabel.textColor = .deepGray
         instructionLabel.text = NSLocalizedString("Select the account you would like to use for registration. If more than one account is associated with the one you choose, they will be registered together.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.setLineHeight(lineHeight: 24)
         
         accountNumberHeaderLabel.textColor = .deepGray
         accountNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
