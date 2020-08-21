@@ -61,6 +61,7 @@ APP_CENTER_TEST_DEVICES=
 APP_CENTER_TEST_SERIES="master"
 APP_CENTER_GROUP=
 OPCO=
+OPCO_UPPERCASE=
 PHASE=
 BUILD_BRANCH=
 AZURE_DEVOPS_TOKEN=
@@ -164,7 +165,7 @@ target_version_number=
 
 OPCO_UPPERCASE=${OPCO^^}
 
-echo "OpCo: $OPCO ... $OPCO_UPPERCASE"
+echo "OpCo: $OPCO ... $OPCO_UPPERCASE....${OPCO^^}"
 
 if [ "$CONFIGURATION" == "Testing" ]; then
     target_scheme="$OPCO_UPPERCASE-TESTING"
