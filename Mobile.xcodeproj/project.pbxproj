@@ -197,7 +197,6 @@
 		54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */; };
 		54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */; };
 		671448C224731680004D2AFF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		671448C8247423DE004D2AFF /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
 		673F9F4724C891AE00210BCD /* AccountService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087A8724B63D03005AE544 /* AccountService+Rx.swift */; };
 		673F9FCE24C894C600210BCD /* AccountLookupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B0024AB828000A828F9 /* AccountLookupRequest.swift */; };
 		673F9FD624C894D700210BCD /* RecoverMaskedUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4AEE24AB828000A828F9 /* RecoverMaskedUsernameRequest.swift */; };
@@ -5707,7 +5706,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				67D5633224EEFAA100852551 /* Outage-FlavorCOMED.storyboard in Resources */,
-				671448C8247423DE004D2AFF /* environment.plist in Resources */,
 				352B19F8233BBE710090B442 /* Outage-FlavorBGE.storyboard in Resources */,
 				35F9DDC523340C9B00AAA2B2 /* Main-FlavorBGE.storyboard in Resources */,
 				67D5633124EEFAA100852551 /* Main-FlavorCOMED.storyboard in Resources */,
