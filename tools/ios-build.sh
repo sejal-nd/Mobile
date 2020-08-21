@@ -163,9 +163,9 @@ target_scheme=
 target_app_center_app=
 target_version_number=
 
-OPCO_UPPERCASE=${OPCO^^}
+OPCO_UPPERCASE=$(echo "$OPCO" | tr '[:lower:]' '[:upper:]')
 
-echo "OpCo: $OPCO ... $OPCO_UPPERCASE....${OPCO^^}"
+echo "OpCo: $OPCO ... $OPCO_UPPERCASE.."
 
 if [ "$CONFIGURATION" == "Testing" ]; then
     target_scheme="$OPCO_UPPERCASE-TESTING"
