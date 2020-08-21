@@ -29,23 +29,27 @@ def iOS_UITestPods
   pod 'surveymonkey-ios-sdk', '2.0.5'
 end
 
-abstract_target 'EUMobileApp' do
-    platform :ios, '11.0'
-    use_frameworks!
+target 'EUMobile' do
+  platform :ios, '12.0'
+  use_frameworks!
+  iOS_pods
+  shared_pods
+end
 
+target 'EUMobileUnitTests' do
+  platform :ios, '12.0'
+  use_frameworks!
+    iOS_UnitTestPods
     iOS_pods
     shared_pods
+end
 
-    target 'EUMobile' do
-    end
-
-    target 'EUMobileUnitTests' do
-        iOS_UnitTestPods
-    end
-
-    target 'EUMobileUITests' do
-        iOS_UITestPods
-    end
+target 'EUMobileUITests' do
+  platform :ios, '12.0'
+  use_frameworks!
+    iOS_UITestPods
+    iOS_pods
+    shared_pods
 end
 
 target 'EUMobile-Watch' do
