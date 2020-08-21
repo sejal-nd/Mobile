@@ -126,11 +126,11 @@ elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
 elif [[ "$BUILD_BRANCH" == "refs/heads/phi/stage" ]]; then
   CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
-  CONFIGURATION="Prodbeta"
+  CONFIGURATION="Production Beta"
 elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix" ]]; then
   CONFIGURATION="Hotfix"
 elif [[ "$BUILD_BRANCH" == "refs/heads/master" ]]; then
-  CONFIGURATION="Release"
+  CONFIGURATION="Production"
 fi
 
 if [ -z "$CONFIGURATION" ]; then
@@ -149,7 +149,7 @@ fi
 
 echo "Executing the following phases: $target_phases"
 
-# Project configurations & schemes
+# Project schemes
 #   Develop - DEVELOP
 #   Automation - AUT & AUT-UITest
 #   Staging - STAGING
