@@ -162,22 +162,24 @@ target_scheme=
 target_app_center_app=
 target_version_number=
 
-OPCO_LOWERCASE=$(echo "$OPCO" | tr '[:upper:]' '[:lower:]')
+OPCO_UPPERCASE=${OPCO^^}
+
+echo "OpCo: $OPCO ... $OPCO_UPPERCASE"
 
 if [ "$CONFIGURATION" == "Testing" ]; then
-    target_scheme="$OPCO-TESTING"
+    target_scheme="$OPCO_UPPERCASE-TESTING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO"
 elif [ "$CONFIGURATION" == "Staging" ]; then
-    target_scheme="$OPCO-STAGING"
+    target_scheme="$OPCO_UPPERCASE-STAGING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$OPCO"
 elif [ "$CONFIGURATION" == "Prodbeta" ]; then
-    target_scheme="$OPCO-PRODBETA"
+    target_scheme="$OPCO_UPPERCASE-PRODBETA"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
 elif [ "$CONFIGURATION" == "Hotfix" ]; then
-    target_scheme="$OPCO-HOTFIX"
+    target_scheme="$OPCO_UPPERCASE-HOTFIX"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
 elif [ "$CONFIGURATION" == "Release" ]; then
-    target_scheme="$OPCO-PROD"
+    target_scheme="$OPCO_UPPERCASE-PROD"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
 else
     echo "Invalid argument: configuration"
@@ -217,9 +219,9 @@ if [[ $target_phases = *"unitTest"* ]]; then
     echo "Running automation tests"
     xcrun xcodebuild \
         -workspace $PROJECT \
-        -scheme "$OPCO-AUT" \
+        -scheme "$OPCO_UPPERCASE-AUT" \
         -destination "$UNIT_TEST_SIMULATOR" \
-        -configuration Automation \
+        -configuration "Automation-$OPCO" \
         test | tee build/logs/xcodebuild_automation_unittests.log | xcpretty --report junit
     check_errs $? "Xcode unit tests exited with a non-zero status"
 
@@ -231,12 +233,12 @@ if [[ $target_phases = *"build"* ]]; then
     echo "------------------------------ Building Application  ----------------------------"
     # Build App
 
-    echo "config: $CONFIGURATION...... scheme: $target_scheme"
+    echo "config: $CONFIGURATION-$OPCO...$OPCO...workspace: $PROJECT...... scheme: $target_scheme"
 
     set -o pipefail
 
 	xcrun xcodebuild \
-		-configuration $CONFIGURATION \
+		-configuration "$CONFIGURATION-$OPCO" \
 		-workspace $PROJECT \
 		-scheme "$target_scheme" \
 		-archivePath build/archive/$target_scheme.xcarchive \
@@ -409,9 +411,9 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
         # rm -rf "DerivedData"
         echo "----------------------------------- Build-for-testing -------------------------------"
         xcrun xcodebuild \
-            -configuration Automation \
+            -configuration "Automation-$OPCO" \
             -workspace $PROJECT \
-            -scheme "$OPCO-AUT-UITest" \
+            -scheme "$OPCO_UPPERCASE-AUT-UITest" \
             build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty
 
         check_errs $? "Build for testing exited with a non-zero status"
