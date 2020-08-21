@@ -10,7 +10,7 @@ Usage:
 
 --opco                    - BGE, PECO, or ComEd, ACE, Pepco, Delmarva
 
---configuration           - Testing, Staging, Prodbeta, Hotfix, or Release
+--configuration           - Testing, Staging, Hotfix, Prodbeta, or Release
 
                             or
 
