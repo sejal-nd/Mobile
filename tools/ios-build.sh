@@ -231,6 +231,8 @@ if [[ $target_phases = *"build"* ]]; then
     echo "------------------------------ Building Application  ----------------------------"
     # Build App
 
+    echo "config: $CONFIGURATION...... scheme: $target_scheme"
+
     set -o pipefail
 
 	xcrun xcodebuild \
