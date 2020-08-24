@@ -247,13 +247,13 @@ if [[ $target_phases = *"build"* ]]; then
 
     echo "--------------------------------- Post archiving  -------------------------------"
 
-
     # Archive App
     xcrun xcodebuild \
         -exportArchive \
         -archivePath build/archive/$target_scheme.xcarchive \
-        -exportPath build/output/$target_scheme /
+        -exportPath build/output/$target_scheme \
         -exportOptionsPlist tools/ExportPlists/$target_scheme.plist
+
 
     check_errs $? "Xcode archiving exited with a non-zero status"
 
