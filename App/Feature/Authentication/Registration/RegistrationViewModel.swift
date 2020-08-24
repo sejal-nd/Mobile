@@ -158,8 +158,11 @@ class RegistrationViewModel {
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let accountNumber = self.hasMultipleAccount ? selectedAccount.value?.accountNumber ?? "": self.accountNumber.value
-        registrationService.createNewAccount(username: username.value,
+        registrationService.createNewAccount(firstName: firstName.value,
+                                             lastName: lastName.value,
+                                             username: username.value,
                                              password: newPassword.value,
+                                             nickname: accountNickname.value,
                                              accountNum: accountNumber,
                                              identifier: identifierNumber.value,
                                              phone: extractDigitsFrom(phoneNumber.value),

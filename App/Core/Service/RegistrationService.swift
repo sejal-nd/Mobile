@@ -11,8 +11,11 @@ import RxSwift
 protocol RegistrationService {
     
     /*
+     firstName      String  FirstName to register. Only for PHI opcos.
+     lastName       String  LastName to register. Only for PHI opcos.
      username       String  Username to register. Must be a valid email address.
      password       String  Account password
+     nickname       String  Account nickName. Only for PHI opcos.
      accountNum     String  Account number
      identifier     String  Last4ofSSN,TaxIDorBGEPin
      phone          String  Account phone number
@@ -25,8 +28,11 @@ protocol RegistrationService {
      set_primary    String  Certain commercial accounts are allowed to have multiple profiles.
      enroll_ebill   String  Set this to true when the customer has elected to enroll in Electronic Billing.
      */
-    func createNewAccount(username: String,
+    func createNewAccount(firstName: String?,
+                          lastName: String?,
+                          username: String,
                           password: String,
+                          nickname: String?,
                           accountNum: String?,
                           identifier: String,
                           phone: String,

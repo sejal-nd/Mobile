@@ -10,8 +10,8 @@ import Foundation
 import RxSwift
 
 struct MockRegistrationService: RegistrationService {
-    
-    func createNewAccount(username: String, password: String, accountNum: String?, identifier: String, phone: String, question1: String, answer1: String, question2: String, answer2: String, question3: String, answer3: String, isPrimary: String, isEnrollEBill: String) -> Observable<Void> {
+   
+    func createNewAccount(firstName: String?, lastName: String?, username: String, password: String, nickname: String?, accountNum: String?, identifier: String, phone: String, question1: String, answer1: String, question2: String, answer2: String, question3: String, answer3: String, isPrimary: String, isEnrollEBill: String) -> Observable<Void> {
         return .just(())
     }
     
