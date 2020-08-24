@@ -165,8 +165,6 @@ target_version_number=
 
 OPCO_UPPERCASE=$(echo "$OPCO" | tr '[:lower:]' '[:upper:]')
 
-echo "OpCo: $OPCO ... $OPCO_UPPERCASE.."
-
 if [ "$CONFIGURATION" == "Testing" ]; then
     target_scheme="$OPCO_UPPERCASE-TESTING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO"
@@ -233,9 +231,9 @@ if [[ $target_phases = *"build"* ]]; then
 
     echo "------------------------------ Building Application  ----------------------------"
     # Build App
-
-    echo "config: $CONFIGURATION-$OPCO...$OPCO...workspace: $PROJECT...... scheme: $target_scheme"
-
+    
+    echo "Application configuration: $CONFIGURATION-$OPCO, Workspace: $PROJECT, Scheme: $target_scheme"
+    
     set -o pipefail
 
 	xcrun xcodebuild \
@@ -254,9 +252,8 @@ if [[ $target_phases = *"build"* ]]; then
     xcrun xcodebuild \
         -exportArchive \
         -archivePath build/archive/$target_scheme.xcarchive \
-        -exportPath build/output/$target_scheme \
-        -exportOptionsPlist tools/ExportPlists/$target_scheme.plist
-
+        -exportPath build/output/$target_scheme
+        
     check_errs $? "Xcode archiving exited with a non-zero status"
 
     echo "--------------------------------- Post exporting -------------------------------"

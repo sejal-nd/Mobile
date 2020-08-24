@@ -5585,9 +5585,9 @@
 				B58B5ABD1E4E28740051FD5F /* Sources */,
 				B58B5ABE1E4E28740051FD5F /* Frameworks */,
 				B58B5ABF1E4E28740051FD5F /* Resources */,
+				67D5632E24EECD0000852551 /* Set Build Number */,
 				F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */,
 				35F9DD4D2333C34200AAA2B2 /* Embed Watch Content */,
-				67D5632E24EECD0000852551 /* Set Build Number */,
 			);
 			buildRules = (
 			);
