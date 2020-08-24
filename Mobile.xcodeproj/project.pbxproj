@@ -7380,6 +7380,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Hotfix-BGE";
@@ -7559,6 +7560,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production-BGE";
@@ -7744,6 +7746,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Testing-BGE";
@@ -7890,6 +7893,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -7925,6 +7929,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Hotfix-BGE";
@@ -8006,6 +8011,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Automation-BGE";
@@ -8041,6 +8047,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Testing-BGE";
@@ -8076,6 +8083,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Staging-BGE";
@@ -8111,6 +8119,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production Beta-BGE";
@@ -8146,6 +8155,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production-BGE";
@@ -8227,6 +8237,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Automation-BGE";
@@ -8262,6 +8273,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Testing-BGE";
@@ -8297,6 +8309,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Staging-BGE";
@@ -8332,6 +8345,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production Beta-BGE";
@@ -8367,6 +8381,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production-BGE";
@@ -8484,6 +8499,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Automation-ComEd";
@@ -8671,6 +8687,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Automation-ComEd";
@@ -8752,6 +8769,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Automation-ComEd";
@@ -8870,6 +8888,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Testing-ComEd";
@@ -9016,6 +9035,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Testing-ComEd";
@@ -9051,6 +9071,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Testing-ComEd";
@@ -9172,6 +9193,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Staging-ComEd";
@@ -9274,6 +9296,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Staging-ComEd";
@@ -9309,6 +9332,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Staging-ComEd";
@@ -9430,6 +9454,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Hotfix-ComEd";
@@ -9532,6 +9557,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -9567,6 +9593,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Hotfix-ComEd";
@@ -9678,6 +9705,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production Beta-ComEd";
@@ -9780,6 +9808,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production Beta-ComEd";
@@ -9815,6 +9844,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production Beta-ComEd";
@@ -9927,6 +9957,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production-ComEd";
@@ -10029,6 +10060,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production-ComEd";
@@ -10064,6 +10096,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production-ComEd";
@@ -10181,6 +10214,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Automation-BGE";
@@ -10398,6 +10432,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Production Beta-BGE";
@@ -10519,6 +10554,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = "Staging-BGE";
