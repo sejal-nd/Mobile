@@ -22,7 +22,12 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
     @IBOutlet weak var createUsernameTextField: FloatLabelTextField!
     @IBOutlet weak var createPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
-        
+    
+    // Specific fields to PHI
+    @IBOutlet weak var firstNameTextField: FloatLabelTextField!
+    @IBOutlet weak var lastNameTextField: FloatLabelTextField!
+    @IBOutlet weak var accountNicknameTextField: FloatLabelTextField!
+    
     @IBOutlet var passwordRequirementLabels: [UILabel]!
     @IBOutlet var mustAlsoContainLabel: UILabel!
 
@@ -50,18 +55,6 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
     @IBOutlet weak var continueButton: PrimaryButton!
     
     var viewModel: RegistrationViewModel!
-    
-    lazy var toolbar: UIToolbar = {
-        let toolbar = UIToolbar()
-        let suggestPasswordButton = UIBarButtonItem(title: "Suggest Password", style: .plain, target: self, action: #selector(suggestPassword))
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        
-        let items = [suggestPasswordButton, space]
-        toolbar.setItems(items, animated: false)
-        toolbar.sizeToFit()
-        toolbar.tintColor = .actionBlue
-        return toolbar
-    }()
     
     // MARK: - View Life Cycle
     
@@ -179,6 +172,38 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
     // MARK: - Helper
 
     func prepareTextFieldsForInput() {
+        firstNameTextField.isHidden = !viewModel.shouldShowFirstAndLastName
+        lastNameTextField.isHidden = !viewModel.shouldShowFirstAndLastName
+        accountNicknameTextField.isHidden = !viewModel.shouldShowAccountNickname
+
+        firstNameTextField.textField.textContentType = .name
+        firstNameTextField.placeholder = NSLocalizedString("First Name*", comment: "")
+        firstNameTextField.setKeyboardType(.default)
+        firstNameTextField.textField.returnKeyType = .next
+        firstNameTextField.textField.delegate = self
+        firstNameTextField.textField.isShowingAccessory = true
+        firstNameTextField.setError(nil)
+        accessibilityErrorLabel()
+        
+        lastNameTextField.textField.textContentType = .name
+        lastNameTextField.placeholder = NSLocalizedString("Last Name*", comment: "")
+        lastNameTextField.setKeyboardType(.emailAddress)
+        lastNameTextField.textField.returnKeyType = .next
+        lastNameTextField.textField.delegate = self
+        lastNameTextField.textField.isShowingAccessory = true
+        lastNameTextField.setError(nil)
+        accessibilityErrorLabel()
+        
+        createUsernameTextField.textField.textContentType = .username
+        createUsernameTextField.placeholder = NSLocalizedString("Email*", comment: "")
+        createUsernameTextField.setKeyboardType(.emailAddress)
+        createUsernameTextField.textField.returnKeyType = .next
+        createUsernameTextField.textField.delegate = self
+        createUsernameTextField.textField.isShowingAccessory = true
+        createUsernameTextField.setError(nil)
+        accessibilityErrorLabel()
+        
+        
         createUsernameTextField.textField.textContentType = .username
         createUsernameTextField.placeholder = NSLocalizedString("Email*", comment: "")
         createUsernameTextField.setKeyboardType(.emailAddress)
@@ -197,31 +222,64 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         viewModel.newPasswordIsValid.drive(onNext: { [weak self] valid in
             self?.createPasswordTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Minimum password criteria met", comment: ""))
         }).disposed(by: disposeBag)
-
+        
         createPasswordTextField.placeholder = NSLocalizedString("Password*", comment: "")
         createPasswordTextField.textField.isSecureTextEntry = true
         createPasswordTextField.textField.returnKeyType = .next
         createPasswordTextField.textField.delegate = self
         
-        if #available(iOS 12.0, *) {
-            createPasswordTextField.textField.textContentType = .newPassword
-            confirmPasswordTextField.textField.textContentType = .newPassword
-            let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
-            createPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
-            confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
-        } else {
-            createPasswordTextField.textField.inputAccessoryView = toolbar
-            confirmPasswordTextField.textField.inputAccessoryView = toolbar
-        }
+        createPasswordTextField.textField.textContentType = .newPassword
+        confirmPasswordTextField.textField.textContentType = .newPassword
+        let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
+        createPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+        confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+        
         
         confirmPasswordTextField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
-        confirmPasswordTextField.textField.returnKeyType = .done
+        confirmPasswordTextField.textField.returnKeyType = Environment.shared.opco.isPHI ? .next : .done
         confirmPasswordTextField.textField.delegate = self
+        
+        accountNicknameTextField.placeholder = NSLocalizedString("Account Nickname", comment: "")
+        accountNicknameTextField.textField.returnKeyType = .done
+        accountNicknameTextField.textField.delegate = self
         
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
         createPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).disposed(by: disposeBag)
         confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).disposed(by: disposeBag)
+        
+        if Environment.shared.opco.isPHI {
+            
+            firstNameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
+                .drive(onNext: { [weak self] in
+                    guard let self = self else { return }
+                    // If we displayed an inline error, clear it when user edits the text
+                    if self.firstNameTextField.errorState {
+                        self.firstNameTextField.setError(nil)
+                    }
+                    self.accessibilityErrorLabel()
+                }).disposed(by: disposeBag)
+            
+            firstNameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
+                .drive(onNext: { [weak self] in
+                    self?.lastNameTextField.textField.becomeFirstResponder()
+                }).disposed(by: disposeBag)
+            
+            lastNameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
+                .drive(onNext: { [weak self] in
+                    guard let self = self else { return }
+                    // If we displayed an inline error, clear it when user edits the text
+                    if self.lastNameTextField.errorState {
+                        self.lastNameTextField.setError(nil)
+                    }
+                    self.accessibilityErrorLabel()
+                }).disposed(by: disposeBag)
+            
+            lastNameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
+                .drive(onNext: { [weak self] in
+                    self?.createUsernameTextField.textField.becomeFirstResponder()
+                }).disposed(by: disposeBag)
+        }
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { [weak self] in
@@ -344,10 +402,12 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
     
     private func accessibilityErrorLabel() {
         var message = ""
+        message += firstNameTextField.getError()
+        message += lastNameTextField.getError()
         message += createUsernameTextField.getError()
         message += createPasswordTextField.getError()
         message += confirmPasswordTextField.getError()
-        
+
         if message.isEmpty {
             continueButton.accessibilityLabel = NSLocalizedString("Continue", comment: "")
         } else {
@@ -410,23 +470,50 @@ extension RegistrationCreateCredentialsViewControllerNew: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == createUsernameTextField.textField {
-            createPasswordTextField.textField.becomeFirstResponder()
-        } else if textField == createPasswordTextField.textField {
-            if confirmPasswordTextField.isUserInteractionEnabled {
-                confirmPasswordTextField.textField.becomeFirstResponder()
-            } else {
+        if Environment.shared.opco.isPHI {
+            if textField == firstNameTextField.textField {
+                lastNameTextField.textField.becomeFirstResponder()
+            } else if textField == lastNameTextField.textField {
                 createUsernameTextField.textField.becomeFirstResponder()
+            } else if textField == createUsernameTextField.textField {
+                createPasswordTextField.textField.becomeFirstResponder()
+            } else if textField == createPasswordTextField.textField {
+                if confirmPasswordTextField.isUserInteractionEnabled {
+                    confirmPasswordTextField.textField.becomeFirstResponder()
+                } else {
+                    createUsernameTextField.textField.becomeFirstResponder()
+                }
+            } else if textField == confirmPasswordTextField.textField {
+                accountNicknameTextField.textField.becomeFirstResponder()
+            } else if textField == accountNicknameTextField.textField {
+                viewModel.createCredentialsContinueEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+                    .drive(onNext: { [weak self] enabled in
+                        if enabled {
+                            self?.onContinuePress()
+                        } else {
+                            self?.view.endEditing(true)
+                        }
+                    }).disposed(by: disposeBag)
             }
-        } else if textField == confirmPasswordTextField.textField {
-            viewModel.createCredentialsContinueEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
-                .drive(onNext: { [weak self] enabled in
-                    if enabled {
-                        self?.onContinuePress()
-                    } else {
-                        self?.view.endEditing(true)
-                    }
-                }).disposed(by: disposeBag)
+        } else {
+            if textField == createUsernameTextField.textField {
+                createPasswordTextField.textField.becomeFirstResponder()
+            } else if textField == createPasswordTextField.textField {
+                if confirmPasswordTextField.isUserInteractionEnabled {
+                    confirmPasswordTextField.textField.becomeFirstResponder()
+                } else {
+                    createUsernameTextField.textField.becomeFirstResponder()
+                }
+            } else if textField == confirmPasswordTextField.textField {
+                viewModel.createCredentialsContinueEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+                    .drive(onNext: { [weak self] enabled in
+                        if enabled {
+                            self?.onContinuePress()
+                        } else {
+                            self?.view.endEditing(true)
+                        }
+                    }).disposed(by: disposeBag)
+            }
         }
         return false
     }
