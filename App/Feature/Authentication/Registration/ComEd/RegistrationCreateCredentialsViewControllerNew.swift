@@ -187,22 +187,12 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         
         lastNameTextField.textField.textContentType = .name
         lastNameTextField.placeholder = NSLocalizedString("Last Name*", comment: "")
-        lastNameTextField.setKeyboardType(.emailAddress)
+        lastNameTextField.setKeyboardType(.default)
         lastNameTextField.textField.returnKeyType = .next
         lastNameTextField.textField.delegate = self
         lastNameTextField.textField.isShowingAccessory = true
         lastNameTextField.setError(nil)
         accessibilityErrorLabel()
-        
-        createUsernameTextField.textField.textContentType = .username
-        createUsernameTextField.placeholder = NSLocalizedString("Email*", comment: "")
-        createUsernameTextField.setKeyboardType(.emailAddress)
-        createUsernameTextField.textField.returnKeyType = .next
-        createUsernameTextField.textField.delegate = self
-        createUsernameTextField.textField.isShowingAccessory = true
-        createUsernameTextField.setError(nil)
-        accessibilityErrorLabel()
-        
         
         createUsernameTextField.textField.textContentType = .username
         createUsernameTextField.placeholder = NSLocalizedString("Email*", comment: "")
@@ -462,6 +452,18 @@ extension RegistrationCreateCredentialsViewControllerNew: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         if textField == accountNicknameTextField.textField && newString.trimmingCharacters(in: .whitespacesAndNewlines).count > 25 {
             return false
+        } else if textField == firstNameTextField.textField {
+            viewModel.firstNameIsValid.drive(onNext: { [weak self] errorMessage in
+                self?.firstNameTextField.setError(errorMessage)
+                self?.accessibilityErrorLabel()
+                
+            }).disposed(by: self.disposeBag)
+        } else if textField == lastNameTextField.textField {
+            viewModel.lastNameIsValid.drive(onNext: { [weak self] errorMessage in
+                self?.lastNameTextField.setError(errorMessage)
+                self?.accessibilityErrorLabel()
+                
+            }).disposed(by: self.disposeBag)
         }
     
         createPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
@@ -482,18 +484,8 @@ extension RegistrationCreateCredentialsViewControllerNew: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if Environment.shared.opco.isPHI {
             if textField == firstNameTextField.textField {
-                viewModel.firstNameIsValid.drive(onNext: { [weak self] errorMessage in
-                    self?.firstNameTextField.setError(errorMessage)
-                    self?.accessibilityErrorLabel()
-                    
-                }).disposed(by: self.disposeBag)
                 lastNameTextField.textField.becomeFirstResponder()
             } else if textField == lastNameTextField.textField {
-                viewModel.lastNameIsValid.drive(onNext: { [weak self] errorMessage in
-                    self?.lastNameTextField.setError(errorMessage)
-                    self?.accessibilityErrorLabel()
-                    
-                }).disposed(by: self.disposeBag)
                 createUsernameTextField.textField.becomeFirstResponder()
             } else if textField == createUsernameTextField.textField {
                 createPasswordTextField.textField.becomeFirstResponder()
