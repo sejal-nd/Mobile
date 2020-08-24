@@ -42,13 +42,13 @@ class MCSRegistrationService: RegistrationService {
         
         if opCo.isPHI {
             if let firstname = firstName {
-                params["firstName"] = firstname
+                params["FirstName"] = firstname
             }
             if let lastname = lastName {
-                params["lastName"] = lastname
+                params["LastName"] = lastname
             }
             if let nickName = nickname {
-                params["nickName"] = nickName
+                params["nickname"] = nickName
             }
         }
         
