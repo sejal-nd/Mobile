@@ -231,10 +231,7 @@ if [[ $target_phases = *"build"* ]]; then
 
     echo "------------------------------ Building Application  ----------------------------"
     # Build App
-    
-    echo "Possible schemes:"
-    xcodebuild -workspace $PROJECT -list
-    
+
     echo "Application configuration: $CONFIGURATION-$OPCO, Workspace: $PROJECT, Scheme: $target_scheme"
     
     set -o pipefail
