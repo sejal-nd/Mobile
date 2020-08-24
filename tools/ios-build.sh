@@ -10,7 +10,7 @@ Usage:
 
 --opco                    - BGE, PECO, or ComEd, ACE, Pepco, Delmarva
 
---configuration           - Testing, Staging, Hotfix, Prodbeta, or Release
+--configuration           - Testing, Staging, Hotfix, Production Beta, or Production
 
                             or
 
@@ -153,8 +153,8 @@ echo "Executing the following phases: $target_phases"
 #   Develop - DEVELOP
 #   Automation - AUT & AUT-UITest
 #   Staging - STAGING
-#   Release - PROD
-#   Prodbeta - PRODBETA
+#   Production - PROD
+#   Production Beta - PRODBETA
 
 target_bundle_id=
 target_app_name=
@@ -171,18 +171,18 @@ if [ "$CONFIGURATION" == "Testing" ]; then
 elif [ "$CONFIGURATION" == "Staging" ]; then
     target_scheme="$OPCO_UPPERCASE-STAGING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$OPCO"
-elif [ "$CONFIGURATION" == "Prodbeta" ]; then
+elif [ "$CONFIGURATION" == "Production Beta" ]; then
     target_scheme="$OPCO_UPPERCASE-PRODBETA"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
 elif [ "$CONFIGURATION" == "Hotfix" ]; then
     target_scheme="$OPCO_UPPERCASE-HOTFIX"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
-elif [ "$CONFIGURATION" == "Release" ]; then
+elif [ "$CONFIGURATION" == "Production" ]; then
     target_scheme="$OPCO_UPPERCASE-PROD"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
 else
     echo "Invalid argument: configuration"
-    echo "    value must be either \"Testing\", \"Staging\", \"Prodbeta\", \"Hotfix\", or \"Release\""
+    echo "    value must be either \"Testing\", \"Staging\", \"Hotfix\", \"Production Beta\", or \"Production\""
     exit 1
 fi
 
@@ -303,7 +303,7 @@ if [[ $target_phases = *"build"* ]]; then
         fi
     fi
 
-    if [ "$CONFIGURATION" == "Release" ]; then
+    if [ "$CONFIGURATION" == "Production" ]; then
         echo "Skipping App Center symbol uploading as you will need to upload to Apple first and download dSYMs from them"
     else
 
@@ -344,7 +344,7 @@ if [[ $target_phases = *"build"* ]]; then
         fi
     fi
 
-    if [ "$CONFIGURATION" == "Release" ]; then
+    if [ "$CONFIGURATION" == "Production" ]; then
         echo "Skipping App Center distribution script as this is not applicable for prod release"
     else
     if [[ $target_phases = *"writeDistributionScript"* ]]; then
