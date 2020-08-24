@@ -23,6 +23,10 @@ class RegistrationViewModel {
     let dueDate = BehaviorRelay<Date?>(value: nil)
     var selectedSegmentIndex = BehaviorRelay(value: 0)
     
+    let firstName = BehaviorRelay(value: "")
+    let lastName = BehaviorRelay(value: "")
+    let accountNickname = BehaviorRelay(value: "")
+
     let username = BehaviorRelay(value: "")
     let newPassword = BehaviorRelay(value: "")
     let confirmPassword = BehaviorRelay(value: "")
@@ -304,6 +308,12 @@ class RegistrationViewModel {
     private(set) lazy var newUsernameHasText: Driver<Bool> =
         self.username.asDriver().map { !$0.isEmpty }
     
+    private(set) lazy var firstNameHasText: Driver<Bool> =
+          self.firstName.asDriver().map { !$0.isEmpty }
+    
+    private(set) lazy var lastNameHasText: Driver<Bool> =
+          self.lastName.asDriver().map { !$0.isEmpty }
+    
     private(set) lazy var newUsernameIsValidBool: Driver<Bool> =
         self.username.asDriver().map { text -> Bool in
             if text.count > kMaxUsernameChars {
@@ -349,6 +359,30 @@ class RegistrationViewModel {
                 }
             }
             
+            return nil
+    }
+    
+    private(set) lazy var firstNameIsValid: Driver<String?> =
+        self.firstName.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+            } else {
+                return "First Name is required."
+            }
+            return nil
+    }
+    
+    private(set) lazy var lastNameIsValid: Driver<String?> =
+        self.lastName.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+            } else {
+                return "Last Name is required."
+            }
             return nil
     }
     
@@ -452,7 +486,10 @@ class RegistrationViewModel {
     private(set) lazy var confirmPasswordMatches: Driver<Bool> =
         Driver.combineLatest(self.confirmPassword.asDriver(), self.newPassword.asDriver(), resultSelector: ==)
     
-    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Driver
+    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Environment.shared.opco.isPHI ? Driver
+        .combineLatest(firstNameHasText, lastNameHasText, everythingValid, confirmPasswordMatches, newPasswordHasText)
+        { $0 && $1 && $2 && $3 && $4}
+    : Driver
         .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
         { $0 && $1 && $2 }
     

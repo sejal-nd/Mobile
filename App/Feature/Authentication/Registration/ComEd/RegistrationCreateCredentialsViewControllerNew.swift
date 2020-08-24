@@ -244,10 +244,15 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         accountNicknameTextField.textField.returnKeyType = .done
         accountNicknameTextField.textField.delegate = self
         
+        firstNameTextField.textField.rx.text.orEmpty.bind(to: viewModel.firstName).disposed(by: disposeBag)
+        lastNameTextField.textField.rx.text.orEmpty.bind(to: viewModel.lastName).disposed(by: disposeBag)
+
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
         createPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).disposed(by: disposeBag)
         confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).disposed(by: disposeBag)
         
+        accountNicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNickname).disposed(by: disposeBag)
+
         if Environment.shared.opco.isPHI {
             
             firstNameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
@@ -472,8 +477,18 @@ extension RegistrationCreateCredentialsViewControllerNew: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if Environment.shared.opco.isPHI {
             if textField == firstNameTextField.textField {
+                viewModel.firstNameIsValid.drive(onNext: { [weak self] errorMessage in
+                    self?.firstNameTextField.setError(errorMessage)
+                    self?.accessibilityErrorLabel()
+                    
+                }).disposed(by: self.disposeBag)
                 lastNameTextField.textField.becomeFirstResponder()
             } else if textField == lastNameTextField.textField {
+                viewModel.lastNameIsValid.drive(onNext: { [weak self] errorMessage in
+                    self?.lastNameTextField.setError(errorMessage)
+                    self?.accessibilityErrorLabel()
+                    
+                }).disposed(by: self.disposeBag)
                 createUsernameTextField.textField.becomeFirstResponder()
             } else if textField == createUsernameTextField.textField {
                 createPasswordTextField.textField.becomeFirstResponder()
