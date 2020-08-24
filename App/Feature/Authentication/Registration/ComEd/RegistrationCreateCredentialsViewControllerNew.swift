@@ -459,6 +459,11 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
 extension RegistrationCreateCredentialsViewControllerNew: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        if textField == accountNicknameTextField.textField && newString.trimmingCharacters(in: .whitespacesAndNewlines).count > 25 {
+            return false
+        }
+    
         createPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
         confirmPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
         self.viewModel.hasStrongPassword = false
