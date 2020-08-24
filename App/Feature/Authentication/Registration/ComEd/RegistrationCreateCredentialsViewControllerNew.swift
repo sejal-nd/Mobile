@@ -91,7 +91,7 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         if self.viewModel.isPaperlessEbillEligible {
             eBillEnrollView.isHidden = false
             eBillCheckBox.rx.isChecked.bind(to: viewModel.paperlessEbill).disposed(by: disposeBag)
-            eBillCheckBox.isChecked = true
+            eBillCheckBox.isChecked = !(Environment.shared.opco == .ace)
         } else {
             eBillEnrollView.isHidden = true
         }
