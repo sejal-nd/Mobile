@@ -157,7 +157,7 @@
 		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		35F9DD952333D84700AAA2B2 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
@@ -1194,12 +1194,14 @@
 		1420449F90646CC84E3CAFC3 /* Pods-EUMobile-Watch.automation-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.automation-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.automation-comed.xcconfig"; sourceTree = "<group>"; };
 		14D312527577C0DC723EE7DF /* Pods-ACE-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACE-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ACE-Watch Extension/Pods-ACE-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
 		1520EC1A55C49833571BFE2D /* Pods-ACEApp-ACEUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACEUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACEUITests/Pods-ACEApp-ACEUITests.staging.xcconfig"; sourceTree = "<group>"; };
+		16CCE847AF6B00CD2A019E96 /* Pods-EUMobileUITests.testing-payments-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.testing-payments-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.testing-payments-comed.xcconfig"; sourceTree = "<group>"; };
 		16EF6073F4FCC7A8EC26A5DB /* Pods-PECO_WatchOS.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		1709C63401B3D4EA0F8411B7 /* Pods-Pepco-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pepco-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Pepco-Watch/Pods-Pepco-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		1718653D6673902E80574C8B /* Pods-PECO_WatchOS Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.testing.xcconfig"; sourceTree = "<group>"; };
 		17D43F8DCDDE435C15D480ED /* Pods-ACEApp-ACE.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACE.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACE/Pods-ACEApp-ACE.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		17F61858A62CCE19EAAB47E1 /* Pods-EUMobile.automation-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.automation-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.automation-comed.xcconfig"; sourceTree = "<group>"; };
 		186E04E414D2B72C1CEC84FE /* Pods-ComEd-Watch.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.staging.xcconfig"; sourceTree = "<group>"; };
+		19E0859E91B819716D815F6B /* Pods-EUMobile-Watch.testing-payments-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.testing-payments-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.testing-payments-comed.xcconfig"; sourceTree = "<group>"; };
 		1B2572125BDE80B2AC6587FD /* Pods-Pepco-Watch Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pepco-Watch Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-Pepco-Watch Extension/Pods-Pepco-Watch Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		1BC27672C4C04023AA13472D /* Pods_Delmarva_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Delmarva_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD79CAFE843705C9795521E /* Pods_ComEdApp_ComEd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComEdApp_ComEd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1237,7 +1239,9 @@
 		2C93EB550EF7A99848465AB8 /* Pods-EUMobileUITests.production beta-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production beta-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production beta-bge.xcconfig"; sourceTree = "<group>"; };
 		2CA6BD8498D04ED38DEB1A48 /* Pods-ACEApp-ACEUITests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACEUITests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACEUITests/Pods-ACEApp-ACEUITests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		2CCC074A6ECD38E6C9FC586D /* Pods-PECO-Watch Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.testing.xcconfig"; sourceTree = "<group>"; };
+		2CE36248BE490E6CCBE21504 /* Pods-EUMobile.testing-payments-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.testing-payments-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.testing-payments-bge.xcconfig"; sourceTree = "<group>"; };
 		2E196EF08A30A59916403D19 /* Pods_Delmarva_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Delmarva_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E34C5FCF4D0AE5DAFD93E97 /* Pods-EUMobile-Watch Extension.testing-payments-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.testing-payments-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.testing-payments-comed.xcconfig"; sourceTree = "<group>"; };
 		2E3B8F5E664FBF52470D610A /* Pods-ComEd-Watch.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		2E9AE32F0B304EDEBA5BC3A9 /* Pods-BGEApp-BGEUnitTests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.automation.xcconfig"; sourceTree = "<group>"; };
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
@@ -1435,6 +1439,7 @@
 		4C73B5D59C78110383613BF9 /* Pods-ACE-Watch Extension.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACE-Watch Extension.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ACE-Watch Extension/Pods-ACE-Watch Extension.develop.xcconfig"; sourceTree = "<group>"; };
 		4D78A733C702DC697B588978 /* Pods_EUMobile_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC1FD66B81ACBDA300A0FD9 /* Pods-ComEdApp-ComEdUITests.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.develop-stage.xcconfig"; sourceTree = "<group>"; };
+		4F1090113A023F19AD2F85BA /* Pods-EUMobileUITests.testing-payments-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.testing-payments-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.testing-payments-bge.xcconfig"; sourceTree = "<group>"; };
 		4F226A9B0D3CDA4C598E210C /* Pods-DelmarvaApp-DelmarvaUnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelmarvaApp-DelmarvaUnitTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-DelmarvaApp-DelmarvaUnitTests/Pods-DelmarvaApp-DelmarvaUnitTests.staging.xcconfig"; sourceTree = "<group>"; };
 		4F9D22CDA7EFE9F0DF8C35D6 /* Pods-PECOApp-PECO.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.staging.xcconfig"; sourceTree = "<group>"; };
 		4FDBF2EC0B0432B373FB773D /* Pods-BGE-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
@@ -1459,6 +1464,7 @@
 		5615370DCB46448A0C5935B5 /* Pods-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		570BBEA6012E9EECA68C7FE3 /* Pods-EUMobile-Watch Extension.production beta-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.production beta-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.production beta-comed.xcconfig"; sourceTree = "<group>"; };
 		582DD6F247A5BF31AE8D8C56 /* Pods-EUMobileUITests.automation-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.automation-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.automation-bge.xcconfig"; sourceTree = "<group>"; };
+		5858596767DCE50BDC24DFB4 /* Pods-EUMobileUnitTests.testing-payments-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.testing-payments-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.testing-payments-bge.xcconfig"; sourceTree = "<group>"; };
 		58D50E79BCA0DFD8B783487F /* Pods-EUMobileUITests.testing-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.testing-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.testing-comed.xcconfig"; sourceTree = "<group>"; };
 		591707166E55707FA347F0D5 /* Pods-ACE-Watch.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACE-Watch.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ACE-Watch/Pods-ACE-Watch.staging.xcconfig"; sourceTree = "<group>"; };
 		59847CBFDB38FA8DE16AF961 /* Pods-DelmarvaApp-Delmarva.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelmarvaApp-Delmarva.develop.xcconfig"; path = "Pods/Target Support Files/Pods-DelmarvaApp-Delmarva/Pods-DelmarvaApp-Delmarva.develop.xcconfig"; sourceTree = "<group>"; };
@@ -1700,6 +1706,7 @@
 		6A4FD80B62F03A415062F85E /* splash-FlavorCOMED.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "splash-FlavorCOMED.json"; sourceTree = "<group>"; };
 		6A4FDA6DF9787E9CA31227BD /* splash-FlavorBGE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "splash-FlavorBGE.json"; sourceTree = "<group>"; };
 		6B297E370A954A2A5E81DC21 /* Pods-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
+		6B29D156CA56D606FBAFE215 /* Pods-EUMobileUnitTests.testing-payments-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.testing-payments-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.testing-payments-comed.xcconfig"; sourceTree = "<group>"; };
 		6B2DE6018AD09C38199A783F /* Pods-DelmarvaApp-DelmarvaUITests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelmarvaApp-DelmarvaUITests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-DelmarvaApp-DelmarvaUITests/Pods-DelmarvaApp-DelmarvaUITests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		6C3DB455AC2909C6CE9EF5C6 /* Pods-PECOApp-PECOUITests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop-test.xcconfig"; sourceTree = "<group>"; };
 		6C585BA923424B05EA3E7E7A /* Pods-ComEdApp-ComEdUITests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.testing.xcconfig"; sourceTree = "<group>"; };
@@ -1863,6 +1870,7 @@
 		9695203798183BABA1FCAEC6 /* Pods-ACEApp-ACE.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACEApp-ACE.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ACEApp-ACE/Pods-ACEApp-ACE.develop.xcconfig"; sourceTree = "<group>"; };
 		970150CE59C2A11DCFF829B3 /* Pods-Pepco-Watch Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pepco-Watch Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Pepco-Watch Extension/Pods-Pepco-Watch Extension.testing.xcconfig"; sourceTree = "<group>"; };
 		97129467449E93CAB63B6C4D /* Pods-ACE-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACE-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ACE-Watch/Pods-ACE-Watch.testing.xcconfig"; sourceTree = "<group>"; };
+		9808FC5EDA0FC17A89055428 /* Pods-EUMobile-Watch.testing-payments-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.testing-payments-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.testing-payments-bge.xcconfig"; sourceTree = "<group>"; };
 		9811FD9A9413E2DC71BBC13B /* Pods-EUMobileApp-EUMobileUITests.testing-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileApp-EUMobileUITests.testing-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileApp-EUMobileUITests/Pods-EUMobileApp-EUMobileUITests.testing-bge.xcconfig"; sourceTree = "<group>"; };
 		9882D218A37C017CB9174D44 /* Pods-EUMobileApp-EUMobileUITests.production beta-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileApp-EUMobileUITests.production beta-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileApp-EUMobileUITests/Pods-EUMobileApp-EUMobileUITests.production beta-bge.xcconfig"; sourceTree = "<group>"; };
 		98D87AAC32035576AFE614ED /* Pods-EUMobileApp-EUMobile.testing-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileApp-EUMobile.testing-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileApp-EUMobile/Pods-EUMobileApp-EUMobile.testing-bge.xcconfig"; sourceTree = "<group>"; };
@@ -2234,6 +2242,7 @@
 		CA796E0B9C45EA88BED00557 /* Pods-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.release.xcconfig"; sourceTree = "<group>"; };
 		CA7D742948411DF8FEB81338 /* Pods-PECO_WatchOS.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.hotfix.xcconfig"; sourceTree = "<group>"; };
 		CDF5D426CB1F9C1F42400115 /* Pods-DelmarvaApp-DelmarvaUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelmarvaApp-DelmarvaUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-DelmarvaApp-DelmarvaUnitTests/Pods-DelmarvaApp-DelmarvaUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
+		CE29512642785827D52DD024 /* Pods-EUMobile-Watch Extension.testing-payments-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.testing-payments-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.testing-payments-bge.xcconfig"; sourceTree = "<group>"; };
 		CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardViewModel.swift; sourceTree = "<group>"; };
 		CEA215201F7900CC00689422 /* HomeBillCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardView.swift; sourceTree = "<group>"; };
 		CEA215211F7900CC00689422 /* HomeBillCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeBillCardView.xib; sourceTree = "<group>"; };
@@ -2261,6 +2270,7 @@
 		DBF13B1801DE928B1527F71C /* Pods-EUMobileApp-EUMobileUITests.staging-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileApp-EUMobileUITests.staging-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileApp-EUMobileUITests/Pods-EUMobileApp-EUMobileUITests.staging-comed.xcconfig"; sourceTree = "<group>"; };
 		DCE79307FD91BB1A81D187D4 /* Pods_BGE_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGE_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1287E7F20B265241A3FDC8 /* Pods-BGEApp-BGEUITests.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.develop-stage.xcconfig"; sourceTree = "<group>"; };
+		DD61D29F7917843BA6AEA376 /* Pods-EUMobile.testing-payments-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.testing-payments-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.testing-payments-comed.xcconfig"; sourceTree = "<group>"; };
 		DE89CB543705ABCE7DE036CD /* Pods-ComEd-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.release.xcconfig"; sourceTree = "<group>"; };
 		DEEDA786E59F7E11D0A41C34 /* Pods-PECO-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch/Pods-PECO-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		DF251F7C62F7558966DB0AC8 /* Pods-DelmarvaApp-DelmarvaUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DelmarvaApp-DelmarvaUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-DelmarvaApp-DelmarvaUnitTests/Pods-DelmarvaApp-DelmarvaUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
@@ -2870,6 +2880,16 @@
 				6E09041F4B75B5D0C735657B /* Pods-EUMobileUnitTests.production beta-comed.xcconfig */,
 				8DFFC4B3A30782CF615E4BE0 /* Pods-EUMobileUnitTests.production-bge.xcconfig */,
 				77DE4F0930E16B3678E32D84 /* Pods-EUMobileUnitTests.production-comed.xcconfig */,
+				2CE36248BE490E6CCBE21504 /* Pods-EUMobile.testing-payments-bge.xcconfig */,
+				DD61D29F7917843BA6AEA376 /* Pods-EUMobile.testing-payments-comed.xcconfig */,
+				9808FC5EDA0FC17A89055428 /* Pods-EUMobile-Watch.testing-payments-bge.xcconfig */,
+				19E0859E91B819716D815F6B /* Pods-EUMobile-Watch.testing-payments-comed.xcconfig */,
+				CE29512642785827D52DD024 /* Pods-EUMobile-Watch Extension.testing-payments-bge.xcconfig */,
+				2E34C5FCF4D0AE5DAFD93E97 /* Pods-EUMobile-Watch Extension.testing-payments-comed.xcconfig */,
+				4F1090113A023F19AD2F85BA /* Pods-EUMobileUITests.testing-payments-bge.xcconfig */,
+				16CCE847AF6B00CD2A019E96 /* Pods-EUMobileUITests.testing-payments-comed.xcconfig */,
+				5858596767DCE50BDC24DFB4 /* Pods-EUMobileUnitTests.testing-payments-bge.xcconfig */,
+				6B29D156CA56D606FBAFE215 /* Pods-EUMobileUnitTests.testing-payments-comed.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -6372,7 +6392,7 @@
 				C3087B1F24BE154C005AE544 /* CompareBillResult.swift in Sources */,
 				35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */,
 				C3087AE024B67ED3005AE544 /* AccountNicknameRequest.swift in Sources */,
-				35F9DD932333D83F00AAA2B2 /* (null) in Sources */,
+				35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */,
 				673FA0B324C8956700210BCD /* GenericResponse.swift in Sources */,
 				675F4E2B24B4DADF00A828F9 /* UserSession.swift in Sources */,
 				67893ACC24DB3604000143D6 /* AlertRegistrationRequest.swift in Sources */,
@@ -8474,7 +8494,7 @@
 		};
 		676D1FA324F4446A00D41035 /* Testing-Payments-BGE */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB6EBAD591557CFFD5908F39 /* Pods-EUMobile.testing-bge.xcconfig */;
+			baseConfigurationReference = 2CE36248BE490E6CCBE21504 /* Pods-EUMobile.testing-payments-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
@@ -8507,7 +8527,7 @@
 		};
 		676D1FA424F4446A00D41035 /* Testing-Payments-BGE */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE8DC34B7BC4A15578646ACB /* Pods-EUMobileUnitTests.testing-bge.xcconfig */;
+			baseConfigurationReference = 5858596767DCE50BDC24DFB4 /* Pods-EUMobileUnitTests.testing-payments-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -8559,7 +8579,7 @@
 		};
 		676D1FA524F4446A00D41035 /* Testing-Payments-BGE */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 227972160A78412A19B9EF06 /* Pods-EUMobileUITests.testing-bge.xcconfig */;
+			baseConfigurationReference = 4F1090113A023F19AD2F85BA /* Pods-EUMobileUITests.testing-payments-bge.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8618,7 +8638,7 @@
 		};
 		676D1FA624F4446A00D41035 /* Testing-Payments-BGE */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 639B72AB36CFA3B2A89822AB /* Pods-EUMobile-Watch.testing-bge.xcconfig */;
+			baseConfigurationReference = 9808FC5EDA0FC17A89055428 /* Pods-EUMobile-Watch.testing-payments-bge.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8654,7 +8674,7 @@
 		};
 		676D1FA724F4446A00D41035 /* Testing-Payments-BGE */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C49ACDAEA64149B8CDB7740 /* Pods-EUMobile-Watch Extension.testing-bge.xcconfig */;
+			baseConfigurationReference = CE29512642785827D52DD024 /* Pods-EUMobile-Watch Extension.testing-payments-bge.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
@@ -8776,7 +8796,7 @@
 		};
 		676D1FA924F4447800D41035 /* Testing-Payments-ComEd */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2887DEDAAA436EDBF2C6824D /* Pods-EUMobile.testing-comed.xcconfig */;
+			baseConfigurationReference = DD61D29F7917843BA6AEA376 /* Pods-EUMobile.testing-payments-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
@@ -8809,7 +8829,7 @@
 		};
 		676D1FAA24F4447900D41035 /* Testing-Payments-ComEd */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFE888F49EFAD08A824C33C0 /* Pods-EUMobileUnitTests.testing-comed.xcconfig */;
+			baseConfigurationReference = 6B29D156CA56D606FBAFE215 /* Pods-EUMobileUnitTests.testing-payments-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -8861,7 +8881,7 @@
 		};
 		676D1FAB24F4447900D41035 /* Testing-Payments-ComEd */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58D50E79BCA0DFD8B783487F /* Pods-EUMobileUITests.testing-comed.xcconfig */;
+			baseConfigurationReference = 16CCE847AF6B00CD2A019E96 /* Pods-EUMobileUITests.testing-payments-comed.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8920,7 +8940,7 @@
 		};
 		676D1FAC24F4447900D41035 /* Testing-Payments-ComEd */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79BA7A5401AC7B83A28CE042 /* Pods-EUMobile-Watch.testing-comed.xcconfig */;
+			baseConfigurationReference = 19E0859E91B819716D815F6B /* Pods-EUMobile-Watch.testing-payments-comed.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8956,7 +8976,7 @@
 		};
 		676D1FAD24F4447900D41035 /* Testing-Payments-ComEd */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4A88446FD6A3C7713D13687 /* Pods-EUMobile-Watch Extension.testing-comed.xcconfig */;
+			baseConfigurationReference = 2E34C5FCF4D0AE5DAFD93E97 /* Pods-EUMobile-Watch Extension.testing-payments-comed.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;

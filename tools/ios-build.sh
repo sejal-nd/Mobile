@@ -125,10 +125,10 @@ elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/phi/stage" ]]; then
   CONFIGURATION="Staging"
-elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
-  CONFIGURATION="Production Beta"
 elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix" ]]; then
   CONFIGURATION="Hotfix"
+elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
+  CONFIGURATION="Production Beta"
 elif [[ "$BUILD_BRANCH" == "refs/heads/master" ]]; then
   CONFIGURATION="Production"
 fi
@@ -171,12 +171,12 @@ if [ "$CONFIGURATION" == "Testing" ]; then
 elif [ "$CONFIGURATION" == "Staging" ]; then
     target_scheme="$OPCO_UPPERCASE-STAGING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$OPCO"
-elif [ "$CONFIGURATION" == "Production Beta" ]; then
-    target_scheme="$OPCO_UPPERCASE-PRODBETA"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
 elif [ "$CONFIGURATION" == "Hotfix" ]; then
     target_scheme="$OPCO_UPPERCASE-HOTFIX"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
+elif [ "$CONFIGURATION" == "Production Beta" ]; then
+    target_scheme="$OPCO_UPPERCASE-PRODBETA"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
 elif [ "$CONFIGURATION" == "Production" ]; then
     target_scheme="$OPCO_UPPERCASE-PROD"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
