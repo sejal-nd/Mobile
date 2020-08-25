@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>compileBitcode</key>
+	<true/>
+	<key>method</key>
+	<string>enterprise</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.exelon.mobile.comed.hotfix</key>
+		<string>ComEd Hotfix Enterprise Dist</string>
+		<key>com.exelon.mobile.comed.hotfix.watchkitapp</key>
+		<string>ComEd Hotfix WatchKit App</string>
+		<key>com.exelon.mobile.comed.hotfix.watchkitapp.watchkitextension</key>
+		<string>ComEd Hotfix Watchkit Extension</string>
+	</dict>
+	<key>signingCertificate</key>
+	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>
+	<key>signingStyle</key>
+	<string>manual</string>
+	<key>stripSwiftSymbols</key>
+	<true/>
+	<key>teamID</key>
+	<string>38R4RRBYR8</string>
+	<key>thinning</key>
+	<string>&lt;none&gt;</string>
+</dict>
+</plist>
