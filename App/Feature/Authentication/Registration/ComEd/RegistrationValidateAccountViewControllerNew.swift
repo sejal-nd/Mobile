@@ -389,7 +389,7 @@ extension RegistrationValidateAccountViewControllerNew: PDTSimpleCalendarViewDel
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
-        dueDateButton.valueLabel.textColor = .black
+        dueDateButton.valueLabel.textColor = .deepGray
         viewModel.dueDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
     }
 }
