@@ -245,6 +245,10 @@ if [[ $target_phases = *"build"* ]]; then
 
     check_errs $? "Xcode build exited with a non-zero status"
 
+
+echo "TEST FILE PATHS"
+echo find.
+
     echo "--------------------------------- Post archiving  -------------------------------"
 
     # Archive App
