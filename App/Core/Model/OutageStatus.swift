@@ -86,6 +86,10 @@ struct OutageStatus: Mappable {
             }
         }
         
+        if hasJustReported {
+            return .reported
+        }
+        
         return .powerStatus(!outageStatus.activeOutage)
     }
     
