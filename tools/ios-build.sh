@@ -247,7 +247,7 @@ if [[ $target_phases = *"build"* ]]; then
 
 
 echo "TEST FILE PATHS"
-find.
+find .
 
     echo "--------------------------------- Post archiving  -------------------------------"
 
