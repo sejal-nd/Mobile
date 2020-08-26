@@ -79,7 +79,7 @@ class BudgetBillingViewController: UIViewController {
         if accountDetail.isBudgetBillEnrollment {
             descriptionHeaderLabel.text = NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.", comment: "")
         } else {
-            descriptionHeaderLabel.text = NSLocalizedString("Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill. It’s a predictable monthly payment that eliminates monthly or seasonal variation.", comment: "")
+            descriptionHeaderLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("If you prefer a consistent and predictable monthly payment throughout the year that eliminates monthly or seasonal variation, Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill.", comment: "") :  NSLocalizedString("Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill. It’s a predictable monthly payment that eliminates monthly or seasonal variation.", comment: "")
         }
         descriptionHeaderLabel.setLineHeight(lineHeight: 24)
         
