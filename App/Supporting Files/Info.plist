@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>PROJECT_PREFIX</key>
+	<string></string>
 	<key>Account URL</key>
 	<string>$(ACCOUNT_URL)</string>
 	<key>Alert URL</key>

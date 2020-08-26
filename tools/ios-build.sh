@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-declare -a POSSIBLE_CONFIGURATIONS=("Automation" "Testing" "Testing-PHI" "Testing-Billing" "Testing-Payment" "Testing-MMA" "Testing-Support" "Testing-CIS" "Staging" "Staging-Hotfix" "Staging-PHI" "Staging-Billing" "Staging-Payment" "Staging-MMA" "Staging-Support" "Staging-CIS" "Production Beta" "Production")
+declare -a POSSIBLE_CONFIGURATIONS=("Automation" "Testing" "Testing-PHI" "Testing-Billing" "Testing-Payments" "Testing-MMA" "Testing-Support" "Testing-CIS" "Staging" "Staging-Hotfix" "Staging-PHI" "Staging-Billing" "Staging-Payments" "Staging-MMA" "Staging-Support" "Staging-CIS" "Production Beta" "Production")
 
 echo "
 Exelon Utilities Mobile Build Script for iOS
@@ -18,7 +18,7 @@ Usage:
 --build-branch              refs/heads/phi/develop
                             refs/heads/hotfix/develop
                             refs/heads/billing/develop
-                            refs/heads/payment/develop
+                            refs/heads/payments/develop
                             refs/heads/mma/develop
                             refs/heads/support/develop
                             refs/heads/cis/develop
@@ -26,7 +26,7 @@ Usage:
                             refs/heads/phi/stage
                             refs/heads/hotfix/stage
                             refs/heads/billing/stage
-                            refs/heads/payment/stage
+                            refs/heads/payments/stage
                             refs/heads/mma/stage
                             refs/heads/support/stage
                             refs/heads/cis/stage
@@ -135,8 +135,8 @@ elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix/develop" ]]; then
   CONFIGURATION="Testing-Hotfix"
 elif [[ "$BUILD_BRANCH" == "refs/heads/billing/develop" ]]; then
   CONFIGURATION="Testing-Billing"
-elif [[ "$BUILD_BRANCH" == "refs/heads/payment/develop" ]]; then
-  CONFIGURATION="Testing-Payment"
+elif [[ "$BUILD_BRANCH" == "refs/heads/payments/develop" ]]; then
+  CONFIGURATION="Testing-Payments"
 elif [[ "$BUILD_BRANCH" == "refs/heads/mma/develop" ]]; then
   CONFIGURATION="Testing-MMA"
 elif [[ "$BUILD_BRANCH" == "refs/heads/support/develop" ]]; then
@@ -151,8 +151,8 @@ elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix/stage" ]]; then
   CONFIGURATION="Staging-Hotfix"
 elif [[ "$BUILD_BRANCH" == "refs/heads/billing/stage" ]]; then
   CONFIGURATION="Staging-Billing"
-elif [[ "$BUILD_BRANCH" == "refs/heads/payment/stage" ]]; then
-  CONFIGURATION="Staging-Payment"
+elif [[ "$BUILD_BRANCH" == "refs/heads/payments/stage" ]]; then
+  CONFIGURATION="Staging-Payments"
 elif [[ "$BUILD_BRANCH" == "refs/heads/mma/stage" ]]; then
   CONFIGURATION="Staging-MMA"
 elif [[ "$BUILD_BRANCH" == "refs/heads/support/stage" ]]; then
@@ -185,6 +185,8 @@ fi
 if [[ "$OVERRIDE_CONFIGURATION" != "" ]]; then
     if find_in_array $OVERRIDE_CONFIGURATION "${POSSIBLE_CONFIGURATIONS[@]}"; then
         CONFIGURATION=$OVERRIDE_CONFIGURATION
+#        target_scheme="$OPCO_UPPERCASE-$OVERRIDE_CONFIGURATION" # temp
+#        target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO" # temp
         echo "configuration overridden: $CONFIGURATION"
     else
         echo "Specified Configuration $OVERRIDE_CONFIGURATION was not found"
@@ -225,10 +227,10 @@ elif [ "$CONFIGURATION" == "Production Beta" ]; then
 elif [ "$CONFIGURATION" == "Production" ]; then
     target_scheme="$OPCO_UPPERCASE-PROD"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
-else
-    echo "Invalid argument: configuration"
-    echo "    value must be either \"Testing\", \"Staging\", \"Hotfix\", \"Production Beta\", or \"Production\""
-    exit 1
+#else
+#    echo "Invalid argument: configuration"
+#    echo "    value must be either \"Testing\", \"Staging\", \"Hotfix\", \"Production Beta\", or \"Production\""
+#    exit 1
 fi
 
 if [ -n "$SCHEME" ]; then

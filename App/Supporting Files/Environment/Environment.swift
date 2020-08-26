@@ -87,6 +87,7 @@ enum EnvironmentName: String {
 }
 
 struct InfoPlist: Codable {
+    
     let displayName: String
     let baseURL: String
     let oauthURL: String
@@ -98,6 +99,7 @@ struct InfoPlist: Codable {
     let appCenterID: String
     let buildFlavor: String
     let environmentTier: String
+    var projectPrefix = ""
     
     enum CodingKeys: String, CodingKey {
         case displayName = "Build Display Name"
@@ -111,6 +113,7 @@ struct InfoPlist: Codable {
         case appCenterID = "App Center ID"
         case buildFlavor = "Build Flavor"
         case environmentTier = "Environment Tier"
+        case projectPrefix = "PROJECT_PREFIX"
     }
 }
 
@@ -173,6 +176,7 @@ struct Environment {
             gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain
             appCenterId = infoPlist.appCenterID
+            print("PROJ TEST: \(infoPlist.projectPrefix)")
         } catch {
             fatalError("Could not get data from plist: \(error)")
         }
