@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+declare -a POSSIBLE_CONFIGURATIONS=("Automation" "Testing" "Testing-PHI" "Testing-Billing" "Testing-Payment" "Testing-MMA" "Testing-Support" "Testing-CIS" "Staging" "Staging-Hotfix" "Staging-PHI" "Staging-Billing" "Staging-Payment" "Staging-MMA" "Staging-Support" "Staging-CIS" "Production Beta" "Production")
 
 echo "
 Exelon Utilities Mobile Build Script for iOS
@@ -10,18 +11,28 @@ Usage:
 
 --opco                    - BGE, PECO, or ComEd, ACE, Pepco, Delmarva
 
---configuration           - Testing, Staging, Hotfix, Production Beta, or Production
+--configuration           - ${POSSIBLE_CONFIGURATIONS[*]}
 
                             or
 
---build-branch              refs/heads/develop
-                            refs/heads/test
+--build-branch              refs/heads/phi/develop
+                            refs/heads/hotfix/develop
+                            refs/heads/billing/develop
+                            refs/heads/payment/develop
+                            refs/heads/mma/develop
+                            refs/heads/support/develop
+                            refs/heads/cis/develop
                             refs/heads/stage
+                            refs/heads/phi/stage
+                            refs/heads/hotfix/stage
+                            refs/heads/billing/stage
+                            refs/heads/payment/stage
+                            refs/heads/mma/stage
+                            refs/heads/support/stage
+                            refs/heads/cis/stage
                             refs/heads/prodbeta
                             refs/heads/hotfix
                             refs/heads/master
-                            refs/heads/phi/develop
-                            refs/heads/phi/stage
 
 ------ App Center Arguments -----
 
@@ -49,10 +60,13 @@ to just update the build script directly if it's a permanent change.
 --project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
 --phase                   - cocoapods, build, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
+--override-configuration  - Override the default configuration
+                          - Options: ${POSSIBLE_CONFIGURATIONS[*]}
 "
 
 PROJECT="Mobile.xcworkspace"
 CONFIGURATION=""
+OVERRIDE_CONFIGURATION=
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
 SCHEME=
 APP_CENTER_APP=
@@ -75,6 +89,7 @@ for i in "$@"; do
         --scheme) SCHEME="$2"; shift ;;
         --project) PROJECT="$2"; shift ;;
         --configuration) CONFIGURATION="$2"; shift ;;
+        --override-configuration) OVERRIDE_CONFIGURATION="$2"; shift ;;
         --app-center-app) APP_CENTER_APP="$2"; shift ;;
         --app-center-api-token) APP_CENTER_API_TOKEN="$2"; shift ;;
         --app-center-test-devices) APP_CENTER_TEST_DEVICES="$2"; shift ;;
@@ -114,17 +129,36 @@ find_in_array() {
 mkdir -p build/logs
 
 # git repo branches can be used to specify the build type instead of the configuration directly
-if [[ "$BUILD_BRANCH" == "refs/heads/develop" ]]; then
-  # Supports CI builds for all builds into the dev branch
-  CONFIGURATION="Testing"
-elif [[ "$BUILD_BRANCH" == "refs/heads/phi/develop" ]]; then
-  CONFIGURATION="Testing"
-elif [[ "$BUILD_BRANCH" == "refs/heads/test" ]]; then
-  CONFIGURATION="Testing"
+if [[ "$BUILD_BRANCH" == "refs/heads/phi/develop" ]]; then
+  CONFIGURATION="Testing-PHI"
+elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix/develop" ]]; then
+  CONFIGURATION="Testing-Hotfix"
+elif [[ "$BUILD_BRANCH" == "refs/heads/billing/develop" ]]; then
+  CONFIGURATION="Testing-Billing"
+elif [[ "$BUILD_BRANCH" == "refs/heads/payment/develop" ]]; then
+  CONFIGURATION="Testing-Payment"
+elif [[ "$BUILD_BRANCH" == "refs/heads/mma/develop" ]]; then
+  CONFIGURATION="Testing-MMA"
+elif [[ "$BUILD_BRANCH" == "refs/heads/support/develop" ]]; then
+  CONFIGURATION="Testing-Support"
+elif [[ "$BUILD_BRANCH" == "refs/heads/cis/develop" ]]; then
+  CONFIGURATION="Testing-CIS"
 elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/phi/stage" ]]; then
-  CONFIGURATION="Staging"
+  CONFIGURATION="Staging-PHI"
+elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix/stage" ]]; then
+  CONFIGURATION="Staging-Hotfix"
+elif [[ "$BUILD_BRANCH" == "refs/heads/billing/stage" ]]; then
+  CONFIGURATION="Staging-Billing"
+elif [[ "$BUILD_BRANCH" == "refs/heads/payment/stage" ]]; then
+  CONFIGURATION="Staging-Payment"
+elif [[ "$BUILD_BRANCH" == "refs/heads/mma/stage" ]]; then
+  CONFIGURATION="Staging-MMA"
+elif [[ "$BUILD_BRANCH" == "refs/heads/support/stage" ]]; then
+  CONFIGURATION="Staging-Support"
+elif [[ "$BUILD_BRANCH" == "refs/heads/cis/stage" ]]; then
+  CONFIGURATION="Staging-CIS"
 elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix" ]]; then
   CONFIGURATION="Hotfix"
 elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
@@ -145,6 +179,17 @@ target_phases="cocoapods, build, nowsecure, unitTest, appCenterTest, appCenterSy
 
 if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
+fi
+
+# Override Configuration
+if [[ "$OVERRIDE_CONFIGURATION" != "" ]]; then
+    if find_in_array $OVERRIDE_CONFIGURATION "${POSSIBLE_CONFIGURATIONS[@]}"; then
+        CONFIGURATION=$OVERRIDE_CONFIGURATION
+        echo "configuration overridden: $CONFIGURATION"
+    else
+        echo "Specified Configuration $OVERRIDE_CONFIGURATION was not found"
+        exit 1
+    fi
 fi
 
 echo "Executing the following phases: $target_phases"
