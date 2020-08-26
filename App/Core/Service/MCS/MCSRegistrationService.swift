@@ -11,8 +11,11 @@ import RxSwift
 
 class MCSRegistrationService: RegistrationService {
 
-    func createNewAccount(username: String,
+    func createNewAccount(firstName: String?,
+                          lastName: String?,
+                          username: String,
                           password: String,
+                          nickname: String?,
                           accountNum: String?,
                           identifier: String,
                           phone: String,
@@ -36,6 +39,18 @@ class MCSRegistrationService: RegistrationService {
                       "answer2": answer2,
                       "set_primary": isPrimary,
                       "enroll_ebill": isEnrollEBill] as [String : Any]
+        
+        if opCo.isPHI {
+            if let firstname = firstName {
+                params["FirstName"] = firstname
+            }
+            if let lastname = lastName {
+                params["LastName"] = lastname
+            }
+            if let nickName = nickname {
+                params["nickname"] = nickName
+            }
+        }
         
         if opCo != .bge && !RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             params["question3"] = question3
