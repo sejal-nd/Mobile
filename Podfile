@@ -71,8 +71,5 @@ post_install do |installer|
         config.build_settings['SWIFT_VERSION'] = '5.0'
         # Fix localization warning in Xcode 10.2
         config.build_settings['CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED'] = 'YES'
-        if config.name == 'Release'
-            config.build_settings['SWIFT_COMPILATION_MODE'] = 'wholemodule'
-        end
     end
 end
