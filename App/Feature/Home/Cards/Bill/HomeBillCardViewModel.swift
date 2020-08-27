@@ -305,11 +305,11 @@ class HomeBillCardViewModel {
     private(set) lazy var showReinstatementFeeText: Driver<Bool> = reinstatementFeeText.isNil().not()
     
     private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver
-        .combineLatest(showOneTouchPaySlider,
+        .combineLatest(
                        showSaveAPaymentAccountButton,
                        showMinMaxPaymentAllowed,
                        showAutoPay)
-        { ($0 || $1) && !$2 && !$3 }
+        { ($0) && !$1 && !$2 }
         .distinctUntilChanged()
     
     private(set) lazy var showBankCreditNumberButton: Driver<Bool> = walletItemDriver.isNil().not()
@@ -327,34 +327,26 @@ class HomeBillCardViewModel {
         .combineLatest(billState,
                        walletItemDriver,
                        accountDetailDriver,
-                       showOneTouchPaySlider,
                        minMaxPaymentAllowedText)
-        { billState, walletItem, accountDetail, showOneTouchPaySlider, minMaxPaymentAllowedText in
+        { billState, walletItem, accountDetail, minMaxPaymentAllowedText in
             return billState == .billReady &&
                 walletItem != nil &&
-                showOneTouchPaySlider &&
                 minMaxPaymentAllowedText != nil
     }
     .distinctUntilChanged()
     
-    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
-                                                                                     accountDetailDriver,
-                                                                                     walletItemDriver)
-    { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil }
-        .distinctUntilChanged()
+    private(set) lazy var showMakePaymentButton: Driver<Bool> = Driver.combineLatest(showAutoPay,
+                                                                                     showScheduledPayment
+                                                                                     )
+    {
+        return $0 || $1 ? false : true
+    }
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
     private(set) lazy var showAutoPay: Driver<Bool> = billState.map {
         $0 == .billReadyAutoPay
     }
-    
-    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> =
-        Driver.combineLatest(showOneTouchPaySlider,
-                             showMinMaxPaymentAllowed,
-                             showSaveAPaymentAccountButton)
-        { $0 && !$1 && !$2}
-            .distinctUntilChanged()
     
     // MARK: - View States
     private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> =
