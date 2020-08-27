@@ -6280,7 +6280,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "declare -a POSSIBLE_CONFIGURATIONS=(\"phi\" \"billing\" \"payments\" \"mma\" \"support\" \"cis\" \"hotfix\")\n\ngit_version=$(git log -1 --format=\"%h\")\ngit_branch=$(git symbolic-ref --short -q HEAD)\n\n\nif [[ $git_branch == *\"phi\"* ]]; then\n  echo \"It's there 1!\"\nfi\n\nif [[ $git_branch == *\"phi\"* ]]; then\n  echo \"It's there!\"\n  /usr/libexec/PlistBuddy -c \"Set :PROJECT_PREFIX phimobile\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelif [[ $git_branch == *\"billing\"* ]]; then\n  echo \"It's there!\"\nelif [[ $git_branch == *\"payments\"* ]]; then\n  echo \"It's there!\"\nelif [[ $git_branch == *\"mma\"* ]]; then\n  echo \"It's there!\"\nelif [[ $git_branch == *\"support\"* ]]; then\n  echo \"It's there!\"\nelif [[ $git_branch == *\"cis\"* ]]; then\n  echo \"It's there!\"\nelif [[ $git_branch == *\"hotfix\"* ]]; then\n  echo \"It's there!\"\nelif [[ $git_branch == *\"whitelabel\"* ]]; then\n  echo \"It's there! whitelabel\"\n  /usr/libexec/PlistBuddy -c \"Set :PROJECT_PREFIX helloWorld\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\n\n\necho $git_branch\n#/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersion\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\necho \"EUMobile Project Prefix Set: $git_branch\"\n";
+			shellScript = "# Possible Project Specific Environments\ndeclare -a POSSIBLE_CONFIGURATIONS=(\"phi\" \"billing\" \"payments\" \"mma\" \"cis\" \"hotfix\")\n\n# Get current git branch\ngit_version=$(git log -1 --format=\"%h\")\ngit_branch=$(git symbolic-ref --short -q HEAD)\n\n# Entry in plist to be updated\nplistEntryName=\"Project\\ Environment\\ Prefix\"\n\n# If git branch contains substring of possible project specific env's edit plist for PROJECT_PREFIX\nif [[ $git_branch == *\"phi\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /phimobile\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /phimobile\"\nelif [[ $git_branch == *\"billing\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /billing\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /billing\"\nelif [[ $git_branch == *\"payments\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /paymentenhancements\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /paymentenhancements\"\nelif [[ $git_branch == *\"mma\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /manage-my-account\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /manage-my-account\"\nelif [[ $git_branch == *\"cis\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /cis-upgrade\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /cis-upgrade\"\nelif [[ $git_branch == *\"hotfix\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /hotfix\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /hotfix\"\nelse\n  echo \"No Project Environment Prefix set due to git path: $git_branch\"\nfi\n";
 		};
 		67D5632E24EECD0000852551 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -7512,7 +7512,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -7701,7 +7700,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://bge-sit-620.paymentus.io/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
@@ -8088,6 +8086,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				BUNDLE_ID = com.exelon.mobile.bge.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -8385,7 +8384,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://comd-sit-623.paymentus.io/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
@@ -8540,6 +8538,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				BUNDLE_ID = com.exelon.mobile.comed.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -8775,7 +8774,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://comd-sit-623.paymentus.io/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
@@ -9079,7 +9077,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -9336,7 +9333,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
@@ -9591,7 +9587,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -9852,7 +9847,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://bge-sit-620.paymentus.io/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
@@ -10071,7 +10065,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
@@ -10194,7 +10187,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PROJECT_PREFIX = "";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;

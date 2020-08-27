@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-declare -a POSSIBLE_CONFIGURATIONS=("Automation" "Testing" "Testing-PHI" "Testing-Billing" "Testing-Payments" "Testing-MMA" "Testing-Support" "Testing-CIS" "Staging" "Staging-Hotfix" "Staging-PHI" "Staging-Billing" "Staging-Payments" "Staging-MMA" "Staging-Support" "Staging-CIS" "Production Beta" "Production")
+declare -a POSSIBLE_CONFIGURATIONS=("Automation" "Testing" "Staging" "Production Beta" "Production")
 
 echo "
 Exelon Utilities Mobile Build Script for iOS
@@ -129,38 +129,12 @@ find_in_array() {
 mkdir -p build/logs
 
 # git repo branches can be used to specify the build type instead of the configuration directly
-if [[ "$BUILD_BRANCH" == "refs/heads/phi/develop" ]]; then
-  CONFIGURATION="Testing-PHI"
-elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix/develop" ]]; then
-  CONFIGURATION="Testing-Hotfix"
-elif [[ "$BUILD_BRANCH" == "refs/heads/billing/develop" ]]; then
-  CONFIGURATION="Testing-Billing"
-elif [[ "$BUILD_BRANCH" == "refs/heads/payments/develop" ]]; then
-  CONFIGURATION="Testing-Payments"
-elif [[ "$BUILD_BRANCH" == "refs/heads/mma/develop" ]]; then
-  CONFIGURATION="Testing-MMA"
-elif [[ "$BUILD_BRANCH" == "refs/heads/support/develop" ]]; then
-  CONFIGURATION="Testing-Support"
-elif [[ "$BUILD_BRANCH" == "refs/heads/cis/develop" ]]; then
-  CONFIGURATION="Testing-CIS"
+if [[ "$BUILD_BRANCH" == "refs/heads/develop" ]]; then
+  CONFIGURATION="Testing"
 elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
-elif [[ "$BUILD_BRANCH" == "refs/heads/phi/stage" ]]; then
-  CONFIGURATION="Staging-PHI"
-elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix/stage" ]]; then
-  CONFIGURATION="Staging-Hotfix"
-elif [[ "$BUILD_BRANCH" == "refs/heads/billing/stage" ]]; then
-  CONFIGURATION="Staging-Billing"
-elif [[ "$BUILD_BRANCH" == "refs/heads/payments/stage" ]]; then
-  CONFIGURATION="Staging-Payments"
-elif [[ "$BUILD_BRANCH" == "refs/heads/mma/stage" ]]; then
-  CONFIGURATION="Staging-MMA"
-elif [[ "$BUILD_BRANCH" == "refs/heads/support/stage" ]]; then
-  CONFIGURATION="Staging-Support"
-elif [[ "$BUILD_BRANCH" == "refs/heads/cis/stage" ]]; then
-  CONFIGURATION="Staging-CIS"
 elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix" ]]; then
-  CONFIGURATION="Hotfix"
+  CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
   CONFIGURATION="Production Beta"
 elif [[ "$BUILD_BRANCH" == "refs/heads/master" ]]; then
@@ -181,19 +155,6 @@ if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
 fi
 
-# Override Configuration
-if [[ "$OVERRIDE_CONFIGURATION" != "" ]]; then
-    if find_in_array $OVERRIDE_CONFIGURATION "${POSSIBLE_CONFIGURATIONS[@]}"; then
-        CONFIGURATION=$OVERRIDE_CONFIGURATION
-#        target_scheme="$OPCO_UPPERCASE-$OVERRIDE_CONFIGURATION" # temp
-#        target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO" # temp
-        echo "configuration overridden: $CONFIGURATION"
-    else
-        echo "Specified Configuration $OVERRIDE_CONFIGURATION was not found"
-        exit 1
-    fi
-fi
-
 echo "Executing the following phases: $target_phases"
 
 # Project schemes
@@ -212,6 +173,19 @@ target_version_number=
 
 OPCO_UPPERCASE=$(echo "$OPCO" | tr '[:lower:]' '[:upper:]')
 
+# Override Configuration
+if [[ "$OVERRIDE_CONFIGURATION" != "" ]]; then
+    if find_in_array $OVERRIDE_CONFIGURATION "${POSSIBLE_CONFIGURATIONS[@]}"; then
+        CONFIGURATION=$OVERRIDE_CONFIGURATION
+#        target_scheme="$OPCO_UPPERCASE-$OVERRIDE_CONFIGURATION" # temp
+#        target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO" # temp
+        echo "configuration overridden: $CONFIGURATION"
+    else
+        echo "Specified Configuration $OVERRIDE_CONFIGURATION was not found"
+        exit 1
+    fi
+fi
+
 if [ "$CONFIGURATION" == "Testing" ]; then
     target_scheme="$OPCO_UPPERCASE-TESTING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO"
@@ -219,7 +193,7 @@ elif [ "$CONFIGURATION" == "Staging" ]; then
     target_scheme="$OPCO_UPPERCASE-STAGING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$OPCO"
 elif [ "$CONFIGURATION" == "Hotfix" ]; then
-    target_scheme="$OPCO_UPPERCASE-HOTFIX"
+    target_scheme="$OPCO_UPPERCASE-STAGING"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
 elif [ "$CONFIGURATION" == "Production Beta" ]; then
     target_scheme="$OPCO_UPPERCASE-PRODBETA"
@@ -227,18 +201,16 @@ elif [ "$CONFIGURATION" == "Production Beta" ]; then
 elif [ "$CONFIGURATION" == "Production" ]; then
     target_scheme="$OPCO_UPPERCASE-PROD"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
-#else
-#    echo "Invalid argument: configuration"
-#    echo "    value must be either \"Testing\", \"Staging\", \"Hotfix\", \"Production Beta\", or \"Production\""
-#    exit 1
+else
+    echo "Invalid argument: configuration"
+    echo "    value must be either ${POSSIBLE_CONFIGURATIONS[*]}"
+    exit 1
 fi
 
 if [ -n "$SCHEME" ]; then
     echo "Scheme has been specified via args -- overriding default of $target_scheme with $SCHEME"
     target_scheme=$SCHEME
 fi
-
-echo "Scheme set: $target_scheme"
 
 if [ -n "$APP_CENTER_APP" ]; then
     echo "App center app has been specified via args -- overriding default of $target_app_center_app with $APP_CENTER_APP"
@@ -259,7 +231,6 @@ if [[ $target_phases = *"cocoapods"* ]]; then
 fi
 
 if [[ $target_phases = *"unitTest"* ]]; then
-
     set -o pipefail
 
     echo "Running automation tests"

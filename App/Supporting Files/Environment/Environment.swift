@@ -99,6 +99,8 @@ struct InfoPlist: Codable {
     let appCenterID: String
     let buildFlavor: String
     let environmentTier: String
+    
+    // Determined by git path in build phase run script "Set Project Prefix"
     var projectPrefix = ""
     
     enum CodingKeys: String, CodingKey {
@@ -113,7 +115,7 @@ struct InfoPlist: Codable {
         case appCenterID = "App Center ID"
         case buildFlavor = "Build Flavor"
         case environmentTier = "Environment Tier"
-        case projectPrefix = "PROJECT_PREFIX"
+        case projectPrefix = "Project Environment Prefix"
     }
 }
 
@@ -130,6 +132,7 @@ struct Environment {
     let oAuthEndpoint: String
     let paymentusUrl: String
     let sharepointBaseURL: String
+    let projectPrefix: String
     
     var clientSecret: String {
         var id = ""
@@ -176,7 +179,7 @@ struct Environment {
             gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain
             appCenterId = infoPlist.appCenterID
-            print("PROJ TEST: \(infoPlist.projectPrefix)")
+            projectPrefix = infoPlist.projectPrefix
         } catch {
             fatalError("Could not get data from plist: \(error)")
         }

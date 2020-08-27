@@ -165,12 +165,7 @@ public enum Router {
     }
     
     private var basePath: String {
-        if Environment.shared.environmentName == .test && Environment.shared.opco.isPHI {
-            // Project specific environment - DIRTY SOLUTION
-            return "/phimobile/mobile/custom"
-        } else {
-            return "/mobile/custom"
-        }
+        return "\(Environment.shared.projectPrefix)/mobile/custom"
     }
     
     public var apiAccess: ApiAccess {
