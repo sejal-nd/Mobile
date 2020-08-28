@@ -156,7 +156,6 @@
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35F9DD952333D84700AAA2B2 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
@@ -826,7 +825,6 @@
 		B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */; };
 		B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */; };
 		B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */; };
-		B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
 		B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
 		B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
 		B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4A11ED87AE200F0198B /* CreditCard.swift */; };
@@ -1184,10 +1182,6 @@
 		0DB10A4F9EA5767E7A6BE848 /* Pods_BGE_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGE_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DBA7E20387193E8FA19255B /* Pods-PepcoApp-Pepco.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PepcoApp-Pepco.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PepcoApp-Pepco/Pods-PepcoApp-Pepco.automation.xcconfig"; sourceTree = "<group>"; };
 		0DF8789921850547B0D60CB1 /* Pods-BGEApp-BGE.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.develop-test.xcconfig"; sourceTree = "<group>"; };
-		0E0276CF2347B20300671E65 /* BGE-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
-		0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
-		0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
-		0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E1F37642469EDCD009D3A63 /* Pepco-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pepco-STAGE.entitlements"; sourceTree = "<group>"; };
 		0E1F37652469EDCD009D3A63 /* Delmarva-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Delmarva-TEST.entitlements"; sourceTree = "<group>"; };
 		0E1F37662469EDCD009D3A63 /* ACE-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ACE-TEST.entitlements"; sourceTree = "<group>"; };
@@ -1202,8 +1196,6 @@
 		0E5BEF0C202E2389009D1ADB /* GoogleService-Info-PRODBETA-FlavorPECO.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-PRODBETA-FlavorPECO.plist"; sourceTree = "<group>"; };
 		0E673220B03D724571B3D7E7 /* Pods-EUMobile-Watch Extension.staging-cis-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.staging-cis-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.staging-cis-bge.xcconfig"; sourceTree = "<group>"; };
 		0E863D8520DD4703004D77EC /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
-		0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-AUT.plist"; sourceTree = "<group>"; };
-		0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-AUT.plist"; sourceTree = "<group>"; };
 		0EF447ACA6C432A81FCE83DA /* Pods-EUMobile-Watch Extension.staging-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.staging-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.staging-comed.xcconfig"; sourceTree = "<group>"; };
 		0EF60FB420EE78F6006ABC18 /* GSTouchesShowingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSTouchesShowingWindow.swift; sourceTree = "<group>"; };
 		0EF60FB520EE78F6006ABC18 /* GSTouchesShowingGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSTouchesShowingGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -1318,7 +1310,6 @@
 		355B10352369DB180038EAD3 /* WatchSessionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionMananger.swift; sourceTree = "<group>"; };
 		355B10452369E54E0038EAD3 /* KeychainKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
 		356C7F8021909997003E8A90 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		356C7FA92190D93F003E8A90 /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
 		3575232C22C53A1B00A0AFAC /* AccountListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountListRow.xib; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
@@ -1919,8 +1910,6 @@
 		8F1D0A207F7F1A16B4862F66 /* Pods-PECO_WatchOS Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8FD3C26C1E52576F005FB1BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
-		8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Info.plist"; sourceTree = "<group>"; };
 		8FD5AE831E54EA49003F640D /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		8FD5AE851E54EA49003F640D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -1987,8 +1976,6 @@
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		9C48830423834F2700321E6B /* GameTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTipViewController.swift; sourceTree = "<group>"; };
 		9C50EBD222B971D500A89DBF /* AccountPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountPicker.xib; sourceTree = "<group>"; };
-		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
-		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+OptionalLookup.swift"; sourceTree = "<group>"; };
 		9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTryFabViewController.swift; sourceTree = "<group>"; };
 		9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetBillingReasonForStoppingViewController.swift; sourceTree = "<group>"; };
@@ -2044,8 +2031,6 @@
 		9CE549702399941300025BD5 /* GameRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRewardViewController.swift; sourceTree = "<group>"; };
 		9CE69DC102C0A18FE410190E /* Pods-ACE-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACE-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ACE-Watch Extension/Pods-ACE-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
 		9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountTableViewCell.swift; sourceTree = "<group>"; };
-		9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		9CEB30E12261310000DD725C /* PECO-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEE411823722444005A4AD3 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyInsightCoinView.xib; sourceTree = "<group>"; };
 		9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyInsightCoinView.swift; sourceTree = "<group>"; };
@@ -2213,7 +2198,6 @@
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParserTests.swift; sourceTree = "<group>"; };
 		B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
-		B55736441E6742A6003B9369 /* MCSConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MCSConfig.plist; sourceTree = "<group>"; };
 		B55A8B0B1F15644800F63AC3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B55A8B0D1F15646E00F63AC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -2223,12 +2207,8 @@
 		B574BACE1E7360F4001E8A44 /* ErrorMessages.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = ErrorMessages.strings; sourceTree = "<group>"; };
 		B58B5AC11E4E28740051FD5F /* EUMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EUMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		B58B5B5C1E516C360051FD5F /* BGE-Environment-RELEASE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-RELEASE.plist"; sourceTree = "<group>"; };
-		B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B59606291F7C1F4A00515B72 /* AppRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRating.swift; sourceTree = "<group>"; };
 		B5AC06781E51763200BBA4ED /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		B5AC06871E5212E300BBA4ED /* PECO-Environment-RELEASE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-RELEASE.plist"; sourceTree = "<group>"; };
-		B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B5AC06C71E521B3200BBA4ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5AC06CB1E521B5300BBA4ED /* Assets-FlavorBGE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorBGE.xcassets"; sourceTree = "<group>"; };
 		B5AC06CD1E521B7B00BBA4ED /* Assets-FlavorPECO.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorPECO.xcassets"; sourceTree = "<group>"; };
@@ -4575,10 +4555,9 @@
 			isa = PBXGroup;
 			children = (
 				8FD3C26C1E52576F005FB1BB /* Info.plist */,
-				B55736441E6742A6003B9369 /* MCSConfig.plist */,
+				B5AC06781E51763200BBA4ED /* Environment.swift */,
 				3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */,
 				82AEF2E31F618F560057E7ED /* Settings.bundle */,
-				67D73B1B246C78F200450B63 /* Environment */,
 				67D73B12246C769C00450B63 /* BGE */,
 				67D73B15246C771A00450B63 /* ComEd */,
 				67D73B16246C772100450B63 /* PECO */,
@@ -4631,23 +4610,8 @@
 			isa = PBXGroup;
 			children = (
 				E8EEF7351E57895F006804D4 /* LaunchScreen-BGE.storyboard */,
-				67D73B13246C76B100450B63 /* Environment */,
 			);
 			path = BGE;
-			sourceTree = "<group>";
-		};
-		67D73B13246C76B100450B63 /* Environment */ = {
-			isa = PBXGroup;
-			children = (
-				0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */,
-				9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */,
-				9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */,
-				B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */,
-				0E0276CF2347B20300671E65 /* BGE-Environment-HOTFIX.plist */,
-				0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */,
-				B58B5B5C1E516C360051FD5F /* BGE-Environment-RELEASE.plist */,
-			);
-			path = Environment;
 			sourceTree = "<group>";
 		};
 		67D73B14246C76BA00450B63 /* Google */ = {
@@ -4666,7 +4630,6 @@
 		67D73B15246C771A00450B63 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
-				8FD3C26D1E52576F005FB1BB /* ComEd-Info.plist */,
 				E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */,
 			);
 			path = ComEd;
@@ -4675,10 +4638,7 @@
 		67D73B16246C772100450B63 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
-				8FD3C26E1E52576F005FB1BB /* PECO-Info.plist */,
 				E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */,
-				67D73B1E246C817600450B63 /* Environment */,
-				67D73B1F246C817C00450B63 /* Google */,
 			);
 			path = PECO;
 			sourceTree = "<group>";
@@ -4716,15 +4676,6 @@
 			path = ACE;
 			sourceTree = "<group>";
 		};
-		67D73B1B246C78F200450B63 /* Environment */ = {
-			isa = PBXGroup;
-			children = (
-				B5AC06781E51763200BBA4ED /* Environment.swift */,
-				356C7FA92190D93F003E8A90 /* environment.plist */,
-			);
-			path = Environment;
-			sourceTree = "<group>";
-		};
 		67D73B1D246C7E8600450B63 /* Google */ = {
 			isa = PBXGroup;
 			children = (
@@ -4734,27 +4685,6 @@
 				67D73B29246C88E500450B63 /* GoogleService-Info-HOTFIX-FlavorCOMED.plist */,
 				0E5BEF09202E22CD009D1ADB /* GoogleService-Info-PRODBETA-FlavorCOMED.plist */,
 				B5D415791F3A6DFE00AC32B2 /* GoogleService-Info-PROD-FlavorCOMED.plist */,
-			);
-			path = Google;
-			sourceTree = "<group>";
-		};
-		67D73B1E246C817600450B63 /* Environment */ = {
-			isa = PBXGroup;
-			children = (
-				0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */,
-				9CEB30E12261310000DD725C /* PECO-Environment-DEVELOP.plist */,
-				9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */,
-				B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */,
-				0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */,
-				B5AC06871E5212E300BBA4ED /* PECO-Environment-RELEASE.plist */,
-				0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */,
-			);
-			path = Environment;
-			sourceTree = "<group>";
-		};
-		67D73B1F246C817C00450B63 /* Google */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Google;
 			sourceTree = "<group>";
@@ -6030,7 +5960,6 @@
 				67D5632224EDC6F500852551 /* Appt_Complete-FlavorCOMED.json in Resources */,
 				676279EF247DB11100A57FBC /* TermPolicies.html in Resources */,
 				359BDB7822D8F9B2007002B0 /* outage_reported.json in Resources */,
-				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				675F4DBC24AB828200A828F9 /* AlertPreferencesLoadMock.json in Resources */,
 				67A9869D24F9691600BD46E7 /* GoogleService-Info-DEV-FlavorPECO.plist in Resources */,
@@ -6701,7 +6630,6 @@
 				35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */,
 				C3087B0D24BDEFA3005AE544 /* AnyObserver.swift in Sources */,
 				675F4E6024B501A300A828F9 /* OutageRequest.swift in Sources */,
-				35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */,
 				35F9DDA52333D88B00AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				C3DF2BAB24CB42BB00A6D4EC /* BillService+Rx.swift in Sources */,
 				35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */,
