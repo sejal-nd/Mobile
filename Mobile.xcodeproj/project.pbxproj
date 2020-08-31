@@ -11329,7 +11329,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE WatchKit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11365,7 +11365,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "ACE Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -12574,7 +12574,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta WatchkitExt Enterprise Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Production Beta WatchkitExtension Ent";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -12792,7 +12792,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva WatchKit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -12828,7 +12828,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -14257,7 +14257,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco WatchKit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -14293,7 +14293,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
