@@ -189,6 +189,10 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
         viewModel.securityQuestion1.asDriver().filter { $0 != nil }.drive(self.question1QuestionButton.rx.valueText).disposed(by: disposeBag)
         viewModel.securityQuestion2.asDriver().filter { $0 != nil }.drive(self.question2QuestionButton.rx.valueText).disposed(by: disposeBag)
         viewModel.securityQuestion3.asDriver().filter { $0 != nil }.drive(self.question3QuestionButton.rx.valueText).disposed(by: disposeBag)
+        
+        question1QuestionButton.accessibilityLabel = NSLocalizedString("Security Question 1, required", comment: "")
+        question2QuestionButton.accessibilityLabel = NSLocalizedString("Security Question 2, required", comment: "")
+        question3QuestionButton.accessibilityLabel = NSLocalizedString("Security Question 3, required", comment: "")
 
         question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer1).disposed(by: disposeBag)
         question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer2).disposed(by: disposeBag)
