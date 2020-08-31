@@ -12,7 +12,7 @@ enum OpCo: String {
     case bge = "BGE"
     case comEd = "COMED"
     case peco = "PECO"
-    case pepco = "PEP"
+    case pepco = "PEPCO"
     case ace = "ACE"
     case delmarva = "DPL"
     
