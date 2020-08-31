@@ -179,9 +179,6 @@
 		2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
-		2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
-		2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
-		2FA5D8611F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		2FA5D8651F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		2FA5D8661F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
@@ -1069,7 +1066,6 @@
 		67DDB37424535D2E006CD6EB /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8551ECDEF6800CA63BF /* WalletViewController.swift */; };
 		67DDB37524535D2E006CD6EB /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		67DDB37624535D2E006CD6EB /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
-		67DDB37724535D2E006CD6EB /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		67DDB37824535D2E006CD6EB /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */; };
 		67DDB37924535D2E006CD6EB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		67DDB37A24535D2E006CD6EB /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */; };
@@ -1608,7 +1604,6 @@
 		67DDB5CA24535D32006CD6EB /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8551ECDEF6800CA63BF /* WalletViewController.swift */; };
 		67DDB5CB24535D32006CD6EB /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		67DDB5CC24535D32006CD6EB /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
-		67DDB5CD24535D32006CD6EB /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		67DDB5CE24535D32006CD6EB /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */; };
 		67DDB5CF24535D32006CD6EB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		67DDB5D024535D32006CD6EB /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */; };
@@ -2156,7 +2151,6 @@
 		67DDB82024535D35006CD6EB /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A8551ECDEF6800CA63BF /* WalletViewController.swift */; };
 		67DDB82124535D35006CD6EB /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		67DDB82224535D35006CD6EB /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
-		67DDB82324535D35006CD6EB /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		67DDB82424535D35006CD6EB /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */; };
 		67DDB82524535D35006CD6EB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		67DDB82624535D35006CD6EB /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */; };
@@ -5981,7 +5975,6 @@
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
 		2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GovWeatherService.swift; sourceTree = "<group>"; };
 		2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewModel.swift; sourceTree = "<group>"; };
-		2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchSlider.swift; sourceTree = "<group>"; };
 		2FA5D8631F17D88500A8B16B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "App/Feature/Outage/Detail Pages/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
@@ -9194,7 +9187,6 @@
 				545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */,
 				B085C44220FD2C5500CE0893 /* ConversationalButton.swift */,
 				9C62447322C5617D00F14DA0 /* SegmentedControl.swift */,
-				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
 				359BDB3F22D50F90007002B0 /* StickyFooterView.swift */,
 				9C153DC822E8F6CE002DA062 /* Checkbox.swift */,
 			);
@@ -14547,7 +14539,6 @@
 				67DDB37424535D2E006CD6EB /* WalletViewController.swift in Sources */,
 				67DDB37524535D2E006CD6EB /* BillingHistoryDetailsViewModel.swift in Sources */,
 				67DDB37624535D2E006CD6EB /* MCSApi.swift in Sources */,
-				67DDB37724535D2E006CD6EB /* OneTouchSlider.swift in Sources */,
 				67DDB37824535D2E006CD6EB /* MockWeatherService.swift in Sources */,
 				67DDBD3624571AFE006CD6EB /* MockPaymentService.swift in Sources */,
 				67DDBD3724571B15006CD6EB /* BGEAutoPayInfo.swift in Sources */,
@@ -14969,7 +14960,6 @@
 				67DDB5CA24535D32006CD6EB /* WalletViewController.swift in Sources */,
 				67DDB5CB24535D32006CD6EB /* BillingHistoryDetailsViewModel.swift in Sources */,
 				67DDB5CC24535D32006CD6EB /* MCSApi.swift in Sources */,
-				67DDB5CD24535D32006CD6EB /* OneTouchSlider.swift in Sources */,
 				67DDB5CE24535D32006CD6EB /* MockWeatherService.swift in Sources */,
 				67DDB5CF24535D32006CD6EB /* HomeViewController.swift in Sources */,
 				67DDB5D024535D32006CD6EB /* PeakRewardsService.swift in Sources */,
@@ -15393,7 +15383,6 @@
 				67DDB82024535D35006CD6EB /* WalletViewController.swift in Sources */,
 				67DDB82124535D35006CD6EB /* BillingHistoryDetailsViewModel.swift in Sources */,
 				67DDB82224535D35006CD6EB /* MCSApi.swift in Sources */,
-				67DDB82324535D35006CD6EB /* OneTouchSlider.swift in Sources */,
 				67DDB82424535D35006CD6EB /* MockWeatherService.swift in Sources */,
 				67DDB82524535D35006CD6EB /* HomeViewController.swift in Sources */,
 				67DDB82624535D35006CD6EB /* PeakRewardsService.swift in Sources */,
@@ -16686,7 +16675,6 @@
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */,
 				B54F0FF61E9EC8BB00A9B72B /* MCSApi.swift in Sources */,
-				2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				B07E17BE2208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				82AC2A1A1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
@@ -17006,7 +16994,6 @@
 				B0336FE821751FB700751430 /* MCSAppointmentService.swift in Sources */,
 				E8C453171EF3293600F5C781 /* ToastView.swift in Sources */,
 				2FA5D8661F17D88500A8B16B /* HomeViewController.swift in Sources */,
-				2FA5D8611F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E84705EF202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				B094A35620D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				B0D7860F2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
@@ -17432,7 +17419,6 @@
 				35C913AE22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
 				2FA5D8651F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				9C153DCA22E8F6CE002DA062 /* Checkbox.swift in Sources */,
-				2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E84705EE202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				B094A35520D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				9CCE3E4721B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
