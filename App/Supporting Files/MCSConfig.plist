@@ -186,7 +186,7 @@
 			<key>projectEnvironmentPath</key>
 			<string>/phimobile</string>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-pepco-t-ams-01.azure-api.net</string>
+			<string>https://xze-e-n-eudapi-pepco-s-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -247,7 +247,7 @@
 			<key>projectEnvironmentPath</key>
 			<string>/phimobile</string>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-ace-t-ams-01.azure-api.net</string>
+			<string>https://xze-e-n-eudapi-ace-s-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -308,7 +308,7 @@
 			<key>projectEnvironmentPath</key>
 			<string>/phimobile</string>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-dpl-t-ams-01.azure-api.net</string>
+			<string>https://xze-e-n-eudapi-dpl-s-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
