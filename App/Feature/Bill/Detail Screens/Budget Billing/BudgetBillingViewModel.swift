@@ -98,12 +98,8 @@ class BudgetBillingViewModel {
                 text += NSLocalizedString("\n\nPECO bases the monthly Budget Billing amount on your average bill over the past 12 months. If your account has not yet been open for a year, your monthly Budget Billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your Budget Billing amount.", comment: "")
             }
             return text
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .ace, .delmarva, .pepco:
+            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. After 12 months, the difference between your budget bill amount and actual use for the previous 12 months will be applied to your bill.", comment: "")
         }
     }
     

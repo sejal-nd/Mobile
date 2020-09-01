@@ -87,6 +87,13 @@ class LoginViewModel {
                     onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
                 } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
                     onRegistrationNotComplete()
+                } else if serviceError.serviceCode == "FN-FAIL-LOGIN" {
+                    if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+                       let message = NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
+                        onError(nil, message)
+                    } else {
+                        onError(nil, error.localizedDescription)
+                    }
                 } else {
                     onError(nil, error.localizedDescription)
                 }
