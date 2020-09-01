@@ -63,7 +63,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         descriptionLabel.font = OpenSans.regular.of(textStyle: .body)
 
         switch Environment.shared.opco {
-        case OpCo.bge:
+        case .bge:
             card1Bullet1Label.text = NSLocalizedString("Under this payment plan, BGE calculates your budget bill amount by averaging your 12 most recent gas and electric bills plus any accumulated imbalance amount.", comment: "")
             card1Bullet2Label.text = NSLocalizedString("BGE will still continue to read your meter each month and your bill will always show details of the actual charges and consumption for the billing period, as well as your account balance.", comment: "")
             card1Bullet3Label.isHidden = true
@@ -74,7 +74,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
             card1Bullet4Label.isHidden = true
             card2Bullet4Label.isHidden = true
             card2Bullet5Label.isHidden = true
-        case OpCo.comEd:
+        case .comEd:
             card1Bullet1Label.text = NSLocalizedString("We calculate your monthly bill payment based on your usage during the last 12 months.", comment: "")
             card1Bullet2Label.text = NSLocalizedString("Your actual usage will continue to be shown on your monthly bill.", comment: "")
             card1Bullet3Label.text = NSLocalizedString("You may enroll at any time and your Budget Billing plan will begin with your next bill.", comment: "")
@@ -85,7 +85,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
             card2Bullet4Label.text = NSLocalizedString("After 12 months, any credit/debit balances will be included in the calculation for the following year’s Budget Billing payment. If you prefer to have that credit/debit balance applied in full to your account, you may contact 1-800-EDISON1 after enrollment.", comment: "")
             card2Bullet5Label.text = NSLocalizedString("If you unenroll from Budget Billing, you will see your regular bill amount and any past differences between your Budget Billing amount and your actual charges on your next bill.", comment: "")
             card1Bullet4Label.isHidden = true
-        case OpCo.peco:
+        case .peco:
             card1Bullet1Label.text = NSLocalizedString("We calculate your monthly bill payment based on your usage during the last 12 months.", comment: "")
             card1Bullet2Label.text = NSLocalizedString("Your actual usage will continue to be shown on your monthly bill.", comment: "")
             card1Bullet3Label.text = NSLocalizedString("You may enroll at any time and your Budget Billing plan will begin with your next bill.", comment: "")
@@ -108,28 +108,6 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
             card2Bullet3Label.text = NSLocalizedString("After 12 months, any credit balance will be included in the calculation for the following year’s Budget Billing payment.", comment: "")
             card2Bullet4Label.text = NSLocalizedString("Any outstanding balance is due at the end of the plan year. Outstanding balances are not automatically rolled into the next years’ Budget Billing plan.", comment: "")
             card2Bullet5Label.text = NSLocalizedString("If you unenroll from Budget Billing, you will see your regular bill amount and any past differences between your Budget Billing payment amount and your actual charges on your next bill.", comment: "")
-//        case .ace:
-//            // todo
-//            card1Bullet1Label.text = NSLocalizedString("We calculate your monthly bill payment based on your usage during the last 12 months.", comment: "")
-//            card1Bullet2Label.text = NSLocalizedString("Your actual usage will continue to be shown on your monthly bill.", comment: "")
-//            card1Bullet3Label.text = NSLocalizedString("You may enroll at any time and your Budget Billing plan will begin with your next bill.", comment: "")
-//
-//            card2Bullet1Label.text = NSLocalizedString("Your monthly Budget Bill payment will be adjusted every four (4) months to keep the payment in line with your actual usage.", comment: "")
-//            card2Bullet2Label.text = NSLocalizedString("After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage. This Budget Bill amount will be adjusted every four months to stay in line with your usage.", comment: "")
-//            card2Bullet3Label.text = NSLocalizedString("If you unenroll from Budget Billing, you will see your regular bill amount and any past differences between your Budget Billing amount and your actual charges on your next bill.", comment: "")
-//            card2Bullet4Label.isHidden = true
-//            card2Bullet5Label.isHidden = true
-//        case .delmarva:
-//            // todo
-//            card1Bullet1Label.text = NSLocalizedString("We calculate your monthly bill payment based on your usage during the last 12 months.", comment: "")
-//            card1Bullet2Label.text = NSLocalizedString("Your actual usage will continue to be shown on your monthly bill.", comment: "")
-//            card1Bullet3Label.text = NSLocalizedString("You may enroll at any time and your Budget Billing plan will begin with your next bill.", comment: "")
-//
-//            card2Bullet1Label.text = NSLocalizedString("Your monthly Budget Bill payment will be adjusted every four (4) months to keep the payment in line with your actual usage.", comment: "")
-//            card2Bullet2Label.text = NSLocalizedString("After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage. This Budget Bill amount will be adjusted every four months to stay in line with your usage.", comment: "")
-//            card2Bullet3Label.text = NSLocalizedString("If you unenroll from Budget Billing, you will see your regular bill amount and any past differences between your Budget Billing amount and your actual charges on your next bill.", comment: "")
-//            card2Bullet4Label.isHidden = true
-//            card2Bullet5Label.isHidden = true
         }
         
         card1Bullet1Label.setLineHeight(lineHeight: 24)

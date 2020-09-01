@@ -236,12 +236,10 @@ class BillUtility {
         guard let netDueAmount = billingInfo.netDueAmount else { return "--" }
         
         switch Environment.shared.opco {
-        case .bge: // For credit scenario we want to show the positive number
+        case .ace, .bge, .delmarva, .pepco: // For credit scenario we want to show the positive number
             return abs(netDueAmount).currencyString
         case .comEd, .peco:
             return max(netDueAmount, 0).currencyString
-        default:
-            fatalError("Unsupported OpCo.")
         }
     }()
     
@@ -340,7 +338,7 @@ class BillUtility {
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Payments Processing", comment: "")
-        case .comEd, .peco:
+        case .ace, .delmarva, .pepco, .comEd, .peco:
             return NSLocalizedString("Pending Payments", comment: "")
         default:
             fatalError("Unsupported OpCo.")
