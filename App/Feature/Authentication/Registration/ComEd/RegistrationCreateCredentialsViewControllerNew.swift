@@ -112,6 +112,11 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         setupAccessibility()
     }
     
+    override func viewDidLayoutSubviews() {
+        createPasswordTextField.checkAccessoryImageView.isHidden = true
+        confirmPasswordTextField.checkAccessoryImageView.isHidden = true
+    }
+    
     // MARK: - Actions
     
     @IBAction func primaryProfileSwitchToggled(_ sender: Any) {
