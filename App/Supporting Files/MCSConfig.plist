@@ -7,18 +7,18 @@
 		<key>Test-bgeMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-bge-t-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-bge-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Dev-bgeMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-bge-d-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-bge-d-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -66,18 +66,18 @@
 		<key>Test-comedMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-comed-t-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-comed-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Dev-comedMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-comed-d-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-comed-d-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -125,18 +125,18 @@
 		<key>Test-pecoMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-peco-t-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-peco-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Dev-pecoMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-peco-d-ams-01.azure-api.net/legacy</string>
+			<string>https://xze-e-n-eudapi-peco-d-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
@@ -190,7 +190,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -251,7 +251,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -312,7 +312,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
