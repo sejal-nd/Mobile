@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_registration_confirmation.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

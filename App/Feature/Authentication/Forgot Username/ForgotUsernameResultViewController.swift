@@ -32,7 +32,9 @@ class ForgotUsernameResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Forgot Username", comment: "")
+        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+            ? NSLocalizedString("Forgot Email", comment: "")
+            : NSLocalizedString("Forgot Username", comment: "")
         
         styleTopLabels()
         
@@ -52,6 +54,9 @@ class ForgotUsernameResultViewController: UIViewController {
         usernameEmailLabel.textColor = .deepGray
         usernameEmailLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         singleAccountValueLabel.textColor = .deepGray
+        usernameEmailLabel.text = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+               ? NSLocalizedString("Email", comment: "")
+               : NSLocalizedString("Username / Email Address", comment: "")
         singleAccountValueLabel.font = OpenSans.regular.of(textStyle: .headline)
         singleAccountValueLabel.text = viewModel.maskedUsernames.first?.email
         
@@ -76,10 +81,13 @@ class ForgotUsernameResultViewController: UIViewController {
         topLabel3.textColor = .deepGray
         topLabel3.font = SystemFont.regular.of(textStyle: .headline)
         
-        if UIScreen.main.bounds.width < 375 {
+        if UIScreen.main.bounds.width <= 375 {
             // Prevent text from getting cut off on iPhone 5/SE with dynamic font all the way up
             topLabel2.text = NSLocalizedString("if you remember", comment: "")
-            topLabel3.text = NSLocalizedString("your username or you can answer a security question to view your full username", comment: "")
+            let topLabelText = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+                ? NSLocalizedString("your email or you can answer a security question to view your full email", comment: "")
+                : NSLocalizedString("your username or you can answer a security question to view your full username", comment: "")
+            topLabel3.text = topLabelText
         }
     }
     

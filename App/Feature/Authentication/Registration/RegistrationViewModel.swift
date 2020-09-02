@@ -23,9 +23,17 @@ class RegistrationViewModel {
     let dueDate = BehaviorRelay<Date?>(value: nil)
     var selectedSegmentIndex = BehaviorRelay(value: 0)
     
+    let firstName = BehaviorRelay(value: "")
+    let lastName = BehaviorRelay(value: "")
+    let accountNickname = BehaviorRelay(value: "")
+
     let username = BehaviorRelay(value: "")
     let newPassword = BehaviorRelay(value: "")
     let confirmPassword = BehaviorRelay(value: "")
+    
+    var multipleAccounts = [AccountResult]()
+    let selectedAccount = BehaviorRelay<AccountResult?>(value: nil)
+    var hasMultipleAccount = false
     
     var accountType = BehaviorRelay(value: "")
     
@@ -61,21 +69,26 @@ class RegistrationViewModel {
     func validateAccount(onSuccess: @escaping () -> Void,
                          onMultipleAccounts: @escaping() -> Void,
                          onError: @escaping (String, String) -> Void) {
-      //  let identifier: String = identifierNumber.value
+        //  let identifier: String = identifierNumber.value
         var phoneNumber = ""
         var identifierValue = ""
         var accountNumber = ""
         var dueAmount = ""
         var dueDate = ""
         
+        if let accountNumberValue = selectedAccount.value?.accountNumber {
+            accountNumber = accountNumberValue
+        }
+        
         if selectedSegmentIndex.value == .zero {
-             phoneNumber = extractDigitsFrom(self.phoneNumber.value)
-             identifierValue = identifierNumber.value
+            phoneNumber = extractDigitsFrom(self.phoneNumber.value)
+            identifierValue = identifierNumber.value
         } else {
-             accountNumber = self.accountNumber.value
+            accountNumber = self.accountNumber.value
             dueAmount = String(self.totalAmountDue.value)
             dueDate = self.dueDate.value?.yyyyMMddString ?? ""
         }
+        
         registrationService.validateAccountInformation(identifierValue,
                                                        phone: phoneNumber,
                                                        accountNum: accountNumber,
@@ -87,20 +100,27 @@ class RegistrationViewModel {
                 let types = data["type"] as? [String]
                 self.accountType.accept(types?.first ?? "")
                 self.isPaperlessEbillEligible = (data["ebill"] as? Bool) ?? false
-                
-                onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue {
-                    onError(NSLocalizedString("Invalid Information", comment: ""), NSLocalizedString("The information entered does not match our records. Please try again.", comment: ""))
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountMultiple.rawValue {
-                    onMultipleAccounts()
-                } else if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
-                    onError(NSLocalizedString("Profile Exists", comment: ""), NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: ""))
-                } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                if !self.hasMultipleAccount {
+                    self.hasMultipleAccount = (data["multipleCustomers"] as? Bool) ?? false
+                    if let accountsArray = data["accounts"] as? [NSDictionary] {
+                        let accounts: [AccountResult] = accountsArray.compactMap(AccountResult.from)
+                        self.multipleAccounts = accounts
+                    }
                 }
+                onSuccess()
+                }, onError: { error in
+                    let serviceError = error as! ServiceError
+                    
+                    if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue {
+                        onError(NSLocalizedString("Invalid Information", comment: ""), NSLocalizedString("The information entered does not match our records. Please try again.", comment: ""))
+                    } else if serviceError.serviceCode == ServiceErrorCode.fnAccountMultiple.rawValue {
+                        onMultipleAccounts()
+                    } else if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
+                        onError(NSLocalizedString("Profile Exists", comment: ""), NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: ""))
+                    } else {
+                        onError(NSLocalizedString("We're sorry, we weren't able to process your request.", comment: ""),
+                                "An error occurred and we weren't able to process your request. Please try again later.")
+                    }
             })
             .disposed(by: disposeBag)
     }
@@ -125,21 +145,25 @@ class RegistrationViewModel {
                         }
                     }
                 }
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
-                    onEmailAlreadyExists()
-                } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
-                }
+                }, onError: { error in
+                    let serviceError = error as! ServiceError
+                    if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
+                        onEmailAlreadyExists()
+                    } else {
+                        onError(NSLocalizedString("We're sorry, we weren't able to process your request.", comment: ""), "An error occurred and we weren't able to process your request. Please try again later.")
+                    }
             })
             .disposed(by: disposeBag)
     }
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        registrationService.createNewAccount(username: username.value,
+        let accountNumber = self.hasMultipleAccount ? selectedAccount.value?.accountNumber ?? "": self.accountNumber.value
+        registrationService.createNewAccount(firstName: firstName.value,
+                                             lastName: lastName.value,
+                                             username: username.value,
                                              password: newPassword.value,
-                                             accountNum: accountNumber.value,
+                                             nickname: accountNickname.value,
+                                             accountNum: accountNumber,
                                              identifier: identifierNumber.value,
                                              phone: extractDigitsFrom(phoneNumber.value),
                                              question1: securityQuestion1.value!,
@@ -147,9 +171,9 @@ class RegistrationViewModel {
                                              question2: securityQuestion2.value!,
                                              answer2: securityAnswer2.value,
                                              question3: securityQuestion3.value ?? "", // "" for BGE since no 3rd question
-                                             answer3: securityAnswer3.value,
-                                             isPrimary: primaryProfile.value ? "true" : "false",
-                                             isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
+            answer3: securityAnswer3.value,
+            isPrimary: primaryProfile.value ? "true" : "false",
+            isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -159,7 +183,7 @@ class RegistrationViewModel {
                 switch (serviceError.serviceCode) {
                 case ServiceErrorCode.fnAccountMultiple.rawValue:
                     onError(NSLocalizedString("Multiple Accounts", comment: ""), error.localizedDescription)
-            
+                    
                 case ServiceErrorCode.fnCustomerNotFound.rawValue:
                     onError(NSLocalizedString("Customer Not Found", comment: ""), error.localizedDescription)
                     
@@ -176,7 +200,7 @@ class RegistrationViewModel {
                     fallthrough
                     
                 default:
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("We're sorry, we weren't able to process your request.", comment: ""), "An error occurred and we weren't able to process your request. Please try again later.")
                 }
             })
             .disposed(by: disposeBag)
@@ -189,8 +213,8 @@ class RegistrationViewModel {
                 guard let self = self else { return }
                 self.securityQuestions = array
                 onSuccess()
-            }, onError: { error in
-                onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                }, onError: { error in
+                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
             })
             .disposed(by: disposeBag)
     }
@@ -201,34 +225,39 @@ class RegistrationViewModel {
             .subscribe(onNext: { [weak self] array in
                 self?.accounts.accept(array)
                 onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                
-                switch (serviceError.serviceCode) {
-                case ServiceErrorCode.fnNotFound.rawValue:
-                    onError(NSLocalizedString("No Account Found", comment: ""), error.localizedDescription)
+                }, onError: { error in
+                    let serviceError = error as! ServiceError
                     
-                case ServiceErrorCode.tcUnknown.rawValue:
-                    fallthrough
-                    
-                default:
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
-                }
+                    switch (serviceError.serviceCode) {
+                    case ServiceErrorCode.fnNotFound.rawValue:
+                        onError(NSLocalizedString("No Account Found", comment: ""), error.localizedDescription)
+                        
+                    case ServiceErrorCode.tcUnknown.rawValue:
+                        fallthrough
+                        
+                    default:
+                        onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                    }
             })
             .disposed(by: disposeBag)
     }
-
+    
     private(set) lazy var validateAccountContinueEnabled: Driver<Bool> = {
         return Driver.combineLatest(self.phoneNumberHasTenDigits,
                                     self.identifierHasFourDigits,
                                     self.identifierIsNumeric,
-                                    self.accountNumberHasTenDigits,
+                                    self.accountNumberHasValidLength,
                                     self.segmentChanged,
                                     self.amountDueHasValue,
                                     self.dueDateHasValue)
         { self.selectedSegmentIndex.value == .zero ?  $0 && $1 && $2 && $4: $3 && $4 && $5 && $6 }
     }()
     
+    
+    private(set) lazy var shouldShowFirstAndLastName: Bool = Environment.shared.opco.isPHI
+    
+    private(set) lazy var shouldShowAccountNickname: Bool = Environment.shared.opco.isPHI
+
     func checkForMaintenance() {
         authenticationService
             .getMaintenanceMode()
@@ -243,20 +272,20 @@ class RegistrationViewModel {
     private(set) lazy var paymentDateString: Driver<String> = dueDate.asDriver()
         .map { ($0?.mmDdYyyyString ?? "") }
     private(set) lazy var paymentAmountString = totalAmountDue.asDriver()
-         .map { $0.currencyString }
+        .map { $0.currencyString }
     
     private(set) lazy var amountDueHasValue: Driver<Bool> =
         self.totalAmountDue.asDriver().map { $0 >= 0 }
     
     private(set) lazy var dueDateHasValue: Driver<Bool> =
         self.dueDate.asDriver().map { $0?.MMddyyyyString.count > 0}
-       
+    
     private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
         self.phoneNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.count == 10
-        }
+    }
     
     private(set) lazy var identifierHasFourDigits: Driver<Bool> =
         self.identifierNumber.asDriver().map { $0.count == 4 }
@@ -266,14 +295,14 @@ class RegistrationViewModel {
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.count == text.count
-        }
+    }
     
-    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> =
+    private(set) lazy var accountNumberHasValidLength: Driver<Bool> =
         self.accountNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.count == 10
-        }
+            return Environment.shared.opco.isPHI ? digitsOnlyString.count == 11 : digitsOnlyString.count == 10
+    }
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
@@ -281,6 +310,12 @@ class RegistrationViewModel {
     
     private(set) lazy var newUsernameHasText: Driver<Bool> =
         self.username.asDriver().map { !$0.isEmpty }
+    
+    private(set) lazy var firstNameHasText: Driver<Bool> =
+          self.firstName.asDriver().map { !$0.isEmpty }
+    
+    private(set) lazy var lastNameHasText: Driver<Bool> =
+          self.lastName.asDriver().map { !$0.isEmpty }
     
     private(set) lazy var newUsernameIsValidBool: Driver<Bool> =
         self.username.asDriver().map { text -> Bool in
@@ -303,7 +338,7 @@ class RegistrationViewModel {
             }
             
             return true
-        }
+    }
     
     private(set) lazy var newUsernameIsValid: Driver<String?> =
         self.username.asDriver().map { text -> String? in
@@ -328,7 +363,31 @@ class RegistrationViewModel {
             }
             
             return nil
-        }
+    }
+    
+    private(set) lazy var firstNameIsValid: Driver<String?> =
+        self.firstName.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+            } else {
+                return "First Name is required."
+            }
+            return nil
+    }
+    
+    private(set) lazy var lastNameIsValid: Driver<String?> =
+        self.lastName.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+            } else {
+                return "Last Name is required."
+            }
+            return nil
+    }
     
     private(set) lazy var newPasswordHasText: Driver<Bool> =
         self.newPassword.asDriver().map{ !$0.isEmpty }
@@ -347,7 +406,7 @@ class RegistrationViewModel {
             return regex.firstMatch(in: text,
                                     options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
                                     range: NSMakeRange(0, text.count)) != nil
-        }
+    }
     
     private(set) lazy var containsLowercaseLetter: Driver<Bool> =
         self.newPassword.asDriver().map { text -> Bool in
@@ -356,7 +415,7 @@ class RegistrationViewModel {
             return regex.firstMatch(in: text,
                                     options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
                                     range: NSMakeRange(0, text.count)) != nil
-        }
+    }
     
     private(set) lazy var containsNumber: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
         let regex = try! NSRegularExpression(pattern: ".*[0-9].*",
@@ -369,12 +428,12 @@ class RegistrationViewModel {
     private(set) lazy var containsSpecialCharacter: Driver<Bool> = self.newPassword.asDriver()
         .map{ text -> String in
             return text.components(separatedBy: .whitespacesAndNewlines).joined()
-        }
-        .map { text -> Bool in
-            let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-            return regex.firstMatch(in: text,
-                                    options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
-                                    range: NSMakeRange(0, text.count)) != nil
+    }
+    .map { text -> Bool in
+        let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
+        return regex.firstMatch(in: text,
+                                options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
+                                range: NSMakeRange(0, text.count)) != nil
     }
     
     private(set) lazy var passwordMatchesUsername: Driver<Bool> =
@@ -382,7 +441,7 @@ class RegistrationViewModel {
                              self.username.asDriver())
         { newPassword, username -> Bool in
             newPassword.lowercased() == username.lowercased() && !newPassword.isEmpty
-        }
+    }
     
     private(set) lazy var newPasswordIsValid: Driver<Bool> =
         Driver.combineLatest([self.characterCountValid,
@@ -398,17 +457,17 @@ class RegistrationViewModel {
                 }
             }
             return false
-        }
+    }
     
     private(set) lazy var everythingValid: Driver<Bool> =
         Driver.combineLatest([self.passwordMatchesUsername,
-                            self.characterCountValid,
-                            self.containsUppercaseLetter,
-                            self.containsLowercaseLetter,
-                            self.containsNumber,
-                            self.containsSpecialCharacter,
-                            self.newUsernameHasText,
-                            self.newUsernameIsValidBool])
+                              self.characterCountValid,
+                              self.containsUppercaseLetter,
+                              self.containsLowercaseLetter,
+                              self.containsNumber,
+                              self.containsSpecialCharacter,
+                              self.newUsernameHasText,
+                              self.newUsernameIsValidBool])
         { array in
             if !array[0] && array[1] && array[6] && array[7] {
                 let otherArray = array[2...5].filter { $0 }
@@ -417,7 +476,7 @@ class RegistrationViewModel {
                 }
             }
             return false
-        }
+    }
     
     func getPasswordScore() -> Int32 {
         var score: Int32 = -1
@@ -430,14 +489,17 @@ class RegistrationViewModel {
     private(set) lazy var confirmPasswordMatches: Driver<Bool> =
         Driver.combineLatest(self.confirmPassword.asDriver(), self.newPassword.asDriver(), resultSelector: ==)
     
-    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Driver
+    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Environment.shared.opco.isPHI ? Driver
+        .combineLatest(firstNameHasText, lastNameHasText, everythingValid, confirmPasswordMatches, newPasswordHasText)
+        { $0 && $1 && $2 && $3 && $4}
+    : Driver
         .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
         { $0 && $1 && $2 }
     
     private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
         let driverArray: [Driver<String>]
         let count: Int
-        if Environment.shared.opco == .bge || Environment.shared.opco == .comEd{
+        if Environment.shared.opco == .bge || RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             driverArray = [self.securityAnswer1.asDriver(),
                            self.securityAnswer2.asDriver()]
             count = 2
@@ -453,4 +515,7 @@ class RegistrationViewModel {
             return emptiesRemoved.count == count
         }
     }()
+    
+    private(set) lazy var selectAccountButtonEnabled: Driver<Bool> =
+        self.selectedAccount.asDriver().isNil().not()
 }

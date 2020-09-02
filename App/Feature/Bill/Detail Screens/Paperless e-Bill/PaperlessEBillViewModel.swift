@@ -46,14 +46,8 @@ class PaperlessEBillViewModel {
         switch Environment.shared.opco {
         case .bge:
             self.accounts = BehaviorRelay(value: [AccountsStore.shared.accounts.filter { accountDetail.accountNumber == $0.accountNumber }.first!])
-        case .comEd, .peco:
+        case .ace, .comEd, .delmarva, .peco, .pepco:
             self.accounts = BehaviorRelay(value: AccountsStore.shared.accounts)
-        case .pepco:
-            fatalError("todo")
-        case .ace:
-            fatalError("todo")
-        case .delmarva:
-            fatalError("todo")
         }
         
         if self.accounts.value.count == 1 {
@@ -145,7 +139,7 @@ class PaperlessEBillViewModel {
                 GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
         
         var changedStatus: PaperlessEBillChangedStatus
-        if Environment.shared.opco == .bge {
+        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
             changedStatus = !enrollObservables.isEmpty ? .enroll : .unenroll
         } else { // EM-1780 ComEd/PECO should always show Mixed
             changedStatus = .mixed
@@ -165,7 +159,7 @@ class PaperlessEBillViewModel {
     }
     
     var footerText: String? {
-        if Environment.shared.opco == .bge {
+        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
             return nil
         }
         let opcoString = Environment.shared.opco.displayString

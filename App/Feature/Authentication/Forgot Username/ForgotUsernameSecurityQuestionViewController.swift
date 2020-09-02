@@ -28,7 +28,9 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Forgot Username", comment: "")
+        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+            ? NSLocalizedString("Forgot Email", comment: "")
+            : NSLocalizedString("Forgot Username", comment: "")
         
         viewModel.securityQuestionAnswerNotEmpty.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         

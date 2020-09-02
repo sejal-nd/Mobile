@@ -22,7 +22,8 @@ struct Account: Mappable, Equatable, Hashable {
     let isFinaled: Bool
     let isResidential: Bool
     let serviceType: String?
-    
+    let utilityCode: String?
+
     let isPasswordProtected: Bool
 
     init(map: Mapper) throws {
@@ -39,7 +40,8 @@ struct Account: Mappable, Equatable, Hashable {
         serviceType = map.optionalFrom("serviceType")
         
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
-        
+        utilityCode = map.optionalFrom("utilityCode")
+
         currentPremise = premises.first
     }
     
@@ -58,6 +60,25 @@ struct Account: Mappable, Equatable, Hashable {
         } else {
             return accountNumber
         }
+    }
+    
+    /// For PHI ocpos, this variable will return the opco type tagged to a a particular account
+    /// Note: Currently the functionality is extended only for PHI opcos
+    var opcoType: OpCo? {
+        if Environment.shared.opco.isPHI,
+           let utilityCode = utilityCode {
+            switch utilityCode {
+            case "ACE":
+                return .ace
+            case "DPL":
+                return .delmarva
+            case "PEP":
+                return .pepco
+            default:
+                return nil
+            }
+        }
+       return nil
     }
     
     // Equatable
@@ -345,4 +366,16 @@ struct BillingInfo: Mappable {
 
 enum EBillEnrollStatus {
     case canEnroll, canUnenroll, finaled, ineligible
+}
+
+struct AccountResult: Mappable {
+    let accountNumber: String?
+    let streetNumber: String?
+    let unitNumber: String?
+    
+    init(map: Mapper) throws {
+        accountNumber = map.optionalFrom("fullAccountNumber")
+        streetNumber = map.optionalFrom("street")
+        unitNumber = map.optionalFrom("unit")
+    }
 }
