@@ -30,7 +30,7 @@ class MoreViewController: UIViewController {
                 case .prod, .prodbeta:
                     versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
                 default:
-                    versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
+                    versionLabel.text = String(format: NSLocalizedString("Version %@ - Tier %@", comment: ""), version, Environment.shared.environmentName.rawValue)
                 }
             } else {
                 versionLabel.text = nil

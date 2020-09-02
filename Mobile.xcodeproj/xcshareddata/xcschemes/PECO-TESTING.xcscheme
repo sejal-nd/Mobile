@@ -14,43 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
-               BuildableName = "PECO.app"
-               BlueprintName = "PECO"
+               BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
+               BuildableName = "EUMobile.app"
+               BlueprintName = "EUMobile"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Testing"
+      buildConfiguration = "Testing-PECO"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
-            BuildableName = "PECO.app"
-            BlueprintName = "PECO"
-            ReferencedContainer = "container:Mobile.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E8F62BE6200924570077B3DA"
-               BuildableName = "PECOUnitTests.xctest"
-               BlueprintName = "PECOUnitTests"
-               ReferencedContainer = "container:Mobile.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Testing"
+      buildConfiguration = "Testing-PECO"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -63,21 +44,15 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
-            BuildableName = "PECO.app"
-            BlueprintName = "PECO"
+            BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
+            BuildableName = "EUMobile.app"
+            BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-shouldLogAPI"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Testing"
+      buildConfiguration = "Testing-PECO"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -86,18 +61,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
-            BuildableName = "PECO.app"
-            BlueprintName = "PECO"
+            BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
+            BuildableName = "EUMobile.app"
+            BlueprintName = "EUMobile"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Testing">
+      buildConfiguration = "Testing-PECO">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Testing"
+      buildConfiguration = "Testing-PECO"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

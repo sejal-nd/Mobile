@@ -21,7 +21,7 @@ public enum Router {
         public var path: String {
             switch self {
             case .anon:
-                return "\(rawValue)/\(Environment.shared.opco.rawValue.uppercased())"
+                return "\(rawValue)/\(Environment.shared.opco.rawValue)"
             case .none:
                 return ""
             default:
@@ -154,23 +154,18 @@ public enum Router {
     public var host: String {
         switch self {
         case .fetchToken, .refreshToken:
-            return Environment.shared.mcsConfig.oAuthEndpoint
+            return Environment.shared.oAuthEndpoint
         case .weather:
             return "api.weather.gov"
         case .alertBanner, .newsAndUpdates:
-            return Environment.shared.mcsConfig.sharepointBaseURL
+            return Environment.shared.sharepointBaseURL
         default:
-            return Environment.shared.mcsConfig.baseUrl
+            return Environment.shared.baseUrl
         }
     }
     
     private var basePath: String {
-//        if Environment.shared.environmentName == .test && Environment.shared.opco.isPHI {
-            // Project specific environment - DIRTY SOLUTION
-            return "/phimobile/mobile/custom"
-//        } else {
-//            return "/mobile/custom"
-//        }
+        return "\(Environment.shared.projectPrefix)/mobile/custom"
     }
     
     public var apiAccess: ApiAccess {

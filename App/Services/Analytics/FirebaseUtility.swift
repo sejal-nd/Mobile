@@ -101,11 +101,11 @@ struct FirebaseUtility {
     
     /// This method should only be called once from App Delegate: Configures Firebase
     public static func configure() {
-        guard let filePath = Bundle.main.path(forResource: Environment.shared.firebaseConfigFile, ofType: "plist"),
+        guard let filePath = Bundle.main.path(forResource: "GoogleService-Info-\(Environment.shared.environmentName.rawValue)", ofType: "plist"),
             let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
                 return dLog("Failed to load Firebase Analytics")
         }
-        
+        print("FIB CONFIGURED")
         FirebaseApp.configure(options: fileopts)
     }
     

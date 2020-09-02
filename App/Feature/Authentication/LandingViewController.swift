@@ -52,7 +52,7 @@ class LandingViewController: UIViewController {
             case .prod, .prodbeta:
                 versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
             default:
-                versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
+                versionLabel.text = String(format: NSLocalizedString("Version %@ - Tier %@", comment: ""), version, Environment.shared.environmentName.rawValue)
             }
         } else {
             versionLabel.text = nil
@@ -134,7 +134,7 @@ class LandingViewController: UIViewController {
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
         
         view.sendSubviewToBack(videoView)
-        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video", ofType: "mp4")!)
+        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video-Flavor\(Environment.shared.opco.rawValue)", ofType: "mp4")!)
         let asset = AVAsset(url: movieUrl)
         let avPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: avPlayerItem)
@@ -177,7 +177,7 @@ class LandingViewController: UIViewController {
     }
     
     private func backgroundVideoResume(at playbackTime: CMTime) {
-        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video", ofType: "mp4")!)
+        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video-Flavor\(Environment.shared.opco.rawValue)", ofType: "mp4")!)
         let asset = AVAsset(url: movieUrl)
         let avPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: avPlayerItem)
