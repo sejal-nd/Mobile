@@ -10429,6 +10429,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
+				BASE_URL = "xze-e-n-eudapi-ace-s-ams-01.azure-api.net";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -11893,6 +11894,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
+				BASE_URL = "xze-e-n-eudapi-dpl-s-ams-01.azure-api.net";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -13357,6 +13359,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
+				BASE_URL = "xze-e-n-eudapi-pepco-s-ams-01.azure-api.net";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
