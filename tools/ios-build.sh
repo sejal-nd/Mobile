@@ -129,9 +129,9 @@ find_in_array() {
 mkdir -p build/logs
 
 # git repo branches can be used to specify the build type instead of the configuration directly
-if [[ "$BUILD_BRANCH" == "refs/heads/develop" ]]; then
+if [[ "$BUILD_BRANCH" == *"develop"* ]]; then
   CONFIGURATION="Testing"
-elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
+elif [[ "$BUILD_BRANCH" == *"stage"* ]]; then
   CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix" ]]; then
   CONFIGURATION="Staging"
