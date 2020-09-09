@@ -127,6 +127,7 @@ class HomeOutageCardView: UIView {
         
         errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        errorLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "") : NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
     
     private func showLoadingState() {
