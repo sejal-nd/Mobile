@@ -165,4 +165,22 @@ class MyHomeProfileViewModel {
             }
             return String(format: localizedText, String(numberOfChildren))
         }
+    
+    var homeTypeInfo: String {
+        switch Environment.shared.opco {
+        case .ace, .delmarva, .pepco:
+            return NSLocalizedString("This is the type of home you are in.", comment: "")
+        case .bge, .comEd, .peco:
+            return NSLocalizedString("This is the type of home in which you live.", comment: "")
+        }
+    }
+    
+    var heatingFuelInfo: String {
+        switch Environment.shared.opco {
+        case .ace, .delmarva, .pepco:
+            return NSLocalizedString("Neighbor Comparison includes homes with similar heating source.", comment: "")
+        case .bge, .comEd, .peco:
+            return NSLocalizedString("This is the source of your heat and can have a significant impact on your energy costs.", comment: "")
+        }
+    }
 }

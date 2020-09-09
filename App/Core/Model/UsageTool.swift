@@ -9,7 +9,7 @@
 import UIKit
 
 enum UsageTool {
-    case usageData, energyTips, homeProfile, peakRewards, smartEnergyRewards, hourlyPricing, peakTimeSavings
+    case usageData, energyTips, homeProfile, peakRewards, smartEnergyRewards, hourlyPricing, peakTimeSavings, energyWiseRewards, peakEnergySavings
     
     var title: String {
         switch self {
@@ -27,6 +27,10 @@ enum UsageTool {
             return NSLocalizedString("Hourly Pricing", comment: "")
         case .peakTimeSavings:
             return NSLocalizedString("Peak Time Savings", comment: "")
+        case .energyWiseRewards:
+            return NSLocalizedString("Energy Wise Rewards", comment: "")
+        case .peakEnergySavings:
+            return NSLocalizedString("Peak Energy Savings", comment: "")
         }
     }
     
@@ -46,6 +50,10 @@ enum UsageTool {
             return #imageLiteral(resourceName: "ic_hourlypricing")
         case .peakTimeSavings:
             return #imageLiteral(resourceName: "ic_smartenergy")
+        case .energyWiseRewards:
+            return #imageLiteral(resourceName: "ic_phi_thermostat")
+        case .peakEnergySavings:
+            return #imageLiteral(resourceName: "ic_peaktimesavings")
         }
     }
 }
