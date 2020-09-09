@@ -9,7 +9,7 @@ Usage:
 
 ------- Required Arguments ------
 
---opco                    - BGE, PECO, or ComEd, ACE, Pepco, Delmarva
+--opco                    - BGE, PECO, or ComEd, ACE, DPL, Pepco
 
 --configuration           - ${POSSIBLE_CONFIGURATIONS[*]}
 
