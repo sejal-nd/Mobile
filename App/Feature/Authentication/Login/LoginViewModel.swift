@@ -87,6 +87,13 @@ class LoginViewModel {
                     onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
                 } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
                     onRegistrationNotComplete()
+                } else if serviceError.serviceCode == "FN-FAIL-LOGIN" {
+                    if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+                       let message = NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
+                        onError(nil, message)
+                    } else {
+                        onError(nil, error.localizedDescription)
+                    }
                 } else {
                     onError(nil, error.localizedDescription)
                 }
@@ -156,7 +163,7 @@ class LoginViewModel {
                 if serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
                     onError(NSLocalizedString("Your verification link is no longer valid", comment: ""), NSLocalizedString("If you have already verified your account, please sign in to access your account. If your link has expired, please re-register.", comment: ""))
                 } else {
-                    onError(NSLocalizedString("Error", comment: ""), err.localizedDescription)
+                    onError(NSLocalizedString("We're sorry, we weren't able to process your request.", comment: ""), "An error occurred and we weren't able to process your request. Please try again later.")
                 }
             }).disposed(by: disposeBag)
     }

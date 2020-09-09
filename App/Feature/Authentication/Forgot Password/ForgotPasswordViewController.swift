@@ -38,8 +38,13 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.textColor = .deepGray
         instructionLabel.setLineHeight(lineHeight: 24)
-        let placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
-
+        var placeholderText = "Username / Email Address"
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+            placeholderText = "Email"
+        } else {
+            placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
+        }
+        
         usernameTextField.placeholder = NSLocalizedString(placeholderText, comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .done

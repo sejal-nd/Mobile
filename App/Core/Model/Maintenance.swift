@@ -39,7 +39,6 @@ struct Maintenance: Mappable {
         outageStatus = map.optionalFrom("outage") ?? false || map.optionalFrom("ios.outage") ?? false
         alertStatus = map.optionalFrom("alerts") ?? false || map.optionalFrom("ios.alerts") ?? false
         usageStatus = map.optionalFrom("usage") ?? false || map.optionalFrom("ios.usage") ?? false
-        
         stormModeStatus = map.optionalFrom("storm") ?? false // Real Storm Mode value
         //stormModeStatus = true // Force Storm Mode
         //stormModeStatus = Int.random(in: 1...5) != 1 // 1 in 5 chance to test exiting Storm Mode

@@ -91,7 +91,7 @@ class StormModeBillViewModel {
         .asDriver(onErrorDriveWith: .empty())
 
     private(set) lazy var showMakeAPaymentButton: Driver<Bool> = accountDetail
-        .map { $0.billingInfo.netDueAmount ?? 0 > 0 || Environment.shared.opco == .bge }
+        .map { $0.billingInfo.netDueAmount ?? 0 > 0 || (Environment.shared.opco == .bge || Environment.shared.opco.isPHI) }
         .asDriver(onErrorDriveWith: .empty())
 
     private lazy var accountDetailNoNetwork: Observable<Bool> = accountDetailEvents

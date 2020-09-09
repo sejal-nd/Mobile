@@ -197,9 +197,27 @@
 		301DE1FA24BF0A7900992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		301DE1FB24BF0A7A00992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		301DE1FC24C04ADA00992CA4 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
+		30353FC024D1831C0060DE5D /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FBF24D1831C0060DE5D /* sm_outage.json */; };
+		30353FC124D1831C0060DE5D /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FBF24D1831C0060DE5D /* sm_outage.json */; };
+		30353FC224D1831C0060DE5D /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FBF24D1831C0060DE5D /* sm_outage.json */; };
+		30353FC424D292C10060DE5D /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FC324D292C10060DE5D /* sm_outage_loading.json */; };
+		30353FC524D292C10060DE5D /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FC324D292C10060DE5D /* sm_outage_loading.json */; };
+		30353FC624D292C10060DE5D /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FC324D292C10060DE5D /* sm_outage_loading.json */; };
 		3062CFF724B6DF3B000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF624B6DF3B000176EC /* landing_video.mp4 */; };
 		3062CFF924B6DF8F000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF824B6DF8E000176EC /* landing_video.mp4 */; };
 		3062CFFB24B6DFB4000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFFA24B6DFB4000176EC /* landing_video.mp4 */; };
+		30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
+		30636F0B24C82F7300CCBFAE /* OpcoIdentityCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */; };
+		30636F0C24C82F7400CCBFAE /* OpcoIdentityCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */; };
+		30636F0D24C82F7600CCBFAE /* OpcoIdentityCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */; };
+		30636F0E24C82F8500CCBFAE /* OpcoIdentityCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */; };
+		30636F0F24C82F8600CCBFAE /* OpcoIdentityCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */; };
+		30636F1024C82F8800CCBFAE /* OpcoIdentityCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */; };
+		30636F1124C8366B00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
+		30636F1224C8366C00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
+		30636F1324C8366E00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
+		30636F1424C8366F00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
+		30636F1524C8367200CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
 		3090A637247E428900815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A634247E41FC00815EA1 /* splash.json */; };
 		3090A638247E428E00815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A635247E425A00815EA1 /* splash.json */; };
 		3090A639247E429500815EA1 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3090A636247E426400815EA1 /* splash.json */; };
@@ -228,6 +246,7 @@
 		30F821A5249B71930010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
 		30F821A6249B71950010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		350B980F24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F122B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -354,6 +373,11 @@
 		356C7FA22190A50C003E8A90 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		356C7FA32190AC28003E8A90 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
 		356C7FAE2190DC63003E8A90 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
+		356D725924D2AF910058661F /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
+		356D725A24D2AF970058661F /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
+		356D725B24D2AFA90058661F /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
+		356D725C24D2AFAB0058661F /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
+		356D725D24D2AFAD0058661F /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
 		3575232D22C53A1B00A0AFAC /* AccountListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3575232C22C53A1B00A0AFAC /* AccountListRow.xib */; };
 		3575232E22C53A1B00A0AFAC /* AccountListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3575232C22C53A1B00A0AFAC /* AccountListRow.xib */; };
 		3575232F22C53A1B00A0AFAC /* AccountListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3575232C22C53A1B00A0AFAC /* AccountListRow.xib */; };
@@ -1351,7 +1375,6 @@
 		67DDB4BC24535D2E006CD6EB /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
 		67DDB4BE24535D2E006CD6EB /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F321710CD700B1C632 /* Appt_Canceled.json */; };
 		67DDB4BF24535D2E006CD6EB /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F421710CD800B1C632 /* Appt_Inprogress.json */; };
-		67DDB4C024535D2E006CD6EB /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage.json */; };
 		67DDB4C124535D2E006CD6EB /* UINavigationBackButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F39D1F02F30E007BFA82 /* UINavigationBackButton.xib */; };
 		67DDB4C224535D2E006CD6EB /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
 		67DDB4C324535D2E006CD6EB /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
@@ -1412,7 +1435,6 @@
 		67DDB50324535D2E006CD6EB /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
 		67DDB50524535D2E006CD6EB /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
 		67DDB50624535D2E006CD6EB /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
-		67DDB50724535D2E006CD6EB /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading.json */; };
 		67DDB50824535D2E006CD6EB /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		67DDB50924535D2E006CD6EB /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
 		67DDB50A24535D2E006CD6EB /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
@@ -1900,7 +1922,6 @@
 		67DDB71224535D32006CD6EB /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
 		67DDB71424535D32006CD6EB /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F321710CD700B1C632 /* Appt_Canceled.json */; };
 		67DDB71524535D32006CD6EB /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F421710CD800B1C632 /* Appt_Inprogress.json */; };
-		67DDB71624535D32006CD6EB /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage.json */; };
 		67DDB71724535D32006CD6EB /* UINavigationBackButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F39D1F02F30E007BFA82 /* UINavigationBackButton.xib */; };
 		67DDB71824535D32006CD6EB /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
 		67DDB71924535D32006CD6EB /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
@@ -1962,7 +1983,6 @@
 		67DDB75924535D32006CD6EB /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
 		67DDB75B24535D32006CD6EB /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
 		67DDB75C24535D32006CD6EB /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
-		67DDB75D24535D32006CD6EB /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading.json */; };
 		67DDB75E24535D32006CD6EB /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		67DDB75F24535D32006CD6EB /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
 		67DDB76024535D32006CD6EB /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
@@ -2450,7 +2470,6 @@
 		67DDB96824535D35006CD6EB /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
 		67DDB96A24535D35006CD6EB /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F321710CD700B1C632 /* Appt_Canceled.json */; };
 		67DDB96B24535D35006CD6EB /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F421710CD800B1C632 /* Appt_Inprogress.json */; };
-		67DDB96C24535D35006CD6EB /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage.json */; };
 		67DDB96D24535D35006CD6EB /* UINavigationBackButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F39D1F02F30E007BFA82 /* UINavigationBackButton.xib */; };
 		67DDB96E24535D35006CD6EB /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
 		67DDB96F24535D35006CD6EB /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
@@ -2512,7 +2531,6 @@
 		67DDB9AF24535D35006CD6EB /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
 		67DDB9B124535D35006CD6EB /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
 		67DDB9B224535D35006CD6EB /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
-		67DDB9B324535D35006CD6EB /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27E2148517F00FBAD83 /* sm_outage_loading.json */; };
 		67DDB9B424535D35006CD6EB /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		67DDB9B524535D35006CD6EB /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
 		67DDB9B624535D35006CD6EB /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
@@ -5968,9 +5986,13 @@
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "App/Feature/Outage/Detail Pages/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
+		30353FBF24D1831C0060DE5D /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
+		30353FC324D292C10060DE5D /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
 		3062CFF624B6DF3B000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		3062CFF824B6DF8E000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		3062CFFA24B6DFB4000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
+		30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoIdentityCardView.swift; sourceTree = "<group>"; };
+		30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpcoIdentityCardView.xib; sourceTree = "<group>"; };
 		3090A634247E41FC00815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A635247E425A00815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A636247E426400815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -5981,6 +6003,7 @@
 		32517D6D4E8043FD27ECAE5A /* Pods-Pepco-Watch.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pepco-Watch.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-Pepco-Watch/Pods-Pepco-Watch.hotfix.xcconfig"; sourceTree = "<group>"; };
 		332CC2EF55B070505882B8EF /* Pods-BGEApp-BGEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		34E1D2D313B1C407B9AF0EC7 /* Pods-Pepco-Watch.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pepco-Watch.develop.xcconfig"; path = "Pods/Target Support Files/Pods-Pepco-Watch/Pods-Pepco-Watch.develop.xcconfig"; sourceTree = "<group>"; };
+		350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationChooseAccountViewController.swift; sourceTree = "<group>"; };
 		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
 		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
 		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
@@ -7596,6 +7619,15 @@
 			path = DPL;
 			sourceTree = "<group>";
 		};
+		30636F0624C82EBD00CCBFAE /* OpcoIdentityCardView */ = {
+			isa = PBXGroup;
+			children = (
+				30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */,
+				30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */,
+			);
+			path = OpcoIdentityCardView;
+			sourceTree = "<group>";
+		};
 		3090A631247E410F00815EA1 /* ACE */ = {
 			isa = PBXGroup;
 			children = (
@@ -7615,6 +7647,8 @@
 		3090A633247E412E00815EA1 /* PEPCO */ = {
 			isa = PBXGroup;
 			children = (
+				30353FC324D292C10060DE5D /* sm_outage_loading.json */,
+				30353FBF24D1831C0060DE5D /* sm_outage.json */,
 				3090A636247E426400815EA1 /* splash.json */,
 			);
 			path = PEPCO;
@@ -7992,6 +8026,7 @@
 		3559C89822F9C51400481A87 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				30636F0624C82EBD00CCBFAE /* OpcoIdentityCardView */,
 				9CC99788237B479200C68300 /* Game */,
 				3559C8A122F9C5F200481A87 /* Updates */,
 				3559C89E22F9C5B200481A87 /* Weather */,
@@ -8722,6 +8757,7 @@
 			isa = PBXGroup;
 			children = (
 				675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */,
+				350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */,
 				3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */,
 				35E1F85724ADA49900574065 /* RegistrationSecurityQuestionsViewControllerNew.swift */,
 			);
@@ -11047,6 +11083,7 @@
 				67D73AF4246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */,
 				67DDB47F24535D2E006CD6EB /* PrepaidCardView.xib in Resources */,
 				67DDB48024535D2E006CD6EB /* AccountInfoBarCell.xib in Resources */,
+				30636F0B24C82F7300CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				67DDB48124535D2E006CD6EB /* Appt_Confirmed.json in Resources */,
 				67DDB48224535D2E006CD6EB /* bill_comparison.json in Resources */,
 				67DDB48324535D2E006CD6EB /* account_lookup.json in Resources */,
@@ -11109,7 +11146,6 @@
 				67DDBDBD246463EE006CD6EB /* GoogleService-Info_pepco_testing.plist in Resources */,
 				67DDB4BE24535D2E006CD6EB /* Appt_Canceled.json in Resources */,
 				67DDB4BF24535D2E006CD6EB /* Appt_Inprogress.json in Resources */,
-				67DDB4C024535D2E006CD6EB /* sm_outage.json in Resources */,
 				67DDBD0A24535EE6006CD6EB /* PepcoAssets.xcassets in Resources */,
 				67DDB4C124535D2E006CD6EB /* UINavigationBackButton.xib in Resources */,
 				67DDB4C224535D2E006CD6EB /* opco_updates.json in Resources */,
@@ -11139,6 +11175,7 @@
 				67DDB4DE24535D2E006CD6EB /* checkmark.json in Resources */,
 				67DDB4DF24535D2E006CD6EB /* OpenSans-Semibold.ttf in Resources */,
 				67DDB4E024535D2E006CD6EB /* FirstFuelWidget.html in Resources */,
+				30353FC424D292C10060DE5D /* sm_outage_loading.json in Resources */,
 				67DDB4E124535D2E006CD6EB /* message_bubble_unique.json in Resources */,
 				67DDB4E224535D2E006CD6EB /* Storm.storyboard in Resources */,
 				67DDB4E324535D2E006CD6EB /* Payment.storyboard in Resources */,
@@ -11162,6 +11199,7 @@
 				67DDB4F324535D2E006CD6EB /* ellipses_loading.json in Resources */,
 				67DDB4F424535D2E006CD6EB /* buddy_body.json in Resources */,
 				67DDB4F524535D2E006CD6EB /* Assets.xcassets in Resources */,
+				30353FC024D1831C0060DE5D /* sm_outage.json in Resources */,
 				67DDB4F624535D2E006CD6EB /* Alerts.storyboard in Resources */,
 				67DDB4F724535D2E006CD6EB /* AccountDetailsView.xib in Resources */,
 				67DDB4F824535D2E006CD6EB /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
@@ -11175,7 +11213,6 @@
 				67DDB50324535D2E006CD6EB /* message_bubble_quiz.json in Resources */,
 				67DDB50524535D2E006CD6EB /* buddy_particles_sparkles.json in Resources */,
 				67DDB50624535D2E006CD6EB /* Unauthenticated.storyboard in Resources */,
-				67DDB50724535D2E006CD6EB /* sm_outage_loading.json in Resources */,
 				67DDB50824535D2E006CD6EB /* TitleTableViewHeaderView.xib in Resources */,
 				67DDB50924535D2E006CD6EB /* buddy_face_normal.json in Resources */,
 				67DDB50A24535D2E006CD6EB /* appointments.json in Resources */,
@@ -11216,6 +11253,7 @@
 				67D73AF6246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */,
 				67DDB6D524535D32006CD6EB /* PrepaidCardView.xib in Resources */,
 				67DDB6D624535D32006CD6EB /* AccountInfoBarCell.xib in Resources */,
+				30636F0D24C82F7600CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				67DDB6D724535D32006CD6EB /* Appt_Confirmed.json in Resources */,
 				67DDB6D824535D32006CD6EB /* bill_comparison.json in Resources */,
 				67DDB6D924535D32006CD6EB /* account_lookup.json in Resources */,
@@ -11277,7 +11315,6 @@
 				67DDB71224535D32006CD6EB /* coin_bonus_point.json in Resources */,
 				67DDB71424535D32006CD6EB /* Appt_Canceled.json in Resources */,
 				67DDB71524535D32006CD6EB /* Appt_Inprogress.json in Resources */,
-				67DDB71624535D32006CD6EB /* sm_outage.json in Resources */,
 				67DDB71724535D32006CD6EB /* UINavigationBackButton.xib in Resources */,
 				67DDB71824535D32006CD6EB /* opco_updates.json in Resources */,
 				67DDB71924535D32006CD6EB /* peak_rewards_summary.json in Resources */,
@@ -11308,6 +11345,7 @@
 				67DDB73624535D32006CD6EB /* FirstFuelWidget.html in Resources */,
 				67DDB73724535D32006CD6EB /* message_bubble_unique.json in Resources */,
 				67DDB73824535D32006CD6EB /* Storm.storyboard in Resources */,
+				30353FC624D292C10060DE5D /* sm_outage_loading.json in Resources */,
 				67DDB73924535D32006CD6EB /* Payment.storyboard in Resources */,
 				67DDB73A24535D32006CD6EB /* outage_loading.json in Resources */,
 				67DDB73B24535D32006CD6EB /* RadioSelectionTableViewCell.xib in Resources */,
@@ -11331,6 +11369,7 @@
 				67DDB74A24535D32006CD6EB /* buddy_body.json in Resources */,
 				67DDBD6824573696006CD6EB /* LaunchScreen-ACE.storyboard in Resources */,
 				67DDB74B24535D32006CD6EB /* Assets.xcassets in Resources */,
+				30353FC224D1831C0060DE5D /* sm_outage.json in Resources */,
 				67DDB74C24535D32006CD6EB /* Alerts.storyboard in Resources */,
 				67DDB74D24535D32006CD6EB /* AccountDetailsView.xib in Resources */,
 				67DDB74E24535D32006CD6EB /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
@@ -11348,7 +11387,6 @@
 				67DDB75924535D32006CD6EB /* message_bubble_quiz.json in Resources */,
 				67DDB75B24535D32006CD6EB /* buddy_particles_sparkles.json in Resources */,
 				67DDB75C24535D32006CD6EB /* Unauthenticated.storyboard in Resources */,
-				67DDB75D24535D32006CD6EB /* sm_outage_loading.json in Resources */,
 				67DDB75E24535D32006CD6EB /* TitleTableViewHeaderView.xib in Resources */,
 				67DDB75F24535D32006CD6EB /* buddy_face_normal.json in Resources */,
 				67DDB76024535D32006CD6EB /* appointments.json in Resources */,
@@ -11385,6 +11423,7 @@
 				67D73AF5246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */,
 				67DDB92A24535D35006CD6EB /* OpenSans-LightItalic.ttf in Resources */,
 				67DDB92B24535D35006CD6EB /* PrepaidCardView.xib in Resources */,
+				30636F0C24C82F7400CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				67DDB92C24535D35006CD6EB /* AccountInfoBarCell.xib in Resources */,
 				67DDB92D24535D35006CD6EB /* Appt_Confirmed.json in Resources */,
 				67DDB92E24535D35006CD6EB /* bill_comparison.json in Resources */,
@@ -11446,7 +11485,6 @@
 				67DDB96824535D35006CD6EB /* coin_bonus_point.json in Resources */,
 				67DDB96A24535D35006CD6EB /* Appt_Canceled.json in Resources */,
 				67DDB96B24535D35006CD6EB /* Appt_Inprogress.json in Resources */,
-				67DDB96C24535D35006CD6EB /* sm_outage.json in Resources */,
 				67DDB96D24535D35006CD6EB /* UINavigationBackButton.xib in Resources */,
 				67DDB96E24535D35006CD6EB /* opco_updates.json in Resources */,
 				67DDB96F24535D35006CD6EB /* peak_rewards_summary.json in Resources */,
@@ -11477,6 +11515,7 @@
 				67DDB98B24535D35006CD6EB /* OpenSans-Semibold.ttf in Resources */,
 				67DDB98C24535D35006CD6EB /* FirstFuelWidget.html in Resources */,
 				67DDB98D24535D35006CD6EB /* message_bubble_unique.json in Resources */,
+				30353FC524D292C10060DE5D /* sm_outage_loading.json in Resources */,
 				67DDB98E24535D35006CD6EB /* Storm.storyboard in Resources */,
 				67DDB98F24535D35006CD6EB /* Payment.storyboard in Resources */,
 				67DDB99024535D35006CD6EB /* outage_loading.json in Resources */,
@@ -11500,6 +11539,7 @@
 				67DDB99E24535D35006CD6EB /* OutageStatusButton.xib in Resources */,
 				67DDB99F24535D35006CD6EB /* ellipses_loading.json in Resources */,
 				67DDB9A024535D35006CD6EB /* buddy_body.json in Resources */,
+				30353FC124D1831C0060DE5D /* sm_outage.json in Resources */,
 				67DDB9A124535D35006CD6EB /* Assets.xcassets in Resources */,
 				67DDB9A224535D35006CD6EB /* Alerts.storyboard in Resources */,
 				67DDB9A324535D35006CD6EB /* AccountDetailsView.xib in Resources */,
@@ -11515,7 +11555,6 @@
 				67DDB9AF24535D35006CD6EB /* message_bubble_quiz.json in Resources */,
 				67DDB9B124535D35006CD6EB /* buddy_particles_sparkles.json in Resources */,
 				67DDB9B224535D35006CD6EB /* Unauthenticated.storyboard in Resources */,
-				67DDB9B324535D35006CD6EB /* sm_outage_loading.json in Resources */,
 				67DDB9B424535D35006CD6EB /* TitleTableViewHeaderView.xib in Resources */,
 				67DDB9B524535D35006CD6EB /* buddy_face_normal.json in Resources */,
 				67DDB9B624535D35006CD6EB /* appointments.json in Resources */,
@@ -11768,6 +11807,7 @@
 				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				C364A87B2375DC7B00C7D51B /* StateView.xib in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
+				30636F0E24C82F8500CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				9CD3532722CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
 				B0B083FB21710CDB00B1C632 /* Appt_Confirmed.json in Resources */,
@@ -12004,6 +12044,7 @@
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				B0B0840221710D1500B1C632 /* Appt_Canceled.json in Resources */,
+				30636F1024C82F8800CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				B0B0840321710D1500B1C632 /* Appt_Inprogress.json in Resources */,
 				9CEE411F23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				359BB27D214834BA00FBAD83 /* outage.json in Resources */,
@@ -12172,6 +12213,7 @@
 				B08956FA2215D11B00A97965 /* energy_tips.json in Resources */,
 				9C0EA5A5237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
+				30636F0F24C82F8600CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				35A6C6D1211C8F0700C2A58F /* TitleTableViewCell.xib in Resources */,
 				B0B083EE21710C8900B1C632 /* Appt_Canceled.json in Resources */,
 				B0B083EF21710C8900B1C632 /* Appt_Inprogress.json in Resources */,
@@ -14369,6 +14411,7 @@
 				67DDB2EE24535D2E006CD6EB /* InsetTextField.swift in Sources */,
 				67DDB2EF24535D2E006CD6EB /* HomeEditViewController.swift in Sources */,
 				67DDB2F024535D2E006CD6EB /* HourlyPricingViewController.swift in Sources */,
+				30636F1324C8366E00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				67DDB2F124535D2E006CD6EB /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				67DDB2F224535D2E006CD6EB /* ConversationalButton.swift in Sources */,
 				67DDB2F324535D2E006CD6EB /* SurveyMonkeyManager.m in Sources */,
@@ -14759,6 +14802,7 @@
 				67DDB47024535D2E006CD6EB /* TitleSubTitleRow.swift in Sources */,
 				67DDB47124535D2E006CD6EB /* UIViewController+AddCloseButton.swift in Sources */,
 				67DDB47224535D2E006CD6EB /* HomePrepaidCardView.swift in Sources */,
+				356D725C24D2AFAB0058661F /* RegistrationChooseAccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14904,6 +14948,7 @@
 				67DDB5B624535D32006CD6EB /* AccountLookupToolResultViewController.swift in Sources */,
 				67DDB5B724535D32006CD6EB /* PaperlessEBillCommercialViewController.swift in Sources */,
 				67DDB5B824535D32006CD6EB /* UIViewDashedBorders.swift in Sources */,
+				356D725B24D2AFA90058661F /* RegistrationChooseAccountViewController.swift in Sources */,
 				67DDB5B924535D32006CD6EB /* UpdatesTableViewCell.swift in Sources */,
 				67DDB5BA24535D32006CD6EB /* GameEnrollmentViewController.swift in Sources */,
 				67DDB5BB24535D32006CD6EB /* HomeOutageCardView.swift in Sources */,
@@ -15155,6 +15200,7 @@
 				67DDB6AC24535D32006CD6EB /* AppRating.swift in Sources */,
 				67DDB6AD24535D32006CD6EB /* BillAlertBannerView.swift in Sources */,
 				67DDB6AE24535D32006CD6EB /* BGEAutoPaySettingsViewModel.swift in Sources */,
+				30636F1124C8366B00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				67DDB6AF24535D32006CD6EB /* LoadingView.swift in Sources */,
 				67DDB6B024535D32006CD6EB /* AutoPayViewController.swift in Sources */,
 				67DDB6B124535D32006CD6EB /* Date.swift in Sources */,
@@ -15326,6 +15372,7 @@
 				67DDB80C24535D35006CD6EB /* AccountLookupToolResultViewController.swift in Sources */,
 				67DDB80D24535D35006CD6EB /* PaperlessEBillCommercialViewController.swift in Sources */,
 				67DDB80E24535D35006CD6EB /* UIViewDashedBorders.swift in Sources */,
+				356D725D24D2AFAD0058661F /* RegistrationChooseAccountViewController.swift in Sources */,
 				67DDB80F24535D35006CD6EB /* UpdatesTableViewCell.swift in Sources */,
 				67DDB81024535D35006CD6EB /* GameEnrollmentViewController.swift in Sources */,
 				67DDB81124535D35006CD6EB /* HomeOutageCardView.swift in Sources */,
@@ -15577,6 +15624,7 @@
 				67DDB90224535D35006CD6EB /* AppRating.swift in Sources */,
 				67DDB90324535D35006CD6EB /* BillAlertBannerView.swift in Sources */,
 				67DDB90424535D35006CD6EB /* BGEAutoPaySettingsViewModel.swift in Sources */,
+				30636F1224C8366C00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				67DDB90524535D35006CD6EB /* LoadingView.swift in Sources */,
 				67DDB90624535D35006CD6EB /* AutoPayViewController.swift in Sources */,
 				67DDB90724535D35006CD6EB /* Date.swift in Sources */,
@@ -16616,6 +16664,7 @@
 				E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E893993D1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
+				30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
 				9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
@@ -16696,6 +16745,7 @@
 				9CD742BB237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				82AC2A2A1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
+				356D725924D2AF910058661F /* RegistrationChooseAccountViewController.swift in Sources */,
 				E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */,
@@ -17037,6 +17087,7 @@
 				2F51B4971F26E20100550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
 				359BDBAA22E09D80007002B0 /* AccountInfoBar.swift in Sources */,
 				9C19983723A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
+				30636F1424C8366F00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				35376C6A20F8FFD1007E50F7 /* BillImpactView.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
@@ -17117,6 +17168,7 @@
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				9CB7E8DF23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				35C9139822E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
+				356D725A24D2AF970058661F /* RegistrationChooseAccountViewController.swift in Sources */,
 				9C28D38A227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				9CBE9E382374AC5100E14222 /* MockGameService.swift in Sources */,
 				9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
@@ -17458,6 +17510,7 @@
 				E893993E1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				E87C41481FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
 				82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */,
+				30636F1524C8367200CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				E841F3A31F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA21EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				82E9B60F1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
@@ -17734,6 +17787,7 @@
 				359BDB6322D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */,
 				359BDB4D22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */,
 				B039DB72225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */,
+				350B980F24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24517,7 +24571,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -24542,7 +24596,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -24573,7 +24627,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.develop;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -24582,7 +24636,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.develop.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24609,7 +24663,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.staging;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -24618,7 +24672,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.staging.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24645,7 +24699,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.testing;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -24654,7 +24708,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.testing.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24681,7 +24735,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.ifactorconsulting.pepco;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -24690,7 +24744,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24717,7 +24771,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.prodbeta;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -24726,7 +24780,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.prodbeta.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
@@ -24752,7 +24806,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.hotfix;
 				EXM_ENVIRONMENT = HOTFIX;
@@ -24762,7 +24816,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.hotfix.watchkitapp;
 				PRODUCT_NAME = "Pepco-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "Pepco Hotfix Watchkit App Enterprise Dist";
@@ -24816,7 +24870,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -24840,7 +24894,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -24870,7 +24924,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.pepco.develop.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -24878,7 +24932,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.develop.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -24904,7 +24958,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.pepco.staging.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -24912,7 +24966,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -24938,7 +24992,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.pepco.testing.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -24946,7 +25000,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -24972,7 +25026,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.pepco.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -24980,7 +25034,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -25006,7 +25060,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.pepco.prodbeta.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -25014,7 +25068,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -25040,7 +25094,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20200121;
+				CURRENT_PROJECT_VERSION = 20200122;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_ENVIRONMENT = HOTFIX;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.pepco.hotfix.watchkitapp;
@@ -25049,7 +25103,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.pepco.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Pepco-watchOS Extension";
@@ -25126,7 +25180,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -25166,7 +25220,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.develop.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25202,7 +25256,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.staging.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25238,7 +25292,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.testing.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25274,7 +25328,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25310,7 +25364,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.prodbeta.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
@@ -25346,7 +25400,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.hotfix.watchkitapp;
 				PRODUCT_NAME = "ACE-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "ACE Hotfix Watchkit App Enterprise Dist";
@@ -25424,7 +25478,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -25462,7 +25516,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.develop.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25496,7 +25550,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25530,7 +25584,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25564,7 +25618,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25598,7 +25652,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25633,7 +25687,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "ACE-watchOS Extension";
@@ -25710,7 +25764,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -25750,7 +25804,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.develop.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25786,7 +25840,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.staging.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25822,7 +25876,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.testing.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25858,7 +25912,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25894,7 +25948,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.prodbeta.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
@@ -25930,7 +25984,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.hotfix.watchkitapp;
 				PRODUCT_NAME = "Delmarva-Watch";
 				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Hotfix Watchkit App Enterprise Dist";
@@ -26008,7 +26062,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -26046,7 +26100,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.develop.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26080,7 +26134,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26114,7 +26168,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26148,7 +26202,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26182,7 +26236,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";
@@ -26217,7 +26271,7 @@
 				INFOPLIST_PREFIX_HEADER = "App/Supporting Files/Environment/environment_preprocess.h";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.delmarva.hotfix.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "Delmarva-watchOS Extension";

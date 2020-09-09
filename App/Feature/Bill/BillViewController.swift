@@ -727,11 +727,15 @@ class BillViewController: AccountPickerViewController {
 			.withLatestFrom(viewModel.currentAccountDetail)
 			.drive(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
-                if !accountDetail.isResidential && Environment.shared.opco != .bge {
-					self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: accountDetail)
-				} else {
-					self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
-				}
+                if Environment.shared.opco.isPHI {
+                    self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
+                } else {
+                    if !accountDetail.isResidential && Environment.shared.opco != .bge {
+                        self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: accountDetail)
+                    } else {
+                        self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
+                    }
+                }
 			})
 			.disposed(by: bag)
 
@@ -901,10 +905,10 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
         var toastMessage: String
         switch didChangeStatus {
         case .enroll:
-            toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
+            toastMessage = Environment.shared.opco.isPHI ? NSLocalizedString("Paperless eBill changes saved", comment: "") : NSLocalizedString("Enrolled in Paperless eBill", comment: "")
             showDelayedToast(withMessage: toastMessage)
         case .unenroll:
-            toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
+            toastMessage = Environment.shared.opco.isPHI ? NSLocalizedString("Paperless eBill changes saved", comment: "") : NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
             showDelayedToast(withMessage: toastMessage)
         case .mixed: // ComEd/PECO only
             let action = InfoAlertAction(ctaText: NSLocalizedString("I understand", comment: ""))
