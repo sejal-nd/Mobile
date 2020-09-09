@@ -128,9 +128,6 @@ find_in_array() {
 
 mkdir -p build/logs
 
-echo "$BUILD_BRANCH"
-echo "$BUILD_BRANCH" == *"develop"* "
-
 # git repo branches can be used to specify the build type instead of the configuration directly
 if [[ "$BUILD_BRANCH" == *"develop"* ]]; then
   CONFIGURATION="Testing"
