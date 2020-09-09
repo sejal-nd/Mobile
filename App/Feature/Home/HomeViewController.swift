@@ -722,31 +722,6 @@ class HomeViewController: AccountPickerViewController {
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
             .bind(to: viewModel.fetchData)
             .disposed(by: bag)
-        
-        // Commerical Usage Modal
-        viewModel.accountDetailEvents.elements()
-            .filter { !$0.isResidential && CommercialUsageAlertStore.shared.isEligibleForAlert }
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] accountDetail in
-                guard let self = self else { return }
-                if !accountDetail.isResidential && CommercialUsageAlertStore.shared.isEligibleForAlert {
-                    let action = InfoAlertAction(ctaText: NSLocalizedString("Take Me to Usage", comment: "")) { [weak self] in
-                        self?.tabBarController?.selectedIndex = 3
-                    }
-                    
-                    let alert = InfoAlertController(title: NSLocalizedString("Commercial Usage", comment: ""),
-                                                    message: NSLocalizedString("Your commercial usage data is now available within the mobile app.", comment: ""),
-                                                    action: action)
-                    
-                    // If they're already on the usage screen, don't show the alert
-                    if self.tabBarController?.selectedIndex != 3 {
-                        self.tabBarController?.present(alert, animated: true)
-                    }
-                    
-                    CommercialUsageAlertStore.shared.hasSeenAlert()
-                }
-            })
-            .disposed(by: bag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
