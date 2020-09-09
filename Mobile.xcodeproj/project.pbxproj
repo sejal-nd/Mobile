@@ -416,7 +416,6 @@
 		679CC729250003C900A46BBE /* splash-FlavorPEPCO.json in Resources */ = {isa = PBXBuildFile; fileRef = 679CC728250003C900A46BBE /* splash-FlavorPEPCO.json */; };
 		679CC72D2500041F00A46BBE /* landing_video-FlavorACE.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */; };
 		679CC72E2500041F00A46BBE /* landing_video-FlavorDPL.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */; };
-		679CC72F2500041F00A46BBE /* landing_video-FlavorPECO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72C2500041F00A46BBE /* landing_video-FlavorPECO.mp4 */; };
 		67A18B7324CA0EA100F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B7424CA0EA500F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
@@ -442,7 +441,6 @@
 		67A986AC24F9693600BD46E7 /* splash-FlavorPECO.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash-FlavorPECO.json */; };
 		67A986AD24F96CF600BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD692333C87A00AAA2B2 /* Assets-FlavorPECO.xcassets */; };
 		67A986AE24F96CF700BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD692333C87A00AAA2B2 /* Assets-FlavorPECO.xcassets */; };
-		67A986AF24F96E3900BD46E7 /* landing_video-FlavorPECO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 82D626151FE1AD6B00B09F00 /* landing_video-FlavorPECO.mp4 */; };
 		67A986D424FD419700BD46E7 /* GoogleService-Info-TEST-FlavorACE.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9924630C37006CD6EB /* GoogleService-Info-TEST-FlavorACE.plist */; };
 		67A986D524FD419700BD46E7 /* GoogleService-Info-STAGE-FlavorACE.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9F24630D41006CD6EB /* GoogleService-Info-STAGE-FlavorACE.plist */; };
 		67A986D624FD419700BD46E7 /* GoogleService-Info-PRODBETA-FlavorACE.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD9D24630D07006CD6EB /* GoogleService-Info-PRODBETA-FlavorACE.plist */; };
@@ -509,6 +507,8 @@
 		67D73AF1246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AEF246C480500450B63 /* BillingHistoryTableViewCell.xib */; };
 		67D73AF7246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AF0246C480500450B63 /* BillingHistoryTableViewCell.swift */; };
 		67DDBDBF24646E38006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
+		67E78D892509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */; };
+		67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */; };
 		67F950FC24BCA111009B5F07 /* RegistrationValidateAccountViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */; };
 		67F950FD24BCA111009B5F07 /* RegistrationCreateCredentialsViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */; };
 		67F950FE24BCA111009B5F07 /* RegistrationSecurityQuestionsViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1F85724ADA49900574065 /* RegistrationSecurityQuestionsViewControllerNew.swift */; };
@@ -1739,7 +1739,6 @@
 		679CC728250003C900A46BBE /* splash-FlavorPEPCO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "splash-FlavorPEPCO.json"; sourceTree = "<group>"; };
 		679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorACE.mp4"; sourceTree = "<group>"; };
 		679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorDPL.mp4"; sourceTree = "<group>"; };
-		679CC72C2500041F00A46BBE /* landing_video-FlavorPECO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorPECO.mp4"; sourceTree = "<group>"; };
 		67A18B7224CA0EA100F7A77B /* ApigeeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApigeeError.swift; sourceTree = "<group>"; };
 		67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequest.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
@@ -1770,6 +1769,8 @@
 		67DDBDBA246463B7006CD6EB /* GoogleService-Info-STAGE-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-STAGE-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBC246463EE006CD6EB /* GoogleService-Info-TEST-FlavorPEPCO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-TEST-FlavorPEPCO.plist"; sourceTree = "<group>"; };
 		67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+OpCo.swift"; sourceTree = "<group>"; };
+		67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorPEPCO.mp4"; sourceTree = "<group>"; };
+		67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorPECO.mp4"; sourceTree = "<group>"; };
 		67EDC30024C1E96A001A8494 /* Assets-FlavorPEPCO.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorPEPCO.xcassets"; sourceTree = "<group>"; };
 		67EDC30824C1EA17001A8494 /* Bill-FlavorPEPO.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Bill-FlavorPEPO.storyboard"; sourceTree = "<group>"; };
 		67EDC30924C1EA17001A8494 /* Outage-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Outage-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
@@ -1914,7 +1915,6 @@
 		82D599411EC2374500DDB380 /* ActivityTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		82D599501EC3A00900DDB380 /* alert_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_icon.json; sourceTree = "<group>"; };
-		82D626151FE1AD6B00B09F00 /* landing_video-FlavorPECO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorPECO.mp4"; sourceTree = "<group>"; };
 		82D626171FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorBGE.mp4"; sourceTree = "<group>"; };
 		82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewModel.swift; sourceTree = "<group>"; };
 		82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewController.swift; sourceTree = "<group>"; };
@@ -5007,11 +5007,11 @@
 			isa = PBXGroup;
 			children = (
 				825FEE031FDF370B00DC1961 /* landing_video-FlavorCOMED.mp4 */,
-				82D626151FE1AD6B00B09F00 /* landing_video-FlavorPECO.mp4 */,
+				67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */,
 				82D626171FE1AD8B00B09F00 /* landing_video-FlavorBGE.mp4 */,
 				679CC72A2500041E00A46BBE /* landing_video-FlavorACE.mp4 */,
 				679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */,
-				679CC72C2500041F00A46BBE /* landing_video-FlavorPECO.mp4 */,
+				67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */,
 			);
 			path = "Landing Video";
 			sourceTree = "<group>";
@@ -6131,6 +6131,7 @@
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				675F4D6224AB828200A828F9 /* WeatherMock.json in Resources */,
 				B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */,
+				67E78D892509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				67A986A524F9693300BD46E7 /* Appt_Confirmed-FlavorPECO.json in Resources */,
@@ -6242,7 +6243,6 @@
 				675F4D9E24AB828200A828F9 /* PaymentsMock.json in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
-				67A986AF24F96E3900BD46E7 /* landing_video-FlavorPECO.mp4 in Resources */,
 				9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				6A4FD35CACD849817177444C /* splash-FlavorBGE.json in Resources */,
 				9C0EA5BB237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
@@ -6274,7 +6274,7 @@
 				675F4D3224AB828200A828F9 /* ReportOutageMock.json in Resources */,
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
 				67A986A324F9693300BD46E7 /* Appt_Canceled-FlavorPECO.json in Resources */,
-				679CC72F2500041F00A46BBE /* landing_video-FlavorPECO.mp4 in Resources */,
+				67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */,
 				675F4D9224AB828200A828F9 /* CompareBillMock.json in Resources */,
 				675F4D7424AB828200A828F9 /* SharePointAlertMock.json in Resources */,
 				67A986E124FD41A100BD46E7 /* Assets-FlavorDPL.xcassets in Resources */,
