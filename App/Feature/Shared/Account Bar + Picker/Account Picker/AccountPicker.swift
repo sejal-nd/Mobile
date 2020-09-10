@@ -158,9 +158,10 @@ class AccountPicker: UIControl {
             
             let finaledString = NSLocalizedString(Environment.shared.opco == .bge ? "Stopped" : "Finaled", comment: "")
             let linkedString = NSLocalizedString("Linked", comment: "")
-            
+            let inactiveString = NSLocalizedString("Inactive", comment: "")
+
             let accountNumberText = "\(account.accountNumber) " +
-            "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
+            "\(account.isFinaled ? (Environment.shared.opco.isPHI ? "(\(inactiveString))" : "(\(finaledString))") : account.isLinked ? "(\(linkedString))":"")"
             
             let accountNumA11yLabel = String.localizedStringWithFormat("Account number %@", accountNumberText)
             setAccountNumberText(accountNumberText, accessibilityLabel: accountNumA11yLabel)
