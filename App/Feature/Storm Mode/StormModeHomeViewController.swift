@@ -536,7 +536,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             } else {
                 self.accountDisallowView.isHidden = true
                 self.finalPayView.isHidden = false
-                self.finalPayTitleLabel.isHidden = true
+                self.finalPayTitleLabel.isHidden = !Environment.shared.opco.isPHI
+                self.finalPayTitleLabel.text = NSLocalizedString("Outage Unavailable", comment: "")
                 self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
                 self.billButton.isHidden = false
             }
