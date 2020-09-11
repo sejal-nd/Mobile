@@ -133,7 +133,7 @@ struct AccountDetail: Mappable {
     let isCutOutNonPay: Bool
     let isCutOutIssued: Bool
     let isLowIncome: Bool
-    let isFinaled: Bool
+    var isFinaled: Bool
 	
 	let isAMIAccount: Bool
     let isResidential: Bool
@@ -224,6 +224,9 @@ struct AccountDetail: Mappable {
         isPTREligible = map.optionalFrom("isPTREligible")
         isPTSEligible = map.optionalFrom("isPTSEligible")
         hasThirdPartySupplier = map.optionalFrom("hasThirdPartySupplier") ?? false
+        if status?.lowercased() == "inactive" {
+            isFinaled = true
+        }
     }
     
     // BGE only - Smart Energy Rewards enrollment status
