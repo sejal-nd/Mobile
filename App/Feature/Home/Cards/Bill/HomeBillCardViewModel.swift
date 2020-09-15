@@ -488,8 +488,8 @@ class HomeBillCardViewModel {
             guard let amountString = billingInfo.pastDueAmount?.currencyString else {
                 return nil
             }
-            let status = Environment.shared.opco.isPHI ? "inactive" : "finaled"
-            let string = String.localizedStringWithFormat("%@ must be paid immediately. Your account has been \(status).", amountString)
+            let status = Environment.shared.opco.isPHI ? "is inactive" : "has been finaled"
+            let string = String.localizedStringWithFormat("%@ must be paid immediately. Your account \(status).", amountString)
             return NSAttributedString(string: string, attributes: attributes)
         default:
             if AccountsStore.shared.currentAccount.isMultipremise {
