@@ -327,8 +327,8 @@
                         <outlet property="addAdditionalRecipients" destination="pdz-5s-qyW" id="VG5-nA-Mt5"/>
                         <outlet property="alternateContactDivider" destination="ht3-Wr-YmN" id="AY1-EJ-gUb"/>
                         <outlet property="alternateEmailNumberView" destination="QHh-pd-rOo" id="55y-Fn-Gf7"/>
-                        <outlet property="alternateEmailTextField" destination="Hhb-v6-SI1" id="Sxm-7Q-KKF"/>
-                        <outlet property="alternateNumberTextField" destination="LbX-ng-N1S" id="Jxq-Lf-CMI"/>
+                        <outlet property="alternateEmailTextField" destination="LbX-ng-N1S" id="lMc-8o-uFm"/>
+                        <outlet property="alternateNumberTextField" destination="Hhb-v6-SI1" id="i1e-ht-Fgw"/>
                         <outlet property="alternateViewTextView" destination="keY-Ha-kh6" id="nGA-jn-MxR"/>
                         <outlet property="amountLabel" destination="R2y-eD-eTN" id="yZe-jD-WRa"/>
                         <outlet property="collapseButton" destination="LZZ-e6-IEK" id="2cr-cH-2IC"/>

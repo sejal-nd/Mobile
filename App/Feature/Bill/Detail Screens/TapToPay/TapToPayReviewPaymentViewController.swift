@@ -155,13 +155,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
     }
     
     @IBAction func collapseExpandAdditionalRecipients(_ sender: Any) {
-        self.collapseButton.isSelected = !self.collapseButton.isSelected
-        self.alternateContactDivider.isHidden = self.collapseButton.isSelected ? false : true
+       
         // Animate expand/collapse
-        UIView.animate(withDuration: 0.3) { [unowned self] in
+            self.collapseButton.isSelected = !self.collapseButton.isSelected
+            self.alternateContactDivider.isHidden = self.collapseButton.isSelected ? false : true
             self.view.layoutIfNeeded()
             self.alternateEmailNumberView.isHidden = self.collapseButton.isSelected ? false : true
-        }
     }
 }
 
