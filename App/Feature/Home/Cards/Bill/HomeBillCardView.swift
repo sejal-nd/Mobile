@@ -551,4 +551,14 @@ class HomeBillCardView: UIView {
                                                                                          addOTPViewController,
                                                                                          billingHistoryViewController,
                                                                                          autoPayViewController)
+    
+    @IBAction func makeAPaymentAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
+        guard let landingVC = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return }
+        
+        let newNavController = LargeTitleNavigationController(rootViewController: landingVC)
+        newNavController.modalPresentationStyle = .fullScreen
+        landingVC.viewModel = viewModel
+        self.window?.rootViewController?.present(newNavController, animated: true, completion: nil)
+    }
 }
