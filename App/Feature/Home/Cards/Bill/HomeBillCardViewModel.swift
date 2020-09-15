@@ -444,10 +444,14 @@ class HomeBillCardViewModel {
             guard let amountString = billingInfo.restorationAmount?.currencyString else {
                 return nil
             }
-            
-            let localizedText = NSLocalizedString("%@ of the total must be paid immediately to restore service.", comment: "")
-            let string = String.localizedStringWithFormat(localizedText, amountString)
-            return NSAttributedString(string: string, attributes: attributes)
+            if billingInfo.restorationAmount == billingInfo.netDueAmount {
+                return NSAttributedString(string: NSLocalizedString("The total amount must be paid immediately to restore service.", comment: ""))
+            } else {
+                let localizedText = NSLocalizedString("%@ of the total must be paid immediately to restore service.", comment: "")
+                let string = String.localizedStringWithFormat(localizedText, amountString)
+                return NSAttributedString(string: string, attributes: attributes)
+            }
+           
         case .avoidShutoff, .eligibleForCutoff:
             guard let amountString = billingInfo.disconnectNoticeArrears?.currencyString else {
                 return nil
