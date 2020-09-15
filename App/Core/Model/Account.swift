@@ -19,7 +19,7 @@ struct Account: Mappable, Equatable, Hashable {
     let status: String?
     let isLinked: Bool
     let isDefault: Bool
-    let isFinaled: Bool
+    var isFinaled: Bool
     let isResidential: Bool
     let serviceType: String?
     let utilityCode: String?
@@ -36,6 +36,9 @@ struct Account: Mappable, Equatable, Hashable {
         isLinked = map.optionalFrom("isLinkedProfile") ?? false
         isDefault = map.optionalFrom("isDefaultProfile") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
+        if status?.lowercased() == "inactive" {
+            isFinaled = true
+        }
         isResidential = map.optionalFrom("isResidential") ?? false
         serviceType = map.optionalFrom("serviceType")
         

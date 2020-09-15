@@ -340,8 +340,6 @@ class BillUtility {
             return NSLocalizedString("Payments Processing", comment: "")
         case .ace, .delmarva, .pepco, .comEd, .peco:
             return NSLocalizedString("Pending Payments", comment: "")
-        default:
-            fatalError("Unsupported OpCo.")
         }
     }()
     

@@ -253,21 +253,22 @@ class BillViewModel {
     
     private(set) lazy var alertBannerText: Driver<String?> = currentAccountDetail.map { accountDetail in
         let billingInfo = accountDetail.billingInfo
-        
+        let status = Environment.shared.opco.isPHI ? "inactive" : "finaled"
         // Finaled
         if billingInfo.pastDueAmount > 0 && accountDetail.isFinaled {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
-                return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account has been finaled and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
+                // Since the past due amount and the net due amount are both equal, it makes sense not to show the `pastDueAmount` and also its implemented similarly in Android as well
+                return "The total amount is past due and must be paid immediately. Your account has been \(status) and is no longer connected to your premise address."
             } else {
-                return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account has been finaled and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
+                return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account has been \(status) and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
             }
         }
         
         // Restore Service
         if let restorationAmount = accountDetail.billingInfo.restorationAmount,
             restorationAmount > 0 &&
-            accountDetail.isCutOutNonPay &&
-            Environment.shared.opco != .bge {
+                accountDetail.isCutOutNonPay &&
+                Environment.shared.opco != .bge {
             if restorationAmount == billingInfo.netDueAmount {
                 return NSLocalizedString("The total amount must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.", comment: "")
             } else {
