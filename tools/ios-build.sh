@@ -160,8 +160,8 @@ fi
 echo "Executing the following phases: $target_phases"
 
 # Project schemes
-#   Develop - DEVELOP
 #   Automation - AUT & AUT-UITest
+#   Develop - TESTING
 #   Staging - STAGING
 #   Production - PROD
 #   Production Beta - PRODBETA
@@ -171,7 +171,6 @@ target_app_name=
 target_icon_asset=
 target_scheme=
 target_app_center_app=
-target_version_number=
 
 OPCO_UPPERCASE=$(echo "$OPCO" | tr '[:lower:]' '[:upper:]')
 
@@ -179,9 +178,7 @@ OPCO_UPPERCASE=$(echo "$OPCO" | tr '[:lower:]' '[:upper:]')
 if [[ "$OVERRIDE_CONFIGURATION" != "" ]]; then
     if find_in_array $OVERRIDE_CONFIGURATION "${POSSIBLE_CONFIGURATIONS[@]}"; then
         CONFIGURATION=$OVERRIDE_CONFIGURATION
-#        target_scheme="$OPCO_UPPERCASE-$OVERRIDE_CONFIGURATION" # temp
-#        target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO" # temp
-        echo "configuration overridden: $CONFIGURATION"
+        echo "Configuration overridden: $CONFIGURATION"
     else
         echo "Specified Configuration $OVERRIDE_CONFIGURATION was not found"
         exit 1
@@ -311,7 +308,7 @@ find .
         # Push to App Center Distribute
         echo "--------------------------------- Uploading release  -------------------------------"
         if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
-
+    echo "$target_app_center_app $APP_CENTER_API_TOKEN $target_scheme $target_scheme $APP_CENTER_GROUP"
             appcenter distribute release \
                 --app $target_app_center_app \
                 --token $APP_CENTER_API_TOKEN \
@@ -348,11 +345,11 @@ find .
 
                 cp -a build/archive/$target_scheme.xcarchive/dSYMs/. build/appcentersymbols
                 pushd ./build/appcentersymbols
-                zip -r ../$OPCO-appcentersymbols-$target_version_number.zip .
+                zip -r ../$OPCO-appcentersymbols.zip .
                 popd
 
                 appcenter crashes upload-symbols -s \
-                    ./build/$OPCO-appcentersymbols-$target_version_number.zip \
+                    ./build/$OPCO-appcentersymbols.zip \
                     --app $target_app_center_app \
                     --token $APP_CENTER_API_TOKEN
 
