@@ -19,7 +19,9 @@ class BGEAutoPayViewController: UIViewController {
     weak var delegate: BGEAutoPayViewControllerDelegate?
     
     let disposeBag = DisposeBag()
-
+    
+    private var backButton: UIBarButtonItem?
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
@@ -42,7 +44,7 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var termsSwitch: Checkbox!
     @IBOutlet weak var termsLabel: UILabel!
     @IBOutlet weak var termsButton: UIButton!
-
+    
     @IBOutlet weak var bottomLabelView: UIView!
     @IBOutlet weak var bottomLabel: UILabel!
     
@@ -60,15 +62,15 @@ class BGEAutoPayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = NSLocalizedString("AutoPay", comment: "")
-
+        
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
         helpButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         navigationItem.rightBarButtonItem = helpButton
         
         viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
-
+        
         styleViews()
         setupBindings()
         accessibilitySetup()
@@ -83,9 +85,9 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
-        }, onError: { [weak self] _ in
-            guard let self = self else { return }
-            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+            }, onError: { [weak self] _ in
+                guard let self = self else { return }
+                UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
         
         FirebaseUtility.logEvent(.autoPayStart)
@@ -97,12 +99,40 @@ class BGEAutoPayViewController: UIViewController {
         }
     }
     
+    // Add back Button
+    private func addCustomBackButton() {
+        backButton = UIBarButtonItem(image: UIImage(named: "ic_back"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(backAction))
+        backButton?.accessibilityLabel = NSLocalizedString("Back", comment: "")
+        navigationItem.setLeftBarButton(backButton, animated: false)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
     }
-
+    
+    // MARK: - Action
+    
+    @objc func backAction() {
+        if viewModel.userPerformedAnyChanges {
+            let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+            { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+            presentAlert(title: NSLocalizedString("Unsaved Changes", comment: ""),
+                         message: NSLocalizedString("You have unsaved changes - are you sure you want to exit this screen without saving your changes?", comment: ""),
+                         style: .alert,
+                         actions: [cancelAction, exitAction])
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if termsStackView.isHidden &&
@@ -119,6 +149,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     private func styleViews() {
+        addCustomBackButton()
         selectBankAccountLabel.textColor = .deepGray
         selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .caption2)
         selectBankAccountLabel.text = NSLocalizedString("Bank Account", comment: "")
@@ -173,7 +204,7 @@ class BGEAutoPayViewController: UIViewController {
     func setupBindings() {
         viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowContent.not().drive(stickyFooterView.rx.isHidden).disposed(by: disposeBag)
-
+        
         viewModel.isLoading.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
@@ -202,13 +233,13 @@ class BGEAutoPayViewController: UIViewController {
         guard accountDetail.isAutoPay else { return }
         
         termsStackView.isHidden = false
-
+        
         submitButton.isHidden = false
         submitButton.setTitle(NSLocalizedString("Update AutoPay", comment: ""), for: .normal)
         submitButton.accessibilityLabel = NSLocalizedString("Update AutoPay", comment: "")
         unenrollView.isHidden = true
     }
-
+    
     @IBAction func onSubmitPress(_ sender: Any) {
         guard submitButton.isEnabled else { return }
         
@@ -235,7 +266,7 @@ class BGEAutoPayViewController: UIViewController {
             FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enrolled_start)])
             
             FirebaseUtility.logEvent(.autoPaySubmit)
-
+            
             self.viewModel.unenroll(onSuccess: { [weak self] in
                 LoadingView.hide()
                 GoogleAnalytics.log(event: .autoPayUnenrollComplete)
@@ -255,11 +286,11 @@ class BGEAutoPayViewController: UIViewController {
                 }
                 
                 self.navigationController?.present(infoModal, animated: true)
-            }, onError: { [weak self] errMessage in
-                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
-                
-                LoadingView.hide()
-                self?.showErrorAlert(message: errMessage)
+                }, onError: { [weak self] errMessage in
+                    FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                    
+                    LoadingView.hide()
+                    self?.showErrorAlert(message: errMessage)
             })
         }))
         
@@ -303,11 +334,11 @@ class BGEAutoPayViewController: UIViewController {
             }
             
             self.navigationController?.present(infoModal, animated: true)
-        }, onError: { [weak self] errMessage in
-            FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
-            
-            LoadingView.hide()
-            self?.showErrorAlert(message: errMessage)
+            }, onError: { [weak self] errMessage in
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                
+                LoadingView.hide()
+                self?.showErrorAlert(message: errMessage)
         })
     }
     
@@ -326,11 +357,11 @@ class BGEAutoPayViewController: UIViewController {
             guard let self = self else { return }
             self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
             self.navigationController?.popViewController(animated: true)
-        }, onError: { [weak self] errMessage in
-            FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
-            
-            LoadingView.hide()
-            self?.showErrorAlert(message: errMessage)
+            }, onError: { [weak self] errMessage in
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                
+                LoadingView.hide()
+                self?.showErrorAlert(message: errMessage)
         })
     }
     
@@ -347,7 +378,7 @@ class BGEAutoPayViewController: UIViewController {
         let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: viewModel.learnMoreDescriptionText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
-
+    
     @IBAction func onSelectBankAccountPress() {
         guard let miniWalletVC = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
         miniWalletVC.modalPresentationStyle = .overCurrentContext
