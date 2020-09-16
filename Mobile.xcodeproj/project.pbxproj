@@ -326,6 +326,18 @@
 		355B10492369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		355B104A2369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		355B104B2369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
+		356AC12C25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */; };
+		356AC12D25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */; };
+		356AC12E25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */; };
+		356AC12F25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */; };
+		356AC13025064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */; };
+		356AC13125064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */; };
+		356AC13325064E5F000CF867 /* TapToPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 356AC13225064E5F000CF867 /* TapToPay.storyboard */; };
+		356AC13425064E5F000CF867 /* TapToPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 356AC13225064E5F000CF867 /* TapToPay.storyboard */; };
+		356AC13525064E5F000CF867 /* TapToPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 356AC13225064E5F000CF867 /* TapToPay.storyboard */; };
+		356AC13625064E5F000CF867 /* TapToPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 356AC13225064E5F000CF867 /* TapToPay.storyboard */; };
+		356AC13725064E5F000CF867 /* TapToPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 356AC13225064E5F000CF867 /* TapToPay.storyboard */; };
+		356AC13825064E5F000CF867 /* TapToPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 356AC13225064E5F000CF867 /* TapToPay.storyboard */; };
 		356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		356C7F2F21908BBA003E8A90 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		356C7F752190974A003E8A90 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
@@ -6013,6 +6025,8 @@
 		3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayReasonsForStoppingViewController.swift; sourceTree = "<group>"; };
 		355B10352369DB180038EAD3 /* WatchSessionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionMananger.swift; sourceTree = "<group>"; };
 		355B10452369E54E0038EAD3 /* KeychainKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
+		356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayReviewPaymentViewController.swift; sourceTree = "<group>"; };
+		356AC13225064E5F000CF867 /* TapToPay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TapToPay.storyboard; sourceTree = "<group>"; };
 		356C7F3121908E2A003E8A90 /* environment_preprocess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
 		356C7F8021909997003E8A90 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		356C7FA92190D93F003E8A90 /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
@@ -7920,6 +7934,7 @@
 				3559C8B42301E43600481A87 /* AutoPay */,
 				9C5F786122F4ADB200D5C395 /* Budget Billing */,
 				352B8DAA230D75DC007F8CEE /* Billing History */,
+				356AC12325064B4E000CF867 /* TapToPay */,
 				352B8DA9230D75B9007F8CEE /* Payment */,
 				352B8DA5230D7558007F8CEE /* Bill Breakdown */,
 				352B8DA4230D753D007F8CEE /* Bill PDF */,
@@ -8177,6 +8192,15 @@
 				35A5DCBB2304402D00A82AA8 /* AutoPay BGE */,
 			);
 			path = AutoPay;
+			sourceTree = "<group>";
+		};
+		356AC12325064B4E000CF867 /* TapToPay */ = {
+			isa = PBXGroup;
+			children = (
+				356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */,
+				356AC13225064E5F000CF867 /* TapToPay.storyboard */,
+			);
+			path = TapToPay;
 			sourceTree = "<group>";
 		};
 		3575232A22C5371800A0AFAC /* Account Row */ = {
@@ -11160,6 +11184,7 @@
 				67DDB4D624535D2E006CD6EB /* PremiseListRow.xib in Resources */,
 				67DDB4D724535D2E006CD6EB /* recover_username.json in Resources */,
 				67DDB4D824535D2E006CD6EB /* message_bubble_tip.json in Resources */,
+				356AC13625064E5F000CF867 /* TapToPay.storyboard in Resources */,
 				67DDBDB724646330006CD6EB /* GoogleService-Info_pepco_prodbeta.plist in Resources */,
 				67DDB4DA24535D2E006CD6EB /* buddy_particles_hearts.json in Resources */,
 				67DDB4DC24535D2E006CD6EB /* InfoModal.xib in Resources */,
@@ -11330,6 +11355,7 @@
 				67DDB72D24535D32006CD6EB /* recover_username.json in Resources */,
 				67DDB72E24535D32006CD6EB /* message_bubble_tip.json in Resources */,
 				67DDB73024535D32006CD6EB /* buddy_particles_hearts.json in Resources */,
+				356AC13825064E5F000CF867 /* TapToPay.storyboard in Resources */,
 				67DDB73224535D32006CD6EB /* InfoModal.xib in Resources */,
 				67DDB73324535D32006CD6EB /* AccountPicker.xib in Resources */,
 				67DDB73424535D32006CD6EB /* checkmark.json in Resources */,
@@ -11500,6 +11526,7 @@
 				67DDB98224535D35006CD6EB /* PremiseListRow.xib in Resources */,
 				67DDB98324535D35006CD6EB /* recover_username.json in Resources */,
 				67DDB98424535D35006CD6EB /* message_bubble_tip.json in Resources */,
+				356AC13725064E5F000CF867 /* TapToPay.storyboard in Resources */,
 				67DDB98624535D35006CD6EB /* buddy_particles_hearts.json in Resources */,
 				67DDB98824535D35006CD6EB /* InfoModal.xib in Resources */,
 				67DDB98924535D35006CD6EB /* AccountPicker.xib in Resources */,
@@ -11802,6 +11829,7 @@
 				30636F0E24C82F8500CCBFAE /* OpcoIdentityCardView.xib in Resources */,
 				9CD3532722CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
+				356AC13325064E5F000CF867 /* TapToPay.storyboard in Resources */,
 				B0B083FB21710CDB00B1C632 /* Appt_Confirmed.json in Resources */,
 				B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
 				B089571F2217455200A97965 /* account_lookup.json in Resources */,
@@ -12012,6 +12040,7 @@
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				B089573D22175FDC00A97965 /* alert_preferences.json in Resources */,
 				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
+				356AC13525064E5F000CF867 /* TapToPay.storyboard in Resources */,
 				E800432E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				35A6C6E4211CC17100C2A58F /* Updates.storyboard in Resources */,
 				B0882CB6210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
@@ -12181,6 +12210,7 @@
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				9C0E1C982333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
 				B089573C22175FDC00A97965 /* alert_preferences.json in Resources */,
+				356AC13425064E5F000CF867 /* TapToPay.storyboard in Resources */,
 				35277B00210794B000411297 /* UnavailableView.xib in Resources */,
 				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
 				35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */,
@@ -14747,6 +14777,7 @@
 				67DDB44224535D2E006CD6EB /* PrimaryButton.swift in Sources */,
 				67DDB44324535D2E006CD6EB /* SetDefaultAccountTableViewCell.swift in Sources */,
 				67DDBD3C24571CD4006CD6EB /* BGEAutoPaySettingsViewModel.swift in Sources */,
+				356AC12F25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */,
 				67DDB44424535D2E006CD6EB /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				67DDB44524535D2E006CD6EB /* ViewBillViewModel.swift in Sources */,
 				67DDB44624535D2E006CD6EB /* BillingHistory.swift in Sources */,
@@ -15099,6 +15130,7 @@
 				67DDB65424535D32006CD6EB /* BillingHistoryViewController.swift in Sources */,
 				67DDB65524535D32006CD6EB /* SERPTSGraphViewModel.swift in Sources */,
 				67DDB65624535D32006CD6EB /* GameTaskStore.swift in Sources */,
+				356AC13125064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */,
 				67DDB65724535D32006CD6EB /* HomeUsageCardView.swift in Sources */,
 				67DDB65824535D32006CD6EB /* LineHeightLabel.swift in Sources */,
 				67DDB65924535D32006CD6EB /* ForgotUsernameResultViewController.swift in Sources */,
@@ -15522,6 +15554,7 @@
 				67DDB8AA24535D35006CD6EB /* BillingHistoryViewController.swift in Sources */,
 				67DDB8AB24535D35006CD6EB /* SERPTSGraphViewModel.swift in Sources */,
 				67DDB8AC24535D35006CD6EB /* GameTaskStore.swift in Sources */,
+				356AC13025064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */,
 				67DDB8AD24535D35006CD6EB /* HomeUsageCardView.swift in Sources */,
 				67DDB8AE24535D35006CD6EB /* LineHeightLabel.swift in Sources */,
 				67DDB8AF24535D35006CD6EB /* ForgotUsernameResultViewController.swift in Sources */,
@@ -16584,6 +16617,7 @@
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				355B103B2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
+				356AC12C25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */,
 				9CBE9E2E23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
@@ -17006,6 +17040,7 @@
 				82DE610C1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
 				9CBE9E3023749B9900E14222 /* MCSGameService.swift in Sources */,
 				E83F026D1FB0B5850062A348 /* AlertsService.swift in Sources */,
+				356AC12E25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */,
 				B0472B2B2111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E80CBD111F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54C1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
@@ -17428,6 +17463,7 @@
 				355B103A2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
 				9CBE9E2F23749B9900E14222 /* MCSGameService.swift in Sources */,
 				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
+				356AC12D25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */,
 				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
 				E89518741F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,

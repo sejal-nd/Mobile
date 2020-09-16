@@ -21,6 +21,10 @@ class HomeBillCardViewModel {
     private let paymentService: PaymentService
     private let authService: AuthenticationService
     
+    let emailAddress = BehaviorRelay(value: "")
+    let phoneNumber = BehaviorRelay(value: "")
+    private let kMaxUsernameChars = 255
+    
     let submitOneTouchPay = PublishSubject<Void>()
     
     let fetchData: Observable<Void>
@@ -286,6 +290,11 @@ class HomeBillCardViewModel {
     private(set) lazy var showSlideToPayConfirmationDetailLabel: Driver<Bool> = billState.map {
         $0 == .billPaidIntermediate
     }
+    
+    private(set) lazy var reviewPaymentShouldShowConvenienceFee: Driver<Bool> =
+        self.walletItemDriver.map { $0?.bankOrCard == .card }
+    
+    private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetailDriver.map { $0.isActiveSeverance }
     
     private(set) lazy var showAmount: Driver<Bool> = billState.map { $0 != .billPaidIntermediate }
     
@@ -721,5 +730,122 @@ class HomeBillCardViewModel {
             return "todo"
         }
     }
+    private(set) lazy var totalPaymentDisplayString: Driver<String?> =
+        Driver.combineLatest(accountDetailDriver, reviewPaymentShouldShowConvenienceFee)
+            .map { [weak self] accountDetail, showConvenienceFee in
+                guard let self = self,
+                    let dueAmount = accountDetail.billingInfo.netDueAmount else { return nil }
+                if showConvenienceFee {
+                    return (dueAmount + accountDetail.billingInfo.convenienceFee).currencyString
+                } else {
+                    return dueAmount.currencyString
+                }
+    }
     
+    private(set) lazy var convenienceDisplayString: Driver<String?> =
+        Driver.combineLatest(accountDetailDriver, walletItemDriver) { accountDetail, walletItem in
+            guard let walletItem = walletItem else {
+                return nil
+                
+            }
+            if walletItem.bankOrCard == .bank {
+                return NSLocalizedString("with no convenience fee", comment: "")
+            } else {
+                return String.localizedStringWithFormat("with a %@ convenience fee included, applied by Paymentus, our payment partner.", accountDetail.billingInfo.convenienceFee.currencyString)
+            }
+    }
+    
+    private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
+        let billingInfo = $0.billingInfo
+        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
+                                                         .foregroundColor: UIColor.deepGray]
+        let string: String
+        guard let dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
+        attributes[.foregroundColor] = UIColor.deepGray
+        attributes[.font] = SystemFont.semibold.of(size: 17)
+        if billingInfo.pastDueAmount > 0 {
+            if billingInfo.pastDueAmount == billingInfo.netDueAmount {
+                string = String.localizedStringWithFormat("You have %@ due immediately", dueAmount.currencyString)
+                attributes[.foregroundColor] = UIColor.errorRed
+                attributes[.font] = SystemFont.semibold.of(size: 17)
+            } else {
+                string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
+            }
+        }  else {
+            string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
+        }
+        
+        return NSAttributedString(string: string, attributes: attributes)
+    }
+    
+    private(set) lazy var emailIsValidBool: Driver<Bool> =
+           self.emailAddress.asDriver().map { text -> Bool in
+               if text.count > self.kMaxUsernameChars {
+                   return false
+               }
+               if text.count == .zero {
+                   return true
+               }
+               
+               if text.contains(" ") {
+                   return false
+               }
+               
+               let components = text.components(separatedBy: "@")
+               
+               if components.count != 2 {
+                   return false
+               }
+               
+               let urlComponents = components[1].components(separatedBy: ".")
+               
+               if urlComponents.count < 2 {
+                   return false
+               } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                   return false
+               }
+               
+               return true
+       }
+       
+       private(set) lazy var emailIsValid: Driver<String?> =
+           self.emailAddress.asDriver().map { text -> String? in
+               if !text.isEmpty {
+                   if text.count > self.kMaxUsernameChars {
+                       return "Maximum of 255 characters allowed"
+                   }
+                   
+                   if text.contains(" ") {
+                       return "Invalid email address"
+                   }
+                   
+                   let components = text.components(separatedBy: "@")
+                   
+                   if components.count != 2 {
+                       return "Invalid email address"
+                   }
+                   
+                   let urlComponents = components[1].components(separatedBy: ".")
+                   
+                   if urlComponents.count < 2 {
+                       return "Invalid email address"
+                   } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                       return "Invalid email address"
+                   }
+               }
+               
+               return nil
+       }
+       
+       private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
+           self.phoneNumber.asDriver().map { [weak self] text -> Bool in
+               guard let self = self else { return false }
+               let digitsOnlyString = self.extractDigitsFrom(text)
+               return digitsOnlyString.count == 10 || digitsOnlyString.count == 0
+       }
+    
+    private func extractDigitsFrom(_ string: String) -> String {
+         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+     }
+     
 }
