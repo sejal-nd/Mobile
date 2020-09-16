@@ -310,7 +310,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                             }))
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp(isStormMode: isStormMode)
+                                self?.launchMainApp(isStormMode: isStormMode, isBiometricAuthenticationAllowed: true)
                                 FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: true.description)])
                                 GoogleAnalytics.log(event: .touchIDEnable)
                             }))
@@ -427,7 +427,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         })
     }
 
-    func launchMainApp(isStormMode: Bool) {
+    func launchMainApp(isStormMode: Bool, isBiometricAuthenticationAllowed: Bool = false) {
         FirebaseUtility.setUserProperty(.isBiometricsEnabled, value: viewModel.biometricsEnabled.value.description)
         FirebaseUtility.setUserProperty(.isKeepMeSignedInEnabled, value: viewModel.keepMeSignedIn.value.description)
 
@@ -445,6 +445,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             navController.navigationItem.largeTitleDisplayMode = .never
             navController.setNavigationBarHidden(true, animated: false)
             navController.setViewControllers([viewController], animated: false)
+            if isBiometricAuthenticationAllowed {
+                let toastMessage = String(format: "%@ Enabled", viewModel.biometricsString()!)
+                viewController.showBiometricEnabledToast(message: toastMessage)
+            }
         }
     }
 
