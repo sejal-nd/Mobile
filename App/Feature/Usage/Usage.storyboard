@@ -937,6 +937,9 @@
                     <navigationItem key="navigationItem" title="Energy Wise Rewards" id="L8N-ON-WZj"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="adjustThermostatButton" destination="9Dl-UT-7Wk" id="WHa-Bj-qAz"/>
+                        <outlet property="energyWiseRewardsInformationLabel" destination="d8A-rk-Jfx" id="FXA-q6-WLN"/>
+                        <outlet property="logo" destination="O89-wZ-8w1" id="x59-Mt-JIR"/>
                         <outlet property="view" destination="fhB-Kl-nsf" id="hEb-sq-tHY"/>
                     </connections>
                 </viewController>
