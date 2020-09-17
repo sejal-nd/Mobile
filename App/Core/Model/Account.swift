@@ -145,7 +145,8 @@ struct AccountDetail: Mappable {
     
     let electricChoiceId: String?
     let gasChoiceId: String?
-    
+    let utilityCode: String?
+
     // alert preference eligibility
     let isHUAEligible: Bool?
     let isPTREligible: Bool?
@@ -224,6 +225,7 @@ struct AccountDetail: Mappable {
         isPTREligible = map.optionalFrom("isPTREligible")
         isPTSEligible = map.optionalFrom("isPTSEligible")
         hasThirdPartySupplier = map.optionalFrom("hasThirdPartySupplier") ?? false
+        utilityCode = map.optionalFrom("utilityCode")
     }
     
     // BGE only - Smart Energy Rewards enrollment status
@@ -256,6 +258,24 @@ struct AccountDetail: Mappable {
             return false
         }
     }
+    
+    var opcoType: OpCo? {
+        if Environment.shared.opco.isPHI,
+           let utilityCode = utilityCode {
+            switch utilityCode {
+            case "ACE":
+                return .ace
+            case "DPL":
+                return .delmarva
+            case "PEP":
+                return .pepco
+            default:
+                return nil
+            }
+        }
+       return nil
+    }
+    
 }
 
 struct SERInfo: Mappable {

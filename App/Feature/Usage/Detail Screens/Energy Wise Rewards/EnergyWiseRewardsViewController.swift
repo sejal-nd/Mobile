@@ -1,6 +1,6 @@
 //
 //  EnergyWiseRewardsViewController.swift
-//  BGE
+//  Mobile
 //
 //  Created by Majumdar, Amit on 17/09/20.
 //  Copyright © 2020 Exelon Corporation. All rights reserved.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class EnergyWiseRewardsViewController: DismissableFormSheetViewController {
+final class EnergyWiseRewardsViewController: DismissableFormSheetViewController {
 
     @IBOutlet private weak var logo: UIImageView!
     @IBOutlet private weak var energyWiseRewardsInformationLabel: UILabel!
@@ -18,11 +18,14 @@ class EnergyWiseRewardsViewController: DismissableFormSheetViewController {
     
     var accountDetail: AccountDetail!
     
-    // MARK: - View LifeCycle Methods
+    private lazy var viewModel = EnergyWiseRewardsViewModel(accountDetail: self.accountDetail)
     
+    // MARK: - View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Energy Wise Rewards", comment: "")
+        styleViews()
+        energyWiseRewardsInformationLabel.text = viewModel.energyWiseRewardsInformation
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,10 +33,20 @@ class EnergyWiseRewardsViewController: DismissableFormSheetViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
-   
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
+}
 
+
+// MARK: - EnergyWiseRewardsViewController Private Methods
+extension EnergyWiseRewardsViewController {
+    
+    /// This function customizes the UI Elements
+    private func styleViews() {
+         energyWiseRewardsInformationLabel.textColor = .deepGray
+         energyWiseRewardsInformationLabel.font = SystemFont.regular.of(textStyle: .body)
+         energyWiseRewardsInformationLabel.setLineHeight(lineHeight: 24.0)
+    }
 }
