@@ -176,8 +176,12 @@ target_app_center_app=
 
 OPCO_UPPERCASE=$(echo "$OPCO" | tr '[:lower:]' '[:upper:]')
 
-if [[ $string == *"DPL"* ]]; then
+echo $OPCO
+
+if [[ $OPCO == *"DPL"* ]]; then
   MODIFIED_OPCO="Delmarva"
+else
+  MODIFIED_OPCO=$OPCO
 fi
 
 # Override Configuration
