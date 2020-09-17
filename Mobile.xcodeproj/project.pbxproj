@@ -242,6 +242,9 @@
 		30F821A4249B71900010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
 		30F821A5249B71930010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
 		30F821A6249B71950010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
+		30FC820325137F1B00EE9F27 /* EnergyWiseRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FC820125137D8400EE9F27 /* EnergyWiseRewardsViewController.swift */; };
+		30FC820425137F1D00EE9F27 /* EnergyWiseRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FC820125137D8400EE9F27 /* EnergyWiseRewardsViewController.swift */; };
+		30FC820525137F1E00EE9F27 /* EnergyWiseRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FC820125137D8400EE9F27 /* EnergyWiseRewardsViewController.swift */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		350B980F24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -6005,6 +6008,7 @@
 		30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
 		30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModelTestCase.swift; sourceTree = "<group>"; };
 		30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameUITests.swift; sourceTree = "<group>"; };
+		30FC820125137D8400EE9F27 /* EnergyWiseRewardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyWiseRewardsViewController.swift; sourceTree = "<group>"; };
 		32517D6D4E8043FD27ECAE5A /* Pods-Pepco-Watch.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pepco-Watch.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-Pepco-Watch/Pods-Pepco-Watch.hotfix.xcconfig"; sourceTree = "<group>"; };
 		332CC2EF55B070505882B8EF /* Pods-BGEApp-BGEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		34E1D2D313B1C407B9AF0EC7 /* Pods-Pepco-Watch.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pepco-Watch.develop.xcconfig"; path = "Pods/Target Support Files/Pods-Pepco-Watch/Pods-Pepco-Watch.develop.xcconfig"; sourceTree = "<group>"; };
@@ -7670,6 +7674,14 @@
 			path = EditAccountNickName;
 			sourceTree = "<group>";
 		};
+		30FC820025137D1E00EE9F27 /* Energy Wise Rewards */ = {
+			isa = PBXGroup;
+			children = (
+				30FC820125137D8400EE9F27 /* EnergyWiseRewardsViewController.swift */,
+			);
+			path = "Energy Wise Rewards";
+			sourceTree = "<group>";
+		};
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
@@ -7771,6 +7783,7 @@
 		352B8D76230D718F007F8CEE /* Detail Screens */ = {
 			isa = PBXGroup;
 			children = (
+				30FC820025137D1E00EE9F27 /* Energy Wise Rewards */,
 				82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */,
 				82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */,
 				352B8D79230D71AE007F8CEE /* Top 5 Tips */,
@@ -14723,6 +14736,7 @@
 				67DDB40D24535D2E006CD6EB /* AppointmentDetailViewModel.swift in Sources */,
 				67DDB40E24535D2E006CD6EB /* BankAccount.swift in Sources */,
 				67DDB40F24535D2E006CD6EB /* AlertPreferencesTableViewCell.swift in Sources */,
+				30FC820325137F1B00EE9F27 /* EnergyWiseRewardsViewController.swift in Sources */,
 				67DDB41024535D2E006CD6EB /* OutageInfo.swift in Sources */,
 				67DDB41124535D2E006CD6EB /* TemperatureSliderView.swift in Sources */,
 				67DDB41224535D2E006CD6EB /* ServiceResult.swift in Sources */,
@@ -15209,6 +15223,7 @@
 				67DDB69F24535D32006CD6EB /* DisclosureCellButton.swift in Sources */,
 				67DDB6A024535D32006CD6EB /* HomeContentViewController.swift in Sources */,
 				67DDB6A124535D32006CD6EB /* TitleTableViewHeaderView.swift in Sources */,
+				30FC820525137F1E00EE9F27 /* EnergyWiseRewardsViewController.swift in Sources */,
 				67DDB6A224535D32006CD6EB /* MCSAccountService.swift in Sources */,
 				67DDB6A324535D32006CD6EB /* MakePaymentViewController.swift in Sources */,
 				67DDB6A424535D32006CD6EB /* MockAppointmentService.swift in Sources */,
@@ -15633,6 +15648,7 @@
 				67DDB8F524535D35006CD6EB /* DisclosureCellButton.swift in Sources */,
 				67DDB8F624535D35006CD6EB /* HomeContentViewController.swift in Sources */,
 				67DDB8F724535D35006CD6EB /* TitleTableViewHeaderView.swift in Sources */,
+				30FC820425137F1D00EE9F27 /* EnergyWiseRewardsViewController.swift in Sources */,
 				67DDB8F824535D35006CD6EB /* MCSAccountService.swift in Sources */,
 				67DDB8F924535D35006CD6EB /* MakePaymentViewController.swift in Sources */,
 				67DDB8FA24535D35006CD6EB /* MockAppointmentService.swift in Sources */,
