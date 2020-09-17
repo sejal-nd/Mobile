@@ -75,6 +75,8 @@ APP_CENTER_TEST_DEVICES=
 APP_CENTER_TEST_SERIES="master"
 APP_CENTER_GROUP=
 OPCO=
+# MODIFIED_OPCO is used to turn DPL into Delmarva for App Center
+MODIFIED_OPCO=
 OPCO_UPPERCASE=
 PHASE=
 BUILD_BRANCH=
@@ -174,6 +176,10 @@ target_app_center_app=
 
 OPCO_UPPERCASE=$(echo "$OPCO" | tr '[:lower:]' '[:upper:]')
 
+if [[ $string == *"DPL"* ]]; then
+  MODIFIED_OPCO="Delmarva"
+fi
+
 # Override Configuration
 if [[ "$OVERRIDE_CONFIGURATION" != "" ]]; then
     if find_in_array $OVERRIDE_CONFIGURATION "${POSSIBLE_CONFIGURATIONS[@]}"; then
@@ -187,19 +193,19 @@ fi
 
 if [ "$CONFIGURATION" == "Testing" ]; then
     target_scheme="$OPCO_UPPERCASE-TESTING"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$MODIFIED_OPCO"
 elif [ "$CONFIGURATION" == "Staging" ]; then
     target_scheme="$OPCO_UPPERCASE-STAGING"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$OPCO"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$MODIFIED_OPCO"
 elif [ "$CONFIGURATION" == "Hotfix" ]; then
     target_scheme="$OPCO_UPPERCASE-STAGING"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$MODIFIED_OPCO"
 elif [ "$CONFIGURATION" == "Production Beta" ]; then
     target_scheme="$OPCO_UPPERCASE-PRODBETA"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$MODIFIED_OPCO"
 elif [ "$CONFIGURATION" == "Production" ]; then
     target_scheme="$OPCO_UPPERCASE-PROD"
-    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$MODIFIED_OPCO"
 else
     echo "Invalid argument: configuration"
     echo "    value must be either ${POSSIBLE_CONFIGURATIONS[*]}"
