@@ -45,7 +45,7 @@ class MCSOutageService: OutageService {
     
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
         var path = "accounts/\(account.accountNumber)/outage?meterPing=false"
-        if StormModeStatus.shared.isOn && Environment.shared.opco != .bge {
+        if StormModeStatus.shared.isOn && (Environment.shared.opco != .bge && !Environment.shared.opco.isPHI) {
             path.append("&summary=true")
         }
         return MCSApi.shared.get(pathPrefix: .auth, path: path)
