@@ -110,7 +110,7 @@ class AlertPreferencesViewModel {
                         (NSLocalizedString("Outage", comment: ""),
                          [.outage, .scheduledMaintenanceOutage, .severeWeather]),
                         (NSLocalizedString("Billing", comment: ""),
-                         [.billIsReady]),
+                         [.billIsReady(self.accountDetail)]),
                         (NSLocalizedString("Payment", comment: ""),
                          [.paymentDueReminder, .paymentPosted, .paymentPastDue]),
                         (NSLocalizedString("Customer Appointments", comment: ""),
@@ -139,7 +139,7 @@ class AlertPreferencesViewModel {
                     if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
@@ -158,7 +158,7 @@ class AlertPreferencesViewModel {
                     if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
@@ -173,13 +173,13 @@ class AlertPreferencesViewModel {
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
                     
-                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                    if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBillEnrollment && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -189,14 +189,14 @@ class AlertPreferencesViewModel {
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
                     
-                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                    if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBillEnrollment && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -206,14 +206,14 @@ class AlertPreferencesViewModel {
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
                     
-                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                    if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBillEnrollment && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -502,7 +502,7 @@ class AlertPreferencesViewModel {
         // Outage
         case outage, scheduledMaintenanceOutage, severeWeather
         // Billing
-        case billIsReady
+        case billIsReady(AccountDetail)
         // Payment
         case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview
         // Customer Appointments
@@ -614,10 +614,12 @@ class AlertPreferencesViewModel {
             case (.billIsReady, .comEd): fallthrough
             case (.billIsReady, .peco):
                 return NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
-            case (.billIsReady, .ace): fallthrough
-            case (.billIsReady, .delmarva): fallthrough
-            case (.billIsReady, .pepco):
-                return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. If you are signed up for Automatic Payment or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.", comment: "")
+            case (.billIsReady(let accountDetail), .ace): fallthrough
+            case (.billIsReady(let accountDetail), .delmarva): fallthrough
+            case (.billIsReady(let accountDetail), .pepco):
+                return accountDetail.isResidential ?
+                    NSLocalizedString("Receive an alert when your bill is ready to be viewed online. If you are signed up for Automatic Payment or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.", comment: "") :
+                    NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert contains the bill due date and amount due. If you are signed up for Automatic Payment or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.\n\nPlease note that this notification is mandatory for customers enrolled in Paperless eBill.", comment: "")
                 
             // Payment Due Reminder
             case (.paymentDueReminder, .bge):
