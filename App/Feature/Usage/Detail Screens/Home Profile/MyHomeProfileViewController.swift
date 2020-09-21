@@ -73,8 +73,10 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
         headerLabel.setLineHeight(lineHeight: 24)
         homeTypeInfoLabel.textColor = .deepGray
         homeTypeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        homeTypeInfoLabel.text = viewModel.homeTypeInfo
         heatingFuelInfoLabel.textColor = .deepGray
         heatingFuelInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        heatingFuelInfoLabel.text = viewModel.heatingFuelInfo
         numberOfResidentsInfoLabel.textColor = .deepGray
         numberOfResidentsInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         homeSizeInfoLabel.textColor = .deepGray

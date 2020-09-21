@@ -18,7 +18,7 @@ public struct Account: Decodable, Equatable, Hashable {
     let status: String?
     let isLinked: Bool
     let isDefault: Bool
-    let isFinaled: Bool
+    var isFinaled: Bool
     let isResidential: Bool
     let serviceType: String?
     let utilityCode: String?
@@ -57,6 +57,10 @@ public struct Account: Decodable, Equatable, Hashable {
         serviceType = try container.decodeIfPresent(String.self, forKey: .serviceType)
         utilityCode = try container.decodeIfPresent(String.self, forKey: .utilityCode)
         isPasswordProtected = try container.decodeIfPresent(Bool.self, forKey: .isPasswordProtected) ?? false
+        
+        if status?.lowercased() == "inactive" {
+            isFinaled = true
+        }
     }
     
     var isMultipremise: Bool {

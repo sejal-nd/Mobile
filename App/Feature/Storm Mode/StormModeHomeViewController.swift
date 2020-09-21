@@ -192,6 +192,12 @@ class StormModeHomeViewController: AccountPickerViewController {
             outageMapButton.configure(image: #imageLiteral(resourceName: "ic_mapoutagewhite"), text: NSLocalizedString("View Outage Map", comment: ""))
         }
     }
+    @IBOutlet weak var reportStreetlightOutageButton: DisclosureCellButton! {
+        didSet {
+            reportStreetlightOutageButton.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage_white"), text: Environment.shared.opco.isPHI ? NSLocalizedString("Report Street Light Problem", comment: "") : NSLocalizedString("Report Street Light Outage", comment: ""))
+        }
+    }
+    
     
     @IBOutlet private weak var moreOptionsLabel: UILabel! {
         didSet {
@@ -291,7 +297,8 @@ class StormModeHomeViewController: AccountPickerViewController {
         Driver.merge(reportOutageButton.rx.touchUpInside.asDriver().mapTo("ReportOutageSegue"),
                      outageMapButton.rx.touchUpInside.asDriver().mapTo("OutageMapSegue"),
                      billButton.rx.touchUpInside.asDriver().mapTo("BillSegue"),
-                     moreButton.rx.touchUpInside.asDriver().mapTo("MoreSegue"))
+                     moreButton.rx.touchUpInside.asDriver().mapTo("MoreSegue"),
+                     reportStreetlightOutageButton.rx.touchUpInside.asDriver().mapTo("ReportStreetlightProblemSegue"))
             .drive(onNext: { [weak self] in
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })
@@ -527,7 +534,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             } else {
                 self.accountDisallowView.isHidden = true
                 self.finalPayView.isHidden = false
-                self.finalPayTitleLabel.isHidden = true
+                self.finalPayTitleLabel.isHidden = !Environment.shared.opco.isPHI
+                self.finalPayTitleLabel.text = NSLocalizedString("Outage Unavailable", comment: "")
                 self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
                 self.billButton.isHidden = false
             }
@@ -633,7 +641,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             vc.viewModel.outageStatus = outageStatus
             vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
         } else if let vc = segue.destination as? OutageMapViewController {
-            vc.hasPressedStreetlightOutageMapButton = false
+            vc.hasPressedStreetlightOutageMapButton = segue.identifier == "ReportStreetlightProblemSegue" ? true : false
         }
     }
     

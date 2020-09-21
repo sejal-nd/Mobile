@@ -51,6 +51,7 @@ public enum NetworkingError: Error, Equatable {
     case peakRewardsOverrides // BGE PeakRewards overrides
     case failed // ComEd/PECO /payments endpoint with no scheduled payments
     case noEventResults // BGE /programs endpoint with no eventResults
+    case failedLogin //
     
     // Paymentus Errors
     case blockedPaymentMethod
@@ -122,6 +123,8 @@ public enum NetworkingError: Error, Equatable {
             self = .peakRewardsDuplicateOverrides
         case "FN-OVER-OTHER":
             self = .peakRewardsOverrides
+        case "FN-FAIL-LOGIN":
+            self = .failedLogin
         case "FAILED":
             self = .failed
         case "FUNCTIONAL ERROR":
@@ -169,6 +172,8 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Overrides Not Found", comment: "Error title")
         case .peakRewardsDuplicateOverrides:
             return NSLocalizedString("Duplicate Override", comment: "Error title")
+        case .failedLogin:
+            return ""
         case .failed:
             return NSLocalizedString("Scheduled Payments Not Found", comment: "Error title")
         case .noEventResults:
@@ -177,7 +182,9 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Your Account Needs to be Activated", comment: "Error title")
         case .incorrectSecurityQuestion:
             return NSLocalizedString("Answer Doesn't Match", comment: "Error title")
-        case .profileNotFound, .accountNotFound:
+        case .profileNotFound:
+            return NSLocalizedString("Your verification link is no longer valid", comment: "")
+        case .accountNotFound:
             return NSLocalizedString("No Account Found", comment: "Error title")
         case .lockedForgotPassword:
             return NSLocalizedString("Account Locked", comment: "Error title")
@@ -238,6 +245,9 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("No overrides were found. Please try again later.", comment: "Error description")
         case .peakRewardsDuplicateOverrides:
             return NSLocalizedString("This override is already scheduled.", comment: "Error description")
+        case .failedLogin:
+            return NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
+            
         case .failed:
             return NSLocalizedString("No scheduled payments were found for this account.", comment: "Error description")
         case .noEventResults:
@@ -246,7 +256,9 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Find and click on the link in the email from \(Environment.shared.opco.displayString) within 48 hours from the time you registered. Once the link expires, you’ll need to re-register your account.", comment: "Error description")
         case .incorrectSecurityQuestion:
             return NSLocalizedString("Sorry, the answer to the security question isn’t right. Too many tries may result in your account becoming locked for 15 minutes.", comment: "Error description")
-        case .profileNotFound, .accountNotFound:
+        case .profileNotFound:
+            return NSLocalizedString("If you have already verified your account, please sign in to access your account. If your link has expired, please re-register.", comment: "")
+        case .accountNotFound:
             return NSLocalizedString("Sorry, we couldn’t find an account with that email address.", comment: "Error description")
         case .lockedForgotPassword:
             return NSLocalizedString("Access to this account is locked because of too many incorrect security question attempts. It may be locked out for the next 15 minutes. Please try again later.", comment: "Error description")

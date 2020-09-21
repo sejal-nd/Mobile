@@ -3318,13 +3318,13 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJs-ar-SZ1" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1078"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1333"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yp6-Qv-Wm7" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="335" height="1078"/>
+                                                <rect key="frame" x="20" y="0.0" width="335" height="1333"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="DwB-vN-J9n">
-                                                        <rect key="frame" x="0.0" y="20" width="335" height="1038"/>
+                                                        <rect key="frame" x="0.0" y="20" width="335" height="1293"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please create your sign in credentials." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMQ-3k-yvi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="19.5"/>
@@ -3332,12 +3332,20 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="nn9-s0-hnV" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="V2e-IG-0lo" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="49.5" width="335" height="55"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="kFQ-Zc-Fwo" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="Wjd-0Q-9ID" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="134.5" width="335" height="55"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="nn9-s0-hnV" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="219.5" width="335" height="55"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="kFQ-Zc-Fwo" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="304.5" width="335" height="55"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1q-pX-sUu" userLabel="Eyeball Button">
                                                                         <rect key="frame" x="280" y="0.0" width="55" height="55"/>
@@ -3358,7 +3366,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4W-Ud-wrB">
-                                                                <rect key="frame" x="0.0" y="219.5" width="335" height="246"/>
+                                                                <rect key="frame" x="0.0" y="389.5" width="335" height="246"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="LAa-Dv-9w6">
                                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="246"/>
@@ -3542,7 +3550,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="8Zs-lM-Sla" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="495.5" width="335" height="55"/>
+                                                                <rect key="frame" x="0.0" y="665.5" width="335" height="55"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P30-iE-Fui" userLabel="Eyeball Button">
                                                                         <rect key="frame" x="280" y="0.0" width="55" height="55"/>
@@ -3562,8 +3570,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                     <constraint firstAttribute="bottom" secondItem="P30-iE-Fui" secondAttribute="bottom" id="dWi-dn-1V5"/>
                                                                 </constraints>
                                                             </view>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="F0z-So-n9Y" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="750.5" width="335" height="55"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IE-pA-Ibt" userLabel="Primary Profile View">
-                                                                <rect key="frame" x="0.0" y="580.5" width="335" height="377.5"/>
+                                                                <rect key="frame" x="0.0" y="835.5" width="335" height="377.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="Tzo-s1-ddh" customClass="Checkbox" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="333.5" width="44" height="44"/>
@@ -3589,7 +3601,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="aKr-Hb-dPi">
-                                                                <rect key="frame" x="0.0" y="988" width="335" height="50"/>
+                                                                <rect key="frame" x="0.0" y="1243" width="335" height="50"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="q6D-7v-faA" customClass="Checkbox" customModule="ACE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="6" width="44" height="44"/>
@@ -3694,6 +3706,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="750"/>
                     <connections>
+                        <outlet property="accountNicknameTextField" destination="F0z-So-n9Y" id="Kpk-nr-gLa"/>
                         <outlet property="characterCountCheck" destination="gmK-mU-rnw" id="C5b-3J-eTU"/>
                         <outlet property="confirmPasswordEyeBall" destination="P30-iE-Fui" id="ExR-pd-dTv"/>
                         <outlet property="confirmPasswordTextField" destination="8Zs-lM-Sla" id="xXt-De-zjg"/>
@@ -3703,7 +3716,9 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="eBillCheckBox" destination="q6D-7v-faA" id="ffA-Ki-wo8"/>
                         <outlet property="eBillEnrollInstructions" destination="b4E-qm-eUy" id="NCt-B9-SzW"/>
                         <outlet property="eBillEnrollView" destination="aKr-Hb-dPi" id="fX7-hw-19C"/>
+                        <outlet property="firstNameTextField" destination="V2e-IG-0lo" id="Tml-E7-0l5"/>
                         <outlet property="instructionLabel" destination="oMQ-3k-yvi" id="Llg-Iq-L6J"/>
+                        <outlet property="lastNameTextField" destination="Wjd-0Q-9ID" id="gmT-wG-zZq"/>
                         <outlet property="lowercaseCheck" destination="IBu-3M-qXe" id="QtL-AF-fyd"/>
                         <outlet property="mustAlsoContainLabel" destination="jCp-I4-wmK" id="lYb-EG-nSN"/>
                         <outlet property="numberCheck" destination="Xwq-q9-YVp" id="Zy9-y4-fqv"/>

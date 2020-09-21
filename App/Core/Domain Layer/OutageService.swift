@@ -11,7 +11,7 @@ import Foundation
 enum OutageService {
     static func fetchOutageStatus(accountNumber: String, premiseNumberString: String, completion: @escaping (Result<OutageStatus, NetworkingError>) -> ()) {
         var summaryQueryItem: URLQueryItem? = nil
-        if StormModeStatus.shared.isOn && Environment.shared.opco != .bge {
+        if StormModeStatus.shared.isOn && (Environment.shared.opco != .bge && !Environment.shared.opco.isPHI) {
             summaryQueryItem = URLQueryItem(name: "&summary", value: "true")
         }
         NetworkingLayer.request(router: .outageStatus(accountNumber: accountNumber, summaryQueryItem: summaryQueryItem)) { (result: Result<OutageStatusContainer, NetworkingError>) in

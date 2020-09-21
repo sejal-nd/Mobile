@@ -1,12 +1,15 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "ic_calendar.pdf"
+      "filename" : "ic_calendar.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

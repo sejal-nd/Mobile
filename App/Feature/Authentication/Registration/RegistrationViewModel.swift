@@ -23,6 +23,10 @@ class RegistrationViewModel {
     let dueDate = BehaviorRelay<Date?>(value: nil)
     var selectedSegmentIndex = BehaviorRelay(value: 0)
     
+    let firstName = BehaviorRelay(value: "")
+    let lastName = BehaviorRelay(value: "")
+    let accountNickname = BehaviorRelay(value: "")
+
     let username = BehaviorRelay(value: "")
     let newPassword = BehaviorRelay(value: "")
     let confirmPassword = BehaviorRelay(value: "")
@@ -175,7 +179,7 @@ class RegistrationViewModel {
             }
         }
     }
-
+    
     private(set) lazy var validateAccountContinueEnabled: Driver<Bool> = {
         return Driver.combineLatest(self.phoneNumberHasTenDigits,
                                     self.identifierHasFourDigits,
@@ -187,6 +191,11 @@ class RegistrationViewModel {
         { self.selectedSegmentIndex.value == .zero ?  $0 && $1 && $2 && $4: $3 && $4 && $5 && $6 }
     }()
     
+    
+    private(set) lazy var shouldShowFirstAndLastName: Bool = Environment.shared.opco.isPHI
+    
+    private(set) lazy var shouldShowAccountNickname: Bool = Environment.shared.opco.isPHI
+
     func checkForMaintenance() {
         AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)
             .subscribe()
@@ -200,20 +209,20 @@ class RegistrationViewModel {
     private(set) lazy var paymentDateString: Driver<String> = dueDate.asDriver()
         .map { ($0?.mmDdYyyyString ?? "") }
     private(set) lazy var paymentAmountString = totalAmountDue.asDriver()
-         .map { $0.currencyString }
+        .map { $0.currencyString }
     
     private(set) lazy var amountDueHasValue: Driver<Bool> =
         self.totalAmountDue.asDriver().map { $0 >= 0 }
     
     private(set) lazy var dueDateHasValue: Driver<Bool> =
         self.dueDate.asDriver().map { $0?.MMddyyyyString.count > 0}
-       
+    
     private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
         self.phoneNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.count == 10
-        }
+    }
     
     private(set) lazy var identifierHasFourDigits: Driver<Bool> =
         self.identifierNumber.asDriver().map { $0.count == 4 }
@@ -223,7 +232,7 @@ class RegistrationViewModel {
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.count == text.count
-        }
+    }
     
     private(set) lazy var accountNumberHasValidLength: Driver<Bool> =
         self.accountNumber.asDriver().map { [weak self] text -> Bool in
@@ -238,6 +247,12 @@ class RegistrationViewModel {
     
     private(set) lazy var newUsernameHasText: Driver<Bool> =
         self.username.asDriver().map { !$0.isEmpty }
+    
+    private(set) lazy var firstNameHasText: Driver<Bool> =
+          self.firstName.asDriver().map { !$0.isEmpty }
+    
+    private(set) lazy var lastNameHasText: Driver<Bool> =
+          self.lastName.asDriver().map { !$0.isEmpty }
     
     private(set) lazy var newUsernameIsValidBool: Driver<Bool> =
         self.username.asDriver().map { text -> Bool in
@@ -260,7 +275,7 @@ class RegistrationViewModel {
             }
             
             return true
-        }
+    }
     
     private(set) lazy var newUsernameIsValid: Driver<String?> =
         self.username.asDriver().map { text -> String? in
@@ -285,7 +300,31 @@ class RegistrationViewModel {
             }
             
             return nil
-        }
+    }
+    
+    private(set) lazy var firstNameIsValid: Driver<String?> =
+        self.firstName.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+            } else {
+                return "First Name is required."
+            }
+            return nil
+    }
+    
+    private(set) lazy var lastNameIsValid: Driver<String?> =
+        self.lastName.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+            } else {
+                return "Last Name is required."
+            }
+            return nil
+    }
     
     private(set) lazy var newPasswordHasText: Driver<Bool> =
         self.newPassword.asDriver().map{ !$0.isEmpty }
@@ -304,7 +343,7 @@ class RegistrationViewModel {
             return regex.firstMatch(in: text,
                                     options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
                                     range: NSMakeRange(0, text.count)) != nil
-        }
+    }
     
     private(set) lazy var containsLowercaseLetter: Driver<Bool> =
         self.newPassword.asDriver().map { text -> Bool in
@@ -313,7 +352,7 @@ class RegistrationViewModel {
             return regex.firstMatch(in: text,
                                     options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
                                     range: NSMakeRange(0, text.count)) != nil
-        }
+    }
     
     private(set) lazy var containsNumber: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
         let regex = try! NSRegularExpression(pattern: ".*[0-9].*",
@@ -326,12 +365,12 @@ class RegistrationViewModel {
     private(set) lazy var containsSpecialCharacter: Driver<Bool> = self.newPassword.asDriver()
         .map{ text -> String in
             return text.components(separatedBy: .whitespacesAndNewlines).joined()
-        }
-        .map { text -> Bool in
-            let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-            return regex.firstMatch(in: text,
-                                    options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
-                                    range: NSMakeRange(0, text.count)) != nil
+    }
+    .map { text -> Bool in
+        let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
+        return regex.firstMatch(in: text,
+                                options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
+                                range: NSMakeRange(0, text.count)) != nil
     }
     
     private(set) lazy var passwordMatchesUsername: Driver<Bool> =
@@ -339,7 +378,7 @@ class RegistrationViewModel {
                              self.username.asDriver())
         { newPassword, username -> Bool in
             newPassword.lowercased() == username.lowercased() && !newPassword.isEmpty
-        }
+    }
     
     private(set) lazy var newPasswordIsValid: Driver<Bool> =
         Driver.combineLatest([self.characterCountValid,
@@ -355,17 +394,17 @@ class RegistrationViewModel {
                 }
             }
             return false
-        }
+    }
     
     private(set) lazy var everythingValid: Driver<Bool> =
         Driver.combineLatest([self.passwordMatchesUsername,
-                            self.characterCountValid,
-                            self.containsUppercaseLetter,
-                            self.containsLowercaseLetter,
-                            self.containsNumber,
-                            self.containsSpecialCharacter,
-                            self.newUsernameHasText,
-                            self.newUsernameIsValidBool])
+                              self.characterCountValid,
+                              self.containsUppercaseLetter,
+                              self.containsLowercaseLetter,
+                              self.containsNumber,
+                              self.containsSpecialCharacter,
+                              self.newUsernameHasText,
+                              self.newUsernameIsValidBool])
         { array in
             if !array[0] && array[1] && array[6] && array[7] {
                 let otherArray = array[2...5].filter { $0 }
@@ -374,7 +413,7 @@ class RegistrationViewModel {
                 }
             }
             return false
-        }
+    }
     
     func getPasswordScore() -> Int32 {
         var score: Int32 = -1
@@ -387,7 +426,10 @@ class RegistrationViewModel {
     private(set) lazy var confirmPasswordMatches: Driver<Bool> =
         Driver.combineLatest(self.confirmPassword.asDriver(), self.newPassword.asDriver(), resultSelector: ==)
     
-    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Driver
+    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Environment.shared.opco.isPHI ? Driver
+        .combineLatest(firstNameHasText, lastNameHasText, everythingValid, confirmPasswordMatches, newPasswordHasText)
+        { $0 && $1 && $2 && $3 && $4}
+    : Driver
         .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
         { $0 && $1 && $2 }
     
@@ -412,5 +454,5 @@ class RegistrationViewModel {
     }()
     
     private(set) lazy var selectAccountButtonEnabled: Driver<Bool> =
-           self.selectedAccount.asDriver().isNil().not()
+        self.selectedAccount.asDriver().isNil().not()
 }
