@@ -47,8 +47,8 @@ class CommercialUsageViewModel {
             .disposed(by: disposeBag)
         
         ssoData.asObservable().subscribe{ [weak self] data in
-            guard let nonResHostURLString = data.element?.nonResHost.absoluteString,
-                   let nonResJSPathURLString = data.element?.nonResJSPath.absoluteString else {
+            guard let nonResHostURLString = data.element?.nonResHost,
+                   let nonResJSPathURLString = data.element?.nonResJSPath else {
                    return
             }
             let nonResJSPathString = nonResHostURLString + nonResJSPathURLString

@@ -223,11 +223,7 @@
                                                             <rect key="frame" x="14" y="18" width="352" height="91"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKz-KH-BUK" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
-<<<<<<< HEAD
-                                                                    <rect key="frame" x="20" y="20" width="312" height="68"/>
-=======
                                                                     <rect key="frame" x="20" y="20" width="312" height="51"/>
->>>>>>> develop
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_home_autopay" translatesAutoresizingMaskIntoConstraints="NO" id="Xus-gA-U79">
                                                                             <rect key="frame" x="0.0" y="7.5" width="36" height="36"/>
@@ -424,12 +420,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3N-2i-LNu">
                                                     <rect key="frame" x="35" y="887" width="310" height="55"/>
                                                     <subviews>
-<<<<<<< HEAD
-                                                        <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="ACE" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="348" height="50"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        </view>
-=======
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fz7-Jd-GZC" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
                                                             <rect key="frame" x="20" y="20" width="270" height="55"/>
                                                             <constraints>
@@ -441,7 +431,6 @@
                                                                 <action selector="makeAPaymentAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="xE7-ug-s7r"/>
                                                             </connections>
                                                         </button>
->>>>>>> develop
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -451,21 +440,8 @@
                                                         <constraint firstItem="fz7-Jd-GZC" firstAttribute="leading" secondItem="T3N-2i-LNu" secondAttribute="leading" constant="20" symbolic="YES" id="xnh-Rs-jSD"/>
                                                     </constraints>
                                                 </view>
-<<<<<<< HEAD
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9h-HI-p4C" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
-                                                    <rect key="frame" x="21" y="954" width="338" height="57"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" text="Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms &amp; Conditions." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTQ-3f-TRE">
-                                                            <rect key="frame" x="0.0" y="14" width="338" height="43"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                            <color key="textColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-=======
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9h-HI-p4C" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
                                                     <rect key="frame" x="21" y="942" width="338" height="0.0"/>
->>>>>>> develop
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
