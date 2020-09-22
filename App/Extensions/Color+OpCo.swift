@@ -59,10 +59,8 @@ extension UIColor {
             return UIColor(red: 24/255, green: 51/255, blue: 18/255, alpha: 1)
         case .comEd:
             return UIColor(red: 61/255, green: 3/255, blue: 17/255, alpha: 1)
-        case .peco:
+        case .ace, .delmarva, .peco, .pepco:
             return UIColor(red: 0/255, green: 35/255, blue: 55/255, alpha: 1)
-        case .pepco, .ace, .delmarva:
-            return .primaryColor
         }
     }
     

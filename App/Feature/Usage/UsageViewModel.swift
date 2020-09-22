@@ -212,17 +212,8 @@ class UsageViewModel {
             switch Environment.shared.opco {
             case .comEd:
                 return false
-            case .bge, .peco:
+            case .ace, .bge, .delmarva, .pepco, .peco:
                 return accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC"
-            case .pepco:
-                // todo
-                return false
-            case .ace:
-                // todo
-                return false
-            case .delmarva:
-                // todo
-                return false
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -868,12 +859,12 @@ class UsageViewModel {
                 }
             case .peco:
                 break
-            case .pepco:
-                // todo
-                
-                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
-                    usageTools.append(.peakTimeSavings)
-                }
+            case .pepco:                
+                usageTools.insert(.energyWiseRewards, at: 1)
+                usageTools.append(.peakEnergySavings)
+//                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
+//                    usageTools.append(.peakTimeSavings)
+//                }
             case .ace:
                 // todo
                 

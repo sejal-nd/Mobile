@@ -154,7 +154,7 @@ class PaperlessEBillViewModel {
     }
     
     var footerText: String? {
-        if Environment.shared.opco == .bge {
+        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
             return nil
         }
         let opcoString = Environment.shared.opco.displayString

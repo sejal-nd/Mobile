@@ -19,6 +19,8 @@ class CommercialUsageViewModel {
     let errorTrigger: PublishSubject<Error>
     let tabs = BehaviorRelay(value: Tab.allCases)
     let selectedIndex = BehaviorRelay(value: 0)
+    var nonResHost = BehaviorRelay(value: "")
+    var nonResJSPath = BehaviorRelay(value: "")
     private let readyToLoadWidget = PublishSubject<Void>()
     
     var jsTimeout: Timer?
@@ -43,6 +45,16 @@ class CommercialUsageViewModel {
             }
             .bind(to: tabs)
             .disposed(by: disposeBag)
+        
+        ssoData.asObservable().subscribe{ [weak self] data in
+            guard let nonResHostURLString = data.element?.nonResHost,
+                   let nonResJSPathURLString = data.element?.nonResJSPath else {
+                   return
+            }
+            let nonResJSPathString = nonResHostURLString + nonResJSPathURLString
+            self?.nonResHost.accept(nonResHostURLString)
+            self?.nonResJSPath.accept(nonResJSPathString)
+        }.disposed(by: disposeBag)
     }
     
     private(set) lazy var javascript: Driver<String> = ssoData.map { [weak self] ssoData in
@@ -65,7 +77,10 @@ class CommercialUsageViewModel {
         .withLatestFrom(ssoData.map(\.username).unwrap()) { ($0.0, $0.1, $1) }
         .map { [weak self] _, selectedIndex, username in
             guard let self = self else { return "" }
-            return html(forTab: self.tabs.value[selectedIndex], username: username)
+            return html(forTab: self.tabs.value[selectedIndex],
+                        username: username,
+                        embedJsUrl: self.nonResJSPath.value,
+                        providerUrl: self.nonResHost.value)
         }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -114,25 +129,14 @@ fileprivate let jsString = "var data={SAMLResponse:'%@',RelayState:'%@'};var for
 fileprivate let isProd = Environment.shared.environmentName == .prod ||
     Environment.shared.environmentName == .prodbeta
 
-fileprivate var embedJsUrl: String {
-    let opcoStr = Environment.shared.opco.displayString.lowercased()
-    let strFormat = isProd ? "https://%@-sso.firstfuel.com/assets/widgets/v1/embed.js" :
-        "https://%@-sso.firstfuelsoftware.net/assets/ff/pdf/widgets/v1/embed.js"
-    return String(format: strFormat, opcoStr)
-}
-
-fileprivate var providerUrl: String {
-    let opcoStr = Environment.shared.opco.displayString.lowercased()
-    let strFormat = isProd ? "https://%@-sso.firstfuel.com" :
-        "https://%@-sso.firstfuelsoftware.net"
-    return String(format: strFormat, opcoStr)
-}
-
 fileprivate var logLevel: String {
     return isProd ? "INFO" : "DEBUG"
 }
 
-fileprivate func html(forTab tab: CommercialUsageViewModel.Tab, username: String) -> String {
+fileprivate func html(forTab tab: CommercialUsageViewModel.Tab,
+                      username: String,
+                      embedJsUrl: String,
+                      providerUrl: String) -> String {
     let url = Bundle.main.url(forResource: "FirstFuelWidget", withExtension: "html")!
     return try! String(contentsOf: url)
         .replacingOccurrences(of: "[dataWidgetId]", with: tab.widgetId)

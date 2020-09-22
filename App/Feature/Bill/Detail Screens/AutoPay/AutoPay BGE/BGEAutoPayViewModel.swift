@@ -186,6 +186,8 @@ class BGEAutoPayViewModel {
             return false
     }
     
+    private(set) lazy var userPerformedAnyChanges: Bool = userDidChangeSettings.value || userDidChangeBankAccount.value || userDidReadTerms.value
+    
     private(set) lazy var showUnenrollFooter: Driver<Bool> = initialEnrollmentStatus.asDriver().map {
         $0 == .enrolled
     }

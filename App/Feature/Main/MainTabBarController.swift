@@ -51,6 +51,10 @@ class MainTabBarController: UITabBarController {
         tabBar.isTranslucent = false
     }
     
+    func showBiometricEnabledToast(message: String){
+        self.view.showToast(String(format: NSLocalizedString(message, comment: "")))
+    }
+    
     private func configureTabBar() {
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.inMainApp)
         

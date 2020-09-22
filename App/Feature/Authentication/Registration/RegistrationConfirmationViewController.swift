@@ -91,11 +91,11 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         case .bge:
             return "no-reply@bge.com"
         case .pepco:
-            return "todo"
+            return "no-reply@pepco.com"
         case .ace:
-            return "todo"
+            return "no-reply@ace.com"
         case .delmarva:
-            return "todo"
+            return "no-reply@dpl.com"
         }
     }
     
