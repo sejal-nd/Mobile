@@ -120,6 +120,10 @@ struct AccountDetail: Mappable {
 
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
+    
+    let isEnergyWiseRewardsEligible: Bool
+    let isEnergyWiseRewardsEnrolled: Bool
+
     let budgetBillMessage: String?
     
     let isEBillEnrollment: Bool
@@ -199,6 +203,9 @@ struct AccountDetail: Mappable {
 
         status = map.optionalFrom("status")
         
+        isEnergyWiseRewardsEligible = map.optionalFrom("isEnergyWiseRewardsEligible") ?? false
+        isEnergyWiseRewardsEnrolled = map.optionalFrom("isEnergyWiseRewardsEnrolled") ?? false
+
 		isAutoPay = map.optionalFrom("isAutoPay") ?? false
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
 		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false

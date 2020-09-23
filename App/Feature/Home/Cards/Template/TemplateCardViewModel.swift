@@ -66,14 +66,11 @@ class TemplateCardViewModel {
                     return #imageLiteral(resourceName: "Commercial")
                 }
             case .pepco:
-                // todo
-                return nil
+                return accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")
             case .ace:
-                // todo
-                return nil
+                return accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")
             case .delmarva:
-                // todo
-                return nil
+                return accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -108,13 +105,25 @@ class TemplateCardViewModel {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
             case .pepco:
-                return NSLocalizedString("todo", comment: "")
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+                } else {
+                    return NSLocalizedString("Pepco Bill Credits with Energy Wise Rewards", comment: "")
+                }
             case .ace:
-                return NSLocalizedString("todo", comment: "")
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+                } else {
+                    return NSLocalizedString("Atlantic City Electric Has Ways to Save", comment: "")
+                }
             case .delmarva:
-                return NSLocalizedString("todo", comment: "")
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+                } else {
+                    return NSLocalizedString("Delmarva Bill Credits with Energy Wise Rewards", comment: "")
+                }
             }
-        }
+    }
         .asDriver(onErrorDriveWith: .empty())
      
     //Set body content string
@@ -149,12 +158,24 @@ class TemplateCardViewModel {
                 } else {
                     return NSLocalizedString("A FREE facility assessment can help you save money and energy", comment: "")
                 }
-            case .pepco:
-                return NSLocalizedString("todo", comment: "")
+           case .pepco:
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+                } else {
+                    return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                }
             case .ace:
-                return NSLocalizedString("todo", comment: "")
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+                } else {
+                    return NSLocalizedString("Get cash back with Atlantic City Electric rebates on high-efficiency appliances & HVAC equipment.", comment: "")
+                }
             case .delmarva:
-                return NSLocalizedString("todo", comment: "")
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+                } else {
+                    return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                }
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -198,12 +219,12 @@ class TemplateCardViewModel {
                 } else {
                     return NSLocalizedString("Get started today", comment: "")
                 }
-            case .pepco:
-                return NSLocalizedString("todo", comment: "")
-            case .ace:
-                return NSLocalizedString("todo", comment: "")
-            case .delmarva:
-                return NSLocalizedString("todo", comment: "")
+            case .ace, .delmarva, .pepco:
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return NSLocalizedString("Manage Your Devices", comment: "")
+                } else {
+                    return NSLocalizedString("Learn More", comment: "")
+                }
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -240,11 +261,23 @@ class TemplateCardViewModel {
                     return "http://comed.com/BusinessSavings"
                 }
             case .pepco:
-                return "todo"
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return "todo"
+                } else {
+                    return "https://energywiserewards.pepco.com/"
+                }
             case .ace:
-                return "todo"
+               if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return "todo"
+                } else {
+                    return "https://www.atlanticcityelectric.com/WaysToSave/ForYourHome/Pages/default.aspx"
+                }
             case .delmarva:
-                return "todo"
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return "todo"
+                } else {
+                    return "https://energywiserewards.delmarva.com/"
+                }
             }
         }
         .unwrap()
