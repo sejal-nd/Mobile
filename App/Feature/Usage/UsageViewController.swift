@@ -904,7 +904,7 @@ class UsageViewController: AccountPickerViewController {
                 performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
             }
         case .energyWiseRewards:
-            break
+                performSegue(withIdentifier: "energyWiseRewardsSegue", sender: accountDetail)
         case .peakEnergySavings:
             break
         }
@@ -935,6 +935,8 @@ class UsageViewController: AccountPickerViewController {
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
         case let vc as PeakRewardsViewController:
+            vc.accountDetail = accountDetail
+        case let vc as EnergyWiseRewardsViewController:
             vc.accountDetail = accountDetail
         default:
             break
