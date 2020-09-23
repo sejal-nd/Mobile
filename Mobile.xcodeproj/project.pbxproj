@@ -224,6 +224,12 @@
 		3090A644247F9F4800815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		3090A645247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		3090A646247F9F4900815EA1 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		30C1B92B2519D3A60071B194 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		30C1B92C2519D3A80071B194 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		30C1B92D2519D3A90071B194 /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		30C1B92E2519D3B20071B194 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30C1B92F2519D3B40071B194 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
+		30C1B9302519D3B50071B194 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30DFE8622492641B00FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30DFE8632492641D00FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
@@ -236,9 +242,6 @@
 		30F82199249B6AAF0010547C /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30F8219A249B6AB10010547C /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30F8219B249B6AB20010547C /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
-		30F821A1249B70E30010547C /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
-		30F821A2249B70E50010547C /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
-		30F821A3249B70E80010547C /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		30F821A4249B71900010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
 		30F821A5249B71930010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
 		30F821A6249B71950010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
@@ -15689,7 +15692,6 @@
 				67DDB9E024535DAA006CD6EB /* SharedColor.swift in Sources */,
 				67DDB9E124535DAA006CD6EB /* Weekday.swift in Sources */,
 				67DDB9E224535DAA006CD6EB /* WeatherItem.swift in Sources */,
-				30F821A1249B70E30010547C /* EditAccountNickNameViewController.swift in Sources */,
 				67DDB9E324535DAA006CD6EB /* ForgotUsername.swift in Sources */,
 				67DDB9E424535DAA006CD6EB /* Account.swift in Sources */,
 				67DDB9E524535DAA006CD6EB /* Maintenance.swift in Sources */,
@@ -16056,7 +16058,6 @@
 				67DDBB7524535DAC006CD6EB /* UsageService.swift in Sources */,
 				67DDBB7624535DAC006CD6EB /* LoginViewModelTests.swift in Sources */,
 				67DDBB7724535DAC006CD6EB /* ReportedOutagesStore.swift in Sources */,
-				30F821A3249B70E80010547C /* EditAccountNickNameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16249,7 +16250,6 @@
 				67DDBC5D24535DAE006CD6EB /* UsageService.swift in Sources */,
 				67DDBC5E24535DAE006CD6EB /* LoginViewModelTests.swift in Sources */,
 				67DDBC5F24535DAE006CD6EB /* ReportedOutagesStore.swift in Sources */,
-				30F821A2249B70E50010547C /* EditAccountNickNameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16634,6 +16634,7 @@
 				82DE610A1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
 				B0472B292111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E83F026B1FB0B5850062A348 /* AlertsService.swift in Sources */,
+				30C1B92D2519D3A90071B194 /* EditAccountNickNameViewController.swift in Sources */,
 				E80CBD0F1F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				B0882C9F210B925000EB756B /* UsageToolCardView.swift in Sources */,
@@ -17057,6 +17058,7 @@
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				B068DB6020D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
+				30C1B92B2519D3A60071B194 /* EditAccountNickNameViewController.swift in Sources */,
 				35A6C7022121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				B0728E42215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
@@ -17480,6 +17482,7 @@
 				E801BAD61E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
 				B0882CA0210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
+				30C1B92C2519D3A80071B194 /* EditAccountNickNameViewController.swift in Sources */,
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFA2102325000411297 /* UsageViewModel.swift in Sources */,
@@ -17865,6 +17868,7 @@
 				B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
 				E80043661E6A11E7005CF531 /* BiometricsService.swift in Sources */,
+				30C1B92E2519D3B20071B194 /* EditNicknameViewModel.swift in Sources */,
 				224EFF23216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
 				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
@@ -18104,6 +18108,7 @@
 				E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */,
 				9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
+				30C1B92F2519D3B40071B194 /* EditNicknameViewModel.swift in Sources */,
 				E8F62B5B200924410077B3DA /* PeakRewardsService.swift in Sources */,
 				224EFF24216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				E8F62B5C200924410077B3DA /* AuthTokenResponse.swift in Sources */,
@@ -18295,6 +18300,7 @@
 				9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8F62C10200924570077B3DA /* PeakRewardsService.swift in Sources */,
+				30C1B9302519D3B50071B194 /* EditNicknameViewModel.swift in Sources */,
 				224EFF25216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				E8F62C11200924570077B3DA /* AuthTokenResponse.swift in Sources */,
 				E8F62C12200924570077B3DA /* BiometricsService.swift in Sources */,

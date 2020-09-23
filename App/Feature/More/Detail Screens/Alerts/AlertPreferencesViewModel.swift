@@ -640,7 +640,7 @@ class AlertPreferencesViewModel {
             case (.paymentPosted, .ace): fallthrough
             case (.paymentPosted, .delmarva): fallthrough
             case (.paymentPosted, .pepco):
-                 return NSLocalizedString(" Receive a notification when your payment has posted to your account.", comment: "")
+                 return NSLocalizedString("Receive a notification when your payment has posted to your account.", comment: "")
                 
             // Payment Past Due
             case (.paymentPastDue, .bge): fallthrough
