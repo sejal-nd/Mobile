@@ -200,6 +200,24 @@
 		30353FC424D292C10060DE5D /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FC324D292C10060DE5D /* sm_outage_loading.json */; };
 		30353FC524D292C10060DE5D /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FC324D292C10060DE5D /* sm_outage_loading.json */; };
 		30353FC624D292C10060DE5D /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 30353FC324D292C10060DE5D /* sm_outage_loading.json */; };
+		30528C5A251C6A1000187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C5B251C6A1300187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C5C251C6A1700187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C5D251C6A1900187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C5E251C6A1A00187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C5F251C6A1B00187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C60251C6A1D00187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C61251C6A1E00187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C62251C6A2100187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C63251C6A2300187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C64251C6A2400187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C65251C6A2600187F69 /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */; };
+		30528C66251C6A2F00187F69 /* EnergyWiseRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C59251C69FB00187F69 /* EnergyWiseRewardsViewController.swift */; };
+		30528C67251C6A3400187F69 /* EnergyWiseRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C59251C69FB00187F69 /* EnergyWiseRewardsViewController.swift */; };
+		30528C68251C6A3500187F69 /* EnergyWiseRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C59251C69FB00187F69 /* EnergyWiseRewardsViewController.swift */; };
+		30528C69251C6A3600187F69 /* EnergyWiseRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C59251C69FB00187F69 /* EnergyWiseRewardsViewController.swift */; };
+		30528C6B251C6A3B00187F69 /* EnergyWiseRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C59251C69FB00187F69 /* EnergyWiseRewardsViewController.swift */; };
+		30528C6C251C6A3E00187F69 /* EnergyWiseRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30528C59251C69FB00187F69 /* EnergyWiseRewardsViewController.swift */; };
 		3062CFF724B6DF3B000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF624B6DF3B000176EC /* landing_video.mp4 */; };
 		3062CFF924B6DF8F000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFF824B6DF8E000176EC /* landing_video.mp4 */; };
 		3062CFFB24B6DFB4000176EC /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3062CFFA24B6DFB4000176EC /* landing_video.mp4 */; };
@@ -5996,6 +6014,8 @@
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
 		30353FBF24D1831C0060DE5D /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
 		30353FC324D292C10060DE5D /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
+		30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyWiseRewardsViewModel.swift; sourceTree = "<group>"; };
+		30528C59251C69FB00187F69 /* EnergyWiseRewardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyWiseRewardsViewController.swift; sourceTree = "<group>"; };
 		3062CFF624B6DF3B000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		3062CFF824B6DF8E000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		3062CFFA24B6DFB4000176EC /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
@@ -7605,6 +7625,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		30528C57251C69FB00187F69 /* Energy Wise Rewards */ = {
+			isa = PBXGroup;
+			children = (
+				30528C58251C69FB00187F69 /* EnergyWiseRewardsViewModel.swift */,
+				30528C59251C69FB00187F69 /* EnergyWiseRewardsViewController.swift */,
+			);
+			path = "Energy Wise Rewards";
+			sourceTree = "<group>";
+		};
 		3062CFF324B6DEFA000176EC /* ACE */ = {
 			isa = PBXGroup;
 			children = (
@@ -7774,6 +7803,7 @@
 		352B8D76230D718F007F8CEE /* Detail Screens */ = {
 			isa = PBXGroup;
 			children = (
+				30528C57251C69FB00187F69 /* Energy Wise Rewards */,
 				82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */,
 				82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */,
 				352B8D79230D71AE007F8CEE /* Top 5 Tips */,
@@ -14511,6 +14541,7 @@
 				67DDB33624535D2E006CD6EB /* AccountSheetViewController.swift in Sources */,
 				67DDB33724535D2E006CD6EB /* GameCoreDataModel.xcdatamodeld in Sources */,
 				67DDB33824535D2E006CD6EB /* AuthenticationService.swift in Sources */,
+				30528C60251C6A1D00187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				67DDB33924535D2E006CD6EB /* AlertRow.swift in Sources */,
 				67DDB33A24535D2E006CD6EB /* LoginViewModel.swift in Sources */,
 				67DDB33B24535D2E006CD6EB /* GameOnboardingStep2ViewController.swift in Sources */,
@@ -14694,6 +14725,7 @@
 				67DDB3EE24535D2E006CD6EB /* AccountsStore.swift in Sources */,
 				67DDB3EF24535D2E006CD6EB /* UIViewRoundCorners.swift in Sources */,
 				67DDB3F124535D2E006CD6EB /* URLSession+Rx.swift in Sources */,
+				30528C69251C6A3600187F69 /* EnergyWiseRewardsViewController.swift in Sources */,
 				67DDB3F224535D2E006CD6EB /* GiftCollectionViewController.swift in Sources */,
 				67DDB3F324535D2E006CD6EB /* SmartThermostatScheduleViewModel.swift in Sources */,
 				67DDB3F424535D2E006CD6EB /* SmartThermostatScheduleViewController.swift in Sources */,
@@ -14861,6 +14893,7 @@
 				67DDB54724535D32006CD6EB /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				67DDB54824535D32006CD6EB /* ConversationalButton.swift in Sources */,
 				67DDB54924535D32006CD6EB /* SurveyMonkeyManager.m in Sources */,
+				30528C64251C6A2400187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				67DDB54A24535D32006CD6EB /* ViewedTipsViewController.swift in Sources */,
 				67DDB54B24535D32006CD6EB /* AutoPayChangeBankViewController.swift in Sources */,
 				67DDB54C24535D32006CD6EB /* DataDetectorTextView.swift in Sources */,
@@ -14946,6 +14979,7 @@
 				67DDB59B24535D32006CD6EB /* Switch.swift in Sources */,
 				67DDB59C24535D32006CD6EB /* HomeViewModel.swift in Sources */,
 				67DDB59D24535D32006CD6EB /* OutageViewController.swift in Sources */,
+				30528C6C251C6A3E00187F69 /* EnergyWiseRewardsViewController.swift in Sources */,
 				67DDB59E24535D32006CD6EB /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				67DDB59F24535D32006CD6EB /* PECOReleaseOfInfoViewController.swift in Sources */,
 				67DDB5A024535D32006CD6EB /* HomeBillCardView.swift in Sources */,
@@ -15285,6 +15319,7 @@
 				67DDB79D24535D35006CD6EB /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				67DDB79E24535D35006CD6EB /* ConversationalButton.swift in Sources */,
 				67DDB79F24535D35006CD6EB /* SurveyMonkeyManager.m in Sources */,
+				30528C62251C6A2100187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				67DDB7A024535D35006CD6EB /* ViewedTipsViewController.swift in Sources */,
 				67DDB7A124535D35006CD6EB /* AutoPayChangeBankViewController.swift in Sources */,
 				67DDB7A224535D35006CD6EB /* DataDetectorTextView.swift in Sources */,
@@ -15370,6 +15405,7 @@
 				67DDB7F124535D35006CD6EB /* Switch.swift in Sources */,
 				67DDB7F224535D35006CD6EB /* HomeViewModel.swift in Sources */,
 				67DDB7F324535D35006CD6EB /* OutageViewController.swift in Sources */,
+				30528C6B251C6A3B00187F69 /* EnergyWiseRewardsViewController.swift in Sources */,
 				67DDB7F424535D35006CD6EB /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				67DDB7F524535D35006CD6EB /* PECOReleaseOfInfoViewController.swift in Sources */,
 				67DDB7F624535D35006CD6EB /* HomeBillCardView.swift in Sources */,
@@ -15765,6 +15801,7 @@
 				67DDBA2624535DAA006CD6EB /* MockJSONManager.swift in Sources */,
 				67DDBA2724535DAA006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
 				67DDBA2824535DAA006CD6EB /* MockAlertsService.swift in Sources */,
+				30528C61251C6A1E00187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				67DDBA2924535DAA006CD6EB /* MockPeakRewardsService.swift in Sources */,
 				67DDBA2A24535DAA006CD6EB /* RemoteConfigUtility.swift in Sources */,
 				67DDBA2B24535DAA006CD6EB /* AppointmentDetailViewModelTests.swift in Sources */,
@@ -15939,6 +15976,7 @@
 				67DDBAFE24535DAC006CD6EB /* Date+Now.swift in Sources */,
 				67DDBAFF24535DAC006CD6EB /* AuthTokenParser.swift in Sources */,
 				67DDBB0024535DAC006CD6EB /* CreditCard.swift in Sources */,
+				30528C65251C6A2600187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				67DDBB0124535DAC006CD6EB /* MockUser.swift in Sources */,
 				67DDBB0224535DAC006CD6EB /* BGEAutoPayViewModel.swift in Sources */,
 				67DDBB0324535DAC006CD6EB /* BillForecast.swift in Sources */,
@@ -16131,6 +16169,7 @@
 				67DDBBE624535DAE006CD6EB /* Date+Now.swift in Sources */,
 				67DDBBE724535DAE006CD6EB /* AuthTokenParser.swift in Sources */,
 				67DDBBE824535DAE006CD6EB /* CreditCard.swift in Sources */,
+				30528C63251C6A2300187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				67DDBBE924535DAE006CD6EB /* MockUser.swift in Sources */,
 				67DDBBEA24535DAE006CD6EB /* BGEAutoPayViewModel.swift in Sources */,
 				67DDBBEB24535DAE006CD6EB /* BillForecast.swift in Sources */,
@@ -16574,6 +16613,7 @@
 				B0DB2752215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06823BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
+				30528C5A251C6A1000187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
@@ -16659,6 +16699,7 @@
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
+				30528C66251C6A2F00187F69 /* EnergyWiseRewardsViewController.swift in Sources */,
 				825171B51F1D25130020A6CA /* HomeViewModel.swift in Sources */,
 				359BDB5D22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
 				54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
@@ -16998,6 +17039,7 @@
 				B0DB2754215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06A23BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
+				30528C5E251C6A1A00187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				9CA4FA6B2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				9C62447222C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
@@ -17083,6 +17125,7 @@
 				E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				224EFF1A216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
 				356C7F8121909997003E8A90 /* KeychainManager.swift in Sources */,
+				30528C68251C6A3500187F69 /* EnergyWiseRewardsViewController.swift in Sources */,
 				822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				E835D1D01FB63288008CE250 /* PushNotification.swift in Sources */,
 				B56DD49F1ED87AD800F0198B /* BankAccount.swift in Sources */,
@@ -17422,6 +17465,7 @@
 				B0DB2753215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9CF0E06923BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
+				30528C5C251C6A1700187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				9CA4FA6A2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
 				9CD3531F22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
@@ -17507,6 +17551,7 @@
 				825171B61F1D25130020A6CA /* HomeViewModel.swift in Sources */,
 				E8FF085B1F7EDC240030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				359BDB5E22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
+				30528C67251C6A3400187F69 /* EnergyWiseRewardsViewController.swift in Sources */,
 				82EAB3451F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				CEA215231F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				B0336FEB21762FB400751430 /* EventStore.swift in Sources */,
@@ -17886,6 +17931,7 @@
 				B04DDF5E21FA800C00594ACF /* Date+Now.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
+				30528C5B251C6A1300187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				B04DDF7821FFB0A800594ACF /* MockUser.swift in Sources */,
 				35A5DCBF2305D35200A82AA8 /* BGEAutoPayViewModel.swift in Sources */,
 				E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */,
@@ -18126,6 +18172,7 @@
 				E8F62B67200924410077B3DA /* Fillable.swift in Sources */,
 				B04DDF5F21FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F62B68200924410077B3DA /* MockOutageService.swift in Sources */,
+				30528C5D251C6A1900187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				E8F62B69200924410077B3DA /* AuthTokenParser.swift in Sources */,
 				B04DDF7921FFB0A800594ACF /* MockUser.swift in Sources */,
 				35A5DCC02305D35300A82AA8 /* BGEAutoPayViewModel.swift in Sources */,
@@ -18318,6 +18365,7 @@
 				B04DDF6021FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F62C1D200924570077B3DA /* MockOutageService.swift in Sources */,
 				E8F62C1E200924570077B3DA /* AuthTokenParser.swift in Sources */,
+				30528C5F251C6A1B00187F69 /* EnergyWiseRewardsViewModel.swift in Sources */,
 				B04DDF7A21FFB0A800594ACF /* MockUser.swift in Sources */,
 				35A5DCC12305D35300A82AA8 /* BGEAutoPayViewModel.swift in Sources */,
 				E8F62C1F200924570077B3DA /* CreditCard.swift in Sources */,
