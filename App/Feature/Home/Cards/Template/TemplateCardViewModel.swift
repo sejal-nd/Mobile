@@ -65,11 +65,7 @@ class TemplateCardViewModel {
                 } else {
                     return #imageLiteral(resourceName: "Commercial")
                 }
-            case .pepco:
-                return accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")
-            case .ace:
-                return accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")
-            case .delmarva:
+            case .ace, .delmarva, .pepco:
                 return accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")
             }
         }
