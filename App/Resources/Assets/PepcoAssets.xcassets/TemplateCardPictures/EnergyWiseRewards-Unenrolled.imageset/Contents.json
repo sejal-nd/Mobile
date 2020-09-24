@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "tcard_general_residential_not_enrolled.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

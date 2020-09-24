@@ -20,7 +20,7 @@ struct AlertPreferences {
     var severeWeather = false
     var billReady = false
     var paymentDue = false
-    var paymentDueDaysBefore = 1
+    var paymentDueDaysBefore = Environment.shared.opco.isPHI ? 2 : 1
     var paymentPosted = false
     var paymentPastDue = false
     var budgetBilling = false // ComEd/PECO only
