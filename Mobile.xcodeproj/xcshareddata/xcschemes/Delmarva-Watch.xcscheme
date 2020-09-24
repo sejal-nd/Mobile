@@ -57,7 +57,7 @@
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/BGE">
+         RemotePath = "/Delmarva">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67EDC39B24C1EBE8001A8494"
@@ -76,7 +76,7 @@
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/BGE">
+         RemotePath = "/Delmarva">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67EDC39B24C1EBE8001A8494"
