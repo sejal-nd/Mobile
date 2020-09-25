@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class TapToPayReviewPaymentViewController: UIViewController {
-
+    
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     @IBOutlet weak var dueAmountDescriptionLabel: UILabel!
@@ -23,18 +23,32 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var termsNConditionsButton: UIButton!
     
     // -- Additional Recipients View -- //
-     @IBOutlet weak var addAdditionalRecipients: UIView!
-     @IBOutlet weak var collapseButton: UIButton!
-     @IBOutlet weak var alternateEmailNumberView: UIView!
-     @IBOutlet weak var alternateEmailTextField: FloatLabelTextField!
-     @IBOutlet weak var alternateNumberTextField: FloatLabelTextField!
-     @IBOutlet weak var alternateViewTextView: UITextView!
-     @IBOutlet weak var stackView: UIStackView!
-     @IBOutlet weak var alternateContactDivider: UIView!
-     @IBOutlet weak var addAdditionaRecipientButton: UIButton!
+    @IBOutlet weak var addAdditionalRecipients: UIView!
+    @IBOutlet weak var collapseButton: UIButton!
+    @IBOutlet weak var alternateEmailNumberView: UIView!
+    @IBOutlet weak var alternateEmailTextField: FloatLabelTextField!
+    @IBOutlet weak var alternateNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var alternateViewTextView: UITextView!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var alternateContactDivider: UIView!
+    @IBOutlet weak var addAdditionaRecipientButton: UIButton!
+    @IBOutlet weak var bankAccount: ButtonControl!
+    @IBOutlet weak var creditDebitCard: ButtonControl!
+    @IBOutlet weak var paymentMethodContainer: UIView!
+    @IBOutlet weak var choosePaymentMethodContainer: UIView!
+    @IBOutlet weak var cashOnlyPaymentMethodLabel: UILabel!
+    @IBOutlet weak var cashOnlyChoosePaymentLabel: UILabel!
+    @IBOutlet weak var paymentMethodImageView: UIImageView!
+    @IBOutlet weak var paymentMethodAccountNumberLabel: UILabel!
+    @IBOutlet weak var paymentMethodNicknameLabel: UILabel!
     
-     var viewModel: HomeBillCardViewModel!
-     var bag = DisposeBag()
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var stickyPaymentFooterView: StickyFooterView!
+    
+    var viewModel: HomeBillCardViewModel!
+    var bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +78,49 @@ class TapToPayReviewPaymentViewController: UIViewController {
         termsNConditionsButton.setTitleColor(.actionBlue, for: .normal)
         termsNConditionsButton.titleLabel?.text = NSLocalizedString("Terms & Conditions.", comment: "")
         termsNConditionsButton.titleLabel?.font = SystemFont.semibold.of(size: 12)
+        
+        paymentMethodAccountNumberLabel.textColor = .deepGray
+        paymentMethodAccountNumberLabel.font = SystemFont.regular.of(size: 16)
+        
+        paymentMethodNicknameLabel.textColor = .middleGray
+        paymentMethodNicknameLabel.font = SystemFont.regular.of(size: 12)
+        
+        bankAccount.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
+        bankAccount.backgroundColorOnPress = .actionBlue
+        bankAccount.accessibilityLabel = NSLocalizedString("Bank Account", comment: "")
+        
+        creditDebitCard.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
+        creditDebitCard.backgroundColorOnPress = .actionBlue
+        creditDebitCard.accessibilityLabel = NSLocalizedString("Credit/Debit Card", comment: "")
+        
+        viewModel.fetchData(initialFetch: true, onSuccess: { [weak self] in
+            guard let self = self else { return }
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+            }, onError: { [weak self] in
+                guard let self = self else { return }
+                UIAccessibility.post(notification: .screenChanged, argument: self.view)
+        })
+        
+        // Selected Wallet Item
+        viewModel.selectedWalletItemImage.drive(paymentMethodImageView.rx.image).disposed(by: bag)
+        viewModel.selectedWalletItemMaskedAccountString.drive(paymentMethodAccountNumberLabel.rx.text).disposed(by: bag)
+        viewModel.selectedWalletItemNickname.drive(paymentMethodNicknameLabel.rx.text).disposed(by: bag)
+        viewModel.showSelectedWalletItemNickname.not().drive(paymentMethodNicknameLabel.rx.isHidden).disposed(by: bag)
+        
+        viewModel.isCashOnlyUser.not().drive(cashOnlyPaymentMethodLabel.rx.isHidden).disposed(by: bag)
+        viewModel.isCashOnlyUser.not().drive(cashOnlyChoosePaymentLabel.rx.isHidden).disposed(by: bag)
+        viewModel.isCashOnlyUser.not().drive(bankAccount.rx.isEnabled).disposed(by: bag)
+        
+        viewModel.hasWalletItems.drive(choosePaymentMethodContainer.rx.isHidden).disposed(by: bag)
+        viewModel.hasWalletItems.not().drive(paymentMethodContainer.rx.isHidden).disposed(by: bag)
+        
+        viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: bag)
+        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: bag)
+        
+        viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
+            self?.stickyPaymentFooterView.isHidden = !shouldShow
+        }).disposed(by: bag)
         
         configureAdditionalRecipientsView()
     }
@@ -155,12 +212,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
     }
     
     @IBAction func collapseExpandAdditionalRecipients(_ sender: Any) {
-       
+        
         // Animate expand/collapse
-            self.collapseButton.isSelected = !self.collapseButton.isSelected
-            self.alternateContactDivider.isHidden = self.collapseButton.isSelected ? false : true
-            self.view.layoutIfNeeded()
-            self.alternateEmailNumberView.isHidden = self.collapseButton.isSelected ? false : true
+        self.collapseButton.isSelected = !self.collapseButton.isSelected
+        self.alternateContactDivider.isHidden = self.collapseButton.isSelected ? false : true
+        self.view.layoutIfNeeded()
+        self.alternateEmailNumberView.isHidden = self.collapseButton.isSelected ? false : true
     }
 }
 
