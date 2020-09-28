@@ -523,11 +523,11 @@ class AlertPreferencesViewModel {
             case .energySavingsDayResults:
                 return NSLocalizedString("Energy Savings Day Results", comment: "")
             case .outage:
-                return NSLocalizedString("Outage", comment: "")
+                return Environment.shared.opco.isPHI ? NSLocalizedString("Outage Alerts", comment: "") : NSLocalizedString("Outage", comment: "")
             case .scheduledMaintenanceOutage:
                 return NSLocalizedString("Scheduled Maintenance Outage", comment: "")
             case .severeWeather:
-                return NSLocalizedString("Severe Weather", comment: "")
+                return Environment.shared.opco.isPHI ? NSLocalizedString("Severe Weather Alert", comment: "") : NSLocalizedString("Severe Weather", comment: "")
             case .billIsReady:
                 return NSLocalizedString("Bill is Ready", comment: "")
             case .paymentDueReminder:
@@ -541,7 +541,7 @@ class AlertPreferencesViewModel {
             case .appointmentTracking:
                 return NSLocalizedString("Appointment Tracking", comment: "")
             case .forYourInformation:
-                return NSLocalizedString("For Your Information", comment: "")
+                return Environment.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
                 return NSLocalizedString("Lumi Updates", comment: "")
             }
