@@ -1568,6 +1568,7 @@
 		673FA0E324C89A1900210BCD /* AccountLookupResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResults.swift; sourceTree = "<group>"; };
 		673FA0F024C8A52700210BCD /* AnonymousService+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnonymousService+Rx.swift"; path = "App/AnonymousService+Rx.swift"; sourceTree = SOURCE_ROOT; };
 		673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionConfiguration.swift; sourceTree = "<group>"; };
+		674A114F2522502200AF0D38 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationValidateAccountViewControllerNew.swift; sourceTree = "<group>"; };
 		675F47C824AB747200A828F9 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		675F4AE824AB828000A828F9 /* OutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageService.swift; sourceTree = "<group>"; };
@@ -5348,6 +5349,7 @@
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
+				674A114F2522502200AF0D38 /* README.md */,
 				B58B5AC31E4E28740051FD5F /* App */,
 				B5AC06D61E52238900BBA4ED /* UnitTests */,
 				087630DF1E72F5D000FA7020 /* UITests */,
