@@ -301,7 +301,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="Y2i-rs-Hin" secondAttribute="trailing" id="ivk-fW-ssn"/>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="kvD-aE-Nt6"/>
                                                             <constraint firstItem="Y2i-rs-Hin" firstAttribute="top" secondItem="sKp-ie-bNF" secondAttribute="bottom" constant="20" id="mm2-iA-Vac"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Y2i-rs-Hin" secondAttribute="bottom" constant="24.5" id="oue-Qg-Uz3"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Y2i-rs-Hin" secondAttribute="bottom" constant="20" id="oue-Qg-Uz3"/>
                                                             <constraint firstItem="MeF-rm-r3H" firstAttribute="top" secondItem="SgE-uG-0eQ" secondAttribute="bottom" constant="20" id="vl1-vx-VGu"/>
                                                             <constraint firstItem="MeF-rm-r3H" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sKp-ie-bNF" secondAttribute="trailing" priority="750" constant="10" id="yfA-i8-1XZ"/>
                                                             <constraint firstItem="SgE-uG-0eQ" firstAttribute="top" secondItem="r6f-zg-hhw" secondAttribute="bottom" constant="20" id="zi7-Vb-WpY"/>
@@ -596,6 +596,7 @@
                         <outlet property="alternateViewTextView" destination="keY-Ha-kh6" id="nGA-jn-MxR"/>
                         <outlet property="amountLabel" destination="R2y-eD-eTN" id="yZe-jD-WRa"/>
                         <outlet property="bankAccount" destination="sKp-ie-bNF" id="ZBe-ci-8iJ"/>
+                        <outlet property="bankAccountNotAvailable" destination="oue-Qg-Uz3" id="vhh-V0-z8f"/>
                         <outlet property="cashOnlyChoosePaymentLabel" destination="Y2i-rs-Hin" id="Bs9-PR-gZg"/>
                         <outlet property="cashOnlyPaymentMethodLabel" destination="cbH-mc-Xog" id="Kif-03-VmC"/>
                         <outlet property="choosePaymentMethodContainer" destination="7hy-IZ-sGK" id="5Ij-jp-Bsk"/>

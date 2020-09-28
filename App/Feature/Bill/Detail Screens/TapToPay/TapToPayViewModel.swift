@@ -119,26 +119,7 @@ class TapToPayViewModel {
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
     func computeDefaultPaymentDate() {
-        if Environment.shared.opco == .bge {
-            paymentDate.accept(.now)
-        } else {
-            let acctDetail = accountDetail.value
-            let billingInfo = acctDetail.billingInfo
-            
-            // Covers precarious states 6, 5, and 4 (in that order) on the Billing Scenarios table
-            if (acctDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
-                (acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
-                (acctDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
-                paymentDate.accept(.now)
-            }
-            
-            // All the other states boil down to the due date being in the future
-            if let dueDate = billingInfo.dueByDate {
-                paymentDate.accept(Environment.shared.opco.isPHI ? .now : isDueDateInTheFuture ? dueDate : .now)
-            } else { // Should never get here?
-                paymentDate.accept(.now)
-            }
-        }
+        paymentDate.accept(.now)
     }
     
     private var isDueDateInTheFuture: Bool {

@@ -57,6 +57,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var sameDayPaymentWarningLabel: UILabel!
     
     @IBOutlet weak var submitButton: PrimaryButton!
+    @IBOutlet weak var bankAccountNotAvailable: NSLayoutConstraint!
     
     var viewModel: TapToPayViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
@@ -141,6 +142,10 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.isCashOnlyUser.not().drive(cashOnlyPaymentMethodLabel.rx.isHidden).disposed(by: bag)
         viewModel.isCashOnlyUser.not().drive(cashOnlyChoosePaymentLabel.rx.isHidden).disposed(by: bag)
         viewModel.isCashOnlyUser.not().drive(bankAccount.rx.isEnabled).disposed(by: bag)
+        viewModel.isCashOnlyUser.not().drive(onNext: { [weak self] _ in
+            self?.bankAccountNotAvailable.constant = 0
+        }).disposed(by: bag)
+        
         
         viewModel.hasWalletItems.drive(choosePaymentMethodContainer.rx.isHidden).disposed(by: bag)
         viewModel.hasWalletItems.not().drive(paymentMethodContainer.rx.isHidden).disposed(by: bag)
