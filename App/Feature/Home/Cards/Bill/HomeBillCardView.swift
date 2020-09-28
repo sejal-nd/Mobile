@@ -561,7 +561,7 @@ class HomeBillCardView: UIView {
             case .bge, .comEd, .peco:
                 let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
                 guard let vc = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return UIViewController()}
-                vc.viewModel = self?.viewModel
+                vc.accountDetail = accountDetail
                 return vc
             }
     }.asDriver(onErrorDriveWith: .empty())
