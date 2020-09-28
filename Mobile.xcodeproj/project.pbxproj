@@ -4485,7 +4485,6 @@
 		675F4B3824AB828000A828F9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				67D5621C24E4642600852551 /* Decoding */,
 				675F4B5C24AB828100A828F9 /* Router.swift */,
 				675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */,
 				673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */,
@@ -4632,13 +4631,6 @@
 				67DDBDA4246450F8006CD6EB /* GoogleService-Info-PROD-FlavorDPL.plist */,
 			);
 			path = Google;
-			sourceTree = "<group>";
-		};
-		67D5621C24E4642600852551 /* Decoding */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Decoding;
 			sourceTree = "<group>";
 		};
 		67D5621F24E4643A00852551 /* Models */ = {
