@@ -74,6 +74,12 @@ enum OpCo: String {
     }
 }
 
+enum SubOpCo: String {
+    case pepcoMaryland
+    case delmarvaMaryland
+    case delmarvaDelaware
+}
+
 enum EnvironmentName: String {
     case aut = "AUT"
     case dev = "DEV"

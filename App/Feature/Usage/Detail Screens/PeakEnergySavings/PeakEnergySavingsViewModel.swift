@@ -25,7 +25,7 @@ final class PeakEnergySavingsViewModel {
         case .pepco:
             return NSLocalizedString("A Peak Savings Day is scheduled for Pepco customers in Maryland on Friday, July 19, 2020, from 01:00 PM to 05:00 PM.", comment: "")
         case .delmarva:
-            return accountDetail.isDelmarvaDelaware ?
+            return accountDetail.subOpco == .delmarvaDelaware ?
                 NSLocalizedString("A Peak Savings Day is scheduled for Delmarva Power customers in Delaware on Friday, July 19, 2020, from 01:00 PM to 05:00 PM.", comment: "") :
                 NSLocalizedString("A Peak Savings Day is scheduled for Delmarva Power customers in Maryland on Friday, July 19, 2020, from 01:00 PM to 05:00 PM.", comment: "")
         default:

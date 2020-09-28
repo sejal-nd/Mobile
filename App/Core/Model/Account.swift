@@ -294,16 +294,16 @@ struct AccountDetail: Mappable {
        return nil
     }
     
-    var isPepcoMaryland: Bool {
-        return opcoType == .pepco && state == "MD"
-    }
-    
-    var isDelmarvaMaryland: Bool {
-        return opcoType == .delmarva && state == "MD"
-    }
-    
-    var isDelmarvaDelaware: Bool {
-        return opcoType == .delmarva && state == "DE"
+    var subOpco: SubOpCo? {
+        if opcoType == .pepco && state == "MD" {
+            return .pepcoMaryland
+        } else if opcoType == .delmarva && state == "MD" {
+            return .delmarvaMaryland
+        } else if opcoType == .delmarva && state == "DE" {
+            return .delmarvaDelaware
+        } else {
+            return nil
+        }
     }
 }
 
