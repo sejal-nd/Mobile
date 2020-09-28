@@ -319,7 +319,7 @@ extension DateFormatter {
         case .comEd:
             formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
         case .peco:
-            formatter.dateFormat = "h:mm a zz 'on' M/dd/yyyy"
+            formatter.dateFormat = "h:mm a 'on' M/dd/yyyy"
         case .pepco:
             // todo
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
