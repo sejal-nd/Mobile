@@ -205,6 +205,11 @@
 		673FA0F124C8A52700210BCD /* AnonymousService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0F024C8A52700210BCD /* AnonymousService+Rx.swift */; };
 		673FA0FD24C8ACCA00210BCD /* DailyUsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1824AB828000A828F9 /* DailyUsageData.swift */; };
 		673FA0FF24C8AF8F00210BCD /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0FE24C8AF8F00210BCD /* URLSessionConfiguration.swift */; };
+		674A113725223E1000AF0D38 /* LaunchScreen-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7361E57895F006804D4 /* LaunchScreen-FlavorCOMED.storyboard */; };
+		674A113825223E1000AF0D38 /* LaunchScreen-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6324572E3C006CD6EB /* LaunchScreen-FlavorDPL.storyboard */; };
+		674A113925223E1000AF0D38 /* LaunchScreen-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD0724535EA6006CD6EB /* LaunchScreen-FlavorPEPCO.storyboard */; };
+		674A113A25223E1000AF0D38 /* LaunchScreen-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD6724573696006CD6EB /* LaunchScreen-FlavorACE.storyboard */; };
+		674A113B25223E1000AF0D38 /* LaunchScreen-FlavorPECO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7371E57895F006804D4 /* LaunchScreen-FlavorPECO.storyboard */; };
 		675F47B724AB6C9700A828F9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A2B88324A1E092004B38BC /* Login.storyboard */; };
 		675F47D424AB748200A828F9 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F47C824AB747200A828F9 /* PaymentViewModel.swift */; };
 		675F47D524AB748300A828F9 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F47C824AB747200A828F9 /* PaymentViewModel.swift */; };
@@ -1076,7 +1081,7 @@
 		E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
 		E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7281E5777BA006804D4 /* MoreViewController.swift */; };
-		E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7351E57895F006804D4 /* LaunchScreen-BGE.storyboard */; };
+		E8EEF7381E57895F006804D4 /* LaunchScreen-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EEF7351E57895F006804D4 /* LaunchScreen-FlavorBGE.storyboard */; };
 		E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 		E8EFFE261FD739B000DBAE40 /* AlertsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */; };
 		E8F353A2200963B600883CEA /* TabNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A1200963B600883CEA /* TabNavigationUITests.swift */; };
@@ -1711,10 +1716,10 @@
 		67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetworkConnectionView.xib; sourceTree = "<group>"; };
 		67D73AEF246C480500450B63 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillingHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		67D73AF0246C480500450B63 /* BillingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryTableViewCell.swift; sourceTree = "<group>"; };
-		67DDBD0724535EA6006CD6EB /* LaunchScreen-Pepco.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-Pepco.storyboard"; sourceTree = "<group>"; };
+		67DDBD0724535EA6006CD6EB /* LaunchScreen-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
 		67DDBD0924535EE6006CD6EB /* Assets-FlavorPEPCO.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorPEPCO.xcassets"; sourceTree = "<group>"; };
-		67DDBD6324572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-Delmarva.storyboard"; sourceTree = "<group>"; };
-		67DDBD6724573696006CD6EB /* LaunchScreen-ACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ACE.storyboard"; sourceTree = "<group>"; };
+		67DDBD6324572E3C006CD6EB /* LaunchScreen-FlavorDPL.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-FlavorDPL.storyboard"; sourceTree = "<group>"; };
+		67DDBD6724573696006CD6EB /* LaunchScreen-FlavorACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-FlavorACE.storyboard"; sourceTree = "<group>"; };
 		67DDBD872457389E006CD6EB /* Assets-FlavorDPL.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorDPL.xcassets"; sourceTree = "<group>"; };
 		67DDBD8A245738B8006CD6EB /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
 		67DDBD9724630B85006CD6EB /* GoogleService-Info-PROD-FlavorACE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-PROD-FlavorACE.plist"; sourceTree = "<group>"; };
@@ -2513,9 +2518,9 @@
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		E8EEF7281E5777BA006804D4 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
-		E8EEF7351E57895F006804D4 /* LaunchScreen-BGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-BGE.storyboard"; sourceTree = "<group>"; };
-		E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-ComEd.storyboard"; sourceTree = "<group>"; };
-		E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-PECO.storyboard"; sourceTree = "<group>"; };
+		E8EEF7351E57895F006804D4 /* LaunchScreen-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-FlavorBGE.storyboard"; sourceTree = "<group>"; };
+		E8EEF7361E57895F006804D4 /* LaunchScreen-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
+		E8EEF7371E57895F006804D4 /* LaunchScreen-FlavorPECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-FlavorPECO.storyboard"; sourceTree = "<group>"; };
 		E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModelTests.swift; sourceTree = "<group>"; };
 		E8F353A1200963B600883CEA /* TabNavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationUITests.swift; sourceTree = "<group>"; };
@@ -4548,6 +4553,7 @@
 		67A9869424F9683C00BD46E7 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
+				E8EEF7371E57895F006804D4 /* LaunchScreen-FlavorPECO.storyboard */,
 				B5AC06CD1E521B7B00BBA4ED /* Assets-FlavorPECO.xcassets */,
 				67A9869524F968AC00BD46E7 /* Google */,
 			);
@@ -4568,6 +4574,7 @@
 		67A986CE24FD3F5400BD46E7 /* ACE */ = {
 			isa = PBXGroup;
 			children = (
+				67DDBD6724573696006CD6EB /* LaunchScreen-FlavorACE.storyboard */,
 				67DDBD8A245738B8006CD6EB /* Assets-FlavorACE.xcassets */,
 				67A986CF24FD3F6000BD46E7 /* Google */,
 			);
@@ -4588,6 +4595,7 @@
 		67A986D024FD40B900BD46E7 /* DPL */ = {
 			isa = PBXGroup;
 			children = (
+				67DDBD6324572E3C006CD6EB /* LaunchScreen-FlavorDPL.storyboard */,
 				67DDBD872457389E006CD6EB /* Assets-FlavorDPL.xcassets */,
 				67A986D324FD410C00BD46E7 /* Google */,
 			);
@@ -4597,6 +4605,7 @@
 		67A986D124FD40BE00BD46E7 /* PEPCO */ = {
 			isa = PBXGroup;
 			children = (
+				67DDBD0724535EA6006CD6EB /* LaunchScreen-FlavorPEPCO.storyboard */,
 				67DDBD0924535EE6006CD6EB /* Assets-FlavorPEPCO.xcassets */,
 				67A986D224FD410700BD46E7 /* Google */,
 			);
@@ -4672,6 +4681,7 @@
 		67D562F824ED9DBD00852551 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
+				E8EEF7351E57895F006804D4 /* LaunchScreen-FlavorBGE.storyboard */,
 				B5AC06CB1E521B5300BBA4ED /* Assets-FlavorBGE.xcassets */,
 				67D73B14246C76BA00450B63 /* Google */,
 			);
@@ -4681,6 +4691,7 @@
 		67D5631D24ED9E4E00852551 /* COMED */ = {
 			isa = PBXGroup;
 			children = (
+				E8EEF7361E57895F006804D4 /* LaunchScreen-FlavorCOMED.storyboard */,
 				B5AC06CF1E521B8B00BBA4ED /* Assets-FlavorCOMED.xcassets */,
 				67D73B1D246C7E8600450B63 /* Google */,
 			);
@@ -4713,12 +4724,6 @@
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
 				3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */,
 				82AEF2E31F618F560057E7ED /* Settings.bundle */,
-				67D73B12246C769C00450B63 /* BGE */,
-				67D73B15246C771A00450B63 /* ComEd */,
-				67D73B16246C772100450B63 /* PECO */,
-				67D73B19246C773200450B63 /* ACE */,
-				67D73B18246C772C00450B63 /* Delmarva */,
-				67D73B17246C772500450B63 /* Pepco */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -4758,14 +4763,6 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
-		67D73B12246C769C00450B63 /* BGE */ = {
-			isa = PBXGroup;
-			children = (
-				E8EEF7351E57895F006804D4 /* LaunchScreen-BGE.storyboard */,
-			);
-			path = BGE;
-			sourceTree = "<group>";
-		};
 		67D73B14246C76BA00450B63 /* Google */ = {
 			isa = PBXGroup;
 			children = (
@@ -4775,46 +4772,6 @@
 				B5D415771F3A6C6300AC32B2 /* GoogleService-Info-PROD-FlavorBGE.plist */,
 			);
 			path = Google;
-			sourceTree = "<group>";
-		};
-		67D73B15246C771A00450B63 /* ComEd */ = {
-			isa = PBXGroup;
-			children = (
-				E8EEF7361E57895F006804D4 /* LaunchScreen-ComEd.storyboard */,
-			);
-			path = ComEd;
-			sourceTree = "<group>";
-		};
-		67D73B16246C772100450B63 /* PECO */ = {
-			isa = PBXGroup;
-			children = (
-				E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */,
-			);
-			path = PECO;
-			sourceTree = "<group>";
-		};
-		67D73B17246C772500450B63 /* Pepco */ = {
-			isa = PBXGroup;
-			children = (
-				67DDBD0724535EA6006CD6EB /* LaunchScreen-Pepco.storyboard */,
-			);
-			path = Pepco;
-			sourceTree = "<group>";
-		};
-		67D73B18246C772C00450B63 /* Delmarva */ = {
-			isa = PBXGroup;
-			children = (
-				67DDBD6324572E3C006CD6EB /* LaunchScreen-Delmarva.storyboard */,
-			);
-			path = Delmarva;
-			sourceTree = "<group>";
-		};
-		67D73B19246C773200450B63 /* ACE */ = {
-			isa = PBXGroup;
-			children = (
-				67DDBD6724573696006CD6EB /* LaunchScreen-ACE.storyboard */,
-			);
-			path = ACE;
 			sourceTree = "<group>";
 		};
 		67D73B1D246C7E8600450B63 /* Google */ = {
@@ -5981,6 +5938,7 @@
 				35C913A922EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				67A9869624F968F200BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
 				B0DB275A215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
+				674A113925223E1000AF0D38 /* LaunchScreen-FlavorPEPCO.storyboard in Resources */,
 				67D5632424EDC6F500852551 /* Appt_Inprogress-FlavorCOMED.json in Resources */,
 				B039DB75225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -5997,6 +5955,7 @@
 				67A986DA24FD419A00BD46E7 /* GoogleService-Info-PRODBETA-FlavorDPL.plist in Resources */,
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
+				674A113825223E1000AF0D38 /* LaunchScreen-FlavorDPL.storyboard in Resources */,
 				67D73AF1246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				67A9869924F9691300BD46E7 /* GoogleService-Info-STAGE-FlavorCOMED.plist in Resources */,
@@ -6037,6 +5996,7 @@
 				359BB2792148349200FBAD83 /* outage-FlavorBGE.json in Resources */,
 				67A986A224F9691600BD46E7 /* GoogleService-Info-PROD-FlavorPECO.plist in Resources */,
 				67D5632324EDC6F500852551 /* Appt_Confirmed-FlavorCOMED.json in Resources */,
+				674A113725223E1000AF0D38 /* LaunchScreen-FlavorCOMED.storyboard in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
@@ -6065,6 +6025,7 @@
 				675F4DD424AB828200A828F9 /* ScheduledPaymentUNUSEDMock.json in Resources */,
 				675F4D9824AB828200A828F9 /* RecoverUsernameMock.json in Resources */,
 				675F4D7A24AB828200A828F9 /* BillPDFMock.json in Resources */,
+				674A113A25223E1000AF0D38 /* LaunchScreen-FlavorACE.storyboard in Resources */,
 				679CC72D2500041F00A46BBE /* landing_video-FlavorACE.mp4 in Resources */,
 				67A986DE24FD419D00BD46E7 /* GoogleService-Info-PRODBETA-FlavorPEPCO.plist in Resources */,
 				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
@@ -6107,7 +6068,7 @@
 				C338282724E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
-				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
+				E8EEF7381E57895F006804D4 /* LaunchScreen-FlavorBGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
 				675F4D5024AB828200A828F9 /* TokenMock.json in Resources */,
@@ -6133,6 +6094,7 @@
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				675F4DC824AB828200A828F9 /* ForecastMonthlyBillMock.json in Resources */,
 				35C9139F22E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
+				674A113B25223E1000AF0D38 /* LaunchScreen-FlavorPECO.storyboard in Resources */,
 				301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */,
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				E8B8C8481F9E358F005828B0 /* SERPTSGraphView.xib in Resources */,
@@ -7722,6 +7684,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -7910,6 +7873,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -8594,6 +8558,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -8984,6 +8949,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -9287,6 +9253,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -9544,6 +9511,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -9799,6 +9767,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -10059,6 +10028,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -10448,6 +10418,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -10752,6 +10723,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -11009,6 +10981,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -11264,6 +11237,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -11524,6 +11498,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -11914,6 +11889,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -12217,6 +12193,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -12473,6 +12450,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -12728,6 +12706,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -12988,6 +12967,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -13378,6 +13358,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -13682,6 +13663,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -13939,6 +13921,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -14194,6 +14177,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -14454,6 +14438,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -14844,6 +14829,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -15147,6 +15133,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -15404,6 +15391,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -15659,6 +15647,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -15919,6 +15908,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -16138,6 +16128,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
@@ -16260,6 +16251,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
