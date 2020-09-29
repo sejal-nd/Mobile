@@ -46,8 +46,7 @@ class OutageStatusView: UIView {
     private var estimatedRestorationDateString: String {
         if let statusETR = outageStatus?.etr {
             return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
-        }
-        else if let reportedOutage = reportedOutage,
+        } else if let reportedOutage = reportedOutage,
            let reportedETR = reportedOutage.etr {
             return DateFormatter.outageOpcoDateFormatter.string(from: reportedETR)
         }
