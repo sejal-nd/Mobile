@@ -11,7 +11,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -70,7 +70,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -129,7 +129,7 @@
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -186,11 +186,11 @@
 			<key>projectEnvironmentPath</key>
 			<string>/phimobile</string>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-pepco-s-ams-01.azure-api.net</string>
+			<string>https://xze-e-n-eudapi-pepco-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -247,11 +247,11 @@
 			<key>projectEnvironmentPath</key>
 			<string>/phimobile</string>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-ace-s-ams-01.azure-api.net</string>
+			<string>https://xze-e-n-eudapi-ace-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
@@ -308,11 +308,11 @@
 			<key>projectEnvironmentPath</key>
 			<string>/phimobile</string>
 			<key>baseURL</key>
-			<string>https://xze-e-n-eudapi-dpl-s-ams-01.azure-api.net</string>
+			<string>https://xze-e-n-eudapi-dpl-t-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/eu/oauth2/token</string>
+			<string>https://dev-apigateway.exeloncorp.com/eu/oauth2/token</string>
 			<key>paymentusUrl</key>
 			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
