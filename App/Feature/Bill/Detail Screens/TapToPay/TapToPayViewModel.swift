@@ -1,0 +1,392 @@
+//
+//  TapToPayViewModel.swift
+//  Mobile
+//
+//  Created by Adarsh Maurya on 24/09/20.
+//  Copyright © 2020 Exelon Corporation. All rights reserved.
+//
+
+import RxSwift
+import RxCocoa
+import RxSwiftExt
+
+class TapToPayViewModel {
+    let disposeBag = DisposeBag()
+    
+    private let kMaxUsernameChars = 255
+    
+    let accountDetail: BehaviorRelay<AccountDetail>
+    let billingHistoryItem: BillingHistoryItem?
+    
+    let isFetching = BehaviorRelay(value: false)
+    let isError = BehaviorRelay(value: false)
+    let enablePaymentDateButton = BehaviorRelay(value: false)
+    
+    let walletItems = BehaviorRelay<[WalletItem]?>(value: nil)
+    let selectedWalletItem = BehaviorRelay<WalletItem?>(value: nil)
+    
+    let amountDue: BehaviorRelay<Double>
+    let paymentAmount: BehaviorRelay<Double>
+    let paymentDate: BehaviorRelay<Date>
+    let selectedDate: BehaviorRelay<Date>
+    
+    let paymentId = BehaviorRelay<String?>(value: nil)
+    
+    let emailAddress = BehaviorRelay(value: "")
+    let phoneNumber = BehaviorRelay(value: "")
+    
+    init(accountDetail: AccountDetail,
+         billingHistoryItem: BillingHistoryItem?) {
+        self.accountDetail = BehaviorRelay(value: accountDetail)
+        self.billingHistoryItem = billingHistoryItem
+        
+        if let billingHistoryItem = billingHistoryItem { // Editing a payment
+            paymentId.accept(billingHistoryItem.paymentID)
+            selectedWalletItem.accept(WalletItem(maskedAccountNumber: billingHistoryItem.maskedAccountNumber,
+                                                 nickName: NSLocalizedString("Current Payment Method", comment: ""),
+                                                 paymentMethodType: billingHistoryItem.paymentMethodType,
+                                                 isEditingItem: true))
+        }
+        
+        let netDueAmount: Double = accountDetail.billingInfo.netDueAmount ?? 0
+        amountDue = BehaviorRelay(value: netDueAmount)
+        
+        // If editing, default to the amount paid. If not editing, default to total amount due
+        paymentAmount = BehaviorRelay(value: billingHistoryItem?.amountPaid ?? netDueAmount)
+        
+        // May be updated later...see computeDefaultPaymentDate()
+        paymentDate = BehaviorRelay(value: billingHistoryItem?.date ?? .now)
+        
+        // Default it to current Date
+        selectedDate =  BehaviorRelay(value: .now)
+    }
+    
+    // MARK: - Service Calls
+    
+    func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
+        isFetching.accept(true)
+        
+        WalletService.fetchWalletItems { [weak self] result in
+            switch result {
+            case .success(let walletItemContainer):
+                guard let self = self else { return }
+                let walletItems = walletItemContainer.walletItems
+                self.isFetching.accept(false)
+                
+                self.walletItems.accept(walletItems)
+                let defaultWalletItem = walletItems.first(where: { $0.isDefault })
+                
+                if initialFetch {
+                    if self.paymentId.value == nil { // If not modifiying payment
+                        self.computeDefaultPaymentDate()
+                        if self.accountDetail.value.isCashOnly {
+                            if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
+                                self.selectedWalletItem.accept(defaultWalletItem!)
+                            } else if let firstCard = walletItems.first(where: { $0.bankOrCard == .card }) {
+                                // If no default item, choose the first credit card
+                                self.selectedWalletItem.accept(firstCard)
+                            }
+                        } else {
+                            if defaultWalletItem != nil { // Choose the default item
+                                self.selectedWalletItem.accept(defaultWalletItem!)
+                            } else if walletItems.count > 0 { // If no default item, choose the first item
+                                self.selectedWalletItem.accept(walletItems.first)
+                            }
+                        }
+                    }
+                }
+                
+                if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
+                    self.selectedWalletItem.accept(nil)
+                    
+                    //TODO //self.wouldBeSelectedWalletItemIsExpired.accept(true)
+                }
+                
+                onSuccess?()
+            case .failure:
+                self?.isFetching.accept(false)
+                self?.isError.accept(true)
+                onError?()
+            }
+        }
+    }
+    
+    // MARK: - Payment Date Stuff
+    
+    // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
+    func computeDefaultPaymentDate() {
+        paymentDate.accept(.now)
+    }
+    
+    private var isDueDateInTheFuture: Bool {
+        let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
+        if let dueDate = accountDetail.value.billingInfo.dueByDate {
+            if dueDate <= startOfTodayDate {
+                return false
+            }
+        }
+        return true
+    }
+    
+    private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
+        .map {
+            return  $0.isInToday(calendar: .opCo) ? ("Today, " + $0.fullMonthDayAndYearString) :  $0.mmDdYyyyString
+    }
+    
+    private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
+        if Environment.shared.opco == .bge || self?.paymentId.value != nil {
+            return false
+        }
+        
+        guard let pastDueAmount = $0.billingInfo.pastDueAmount,
+            let netDueAmount = $0.billingInfo.netDueAmount,
+            let dueDate = $0.billingInfo.dueByDate else {
+                return false
+        }
+        let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
+        if pastDueAmount > 0 && pastDueAmount != netDueAmount && dueDate > startOfTodayDate {
+            // Past due amount but with a new bill allows user to future date, so we should hide
+            return false
+        }
+        
+        return pastDueAmount > 0
+    }
+    
+    private(set) lazy var shouldShowSameDayPaymentWarning: Driver<Bool> =
+        self.paymentDate.asDriver().map { date in
+            return date.isInToday(calendar: .opCo)
+    }
+    
+    
+    // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
+    var canEditPaymentDate: Bool {
+        let accountDetail = self.accountDetail.value
+        let billingInfo = accountDetail.billingInfo
+        
+        // Existing requirement from before Paymentus
+        if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
+            return false
+        }
+        
+        // Precarious state 6: BGE can future date, ComEd/PECO cannot
+        if accountDetail.isFinaled && billingInfo.pastDueAmount > 0 {
+            return Environment.shared.opco == .bge
+        }
+        
+        // Precarious states 4 and 5 cannot future date
+        if (accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
+            (accountDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
+            return false
+        }
+        
+        // Precarious state 3
+        if !accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0 {
+            return Environment.shared.opco == .bge || isDueDateInTheFuture
+        }
+        
+        // If not one of the above precarious states...
+        if Environment.shared.opco == .bge { // BGE can always future date
+            return true
+        } else { // ComEd/PECO can only future date if the due date has not passed
+            return isDueDateInTheFuture
+        }
+    }
+    private(set) lazy var enablePaymentDate: Driver<Bool> =
+        self.enablePaymentDateButton.asDriver().map {_ in
+            return self.canEditPaymentDate
+    }
+    
+    private(set) lazy var walletItem: Observable<WalletItem?> = self.walletItems.map { $0?.first(where: { $0.isDefault }) }
+    
+    private lazy var accountDetailDriver: Driver<AccountDetail> =
+        accountDetail.asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var walletItemDriver: Driver<WalletItem?> = walletItem.asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var reviewPaymentShouldShowConvenienceFee: Driver<Bool> =
+        self.walletItemDriver.map { $0?.bankOrCard == .card }
+    
+    private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetailDriver.map { $0.isActiveSeverance }
+    
+    private(set) lazy var totalPaymentDisplayString: Driver<String?> =
+        Driver.combineLatest(accountDetailDriver, reviewPaymentShouldShowConvenienceFee)
+            .map { [weak self] accountDetail, showConvenienceFee in
+                guard let self = self,
+                    let dueAmount = accountDetail.billingInfo.netDueAmount else { return nil }
+                if showConvenienceFee {
+                    return (dueAmount + accountDetail.billingInfo.convenienceFee).currencyString
+                } else {
+                    return dueAmount.currencyString
+                }
+    }
+    
+    private(set) lazy var convenienceDisplayString: Driver<String?> =
+        Driver.combineLatest(accountDetailDriver, walletItemDriver) { accountDetail, walletItem in
+            guard let walletItem = walletItem else {
+                return NSLocalizedString("with no convenience fee", comment: "")
+                
+            }
+            if walletItem.bankOrCard == .bank {
+                return NSLocalizedString("with no convenience fee", comment: "")
+            } else {
+                return String.localizedStringWithFormat("with a %@ convenience fee included, applied by Paymentus, our payment partner.", accountDetail.billingInfo.convenienceFee.currencyString)
+            }
+    }
+    
+    private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
+        let billingInfo = $0.billingInfo
+        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
+                                                         .foregroundColor: UIColor.deepGray]
+        let string: String
+        guard let dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
+        attributes[.foregroundColor] = UIColor.deepGray
+        attributes[.font] = SystemFont.semibold.of(size: 17)
+        if billingInfo.pastDueAmount > 0 {
+            if billingInfo.pastDueAmount == billingInfo.netDueAmount {
+                string = String.localizedStringWithFormat("You have %@ due immediately", dueAmount.currencyString)
+                attributes[.foregroundColor] = UIColor.errorRed
+                attributes[.font] = SystemFont.semibold.of(size: 17)
+            } else {
+                string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
+            }
+        }  else {
+            string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
+        }
+        
+        return NSAttributedString(string: string, attributes: attributes)
+    }
+    
+    private(set) lazy var emailIsValidBool: Driver<Bool> =
+        self.emailAddress.asDriver().map { text -> Bool in
+            if text.count > self.kMaxUsernameChars {
+                return false
+            }
+            if text.count == .zero {
+                return true
+            }
+            
+            if text.contains(" ") {
+                return false
+            }
+            
+            let components = text.components(separatedBy: "@")
+            
+            if components.count != 2 {
+                return false
+            }
+            
+            let urlComponents = components[1].components(separatedBy: ".")
+            
+            if urlComponents.count < 2 {
+                return false
+            } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                return false
+            }
+            
+            return true
+    }
+    
+    private(set) lazy var emailIsValid: Driver<String?> =
+        self.emailAddress.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > self.kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+                
+                if text.contains(" ") {
+                    return "Invalid email address"
+                }
+                
+                let components = text.components(separatedBy: "@")
+                
+                if components.count != 2 {
+                    return "Invalid email address"
+                }
+                
+                let urlComponents = components[1].components(separatedBy: ".")
+                
+                if urlComponents.count < 2 {
+                    return "Invalid email address"
+                } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                    return "Invalid email address"
+                }
+            }
+            
+            return nil
+    }
+    
+    private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
+        self.phoneNumber.asDriver().map { [weak self] text -> Bool in
+            guard let self = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.count == 10 || digitsOnlyString.count == 0
+    }
+    
+    private func extractDigitsFrom(_ string: String) -> String {
+        return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+    }
+    
+    private(set) lazy var hasWalletItems: Driver<Bool> =
+        Driver.combineLatest(self.walletItems.asDriver(),
+                             self.isCashOnlyUser,
+                             self.selectedWalletItem.asDriver())
+        {
+            guard let walletItems: [WalletItem] = $0 else { return false }
+            if $1 { // If only bank accounts, treat cash only user as if they have no wallet items
+                for item in walletItems {
+                    if item.bankOrCard == .card {
+                        return true
+                    }
+                }
+                if let selectedWalletItem = $2, selectedWalletItem.isTemporary, selectedWalletItem.bankOrCard == .card {
+                    return true
+                }
+                return false
+            } else {
+                if let selectedWalletItem = $2, selectedWalletItem.isTemporary {
+                    return true
+                }
+                return walletItems.count > 0
+            }
+    }
+    
+    private(set) lazy var isCashOnlyUser: Driver<Bool> = self.accountDetailDriver.map { $0.isCashOnly }
+    
+    private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return nil }
+        return walletItem.paymentMethodType.imageMini
+    }
+    
+    private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return "" }
+        return "**** \(walletItem.maskedAccountNumber ?? "")"
+    }
+    
+    private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {
+        guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
+        return nickname
+    }
+    
+    private(set) lazy var showSelectedWalletItemNickname: Driver<Bool> = selectedWalletItemNickname.isNil().not()
+    
+    private(set) lazy var shouldShowContent: Driver<Bool> =
+        Driver.combineLatest(self.isFetching.asDriver(),
+                             self.isError.asDriver())
+        { !$0 && !$1 }
+    private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
+    { $0 && $1 }
+    
+    // MARK: - Review Payment Drivers
+    
+    private(set) lazy var reviewPaymentSubmitButtonEnabled: Driver<Bool> = Driver
+        .combineLatest(
+            self.emailIsValidBool.asDriver(),
+            self.phoneNumberHasTenDigits.asDriver(),
+            self.hasWalletItems.asDriver())
+        {
+            if !$0 || !$1 || !$2{
+                return false
+            }
+            return true
+    }
+}

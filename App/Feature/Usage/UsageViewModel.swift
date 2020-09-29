@@ -859,23 +859,19 @@ class UsageViewModel {
                 }
             case .peco:
                 break
-            case .pepco:                
+            case .pepco:
                 usageTools.insert(.energyWiseRewards, at: 1)
-                usageTools.append(.peakEnergySavings)
-//                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
-//                    usageTools.append(.peakTimeSavings)
-//                }
-            case .ace:
-                // todo
-                
-                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
-                    usageTools.append(.peakTimeSavings)
+                if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && accountDetail.subOpco == .pepcoMaryland {
+                    usageTools.append(.peakEnergySavings)
                 }
+            case .ace:
+                usageTools.insert(.energyWiseRewards, at: 1)
             case .delmarva:
-                // todo
-                
-                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
-                    usageTools.append(.peakTimeSavings)
+                if accountDetail.isEnergyWiseRewardsEligible || accountDetail.isEnergyWiseRewardsEnrolled {
+                    usageTools.insert(.energyWiseRewards, at: 1)
+                }
+                if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && (accountDetail.subOpco == .delmarvaMaryland || accountDetail.subOpco == .delmarvaDelaware) {
+                    usageTools.append(.peakEnergySavings)
                 }
             }
             

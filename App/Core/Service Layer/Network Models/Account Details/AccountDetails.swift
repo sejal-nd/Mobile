@@ -42,11 +42,9 @@ public struct AccountDetail: Decodable {
     public var serviceType: String?
     public var status: String?
     
-    
     public var billRouteType: String
     public var isNetMetering: Bool
     public var isEBillEligible: Bool
-    public var activeSeverance: Bool = false
     public var isAutoPay: Bool
     public var isBudgetBill: Bool
     public var isSummaryBillingIneligible: Bool
@@ -69,6 +67,7 @@ public struct AccountDetail: Decodable {
     public var isPeakRewards: Bool
     public var electricChoiceID: String?
     public var gasChoiceID: String?
+    public var utilityCode: String?
     public var isBudgetBillEnrollment: Bool
     public var isBudgetBillEligible: Bool
     public var budgetBillMessage: String?
@@ -78,12 +77,19 @@ public struct AccountDetail: Decodable {
     public var hasElectricSupplier: Bool
     public var isSingleBillOption: Bool
     public var isSupplier: Bool
+    public var isActiveSeverance: Bool
     public var isDualBillOption: Bool
     // alert preference eligibility
     let isHUAEligible: Bool?
     let isPTREligible: Bool?
     let isPTSEligible: Bool?
     let hasThirdPartySupplier: Bool
+    
+    let isEnergyWiseRewardsEligible: Bool
+    let isEnergyWiseRewardsEnrolled: Bool
+    
+    let isPeakEnergySavingsCreditEligible: Bool
+    let isPeakEnergySavingsCreditEnrolled: Bool
     
     public var customerInfo: CustomerInfo
     let billingInfo: BillingInfo
@@ -104,7 +110,7 @@ public struct AccountDetail: Decodable {
     }
     
     let prepaidStatus: PrepaidStatus
-
+    
     enum CodingKeys: String, CodingKey {
         case accountNumber = "accountNumber"
         case address = "address"
@@ -142,7 +148,6 @@ public struct AccountDetail: Decodable {
         case billRouteType
         case isNetMetering
         case isEBillEligible
-        case activeSeverance
         case isAutoPay
         case isBudgetBill
         case isSummaryBillingIneligible
@@ -165,6 +170,7 @@ public struct AccountDetail: Decodable {
         case isPeakRewards
         case electricChoiceID
         case gasChoiceID
+        case utilityCode
         case isBudgetBillEligible
         case budgetBillMessage
         case isAutoPayEligible
@@ -184,144 +190,159 @@ public struct AccountDetail: Decodable {
         case hasElectricSupplier
         case isSingleBillOption
         case isSupplier
+        case isActiveSeverance = "activeSeverance"
         case isDualBillOption
+        
+        case isEnergyWiseRewardsEligible
+        case isEnergyWiseRewardsEnrolled
+        case isPeakEnergySavingsCreditEligible
+        case isPeakEnergySavingsCreditEnrolled
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.accountNumber = try container.decode(String.self,
-                                             forKey: .accountNumber)
+                                                  forKey: .accountNumber)
         self.address = try container.decodeIfPresent(String.self,
-                                       forKey: .address)
+                                                     forKey: .address)
         
         self.accountStatusCode = try container.decodeIfPresent(String.self,
-                                                          forKey: .accountStatusCode)
+                                                               forKey: .accountStatusCode)
         self.accountType = try container.decode(String.self,
-                                           forKey: .accountType)
+                                                forKey: .accountType)
         self.accountNickname = try container.decodeIfPresent(String.self,
-                                                        forKey: .accountNickname)
+                                                             forKey: .accountNickname)
         self.isAMIAccount = try container.decode(Bool.self,
-                                            forKey: .isAMIAccount)
+                                                 forKey: .isAMIAccount)
         self.isModeledForOpower = try container.decode(Bool.self,
-                                                  forKey: .isModeledForOpower)
+                                                       forKey: .isModeledForOpower)
         self.isCREligible = try container.decode(Bool.self,
-                                            forKey: .isCREligible)
+                                                 forKey: .isCREligible)
         self.isCutOut = try container.decode(Bool.self,
-                                        forKey: .isCutOut)
+                                             forKey: .isCutOut)
         self.isCutOutNonPay = try container.decode(Bool.self,
-                                              forKey: .isCutOutNonPay)
+                                                   forKey: .isCutOutNonPay)
         self.isCutOutIssued = try container.decode(Bool.self,
-                                              forKey: .isCutOutIssued)
+                                                   forKey: .isCutOutIssued)
         self.isCutOutDispatched = try container.decode(Bool.self,
-                                                  forKey: .isCutOutDispatched)
+                                                       forKey: .isCutOutDispatched)
         self.isDefaultProfile = try container.decode(Bool.self,
-                                                forKey: .isDefaultProfile)
+                                                     forKey: .isDefaultProfile)
         self.isDollarDonationsAccount = try container.decode(Bool.self,
-                                                        forKey: .isDollarDonationsAccount)
+                                                             forKey: .isDollarDonationsAccount)
         self.isDueDateExtensionEligible = try container.decode(Bool.self,
-                                                          forKey: .isDueDateExtensionEligible)
+                                                               forKey: .isDueDateExtensionEligible)
         self.isGasOnly = try container.decode(Bool.self,
-                                         forKey: .isGasOnly)
+                                              forKey: .isGasOnly)
         self.isLowIncome = try container.decode(Bool.self,
-                                           forKey: .isLowIncome)
+                                                forKey: .isLowIncome)
         self.isNonService = try container.decode(Bool.self,
-                                            forKey: .isNonService)
+                                                 forKey: .isNonService)
         self.isPTSAccount = try container.decode(Bool.self,
-                                            forKey: .isPTSAccount)
+                                                 forKey: .isPTSAccount)
         self.isPartialResult = try container.decode(Bool.self,
-                                               forKey: .isPartialResult)
+                                                    forKey: .isPartialResult)
         self.isPasswordProtected = try container.decode(Bool.self,
-                                                   forKey: .isPasswordProtected)
+                                                        forKey: .isPasswordProtected)
         
         self.isCashOnly = try container.decode(Bool.self,
-                                          forKey: .isCashOnly)
+                                               forKey: .isCashOnly)
         self.releaseOfInformation = try container.decodeIfPresent(String.self,
-                                                                 forKey: .releaseOfInformation)
+                                                                  forKey: .releaseOfInformation)
         self.revenueClass = try container.decodeIfPresent(Bool.self,
-                                                     forKey: .revenueClass)
+                                                          forKey: .revenueClass)
         self.serviceAgreementCount = try container.decode(Int.self,
-                                                     forKey: .serviceAgreementCount)
+                                                          forKey: .serviceAgreementCount)
         self.isSmartEnergyRewardsEnrolled = try container.decode(Bool.self,
-                                                            forKey: .isSmartEnergyRewardsEnrolled)
+                                                                 forKey: .isSmartEnergyRewardsEnrolled)
         self.amountDue = try container.decodeIfPresent(String.self,
-                                                  forKey: .amountDue)
+                                                       forKey: .amountDue)
         self.dueDate = try container.decodeIfPresent(Date.self,
-                                                forKey: .dueDate)
+                                                     forKey: .dueDate)
         self.serviceType = try container.decodeIfPresent(String.self,
-                                           forKey: .serviceType)
+                                                         forKey: .serviceType)
         self.status = try container.decodeIfPresent(String.self,
-                                               forKey: .status)
+                                                    forKey: .status)
         
         
         self.billRouteType = try container.decode(String.self,
-        forKey: .billRouteType)
+                                                  forKey: .billRouteType)
         self.isNetMetering = try container.decodeIfPresent(Bool.self,
-        forKey: .isNetMetering) ?? false
+                                                           forKey: .isNetMetering) ?? false
         self.isEBillEligible = try container.decodeIfPresent(Bool.self,
-        forKey: .isEBillEligible) ?? false
-        self.activeSeverance = try container.decodeIfPresent(Bool.self,
-        forKey: .activeSeverance) ?? false
+                                                             forKey: .isEBillEligible) ?? false
         self.isAutoPay = try container.decodeIfPresent(Bool.self,
-        forKey: .isAutoPay) ?? false
+                                                       forKey: .isAutoPay) ?? false
         self.isBudgetBill = try container.decodeIfPresent(Bool.self,
-        forKey: .isBudgetBill) ?? false
+                                                          forKey: .isBudgetBill) ?? false
         self.isSummaryBillingIneligible = try container.decodeIfPresent(Bool.self,
-        forKey: .isSummaryBillingIneligible) ?? false
+                                                                        forKey: .isSummaryBillingIneligible) ?? false
         self.isEdiBilling = try container.decodeIfPresent(Bool.self,
-        forKey: .isEdiBilling) ?? false
+                                                          forKey: .isEdiBilling) ?? false
         self.isEBillEnrollment = try container.decodeIfPresent(Bool.self,
-        forKey: .isEBillEnrollment) ?? false
+                                                               forKey: .isEBillEnrollment) ?? false
         self.isResidential = try container.decodeIfPresent(Bool.self,
-        forKey: .isResidential) ?? false
+                                                           forKey: .isResidential) ?? false
         self.isFinaled = try container.decodeIfPresent(Bool.self,
-        forKey: .isFinaled) ?? false
+                                                       forKey: .isFinaled) ?? false
         self.isBGEasy = try container.decodeIfPresent(Bool.self,
-        forKey: .isBGEasy) ?? false
+                                                      forKey: .isBGEasy) ?? false
         self.addressLine = try container.decode(String.self,
-        forKey: .addressLine)
+                                                forKey: .addressLine)
         self.street = try container.decode(String.self,
-        forKey: .street)
+                                           forKey: .street)
         self.city = try container.decode(String.self,
-        forKey: .city)
+                                         forKey: .city)
         self.state = try container.decode(String.self,
-        forKey: .state)
+                                          forKey: .state)
         self.zipCode = try container.decodeIfPresent(String.self,
-        forKey: .zipCode)
+                                                     forKey: .zipCode)
         self.buildingNumber = try container.decode(String.self,
-        forKey: .buildingNumber)
+                                                   forKey: .buildingNumber)
         self.premiseNumber = try container.decodeIfPresent(String.self,
-        forKey: .premiseNumber)
+                                                           forKey: .premiseNumber)
         self.amiAccountIdentifier = try container.decode(String.self,
-        forKey: .amiAccountIdentifier)
+                                                         forKey: .amiAccountIdentifier)
         self.amiCustomerIdentifier = try container.decode(String.self,
-        forKey: .amiCustomerIdentifier)
+                                                          forKey: .amiCustomerIdentifier)
         self.rateSchedule = try container.decode(String.self,
-        forKey: .rateSchedule)
+                                                 forKey: .rateSchedule)
         self.peakRewards = try container.decodeIfPresent(String.self,
-        forKey: .peakRewards)
+                                                         forKey: .peakRewards)
         self.isPeakRewards = try container.decodeIfPresent(Bool.self,
-        forKey: .isPeakRewards) ?? false
+                                                           forKey: .isPeakRewards) ?? false
         self.electricChoiceID = try container.decodeIfPresent(String.self,
-        forKey: .electricChoiceID)
+                                                              forKey: .electricChoiceID)
         self.gasChoiceID = try container.decodeIfPresent(String.self,
-               forKey: .gasChoiceID)
+                                                         forKey: .gasChoiceID)
+        self.utilityCode = try container.decodeIfPresent(String.self,
+                                                         forKey: .utilityCode)
         self.isBudgetBillEnrollment = try container.decodeIfPresent(Bool.self,
-        forKey: .isBudgetBillEnrollment) ?? false
+                                                                    forKey: .isBudgetBillEnrollment) ?? false
         self.isBudgetBillEligible = try container.decodeIfPresent(Bool.self,
-        forKey: .isBudgetBillEligible) ?? false
+                                                                  forKey: .isBudgetBillEligible) ?? false
         self.budgetBillMessage = try container.decodeIfPresent(String.self,
-        forKey: .budgetBillMessage)
+                                                               forKey: .budgetBillMessage)
         self.isAutoPayEligible = try container.decodeIfPresent(Bool.self,
-        forKey: .isAutoPayEligible) ?? false
+                                                               forKey: .isAutoPayEligible) ?? false
         self.customerNumber = try container.decode(String.self,
-        forKey: .customerNumber)
+                                                   forKey: .customerNumber)
+        
+        self.isEnergyWiseRewardsEligible = try container.decodeIfPresent(Bool.self,
+                                                                         forKey: .isEnergyWiseRewardsEligible) ?? false
+        self.isEnergyWiseRewardsEnrolled = try container.decodeIfPresent(Bool.self,
+                                                                         forKey: .isEnergyWiseRewardsEnrolled) ?? false
+        self.isPeakEnergySavingsCreditEligible = try container.decodeIfPresent(Bool.self,
+                                                                               forKey: .isPeakEnergySavingsCreditEligible) ?? false
+        self.isPeakEnergySavingsCreditEnrolled = try container.decodeIfPresent(Bool.self,
+                                                                               forKey: .isPeakEnergySavingsCreditEnrolled) ?? false
         
         self.customerInfo = try container.decode(CustomerInfo.self,
-                                            forKey: .customerInfo)
+                                                 forKey: .customerInfo)
         self.billingInfo = try container.decode(BillingInfo.self, forKey: .billingInfo)
         self.serInfo = try container.decode(SERInfo.self, forKey: .serInfo)
         self.premiseInfo = try container.decodeIfPresent([PremiseInfo].self,
-        forKey: .premiseInfo) ?? []
+                                                         forKey: .premiseInfo) ?? []
         self.isHourlyPricing = try container.decodeIfPresent(Bool.self, forKey: .isHourlyPricing) ?? false
         self.prepaidStatus = try container.decodeIfPresent(PrepaidStatus.self, forKey: .prepaidStatus) ?? .inactive
         self.isHUAEligible = try container.decodeIfPresent(Bool.self, forKey: .isHUAEligible)
@@ -331,6 +352,7 @@ public struct AccountDetail: Decodable {
         self.hasElectricSupplier = try container.decodeIfPresent(Bool.self, forKey: .hasElectricSupplier) ?? false
         self.isSingleBillOption = try container.decodeIfPresent(Bool.self, forKey: .isSingleBillOption) ?? false
         self.isSupplier = try container.decodeIfPresent(Bool.self, forKey: .isSupplier) ?? false
+        self.isActiveSeverance = try container.decodeIfPresent(Bool.self, forKey: .isActiveSeverance) ?? false
         self.isDualBillOption = try container.decodeIfPresent(Bool.self, forKey: .isDualBillOption) ?? false
     }
     
@@ -362,6 +384,35 @@ public struct AccountDetail: Decodable {
             return .ineligible
         case (false, true, false):
             return .canEnroll
+        }
+    }
+    
+    var opcoType: OpCo? {
+        if Environment.shared.opco.isPHI,
+           let utilityCode = utilityCode {
+            switch utilityCode {
+            case "ACE":
+                return .ace
+            case "DPL":
+                return .delmarva
+            case "PEP":
+                return .pepco
+            default:
+                return nil
+            }
+        }
+       return nil
+    }
+    
+    var subOpco: SubOpCo? {
+        if opcoType == .pepco && state == "MD" {
+            return .pepcoMaryland
+        } else if opcoType == .delmarva && state == "MD" {
+            return .delmarvaMaryland
+        } else if opcoType == .delmarva && state == "DE" {
+            return .delmarvaDelaware
+        } else {
+            return nil
         }
     }
 }
