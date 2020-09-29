@@ -32,8 +32,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var alternateContactDivider: UIView!
     @IBOutlet weak var addAdditionaRecipientButton: UIButton!
+    
     @IBOutlet weak var bankAccount: ButtonControl!
     @IBOutlet weak var creditDebitCard: ButtonControl!
+    @IBOutlet weak var bankAccountTitleLabel: UILabel!
+    @IBOutlet weak var creditCardTitleLabel: UILabel!
     @IBOutlet weak var paymentMethodContainer: UIView!
     @IBOutlet weak var choosePaymentMethodContainer: UIView!
     @IBOutlet weak var cashOnlyPaymentMethodLabel: UILabel!
@@ -44,14 +47,35 @@ class TapToPayReviewPaymentViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stickyPaymentFooterView: StickyFooterView!
     
-    var viewModel: HomeBillCardViewModel!
+    @IBOutlet weak var paymentDateLabel: UILabel!
+    @IBOutlet weak var paymentDateTitleLabel: UILabel!
+    @IBOutlet weak var paymentDateEditButton: UIButton!
+    
+    @IBOutlet weak var paymentDatePastDueLabel: UILabel!
+    @IBOutlet weak var sameDayPaymentWarningLabel: UILabel!
+    
+    @IBOutlet weak var submitButton: PrimaryButton!
+    @IBOutlet weak var bankAccountNotAvailableBottomContraint: NSLayoutConstraint!
+    @IBOutlet weak var bankAccountNotAvailable: NSLayoutConstraint!
+    
+    var viewModel: TapToPayViewModel!
+    var accountDetail: AccountDetail! // Passed in from presenting view
+    var billingHistoryItem: BillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
+    
     var bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = TapToPayViewModel(walletService: ServiceFactory.createWalletService(),
+                                      paymentService: ServiceFactory.createPaymentService(),
+                                      accountDetail: accountDetail,
+                                      billingHistoryItem: billingHistoryItem)
+        
         addCloseButton()
         title = NSLocalizedString("Review Payment", comment: "")
         
@@ -89,9 +113,28 @@ class TapToPayReviewPaymentViewController: UIViewController {
         bankAccount.backgroundColorOnPress = .actionBlue
         bankAccount.accessibilityLabel = NSLocalizedString("Bank Account", comment: "")
         
+        bankAccountTitleLabel.text = NSLocalizedString("Bank Account", comment: "")
+        bankAccountTitleLabel.textColor = .actionBlue
+        bankAccountTitleLabel.font = SystemFont.semibold.of(size: 12)
+        
         creditDebitCard.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         creditDebitCard.backgroundColorOnPress = .actionBlue
         creditDebitCard.accessibilityLabel = NSLocalizedString("Credit/Debit Card", comment: "")
+        
+        creditCardTitleLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
+        creditCardTitleLabel.textColor = .actionBlue
+        creditCardTitleLabel.font = SystemFont.semibold.of(size: 12)
+        
+        paymentDateLabel.textColor = .deepGray
+        paymentDateLabel.font = SystemFont.semibold.of(size: 16)
+        
+        paymentDatePastDueLabel.textColor = .deepGray
+        paymentDatePastDueLabel.font = SystemFont.regular.of(size: 12)
+        paymentDatePastDueLabel.text = NSLocalizedString("Past due payments cannot be scheduled for a later date.", comment: "")
+        
+        sameDayPaymentWarningLabel.textColor = .deepGray
+        sameDayPaymentWarningLabel.font = SystemFont.regular.of(size: 12)
+        sameDayPaymentWarningLabel.text = NSLocalizedString("Same-day payments cannot be edited or canceled after submission.", comment: "")
         
         viewModel.fetchData(initialFetch: true, onSuccess: { [weak self] in
             guard let self = self else { return }
@@ -110,6 +153,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.isCashOnlyUser.not().drive(cashOnlyPaymentMethodLabel.rx.isHidden).disposed(by: bag)
         viewModel.isCashOnlyUser.not().drive(cashOnlyChoosePaymentLabel.rx.isHidden).disposed(by: bag)
         viewModel.isCashOnlyUser.not().drive(bankAccount.rx.isEnabled).disposed(by: bag)
+        viewModel.isCashOnlyUser.not().drive(onNext: { [weak self] _ in
+            self?.bankAccountNotAvailable.constant = 0
+            self?.bankAccountNotAvailableBottomContraint.constant = 0
+        }).disposed(by: bag)
+        
         
         viewModel.hasWalletItems.drive(choosePaymentMethodContainer.rx.isHidden).disposed(by: bag)
         viewModel.hasWalletItems.not().drive(paymentMethodContainer.rx.isHidden).disposed(by: bag)
@@ -118,7 +166,14 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: bag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: bag)
         
-        viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
+        // Payment Date
+        viewModel.paymentDateString.asDriver().drive(paymentDateLabel.rx.text).disposed(by: bag)
+        viewModel.shouldShowPastDueLabel.not().drive(paymentDatePastDueLabel.rx.isHidden).disposed(by: bag)
+        viewModel.enablePaymentDate.drive(paymentDateEditButton.rx.isEnabled).disposed(by: bag)
+        
+        viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: bag)
+        
+        viewModel.shouldShowContent.drive(onNext: { [weak self] shouldShow in
             self?.stickyPaymentFooterView.isHidden = !shouldShow
         }).disposed(by: bag)
         

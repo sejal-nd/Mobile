@@ -282,6 +282,18 @@
 		30F821A5249B71930010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
 		30F821A6249B71950010547C /* EditNicknameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8219C249B6DCD0010547C /* EditNicknameUITests.swift */; };
 		315FF3E02BAB0CC702262FE6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		35052B0F251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B10251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B11251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B12251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B13251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B14251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B15251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B16251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B17251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B18251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B19251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
+		35052B1A251D09D600095499 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35052B0E251D09D600095499 /* TapToPayViewModel.swift */; };
 		350B980F24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
@@ -6051,6 +6063,7 @@
 		32517D6D4E8043FD27ECAE5A /* Pods-Pepco-Watch.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pepco-Watch.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-Pepco-Watch/Pods-Pepco-Watch.hotfix.xcconfig"; sourceTree = "<group>"; };
 		332CC2EF55B070505882B8EF /* Pods-BGEApp-BGEUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		34E1D2D313B1C407B9AF0EC7 /* Pods-Pepco-Watch.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pepco-Watch.develop.xcconfig"; path = "Pods/Target Support Files/Pods-Pepco-Watch/Pods-Pepco-Watch.develop.xcconfig"; sourceTree = "<group>"; };
+		35052B0E251D09D600095499 /* TapToPayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayViewModel.swift; sourceTree = "<group>"; };
 		350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationChooseAccountViewController.swift; sourceTree = "<group>"; };
 		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
 		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
@@ -8261,6 +8274,7 @@
 			isa = PBXGroup;
 			children = (
 				356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */,
+				35052B0E251D09D600095499 /* TapToPayViewModel.swift */,
 				356AC13225064E5F000CF867 /* TapToPay.storyboard */,
 			);
 			path = TapToPay;
@@ -14532,6 +14546,7 @@
 				67DDB30F24535D2E006CD6EB /* StormModeHomeViewModel.swift in Sources */,
 				67DDB31024535D2E006CD6EB /* PeakRewardsViewController.swift in Sources */,
 				67DDB31124535D2E006CD6EB /* HomeEditRestoreDefaultCell.swift in Sources */,
+				35052B15251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				67DDB31324535D2E006CD6EB /* UpdatesViewModel.swift in Sources */,
 				67DDB31424535D2E006CD6EB /* ButtonRow.swift in Sources */,
 				67DDB31524535D2E006CD6EB /* Checkbox.swift in Sources */,
@@ -15149,6 +15164,7 @@
 				67DDB62124535D32006CD6EB /* StickyFooterView.swift in Sources */,
 				67DDB62224535D32006CD6EB /* AppointmentService.swift in Sources */,
 				67DDB62324535D32006CD6EB /* MoreViewModel.swift in Sources */,
+				35052B19251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				67DDB62424535D32006CD6EB /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				67DDB62524535D32006CD6EB /* MoreViewController.swift in Sources */,
 				67DDB62624535D32006CD6EB /* CommercialUsageAlertStore.swift in Sources */,
@@ -15577,6 +15593,7 @@
 				67DDB87724535D35006CD6EB /* StickyFooterView.swift in Sources */,
 				67DDB87824535D35006CD6EB /* AppointmentService.swift in Sources */,
 				67DDB87924535D35006CD6EB /* MoreViewModel.swift in Sources */,
+				35052B17251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				67DDB87A24535D35006CD6EB /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				67DDB87B24535D35006CD6EB /* MoreViewController.swift in Sources */,
 				67DDB87C24535D35006CD6EB /* CommercialUsageAlertStore.swift in Sources */,
@@ -15819,6 +15836,7 @@
 				67DDBA1324535DAA006CD6EB /* PushNotification.swift in Sources */,
 				67DDBA1424535DAA006CD6EB /* Fillable.swift in Sources */,
 				67DDBD3824571B16006CD6EB /* BGEAutoPayInfo.swift in Sources */,
+				35052B16251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				67DDBA1524535DAA006CD6EB /* MockOutageService.swift in Sources */,
 				67DDBA1624535DAA006CD6EB /* Date+Now.swift in Sources */,
 				67DDBA1724535DAA006CD6EB /* AuthTokenParser.swift in Sources */,
@@ -16028,6 +16046,7 @@
 				67DDBB0B24535DAC006CD6EB /* SERPTSViewModel.swift in Sources */,
 				67DDBB0C24535DAC006CD6EB /* MockBillService.swift in Sources */,
 				67DDBB0D24535DAC006CD6EB /* GovWeatherService.swift in Sources */,
+				35052B1A251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				675F47D324AB748100A828F9 /* PaymentViewModel.swift in Sources */,
 				67DDBB0E24535DAC006CD6EB /* MockJSONManager.swift in Sources */,
 				67DDBB0F24535DAC006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
@@ -16222,6 +16241,7 @@
 				67DDBBF324535DAE006CD6EB /* SERPTSViewModel.swift in Sources */,
 				67DDBBF424535DAE006CD6EB /* MockBillService.swift in Sources */,
 				67DDBBF524535DAE006CD6EB /* GovWeatherService.swift in Sources */,
+				35052B18251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				675F47D024AB747E00A828F9 /* PaymentViewModel.swift in Sources */,
 				67DDBBF624535DAE006CD6EB /* MockJSONManager.swift in Sources */,
 				67DDBBF724535DAE006CD6EB /* AccountDetailInitExtensions.swift in Sources */,
@@ -16876,6 +16896,7 @@
 				5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
+				35052B0F251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				9C5F786322F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
 				9C2876AD23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				359BDB4022D50F97007002B0 /* StickyFooterView.swift in Sources */,
@@ -17304,6 +17325,7 @@
 				9C2876AF23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
+				35052B13251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				35AFB42D20C82DA0000312B9 /* SheetView.swift in Sources */,
 				826DCCEF1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */,
@@ -17732,6 +17754,7 @@
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				67F9513124BCA135009B5F07 /* RegistrationValidateAccountViewController.swift in Sources */,
 				9C5F786422F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
+				35052B11251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				9C2876AE23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				B0B083B0216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
@@ -17991,6 +18014,7 @@
 				9CE700AF231865AA00191C05 /* SERPTSViewModel.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
 				9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */,
+				35052B10251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				B04DDF7F2200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				823AA54B20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,
@@ -18233,6 +18257,7 @@
 				355B10422369E48D0038EAD3 /* KeychainManager.swift in Sources */,
 				9CE700B0231865AA00191C05 /* SERPTSViewModel.swift in Sources */,
 				E8F62B6F200924410077B3DA /* MockAuthenticationService.swift in Sources */,
+				35052B12251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				9C72424A21E5061600E5946B /* GovWeatherService.swift in Sources */,
 				B04DDF802200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				E8F62B70200924410077B3DA /* MockBillService.swift in Sources */,
@@ -18427,6 +18452,7 @@
 				9CE700B1231865AB00191C05 /* SERPTSViewModel.swift in Sources */,
 				E8F62C24200924570077B3DA /* MockAuthenticationService.swift in Sources */,
 				9C72424921E5061500E5946B /* GovWeatherService.swift in Sources */,
+				35052B14251D09D600095499 /* TapToPayViewModel.swift in Sources */,
 				B04DDF812200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				E8F62C25200924570077B3DA /* MockBillService.swift in Sources */,
 				823AA54D20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
