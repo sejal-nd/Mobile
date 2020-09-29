@@ -215,13 +215,13 @@
             accessibility = kSecAttrAccessibleAfterFirstUnlock;
             break;
         case A0SimpleKeychainItemAccessibleAlways:
-            accessibility = kSecAttrAccessibleAlways;
+            accessibility = kSecAttrAccessibleWhenUnlocked;
             break;
         case A0SimpleKeychainItemAccessibleAfterFirstUnlockThisDeviceOnly:
             accessibility = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
             break;
         case A0SimpleKeychainItemAccessibleAlwaysThisDeviceOnly:
-            accessibility = kSecAttrAccessibleAlwaysThisDeviceOnly;
+            accessibility = kSecAttrAccessibleWhenUnlockedThisDeviceOnly;
             break;
 #if TARGET_OS_IPHONE
         case A0SimpleKeychainItemAccessibleWhenPasscodeSetThisDeviceOnly:
@@ -330,7 +330,7 @@
         CFErrorRef error = NULL;
         // kSecAccessControlUserPresence: Touch ID or Passcode. Access IS NOT invalidated if fingerprints added/removed
         // kSecAccessControlTouchIDCurrentSet: Touch ID only. Access IS invalidated if fingerprints added/removed
-        SecAccessControlRef accessControl = SecAccessControlCreateWithFlags(kCFAllocatorDefault, [self accessibility], kSecAccessControlTouchIDCurrentSet, &error);
+        SecAccessControlRef accessControl = SecAccessControlCreateWithFlags(kCFAllocatorDefault, [self accessibility], kSecAccessControlBiometryCurrentSet, &error);
         if (error == NULL || accessControl != NULL) {
             query[(__bridge id)kSecAttrAccessControl] = (__bridge_transfer id)accessControl;
             query[(__bridge id)kSecUseAuthenticationUI] = @NO;
