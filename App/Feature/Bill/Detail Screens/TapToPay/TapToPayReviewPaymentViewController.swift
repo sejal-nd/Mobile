@@ -35,6 +35,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
     
     @IBOutlet weak var bankAccount: ButtonControl!
     @IBOutlet weak var creditDebitCard: ButtonControl!
+    @IBOutlet weak var bankAccountTitleLabel: UILabel!
+    @IBOutlet weak var creditCardTitleLabel: UILabel!
     @IBOutlet weak var paymentMethodContainer: UIView!
     @IBOutlet weak var choosePaymentMethodContainer: UIView!
     @IBOutlet weak var cashOnlyPaymentMethodLabel: UILabel!
@@ -57,6 +59,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var sameDayPaymentWarningLabel: UILabel!
     
     @IBOutlet weak var submitButton: PrimaryButton!
+    @IBOutlet weak var bankAccountNotAvailableBottomContraint: NSLayoutConstraint!
     @IBOutlet weak var bankAccountNotAvailable: NSLayoutConstraint!
     
     var viewModel: TapToPayViewModel!
@@ -110,9 +113,17 @@ class TapToPayReviewPaymentViewController: UIViewController {
         bankAccount.backgroundColorOnPress = .actionBlue
         bankAccount.accessibilityLabel = NSLocalizedString("Bank Account", comment: "")
         
+        bankAccountTitleLabel.text = NSLocalizedString("Bank Account", comment: "")
+        bankAccountTitleLabel.textColor = .actionBlue
+        bankAccountTitleLabel.font = SystemFont.semibold.of(size: 12)
+        
         creditDebitCard.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         creditDebitCard.backgroundColorOnPress = .actionBlue
         creditDebitCard.accessibilityLabel = NSLocalizedString("Credit/Debit Card", comment: "")
+        
+        creditCardTitleLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
+        creditCardTitleLabel.textColor = .actionBlue
+        creditCardTitleLabel.font = SystemFont.semibold.of(size: 12)
         
         paymentDateLabel.textColor = .deepGray
         paymentDateLabel.font = SystemFont.semibold.of(size: 16)
@@ -144,6 +155,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.isCashOnlyUser.not().drive(bankAccount.rx.isEnabled).disposed(by: bag)
         viewModel.isCashOnlyUser.not().drive(onNext: { [weak self] _ in
             self?.bankAccountNotAvailable.constant = 0
+            self?.bankAccountNotAvailableBottomContraint.constant = 0
         }).disposed(by: bag)
         
         
