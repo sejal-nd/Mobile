@@ -7759,7 +7759,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://bge-sit-620.paymentus.io/xotp/pm/bge";
@@ -8446,7 +8446,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://peco-sit-622.paymentus.io/xotp/pm/peco";
@@ -8839,7 +8839,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://comd-sit-622.paymentus.io/xotp/pm/peco";
@@ -9079,7 +9079,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				BASE_URL = mcsstg.mobileenv.peco.com;
+				BASE_URL = "xze-e-n-eudapi-peco-s-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.staging;
@@ -9926,9 +9926,10 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -10318,10 +10319,10 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -10559,7 +10560,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
 				ASSOCIATED_DOMAIN = "azstg-secure.ace.com";
-				BASE_URL = mcsstg.mobileenv.atlanticcityelectric.com;
+				BASE_URL = "xze-e-n-eudapi-ace-s-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.staging;
@@ -10628,7 +10629,7 @@
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -10887,7 +10888,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = singlefile;
@@ -11145,7 +11146,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -11406,10 +11407,10 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -11799,9 +11800,10 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
+				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -12039,7 +12041,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				BASE_URL = mcsstg.mobileenv.delmarva.com;
+				BASE_URL = "xze-e-n-eudapi-dpl-s-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging;
@@ -12108,6 +12110,7 @@
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -12366,7 +12369,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = singlefile;
@@ -12624,7 +12627,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -12885,10 +12888,10 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -13278,10 +13281,10 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -13519,7 +13522,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				BASE_URL = mcsstg.mobileenv.pepco.com;
+				BASE_URL = "xze-e-n-eudapi-pepco-s-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging;
@@ -13588,7 +13591,7 @@
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -13847,7 +13850,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = singlefile;
@@ -14105,7 +14108,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "";
+				PAYMENT_URL = "https://ipn2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
@@ -14366,7 +14369,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://comd-sit-623.paymentus.io/xotp/pm/comd";
@@ -14759,7 +14762,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://comd-sit-623.paymentus.io/xotp/pm/comd";
@@ -14999,7 +15002,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				BASE_URL = mcsstg.mobileenv.comed.com;
+				BASE_URL = "xze-e-n-eudapi-comed-s-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.staging;
@@ -15846,7 +15849,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MARKETING_VERSION = 10.0.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-stage.exeloncorp.com";
+				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PAYMENT_URL = "https://bge-sit-620.paymentus.io/xotp/pm/bge";
@@ -16127,7 +16130,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				BASE_URL = mcsstg.mobileenv.bge.com;
+				BASE_URL = "xze-e-n-eudapi-bge-s-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.staging;

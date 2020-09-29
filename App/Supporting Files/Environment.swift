@@ -138,11 +138,12 @@ struct Environment {
         var id = ""
         switch Environment.shared.environmentName {
         case .aut, .test, .dev:
-            id = "61MnQzuXNLdlsBOu"//"WbCpJpfgV64WTTDg" - commented out due to CIS takeover of stage
+            id = "WbCpJpfgV64WTTDg"
         case .stage, .hotfix:
             id = "61MnQzuXNLdlsBOu"
         case .prodbeta, .prod:
             id = ""
+            #warning("We need prod clientSecrets's still from Apigee - Olek")
         }
         return id
     }
@@ -151,11 +152,12 @@ struct Environment {
         var secret = ""
         switch Environment.shared.environmentName {
         case .aut, .test, .dev:
-            secret = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"//"zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL" - commented out due to CIS takeover of stage
+            secret = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
         case .stage, .hotfix:
             secret = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"
         case .prodbeta, .prod:
             secret = ""
+            #warning("We need prod clientID's still from Apigee - Olek")
         }
         return secret
     }
