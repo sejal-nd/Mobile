@@ -27,6 +27,6 @@ public struct RefreshTokenRequest: Encodable {
         case clientId = "client_id"
         case clientSecret = "client_secret"
         case grantType = "grant_type"
-        case refreshToken
+        case refreshToken = "refresh_token"
     }
 }
