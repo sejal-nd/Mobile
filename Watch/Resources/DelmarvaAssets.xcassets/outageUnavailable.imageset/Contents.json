@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "ic_nooutage.pdf"
+      "filename" : "ic_nooutage.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
