@@ -9,6 +9,10 @@
 import Foundation
 
 public enum NetworkingLayer {
+    
+    static let refreshTokenDispatchGroup = DispatchGroup()
+    static var isRefreshingToken = false
+    
     public static func request<T: Decodable>(router: Router,
                                              completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // Ensure token exists for auth requests
@@ -65,52 +69,79 @@ public enum NetworkingLayer {
         
         #warning("This may create an infinite loop")
         // Check refresh token
-        if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Environment.shared.environmentName != .aut {
-            // token expired
-            dLog("📬 Token expired... Refreshing...")
-
-            // Decrease retry counter
-            retryCount -= 1
-            
-            // Refresh Token
-            let refreshTokenRequest = RefreshTokenRequest(clientId: Environment.shared.clientID,
-                                                          clientSecret: Environment.shared.clientSecret,
-                                                          refreshToken: UserSession.refreshToken)
-            
-            NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
-                switch result {
-                case .success(let tokenResponse):
-                    do {
-                        // Create new user session
-                        try UserSession.createSession(tokenResponse: tokenResponse)
-                        
-                        // Perform initial request
-                        NetworkingLayer.dataTask(session: session,
-                                                 urlRequest: urlRequest,
-                                                 completion: completion)
-                    } catch {
-                        // Delete user session
-                        UserSession.deleteSession()
-                        completion(.failure(.invalidToken))
-                    }
-                case .failure(let error):
-                    // Delete user session
-                    UserSession.deleteSession()
-                    completion(.failure(error))
-                }
+        
+        if isRefreshingToken {
+            DispatchQueue.global(qos: .default).async {
+                refreshTokenDispatchGroup.wait()
             }
-        } else if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Environment.shared.environmentName != .aut {
+        }
+        
+        if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Environment.shared.environmentName != .aut {
             // Refresh expired
             dLog("❌ Refresh Token Expired... Logging user out...")
             
             // Log Out
             AuthenticationService.logout()
             completion(.failure(.invalidToken))
+        }
+        else if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Environment.shared.environmentName != .aut {
+            // token expired
+            dLog("📬 Token expired... Refreshing...")
+
+            // Decrease retry counter
+            retryCount -= 1
+            
+            DispatchQueue.global(qos: .default).async {
+                refreshToken(session: session, urlRequest: urlRequest, completion: completion)
+            }
         } else {
             // Perform initial request
             NetworkingLayer.dataTask(session: session,
                                      urlRequest: urlRequest,
                                      completion: completion)
+        }
+    }
+    
+    private static func refreshToken<T: Decodable>(session: URLSession, urlRequest: URLRequest, completion: @escaping (Result<T, NetworkingError>) -> ()) {
+        isRefreshingToken = true
+        refreshTokenDispatchGroup.enter()
+        // Refresh Token
+        let refreshTokenRequest = RefreshTokenRequest(clientId: Environment.shared.clientID,
+                                                      clientSecret: Environment.shared.clientSecret,
+                                                      refreshToken: UserSession.refreshToken)
+        
+        NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+            switch result {
+            case .success(let tokenResponse):
+                do {
+                    // Create new user session
+                    try UserSession.createSession(tokenResponse: tokenResponse)
+                    
+                    // Perform initial request
+                    DispatchQueue.main.async {
+                        NetworkingLayer.dataTask(session: session,
+                                                 urlRequest: urlRequest,
+                                                 completion: completion)
+                    }
+                } catch {
+                    // Delete user session
+                    AuthenticationService.logout()
+                    DispatchQueue.main.async {
+                        completion(.failure(.invalidToken))
+                    }
+                }
+                isRefreshingToken = false
+                refreshTokenDispatchGroup.leave()
+            case .failure(let error):
+                // Delete user session
+                AuthenticationService.logout()
+                isRefreshingToken = false
+                refreshTokenDispatchGroup.leave()
+                
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
         }
     }
     

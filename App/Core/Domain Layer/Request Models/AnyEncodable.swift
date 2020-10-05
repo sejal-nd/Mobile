@@ -26,13 +26,15 @@ extension Encodable {
     
     func data() -> Data {
         let encodable = AnyEncodable(value: self)
-        
-        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            dLog("Request Body:\n\(encodable)")
-        }
             
         do {
-            return try JSONEncoder().encode(encodable)
+            let data = try JSONEncoder().encode(encodable)
+            
+            if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+                dLog("Request Body:\n\(String(decoding: data, as: UTF8.self))")
+            }
+            
+            return data
         } catch {
             fatalError("Error encoding object: \(error)")
         }

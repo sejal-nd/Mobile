@@ -21,11 +21,11 @@ enum UserSession {
     private static let refreshTokenExpirationDateKeychainKey = "jwtRefreshTokenExpirationDate"
 
     static var isTokenExpired: Bool {
-        return tokenExpirationDate > Date()
+        return tokenExpirationDate < Date()
     }
     
     static var isRefreshTokenExpired: Bool {
-        return refreshTokenExpirationDate > Date()
+        return refreshTokenExpirationDate < Date()
     }
     
     static var token: String {
@@ -61,11 +61,11 @@ enum UserSession {
     static var refreshTokenExpirationDate: Date {
         var refreshTokenExpirationDateString = ""
         #if os(iOS)
-        refreshTokenExpirationDateString = tokenKeychain.string(forKey: tokenExpirationDateKeychainKey) ?? ""
+        refreshTokenExpirationDateString = tokenKeychain.string(forKey: refreshTokenExpirationDateKeychainKey) ?? ""
         #elseif watchOS
         refreshTokenExpirationDateString = tokenKeychain[refreshTokenExpirationDateKeychainKey]
         #endif
-        return Date(timeIntervalSince1970: (refreshTokenExpirationDateKeychainKey as NSString).doubleValue)
+        return Date(timeIntervalSince1970: (refreshTokenExpirationDateString as NSString).doubleValue)
     }
 }
 
@@ -94,10 +94,16 @@ extension UserSession {
         
         #if os(iOS)
         // Save to keychain
+        let tokenExpirationSeconds = (Double(tokenExpiryTime) ?? 0.0) / 1000
+        let tokenExpirationDate = Date(timeIntervalSinceNow: tokenExpirationSeconds)
+        
+        let refreshTokenExpirationSeconds = (Double(refreshTokenExpiryTime) ?? 0.0) / 1000
+        let refreshTokenExpirationDate = Date(timeIntervalSinceNow: refreshTokenExpirationSeconds)
+        
         tokenKeychain.setString(token, forKey: tokenKeychainKey)
-        tokenKeychain.setString(tokenExpiryTime, forKey: tokenExpirationDateKeychainKey)
+        tokenKeychain.setString("\(tokenExpirationDate.timeIntervalSince1970)", forKey: tokenExpirationDateKeychainKey)
         tokenKeychain.setString(refreshToken, forKey: refreshTokenKeychainKey)
-        tokenKeychain.setString(refreshTokenExpiryTime, forKey: refreshTokenExpirationDateKeychainKey)
+        tokenKeychain.setString("\(refreshTokenExpirationDate.timeIntervalSince1970)", forKey: refreshTokenExpirationDateKeychainKey)
         
         // Login on Apple Watch
         if let token = tokenResponse.token {
