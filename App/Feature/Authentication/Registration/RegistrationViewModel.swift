@@ -78,7 +78,11 @@ class RegistrationViewModel {
         
         if let accountNumberValue = selectedAccount.value?.accountNumber {
             accountNumber = accountNumberValue
+        } else {
+            // PHI multiple accounts wont have a picker to select from, hence the account number will be selected from the number mentioned in the textfied
+            accountNumber = self.accountNumber.value
         }
+        
         
         if selectedSegmentIndex.value == .zero {
             phoneNumber = extractDigitsFrom(self.phoneNumber.value)
