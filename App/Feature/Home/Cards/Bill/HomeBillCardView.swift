@@ -61,6 +61,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var bankCreditCardNumberLabel: UILabel!
     @IBOutlet private weak var bankCreditCardExpiredContainer: UIView!
     @IBOutlet private weak var expiredLabel: UILabel!
+    @IBOutlet private weak var makeAPaymentButton: PrimaryButton!
     
     @IBOutlet private weak var saveAPaymentAccountButton: ButtonControl!
     @IBOutlet private weak var saveAPaymentAccountLabel: UILabel!
@@ -490,7 +491,8 @@ class HomeBillCardView: UIView {
                oneTouchPayErrorAlert,
                tutorialViewController,
                bgeasyViewController,
-               autoPayAlert)
+               autoPayAlert,
+               makeAPaymentReviewViewController)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> =
@@ -546,18 +548,25 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
+    private lazy var makeAPaymentReviewViewController: Driver<UIViewController> = makeAPaymentButton.rx.touchUpInside
+        .asObservable()
+        .withLatestFrom(self.viewModel.accountDetailEvents.elements())
+        .map { [weak self] accountDetail in
+            switch Environment.shared.opco {
+            case .ace, .delmarva, .pepco:
+                let vc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
+                vc.accountDetail = accountDetail
+                return vc
+            case .bge, .comEd, .peco:
+                let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
+                guard let vc = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return UIViewController()}
+                vc.accountDetail = accountDetail
+                return vc
+            }
+    }.asDriver(onErrorDriveWith: .empty())
+    
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(walletViewController,
                                                                                          addOTPViewController,
                                                                                          billingHistoryViewController,
                                                                                          autoPayViewController)
-    
-    @IBAction func makeAPaymentAction(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
-        guard let landingVC = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return }
-        
-        let newNavController = LargeTitleNavigationController(rootViewController: landingVC)
-        newNavController.modalPresentationStyle = .fullScreen
-        landingVC.viewModel = viewModel
-        self.window?.rootViewController?.present(newNavController, animated: true, completion: nil)
-    }
 }

@@ -19,6 +19,13 @@ class HomeBillCardViewModel {
     let scheduledPaymentEvents: Observable<Event<PaymentItem?>>
     
     
+    var accountDetail = BehaviorRelay<AccountDetail?>(value: nil)
+    var walletItems = BehaviorRelay<[WalletItem]?>(value: nil)
+    let selectedWalletItem = BehaviorRelay<WalletItem?>(value: nil)
+    
+    let isFetching = BehaviorRelay(value: false)
+    let isError = BehaviorRelay(value: false)
+    
     let emailAddress = BehaviorRelay(value: "")
     let phoneNumber = BehaviorRelay(value: "")
     private let kMaxUsernameChars = 255
@@ -59,6 +66,50 @@ class HomeBillCardViewModel {
                 }
             })
             .disposed(by: bag)
+    }
+    
+    func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
+        isFetching.accept(true)
+        
+        WalletService.fetchWalletItems { [weak self] result in
+            switch result {
+            case .success(let walletItemContainer):
+                guard let self = self else { return }
+                let walletItems = walletItemContainer.walletItems
+                self.isFetching.accept(false)
+                
+                self.walletItems.accept(walletItems)
+                let defaultWalletItem = walletItems.first(where: { $0.isDefault })
+                
+                if initialFetch {
+                    if self.accountDetail.value?.isCashOnly ?? false {
+                        if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
+                            self.selectedWalletItem.accept(defaultWalletItem!)
+                        } else if let firstCard = walletItems.first(where: { $0.bankOrCard == .card }) {
+                            // If no default item, choose the first credit card
+                            self.selectedWalletItem.accept(firstCard)
+                        }
+                    } else {
+                        if defaultWalletItem != nil { // Choose the default item
+                            self.selectedWalletItem.accept(defaultWalletItem!)
+                        } else if walletItems.count > 0 { // If no default item, choose the first item
+                            self.selectedWalletItem.accept(walletItems.first)
+                        }
+                    }
+                    
+                }
+                
+                if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
+                    self.selectedWalletItem.accept(nil)
+                }
+                
+                onSuccess?()
+            case .failure:
+                self?.isFetching.accept(false)
+                self?.isError.accept(true)
+                onError?()
+            }
+        }
     }
     
     private lazy var fetchTrigger = Observable
@@ -283,7 +334,7 @@ class HomeBillCardViewModel {
     private(set) lazy var reviewPaymentShouldShowConvenienceFee: Driver<Bool> =
         self.walletItemDriver.map { $0?.bankOrCard == .card }
     
-    private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetailDriver.map { $0.activeSeverance }
+    private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetailDriver.map { $0.isActiveSeverance }
     
     private(set) lazy var showAmount: Driver<Bool> = billState.map { $0 != .billPaidIntermediate }
     
@@ -304,9 +355,9 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver
         .combineLatest(
-                       showSaveAPaymentAccountButton,
-                       showMinMaxPaymentAllowed,
-                       showAutoPay)
+            showSaveAPaymentAccountButton,
+            showMinMaxPaymentAllowed,
+            showAutoPay)
         { ($0) && !$1 && !$2 }
         .distinctUntilChanged()
     
@@ -336,14 +387,11 @@ class HomeBillCardViewModel {
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
                                                                                      accountDetailDriver,
                                                                                      walletItemDriver)
-        { $0 == .billReady && !$1.activeSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
+        { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
         .distinctUntilChanged()
     private(set) lazy var showMakePaymentButton: Driver<Bool> = Driver.combineLatest(showAutoPay,
-                                                                                     showScheduledPayment
-    )
-    {
-        return $0 || $1 ? false : true
-    }
+                                                                                     showScheduledPayment)
+        { return $0 || $1 ? false : true }
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
@@ -661,7 +709,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var amountColor: Driver<UIColor> = billState
         .map { Environment.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .deepGray) : .deepGray }
-
+    
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
         Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
             .map { accountDetail, scheduledPayment in
@@ -743,7 +791,7 @@ class HomeBillCardViewModel {
     private(set) lazy var convenienceDisplayString: Driver<String?> =
         Driver.combineLatest(accountDetailDriver, walletItemDriver) { accountDetail, walletItem in
             guard let walletItem = walletItem else {
-                return nil
+                return NSLocalizedString("with no convenience fee", comment: "")
                 
             }
             if walletItem.bankOrCard == .bank {
@@ -777,73 +825,122 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var emailIsValidBool: Driver<Bool> =
-           self.emailAddress.asDriver().map { text -> Bool in
-               if text.count > self.kMaxUsernameChars {
-                   return false
-               }
-               if text.count == .zero {
-                   return true
-               }
-               
-               if text.contains(" ") {
-                   return false
-               }
-               
-               let components = text.components(separatedBy: "@")
-               
-               if components.count != 2 {
-                   return false
-               }
-               
-               let urlComponents = components[1].components(separatedBy: ".")
-               
-               if urlComponents.count < 2 {
-                   return false
-               } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
-                   return false
-               }
-               
-               return true
-       }
-       
-       private(set) lazy var emailIsValid: Driver<String?> =
-           self.emailAddress.asDriver().map { text -> String? in
-               if !text.isEmpty {
-                   if text.count > self.kMaxUsernameChars {
-                       return "Maximum of 255 characters allowed"
-                   }
-                   
-                   if text.contains(" ") {
-                       return "Invalid email address"
-                   }
-                   
-                   let components = text.components(separatedBy: "@")
-                   
-                   if components.count != 2 {
-                       return "Invalid email address"
-                   }
-                   
-                   let urlComponents = components[1].components(separatedBy: ".")
-                   
-                   if urlComponents.count < 2 {
-                       return "Invalid email address"
-                   } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
-                       return "Invalid email address"
-                   }
-               }
-               
-               return nil
-       }
-       
-       private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
-           self.phoneNumber.asDriver().map { [weak self] text -> Bool in
-               guard let self = self else { return false }
-               let digitsOnlyString = self.extractDigitsFrom(text)
-               return digitsOnlyString.count == 10 || digitsOnlyString.count == 0
-       }
+        self.emailAddress.asDriver().map { text -> Bool in
+            if text.count > self.kMaxUsernameChars {
+                return false
+            }
+            if text.count == .zero {
+                return true
+            }
+            
+            if text.contains(" ") {
+                return false
+            }
+            
+            let components = text.components(separatedBy: "@")
+            
+            if components.count != 2 {
+                return false
+            }
+            
+            let urlComponents = components[1].components(separatedBy: ".")
+            
+            if urlComponents.count < 2 {
+                return false
+            } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                return false
+            }
+            
+            return true
+    }
+    
+    private(set) lazy var emailIsValid: Driver<String?> =
+        self.emailAddress.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > self.kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+                
+                if text.contains(" ") {
+                    return "Invalid email address"
+                }
+                
+                let components = text.components(separatedBy: "@")
+                
+                if components.count != 2 {
+                    return "Invalid email address"
+                }
+                
+                let urlComponents = components[1].components(separatedBy: ".")
+                
+                if urlComponents.count < 2 {
+                    return "Invalid email address"
+                } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                    return "Invalid email address"
+                }
+            }
+            
+            return nil
+    }
+    
+    private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
+        self.phoneNumber.asDriver().map { [weak self] text -> Bool in
+            guard let self = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.count == 10 || digitsOnlyString.count == 0
+    }
     
     private func extractDigitsFrom(_ string: String) -> String {
-         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
-     }
-     
+        return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+    }
+    
+    private(set) lazy var hasWalletItems: Driver<Bool> =
+        Driver.combineLatest(self.walletItems.asDriver(),
+                             self.isCashOnlyUser,
+                             self.selectedWalletItem.asDriver())
+        {
+            guard let walletItems: [WalletItem] = $0 else { return false }
+            if $1 { // If only bank accounts, treat cash only user as if they have no wallet items
+                for item in walletItems {
+                    if item.bankOrCard == .card {
+                        return true
+                    }
+                }
+                if let selectedWalletItem = $2, selectedWalletItem.isTemporary, selectedWalletItem.bankOrCard == .card {
+                    return true
+                }
+                return false
+            } else {
+                if let selectedWalletItem = $2, selectedWalletItem.isTemporary {
+                    return true
+                }
+                return walletItems.count > 0
+            }
+    }
+    
+    private(set) lazy var isCashOnlyUser: Driver<Bool> = self.accountDetailDriver.map { $0.isCashOnly }
+    
+    private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return nil }
+        return walletItem.paymentMethodType.imageMini
+    }
+    
+    private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return "" }
+        return "**** \(walletItem.maskedAccountNumber ?? "")"
+    }
+    
+    private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {
+        guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
+        return nickname
+    }
+    
+    private(set) lazy var showSelectedWalletItemNickname: Driver<Bool> = selectedWalletItemNickname.isNil().not()
+    
+    private(set) lazy var shouldShowContent: Driver<Bool> =
+        Driver.combineLatest(self.isFetching.asDriver(),
+                             self.isError.asDriver())
+        { !$0 && !$1 }
+    private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
+    { $0 && $1 }
 }

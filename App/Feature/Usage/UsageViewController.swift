@@ -883,11 +883,11 @@ class UsageViewController: AccountPickerViewController {
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
                 GoogleAnalytics.log(event: .hourlyPricing,
-                              dimensions: [.hourlyPricingEnrollment: "enrolled"])
+                                    dimensions: [.hourlyPricingEnrollment: "enrolled"])
                 performSegue(withIdentifier: "hourlyPricingSegue", sender: accountDetail)
             } else {
                 GoogleAnalytics.log(event: .hourlyPricing,
-                              dimensions: [.hourlyPricingEnrollment: "unenrolled"])
+                                    dimensions: [.hourlyPricingEnrollment: "unenrolled"])
                 let safariVc = SFSafariViewController
                     .createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
                 present(safariVc, animated: true, completion: nil)
@@ -902,9 +902,9 @@ class UsageViewController: AccountPickerViewController {
                 performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
             }
         case .energyWiseRewards:
-            break
+            performSegue(withIdentifier: "energyWiseRewardsSegue", sender: accountDetail)
         case .peakEnergySavings:
-            break
+            performSegue(withIdentifier: "peakEnergySavingsSegue", sender: accountDetail)
         }
     }
     
@@ -933,6 +933,10 @@ class UsageViewController: AccountPickerViewController {
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
         case let vc as PeakRewardsViewController:
+            vc.accountDetail = accountDetail
+        case let vc as EnergyWiseRewardsViewController:
+            vc.accountDetail = accountDetail
+        case let vc as PeakEnergySavingsViewController:
             vc.accountDetail = accountDetail
         default:
             break

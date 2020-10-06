@@ -175,12 +175,8 @@ class AlertPreferencesViewModelTests: XCTestCase {
             expectedString = NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.\n\nNOTE: Outage Notifications will be provided by ComEd on a 24/7 basis. You may be updated with outage information during the overnight hours or over holidays where applicable.", comment: "")
         case .peco:
             expectedString = NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.", comment: "")
-        case .pepco:
-            expectedString = NSLocalizedString("", comment: "")
-        case .ace:
-            expectedString = NSLocalizedString("", comment: "")
-        case .delmarva:
-            expectedString = NSLocalizedString("", comment: "")
+        case .ace, .delmarva, .pepco:
+            expectedString = NSLocalizedString("Get updates on outages affecting your account. Alerts are sent when your account is part of a known outage, when power is restored in your area and if your estimated time of restoration changes.", comment: "")
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.outage.detailText,
                        expectedString)
@@ -217,12 +213,8 @@ class AlertPreferencesViewModelTests: XCTestCase {
             expectedString = NSLocalizedString("Receive an alert about weather conditions that could potentially impact ComEd service in your area.", comment: "")
         case .peco:
             expectedString = NSLocalizedString("Receive an alert about weather conditions that could potentially impact PECO service in your area.", comment: "")
-        case .pepco:
-            expectedString = "todo"
-        case .ace:
-            expectedString = "todo"
-        case .delmarva:
-            expectedString = "todo"
+        case .ace, .delmarva, .pepco:
+            expectedString = NSLocalizedString("Get updates about weather conditions that could potentially impact service in your area.", comment: "")
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.severeWeather.detailText,
                        expectedString)
@@ -231,21 +223,20 @@ class AlertPreferencesViewModelTests: XCTestCase {
     func testBillReadyDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                               accountService: MockAccountService())
+        viewModel.accountDetail = .default
+        
         let expectedString: String
         switch Environment.shared.opco {
         case .bge:
             expectedString = NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert will contain the bill due date and total amount due.", comment: "")
         case .comEd, .peco:
             expectedString = NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
-       case .pepco:
-            expectedString = "todo"
-        case .ace:
-            expectedString = "todo"
-        case .delmarva:
-            expectedString = "todo"
+        case .ace, .delmarva, .pepco:
+            expectedString = viewModel.accountDetail.isResidential ?
+            NSLocalizedString("Receive an alert when your bill is ready to be viewed online. If you are signed up for Automatic Payment or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.", comment: "") :
+            NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert contains the bill due date and amount due. If you are signed up for Automatic Payment or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.\n\nPlease note that this notification is mandatory for customers enrolled in Paperless eBill.", comment: "")
         }
-        XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.billIsReady.detailText,
-                       expectedString)
+        XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.billIsReady(viewModel.accountDetail).detailText, expectedString)
     }
     
     func testPaymentDueDetailLabelText() {
@@ -257,12 +248,8 @@ class AlertPreferencesViewModelTests: XCTestCase {
             expectedString = NSLocalizedString("Choose to receive an alert 1 to 14 days before your payment due date. Customers are responsible for payment for the total amount due on their account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
         case .comEd, .peco:
             expectedString = NSLocalizedString("Receive an alert 1 to 7 days before your payment due date. If enrolled in AutoPay, the alert will notify you of when a payment will be deducted from your bank account.\n\nNOTE: You are responsible for payment of the total amount due on your account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
-        case .pepco:
-            expectedString = "todo"
-        case .ace:
-            expectedString = "todo"
-        case .delmarva:
-            expectedString = "todo"
+        case .ace, .delmarva, .pepco:
+            expectedString = NSLocalizedString("Receive an alert 1 to 7 days before your payment due date.\n\nNote: Failure to receive this reminder for any reason, including due to technical issues, does not extend or release the payment due date.", comment: "")
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.paymentDueReminder.detailText,
                        expectedString)
@@ -271,8 +258,13 @@ class AlertPreferencesViewModelTests: XCTestCase {
     func testPaymentPostedDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                               accountService: MockAccountService())
-        let expectedString = NSLocalizedString("Receive a confirmation when your payment has posted to your account. We will include the date and the amount of the posting, as well as your updated total account balance.", comment: "")
-        
+        let expectedString: String
+        switch Environment.shared.opco {
+        case .ace, .delmarva, .pepco:
+            expectedString = NSLocalizedString("Receive a notification when your payment has posted to your account.", comment: "")
+        case .bge, .comEd, .peco:
+            expectedString = NSLocalizedString("Receive a confirmation when your payment has posted to your account. We will include the date and the amount of the posting, as well as your updated total account balance.", comment: "")
+        }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.paymentPosted.detailText,
                        expectedString)
     }
@@ -280,8 +272,13 @@ class AlertPreferencesViewModelTests: XCTestCase {
     func testPaymentPastDueDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                               accountService: MockAccountService())
-        let expectedString = NSLocalizedString("Receive a friendly reminder 1 day after your due date when you are late in making a payment.", comment: "")
-        
+        let expectedString: String
+        switch Environment.shared.opco {
+        case .ace, .delmarva, .pepco:
+            expectedString = NSLocalizedString("Receive a reminder 1 day after your due date when you are late in making a payment.", comment: "")
+        case .bge, .comEd, .peco:
+            expectedString = NSLocalizedString("Receive a friendly reminder 1 day after your due date when you are late in making a payment.", comment: "")
+        }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.paymentPastDue.detailText,
                        expectedString)
     }
@@ -297,12 +294,8 @@ class AlertPreferencesViewModelTests: XCTestCase {
             expectedString = NSLocalizedString("Your monthly Budget Bill Payment may be adjusted every six months to keep your account current with your actual electricity usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
         case .peco:
             expectedString = NSLocalizedString("Your monthly Budget Bill payment may be adjusted every four months to keep your account current with your actual energy usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
-        case .pepco:
-            expectedString = "todo"
-        case .ace:
-            expectedString = "todo"
-        case .delmarva:
-            expectedString = "todo"
+        case .ace, .delmarva, .pepco:
+            expectedString = NSLocalizedString("Receive an alert when the monthly payment amount for your budget installment has been recalculated, typically twice per year.", comment: "")
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.budgetBillingReview.detailText,
                        expectedString)
@@ -316,7 +309,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.appointmentTracking.detailText,
                        expectedString)
     }
-
     
     func testForYourInfoDetailLabelText() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
@@ -329,12 +321,8 @@ class AlertPreferencesViewModelTests: XCTestCase {
             expectedString = NSLocalizedString("Occasionally, ComEd may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
         case .peco:
             expectedString = NSLocalizedString("Occasionally, PECO may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
-        case .pepco:
-            expectedString = "todo"
-        case .ace:
-            expectedString = "todo"
-        case .delmarva:
-            expectedString = "todo"
+        case .ace, .delmarva, .pepco:
+            expectedString = NSLocalizedString("Get updates, general news and special offers. We will not send you more than 3 of these messages each month.", comment: "")
         }
         XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.forYourInformation.detailText,
                        expectedString)
