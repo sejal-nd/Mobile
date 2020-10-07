@@ -437,7 +437,7 @@ class AlertPreferencesViewModel {
         switch Environment.shared.opco {
         case .bge, .comEd:
             return self.accountDetail.isHUAEligible ?? false
-        case .peco, .pepco, .ace, .delmarva: // todo
+        case .peco, .pepco, .ace, .delmarva:
             return false
         
         }
@@ -445,7 +445,7 @@ class AlertPreferencesViewModel {
     
     var isPTSEligible: Bool {
         switch Environment.shared.opco {
-        case .bge, .peco, .pepco, .ace, .delmarva: // todo:
+        case .bge, .peco, .pepco, .ace, .delmarva:
             return false
         case .comEd:
             return self.accountDetail.isPTSEligible ?? false
@@ -456,7 +456,7 @@ class AlertPreferencesViewModel {
         switch Environment.shared.opco {
         case .bge:
             return self.accountDetail.isPTREligible ?? false
-        case .comEd, .peco, .pepco, .ace, .delmarva: // todo:
+        case .comEd, .peco, .pepco, .ace, .delmarva:
             return false
         }
     }

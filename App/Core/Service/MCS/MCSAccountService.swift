@@ -187,8 +187,6 @@ struct MCSAccountService: AccountService {
     
     func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {
         switch Environment.shared.opco {
-        case .peco:
-            return .just([])
         case .comEd, .bge:
             return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/programs")
                 .map { json in
@@ -212,14 +210,7 @@ struct MCSAccountService: AccountService {
                     throw serviceError
                 }
             }
-        case .pepco:
-            // todo
-            return .just([])
-        case .ace:
-            // todo
-            return .just([])
-        case .delmarva:
-            // todo
+        case .ace, .delmarva, .peco, .pepco:
             return .just([])
         }
     }
