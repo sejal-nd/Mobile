@@ -21,7 +21,15 @@ class ContactUsViewModel {
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .peco:
             let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-            let localizedString = String(format: NSLocalizedString("If you see downed power lines or smell natural gas, %@ and then call PECO. Representatives are available 24 hours a day, 7 days a week.", comment: ""), leaveAreaString)
+            let localizedString = String(format: NSLocalizedString(
+                                            """
+                                            To report a downed or sparking power line, please call 1-800-841-4141.
+                                            
+                                            If you smell natural gas, leave the area immediately and call 1-800-841-4141 or 1-844-841-4151.
+                                            
+                                            Representatives are available 24 hours a day, 7 days a week.
+                                            """
+                                            , comment: ""), leaveAreaString)
             emergencyAttrString = NSMutableAttributedString(string: localizedString)
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         case .comEd:
@@ -44,17 +52,43 @@ class ContactUsViewModel {
         return emergencyAttrString
     }
     
-    var bgeGasNumber1: String {
-        return "1-800-685-0123"
+    var bgeGasNumber1: String? {
+        switch opco {
+        case .bge:
+            return "1-800-685-0123"
+        case .peco:
+            return "1-800-841-4141"
+        default:
+            return nil
+        }
     }
-    var bgeGasNumber2: String {
-        return "1-877-778-7798"
+    var bgeGasNumber2: String? {
+        switch opco {
+        case .bge:
+            return "1-877-778-7798"
+        case .peco:
+            return "1-844-841-4151"
+        default:
+            return nil
+        }
     }
-    var bgePowerLineNumber1: String {
-        return "1-800-685-0123"
+    var bgePowerLineNumber1: String? {
+        switch opco {
+        case .bge:
+            return "1-800-685-0123"
+        case .peco:
+            return "1-800-841-4141"
+        default:
+            return nil
+        }
     }
-    var bgePowerLineNumber2: String {
-        return "1-877-778-2222"
+    var bgePowerLineNumber2: String? {
+        switch opco {
+        case .bge:
+            return "1-877-778-2222"
+        default:
+            return nil
+        }
     }
     var delmarvaGasNumber: String {
         return "302-454-0317"
@@ -122,7 +156,7 @@ class ContactUsViewModel {
     var phoneNumber1: String? {
         switch opco {
         case .bge: return nil
-        case .peco: return "1-800-841-4141"
+        case .peco: return nil
         case .comEd: return "1-800-334-7661"
         case .pepco: return "1-877-737-2662"
         case .ace: return "1-800-833-7476"
