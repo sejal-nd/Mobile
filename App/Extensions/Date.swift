@@ -318,14 +318,7 @@ extension DateFormatter {
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
         case .comEd, .peco:
             formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
-        case .pepco:
-            // todo
-            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        case .ace:
-            // todo
-            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        case .delmarva:
-            // todo
+        case .ace, .delmarva, .pepco:
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
         }
         return formatter

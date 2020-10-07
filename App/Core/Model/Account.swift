@@ -124,6 +124,9 @@ struct AccountDetail: Mappable {
     let isEnergyWiseRewardsEligible: Bool
     let isEnergyWiseRewardsEnrolled: Bool
 
+    let isPeakEnergySavingsCreditEligible: Bool
+    let isPeakEnergySavingsCreditEnrolled: Bool
+    
     let budgetBillMessage: String?
     
     let isEBillEnrollment: Bool
@@ -146,6 +149,7 @@ struct AccountDetail: Mappable {
     
     let peakRewards: String?
     let zipCode: String?
+    let state: String?
     
     let electricChoiceId: String?
     let gasChoiceId: String?
@@ -206,6 +210,9 @@ struct AccountDetail: Mappable {
         
         isEnergyWiseRewardsEligible = map.optionalFrom("isEnergyWiseRewardsEligible") ?? false
         isEnergyWiseRewardsEnrolled = map.optionalFrom("isEnergyWiseRewardsEnrolled") ?? false
+        
+        isPeakEnergySavingsCreditEligible = map.optionalFrom("isPeakEnergySavingsCreditEligible") ?? false
+        isPeakEnergySavingsCreditEnrolled = map.optionalFrom("isPeakEnergySavingsCreditEnrolled") ?? false
 
 		isAutoPay = map.optionalFrom("isAutoPay") ?? false
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
@@ -222,6 +229,7 @@ struct AccountDetail: Mappable {
         
         peakRewards = map.optionalFrom("peakRewards")
         zipCode = map.optionalFrom("zipCode")
+        state = map.optionalFrom("state")
         
         prepaidStatus = map.optionalFrom("prepaid_status") ?? .inactive
         
@@ -286,6 +294,17 @@ struct AccountDetail: Mappable {
        return nil
     }
     
+    var subOpco: SubOpCo? {
+        if opcoType == .pepco && state == "MD" {
+            return .pepcoMaryland
+        } else if opcoType == .delmarva && state == "MD" {
+            return .delmarvaMaryland
+        } else if opcoType == .delmarva && state == "DE" {
+            return .delmarvaDelaware
+        } else {
+            return nil
+        }
+    }
 }
 
 struct SERInfo: Mappable {

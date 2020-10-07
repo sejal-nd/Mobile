@@ -74,6 +74,12 @@ enum OpCo: String {
     }
 }
 
+enum SubOpCo: String {
+    case pepcoMaryland
+    case delmarvaMaryland
+    case delmarvaDelaware
+}
+
 enum EnvironmentName: String {
     case aut = "AUT"
     case dev = "DEV"
@@ -114,15 +120,9 @@ struct MCSConfig {
         case .peco:
             opcoStr = "peco"
             opcoNum = "622"
-        case .pepco:
-            opcoStr = "todo"
-            opcoNum = "todo"
-        case .ace:
-            opcoStr = "todo"
-            opcoNum = "todo"
-        case .delmarva:
-            opcoStr = "todo"
-            opcoNum = "todo"
+        case .ace, .delmarva, .pepco:
+            opcoStr = "phi"
+            opcoNum = "621"
         }
         let paymentusUrlFormat = mobileBackend["paymentusUrl"] as! String
         paymentusUrl = paymentusUrlFormat.replacingOccurrences(of: "%@", with: opcoStr)
