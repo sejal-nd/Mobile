@@ -52,10 +52,7 @@ class LandingViewController: UIViewController {
             case .prod, .prodbeta:
                 versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
             default:
-//                versionLabel.text = String(format: NSLocalizedString("Version %@ - Tier %@", comment: ""), version, Environment.shared.environmentName.rawValue)
-                versionLabel.text = "Version \(version) - Tier \(Environment.shared.environmentName.rawValue)" + "\n" +
-                    "OAuth Url: \(Environment.shared.oAuthEndpoint)" + "\n" +
-                    "Base Url: \(Environment.shared.baseUrl)"
+                versionLabel.text = String(format: NSLocalizedString("Version %@ - Tier %@", comment: ""), version, Environment.shared.environmentName.rawValue)
             }
         } else {
             versionLabel.text = nil
