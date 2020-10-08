@@ -88,7 +88,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             accountInfoBar.configure(accountNumberText: accountNumberText, addressText: "\(addressText)...")
         }
         
-        if viewModel.shouldPingMeter && !unauthenticatedExperience {
+        if viewModel.shouldPingPHIMeter || (viewModel.shouldPingMeter && !unauthenticatedExperience) {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
@@ -219,7 +219,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             GoogleAnalytics.log(event: .reportOutageAuthOffer)
         }
         
-        if viewModel.shouldPingMeter && !unauthenticatedExperience {
+        if viewModel.shouldPingPHIMeter || (viewModel.shouldPingMeter && !unauthenticatedExperience) {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: ""))
             })

@@ -99,6 +99,10 @@ class ReportOutageViewModel {
             outageStatus.smartMeterStatus == true
     }()
     
+    lazy var shouldPingPHIMeter: Bool = {
+        return shouldPingMeter && (Environment.shared.opco == .pepco || Environment.shared.opco == .delmarva)
+    }()
+    
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var outageIssue = OutageIssue.allOut
         if selectedSegmentIndex.value == 1 {
