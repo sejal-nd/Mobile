@@ -145,6 +145,35 @@ elif [[ "$BUILD_BRANCH" == "refs/heads/master" ]]; then
   CONFIGURATION="Production"
 fi
 
+# Set project base URL prefix based on git path
+
+# Possible Project Specific Environments
+declare -a POSSIBLE_CONFIGURATIONS=("phi" "billing" "payments" "mma" "hotfix")
+
+# Entry in plist to be updated
+plistEntryName="Project\ Environment\ Prefix"
+
+# If git branch contains substring of possible project specific env's edit plist for PROJECT_PREFIX
+if [[ $BUILD_BRANCH == *"phi"* ]]; then
+  /usr/libexec/PlistBuddy -c "Set :$plistEntryName /phimobile" "App/Supporting Files/Info.plist"
+  echo "EUMobile Project Environment Prefix set: /phimobile"
+elif [[ $BUILD_BRANCH == *"billing"* ]]; then
+  /usr/libexec/PlistBuddy -c "Set :$plistEntryName /billing" "App/Supporting Files/Info.plist"
+  echo "EUMobile Project Environment Prefix set: /billing"
+elif [[ $BUILD_BRANCH == *"payments"* ]]; then
+  /usr/libexec/PlistBuddy -c "Set :$plistEntryName /paymentenhancements" "App/Supporting Files/Info.plist"
+  echo "EUMobile Project Environment Prefix set: /paymentenhancements"
+elif [[ $BUILD_BRANCH == *"mma"* ]]; then
+  /usr/libexec/PlistBuddy -c "Set :$plistEntryName /manage-my-account" "App/Supporting Files/Info.plist"
+  echo "EUMobile Project Environment Prefix set: /manage-my-account"
+elif [[ $BUILD_BRANCH == *"hotfix"* ]]; then
+  /usr/libexec/PlistBuddy -c "Set :$plistEntryName /hotfix" "App/Supporting Files/Info.plist"
+  echo "EUMobile Project Environment Prefix set: /hotfix"
+else
+  echo "No Project Environment Prefix set due to git path: $BUILD_BRANCH"
+fi
+
+
 if [ -z "$CONFIGURATION" ]; then
     echo "Missing argument: configuration"
     exit 1
