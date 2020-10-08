@@ -138,7 +138,7 @@ class OutageInterfaceController: WKInterfaceController {
                 
                 powerStatusLabel.setText("POWER IS OUT")
                 guard let etr = outageStatus?.etr else {
-                    etrDetailLabel.setText("Assessing Damage")
+                    etrDetailLabel.setText(Environment.shared.opco.isPHI ? "Pending Assessment" : "Assessing Damage")
                     return
                 }
                 etrDetailLabel.setText(DateFormatter.outageOpcoDateFormatter.string(from: etr))
