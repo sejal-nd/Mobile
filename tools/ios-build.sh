@@ -145,7 +145,7 @@ elif [[ "$BUILD_BRANCH" == "refs/heads/master" ]]; then
   CONFIGURATION="Production"
 fi
 
-# Set project base URL prefix based on git path
+# Set project base URL prefix based on git path (CI/CD version of Xcode project build phase: "Set Project Prefix")
 
 # Possible Project Specific Environments
 declare -a POSSIBLE_CONFIGURATIONS=("phi" "billing" "payments" "mma" "hotfix")
