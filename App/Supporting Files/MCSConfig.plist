@@ -207,6 +207,8 @@
 		</dict>
 		<key>Stage-pepcoMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-pepco-s-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
@@ -268,6 +270,8 @@
 		</dict>
 		<key>Stage-aceMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-ace-s-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
@@ -329,6 +333,8 @@
 		</dict>
 		<key>Stage-delmarvaMBE</key>
 		<dict>
+			<key>projectEnvironmentPath</key>
+			<string>/phimobile</string>
 			<key>baseURL</key>
 			<string>https://xze-e-n-eudapi-dpl-s-ams-01.azure-api.net</string>
 			<key>anonymousKey</key>
