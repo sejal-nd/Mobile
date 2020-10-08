@@ -24,6 +24,7 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var videoView: UIView!
     
+    @IBOutlet weak var tempTextField: UITextField!
     private var playerLayer: AVPlayerLayer!
     private var avPlayer: AVPlayer?
     private var avPlayerPlaybackTime = CMTime.zero
@@ -38,7 +39,7 @@ class LandingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tempTextField.text = "\(Environment.shared.projectPrefix)  -- \(Environment.shared.oAuthEndpoint)"
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
         continueAsGuestButon.setTitle(NSLocalizedString("Continue as Guest", comment: ""), for: .normal)
