@@ -39,7 +39,11 @@ struct MCSAccountService: AccountService {
     
     #if os(iOS)
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        return fetchAccountDetail(account: account, payments: false, programs: false, budgetBilling: false, alertPreferenceEligibilities: false)
+        return fetchAccountDetail(account: account,
+                                  payments: false,
+                                  programs: false,
+                                  budgetBilling: Environment.shared.opco.isPHI ? true : false,
+                                  alertPreferenceEligibilities: false)
     }
     
     #elseif os(watchOS)
