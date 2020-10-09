@@ -12,8 +12,8 @@ struct SSOData: Mappable {
     let utilityCustomerId: String
     let ssoPostURL: URL
     let relayState: URL
-    let nonResHost: URL
-    let nonResJSPath: URL
+    let nonResHost: URL?
+    let nonResJSPath: URL?
     let samlResponse: String
     let username: String?
     
@@ -21,8 +21,8 @@ struct SSOData: Mappable {
         try utilityCustomerId = map.from("utilityCustomerId")
         try ssoPostURL = map.from("ssoPostURL")
         try relayState = map.from("relayState")
-        try nonResHost = map.from("nonResHost")
-        try nonResJSPath = map.from("nonResJSPath")
+        nonResHost = map.optionalFrom("nonResHost")
+        nonResJSPath = map.optionalFrom("nonResJSPath")
         try samlResponse = map.from("samlResponse")
         username = map.optionalFrom("username")
     }
