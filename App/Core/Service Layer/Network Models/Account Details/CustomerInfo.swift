@@ -14,7 +14,7 @@ public struct CustomerInfo: Decodable {
     public var firstName: String
     public var lastName: String
     public var nameCompressed: String
-    public var emailAddress: String
+    public var emailAddress: String?
     
     public var cellPhoneNumber: String?
     public var primaryPhoneNumber: String?
@@ -46,7 +46,7 @@ public struct CustomerInfo: Decodable {
                                              forKey: .lastName)
         self.nameCompressed = try container.decode(String.self,
                                                    forKey: .nameCompressed)
-        self.emailAddress = try container.decode(String.self,
+        self.emailAddress = try container.decodeIfPresent(String.self,
                                                  forKey: .emailAddress)
         
         let phoneInfoContainer = try container.nestedContainer(keyedBy: CodingKeys.self,
