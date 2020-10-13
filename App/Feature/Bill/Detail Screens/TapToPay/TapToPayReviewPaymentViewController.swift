@@ -22,6 +22,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var paymentsAssociatedTextLabel: UILabel!
     @IBOutlet weak var submitDescriptionLabel: UILabel!
     @IBOutlet weak var termsNConditionsButton: UIButton!
+    @IBOutlet weak var paymentAmountContainerButton: ButtonControl!
     
     // -- Additional Recipients View -- //
     @IBOutlet weak var addAdditionalRecipients: UIView!
@@ -76,6 +77,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stickyPaymentFooterView: StickyFooterView!
+    @IBOutlet weak var dateWarningStackBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateWarningstackviewTopContraint: NSLayoutConstraint!
     
     var viewModel: TapToPayViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
@@ -216,17 +219,25 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.paymentDateString.asDriver().drive(paymentDateLabel.rx.text).disposed(by: bag)
         viewModel.shouldShowPastDueLabel.not().drive(paymentDatePastDueLabel.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowSameDayPaymentWarning.not().drive(sameDayPaymentWarningLabel.rx.isHidden).disposed(by: bag)
-       
-        viewModel.enablePaymentDate.drive(onNext: { [weak self] _ in
+        viewModel.shouldShowSameDayPaymentWarning.not().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
-            self.paymentDateEditIcon.image = #imageLiteral(resourceName: "ic_edit_disabled")
-            self.paymentDateButton.isUserInteractionEnabled = false
+            DispatchQueue.main.async {
+            self.dateWarningstackviewTopContraint.constant = -15
+            }
+            
         }).disposed(by: bag)
-        viewModel.enablePaymentDate.not().drive(onNext: { [weak self] _ in
+        viewModel.shouldShowSameDayPaymentWarning.drive(onNext: { [weak self] _ in
             guard let self = self else { return }
-            self.paymentDateButton.isUserInteractionEnabled = true
-            self.paymentDateEditIcon.image = #imageLiteral(resourceName: "ic_edit")
-            self.paymentDateButton.isEnabled = true
+             DispatchQueue.main.async {
+            self.dateWarningstackviewTopContraint.constant = 8
+             self.stackView.reloadInputViews()
+            }
+        }).disposed(by: bag)
+        
+        viewModel.enablePaymentDate.drive(onNext: { [weak self]  enableDate in
+            guard let self = self else { return }
+            self.paymentDateEditIcon.image = enableDate ? #imageLiteral(resourceName: "ic_edit") : #imageLiteral(resourceName: "ic_edit_disabled")
+            self.paymentDateButton.isUserInteractionEnabled = enableDate
         }).disposed(by: bag)
         
         // OverPaying
@@ -247,7 +258,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     
     func bindButtonTaps() {
         
-        Driver.merge(editPaymentAmountButton.rx.touchUpInside.asDriver(),
+        Driver.merge(paymentAmountContainerButton.rx.touchUpInside.asDriver(),
                            editPaymentAmountButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }

@@ -16,7 +16,6 @@ class PaymentAmountSheetViewController: UIViewController {
     @IBOutlet weak var gestureView: UIView!
     @IBOutlet weak var handleView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var tableHeaderLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var paymentAmountsStack: UIStackView!
     @IBOutlet weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
@@ -27,7 +26,7 @@ class PaymentAmountSheetViewController: UIViewController {
     private var selectedIndexPath: IndexPath?
     
     /// Recalculated on orientation change: `viewWillTransition`
-    var defaultHeight = UIScreen.main.bounds.height * 0.55
+    var defaultHeight = UIScreen.main.bounds.height * 0.40
     
     /// Determines when to "snap" to the top or middle state
     var threshHoldTop = UIScreen.main.bounds.height * 0.6
@@ -93,10 +92,9 @@ class PaymentAmountSheetViewController: UIViewController {
         
         configureCardView()
         
+        configureTableView()
         
         configureGestures()
-        
-        style()
         
         hideBottomSheet()
         
@@ -208,7 +206,7 @@ class PaymentAmountSheetViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         
         threshHoldTop = UIScreen.main.bounds.height * 0.6
-        defaultHeight = UIScreen.main.bounds.height * 0.55
+        defaultHeight = UIScreen.main.bounds.height * 0.40
         threshHoldClosed = UIScreen.main.bounds.height * 0.7
         
         if lastSheetLevel == .middle {
@@ -332,7 +330,18 @@ class PaymentAmountSheetViewController: UIViewController {
         titleLabel.textColor = .deepGray
         titleLabel.font = SystemFont.semibold.of(textStyle: .headline)
         titleLabel.text = titleText
-       // tableHeaderLabel.text = tableHeaderText
+    }
+    
+    private func configureTableView() {
+        let walletRow = UINib(nibName: MiniWalletItemRow.className, bundle: nil)
+        tableView.register(walletRow, forCellReuseIdentifier: MiniWalletItemRow.className)
+        
+        let buttonRow = UINib(nibName: ButtonRow.className, bundle: nil)
+        tableView.register(buttonRow, forCellReuseIdentifier: ButtonRow.className)
+        
+        tableView.tableFooterView = UIView()
+        
+        tableView.reloadData()
     }
     
     private func configureGestures() {
@@ -350,11 +359,6 @@ class PaymentAmountSheetViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognizer(_:)))
         tapGesture.delegate = self
         gestureView.addGestureRecognizer(tapGesture)
-    }
-    
-    private func style() {
-       // tableHeaderLabel.textColor = .deepGray
-       // tableHeaderLabel.font = SystemFont.regular.of(textStyle: .caption1)
     }
     
     private func presentBottomSheet() {
@@ -387,6 +391,7 @@ extension PaymentAmountSheetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
+    
 }
 
 

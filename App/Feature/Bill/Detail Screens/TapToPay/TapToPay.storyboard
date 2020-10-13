@@ -82,7 +82,7 @@
                                                             <constraint firstItem="GAL-DT-tkm" firstAttribute="leading" secondItem="H76-LE-mtk" secondAttribute="leading" constant="20" id="o2F-bU-mHX"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8K-aV-8e9">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8K-aV-8e9" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="229" width="414" height="184"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You’re Paying" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ7-qq-lsx">
@@ -432,9 +432,6 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="32" id="ud9-p9-8AJ"/>
-                                                                </constraints>
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -751,7 +748,8 @@
                         <outlet property="convenienceFeeLabel" destination="AIH-MB-BXc" id="CA4-h4-UdK"/>
                         <outlet property="creditCardTitleLabel" destination="O9B-Tp-KnM" id="Il6-sX-dCx"/>
                         <outlet property="creditDebitCard" destination="MeF-rm-r3H" id="nDs-jU-jy3"/>
-                        <outlet property="dateErrorHeightConstraint" destination="ud9-p9-8AJ" id="CMv-jQ-ve1"/>
+                        <outlet property="dateWarningStackBottomConstraint" destination="4np-jc-DJj" id="eeb-Cs-224"/>
+                        <outlet property="dateWarningstackviewTopContraint" destination="ZAq-vC-uPa" id="qbA-d7-KEr"/>
                         <outlet property="dueAmountDescriptionLabel" destination="1hk-Cp-RwY" id="y9H-OC-RE2"/>
                         <outlet property="editPaymentAmountButton" destination="kWd-lf-2FS" id="A5f-EZ-lUQ"/>
                         <outlet property="errorLabel" destination="kkg-xv-1bg" id="WJo-26-39G"/>
@@ -761,6 +759,7 @@
                         <outlet property="overPayingContainerView" destination="JGx-98-5Lz" id="Zbu-7d-ACq"/>
                         <outlet property="overPayingHeaderLabel" destination="4k7-nV-jrD" id="Bkq-4D-Q2G"/>
                         <outlet property="overPayingLabel" destination="vON-Bl-e2c" id="UIW-ao-WRB"/>
+                        <outlet property="paymentAmountContainerButton" destination="h8K-aV-8e9" id="g14-LX-PCx"/>
                         <outlet property="paymentDateButton" destination="pwX-Ix-gld" id="dVu-Gg-vm2"/>
                         <outlet property="paymentDateEditIcon" destination="Db2-gc-dZz" id="bas-FZ-QHB"/>
                         <outlet property="paymentDateLabel" destination="C9J-ty-g6d" id="uRA-aN-Xp7"/>
