@@ -9,7 +9,7 @@
 import Foundation
 
 enum AppointmentService {
-    static func fetchAppointments(accountNumber: String, premiseNumber: String, completion: @escaping (Result<AppointmentsContainer, NetworkingError>) -> ()) {
+    static func fetchAppointments(accountNumber: String, premiseNumber: String, completion: @escaping (Result<[Appointment], NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .appointments(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
 }
