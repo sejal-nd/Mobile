@@ -27,10 +27,14 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var meterPingCurrentStatusAnimationView: UIView!
     @IBOutlet weak var meterPingCurrentStatusLabel: UILabel!
     
+    @IBOutlet weak var meterPingStatusSeparatorView: UIView!
     @IBOutlet weak var meterPingStatusContainer: UIView!
     @IBOutlet weak var meterPingStatusBox: UIView!
     @IBOutlet weak var meterPingStatusTitleLabel: UILabel!
     @IBOutlet weak var meterPingStatusDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var meterPingStatusTitleLabelTopAnchor: NSLayoutConstraint!
+    @IBOutlet weak var meterPingStatusSeparatorTopAnchor: NSLayoutConstraint!
     
     @IBOutlet weak var meterPingFuseBoxView: UIView!
     @IBOutlet weak var meterPingFuseBoxCheckbox: Checkbox!
@@ -88,7 +92,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             accountInfoBar.configure(accountNumberText: accountNumberText, addressText: "\(addressText)...")
         }
         
-        if viewModel.shouldPingMeter && !unauthenticatedExperience {
+        if viewModel.shouldPingPHIMeter || (viewModel.shouldPingMeter && !unauthenticatedExperience) {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
@@ -241,6 +245,12 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     }
                 }
                 self.meterPingStatusTitleLabel.isHidden = Environment.shared.opco.isPHI
+                self.meterPingSeparatorView.isHidden = Environment.shared.opco.isPHI
+                if Environment.shared.opco.isPHI {
+                    self.meterPingStatusTitleLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
+                    self.meterPingStatusTitleLabelTopAnchor.constant = 0.0
+                    self.meterPingStatusSeparatorTopAnchor.constant = 0.0
+                }
                 
                 if problemsFound {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
@@ -258,21 +268,83 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
-            }, onError: { [weak self] in
+                }, onError: { [weak self] in
+                    guard let `self` = self else { return }
+                    
+                    self.setLottieAnimation(for: "checkmark_blue")
+                    
+                    self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
+                    
+                    self.meterPingStatusContainer.isHidden = true
+                    self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
+                    
+                    self.viewModel.reportFormHidden.accept(false)
+                    
+                    UIAccessibility.post(notification: .screenChanged, argument: self)
+                    UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
+            })
+        }
+        
+        if viewModel.shouldPingPHIMeter && unauthenticatedExperience {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: ""))
+            })
+            
+            viewModel.meterPingGetStatusAnon(onComplete: { [weak self] meterPingInfo in
                 guard let `self` = self else { return }
                 
                 self.setLottieAnimation(for: "checkmark_blue")
                 
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                 
-                self.meterPingStatusContainer.isHidden = true
-                self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
-                self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
-                
-                self.viewModel.reportFormHidden.accept(false)
+                var problemsFound = !meterPingInfo.pingResult
+                if meterPingInfo.voltageResult {
+                    if let voltageReads = meterPingInfo.voltageReads,
+                        !voltageReads.lowercased().contains("improper"),
+                        voltageReads.lowercased().contains("proper") {
+                    } else {
+                        problemsFound = true
+                    }
+                }
+                self.meterPingStatusTitleLabel.isHidden = Environment.shared.opco.isPHI
+                self.meterPingSeparatorView.isHidden = Environment.shared.opco.isPHI
+                if Environment.shared.opco.isPHI {
+                    self.meterPingStatusTitleLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
+                    self.meterPingStatusTitleLabelTopAnchor.constant = 0.0
+                    self.meterPingStatusSeparatorTopAnchor.constant = 0.0
+                }
+                if problemsFound {
+                    self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
+                    
+                    self.viewModel.reportFormHidden.accept(false)
+                    self.meterPingStatusContainer.isHidden = true
+                } else {
+                    self.meterPingStatusTitleLabel.text = NSLocalizedString("No Problems Found", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("Our status check has verified that electrical service is being delivered to your meter.", comment: "") : NSLocalizedString("Our status check verified your property's meter is operational and \(Environment.shared.opco.displayString) electrical service is being delivered to your home.", comment: "")
+                    
+                    self.meterPingFuseBoxView.isHidden = false
+                    self.meterPingStatusContainer.isHidden = false
+                }
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
+                }, onError: { [weak self] in
+                    guard let `self` = self else { return }
+                    
+                    self.setLottieAnimation(for: "checkmark_blue")
+                    
+                    self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
+                    
+                    self.meterPingStatusContainer.isHidden = true
+                    self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
+                    
+                    self.viewModel.reportFormHidden.accept(false)
+                    
+                    UIAccessibility.post(notification: .screenChanged, argument: self)
+                    UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
             })
         }
     }

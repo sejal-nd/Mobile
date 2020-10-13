@@ -99,6 +99,10 @@ class ReportOutageViewModel {
             outageStatus.smartMeterStatus == true
     }()
     
+    lazy var shouldPingPHIMeter: Bool = {
+        return shouldPingMeter && (Environment.shared.opco == .pepco || Environment.shared.opco == .delmarva)
+    }()
+    
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var outageIssue = OutageIssue.allOut
         if selectedSegmentIndex.value == 1 {
@@ -163,6 +167,19 @@ class ReportOutageViewModel {
                 onError()
             }).disposed(by: disposeBag)
     }
+    
+    func meterPingGetStatusAnon(onComplete: @escaping (MeterPingInfo) -> Void, onError: @escaping () -> Void) {
+        
+        self.outageService.pingMeterAnon(accountNumber: self.accountNumber!)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { meterPingInfo in
+               onComplete(meterPingInfo)
+            }, onError: { _ in
+                onError()
+            }).disposed(by: disposeBag)
+    }
+
     
     private lazy var currentPremiseNumber: Observable<String?> = Observable.just(AccountsStore.shared.currentAccount)
         .flatMap { account -> Observable<String?> in
