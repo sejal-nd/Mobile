@@ -286,7 +286,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             })
         }
         
-        if viewModel.shouldPingPHIMeter {
+        if viewModel.shouldPingPHIMeter && unauthenticatedExperience {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: ""))
             })
