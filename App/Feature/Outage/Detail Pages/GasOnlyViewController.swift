@@ -44,7 +44,7 @@ class GasOnlyViewController: UIViewController {
             localizedString = String.localizedStringWithFormat(
                 """
                 Natural gas emergencies cannot be reported online, but we want to hear from you right away.\n
-                If you smell natural gas, leave the area immediately and call %@.
+                If you smell natural gas, leave the area immediately and then call %@.
                 """
                 , phone1)
         default:
