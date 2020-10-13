@@ -26,6 +26,11 @@ protocol OutageService {
     ///   - premiseNumber: the premise number to ping meter for
     func pingMeter(account: Account, premiseNumber: String?) -> Observable<MeterPingInfo>
     
+    /// Fetch the meter data for an unauthenticated User
+    /// - Parameters:
+    ///   - accountNumber:  the accountnumber to fetch outage status for
+    func pingMeterAnon(accountNumber: String) -> Observable<MeterPingInfo>
+    
     #if os(iOS)
     /// Report an outage for the current customer.
     ///

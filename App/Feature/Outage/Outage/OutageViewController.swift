@@ -96,6 +96,7 @@ class OutageViewController: AccountPickerViewController {
             if let outageStatus = viewModel.outageStatus {
                 vc.viewModel.outageStatus = outageStatus
                 vc.viewModel.phoneNumber.accept(outageStatus.contactHomeNumber ?? "")
+                vc.viewModel.accountNumber = viewModel.accountNumber
                 vc.delegate = self
             }
             vc.unauthenticatedExperience = userState == .unauthenticated ? true : false

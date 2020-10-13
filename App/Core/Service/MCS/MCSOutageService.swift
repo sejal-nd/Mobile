@@ -17,10 +17,11 @@ private enum ReportOutageParams: String {
     case LocationId = "location_id"
     case Unusual = "unusual"
     case UnusualSpecify = "unusual_specify"
+    case AccountNumberAnon = "accountNumber"
 }
 
 class MCSOutageService: OutageService {
-    
+   
     private var outageMap = [String: ReportedOutageResult]()
     
     func pingMeter(account: Account, premiseNumber: String? = nil) -> Observable<MeterPingInfo> {
@@ -43,6 +44,22 @@ class MCSOutageService: OutageService {
             }
     }
     
+    func pingMeterAnon(accountNumber: String) -> Observable<MeterPingInfo> {
+        let path = "outage/ping"
+        let params = [ReportOutageParams.AccountNumberAnon.rawValue: accountNumber]
+        
+        return MCSApi.shared.post(pathPrefix: .anon, path: path, params: params)
+            .map { json in
+                guard let dict = json as? NSDictionary,
+                    let meterPingDict = dict["meterInfo"] as? NSDictionary,
+                    let meterPingInfo = MeterPingInfo.from(meterPingDict) else {
+                        throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                
+                return meterPingInfo
+        }
+    }
+       
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
         var path = "accounts/\(account.accountNumber)/outage?meterPing=false"
         if StormModeStatus.shared.isOn && (Environment.shared.opco != .bge && !Environment.shared.opco.isPHI) {

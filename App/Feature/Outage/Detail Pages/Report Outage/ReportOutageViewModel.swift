@@ -168,6 +168,19 @@ class ReportOutageViewModel {
             }).disposed(by: disposeBag)
     }
     
+    func meterPingGetStatusAnon(onComplete: @escaping (MeterPingInfo) -> Void, onError: @escaping () -> Void) {
+        
+        self.outageService.pingMeterAnon(accountNumber: self.accountNumber!)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { meterPingInfo in
+               onComplete(meterPingInfo)
+            }, onError: { _ in
+                onError()
+            }).disposed(by: disposeBag)
+    }
+
+    
     private lazy var currentPremiseNumber: Observable<String?> = Observable.just(AccountsStore.shared.currentAccount)
         .flatMap { account -> Observable<String?> in
             if let premiseNumber = account.currentPremise?.premiseNumber {
