@@ -44,14 +44,11 @@ class OutageStatusView: UIView {
     }
     
     private var estimatedRestorationDateString: String {
-        if let reportedOutage = reportedOutage {
-            if let reportedETR = reportedOutage.etr {
-                return DateFormatter.outageOpcoDateFormatter.string(from: reportedETR)
-            }
-        } else {
-            if let statusETR = outageStatus?.etr {
-                return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
-            }
+        if let statusETR = outageStatus?.etr {
+            return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
+        } else if let reportedOutage = reportedOutage,
+           let reportedETR = reportedOutage.etr {
+            return DateFormatter.outageOpcoDateFormatter.string(from: reportedETR)
         }
         return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
     }
