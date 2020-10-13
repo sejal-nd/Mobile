@@ -36,6 +36,8 @@ class TapToPayViewModel {
     let paymentId = BehaviorRelay<String?>(value: nil)
     let wouldBeSelectedWalletItemIsExpired = BehaviorRelay(value: false)
     
+    let overpayingSwitchValue = BehaviorRelay(value: false)
+    
     let emailAddress = BehaviorRelay(value: "")
     let phoneNumber = BehaviorRelay(value: "")
     
@@ -209,32 +211,46 @@ class TapToPayViewModel {
     private lazy var walletItemDriver: Driver<WalletItem?> = walletItem.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var reviewPaymentShouldShowConvenienceFee: Driver<Bool> =
-        self.walletItemDriver.map { $0?.bankOrCard == .card }
+        self.selectedWalletItem.asDriver().map { $0?.bankOrCard == .card }
     
     private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetailDriver.map { $0.isActiveSeverance }
     
-    private(set) lazy var totalPaymentDisplayString: Driver<String?> =
-        Driver.combineLatest(accountDetailDriver, reviewPaymentShouldShowConvenienceFee)
-            .map { [weak self] accountDetail, showConvenienceFee in
-                guard let self = self,
-                    let dueAmount = accountDetail.billingInfo.netDueAmount else { return nil }
-                if showConvenienceFee {
-                    return (dueAmount + accountDetail.billingInfo.convenienceFee).currencyString
-                } else {
-                    return dueAmount.currencyString
-                }
+    //    private(set) lazy var totalPaymentDisplayString: Driver<String?> =
+    //        Driver.combineLatest(accountDetailDriver, reviewPaymentShouldShowConvenienceFee)
+    //            .map { [weak self] accountDetail, showConvenienceFee in
+    //                guard let self = self,
+    //                    let dueAmount = accountDetail.billingInfo.netDueAmount else { return nil }
+    //                if showConvenienceFee {
+    //                    return (dueAmount + accountDetail.billingInfo.convenienceFee).currencyString
+    //                } else {
+    //                    return dueAmount.currencyString
+    //                }
+    //    }
+    private(set) lazy var totalPaymentDisplayString: Driver<String?> = Driver
+        .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFee)
+        .map { [weak self] paymentAmount, showConvenienceFeeBox in
+            guard let self = self else { return nil }
+            if showConvenienceFeeBox {
+                return (paymentAmount + self.convenienceFee).currencyString
+            } else {
+                return paymentAmount.currencyString
+            }
+    }
+    
+    var convenienceFee: Double {
+        return accountDetail.value.billingInfo.convenienceFee
     }
     
     private(set) lazy var convenienceDisplayString: Driver<String?> =
-        Driver.combineLatest(accountDetailDriver, walletItemDriver) { accountDetail, walletItem in
+        Driver.combineLatest(self.selectedWalletItem.asDriver(), walletItemDriver) { selectedWalletItem, walletItem in
             guard let walletItem = walletItem else {
                 return NSLocalizedString("with no convenience fee", comment: "")
                 
             }
-            if walletItem.bankOrCard == .bank {
+            if selectedWalletItem?.bankOrCard == .bank {
                 return NSLocalizedString("with no convenience fee", comment: "")
             } else {
-                return String.localizedStringWithFormat("with a %@ convenience fee included, applied by Paymentus, our payment partner.", accountDetail.billingInfo.convenienceFee.currencyString)
+                return String.localizedStringWithFormat("with a %@ convenience fee included, applied by Paymentus, our payment partner.", self.convenienceFee.currencyString)
             }
     }
     
@@ -388,11 +404,17 @@ class TapToPayViewModel {
             self.emailIsValidBool.asDriver(),
             self.phoneNumberHasTenDigits.asDriver(),
             self.hasWalletItems.asDriver(),
-            self.shouldShowPaymentMethodExpiredButton.asDriver())
+            self.shouldShowPaymentMethodExpiredButton.asDriver(),
+            isOverpaying,
+            overpayingSwitchValue.asDriver())
         {
             if !$0 || !$1 || !$2 || $3{
                 return false
             }
+            if $4 && !$5 {
+                return false
+            }
+            
             return true
     }
     
@@ -441,5 +463,177 @@ class TapToPayViewModel {
     }
     
     private(set) lazy var shouldShowPaymentMethodExpiredButton: Driver<Bool> =
-         self.wouldBeSelectedWalletItemIsExpired.asDriver()
+        self.wouldBeSelectedWalletItemIsExpired.asDriver()
+    
+    /**
+     Some funky logic going on here. Basically, there are 4 cases in which we just return []
+     
+     1. No pastDueAmount
+     2. netDueAmount == pastDueAmount, no other precarious amounts exist
+     3. netDueAmount == pastDueAmount == other precarious amount (restorationAmount, amtDpaReinst, disconnectNoticeArrears)
+     4. We're editing a payment
+     
+     In these cases we don't give the user multiple payment amount options, just the text field.
+     */
+    lazy var paymentAmounts: [(Double?, String)] = {
+        let billingInfo = accountDetail.value.billingInfo
+        
+        guard let netDueAmount = billingInfo.netDueAmount,
+            let pastDueAmount = billingInfo.pastDueAmount,
+            pastDueAmount > 0,
+            paymentId.value == nil else {
+                return []
+        }
+        
+        let totalAmount: (Double?, String)
+        if pastDueAmount == netDueAmount {
+            totalAmount = (netDueAmount, NSLocalizedString("Total Past Due Amount", comment: ""))
+        } else {
+            totalAmount = (netDueAmount, NSLocalizedString("Total Amount Due", comment: ""))
+        }
+        
+        let pastDue: (Double?, String) = (pastDueAmount, NSLocalizedString("Past Due Amount", comment: ""))
+        let other: (Double?, String) = (nil, NSLocalizedString("Enter Custom Amount", comment: ""))
+        
+        var amounts: [(Double?, String)] = [totalAmount, other]
+        var precariousAmounts = [(Double?, String)]()
+        if let restorationAmount = billingInfo.restorationAmount, restorationAmount > 0 &&
+            Environment.shared.opco != .bge && accountDetail.value.isCutOutNonPay {
+            guard pastDueAmount != netDueAmount || restorationAmount != netDueAmount else {
+                return []
+            }
+            
+            if pastDueAmount != netDueAmount && pastDueAmount != restorationAmount {
+                precariousAmounts.append(pastDue)
+            }
+            
+            precariousAmounts.append((restorationAmount, NSLocalizedString("Restoration Amount", comment: "")))
+        } else if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 {
+            guard pastDueAmount != netDueAmount || arrears != netDueAmount else {
+                return []
+            }
+            
+            if pastDueAmount != netDueAmount && pastDueAmount != arrears {
+                precariousAmounts.append(pastDue)
+            }
+            
+            precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount", comment: "")))
+        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && Environment.shared.opco != .bge {
+            guard pastDueAmount != netDueAmount || amtDpaReinst != netDueAmount else {
+                return []
+            }
+            
+            if pastDueAmount != netDueAmount && pastDueAmount != amtDpaReinst {
+                precariousAmounts.append(pastDue)
+            }
+            
+            precariousAmounts.append((amtDpaReinst, NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")))
+        } else {
+            guard pastDueAmount != netDueAmount else {
+                return []
+            }
+            
+            precariousAmounts.append(pastDue)
+        }
+        
+        amounts.insert(contentsOf: precariousAmounts, at: 1)
+        return amounts
+    }()
+    
+    private(set) lazy var shouldShowSelectPaymentAmount: Driver<Bool> = self.selectedWalletItem.asDriver().map { [weak self] in
+        guard let self = self else { return false }
+        guard let bankOrCard = $0?.bankOrCard else { return false }
+        
+        if self.paymentAmounts.isEmpty {
+            return false
+        }
+        
+        let min = self.accountDetail.value.billingInfo.minPaymentAmount
+        let max = self.accountDetail.value.billingInfo.maxPaymentAmount(bankOrCard: bankOrCard)
+        for paymentAmount in self.paymentAmounts {
+            guard let amount = paymentAmount.0 else { continue }
+            if amount < min || amount > max {
+                return false
+            }
+        }
+        return true
+    }
+    
+    private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
+        return Driver.combineLatest(selectedWalletItem.asDriver(),
+                                    accountDetail.asDriver(),
+                                    paymentAmount.asDriver(),
+                                    amountDue.asDriver())
+        { (walletItem, accountDetail, paymentAmount, amountDue) -> String? in
+            guard let walletItem = walletItem else { return nil }
+            if walletItem.bankOrCard == .bank {
+                let minPayment = accountDetail.billingInfo.minPaymentAmount
+                let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
+                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
+                    }
+                } else {
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                    } else if paymentAmount > amountDue {
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
+                    }
+                }
+            } else {
+                let minPayment = accountDetail.billingInfo.minPaymentAmount
+                let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
+                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
+                    }
+                } else {
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                    } else if paymentAmount > amountDue {
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
+                    }
+                }
+            }
+            return nil
+        }
+    }()
+    
+    private(set) lazy var paymentFieldsValid: Driver<Bool> = Driver
+        .combineLatest(shouldShowContent, paymentAmountErrorMessage, isPaymentDateValid) {
+            return $0 && $1 == nil && $2
+    }
+    
+    private(set) lazy var isOverpaying: Driver<Bool> = {
+        switch Environment.shared.opco {
+        case .ace, .bge, .delmarva, .pepco:
+            return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver(), resultSelector: <)
+        case .comEd, .peco:
+            return Driver.just(false)
+        }
+    }()
+    
+    private(set) lazy var isOverpayingCard: Driver<Bool> =
+        Driver.combineLatest(isOverpaying, self.selectedWalletItem.asDriver()) {
+            $0 && $1?.bankOrCard == .card
+    }
+    
+    private(set) lazy var isOverpayingBank: Driver<Bool> =
+        Driver.combineLatest(isOverpaying, self.selectedWalletItem.asDriver()) {
+            $0 && $1?.bankOrCard == .bank
+    }
+    
+    private(set) lazy var overpayingValueDisplayString: Driver<String?> = Driver
+        .combineLatest(amountDue.asDriver(), paymentAmount.asDriver())
+        { "Overpaying: "+($1 - $0).currencyString }
+    
+    private(set) lazy var shouldShowOverpaymentSwitchView: Driver<Bool> = isOverpaying
 }
