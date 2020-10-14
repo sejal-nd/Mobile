@@ -225,7 +225,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.shouldShowSameDayPaymentWarning.drive(onNext: { [weak self] showSameDayWarning in
             guard let self = self else { return }
             self.sameDayPaymentWarningLabel.isHidden = !showSameDayWarning
-            self.paymentDateBottomConstraint.constant = showSameDayWarning ? 56 : 25
+            self.paymentDateBottomConstraint.constant = showSameDayWarning ? 70 : 25
         }).disposed(by: bag)
         
         viewModel.enablePaymentDate.drive(onNext: { [weak self]  enableDate in
