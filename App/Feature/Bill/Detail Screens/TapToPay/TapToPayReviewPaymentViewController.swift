@@ -22,6 +22,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var paymentsAssociatedTextLabel: UILabel!
     @IBOutlet weak var submitDescriptionLabel: UILabel!
     @IBOutlet weak var termsNConditionsButton: UIButton!
+    @IBOutlet weak var paymentAmountContainerButton: ButtonControl!
     
     // -- Additional Recipients View -- //
     @IBOutlet weak var addAdditionalRecipients: UIView!
@@ -60,6 +61,15 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateEditIcon: UIImageView!
     @IBOutlet weak var paymentDatePastDueLabel: UILabel!
     @IBOutlet weak var sameDayPaymentWarningLabel: UILabel!
+    @IBOutlet weak var editPaymentAmountButton: UIButton!
+    @IBOutlet weak var dateErrorHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var overPayingAmountLabel: UILabel!
+    @IBOutlet weak var overPayingContainerView: UIView!
+    @IBOutlet weak var overPayingHeaderLabel: UILabel!
+    @IBOutlet weak var overPayingCheckbox: Checkbox!
+    @IBOutlet weak var overPayingLabel: UILabel!
+    
     
     // -- Review Payment View -- //
     @IBOutlet weak var submitButton: PrimaryButton!
@@ -67,6 +77,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stickyPaymentFooterView: StickyFooterView!
+    @IBOutlet weak var dateWarningStackBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateWarningstackviewTopContraint: NSLayoutConstraint!
+    @IBOutlet weak var paymentAmountContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var convienceFeeBottomLabel: NSLayoutConstraint!
+    @IBOutlet weak var paymentDateBottomConstraint: NSLayoutConstraint!
     
     var viewModel: TapToPayViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
@@ -145,6 +160,19 @@ class TapToPayReviewPaymentViewController: UIViewController {
         sameDayPaymentWarningLabel.font = SystemFont.regular.of(size: 12)
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same-day payments cannot be edited or canceled after submission.", comment: "")
         
+        // Overpaying
+        overPayingAmountLabel.textColor = .errorRed
+        overPayingAmountLabel.font = SystemFont.semibold.of(size: 12)
+        overPayingAmountLabel.text = NSLocalizedString("Overpaying: $0.00", comment: "")
+        
+        overPayingHeaderLabel.textColor = .deepGray
+           overPayingHeaderLabel.font = SystemFont.regular.of(size: 15)
+           overPayingHeaderLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your total amount due.", comment: "")
+        
+        overPayingLabel.textColor = .deepGray
+        overPayingLabel.font = SystemFont.regular.of(size: 15)
+        overPayingLabel.text = NSLocalizedString("Yes, I achnowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
+        
         viewModel.fetchData(initialFetch: true, onSuccess: { [weak self] in
             guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
@@ -159,6 +187,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
     }
     
     func bindViewContent() {
+        
+        // Payment Amount Text Field
+        viewModel.convenienceDisplayString.asDriver()
+            .drive(convenienceFeeLabel.rx.text)
+            .disposed(by: bag)
+        
         // Selected Wallet Item
         viewModel.selectedWalletItemImage.drive(paymentMethodImageView.rx.image).disposed(by: bag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentMethodAccountNumberLabel.rx.text).disposed(by: bag)
@@ -187,11 +221,29 @@ class TapToPayReviewPaymentViewController: UIViewController {
         // Payment Date
         viewModel.paymentDateString.asDriver().drive(paymentDateLabel.rx.text).disposed(by: bag)
         viewModel.shouldShowPastDueLabel.not().drive(paymentDatePastDueLabel.rx.isHidden).disposed(by: bag)
-        viewModel.enablePaymentDate.not().drive(onNext: { [weak self] _ in
+       
+        viewModel.shouldShowSameDayPaymentWarning.drive(onNext: { [weak self] showSameDayWarning in
             guard let self = self else { return }
-            self.paymentDateEditIcon.image = #imageLiteral(resourceName: "ic_edit_disabled")
-            self.paymentDateButton.isUserInteractionEnabled = false
+            self.sameDayPaymentWarningLabel.isHidden = !showSameDayWarning
+            self.paymentDateBottomConstraint.constant = showSameDayWarning ? 70 : 25
         }).disposed(by: bag)
+        
+        viewModel.enablePaymentDate.drive(onNext: { [weak self]  enableDate in
+            guard let self = self else { return }
+            self.paymentDateEditIcon.image = enableDate ? #imageLiteral(resourceName: "ic_edit") : #imageLiteral(resourceName: "ic_edit_disabled")
+            self.paymentDateButton.isUserInteractionEnabled = enableDate
+        }).disposed(by: bag)
+        
+        // OverPaying
+        viewModel.isOverpaying.map(!).drive( onNext: { [weak self] isNotOverPaying in
+            guard let self = self else { return }
+            self.overPayingAmountLabel.isHidden = isNotOverPaying
+            self.convienceFeeBottomLabel.constant = isNotOverPaying ? 30 : 50
+        }).disposed(by: bag)
+        
+        viewModel.isOverpaying.map(!).drive(overPayingContainerView.rx.isHidden).disposed(by: bag)
+        viewModel.overpayingValueDisplayString.asDriver().drive(overPayingAmountLabel.rx.text).disposed(by: bag)
+        self.overPayingCheckbox.rx.isChecked.bind(to: viewModel.overpayingSwitchValue).disposed(by: bag)
         
         // Submit button enable/disable
         viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: bag)
@@ -204,6 +256,19 @@ class TapToPayReviewPaymentViewController: UIViewController {
     }
     
     func bindButtonTaps() {
+        
+        Driver.merge(paymentAmountContainerButton.rx.touchUpInside.asDriver(),
+                           editPaymentAmountButton.rx.touchUpInside.asDriver())
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.view.endEditing(true)
+                
+                guard let paymentAmountSheet = UIStoryboard(name: "PaymentAmount", bundle: .main).instantiateInitialViewController() as? PaymentAmountSheetViewController else { return }
+                paymentAmountSheet.modalPresentationStyle = .overCurrentContext
+                paymentAmountSheet.viewModel = self.viewModel
+                self.present(paymentAmountSheet, animated: false, completion: nil)
+            }).disposed(by: bag)
+        
         Driver.merge(paymentMethodButton.rx.touchUpInside.asDriver(),
                      selectPaymentButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in

@@ -467,6 +467,18 @@
 		358DE0A521021471002C544E /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		358DE0A821021B64002C544E /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
 		358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
+		3595B25225328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
+		3595B25325328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
+		3595B25425328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
+		3595B25525328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
+		3595B25625328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
+		3595B25725328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
+		3595B25825328E70006F7EBC /* PaymentAmount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */; };
+		3595B25925328E70006F7EBC /* PaymentAmount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */; };
+		3595B25A25328E70006F7EBC /* PaymentAmount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */; };
+		3595B25B25328E70006F7EBC /* PaymentAmount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */; };
+		3595B25C25328E70006F7EBC /* PaymentAmount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */; };
+		3595B25D25328E70006F7EBC /* PaymentAmount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */; };
 		359BB2672146F05400FBAD83 /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage.json */; };
 		359BB2692146F06D00FBAD83 /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2682146F06D00FBAD83 /* sm_outage.json */; };
 		359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB26A2146F08200FBAD83 /* sm_outage.json */; };
@@ -6095,6 +6107,8 @@
 		358DE0A421021471002C544E /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		358DE0A721021B64002C544E /* UnavailableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnavailableView.xib; sourceTree = "<group>"; };
 		358DE0A921021B7A002C544E /* UnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableView.swift; sourceTree = "<group>"; };
+		3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentAmountSheetViewController.swift; sourceTree = "<group>"; };
+		3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PaymentAmount.storyboard; sourceTree = "<group>"; };
 		359BB2662146F05400FBAD83 /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
 		359BB2682146F06D00FBAD83 /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
 		359BB26A2146F08200FBAD83 /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
@@ -8273,6 +8287,8 @@
 		356AC12325064B4E000CF867 /* TapToPay */ = {
 			isa = PBXGroup;
 			children = (
+				3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */,
+				3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */,
 				356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */,
 				35052B0E251D09D600095499 /* TapToPayViewModel.swift */,
 				356AC13225064E5F000CF867 /* TapToPay.storyboard */,
@@ -11244,6 +11260,7 @@
 				67DDB4C224535D2E006CD6EB /* opco_updates.json in Resources */,
 				67DDB4C324535D2E006CD6EB /* peak_rewards_summary.json in Resources */,
 				67DDB4C424535D2E006CD6EB /* HomeGameOnboardingCardView.xib in Resources */,
+				3595B25B25328E70006F7EBC /* PaymentAmount.storyboard in Resources */,
 				67DDB4C524535D2E006CD6EB /* TemplateCardView.xib in Resources */,
 				67DDB4C624535D2E006CD6EB /* AutoPay.storyboard in Resources */,
 				67DDB4C724535D2E006CD6EB /* BillBreakdownViewController.xib in Resources */,
@@ -11415,6 +11432,7 @@
 				67DDB71A24535D32006CD6EB /* HomeGameOnboardingCardView.xib in Resources */,
 				67DDB71B24535D32006CD6EB /* TemplateCardView.xib in Resources */,
 				67DDB71C24535D32006CD6EB /* AutoPay.storyboard in Resources */,
+				3595B25D25328E70006F7EBC /* PaymentAmount.storyboard in Resources */,
 				67DDB71D24535D32006CD6EB /* BillBreakdownViewController.xib in Resources */,
 				67DDB71E24535D32006CD6EB /* EnergyTipTableViewCell.xib in Resources */,
 				67DDB71F24535D32006CD6EB /* AccountInfoBar.xib in Resources */,
@@ -11586,6 +11604,7 @@
 				67DDB97024535D35006CD6EB /* HomeGameOnboardingCardView.xib in Resources */,
 				67DDB97124535D35006CD6EB /* TemplateCardView.xib in Resources */,
 				67DDB97224535D35006CD6EB /* AutoPay.storyboard in Resources */,
+				3595B25C25328E70006F7EBC /* PaymentAmount.storyboard in Resources */,
 				67DDB97324535D35006CD6EB /* BillBreakdownViewController.xib in Resources */,
 				67DDB97424535D35006CD6EB /* EnergyTipTableViewCell.xib in Resources */,
 				67DDB97524535D35006CD6EB /* AccountInfoBar.xib in Resources */,
@@ -11991,6 +12010,7 @@
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
 				C3381A062424064100EA7062 /* PTRWidget.html in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
+				3595B25825328E70006F7EBC /* PaymentAmount.storyboard in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
@@ -12135,6 +12155,7 @@
 				359BDB6D22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				B0B0840421710D1500B1C632 /* Appt_otw.json in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
+				3595B25A25328E70006F7EBC /* PaymentAmount.storyboard in Resources */,
 				B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */,
 				9C0EA5A6237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				67D73AF3246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */,
@@ -12305,6 +12326,7 @@
 				B0B083F021710C8900B1C632 /* Appt_otw.json in Resources */,
 				9CD3533722CABDB900165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6C22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
+				3595B25925328E70006F7EBC /* PaymentAmount.storyboard in Resources */,
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				B07E17E52209F0CA00B6E3C7 /* payments.json in Resources */,
@@ -14522,6 +14544,7 @@
 				67DDB2F724535D2E006CD6EB /* EmptyChildViewController.swift in Sources */,
 				67DDB2F824535D2E006CD6EB /* KeychainManager.swift in Sources */,
 				67DDBD3A24571C0B006CD6EB /* BGEAutoPayViewController.swift in Sources */,
+				3595B25525328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */,
 				67DDB2F924535D2E006CD6EB /* GSTouchesShowingWindow.swift in Sources */,
 				67DDB2FA24535D2E006CD6EB /* ActivityTracker.swift in Sources */,
 				67DDB2FB24535D2E006CD6EB /* ViewBillViewController.swift in Sources */,
@@ -15130,6 +15153,7 @@
 				67DDB5FF24535D32006CD6EB /* OutageStatusButton.swift in Sources */,
 				67DDB60024535D32006CD6EB /* GoogleAnalytics.swift in Sources */,
 				67DDB60124535D32006CD6EB /* StormModeStatus.swift in Sources */,
+				3595B25725328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */,
 				67DDB60224535D32006CD6EB /* PeakRewardsProgramCard.swift in Sources */,
 				67DDB60324535D32006CD6EB /* GameOnboardingStep1ViewController.swift in Sources */,
 				67DDB60424535D32006CD6EB /* SplashViewModel.swift in Sources */,
@@ -15559,6 +15583,7 @@
 				67DDB85524535D35006CD6EB /* OutageStatusButton.swift in Sources */,
 				67DDB85624535D35006CD6EB /* GoogleAnalytics.swift in Sources */,
 				67DDB85724535D35006CD6EB /* StormModeStatus.swift in Sources */,
+				3595B25625328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */,
 				67DDB85824535D35006CD6EB /* PeakRewardsProgramCard.swift in Sources */,
 				67DDB85924535D35006CD6EB /* GameOnboardingStep1ViewController.swift in Sources */,
 				67DDB85A24535D35006CD6EB /* SplashViewModel.swift in Sources */,
@@ -16862,6 +16887,7 @@
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				9CA4FA602385A2B900E33E7C /* GameProgressBar.swift in Sources */,
+				3595B25225328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */,
 				E8127B261EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */,
@@ -17291,6 +17317,7 @@
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
+				3595B25425328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				9CD742BD237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				82EAB3361F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
@@ -17720,6 +17747,7 @@
 				B0649A60214834380041B299 /* StormModeStatus.swift in Sources */,
 				9CA4FA612385A2B900E33E7C /* GameProgressBar.swift in Sources */,
 				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
+				3595B25325328E70006F7EBC /* PaymentAmountSheetViewController.swift in Sources */,
 				8206D0141FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				82AC2A2B1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1901F8E9D620090C5A5 /* BillForecast.swift in Sources */,
