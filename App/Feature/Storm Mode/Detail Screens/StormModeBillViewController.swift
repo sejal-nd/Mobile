@@ -173,6 +173,12 @@ class StormModeBillViewController: AccountPickerViewController {
         
         billCardView.modalViewControllers
             .drive(onNext: { [weak self] viewController in
+                if viewController is MakePaymentViewController {
+                    // TODO: Remove this if block once the new payment flow is in for PHI as well
+                    viewController.hidesBottomBarWhenPushed = true
+                    self?.navigationController?.pushViewController(viewController, animated: true)
+                    return
+                }
                 self?.present(viewController, animated: true, completion: nil)
             })
             .disposed(by: billCardView.bag)
