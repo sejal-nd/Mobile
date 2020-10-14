@@ -217,17 +217,6 @@ class TapToPayViewModel {
     
     private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetailDriver.map { $0.isActiveSeverance }
     
-    //    private(set) lazy var totalPaymentDisplayString: Driver<String?> =
-    //        Driver.combineLatest(accountDetailDriver, reviewPaymentShouldShowConvenienceFee)
-    //            .map { [weak self] accountDetail, showConvenienceFee in
-    //                guard let self = self,
-    //                    let dueAmount = accountDetail.billingInfo.netDueAmount else { return nil }
-    //                if showConvenienceFee {
-    //                    return (dueAmount + accountDetail.billingInfo.convenienceFee).currencyString
-    //                } else {
-    //                    return dueAmount.currencyString
-    //                }
-    //    }
     private(set) lazy var totalPaymentDisplayString: Driver<String?> = Driver
         .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFee)
         .map { [weak self] paymentAmount, showConvenienceFeeBox in
