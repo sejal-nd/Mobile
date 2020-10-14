@@ -111,7 +111,9 @@ extension AuthenticationService {
                         }
                         AccountService.fetchAccountDetails(accountNumber: accNumber) { (result: Result<AccountDetail, NetworkingError>) in
                             switch result {
-                            case .success:
+                            case .success(let accountDetail):
+                                UserDefaults.standard.set(accountDetail.customerNumber, forKey: UserDefaultKeys.customerIdentifier)
+                                AccountsStore.shared.customerIdentifier = accountDetail.customerNumber
                                 completion(.success((false)))
                             case .failure(let error):
                                 completion(.failure(error))
