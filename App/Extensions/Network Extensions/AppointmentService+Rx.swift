@@ -15,8 +15,7 @@ extension Reactive where Base == AppointmentService {
         return Observable.create { observer -> Disposable in
             AppointmentService.fetchAppointments(accountNumber: accountNumber, premiseNumber: premiseNumber) { result in
                 switch result {
-                case .success(let appointmentsContainer):
-                    let appointments = appointmentsContainer.appointments
+                case .success(let appointments):
                     observer.onNext(appointments)
                     observer.onCompleted()
                 case .failure(let error):

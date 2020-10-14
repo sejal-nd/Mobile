@@ -214,38 +214,42 @@ public enum NetworkingLayer {
             let dateString = try container.decode(String.self)
             return dateString.extractDate() ?? Date()
         }
-
-         if let responseWrapper = try? jsonDecoder.decode(AzureResponseContainer<T>.self, from: data) {
-            // Azure decode
+        
+        let responseWrapper: AzureResponseContainer<T>
+        do {
+            responseWrapper = try jsonDecoder.decode(AzureResponseContainer<T>.self, from: data)
+        } catch {
+            if let error = try? jsonDecoder.decode(ApigeeError.self, from: data) {
+                // Apigee decode
+                dLog("❌ Invalid Token: \(error) \n\n\(error.errorDescription)")
+                throw NetworkingError.invalidToken
+            } else if let response = try? jsonDecoder.decode(T.self, from: data) {
+                // Default decode
+                return response
+            } else {
+                dLog("❌ Failed to decode network response")
+                dLog(error.localizedDescription)
+                throw error
+            }
+        }
+        
+        if let endpointError = responseWrapper.error {
+            dLog("❌ Endpoint Error:\n\nError Code: \(endpointError.code)\nAzure Context: \(endpointError.context ?? "")\nError Description: \(endpointError.description ?? "")")
             
-            if let endpointError = responseWrapper.error {
-                dLog("❌ Endpoint Error:\n\nError Code: \(endpointError.code)\nAzure Context: \(endpointError.context ?? "")\nError Description: \(endpointError.description ?? "")")
-                
-                // Log user out
-                if endpointError.code == "401" {
-                    AuthenticationService.logout()
-                }
-                
-                throw NetworkingError(errorCode: endpointError.code)
+            // Log user out
+            if endpointError.code == "401" {
+                AuthenticationService.logout()
             }
             
-            guard let responseData = responseWrapper.data else {
-                dLog("❌ Failed to decode network response data")
-                throw NetworkingError.decoding
-            }
-            
-            return responseData
-        } else if let error = try? jsonDecoder.decode(ApigeeError.self, from: data) {
-            // Apigee decode
-            dLog("❌ Invalid Token: \(error) \n\n\(error.errorDescription)")
-            throw NetworkingError.invalidToken
-        } else if let response = try? jsonDecoder.decode(T.self, from: data) {
-            // Default decode
-            return response
-        } else {
-            dLog("❌ Failed to decode network response")
+            throw NetworkingError(errorCode: endpointError.code)
+        }
+        
+        guard let responseData = responseWrapper.data else {
+            dLog("❌ Failed to decode network response data")
             throw NetworkingError.decoding
         }
+        
+        return responseData
     }
     
     public static func cancelAllTasks() {
