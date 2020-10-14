@@ -33,6 +33,8 @@ class TapToPayViewModel {
     let paymentDate: BehaviorRelay<Date>
     let selectedDate: BehaviorRelay<Date>
     
+    let editpaymentAmountValue = BehaviorRelay<Double>(value: 0)
+    
     let paymentId = BehaviorRelay<String?>(value: nil)
     let wouldBeSelectedWalletItemIsExpired = BehaviorRelay(value: false)
     
@@ -562,7 +564,7 @@ class TapToPayViewModel {
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
         return Driver.combineLatest(selectedWalletItem.asDriver(),
                                     accountDetail.asDriver(),
-                                    paymentAmount.asDriver(),
+                                    editpaymentAmountValue.asDriver(),
                                     amountDue.asDriver())
         { (walletItem, accountDetail, paymentAmount, amountDue) -> String? in
             guard let walletItem = walletItem else { return nil }

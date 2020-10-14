@@ -79,6 +79,9 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var stickyPaymentFooterView: StickyFooterView!
     @IBOutlet weak var dateWarningStackBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var dateWarningstackviewTopContraint: NSLayoutConstraint!
+    @IBOutlet weak var paymentAmountContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var convienceFeeBottomLabel: NSLayoutConstraint!
+    @IBOutlet weak var paymentDateBottomConstraint: NSLayoutConstraint!
     
     var viewModel: TapToPayViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
@@ -218,20 +221,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
         // Payment Date
         viewModel.paymentDateString.asDriver().drive(paymentDateLabel.rx.text).disposed(by: bag)
         viewModel.shouldShowPastDueLabel.not().drive(paymentDatePastDueLabel.rx.isHidden).disposed(by: bag)
-        viewModel.shouldShowSameDayPaymentWarning.not().drive(sameDayPaymentWarningLabel.rx.isHidden).disposed(by: bag)
-        viewModel.shouldShowSameDayPaymentWarning.not().drive(onNext: { [weak self] _ in
+       
+        viewModel.shouldShowSameDayPaymentWarning.drive(onNext: { [weak self] showSameDayWarning in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-            self.dateWarningstackviewTopContraint.constant = -15
-            }
-            
-        }).disposed(by: bag)
-        viewModel.shouldShowSameDayPaymentWarning.drive(onNext: { [weak self] _ in
-            guard let self = self else { return }
-             DispatchQueue.main.async {
-            self.dateWarningstackviewTopContraint.constant = 8
-             self.stackView.reloadInputViews()
-            }
+            self.sameDayPaymentWarningLabel.isHidden = !showSameDayWarning
+            self.paymentDateBottomConstraint.constant = showSameDayWarning ? 56 : 25
         }).disposed(by: bag)
         
         viewModel.enablePaymentDate.drive(onNext: { [weak self]  enableDate in
@@ -241,7 +235,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
         }).disposed(by: bag)
         
         // OverPaying
-        viewModel.isOverpaying.map(!).drive(overPayingAmountLabel.rx.isHidden).disposed(by: bag)
+        viewModel.isOverpaying.map(!).drive( onNext: { [weak self] isNotOverPaying in
+            guard let self = self else { return }
+            self.overPayingAmountLabel.isHidden = isNotOverPaying
+            self.convienceFeeBottomLabel.constant = isNotOverPaying ? 30 : 50
+        }).disposed(by: bag)
+        
         viewModel.isOverpaying.map(!).drive(overPayingContainerView.rx.isHidden).disposed(by: bag)
         viewModel.overpayingValueDisplayString.asDriver().drive(overPayingAmountLabel.rx.text).disposed(by: bag)
         self.overPayingCheckbox.rx.isChecked.bind(to: viewModel.overpayingSwitchValue).disposed(by: bag)

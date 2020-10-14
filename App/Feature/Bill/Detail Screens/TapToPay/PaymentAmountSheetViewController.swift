@@ -101,6 +101,8 @@ class PaymentAmountSheetViewController: UIViewController {
         paymentAmountTextField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.setKeyboardType(.decimalPad)
         
+        viewModel.totalPaymentDisplayString.drive(paymentAmountTextField.textField.rx.text).disposed(by: bag)
+        
         viewModel.paymentAmountErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
             self?.paymentAmountTextField.setError(errorMessage)
         }).disposed(by: bag)
@@ -138,7 +140,9 @@ class PaymentAmountSheetViewController: UIViewController {
                             // then selects "Other" again, the previously entered amount should persist.
                             self.hasPrecariousOtherAmountBeenSelected = true
                             self.paymentAmountTextField.textField.text = 0.currencyString
-                            self.viewModel.paymentAmount.accept(0)
+                            
+                            self.paymentAmount = 0
+                            self.viewModel.editpaymentAmountValue.accept(0)
                         }
                         UIView.animate(withDuration: 0.2) {
                             self.paymentAmountTextField.isHidden = shouldHideOtherTextField
@@ -149,7 +153,9 @@ class PaymentAmountSheetViewController: UIViewController {
                     
                     if let amount = amount {
                         self.paymentAmountTextField.textField.resignFirstResponder()
-                        self.viewModel.paymentAmount.accept(amount)
+                        
+                        self.paymentAmount = amount
+                        self.viewModel.editpaymentAmountValue.accept(amount)
                     } else {
                         self.paymentAmountTextField.textField.becomeFirstResponder()
                     }
@@ -185,7 +191,7 @@ class PaymentAmountSheetViewController: UIViewController {
                 self.paymentAmountTextField.textField.text = amount.currencyString
 
                 self.paymentAmount = amount
-                self.viewModel.paymentAmount.accept(amount)
+                self.viewModel.editpaymentAmountValue.accept(amount)
             })
             .disposed(by: bag)
     }
@@ -377,6 +383,7 @@ class PaymentAmountSheetViewController: UIViewController {
     }
     
     @IBAction func doneAction(_ sender: Any) {
+        self.viewModel.paymentAmount.accept(self.paymentAmount)
         lastSheetLevel = .closed
     }
 }
