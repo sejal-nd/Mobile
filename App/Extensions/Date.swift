@@ -316,10 +316,8 @@ extension DateFormatter {
         switch Environment.shared.opco {
         case .bge:
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        case .comEd:
+        case .comEd, .peco:
             formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
-        case .peco:
-            formatter.dateFormat = "h:mm a zz 'on' M/dd/yyyy"
         case .ace, .delmarva, .pepco:
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
         }

@@ -34,6 +34,7 @@ class TapToPayViewModel {
     let selectedDate: BehaviorRelay<Date>
     
     let paymentId = BehaviorRelay<String?>(value: nil)
+    let wouldBeSelectedWalletItemIsExpired = BehaviorRelay(value: false)
     
     let emailAddress = BehaviorRelay(value: "")
     let phoneNumber = BehaviorRelay(value: "")
@@ -104,7 +105,7 @@ class TapToPayViewModel {
                 if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
                     self.selectedWalletItem.accept(nil)
                     
-                    //TODO //self.wouldBeSelectedWalletItemIsExpired.accept(true)
+                    self.wouldBeSelectedWalletItemIsExpired.accept(true)
                 }
                 
                 onSuccess?()
@@ -386,11 +387,59 @@ class TapToPayViewModel {
         .combineLatest(
             self.emailIsValidBool.asDriver(),
             self.phoneNumberHasTenDigits.asDriver(),
-            self.hasWalletItems.asDriver())
+            self.hasWalletItems.asDriver(),
+            self.shouldShowPaymentMethodExpiredButton.asDriver())
         {
-            if !$0 || !$1 || !$2{
+            if !$0 || !$1 || !$2 || $3{
                 return false
             }
             return true
     }
+    
+    // Must combine selectedWalletItem because the date validation relies on bank vs card
+    private(set) lazy var isPaymentDateValid: Driver<Bool> = Driver
+        .combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver())
+        .map { [weak self] paymentDate, _ in
+            guard let self = self else { return false }
+            if !self.canEditPaymentDate { // If fixed payment date, no need for validation
+                return true
+            }
+            return self.shouldCalendarDateBeEnabled(paymentDate)
+    }
+    
+    func shouldCalendarDateBeEnabled(_ date: Date) -> Bool {
+        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
+        guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
+        
+        if paymentId.value != nil && date.isInToday(calendar: .opCo) {
+            // 193496: Paymentus does not allow a scheduled payment to be updated to today's date
+            return false
+        }
+        
+        let today = Calendar.opCo.startOfDay(for: .now)
+        switch Environment.shared.opco {
+        case .ace, .bge, .delmarva, .pepco:
+            let minDate = today
+            var maxDate: Date
+            switch selectedWalletItem.value?.bankOrCard {
+            case .card?:
+                maxDate = Calendar.opCo.date(byAdding: .day, value: 90, to: today) ?? today
+            case .bank?:
+                maxDate = Calendar.opCo.date(byAdding: .day, value: 180, to: today) ?? today
+            default:
+                return false
+            }
+            
+            return DateInterval(start: minDate, end: maxDate).contains(opCoTimeDate)
+        case .comEd, .peco:
+            if let dueDate = accountDetail.value.billingInfo.dueByDate {
+                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
+                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
+            }
+        }
+        return false // Will never execute
+    }
+    
+    private(set) lazy var shouldShowPaymentMethodExpiredButton: Driver<Bool> =
+         self.wouldBeSelectedWalletItemIsExpired.asDriver()
 }

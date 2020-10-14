@@ -138,7 +138,7 @@ class OutageViewModelTests: XCTestCase {
         case .ace:
             expectedString = "To report a downed or sparking power line, please call 1-800-833-7476"
         case .delmarva:
-            expectedString = "If you smell natural gas, leave the area immediately and call 302-454-0317\n To report a downed or sparking power line, please call 1-800-898-8042"
+            expectedString = "If you smell natural gas, leave the area immediately and then call 302-454-0317\n To report a downed or sparking power line, please call 1-800-898-8042"
         }
         
         return XCTAssertEqual(self.viewModel.footerTextViewText.string, expectedString)
