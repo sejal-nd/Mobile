@@ -33,7 +33,7 @@ struct OutageStatus: Decodable {
     enum CodingKeys: String, CodingKey {
         case isGasOnly = "flagGasOnly"
         case contactHomeNumber = "contactHomeNumber"
-        case outageDescription = "outageDescription"
+        case outageDescription = "outageReported"
         case isActiveOutage = "activeOutage"
         case isSmartMeter = "smartMeterStatus"
         case isFinaled = "flagFinaled"
