@@ -50,7 +50,6 @@ class AccountPickerViewController: UIViewController {
                 self?.accountPicker.refresh()
             case .failure:
                 AuthenticationService.logout()
-                NotificationCenter.default.post(name: .didReceiveAccountListError, object: self)
             }
         }
     }
