@@ -124,23 +124,24 @@ public enum NetworkingLayer {
                                                  completion: completion)
                     }
                 } catch {
-                    // Delete user session
-                    AuthenticationService.logout()
                     DispatchQueue.main.async {
+                        // Delete user session
+                        AuthenticationService.logout()
                         completion(.failure(.invalidToken))
                     }
                 }
+                
                 isRefreshingToken = false
                 refreshTokenDispatchGroup.leave()
             case .failure(let error):
-                // Delete user session
-                AuthenticationService.logout()
-                isRefreshingToken = false
-                refreshTokenDispatchGroup.leave()
-                
                 DispatchQueue.main.async {
+                    // Delete user session
+                    AuthenticationService.logout()
                     completion(.failure(error))
                 }
+                
+                isRefreshingToken = false
+                refreshTokenDispatchGroup.leave()
             }
         }
     }
