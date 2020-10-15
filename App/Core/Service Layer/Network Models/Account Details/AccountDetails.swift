@@ -33,7 +33,7 @@ public struct AccountDetail: Decodable {
     public var isPasswordProtected: Bool
     public var isCashOnly: Bool
     public var releaseOfInformation: String?
-    public var revenueClass: Bool?
+    public var revenueClass: String?
     public var serviceAgreementCount: Int
     public var isSmartEnergyRewardsEnrolled: Bool
     
@@ -249,7 +249,7 @@ public struct AccountDetail: Decodable {
                                                forKey: .isCashOnly)
         self.releaseOfInformation = try container.decodeIfPresent(String.self,
                                                                   forKey: .releaseOfInformation)
-        self.revenueClass = try container.decodeIfPresent(Bool.self,
+        self.revenueClass = try container.decodeIfPresent(String.self,
                                                           forKey: .revenueClass)
         self.serviceAgreementCount = try container.decode(Int.self,
                                                           forKey: .serviceAgreementCount)
