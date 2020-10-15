@@ -44,6 +44,9 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         accessibilitySetup()
         
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+        
         let request = URLRequest(url: viewModel.termPoliciesURL)
         webView.load(request)
     }
@@ -67,5 +70,24 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         self.view.accessibilityElements = [webView, agreeCheckbox, continueButton] as [UIView]
     }
+    
+}
+
+extension LoginTermsPoliciesViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        if navigationAction.navigationType == .linkActivated,
+           let url = navigationAction.request.url,
+           !url.absoluteString.contains("ex path") {
+            UIApplication.shared.openUrlIfCan(url)
+            decisionHandler(.cancel)
+        }
+        else {
+            decisionHandler(.allow)
+        }
+    }
+}
+
+extension LoginTermsPoliciesViewController: WKUIDelegate {
     
 }
