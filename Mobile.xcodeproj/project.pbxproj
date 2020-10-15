@@ -3577,7 +3577,7 @@
 		67EDC42624C1F383001A8494 /* ACE-watchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 67EDC39924C1EBD9001A8494 /* ACE-watchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67EDC42B24C1FFBC001A8494 /* Pepco-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 67EDC2A524C1E684001A8494 /* Pepco-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67EDC42F24C201CC001A8494 /* Delmarva-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 67EDC3B924C1EBE8001A8494 /* Delmarva-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		67EDC43324C201D9001A8494 /* ACE-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 67EDC34124C1EBCC001A8494 /* ACE-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		67EDC43324C201D9001A8494 /* AC Electric.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 67EDC34124C1EBCC001A8494 /* AC Electric.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67F950F524B8AA33009B5F07 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A2B88324A1E092004B38BC /* Login.storyboard */; };
 		67F950F624B8AA33009B5F07 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A2B88324A1E092004B38BC /* Login.storyboard */; };
 		67F950FC24BCA111009B5F07 /* RegistrationValidateAccountViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */; };
@@ -5935,7 +5935,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				67EDC43324C201D9001A8494 /* ACE-Watch.app in Embed Watch Content */,
+				67EDC43324C201D9001A8494 /* AC Electric.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6387,7 +6387,7 @@
 		67EDC32024C1EB6E001A8494 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		67EDC32124C1EB84001A8494 /* ACE-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE-Info.plist"; sourceTree = "<group>"; };
 		67EDC32224C1EB95001A8494 /* Delmarva-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Delmarva-Info.plist"; sourceTree = "<group>"; };
-		67EDC34124C1EBCC001A8494 /* ACE-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ACE-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67EDC34124C1EBCC001A8494 /* AC Electric.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AC Electric.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67EDC39924C1EBD9001A8494 /* ACE-watchOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ACE-watchOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67EDC3B924C1EBE8001A8494 /* Delmarva-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Delmarva-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67EDC41124C1EBFF001A8494 /* Delmarva-watchOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Delmarva-watchOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -9882,7 +9882,7 @@
 				67DDBD0224535DDB006CD6EB /* DelmarvaUITests.xctest */,
 				67EDC2A524C1E684001A8494 /* Pepco-Watch.app */,
 				67EDC2FC24C1E690001A8494 /* Pepco-watchOS Extension.appex */,
-				67EDC34124C1EBCC001A8494 /* ACE-Watch.app */,
+				67EDC34124C1EBCC001A8494 /* AC Electric.app */,
 				67EDC39924C1EBD9001A8494 /* ACE-watchOS Extension.appex */,
 				67EDC3B924C1EBE8001A8494 /* Delmarva-Watch.app */,
 				67EDC41124C1EBFF001A8494 /* Delmarva-watchOS Extension.appex */,
@@ -10606,7 +10606,7 @@
 			);
 			name = "ACE-Watch";
 			productName = "BGE-Watch";
-			productReference = 67EDC34124C1EBCC001A8494 /* ACE-Watch.app */;
+			productReference = 67EDC34124C1EBCC001A8494 /* AC Electric.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		67EDC34324C1EBD9001A8494 /* ACE-Watch Extension */ = {
@@ -25363,7 +25363,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.develop.watchkitapp;
-				PRODUCT_NAME = "ACE-Watch";
+				PRODUCT_NAME = "AC Electric";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -25401,7 +25401,7 @@
 				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.develop.watchkitapp;
-				PRODUCT_NAME = "ACE-Watch";
+				PRODUCT_NAME = "AC Electric";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -25437,7 +25437,7 @@
 				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.staging.watchkitapp;
-				PRODUCT_NAME = "ACE-Watch";
+				PRODUCT_NAME = "AC Electric";
 				PROVISIONING_PROFILE_SPECIFIER = "ACE Staging Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -25473,7 +25473,7 @@
 				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.testing.watchkitapp;
-				PRODUCT_NAME = "ACE-Watch";
+				PRODUCT_NAME = "AC Electric";
 				PROVISIONING_PROFILE_SPECIFIER = "ACE Testing Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -25509,7 +25509,7 @@
 				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.watchkitapp;
-				PRODUCT_NAME = "ACE-Watch";
+				PRODUCT_NAME = "AC Electric";
 				PROVISIONING_PROFILE_SPECIFIER = "ACE Watchkit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -25545,7 +25545,7 @@
 				MARKETING_VERSION = 10.6.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.prodbeta.watchkitapp;
-				PRODUCT_NAME = "ACE-Watch";
+				PRODUCT_NAME = "AC Electric";
 				PROVISIONING_PROFILE_SPECIFIER = "ACE Production Beta Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -25580,7 +25580,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 10.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.ace.hotfix.watchkitapp;
-				PRODUCT_NAME = "ACE-Watch";
+				PRODUCT_NAME = "AC Electric";
 				PROVISIONING_PROFILE_SPECIFIER = "ACE Hotfix Watchkit App Enterprise Dist";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Headers";
 				SDKROOT = watchos;

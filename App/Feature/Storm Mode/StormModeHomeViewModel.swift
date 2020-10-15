@@ -122,7 +122,7 @@ class StormModeHomeViewModel {
                 return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
             }
         }
-        return NSLocalizedString("Assessing Damage", comment: "")
+        return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
     }
     
     var outageReportedDateString: String {
