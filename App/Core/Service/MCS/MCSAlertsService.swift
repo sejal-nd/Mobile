@@ -40,7 +40,7 @@ struct MCSAlertsService: AlertsService {
     }
     
     func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences) -> Observable<Void> {
-        let params = ["alertPreferences": alertPreferences.createAlertPreferencesJSONArray()]
+        let params = ["alertPreferences": Environment.shared.opco.isPHI ? alertPreferences.createAlertPreferencesJSONArrayForPHI() : alertPreferences.createAlertPreferencesJSONArray()]
         return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/alerts/preferences", params: params)
             .mapTo(())
     }
