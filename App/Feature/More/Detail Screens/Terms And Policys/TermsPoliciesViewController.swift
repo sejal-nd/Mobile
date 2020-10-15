@@ -49,8 +49,7 @@ extension TermsPoliciesViewController: WKNavigationDelegate {
            !url.absoluteString.contains("ex path") {
             UIApplication.shared.openUrlIfCan(url)
             decisionHandler(.cancel)
-        }
-        else {
+        } else {
             decisionHandler(.allow)
         }
     }
