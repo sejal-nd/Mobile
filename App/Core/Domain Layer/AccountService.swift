@@ -34,29 +34,22 @@ enum AccountService {
                                     alertPreferenceEligibilities: Bool = false,
                                     completion: @escaping (Result<AccountDetail, NetworkingError>) -> ()) {
         
-        var queryItems = [(String, String)]()
+        var queryItems = [URLQueryItem]()
         if !payments {
-            queryItems.append(("payments", "false"))
+            queryItems.append(URLQueryItem(name: "payments", value: "false"))
         }
         if !programs {
-            queryItems.append(("programs", "false"))
+            queryItems.append(URLQueryItem(name: "programs", value: "false"))
         }
         if !budgetBilling {
-            queryItems.append(("budgetBilling", "false"))
+            queryItems.append(URLQueryItem(name: "budgetBilling", value: "false"))
         }
         
         if alertPreferenceEligibilities {
-            queryItems.append(("alertPreferenceEligibilities", "true"))
+            queryItems.append(URLQueryItem(name: "alertPreferenceEligibilities", value: "true"))
         }
-        
-        let queryStringSubSequence = queryItems
-            .map { $0.0 + "=" + $0.1 }
-            .reduce("?") { $0 + $1 + "&" }
-            .dropLast() // drop the last "&"
-        let queryString = String(queryStringSubSequence)
-        
-        
-        NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryString: queryString), completion: completion)
+    
+        NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryItems: queryItems), completion: completion)
     }
     
     #if os(iOS)

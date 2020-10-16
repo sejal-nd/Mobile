@@ -47,7 +47,7 @@ public enum Router {
     
     // Account
     case accounts
-    case accountDetails(accountNumber: String, queryString: String)
+    case accountDetails(accountNumber: String, queryItems: [URLQueryItem])
     case setDefaultAccount(accountNumber: String)
     case setAccountNickname(request: AccountNicknameRequest)
     
@@ -186,8 +186,8 @@ public enum Router {
             return "\(basePath)/\(apiAccess.path)/outage/query"
         case .maintenanceMode:
             return "\(basePath)/\(apiAccess.path)/config/maintenance"
-        case .accountDetails(let accountNumber, let queryString):
-            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)\(queryString)"
+        case .accountDetails(let accountNumber, _):
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)"
         case .accounts:
             return "\(basePath)/\(apiAccess.path)/accounts"
         case .setDefaultAccount(let accountNumber):
@@ -386,6 +386,8 @@ public enum Router {
             if let summaryQueryItem = summaryQueryItem {
                 queryItems.append(summaryQueryItem)
             }
+            return queryItems
+        case .accountDetails(_, let queryItems):
             return queryItems
         default:
             return []
