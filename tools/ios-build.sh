@@ -124,6 +124,7 @@ find_in_array() {
   local word=$1
   shift
   for e in "$@"; do
+    echo "${e}.......${@}"
     [[ "$e" == "$word" ]] && return 0;
   done
 }
@@ -148,7 +149,9 @@ fi
 # Set project base URL prefix based on git path (CI/CD version of Xcode project build phase: "Set Project Prefix")
 
 # Possible Project Specific Environments
-declare -a POSSIBLE_CONFIGURATIONS=("phi" "billing" "payments" "mma" "hotfix")
+declare -a POSSIBLE_PROJECT_ENVS=("phi" "billing" "payments" "mma" "hotfix")
+
+echo "Possible Project Specific Environments: ${POSSIBLE_PROJECT_ENVS[*]}"
 
 # Entry in plist to be updated
 plistEntryName="Project\ Environment\ Prefix"
