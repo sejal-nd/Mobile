@@ -177,7 +177,8 @@ class ReviewPaymentViewController: UIViewController {
         
         footerLabel.textColor = .deepGray
         footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        footerLabel.text = viewModel.reviewPaymentFooterLabelText
+        let reviewPaymentFooterLabelText = viewModel.reviewPaymentFooterLabelText
+        footerLabel.text = reviewPaymentFooterLabelText
         
         // Hide additional recipient view for edit payment flow
         if let _ = viewModel.billingHistoryItem {

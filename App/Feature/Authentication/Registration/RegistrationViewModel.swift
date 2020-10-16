@@ -65,7 +65,11 @@ class RegistrationViewModel {
         var validateAccountRequest: ValidateAccountRequest
         if let accountNumberValue = selectedAccount.value?.accountNumber {
             accountNumber.accept(accountNumberValue)
+        } else {
+            // PHI multiple accounts wont have a picker to select from, hence the account number will be selected from the number mentioned in the textfied
+            accountNumber.accept(self.accountNumber.value)
         }
+        
         
         if selectedSegmentIndex.value == .zero {
             validateAccountRequest = ValidateAccountRequest(identifier: identifierNumber.value,

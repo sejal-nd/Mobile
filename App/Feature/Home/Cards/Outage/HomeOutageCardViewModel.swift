@@ -130,7 +130,7 @@ class HomeOutageCardViewModel {
     
     private(set) lazy var etrText: Driver<String> = Driver.merge(self.storedEtr, self.fetchedEtr)
         .map {
-            guard let etrText = $0 else { return NSLocalizedString("Assessing Damage", comment: "") }
+            guard let etrText = $0 else { return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "") }
             return String.localizedStringWithFormat(DateFormatter.outageOpcoDateFormatter.string(from: etrText))
         }
         .distinctUntilChanged()

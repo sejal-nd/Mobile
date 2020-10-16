@@ -127,6 +127,7 @@ public enum Router {
     case outageStatus(accountNumber: String, summaryQueryItem: URLQueryItem? = nil)
     case outageStatusAnon(request: AnonOutageRequest)
     case meterPing(accountNumber: String, premiseNumber: String? = nil)
+    case meterPingAnon(request: AccountNumberRequest)
     case reportOutage(accountNumber: String, request: OutageRequest)
     case reportOutageAnon(request: OutageRequest)
     
@@ -304,6 +305,8 @@ public enum Router {
             } else {
                 return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/outage/ping"
             }
+        case .meterPingAnon(_):
+            return "\(basePath)/\(apiAccess.path)/outage/ping"
         case .fetchGameUser(let accountNumber):
             return "\(basePath)/\(apiAccess.path)/game/\(accountNumber)"
         case .updateGameUser(let accountNumber, _):
@@ -335,7 +338,7 @@ public enum Router {
     
     public var method: String {
         switch self {
-        case .outageStatusAnon, .fetchToken, .refreshToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule:
+        case .outageStatusAnon, .fetchToken, .refreshToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .meterPingAnon:
             return "POST"
         case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .budgetBillingEnroll, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .setAccountNickname, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule:
             return "GET"
@@ -391,7 +394,7 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-            case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .registration(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable), .scheduleOverride(_, _, _, let request as Encodable), .updateDeviceSettings(_, _, _, let request as Encodable), .updateThermostatSchedule(_, _, _, let request as Encodable), .fetchToken(let request as Encodable), .refreshToken(let request as Encodable):
+        case .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .registration(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable), .scheduleOverride(_, _, _, let request as Encodable), .updateDeviceSettings(_, _, _, let request as Encodable), .updateThermostatSchedule(_, _, _, let request as Encodable), .fetchToken(let request as Encodable), .refreshToken(let request as Encodable), .meterPingAnon(let request as Encodable):
             return request.data()
         default:
             return nil

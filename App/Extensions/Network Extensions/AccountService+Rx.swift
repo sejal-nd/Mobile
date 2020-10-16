@@ -23,7 +23,7 @@ extension Reactive where Base == AccountService {
     static func fetchAccountDetails(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber,
                                     payments: Bool = true,
                                     programs: Bool = true,
-                                    budgetBilling: Bool = true,
+                                    budgetBilling: Bool = Environment.shared.opco.isPHI ? true : false,
                                     alertPreferenceEligibilities: Bool = false) -> Observable<AccountDetail> {
         return Observable.create { observer -> Disposable in
             AccountService.fetchAccountDetails(accountNumber: accountNumber, payments: payments, programs: programs, budgetBilling: budgetBilling, alertPreferenceEligibilities: alertPreferenceEligibilities) { observer.handle(result: $0) }

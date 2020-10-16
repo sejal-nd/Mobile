@@ -47,7 +47,7 @@ class UnauthenticatedOutageViewModel {
                                                                 onError(NSLocalizedString("Gas Only Account", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: ""))
                                                                 return
                                                             case .delmarva:
-                                                                onError(NSLocalizedString("Gas Only Account", comment: ""), NSLocalizedString("Natural gas emergencies cannot be reported online, but we want to hear from you right away.\n\nIf you smell natural gas, leave the area immediately and call 302-454-0317", comment: ""))
+                                                                onError(NSLocalizedString("Gas Only Account", comment: ""), NSLocalizedString("Natural gas emergencies cannot be reported online, but we want to hear from you right away.\n\nIf you smell natural gas, leave the area immediately and then call 302-454-0317.", comment: ""))
                                                                 return
                                                             default:
                                                                 break
@@ -114,7 +114,7 @@ class UnauthenticatedOutageViewModel {
         } else if let statusETR = selectedOutageStatus.value!.estimatedRestorationDate {
             return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
         }
-        return NSLocalizedString("Assessing Damage", comment: "")
+        return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
     }
     
     var accountNonPayFinaledMessage: String {
@@ -185,7 +185,7 @@ class UnauthenticatedOutageViewModel {
             let phone2 = "1-800-898-8042"
             phoneNumbers = [phone1, phone2]
             localizedString = String.localizedStringWithFormat("""
-            If you smell natural gas, leave the area immediately and call %@\n
+            If you smell natural gas, leave the area immediately and then call %@\n
             To report a downed or sparking power line, please call %@
             """, phone1, phone2)
         }

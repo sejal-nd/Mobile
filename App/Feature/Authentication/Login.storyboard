@@ -1188,6 +1188,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="questionMarkButton" destination="zdg-V7-E2y" id="EWz-rc-r4v"/>
                         <outlet property="stickyFooterBottomConstraint" destination="kH8-2z-BkC" id="8oQ-ZP-L3w"/>
                         <segue destination="OB4-E6-Bvv" kind="show" identifier="createCredentialsSegue" id="GYT-tJ-2IP"/>
+                        <segue destination="ueA-xd-0Gb" kind="show" identifier="phiCreateCredentialsSegue" id="Zyh-TF-Cmy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKi-cA-6tr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4267,12 +4268,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rDh-g1-gVE"/>
+        <segue reference="Zyh-TF-Cmy"/>
         <segue reference="yZt-0Y-CGp"/>
         <segue reference="rc5-B5-rKb"/>
-        <segue reference="He9-IH-khb"/>
-        <segue reference="6eI-mv-PAf"/>
-        <segue reference="i6k-qg-f70"/>
+        <segue reference="GYT-tJ-2IP"/>
+        <segue reference="m8m-Zs-f6g"/>
+        <segue reference="35a-iJ-7qY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ic_check" width="13" height="10"/>

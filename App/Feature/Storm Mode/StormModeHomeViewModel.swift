@@ -104,7 +104,7 @@ class StormModeHomeViewModel {
                 return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
             }
         }
-        return NSLocalizedString("Assessing Damage", comment: "")
+        return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
     }
     
     var outageReportedDateString: String {
@@ -123,9 +123,8 @@ class StormModeHomeViewModel {
         case .bge:
             secondLine = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
         case .delmarva:
-            firstLine = NSLocalizedString("Natural gas emergencies cannot be reported online, but want to hear from you right away.", comment: "")
-
-            secondLine = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
+            firstLine = NSLocalizedString("Natural gas emergencies cannot be reported online, but we want to hear from you right away.", comment: "")
+            secondLine = NSLocalizedString("If you smell natural gas, leave the area immediately and then call", comment: "")
         case .peco:
             secondLine = NSLocalizedString("To issue a Gas Emergency Order, please call", comment: "")
         case .ace, .comEd, .pepco:

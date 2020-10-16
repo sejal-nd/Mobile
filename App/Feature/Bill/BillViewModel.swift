@@ -96,7 +96,7 @@ class BillViewModel {
     private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
         .map { $0.0 }
         .filter {
-            return !$0.isEligibleForUsageData && $0.isResidential
+            return !$0.isEligibleForUsageData && $0.isResidential && !($0.status?.lowercased() == "inactive")
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())

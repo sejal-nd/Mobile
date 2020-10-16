@@ -69,28 +69,28 @@ public struct AlertPreferences: Decodable {
                 energySavingsDayResults = true
             case "Peak Time Savings":
                 peakTimeSavings = true
-            case "Outage Notifications":
+            case "Outage Notifications", "Outage \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 outage = true
             case "Planned Outage":
                 scheduledMaint = true
-            case "Severe Weather":
+            case "Severe Weather", "Severe Weather \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 severeWeather = true
-            case "Paperless Billing", "Bill is Ready":
+            case "Paperless Billing", "Bill is Ready", "Bill Ready \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 billReady = true
-            case "Payment Reminder", "Payment Reminders":
+            case "Payment Reminder", "Payment Reminders", "Payment Reminder \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 paymentDue = true
                 if let daysBefore = preference.daysPrior {
                     paymentDueDaysBefore = daysBefore
                 }
-            case "Payment Posted":
+            case "Payment Posted", "Payment Posted \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 paymentPosted = true
-            case "Payment Past Due":
+            case "Payment Past Due", "Payment Past Due \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 paymentPastDue = true
-            case "Budget Billing":
+            case "Budget Billing", "Budget Billing \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 budgetBilling = true
             case "Customer Appointments":
                 appointmentTracking = true
-            case "News", "Marketing":
+            case "News", "Marketing", "News \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 forYourInfo = true
             default:
                 break

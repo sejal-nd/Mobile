@@ -638,6 +638,10 @@ class HomeViewController: AccountPickerViewController {
     func bindProjectedBillCard() {
         guard let projectedBillCardView = projectedBillCardView else { return }
         
+        viewModel.accountDetailEvents.elements().take(1).subscribe(onNext: { accountDetail in
+            projectedBillCardView.isHidden = !accountDetail.isAMIAccount
+        }).disposed(by: bag)
+        
         projectedBillCardView.callToActionButton.rx.touchUpInside.asDriver()
             .withLatestFrom(Driver.combineLatest(viewModel.projectedBillCardViewModel.isGas,
                                                  viewModel.projectedBillCardViewModel.projectionNotAvailable))

@@ -54,8 +54,14 @@ class ReportOutageViewModel {
             localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@", phone1)
         case .peco:
             let phone1 = "1-800-841-4141"
-            phoneNumbers = [phone1]
-            localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
+            let phone2 = "1-844-841-4151"
+            phoneNumbers = [phone1, phone1, phone2]
+            localizedString = String.localizedStringWithFormat(
+                """
+                To report a downed or sparking power line, please call %@.\n
+                If you smell natural gas, leave the area immediately and call %@ or %@.
+                """
+                , phone1, phone1, phone2)
         case .pepco:
             let phone1 = "1-877-737-2662"
             phoneNumbers = [phone1]
@@ -93,6 +99,10 @@ class ReportOutageViewModel {
     lazy var shouldPingMeter: Bool = {
         return outageStatus.isActiveOutage == false &&
             outageStatus.isSmartMeter == true
+    }()
+    
+    lazy var shouldPingPHIMeter: Bool = {
+        return shouldPingMeter && (Environment.shared.opco == .pepco || Environment.shared.opco == .delmarva)
     }()
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -187,15 +197,28 @@ class ReportOutageViewModel {
     
     func meterPingGetStatus(onComplete: @escaping (MeterPingResult) -> Void, onError: @escaping () -> Void) {
         OutageService.pingMeter(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-                                   premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber) { result in
-                                    switch result {
-                                    case .success(let meterPingInfo):
-                                        onComplete(meterPingInfo)
-                                    case .failure:
-                                        onError()
-                                    }
+                                premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber) { result in
+            switch result {
+            case .success(let meterPingInfo):
+                onComplete(meterPingInfo)
+            case .failure:
+                onError()
+            }
         }
     }
+    
+    func meterPingGetStatusAnon(onComplete: @escaping (MeterPingResult) -> Void, onError: @escaping () -> Void) {
+        OutageService.pingMeter(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+                                premiseNumber: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber) { result in
+            switch result {
+            case .success(let meterPingInfo):
+                onComplete(meterPingInfo)
+            case .failure:
+                onError()
+            }
+        }
+    }
+
     
     private lazy var currentPremiseNumber: Observable<String?> = Observable.just(AccountsStore.shared.currentAccount)
         .flatMap { account -> Observable<String?> in

@@ -41,10 +41,11 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
         
         accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasValidLength))
-            .drive(onNext: { [weak self] accountNumber, hasTenDigits in
+            .drive(onNext: { [weak self] accountNumber, accountNumberHasValidLength in
                 guard let self = self else { return }
-                if !accountNumber.isEmpty && !hasTenDigits {
-                    self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
+                if !accountNumber.isEmpty && !accountNumberHasValidLength {
+                    let digitCount = Environment.shared.opco.isPHI ? 11 : 10
+                    self.accountNumberTextField.setError(NSLocalizedString("Account number must be \(digitCount) digits long", comment: ""))
                 }
                 self.accessibilityErrorLabel()
             })
@@ -87,7 +88,11 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountSetup)
-            self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+            if Environment.shared.opco.isPHI {
+                self.performSegue(withIdentifier: "phiCreateCredentialsSegue", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+            }
         }, onMultipleAccounts:  { // should never happen
             LoadingView.hide()
         }, onError: { (title, message) in
@@ -105,6 +110,9 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
         view.endEditing(true)
         
         if let vc = segue.destination as? RegistrationCreateCredentialsViewController {
+            vc.viewModel = viewModel
+        }
+        if let vc = segue.destination as? RegistrationCreateCredentialsViewControllerNew {
             vc.viewModel = viewModel
         }
     }
@@ -133,7 +141,7 @@ extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
         
         if textField ==  accountNumberTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Environment.shared.opco.isPHI ? 11 : 10)
         }
         
         return true
