@@ -398,6 +398,8 @@
 		67D08AA22539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */; };
 		67D08AA32539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */; };
 		67D08AA92539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA82539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard */; };
+		67D08BB9253A224F0047E4C5 /* Usage-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5125391A6A002A2832 /* Usage-FlavorACE.storyboard */; };
+		67D08BBA253A225F0047E4C5 /* Outage-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5025391A6A002A2832 /* Outage-FlavorACE.storyboard */; };
 		67D5626324EADA7E00852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
 		67D5626724EADA9700852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
 		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
@@ -922,8 +924,6 @@
 		C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C3087B0124BDEE8B005AE544 /* EnergyTipMock.json */; };
 		C3087B0C24BDEFA3005AE544 /* AnyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087B0B24BDEFA3005AE544 /* AnyObserver.swift */; };
 		C3087B1624BDF0D5005AE544 /* UsageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087B1524BDF0D5005AE544 /* UsageService+Rx.swift */; };
-		C3118C5325391A6A002A2832 /* Outage-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5025391A6A002A2832 /* Outage-FlavorACE.storyboard */; };
-		C3118C5425391A6A002A2832 /* Usage-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5125391A6A002A2832 /* Usage-FlavorACE.storyboard */; };
 		C3118C5525391A70002A2832 /* Bill-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C4F25391A69002A2832 /* Bill-FlavorACE.storyboard */; };
 		C3118C5925391A8A002A2832 /* Main-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5625391A82002A2832 /* Main-FlavorACE.storyboard */; };
 		C3118C5D25391A9F002A2832 /* Outage-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5A25391A9E002A2832 /* Outage-FlavorDPL.storyboard */; };
@@ -5128,6 +5128,7 @@
 				67D5633224EEFAA100852551 /* Outage-FlavorCOMED.storyboard in Resources */,
 				352B19F8233BBE710090B442 /* Outage-FlavorBGE.storyboard in Resources */,
 				35F9DDC523340C9B00AAA2B2 /* Main-FlavorBGE.storyboard in Resources */,
+				67D08BB9253A224F0047E4C5 /* Usage-FlavorACE.storyboard in Resources */,
 				67D5633124EEFAA100852551 /* Main-FlavorCOMED.storyboard in Resources */,
 				C3118C6625391AB6002A2832 /* Usage-FlavorPEPCO.storyboard in Resources */,
 				352B19FA233BBEDD0090B442 /* Usage-FlavorBGE.storyboard in Resources */,
@@ -5139,6 +5140,7 @@
 				C3118C5525391A70002A2832 /* Bill-FlavorACE.storyboard in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
+				67D08BBA253A225F0047E4C5 /* Outage-FlavorACE.storyboard in Resources */,
 				C3118C6725391AB6002A2832 /* Bill-FlavorPEPO.storyboard in Resources */,
 				C3118C6225391AAA002A2832 /* Main-FlavorDPL.storyboard in Resources */,
 				67D5633424EEFAA100852551 /* Bill-FlavorCOMED.storyboard in Resources */,
@@ -5250,7 +5252,6 @@
 				67A986D824FD419A00BD46E7 /* GoogleService-Info-TEST-FlavorDPL.plist in Resources */,
 				679CC725250003B800A46BBE /* splash-FlavorDPL.json in Resources */,
 				675F4D6E24AB828200A828F9 /* BudgetBillingMock.json in Resources */,
-				C3118C5325391A6A002A2832 /* Outage-FlavorACE.storyboard in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info-TEST-FlavorBGE.plist in Resources */,
 				67A9869B24F9691300BD46E7 /* GoogleService-Info-PRODBETA-FlavorCOMED.plist in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
@@ -5361,7 +5362,6 @@
 				67A9869E24F9691600BD46E7 /* GoogleService-Info-TEST-FlavorPECO.plist in Resources */,
 				359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
-				C3118C5425391A6A002A2832 /* Usage-FlavorACE.storyboard in Resources */,
 				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				9C88942223C39F2B002E46A7 /* confetti.json in Resources */,
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
