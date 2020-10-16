@@ -289,7 +289,7 @@ if [[ $target_phases = *"build"* ]]; then
     # Build App
 
     echo "Application configuration: $CONFIGURATION-$OPCO, Workspace: $PROJECT, Scheme: $target_scheme"
-    
+
     set -o pipefail
 
 	xcrun xcodebuild \
@@ -300,10 +300,6 @@ if [[ $target_phases = *"build"* ]]; then
 		archive | tee build/logs/xcodebuild_archive.log | xcpretty
 
     check_errs $? "Xcode build exited with a non-zero status"
-
-
-echo "TEST FILE PATHS"
-find .
 
     echo "--------------------------------- Post archiving  -------------------------------"
 
