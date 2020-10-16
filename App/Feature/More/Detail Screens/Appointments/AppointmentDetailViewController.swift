@@ -80,7 +80,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func update(withAppointment appointment: Appointment) {
-        let currApptStatus = viewModel.appointment.status
+        let currApptStatus = viewModel.appointment.statusType
         viewModel.appointment = appointment
         if viewHasLoaded {
             self.playProgressAnimation(fromStatus: currApptStatus)
@@ -193,7 +193,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
             onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way step, complete", comment: "")
             inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, complete", comment: "")
             completeLabel.accessibilityLabel = NSLocalizedString("Appointment complete", comment: "")
-        case .canceled:
+        case .canceled, .none:
             // Do nothing, these labels are not displayed
             break
         }
@@ -271,21 +271,21 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         let loop: Bool
         switch viewModel.status {
         case .scheduled:
-            animationName = "Appt_Confirmed"
+            animationName = "Appt_Confirmed-Flavor\(Environment.shared.opco.rawValue)"
             loop = false
         case .onOurWay:
             fallthrough
         case .enRoute:
-            animationName = "Appt_otw"
+            animationName = "Appt_otw-Flavor\(Environment.shared.opco.rawValue)"
             loop = true
         case .inProgress:
-            animationName = "Appt_Inprogress"
+            animationName = "Appt_Inprogress-Flavor\(Environment.shared.opco.rawValue)"
             loop = false
         case .complete:
-            animationName = "Appt_Complete"
+            animationName = "Appt_Complete-Flavor\(Environment.shared.opco.rawValue)"
             loop = false
-        case .canceled:
-            animationName = "Appt_Canceled"
+        case .canceled, .none:
+            animationName = "Appt_Canceled-Flavor\(Environment.shared.opco.rawValue)"
             loop = false
         }
         

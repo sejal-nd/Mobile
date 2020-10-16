@@ -137,7 +137,8 @@ class OutageInterfaceController: WKInterfaceController {
                 shouldAnimateStatusImage = true
                 
                 powerStatusLabel.setText("POWER IS OUT")
-                guard let etr = outageStatus?.etr else {
+
+                guard let etr = outageStatus?.estimatedRestorationDate else {
                     etrDetailLabel.setText(Environment.shared.opco.isPHI ? "Pending Assessment" : "Assessing Damage")
                     return
                 }
@@ -379,14 +380,14 @@ extension OutageInterfaceController {
     private func configureOutageStatus(_ outageStatus: OutageStatus) {
         accountGroup.setHidden(false)
         
-        guard !outageStatus.flagGasOnly else {
+        guard !outageStatus.isGasOnly else {
             state = .loaded(.gasOnly)
             return
         }
         
-        if outageStatus.activeOutage {
+        if outageStatus.isActiveOutage {
             state = .loaded(.powerOut(outageStatus))
-        } else if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService {
+        } else if outageStatus.isNoPay || outageStatus.isFinaled || outageStatus.isNonService {
             // note this should be handled in the outage error section of network utility.
             state = .loaded(.unavilable) // todo: this is not getting triggered? Ticket/Bug: https://exelontfs.visualstudio.com/EU-mobile/_workitems/edit/336004
         } else {

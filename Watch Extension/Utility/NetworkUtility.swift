@@ -30,7 +30,7 @@ enum Feature {
 }
 
 struct MaintenanceModeStatus {
-    var maintenance: Maintenance
+    var maintenance: MaintenanceMode
     var feature: Feature
 }
 
@@ -220,16 +220,16 @@ extension NetworkUtility {
     
     /// Sends notification to IC, and returns a list containing the current maintenance mode status for each feature
     /// - Parameter maintenance: object returned from serivces of type `Maintenance`.
-    private func processMaintenanceMode(_ maintenance: Maintenance) -> [MaintenanceModeStatus] {
-        if maintenance.allStatus {
+    private func processMaintenanceMode(_ maintenance: MaintenanceMode) -> [MaintenanceModeStatus] {
+        if maintenance.all {
             maintenanceModeStatuses.append(MaintenanceModeStatus(maintenance: maintenance, feature: .all))
         }
         
-        if maintenance.outageStatus {
+        if maintenance.outage {
             maintenanceModeStatuses.append(MaintenanceModeStatus(maintenance: maintenance, feature: .outage))
         }
         
-        if maintenance.usageStatus {
+        if maintenance.usage {
             maintenanceModeStatuses.append(MaintenanceModeStatus(maintenance: maintenance, feature: .usage))
         }
         
@@ -264,35 +264,32 @@ extension NetworkUtility {
             result(.failure(.missingToken))
             return
         }
-        
-        let accountService = MCSAccountService()
-        accountService.fetchAccounts().subscribe(onNext: { [weak self] accounts in
-            // handle success
-            guard let firstAccount = AccountsStore.shared.accounts.first else {
-                dLog("No first account in account list: Terminated.")
-                result(.failure(.invalidAccount))
-                return
-            }
-            
-            if AccountsStore.shared.currentIndex == nil {
-                AccountsStore.shared.currentIndex = 0
-            }
-            
-            self?.defaultAccount = firstAccount
-            self?.notificationCenter.post(name: .defaultAccountDidUpdate, object: firstAccount)
-            
-            dLog("Accounts Fetched.")
-            
-            result(.success(accounts))
-            }, onError: { error in
-                if let serviceError = error as? ServiceError, serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
+
+        AccountService.fetchAccounts { networkResult in
+            switch networkResult {
+            case .success(let accounts):
+                guard let firstAccount = accounts.first else {
+                    dLog("No first account in account list: Terminated.")
+                    result(.failure(.invalidAccount))
+                    return
+                }
+                
+                if AccountsStore.shared.currentIndex == nil {
+                    AccountsStore.shared.currentIndex = 0
+                }
+                
+                self.defaultAccount = firstAccount
+                self.notificationCenter.post(name: .defaultAccountDidUpdate, object: firstAccount)
+            case .failure(let error):
+                if error == .passwordProtected {
                     dLog("Failed to retrieve account list.  Password Protected Account.")
                     result(.failure(.passwordProtected))
                 } else {
                     dLog("Failed to retrieve account list: \(error.localizedDescription)")
                     result(.failure(.fetchError))
                 }
-        }).disposed(by: disposeBag)
+            }
+        }
     }
     
     /// Fetches key info about an account, specifically if the account is password protected.  Also required for fetching usage data.
@@ -307,19 +304,16 @@ extension NetworkUtility {
                 return
         }
         
-        let accountService = MCSAccountService()
-        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-            .subscribe(onNext: { accountDetail in
-                // handle success
+        AccountService.fetchAccountDetails { networkResult in
+            switch networkResult {
+            case .success(let accountDetail):
                 dLog("Account Details Fetched.")
-                
                 result(.success(accountDetail))
-            }, onError: { error in
-                // handle error
+            case .failure(let error):
                 dLog("Failed to Fetch Account Details. \(error.localizedDescription)")
                 result(.failure(.fetchError))
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     /// Fetches maintenance mode status.
@@ -327,21 +321,20 @@ extension NetworkUtility {
     /// - Note: Maintenance can be active for: all, outage, usage, or bill.  Success does not indicate whether maintenance mode is on, rather that data was successfully fetched.
     ///
     /// - Parameter result: Either `Maintenance` or `NetworkError`.
-    private func fetchMaintenanceModeStatus(result: @escaping (Result<Maintenance, NetworkError>) -> ()) {
+    private func fetchMaintenanceModeStatus(result: @escaping (Result<MaintenanceMode, NetworkError>) -> ()) {
         dLog("Fetching Maintenance Mode Status...")
         
-        let authService = MCSAuthenticationService()
         
-        authService.getMaintenanceMode()
-            .subscribe(onNext: { maintenance in
+        AnonymousService.maintenanceMode { networkResult in
+            switch networkResult {
+            case .success(let maintenanceMode):
                 dLog("Maintenance Mode Fetched.")
-                
-                result(.success(maintenance))
-            }, onError: { error in
+                result(.success(maintenanceMode))
+            case .failure(let error):
                 dLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
                 result(.failure(.fetchError))
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     /// Fetches outage data for the current account.
@@ -355,21 +348,18 @@ extension NetworkUtility {
             return
         }
 
-        let outageService = MCSOutageService()
-        
-        outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount).subscribe(onNext: { outageStatus in
-            dLog("Outage Status Fetched.")
-            result(.success(outageStatus))
-        }, onError: { error in
-            // handle error
-            dLog("Failed to retrieve outage status: \(error.localizedDescription)")
-            
-            //todo we need to have finaled nonpay, ect..... this will return as an error here
-            // reference outageViewModel on mobile app.
-            
-            result(.failure(.fetchError))
-        })
-            .disposed(by: disposeBag)
+        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumberString: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { networkResult in
+            switch networkResult {
+            case .success(let outageStatus):
+                dLog("Outage Status Fetched.")
+
+                result(.success(outageStatus))
+            case .failure(let error):
+                dLog("Failed to retrieve outage status: \(error.localizedDescription)")
+                
+                result(.failure(.fetchError))
+            }
+        }
     }
     
     /// Fetches projected usage data (striped bar graph on mobile app)
@@ -395,14 +385,16 @@ extension NetworkUtility {
         }
         let accountNumber = accountDetail.accountNumber
         
-        MCSUsageService(useCache: false).fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
-            dLog("Usage Data Fetched.")
-            result(.success(billForecastResult))
-        }, onError: { usageError in
-            dLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
-            result(.failure(.fetchError))
-        })
-            .disposed(by: disposeBag)
+        UsageService.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber, useCache: false) { networkResult in
+            switch networkResult {
+            case .success(let billForecastResult):
+                dLog("Usage Data Fetched.")
+                result(.success(billForecastResult))
+            case .failure(let error):
+                dLog("Failed to retrieve usage data: \(error.localizedDescription)")
+                result(.failure(.fetchError))
+            }
+        }
     }
     
 }

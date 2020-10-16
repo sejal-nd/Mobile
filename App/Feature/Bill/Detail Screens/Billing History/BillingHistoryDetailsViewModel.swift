@@ -14,34 +14,32 @@ class BillingHistoryDetailsViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let paymentService: PaymentService
     private let accountDetail: AccountDetail
     private let billingHistoryItem: BillingHistoryItem
     
-    required init(paymentService: PaymentService,
-                  accountDetail: AccountDetail,
+    required init(accountDetail: AccountDetail,
                   billingHistoryItem: BillingHistoryItem) {
-        self.paymentService = paymentService
         self.accountDetail = accountDetail
         self.billingHistoryItem = billingHistoryItem
     }
     
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.cancelPayment(accountNumber: accountDetail.accountNumber,
-                                     paymentAmount: billingHistoryItem.amountPaid ?? 0,
-                                     paymentId: billingHistoryItem.paymentId!)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        
+        let cancelRequest = SchedulePaymentCancelRequest(paymentAmount: billingHistoryItem.amountPaid ?? 0)
+        
+        PaymentService.cancelSchduledPayment(accountNumber: accountDetail.accountNumber, paymentId: billingHistoryItem.paymentID ?? "", request: cancelRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { err in
-                onError(err.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     var paymentMethodAccessibilityLabel: String? {
         guard let paymentMethodType = billingHistoryItem.paymentMethodType,
-            let maskedAcctNum = billingHistoryItem.maskedWalletItemAccountNumber,
+            let maskedAcctNum = billingHistoryItem.maskedAccountNumber,
             !maskedAcctNum.isEmpty else { return nil }
         
         return paymentMethodType.accessibilityString +
@@ -54,7 +52,7 @@ class BillingHistoryDetailsViewModel {
     }
     
     var paymentMethodString: String? {
-        guard let maskedAcctNum = billingHistoryItem.maskedWalletItemAccountNumber,
+        guard let maskedAcctNum = billingHistoryItem.maskedAccountNumber,
             !maskedAcctNum.isEmpty else { return nil }
         return "**** \(maskedAcctNum)"
     }

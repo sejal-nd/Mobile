@@ -63,7 +63,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     private var lottieAnimationView: AnimationView?
     
     var delegate: ReportOutageDelegate?
-    let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService(), accountService: ServiceFactory.createAccountService())
+    let viewModel = ReportOutageViewModel()
     let opco = Environment.shared.opco
     
     let disposeBag = DisposeBag()

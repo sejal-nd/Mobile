@@ -178,9 +178,7 @@ class UsageViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = UsageViewModel(authService: ServiceFactory.createAuthenticationService(),
-                                   accountService: ServiceFactory.createAccountService(),
-                                   usageService: ServiceFactory.createUsageService(useCache: true))
+    let viewModel = UsageViewModel()
     
     var initialSelection: (barSelection: UsageViewModel.BarGraphSelection, isGas: Bool, isPreviousBill: Bool)?
     

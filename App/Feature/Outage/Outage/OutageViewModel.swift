@@ -1,5 +1,5 @@
 //
-//  NewOutageViewModel.swift
+//  OutageViewModel.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 7/15/19.
@@ -11,14 +11,8 @@ import RxSwift
 class OutageViewModel {
     let disposeBag = DisposeBag()
     
-    private var accountService: AccountService
-    private var outageService: OutageService
-    private var authService: AuthenticationService
-    
-    private var currentGetMaintenanceModeStatusDisposable: Disposable?
-    private var currentGetOutageStatusDisposable: Disposable?
-    
     var outageStatus: OutageStatus?
+    var isOutageStatusInactive = false
     var hasJustReportedOutage = false
 
     // Remote Config Values
@@ -28,77 +22,43 @@ class OutageViewModel {
     // Passed from unauthenticated experience
     var accountNumber: String?
     
-    required init(accountService: AccountService,
-                  outageService: OutageService,
-                  authService: AuthenticationService) {
-        self.accountService = accountService
-        self.outageService = outageService
-        self.authService = authService
-    }
-    
-    deinit {
-        currentGetMaintenanceModeStatusDisposable?.dispose()
-        currentGetOutageStatusDisposable?.dispose()
-    }
-    
     func fetchData(onSuccess: @escaping (OutageStatus) -> Void,
-                   onError: @escaping (ServiceError) -> Void,
+                   onError: @escaping (NetworkingError) -> Void,
                    onMaintenance: @escaping () -> Void) {
-        // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
-        currentGetMaintenanceModeStatusDisposable?.dispose()
-        currentGetOutageStatusDisposable?.dispose()
         
-        currentGetMaintenanceModeStatusDisposable = authService.getMaintenanceMode()
-            .subscribe(onNext: { [weak self] status in
-                if status.allStatus {
-                    onError(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
-                } else if status.outageStatus {
+        
+        AnonymousService.maintenanceMode { [weak self] result in
+            switch result {
+            case .success(let maintenanceMode):
+                if maintenanceMode.all {
+                    onError(NetworkingError.maintenanceMode)
+                } else if maintenanceMode.outage {
                     onMaintenance()
                 } else {
                     self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
                 }
-            }, onError: { [weak self] _ in
+            case .failure:
                 self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
-            })
+            }
+        }
     }
     
-    func getOutageStatus(onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (ServiceError) -> Void) {
-        // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
-        currentGetOutageStatusDisposable?.dispose()
-        
-        currentGetOutageStatusDisposable = outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { outageStatus in
+    func getOutageStatus(onSuccess: @escaping (OutageStatus) -> Void, onError: @escaping (NetworkingError) -> Void) {
+        OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumberString: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { result in
+            switch result {
+            case .success(let outageStatus):
                 self.outageStatus = outageStatus
-                onSuccess(outageStatus)
-            }, onError: { error in
-                guard let serviceError = error as? ServiceError else { return }
                 
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
-                    if let outageStatus = OutageStatus.from(["flagFinaled": true]) {
-                        self.outageStatus = outageStatus
-                        onSuccess(outageStatus)
-                    }
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
-                    if let outageStatus = OutageStatus.from(["flagNoPay": true]) {
-                        self.outageStatus = outageStatus
-                        onSuccess(outageStatus)
-                    }
-                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
-                    if let outageStatus = OutageStatus.from(["flagNonService": true]) {
-                        self.outageStatus = outageStatus
-                        onSuccess(outageStatus)
-                    }
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountInactive.rawValue {
-                    if var outageStatus = OutageStatus.from(["isAccountInactive": true]) {
-                        outageStatus.isAccountInactive = true
-                        self.outageStatus = outageStatus
-                        onSuccess(outageStatus)
-                    }
-                } else {
-                    onError(serviceError)
+                // todo i think i can refactor this out.
+                if outageStatus.isInactive {
+                    self.isOutageStatusInactive = true
                 }
-            })
+                
+                onSuccess(outageStatus)
+            case .failure(let error):
+                onError(error)
+            }
+        }
     }
     
     func trackPhoneNumberAnalytics(isAuthenticated: Bool, for URL: URL) {
@@ -139,15 +99,15 @@ class OutageViewModel {
     
     var reportedOutage: ReportedOutageResult? {
         if let accountNumber = accountNumber {
-            return outageService.getReportedOutageResult(accountNumber: accountNumber)
+            return OutageService.getReportedOutageResult(accountNumber: accountNumber)
         } else {
-            return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+            return OutageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         }
     }
     
     var outageReportedDateString: String {
-        if let reportedOutage = reportedOutage {
-            let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedOutage.reportedTime)
+        if let reportedOutage = reportedOutage, let reportedTime = reportedOutage.reportedTime {
+            let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedTime)
             return String(format: NSLocalizedString("Reported %@", comment: ""), timeString)
         }
 

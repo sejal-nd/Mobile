@@ -74,9 +74,9 @@ extension WatchSessionManager {
             #if os(iOS)
             if let needsUpdate = applicationContext[keychainKeys.askForUpdate] as? Bool, needsUpdate {
                 //check for valid jwt else clear and log out
-                if MCSApi.shared.isAuthenticated(), let authToken = MCSApi.shared.accessToken {
+                if AuthenticationService.isLoggedIn() {
+                    let authToken = UserSession.token
                     try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.authToken : authToken])
-                    
                 }
             }
             #elseif os(watchOS)

@@ -2,7 +2,7 @@
     "default": [
         {
             "walletItemId": "1234",
-            "maskedWalletItemAccountNumber": "*****0113-******1234",
+            "maskedAccountNumber": "*****0113-******1234",
             "nickName": "Test Bank",
             "paymentCategoryType": "CHECK",
             "paymentMethodType": "ACH",
@@ -11,7 +11,7 @@
         },
         {
             "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
-            "maskedWalletItemAccountNumber": "************1111",
+            "maskedAccountNumber": "************1111",
             "nickName": "Test Card",
             "paymentCategoryType": "CREDIT",
             "paymentMethodType": "VISA",
@@ -22,7 +22,7 @@
     "screenshots": [
         {
             "walletItemId": "1234",
-            "maskedWalletItemAccountNumber": "*****0113-******1234",
+            "maskedAccountNumber": "*****0113-******1234",
             "nickName": "Test Bank",
             "paymentCategoryType": "CHECK",
             "paymentMethodType": "ACH",
@@ -34,7 +34,7 @@
     "billCardWithDefaultPayment": [
         {
             "walletItemId": "45CBE19F37712E7F4E2FCFE27422A2410971F95F",
-            "maskedWalletItemAccountNumber": "*****0113-******1234",
+            "maskedAccountNumber": "*****0113-******1234",
             "nickName": "Test Bank",
             "paymentCategoryType": "CHECK",
             "paymentMethodType": "ACH",
@@ -45,7 +45,7 @@
     "billCardWithExpiredDefaultPayment": [
         {
             "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
-            "maskedWalletItemAccountNumber": "************1111",
+            "maskedAccountNumber": "************1111",
             "nickName": "Expired Card",
             "paymentCategoryType": "CREDIT",
             "paymentMethodType": "VISA",
@@ -56,7 +56,7 @@
     "billCardWithDefaultCcPayment": [
         {
             "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
-            "maskedWalletItemAccountNumber": "************1111",
+            "maskedAccountNumber": "************1111",
             "nickName": "Test Card",
             "paymentCategoryType": "CREDIT",
             "paymentMethodType": "VISA",
@@ -67,7 +67,7 @@
     "twoCardsNoDefault": [
         {
             "walletItemId": "1234",
-            "maskedWalletItemAccountNumber": "************1111",
+            "maskedAccountNumber": "************1111",
             "nickName": "Test Card 1",
             "paymentCategoryType": "CREDIT",
             "paymentMethodType": "VISA",
@@ -76,7 +76,7 @@
         },
         {
             "walletItemId": "4321",
-            "maskedWalletItemAccountNumber": "************2222",
+            "maskedAccountNumber": "************2222",
             "nickName": "Test Card 2",
             "paymentCategoryType": "CREDIT",
             "paymentMethodType": "VISA",

@@ -15,9 +15,6 @@ class TapToPayViewModel {
     
     private let kMaxUsernameChars = 255
     
-    private let walletService: WalletService
-    private let paymentService: PaymentService
-    
     let accountDetail: BehaviorRelay<AccountDetail>
     let billingHistoryItem: BillingHistoryItem?
     
@@ -43,18 +40,14 @@ class TapToPayViewModel {
     let emailAddress = BehaviorRelay(value: "")
     let phoneNumber = BehaviorRelay(value: "")
     
-    init(walletService: WalletService,
-         paymentService: PaymentService,
-         accountDetail: AccountDetail,
+    init(accountDetail: AccountDetail,
          billingHistoryItem: BillingHistoryItem?) {
-        self.walletService = walletService
-        self.paymentService = paymentService
         self.accountDetail = BehaviorRelay(value: accountDetail)
         self.billingHistoryItem = billingHistoryItem
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
-            paymentId.accept(billingHistoryItem.paymentId)
-            selectedWalletItem.accept(WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,
+            paymentId.accept(billingHistoryItem.paymentID)
+            selectedWalletItem.accept(WalletItem(maskedAccountNumber: billingHistoryItem.maskedAccountNumber,
                                                  nickName: NSLocalizedString("Current Payment Method", comment: ""),
                                                  paymentMethodType: billingHistoryItem.paymentMethodType,
                                                  isEditingItem: true))
@@ -77,10 +70,12 @@ class TapToPayViewModel {
     
     func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
         isFetching.accept(true)
-        walletService.fetchWalletItems()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] walletItems in
+        
+        WalletService.fetchWalletItems { [weak self] result in
+            switch result {
+            case .success(let walletItemContainer):
                 guard let self = self else { return }
+                let walletItems = walletItemContainer.walletItems
                 self.isFetching.accept(false)
                 
                 self.walletItems.accept(walletItems)
@@ -113,11 +108,12 @@ class TapToPayViewModel {
                 }
                 
                 onSuccess?()
-                }, onError: { [weak self] _ in
-                    self?.isFetching.accept(false)
-                    self?.isError.accept(true)
-                    onError?()
-            }).disposed(by: disposeBag)
+            case .failure:
+                self?.isFetching.accept(false)
+                self?.isError.accept(true)
+                onError?()
+            }
+        }
     }
     
     // MARK: - Payment Date Stuff
@@ -371,7 +367,7 @@ class TapToPayViewModel {
     
     private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return "" }
-        return "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
+        return "**** \(walletItem.maskedAccountNumber ?? "")"
     }
     
     private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {

@@ -23,9 +23,6 @@ enum PaperlessEBillAllAccountsCheckboxState {
 }
 
 class PaperlessEBillViewModel {
-    private var accountService: AccountService
-    private var billService: BillService
-    
     let initialAccountDetail: BehaviorRelay<AccountDetail>
     let accounts: BehaviorRelay<[Account]>
     
@@ -38,9 +35,7 @@ class PaperlessEBillViewModel {
     
     let bag = DisposeBag()
     
-    init(accountService: AccountService, billService: BillService, initialAccountDetail accountDetail: AccountDetail) {
-        self.accountService = accountService
-        self.billService = billService
+    init(initialAccountDetail accountDetail: AccountDetail) {
         self.initialAccountDetail = BehaviorRelay(value: accountDetail)
         
         switch Environment.shared.opco {
@@ -89,7 +84,7 @@ class PaperlessEBillViewModel {
                 if self.initialAccountDetail.value.accountNumber == account.accountNumber {
                     return Observable.just(self.initialAccountDetail.value)
                 }
-                return self.accountService.fetchAccountDetail(account: account)
+                return AccountService.rx.fetchAccountDetails(accountNumber: account.accountNumber)
                     .retry(2)
                     .map { $0 }
                     .catchErrorJustReturn(nil)
@@ -119,7 +114,7 @@ class PaperlessEBillViewModel {
     
     func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {
         let enrollObservables = accountsToEnroll.value.map {
-            billService.enrollPaperlessBilling(accountNumber: $0,
+            BillService.rx.enrollPaperlessBilling(accountNumber: $0,
                                                email: initialAccountDetail.value.customerInfo.emailAddress)
                 .do(onNext: {GoogleAnalytics.log(event: .eBillEnrollComplete)})
             }
@@ -129,7 +124,7 @@ class PaperlessEBillViewModel {
                 GoogleAnalytics.log(event: .eBillEnrollOffer) }
         
         let unenrollObservables = accountsToUnenroll.value.map {
-            billService.unenrollPaperlessBilling(accountNumber: $0)
+            BillService.rx.unenrollPaperlessBilling(accountNumber: $0)
                 .do(onNext: {GoogleAnalytics.log(event: .eBillUnEnrollComplete)})
             }
             .doEach { _ in

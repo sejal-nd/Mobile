@@ -325,16 +325,16 @@ class ReviewPaymentViewController: UIViewController {
         
         FirebaseUtility.logEvent(.reviewPaymentSubmit)
         
-        let handleError = { [weak self] (err: ServiceError) in
+        let handleError = { [weak self] (error: NetworkingError) in
             guard let self = self else { return }
             
             LoadingView.hide()
             let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
-                forError: err,
+                forError: error,
                 walletItem: self.viewModel.selectedWalletItem.value!,
                 okHandler: { [weak self] _ in
                     guard let self = self else { return }
-                    if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
+                    if error == .walletItemIdTimeout {
                         guard let navCtl = self.navigationController else { return }
                         
                         let makePaymentVC = UIStoryboard(name: "Payment", bundle: nil)
@@ -402,22 +402,7 @@ class ReviewPaymentViewController: UIViewController {
                     }
                     
                     self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-                }, onError: { [weak self] error in
-                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
-                        switch bankOrCard {
-                        case .bank:
-                            GoogleAnalytics.log(event: .eCheckError, dimensions: [
-                                .errorCode: error.serviceCode,
-                                .paymentTempWalletItem: temp ? "true" : "false"
-                                ])
-                        case .card:
-                            GoogleAnalytics.log(event: .cardError, dimensions: [
-                                .errorCode: error.serviceCode,
-                                .paymentTempWalletItem: temp ? "true" : "false"
-                                ])
-                        }
-                    }
-                    
+                }, onError: { error in
                     handleError(error)
             })
         }

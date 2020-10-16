@@ -27,8 +27,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     
     var analyticsSource: AnalyticsOutageSource!
     
-    let viewModel = UnauthenticatedOutageViewModel(authService: ServiceFactory.createAuthenticationService(),
-                                                   outageService: ServiceFactory.createOutageService())
+    let viewModel = UnauthenticatedOutageViewModel()
 
     let disposeBag = DisposeBag()
 

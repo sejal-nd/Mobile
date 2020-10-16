@@ -53,17 +53,7 @@ class HomeViewController: AccountPickerViewController {
     
     var alertLottieAnimation = AnimationView(name: "alert_icon")
     
-    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(),
-                                  weatherService: ServiceFactory.createWeatherService(),
-                                  walletService: ServiceFactory.createWalletService(),
-                                  paymentService: ServiceFactory.createPaymentService(),
-                                  usageService: ServiceFactory.createUsageService(useCache: true),
-                                  projectedBillUsageService: ServiceFactory.createUsageService(useCache: false),
-                                  authService: ServiceFactory.createAuthenticationService(),
-                                  outageService: ServiceFactory.createOutageService(),
-                                  alertsService: ServiceFactory.createAlertsService(),
-                                  appointmentService: ServiceFactory.createAppointmentService(),
-                                  gameService: ServiceFactory.createGameService())
+    let viewModel = HomeViewModel()
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -202,8 +192,10 @@ class HomeViewController: AccountPickerViewController {
                         let status: Appointment.Status
                         if appointments.count > 1 {
                             status = .scheduled
+                        } else if let unwrappedStatus = Appointment.Status(rawValue: appointment.status) {
+                            status = unwrappedStatus
                         } else {
-                            status = appointment.status
+                            status = .canceled
                         }
                         
                         switch status {
@@ -212,6 +204,8 @@ class HomeViewController: AccountPickerViewController {
                                               sender: (appointments))
                         case .canceled, .complete:
                             UIApplication.shared.openPhoneNumberIfCan(self.viewModel.appointmentCardViewModel.contactNumber)
+                        case .none:
+                            return
                         }
                     })
                     .disposed(by: appointmentCardView.disposeBag)
@@ -749,7 +743,7 @@ class HomeViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         case let (vc as TotalSavingsViewController, eventResults as [SERResult]):
             vc.eventResults = eventResults
-        case let (vc as UpdatesDetailViewController, update as OpcoUpdate):
+        case let (vc as UpdatesDetailViewController, update as Alert):
             vc.opcoUpdate = update
         case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):
             vc.viewModel.outageStatus = currentOutageStatus

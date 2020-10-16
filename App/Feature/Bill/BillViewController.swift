@@ -140,9 +140,7 @@ class BillViewController: AccountPickerViewController {
     
     var refreshControl: UIRefreshControl?
     
-    let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService(),
-                                  authService: ServiceFactory.createAuthenticationService(),
-                                  usageService: ServiceFactory.createUsageService(useCache: true))
+    let viewModel = BillViewModel()
 
     var shortcutItem = ShortcutItem.none
 
@@ -433,8 +431,8 @@ class BillViewController: AccountPickerViewController {
         usageBillImpactContentView.setInnerLoadingState(false)
     }
     
-    func showErrorState(error: ServiceError?) {
-        if error?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+    func showErrorState(error: NetworkingError?) {
+        if error == .noNetwork {
             scrollView?.isHidden = true
             noNetworkConnectionView.isHidden = false
         } else {
@@ -449,7 +447,7 @@ class BillViewController: AccountPickerViewController {
         prepaidView.isHidden = true
         maintenanceModeView.isHidden = true
         
-        if error?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+        if error == .blockAccount {
             genericErrorView.isHidden = true
             accountDisallowView.isHidden = false
         } else {

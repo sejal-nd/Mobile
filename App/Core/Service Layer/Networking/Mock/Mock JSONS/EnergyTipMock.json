@@ -1,0 +1,41 @@
+{
+    "default": {
+        "success": true,
+        "data": {
+            "tipName": "tip076_run_appliances_off_peak",
+            "title": "Minimize appliance use",
+            "score": 375.04257,
+            "group": "APPLIANCES",
+            "fuelType": [
+                "ELEC",
+                "GAS"
+            ],
+            "costCategory": "FREE",
+            "image": "tip076_run_appliances_off_peak.jpg",
+            "status": "NOT_YET",
+            "numParticipating": 68,
+            "season": [
+                "SPRING",
+                "WINTER",
+                "SUMMER",
+                "FALL"
+            ],
+            "why": "<p class=\"p1\">Appliances can account for approximately 13% of your summer energy use and warm up your home.</p>",
+            "shortBody": "<p>Appliances can account for more than 20% of your home's summer energy use and can unintentionally heat up your home. On Energy Savings Days, wait until after 7 pm to use major appliances.</p>\n<p>Hold off until evening to do the laundry. Customers who have done this have earned $5 on Energy Savings Days. If you have other appliances running, consider turning them off until nighttime.</p>\n<p>Talk to your household members to identify which appliances you'll delay using and make a plan you can all stick to.</p>",
+            "longBody": "<strong>Things to think about:</strong>\n<ul>\n<li>Delay major appliance use during Energy Savings Days.</li>\n<li>Try running the dishwasher or doing laundry after 7 p.m.</li>\n<li>Use the microwave instead of the oven.<span class=\"Apple-converted-space\"> </span></li>\n</ul>",
+            "savings": null,
+            "cost": null,
+            "rebate": null,
+            "payback": null,
+            "imagePathsBySize": {
+                "small": "https://dh9c80tglww64.cloudfront.net/asset_files/529458/tip076_run_appliances_off_peak.svg",
+                "large": "https://dh9c80tglww64.cloudfront.net/asset_files/529456/tip076_run_appliances_off_peak.svg",
+                "140x170": "https://dh9c80tglww64.cloudfront.net/asset_files/529452/tip076_run_appliances_off_peak.jpg",
+                "60x60": "https://dh9c80tglww64.cloudfront.net/asset_files/529447/tip076_run_appliances_off_peak.jpg",
+                "140x140": "https://dh9c80tglww64.cloudfront.net/asset_files/529450/tip076_run_appliances_off_peak.jpg",
+                "40x40": "https://dh9c80tglww64.cloudfront.net/asset_files/529446/tip076_run_appliances_off_peak.jpg",
+                "190x230": "https://dh9c80tglww64.cloudfront.net/asset_files/529454/tip076_run_appliances_off_peak.jpg"
+            }
+        }
+    }
+}

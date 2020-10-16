@@ -1,0 +1,12 @@
+{
+  "default": {
+    "payment_category_type": "Check",
+    "wallet_id": "1014280000",
+    "biller_id": "BGERegistered",
+    "masked_wallet_item_account_number": "2345",
+    "is_existing_account": true,
+    "wallet_item_id": "2B564A77625837324E475962766A546AA38A3270263AA7CEFF5DBADBC760079FCBDA26AAD2C64170C1B602E174FF73C5D2EF19BFF37D1053A6027451D49AEDAA3B58696378AAC8648B07C90B213C05E92B35AEA5BCC989440E0E34AD8FBD3A19",
+    "payment_amount": "368.60",
+    "payment_date": "2020-04-17T12:00:00"
+  }
+}

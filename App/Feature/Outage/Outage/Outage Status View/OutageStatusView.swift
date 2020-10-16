@@ -9,6 +9,14 @@
 import Lottie
 import UIKit
 
+enum OutageState {
+    case powerStatus(Bool)
+    case reported
+    case unavailable
+    case nonPayment
+    case inactive
+}
+
 protocol OutageStatusDelegate: class {
     func didPressButton(button: UIButton, outageState: OutageState)
 }
@@ -35,6 +43,7 @@ class OutageStatusView: UIView {
     private var lottieAnimationView: AnimationView?
     
     private var outageStatus: OutageStatus?
+    var isOutageStatusInactive = false
     private var reportedOutage: ReportedOutageResult?
     
     private var outageState: OutageState = .powerStatus(true) {
@@ -44,7 +53,7 @@ class OutageStatusView: UIView {
     }
     
     private var estimatedRestorationDateString: String {
-        if let statusETR = outageStatus?.etr {
+        if let statusETR = outageStatus?.estimatedRestorationDate {
             return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
         } else if let reportedOutage = reportedOutage,
            let reportedETR = reportedOutage.etr {
@@ -126,12 +135,36 @@ extension OutageStatusView {
                                 hasJustReported: Bool = false) {
         self.outageStatus = outageStatus
         self.reportedOutage = reportedResults
-        outageState = OutageStatus.getOutageState(outageStatus, reportedResults: reportedResults, hasJustReported: hasJustReported)
+        outageState = getOutageState(outageStatus, reportedResults: reportedResults, hasJustReported: hasJustReported)
         
         // Populate Data
         descriptionLabel.text = descriptionText
         detailLabel.text = estimatedRestorationDateString
     }
+    
+    private func getOutageState(_ outageStatus: OutageStatus,
+                               reportedResults: ReportedOutageResult? = nil,
+                               hasJustReported: Bool = false) -> OutageState {
+
+        if AccountsStore.shared.accounts != nil && !AccountsStore.shared.accounts.isEmpty {
+            let currentAccount = AccountsStore.shared.currentAccount
+
+            if isOutageStatusInactive {
+                return .inactive
+            } else if currentAccount.isFinaled || currentAccount.serviceType == nil {
+                return .unavailable
+            } else if hasJustReported {
+                return .reported
+            } else if outageStatus.isFinaled || outageStatus.isNonService {
+                return .unavailable
+            } else if outageStatus.isNoPay {
+                return .nonPayment
+            }
+        }
+
+        return .powerStatus(!outageStatus.isActiveOutage)
+    }
+    
     
     private func configureOutageState(_ outageState: OutageState) {
         switch outageState {

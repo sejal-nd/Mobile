@@ -1,0 +1,18 @@
+{
+    "default": {
+        "success": true,
+        "data": {
+            "meterInfo": {
+                "pingResult": false
+            }
+        }
+    },
+    "error": {
+        "success": false,
+        "meta": {
+            "code": "FN-METER-COMM",
+            "description": "Meter is not communicating.",
+            "context": "f0fd9d20-c6be-11ea-929b-9df9a3776994"
+        }
+    }
+}

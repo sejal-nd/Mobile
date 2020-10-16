@@ -15,7 +15,7 @@ fileprivate let jsTimeoutInterval: TimeInterval = 15 // 15 seconds
 class CommercialUsageViewModel {
     
     let accountDetail: Observable<AccountDetail>
-    let ssoData: Observable<SSOData>
+    let ssoData: Observable<SSODataResponse>
     let errorTrigger: PublishSubject<Error>
     let tabs = BehaviorRelay(value: Tab.allCases)
     let selectedIndex = BehaviorRelay(value: 0)
@@ -28,7 +28,7 @@ class CommercialUsageViewModel {
     let disposeBag = DisposeBag()
     
     init(accountDetail: Observable<AccountDetail>,
-         ssoData: Observable<SSOData>,
+         ssoData: Observable<SSODataResponse>,
          errorTrigger: PublishSubject<Error>) {
         self.accountDetail = accountDetail
         self.ssoData = ssoData
@@ -47,8 +47,8 @@ class CommercialUsageViewModel {
             .disposed(by: disposeBag)
         
         ssoData.asObservable().subscribe{ [weak self] data in
-            guard let nonResHostURLString = data.element?.nonResHost?.absoluteString,
-                let nonResJSPathURLString = data.element?.nonResJSPath?.absoluteString else {
+            guard let nonResHostURLString = data.element?.nonResHost,
+                   let nonResJSPathURLString = data.element?.nonResJSPath else {
                    return
             }
             let nonResJSPathString = nonResHostURLString + nonResJSPathURLString
@@ -61,13 +61,13 @@ class CommercialUsageViewModel {
         guard let self = self else { return "" }
         self.jsTimeout = Timer.scheduledTimer(withTimeInterval: jsTimeoutInterval, repeats: false, block: { _ in
             dLog("Did not observe expected redirect within \(jsTimeoutInterval) seconds")
-            self.errorTrigger.onNext(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
+            self.errorTrigger.onNext(NetworkingError.generic)
         })
 
         return String(format: jsString,
                       ssoData.samlResponse,
-                      ssoData.relayState.absoluteString,
-                      ssoData.ssoPostURL.absoluteString)
+                      ssoData.relayState,
+                      ssoData.ssoPostURL)
     }
     .asDriver(onErrorDriveWith: .empty())
     

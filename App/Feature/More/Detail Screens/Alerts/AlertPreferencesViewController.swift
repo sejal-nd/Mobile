@@ -25,9 +25,7 @@ class AlertPreferencesViewController: UIViewController {
         
     weak var delegate: AlertPreferencesViewControllerDelegate?
     
-    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(),
-                                              billService: ServiceFactory.createBillService(),
-                                              accountService: ServiceFactory.createAccountService())
+    let viewModel = AlertPreferencesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -92,9 +92,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = TapToPayViewModel(walletService: ServiceFactory.createWalletService(),
-                                      paymentService: ServiceFactory.createPaymentService(),
-                                      accountDetail: accountDetail,
+        viewModel = TapToPayViewModel(accountDetail: accountDetail,
                                       billingHistoryItem: billingHistoryItem)
         
         addCloseButton()

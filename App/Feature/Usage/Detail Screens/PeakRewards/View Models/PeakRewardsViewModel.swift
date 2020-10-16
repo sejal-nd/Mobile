@@ -14,7 +14,6 @@ class PeakRewardsViewModel {
     
     let disposeBag = DisposeBag()
     
-    let peakRewardsService: PeakRewardsService
     let accountDetail: AccountDetail
     
     var premiseNumber: String {
@@ -33,8 +32,7 @@ class PeakRewardsViewModel {
     let deviceScheduleChanged = PublishSubject<Void>()
     
     //MARK: - Init
-    init(peakRewardsService: PeakRewardsService, accountDetail: AccountDetail) {
-        self.peakRewardsService = peakRewardsService
+    init(accountDetail: AccountDetail) {
         self.accountDetail = accountDetail
     }
     
@@ -42,7 +40,7 @@ class PeakRewardsViewModel {
     private lazy var peakRewardsSummaryEvents: Observable<Event<PeakRewardsSummary>> = self.loadInitialData
         .flatMapLatest { [weak self] _ -> Observable<Event<PeakRewardsSummary>> in
             guard let self = self else { return .empty() }
-            return self.peakRewardsService
+            return PeakRewardsService.rx
                 .fetchPeakRewardsSummary(accountNumber: self.accountDetail.accountNumber,
                                          premiseNumber: self.premiseNumber)
                 .trackActivity(self.peakRewardsSummaryFetchTracker)
@@ -55,7 +53,7 @@ class PeakRewardsViewModel {
         .merge(self.loadInitialData, self.overridesUpdated)
         .flatMapLatest { [weak self] _ -> Observable<Event<[PeakRewardsOverride]>> in
             guard let self = self else { return .empty() }
-            return self.peakRewardsService
+            return PeakRewardsService.rx
                 .fetchPeakRewardsOverrides(accountNumber: self.accountDetail.accountNumber,
                                            premiseNumber: self.premiseNumber)
                 .trackActivity(self.peakRewardsSummaryFetchTracker)
@@ -88,9 +86,8 @@ class PeakRewardsViewModel {
                 return Observable.just(Event<SmartThermostatDeviceSchedule?>.next(nil))
             }
             
-            return self.peakRewardsService.fetchSmartThermostatSchedule(forDevice: device,
-                                                                        accountNumber: self.accountDetail.accountNumber,
-                                                                        premiseNumber: self.premiseNumber)
+            return PeakRewardsService.rx.fetchSmartThermostatSchedule(accountNumber: self.accountDetail.accountNumber,
+                                                                         premiseNumber: self.premiseNumber, deviceSerialNumber: device.serialNumber)
                 .map { $0 } // Type inference makes this optional
                 .trackActivity(self.deviceScheduleFetchTracker)
                 .materialize()

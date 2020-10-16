@@ -11,34 +11,26 @@ import RxCocoa
 
 class AccountLookupToolViewModel {
     let disposeBag = DisposeBag()
-    
-    private var authService: AuthenticationService
-    
+        
     let phoneNumber = BehaviorRelay(value: "")
     let identifierNumber = BehaviorRelay(value: "")
     
     var accountLookupResults = [AccountLookupResult]()
     let selectedAccount = BehaviorRelay<AccountLookupResult?>(value: nil)
     
-    required init(authService: AuthenticationService) {
-        self.authService = authService
-    }
-    
     func performSearch(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        authService.lookupAccount(phone: phoneNumber.value, identifier: identifierNumber.value)
-            .observeOn(MainScheduler.instance)
-            .asObservable()
-            .subscribe(onNext: { [weak self] accounts in
-                self?.accountLookupResults = accounts
+        let accountLookupRequest = AccountLookupRequest(phone: phoneNumber.value,
+        identifier: identifierNumber.value)
+        
+        AnonymousService.lookupAccount(request: accountLookupRequest) { [weak self] result in
+            switch result {
+            case .success(let accountLookupResults):
+                self?.accountLookupResults = accountLookupResults.accountLookupResults
                 onSuccess()
-            }, onError: { (error: Error) in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnNotFound.rawValue {
-                    onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
-                } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
-                }
-            }).disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.title, error.description)
+            }
+        }
     }
     
     private(set) lazy var searchButtonEnabled: Driver<Bool> = Driver.combineLatest(self.phoneNumberHasTenDigits,

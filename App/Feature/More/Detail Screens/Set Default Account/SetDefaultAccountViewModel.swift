@@ -10,17 +10,13 @@ import RxSwift
 import RxCocoa
 
 class SetDefaultAccountViewModel {
-    
-    let accountService: AccountService
-    
+        
     var initialDefaultAccount: Account? = nil
     let selectedAccount = BehaviorRelay<Account?>(value: nil)
 
     let bag = DisposeBag()
     
-    init(accountService: AccountService) {
-        self.accountService = accountService
-        
+    init() {
         if let currDefault = AccountsStore.shared.accounts.first(where: { $0.isDefault }) {
             initialDefaultAccount = currDefault
             selectedAccount.accept(currDefault)
@@ -29,20 +25,21 @@ class SetDefaultAccountViewModel {
     
     func setDefaultAccount(onSuccess: @escaping () -> Void,
                            onError: @escaping (String) -> Void) {
-        self.accountService.setDefaultAccount(account: selectedAccount.value!)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                self.accountService.fetchAccounts()
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { __SRD in
+        AccountService.setDefaultAccount(accountNumber: selectedAccount.value?.accountNumber ?? "") { defaultAccountResult in
+            switch defaultAccountResult {
+            case .success:
+                AccountService.fetchAccounts { accountsResult in
+                    switch accountsResult {
+                    case .success:
                         onSuccess()
-                    }, onError: { error in
-                        onError(error.localizedDescription)
-                    }).disposed(by: self.bag)
-            }, onError: { error in
-                onError(error.localizedDescription)
-            }).disposed(by: bag)
+                    case .failure(let error):
+                        onError(error.description)
+                    }
+                }
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     private(set) lazy var saveButtonEnabled: Driver<Bool> =

@@ -24,8 +24,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var loginFormView: UIView!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     @IBOutlet weak var passwordTextField: FloatLabelTextField!
-    @IBOutlet weak var keepMeSignedInCheckbox: Checkbox!
-    @IBOutlet weak var keepMeSignedInLabel: UILabel!
     @IBOutlet weak var signInButton: PrimaryButton!
     @IBOutlet weak var forgotUsernamePasswordButton: UIButton!
     @IBOutlet weak var eyeballButton: UIButton!
@@ -33,7 +31,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var biometricLabel: UILabel!
     @IBOutlet weak var biometricButton: ButtonControl!
 
-    var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), registrationService: ServiceFactory.createRegistrationService())
+    var viewModel = LoginViewModel()
     var viewAlreadyAppeared = false
     var forgotUsernamePopulated = false
     
@@ -84,9 +82,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         viewModel.biometricsEnabled.asDriver().not().drive(biometricButton.rx.isHidden).disposed(by: disposeBag)
 
-        keepMeSignedInLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        keepMeSignedInLabel.textColor = .deepGray
-        keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
         var placeholderText = "Username / Email Address"
         if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             placeholderText = "Email"
@@ -131,8 +126,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         // Update the text field appearance in case data binding autofilled text
         usernameTextField.textField.sendActions(for: .editingDidEnd)
 
-        keepMeSignedInCheckbox.rx.isChecked.bind(to: viewModel.keepMeSignedIn).disposed(by: disposeBag)
-
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver().drive(onNext: { [weak self] _ in
             self?.passwordTextField.textField.becomeFirstResponder()
         }).disposed(by: disposeBag)
@@ -159,10 +152,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         biometricLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         biometricLabel.text = biometricsString
         biometricButton.accessibilityLabel = biometricsString
-
-        keepMeSignedInLabel.isAccessibilityElement = false
-        keepMeSignedInCheckbox.isAccessibilityElement = true
-        keepMeSignedInCheckbox.accessibilityLabel = keepMeSignedInLabel.text
 
         viewModel.checkForMaintenance(onCompletion: { [weak self] in
             if let guid = UserDefaults.standard.string(forKey: UserDefaultKeys.accountVerificationDeepLinkGuid) {
@@ -253,11 +242,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                 return
             }
         }
-
-        FirebaseUtility.logEvent(.keepMeSignedIn, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: keepMeSignedInCheckbox.isChecked.description)])
         
         GoogleAnalytics.log(event: .loginOffer, dimensions: [
-            .keepMeSignedIn: keepMeSignedInCheckbox.isChecked ? "true" : "false",
             .fingerprintUsed: "disabled"
         ])
 
@@ -429,7 +415,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
     func launchMainApp(isStormMode: Bool, isBiometricAuthenticationAllowed: Bool = false) {
         FirebaseUtility.setUserProperty(.isBiometricsEnabled, value: viewModel.biometricsEnabled.value.description)
-        FirebaseUtility.setUserProperty(.isKeepMeSignedInEnabled, value: viewModel.keepMeSignedIn.value.description)
 
         FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
         GoogleAnalytics.log(event: .loginComplete)
@@ -467,8 +452,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             guard let self = self else { return }
 
             GoogleAnalytics.log(event: .loginOffer,
-                                 dimensions: [.keepMeSignedIn: self.keepMeSignedInCheckbox.isChecked ? "true":"false",
-                                              .fingerprintUsed: "enabled"])
+                                 dimensions: [.fingerprintUsed: "enabled"])
 
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))

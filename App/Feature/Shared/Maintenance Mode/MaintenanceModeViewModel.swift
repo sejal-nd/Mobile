@@ -12,17 +12,15 @@ import RxCocoa
 class MaintenanceModeViewModel{
     let disposeBag = DisposeBag()
 
-    private var maintenance: Maintenance?
-    private var authService: AuthenticationService
+    private var maintenance: MaintenanceMode?
     
-    init(authService: AuthenticationService, maintenance: Maintenance?){
-        self.authService = authService
+    init(maintenance: MaintenanceMode?){
         self.maintenance = maintenance
     }
     
     var headerLabelText: String {
         let fallbackText = String.localizedStringWithFormat("The %@ App is currently unavailable due to maintenance.", Environment.shared.opco.displayString)
-        return maintenance?.allMessage ?? fallbackText
+        return maintenance?.message ?? fallbackText
     }
     
     let labelBody: NSAttributedString = {
@@ -132,14 +130,14 @@ class MaintenanceModeViewModel{
     }()
     
     func doReload(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        authService.getMaintenanceMode(postNotification: false)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] maintenanceInfo in
-                self?.maintenance = maintenanceInfo
-                onSuccess(maintenanceInfo.allStatus)
-            }, onError: { error in
-                _ = error as! ServiceError
-            }).disposed(by: disposeBag)
+        AnonymousService.maintenanceMode { [weak self] (result: Result<MaintenanceMode, Error>) in
+            switch result {
+            case .success(let maintenanceMode):
+                self?.maintenance = maintenanceMode
+            case .failure:
+                break
+            }
+        }
     }
 
 }

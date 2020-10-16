@@ -12,11 +12,7 @@ import RxCocoa
 class AlertPreferencesViewModel {
     
     let disposeBag = DisposeBag()
-    
-    private let accountService: AccountService
-    private let alertsService: AlertsService
-    private let billService: BillService
-    
+        
     var accountDetail: AccountDetail! // Passed from AlertsViewController
     
     var sections: [(String, [AlertPreferencesOptions])] = []
@@ -64,12 +60,6 @@ class AlertPreferencesViewModel {
     }
     
     var devicePushNotificationsEnabled = false
-    
-    required init(alertsService: AlertsService, billService: BillService, accountService: AccountService) {
-        self.alertsService = alertsService
-        self.billService = billService
-        self.accountService = accountService
-    }
     
     func toggleSectionVisibility(_ section: Int) {
         if !shownSections.contains(section) {
@@ -230,7 +220,7 @@ class AlertPreferencesViewModel {
     }
     
     func fetchAccountDetail() -> Observable<Void> {
-        return accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount, alertPreferenceEligibilities: true)
+        return AccountService.rx.fetchAccountDetails(alertPreferenceEligibilities: true)
             .observeOn(MainScheduler.instance)
             .do(onNext: { [weak self] accountDetail in
                 self?.accountDetail = accountDetail
@@ -239,8 +229,7 @@ class AlertPreferencesViewModel {
     }
     
     private func fetchAlertPreferences() -> Observable<Void> {
-        return alertsService
-            .fetchAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        return AlertService.rx.fetchAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .do(onNext: { [weak self] alertPrefs in
                 guard let self = self else { return }
                 
@@ -279,8 +268,7 @@ class AlertPreferencesViewModel {
     }
     
     private func fetchAlertLanguage() -> Observable<Void> {
-        return alertsService
-            .fetchAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        return AlertService.rx.fetchAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .do(onNext: { [weak self] language in
                 self?.initialEnglishValue = language == "English"
                 self?.english.accept(language == "English")
@@ -404,20 +392,16 @@ class AlertPreferencesViewModel {
                                                 budgetBilling: budgetBilling.value,
                                                 appointmentTracking: appointmentTracking.value,
                                                 forYourInfo: forYourInfo.value)
-        return alertsService
-            .setAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-                                 alertPreferences: alertPreferences)
+        let alertPreferenceRequest = AlertPreferencesRequest(alertPreferences: alertPreferences)
+        return AlertService.rx.setAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber, request: alertPreferenceRequest)
     }
     
     private func saveAlertLanguage() -> Observable<Void> {
-        return alertsService
-            .setAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-                              english: english.value)
+        return AlertService.rx.setAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber, request: AlertLanguageRequest(language: english.value ? "English" : "Spanish"))
     }
     
     private func enrollPaperlessEBill() -> Observable<Void> {
-        return billService
-            .enrollPaperlessBilling(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+        return BillService.rx.enrollPaperlessBilling(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
                                     email: accountDetail.customerInfo.emailAddress)
     }
     

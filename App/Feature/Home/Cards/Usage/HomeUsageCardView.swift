@@ -530,7 +530,7 @@ class HomeUsageCardView: UIView {
     }
     
     private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = self.viewModel.billComparisonDriver.map {
-        guard let compared = $0.compared else { return .deepGray }
+        guard let compared = $0.comparedBill else { return .deepGray }
         return compared.charges < 0 ? .successGreenText : .deepGray
     }
     
@@ -539,7 +539,7 @@ class HomeUsageCardView: UIView {
     }
     
     private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = self.viewModel.billComparisonDriver.map {
-        guard let reference = $0.reference else { return .deepGray }
+        guard let reference = $0.referenceBill else { return .deepGray }
         return reference.charges < 0 ? .successGreenText : .deepGray
     }
 

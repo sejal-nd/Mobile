@@ -14,46 +14,31 @@ class StormModeBillViewModel {
     let fetchData = PublishSubject<Void>()
     let fetchDataObservable: Observable<Void>
 
-    private let accountService: AccountService
-    private let walletService: WalletService
-    private let paymentService: PaymentService
-    private let authService: AuthenticationService
-
     private let fetchTracker = ActivityTracker()
 
-    required init(accountService: AccountService,
-                  walletService: WalletService,
-                  paymentService: PaymentService,
-                  authService: AuthenticationService) {
+    required init() {
         self.fetchDataObservable = fetchData.share()
-        self.accountService = accountService
-        self.walletService = walletService
-        self.paymentService = paymentService
-        self.authService = authService
     }
 
     private(set) lazy var billCardViewModel =
         HomeBillCardViewModel(fetchData: fetchDataObservable,
-                              fetchDataMMEvents: fetchDataObservable.mapTo(Maintenance.from([:])!).materialize(),
+                              fetchDataMMEvents: fetchDataObservable.mapTo(MaintenanceMode()).materialize(),
                               accountDetailEvents: accountDetailEvents,
                               scheduledPaymentEvents: scheduledPaymentEvents,
-                              walletService: walletService,
-                              paymentService: paymentService,
-                              authService: authService,
-                              fetchTracker: fetchTracker)
+                                          fetchTracker: fetchTracker)
 
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = fetchData
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                         requestSelector: { [weak self] _ in
                             guard let self = self else { return .empty() }
-                            return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                            return AccountService.rx.fetchAccountDetails()
                         })
 
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = fetchData
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                         requestSelector: { [weak self] _ in
                             guard let this = self else { return .empty() }
-                            return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
+                            return AccountService.rx.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
                         })
 
     private lazy var accountDetail = accountDetailEvents.elements()
@@ -95,10 +80,10 @@ class StormModeBillViewModel {
         .asDriver(onErrorDriveWith: .empty())
 
     private lazy var accountDetailNoNetwork: Observable<Bool> = accountDetailEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0.error as? NetworkingError) == .noNetwork }
 
     private lazy var recentPaymentsNoNetwork: Observable<Bool> = scheduledPaymentEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0.error as? NetworkingError) == .noNetwork }
 
     private(set) lazy var showNoNetworkConnectionView: Driver<Bool> = Observable
         .combineLatest(accountDetailNoNetwork, recentPaymentsNoNetwork) { $0 || $1 }

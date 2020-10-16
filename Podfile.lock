@@ -71,9 +71,6 @@ PODS:
   - GoogleUtilities/UserDefaults (5.5.0):
     - GoogleUtilities/Logger
   - lottie-ios (3.1.5)
-  - ModelMapper (10.0.0):
-    - ModelMapper/Core (= 10.0.0)
-  - ModelMapper/Core (10.0.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -110,7 +107,6 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - GoogleAnalytics (= 3.17.0)
   - lottie-ios (= 3.1.5)
-  - ModelMapper (= 10.0.0)
   - PDTSimpleCalendar (= 0.9.1)
   - ReachabilitySwift (= 4.3.1)
   - RxSwift (= 5.1.0)
@@ -136,7 +132,6 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - lottie-ios
-    - ModelMapper
     - nanopb
     - PDTSimpleCalendar
     - Protobuf
@@ -164,7 +159,6 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
-  ModelMapper: a8dbf2a2003bf626627b9fe7c9a22b3405a30404
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
@@ -179,6 +173,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: a253308b2ed6866ea73499ce30ac2204c89664d2
+PODFILE CHECKSUM: 5055a2bf8e1e49a0d0fc5122a701bff88aa079c3
 
 COCOAPODS: 1.9.3

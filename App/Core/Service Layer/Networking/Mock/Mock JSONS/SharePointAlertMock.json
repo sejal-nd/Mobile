@@ -1,0 +1,2108 @@
+{
+  "default": {
+    "d": {
+      "results": [
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)",
+            "etag": "\"43\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(20)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 20,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "System Maintenance",
+          "Message": "In preparation for the summer storm season, BGE will be validating storm-related messaging and services this evening from 7:30 p.m. to 8:30 p.m. \n\nBGE.com and My Account services will remain available during this time. Thank you. ",
+          "Enable": false,
+          "CustomerType": "Banner",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 20,
+          "Modified": "2019-05-21T00:33:24Z",
+          "Created": "2018-03-02T19:50:06Z",
+          "AuthorId": 113,
+          "EditorId": 62,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "30c545d4-629b-45f4-8352-a320b040cc5d"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)",
+            "etag": "\"6\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(22)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 22,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Outage Reporting System",
+          "Message": "We are currently performing maintenance to our outage system and outage map. If you experience a power outage, you can report outages and check status at 1.877.778.2222.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 22,
+          "Modified": "2018-04-28T21:12:17Z",
+          "Created": "2018-03-23T23:53:46Z",
+          "AuthorId": 62,
+          "EditorId": 65,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "69826bb7-601c-478e-b850-f4c334402e6d"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)",
+            "etag": "\"3\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(23)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 23,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Flood",
+          "Message": "BGE is working with state and local emergency personnel in the aftermath of recent damaging flooding. Severe infrastructure damage, especially in the Ellicott City area, impacts our ability to restore power and natural gas service to some customers. If you are experiencing an extended service outage, you can contact BGE at 1.800.685.0123 for information about your account.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 23,
+          "Modified": "2018-06-04T18:43:42Z",
+          "Created": "2018-05-28T15:25:25Z",
+          "AuthorId": 267,
+          "EditorId": 267,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "f83bc5a8-b184-4c52-a513-9658fb5de505"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)",
+            "etag": "\"17\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(25)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 25,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Energy Savings Day",
+          "Message": "The credits you may have earned during the Energy Savings Day on Friday, July 19 will be available on BGE.com/MyAccount or the BGE app by the evening of Monday, July 22. Credits from the July 17th Energy Savings Day are visible now.",
+          "Enable": false,
+          "CustomerType": "Banner",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 25,
+          "Modified": "2019-07-22T23:25:12Z",
+          "Created": "2018-07-26T17:38:50Z",
+          "AuthorId": 267,
+          "EditorId": 113,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "b18036cd-1a8a-44a4-bbe1-8310c57acf43"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)",
+            "etag": "\"10\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(26)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 26,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Customer Alert",
+          "Message": "IMPORTANT NOTICE: If you received a message from BGE regarding an outage due to emergency repairs today that would start at 10:00 AM and last for approximately four hours, please note that this only applies to customers in the Arnold area of Annapolis and Glen Burnie. This message was sent in error to additional customers who are not impacted by this work. We apologize for this error and are working to ensure this does not occur again. ",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 26,
+          "Modified": "2019-12-20T13:42:49Z",
+          "Created": "2018-08-26T14:42:02Z",
+          "AuthorId": 267,
+          "EditorId": 394,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "a7bac2c4-0dcf-4d13-859b-b74e9edcfcda"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(27)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 27,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "​The Business office will be closed",
+          "Message": "The Business office will be closed today at 11:15am due to the Columbus day holiday. We will re-open at 7:00am tomorrow morning.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 27,
+          "Modified": "2018-10-09T10:31:38Z",
+          "Created": "2018-10-08T15:21:16Z",
+          "AuthorId": 267,
+          "EditorId": 267,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "17e04786-640d-4921-b193-b7aebb990442"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)",
+            "etag": "\"7\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(28)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 28,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Advance MP3 ",
+          "Message": "Our outage reporting system will be unavailable between 8 a.m. and 2 p.m. on Sunday, November 11. During this time, you can report your outage online or via mobile app, text message or social media. \n\nUnfortunately, we will not be able to provide outage status information during this period and the outage map will not update. \n\nThank you for your understanding as we complete this maintenance.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 28,
+          "Modified": "2018-11-11T17:55:41Z",
+          "Created": "2018-10-27T12:57:51Z",
+          "AuthorId": 267,
+          "EditorId": 65,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "ce520d7b-ae34-40d1-88c9-0fb2a97c4d34"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)",
+            "etag": "\"33\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(29)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 29,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Storm ",
+          "Message": "We understand that a power outage can make this already challenging time even more difficult. When adverse weather affects our service area, BGE is prepared. If you experience a power outage or need to report a downed wire, please call 877.778.2222. BGE crews are following CDC guidance for social distancing and personal protection while working as safely and quickly as possible to restore power. BGE asks all customers, including those with smart meters, to report their outage. Outages may also be reported online and by texting OUT to MYBGE (69243).",
+          "Enable": false,
+          "CustomerType": "Banner",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 29,
+          "Modified": "2020-04-22T10:58:38Z",
+          "Created": "2018-11-16T01:17:13Z",
+          "AuthorId": 62,
+          "EditorId": 409,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "7368582d-35f9-4972-8f96-c5af12663c56"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(30)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 30,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "System May Be Unavailable",
+          "Message": "BGE.com and our mobile app may be temporarily unavailable while we perform maintenance from 8:30 p.m. on Saturday, November 17 through 4 a.m. on Sunday, November 18.  We apologize for any inconvenience during this period.  As always, you can contact BGE at 1.800.685.0123 with any gas or electric emergencies. Thank you.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 30,
+          "Modified": "2018-11-16T21:41:38Z",
+          "Created": "2018-11-16T21:40:55Z",
+          "AuthorId": 62,
+          "EditorId": 62,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "a301e78f-50ab-4d69-9dba-e3d7122f7a1f"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(31)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 31,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "System May Be Unavailable",
+          "Message": "BGE.com and our mobile app may be temporarily unavailable while we perform maintenance from 8:30 p.m. on Saturday, November 17 through 4 a.m. on Sunday, November 18.  We apologize for any inconvenience during this period.  As always, you can contact BGE at 1.800.685.0123 with any gas or electric emergencies. Thank you.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 31,
+          "Modified": "2018-11-18T11:16:50Z",
+          "Created": "2018-11-18T01:26:22Z",
+          "AuthorId": 267,
+          "EditorId": 267,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "0e9d89d2-c770-4217-a1e5-09cc09abde53"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)",
+            "etag": "\"4\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(32)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 32,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Maintenance",
+          "Message": "Upcoming Maintenance: To deliver a better customer experience, a system upgrade will take place starting at 8 p.m. on March 1st. MyAccount on BGE.com will not be available from 8 p.m. on March 1st to 6 a.m. on March 2nd. We apologize for any inconvenience it may cause.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 32,
+          "Modified": "2019-03-27T14:28:29Z",
+          "Created": "2019-01-09T20:06:40Z",
+          "AuthorId": 267,
+          "EditorId": 62,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "ce7cb3bf-79ed-4d2b-9bf8-6705a5cd6750"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(33)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 33,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Customer Usage Data is Currently Unavailable",
+          "Message": "Customers are currently unable to view usage details on BGE.com. Our technical team has been notified and working to resolve the issue as quickly as possible. We apologize for the inconvenience. ",
+          "Enable": false,
+          "CustomerType": "Banner",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 33,
+          "Modified": "2019-01-22T18:30:37Z",
+          "Created": "2019-01-16T19:23:12Z",
+          "AuthorId": 267,
+          "EditorId": 267,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "f3f77f2a-f4ae-421a-8a38-d9a4cf95c078"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(34)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 34,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "MP3",
+          "Message": "Upcoming Maintenance: My Account services will be unavailable from  8 p.m. Thursday, January 24 to 2 a.m. Friday, January 25 due to system upgrades. We apologize for any inconvenience this may cause. Thank you for your patience.  ",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 34,
+          "Modified": "2019-02-04T01:38:28Z",
+          "Created": "2019-01-24T22:47:23Z",
+          "AuthorId": 267,
+          "EditorId": 113,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "a5a507de-eaa0-4bc7-81cf-7571b3167445"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(35)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 35,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "BGE Mobilized for Winter Storm Petra",
+          "Message": "When adverse weather affects our service area, BGE is prepared. If you experience a power outage or need to report a downed wire, please call 877.778.2222. BGE asks all customers, including those with smart meters, to report their outage. Outages may also be reported through the app or by texting OUT to MYBGE (69243). BGE crews work as safely and quickly as possible to restore power.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 35,
+          "Modified": "2019-02-21T14:07:49Z",
+          "Created": "2019-02-20T17:28:25Z",
+          "AuthorId": 267,
+          "EditorId": 267,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "f3acd1ed-acf3-4a1a-83d1-3aa2e7b54cee"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(36)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 36,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "High Winds and Gusts in Maryland",
+          "Message": "When adverse weather affects our service area, BGE is prepared. If you experience a power outage or need to report a downed wire, please call 877.778.2222. BGE asks all customers, including those with smart meters, to report their outage. Outages may also be reported by texting OUT to MYBGE (69243). BGE crews work as safely and quickly as possible to restore power. ",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 36,
+          "Modified": "2019-02-26T01:26:04Z",
+          "Created": "2019-02-25T01:52:12Z",
+          "AuthorId": 267,
+          "EditorId": 267,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "5f3f5797-3c70-46f7-be0f-b489826baf1e"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)",
+            "etag": "\"10\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(38)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 38,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Payments Unavailable",
+          "Message": "​We are currently experiencing technical issues with processing online payments. We apologize for the inconvenience.​ Please check back later or use our external payment tool (https://ipn2.paymentus.com/rotp/bge) to make a one-time payment. Thank you for your patience.",
+          "Enable": false,
+          "CustomerType": "Banner",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 38,
+          "Modified": "2019-09-11T14:43:36Z",
+          "Created": "2019-03-29T12:49:52Z",
+          "AuthorId": 267,
+          "EditorId": 65,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "bf85d8a5-47e8-4bca-b97d-1ec629114a7d"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)",
+            "etag": "\"3\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(39)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 39,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "Maintenaice",
+          "Message": "MyAccount on ‘BGE’.com will not be available between 8:00 p.m. on Friday, March 29 to 5:30 a.m. on Saturday, March 30 due to system upgrades. We apologize for any inconvenience this may cause. Thank you for your patience   ",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 39,
+          "Modified": "2019-04-08T16:54:06Z",
+          "Created": "2019-03-29T12:50:49Z",
+          "AuthorId": 267,
+          "EditorId": 267,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "ac56179d-7b7d-47b4-bf77-8f05f8b976bf"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)",
+            "etag": "\"3\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(40)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 40,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "App Maintenance",
+          "Message": "In preparation for the summer storm season, BGE will be validating storm-related messaging and services this evening from 7:30 p.m. to 8:30 p.m. \n\nBGE.com and My Account services will remain available during this time. Thank you. ",
+          "Enable": false,
+          "CustomerType": "Storm",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 40,
+          "Modified": "2019-05-21T00:33:36Z",
+          "Created": "2019-05-20T23:53:23Z",
+          "AuthorId": 62,
+          "EditorId": 62,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "482154ca-5406-4f90-86aa-559f6df9ffbf"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)",
+            "etag": "\"4\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(41)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 41,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "BGE Mobilized due to Storm Activity ",
+          "Message": "When adverse weather affects our service area, BGE is prepared. If you experience a power outage or need to report a downed wire, please call 877.778.2222. BGE asks all customers, including those with smart meters, to report their outage. Outages may also be reported by texting OUT to MYBGE (69243). BGE crews work as safely and quickly as possible to restore power.\n",
+          "Enable": false,
+          "CustomerType": "Storm",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 41,
+          "Modified": "2019-07-04T13:57:28Z",
+          "Created": "2019-05-23T20:16:05Z",
+          "AuthorId": 267,
+          "EditorId": 65,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "15175960-a6db-4d9c-87da-a3f4f3f0fbc5"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)",
+            "etag": "\"4\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(42)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 42,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "When adverse weather affects our service area, BGE is prepared.",
+          "Message": "If you experience a power outage or need to report a downed wire, please call 877.778.2222. BGE asks all customers, including those with smart meters, to report their outage. Outages may also be reported by texting OUT to MYBGE (69243). BGE crews work as safely and quickly as possible to restore power.",
+          "Enable": false,
+          "CustomerType": "Storm",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 42,
+          "Modified": "2019-08-23T11:13:02Z",
+          "Created": "2019-05-29T17:35:38Z",
+          "AuthorId": 267,
+          "EditorId": 61,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "6f09d564-5f4b-48cb-ab18-09b12a14c40e"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(43)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 43,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "CASE NO. 9610 - A Prehearing Conference ",
+          "Message": "CASE NO. 9610 - A Prehearing Conference has been scheduled for June 27, 2019, beginning at 1:00 p.m., at the Maryland Public Service Commission, Frank O. Heintz Hearing Room, William Donald Schaefer Tower, 16th floor, 6 St. Paul Street, Baltimore, Maryland. The purpose of the hearing is to set a procedural schedule regarding BGE’s application for an increase in electric and gas base rates, consider any petitions to intervene that have been filed, and consider any other preliminary matters requested by the parties.  Petitions to Intervene shall be filed with Commission by June 25, 2019.  Additional information is available.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 43,
+          "Modified": "2019-07-01T14:27:46Z",
+          "Created": "2019-05-30T15:20:20Z",
+          "AuthorId": 267,
+          "EditorId": 62,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "d9ab6c05-17dd-44b9-9544-735838e67e8c"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(44)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 44,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "​The BGE customer service call center is closed",
+          "Message": "The BGE customer service call center is closed for the remainder of today and will resume normal business hours starting at 7 AM tomorrow morning.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 44,
+          "Modified": "2019-07-01T14:28:00Z",
+          "Created": "2019-06-26T17:04:19Z",
+          "AuthorId": 267,
+          "EditorId": 62,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "4381fa65-4c56-4d21-b676-5add9275da45"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)",
+            "etag": "\"2\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(45)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 45,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "MyAccount on BGE.com will not be available",
+          "Message": "MyAccount on BGE.com will not be available between 5:00 a.m. on Saturday, June 29 to 12:00 p.m. on Saturday, June 29 due to system upgrades. We apologize for any inconvenience this may cause. Thank you for your patience.",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 45,
+          "Modified": "2019-06-29T09:20:45Z",
+          "Created": "2019-06-28T19:42:38Z",
+          "AuthorId": 267,
+          "EditorId": 62,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "bea3be42-c0d0-400c-8612-f193ec733bc7"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)",
+            "etag": "\"7\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(47)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 47,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "​A PeakRewards emergency cycling event is currently taking place.",
+          "Message": "If you are enrolled in the PeakRewards Air Conditioning program, your air conditioner will be cycled up to your chosen cycling level (50%, 75% or 100%) for the duration of the event. If you are enrolled in the PeakRewards Electric Water Heater program, electricity to your water heater will be off during the event.  You cannot override your participation during an emergency event or during the transition after an emergency event. BGE is unable to predict when the event will end.\n\nIf you have a medical or health condition or require assistance, please call the PeakRewards hotline at 888-309-PEAK (7325). For more information, visit BGEsavings.com/PeakRewardsEvent.​\n",
+          "Enable": false,
+          "CustomerType": "Banner",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 47,
+          "Modified": "2019-10-02T20:10:16Z",
+          "Created": "2019-10-02T16:46:08Z",
+          "AuthorId": 61,
+          "EditorId": 61,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "daf8d1c9-105d-4451-bf55-52dbcbda2504"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)",
+            "etag": "\"1\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(48)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 48,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "SER Savings Data",
+          "Message": "Energy savings data is currently unavailable in the BGE mobile app. Log into your bge.com My Account to view historical information. ",
+          "Enable": true,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 48,
+          "Modified": "2019-11-14T19:49:08Z",
+          "Created": "2019-11-14T19:49:08Z",
+          "AuthorId": 113,
+          "EditorId": 113,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "bd249937-7ccf-4f7f-af85-3d59480f5220"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)",
+            "etag": "\"5\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(49)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 49,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "CASE NO. 9500(n) - NOTICE OF HEARING",
+          "Message": "CASE NO. 9500(n) - NOTICE OF HEARING - The hearing is RESCHEDULED for Monday, April 13, 2020, beginning at 1:00 p.m., concerning BGE’s purchased gas adjustment proceeding which examines changes to natural gas costs for the period November 2018 through October 2019. Hearing topics may include: the Maryland Public Service Commission audit of gas costs BGE incurred during this period; and the price of gas charged by BGE to customers, based upon economic forces in the gas market.  The hearing will be conducted through Google Hangouts for participants and will be live streamed for public viewing through the following link: stream.meet.google.com/stream/9973aa3d-12f6-4c64-bdf4-f8de331e355d (Updated 4/8/2020)",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 49,
+          "Modified": "2020-04-21T17:59:17Z",
+          "Created": "2020-03-05T03:20:25Z",
+          "AuthorId": 389,
+          "EditorId": 409,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "006f0016-e40e-47d9-9f52-538f983c9156"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)",
+            "etag": "\"5\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(50)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 50,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "COVID-19 Pandemic",
+          "Message": "We are closely monitoring the COVID-19 pandemic, and we are here to help customers through temporary or extended financial hardship. \n\nEstamos monitoreando de cerca la pandemia de COVID-19, y estamos aquí para ayudar a los clientes a través de dificultades financieras temporeras o extendidas. ",
+          "Enable": true,
+          "CustomerType": "Banner",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 50,
+          "Modified": "2020-04-22T10:58:57Z",
+          "Created": "2020-03-13T18:17:01Z",
+          "AuthorId": 389,
+          "EditorId": 409,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "48046a2e-1e09-4f79-a446-1ba9e89ff1e7"
+        },
+        {
+          "__metadata": {
+            "id": "Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)",
+            "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)",
+            "etag": "\"5\"",
+            "type": "SP.Data.GlobalAlertListItem"
+          },
+          "FirstUniqueAncestorSecurableObject": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/FirstUniqueAncestorSecurableObject"
+            }
+          },
+          "RoleAssignments": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/RoleAssignments"
+            }
+          },
+          "AttachmentFiles": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/AttachmentFiles"
+            }
+          },
+          "ContentType": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/ContentType"
+            }
+          },
+          "FieldValuesAsHtml": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/FieldValuesAsHtml"
+            }
+          },
+          "FieldValuesAsText": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/FieldValuesAsText"
+            }
+          },
+          "FieldValuesForEdit": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/FieldValuesForEdit"
+            }
+          },
+          "File": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/File"
+            }
+          },
+          "Folder": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/Folder"
+            }
+          },
+          "ParentList": {
+            "__deferred": {
+              "uri": "https://www.bge.com/_api/Web/Lists(guid'998437c9-d747-4e19-ab28-219275cdd636')/Items(51)/ParentList"
+            }
+          },
+          "FileSystemObjectType": 0,
+          "Id": 51,
+          "ContentTypeId": "0x0100D718E11B8C158C439CF746B2D2360DBA",
+          "Title": "CASE NO. 9636 ",
+          "Message": "CASE NO. 9636 - A Prehearing Conference has been scheduled for April 21, 2020, beginning at 9:00 a.m. The purpose of the conference is to set a procedural schedule regarding BGE’s application for a Certificate of Public Convenience and Necessity for authority to rebuild a portion of an existing 115 kV electric transmission line in northern Harford County, Maryland, consider any petitions to intervene that have been filed, and consider any other preliminary matters.  Petitions to Intervene shall be filed with Commission on or before April 17, 2020.  Update 4/1/2020: The Prehearing Conference will be conducted through Zoom for participants and others may watch a live stream on the Public Utility Law Judge’s You Tube channel available through the following link: https://www.youtube.com/channel/UCYK5mu0UMAUOqSQowRq2TIQ/",
+          "Enable": false,
+          "CustomerType": "All",
+          "bxplId": null,
+          "al2c": null,
+          "ID": 51,
+          "Modified": "2020-04-22T12:34:57Z",
+          "Created": "2020-03-21T12:20:04Z",
+          "AuthorId": 389,
+          "EditorId": 389,
+          "OData__UIVersionString": "1.0",
+          "Attachments": false,
+          "GUID": "c6194e2a-010e-4173-bdd7-ddaef35270b9"
+        }
+      ]
+    }
+  }
+}

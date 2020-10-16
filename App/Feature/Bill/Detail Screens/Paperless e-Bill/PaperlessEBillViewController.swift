@@ -48,9 +48,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     var accountDetail: AccountDetail!
     
     lazy var viewModel: PaperlessEBillViewModel = {
-        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(),
-                                billService: ServiceFactory.createBillService(),
-                                initialAccountDetail: self.accountDetail)
+        PaperlessEBillViewModel(initialAccountDetail: self.accountDetail)
     }()
     
     weak var delegate: PaperlessEBillViewControllerDelegate?

@@ -23,10 +23,7 @@ class GameOnboardingStep2ViewController: UIViewController {
     let selectedButton = BehaviorRelay<ButtonControl?>(value: nil)
     
     let bag = DisposeBag()
-    
-    let gameService = ServiceFactory.createGameService()
-    let usageService = ServiceFactory.createUsageService(useCache: false)
-    
+        
     // Passed from Step1
     var step1Response: String!
     var accountDetail: AccountDetail!
@@ -87,38 +84,41 @@ class GameOnboardingStep2ViewController: UIViewController {
         let updateGameUser = { [weak self] (initialHomeProfile: String) in
             guard let self = self else { return }
             let own = self.selectedButton.value == self.button1
-            let params: [String: Any] = [
-                "onboardingHowDoYouFeelAnswer": self.step1Response!,
-                "onboardingRentOrOwnAnswer": own ? "OWN" : "RENT",
-                "onboardingComplete": true,
-                "initialEBillEnrollment": self.accountDetail.isEBillEnrollment ? "ENROLLED" : "NOT ENROLLED",
-                "initialHomeProfile": initialHomeProfile
-            ]
-            self.gameService.updateGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber, keyValues: params)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] gameUser in
+            
+            let gameUserRequest = GameUserRequest(onboardingComplete: String(true),
+                                                  onboardingRentOrOwnAnswer: own ? "OWN" : "RENT",
+                                                  checkInHowDoYouFeelAnswer: self.step1Response,
+                                                  initialEBillEnrollment: self.accountDetail.isEBillEnrollment ? "ENROLLED" : "NOT ENROLLED",
+                                                  initialHomeProfile: initialHomeProfile)
+            
+            GameService.updateGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber, request: gameUserRequest) { [weak self] result in
+                switch result {
+                case .success:
                     LoadingView.hide()
                     NotificationCenter.default.post(name: .gameOnboardingComplete, object: nil)
                     FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .onboard_step2_complete)])
                     self?.dismissModal()
-                }, onError: { [weak self] err in
+                case .failure(let error):
                     LoadingView.hide()
-                    let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-                                                  message: err.localizedDescription,
+                    let alert = UIAlertController(title: error.title,
+                                                  message: error.description,
                                                   preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self?.present(alert, animated: true, completion: nil)
-                }).disposed(by: self.bag)
+                }
+            }
         }
         
         LoadingView.show()
-        usageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { homeProfile in
+        
+        UsageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber ?? "") { result in
+            switch result {
+            case .success(let homeProfile):
                 updateGameUser(homeProfile.isFilled ? "COMPLETE" : "NOT COMPLETE")
-            }, onError: { _ in
+            case .failure:
                 updateGameUser("UNKNOWN")
-            }).disposed(by: bag)
+            }
+        }
     }
     
     private func resetAllButtons() {

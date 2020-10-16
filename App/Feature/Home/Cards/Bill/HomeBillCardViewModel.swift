@@ -14,12 +14,10 @@ class HomeBillCardViewModel {
     
     let bag = DisposeBag()
     
-    let fetchDataMMEvents: Observable<Event<Maintenance>>
+    let fetchDataMMEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
     let scheduledPaymentEvents: Observable<Event<PaymentItem?>>
-    private let walletService: WalletService
-    private let paymentService: PaymentService
-    private let authService: AuthenticationService
+    
     
     var accountDetail = BehaviorRelay<AccountDetail?>(value: nil)
     var walletItems = BehaviorRelay<[WalletItem]?>(value: nil)
@@ -41,20 +39,14 @@ class HomeBillCardViewModel {
     let paymentTracker = ActivityTracker()
     
     required init(fetchData: Observable<Void>,
-                  fetchDataMMEvents: Observable<Event<Maintenance>>,
+                  fetchDataMMEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   scheduledPaymentEvents: Observable<Event<PaymentItem?>>,
-                  walletService: WalletService,
-                  paymentService: PaymentService,
-                  authService: AuthenticationService,
                   fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.fetchDataMMEvents = fetchDataMMEvents
         self.accountDetailEvents = accountDetailEvents
         self.scheduledPaymentEvents = scheduledPaymentEvents
-        self.walletService = walletService
-        self.paymentService = paymentService
-        self.authService = authService
         self.fetchTracker = fetchTracker
         
         oneTouchPayResult
@@ -65,12 +57,12 @@ class HomeBillCardViewModel {
                     GoogleAnalytics.log(event: .oneTouchBankComplete)
                 case (.bank, let error):
                     GoogleAnalytics.log(event: .oneTouchBankError,
-                                        dimensions: [.errorCode: (error as! ServiceError).serviceCode])
+                                        dimensions: [.errorCode: (error as? NetworkingError)?.title ?? ""])
                 case (.card, nil):
                     GoogleAnalytics.log(event: .oneTouchCardComplete)
                 case (.card, let error):
                     GoogleAnalytics.log(event: .oneTouchCardError,
-                                        dimensions: [.errorCode: (error as! ServiceError).serviceCode])
+                                        dimensions: [.errorCode: (error as? NetworkingError)?.title ?? ""])
                 }
             })
             .disposed(by: bag)
@@ -78,10 +70,12 @@ class HomeBillCardViewModel {
     
     func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
         isFetching.accept(true)
-        walletService.fetchWalletItems()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] walletItems in
+        
+        WalletService.fetchWalletItems { [weak self] result in
+            switch result {
+            case .success(let walletItemContainer):
                 guard let self = self else { return }
+                let walletItems = walletItemContainer.walletItems
                 self.isFetching.accept(false)
                 
                 self.walletItems.accept(walletItems)
@@ -110,39 +104,40 @@ class HomeBillCardViewModel {
                 }
                 
                 onSuccess?()
-                }, onError: { [weak self] _ in
-                    self?.isFetching.accept(false)
-                    self?.isError.accept(true)
-                    onError?()
-            }).disposed(by: bag)
+            case .failure:
+                self?.isFetching.accept(false)
+                self?.isError.accept(true)
+                onError?()
+            }
+        }
     }
     
     private lazy var fetchTrigger = Observable
         .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated)
     
     // Awful maintenance mode check
-    private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
+    private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<MaintenanceMode>> = RxNotifications.shared.defaultWalletItemUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
-                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+                        requestSelector: { [unowned self] _ in AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true) })
     
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> =
+    private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> =
         Observable.merge(fetchDataMMEvents, defaultWalletItemUpdatedMMEvents)
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = maintenanceModeEvents
         .filter {
             guard let maint = $0.element else { return true }
-            return !maint.allStatus && !maint.billStatus && !maint.homeStatus
+            return !maint.all && !maint.bill && !maint.home
     }
     .withLatestFrom(fetchTrigger)
     .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                     requestSelector: { [weak self] _ in
                         guard let this = self else { return .empty() }
-                        return this.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
+                        return WalletService.rx.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
     })
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0 as? NetworkingError) == .noNetwork }
     
     private(set) lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
     
@@ -181,13 +176,10 @@ class HomeBillCardViewModel {
                     requestSelector: { [unowned self] (object: [String: Any]) in
                         let paymentAmount = object["paymentAmount"] as! Double
                         let paymentDate = object["paymentDate"] as! Date
-                        return self.paymentService.schedulePayment(accountNumber: object["accountNumber"] as! String,
-                                                                   paymentAmount: paymentAmount,
-                                                                   paymentDate: paymentDate,
-                                                                   alternateEmail: "",
-                                                                   alternateNumber: "",
-                                                                   walletId: AccountsStore.shared.customerIdentifier,
-                                                                   walletItem: object["walletItem"] as! WalletItem)
+                        
+                        let request = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount, paymentDate: paymentDate, walletItem: object["walletItem"] as! WalletItem, alternateEmail: "", alternatePhoneNumber: "")
+                        
+                        return PaymentService.rx.schedulePayment(accountNumber: object["accountNumber"] as! String, request: request)
                             .do(onNext: { confirmationNumber in
                                 let paymentDetails = PaymentDetails(amount: paymentAmount,
                                                                     date: paymentDate,
@@ -225,7 +217,7 @@ class HomeBillCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMaintenanceModeState: Driver<Bool> = maintenanceModeEvents
-        .map { $0.element?.billStatus ?? false }
+        .map { $0.element?.bill ?? false }
         .startWith(false)
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
@@ -392,12 +384,14 @@ class HomeBillCardViewModel {
     }
     .distinctUntilChanged()
     
+    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
+                                                                                     accountDetailDriver,
+                                                                                     walletItemDriver)
+        { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
+        .distinctUntilChanged()
     private(set) lazy var showMakePaymentButton: Driver<Bool> = Driver.combineLatest(showAutoPay,
-                                                                                     showScheduledPayment
-        )
-    {
-        return $0 || $1 ? false : true
-    }
+                                                                                     showScheduledPayment)
+        { return $0 || $1 ? false : true }
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
@@ -624,7 +618,7 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var bankCreditCardNumberText: Driver<String?> = walletItemDriver.map {
-        guard let maskedNumber = $0?.maskedWalletItemAccountNumber else { return nil }
+        guard let maskedNumber = $0?.maskedAccountNumber else { return nil }
         return "**** " + maskedNumber
     }
     
@@ -635,7 +629,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var bankCreditCardButtonAccessibilityLabel: Driver<String?> = walletItemDriver.map {
         guard let walletItem = $0,
-            let maskedNumber = walletItem.maskedWalletItemAccountNumber else { return nil }
+            let maskedNumber = walletItem.maskedAccountNumber else { return nil }
         
         let imageLabel: String
         switch walletItem.bankOrCard {
@@ -933,7 +927,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return "" }
-        return "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
+        return "**** \(walletItem.maskedAccountNumber ?? "")"
     }
     
     private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {

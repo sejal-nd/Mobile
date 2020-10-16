@@ -18,16 +18,12 @@ class ChangePasswordViewModel {
     var confirmPassword = BehaviorRelay(value: "")
     
     private var userDefaults: UserDefaults
-    private var authService: AuthenticationService
-    private var biometricsService: BiometricsService
     
     // Keeps track of strong password for Analytics
     var hasStrongPassword = false
     
-    required init(userDefaults: UserDefaults, authService: AuthenticationService, biometricsService: BiometricsService) {
+    required init(userDefaults: UserDefaults) {
         self.userDefaults = userDefaults
-        self.authService = authService
-        self.biometricsService = biometricsService
     }
     
     private(set) lazy var currentPasswordHasText: Driver<Bool> = self.currentPassword.asDriver()
@@ -109,7 +105,7 @@ class ChangePasswordViewModel {
                         onError: @escaping (String) -> Void) {
         // If Strong Password: force save to SWC prior to changing users passwords, on failure abort.
         if hasStrongPassword && !resetPasswordWorkflow {
-            if let loggedInUsername = biometricsService.getStoredUsername() {
+            if let loggedInUsername = BiometricService.getStoredUsername() {
                 SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value),
                                           domain: Environment.shared.associatedDomain) { [weak self] error in
                     DispatchQueue.main.async {
@@ -147,16 +143,15 @@ class ChangePasswordViewModel {
                                               onPasswordNoMatch: @escaping () -> Void,
                                               onError: @escaping (String) -> Void) {
         if anon {
-            authService.changePasswordAnon(username: resetPasswordUsername ?? biometricsService.getStoredUsername()!,
-                                           currentPassword: currentPassword.value,
-                                           newPassword: newPassword.value)
-                .observeOn(MainScheduler.instance)
-                .asObservable()
-                .subscribe(onNext: { [weak self] _ in
+            let changePasswordReqeust = ChangePasswordRequest(username: resetPasswordUsername ?? BiometricService.getStoredUsername() ?? "",
+                                                              currentPassword: currentPassword.value,
+                                                              newPassword: newPassword.value)
+            AnonymousService.changePassword(request: changePasswordReqeust) { [weak self] result in
+                switch result {
+                case .success:
                     guard let self = self else { return }
-                    
-                    if self.biometricsService.isBiometricsEnabled() {
-                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
+                    if BiometricService.isBiometricsEnabled() { // Store the new password in the keychain
+                        BiometricService.setStoredPassword(password: self.newPassword.value)
                     }
                     
                     if #available(iOS 12.0, *) { }
@@ -170,23 +165,23 @@ class ChangePasswordViewModel {
                     FirebaseUtility.logEvent(.changePasswordNetworkComplete)
                     
                     onSuccess()
-                }, onError: { (error: Error) in
-                    let serviceError = error as! ServiceError
-                    
-                    if serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue {
+                case .failure(let error):
+                    if error == .noPasswordMatch {
                         onPasswordNoMatch()
                     } else {
-                        onError(error.localizedDescription)
+                        onError(error.description)
                     }
-                })
-                .disposed(by: disposeBag)
+                }
+            }
         } else {
-            authService.changePassword(currentPassword: currentPassword.value, newPassword: newPassword.value)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] _ in
+            let changePasswordReqeust = ChangePasswordRequest(currentPassword: currentPassword.value,
+                                                              newPassword: newPassword.value)
+            AnonymousService.changePassword(request: changePasswordReqeust) { [weak self] result in
+                switch result {
+                case .success:
                     guard let self = self else { return }
-                    if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
-                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
+                    if BiometricService.isBiometricsEnabled() { // Store the new password in the keychain
+                        BiometricService.setStoredPassword(password: self.newPassword.value)
                     }
                     
                     if #available(iOS 12.0, *) { }
@@ -200,27 +195,27 @@ class ChangePasswordViewModel {
                     FirebaseUtility.logEvent(.changePasswordNetworkComplete)
                     
                     onSuccess()
-                }, onError: { (error: Error) in
-                    let serviceError = error as! ServiceError
-                    if serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue {
+                case .failure(let error):
+                    if error == .noPasswordMatch {
                         onPasswordNoMatch()
                     } else {
-                        onError(error.localizedDescription)
+                        onError(error.description)
                     }
-                })
-                .disposed(by: disposeBag)
+                }
+            }
         }
     }
     
     func submitForgotPassword(username: String, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        authService.recoverPassword(username: username)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        let usernameRequest = UsernameRequest(username: username)
+        AnonymousService.recoverPassword(request: usernameRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                onError(serviceError.localizedDescription)
-            }).disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
 
 }
