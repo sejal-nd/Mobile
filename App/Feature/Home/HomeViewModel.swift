@@ -131,7 +131,7 @@ class HomeViewModel {
             guard let this = self else { return nil }
             return [this.billTracker]
         }, requestSelector: { [weak self] _ in
-            guard let this = self else { return .empty() }
+            guard let this = self, !UserSession.isRefreshTokenExpired else { return .empty() }
             return AccountService.rx.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map {
                 return $0.last
             }
