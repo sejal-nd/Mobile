@@ -22,12 +22,12 @@ class AppointmentsViewModel {
         .do(onNext: { [weak self] error in
             self?.setLoading(loading: false)
         })
-        .map { ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0 as? NetworkingError) != .noNetwork }
         .asDriver(onErrorDriveWith: .empty())
     
     private (set) lazy var showNoNetworkState: Driver<Bool> = Observable
         .merge(accountDetailEvents.errors(), events.errors())
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0 as? NetworkingError) == .noNetwork }
         .asDriver(onErrorDriveWith: .empty())
     
     private (set) lazy var showEmptyState: Driver<Bool> = appointments
@@ -41,19 +41,17 @@ class AppointmentsViewModel {
     
     private let fetchAllDataTrigger = PublishSubject<Void>()
     
-    required init(initialAppointments: [Appointment],
-                  appointmentService: AppointmentService,
-                  accountService: AccountService) {
+    required init(initialAppointments: [Appointment]) {
         
         accountDetailEvents = fetchAllDataTrigger
             .toAsyncRequest {
-                accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                AccountService.rx.fetchAccountDetails()
         }
         
         events = accountDetailEvents
             .elements()
             .toAsyncRequest {
-                appointmentService.fetchAppointments(accountNumber: $0.accountNumber, premiseNumber: $0.premiseNumber!)
+                AppointmentService.rx.fetchAppointments(accountNumber: $0.accountNumber, premiseNumber: $0.premiseNumber ?? "")
         }.do(onNext: { event in
             self.setLoading(loading: false)
         })

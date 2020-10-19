@@ -89,6 +89,12 @@ class ContactUsViewController: UIViewController {
             bgeOnlySpacer.isHidden = true
             bgeGasNumberLabel.text = NSLocalizedString("Gas Emergency", comment: "")
             bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
+        } else if Environment.shared.opco == .peco {
+            emergencyNumberTextView.isHidden = true
+            bgeOnlySpacer.isHidden = true
+            bgeGasNumberLabel.text = NSLocalizedString("Gas Emergency", comment: "")
+            bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
+            bgePowerLineNumber2TextView.superview?.isHidden = true
         } else if Environment.shared.opco == .delmarva {
             // Only the first row is needed, rest needs to be hidden
             bgeOnlyStackView.isHidden = false

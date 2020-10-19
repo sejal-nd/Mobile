@@ -25,9 +25,7 @@ class AlertPreferencesViewController: UIViewController {
         
     weak var delegate: AlertPreferencesViewControllerDelegate?
     
-    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(),
-                                              billService: ServiceFactory.createBillService(),
-                                              accountService: ServiceFactory.createAccountService())
+    let viewModel = AlertPreferencesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -336,18 +334,12 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             switch Environment.shared.opco {
             case .bge:
                 break
-            case .comEd, .peco:
+            case .ace, .comEd, .delmarva, .peco, .pepco:
                 cell.checkbox.rx.isChecked.asDriver()
                     .distinctUntilChanged()
                     .skip(1)
                     .drive(onNext: { [weak self] in self?.showBillIsReadyToggleAlert(isOn: $0) })
                     .disposed(by: cell.disposeBag)
-           case .pepco:
-                break // todo
-            case .ace:
-                break // todo
-            case .delmarva:
-                break // todo
             }
         case .paymentDueReminder:
             toggleVariable = viewModel.paymentDue

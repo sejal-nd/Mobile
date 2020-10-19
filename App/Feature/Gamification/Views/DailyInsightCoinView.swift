@@ -25,6 +25,7 @@ class DailyInsightCoinView: UIControl {
     
     private var canCollect = true
     
+    var dailyUsageData: DailyUsageData?
     var usage: DailyUsage?
     var lastWeekUsage: DailyUsage?
     var placeholderDate: Date?
@@ -44,9 +45,10 @@ class DailyInsightCoinView: UIControl {
         commonInit()
     }
     
-    init(usage: DailyUsage, lastWeekUsage: DailyUsage?, canCollect: Bool) {
+    init(dailyUsageData: DailyUsageData, usage: DailyUsage, lastWeekUsage: DailyUsage?, canCollect: Bool) {
         super.init(frame: CGRect(x: 0, y: 0, width: 36, height: 56))
         
+        self.dailyUsageData = dailyUsageData
         self.usage = usage
         self.lastWeekUsage = lastWeekUsage
         
@@ -122,7 +124,7 @@ class DailyInsightCoinView: UIControl {
         guard let thisWeek = usage, let lastWeek = lastWeekUsage else { return nil }
         
         let diff = abs(thisWeek.amount - lastWeek.amount)
-        let diffThreshold = thisWeek.unit == "kWh" ? 0.5 : 0.1
+        let diffThreshold = dailyUsageData?.unit == "kWh" ? 0.5 : 0.1
         if diff <= diffThreshold {
             return #imageLiteral(resourceName: "ic_trendequal.pdf")
         } else {
@@ -137,7 +139,7 @@ class DailyInsightCoinView: UIControl {
     var lastWeekComparisonString: String {
         // Have this week's data, but no data for last week
         if let thisWeek = usage, lastWeekUsage == nil {
-            return String.localizedStringWithFormat("You used %@ %@.", thisWeek.amount.twoDecimalString, thisWeek.unit)
+            return String.localizedStringWithFormat("You used %@ %@.", thisWeek.amount.twoDecimalString, dailyUsageData?.unit ?? "kWh")
         }
         
         // No data - placeholder view
@@ -148,16 +150,16 @@ class DailyInsightCoinView: UIControl {
         }
         
         let diff = abs(thisWeek.amount - lastWeek.amount)
-        let diffThreshold = thisWeek.unit == "kWh" ? 0.5 : 0.1
+        let diffThreshold = dailyUsageData?.unit == "kWh" ? 0.5 : 0.1
         if diff <= diffThreshold {
-            return String.localizedStringWithFormat("You used %@ %@ which was about the same as last week.", thisWeek.amount.twoDecimalString, thisWeek.unit)
+            return String.localizedStringWithFormat("You used %@ %@ which was about the same as last week.", thisWeek.amount.twoDecimalString, dailyUsageData?.unit ?? "kWh")
         } else {
             if thisWeek.amount > lastWeek.amount {
                 return String.localizedStringWithFormat("You used %@ %@ which was %@ %@ more than last week.",
-                                                        thisWeek.amount.twoDecimalString, thisWeek.unit, diff.twoDecimalString, thisWeek.unit)
+                                                        thisWeek.amount.twoDecimalString, dailyUsageData?.unit ?? "kWh", diff.twoDecimalString, dailyUsageData?.unit ?? "kWh")
             } else {
                 return String.localizedStringWithFormat("You used %@ %@ which was %@ %@ less than last week.",
-                    thisWeek.amount.twoDecimalString, thisWeek.unit, diff.twoDecimalString, thisWeek.unit)
+                    thisWeek.amount.twoDecimalString, dailyUsageData?.unit ?? "kWh", diff.twoDecimalString, dailyUsageData?.unit ?? "kWh")
             }
         }
     }

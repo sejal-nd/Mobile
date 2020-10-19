@@ -21,7 +21,7 @@ class BillingHistoryViewController: UIViewController {
     @IBOutlet weak var emptyStateLabel: UILabel!
     @IBOutlet weak var emptyStateAutoPayButton: SecondaryButton!
     
-    let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
+    let viewModel = BillingHistoryViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default
@@ -210,7 +210,7 @@ class BillingHistoryViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
         vc.viewModel.accountDetail = viewModel.accountDetail
-        vc.viewModel.billingHistory = BillingHistory(upcoming: viewModel.billingHistory!.upcoming, past: [])
+        vc.viewModel.billingHistory = BillingHistoryResult(upcoming: viewModel.billingHistory!.upcoming, past: [])
         vc.viewModel.viewingMoreActivity = true
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -225,7 +225,7 @@ class BillingHistoryViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
         vc.viewModel.accountDetail = viewModel.accountDetail
-        vc.viewModel.billingHistory = BillingHistory(upcoming: [], past: viewModel.billingHistory!.past)
+        vc.viewModel.billingHistory = BillingHistoryResult(upcoming: [], past: viewModel.billingHistory!.past)
         vc.viewModel.viewingMoreActivity = true
         navigationController?.pushViewController(vc, animated: true)
     }

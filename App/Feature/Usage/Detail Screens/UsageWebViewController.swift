@@ -16,9 +16,7 @@ class UsageWebViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
-    
-    let accountService = ServiceFactory.createAccountService()
-    
+        
     var accountDetail: AccountDetail! // Passed from SERPTSViewController
     
     override func viewDidLoad() {
@@ -43,10 +41,10 @@ class UsageWebViewController: UIViewController {
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
         if let premiseNum = accountDetail.premiseNumber {
-            accountService.fetchSSOData(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNum)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] ssoData in
-                    let js = "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(ssoData.relayState.absoluteString)'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL.absoluteString)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
+            AccountService.fetchSSOData(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNum) { [weak self] result in
+                switch result {
+                case .success(let ssoData):
+                    let js = "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(ssoData.relayState)'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
                     self?.webView.evaluateJavaScript(js, completionHandler: { (resp, err) in
                         if err != nil {
                             self?.loadingIndicator.isHidden = true
@@ -55,10 +53,11 @@ class UsageWebViewController: UIViewController {
                             self?.webView.isHidden = false
                         }
                     })
-                }, onError: { [weak self] err in
+                case .failure:
                     self?.loadingIndicator.isHidden = true
                     self?.errorLabel.isHidden = false
-                }).disposed(by: disposeBag)
+                }
+            }
         }
         
     }

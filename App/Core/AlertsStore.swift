@@ -15,7 +15,9 @@ final class AlertsStore {
     
     // Private init protects against another instance being accidentally instantiated
     private init() {
-        if let storedAlerts = NSKeyedUnarchiver.unarchiveObject(withFile: self.filePath) as? [String: [PushNotification]] {
+        let url = URL(fileURLWithPath: self.filePath)
+        if let data = try? Data(contentsOf: url),
+            let storedAlerts = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String: [PushNotification]] {
             self.alerts = storedAlerts
         }
     }
@@ -53,7 +55,13 @@ final class AlertsStore {
         }
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            NSKeyedArchiver.archiveRootObject(self.alerts, toFile: self.filePath)
+            let url = URL(fileURLWithPath: self.filePath)
+            do {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: self.alerts, requiringSecureCoding: false)
+                try data.write(to: url)
+            } catch {
+                print("Couldn't write file")
+            }
         }
     }
     

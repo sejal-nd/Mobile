@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Project Environment Prefix</key>
+	<string></string>
+	<key>Account URL</key>
+	<string>$(ACCOUNT_URL)</string>
+	<key>Alert URL</key>
+	<string>$(ALERT_URL)</string>
+	<key>App Center ID</key>
+	<string>$(APP_CENTER_ID)</string>
+	<key>Associated Domain</key>
+	<string>$(ASSOCIATED_DOMAIN)</string>
+	<key>Base URL</key>
+	<string>$(BASE_URL)</string>
+	<key>Build Display Name</key>
+	<string>$(BUILD_DISPLAY_NAME)</string>
+	<key>Build Flavor</key>
+	<string>$(BUILD_FLAVOR)</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(BUILD_DISPLAY_NAME)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(BUNDLE_ID)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>Environment Tier</key>
+	<string>$(ENVIRONMENT_TIER)</string>
+	<key>Google Analytics ID</key>
+	<string>$(GOOGLE_ANALYTICS_ID)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fb</string>
+		<string>ecobee</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>exeloncorp.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This allows us to save appointment events in your calendar.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow camera access to scan your credit/debit card.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Use Face ID to sign in</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Would you like to enable GPS/Location Services to interact with the Outage Map relative to your current location?</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow photo access to provide screenshots with feedback</string>
+	<key>OAuth URL</key>
+	<string>$(OAUTH_URL)</string>
+	<key>Payment URL</key>
+	<string>$(PAYMENT_URL)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-BoldItalic.ttf</string>
+		<string>OpenSans-ExtraBold.ttf</string>
+		<string>OpenSans-ExtraBoldItalic.ttf</string>
+		<string>OpenSans-Italic.ttf</string>
+		<string>OpenSans-Light.ttf</string>
+		<string>OpenSans-LightItalic.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
+		<string>OpenSans-Semibold.ttf</string>
+		<string>OpenSans-SemiboldItalic.ttf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>$(LAUNCH_SCREEN_FILE_NAME)</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Login</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+</dict>
+</plist>

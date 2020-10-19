@@ -18,7 +18,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
         MockUser.current = .default
         MockAccountService.loadAccountsSync()
         let accountDetail = AccountDetail.fromMockJson(forKey: .eBillEligible)
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: true)
         viewModel.submitChanges(onSuccess: { status in
             if Environment.shared.opco == .bge && status != PaperlessEBillChangedStatus.enroll {
@@ -43,7 +43,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
                                                                 "convenienceFee": 5.95],
                                                 "SERInfo": [:]])!
         
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: true)
         viewModel.submitChanges(onSuccess: { status in
             XCTFail("enrollment should fail")
@@ -56,7 +56,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
         MockUser.current = MockUser(globalKeys: .eBill)
         MockAccountService.loadAccountsSync()
         let accountDetail = AccountDetail.fromMockJson(forKey: .eBill)
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: false)
         viewModel.submitChanges(onSuccess: { status in
             if Environment.shared.opco == .bge && status != PaperlessEBillChangedStatus.unenroll {
@@ -81,7 +81,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
                                                                 "convenienceFee": 5.95],
                                                 "SERInfo": [:]])!
         
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: false)
         viewModel.submitChanges(onSuccess: { status in
             XCTFail("unenrollment should fail")
@@ -112,7 +112,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
                                                                  "convenienceFee": 5.95],
                                                  "SERInfo": [:]])!
         
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: true)
         viewModel.switched(accountDetail: accountDetail2, on: true)
         viewModel.submitChanges(onSuccess: { status in
@@ -147,7 +147,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
                                                                  "convenienceFee": 5.95],
                                                  "SERInfo": [:]])!
         
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: true)
         viewModel.switched(accountDetail: accountDetail2, on: true)
         viewModel.submitChanges(onSuccess: { status in
@@ -179,7 +179,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
                                                                  "convenienceFee": 5.95],
                                                  "SERInfo": [:]])!
         
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: false)
         viewModel.switched(accountDetail: accountDetail2, on: false)
         viewModel.submitChanges(onSuccess: { status in
@@ -214,7 +214,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
                                                                  "convenienceFee": 5.95],
                                                  "SERInfo": [:]])!
         
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: false)
         viewModel.switched(accountDetail: accountDetail2, on: false)
         viewModel.submitChanges(onSuccess: { status in
@@ -246,7 +246,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
                                                                  "convenienceFee": 5.95],
                                                  "SERInfo": [:]])!
         
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: true)
         viewModel.switched(accountDetail: accountDetail2, on: false)
         viewModel.submitChanges(onSuccess: { status in
@@ -281,7 +281,7 @@ class PaperlessEBillViewModelTests: XCTestCase {
                                                                  "convenienceFee": 5.95],
                                                  "SERInfo": [:]])!
         
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), initialAccountDetail: accountDetail)
         viewModel.switched(accountDetail: accountDetail, on: true)
         viewModel.switched(accountDetail: accountDetail2, on: false)
         viewModel.submitChanges(onSuccess: { status in

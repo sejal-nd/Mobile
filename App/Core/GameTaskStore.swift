@@ -33,10 +33,7 @@ final class GameTaskStore {
         
         do {
             let data = try Data(contentsOf: URL(fileURLWithPath: filePath), options: .mappedIfSafe)
-            let jsonResult = try JSONSerialization.jsonObject(with: data)
-            if let jsonArray = jsonResult as? [[String: Any]] {
-                tasks = jsonArray.compactMap { GameTask.from($0 as NSDictionary) }
-            }
+            tasks = try JSONDecoder().decode([GameTask].self, from: data)
         } catch {
             fatalError("Failed to parse GameTasks.json: \(error.localizedDescription)")
         }

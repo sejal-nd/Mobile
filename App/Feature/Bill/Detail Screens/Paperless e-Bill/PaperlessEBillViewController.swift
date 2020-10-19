@@ -23,7 +23,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     @IBOutlet weak var emailBox: UIView!
     @IBOutlet weak var emailsWillBeSentToLabel: UILabel!
     @IBOutlet weak var emailDivider: UIView!
-	@IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var singleAccountCurrentlyEnrolledContainer: UIView!
     @IBOutlet weak var singleAccountCurrentlyEnrolledLabel: UILabel!
@@ -43,18 +43,18 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     @IBOutlet weak var unenrollButtonLabel: UILabel!
     @IBOutlet weak var unenrollButton: UIButton!
     
+    private var backButton: UIBarButtonItem?
+
     var accountDetail: AccountDetail!
     
     lazy var viewModel: PaperlessEBillViewModel = {
-        PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(),
-                                billService: ServiceFactory.createBillService(),
-                                initialAccountDetail: self.accountDetail)
+        PaperlessEBillViewModel(initialAccountDetail: self.accountDetail)
     }()
     
     weak var delegate: PaperlessEBillViewControllerDelegate?
     
     let bag = DisposeBag()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -147,14 +147,46 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         
         enrollAllAccountsCheckbox.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
         
+        addCustomBackButton()
         FirebaseUtility.logEvent(.paperlessEBillStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
     }
+    
+    // Add back Button
+    private func addCustomBackButton() {
+        backButton = UIBarButtonItem(image: UIImage(named: "ic_back"),
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(backAction))
+        backButton?.accessibilityLabel = NSLocalizedString("Back", comment: "")
+        navigationItem.setLeftBarButton(backButton, animated: false)
+    }
+    
+    // MARK: - Action
+    @objc func backAction() {
+        viewModel.enrollStatesChanged.asObservable().subscribe(onNext: { [weak self] enrollmentStatusChanged in
+            if enrollmentStatusChanged {
+                let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+                { [weak self] _ in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+                self?.presentAlert(title: NSLocalizedString("Unsaved Changes", comment: ""),
+                                   message: NSLocalizedString("You have unsaved changes - are you sure you want to exit this screen without saving your changes?", comment: ""),
+                                   style: .alert,
+                                   actions: [cancelAction, exitAction])
+            } else {
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }).disposed(by: DisposeBag())
+    }
+    
+    
     
     func add(accountDetail: AccountDetail, animated: Bool) {
         let accountView = PaperlessEBillAccountView.create(withAccountDetail: accountDetail)
@@ -200,7 +232,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
             navigationController?.popViewController(animated: true)
         }
     }
-
+    
     @IBAction func onEnrollmentButtonPress() {
         
         FirebaseUtility.logEvent(.paperlessEBillSubmit)
@@ -211,18 +243,18 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
             guard let self = self else { return }
             
             FirebaseUtility.logEvent(.paperlessEBillNetworkComplete)
-                        
+            
             self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
             self.navigationController?.popViewController(animated: true)
-        }, onError: { [weak self] errMessage in
-            
-            FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
-            
-            LoadingView.hide()
-            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self?.present(alertVc, animated: true, completion: nil)
+            }, onError: { [weak self] errMessage in
+                
+                FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertVc, animated: true, completion: nil)
         })
     }
-
+    
 }

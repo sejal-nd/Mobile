@@ -29,15 +29,10 @@ class AutoPayViewModel {
     let confirmAccountNumber = BehaviorRelay(value: "")
     let termsAndConditionsCheck: BehaviorRelay<Bool>
     let selectedUnenrollmentReason = BehaviorRelay<String?>(value: nil)
-    
-    let paymentService: PaymentService
-    let walletService: WalletService
-    
+        
     var bankName = ""
     
-    required init(withPaymentService paymentService: PaymentService, walletService: WalletService, accountDetail: AccountDetail) {
-        self.paymentService = paymentService
-        self.walletService = walletService
+    required init(accountDetail: AccountDetail) {
         self.accountDetail = accountDetail
         enrollmentStatus = BehaviorRelay(value: accountDetail.isAutoPay ? .enrolled : .unenrolled)
         termsAndConditionsCheck = BehaviorRelay(value: Environment.shared.opco != .comEd)
@@ -45,39 +40,36 @@ class AutoPayViewModel {
     
     func enroll() -> Observable<Bool> {
         let bankAccountType = checkingSavingsSegmentedControlIndex.value == 0 ? "checking" : "saving"
-        return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
-                                              nameOfAccount: nameOnAccount.value,
-                                              bankAccountType: bankAccountType,
-                                              routingNumber: routingNumber.value,
-                                              bankAccountNumber: accountNumber.value,
-                                              isUpdate: false).map { _ in true }
+        
+        let enrollRequest = AutoPayEnrollRequest(nameOfAccount: nameOnAccount.value, bankAccountType: bankAccountType, routingNumber: routingNumber.value, bankAccountNumber: accountNumber.value, isUpdate: false)
+        
+        return PaymentService.rx.autoPayEnroll(accountNumber: accountDetail.accountNumber, request: enrollRequest).map { _ in true }
     }
     
     func changeBank() -> Observable<Bool> {
         let bankAccountType = checkingSavingsSegmentedControlIndex.value == 0 ? "checking" : "saving"
-        return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
-                                              nameOfAccount: nameOnAccount.value,
-                                              bankAccountType: bankAccountType,
-                                              routingNumber: routingNumber.value,
-                                              bankAccountNumber: accountNumber.value,
-                                              isUpdate: true).map { _ in true }
+        
+        let enrollRequest = AutoPayEnrollRequest(nameOfAccount: nameOnAccount.value, bankAccountType: bankAccountType, routingNumber: routingNumber.value, bankAccountNumber: accountNumber.value, isUpdate: true)
+        
+        return PaymentService.rx.autoPayEnroll(accountNumber: accountDetail.accountNumber, request: enrollRequest).map { _ in true }
     }
     
     func unenroll() -> Observable<Bool> {
         GoogleAnalytics.log(event: .autoPayUnenrollOffer)
-        return paymentService.unenrollFromAutoPay(accountNumber: accountDetail.accountNumber,
-                                                  reason: selectedUnenrollmentReason.value!).map { _ in false }
+        let unenrollRequest = AutoPayUnenrollRequest(reason: selectedUnenrollmentReason.value!)
+        return PaymentService.rx.autoPayUnenroll(accountNumber: accountNumber.value, request: unenrollRequest).map { _ in false }
     }
     
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
-        walletService.fetchBankName(routingNumber: routingNumber.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] bankName in
-                self?.bankName = bankName
+        WalletService.fetchBankName(routingNumber: routingNumber.value) { [weak self] result in
+            switch result {
+            case .success(let bankName):
+                self?.bankName = bankName.value
                 onSuccess()
-            }, onError: { (error: Error) in
+            case .failure:
                 onError()
-            }).disposed(by: bag)
+            }
+        }
     }
 
     private(set) lazy var nameOnAccountHasText: Driver<Bool> = self.nameOnAccount.asDriver()

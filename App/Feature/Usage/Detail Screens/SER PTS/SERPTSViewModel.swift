@@ -18,12 +18,12 @@ class SERPTSViewModel {
     
     let graphViewModel: SERPTSGraphViewModel
     
-    required init(accountService: AccountService, accountDetail: AccountDetail, eventResults: [SERResult]?) {
+    required init(accountDetail: AccountDetail, eventResults: [SERResult]?) {
         self.accountDetail = accountDetail
         if let eventResults = eventResults {
             self.eventResults = Observable.just(eventResults).share(replay: 1)
         } else {
-            self.eventResults = accountService.fetchSERResults(accountNumber: accountDetail.accountNumber).share(replay: 1)
+            self.eventResults = AccountService.rx.fetchSERResults(accountNumber: accountDetail.accountNumber).share(replay: 1)
         }
         
         graphViewModel = SERPTSGraphViewModel(eventResults: self.eventResults)

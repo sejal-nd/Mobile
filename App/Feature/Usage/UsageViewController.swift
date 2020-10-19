@@ -178,9 +178,7 @@ class UsageViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = UsageViewModel(authService: ServiceFactory.createAuthenticationService(),
-                                   accountService: ServiceFactory.createAccountService(),
-                                   usageService: ServiceFactory.createUsageService(useCache: true))
+    let viewModel = UsageViewModel()
     
     var initialSelection: (barSelection: UsageViewModel.BarGraphSelection, isGas: Bool, isPreviousBill: Bool)?
     
@@ -291,21 +289,10 @@ class UsageViewController: AccountPickerViewController {
             projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
             projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
             projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
-        case .pepco:
-            // todo
-            projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
-            projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
-            projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
-        case .ace:
-            // todo
-            projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
-            projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
-            projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
-        case .delmarva:
-            // todo
-            projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
-            projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
-            projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
+        case .ace, .delmarva, .pepco:
+            projectedBarView.backgroundColor = UIColor(red: 0/255, green: 103/255, blue: 177/255, alpha: 0.2)
+            projectedBarView.layer.borderColor = UIColor(red: 0/255, green: 103/255, blue: 177/255, alpha: 0.4).cgColor
+            projectedBarSoFarImageView.tintColor = UIColor(red: 0/255, green: 103/255, blue: 177/255, alpha: 1)
         }
         
         // Bar Graph Styling
@@ -896,11 +883,11 @@ class UsageViewController: AccountPickerViewController {
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
                 GoogleAnalytics.log(event: .hourlyPricing,
-                              dimensions: [.hourlyPricingEnrollment: "enrolled"])
+                                    dimensions: [.hourlyPricingEnrollment: "enrolled"])
                 performSegue(withIdentifier: "hourlyPricingSegue", sender: accountDetail)
             } else {
                 GoogleAnalytics.log(event: .hourlyPricing,
-                              dimensions: [.hourlyPricingEnrollment: "unenrolled"])
+                                    dimensions: [.hourlyPricingEnrollment: "unenrolled"])
                 let safariVc = SFSafariViewController
                     .createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
                 present(safariVc, animated: true, completion: nil)
@@ -914,6 +901,10 @@ class UsageViewController: AccountPickerViewController {
                 GoogleAnalytics.log(event: .viewPeakTimeSavings)
                 performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
             }
+        case .energyWiseRewards:
+            performSegue(withIdentifier: "energyWiseRewardsSegue", sender: accountDetail)
+        case .peakEnergySavings:
+            performSegue(withIdentifier: "peakEnergySavingsSegue", sender: accountDetail)
         }
     }
     
@@ -942,6 +933,10 @@ class UsageViewController: AccountPickerViewController {
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
         case let vc as PeakRewardsViewController:
+            vc.accountDetail = accountDetail
+        case let vc as EnergyWiseRewardsViewController:
+            vc.accountDetail = accountDetail
+        case let vc as PeakEnergySavingsViewController:
             vc.accountDetail = accountDetail
         default:
             break

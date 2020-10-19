@@ -31,20 +31,20 @@ class GasOnlyViewController: UIViewController {
                 , phone1, phone2)
         case .peco:
             let phone1 = "1-800-841-4141"
-            phoneNumbers = [phone1]
+            let phone2 = "1-877-778-7798"
+            phoneNumbers = [phone1, phone2]
             localizedString = String.localizedStringWithFormat(
                 """
-                We currently do not allow reporting of gas issues online but want to hear from you right away.\n
-                To issue a Gas Emergency Order, please call %@.
+                If you smell natural gas, leave the area immediately and call us at %@ or %@. Gas emergencies can not be reported through the mobile app.
                 """
-                , phone1)
+                , phone1, phone2)
         case .delmarva:
             let phone1 = "302-454-0317"
             phoneNumbers = [phone1]
             localizedString = String.localizedStringWithFormat(
                 """
-                Natural gas emergencies cannot be reported online, but want to hear from you right away.\n
-                If you smell natural gas, leave the area immediately and call %@
+                Natural gas emergencies cannot be reported online, but we want to hear from you right away.\n
+                If you smell natural gas, leave the area immediately and then call %@.
                 """
                 , phone1)
         default:

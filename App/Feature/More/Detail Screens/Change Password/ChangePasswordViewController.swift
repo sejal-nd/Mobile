@@ -50,7 +50,7 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService())
+    let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default

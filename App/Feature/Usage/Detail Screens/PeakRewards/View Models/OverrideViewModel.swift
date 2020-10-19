@@ -11,7 +11,6 @@ import RxCocoa
 
 class OverrideViewModel {
     
-    let peakRewardsService: PeakRewardsService
     let accountDetail: AccountDetail
     let device: SmartThermostatDevice
     let overrideEvents: Observable<Event<[PeakRewardsOverride]>>
@@ -29,12 +28,10 @@ class OverrideViewModel {
     let saveTracker = ActivityTracker()
     let refreshingOverrides: Driver<Bool>
     
-    init(peakRewardsService: PeakRewardsService,
-         accountDetail: AccountDetail,
+    init(accountDetail: AccountDetail,
          device: SmartThermostatDevice,
          overrideEvents: Observable<Event<[PeakRewardsOverride]>>,
          refreshingOverrides: Driver<Bool>) {
-        self.peakRewardsService = peakRewardsService
         self.accountDetail = accountDetail
         self.device = device
         self.overrideEvents = overrideEvents
@@ -108,9 +105,9 @@ class OverrideViewModel {
         .withLatestFrom(self.selectedDate.asObservable())
         .flatMapLatest { [weak self] selectedDate -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
-            return self.peakRewardsService.scheduleOverride(accountNumber: self.accountDetail.accountNumber,
+            return PeakRewardsService.rx.scheduleOverride(accountNumber: self.accountDetail.accountNumber,
                                                      premiseNumber: self.premiseNumber,
-                                                     device: self.device,
+                                                     deviceSerialNumber: self.device.serialNumber,
                                                      date: selectedDate)
                 .trackActivity(self.saveTracker)
                 .materialize()
@@ -121,9 +118,9 @@ class OverrideViewModel {
         .do(onNext: { GoogleAnalytics.log(event: .cancelOverride) })
         .flatMapLatest { [weak self] _ -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
-            return self.peakRewardsService.deleteOverride(accountNumber: self.accountDetail.accountNumber,
+            return PeakRewardsService.rx.deleteOverride(accountNumber: self.accountDetail.accountNumber,
                                                           premiseNumber: self.premiseNumber,
-                                                          device: self.device)
+                                                          deviceSerialNumber: self.device.serialNumber)
                 .trackActivity(self.saveTracker)
                 .materialize()
         }
@@ -137,11 +134,11 @@ class OverrideViewModel {
     
     private(set) lazy var error: Observable<(String?, String?)> = Observable.merge(self.saveEvents.errors(), self.cancelEvents.errors())
         .map {
-            guard let error = $0 as? ServiceError else {
+            guard let error = $0 as? NetworkingError else {
                 return (NSLocalizedString("Error", comment: ""), $0.localizedDescription)
             }
             
-            if error.serviceCode == ServiceErrorCode.fnOverExists.rawValue {
+            if error == .peakRewardsDuplicateOverrides {
                 return ("Override Already Active", nil)
             }
             

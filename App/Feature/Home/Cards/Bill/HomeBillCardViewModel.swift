@@ -14,12 +14,21 @@ class HomeBillCardViewModel {
     
     let bag = DisposeBag()
     
-    let fetchDataMMEvents: Observable<Event<Maintenance>>
+    let fetchDataMMEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
     let scheduledPaymentEvents: Observable<Event<PaymentItem?>>
-    private let walletService: WalletService
-    private let paymentService: PaymentService
-    private let authService: AuthenticationService
+    
+    
+    var accountDetail = BehaviorRelay<AccountDetail?>(value: nil)
+    var walletItems = BehaviorRelay<[WalletItem]?>(value: nil)
+    let selectedWalletItem = BehaviorRelay<WalletItem?>(value: nil)
+    
+    let isFetching = BehaviorRelay(value: false)
+    let isError = BehaviorRelay(value: false)
+    
+    let emailAddress = BehaviorRelay(value: "")
+    let phoneNumber = BehaviorRelay(value: "")
+    private let kMaxUsernameChars = 255
     
     let submitOneTouchPay = PublishSubject<Void>()
     
@@ -30,20 +39,14 @@ class HomeBillCardViewModel {
     let paymentTracker = ActivityTracker()
     
     required init(fetchData: Observable<Void>,
-                  fetchDataMMEvents: Observable<Event<Maintenance>>,
+                  fetchDataMMEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   scheduledPaymentEvents: Observable<Event<PaymentItem?>>,
-                  walletService: WalletService,
-                  paymentService: PaymentService,
-                  authService: AuthenticationService,
                   fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.fetchDataMMEvents = fetchDataMMEvents
         self.accountDetailEvents = accountDetailEvents
         self.scheduledPaymentEvents = scheduledPaymentEvents
-        self.walletService = walletService
-        self.paymentService = paymentService
-        self.authService = authService
         self.fetchTracker = fetchTracker
         
         oneTouchPayResult
@@ -54,43 +57,87 @@ class HomeBillCardViewModel {
                     GoogleAnalytics.log(event: .oneTouchBankComplete)
                 case (.bank, let error):
                     GoogleAnalytics.log(event: .oneTouchBankError,
-                                        dimensions: [.errorCode: (error as! ServiceError).serviceCode])
+                                        dimensions: [.errorCode: (error as? NetworkingError)?.title ?? ""])
                 case (.card, nil):
                     GoogleAnalytics.log(event: .oneTouchCardComplete)
                 case (.card, let error):
                     GoogleAnalytics.log(event: .oneTouchCardError,
-                                        dimensions: [.errorCode: (error as! ServiceError).serviceCode])
+                                        dimensions: [.errorCode: (error as? NetworkingError)?.title ?? ""])
                 }
             })
             .disposed(by: bag)
+    }
+    
+    func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
+        isFetching.accept(true)
+        
+        WalletService.fetchWalletItems { [weak self] result in
+            switch result {
+            case .success(let walletItemContainer):
+                guard let self = self else { return }
+                let walletItems = walletItemContainer.walletItems
+                self.isFetching.accept(false)
+                
+                self.walletItems.accept(walletItems)
+                let defaultWalletItem = walletItems.first(where: { $0.isDefault })
+                
+                if initialFetch {
+                    if self.accountDetail.value?.isCashOnly ?? false {
+                        if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
+                            self.selectedWalletItem.accept(defaultWalletItem!)
+                        } else if let firstCard = walletItems.first(where: { $0.bankOrCard == .card }) {
+                            // If no default item, choose the first credit card
+                            self.selectedWalletItem.accept(firstCard)
+                        }
+                    } else {
+                        if defaultWalletItem != nil { // Choose the default item
+                            self.selectedWalletItem.accept(defaultWalletItem!)
+                        } else if walletItems.count > 0 { // If no default item, choose the first item
+                            self.selectedWalletItem.accept(walletItems.first)
+                        }
+                    }
+                    
+                }
+                
+                if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
+                    self.selectedWalletItem.accept(nil)
+                }
+                
+                onSuccess?()
+            case .failure:
+                self?.isFetching.accept(false)
+                self?.isError.accept(true)
+                onError?()
+            }
+        }
     }
     
     private lazy var fetchTrigger = Observable
         .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated)
     
     // Awful maintenance mode check
-    private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
+    private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<MaintenanceMode>> = RxNotifications.shared.defaultWalletItemUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
-                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+                        requestSelector: { [unowned self] _ in AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true) })
     
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> =
+    private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> =
         Observable.merge(fetchDataMMEvents, defaultWalletItemUpdatedMMEvents)
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = maintenanceModeEvents
         .filter {
             guard let maint = $0.element else { return true }
-            return !maint.allStatus && !maint.billStatus && !maint.homeStatus
+            return !maint.all && !maint.bill && !maint.home
     }
     .withLatestFrom(fetchTrigger)
     .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker },
                     requestSelector: { [weak self] _ in
                         guard let this = self else { return .empty() }
-                        return this.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
+                        return WalletService.rx.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
     })
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .map { ($0 as? NetworkingError) == .noNetwork }
     
     private(set) lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
     
@@ -129,13 +176,10 @@ class HomeBillCardViewModel {
                     requestSelector: { [unowned self] (object: [String: Any]) in
                         let paymentAmount = object["paymentAmount"] as! Double
                         let paymentDate = object["paymentDate"] as! Date
-                        return self.paymentService.schedulePayment(accountNumber: object["accountNumber"] as! String,
-                                                                   paymentAmount: paymentAmount,
-                                                                   paymentDate: paymentDate,
-                                                                   alternateEmail: "",
-                                                                   alternateNumber: "",
-                                                                   walletId: AccountsStore.shared.customerIdentifier,
-                                                                   walletItem: object["walletItem"] as! WalletItem)
+                        
+                        let request = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount, paymentDate: paymentDate, walletItem: object["walletItem"] as! WalletItem, alternateEmail: "", alternatePhoneNumber: "")
+                        
+                        return PaymentService.rx.schedulePayment(accountNumber: object["accountNumber"] as! String, request: request)
                             .do(onNext: { confirmationNumber in
                                 let paymentDetails = PaymentDetails(amount: paymentAmount,
                                                                     date: paymentDate,
@@ -173,7 +217,7 @@ class HomeBillCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMaintenanceModeState: Driver<Bool> = maintenanceModeEvents
-        .map { $0.element?.billStatus ?? false }
+        .map { $0.element?.bill ?? false }
         .startWith(false)
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
@@ -287,6 +331,11 @@ class HomeBillCardViewModel {
         $0 == .billPaidIntermediate
     }
     
+    private(set) lazy var reviewPaymentShouldShowConvenienceFee: Driver<Bool> =
+        self.walletItemDriver.map { $0?.bankOrCard == .card }
+    
+    private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetailDriver.map { $0.isActiveSeverance }
+    
     private(set) lazy var showAmount: Driver<Bool> = billState.map { $0 != .billPaidIntermediate }
     
     private(set) lazy var showConvenienceFee: Driver<Bool> = showSaveAPaymentAccountButton.not()
@@ -305,11 +354,11 @@ class HomeBillCardViewModel {
     private(set) lazy var showReinstatementFeeText: Driver<Bool> = reinstatementFeeText.isNil().not()
     
     private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver
-        .combineLatest(showOneTouchPaySlider,
-                       showSaveAPaymentAccountButton,
-                       showMinMaxPaymentAllowed,
-                       showAutoPay)
-        { ($0 || $1) && !$2 && !$3 }
+        .combineLatest(
+            showSaveAPaymentAccountButton,
+            showMinMaxPaymentAllowed,
+            showAutoPay)
+        { ($0) && !$1 && !$2 }
         .distinctUntilChanged()
     
     private(set) lazy var showBankCreditNumberButton: Driver<Bool> = walletItemDriver.isNil().not()
@@ -327,12 +376,10 @@ class HomeBillCardViewModel {
         .combineLatest(billState,
                        walletItemDriver,
                        accountDetailDriver,
-                       showOneTouchPaySlider,
                        minMaxPaymentAllowedText)
-        { billState, walletItem, accountDetail, showOneTouchPaySlider, minMaxPaymentAllowedText in
+        { billState, walletItem, accountDetail, minMaxPaymentAllowedText in
             return billState == .billReady &&
                 walletItem != nil &&
-                showOneTouchPaySlider &&
                 minMaxPaymentAllowedText != nil
     }
     .distinctUntilChanged()
@@ -340,21 +387,17 @@ class HomeBillCardViewModel {
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
                                                                                      accountDetailDriver,
                                                                                      walletItemDriver)
-    { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil }
+        { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
         .distinctUntilChanged()
+    private(set) lazy var showMakePaymentButton: Driver<Bool> = Driver.combineLatest(showAutoPay,
+                                                                                     showScheduledPayment)
+        { return $0 || $1 ? false : true }
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
     private(set) lazy var showAutoPay: Driver<Bool> = billState.map {
         $0 == .billReadyAutoPay
     }
-    
-    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> =
-        Driver.combineLatest(showOneTouchPaySlider,
-                             showMinMaxPaymentAllowed,
-                             showSaveAPaymentAccountButton)
-        { $0 && !$1 && !$2}
-            .distinctUntilChanged()
     
     // MARK: - View States
     private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> =
@@ -452,10 +495,14 @@ class HomeBillCardViewModel {
             guard let amountString = billingInfo.restorationAmount?.currencyString else {
                 return nil
             }
-            
-            let localizedText = NSLocalizedString("%@ of the total must be paid immediately to restore service.", comment: "")
-            let string = String.localizedStringWithFormat(localizedText, amountString)
-            return NSAttributedString(string: string, attributes: attributes)
+            if billingInfo.restorationAmount == billingInfo.netDueAmount {
+                return NSAttributedString(string: NSLocalizedString("The total amount must be paid immediately to restore service.", comment: ""))
+            } else {
+                let localizedText = NSLocalizedString("%@ of the total must be paid immediately to restore service.", comment: "")
+                let string = String.localizedStringWithFormat(localizedText, amountString)
+                return NSAttributedString(string: string, attributes: attributes)
+            }
+           
         case .avoidShutoff, .eligibleForCutoff:
             guard let amountString = billingInfo.disconnectNoticeArrears?.currencyString else {
                 return nil
@@ -496,8 +543,8 @@ class HomeBillCardViewModel {
             guard let amountString = billingInfo.pastDueAmount?.currencyString else {
                 return nil
             }
-            
-            let string = String.localizedStringWithFormat("%@ must be paid immediately. Your account has been finaled.", amountString)
+            let status = Environment.shared.opco.isPHI ? "is inactive" : "has been finaled"
+            let string = String.localizedStringWithFormat("%@ must be paid immediately. Your account \(status).", amountString)
             return NSAttributedString(string: string, attributes: attributes)
         default:
             if AccountsStore.shared.currentAccount.isMultipremise {
@@ -571,7 +618,7 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var bankCreditCardNumberText: Driver<String?> = walletItemDriver.map {
-        guard let maskedNumber = $0?.maskedWalletItemAccountNumber else { return nil }
+        guard let maskedNumber = $0?.maskedAccountNumber else { return nil }
         return "**** " + maskedNumber
     }
     
@@ -582,7 +629,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var bankCreditCardButtonAccessibilityLabel: Driver<String?> = walletItemDriver.map {
         guard let walletItem = $0,
-            let maskedNumber = walletItem.maskedWalletItemAccountNumber else { return nil }
+            let maskedNumber = walletItem.maskedAccountNumber else { return nil }
         
         let imageLabel: String
         switch walletItem.bankOrCard {
@@ -662,7 +709,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var amountColor: Driver<UIColor> = billState
         .map { Environment.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .deepGray) : .deepGray }
-
+    
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
         Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
             .map { accountDetail, scheduledPayment in
@@ -722,12 +769,178 @@ class HomeBillCardViewModel {
         case .peco:
             return "1-800-494-4000"
         case .pepco:
-            return "todo"
+            return "202-833-7500"
         case .ace:
-            return "todo"
+            return "1-800-642-3780"
         case .delmarva:
-            return "todo"
+            return "1-800-375-7117"
         }
     }
+    private(set) lazy var totalPaymentDisplayString: Driver<String?> =
+        Driver.combineLatest(accountDetailDriver, reviewPaymentShouldShowConvenienceFee)
+            .map { [weak self] accountDetail, showConvenienceFee in
+                guard let self = self,
+                    let dueAmount = accountDetail.billingInfo.netDueAmount else { return nil }
+                if showConvenienceFee {
+                    return (dueAmount + accountDetail.billingInfo.convenienceFee).currencyString
+                } else {
+                    return dueAmount.currencyString
+                }
+    }
     
+    private(set) lazy var convenienceDisplayString: Driver<String?> =
+        Driver.combineLatest(accountDetailDriver, walletItemDriver) { accountDetail, walletItem in
+            guard let walletItem = walletItem else {
+                return NSLocalizedString("with no convenience fee", comment: "")
+                
+            }
+            if walletItem.bankOrCard == .bank {
+                return NSLocalizedString("with no convenience fee", comment: "")
+            } else {
+                return String.localizedStringWithFormat("with a %@ convenience fee included, applied by Paymentus, our payment partner.", accountDetail.billingInfo.convenienceFee.currencyString)
+            }
+    }
+    
+    private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
+        let billingInfo = $0.billingInfo
+        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
+                                                         .foregroundColor: UIColor.deepGray]
+        let string: String
+        guard let dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
+        attributes[.foregroundColor] = UIColor.deepGray
+        attributes[.font] = SystemFont.semibold.of(size: 17)
+        if billingInfo.pastDueAmount > 0 {
+            if billingInfo.pastDueAmount == billingInfo.netDueAmount {
+                string = String.localizedStringWithFormat("You have %@ due immediately", dueAmount.currencyString)
+                attributes[.foregroundColor] = UIColor.errorRed
+                attributes[.font] = SystemFont.semibold.of(size: 17)
+            } else {
+                string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
+            }
+        }  else {
+            string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
+        }
+        
+        return NSAttributedString(string: string, attributes: attributes)
+    }
+    
+    private(set) lazy var emailIsValidBool: Driver<Bool> =
+        self.emailAddress.asDriver().map { text -> Bool in
+            if text.count > self.kMaxUsernameChars {
+                return false
+            }
+            if text.count == .zero {
+                return true
+            }
+            
+            if text.contains(" ") {
+                return false
+            }
+            
+            let components = text.components(separatedBy: "@")
+            
+            if components.count != 2 {
+                return false
+            }
+            
+            let urlComponents = components[1].components(separatedBy: ".")
+            
+            if urlComponents.count < 2 {
+                return false
+            } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                return false
+            }
+            
+            return true
+    }
+    
+    private(set) lazy var emailIsValid: Driver<String?> =
+        self.emailAddress.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > self.kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+                
+                if text.contains(" ") {
+                    return "Invalid email address"
+                }
+                
+                let components = text.components(separatedBy: "@")
+                
+                if components.count != 2 {
+                    return "Invalid email address"
+                }
+                
+                let urlComponents = components[1].components(separatedBy: ".")
+                
+                if urlComponents.count < 2 {
+                    return "Invalid email address"
+                } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                    return "Invalid email address"
+                }
+            }
+            
+            return nil
+    }
+    
+    private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
+        self.phoneNumber.asDriver().map { [weak self] text -> Bool in
+            guard let self = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.count == 10 || digitsOnlyString.count == 0
+    }
+    
+    private func extractDigitsFrom(_ string: String) -> String {
+        return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+    }
+    
+    private(set) lazy var hasWalletItems: Driver<Bool> =
+        Driver.combineLatest(self.walletItems.asDriver(),
+                             self.isCashOnlyUser,
+                             self.selectedWalletItem.asDriver())
+        {
+            guard let walletItems: [WalletItem] = $0 else { return false }
+            if $1 { // If only bank accounts, treat cash only user as if they have no wallet items
+                for item in walletItems {
+                    if item.bankOrCard == .card {
+                        return true
+                    }
+                }
+                if let selectedWalletItem = $2, selectedWalletItem.isTemporary, selectedWalletItem.bankOrCard == .card {
+                    return true
+                }
+                return false
+            } else {
+                if let selectedWalletItem = $2, selectedWalletItem.isTemporary {
+                    return true
+                }
+                return walletItems.count > 0
+            }
+    }
+    
+    private(set) lazy var isCashOnlyUser: Driver<Bool> = self.accountDetailDriver.map { $0.isCashOnly }
+    
+    private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return nil }
+        return walletItem.paymentMethodType.imageMini
+    }
+    
+    private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return "" }
+        return "**** \(walletItem.maskedAccountNumber ?? "")"
+    }
+    
+    private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {
+        guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
+        return nickname
+    }
+    
+    private(set) lazy var showSelectedWalletItemNickname: Driver<Bool> = selectedWalletItemNickname.isNil().not()
+    
+    private(set) lazy var shouldShowContent: Driver<Bool> =
+        Driver.combineLatest(self.isFetching.asDriver(),
+                             self.isError.asDriver())
+        { !$0 && !$1 }
+    private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
+    { $0 && $1 }
 }

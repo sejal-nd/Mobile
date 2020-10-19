@@ -44,7 +44,7 @@ class PeakRewardsViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    private lazy var viewModel: PeakRewardsViewModel = PeakRewardsViewModel(peakRewardsService: ServiceFactory.createPeakRewardsService(), accountDetail: self.accountDetail)
+    private lazy var viewModel: PeakRewardsViewModel = PeakRewardsViewModel(accountDetail: self.accountDetail)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,8 +152,7 @@ class PeakRewardsViewController: UIViewController {
         
         overrideButton.rx.tap.asDriver()
             .withLatestFrom(viewModel.selectedDevice)
-            .map { [unowned self] in (self.viewModel.peakRewardsService,
-                                      self.viewModel.accountDetail,
+            .map { [unowned self] in (self.viewModel.accountDetail,
                                       $0,
                                       self.viewModel.peakRewardsOverridesEvents,
                                       self.viewModel.peakRewardsSummaryFetchTracker.asDriver()) }
@@ -187,7 +186,7 @@ class PeakRewardsViewController: UIViewController {
         
         adjustThermostatButton.rx.tap.asDriver()
             .withLatestFrom(viewModel.selectedDevice)
-            .map { [unowned self] in (ServiceFactory.createPeakRewardsService(), self.viewModel.accountDetail, $0) }
+            .map { [unowned self] in (self.viewModel.accountDetail, $0) }
             .map(AdjustThermostatViewModel.init)
             .map(AdjustThermostatViewController.init)
             .drive(onNext: { [weak self] in
@@ -214,7 +213,7 @@ class PeakRewardsViewController: UIViewController {
             sleepPeriodCard.rx.touchUpInside.asDriver()
                 .withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, Driver.just(SmartThermostatPeriod.sleep), viewModel.deviceSchedule))
             )
-            .map { [unowned self] in (ServiceFactory.createPeakRewardsService(), self.viewModel.accountDetail, $0, $1, $2) }
+            .map { [unowned self] in (self.viewModel.accountDetail, $0, $1, $2) }
             .map(SmartThermostatScheduleViewModel.init)
             .map(SmartThermostatScheduleViewController.init)
             .drive(onNext: { [weak self] vc in

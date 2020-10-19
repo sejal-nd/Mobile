@@ -11,8 +11,6 @@ import RxCocoa
 import RxSwiftExt
 
 class GameHomeViewModel {
-    private let accountService: AccountService
-    private let gameService: GameService
     let coreDataManager = GameCoreDataManager()
     
     let bag = DisposeBag()
@@ -22,7 +20,7 @@ class GameHomeViewModel {
     let refreshing = BehaviorRelay<Bool>(value: false)
     let accountDetail = BehaviorRelay<AccountDetail?>(value: nil)
     let gameUser = BehaviorRelay<GameUser?>(value: nil)
-    let usageData = BehaviorRelay<[DailyUsage]?>(value: nil)
+    let usageData = BehaviorRelay<DailyUsageData?>(value: nil)
     
     var selectedSegmentIndex = 0
     let selectedCoinView = BehaviorRelay<DailyInsightCoinView?>(value: nil)
@@ -33,7 +31,7 @@ class GameHomeViewModel {
     
     var fetchDisposable: Disposable?
     
-    let weeklyInsightViewModel = WeeklyInsightViewModel(gameService: ServiceFactory.createGameService(), usageService: ServiceFactory.createUsageService(useCache: false))
+    let weeklyInsightViewModel = WeeklyInsightViewModel()
     let weeklyInsightEndDate = BehaviorRelay<Date?>(value: nil)
     let weeklyInsightPublishSubject = PublishSubject<Void>()
     
@@ -56,9 +54,7 @@ class GameHomeViewModel {
     /// gifts to the value being tracked here, and present the popup accordingly.
     var numGiftsUnlocked: Int?
     
-    required init(accountService: AccountService, gameService: GameService) {
-        self.accountService = accountService
-        self.gameService = gameService
+    required init() {
         
         debouncedPoints.asObservable()
             .filter { $0 != nil } // Ignore initial
@@ -67,17 +63,23 @@ class GameHomeViewModel {
                 guard let self = self, let accountDetail = self.accountDetail.value else { return }
 
                 self.inFlightCoins.append(contentsOf: self.debouncedCoinQueue)
-                let params = ["points": points!]
-                self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { [weak self] gameUser in
+                
+                
+                var gameUserRequest = GameUserRequest()
+                if let points = points {
+                    gameUserRequest.points = String(points)
+                }
+                
+                GameService.updateGameUser(accountNumber: accountDetail.accountNumber, request: gameUserRequest) { [weak self] result in
+                    switch result {
+                    case .success(let gameUser):
                         guard let self = self else { return }
                         for tuple in self.inFlightCoins {
-                           self.debouncedCoinQueue.removeAll(where: { $0 == tuple })
+                            self.debouncedCoinQueue.removeAll(where: { $0 == tuple })
                         }
                         self.inFlightCoins.removeAll()
                         self.gameUser.accept(gameUser)
-                    }, onError: { [weak self] _ in
+                    case .failure:
                         guard let self = self else { return }
                         for tuple in self.inFlightCoins {
                             self.debouncedCoinQueue.removeAll(where: { $0 == tuple })
@@ -86,7 +88,8 @@ class GameHomeViewModel {
                         self.inFlightCoins.removeAll()
                         self.gameUser.accept(self.gameUser.value) // To trigger point reconciliation
                         self.usageData.accept(self.usageData.value) // To trigger `layoutCoinViews`
-                    }).disposed(by: self.bag)
+                    }
+                }
             })
             .disposed(by: bag)
         
@@ -106,31 +109,35 @@ class GameHomeViewModel {
             error.accept(false)
         }
         
-        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-            .subscribe(onNext: { [weak self] accountDetail in
-                guard let self = self else { return }
-                self.refreshing.accept(false)
-                self.accountDetail.accept(accountDetail)
-                self.fetchGameUser()
-                self.fetchDailyUsage()
-            }, onError: { [weak self] error in
+        AccountService.fetchAccountDetails { [weak self] result in
+            switch result {
+            case .success(let accountDetail):
+                self?.refreshing.accept(false)
+                self?.accountDetail.accept(accountDetail)
+                self?.fetchGameUser()
+                self?.fetchDailyUsage()
+            case .failure:
                 self?.loading.accept(false)
                 self?.refreshing.accept(false)
                 self?.error.accept(true)
-            }).disposed(by: bag)
+            }
+        }
     }
     
     func fetchGameUser() {
         guard let accountDetail = accountDetail.value else { return }
-        self.gameService.fetchGameUser(accountNumber: accountDetail.accountNumber)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] gameUser in
+        GameService.fetchGameUser(accountNumber: accountDetail.accountNumber) { [weak self] result in
+            switch result {
+            case .success(let gameUser):
                 if let points = gameUser?.points {
                     self?.numGiftsUnlocked = GiftInventory.shared.numGiftsUnlocked(forPointValue: points)
                 }
                 self?.streakCount.accept(UserDefaults.standard.integer(forKey: UserDefaultKeys.gameStreakCount))
                 self?.gameUser.accept(gameUser)
-            }).disposed(by: self.bag)
+            case .failure:
+                break
+            }
+        }
     }
     
     func fetchDailyUsage() {
@@ -142,64 +149,75 @@ class GameHomeViewModel {
         let fetchGas = accountDetail.serviceType?.uppercased() == "GAS" || selectedSegmentIndex == 1
         
         fetchDisposable?.dispose()
-        fetchDisposable = self.gameService.fetchDailyUsage(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, gas: fetchGas)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] usageArray in
-                self?.loading.accept(false)
-                self?.refreshing.accept(false)
-                self?.error.accept(false)
-                self?.weeklyInsightPublishSubject.onNext(()) // So that the combineLatest fires initially
-                self?.usageData.accept(usageArray)
-            }, onError: { [weak self] error in
-                self?.loading.accept(false)
-                self?.refreshing.accept(false)
-                self?.error.accept(true)
-            })
+        fetchDisposable = GameService.rx.fetchDailyUsage(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, gas: fetchGas)
+        .observeOn(MainScheduler.instance)
+        .subscribe(onNext: { [weak self] usageData in
+            self?.loading.accept(false)
+            self?.refreshing.accept(false)
+            self?.error.accept(false)
+            self?.weeklyInsightPublishSubject.onNext(()) // So that the combineLatest fires initially
+            self?.usageData.accept(usageData)
+        }, onError: { [weak self] error in
+            self?.loading.accept(false)
+            self?.refreshing.accept(false)
+            self?.error.accept(true)
+        })
     }
             
     func updateGameUser(taskIndex: Int, advanceTaskTimer: Bool, points: Double? = nil) {
         guard let accountDetail = accountDetail.value else { return }
-        var params: [String: Any] = ["taskIndex": taskIndex]
-        if let p = points {
-            params["points"] = p
+        
+        var gameUserRequest = GameUserRequest(taskIndex: String(taskIndex))
+        if let points = points {
+            gameUserRequest.points = String(points)
         }
-        self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] gameUser in
+        GameService.updateGameUser(accountNumber: accountDetail.accountNumber, request: gameUserRequest) { [weak self] result in
+            switch result {
+            case .success(let gameUser):
                 if advanceTaskTimer {
                     UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.gameLastTaskDate)
                 }
                 self?.gameUser.accept(gameUser)
-            }, onError: { [weak self] error in
+            case .failure:
                 guard let self = self else { return }
                 self.gameUser.accept(self.gameUser.value) // To trigger point reconciliation
-            }).disposed(by: self.bag)
+            }
+        }
     }
         
-    func updateGameUserAnalytic(forKey key: String) {
+    func updateGameUserAnalytic(pilotEBillEnrollment: String? = nil, pilotHomeProfileCompletion: String? = nil) {
         guard let accountDetail = accountDetail.value else { return }
-        let params = [key: true]
-        _ = gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
+        var gameUserRequest = GameUserRequest()
+        if let pilotEBillEnrollment = pilotEBillEnrollment {
+            gameUserRequest.pilotEBillEnrollment = pilotEBillEnrollment
+        }
+        
+        if let pilotHomeProfileCompletion = pilotHomeProfileCompletion {
+            gameUserRequest.pilotHomeProfileCompletion = pilotHomeProfileCompletion
+        }
+        
+        _ = GameService.rx.updateGameUser(accountNumber: accountDetail.accountNumber, request: gameUserRequest)
             .subscribe()
     }
     
     func updateGameUserCheckInResponse(response: String, taskIndex: Int) {
         guard let accountDetail = accountDetail.value else { return }
-        let params: [String: Any] = [
-            "checkInHowDoYouFeelAnswer": response,
-            "taskIndex": taskIndex
-        ]
-        gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] gameUser in
+        let gameUserRequest = GameUserRequest(taskIndex: String(taskIndex),
+                                              checkInHowDoYouFeelAnswer: response)
+        GameService.updateGameUser(accountNumber: accountDetail.accountNumber, request: gameUserRequest) { [weak self] result in
+            switch result {
+            case .success(let gameUser):
                 self?.gameUser.accept(gameUser)
-            }).disposed(by: self.bag)
+            case .failure:
+                break
+            }
+        }
     }
     
     func updateGiftSelections() {
         guard let accountDetail = accountDetail.value else { return }
-        _ = self.gameService.updateGameUserGiftSelections(accountNumber: accountDetail.accountNumber)
-            .subscribe()
+        _ = GameService.rx.updateGameUserGiftSelections(accountNumber: accountDetail.accountNumber)
+        .subscribe()
     }
         
     private(set) lazy var shouldShowContent: Driver<Bool> =

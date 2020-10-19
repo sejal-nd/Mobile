@@ -15,9 +15,7 @@ class HourlyPricingViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
-    
-    let accountService = ServiceFactory.createAccountService()
-    
+        
     var accountDetail: AccountDetail! // Passed from SERPTSViewController
     
     override func viewDidLoad() {

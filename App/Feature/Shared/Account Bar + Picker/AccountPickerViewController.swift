@@ -16,9 +16,7 @@ enum AccountPickerViewControllerState {
 class AccountPickerViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
-    
-    private let accountService = ServiceFactory.createAccountService()
-    
+        
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var accountPicker: AccountPicker!
     
@@ -44,17 +42,17 @@ class AccountPickerViewController: UIViewController {
     
     func fetchAccounts() {
         accountPicker.setLoading(true)
-        accountService.fetchAccounts()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.accountPicker.setLoading(false)
-                self.accountPicker.refresh()
-            }, onError: { _ in
-                MCSApi.shared.logout()
-                NotificationCenter.default.post(name: .didReceiveAccountListError, object: self)
-            }).disposed(by: disposeBag)
-    }
         
+        AccountService.fetchAccounts { [weak self] result in
+            switch result {
+            case .success:
+                self?.accountPicker.setLoading(false)
+                self?.accountPicker.refresh()
+            case .failure:
+                AuthenticationService.logout()
+            }
+        }
+    }
+    
 }
 

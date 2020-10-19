@@ -12,9 +12,6 @@ import RxCocoa
 class BudgetBillingViewModel {
     
     let disposeBag = DisposeBag()
-    
-    private var billService: BillService
-    private var alertsService: AlertsService
 
     let accountDetail: AccountDetail!
 
@@ -22,59 +19,57 @@ class BudgetBillingViewModel {
     
     let selectedUnenrollmentReason = BehaviorRelay(value: -1)
     
-    required init(accountDetail: AccountDetail, billService: BillService, alertsService: AlertsService) {
+    required init(accountDetail: AccountDetail) {
         self.accountDetail = accountDetail
-        self.billService = billService
-        self.alertsService = alertsService
     }
     
-    func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
-        billService.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] billingInfo in
-                self?.averageMonthlyBill = billingInfo.averageMonthlyBill
+    func getBudgetBillingInfo(onSuccess: @escaping (BudgetBilling) -> Void, onError: @escaping (String) -> Void) {
+        BillService.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber) { [weak self] result in
+            switch result {
+            case .success(let billingInfo):
+                self?.averageMonthlyBill = billingInfo.averageMonthlyBill.currencyString
                 onSuccess(billingInfo)
-            }, onError: { error in
-                onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
+        BillService.enrollBudgetBilling(accountNumber: accountDetail.accountNumber) { [weak self] result in
+            switch result {
+            case .success:
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
                 if Environment.shared.opco != .bge {
-                    self.alertsService.enrollBudgetBillingNotification(accountNumber: self.accountDetail.accountNumber)
-                        .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { _ in
+                    let alertPreferencesRequest = AlertPreferencesRequest(alertPreferenceRequests: [AlertPreferencesRequest.AlertRequest(isActive: true, type: "push", programName: "Budget Billing")])
+                    AlertService.setAlertPreferences(accountNumber: self?.accountDetail.accountNumber ?? "", request: alertPreferencesRequest) { alertResult in
+                        switch alertResult {
+                        case .success:
                             dLog("Enrolled in the budget billing push notification")
-                            onSuccess()
-                        }, onError: { error in
+                        case .failure:
                             dLog("Failed to enroll in the budget billing push notification")
-                            onSuccess()
-                        }).disposed(by: self.disposeBag)
+                        }
+                        onSuccess()
+                    }
                 } else {
                     onSuccess()
                 }
-            }, onError: { error in
-                onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: reasonString(forIndex: selectedUnenrollmentReason.value))
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        BillService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: reasonString(forIndex: selectedUnenrollmentReason.value)) { result in
+            switch result {
+            case .success:
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
                 onSuccess()
-            }, onError: { error in
+            case .failure(let error):
                 onError(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     private(set) lazy var reasonForStoppingUnenrollButtonEnabled: Driver<Bool> =
@@ -98,12 +93,8 @@ class BudgetBillingViewModel {
                 text += NSLocalizedString("\n\nPECO bases the monthly Budget Billing amount on your average bill over the past 12 months. If your account has not yet been open for a year, your monthly Budget Billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your Budget Billing amount.", comment: "")
             }
             return text
-        case .pepco:
-            return "todo"
-        case .ace:
-            return "todo"
-        case .delmarva:
-            return "todo"
+        case .ace, .delmarva, .pepco:
+            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. After 12 months, the difference between your budget bill amount and actual use for the previous 12 months will be applied to your bill.", comment: "")
         }
     }
     

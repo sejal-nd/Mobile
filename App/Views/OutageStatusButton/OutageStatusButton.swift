@@ -102,7 +102,7 @@ class OutageStatusButton: UIView {
             onLottieAnimation?.removeFromSuperview()
             
             if isStormMode {
-                onLottieAnimation = AnimationView(name: "sm_outage")
+                onLottieAnimation = AnimationView(name: "sm_outage-Flavor\(Environment.shared.opco.rawValue)")
                 
                 outerCircleView.isHidden = true
                 
@@ -114,7 +114,7 @@ class OutageStatusButton: UIView {
                 reportedETRTitleLabel.textColor = .white
                 reportedETRLabel.textColor = .white
             } else {
-                onLottieAnimation = AnimationView(name: "outage")
+                onLottieAnimation = AnimationView(name: "outage-Flavor\(Environment.shared.opco.rawValue)")
                 
                 outerCircleView.isHidden = false
                 

@@ -38,8 +38,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
     
     var accountDetail: AccountDetail!
     
-    private lazy var viewModel = MyHomeProfileViewModel(usageService: ServiceFactory.createUsageService(useCache: false),
-                                                        accountDetail: self.accountDetail,
+    private lazy var viewModel = MyHomeProfileViewModel(accountDetail: self.accountDetail,
                                                         saveAction: self.saveButton.rx.tap.asObservable()
                                                             .filter { [weak self] in self?.saveButton.isEnabled ?? false })
     
@@ -74,8 +73,10 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
         headerLabel.setLineHeight(lineHeight: 24)
         homeTypeInfoLabel.textColor = .deepGray
         homeTypeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        homeTypeInfoLabel.text = viewModel.homeTypeInfo
         heatingFuelInfoLabel.textColor = .deepGray
         heatingFuelInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        heatingFuelInfoLabel.text = viewModel.heatingFuelInfo
         numberOfResidentsInfoLabel.textColor = .deepGray
         numberOfResidentsInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         homeSizeInfoLabel.textColor = .deepGray
@@ -99,8 +100,8 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                 self?.errorLabel.isHidden = true
                 self?.loadingIndicator.isHidden = true
                 
-                self?.homeTypeButton.valueText = homeProfile.homeType?.displayString
-                if let homeType = homeProfile.homeType {
+                self?.homeTypeButton.valueText = homeProfile.dwellingType?.displayString
+                if let homeType = homeProfile.dwellingType {
                     self?.viewModel.homeType.accept(homeType)
                 }
                 

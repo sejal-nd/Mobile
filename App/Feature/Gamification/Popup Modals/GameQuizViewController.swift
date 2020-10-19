@@ -73,7 +73,7 @@ class GameQuizViewController: UIViewController {
         // Populate quiz data
         questionLabel.text = quiz.question
         for answer in quiz.answers {
-            let answerView = QuizAnswerView(withAnswerTuple: answer)
+            let answerView = QuizAnswerView(with: answer)
             answerView.delegate = self
             answerViews.append(answerView)
             answerStackView.addArrangedSubview(answerView)

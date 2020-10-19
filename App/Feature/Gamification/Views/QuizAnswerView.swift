@@ -33,7 +33,7 @@ class QuizAnswerView: UIView {
         commonInit()
     }
     
-    init(withAnswerTuple answerTuple: (String, Bool)) {
+    init(with answer: GameQuiz.Answer) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 56))
                 
         commonInit()
@@ -41,12 +41,12 @@ class QuizAnswerView: UIView {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         paragraphStyle.hyphenationFactor = 1
-        let attribString = NSAttributedString(string: answerTuple.0, attributes: [
+        let attribString = NSAttributedString(string: answer.value, attributes: [
             NSAttributedString.Key.paragraphStyle: paragraphStyle
         ])
         
         answerLabel.attributedText = attribString
-        correct = answerTuple.1
+        correct = answer.isCorrect
     }
     
     func commonInit() {

@@ -30,7 +30,7 @@ class MoreViewController: UIViewController {
                 case .prod, .prodbeta:
                     versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
                 default:
-                    versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
+                    versionLabel.text = String(format: NSLocalizedString("Version %@ - Tier %@", comment: ""), version, Environment.shared.environmentName.rawValue)
                 }
             } else {
                 versionLabel.text = nil
@@ -41,7 +41,7 @@ class MoreViewController: UIViewController {
         }
     }
 
-    let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
+    let viewModel = MoreViewModel()
     
     private var biometricsPasswordRetryCount = 0
     
@@ -173,12 +173,7 @@ class MoreViewController: UIViewController {
     private func logout(action: UIAlertAction) {
         FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .sign_out)])
             
-        let authService = ServiceFactory.createAuthenticationService()
-        authService.logout()
-        
-        RxNotifications.shared.configureQuickActions.onNext(false)
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-        (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
+        AuthenticationService.logout()
     }
     
     // MARK: - Navigation

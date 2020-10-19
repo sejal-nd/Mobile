@@ -22,10 +22,6 @@ class BillViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let accountService: AccountService
-    private let authService: AuthenticationService
-    private let usageService: UsageService
-
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
@@ -42,37 +38,31 @@ class BillViewModel {
         }
     }
     
-    required init(accountService: AccountService, authService: AuthenticationService, usageService: UsageService) {
-        self.accountService = accountService
-        self.authService = authService
-        self.usageService = usageService
-    }
-    
     private lazy var fetchTrigger = Observable
         .merge(fetchAccountDetail,
                RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount),
                RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchTrigger
+    private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> = fetchTrigger
         .toAsyncRequest(activityTracker: { [weak self] in self?.tracker(forState: $0) },
-                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+                        requestSelector: { [unowned self] _ in AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true) })
     
     private(set) lazy var dataEvents: Observable<Event<(AccountDetail, PaymentItem?)>> = maintenanceModeEvents
-        .filter { !($0.element?.allStatus ?? false) && !($0.element?.billStatus ?? false) }
+        .filter { !($0.element?.all ?? false) && !($0.element?.bill ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)
         }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
             guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
             let account = AccountsStore.shared.currentAccount
-            let accountDetail = self.accountService.fetchAccountDetail(account: account)
-            let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
+            let accountDetail = AccountService.rx.fetchAccountDetails(accountNumber: account.accountNumber)
+            let scheduledPayment = AccountService.rx.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
             return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     
-    private lazy var usageBillImpactEvents: Observable<Event<BillComparison>> = Observable
+    private lazy var usageBillImpactEvents: Observable<Event<CompareBillResult>> = Observable
         .combineLatest(dataEvents.elements().map { $0.0 }.filter { $0.isEligibleForUsageData },
                        compareToLastYear.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
@@ -82,14 +72,14 @@ class BillViewModel {
                 self.usageBillImpactLoading.onNext(true)
             }
             let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasIndex)
-            return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
+            return UsageService.rx.compareBill(accountNumber: accountDetail.accountNumber,
                                                          premiseNumber: accountDetail.premiseNumber!,
                                                          yearAgo: compareToLastYear,
                                                          gas: isGas)
         }
     
-    private(set) lazy var accountDetailError: Driver<ServiceError?> = dataEvents.errors()
-        .map { $0 as? ServiceError }
+    private(set) lazy var accountDetailError: Driver<NetworkingError?> = dataEvents.errors()
+        .map { $0 as? NetworkingError }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showLoadedState: Driver<Void> = dataEvents
@@ -106,7 +96,7 @@ class BillViewModel {
     private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
         .map { $0.0 }
         .filter {
-            return !$0.isEligibleForUsageData && $0.isResidential
+            return !$0.isEligibleForUsageData && $0.isResidential && !($0.status?.lowercased() == "inactive")
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -157,7 +147,7 @@ class BillViewModel {
         .asDriver(onErrorDriveWith: Driver.empty())
     
 
-    private(set) lazy var currentBillComparison: Driver<BillComparison> = usageBillImpactEvents
+    private(set) lazy var currentBillComparison: Driver<CompareBillResult> = usageBillImpactEvents
         .elements()
         .asDriver(onErrorDriveWith: .empty())
     
@@ -168,7 +158,7 @@ class BillViewModel {
     // MARK: - Show/Hide Views
     
     private(set) lazy var showMaintenanceMode: Driver<Void> = maintenanceModeEvents.elements()
-        .filter { $0.billStatus }
+        .filter { $0.bill }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -253,21 +243,22 @@ class BillViewModel {
     
     private(set) lazy var alertBannerText: Driver<String?> = currentAccountDetail.map { accountDetail in
         let billingInfo = accountDetail.billingInfo
-        
+        let status = Environment.shared.opco.isPHI ? "is inactive" : "has been finaled"
         // Finaled
         if billingInfo.pastDueAmount > 0 && accountDetail.isFinaled {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
-                return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account has been finaled and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
+                // Since the past due amount and the net due amount are both equal, it makes sense not to show the `pastDueAmount` and also its implemented similarly in Android as well
+                return "The total amount is past due and must be paid immediately. Your account \(status) and is no longer connected to your premise address."
             } else {
-                return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account has been finaled and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
+                return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account \(status) and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
             }
         }
         
         // Restore Service
         if let restorationAmount = accountDetail.billingInfo.restorationAmount,
             restorationAmount > 0 &&
-            accountDetail.isCutOutNonPay &&
-            Environment.shared.opco != .bge {
+                accountDetail.isCutOutNonPay &&
+                Environment.shared.opco != .bge {
             if restorationAmount == billingInfo.netDueAmount {
                 return NSLocalizedString("The total amount must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.", comment: "")
             } else {
@@ -567,7 +558,7 @@ class BillViewModel {
     // MARK: Up/Down Arrow Image Drivers
     
     private(set) lazy var reasonsWhyLabelText: Driver<String?> = currentBillComparison.map {
-            guard let reference = $0.reference, let compared = $0.compared else {
+            guard let reference = $0.referenceBill, let compared = $0.comparedBill else {
                 return NSLocalizedString("Reasons Why Your Bill is...", comment: "")
             }
             let currentCharges = reference.charges
@@ -593,7 +584,7 @@ class BillViewModel {
                                    electricGasSelectedIndex: self.electricGasSelectedSegmentIndex.value)
             let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
             
-            guard let reference = billComparison.reference, let compared = billComparison.compared else {
+            guard let reference = billComparison.referenceBill, let compared = billComparison.comparedBill else {
                 return NSAttributedString(string: String.localizedStringWithFormat("Data not available to explain likely reasons for changes in your %@ charges.", gasOrElectricString))
             }
                         
@@ -646,7 +637,7 @@ class BillViewModel {
         { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
             guard let self = self else { return nil }
             
-            guard let reference = billComparison.reference, let compared = billComparison.compared else {
+            guard let reference = billComparison.referenceBill, let compared = billComparison.comparedBill else {
                 return NSLocalizedString("Data not available.", comment: "")
             }
             
@@ -730,7 +721,7 @@ class BillViewModel {
             return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString)
     }
     
-    private(set) lazy var noPreviousData: Driver<Bool> = currentBillComparison.map { $0.compared == nil }
+    private(set) lazy var noPreviousData: Driver<Bool> = currentBillComparison.map { $0.comparedBill == nil }
     
     //MARK: - Enrollment
     
