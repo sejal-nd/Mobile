@@ -10,10 +10,10 @@ import Foundation
 
 public struct Appointment: Decodable {
     public var id: String
-    public var type: String
-    public var typeID: String
+    public var type: String?
+    public var typeID: String?
     public var status: String
-    public var statusID: String
+    public var statusID: String?
     public var completionComments: Date?
     public var createDate: Date?
     public var lastAmendDate: Date?
