@@ -38,9 +38,10 @@ public struct PaymentItem: Decodable {
         status = PaymentStatus(rawValue: statusStr.lowercased())! // TODO potential future refactor - throw a Decoding error with field name and type
         date = try container.decodeIfPresent(Date.self, forKey: .date)
         
+//        TODO the scheduled payments are returned in the accounts call without a date
         // Scheduled payments require dates
-        guard status != .scheduled || date != nil else {
-            throw NetworkingError.invalidResponse // TODO should we have this? handle it differently?
-        }
+//        guard status != .scheduled || date != nil else {
+//            throw NetworkingError.invalidResponse // TODO should we have this? handle it differently?
+//        }
     }
 }
