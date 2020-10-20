@@ -21,7 +21,7 @@ public enum Router {
         public var path: String {
             switch self {
             case .anon:
-                return "\(rawValue)/\(Environment.shared.opco.rawValue)"
+                return "\(rawValue)/\(Environment.shared.opco.urlString)"
             case .none:
                 return ""
             default:

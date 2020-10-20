@@ -40,6 +40,17 @@ enum OpCo: String {
         }
     }
     
+    var urlString: String {
+        switch self {
+        case .delmarva:
+            return "DPL"
+        case .pepco:
+            return "PEP"
+        default:
+            return rawValue.uppercased()
+        }
+    }
+    
     // Used for reading the splash screen animation to VoiceOver users
     var taglineString: String {
         switch self {
