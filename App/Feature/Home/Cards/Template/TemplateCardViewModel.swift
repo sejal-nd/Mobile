@@ -42,7 +42,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return #imageLiteral(resourceName: "Residential")
+                    return #imageLiteral(resourceName: "marketplace")
                 } else {
                     return #imageLiteral(resourceName: "Commercial")
                 }
@@ -61,7 +61,7 @@ class TemplateCardViewModel {
                 }
             case .comEd:
                 if accountDetail.isResidential {
-                    return accountDetail.isHourlyPricing ? #imageLiteral(resourceName: "EnrolledImage") : #imageLiteral(resourceName: "UnenrolledImage")
+                    return accountDetail.isHourlyPricing ? #imageLiteral(resourceName: "EnrolledImage") :#imageLiteral(resourceName: "marketplace")
                 } else {
                     return #imageLiteral(resourceName: "Commercial")
                 }
@@ -77,7 +77,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("PECO Marketplace", comment: "")
+                    return NSLocalizedString("Explore Energy-Saving Solutions for Your Home", comment: "")
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
@@ -96,7 +96,7 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
                         NSLocalizedString("Check Up On Your Hourly Pricing Savings", comment: "") :
-                        NSLocalizedString("Get Instant Rebates on Energy-Related Products", comment: "")
+                        NSLocalizedString("Explore Energy-Saving Solutions for Your Home", comment: "")
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
@@ -128,7 +128,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Get instant discounts on energy-saving products. Free shipping on orders over $49.", comment: "")
+                    return NSLocalizedString("Find valuable information and solutions to help you manage and control your energy usage.", comment: "")
                 } else {
                     return NSLocalizedString("PECO can help you get on the fast track to substantial energy & cost savings.", comment: "")
                 }
@@ -149,8 +149,7 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
                         NSLocalizedString("Check Up On Your Hourly Pricing Savings", comment: "") :
-                        NSLocalizedString("Shop the ComEd Marketplace and receive instant savings on smart " +
-                            "thermostats, energy-efficient LEDs and more.", comment: "")
+                        NSLocalizedString("Find valuable information and solutions to help you manage and control your energy usage.", comment: "")
                 } else {
                     return NSLocalizedString("A FREE facility assessment can help you save money and energy", comment: "")
                 }
