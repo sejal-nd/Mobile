@@ -173,7 +173,7 @@ public enum Router {
         switch self {
         case .weather, .registerForAlerts:
             return .none
-            case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName:
+        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner:
             return .anon
         default:
             return .auth
