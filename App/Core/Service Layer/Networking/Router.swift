@@ -282,7 +282,7 @@ public enum Router {
         case .registerForAlerts:
             return "\(basePath)/noti/\(apiAccess.path)/notification/registration"
         case .alertPreferencesLoad(let accountNumber), .alertPreferencesUpdate(let accountNumber, _):
-            return "\(basePath)/pref/\(apiAccess.path)/accounts/\(accountNumber)/alerts/preferences/push"
+            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/alerts/preferences/push"
         case .fetchAlertLanguage(let accountNumber), .setAlertLanguage(let accountNumber, _):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/alerts/accounts"
         case .appointments(let accountNumber, let premiseNumber):
