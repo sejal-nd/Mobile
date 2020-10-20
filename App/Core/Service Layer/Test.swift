@@ -62,7 +62,7 @@ class NetworkTest {
         NetworkingLayer.request(router: .payments(accountNumber: accountNumber)) { (result: Result<Payments, NetworkingError>) in
             switch result {
             case .success(let data):
-                print("NetworkTest SUCCESS: \(data) BREAK \(data.billingInfo.payments.first?.amount ?? 0.0)")
+                print("NetworkTest SUCCESS: \(data) BREAK \(data.billingInfo?.payments.first?.amount ?? 0.0)")
             case .failure(let error):
                 print("NetworkTest FAIL: \(error)")
             }
