@@ -46,7 +46,7 @@ public struct MaintenanceMode: Decodable {
         let rootAll = try container.decode(Bool.self, forKey: .all)
         let rootBill = try container.decode(Bool.self, forKey: .bill)
         let rootOutage = try container.decode(Bool.self, forKey: .outage)
-        let rootUsage = try container.decode(Bool.self, forKey: .usage)
+        let rootUsage = try container.decodeIfPresent(Bool.self, forKey: .usage) ?? false
         let rootHome = try container.decode(Bool.self, forKey: .home)
         let rootStorm = try container.decode(Bool.self, forKey: .storm)
         self.alerts = try container.decode(Bool.self, forKey: .alerts)

@@ -85,7 +85,7 @@ extension AuthenticationService {
                                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
         let tokenRequest = TokenRequest(clientId: Environment.shared.clientID,
                                         clientSecret: Environment.shared.clientSecret,
-                                        username: "\(Environment.shared.opco.rawValue)\\\(username)",
+                                        username: "\(Environment.shared.opco.urlString)\\\(username)",
                                         password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
