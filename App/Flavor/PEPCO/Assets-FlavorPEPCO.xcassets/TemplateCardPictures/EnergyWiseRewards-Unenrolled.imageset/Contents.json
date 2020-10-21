@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "tcard_smallbusiness.jpg",
+      "filename" : "ACE_WaystoSave.jpg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }
