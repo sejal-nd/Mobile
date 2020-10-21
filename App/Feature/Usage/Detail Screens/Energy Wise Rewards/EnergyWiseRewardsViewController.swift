@@ -15,6 +15,7 @@ final class EnergyWiseRewardsViewController: DismissableFormSheetViewController 
     @IBOutlet private weak var logo: UIImageView!
     @IBOutlet private weak var energyWiseRewardsInformationLabel: UILabel!
     @IBOutlet private weak var adjustThermostatButton: PrimaryButton!
+    @IBOutlet private weak var footerView: StickyFooterView!
     
     var accountDetail: AccountDetail!
     
@@ -48,5 +49,6 @@ extension EnergyWiseRewardsViewController {
          energyWiseRewardsInformationLabel.textColor = .deepGray
          energyWiseRewardsInformationLabel.font = SystemFont.regular.of(textStyle: .body)
          energyWiseRewardsInformationLabel.setLineHeight(lineHeight: 24.0)
+         footerView.isHidden = !viewModel.showAdjustThermostatCTA
     }
 }

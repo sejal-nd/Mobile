@@ -39,6 +39,7 @@
 		3090A643247F9A6900815EA1 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B4F4AE1E5C957A0031D934 /* More.storyboard */; };
 		30A1A0D3254004DD00D18EAC /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30A1A0D4254004EF00D18EAC /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
+		30A1A0D52540190D00D18EAC /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674A11F92523889C00AF0D38 /* EnergyWiseRewardsViewModel.swift */; };
 		30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */; };
@@ -6511,6 +6512,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30A1A0D52540190D00D18EAC /* EnergyWiseRewardsViewModel.swift in Sources */,
 				3559C8A422F9F68300481A87 /* AppointmentDetailViewModel.swift in Sources */,
 				B0E9EFFE21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
