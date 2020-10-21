@@ -10,10 +10,12 @@ import Foundation
 
 public struct ApigeeError: Decodable {
     public var error: String
+    public var errorCode: String
     public var errorDescription: String
     
     enum CodingKeys: String, CodingKey {
         case error = "error"
+        case errorCode = "error_code"
         case errorDescription = "error_description"
     }
 }

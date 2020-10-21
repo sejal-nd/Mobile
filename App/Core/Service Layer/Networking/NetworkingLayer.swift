@@ -44,6 +44,10 @@ public enum NetworkingLayer {
         // Set HTTP BODY
         if let httpBody = router.httpBody {
             urlRequest.httpBody = httpBody
+            
+            if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+                dLog("Request Body:\n\(String(decoding: httpBody, as: UTF8.self))")
+            }
         }
         
         // Add Headers
@@ -231,10 +235,16 @@ public enum NetworkingLayer {
         do {
             responseWrapper = try jsonDecoder.decode(AzureResponseContainer<T>.self, from: data)
         } catch {
-            if let error = try? jsonDecoder.decode(ApigeeError.self, from: data) {
+            if let apigeeError = try? jsonDecoder.decode(ApigeeError.self, from: data) {
                 // Apigee decode
-                dLog("❌ Invalid Token: \(error) \n\n\(error.errorDescription)")
-                throw NetworkingError.invalidToken
+                dLog("❌ Apigee Error: \(apigeeError) \n\n\(apigeeError.errorDescription)")
+                let networkError = NetworkingError(errorCode: apigeeError.errorCode)
+                
+                if networkError != .generic {
+                    throw networkError
+                } else {
+                    throw NetworkingError.invalidToken
+                }
             } else if let response = try? jsonDecoder.decode(T.self, from: data) {
                 // Default decode
                 return response
