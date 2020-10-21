@@ -354,6 +354,19 @@ class UsageViewModel {
             }
         }
     
+    private(set) lazy var toDateCost: Driver<Double?> =
+           Driver.combineLatest(accountDetail,
+                                billForecast,
+                                electricGasSelectedSegmentIndex.asDriver())
+           { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
+               guard let this = self else { return nil }
+               if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
+                   return billForecast?.gas?.toDateCost
+               } else {
+                   return billForecast?.electric?.toDateCost
+               }
+           }
+    
     private(set) lazy var projectedCostSoFar: Driver<Double?> =
         Driver.combineLatest(accountDetail,
                              billForecast,
@@ -413,9 +426,10 @@ class UsageViewModel {
         Driver.combineLatest(accountDetail,
                              projectedCost,
                              projectedUsage,
-                             billComparison)
-        { [weak self] accountDetail, cost, usage, billComparison in
-            if accountDetail.isModeledForOpower {
+                             billComparison,
+                             toDateCost)
+        { [weak self] accountDetail, cost, usage, billComparison, toDateCost in
+            if accountDetail.isModeledForOpower || (Environment.shared.opco.isPHI && cost > 0 && toDateCost > 0) {
                 return cost?.currencyString
             } else {
                 guard let usage = usage else { return nil }
@@ -566,8 +580,10 @@ class UsageViewModel {
         Driver.combineLatest(accountDetail,
                              billComparison,
                              billForecast,
+                             projectedCost,
+                             toDateCost,
                              electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] accountDetail, billComparison, billForecast, electricGasSelectedIndex in
+        { [weak self] accountDetail, billComparison, billForecast, projectedCost, toDateCost, electricGasSelectedIndex in
             guard let this = self else { return nil }
             guard let billForecast = billForecast else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
@@ -585,7 +601,7 @@ class UsageViewModel {
             
             
             var detailString = ""
-            if accountDetail.isModeledForOpower {
+            if accountDetail.isModeledForOpower || (Environment.shared.opco.isPHI && projectedCost > 0 && toDateCost > 0) {
                 let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
                     "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                 if isGas {
@@ -725,8 +741,10 @@ class UsageViewModel {
                              billComparison,
                              barGraphSelection.asDriver(),
                              billForecast,
-                             electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] accountDetail, billComparison, barGraphSelection, billForecast, electricGasSelectedIndex in
+                             electricGasSelectedSegmentIndex.asDriver(),
+                             projectedCost,
+                             toDateCost)
+        { [weak self] accountDetail, billComparison, barGraphSelection, billForecast, electricGasSelectedIndex, projectedCost, toDateCost in
             guard let this = self else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
@@ -757,7 +775,7 @@ class UsageViewModel {
                     }
                 }
             case .projected:
-                if accountDetail.isModeledForOpower {
+                if accountDetail.isModeledForOpower || (Environment.shared.opco.isPHI && projectedCost > 0 && toDateCost > 0) {
                     let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
                         "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                     if let gasForecast = billForecast?.gas, isGas {
