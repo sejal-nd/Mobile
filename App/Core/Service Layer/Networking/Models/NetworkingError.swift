@@ -123,7 +123,7 @@ public enum NetworkingError: Error, Equatable {
             self = .peakRewardsDuplicateOverrides
         case "FN-OVER-OTHER":
             self = .peakRewardsOverrides
-        case "FN-FAIL-LOGIN":
+        case "FN-FAIL-LOGIN", "FN_ACCT_INVALID":
             self = .failedLogin
         case "FAILED":
             self = .failed
