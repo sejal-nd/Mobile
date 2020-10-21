@@ -10,6 +10,7 @@ import Foundation
 
 enum SubOpCo: String {
     case pepcoMaryland
+    case pepcoDC
     case delmarvaMaryland
     case delmarvaDelaware
 }

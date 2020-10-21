@@ -28,6 +28,8 @@ final class PeakEnergySavingsViewModel {
             return NSLocalizedString("A Peak Savings Day is scheduled for Delmarva Power customers in Delaware on Friday, July 19, 2020, from 01:00 PM to 05:00 PM.", comment: "")
         case .delmarvaMaryland:
             return NSLocalizedString("A Peak Savings Day is scheduled for Delmarva Power customers in Maryland on Friday, July 19, 2020, from 01:00 PM to 05:00 PM.", comment: "")
+        case .pepcoDC:
+            return ""
         case .none:
             return ""
         }
