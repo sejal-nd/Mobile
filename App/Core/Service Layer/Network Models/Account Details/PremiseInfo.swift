@@ -9,7 +9,7 @@
 import Foundation
 
 public struct PremiseInfo: Decodable, Equatable, Hashable {
-    public var premiseNumber: String
+    public var premiseNumber: String?
     
     public var peakRewards: String?
     public var smartEnergyRewards: String?
@@ -33,26 +33,24 @@ public struct PremiseInfo: Decodable, Equatable, Hashable {
     }
     
     public init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.premiseNumber = try container.decode(String.self,
-                                                  forKey: .premiseNumber)
-        self.peakRewards = try container.decodeIfPresent(String.self,
-                                                forKey: .peakRewards)
-        self.smartEnergyRewards = try container.decodeIfPresent(String.self,
-                                                       forKey: .smartEnergyRewards)
+        self.premiseNumber = try container.decodeIfPresent(String.self, forKey: .premiseNumber)
         
-        let mainAddressContainer = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                                 forKey: .mainAddress)
-        self.addressGeneral = try mainAddressContainer.decodeIfPresent(String.self,
-                                                              forKey: .addressGeneral)
-        self.addressLine = try mainAddressContainer.decodeIfPresent([String].self,
-                                                           forKey: .addressLine)
-        self.streetDetail = try mainAddressContainer.decode(StreetDetail.self,
-                                                            forKey: .streetDetail)
+        self.peakRewards = try container.decodeIfPresent(String.self, forKey: .peakRewards)
         
-        self.townDetail = try mainAddressContainer.decode(TownDetail.self,
-                                                          forKey: .townDetail)
+        self.smartEnergyRewards = try container.decodeIfPresent(String.self, forKey: .smartEnergyRewards)
+        
+        let mainAddressContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .mainAddress)
+        
+        self.addressGeneral = try mainAddressContainer.decodeIfPresent(String.self, forKey: .addressGeneral)
+        
+        self.addressLine = try mainAddressContainer.decodeIfPresent([String].self, forKey: .addressLine)
+        
+        self.streetDetail = try mainAddressContainer.decode(StreetDetail.self, forKey: .streetDetail)
+        
+        self.townDetail = try mainAddressContainer.decode(TownDetail.self, forKey: .townDetail)
     }
     
     var addressLineString: String {

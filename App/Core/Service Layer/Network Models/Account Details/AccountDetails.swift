@@ -13,7 +13,7 @@ public struct AccountDetail: Decodable {
     public var address: String?
     
     public var accountStatusCode: String?
-    public var accountType: String
+    public var accountType: String?
     public var accountNickname: String?
     public var isAMIAccount: Bool
     public var isModeledForOpower: Bool
@@ -53,16 +53,16 @@ public struct AccountDetail: Decodable {
     public var isFinaled: Bool
     public var isBGEasy: Bool
     public var isEBillEnrollment: Bool
-    public var addressLine: String
-    public var street: String
-    public var city: String
-    public var state: String
+    public var addressLine: String?
+    public var street: String?
+    public var city: String?
+    public var state: String?
     public var zipCode: String?
-    public var buildingNumber: String
+    public var buildingNumber: String?
     public var premiseNumber: String?
     public var amiAccountIdentifier: String
     public var amiCustomerIdentifier: String
-    public var rateSchedule: String
+    public var rateSchedule: String?
     public var peakRewards: String?
     public var isPeakRewards: Bool
     public var electricChoiceID: String?
@@ -208,7 +208,7 @@ public struct AccountDetail: Decodable {
         
         self.accountStatusCode = try container.decodeIfPresent(String.self,
                                                                forKey: .accountStatusCode)
-        self.accountType = try container.decode(String.self,
+        self.accountType = try container.decodeIfPresent(String.self,
                                                 forKey: .accountType)
         self.accountNickname = try container.decodeIfPresent(String.self,
                                                              forKey: .accountNickname)
@@ -287,17 +287,17 @@ public struct AccountDetail: Decodable {
                                                        forKey: .isFinaled) ?? false
         self.isBGEasy = try container.decodeIfPresent(Bool.self,
                                                       forKey: .isBGEasy) ?? false
-        self.addressLine = try container.decode(String.self,
+        self.addressLine = try container.decodeIfPresent(String.self,
                                                 forKey: .addressLine)
-        self.street = try container.decode(String.self,
+        self.street = try container.decodeIfPresent(String.self,
                                            forKey: .street)
-        self.city = try container.decode(String.self,
+        self.city = try container.decodeIfPresent(String.self,
                                          forKey: .city)
-        self.state = try container.decode(String.self,
+        self.state = try container.decodeIfPresent(String.self,
                                           forKey: .state)
         self.zipCode = try container.decodeIfPresent(String.self,
                                                      forKey: .zipCode)
-        self.buildingNumber = try container.decode(String.self,
+        self.buildingNumber = try container.decodeIfPresent(String.self,
                                                    forKey: .buildingNumber)
         self.premiseNumber = try container.decodeIfPresent(String.self,
                                                            forKey: .premiseNumber)
@@ -305,7 +305,7 @@ public struct AccountDetail: Decodable {
                                                          forKey: .amiAccountIdentifier)
         self.amiCustomerIdentifier = try container.decode(String.self,
                                                           forKey: .amiCustomerIdentifier)
-        self.rateSchedule = try container.decode(String.self,
+        self.rateSchedule = try container.decodeIfPresent(String.self,
                                                  forKey: .rateSchedule)
         self.peakRewards = try container.decodeIfPresent(String.self,
                                                          forKey: .peakRewards)

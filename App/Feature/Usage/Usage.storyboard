@@ -19,12 +19,12 @@
         <!--Usage View Controller-->
         <scene sceneID="YEr-Ze-XsM">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="gRa-nh-wfg" customClass="UsageViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="gRa-nh-wfg" customClass="UsageViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VhB-wJ-R9W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3t7-EB-sYC" customClass="MaintenanceModeView" customModule="ACE" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3t7-EB-sYC" customClass="MaintenanceModeView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1350"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -33,18 +33,18 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="sectionName" value="Usage"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iyt-BW-05Y" customClass="NoNetworkConnectionView" customModule="ACE" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iyt-BW-05Y" customClass="NoNetworkConnectionView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1350"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="DYi-RL-qXC" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="DYi-RL-qXC" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="157.5" y="699" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="VT3-VG-S91" customClass="AccountPicker" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="VT3-VG-S91" customClass="AccountPicker" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -74,7 +74,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-bH-cZn">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="683.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="b9o-Te-xzG" customClass="SegmentedControl" customModule="ACE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="b9o-Te-xzG" customClass="SegmentedControl" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="19" y="0.0" width="305" height="45"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -109,7 +109,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yM8-73-CvV">
                                                                         <rect key="frame" x="24" y="0.0" width="295" height="183"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Dvd-qn-1eF" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
+                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Dvd-qn-1eF" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                                                                 <rect key="frame" x="117.5" y="85.5" width="60" height="12"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </view>
@@ -126,7 +126,7 @@
                                                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PTZ-6z-yiy">
                                                                                 <rect key="frame" x="-22.5" y="0.0" width="340" height="183"/>
                                                                                 <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXe-zM-5Tn" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXe-zM-5Tn" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="64" width="60" height="119"/>
                                                                                         <subviews>
                                                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zIn-mk-W8P">
@@ -170,7 +170,7 @@
                                                                                             <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="08b-Kf-mk2"/>
                                                                                         </connections>
                                                                                     </view>
-                                                                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0y-lN-dUc" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
+                                                                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0y-lN-dUc" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="70" y="6" width="60" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2E-Nc-xEh">
@@ -211,7 +211,7 @@
                                                                                             <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="QiT-M3-DPZ"/>
                                                                                         </connections>
                                                                                     </view>
-                                                                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKg-Sa-YNh" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
+                                                                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKg-Sa-YNh" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="140" y="6" width="60" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeX-9Y-WGe">
@@ -253,7 +253,7 @@
                                                                                             <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="3lO-c5-nRw"/>
                                                                                         </connections>
                                                                                     </view>
-                                                                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGz-ff-KfF" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
+                                                                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGz-ff-KfF" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="210" y="6" width="60" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2H-yA-RLi">
@@ -305,7 +305,7 @@
                                                                                             <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="Qah-2U-FO8"/>
                                                                                         </connections>
                                                                                     </view>
-                                                                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csG-p7-Bmt" customClass="ButtonControl" customModule="ACE" customModuleProvider="target">
+                                                                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csG-p7-Bmt" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                                                         <rect key="frame" x="280" y="64" width="60" height="119"/>
                                                                                         <subviews>
                                                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xg-ZK-uU0">
@@ -556,7 +556,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="Vfo-US-jem" secondAttribute="trailing" id="vfH-wP-1Fx"/>
                                                 </constraints>
                                             </stackView>
-                                            <view hidden="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="l15-zg-OGE" customClass="UnavailableView" customModule="ACE" customModuleProvider="target">
+                                            <view hidden="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="l15-zg-OGE" customClass="UnavailableView" customModule="EUMobile" customModuleProvider="target">
                                                 <rect key="frame" x="29" y="819" width="317" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -566,7 +566,7 @@
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="ge6-hr-xTi" userLabel="Prepaid View">
                                                 <rect key="frame" x="0.0" y="819" width="375" height="100"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9X-Hg-d2T" customClass="PrepaidCardView" customModule="ACE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9X-Hg-d2T" customClass="PrepaidCardView" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="2" width="343" height="98"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -788,7 +788,7 @@
         <!--Usage Web View-->
         <scene sceneID="HqV-bn-ZSj">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="bLA-dG-dNI" userLabel="Usage Web View" customClass="UsageWebViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="bLA-dG-dNI" userLabel="Usage Web View" customClass="UsageWebViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zBk-bW-Jpa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -801,7 +801,7 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="31s-yW-Kax" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="31s-yW-Kax" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="177" y="415" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -845,7 +845,7 @@
         <!--Energy Wise Rewards-->
         <scene sceneID="FHD-5M-eJr">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="QHh-G5-cax" customClass="EnergyWiseRewardsViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="QHh-G5-cax" customClass="EnergyWiseRewardsViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fhB-Kl-nsf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -856,7 +856,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ij-hX-7cJ">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KbD-o0-Xwl" customClass="AccountInfoBar" customModule="ACE" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KbD-o0-Xwl" customClass="AccountInfoBar" customModule="EUMobile" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
@@ -902,10 +902,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="ig0-3V-d5i"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="MmT-K7-qbS"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIr-9N-eR7" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIr-9N-eR7" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="723" width="414" height="85"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-UT-7Wk" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-UT-7Wk" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="78o-Ww-LPd"/>
@@ -914,6 +914,7 @@
                                         <state key="normal" title="Adjust Thermostat"/>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="9Dl-UT-7Wk" firstAttribute="leading" secondItem="mWs-MU-4OQ" secondAttribute="leading" constant="20" id="9Wg-5y-Pnw"/>
                                     <constraint firstItem="9Dl-UT-7Wk" firstAttribute="top" secondItem="mWs-MU-4OQ" secondAttribute="top" constant="15" id="9yy-cd-l3n"/>
@@ -940,6 +941,7 @@
                     <connections>
                         <outlet property="adjustThermostatButton" destination="9Dl-UT-7Wk" id="WHa-Bj-qAz"/>
                         <outlet property="energyWiseRewardsInformationLabel" destination="d8A-rk-Jfx" id="FXA-q6-WLN"/>
+                        <outlet property="footerView" destination="aIr-9N-eR7" id="FV6-DV-Z5o"/>
                         <outlet property="logo" destination="O89-wZ-8w1" id="x59-Mt-JIR"/>
                         <outlet property="view" destination="fhB-Kl-nsf" id="hEb-sq-tHY"/>
                     </connections>
@@ -951,7 +953,7 @@
         <!--Top 5 Energy Tips-->
         <scene sceneID="W1V-WD-N6y">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="4fv-o4-vaR" customClass="Top5EnergyTipsViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="4fv-o4-vaR" customClass="Top5EnergyTipsViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D3W-uP-Yk7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -960,7 +962,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="6fn-lX-XNi" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="6fn-lX-XNi" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="177" y="415" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -1004,7 +1006,7 @@
         <!--My Home Profile-->
         <scene sceneID="FCw-Xu-wrg">
             <objects>
-                <viewController storyboardIdentifier="HomeProfile" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="Hz7-8N-if4" customClass="MyHomeProfileViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeProfile" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="Hz7-8N-if4" customClass="MyHomeProfileViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Sa-mH-GcG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="846"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1033,7 +1035,7 @@
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36E-Vt-Mb8" customClass="DisclosureButton" customModule="ACE" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36E-Vt-Mb8" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="27" width="335" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="K6p-ro-EE7"/>
@@ -1053,7 +1055,7 @@
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-uI-1yE" customClass="DisclosureButton" customModule="ACE" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-uI-1yE" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="43.5" width="335" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="Ve7-mn-iyY"/>
@@ -1073,7 +1075,7 @@
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-qc-yXZ" customClass="DisclosureButton" customModule="ACE" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-qc-yXZ" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="43.5" width="335" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="AaA-eV-aN8"/>
@@ -1089,7 +1091,7 @@
                                                                     <constraint firstAttribute="height" id="yaz-ec-Gqu"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6q-N0-rQx" customClass="DisclosureButton" customModule="ACE" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6q-N0-rQx" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="118.5" width="335" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="OhM-y5-dTm"/>
@@ -1109,7 +1111,7 @@
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="nXh-N8-APa" customClass="FloatLabelTextField" customModule="ACE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="nXh-N8-APa" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="43.5" width="335" height="55"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
@@ -1139,10 +1141,10 @@
                                     <constraint firstAttribute="bottom" secondItem="GfZ-hr-6AZ" secondAttribute="bottom" id="eZ7-kB-4BD"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-i3-nXX" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-i3-nXX" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="727" width="375" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHW-w3-9OX" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHW-w3-9OX" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="335" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Save Profile"/>
                                         <constraints>
@@ -1165,7 +1167,7 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="fW0-ra-VGR"/>
                             </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="CMj-S6-iYy" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="CMj-S6-iYy" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="157.5" y="417" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -1228,12 +1230,12 @@
         <!--Hourly Pricing-->
         <scene sceneID="mJJ-3u-zYV">
             <objects>
-                <viewController storyboardIdentifier="hourlyPricingViewController" hidesBottomBarWhenPushed="YES" id="kgB-m9-rwa" customClass="HourlyPricingViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="hourlyPricingViewController" hidesBottomBarWhenPushed="YES" id="kgB-m9-rwa" customClass="HourlyPricingViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xg4-ga-5iC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="nGe-IQ-2hW" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="nGe-IQ-2hW" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="177" y="387" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -1274,7 +1276,7 @@
         <!--Usage-->
         <scene sceneID="FIv-fe-aUp">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="yQT-Cb-YF3" customClass="SERPTSViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="yQT-Cb-YF3" customClass="SERPTSViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="whR-g5-Q9c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="646"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1300,7 +1302,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="317" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="tlr-mN-C41" customClass="SERPTSGraphView" customModule="ACE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="317" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="tlr-mN-C41" customClass="SERPTSGraphView" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="28" y="40.5" width="279" height="269"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
@@ -1356,7 +1358,7 @@
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="w3c-Va-60V"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4e-It-NA0" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4e-It-NA0" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="745" width="375" height="60.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAg-fp-rav">
@@ -1397,7 +1399,7 @@
                                     <constraint firstItem="jfF-ij-NiW" firstAttribute="leading" secondItem="VaY-OY-lhz" secondAttribute="leading" id="e2Y-zk-Qnw"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="0Fm-l3-5yU" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="0Fm-l3-5yU" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="157.5" y="317" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -1453,7 +1455,7 @@
         <!--Total Savings-->
         <scene sceneID="VUR-xg-ymX">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="ZXV-Im-D7e" customClass="TotalSavingsViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="ZXV-Im-D7e" customClass="TotalSavingsViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uve-Nb-GZu">
                         <rect key="frame" x="0.0" y="0.0" width="581" height="557"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1512,7 +1514,7 @@
                                                     <constraint firstAttribute="width" constant="581" id="fsM-Do-snw"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TotalSavingsHeaderCell" rowHeight="44" id="ZCu-9c-wdC" customClass="TotalSavingsHeaderCell" customModule="ACE" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TotalSavingsHeaderCell" rowHeight="44" id="ZCu-9c-wdC" customClass="TotalSavingsHeaderCell" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="581" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZCu-9c-wdC" id="5Xa-A0-Ekm">
@@ -1598,7 +1600,7 @@
                                                             <outlet property="typicalUseLabel" destination="bpB-IX-aWP" id="kqc-rM-cwm"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TotalSavingsCell" rowHeight="64" id="eyl-US-thD" customClass="TotalSavingsTableViewCell" customModule="ACE" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TotalSavingsCell" rowHeight="64" id="eyl-US-thD" customClass="TotalSavingsTableViewCell" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="72" width="581" height="64"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eyl-US-thD" id="S8R-5b-2Zh">
@@ -1749,7 +1751,7 @@
         <!--SER Web View-->
         <scene sceneID="est-dq-Itc">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="E5f-p1-rHh" userLabel="SER Web View" customClass="SERWebViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="E5f-p1-rHh" userLabel="SER Web View" customClass="SERWebViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zX6-zb-yJY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1762,7 +1764,7 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="FJ3-aO-SIl" customClass="LoadingIndicator" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="FJ3-aO-SIl" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="177" y="415" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -1806,7 +1808,7 @@
         <!--Peak Energy Savings-->
         <scene sceneID="iXm-8A-7pe">
             <objects>
-                <viewController storyboardIdentifier="PeakEnergySavingsViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="UrX-YA-Gfp" customClass="PeakEnergySavingsViewController" customModule="ACE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PeakEnergySavingsViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="UrX-YA-Gfp" customClass="PeakEnergySavingsViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cLc-cC-uNd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1817,7 +1819,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yfv-G7-h7G">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65g-vp-U0O" customClass="AccountInfoBar" customModule="ACE" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65g-vp-U0O" customClass="AccountInfoBar" customModule="EUMobile" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
@@ -1898,10 +1900,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="ctG-8x-MXG"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="BHT-Z6-ye9"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0E-O2-W4w" customClass="StickyFooterView" customModule="ACE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0E-O2-W4w" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="723" width="414" height="85"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yik-ir-EB4" customClass="PrimaryButton" customModule="ACE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yik-ir-EB4" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="Xoa-lp-Z9S"/>
