@@ -407,6 +407,8 @@ public struct AccountDetail: Decodable {
     var subOpco: SubOpCo? {
         if opcoType == .pepco && state == "MD" {
             return .pepcoMaryland
+        } else if opcoType == .pepco && state == "DC" {
+            return .pepcoDC
         } else if opcoType == .delmarva && state == "MD" {
             return .delmarvaMaryland
         } else if opcoType == .delmarva && state == "DE" {

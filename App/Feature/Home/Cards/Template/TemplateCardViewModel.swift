@@ -66,7 +66,7 @@ class TemplateCardViewModel {
                     return #imageLiteral(resourceName: "Commercial")
                 }
             case .ace, .delmarva, .pepco:
-                return accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")
+                return accountDetail.isResidential ? (accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")) : #imageLiteral(resourceName:"SmallBusiness")
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -100,23 +100,42 @@ class TemplateCardViewModel {
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
-            case .pepco:
-                if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+            case .ace, .delmarva, .pepco:
+                /// The logic behind checking from utility code is one account can be tagged to ACE, DPL & PEPCO, so in order to keep it dynamic we had to look for the utility code rather that the selected opco
+                if accountDetail.opcoType == .ace {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+                        } else {
+                            return NSLocalizedString("Atlantic City Electric Has Ways to Save", comment: "")
+                        }
+                    } else {
+                         return NSLocalizedString("Lower your Business’s energy costs", comment: "")
+                    }
+                    
+                } else if accountDetail.opcoType == .delmarva {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+                        } else {
+                            return NSLocalizedString("Delmarva Bill Credits with Energy Wise Rewards", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Lower your Business’s energy costs", comment: "")
+                    }
+                    
+                } else if accountDetail.opcoType == .pepco {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+                        } else {
+                            return NSLocalizedString("Pepco Bill Credits with Energy Wise Rewards", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Lower your Business’s energy costs", comment: "")
+                    }
                 } else {
-                    return NSLocalizedString("Pepco Bill Credits with Energy Wise Rewards", comment: "")
-                }
-            case .ace:
-                if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return NSLocalizedString("Energy Wise Rewards Program", comment: "")
-                } else {
-                    return NSLocalizedString("Atlantic City Electric Has Ways to Save", comment: "")
-                }
-            case .delmarva:
-                if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return NSLocalizedString("Energy Wise Rewards Program", comment: "")
-                } else {
-                    return NSLocalizedString("Delmarva Bill Credits with Energy Wise Rewards", comment: "")
+                    return ""
                 }
             }
     }
@@ -153,26 +172,43 @@ class TemplateCardViewModel {
                 } else {
                     return NSLocalizedString("A FREE facility assessment can help you save money and energy", comment: "")
                 }
-           case .pepco:
-                if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+            case .ace, .delmarva, .pepco:
+                /// The logic behind checking from utility code is one account can be tagged to ACE, DPL & PEPCO, so in order to keep it dynamic we had to look for the utility code rather that the selected opco
+                if accountDetail.opcoType == .ace {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+                        } else {
+                            return NSLocalizedString("Get cash back with Atlantic City Electric rebates on high-efficiency appliances & HVAC equipment.", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
+                    }
+                } else if accountDetail.opcoType == .delmarva {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+                        } else {
+                            return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
+                    }
+                } else if accountDetail.opcoType == .pepco {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+                        } else {
+                            return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
+                    }
                 } else {
-                    return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
-                }
-            case .ace:
-                if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
-                } else {
-                    return NSLocalizedString("Get cash back with Atlantic City Electric rebates on high-efficiency appliances & HVAC equipment.", comment: "")
-                }
-            case .delmarva:
-                if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
-                } else {
-                    return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                    return ""
                 }
             }
-        }
+    }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var bodyStringA11yLabel: Driver<String?> = self.bodyString.map {
@@ -251,30 +287,60 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
                         String(format: "https://hourlypricing.comed.com/rrtpmobile/servlet?type=home&account=%@", accountDetail.accountNumber) :
-                        "https://secure.comed.com/marketplace/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app"
+                    "https://secure.comed.com/marketplace/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app"
                 } else {
                     return "http://comed.com/BusinessSavings"
                 }
-            case .pepco:
-                if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return "todo"
+            case .ace, .delmarva, .pepco:
+                /// The logic behind checking from utility code is one account can be tagged to ACE, DPL & PEPCO, so in order to keep it dynamic we had to look for the utility code rather that the selected opco
+                
+                if accountDetail.opcoType == .ace {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return "todo"
+                        } else {
+                            return "https://www.atlanticcityelectric.com/WaysToSave/ForYourHome/Pages/default.aspx"
+                        }
+                    } else {
+                        return "https://www.atlanticcityelectric.com/WaysToSave/ForYourBusiness/Pages/default.aspx"
+                    }
+                } else if accountDetail.opcoType == .delmarva {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return "todo"
+                        } else {
+                            return "https://energywiserewards.delmarva.com/"
+                        }
+                    } else {
+                        if accountDetail.subOpco == .delmarvaMaryland {
+                            return "https://www.delmarva.com/WaysToSave/ForYourBusiness/Pages/Maryland.aspx"
+                        } else if accountDetail.subOpco == .delmarvaDelaware {
+                            return "https://www.delmarva.com/WaysToSave/ForYourBusiness/Pages/Delaware.aspx"
+                        } else {
+                            return ""
+                        }
+                    }
+                } else if accountDetail.opcoType == .pepco {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return "todo"
+                        } else {
+                            return "https://energywiserewards.pepco.com/"
+                        }
+                    } else {
+                        if accountDetail.subOpco == .pepcoDC {
+                            return "https://www.pepco.com/WaysToSave/ForYourBusiness/Pages/DC/DistrictOfColumbia.aspx"
+                        } else if accountDetail.subOpco == .delmarvaDelaware {
+                            return "https://www.pepco.com/WaysToSave/ForYourBusiness/Pages/Maryland.aspx"
+                        } else {
+                            return ""
+                        }
+                    }
                 } else {
-                    return "https://energywiserewards.pepco.com/"
-                }
-            case .ace:
-               if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return "todo"
-                } else {
-                    return "https://www.atlanticcityelectric.com/WaysToSave/ForYourHome/Pages/default.aspx"
-                }
-            case .delmarva:
-                if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return "todo"
-                } else {
-                    return "https://energywiserewards.delmarva.com/"
+                    return ""
                 }
             }
-        }
+    }
         .unwrap()
         .map { URL(string: $0) }.unwrap()
         .asDriver(onErrorDriveWith: .empty())
