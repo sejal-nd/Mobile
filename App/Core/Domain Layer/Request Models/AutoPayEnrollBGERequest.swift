@@ -18,7 +18,7 @@ public struct AutoPayEnrollBGERequest: Encodable {
     let confirmationNumber: String?
     
     init(amountType: String,
-         paymentDateType: String = "before due",
+         paymentDateType: String = "liability",
          paymentDaysBeforeDue: String,
          isUpdate: Bool,
          walletItemId: String?,
