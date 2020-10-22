@@ -33,7 +33,8 @@ final class RemoteConfigUtility {
             RemoteConfigKey.outageMapURL.rawValue : "",
             RemoteConfigKey.streetlightMapURL.rawValue : "",
             RemoteConfigKey.billingVideoURL.rawValue : "",
-            RemoteConfigKey.hasNewRegistration.rawValue : "false"
+            RemoteConfigKey.hasNewRegistration.rawValue : "false",
+            RemoteConfigKey.hasDefaultAccount.rawValue : "false"
         ]
         RemoteConfig.remoteConfig().setDefaults(appDefaults as? [String: NSObject])
     }
