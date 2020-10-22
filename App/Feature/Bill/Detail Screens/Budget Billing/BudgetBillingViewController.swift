@@ -166,9 +166,8 @@ class BudgetBillingViewController: UIViewController {
             footerContainerView.isHidden = true
             enrollButton.isHidden = true
         } else {
-//            unenrollView.isHidden = true
+            unenrollView.isHidden = true
         }
-        unenrollView.isHidden = false
         
         scrollView.isHidden = true
         loadingIndicator.isHidden = false
