@@ -15,6 +15,7 @@ final class RemoteConfigUtility {
         case streetlightMapURL
         case billingVideoURL
         case hasNewRegistration
+        case hasDefaultAccount
     }
     
     static let shared = RemoteConfigUtility()
