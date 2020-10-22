@@ -73,7 +73,10 @@ class RegistrationViewModel {
         
         if selectedSegmentIndex.value == .zero {
             validateAccountRequest = ValidateAccountRequest(identifier: identifierNumber.value,
-                                                            phoneNumber: extractDigitsFrom(self.phoneNumber.value))
+                                                            phoneNumber: extractDigitsFrom(self.phoneNumber.value),
+                                                            accountNumber: self.accountNumber.value,
+                                                            billDate: String(self.totalAmountDue.value),
+                                                            amountDue: self.dueDate.value?.yyyyMMddString ?? "")
         } else {
             validateAccountRequest = ValidateAccountRequest(accountNumber: self.accountNumber.value,
                                                             billDate: String(self.totalAmountDue.value),
@@ -93,7 +96,7 @@ class RegistrationViewModel {
                 }
                 onSuccess()
             case .failure(let error):
-                if error == .multiAccount {
+                if error == .multiAccount || error == .multipleAccountNumbers {
                     onMultipleAccounts()
                 } else {
                     onError(error.title, error.description)
