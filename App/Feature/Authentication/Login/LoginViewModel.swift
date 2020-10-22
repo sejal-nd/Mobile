@@ -70,6 +70,7 @@ class LoginViewModel {
                                         }
                                     case .failure(let error):
                                         
+                                        self?.isLoggingIn = false
                                         if error == .failedLogin {
                                             if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
                                                 onError(nil, NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: ""))
