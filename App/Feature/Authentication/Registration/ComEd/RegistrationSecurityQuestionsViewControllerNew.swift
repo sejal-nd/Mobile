@@ -140,7 +140,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
             
             self.buildAccountListing()
             self.toggleAccountListing(self.viewModel.accounts.value.count > self.displayAccountsIfGreaterThan)
-            
+            self.toggleAccountListing(false)
             UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
             self.scrollView.isHidden = false
             self.loadingIndicator.isHidden = true

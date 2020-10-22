@@ -72,7 +72,11 @@ class LoginViewModel {
                                         
                                         if error == .failedLogin {
                                             if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
-                                                onError(nil, NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: ""))
+                                                if Environment.shared.opco == .bge {
+                                                    onError(nil, NSLocalizedString("We're sorry, this combination of username and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: ""))
+                                                } else {
+                                                    onError(nil, NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: ""))
+                                                }
                                             } else {
                                                 onError(nil, error.localizedDescription)
                                             }

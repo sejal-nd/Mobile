@@ -28,7 +28,7 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
             ? NSLocalizedString("Forgot Email", comment: "")
             : NSLocalizedString("Forgot Username", comment: "")
         

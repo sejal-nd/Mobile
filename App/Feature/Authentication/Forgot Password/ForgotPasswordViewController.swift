@@ -39,7 +39,7 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         instructionLabel.textColor = .deepGray
         instructionLabel.setLineHeight(lineHeight: 24)
         var placeholderText = "Username / Email Address"
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
             placeholderText = "Email"
         } else {
             placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
