@@ -76,8 +76,8 @@ class RegistrationViewModel {
                                                             phoneNumber: extractDigitsFrom(self.phoneNumber.value))
         } else {
             validateAccountRequest = ValidateAccountRequest(accountNumber: self.accountNumber.value,
-                                                            billDate: String(self.totalAmountDue.value),
-                                                            amountDue: self.dueDate.value?.yyyyMMddString ?? "")
+                                                            billDate: self.dueDate.value?.yyyyMMddString ?? "",
+                                                            amountDue: String(self.totalAmountDue.value))
         }
                 
         RegistrationService.validateRegistration(request: validateAccountRequest) { [weak self] result in
