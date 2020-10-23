@@ -95,14 +95,20 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
         viewModel.loadSecurityQuestions(onSuccess: { [weak self] in
             guard let self = self else { return }
             if self.viewModel.isPaperlessEbillEligible {
-                self.loadAccounts()
+                if self.viewModel.selectedSegmentIndex.value == .zero {
+                    self.loadAccounts()
+                } else {
+                    self.loadingIndicator.isHidden = true
+                    self.scrollView.isHidden = false
+                    self.toggleAccountListing(false)
+                }
                 let opco = Environment.shared.opco
                 if opco == .bge {
                     self.eBillAutoEnrollView.isHidden = false
                     self.eBillAutoEnrollDescriptionTextField.font = SystemFont.regular.of(textStyle: .callout)
                     self.eBillAutoEnrollDescriptionTextField.textColor = .deepGray
                     self.eBillAutoEnrollDescriptionTextField.setLineHeight(lineHeight: 16)
-                    self.eBillAutoEnrollDescriptionTextField.text = NSLocalizedString("By creating a My Account, you'll be automatically enrolled in Paperless eBill. When your bill is ready, you'll receive an email notification rather than a paper bill.", comment: "")
+                    self.eBillAutoEnrollDescriptionTextField.text = NSLocalizedString("By registering for online access, you’ll be automatically enrolled in Paperless eBill. You'll receive your bill online instead of in the mail. It’s easy, convenient, and secure!", comment: "")
                     
                     self.eBillUnEnrollTextField.font = SystemFont.regular.of(textStyle: .callout)
                     self.eBillUnEnrollTextField.textColor = .deepGray

@@ -135,7 +135,11 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
                    .disposed(by: disposeBag)
         
         // Payment Date
+        if Environment.shared.opco == .bge {
+            dueDateButton.descriptionText = NSLocalizedString("Issued Date*", comment: "")
+        } else {
         dueDateButton.descriptionText = NSLocalizedString("Due Date*", comment: "")
+        }
         dueDateButton.valueLabel.textColor = .middleGray
         viewModel.paymentDateString.asDriver().drive(dueDateButton.rx.valueText).disposed(by: disposeBag)
         dueDateButton.titleLabel?.text = ""
