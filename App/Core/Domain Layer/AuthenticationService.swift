@@ -72,7 +72,7 @@ public enum AuthenticationService {
         RxNotifications.shared.configureQuickActions.onNext(false)
         
         #if os(iOS)
-        (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
+        (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation(sendToLogin: true)
         #endif
     }
 }

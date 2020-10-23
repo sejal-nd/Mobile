@@ -70,6 +70,7 @@ class LoginViewModel {
                                         }
                                     case .failure(let error):
                                         
+                                        self?.isLoggingIn = false
                                         if error == .failedLogin {
                                             if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
                                                 if Environment.shared.opco == .bge {
