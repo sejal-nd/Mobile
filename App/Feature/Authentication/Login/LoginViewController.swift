@@ -83,7 +83,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         viewModel.biometricsEnabled.asDriver().not().drive(biometricButton.rx.isHidden).disposed(by: disposeBag)
 
         var placeholderText = "Username / Email Address"
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
             placeholderText = "Email"
         } else {
             placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
@@ -137,7 +137,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         forgotUsernamePasswordButton.titleLabel?.numberOfLines = 0
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
-        let forgotUsernamePasswordButtonTitle = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        let forgotUsernamePasswordButtonTitle = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
             ? "Forgot your email or password?"
             : "Forgot your username or password?"
         UIView.performWithoutAnimation { // Prevents ugly setTitle animation
@@ -213,7 +213,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             if (Environment.shared.opco != .bge && Environment.shared.opco != .delmarva && Environment.shared.opco != .pepco && Environment.shared.opco != .ace) && !viewModel.usernameIsValidEmailAddress {
                 // ComEd/PECO only email validation. If not valid email then fail before making the call
                 var message = ""
-                if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+                if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
                     message = NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
                 } else {
                     message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
@@ -355,7 +355,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         view.endEditing(true)
 
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let forgotUsername = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        let forgotUsername = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
                   ? "Forgot Email"
                   : "Forgot Username"
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString(forgotUsername, comment: ""), style: .default, handler: { _ in

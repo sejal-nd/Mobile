@@ -37,7 +37,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         super.viewDidLoad()
         
         addCloseButton()
-        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
                         ? NSLocalizedString("Forgot Email", comment: "")
                         : NSLocalizedString("Forgot Username", comment: "")
         

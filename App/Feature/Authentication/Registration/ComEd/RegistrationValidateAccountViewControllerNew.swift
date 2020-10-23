@@ -67,8 +67,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_PHI")
         case .peco:
             illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_peco.pdf")
-        default:
-            illustrationImageView.isHidden = true
+        case .bge:
+            illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_bge.pdf")
         }
         viewModel.checkForMaintenance()
     }
@@ -135,7 +135,11 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
                    .disposed(by: disposeBag)
         
         // Payment Date
+        if Environment.shared.opco == .bge {
+            dueDateButton.descriptionText = NSLocalizedString("Issued Date*", comment: "")
+        } else {
         dueDateButton.descriptionText = NSLocalizedString("Due Date*", comment: "")
+        }
         dueDateButton.valueLabel.textColor = .middleGray
         viewModel.paymentDateString.asDriver().drive(dueDateButton.rx.valueText).disposed(by: disposeBag)
         dueDateButton.titleLabel?.text = ""
@@ -179,21 +183,14 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         }).disposed(by: disposeBag)
         
         var identifierString = "Last 4 digits of your Social Security number"
-        if Environment.shared.opco == .bge {
-            identifierString.append(", Business Tax ID, or BGE Pin")
-        } else {
-            identifierString.append(" or Business Tax ID")
-        }
+        identifierString.append(" or Business Tax ID")
+
         identifierDescriptionLabel.textColor = .deepGray
         identifierDescriptionLabel.text = NSLocalizedString(identifierString, comment: "")
         identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         let identifierPlaceholder: String
-        if Environment.shared.opco == .bge {
-            identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
-        } else {
-            identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
-        }
+        identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
         
         identifierTextField.placeholder = NSLocalizedString(identifierPlaceholder, comment: "")
         identifierTextField.textField.autocorrectionType = .no
