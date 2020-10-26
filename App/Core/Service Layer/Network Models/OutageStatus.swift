@@ -34,7 +34,7 @@ struct OutageStatus: Decodable {
         case isGasOnly = "flagGasOnly"
         case contactHomeNumber = "contactHomeNumber"
         case outageDescription = "outageReported"
-        case isActiveOutage = "activeOutage"
+        case status = "status"
         case isSmartMeter = "smartMeterStatus"
         case isFinaled = "flagFinaled"
         case isNoPay = "flagNoPay"
@@ -58,7 +58,7 @@ struct OutageStatus: Decodable {
         self.outageDescription = try container.decodeIfPresent(String.self,
                                                                forKey: .outageDescription)
         self.isActiveOutage = (try container.decodeIfPresent(String.self,
-                                                             forKey: .isActiveOutage) ?? "NOT ACTIVE") == "ACTIVE"
+                                                             forKey: .status) ?? "NOT ACTIVE").lowercased() == "active"
         self.isGasOnly = try container.decodeIfPresent(Bool.self,
                                                        forKey: .isGasOnly) ?? false
         self.isSmartMeter = try container.decodeIfPresent(Bool.self,
