@@ -25,7 +25,7 @@ class AccountLookupToolViewModel {
         AnonymousService.lookupAccount(request: accountLookupRequest) { [weak self] result in
             switch result {
             case .success(let accountLookupResults):
-                self?.accountLookupResults = accountLookupResults.accountLookupResults
+                self?.accountLookupResults = accountLookupResults
                 onSuccess()
             case .failure(let error):
                 onError(error.title, error.description)
