@@ -157,7 +157,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.homeTypeButton.valueText = value
-                                    self?.viewModel.homeType.accept(HomeType(rawValue: index))
+                                    self?.viewModel.homeType.accept(HomeType.allCases[index])
                                 },
                                 onCancel: nil)
             })
@@ -180,7 +180,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.heatingFuelButton.valueText = value
-                                    self?.viewModel.heatType.accept(HeatType(rawValue: index))
+                                    self?.viewModel.heatType.accept(HeatType.allCases[index])
                                 },
                                 onCancel: nil)
             })
