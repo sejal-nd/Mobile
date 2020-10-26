@@ -10,10 +10,10 @@ import Foundation
 
 public struct CustomerInfo: Decodable {
     public var number: String
-    public var name: String
-    public var firstName: String
-    public var lastName: String
-    public var nameCompressed: String
+    public var name: String?
+    public var firstName: String?
+    public var lastName: String?
+    public var nameCompressed: String?
     public var emailAddress: String?
     
     public var cellPhoneNumber: String?
@@ -38,13 +38,13 @@ public struct CustomerInfo: Decodable {
         
         self.number = try container.decode(String.self,
                                            forKey: .number)
-        self.name = try container.decode(String.self,
+        self.name = try container.decodeIfPresent(String.self,
                                          forKey: .name)
-        self.firstName = try container.decode(String.self,
+        self.firstName = try container.decodeIfPresent(String.self,
                                               forKey: .firstName)
-        self.lastName = try container.decode(String.self,
+        self.lastName = try container.decodeIfPresent(String.self,
                                              forKey: .lastName)
-        self.nameCompressed = try container.decode(String.self,
+        self.nameCompressed = try container.decodeIfPresent(String.self,
                                                    forKey: .nameCompressed)
         self.emailAddress = try container.decodeIfPresent(String.self,
                                                  forKey: .emailAddress)
