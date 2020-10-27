@@ -25,4 +25,6 @@ extension NSNotification.Name {
     static let gameSwitchToGameView = NSNotification.Name("kGameSwitchToGameView")
     static let gameSwitchToHomeView = NSNotification.Name("kGameSwitchToHomeView")
     static let gameSetFabHidden = NSNotification.Name("kGameSetFabHidden")
+    
+    static let didRecievePaymentConfirmation = NSNotification.Name("didRecievePaymentConfirmation")
 }

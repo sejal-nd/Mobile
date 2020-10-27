@@ -40,6 +40,8 @@ class TapToPayViewModel {
     let emailAddress = BehaviorRelay(value: "")
     let phoneNumber = BehaviorRelay(value: "")
     
+    var confirmationNumber: String?
+    
     init(accountDetail: AccountDetail,
          billingHistoryItem: BillingHistoryItem?) {
         self.accountDetail = BehaviorRelay(value: accountDetail)
@@ -112,6 +114,46 @@ class TapToPayViewModel {
                 self?.isFetching.accept(false)
                 self?.isError.accept(true)
                 onError?()
+            }
+        }
+    }
+    
+    func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
+                         onSuccess: @escaping () -> Void,
+                         onError: @escaping (NetworkingError) -> Void) {
+        
+        let walletItem = self.selectedWalletItem.value!
+        let scheduleRequest = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount.value,
+                                                            paymentDate: paymentDate.value,
+                                                            walletItem: walletItem,
+                                                            alternateEmail: self.emailAddress.value,
+                                                            alternatePhoneNumber: self.extractDigitsFrom(self.phoneNumber.value))
+        PaymentService.schedulePayment(accountNumber: accountDetail.value.accountNumber, request: scheduleRequest) { [weak self] result in
+            switch result {
+            case .success(let confirmationNumber):
+                self?.confirmationNumber = confirmationNumber.confirmationNumber
+                
+                let paymentDetails = PaymentDetails(amount: (self?.paymentAmount.value)!,
+                                                    date: (self?.paymentDate.value)!,
+                                                    confirmationNumber: self?.confirmationNumber ?? "")
+                RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
+                onSuccess()
+            case .failure(let error):
+                onError(error)
+            }
+        }
+    }
+    
+    func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (NetworkingError) -> Void) {
+        let walletItem = self.selectedWalletItem.value!
+        let updateRequest = ScheduledPaymentUpdateRequest(paymentAmount: paymentAmount.value, paymentDate: paymentDate.value, paymentId: paymentId.value!, walletItem: walletItem)
+        PaymentService.updateScheduledPayment(paymentId: paymentId.value ?? "", accountNumber: accountDetail.value.accountNumber, request: updateRequest) { [weak self] result in
+            switch result {
+            case .success(let confirmationNumber):
+                self?.confirmationNumber = confirmationNumber.confirmationNumber
+                onSuccess()
+            case .failure(let error):
+                onError(error)
             }
         }
     }
@@ -623,4 +665,101 @@ class TapToPayViewModel {
         { "Overpaying: "+($1 - $0).currencyString }
     
     private(set) lazy var shouldShowOverpaymentSwitchView: Driver<Bool> = isOverpaying
+    
+    // MARK: - Payment Confirmation
+
+     private(set) lazy var shouldShowConvenienceFeeLabel: Driver<Bool> =
+         self.selectedWalletItem.asDriver().map { $0?.bankOrCard == .card }
+     
+     var showConfirmationFooterText: Bool {
+         return !confirmationFooterText.string.isEmpty
+     }
+     
+     var confirmationFooterText: NSAttributedString {
+         let accountDetail = self.accountDetail.value
+         let billingInfo = accountDetail.billingInfo
+         let opco = Environment.shared.opco
+         
+         // Only show text in these precarious situations
+         guard (opco == .bge && accountDetail.isActiveSeverance) ||
+             (accountDetail.isFinaled && (opco == .bge || billingInfo.pastDueAmount > 0)) ||
+             (billingInfo.restorationAmount > 0 && accountDetail.isCutOutNonPay) ||
+             (billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued) else {
+             return NSAttributedString(string: "")
+         }
+         
+         let boldText: String
+         let bodyText: String
+         switch Environment.shared.opco {
+         case .bge:
+             boldText = ""
+             bodyText = """
+             If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.
+             
+             Please ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.
+             
+             If an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.
+             """
+         case .comEd:
+             boldText = NSLocalizedString("IMPORTANT: ", comment: "")
+             bodyText = """
+             If your service has been interrupted due to a past due balance and the submitted payment satisfies the required restoral amount, your service will be restored:
+             
+             Typically within 30 minutes if you have a smart meter
+             
+             Typically by end of the next business day if you do not have a smart meter
+             """
+         case .peco:
+             boldText = NSLocalizedString("IMPORTANT: ", comment: "")
+             bodyText = """
+             If your service has been interrupted due to a past due balance and the submitted payment satisfies the required amount, your service will be restored.
+             
+             Your service will be restored between 4 and 72 hours.
+             
+             Breaker Policy: PECO requires your breakers to be in the off position.
+             
+             Gas Off:  If your natural gas service has been interrupted, a restoration appointment must be scheduled. An adult (18 years or older) must be at the property and provide access to light the pilots on all gas appliances. If an adult is not present or cannot provide the access required, the gas service will NOT be restored. This policy ensures public safety.
+             """
+         case .pepco:
+             boldText = NSLocalizedString("todo: ", comment: "")
+             bodyText = """
+             todo
+             """
+         case .ace:
+             boldText = NSLocalizedString("todo: ", comment: "")
+             bodyText = """
+             todo
+             """
+         case .delmarva:
+             boldText = NSLocalizedString("todo: ", comment: "")
+             bodyText = """
+             todo
+             """
+         }
+         
+         let localizedText = String.localizedStringWithFormat("%@%@", boldText, bodyText)
+         let attributedText = NSMutableAttributedString(string: localizedText,
+                                                        attributes: [.foregroundColor: UIColor.blackText,
+                                                                     .font: OpenSans.regular.of(textStyle: .footnote)])
+         attributedText.addAttribute(.font,
+                                     value: OpenSans.bold.of(textStyle: .footnote),
+                                     range: NSRange(location: 0, length: boldText.count))
+         
+         return attributedText
+     }
+
+    private(set) lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = accountDetail.asDriver().map {
+         !$0.isAutoPay && $0.isAutoPayEligible && !StormModeStatus.shared.isOn
+        
+     }
+    
+    private(set) lazy var paymentAmountFeeFooterLabelText: Driver<String?> =
+        self.selectedWalletItem.asDriver().map { [weak self] in
+            guard let self = self, let walletItem = $0 else { return "" }
+            if walletItem.bankOrCard == .bank {
+                return NSLocalizedString("No convenience fee will be applied.", comment: "")
+            } else  {
+                return String.localizedStringWithFormat("Your payment includes a %@ convenience fee.", self.convenienceFee.currencyString)
+            }
+    }
 }
