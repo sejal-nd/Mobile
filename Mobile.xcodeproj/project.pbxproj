@@ -54,6 +54,8 @@
 		352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35489DD524A248BF0040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
+		35532445253D6B8E0080589F /* PaymentAmount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */; };
+		35532447253D7BBB0080589F /* TapToPayConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35532446253D7BBB0080589F /* TapToPayConfirmationViewController.swift */; };
 		3559C8A422F9F68300481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		3559C8A922F9F69700481A87 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		3559C8B12301D41400481A87 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
@@ -1269,6 +1271,7 @@
 		3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCreateCredentialsViewControllerNew.swift; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelTests.swift; sourceTree = "<group>"; };
+		35532446253D7BBB0080589F /* TapToPayConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayConfirmationViewController.swift; sourceTree = "<group>"; };
 		3559C8B52301E4FF00481A87 /* AutoPay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPay.storyboard; sourceTree = "<group>"; };
 		3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayReasonsForStoppingViewController.swift; sourceTree = "<group>"; };
 		355B10352369DB180038EAD3 /* WatchSessionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionMananger.swift; sourceTree = "<group>"; };
@@ -3044,6 +3047,7 @@
 				3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */,
 				3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */,
 				356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */,
+				35532446253D7BBB0080589F /* TapToPayConfirmationViewController.swift */,
 				35052B0E251D09D600095499 /* TapToPayViewModel.swift */,
 				356AC13225064E5F000CF867 /* TapToPay.storyboard */,
 			);
@@ -5215,6 +5219,7 @@
 				67D5632424EDC6F500852551 /* Appt_Inprogress-FlavorCOMED.json in Resources */,
 				B039DB75225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
+				35532445253D6B8E0080589F /* PaymentAmount.storyboard in Resources */,
 				9C62446822C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */,
 				67A9869824F9691300BD46E7 /* GoogleService-Info-TEST-FlavorCOMED.plist in Resources */,
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
@@ -6327,6 +6332,7 @@
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				35AFB42B20C82DA0000312B9 /* SheetView.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
+				35532447253D7BBB0080589F /* TapToPayConfirmationViewController.swift in Sources */,
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
 				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				675F4B7024AB828100A828F9 /* GameService.swift in Sources */,

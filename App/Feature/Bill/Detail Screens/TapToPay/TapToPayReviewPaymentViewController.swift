@@ -184,6 +184,14 @@ class TapToPayReviewPaymentViewController: UIViewController {
         bindButtonTaps()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? TapToPayConfirmationViewController {
+            vc.presentingNavController = navigationController
+            vc.modalPresentationStyle = .overFullScreen
+            vc.viewModel = viewModel
+        }
+    }
+    
     func bindViewContent() {
         
         // Payment Amount Text Field
@@ -449,6 +457,105 @@ class TapToPayReviewPaymentViewController: UIViewController {
              UIAccessibility.post(notification: .screenChanged, argument: self.view)
          })
      }
+    
+    @IBAction func submitPaymentAction(_ sender: Any) {
+       // LoadingView.show()
+        self.view.isUserInteractionEnabled = false
+        submitButton.setLoading()
+        
+        FirebaseUtility.logEvent(.reviewPaymentSubmit)
+        
+        let handleError = { [weak self] (error: NetworkingError) in
+            guard let self = self else { return }
+            
+          //  LoadingView.hide()
+            self.submitButton.reset()
+            self.view.isUserInteractionEnabled = true
+            let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
+                forError: error,
+                walletItem: self.viewModel.selectedWalletItem.value!,
+                okHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    if error == .walletItemIdTimeout {
+                        guard let navCtl = self.navigationController else { return }
+                        
+                        let makePaymentVC = UIStoryboard(name: "Payment", bundle: nil)
+                            .instantiateInitialViewController() as! MakePaymentViewController
+                        makePaymentVC.accountDetail = self.viewModel.accountDetail.value
+                        navCtl.viewControllers = [navCtl.viewControllers.first!, makePaymentVC]
+                    }
+                },
+                callHandler: { _ in
+                   // UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
+                }
+            )
+            self.present(paymentusAlertVC, animated: true, completion: nil)
+        }
+        
+        if viewModel.paymentId.value != nil { // Modify
+            viewModel.modifyPayment(onSuccess: { [weak self] in
+               // LoadingView.hide()
+                self?.submitButton.reset()
+                self?.view.isUserInteractionEnabled = true
+                FirebaseUtility.logEvent(.paymentNetworkComplete)
+                
+                FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
+                
+                self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+            }, onError: { error in
+                handleError(error)
+            })
+        } else { // Schedule
+            viewModel.schedulePayment(onDuplicate: { [weak self] (errTitle, errMessage) in
+               // LoadingView.hide()
+                self?.submitButton.reset()
+                self?.view.isUserInteractionEnabled = true
+                let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertVc, animated: true, completion: nil)
+                }, onSuccess: { [weak self] in
+                    //LoadingView.hide()
+                    self?.submitButton.reset()
+                    self?.view.isUserInteractionEnabled = true
+                    
+                    FirebaseUtility.logEvent(.paymentNetworkComplete)
+                    
+                    FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
+                    
+                    if let viewModel = self?.viewModel,
+                        viewModel.billingHistoryItem == nil {
+                        var contactType = EventParameter.Value.none
+                        if !viewModel.emailAddress.value.isEmpty &&
+                            !viewModel.phoneNumber.value.isEmpty {
+                            contactType = .both
+                        } else if !viewModel.emailAddress.value.isEmpty {
+                            contactType = .email
+                        } else if !viewModel.phoneNumber.value.isEmpty {
+                            contactType = .text
+                        } else {
+                            contactType = .none
+                        }
+                        
+                        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .alternateContact, value: contactType)])
+                    }
+                    
+                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                        switch bankOrCard {
+                        case .bank:
+                            GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                        case .card:
+                            GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                        }
+                    }
+                    
+                    self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                }, onError: { error in
+                    handleError(error)
+            })
+        }
+        
+    }
+    
 }
 
 extension TapToPayReviewPaymentViewController: UITextFieldDelegate {
