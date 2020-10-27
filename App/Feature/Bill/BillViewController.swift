@@ -163,14 +163,20 @@ class BillViewController: AccountPickerViewController {
                 self?.scrollView!.alwaysBounceVertical = true
             })
             .disposed(by: bag)
-
+        
         NotificationCenter.default.rx.notification(.didSelectEnrollInAutoPay, object: nil)
-        .subscribe(onNext: { [weak self] notification in
-            guard let self = self else { return }
-            if let accountDetail = notification.object as? AccountDetail {
-                self.navigateToAutoPay(accountDetail: accountDetail)
-            }
-        }).disposed(by: bag)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self = self else { return }
+                if let accountDetail = notification.object as? AccountDetail {
+                    self.navigateToAutoPay(accountDetail: accountDetail)
+                }
+            }).disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(.didRecievePaymentConfirmation, object: nil)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self = self else { return }
+                self.viewModel.fetchAccountDetail(isRefresh: true)
+            }).disposed(by: bag)
         
         usageBillImpactContentView.configure(withViewModel: viewModel)
     }
