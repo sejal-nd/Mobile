@@ -75,7 +75,14 @@ enum AccountService {
     }
     
     static func fetchScheduledPayments(accountNumber: String, completion: @escaping (Result<[PaymentItem], NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .payments(accountNumber: accountNumber), completion: completion)
+        NetworkingLayer.request(router: .payments(accountNumber: accountNumber)) { (result: Result<Payments, NetworkingError>) in
+            switch result {
+            case .success(let payments):
+                completion(.success(payments.billingInfo?.payments ?? []))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     static func fetchSERResults(accountNumber: String, completion: @escaping (Result<[SERResult], NetworkingError>) -> ()) {

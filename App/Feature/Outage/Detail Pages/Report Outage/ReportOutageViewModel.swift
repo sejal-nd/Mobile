@@ -145,7 +145,7 @@ class ReportOutageViewModel {
                 onSuccess()
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.outageReported : true])
             case .failure(let error):
-                onError(error.localizedDescription)
+                onError(error.description)
             }
         }
     }

@@ -143,9 +143,15 @@ class HomeProjectedBillCardViewModel {
                     }
                 }
                 if !accountDetail.isModeledForOpower,
+                    !Environment.shared.opco.isPHI,
                     let elecForecast = billForecast.electric,
                     let elecUsage = elecForecast.projectedUsage {
                     return String(format: "%d %@", Int(elecUsage), elecForecast.meterUnit)
+                } else if Environment.shared.opco.isPHI,
+                    elecCost > 0,
+                    let toDateCost = billForecast.electric?.toDateCost,
+                    toDateCost > 0 {
+                    return elecCost.currencyString
                 }
                 return elecCost.currencyString
             } else if isGas, let gasCost = billForecast.gas?.projectedCost, let startDate = billForecast.gas?.billingStartDate {
@@ -159,14 +165,20 @@ class HomeProjectedBillCardViewModel {
                     }
                 }
                 if !accountDetail.isModeledForOpower,
+                    !Environment.shared.opco.isPHI,
                     let gasForecast = billForecast.gas,
                     let gasUsage = gasForecast.projectedUsage {
                     return String(format: "%d %@", Int(gasUsage), gasForecast.meterUnit)
+                } else if Environment.shared.opco.isPHI,
+                    gasCost > 0,
+                    let toDateCost = billForecast.gas?.toDateCost,
+                    toDateCost > 0 {
+                    return gasCost.currencyString
                 }
                 return gasCost.currencyString
             }
             return nil
-        }
+    }
     
     private(set) lazy var projectionSubLabelString: Driver<String?> = Driver.combineLatest(self.billForecastDriver,
                                                                                            self.isGas)
@@ -198,7 +210,7 @@ class HomeProjectedBillCardViewModel {
                                                                                               self.isGas,
                                                                                               self.accountDetailDriver)
         .map { billForecast, isGas, accountDetail in
-            if !accountDetail.isModeledForOpower {
+            if !accountDetail.isModeledForOpower && !Environment.shared.opco.isPHI {
                 var toDateString: String? = nil
                 if !isGas,
                     let elecForecast = billForecast.electric,
@@ -214,11 +226,30 @@ class HomeProjectedBillCardViewModel {
                 }
             } else {
                 var toDateString: String? = nil
-                if !isGas, let toDateCost = billForecast.electric?.toDateCost {
-                    toDateString = toDateCost.currencyString
-                } else if isGas, let toDateCost = billForecast.gas?.toDateCost {
-                    toDateString = toDateCost.currencyString
+
+                if Environment.shared.opco.isPHI {
+                    if !isGas,
+                        let toDateCost = billForecast.electric?.toDateCost,
+                        toDateCost > 0,
+                        let projectedCost = billForecast.electric?.projectedCost,
+                        projectedCost > 0 {
+                        toDateString = toDateCost.currencyString
+                    }
+                    else if isGas,
+                        let toDateCost = billForecast.gas?.toDateCost,
+                        toDateCost > 0,
+                        let projectedCost = billForecast.gas?.projectedCost,
+                        projectedCost > 0 {
+                        toDateString = toDateCost.currencyString
+                    }
+                } else {
+                    if !isGas, let toDateCost = billForecast.electric?.toDateCost {
+                        toDateString = toDateCost.currencyString
+                    } else if isGas, let toDateCost = billForecast.gas?.toDateCost {
+                        toDateString = toDateCost.currencyString
+                    }
                 }
+                
                 if let str = toDateString {
                     return String(format: NSLocalizedString("You've spent about %@ so far this bill period.", comment: ""), str)
                 }

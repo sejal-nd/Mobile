@@ -104,6 +104,20 @@ class HomeViewController: AccountPickerViewController {
                 self?.viewModel.fetchData.onNext(())
             })
             .disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(.didSelectEnrollInAutoPay, object: nil)
+        .subscribe(onNext: { [weak self] notification in
+            guard let self = self else { return }
+            if let accountDetail = notification.object as? AccountDetail {
+                self.navigateToAutoPay(accountDetail: accountDetail)
+            }
+        }).disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(.didRecievePaymentConfirmation, object: nil)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self = self else { return }
+                self.viewModel.fetchData.onNext(())
+            }).disposed(by: bag)
     }
     
     func viewSetup() {
@@ -307,6 +321,31 @@ class HomeViewController: AccountPickerViewController {
                 })
             })
             .disposed(by: bag)
+    }
+    
+    func navigateToAutoPay(accountDetail: AccountDetail) {
+        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI  {
+            if accountDetail.isBGEasy {
+                let storyboard = UIStoryboard(name: "Bill", bundle: Bundle.main)
+                if let bgeEasyViewController = storyboard.instantiateViewController(withIdentifier: "BGEasy") as?  BGEasyViewController {
+                    present(bgeEasyViewController, animated: true, completion: nil)
+                }
+            } else {
+                let storyboard = UIStoryboard(name: "AutoPayBGE", bundle: Bundle.main)
+                if let bgeAutoPayViewController = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as?  BGEAutoPayViewController {
+                    bgeAutoPayViewController.delegate = self
+                    bgeAutoPayViewController.accountDetail = accountDetail
+                    navigationController?.pushViewController(bgeAutoPayViewController, animated: true)
+                }
+            }
+        } else {
+            let storyboard = UIStoryboard(name: "AutoPay", bundle: Bundle.main)
+            if let autoPayViewController = storyboard.instantiateViewController(withIdentifier: "AutoPay") as?  AutoPayViewController {
+                autoPayViewController.delegate = self
+                autoPayViewController.accountDetail = accountDetail
+                navigationController?.pushViewController(autoPayViewController, animated: true)
+            }
+        }
     }
     
     private func onTermsAndPolicyPress() {
@@ -638,7 +677,7 @@ class HomeViewController: AccountPickerViewController {
     func bindProjectedBillCard() {
         guard let projectedBillCardView = projectedBillCardView else { return }
         
-        viewModel.accountDetailEvents.elements().take(1).subscribe(onNext: { accountDetail in
+        viewModel.accountDetailEvents.elements().subscribe(onNext: { accountDetail in
             projectedBillCardView.isHidden = !accountDetail.isAMIAccount
         }).disposed(by: bag)
         
@@ -745,6 +784,12 @@ class HomeViewController: AccountPickerViewController {
             vc.eventResults = eventResults
         case let (vc as UpdatesDetailViewController, update as Alert):
             vc.opcoUpdate = update
+        case let (vc as BGEAutoPayViewController, accountDetail as AccountDetail):
+             vc.delegate = self
+             vc.accountDetail = accountDetail
+         case let (vc as AutoPayViewController, accountDetail as AccountDetail):
+             vc.delegate = self
+             vc.accountDetail = accountDetail
         case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):
             vc.viewModel.outageStatus = currentOutageStatus
             if let phone = currentOutageStatus.contactHomeNumber {

@@ -45,8 +45,9 @@ public struct HomeProfile: Decodable, Fillable, Equatable {
     }
 }
 
-public enum HomeType: Int, Codable {
-    case multiFamily, singleFamily
+public enum HomeType: String, Codable {
+    case multiFamily = "MULTI_FAMILY"
+    case singleFamily = "SINGLE_FAMILY"
     
     var displayString: String {
         switch self {
@@ -71,8 +72,11 @@ public enum HomeType: Int, Codable {
     }
 }
 
-public enum HeatType: Int, Codable {
-    case naturalGas, electric, other, none
+public enum HeatType: String, Codable {
+    case naturalGas = "GAS"
+    case electric = "ELEC"
+    case other = "OTHER"
+    case none = "NONE"
     
     var displayString: String {
         switch self {

@@ -20,6 +20,8 @@ final class EnergyWiseRewardsViewModel {
         }
     }
 
+    var showAdjustThermostatCTA: Bool { accountDetail.isEnergyWiseRewardsEnrolled }
+    
     var energyWiseRewardsInformation: String {
         switch opcoType {
         case .ace:

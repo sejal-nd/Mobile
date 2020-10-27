@@ -28,8 +28,7 @@ public struct AlertPreferences: Decodable {
     var forYourInfo = false
     
     enum CodingKeys: String, CodingKey {
-        case data = "data"
-        case preferences = "preferences"
+        case preferences = "alertPreferences"
         
         case highUsage
         case alertThreshold
@@ -52,10 +51,7 @@ public struct AlertPreferences: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                 forKey: .data)
-        
-        let preferences = try data.decode([AlertPreference].self,
+        let preferences = try container.decode([AlertPreference].self,
                                            forKey: .preferences)
         
         for preference in preferences {

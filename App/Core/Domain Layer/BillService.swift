@@ -45,7 +45,7 @@ enum BillService {
     ///   - accountNumber: The account to get the bill for
     ///   - billDate: From account detail endpoint: BillingInfo.billDate
     ///   - documentID: From account detail endpoint: BillingInfo.documentID
-    static func fetchBillPdf(accountNumber: String, billDate: Date, documentID: String, completion: @escaping (Result<String, NetworkingError>) -> ()) {
+    static func fetchBillPdf(accountNumber: String, billDate: Date, documentID: String, completion: @escaping (Result<BillPDF, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .billPDF(accountNumber: accountNumber, date: billDate, documentID: documentID), completion: completion)
     }
     

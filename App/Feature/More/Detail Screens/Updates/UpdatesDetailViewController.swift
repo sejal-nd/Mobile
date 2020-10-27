@@ -10,7 +10,7 @@ import UIKit
 
 class UpdatesDetailViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var detailsTextView: UITextView!
     
     var opcoUpdate: Alert!
     
@@ -40,8 +40,8 @@ class UpdatesDetailViewController: UIViewController {
         titleLabel.textColor = .deepGray
         titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
         
-        label.textColor = .deepGray
-        label.font = OpenSans.regular.of(textStyle: .body)
+        detailsTextView.textColor = .deepGray
+        detailsTextView.font = OpenSans.regular.of(textStyle: .body)
     }
     
     private func setValues() {
@@ -50,7 +50,7 @@ class UpdatesDetailViewController: UIViewController {
         titleLabel.attributedText = opcoUpdate.title
             .attributedString(lineHeight: 28)
         
-        label.text = opcoUpdate.message
+        detailsTextView.text = opcoUpdate.message
     }
     
 }

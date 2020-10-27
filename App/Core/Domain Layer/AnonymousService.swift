@@ -50,7 +50,7 @@ enum AnonymousService {
         NetworkingLayer.request(router: .passwordChange(request: request), completion: completion)
     }
     
-    static func lookupAccount(request: AccountLookupRequest, completion: @escaping (Result<AccountLookupResults, NetworkingError>) -> ()) {
+    static func lookupAccount(request: AccountLookupRequest, completion: @escaping (Result<[AccountLookupResult], NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .accountLookup(request: request), completion: completion)
     }
     

@@ -40,6 +40,17 @@ enum OpCo: String {
         }
     }
     
+    var urlString: String {
+        switch self {
+        case .delmarva:
+            return "DPL"
+        case .pepco:
+            return "PEP"
+        default:
+            return rawValue.uppercased()
+        }
+    }
+    
     // Used for reading the splash screen animation to VoiceOver users
     var taglineString: String {
         switch self {
@@ -142,8 +153,7 @@ struct Environment {
         case .stage, .hotfix:
             id = "61MnQzuXNLdlsBOu"
         case .prodbeta, .prod:
-            id = ""
-            #warning("We need prod clientSecrets's still from Apigee - Olek")
+            id = "wQrbiqG3Ddefftp3"
         }
         return id
     }
@@ -156,8 +166,7 @@ struct Environment {
         case .stage, .hotfix:
             secret = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"
         case .prodbeta, .prod:
-            secret = ""
-            #warning("We need prod clientID's still from Apigee - Olek")
+            secret = "jk8UMnMb2kSISwAgX0OFGhMEAfMEoGTd"
         }
         return secret
     }

@@ -13,9 +13,9 @@ extension TimeZone {
 
         switch appOpCo {
         case .ace, .bge, .delmarva, .peco, .pepco:
-            return TimeZone(identifier: "America/New_York")!
+            return TimeZone.current //TimeZone(identifier: "America/New_York")!
         case .comEd:
-            return TimeZone(identifier: "America/Chicago")!
+            return TimeZone.current //TimeZone(identifier: "America/Chicago")!
         }
     }()
 }

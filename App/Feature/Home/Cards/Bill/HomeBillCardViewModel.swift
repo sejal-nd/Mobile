@@ -390,8 +390,10 @@ class HomeBillCardViewModel {
         { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
         .distinctUntilChanged()
     private(set) lazy var showMakePaymentButton: Driver<Bool> = Driver.combineLatest(showAutoPay,
-                                                                                     showScheduledPayment)
-        { return $0 || $1 ? false : true }
+                                                                                     showScheduledPayment,
+                                                                                     accountDetailDriver,
+                                                                                     billState)
+    { return $0 || $1 || !($2.billingInfo.netDueAmount > 0) || $3 == .billPaid || $3 == .billPaidIntermediate || $3 == .paymentPending ? false : true }
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     

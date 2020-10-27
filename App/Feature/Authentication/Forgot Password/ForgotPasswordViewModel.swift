@@ -15,7 +15,7 @@ class ForgotPasswordViewModel {
     let username = BehaviorRelay(value: "")
     
     func getInstructionLabelText() -> String {
-        let userName = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        let userName = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
             ? NSLocalizedString("email", comment: "")
             : NSLocalizedString("username/email address", comment: "")
         

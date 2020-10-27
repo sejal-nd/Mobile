@@ -73,11 +73,14 @@ class RegistrationViewModel {
         
         if selectedSegmentIndex.value == .zero {
             validateAccountRequest = ValidateAccountRequest(identifier: identifierNumber.value,
-                                                            phoneNumber: extractDigitsFrom(self.phoneNumber.value))
-        } else {
-            validateAccountRequest = ValidateAccountRequest(accountNumber: self.accountNumber.value,
+                                                            phoneNumber: extractDigitsFrom(self.phoneNumber.value),
+                                                            accountNumber: self.accountNumber.value,
                                                             billDate: String(self.totalAmountDue.value),
                                                             amountDue: self.dueDate.value?.yyyyMMddString ?? "")
+        } else {
+            validateAccountRequest = ValidateAccountRequest(accountNumber: self.accountNumber.value,
+                                                            billDate: self.dueDate.value?.yyyyMMddString ?? "",
+                                                            amountDue: String(self.totalAmountDue.value))
         }
                 
         RegistrationService.validateRegistration(request: validateAccountRequest) { [weak self] result in
@@ -93,7 +96,7 @@ class RegistrationViewModel {
                 }
                 onSuccess()
             case .failure(let error):
-                if error == .multiAccount {
+                if error == .multiAccount || error == .multipleAccountNumbers {
                     onMultipleAccounts()
                 } else {
                     onError(error.title, error.description)
@@ -176,7 +179,7 @@ class RegistrationViewModel {
         AnonymousService.lookupAccount(request: accountLookupRequest) { [weak self] result in
             switch result {
             case .success(let accountLookupResults):
-                self?.accounts.accept(accountLookupResults.accountLookupResults)
+                self?.accounts.accept(accountLookupResults)
                 onSuccess()
             case .failure(let error):
                 onError(error.title, error.description)

@@ -91,10 +91,10 @@ class BGEAutoPayViewModel {
                 self.confirmationNumber = autoPayInfo.confirmationNumber
                 
                 // Sync up our view model with the existing AutoPay settings
-                if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4 {
+                if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.maskedAccountNumber {
                     self.selectedWalletItem.accept(WalletItem(walletItemId: walletItemId,
                                                                maskedAccountNumber: masked4,
-                                                               nickName: autoPayInfo.paymentAccountNickname,
+                                                               nickName: nil,
                                                                paymentMethodType: .ach,
                                                                bankName: nil,
                                                                expirationDate: nil,
