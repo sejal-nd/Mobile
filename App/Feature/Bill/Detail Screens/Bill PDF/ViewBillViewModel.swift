@@ -27,8 +27,8 @@ class ViewBillViewModel {
     func fetchBillPDFData(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         BillService.fetchBillPdf(accountNumber: AccountsStore.shared.currentAccount.accountNumber, billDate: billDate, documentID: documentID ?? "") { [weak self] result in
             switch result {
-            case .success(let billDataString):
-                if let pdfData = Data(base64Encoded: billDataString, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) {
+            case .success(let billData):
+                if let pdfData = Data(base64Encoded: billData.imageData, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) {
                     self?.pdfData = pdfData
                     onSuccess()
                 } else {
