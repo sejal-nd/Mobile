@@ -179,7 +179,7 @@ class RegistrationViewModel {
         AnonymousService.lookupAccount(request: accountLookupRequest) { [weak self] result in
             switch result {
             case .success(let accountLookupResults):
-                self?.accounts.accept(accountLookupResults.accountLookupResults)
+                self?.accounts.accept(accountLookupResults)
                 onSuccess()
             case .failure(let error):
                 onError(error.title, error.description)

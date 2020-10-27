@@ -14,8 +14,18 @@ struct AccountLookupResult: Decodable {
     let unitNumber: String?
     
     enum CodingKeys: String, CodingKey {
+        case accountDetails = "AccountDetails"
         case accountNumber = "AccountNumber"
         case streetNumber = "StreetNumber"
-        case unitNumber = "UnitNumber"
+        case unitNumber = "ApartmentUnitNumber"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let accountDetails = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .accountDetails)
+        
+        accountNumber = try accountDetails.decodeIfPresent(String.self, forKey: .accountNumber)
+        streetNumber = try accountDetails.decodeIfPresent(String.self, forKey: .streetNumber)
+        unitNumber = try accountDetails.decodeIfPresent(String.self, forKey: .unitNumber)
     }
 }
