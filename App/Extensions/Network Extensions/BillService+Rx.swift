@@ -47,7 +47,7 @@ extension Reactive where Base == BillService {
         }.map { _ in ()}
     }
     
-    static func fetchBillPdf(accountNumber: String, billDate: Date, documentID: String) -> Observable<String> {
+    static func fetchBillPdf(accountNumber: String, billDate: Date, documentID: String) -> Observable<BillPDF> {
         return Observable.create { observer -> Disposable in
             BillService.fetchBillPdf(accountNumber: accountNumber, billDate: billDate, documentID: documentID) { observer.handle(result: $0) }
             return Disposables.create()
