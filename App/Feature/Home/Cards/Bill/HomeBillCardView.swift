@@ -87,7 +87,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var autoPayButtonLabel: UILabel!
     
     @IBOutlet private weak var oneTouchPayTCButton: ButtonControl!
-    @IBOutlet weak var oneTouchPayTCSpacerView: UIView!
+    @IBOutlet weak var makeAPaymentSpacerView: UIView!
     
     @IBOutlet private weak var viewBillButton: UIButton!
     
@@ -357,7 +357,7 @@ class HomeBillCardView: UIView {
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(tutorialButton.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentDescriptionLabel.rx.isHidden).disposed(by: bag)
-        viewModel.showSaveAPaymentAccountButton.drive(oneTouchPayTCSpacerView.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.drive(makeAPaymentSpacerView.rx.isHidden).disposed(by: bag)
         
         // Subview States
         viewModel.paymentDescriptionText.drive(paymentDescriptionLabel.rx.attributedText).disposed(by: bag)
@@ -379,6 +379,7 @@ class HomeBillCardView: UIView {
         viewModel.minMaxPaymentAllowedText.drive(minimumPaymentLabel.rx.text).disposed(by: bag)
         viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
         viewModel.showMakePaymentButton.not().drive(makePaymentContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showMakePaymentButton.not().drive(makeAPaymentSpacerView.rx.isHidden).disposed(by: bag)
     
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButtonLabel.rx.text).disposed(by: bag)
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
