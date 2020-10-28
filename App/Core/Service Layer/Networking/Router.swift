@@ -128,7 +128,7 @@ public enum Router {
     case outageStatus(accountNumber: String, summaryQueryItem: URLQueryItem? = nil)
     case outageStatusAnon(request: AnonOutageRequest)
     case meterPing(accountNumber: String, premiseNumber: String? = nil)
-    case meterPingAnon(request: AccountNumberRequest)
+    case meterPingAnon(request: AnonMeterPingRequest)
     case reportOutage(accountNumber: String, request: OutageRequest)
     case reportOutageAnon(request: OutageRequest)
     
@@ -174,7 +174,7 @@ public enum Router {
         switch self {
         case .weather, .registerForAlerts:
             return .none
-        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner:
+        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .passwordChange, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon:
             return .anon
         default:
             return .auth
