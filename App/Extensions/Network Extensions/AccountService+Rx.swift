@@ -96,6 +96,13 @@ extension Reactive where Base == AccountService {
         }
     }
     
+    static func fetchiTronSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSODataResponse> {
+        return Observable.create { observer -> Disposable in
+            AccountService.fetchiTronSSOData(accountNumber: accountNumber, premiseNumber: premiseNumber) { observer.handle(result: $0) }
+            return Disposables.create()
+        }
+    }
+    
     static func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
         return Observable.create { observer -> Disposable in
             AccountService.fetchScheduledPayments(accountNumber: accountNumber) { observer.handle(result: $0) }

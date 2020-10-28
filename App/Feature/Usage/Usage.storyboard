@@ -912,6 +912,9 @@
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="Z3L-L8-VtV"/>
                                         </constraints>
                                         <state key="normal" title="Adjust Thermostat"/>
+                                        <connections>
+                                            <segue destination="tqC-kL-tfZ" kind="show" identifier="iTronSmartThermostatSegue" id="AzC-6b-Etn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -948,7 +951,68 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tm3-Gu-gaW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-820" y="1669"/>
+            <point key="canvasLocation" x="-990" y="1641"/>
+        </scene>
+        <!--Tron Smart Thermostat View Controller-->
+        <scene sceneID="2Mj-jr-M82">
+            <objects>
+                <viewController storyboardIdentifier="iTronSmartThermostatViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tqC-kL-tfZ" customClass="iTronSmartThermostatViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eja-Vc-IQn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kPe-fM-CyF">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXR-ce-JnV" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="415" width="60" height="12"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="e43-MV-tiZ"/>
+                                    <constraint firstAttribute="height" constant="12" id="oYr-bq-lE9"/>
+                                </constraints>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szn-od-FOs">
+                                <rect key="frame" x="30" y="411" width="354" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="vaZ-TF-yZV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="kPe-fM-CyF" firstAttribute="top" secondItem="1Ge-QX-5bL" secondAttribute="top" id="Jvq-Ke-X8j"/>
+                            <constraint firstItem="1Ge-QX-5bL" firstAttribute="trailing" secondItem="kPe-fM-CyF" secondAttribute="trailing" id="RHg-af-wcy"/>
+                            <constraint firstItem="kPe-fM-CyF" firstAttribute="leading" secondItem="1Ge-QX-5bL" secondAttribute="leading" id="XGD-U3-4Fb"/>
+                            <constraint firstItem="wXR-ce-JnV" firstAttribute="centerY" secondItem="eja-Vc-IQn" secondAttribute="centerY" id="dXF-aN-Dn2"/>
+                            <constraint firstItem="wXR-ce-JnV" firstAttribute="centerX" secondItem="eja-Vc-IQn" secondAttribute="centerX" id="fBR-2Z-Q8Y"/>
+                            <constraint firstItem="1Ge-QX-5bL" firstAttribute="bottom" secondItem="kPe-fM-CyF" secondAttribute="bottom" id="gnd-Wr-iNd"/>
+                            <constraint firstItem="szn-od-FOs" firstAttribute="leading" secondItem="1Ge-QX-5bL" secondAttribute="leading" priority="999" constant="30" id="jv1-2U-m1y"/>
+                            <constraint firstItem="szn-od-FOs" firstAttribute="centerY" secondItem="eja-Vc-IQn" secondAttribute="centerY" id="k4m-gK-ymo"/>
+                            <constraint firstItem="1Ge-QX-5bL" firstAttribute="trailing" secondItem="szn-od-FOs" secondAttribute="trailing" priority="999" constant="30" id="okF-4R-K2q"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1Ge-QX-5bL"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aLD-HT-9EZ"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="szn-od-FOs" id="SYk-OZ-ONb"/>
+                        <outlet property="loadingIndicator" destination="wXR-ce-JnV" id="uGO-zx-uX0"/>
+                        <outlet property="view" destination="eja-Vc-IQn" id="tOi-WM-MIA"/>
+                        <outlet property="webView" destination="kPe-fM-CyF" id="PXO-tx-NU9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZnM-9h-mV0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-128" y="1641"/>
         </scene>
         <!--Top 5 Energy Tips-->
         <scene sceneID="W1V-WD-N6y">
@@ -1271,7 +1335,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Upc-k9-OFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55" y="1669"/>
+            <point key="canvasLocation" x="430" y="1623"/>
         </scene>
         <!--Usage-->
         <scene sceneID="FIv-fe-aUp">

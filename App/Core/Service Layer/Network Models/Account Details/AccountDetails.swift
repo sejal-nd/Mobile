@@ -354,6 +354,10 @@ public struct AccountDetail: Decodable {
         self.isSupplier = try container.decodeIfPresent(Bool.self, forKey: .isSupplier) ?? false
         self.isActiveSeverance = try container.decodeIfPresent(Bool.self, forKey: .isActiveSeverance) ?? false
         self.isDualBillOption = try container.decodeIfPresent(Bool.self, forKey: .isDualBillOption) ?? false
+        
+        if status?.lowercased() == "inactive" {
+            isFinaled = true
+        }
     }
     
     var isEligibleForUsageData: Bool {
