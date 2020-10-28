@@ -27,6 +27,9 @@ final class EnergyWiseRewardsViewController: DismissableFormSheetViewController 
         title = NSLocalizedString("Energy Wise Rewards", comment: "")
         styleViews()
         energyWiseRewardsInformationLabel.text = viewModel.energyWiseRewardsInformation
+        adjustThermostatButton.rx.touchUpInside.asDriver()
+                  .drive(onNext: { [weak self] in self?.onAdjustPress() })
+                  .disposed(by: DisposeBag())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +39,16 @@ final class EnergyWiseRewardsViewController: DismissableFormSheetViewController 
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        switch segue.destination {
+        case let vc as iTronSmartThermostatViewController:
+            vc.accountDetail = accountDetail
+        default:
+            break
+        }
+    }
+    
+    func onAdjustPress() {
+        performSegue(withIdentifier: "iTronSmartThermostatSegue", sender: self)
     }
 }
 
