@@ -409,7 +409,7 @@ class TapToPayViewModel {
     
     private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return "" }
-        return "**** \(walletItem.maskedAccountNumber ?? "")"
+        return "**** \(walletItem.maskedAccountNumber?.Last4Digits() ?? "")"
     }
     
     private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {
