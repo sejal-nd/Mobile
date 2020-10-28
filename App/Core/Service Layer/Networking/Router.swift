@@ -463,7 +463,7 @@ public enum Router {
         case .ffssoData:
             return "SSODataMock"
         case .iTronssoData:
-            return "ItronSSODataMock" // TODO
+            return "ItronSSODataMock"
         case .energyTips:
             return "EnergyTipsMock"
         case .energyTip:

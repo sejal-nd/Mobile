@@ -43,6 +43,7 @@
 		30DD883125496D80007C320D /* iTronSmartThermostatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD883025496D80007C320D /* iTronSmartThermostatViewController.swift */; };
 		30DD88332549703B007C320D /* iTronSmartThermostatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD88322549703B007C320D /* iTronSmartThermostatViewModel.swift */; };
 		30DD883425497119007C320D /* iTronSmartThermostatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD88322549703B007C320D /* iTronSmartThermostatViewModel.swift */; };
+		30DD883625498122007C320D /* ItronSSODataMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DD883525498122007C320D /* ItronSSODataMock.json */; };
 		30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */; };
@@ -1257,6 +1258,7 @@
 		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
 		30DD883025496D80007C320D /* iTronSmartThermostatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTronSmartThermostatViewController.swift; sourceTree = "<group>"; };
 		30DD88322549703B007C320D /* iTronSmartThermostatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTronSmartThermostatViewModel.swift; sourceTree = "<group>"; };
+		30DD883525498122007C320D /* ItronSSODataMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ItronSSODataMock.json; sourceTree = "<group>"; };
 		30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
 		30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModelTestCase.swift; sourceTree = "<group>"; };
 		30F8027F251DDA06009878D3 /* PeakEnergySavingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakEnergySavingsViewModel.swift; sourceTree = "<group>"; };
@@ -3799,6 +3801,7 @@
 		675F4B3B24AB828000A828F9 /* Mock JSONS */ = {
 			isa = PBXGroup;
 			children = (
+				30DD883525498122007C320D /* ItronSSODataMock.json */,
 				675F4B5224AB828000A828F9 /* AccountDetailsMock.json */,
 				675F4B4024AB828000A828F9 /* AccountLookupMock.json */,
 				675F4B4A24AB828000A828F9 /* AccountsMock.json */,
@@ -5230,6 +5233,7 @@
 				9C62446822C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */,
 				67A9869824F9691300BD46E7 /* GoogleService-Info-TEST-FlavorCOMED.plist in Resources */,
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
+				30DD883625498122007C320D /* ItronSSODataMock.json in Resources */,
 				3090A643247F9A6900815EA1 /* More.storyboard in Resources */,
 				67D5632224EDC6F500852551 /* Appt_Complete-FlavorCOMED.json in Resources */,
 				676279EF247DB11100A57FBC /* TermPolicies.html in Resources */,
