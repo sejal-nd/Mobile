@@ -15,10 +15,10 @@ enum UserSession {
     private static let tokenKeychain = KeychainManager.shared
     #endif
     
-    private static let tokenKeychainKey = "jwtToken"
-    private static let tokenExpirationDateKeychainKey = "jwtTokenExpirationDate"
-    private static let refreshTokenKeychainKey = "jwtRefreshToken"
-    private static let refreshTokenExpirationDateKeychainKey = "jwtRefreshTokenExpirationDate"
+    static let tokenKeychainKey = "jwtToken"
+    static let tokenExpirationDateKeychainKey = "jwtTokenExpirationDate"
+    static let refreshTokenKeychainKey = "jwtRefreshToken"
+    static let refreshTokenExpirationDateKeychainKey = "jwtRefreshTokenExpirationDate"
 
     static var isTokenExpired: Bool {
         return tokenExpirationDate < Date()
@@ -32,8 +32,8 @@ enum UserSession {
         var token = ""
         #if os(iOS)
         token = tokenKeychain.string(forKey: tokenKeychainKey) ?? ""
-        #elseif watchOS
-        token = tokenKeychain[tokenKeychainKey]
+        #elseif os(watchOS)
+        token = tokenKeychain[keychainKeys.authToken] ?? ""
         #endif
         return token
     }
@@ -42,8 +42,8 @@ enum UserSession {
         var tokenExpirationDateString = ""
         #if os(iOS)
         tokenExpirationDateString = tokenKeychain.string(forKey: tokenExpirationDateKeychainKey) ?? ""
-        #elseif watchOS
-        tokenExpirationDateString = tokenKeychain[tokenExpirationDateKeychainKey]
+        #elseif os(watchOS)
+        tokenExpirationDateString = tokenKeychain[tokenExpirationDateKeychainKey] ?? ""
         #endif
         return Date(timeIntervalSince1970: (tokenExpirationDateString as NSString).doubleValue)
     }
@@ -52,8 +52,8 @@ enum UserSession {
         var refreshToken = ""
         #if os(iOS)
         refreshToken = tokenKeychain.string(forKey: refreshTokenKeychainKey) ?? ""
-        #elseif watchOS
-        refreshToken = tokenKeychain[refreshTokenKeychainKey]
+        #elseif os(watchOS)
+        refreshToken = tokenKeychain[refreshTokenKeychainKey] ?? ""
         #endif
         return refreshToken
     }
@@ -62,8 +62,8 @@ enum UserSession {
         var refreshTokenExpirationDateString = ""
         #if os(iOS)
         refreshTokenExpirationDateString = tokenKeychain.string(forKey: refreshTokenExpirationDateKeychainKey) ?? ""
-        #elseif watchOS
-        refreshTokenExpirationDateString = tokenKeychain[refreshTokenExpirationDateKeychainKey]
+        #elseif os(watchOS)
+        refreshTokenExpirationDateString = tokenKeychain[refreshTokenExpirationDateKeychainKey] ?? ""
         #endif
         return Date(timeIntervalSince1970: (refreshTokenExpirationDateString as NSString).doubleValue)
     }
@@ -107,13 +107,13 @@ extension UserSession {
         
         // Login on Apple Watch
         if let token = tokenResponse.token {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : token])
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [tokenKeychainKey : token, refreshTokenKeychainKey: refreshToken, tokenExpirationDateKeychainKey: "\(tokenExpirationDate.timeIntervalSince1970)", refreshTokenExpirationDateKeychainKey: "\(refreshTokenExpirationDate.timeIntervalSince1970)"])
         }
         #elseif os(watchOS)
         tokenKeychain[UserSession.tokenKeychainKey] = token
-        tokenKeychain[UserSession.tokenExpirationDateKeychainKey] = tokenExpiryTime
+        tokenKeychain[UserSession.tokenExpirationDateKeychainKey] = "\(tokenExpirationDate.timeIntervalSince1970)"
         tokenKeychain[UserSession.refreshTokenKeychainKey] = refreshToken
-        tokenKeychain[UserSession.refreshTokenExpirationDateKeychainKey] = refreshTokenExpiryTime
+        tokenKeychain[UserSession.refreshTokenExpirationDateKeychainKey] = "\(refreshTokenExpirationDate.timeIntervalSince1970)"
         #endif
         // todo investigate how we save this to apple watch
     }
