@@ -330,7 +330,7 @@ class TemplateCardViewModel {
                     } else {
                         if accountDetail.subOpco == .pepcoDC {
                             return "https://www.pepco.com/WaysToSave/ForYourBusiness/Pages/DC/DistrictOfColumbia.aspx"
-                        } else if accountDetail.subOpco == .delmarvaDelaware {
+                        } else if accountDetail.subOpco == .pepcoMaryland {
                             return "https://www.pepco.com/WaysToSave/ForYourBusiness/Pages/Maryland.aspx"
                         } else {
                             return ""
