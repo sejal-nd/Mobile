@@ -40,6 +40,8 @@
 		30A1A0D3254004DD00D18EAC /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30A1A0D4254004EF00D18EAC /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		30A1A0D52540190D00D18EAC /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674A11F92523889C00AF0D38 /* EnergyWiseRewardsViewModel.swift */; };
+		30DD882E254951C4007C320D /* AnonMeterPingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */; };
+		30DD882F25495243007C320D /* AnonMeterPingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */; };
 		30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */; };
@@ -1252,6 +1254,7 @@
 		30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpcoIdentityCardView.xib; sourceTree = "<group>"; };
 		3090A636247E426400815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
+		30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonMeterPingRequest.swift; sourceTree = "<group>"; };
 		30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
 		30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModelTestCase.swift; sourceTree = "<group>"; };
 		30F8027F251DDA06009878D3 /* PeakEnergySavingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakEnergySavingsViewModel.swift; sourceTree = "<group>"; };
@@ -3682,6 +3685,7 @@
 				C320FDA224DC62DE0012E4ED /* WalletRequest.swift */,
 				C320FDDB24DDD3700012E4ED /* WalletEncryptionKeyRequest.swift */,
 				67893AE324DB3743000143D6 /* AlertLanguageRequest.swift */,
+				30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */,
 			);
 			path = "Request Models";
 			sourceTree = "<group>";
@@ -5866,6 +5870,7 @@
 				35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */,
 				C3055B592538F81B000DB89C /* BGEAutoPayInfo.swift in Sources */,
 				C3055BEC2538FB11000DB89C /* PaymentRequest.swift in Sources */,
+				30DD882F25495243007C320D /* AnonMeterPingRequest.swift in Sources */,
 				C3055C152538FBEF000DB89C /* UsageService.swift in Sources */,
 				C3055B542538F81B000DB89C /* UsageTip.swift in Sources */,
 				C3055C422538FCEE000DB89C /* AzureError.swift in Sources */,
@@ -6084,6 +6089,7 @@
 				675F4C9624AB828100A828F9 /* BillingHistoryItem.swift in Sources */,
 				35A6C6C3211C7ADE00C2A58F /* TitleTableViewCell.swift in Sources */,
 				C338280924E1BF9900F133C5 /* DateRequest.swift in Sources */,
+				30DD882E254951C4007C320D /* AnonMeterPingRequest.swift in Sources */,
 				9CA411DF2384972D00C0B602 /* GameCoreDataManager.swift in Sources */,
 				9CD3532A22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				C320FDA124DC5ED40012E4ED /* WalletService.swift in Sources */,
