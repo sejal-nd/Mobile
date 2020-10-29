@@ -68,7 +68,6 @@ public struct AccountDetail: Decodable {
     public var electricChoiceID: String?
     public var gasChoiceID: String?
     public var utilityCode: String?
-    public var isBudgetBillEnrollment: Bool
     public var isBudgetBillEligible: Bool
     public var budgetBillMessage: String?
     public var isAutoPayEligible: Bool
@@ -176,7 +175,6 @@ public struct AccountDetail: Decodable {
         case isAutoPayEligible
         case customerNumber
         case isHourlyPricing
-        case isBudgetBillEnrollment
         
         case customerInfo = "CustomerInfo"
         case billingInfo = "BillingInfo"
@@ -317,8 +315,6 @@ public struct AccountDetail: Decodable {
                                                          forKey: .gasChoiceID)
         self.utilityCode = try container.decodeIfPresent(String.self,
                                                          forKey: .utilityCode)
-        self.isBudgetBillEnrollment = try container.decodeIfPresent(Bool.self,
-                                                                    forKey: .isBudgetBillEnrollment) ?? false
         self.isBudgetBillEligible = try container.decodeIfPresent(Bool.self,
                                                                   forKey: .isBudgetBillEligible) ?? false
         self.budgetBillMessage = try container.decodeIfPresent(String.self,

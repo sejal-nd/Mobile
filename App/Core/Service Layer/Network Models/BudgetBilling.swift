@@ -16,9 +16,9 @@ public struct BudgetBilling: Decodable {
     public var budgetBillDifference: Double?
     public var budgetBillBalance: Double?
     public var budgetBillPayoff: Double?
-    public var programStatusCode: String
-    public var programCode: String
-    public var programStartDate: Date
+    public var programStatusCode: String?
+    public var programCode: String?
+    public var programStartDate: Date?
     
     enum CodingKeys: String, CodingKey {
         case isBudgetBillingAvailable = "isBudgetBillingAvailable"
@@ -52,12 +52,12 @@ public struct BudgetBilling: Decodable {
         self.budgetBillPayoff = try container.decodeIfPresent(Double.self,
                                                 forKey: .budgetBillPayoff)
         
-        self.programStatusCode = try container.decode(String.self,
+        self.programStatusCode = try container.decodeIfPresent(String.self,
                                                  forKey: .programStatusCode)
-        self.programCode = try container.decode(String.self,
+        self.programCode = try container.decodeIfPresent(String.self,
                                            forKey: .programCode)
         
-        self.programStartDate = try container.decode(Date.self,
+        self.programStartDate = try container.decodeIfPresent(Date.self,
                                                 forKey: .programStartDate)
     }
 }

@@ -56,7 +56,7 @@ class AlertPreferencesViewModel {
     }
     
     var shouldShowHUABillThreshold: Bool {
-        return !accountDetail.isBudgetBillEnrollment && !accountDetail.hasThirdPartySupplier
+        return !accountDetail.isBudgetBill && !accountDetail.hasThirdPartySupplier
     }
     
     var devicePushNotificationsEnabled = false
@@ -133,7 +133,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBill {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -152,7 +152,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBill {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -169,7 +169,7 @@ class AlertPreferencesViewModel {
                                               [.billIsReady(self.accountDetail)]))
                     }
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment && self.accountDetail.isResidential {
+                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -186,7 +186,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment && self.accountDetail.isResidential {
+                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -203,7 +203,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment && self.accountDetail.isResidential {
+                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
