@@ -283,7 +283,7 @@ public enum Router {
         case .energyRewardsLoad(let accountNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/programs"
         case .registerForAlerts:
-            return "\(basePath)/noti/\(apiAccess.path)/noti/registration"
+            return "\(basePath)/\(apiAccess.path)/noti/registration"
         case .alertPreferencesLoad(let accountNumber), .alertPreferencesUpdate(let accountNumber, _):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/alerts/preferences/push"
         case .fetchAlertLanguage(let accountNumber), .setAlertLanguage(let accountNumber, _):
