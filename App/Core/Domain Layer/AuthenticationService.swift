@@ -58,7 +58,7 @@ public enum AuthenticationService {
         return !UserSession.token.isEmpty
     }
     
-    static func logout() {
+    static func logout(resetNavigation: Bool = true) {
         NetworkingLayer.cancelAllTasks()
 
         UserSession.deleteSession()
@@ -72,7 +72,9 @@ public enum AuthenticationService {
         RxNotifications.shared.configureQuickActions.onNext(false)
         
         #if os(iOS)
-        (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation(sendToLogin: true)
+        if resetNavigation {
+            (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation(sendToLogin: true)
+        }
         #endif
     }
 }
