@@ -40,12 +40,12 @@
 		30A1A0D3254004DD00D18EAC /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		30A1A0D4254004EF00D18EAC /* EditAccountNickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */; };
 		30A1A0D52540190D00D18EAC /* EnergyWiseRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674A11F92523889C00AF0D38 /* EnergyWiseRewardsViewModel.swift */; };
+		30DD882E254951C4007C320D /* AnonMeterPingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */; };
+		30DD882F25495243007C320D /* AnonMeterPingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */; };
 		30DD883125496D80007C320D /* iTronSmartThermostatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD883025496D80007C320D /* iTronSmartThermostatViewController.swift */; };
 		30DD88332549703B007C320D /* iTronSmartThermostatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD88322549703B007C320D /* iTronSmartThermostatViewModel.swift */; };
 		30DD883425497119007C320D /* iTronSmartThermostatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD88322549703B007C320D /* iTronSmartThermostatViewModel.swift */; };
 		30DD883625498122007C320D /* ItronSSODataMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DD883525498122007C320D /* ItronSSODataMock.json */; };
-		30DD882E254951C4007C320D /* AnonMeterPingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */; };
-		30DD882F25495243007C320D /* AnonMeterPingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */; };
 		30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */; };
 		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
 		351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */; };
@@ -1258,10 +1258,10 @@
 		30636F0924C82F4200CCBFAE /* OpcoIdentityCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpcoIdentityCardView.xib; sourceTree = "<group>"; };
 		3090A636247E426400815EA1 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3090A63E247F8EFA00815EA1 /* EditAccountNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountNickNameViewController.swift; sourceTree = "<group>"; };
+		30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonMeterPingRequest.swift; sourceTree = "<group>"; };
 		30DD883025496D80007C320D /* iTronSmartThermostatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTronSmartThermostatViewController.swift; sourceTree = "<group>"; };
 		30DD88322549703B007C320D /* iTronSmartThermostatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTronSmartThermostatViewModel.swift; sourceTree = "<group>"; };
 		30DD883525498122007C320D /* ItronSSODataMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ItronSSODataMock.json; sourceTree = "<group>"; };
-		30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonMeterPingRequest.swift; sourceTree = "<group>"; };
 		30DFE85F24925FE300FEFDE4 /* EditNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModel.swift; sourceTree = "<group>"; };
 		30DFE867249B4EE900FEFDE4 /* EditNicknameViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewModelTestCase.swift; sourceTree = "<group>"; };
 		30F8027F251DDA06009878D3 /* PeakEnergySavingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakEnergySavingsViewModel.swift; sourceTree = "<group>"; };
@@ -9648,7 +9648,7 @@
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -11152,7 +11152,7 @@
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -12656,7 +12656,7 @@
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
