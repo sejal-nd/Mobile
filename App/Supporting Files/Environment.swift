@@ -61,11 +61,11 @@ enum OpCo: String {
         case .peco:
             return "The future is on"
         case .pepco:
-            return "todo"
+            return ""
         case .ace:
-            return "todo"
+            return ""
         case .delmarva:
-            return "todo"
+            return ""
         }
     }
     

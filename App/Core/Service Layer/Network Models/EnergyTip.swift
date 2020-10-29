@@ -12,7 +12,7 @@ import UIKit // TODO: should probably remove UIKit from model class
 public struct EnergyTip: Decodable, Equatable {
     let title: String
     let image: UIImage?
-    let body: String
+    let body: String?
     
     enum CodingKeys: String, CodingKey {
         case title
@@ -24,7 +24,7 @@ public struct EnergyTip: Decodable, Equatable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         title = try string(fromHtmlString: container.decode(String.self, forKey: .title))
-        body = try string(fromHtmlString: container.decode(String.self, forKey: .body))
+        body = try string(fromHtmlString: container.decodeIfPresent(String.self, forKey: .body) ?? "")
         image = nil // TODO: how to implement this?
     }
     

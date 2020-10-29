@@ -475,7 +475,7 @@ class AlertPreferencesViewModel {
         switch Environment.shared.opco {
         case .comEd:
             return true
-        case .bge, .peco, .pepco, .ace, .delmarva: // todo:
+        case .bge, .peco, .pepco, .ace, .delmarva:
             return false
         }
     }
@@ -670,7 +670,7 @@ class AlertPreferencesViewModel {
             case (.energyBuddyUpdates, _):
                 return NSLocalizedString("Receive a notification when Lumi has new data, tips, and insights to help you save energy and money.", comment: "")
             default:
-                return "" // todo PHI
+                return ""
             }
         }
     }
