@@ -940,7 +940,7 @@
 		C3118C5F25391A9F002A2832 /* Bill-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5C25391A9E002A2832 /* Bill-FlavorDPL.storyboard */; };
 		C3118C6225391AAA002A2832 /* Main-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6025391AA9002A2832 /* Main-FlavorDPL.storyboard */; };
 		C3118C6625391AB6002A2832 /* Usage-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6325391AB4002A2832 /* Usage-FlavorPEPCO.storyboard */; };
-		C3118C6725391AB6002A2832 /* Bill-FlavorPEPO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6425391AB4002A2832 /* Bill-FlavorPEPO.storyboard */; };
+		C3118C6725391AB6002A2832 /* Bill-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6425391AB4002A2832 /* Bill-FlavorPEPCO.storyboard */; };
 		C3118C6825391AB6002A2832 /* Outage-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6525391AB5002A2832 /* Outage-FlavorPEPCO.storyboard */; };
 		C3118C6E25391BA3002A2832 /* AccountNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3118C6D25391B71002A2832 /* AccountNumberRequest.swift */; };
 		C3118C7325391BA8002A2832 /* AccountNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3118C6D25391B71002A2832 /* AccountNumberRequest.swift */; };
@@ -2028,7 +2028,7 @@
 		C3118C5C25391A9E002A2832 /* Bill-FlavorDPL.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorDPL.storyboard"; sourceTree = "<group>"; };
 		C3118C6125391AA9002A2832 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-FlavorDPL.storyboard"; sourceTree = "<group>"; };
 		C3118C6325391AB4002A2832 /* Usage-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
-		C3118C6425391AB4002A2832 /* Bill-FlavorPEPO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorPEPO.storyboard"; sourceTree = "<group>"; };
+		C3118C6425391AB4002A2832 /* Bill-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
 		C3118C6525391AB5002A2832 /* Outage-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
 		C3118C6D25391B71002A2832 /* AccountNumberRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNumberRequest.swift; sourceTree = "<group>"; };
 		C320FDA024DC5ED40012E4ED /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
@@ -4106,7 +4106,7 @@
 			isa = PBXGroup;
 			children = (
 				67D08AA82539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard */,
-				C3118C6425391AB4002A2832 /* Bill-FlavorPEPO.storyboard */,
+				C3118C6425391AB4002A2832 /* Bill-FlavorPEPCO.storyboard */,
 				C3118C6525391AB5002A2832 /* Outage-FlavorPEPCO.storyboard */,
 				C3118C6325391AB4002A2832 /* Usage-FlavorPEPCO.storyboard */,
 			);
@@ -5158,7 +5158,7 @@
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
 				67D08BBA253A225F0047E4C5 /* Outage-FlavorACE.storyboard in Resources */,
-				C3118C6725391AB6002A2832 /* Bill-FlavorPEPO.storyboard in Resources */,
+				C3118C6725391AB6002A2832 /* Bill-FlavorPEPCO.storyboard in Resources */,
 				C3118C6225391AAA002A2832 /* Main-FlavorDPL.storyboard in Resources */,
 				67D5633424EEFAA100852551 /* Bill-FlavorCOMED.storyboard in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
