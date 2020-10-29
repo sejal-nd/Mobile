@@ -51,8 +51,8 @@ extension UIAlertController {
             message = String.localizedStringWithFormat("Electronic payments for your utility account are not available at this time due to overuse. Please review other payment options, or contact %@ customer service for further assistance.", Environment.shared.opco.displayString)
             includeCallCTA = true
         case .walletItemIdTimeout:
-            title = NSLocalizedString("Session Expired", comment: "")
-            message = customMessageForSessionExpired ?? NSLocalizedString("Please attempt to make your payment again.", comment: "")
+            title = error.title
+            message = error.description
         default:
             title = NSLocalizedString("Payment Error", comment: "")
             message = NSLocalizedString("Unable to process electronic payments for your account at this time. Please try again later or view other payment options.", comment: "")
