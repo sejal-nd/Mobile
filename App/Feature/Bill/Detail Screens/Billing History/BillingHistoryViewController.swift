@@ -145,7 +145,7 @@ class BillingHistoryViewController: UIViewController {
                     let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEasy") as! BGEasyViewController
                     return vc
                 } else if viewModel.accountDetail.isAutoPay {
-                    if Environment.shared.opco == .bge {
+                    if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
                         let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
                         vc.accountDetail = viewModel.accountDetail
                         vc.delegate = self
