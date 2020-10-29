@@ -896,11 +896,13 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
             showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
         }
         GoogleAnalytics.log(event: .budgetBillEnrollComplete)
+        viewModel.fetchAccountDetail(isRefresh: true)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: UIViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
         GoogleAnalytics.log(event: .budgetBillUnEnrollComplete)
+        viewModel.fetchAccountDetail(isRefresh: true)
     }
 }
 
