@@ -594,7 +594,7 @@ class HomeViewController: AccountPickerViewController {
                     newNavController.modalPresentationStyle = .formSheet
                     self?.present(newNavController, animated: true, completion: nil)
                 } else if viewController is MakePaymentViewController {
-                    // TODO: Remove this elseif block once the new payment flow is in for PHI as well
+                    #warning("Remove this elseif block once the new payment flow is in for PHI as well")
                     viewController.hidesBottomBarWhenPushed = true
                     self?.navigationController?.pushViewController(viewController, animated: true)
                     return
