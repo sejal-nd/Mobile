@@ -747,7 +747,7 @@ class BillViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
-                if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBillEnrollment {
+                if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBill {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: accountDetail)
                 } else {
                     var message = NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: "")
