@@ -129,7 +129,7 @@ class TapToPayConfirmationViewController: UIViewController {
     
     func bindViewContent() {
         // Payment Date
-        viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.paymentDateStringOnConfirmationScreen.asDriver().drive(paymentDateValueLabel.rx.text).disposed(by: disposeBag)
         
         // Total Payment
         viewModel.totalPaymentDisplayString.asDriver().drive(amountPaidValueLabel.rx.text).disposed(by: disposeBag)

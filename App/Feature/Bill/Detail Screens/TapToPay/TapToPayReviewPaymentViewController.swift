@@ -62,7 +62,6 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var paymentDatePastDueLabel: UILabel!
     @IBOutlet weak var sameDayPaymentWarningLabel: UILabel!
     @IBOutlet weak var editPaymentAmountButton: UIButton!
-    @IBOutlet weak var dateErrorHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var overPayingAmountLabel: UILabel!
     @IBOutlet weak var overPayingContainerView: UIView!
@@ -81,7 +80,6 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var dateWarningstackviewTopContraint: NSLayoutConstraint!
     @IBOutlet weak var paymentAmountContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var convienceFeeBottomLabel: NSLayoutConstraint!
-    @IBOutlet weak var paymentDateBottomConstraint: NSLayoutConstraint!
     
     var viewModel: TapToPayViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
@@ -208,9 +206,9 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.isCashOnlyUser.not().drive(cashOnlyPaymentMethodLabel.rx.isHidden).disposed(by: bag)
         viewModel.isCashOnlyUser.not().drive(cashOnlyChoosePaymentLabel.rx.isHidden).disposed(by: bag)
         viewModel.isCashOnlyUser.not().drive(bankAccount.rx.isEnabled).disposed(by: bag)
-        viewModel.isCashOnlyUser.not().drive(onNext: { [weak self] _ in
-            self?.bankAccountNotAvailable.constant = 0
-            self?.bankAccountNotAvailableBottomContraint.constant = 0
+        viewModel.isCashOnlyUser.not().drive(onNext: { [weak self] isNotCashOnlyUser in
+            self?.bankAccountNotAvailable.constant = isNotCashOnlyUser ? -5 : 16
+            self?.bankAccountNotAvailableBottomContraint.constant = isNotCashOnlyUser ? -5 : 16
         }).disposed(by: bag)
         
         
@@ -231,7 +229,6 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.shouldShowSameDayPaymentWarning.drive(onNext: { [weak self] showSameDayWarning in
             guard let self = self else { return }
             self.sameDayPaymentWarningLabel.isHidden = !showSameDayWarning
-            self.paymentDateBottomConstraint.constant = showSameDayWarning ? 70 : 25
         }).disposed(by: bag)
         
         viewModel.enablePaymentDate.drive(onNext: { [weak self]  enableDate in
