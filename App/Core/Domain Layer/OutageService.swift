@@ -75,7 +75,8 @@ enum OutageService {
         }
     }
     
-    static func pingMeterAnon(accountNumber: String, premiseNumber: String?, completion: @escaping (Result<MeterPingResult, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .meterPing(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
+    static func pingMeterAnon(accountNumber: String, completion: @escaping (Result<MeterPingResult, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .meterPingAnon(request: AnonMeterPingRequest(accountNumber: accountNumber)),
+                                completion: completion)
     }
 }

@@ -297,7 +297,7 @@ class TemplateCardViewModel {
                 if accountDetail.opcoType == .ace {
                     if accountDetail.isResidential {
                         if accountDetail.isEnergyWiseRewardsEnrolled {
-                            return "todo"
+                            return ""
                         } else {
                             return "https://www.atlanticcityelectric.com/WaysToSave/ForYourHome/Pages/default.aspx"
                         }
@@ -307,7 +307,7 @@ class TemplateCardViewModel {
                 } else if accountDetail.opcoType == .delmarva {
                     if accountDetail.isResidential {
                         if accountDetail.isEnergyWiseRewardsEnrolled {
-                            return "todo"
+                            return ""
                         } else {
                             return "https://energywiserewards.delmarva.com/"
                         }
@@ -323,14 +323,14 @@ class TemplateCardViewModel {
                 } else if accountDetail.opcoType == .pepco {
                     if accountDetail.isResidential {
                         if accountDetail.isEnergyWiseRewardsEnrolled {
-                            return "todo"
+                            return ""
                         } else {
                             return "https://energywiserewards.pepco.com/"
                         }
                     } else {
                         if accountDetail.subOpco == .pepcoDC {
                             return "https://www.pepco.com/WaysToSave/ForYourBusiness/Pages/DC/DistrictOfColumbia.aspx"
-                        } else if accountDetail.subOpco == .delmarvaDelaware {
+                        } else if accountDetail.subOpco == .pepcoMaryland {
                             return "https://www.pepco.com/WaysToSave/ForYourBusiness/Pages/Maryland.aspx"
                         } else {
                             return ""
@@ -366,4 +366,7 @@ class TemplateCardViewModel {
         .map { $0.isResidential && $0.isHourlyPricing }
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var isEnergyWiseRewardsEnrolled: Driver<Bool> = self.accountDetailEvents.elements()
+        .map { $0.isEnergyWiseRewardsEnrolled && Environment.shared.opco.isPHI }
+           .asDriver(onErrorDriveWith: .empty())
 }

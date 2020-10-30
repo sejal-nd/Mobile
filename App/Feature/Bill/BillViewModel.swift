@@ -56,7 +56,7 @@ class BillViewModel {
         }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
             guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
             let account = AccountsStore.shared.currentAccount
-            let accountDetail = AccountService.rx.fetchAccountDetails(accountNumber: account.accountNumber)
+            let accountDetail = AccountService.rx.fetchAccountDetails(accountNumber: account.accountNumber, budgetBilling: true)
             let scheduledPayment = AccountService.rx.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
             return Observable.zip(accountDetail, scheduledPayment)
         })
@@ -235,7 +235,7 @@ class BillViewModel {
     
     private(set) lazy var showBudget: Driver<Bool> = currentAccountDetail.map {
         return $0.isBudgetBillEligible ||
-            $0.isBudgetBillEnrollment ||
+            $0.isBudgetBill ||
             Environment.shared.opco == .bge
     }
     
@@ -766,7 +766,7 @@ class BillViewModel {
     }
     
     private(set) lazy var showBudgetEnrolledView: Driver<Bool> = currentAccountDetail.map {
-        return $0.isBudgetBillEnrollment
+        return $0.isBudgetBill
     }
     
     // MARK: - Prepaid

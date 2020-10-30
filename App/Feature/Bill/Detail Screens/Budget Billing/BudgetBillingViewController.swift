@@ -76,7 +76,7 @@ class BudgetBillingViewController: UIViewController {
         
         descriptionHeaderLabel.textColor = .deepGray
         descriptionHeaderLabel.font = SystemFont.regular.of(textStyle: .body)
-        if accountDetail.isBudgetBillEnrollment {
+        if accountDetail.isBudgetBill {
             descriptionHeaderLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.\n\nPlease refer to your full bill for additional details.", comment: "") : NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.", comment: "")
         } else {
             descriptionHeaderLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("If you prefer a consistent and predictable monthly payment throughout the year that eliminates monthly or seasonal variation, Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill.", comment: "") :  NSLocalizedString("Budget Billing spreads out your utility payments evenly throughout the year, so you will know what to expect each month.", comment: "")
@@ -97,7 +97,7 @@ class BudgetBillingViewController: UIViewController {
         footerLabel.text = viewModel.footerLabelText
 
         // When BGE user is enrolled they get a series of card views with information
-        if Environment.shared.opco == .bge && accountDetail.isBudgetBillEnrollment {
+        if Environment.shared.opco == .bge && accountDetail.isBudgetBill {
             for card in bgeEnrolledInfoCardViews {
                 card.layer.borderColor = UIColor.accentGray.cgColor
                 card.layer.borderWidth = 1
@@ -160,7 +160,7 @@ class BudgetBillingViewController: UIViewController {
         unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
         unenrollButton.setTitle(NSLocalizedString("Unenroll", comment: ""), for: .normal)
         
-        if accountDetail.isBudgetBillEnrollment {
+        if accountDetail.isBudgetBill {
             yourPaymentWouldBeLabel.isHidden = true
             paymentAmountView.isHidden = true
             footerContainerView.isHidden = true
@@ -181,7 +181,7 @@ class BudgetBillingViewController: UIViewController {
             self.loadingIndicator.isHidden = true
             self.stickyFooterView.isHidden = false
             
-            if Environment.shared.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
+            if Environment.shared.opco == .bge && self.accountDetail.isBudgetBill {
                 self.monthlyAmountLabel.text = budgetBillingInfo.budgetBill?.currencyString ?? budgetBillingInfo.averageMonthlyBill.currencyString
                 self.lastPaymentDateLabel.text = self.accountDetail.billingInfo.lastPaymentDate?.mmDdYyyyString
                 self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff?.currencyString

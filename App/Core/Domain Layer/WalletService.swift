@@ -62,7 +62,8 @@ struct WalletService {
             }
         }
         
-        let request = WalletEncryptionKeyRequest(pmCategory: bankOrCard == .bank ? "DD" : "CC", postbackUrl: "", ownerId: customerId, strParam: strParam, walletItemId: walletItemId)
+        let ownerId: String? = !temporary ? customerId : nil
+        let request = WalletEncryptionKeyRequest(pmCategory: bankOrCard == .bank ? "DD" : "CC", postbackUrl: "", ownerId: ownerId, strParam: strParam, walletItemId: walletItemId)
         
         NetworkingLayer.request(router: .walletEncryptionKey(request: request), completion: completion)
     }

@@ -70,7 +70,7 @@ extension WatchSessionManager {
     
     // Receiver
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-                DispatchQueue.main.async {
+        DispatchQueue.main.async {
             #if os(iOS)
             if let needsUpdate = applicationContext[keychainKeys.askForUpdate] as? Bool, needsUpdate {
                 //check for valid jwt else clear and log out
@@ -80,25 +80,29 @@ extension WatchSessionManager {
                 }
             }
             #elseif os(watchOS)
-                // New MCS Auth Token
-                if let authToken = applicationContext[keychainKeys.authToken] as? String {
-                    // Save to KeyChain
-                    KeychainManager.shared[keychainKeys.authToken] = authToken
-
-                    NetworkUtility.shared.resetInMemoryCache()
-                    
-                    // Reload Screens
-                    WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
-                }
+            // New MCS Auth Token
+            if let authToken = applicationContext[UserSession.tokenKeychainKey] as? String {
+                // Save to KeyChain
+                KeychainManager.shared[keychainKeys.authToken] = authToken
+                KeychainManager.shared[UserSession.tokenKeychainKey] = authToken
                 
-                // User reported outage on mobile app
-                if let outageReported = applicationContext[keychainKeys.outageReported] as? Bool, outageReported {
-                    NotificationCenter.default.post(name: Notification.Name.outageReported, object: nil)
-                }
+                NetworkUtility.shared.resetInMemoryCache()
+                
+                // Reload Screens
+                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
+            }
+            
+            KeychainManager.shared[UserSession.refreshTokenKeychainKey] = (applicationContext[UserSession.refreshTokenKeychainKey] ?? "") as? String
+            KeychainManager.shared[UserSession.tokenExpirationDateKeychainKey] = (applicationContext[UserSession.tokenExpirationDateKeychainKey] ?? "") as? String
+            KeychainManager.shared[UserSession.refreshTokenExpirationDateKeychainKey] = (applicationContext[UserSession.refreshTokenExpirationDateKeychainKey] ?? "") as? String
+            
+            // User reported outage on mobile app
+            if let outageReported = applicationContext[keychainKeys.outageReported] as? Bool, outageReported {
+                NotificationCenter.default.post(name: Notification.Name.outageReported, object: nil)
+            }
             #endif
         }
     }
-    
 }
 
 
