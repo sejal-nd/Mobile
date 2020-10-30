@@ -598,10 +598,7 @@ class HomeViewController: AccountPickerViewController {
                     viewController.hidesBottomBarWhenPushed = true
                     self?.navigationController?.pushViewController(viewController, animated: true)
                     return
-                } else if viewController is TapToPayReviewPaymentViewController {
-                    let newNavController = LargeTitleNavigationController(rootViewController: viewController)
-                    newNavController.modalPresentationStyle = .fullScreen
-                    self?.present(newNavController, animated: true, completion: nil)
+                        #warning("re-add new payment flow logic for dec release")
                 } else {
                     self?.present(viewController, animated: true, completion: nil)
                 }
