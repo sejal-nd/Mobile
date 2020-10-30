@@ -9,7 +9,7 @@
 import Foundation
 
 struct ReportedOutageResult: Decodable {
-    let reportedTime: Date?
+    var reportedTime: Date?
     let etr: Date?
     var etrMessage: String? = nil
     
