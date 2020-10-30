@@ -58,7 +58,7 @@ public enum AuthenticationService {
         return !UserSession.token.isEmpty
     }
     
-    static func logout(resetNavigation: Bool = true) {
+    static func logout(resetNavigation: Bool = true, sendToLogin: Bool = true) {
         NetworkingLayer.cancelAllTasks()
 
         UserSession.deleteSession()
@@ -73,7 +73,7 @@ public enum AuthenticationService {
         
         #if os(iOS)
         if resetNavigation {
-            (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation(sendToLogin: true)
+            (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation(sendToLogin: sendToLogin)
         }
         #endif
     }
