@@ -298,7 +298,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
             BiometricService.disableBiometrics()
 
-            AuthenticationService.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
+            AuthenticationService.logout(sendToLogin: false) // Used to be necessary with Oracle SDK - no harm leaving it here though
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }

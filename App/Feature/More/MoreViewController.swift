@@ -173,7 +173,7 @@ class MoreViewController: UIViewController {
     private func logout(action: UIAlertAction) {
         FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .sign_out)])
             
-        AuthenticationService.logout()
+        AuthenticationService.logout(sendToLogin: false)
     }
     
     // MARK: - Navigation
