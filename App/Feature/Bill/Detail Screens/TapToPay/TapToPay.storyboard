@@ -458,7 +458,7 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="ibB-eC-2F9" secondAttribute="bottom" priority="750" constant="16" id="4np-jc-DJj"/>
+                                                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="ibB-eC-2F9" secondAttribute="bottom" constant="16" id="4np-jc-DJj"/>
                                                                     <constraint firstItem="Db2-gc-dZz" firstAttribute="leading" secondItem="C9J-ty-g6d" secondAttribute="trailing" constant="10" id="9LV-Ir-3l3"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ibB-eC-2F9" secondAttribute="trailing" constant="25" id="CQr-0M-zdh"/>
                                                                     <constraint firstItem="ibB-eC-2F9" firstAttribute="leading" secondItem="pwX-Ix-gld" secondAttribute="leading" constant="20" id="DMy-DW-wb0"/>
@@ -481,6 +481,7 @@
                                                         <constraints>
                                                             <constraint firstItem="pwX-Ix-gld" firstAttribute="top" secondItem="F7a-ce-Vaq" secondAttribute="top" id="18P-lc-OCZ"/>
                                                             <constraint firstAttribute="bottom" secondItem="pwX-Ix-gld" secondAttribute="bottom" id="JpN-mf-cNx"/>
+                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="118.5" id="N77-6G-beZ"/>
                                                             <constraint firstItem="pwX-Ix-gld" firstAttribute="leading" secondItem="F7a-ce-Vaq" secondAttribute="leading" id="PpN-Ga-ISt"/>
                                                             <constraint firstAttribute="trailing" secondItem="pwX-Ix-gld" secondAttribute="trailing" id="q7c-xa-NJb"/>
                                                         </constraints>
