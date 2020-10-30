@@ -177,7 +177,12 @@ class TapToPayViewModel {
     
     private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
         .map {
-            return  $0.isInToday(calendar: .opCo) ? ("Today, " + $0.fullMonthDayAndYearString) :  $0.mmDdYyyyString
+            return  $0.isInToday(calendar: .opCo) ? ("Today, " + $0.fullMonthDayAndYearString) :  $0.fullMonthDayAndYearString
+    }
+    
+    private(set) lazy var paymentDateStringOnConfirmationScreen: Driver<String> = paymentDate.asDriver()
+        .map {
+            return $0.mmDdYyyyString
     }
     
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
