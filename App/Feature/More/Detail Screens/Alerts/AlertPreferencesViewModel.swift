@@ -269,7 +269,8 @@ class AlertPreferencesViewModel {
     
     private func fetchAlertLanguage() -> Observable<Void> {
         return AlertService.rx.fetchAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-            .do(onNext: { [weak self] language in
+            .do(onNext: { [weak self] result in
+                let language = result.language
                 self?.initialEnglishValue = language == "English"
                 self?.english.accept(language == "English")
             })
