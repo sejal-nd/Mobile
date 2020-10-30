@@ -12,7 +12,7 @@ public struct AlertPreferencesRequest: Encodable {
     let alertPreferenceRequests: [AlertRequest]
     
     enum CodingKeys: String, CodingKey {
-        case alertPreferenceRequests = "alertPreferenceRequests"
+        case alertPreferenceRequests = "alertPreferences"
     }
     
     public struct AlertRequest: Encodable {

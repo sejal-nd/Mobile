@@ -31,6 +31,7 @@ extension Reactive where Base == AlertService {
             AlertService.setAlertPreferences(accountNumber: accountNumber, request: request) { result in
                 switch result {
                 case .success:
+                    observer.onNext(())
                     observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
