@@ -56,7 +56,7 @@ extension Reactive where Base == AlertService {
         }
     }
     
-    static func fetchAlertLanguage(accountNumber: String) -> Observable<String> {
+    static func fetchAlertLanguage(accountNumber: String) -> Observable<LanguageResult> {
         return Observable.create { observer -> Disposable in
             AlertService.fetchAlertLanguage(accountNumber: accountNumber) { result in
                                 switch result {

@@ -966,6 +966,8 @@
 		C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */; };
 		C338283424E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
 		C338283524E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */; };
+		C33C3385254C9C5300E59CF8 /* LanguageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C3384254C9C5200E59CF8 /* LanguageResult.swift */; };
+		C33C3386254C9C5400E59CF8 /* LanguageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C3384254C9C5200E59CF8 /* LanguageResult.swift */; };
 		C34A7ED42519524200438B7B /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C336048024D333CB002CF260 /* BGEAutoPayInfo.swift */; };
 		C35672A7243694BF000D77E4 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C300793B2436669F00A9BEB0 /* LocalizedString.swift */; };
 		C364A87A2375DC7B00C7D51B /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364A8782375DC7B00C7D51B /* StateView.swift */; };
@@ -2052,6 +2054,7 @@
 		C338281924E2FDE000F133C5 /* WalletItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletItem.swift; sourceTree = "<group>"; };
 		C338282624E30B0600F133C5 /* PeakRewardsSummaryMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PeakRewardsSummaryMock.json; sourceTree = "<group>"; };
 		C338283324E30D6900F133C5 /* PeakRewardsOverridesMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PeakRewardsOverridesMock.json; sourceTree = "<group>"; };
+		C33C3384254C9C5200E59CF8 /* LanguageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageResult.swift; sourceTree = "<group>"; };
 		C364A8782375DC7B00C7D51B /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		C364A8792375DC7B00C7D51B /* StateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
 		C364A87C2375DC9000C7D51B /* EmptyChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyChildViewController.swift; sourceTree = "<group>"; };
@@ -3759,6 +3762,7 @@
 				675F4B2624AB828000A828F9 /* SharePointAlert.swift */,
 				675F4B1124AB828000A828F9 /* SSODataResponse.swift */,
 				C33827EC24DDDB9900F133C5 /* StringResult.swift */,
+				C33C3384254C9C5200E59CF8 /* LanguageResult.swift */,
 				675F4B3124AB828000A828F9 /* TokenResponse.swift */,
 				675F4B3524AB828000A828F9 /* UsageTip.swift */,
 				675F4B2424AB828000A828F9 /* ValidatedAccountResponse.swift */,
@@ -6012,6 +6016,7 @@
 				C3055BF52538FB11000DB89C /* BillComparisonRequest.swift in Sources */,
 				C3055C0F2538FBEF000DB89C /* OutageService.swift in Sources */,
 				35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */,
+				C33C3386254C9C5400E59CF8 /* LanguageResult.swift in Sources */,
 				35BAA17A2367454F0053E58A /* NetworkUtility.swift in Sources */,
 				C3055C432538FCEE000DB89C /* GovWeatherErrorTodo.swift in Sources */,
 				C3055B7C2538F81B000DB89C /* GameUser.swift in Sources */,
@@ -6509,6 +6514,7 @@
 				67F950FC24BCA111009B5F07 /* RegistrationValidateAccountViewControllerNew.swift in Sources */,
 				673FA0FD24C8ACCA00210BCD /* DailyUsageData.swift in Sources */,
 				B0A8308D2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
+				C33C3385254C9C5300E59CF8 /* LanguageResult.swift in Sources */,
 				B0882CAD210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				B0B083BD216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				C3381A032424060400EA7062 /* SERWebViewController.swift in Sources */,
