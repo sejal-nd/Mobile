@@ -46,8 +46,8 @@ enum AnonymousService {
         NetworkingLayer.request(router: .recoverPassword(request: request), completion: completion)
     }
     
-    static func changePassword(request: ChangePasswordRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .passwordChange(request: request), completion: completion)
+    static func changePasswordAnon(request: ChangePasswordRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .passwordChangeAnon(request: request), completion: completion)
     }
     
     static func lookupAccount(request: AccountLookupRequest, completion: @escaping (Result<[AccountLookupResult], NetworkingError>) -> ()) {
