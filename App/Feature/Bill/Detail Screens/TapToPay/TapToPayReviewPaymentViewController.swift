@@ -156,6 +156,10 @@ class TapToPayReviewPaymentViewController: UIViewController {
         sameDayPaymentWarningLabel.font = SystemFont.regular.of(size: 12)
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same-day payments cannot be edited or canceled after submission.", comment: "")
         
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .deepGray
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         // Overpaying
         overPayingAmountLabel.textColor = .errorRed
         overPayingAmountLabel.font = SystemFont.semibold.of(size: 12)
