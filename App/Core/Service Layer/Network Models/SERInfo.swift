@@ -24,3 +24,11 @@ public struct SERInfo: Decodable {
         eventResults = try container.decodeIfPresent([SERResult].self, forKey: .eventResults) ?? []
     }
 }
+
+public struct SERContainer: Decodable {
+    let serInfo: SERInfo
+    
+    enum CodingKeys: String, CodingKey {
+        case serInfo = "SERInfo"
+    }
+}
