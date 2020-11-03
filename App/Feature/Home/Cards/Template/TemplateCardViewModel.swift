@@ -224,7 +224,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Shop Now", comment: "")
+                    return NSLocalizedString("Save Now", comment: "")
                 } else {
                     return NSLocalizedString("Get started today", comment: "")
                 }
@@ -246,7 +246,7 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
                         NSLocalizedString("View My Savings!", comment: "") :
-                        NSLocalizedString("Shop Now", comment: "")
+                        NSLocalizedString("Save Now", comment: "")
                 } else {
                     return NSLocalizedString("Get started today", comment: "")
                 }
