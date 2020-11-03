@@ -56,7 +56,23 @@ class OutageViewModel {
                 
                 onSuccess(outageStatus)
             case .failure(let error):
-                onError(error)
+                switch error {
+                case .finaled:
+                    onSuccess(OutageStatus(finaled: true))
+                    break
+                case .noPay:
+                    onSuccess(OutageStatus(noPay: true))
+                    break
+                case .noService:
+                    onSuccess(OutageStatus(noService: true))
+                    break
+                case .inactive:
+                    onSuccess(OutageStatus(inactive: true))
+                    break
+                default:
+                    onError(error)
+                    break
+                }
             }
         }
     }
