@@ -3319,13 +3319,13 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJs-ar-SZ1" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1399.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yp6-Qv-Wm7" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="335" height="1333"/>
+                                                <rect key="frame" x="20" y="0.0" width="335" height="1399.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="DwB-vN-J9n">
-                                                        <rect key="frame" x="0.0" y="20" width="335" height="1293"/>
+                                                        <rect key="frame" x="0.0" y="20" width="335" height="1359.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please create your sign in credentials." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMQ-3k-yvi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="19.5"/>
@@ -3367,10 +3367,10 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4W-Ud-wrB">
-                                                                <rect key="frame" x="0.0" y="389.5" width="335" height="246"/>
+                                                                <rect key="frame" x="0.0" y="389.5" width="335" height="312.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="LAa-Dv-9w6">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="246"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="312.5"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="PUO-mQ-iXK">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="23.5"/>
@@ -3394,12 +3394,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" distribution="equalSpacing" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="T9V-gj-owh">
-                                                                                <rect key="frame" x="0.0" y="55.5" width="335" height="190.5"/>
+                                                                                <rect key="frame" x="0.0" y="55.5" width="335" height="257"/>
                                                                                 <subviews>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" distribution="equalSpacing" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="oBJ-bN-LQs">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="46"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="53"/>
                                                                                         <subviews>
-                                                                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="psl-AR-OEg">
+                                                                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="psl-AR-OEg">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="19"/>
                                                                                                 <subviews>
                                                                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="gmK-mU-rnw">
@@ -3409,7 +3409,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                                                         </constraints>
                                                                                                     </imageView>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Must contain 8-16 characters" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="No5-eP-SgC">
-                                                                                                        <rect key="frame" x="28" y="0.0" width="307" height="19"/>
+                                                                                                        <rect key="frame" x="21" y="0.0" width="314" height="19"/>
                                                                                                         <constraints>
                                                                                                             <constraint firstAttribute="height" constant="19" id="8Uo-ox-sJ9"/>
                                                                                                         </constraints>
@@ -3419,21 +3419,27 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                                                     </label>
                                                                                                 </subviews>
                                                                                             </stackView>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2K-aS-QOP" userLabel="Horizontal Rule">
+                                                                                                <rect key="frame" x="0.0" y="25" width="335" height="1"/>
+                                                                                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="1" id="N69-6w-YHC"/>
+                                                                                                </constraints>
+                                                                                            </view>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="di4-px-bTh">
-                                                                                                <rect key="frame" x="0.0" y="25" width="335" height="21"/>
+                                                                                                <rect key="frame" x="0.0" y="32" width="335" height="21"/>
                                                                                                 <subviews>
-                                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="fvO-KE-NQh">
-                                                                                                        <rect key="frame" x="28" y="0.0" width="307" height="30"/>
+                                                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fvO-KE-NQh">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
                                                                                                         <subviews>
-                                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2K-aS-QOP" userLabel="Horizontal Rule">
-                                                                                                                <rect key="frame" x="0.0" y="0.0" width="307" height="1"/>
-                                                                                                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="JD7-0m-TAk">
+                                                                                                                <rect key="frame" x="0.0" y="0.0" width="13" height="30"/>
                                                                                                                 <constraints>
-                                                                                                                    <constraint firstAttribute="height" constant="1" id="N69-6w-YHC"/>
+                                                                                                                    <constraint firstAttribute="width" constant="13" id="6sZ-GL-PCQ"/>
                                                                                                                 </constraints>
-                                                                                                            </view>
+                                                                                                            </imageView>
                                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Must also contain at least 3 of the following:" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCp-I4-wmK">
-                                                                                                                <rect key="frame" x="0.0" y="7" width="307" height="23"/>
+                                                                                                                <rect key="frame" x="21" y="0.0" width="314" height="30"/>
                                                                                                                 <constraints>
                                                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ZsQ-yF-Qlu"/>
                                                                                                                 </constraints>
@@ -3451,23 +3457,30 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                                                 <constraints>
                                                                                                     <constraint firstItem="fvO-KE-NQh" firstAttribute="top" secondItem="di4-px-bTh" secondAttribute="top" id="8oU-Rr-71o"/>
                                                                                                     <constraint firstAttribute="height" constant="21" id="DxT-W3-umr"/>
-                                                                                                    <constraint firstItem="fvO-KE-NQh" firstAttribute="leading" secondItem="di4-px-bTh" secondAttribute="leading" constant="28" id="G0c-nm-LJ6"/>
+                                                                                                    <constraint firstItem="fvO-KE-NQh" firstAttribute="leading" secondItem="di4-px-bTh" secondAttribute="leading" id="G0c-nm-LJ6"/>
                                                                                                     <constraint firstAttribute="trailing" secondItem="fvO-KE-NQh" secondAttribute="trailing" id="nAw-3M-lND"/>
                                                                                                 </constraints>
                                                                                             </view>
                                                                                         </subviews>
                                                                                     </stackView>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="999" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3JD-9z-pDt">
-                                                                                        <rect key="frame" x="0.0" y="63" width="335" height="19"/>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="999" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3JD-9z-pDt">
+                                                                                        <rect key="frame" x="0.0" y="85" width="335" height="19"/>
                                                                                         <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bxn-ro-d8O">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="15" height="19"/>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="width" constant="15" id="m1T-K9-MlQ"/>
+                                                                                                </constraints>
+                                                                                            </view>
                                                                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="h9c-76-IYS">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="13" height="19"/>
+                                                                                                <rect key="frame" x="23" y="0.0" width="13" height="19"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="width" constant="13" id="rr1-LI-yMs"/>
                                                                                                 </constraints>
                                                                                             </imageView>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="999" horizontalCompressionResistancePriority="751" text="Uppercase letter" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C05-vI-SY6">
-                                                                                                <rect key="frame" x="28" y="0.0" width="307" height="19"/>
+                                                                                                <rect key="frame" x="44" y="0.0" width="291" height="19"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="19" id="bWZ-Uj-6Mn"/>
                                                                                                 </constraints>
@@ -3477,17 +3490,24 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                                             </label>
                                                                                         </subviews>
                                                                                     </stackView>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kHi-bA-aIg">
-                                                                                        <rect key="frame" x="0.0" y="99.5" width="335" height="19"/>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kHi-bA-aIg">
+                                                                                        <rect key="frame" x="0.0" y="136" width="335" height="19"/>
                                                                                         <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2J-8T-qAU">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="15" height="19"/>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="width" constant="15" id="CbE-Ew-JAg"/>
+                                                                                                </constraints>
+                                                                                            </view>
                                                                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="IBu-3M-qXe">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="13" height="19"/>
+                                                                                                <rect key="frame" x="23" y="0.0" width="13" height="19"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="width" constant="13" id="n2Z-lc-iN6"/>
                                                                                                 </constraints>
                                                                                             </imageView>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="999" horizontalCompressionResistancePriority="751" text="Lowercase letter" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXp-5q-V9K">
-                                                                                                <rect key="frame" x="28" y="0.0" width="307" height="19"/>
+                                                                                                <rect key="frame" x="44" y="0.0" width="291" height="19"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
@@ -3497,17 +3517,24 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                                             <constraint firstAttribute="height" constant="19" id="8rx-fe-jzw"/>
                                                                                         </constraints>
                                                                                     </stackView>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="lXP-r2-SxD">
-                                                                                        <rect key="frame" x="0.0" y="135.5" width="335" height="19"/>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lXP-r2-SxD">
+                                                                                        <rect key="frame" x="0.0" y="187" width="335" height="19"/>
                                                                                         <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eoi-gt-UIo">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="15" height="19"/>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="width" constant="15" id="6zE-s9-LFh"/>
+                                                                                                </constraints>
+                                                                                            </view>
                                                                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="Xwq-q9-YVp">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="13" height="19"/>
+                                                                                                <rect key="frame" x="23" y="0.0" width="13" height="19"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="width" constant="13" id="7Nx-dS-AIb"/>
                                                                                                 </constraints>
                                                                                             </imageView>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="999" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htd-fO-yee">
-                                                                                                <rect key="frame" x="28" y="0.0" width="307" height="19"/>
+                                                                                                <rect key="frame" x="44" y="0.0" width="291" height="19"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="19" id="Plp-7C-44f"/>
                                                                                                 </constraints>
@@ -3517,17 +3544,24 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                                             </label>
                                                                                         </subviews>
                                                                                     </stackView>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="T53-0L-LHW">
-                                                                                        <rect key="frame" x="0.0" y="171.5" width="335" height="19"/>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="T53-0L-LHW">
+                                                                                        <rect key="frame" x="0.0" y="238" width="335" height="19"/>
                                                                                         <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K26-fP-L4c">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="15" height="19"/>
+                                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="width" constant="15" id="6L4-BZ-wPB"/>
+                                                                                                </constraints>
+                                                                                            </view>
                                                                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="UsE-OH-GC4">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="13" height="19"/>
+                                                                                                <rect key="frame" x="23" y="0.0" width="13" height="19"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="width" constant="13" id="lRD-oP-F3B"/>
                                                                                                 </constraints>
                                                                                             </imageView>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="999" text="Special character" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3V-74-MN2">
-                                                                                                <rect key="frame" x="28" y="0.0" width="307" height="19"/>
+                                                                                                <rect key="frame" x="44" y="0.0" width="291" height="19"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="19" id="zON-0b-Yva"/>
                                                                                                 </constraints>
@@ -3551,7 +3585,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="8Zs-lM-Sla" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="665.5" width="335" height="55"/>
+                                                                <rect key="frame" x="0.0" y="732" width="335" height="55"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P30-iE-Fui" userLabel="Eyeball Button">
                                                                         <rect key="frame" x="280" y="0.0" width="55" height="55"/>
@@ -3572,11 +3606,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="F0z-So-n9Y" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="750.5" width="335" height="55"/>
+                                                                <rect key="frame" x="0.0" y="817" width="335" height="55"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IE-pA-Ibt" userLabel="Primary Profile View">
-                                                                <rect key="frame" x="0.0" y="835.5" width="335" height="377.5"/>
+                                                                <rect key="frame" x="0.0" y="902" width="335" height="377.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="Tzo-s1-ddh" customClass="Checkbox" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="333.5" width="44" height="44"/>
@@ -3602,7 +3636,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="aKr-Hb-dPi">
-                                                                <rect key="frame" x="0.0" y="1243" width="335" height="50"/>
+                                                                <rect key="frame" x="0.0" y="1309.5" width="335" height="50"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="q6D-7v-faA" customClass="Checkbox" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="6" width="44" height="44"/>
@@ -3711,6 +3745,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="characterCountCheck" destination="gmK-mU-rnw" id="C5b-3J-eTU"/>
                         <outlet property="confirmPasswordEyeBall" destination="P30-iE-Fui" id="ExR-pd-dTv"/>
                         <outlet property="confirmPasswordTextField" destination="8Zs-lM-Sla" id="xXt-De-zjg"/>
+                        <outlet property="contain3PassworCaseCheck" destination="JD7-0m-TAk" id="xWO-bU-Xc8"/>
                         <outlet property="continueButton" destination="W5w-In-3VZ" id="nhp-94-0tw"/>
                         <outlet property="createPasswordTextField" destination="kFQ-Zc-Fwo" id="TWQ-s4-0Lv"/>
                         <outlet property="createUsernameTextField" destination="nn9-s0-hnV" id="Hhm-7o-vZw"/>
