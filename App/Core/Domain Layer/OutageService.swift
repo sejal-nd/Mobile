@@ -42,7 +42,8 @@ enum OutageService {
         
         NetworkingLayer.request(router: .reportOutage(accountNumber: outageRequest.accountNumber, request: outageRequest)) { (result: Result<ReportedOutageResult, NetworkingError>) in
             switch result {
-            case .success(let reportOutageResult):
+            case .success(var reportOutageResult):
+                reportOutageResult.reportedTime = outageRequest.reportedTime
                 ReportedOutagesStore.shared[outageRequest.accountNumber] = reportOutageResult
                 completion(.success(reportOutageResult))
             case .failure(let error):
@@ -75,7 +76,8 @@ enum OutageService {
         }
     }
     
-    static func pingMeterAnon(accountNumber: String, premiseNumber: String?, completion: @escaping (Result<MeterPingResult, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .meterPing(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
+    static func pingMeterAnon(accountNumber: String, completion: @escaping (Result<MeterPingResult, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .meterPingAnon(request: AnonMeterPingRequest(accountNumber: accountNumber)),
+                                completion: completion)
     }
 }

@@ -519,7 +519,8 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.scrollView?.isHidden = false
                 self.noNetworkConnectionView.isHidden = true
             }
-            
+            self.outageSectionContainer.isHidden = true
+
             if error == .blockAccount {
                 self.accountDisallowView.isHidden = false
                 self.finalPayView.isHidden = true
@@ -531,6 +532,8 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.finalPayTitleLabel.text = NSLocalizedString("Account Inactive", comment: "")
                 self.finalPayTextView.text = NSLocalizedString("Outage Status and Outage reporting are not available for this account.", comment: "")
                 self.billButton.isHidden = false
+                self.outageSectionContainer.isHidden = false
+                self.reportOutageButton.isEnabled = false
             } else {
                 self.accountDisallowView.isHidden = true
                 self.finalPayView.isHidden = false
@@ -543,7 +546,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             self.loadingContentView.isHidden = true
             self.finalPayButtonContainer.isHidden = true
             
-            self.outageSectionContainer.isHidden = true
             self.footerStackView.isHidden = false
             self.loadingView.isHidden = true
             self.setRefreshControlEnabled(enabled: true)

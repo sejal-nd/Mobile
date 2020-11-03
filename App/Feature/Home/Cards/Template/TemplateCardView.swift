@@ -139,6 +139,7 @@ class TemplateCardView: UIView {
     
     private(set) lazy var safariViewController: Driver<SFSafariViewController> = self.callToActionButton.rx.touchUpInside.asDriver()
         .withLatestFrom(self.viewModel.isHourlyPricing)
+        .withLatestFrom(self.viewModel.isEnergyWiseRewardsEnrolled)
         .filter(!)
         .withLatestFrom(self.viewModel.ctaUrl)
         .map(SFSafariViewController.createWithCustomStyle)
@@ -152,6 +153,17 @@ class TemplateCardView: UIView {
                 .instantiateViewController(withIdentifier: "hourlyPricingViewController") as! HourlyPricingViewController
             hourlyPricingVC.accountDetail = $0
             return hourlyPricingVC
+    }
+    
+    private lazy var itronSmartThermostatViewController: Driver<UIViewController> = self.callToActionButton.rx.touchUpInside.asDriver()
+        .withLatestFrom(self.viewModel.isEnergyWiseRewardsEnrolled)
+        .filter { $0 }
+        .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+        .map {
+            let vc = UIStoryboard(name: "Usage", bundle: nil)
+                .instantiateViewController(withIdentifier: "iTronSmartThermostatViewController") as! iTronSmartThermostatViewController
+            vc.accountDetail = $0
+            return vc
     }
     
     private lazy var peakRewardsViewController: Driver<UIViewController> = self.callToActionButton.rx.touchUpInside.asDriver()
@@ -170,7 +182,8 @@ class TemplateCardView: UIView {
         })
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.hourlyPricingViewController,
-                                                                                         self.peakRewardsViewController)
+                                                                                         self.peakRewardsViewController,
+                                                                                         self.itronSmartThermostatViewController)
     
     @IBAction func ctaPress(_ sender: Any) {
         FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .promo_cta)])

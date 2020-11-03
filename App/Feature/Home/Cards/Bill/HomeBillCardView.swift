@@ -72,9 +72,9 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var minimumPaymentLabel: UILabel!
     
     @IBOutlet private weak var convenienceFeeLabel: UILabel!
-        
+    
     @IBOutlet private weak var makePaymentContainer: UIView!
-
+    
     @IBOutlet private weak var scheduledPaymentContainer: UIView!
     @IBOutlet private weak var scheduledPaymentBox: UIView!
     @IBOutlet private weak var scheduledImageView: UIImageView!
@@ -155,7 +155,7 @@ class HomeBillCardView: UIView {
         
         bankCreditNumberButton.layer.borderWidth = 1
         bankCreditNumberButton.layer.cornerRadius = 15
-
+        
         bankCreditCardNumberLabel.textColor = .deepGray
         bankCreditCardNumberLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
@@ -168,7 +168,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
         tutorialButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-                
+        
         paymentDescriptionLabel.textColor = .deepGray
         paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
         
@@ -180,7 +180,7 @@ class HomeBillCardView: UIView {
         
         dueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-
+        
         slideToPayConfirmationDetailLabel.textColor = .deepGray
         slideToPayConfirmationDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
@@ -259,7 +259,7 @@ class HomeBillCardView: UIView {
         bankCreditNumberButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         bankCreditNumberButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
         bankCreditNumberButton.shouldFadeSubviewsOnPress = true
-
+        
         expiredLabel.textColor = .white
         saveAPaymentAccountButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         saveAPaymentAccountButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
@@ -291,8 +291,8 @@ class HomeBillCardView: UIView {
             } else {
                 LoadingView.hide(animated: true)
             }
-            })
-            .disposed(by: bag)
+        })
+        .disposed(by: bag)
         
         viewModel.showLoadingState
             .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
@@ -340,7 +340,7 @@ class HomeBillCardView: UIView {
         viewModel.showBankCreditNumberButton.not().drive(bankCreditNumberButton.rx.isHidden).disposed(by: bag)
         viewModel.bankCreditButtonBorderWidth.drive(bankCreditNumberButton.rx.borderWidth).disposed(by: bag)
         viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredContainer.rx.isHidden).disposed(by: bag)
-       
+        
         viewModel.showBankCreditExpiredLabel.asObservable().subscribe(onNext: { [weak self] show in
             if show {
                 self?.bankCreditNumberButton.layer.borderColor = UIColor.errorRed.cgColor
@@ -380,7 +380,7 @@ class HomeBillCardView: UIView {
         viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
         viewModel.showMakePaymentButton.not().drive(makePaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showMakePaymentButton.not().drive(makeAPaymentSpacerView.rx.isHidden).disposed(by: bag)
-    
+        
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButtonLabel.rx.text).disposed(by: bag)
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
@@ -451,8 +451,8 @@ class HomeBillCardView: UIView {
                                                     message: NSLocalizedString("If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.", comment: ""), preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             return alertController
-    }
-
+        }
+    
     private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver
         .merge(tutorialButton.rx.tap.asDriver())
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
@@ -553,18 +553,11 @@ class HomeBillCardView: UIView {
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { [weak self] accountDetail in
-            switch Environment.shared.opco {
-            case .ace, .delmarva, .pepco:
-                let vc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
-                vc.accountDetail = accountDetail
-                return vc
-            case .bge, .comEd, .peco:
-                let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
-                guard let vc = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return UIViewController()}
-                vc.accountDetail = accountDetail
-                return vc
-            }
-    }.asDriver(onErrorDriveWith: .empty())
+            let vc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
+            vc.accountDetail = accountDetail
+            return vc
+            #warning("re-add new payment flow logic for dec release")
+        }.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(walletViewController,
                                                                                          addOTPViewController,

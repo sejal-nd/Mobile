@@ -21,7 +21,7 @@ enum AlertService {
         NetworkingLayer.request(router: .alertPreferencesUpdate(accountNumber: accountNumber, request: request), completion: completion)
     }
 
-    static func fetchAlertLanguage(accountNumber: String, completion: @escaping (Result<String, NetworkingError>) -> ()) {
+    static func fetchAlertLanguage(accountNumber: String, completion: @escaping (Result<LanguageResult, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .fetchAlertLanguage(accountNumber: accountNumber), completion: completion)
     }
     

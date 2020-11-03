@@ -20,6 +20,8 @@ enum AccountService {
                 
                 AccountsStore.shared.accounts = sortedAccounts
                 AccountsStore.shared.currentIndex = 0
+                // Assign the Quick Actions
+                RxNotifications.shared.configureQuickActions.onNext(true)
                 completion(.success(sortedAccounts))
             case .failure(let error):
                 completion(.failure(error))
@@ -67,11 +69,15 @@ enum AccountService {
     #endif
     
     static func fetchSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (Result<SSODataResponse, NetworkingError>) -> ()) {
-           NetworkingLayer.request(router: .ssoData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
+        NetworkingLayer.request(router: .ssoData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
     
     static func fetchFirstFuelSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (Result<SSODataResponse, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .ffssoData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
+    }
+    
+    static func fetchiTronSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (Result<SSODataResponse, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .iTronssoData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
     
     static func fetchScheduledPayments(accountNumber: String, completion: @escaping (Result<[PaymentItem], NetworkingError>) -> ()) {
@@ -86,6 +92,14 @@ enum AccountService {
     }
     
     static func fetchSERResults(accountNumber: String, completion: @escaping (Result<[SERResult], NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .energyRewardsLoad(accountNumber: accountNumber), completion: completion)
+        NetworkingLayer.request(router: .energyRewardsLoad(accountNumber: accountNumber)) { (result: Result<SERContainer, NetworkingError>) in
+            switch result {
+            case .success(let serContainer):
+                completion(.success(serContainer.serInfo.eventResults))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+            
+        }
     }
 }

@@ -12,12 +12,12 @@ public struct BillingHistoryItem: Codable {
     let amountPaid: Double?
     let billerID: String?
     let ccfGas: String?
-    let chargeAmount: String?
+    let chargeAmount: Double?
     let date: Date
     let welcomeDescription: String?
-    let kwhElec: String?
+    let kwhElec: Double?
     let maskedAccountNumber: String?
-    let outstandingBalance: String?
+    let outstandingBalance: Double?
     let paymentID: String?
     let statusString: String?
     let totalAmountDue: Double?

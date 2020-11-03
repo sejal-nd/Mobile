@@ -127,7 +127,7 @@ class HomeWeatherViewModel {
             return UsageService.rx.fetchEnergyTipByName(accountNumber: accountDetail.accountNumber,
                                                           premiseNumber: premiseNumber,
                                                           tipName: tipName)
-                .map { $0.body }
+                .map { ($0.body ?? "") }
     }
     
     private(set) lazy var temperatureTipModalData: Driver<(title: String, image: UIImage, body: String, onClose: (() -> ())?)> = Observable

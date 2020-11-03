@@ -747,7 +747,7 @@ class BillViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
-                if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBillEnrollment {
+                if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBill {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: accountDetail)
                 } else {
                     var message = NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: "")
@@ -896,11 +896,13 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
             showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
         }
         GoogleAnalytics.log(event: .budgetBillEnrollComplete)
+        viewModel.fetchAccountDetail(isRefresh: true)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: UIViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
         GoogleAnalytics.log(event: .budgetBillUnEnrollComplete)
+        viewModel.fetchAccountDetail(isRefresh: true)
     }
 }
 

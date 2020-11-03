@@ -61,8 +61,8 @@ class LoginViewModel {
                                         self.isLoggingIn = false
                                         
                                         if hasTempPassword {
+                                            AuthenticationService.logout(resetNavigation: false)
                                             onSuccess(hasTempPassword, false)
-                                            AuthenticationService.logout()
                                         } else {
                                             self.checkStormMode { isStormMode in
                                                 onSuccess(hasTempPassword, isStormMode)

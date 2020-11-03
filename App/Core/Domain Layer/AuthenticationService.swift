@@ -54,11 +54,15 @@ public enum AuthenticationService {
         }
     }
     
+    static func changePassword(request: ChangePasswordRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .passwordChange(request: request), completion: completion)
+    }
+    
     static func isLoggedIn() -> Bool {
         return !UserSession.token.isEmpty
     }
     
-    static func logout() {
+    static func logout(resetNavigation: Bool = true, sendToLogin: Bool = true) {
         NetworkingLayer.cancelAllTasks()
 
         UserSession.deleteSession()
@@ -72,7 +76,9 @@ public enum AuthenticationService {
         RxNotifications.shared.configureQuickActions.onNext(false)
         
         #if os(iOS)
-        (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation(sendToLogin: true)
+        if resetNavigation {
+            (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation(sendToLogin: sendToLogin)
+        }
         #endif
     }
 }

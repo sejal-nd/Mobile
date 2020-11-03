@@ -31,6 +31,7 @@ extension Reactive where Base == AlertService {
             AlertService.setAlertPreferences(accountNumber: accountNumber, request: request) { result in
                 switch result {
                 case .success:
+                    observer.onNext(())
                     observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
@@ -55,7 +56,7 @@ extension Reactive where Base == AlertService {
         }
     }
     
-    static func fetchAlertLanguage(accountNumber: String) -> Observable<String> {
+    static func fetchAlertLanguage(accountNumber: String) -> Observable<LanguageResult> {
         return Observable.create { observer -> Disposable in
             AlertService.fetchAlertLanguage(accountNumber: accountNumber) { result in
                                 switch result {

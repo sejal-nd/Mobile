@@ -56,7 +56,7 @@ class AlertPreferencesViewModel {
     }
     
     var shouldShowHUABillThreshold: Bool {
-        return !accountDetail.isBudgetBillEnrollment && !accountDetail.hasThirdPartySupplier
+        return !accountDetail.isBudgetBill && !accountDetail.hasThirdPartySupplier
     }
     
     var devicePushNotificationsEnabled = false
@@ -133,7 +133,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBill {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -152,7 +152,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBill {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -169,7 +169,7 @@ class AlertPreferencesViewModel {
                                               [.billIsReady(self.accountDetail)]))
                     }
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment && self.accountDetail.isResidential {
+                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -186,7 +186,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment && self.accountDetail.isResidential {
+                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -203,7 +203,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment && self.accountDetail.isResidential {
+                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -269,7 +269,8 @@ class AlertPreferencesViewModel {
     
     private func fetchAlertLanguage() -> Observable<Void> {
         return AlertService.rx.fetchAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-            .do(onNext: { [weak self] language in
+            .do(onNext: { [weak self] result in
+                let language = result.language
                 self?.initialEnglishValue = language == "English"
                 self?.english.accept(language == "English")
             })
@@ -475,7 +476,7 @@ class AlertPreferencesViewModel {
         switch Environment.shared.opco {
         case .comEd:
             return true
-        case .bge, .peco, .pepco, .ace, .delmarva: // todo:
+        case .bge, .peco, .pepco, .ace, .delmarva:
             return false
         }
     }
@@ -670,7 +671,7 @@ class AlertPreferencesViewModel {
             case (.energyBuddyUpdates, _):
                 return NSLocalizedString("Receive a notification when Lumi has new data, tips, and insights to help you save energy and money.", comment: "")
             default:
-                return "" // todo PHI
+                return ""
             }
         }
     }
