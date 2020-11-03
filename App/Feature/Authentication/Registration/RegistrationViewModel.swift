@@ -422,6 +422,19 @@ class RegistrationViewModel {
             return false
     }
     
+    private(set) lazy var mustContain3IsValid: Driver<Bool> =
+        Driver.combineLatest([self.containsLowercaseLetter,
+                              self.containsUppercaseLetter,
+                              self.containsNumber,
+                              self.containsSpecialCharacter])
+        { array in
+            let otherArray = array[0...3].filter { $0 }
+            if otherArray.count >= 3 {
+                return true
+            }
+            return false
+    }
+    
     func getPasswordScore() -> Int32 {
         var score: Int32 = -1
         if !newPassword.value.isEmpty {
