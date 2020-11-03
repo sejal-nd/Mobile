@@ -88,4 +88,24 @@ struct OutageStatus: Decodable {
         self.multipremiseAccount = try container.decodeIfPresent(Bool.self,
                                                                  forKey: .multipremiseAccount) ?? false
     }
+    
+    public init(finaled: Bool = false, noPay: Bool = false, noService: Bool = false, inactive: Bool = false) {
+        self.isFinaled = finaled
+        self.isNoPay = noPay
+        self.isNonService = noService
+        self.isInactive = inactive
+        
+        // set the rest to nil
+        self.contactHomeNumber = nil
+        self.outageDescription = nil
+        self.estimatedRestorationDate = nil
+        self.locationId = nil
+        
+        self.accountNumber = nil
+        self.premiseNumber = nil
+        self.maskedAccountNumber = nil
+        self.maskedAddress = nil
+        self.addressNumber = nil
+        self.unitNumber = nil
+    }
 }
