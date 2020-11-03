@@ -20,6 +20,8 @@ enum AccountService {
                 
                 AccountsStore.shared.accounts = sortedAccounts
                 AccountsStore.shared.currentIndex = 0
+                // Assign the Quick Actions
+                RxNotifications.shared.configureQuickActions.onNext(true)
                 completion(.success(sortedAccounts))
             case .failure(let error):
                 completion(.failure(error))

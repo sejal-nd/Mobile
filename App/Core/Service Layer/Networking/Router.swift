@@ -381,7 +381,7 @@ public enum Router {
         return headers
     }
     
-    public var parameters: [URLQueryItem] {
+    public var parameters: [URLQueryItem]? {
         switch self {
         case .alertBanner(let additionalQueryItem), .newsAndUpdates(let additionalQueryItem):
             return [URLQueryItem(name: "$select", value: "Title,Message,Enable,CustomerType,Created,Modified"),
@@ -396,7 +396,7 @@ public enum Router {
         case .accountDetails(_, let queryItems):
             return queryItems
         default:
-            return []
+            return nil
         }
     }
     
