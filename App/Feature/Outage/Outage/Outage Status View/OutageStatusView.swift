@@ -162,7 +162,11 @@ extension OutageStatusView {
             }
         }
 
-        return .powerStatus(!outageStatus.isActiveOutage)
+        if hasJustReported {
+            return .reported
+        } else {
+            return .powerStatus(!outageStatus.isActiveOutage)
+        }
     }
     
     
