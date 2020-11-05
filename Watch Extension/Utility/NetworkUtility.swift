@@ -280,6 +280,7 @@ extension NetworkUtility {
                 
                 self.defaultAccount = firstAccount
                 self.notificationCenter.post(name: .defaultAccountDidUpdate, object: firstAccount)
+                result(.success(accounts))
             case .failure(let error):
                 if error == .passwordProtected {
                     dLog("Failed to retrieve account list.  Password Protected Account.")
