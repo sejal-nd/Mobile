@@ -213,11 +213,11 @@ class ChangePasswordViewModel {
             case .success:
                 onSuccess()
             case .failure(let error):
-                if error == .passwordProtected {
-                    onError(error.description)
+                if error == .profileNotFound {
+                    onError("Incorrect username/email address.")
                 }
                 else {
-                    onError("Incorrect username/email address.")
+                    onError(error.description)
                 }
             }
         }
