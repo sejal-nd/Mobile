@@ -76,6 +76,7 @@ extension Reactive where Base == AlertService {
             AlertService.setAlertLanguage(accountNumber: accountNumber, request: request) { result in
                 switch result {
                 case .success:
+                    observer.onNext(())
                     observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
