@@ -41,7 +41,7 @@ struct WalletService {
         let request = WalletItemDeleteRequest(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
                                               walletItemId: walletItem.walletItemId ?? "",
                                               maskedAccountNumber: walletItem.maskedAccountNumber ?? "",
-                                              billerId: "\(Environment.shared.opco.rawValue)Registered",
+                                              billerId: AccountsStore.shared.billerID,
             paymentCategoryType: walletItem.categoryType)
         
         NetworkingLayer.request(router: .deleteWalletItem(request: request), completion: completion)
