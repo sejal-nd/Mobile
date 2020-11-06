@@ -11,7 +11,7 @@ import Foundation
 public struct BillingHistoryItem: Codable {
     let amountPaid: Double?
     let billerID: String?
-    let ccfGas: String?
+    let ccfGas: Double?
     let chargeAmount: Double?
     let date: Date
     let welcomeDescription: String?

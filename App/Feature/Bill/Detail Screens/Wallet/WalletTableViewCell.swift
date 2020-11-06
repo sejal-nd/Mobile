@@ -76,7 +76,7 @@ class WalletTableViewCell: UITableViewCell {
         accountImageView.image = walletItem.paymentMethodType.imageLarge
         nicknameLabel.text = walletItem.nickName?.uppercased()
         
-        if let last4Digits = walletItem.maskedAccountNumber {
+        if let last4Digits = walletItem.maskedAccountNumber?.last4Digits() {
             if let ad = UIApplication.shared.delegate as? AppDelegate, let window = ad.window {
                 if window.bounds.width < 375 { // If smaller than iPhone 6 width
                     accountNumberLabel.text = "...\(last4Digits)"

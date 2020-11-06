@@ -52,10 +52,11 @@ class PaymentViewModel {
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
             paymentId.accept(billingHistoryItem.paymentID)
-            selectedWalletItem.accept(WalletItem(maskedAccountNumber: billingHistoryItem.maskedAccountNumber,
-                                                  nickName: NSLocalizedString("Current Payment Method", comment: ""),
-                                                  paymentMethodType: billingHistoryItem.paymentMethodType,
-                                                  isEditingItem: true))
+            selectedWalletItem.accept(WalletItem(walletItemId: billingHistoryItem.walletItemID,
+                                                 maskedAccountNumber: billingHistoryItem.maskedAccountNumber,
+                                                 nickName: NSLocalizedString("Current Payment Method", comment: ""),
+                                                 paymentMethodType: billingHistoryItem.paymentMethodType,
+                                                 isEditingItem: true))
         }
 
         let netDueAmount: Double = accountDetail.billingInfo.netDueAmount ?? 0
@@ -610,7 +611,7 @@ class PaymentViewModel {
 
     private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return "" }
-        return "**** \(walletItem.maskedAccountNumber ?? "")"
+        return "**** \(walletItem.maskedAccountNumber?.last4Digits() ?? "")"
     }
 
     private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {

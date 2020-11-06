@@ -51,6 +51,7 @@ class UpdatesDetailViewController: UIViewController {
             .attributedString(lineHeight: 28)
         
         detailsTextView.text = opcoUpdate.message
+        detailsTextView.tintColor = .primaryColor
     }
     
 }

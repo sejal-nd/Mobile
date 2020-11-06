@@ -49,7 +49,8 @@ class TapToPayViewModel {
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
             paymentId.accept(billingHistoryItem.paymentID)
-            selectedWalletItem.accept(WalletItem(maskedAccountNumber: billingHistoryItem.maskedAccountNumber,
+            selectedWalletItem.accept(WalletItem(walletItemId: billingHistoryItem.walletItemID,
+                                                 maskedAccountNumber: billingHistoryItem.maskedAccountNumber,
                                                  nickName: NSLocalizedString("Current Payment Method", comment: ""),
                                                  paymentMethodType: billingHistoryItem.paymentMethodType,
                                                  isEditingItem: true))
@@ -414,7 +415,7 @@ class TapToPayViewModel {
     
     private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return "" }
-        return "**** \(walletItem.maskedAccountNumber?.Last4Digits() ?? "")"
+        return "**** \(walletItem.maskedAccountNumber?.last4Digits() ?? "")"
     }
     
     private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {
