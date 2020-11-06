@@ -78,11 +78,11 @@ enum OpCo: String {
         case .peco:
             return URL(string: "https://itunes.apple.com/us/app/peco-an-exelon-company/id1274171957?ls=1&mt=8")
         case .pepco:
-            return URL(string: "todo")
+            return URL(string: "https://apps.apple.com/us/app/pepco-self-service/id447665998")
         case .ace:
-            return URL(string: "todo")
+            return URL(string: "https://apps.apple.com/us/app/atlantic-city-electric-self/id489963640")
         case .delmarva:
-            return URL(string: "todo")
+            return URL(string: "https://apps.apple.com/us/app/delmarva-power-self-service/id489964338")
         }
     }
 }

@@ -200,6 +200,8 @@ public enum NetworkingLayer {
             }
 
             do {
+                dLog("\n\n\n\(LogType.response.symbol) RAW RESPONSE: \n\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
+                
                 let responseObject: T = try decode(data: data)
                 
                 // Success
