@@ -375,6 +375,12 @@ class AlertPreferencesViewModel {
         .startWith(false)
         .share(replay: 1, scope: .forever)
     
+    private(set) lazy var nonLanguagePrefsChanged = Observable // all alert prefs except language
+        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged)
+            { $0 || $1 || $2 || $3 }
+        .startWith(false)
+        .share(replay: 1, scope: .forever)
+    
     private func saveAlertPreferences() -> Observable<Void> {
         let alertPreferences = AlertPreferences(highUsage: highUsage.value,
                                                 alertThreshold: Int(billThreshold.value ?? ""),
@@ -394,7 +400,10 @@ class AlertPreferencesViewModel {
                                                 appointmentTracking: appointmentTracking.value,
                                                 forYourInfo: forYourInfo.value)
         let alertPreferenceRequest = AlertPreferencesRequest(alertPreferences: alertPreferences)
-        return AlertService.rx.setAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber, request: alertPreferenceRequest)
+        
+        return nonLanguagePrefsChanged.flatMap {
+            return $0 ? AlertService.rx.setAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber, request: alertPreferenceRequest) : Observable.just(())
+        }
     }
     
     private func saveAlertLanguage() -> Observable<Void> {
