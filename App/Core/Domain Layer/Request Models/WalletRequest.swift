@@ -16,6 +16,6 @@ public struct WalletRequest: Encodable {
     }
     
     public init(billerId: String? = nil) {
-        self.billerId = billerId ?? "\(Environment.shared.opco.rawValue)Registered"
+        self.billerId = billerId ?? AccountsStore.shared.billerID
     }
 }

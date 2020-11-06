@@ -101,7 +101,7 @@ class PaymentAmountSheetViewController: UIViewController {
         paymentAmountTextField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.setKeyboardType(.decimalPad)
         
-        viewModel.totalPaymentDisplayString.drive(paymentAmountTextField.textField.rx.text).disposed(by: bag)
+        viewModel.editPaymentDisplayString.drive(paymentAmountTextField.textField.rx.text).disposed(by: bag)
         
         viewModel.paymentAmountErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
             self?.paymentAmountTextField.setError(errorMessage)

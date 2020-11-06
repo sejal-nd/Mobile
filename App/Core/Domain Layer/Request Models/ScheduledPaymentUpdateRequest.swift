@@ -33,7 +33,7 @@ public struct ScheduledPaymentUpdateRequest: Encodable {
         self.paymentCategoryType = walletItem.bankOrCard == .bank ? "Check" : "Credit"
         self.walletId = walletId
         self.paymentId = paymentId
-        self.billerId = "\(Environment.shared.opco.rawValue)Registered"
+        self.billerId = AccountsStore.shared.billerID
         self.walletItemId = walletItem.walletItemId
         self.isExistingAccount = !walletItem.isTemporary
         self.maskedAccountNumber = walletItem.maskedAccountNumber

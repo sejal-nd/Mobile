@@ -85,7 +85,6 @@ class AppointmentDetailViewModelTests: XCTestCase {
         case .comEd:
             hourAmPm = "12PM"
         case .pepco, .delmarva, .ace:
-            // todo
             hourAmPm = "1PM"
         }
         

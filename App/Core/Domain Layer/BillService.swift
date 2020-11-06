@@ -54,16 +54,10 @@ enum BillService {
             let startDateString = DateFormatter.yyyyMMddFormatter.string(from: startDate)
             let endDateString = DateFormatter.yyyyMMddFormatter.string(from: endDate)
             
-            let opCo = Environment.shared.opco
-            var billerId: String?
-            if opCo == .comEd || opCo == .peco {
-                billerId = "\(opCo.rawValue)Registered"
-            }
-            
             let encodedObject = BillingHistoryRequest(startDate: startDateString,
                                                       endDate: endDateString,
                                                       statementType: "03",
-                                                      billerId: billerId)
+                                                      billerId: AccountsStore.shared.billerID)
                 NetworkingLayer.request(router: .billingHistory(accountNumber: accountNumber, encodable: encodedObject), completion: completion)
         }
 }
