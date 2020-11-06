@@ -49,7 +49,8 @@ class TapToPayViewModel {
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
             paymentId.accept(billingHistoryItem.paymentID)
-            selectedWalletItem.accept(WalletItem(maskedAccountNumber: billingHistoryItem.maskedAccountNumber,
+            selectedWalletItem.accept(WalletItem(walletItemId: billingHistoryItem.walletItemID,
+                                                 maskedAccountNumber: billingHistoryItem.maskedAccountNumber,
                                                  nickName: NSLocalizedString("Current Payment Method", comment: ""),
                                                  paymentMethodType: billingHistoryItem.paymentMethodType,
                                                  isEditingItem: true))
