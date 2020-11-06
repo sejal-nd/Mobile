@@ -173,7 +173,7 @@ public enum Router {
     
     public var apiAccess: ApiAccess {
         switch self {
-        case .weather, .registerForAlerts:
+        case .weather:
             return .none
         case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon:
             return .anon
@@ -284,7 +284,7 @@ public enum Router {
         case .energyRewardsLoad(let accountNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/programs"
         case .registerForAlerts:
-            return "\(basePath)/\(apiAccess.path)/noti/registration"
+            return "\(basePath)/noti/registration"
         case .alertPreferencesLoad(let accountNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/alerts/preferences/push"
         case .alertPreferencesUpdate(let accountNumber, _):
