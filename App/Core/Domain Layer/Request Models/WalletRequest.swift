@@ -12,7 +12,7 @@ public struct WalletRequest: Encodable {
     var billerId: String
     
     enum CodingKeys: String, CodingKey {
-        case billerId = "billder_id"
+        case billerId = "biller_id"
     }
     
     public init(billerId: String? = nil) {
