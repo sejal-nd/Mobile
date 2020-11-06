@@ -67,7 +67,8 @@ enum OutageService {
         
         NetworkingLayer.request(router: .reportOutageAnon(request: outageRequest)) { (result: Result<ReportedOutageResult, NetworkingError>) in
             switch result {
-            case .success(let reportOutageResult):
+            case .success(var reportOutageResult):
+                reportOutageResult.reportedTime = outageRequest.reportedTime
                 ReportedOutagesStore.shared[outageRequest.accountNumber] = reportOutageResult
                 completion(.success(reportOutageResult))
             case .failure(let error):
