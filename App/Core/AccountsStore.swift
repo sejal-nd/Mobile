@@ -26,4 +26,22 @@ final class AccountsStore {
         let currentAccount = accounts[currentIndex]
         return currentAccount
     }
+    
+    var billerID: String {
+        var billerId: String = ""
+        if Environment.shared.opco.isPHI {
+            let subOpco = currentAccount.opcoType
+            if subOpco == .ace {
+                billerId = "ACERegistered"
+            } else if subOpco == .delmarva {
+                billerId = "DPLRegistered"
+            }else if subOpco == .pepco {
+                billerId = "PEPCORegistered"
+            }
+        } else {
+            billerId = "\(Environment.shared.opco.rawValue)Registered"
+        }
+        return billerId
+    }
+
 }

@@ -29,10 +29,11 @@ class ForgotPasswordViewModel {
             case .success:
                 onSuccess()
             case .failure(let error):
-                if error == .profileNotFound {
-                    onProfileNotFound(error.description)
-                } else {
+                if error == .passwordProtected {
                     onError(error.description)
+                }
+                else {
+                    onError("Incorrect username/email address.")
                 }
             }
         }

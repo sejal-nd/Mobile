@@ -146,7 +146,7 @@ class ChangePasswordViewModel {
             let changePasswordReqeust = ChangePasswordRequest(username: resetPasswordUsername ?? BiometricService.getStoredUsername() ?? "",
                                                               currentPassword: currentPassword.value,
                                                               newPassword: newPassword.value)
-            AnonymousService.changePassword(request: changePasswordReqeust) { [weak self] result in
+            AnonymousService.changePasswordAnon(request: changePasswordReqeust) { [weak self] result in
                 switch result {
                 case .success:
                     guard let self = self else { return }
@@ -176,7 +176,7 @@ class ChangePasswordViewModel {
         } else {
             let changePasswordReqeust = ChangePasswordRequest(currentPassword: currentPassword.value,
                                                               newPassword: newPassword.value)
-            AnonymousService.changePassword(request: changePasswordReqeust) { [weak self] result in
+            AuthenticationService.changePassword(request: changePasswordReqeust) { [weak self] result in
                 switch result {
                 case .success:
                     guard let self = self else { return }
@@ -213,7 +213,12 @@ class ChangePasswordViewModel {
             case .success:
                 onSuccess()
             case .failure(let error):
-                onError(error.description)
+                if error == .passwordProtected {
+                    onError(error.description)
+                }
+                else {
+                    onError("Incorrect username/email address.")
+                }
             }
         }
     }

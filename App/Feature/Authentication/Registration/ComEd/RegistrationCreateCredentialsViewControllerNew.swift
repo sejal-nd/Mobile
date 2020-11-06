@@ -40,6 +40,7 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
     @IBOutlet weak var lowercaseCheck: UIImageView!
     @IBOutlet weak var numberCheck: UIImageView!
     @IBOutlet weak var specialCharacterCheck: UIImageView!
+    @IBOutlet weak var contain3PassworCaseCheck: UIImageView!
     
     @IBOutlet weak var primaryProfileSwitchView: UIView!
     @IBOutlet weak var primaryProfileLabel: UILabel!
@@ -366,6 +367,9 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
             self?.specialCharacterCheck.isAccessibilityElement = valid
             self?.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met", comment: "")
         }).disposed(by: disposeBag)
+        
+        // Must contain 3 conditions
+         viewModel.mustContain3IsValid.map(checkImageOrNil).drive(contain3PassworCaseCheck.rx.image).disposed(by: disposeBag)
         
         // Password cannot match email
         viewModel.passwordMatchesUsername

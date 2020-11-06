@@ -54,6 +54,10 @@ public enum AuthenticationService {
         }
     }
     
+    static func changePassword(request: ChangePasswordRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .passwordChange(request: request), completion: completion)
+    }
+    
     static func isLoggedIn() -> Bool {
         return !UserSession.token.isEmpty
     }
