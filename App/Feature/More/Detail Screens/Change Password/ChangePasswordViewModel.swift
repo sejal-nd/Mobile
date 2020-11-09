@@ -215,8 +215,7 @@ class ChangePasswordViewModel {
             case .failure(let error):
                 if error == .profileNotFound {
                     onError("Incorrect username/email address.")
-                }
-                else {
+                } else {
                     onError(error.description)
                 }
             }
