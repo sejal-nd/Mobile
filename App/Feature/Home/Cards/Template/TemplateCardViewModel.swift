@@ -66,7 +66,13 @@ class TemplateCardViewModel {
                     return #imageLiteral(resourceName: "Commercial")
                 }
             case .ace, .delmarva, .pepco:
-                return accountDetail.isResidential ? (accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")) : #imageLiteral(resourceName:"SmallBusiness")
+                if accountDetail.opcoType == .ace {
+                    return accountDetail.isResidential ? (accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName: "EnergyWiseRewards-Unenrolled")) : #imageLiteral(resourceName:"SmallBusiness")
+                } else if accountDetail.opcoType == .delmarva {
+                    return accountDetail.isResidential ? (accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName: "Residential-Unenrolled")) : #imageLiteral(resourceName:"SmallBusiness")
+                } else {
+                    return accountDetail.isResidential ? (accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName: "Residential-Unenrolled")) : #imageLiteral(resourceName:"SmallBusiness")
+                }
             }
         }
         .asDriver(onErrorDriveWith: .empty())
