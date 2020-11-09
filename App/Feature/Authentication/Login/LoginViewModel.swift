@@ -12,121 +12,107 @@ import RxCocoa
 fileprivate let kMaxUsernameChars = 255
 
 class LoginViewModel {
-
+    
     let disposeBag = DisposeBag()
-
+    
     var username = BehaviorRelay(value: "")
     var password = BehaviorRelay(value: "")
     var biometricsAutofilledPassword: String? = nil
-    var keepMeSignedIn = BehaviorRelay(value: false)
     var biometricsEnabled = BehaviorRelay(value: false)
     var isLoggingIn = false
-
-    private var authService: AuthenticationService
-    private var biometricsService: BiometricsService
-    private var registrationService: RegistrationService
-
-    init(authService: AuthenticationService, biometricsService: BiometricsService, registrationService: RegistrationService) {
-        self.authService = authService
-        self.biometricsService = biometricsService
-        self.registrationService = registrationService
-
-        if let username = biometricsService.getStoredUsername() {
+        
+    init() {
+        if let username = BiometricService.getStoredUsername() {
             self.username.accept(username)
         }
-        biometricsEnabled.accept(biometricsService.isBiometricsEnabled())
+        biometricsEnabled.accept(BiometricService.isBiometricsEnabled())
     }
-
+    
     func isDeviceBiometricCompatible() -> Bool {
-        return biometricsService.deviceBiometryType() != nil
+        return BiometricService.deviceBiometryType() != nil
     }
-
+    
     func biometricsString() -> String? {
-        return biometricsService.deviceBiometryType()
+        return BiometricService.deviceBiometryType()
     }
-
+    
     func shouldPromptToEnableBiometrics() -> Bool {
         return UserDefaults.standard.bool(forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
-
+    
     func setShouldPromptToEnableBiometrics(_ prompt: Bool) {
         UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
-
+    
     func performLogin(onSuccess: @escaping (Bool, Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
             return
         }
-
+        
         isLoggingIn = true
-        authService.login(username: username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] profileStatus in
-                guard let self = self else { return }
-                self.isLoggingIn = false
-                let tempPassword = profileStatus.tempPassword
-                if tempPassword {
-                    onSuccess(tempPassword, false)
-                    self.authService.logout()
-                } else {
-                    if #available(iOS 12.0, *) { }
-                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
-                    else {
-                        SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
-                    }
 
-                    self.checkStormMode { isStormMode in
-                        onSuccess(tempPassword, isStormMode)
-                    }
-                }
-            }, onError: { [weak self] error in
-                self?.isLoggingIn = false
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
-                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
-                    onRegistrationNotComplete()
-                } else if serviceError.serviceCode == "FN-FAIL-LOGIN" {
-                    if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
-                       let message = NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
-                        onError(nil, message)
-                    } else {
-                        onError(nil, error.localizedDescription)
-                    }
-                } else {
-                    onError(nil, error.localizedDescription)
-                }
-                GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
-            })
-            .disposed(by: disposeBag)
+        AuthenticationService.login(username: username.value,
+                                   password: password.value) { [weak self] (result: Result<Bool, NetworkingError>) in
+                                    switch result {
+                                    case .success(let hasTempPassword):
+                                        guard let self = self else { return }
+                                        
+                                        self.isLoggingIn = false
+                                        
+                                        if hasTempPassword {
+                                            AuthenticationService.logout(resetNavigation: false)
+                                            onSuccess(hasTempPassword, false)
+                                        } else {
+                                            self.checkStormMode { isStormMode in
+                                                onSuccess(hasTempPassword, isStormMode)
+                                            }
+                                        }
+                                    case .failure(let error):
+                                        
+                                        self?.isLoggingIn = false
+                                        if error == .failedLogin {
+                                            if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+                                                if Environment.shared.opco == .bge {
+                                                    onError(nil, NSLocalizedString("We're sorry, this combination of username and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: ""))
+                                                } else {
+                                                    onError(nil, NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: ""))
+                                                }
+                                            } else {
+                                                onError(nil, error.localizedDescription)
+                                            }
+                                        } else {
+                                            onError(error.title, error.description)
+                                        }
+                                    }
+        }
     }
-
+    
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        authService.getMaintenanceMode(postNotification: false)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { maintenance in
-                completion(maintenance.stormModeStatus)
-            }, onError: { _ in
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
+            switch result {
+            case .success(let maintenanceMode):
+                completion(maintenanceMode.storm)
+            case .failure(_):
                 completion(false)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
-
+    
     func getStoredUsername() -> String? {
-        return biometricsService.getStoredUsername()
+        return BiometricService.getStoredUsername()
     }
-
+    
     func storeUsername() {
-        biometricsService.setStoredUsername(username: username.value)
+        BiometricService.setStoredUsername(username: username.value)
     }
-
+    
     func storePasswordInSecureEnclave() {
-        biometricsService.setStoredPassword(password: password.value)
+        BiometricService.setStoredPassword(password: password.value)
     }
-
+    
     func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool, Bool) -> Void, onError: @escaping (String?, String) -> Void) {
-        if let username = biometricsService.getStoredUsername(), let password = biometricsService.getStoredPassword() {
+        if let username = BiometricService.getStoredUsername(), let password = BiometricService.getStoredPassword() {
             self.username.accept(username)
             biometricsAutofilledPassword = password
             self.password.accept(password)
@@ -137,46 +123,45 @@ class LoginViewModel {
             onDidNotLoad()
         }
     }
-
+    
     func disableBiometrics() {
-        biometricsService.disableBiometrics()
+        BiometricService.disableBiometrics()
         biometricsEnabled.accept(false)
     }
-
+    
     func checkForMaintenance(onCompletion: @escaping () -> Void) {
-        authService.getMaintenanceMode()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
+            switch result {
+            case .success(_):
                 onCompletion()
-            }, onError: { _ in
+            case .failure(_):
                 onCompletion()
-            }).disposed(by: disposeBag)
+            }
+        }
     }
-
+    
     func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        registrationService.validateConfirmationEmail(guid)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        let guidRequest = GuidRequest(guid: guid)
+        RegistrationService.validateConfirmationEmail(request: guidRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { err in
-                let serviceError = err as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
-                    onError(NSLocalizedString("Your verification link is no longer valid", comment: ""), NSLocalizedString("If you have already verified your account, please sign in to access your account. If your link has expired, please re-register.", comment: ""))
-                } else {
-                    onError(NSLocalizedString("We're sorry, we weren't able to process your request.", comment: ""), "An error occurred and we weren't able to process your request. Please try again later.")
-                }
-            }).disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.title, error.description)
+            }
+        }
     }
-
+    
     func resendValidationEmail(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        registrationService.resendConfirmationEmail(username.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
+        let usernameRequest = UsernameRequest(username: username.value)
+        RegistrationService.sendConfirmationEmail(request: usernameRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { err in
-                onError(err.localizedDescription)
-            })
-            .disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
     
     // MARK: - New Email/Password Validation Requirement
@@ -245,5 +230,5 @@ class LoginViewModel {
         
         return numRulesMet >= 3
     }
-
+    
 }

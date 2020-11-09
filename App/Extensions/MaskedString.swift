@@ -21,4 +21,9 @@ extension String {
         let endIndex = self.index(self.endIndex, offsetBy: -4)
         return self.replacingCharacters(in: self.startIndex..<endIndex, with: "****")
     }
+    
+    func last4Digits() -> String {
+        let endIndex = self.index(self.endIndex, offsetBy: -4)
+        return self.replacingCharacters(in: self.startIndex..<endIndex, with: "")
+    }
 }

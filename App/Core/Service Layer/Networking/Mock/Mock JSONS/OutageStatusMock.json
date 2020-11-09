@@ -1,0 +1,25 @@
+{
+  "default": {
+    "success": true,
+    "data": [
+      {
+        "accountNumber": "2001088064",
+        "maskedAccountNumber": "******8064",
+        "contactHomeNumber": "(708) 925-2867",
+        "flagGasOnly": false,
+        "accounts": null,
+        "address": "18609 EMILY CT HAZEL CREST IL 60429",
+        "maskedAddress": "18609 EMIL",
+        "isPasswordProtected": false,
+        "isUserAuthenticated": true,
+        "outageReported": "We are not aware of an outage in your area. If you are without service, please check your circuit breakers, or if your home has a fuse box, check your fuses to ensure they are in good working condition. If this does not resolve the issue, please report an outage. Note: If you reported an outage within the past 15 minutes, it may not yet be reflected on this site.",
+        "status": "NOT ACTIVE",
+        "plannedOutages": null,
+        "smartMeterStatus": true,
+        "ETR": "2020-07-14T01:17:00-05:00",
+        "flagFinaled": false,
+        "flagNoPay": false
+      }
+    ]
+  }
+}

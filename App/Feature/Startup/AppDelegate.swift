@@ -44,20 +44,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.keyWindow?.layer.speed = 200
             UIView.setAnimationsEnabled(false)
         }
-        
-        // Set mock maintenance mode state based on launch argument
-        if let key = processInfo.arguments.lazy.compactMap(MockDataKey.init).first,
-            processInfo.arguments.contains("UITest") {
-            MockAppState.current = MockAppState(maintenanceKey: key)
-        }
-        
+
         if let appInfo = Bundle.main.infoDictionary,
             let shortVersionString = appInfo["CFBundleShortVersionString"] as? String {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
         }
         
         dLog("Environment " + Environment.shared.environmentName.rawValue)
-        dLog("AppName" + Environment.shared.appName)
         
         if let appCenterId = Environment.shared.appCenterId {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
@@ -81,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
             .subscribe(onNext: { [weak self] notification in
-                self?.showMaintenanceMode(notification.object as? Maintenance)
+                self?.showMaintenanceMode(notification.object as? MaintenanceMode)
             })
             .disposed(by: disposeBag)
         
@@ -96,8 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Set "Report Outage" quick action for unauthenticated users
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked) &&
-            UserDefaults.standard.bool(forKey:  UserDefaultKeys.hasAcceptedTerms) {
+        if UserDefaults.standard.bool(forKey:  UserDefaultKeys.hasAcceptedTerms) {
             configureQuickActions(isAuthenticated: false)
         }
         
@@ -123,19 +115,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 firstLogin = true
             }
             
-            let alertsService = ServiceFactory.createAlertsService()
-            alertsService.register(token: token, firstLogin: firstLogin)
-                .subscribe(onNext: {
+            let alertRegistrationRequest = AlertRegistrationRequest(notificationToken: token,
+                                                                    notificationProvider: "APNS",
+                                                                    mobileClient: AlertRegistrationRequest.MobileClient(id: Bundle.main.bundleIdentifier ?? "",
+                                                                                                                        version: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""),
+                                                                    setDefaults: firstLogin)
+            AlertService.register(request: alertRegistrationRequest) { result in
+                switch result {
+                case .success:
                     dLog("*-*-*-*-* Registered token with MCS")
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
                         UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
-                }, onError: { err in
-                    dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
-                })
-                .disposed(by: disposeBag)
+                case .failure(let error):
+                    dLog("*-*-*-*-* Failed to register token with MCS with error: \(error.localizedDescription)")
+                }
+            }
         }
     }
     
@@ -277,7 +274,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         WatchSessionManager.shared.start()
 
         // Send jwt to watch if available
-        guard MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken else { return }
+        guard AuthenticationService.isLoggedIn() else { return }
+        let accessToken = UserSession.token
         try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
     }
 
@@ -294,12 +292,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         userDefaults.set(false, forKey: UserDefaultKeys.inMainApp)
         
+        BiometricService.disableBiometricsOnFreshInstall()
+        
         if userDefaults.bool(forKey: UserDefaultKeys.hasRunBefore) == false {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
-            let biometricsService = ServiceFactory.createBiometricsService()
-            biometricsService.disableBiometrics()
+            BiometricService.disableBiometrics()
 
-            MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
+            AuthenticationService.logout(sendToLogin: false) // Used to be necessary with Oracle SDK - no harm leaving it here though
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }
@@ -343,7 +342,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
             
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
             self.configureQuickActions(isAuthenticated: false)
         }
     }
@@ -357,12 +355,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
             
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
             self.configureQuickActions(isAuthenticated: false)
         }
     }
     
-    func showMaintenanceMode(_ maintenanceInfo: Maintenance?) {
+    func showMaintenanceMode(_ maintenanceInfo: MaintenanceMode?) {
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
             
@@ -560,7 +557,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked) {
+        if AuthenticationService.isLoggedIn() {
             // Single account, keep me signed in
             let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
             let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)

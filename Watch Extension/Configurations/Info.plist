@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Project Environment Prefix</key>
+    <string></string>
+    <key>Account URL</key>
+    <string>$(ACCOUNT_URL)</string>
+    <key>Alert URL</key>
+    <string>$(ALERT_URL)</string>
+    <key>App Center ID</key>
+    <string>$(APP_CENTER_ID)</string>
+    <key>Associated Domain</key>
+    <string>$(ASSOCIATED_DOMAIN)</string>
+    <key>Base URL</key>
+    <string>$(BASE_URL)</string>
+    <key>Build Display Name</key>
+    <string>$(BUILD_DISPLAY_NAME)</string>
+    <key>Build Flavor</key>
+    <string>$(BUILD_FLAVOR)</string>
+    <key>OAuth URL</key>
+    <string>$(OAUTH_URL)</string>
+    <key>Payment URL</key>
+    <string>$(PAYMENT_URL)</string>
+    <key>Environment Tier</key>
+    <string>$(ENVIRONMENT_TIER)</string>
+    <key>Google Analytics ID</key>
+    <string>$(GOOGLE_ANALYTICS_ID)</string>
+    
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>WKAppBundleIdentifier</key>
+			<string>$(BUNDLE_ID)</string>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.watchkit</string>
+	</dict>
+	<key>WKExtensionDelegateClassName</key>
+	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
+</dict>
+</plist>

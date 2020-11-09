@@ -1,0 +1,17 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "WalletItems": [
+        {
+          "walletItemID": "6E5952672B4D50316E4A78394235744274CAFE5DBEC2B65B0D682655E60F0B567469FC2D8DFDA6FC854FD5BF7550BA52CDC94854FB1E752F609B8930C4116F34E7D80F5F9A0A5D83DF93A3BC37A38DBC5A3DB12B18FD85379A8758670C6FE20C",
+          "maskedAccountNumber": "*****0021-*2345",
+          "paymentCategoryType": "CHECK",
+          "paymentMethodType": "ACH",
+          "bankName": "JPMORGAN CHASE",
+          "isDefault": true
+        }
+      ]
+    }
+  }
+}

@@ -19,8 +19,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         MockUser.current = .default
         MockAccountService.loadAccountsSync()
         
-        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        let viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -40,8 +39,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         MockUser.current = .default
         MockAccountService.loadAccountsSync()
         
-        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        let viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -61,8 +59,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         MockUser.current = .default
         MockAccountService.loadAccountsSync()
         
-        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        let viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -87,8 +84,7 @@ class PeakRewardsViewModelTests: XCTestCase {
                                                .peakRewardsOverrides: .peakRewardsActiveOverride])
         MockAccountService.loadAccountsSync()
         
-        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        let viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -119,8 +115,7 @@ class PeakRewardsViewModelTests: XCTestCase {
                                                .peakRewardsOverrides: .peakRewardsNoOverrides])
         MockAccountService.loadAccountsSync()
         
-        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        let viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -151,8 +146,7 @@ class PeakRewardsViewModelTests: XCTestCase {
                                                .peakRewardsOverrides: .peakRewardsActiveOverride])
         MockAccountService.loadAccountsSync()
         
-        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        let viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -183,8 +177,7 @@ class PeakRewardsViewModelTests: XCTestCase {
                                                .peakRewardsOverrides: .peakRewardsScheduledOverride])
         MockAccountService.loadAccountsSync()
         
-        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        let viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -215,8 +208,7 @@ class PeakRewardsViewModelTests: XCTestCase {
                                                .peakRewardsOverrides: .peakRewardsNoOverrides])
         MockAccountService.loadAccountsSync()
         
-        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        let viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -247,8 +239,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
         
         // Test case: devices.count > 1, should show
-        var viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        var viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -266,8 +257,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
         
         // Test case: devices.count == 1, should not show
-        viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
+        viewModel = PeakRewardsViewModel(accountDetail: .default)
         
         scheduler.createHotObservable([Recorded.next(0, ())])
             .bind(to: viewModel.loadInitialData)

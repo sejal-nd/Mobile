@@ -53,17 +53,7 @@ class HomeViewController: AccountPickerViewController {
     
     var alertLottieAnimation = AnimationView(name: "alert_icon")
     
-    let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(),
-                                  weatherService: ServiceFactory.createWeatherService(),
-                                  walletService: ServiceFactory.createWalletService(),
-                                  paymentService: ServiceFactory.createPaymentService(),
-                                  usageService: ServiceFactory.createUsageService(useCache: true),
-                                  projectedBillUsageService: ServiceFactory.createUsageService(useCache: false),
-                                  authService: ServiceFactory.createAuthenticationService(),
-                                  outageService: ServiceFactory.createOutageService(),
-                                  alertsService: ServiceFactory.createAlertsService(),
-                                  appointmentService: ServiceFactory.createAppointmentService(),
-                                  gameService: ServiceFactory.createGameService())
+    let viewModel = HomeViewModel()
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -114,6 +104,20 @@ class HomeViewController: AccountPickerViewController {
                 self?.viewModel.fetchData.onNext(())
             })
             .disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(.didSelectEnrollInAutoPay, object: nil)
+        .subscribe(onNext: { [weak self] notification in
+            guard let self = self else { return }
+            if let accountDetail = notification.object as? AccountDetail {
+                self.navigateToAutoPay(accountDetail: accountDetail)
+            }
+        }).disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(.didRecievePaymentConfirmation, object: nil)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self = self else { return }
+                self.viewModel.fetchData.onNext(())
+            }).disposed(by: bag)
     }
     
     func viewSetup() {
@@ -202,8 +206,10 @@ class HomeViewController: AccountPickerViewController {
                         let status: Appointment.Status
                         if appointments.count > 1 {
                             status = .scheduled
+                        } else if let unwrappedStatus = Appointment.Status(rawValue: appointment.status) {
+                            status = unwrappedStatus
                         } else {
-                            status = appointment.status
+                            status = .canceled
                         }
                         
                         switch status {
@@ -212,6 +218,8 @@ class HomeViewController: AccountPickerViewController {
                                               sender: (appointments))
                         case .canceled, .complete:
                             UIApplication.shared.openPhoneNumberIfCan(self.viewModel.appointmentCardViewModel.contactNumber)
+                        case .none:
+                            return
                         }
                     })
                     .disposed(by: appointmentCardView.disposeBag)
@@ -313,6 +321,31 @@ class HomeViewController: AccountPickerViewController {
                 })
             })
             .disposed(by: bag)
+    }
+    
+    func navigateToAutoPay(accountDetail: AccountDetail) {
+        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI  {
+            if accountDetail.isBGEasy {
+                let storyboard = UIStoryboard(name: "Bill", bundle: Bundle.main)
+                if let bgeEasyViewController = storyboard.instantiateViewController(withIdentifier: "BGEasy") as?  BGEasyViewController {
+                    present(bgeEasyViewController, animated: true, completion: nil)
+                }
+            } else {
+                let storyboard = UIStoryboard(name: "AutoPayBGE", bundle: Bundle.main)
+                if let bgeAutoPayViewController = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as?  BGEAutoPayViewController {
+                    bgeAutoPayViewController.delegate = self
+                    bgeAutoPayViewController.accountDetail = accountDetail
+                    navigationController?.pushViewController(bgeAutoPayViewController, animated: true)
+                }
+            }
+        } else {
+            let storyboard = UIStoryboard(name: "AutoPay", bundle: Bundle.main)
+            if let autoPayViewController = storyboard.instantiateViewController(withIdentifier: "AutoPay") as?  AutoPayViewController {
+                autoPayViewController.delegate = self
+                autoPayViewController.accountDetail = accountDetail
+                navigationController?.pushViewController(autoPayViewController, animated: true)
+            }
+        }
     }
     
     private func onTermsAndPolicyPress() {
@@ -560,6 +593,12 @@ class HomeViewController: AccountPickerViewController {
                     let newNavController = LargeTitleNavigationController(rootViewController: viewController)
                     newNavController.modalPresentationStyle = .formSheet
                     self?.present(newNavController, animated: true, completion: nil)
+                } else if viewController is MakePaymentViewController {
+                    #warning("Remove this elseif block once the new payment flow is in for PHI as well")
+                    viewController.hidesBottomBarWhenPushed = true
+                    self?.navigationController?.pushViewController(viewController, animated: true)
+                    return
+                        #warning("re-add new payment flow logic for dec release")
                 } else {
                     self?.present(viewController, animated: true, completion: nil)
                 }
@@ -634,6 +673,10 @@ class HomeViewController: AccountPickerViewController {
     
     func bindProjectedBillCard() {
         guard let projectedBillCardView = projectedBillCardView else { return }
+        
+        viewModel.accountDetailEvents.elements().subscribe(onNext: { accountDetail in
+            projectedBillCardView.isHidden = !accountDetail.isAMIAccount
+        }).disposed(by: bag)
         
         projectedBillCardView.callToActionButton.rx.touchUpInside.asDriver()
             .withLatestFrom(Driver.combineLatest(viewModel.projectedBillCardViewModel.isGas,
@@ -722,31 +765,6 @@ class HomeViewController: AccountPickerViewController {
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
             .bind(to: viewModel.fetchData)
             .disposed(by: bag)
-        
-        // Commerical Usage Modal
-        viewModel.accountDetailEvents.elements()
-            .filter { !$0.isResidential && CommercialUsageAlertStore.shared.isEligibleForAlert }
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] accountDetail in
-                guard let self = self else { return }
-                if !accountDetail.isResidential && CommercialUsageAlertStore.shared.isEligibleForAlert {
-                    let action = InfoAlertAction(ctaText: NSLocalizedString("Take Me to Usage", comment: "")) { [weak self] in
-                        self?.tabBarController?.selectedIndex = 3
-                    }
-                    
-                    let alert = InfoAlertController(title: NSLocalizedString("Commercial Usage", comment: ""),
-                                                    message: NSLocalizedString("Your commercial usage data is now available within the mobile app.", comment: ""),
-                                                    action: action)
-                    
-                    // If they're already on the usage screen, don't show the alert
-                    if self.tabBarController?.selectedIndex != 3 {
-                        self.tabBarController?.present(alert, animated: true)
-                    }
-                    
-                    CommercialUsageAlertStore.shared.hasSeenAlert()
-                }
-            })
-            .disposed(by: bag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -761,8 +779,14 @@ class HomeViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         case let (vc as TotalSavingsViewController, eventResults as [SERResult]):
             vc.eventResults = eventResults
-        case let (vc as UpdatesDetailViewController, update as OpcoUpdate):
+        case let (vc as UpdatesDetailViewController, update as Alert):
             vc.opcoUpdate = update
+        case let (vc as BGEAutoPayViewController, accountDetail as AccountDetail):
+             vc.delegate = self
+             vc.accountDetail = accountDetail
+         case let (vc as AutoPayViewController, accountDetail as AccountDetail):
+             vc.delegate = self
+             vc.accountDetail = accountDetail
         case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):
             vc.viewModel.outageStatus = currentOutageStatus
             if let phone = currentOutageStatus.contactHomeNumber {

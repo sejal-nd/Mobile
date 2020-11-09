@@ -15,8 +15,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     func testShowBottomLabel() {
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
-                                        walletService: MockWalletService(),
+        viewModel = BGEAutoPayViewModel(walletService: MockWalletService(),
                                         accountDetail: .default)
         viewModel.showBottomLabel.asObservable().take(1).subscribe(onNext: { show in
             if !show {
@@ -24,8 +23,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
-                                        walletService: MockWalletService(),
+        viewModel = BGEAutoPayViewModel(walletService: MockWalletService(),
                                         accountDetail: .fromMockJson(forKey: .autoPay))
         viewModel.showBottomLabel.asObservable().take(1).subscribe(onNext: { show in
             if show {
@@ -35,8 +33,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
     }
     
     func testSubmitButtonEnabled() {
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
-                                        walletService: MockWalletService(),
+        viewModel = BGEAutoPayViewModel(walletService: MockWalletService(),
                                         accountDetail: .default)
         viewModel.selectedWalletItem.accept(WalletItem())
         viewModel.userDidReadTerms.accept(true)
@@ -46,8 +43,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
-                                        walletService: MockWalletService(),
+        viewModel = BGEAutoPayViewModel(walletService: MockWalletService(),
                                         accountDetail: .fromMockJson(forKey: .autoPay))
         viewModel.selectedWalletItem.accept(WalletItem())
         viewModel.userDidChangeSettings.accept(true)

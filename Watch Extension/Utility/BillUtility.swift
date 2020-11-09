@@ -236,18 +236,16 @@ class BillUtility {
         guard let netDueAmount = billingInfo.netDueAmount else { return "--" }
         
         switch Environment.shared.opco {
-        case .bge: // For credit scenario we want to show the positive number
+        case .ace, .bge, .delmarva, .pepco: // For credit scenario we want to show the positive number
             return abs(netDueAmount).currencyString
         case .comEd, .peco:
             return max(netDueAmount, 0).currencyString
-        default:
-            fatalError("Unsupported OpCo.")
         }
     }()
     
     private lazy var isCreditBalance: Bool = {
         guard let netDueAmount = billingInfo.netDueAmount else { return false }
-        return netDueAmount < 0 && Environment.shared.opco == .bge
+        return netDueAmount < 0 && (Environment.shared.opco == .bge || Environment.shared.opco.isPHI)
     }()
     
     private(set) lazy var totalAmountDescriptionText: NSAttributedString = {
@@ -267,7 +265,10 @@ class BillUtility {
         } else if billingInfo.lastPaymentAmount > 0 && billingInfo.netDueAmount ?? 0 == 0 {
             string = NSLocalizedString("Total Amount Due", comment: "")
         } else if self.isCreditBalance {
-            string = NSLocalizedString("No Amount Due – Credit Balance", comment: "")
+            if Environment.shared.opco.isPHI {
+                attributes[.foregroundColor] =  UIColor(red: 0/255, green: 122/255, blue: 51/255, alpha: 1)
+            }
+            string = Environment.shared.opco.isPHI ? NSLocalizedString("Credit Balance - You have no amount due", comment: "") : NSLocalizedString("No Amount Due – Credit Balance", comment: "")
         } else {
             string = String.localizedStringWithFormat("Total Amount Due By %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
         }
@@ -340,10 +341,8 @@ class BillUtility {
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Payments Processing", comment: "")
-        case .comEd, .peco:
+        case .ace, .delmarva, .pepco, .comEd, .peco:
             return NSLocalizedString("Pending Payments", comment: "")
-        default:
-            fatalError("Unsupported OpCo.")
         }
     }()
     

@@ -12,11 +12,7 @@ import RxCocoa
 class AlertPreferencesViewModel {
     
     let disposeBag = DisposeBag()
-    
-    private let accountService: AccountService
-    private let alertsService: AlertsService
-    private let billService: BillService
-    
+        
     var accountDetail: AccountDetail! // Passed from AlertsViewController
     
     var sections: [(String, [AlertPreferencesOptions])] = []
@@ -60,16 +56,10 @@ class AlertPreferencesViewModel {
     }
     
     var shouldShowHUABillThreshold: Bool {
-        return !accountDetail.isBudgetBillEnrollment && !accountDetail.hasThirdPartySupplier
+        return !accountDetail.isBudgetBill && !accountDetail.hasThirdPartySupplier
     }
     
     var devicePushNotificationsEnabled = false
-    
-    required init(alertsService: AlertsService, billService: BillService, accountService: AccountService) {
-        self.alertsService = alertsService
-        self.billService = billService
-        self.accountService = accountService
-    }
     
     func toggleSectionVisibility(_ section: Int) {
         if !shownSections.contains(section) {
@@ -110,7 +100,7 @@ class AlertPreferencesViewModel {
                         (NSLocalizedString("Outage", comment: ""),
                          [.outage, .scheduledMaintenanceOutage, .severeWeather]),
                         (NSLocalizedString("Billing", comment: ""),
-                         [.billIsReady]),
+                         [.billIsReady(self.accountDetail)]),
                         (NSLocalizedString("Payment", comment: ""),
                          [.paymentDueReminder, .paymentPosted, .paymentPastDue]),
                         (NSLocalizedString("Customer Appointments", comment: ""),
@@ -139,11 +129,11 @@ class AlertPreferencesViewModel {
                     if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBill {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -158,11 +148,11 @@ class AlertPreferencesViewModel {
                     if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBill {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
@@ -170,61 +160,54 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .pepco:
-                    // todo
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
                     
-                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                    if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
-                    
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
-                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .ace:
-                    // todo
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
                     
-                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                    if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
-                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .delmarva:
-                    // todo
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
                     
-                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                    if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
-                                              [.billIsReady]))
+                                              [.billIsReady(self.accountDetail)]))
                     }
                     
                     var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
-                    if self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
-                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 }
                 
@@ -237,7 +220,7 @@ class AlertPreferencesViewModel {
     }
     
     func fetchAccountDetail() -> Observable<Void> {
-        return accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount, alertPreferenceEligibilities: true)
+        return AccountService.rx.fetchAccountDetails(alertPreferenceEligibilities: true)
             .observeOn(MainScheduler.instance)
             .do(onNext: { [weak self] accountDetail in
                 self?.accountDetail = accountDetail
@@ -246,8 +229,7 @@ class AlertPreferencesViewModel {
     }
     
     private func fetchAlertPreferences() -> Observable<Void> {
-        return alertsService
-            .fetchAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        return AlertService.rx.fetchAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .do(onNext: { [weak self] alertPrefs in
                 guard let self = self else { return }
                 
@@ -286,9 +268,9 @@ class AlertPreferencesViewModel {
     }
     
     private func fetchAlertLanguage() -> Observable<Void> {
-        return alertsService
-            .fetchAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-            .do(onNext: { [weak self] language in
+        return AlertService.rx.fetchAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+            .do(onNext: { [weak self] result in
+                let language = result.language
                 self?.initialEnglishValue = language == "English"
                 self?.english.accept(language == "English")
             })
@@ -393,6 +375,12 @@ class AlertPreferencesViewModel {
         .startWith(false)
         .share(replay: 1, scope: .forever)
     
+    private(set) lazy var nonLanguagePrefsChanged = Observable // all alert prefs except language
+        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged)
+            { $0 || $1 || $2 || $3 }
+        .startWith(false)
+        .share(replay: 1, scope: .forever)
+    
     private func saveAlertPreferences() -> Observable<Void> {
         let alertPreferences = AlertPreferences(highUsage: highUsage.value,
                                                 alertThreshold: Int(billThreshold.value ?? ""),
@@ -411,20 +399,19 @@ class AlertPreferencesViewModel {
                                                 budgetBilling: budgetBilling.value,
                                                 appointmentTracking: appointmentTracking.value,
                                                 forYourInfo: forYourInfo.value)
-        return alertsService
-            .setAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-                                 alertPreferences: alertPreferences)
+        let alertPreferenceRequest = AlertPreferencesRequest(alertPreferences: alertPreferences)
+        
+        return nonLanguagePrefsChanged.flatMap {
+            return $0 ? AlertService.rx.setAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber, request: alertPreferenceRequest) : Observable.just(())
+        }
     }
     
     private func saveAlertLanguage() -> Observable<Void> {
-        return alertsService
-            .setAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-                              english: english.value)
+        return AlertService.rx.setAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber, request: AlertLanguageRequest(language: english.value ? "English" : "Spanish"))
     }
     
     private func enrollPaperlessEBill() -> Observable<Void> {
-        return billService
-            .enrollPaperlessBilling(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+        return BillService.rx.enrollPaperlessBilling(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
                                     email: accountDetail.customerInfo.emailAddress)
     }
     
@@ -444,7 +431,7 @@ class AlertPreferencesViewModel {
         switch Environment.shared.opco {
         case .bge, .comEd:
             return self.accountDetail.isHUAEligible ?? false
-        case .peco, .pepco, .ace, .delmarva: // todo
+        case .peco, .pepco, .ace, .delmarva:
             return false
         
         }
@@ -452,7 +439,7 @@ class AlertPreferencesViewModel {
     
     var isPTSEligible: Bool {
         switch Environment.shared.opco {
-        case .bge, .peco, .pepco, .ace, .delmarva: // todo:
+        case .bge, .peco, .pepco, .ace, .delmarva:
             return false
         case .comEd:
             return self.accountDetail.isPTSEligible ?? false
@@ -463,16 +450,14 @@ class AlertPreferencesViewModel {
         switch Environment.shared.opco {
         case .bge:
             return self.accountDetail.isPTREligible ?? false
-        case .comEd, .peco, .pepco, .ace, .delmarva: // todo:
+        case .comEd, .peco, .pepco, .ace, .delmarva:
             return false
         }
     }
     
     var showAccountInfoBar: Bool {
         switch Environment.shared.opco {
-        case .pepco, .ace, .delmarva: // todo:
-            return false
-        case .bge, .comEd, .peco:
+        case .ace, .bge, .comEd, .delmarva, .peco, .pepco:
             return true
         }
     }
@@ -500,7 +485,7 @@ class AlertPreferencesViewModel {
         switch Environment.shared.opco {
         case .comEd:
             return true
-        case .bge, .peco, .pepco, .ace, .delmarva: // todo:
+        case .bge, .peco, .pepco, .ace, .delmarva:
             return false
         }
     }
@@ -511,7 +496,7 @@ class AlertPreferencesViewModel {
         // Outage
         case outage, scheduledMaintenanceOutage, severeWeather
         // Billing
-        case billIsReady
+        case billIsReady(AccountDetail)
         // Payment
         case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview
         // Customer Appointments
@@ -532,11 +517,11 @@ class AlertPreferencesViewModel {
             case .energySavingsDayResults:
                 return NSLocalizedString("Energy Savings Day Results", comment: "")
             case .outage:
-                return NSLocalizedString("Outage", comment: "")
+                return Environment.shared.opco.isPHI ? NSLocalizedString("Outage Alerts", comment: "") : NSLocalizedString("Outage", comment: "")
             case .scheduledMaintenanceOutage:
                 return NSLocalizedString("Scheduled Maintenance Outage", comment: "")
             case .severeWeather:
-                return NSLocalizedString("Severe Weather", comment: "")
+                return Environment.shared.opco.isPHI ? NSLocalizedString("Severe Weather Alert", comment: "") : NSLocalizedString("Severe Weather", comment: "")
             case .billIsReady:
                 return NSLocalizedString("Bill is Ready", comment: "")
             case .paymentDueReminder:
@@ -550,7 +535,7 @@ class AlertPreferencesViewModel {
             case .appointmentTracking:
                 return NSLocalizedString("Appointment Tracking", comment: "")
             case .forYourInformation:
-                return NSLocalizedString("For Your Information", comment: "")
+                return Environment.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
                 return NSLocalizedString("Lumi Updates", comment: "")
             }
@@ -593,7 +578,11 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.\n\nNOTE: Outage Notifications will be provided by ComEd on a 24/7 basis. You may be updated with outage information during the overnight hours or over holidays where applicable.", comment: "")
             case (.outage, .peco):
                 return NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.", comment: "")
-                
+            case (.outage, .ace): fallthrough
+            case (.outage, .delmarva): fallthrough
+            case (.outage, .pepco):
+                return NSLocalizedString("Get updates on outages affecting your account. Alerts are sent when your account is part of a known outage, when power is restored in your area and if your estimated time of restoration changes.", comment: "")
+
             // Scheduled Maintenance Outage
             case (.scheduledMaintenanceOutage, .bge):
                 return NSLocalizedString("From time to time, BGE must temporarily stop service in order to perform system maintenance or repairs. BGE typically informs customers of planned outages in their area by letter, however, in emergency situations we can inform customers by push notification. Planned outage information will also be available on the planned outages web page on BGE.com.", comment: "")
@@ -608,6 +597,10 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Receive an alert about weather conditions that could potentially impact ComEd service in your area.", comment: "")
             case (.severeWeather, .peco):
                 return NSLocalizedString("Receive an alert about weather conditions that could potentially impact PECO service in your area.", comment: "")
+            case (.severeWeather, .ace): fallthrough
+            case (.severeWeather, .delmarva): fallthrough
+            case (.severeWeather, .pepco):
+                return NSLocalizedString("Get updates about weather conditions that could potentially impact service in your area.", comment: "")
                 
             // Bill is Ready
             case (.billIsReady, .bge):
@@ -615,6 +608,12 @@ class AlertPreferencesViewModel {
             case (.billIsReady, .comEd): fallthrough
             case (.billIsReady, .peco):
                 return NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
+            case (.billIsReady(let accountDetail), .ace): fallthrough
+            case (.billIsReady(let accountDetail), .delmarva): fallthrough
+            case (.billIsReady(let accountDetail), .pepco):
+                return accountDetail.isResidential ?
+                    NSLocalizedString("Receive an alert when your bill is ready to be viewed online. If you are signed up for Automatic Payment or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.", comment: "") :
+                    NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert contains the bill due date and amount due. If you are signed up for Automatic Payment or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.\n\nPlease note that this notification is mandatory for customers enrolled in Paperless eBill.", comment: "")
                 
             // Payment Due Reminder
             case (.paymentDueReminder, .bge):
@@ -622,14 +621,30 @@ class AlertPreferencesViewModel {
             case (.paymentDueReminder, .comEd): fallthrough
             case (.paymentDueReminder, .peco):
                 return NSLocalizedString("Receive an alert 1 to 7 days before your payment due date. If enrolled in AutoPay, the alert will notify you of when a payment will be deducted from your bank account.\n\nNOTE: You are responsible for payment of the total amount due on your account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
+            case (.paymentDueReminder, .ace): fallthrough
+            case (.paymentDueReminder, .delmarva): fallthrough
+            case (.paymentDueReminder, .pepco):
+                return NSLocalizedString("Receive an alert 1 to 7 days before your payment due date.\n\nNote: Failure to receive this reminder for any reason, including due to technical issues, does not extend or release the payment due date.", comment: "")
                 
             // Payment Posted
-            case (.paymentPosted, _):
+            case (.paymentPosted, .bge): fallthrough
+            case (.paymentPosted, .comEd): fallthrough
+            case (.paymentPosted, .peco):
                 return NSLocalizedString("Receive a confirmation when your payment has posted to your account. We will include the date and the amount of the posting, as well as your updated total account balance.", comment: "")
+            case (.paymentPosted, .ace): fallthrough
+            case (.paymentPosted, .delmarva): fallthrough
+            case (.paymentPosted, .pepco):
+                 return NSLocalizedString("Receive a notification when your payment has posted to your account.", comment: "")
                 
             // Payment Past Due
-            case (.paymentPastDue, _):
+            case (.paymentPastDue, .bge): fallthrough
+            case (.paymentPastDue, .comEd): fallthrough
+            case (.paymentPastDue, .peco):
                 return NSLocalizedString("Receive a friendly reminder 1 day after your due date when you are late in making a payment.", comment: "")
+            case (.paymentPastDue, .ace): fallthrough
+            case (.paymentPastDue, .delmarva): fallthrough
+            case (.paymentPastDue, .pepco):
+                return NSLocalizedString("Receive a reminder 1 day after your due date when you are late in making a payment.", comment: "")
                 
             // Budget Billing Review
             case (.budgetBillingReview, .bge):
@@ -638,6 +653,11 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Your monthly Budget Bill Payment may be adjusted every six months to keep your account current with your actual electricity usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
             case (.budgetBillingReview, .peco):
                 return NSLocalizedString("Your monthly Budget Bill payment may be adjusted every four months to keep your account current with your actual energy usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
+           case (.budgetBillingReview, .ace): fallthrough
+           case (.budgetBillingReview, .delmarva): fallthrough
+           case (.budgetBillingReview, .pepco):
+                return NSLocalizedString("Receive an alert when the monthly payment amount for your budget installment has been recalculated, typically twice per year.", comment: "")
+               
                 
             // Appointment Tracking
             case (.appointmentTracking, _):
@@ -650,12 +670,17 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Occasionally, ComEd may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
             case (.forYourInformation, .peco):
                 return NSLocalizedString("Occasionally, PECO may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
+            case (.forYourInformation, .ace): fallthrough
+            case (.forYourInformation, .delmarva): fallthrough
+            case (.forYourInformation, .pepco):
+                return NSLocalizedString("Get updates, general news and special offers. We will not send you more than 3 of these messages each month.", comment: "")
+            
                 
             // Energy Buddy
             case (.energyBuddyUpdates, _):
                 return NSLocalizedString("Receive a notification when Lumi has new data, tips, and insights to help you save energy and money.", comment: "")
             default:
-                return "" // todo PHI
+                return ""
             }
         }
     }

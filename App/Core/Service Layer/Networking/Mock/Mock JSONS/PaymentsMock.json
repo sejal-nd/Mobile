@@ -1,0 +1,19 @@
+{
+  "default": {
+    "success": true,
+    "data": {
+      "isEBillEligible": false,
+      "BillingInfo": {
+        "payments": [
+          {
+            "paymentAmount": 368.6,
+            "paymentDate": "2020-04-15T00:00:00-04:00",
+            "paymentMethod": "MOBILE",
+            "status": "SCHEDULED",
+            "paymentChannelCode": "MOBILE"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -54,7 +54,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     
     var accountDetail: AccountDetail!
 
-    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: self.accountDetail) }()
+    lazy var viewModel: AutoPayViewModel = { AutoPayViewModel( accountDetail: self.accountDetail) }()
 
     
     // MARK: - View Life Cycle
@@ -334,16 +334,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         switch Environment.shared.opco {
         case .comEd, .peco:
             performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
-        case .bge:
-            fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
-        case .pepco:
-            // todo
-            fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
-        case .ace:
-            // todo
-            fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
-        case .delmarva:
-            // todo
+        case .ace, .bge, .delmarva, .pepco:
             fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
         }
     }

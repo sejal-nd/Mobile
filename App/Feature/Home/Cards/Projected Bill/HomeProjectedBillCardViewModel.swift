@@ -13,9 +13,8 @@ class HomeProjectedBillCardViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let maintenanceModeEvents: Observable<Event<Maintenance>>
+    private let maintenanceModeEvents: Observable<Event<MaintenanceMode>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
-    private let usageService: UsageService
     
     private let fetchData: Observable<Void>
     
@@ -26,14 +25,12 @@ class HomeProjectedBillCardViewModel {
     let gasForecast = BehaviorRelay<BillForecast?>(value: nil)
     
     required init(fetchData: Observable<Void>,
-                  maintenanceModeEvents: Observable<Event<Maintenance>>,
+                  maintenanceModeEvents: Observable<Event<MaintenanceMode>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
-                  usageService: UsageService,
                   fetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
-        self.usageService = usageService
         self.fetchTracker = fetchTracker
     }
     
@@ -46,7 +43,7 @@ class HomeProjectedBillCardViewModel {
     
     private(set) lazy var showEmptyState: Driver<Void> = accountDetailEvents.elements()
         .withLatestFrom(maintenanceModeEvents)
-        { ($0.isEligibleForUsageData, $1.element?.usageStatus ?? false)}
+        { ($0.isEligibleForUsageData, $1.element?.usage ?? false)}
         .filter { !$0 && !$1 }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -54,7 +51,7 @@ class HomeProjectedBillCardViewModel {
     private lazy var accountDetailError: Observable<Void> = accountDetailEvents
         .filter { $0.error != nil }
         .withLatestFrom(maintenanceModeEvents.elements())
-        .filter { !$0.usageStatus }
+        .filter { !$0.usage }
         .mapTo(())
     
     private lazy var billForecastError: Observable<Void> = billForecastEvents
@@ -66,7 +63,7 @@ class HomeProjectedBillCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents.elements()
-        .filter { $0.usageStatus }
+        .filter { $0.usage }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -85,15 +82,16 @@ class HomeProjectedBillCardViewModel {
     // MARK: - Web Service Calls
     
     private(set) lazy var billForecastEvents = self.accountDetailEvents.elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false)}
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usage ?? false)}
         .filter { $0.isEligibleForUsageData && !$1 }
         .withLatestFrom(fetchData) { ($0.0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] pair -> ActivityTracker? in
             return self?.fetchTracker
         }, requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
             guard let this = self else { return .empty() }
-            return this.usageService.fetchBillForecast(accountNumber: pair.0.accountNumber,
-                                                       premiseNumber: pair.0.premiseNumber!)
+            return UsageService.rx.fetchBillForecast(accountNumber: pair.0.accountNumber,
+                                                     premiseNumber: pair.0.premiseNumber!,
+                                                     useCache: false)
         })
     
     // MARK: - View Content
@@ -145,9 +143,15 @@ class HomeProjectedBillCardViewModel {
                     }
                 }
                 if !accountDetail.isModeledForOpower,
+                    !Environment.shared.opco.isPHI,
                     let elecForecast = billForecast.electric,
                     let elecUsage = elecForecast.projectedUsage {
                     return String(format: "%d %@", Int(elecUsage), elecForecast.meterUnit)
+                } else if Environment.shared.opco.isPHI,
+                    elecCost > 0,
+                    let toDateCost = billForecast.electric?.toDateCost,
+                    toDateCost > 0 {
+                    return elecCost.currencyString
                 }
                 return elecCost.currencyString
             } else if isGas, let gasCost = billForecast.gas?.projectedCost, let startDate = billForecast.gas?.billingStartDate {
@@ -161,14 +165,20 @@ class HomeProjectedBillCardViewModel {
                     }
                 }
                 if !accountDetail.isModeledForOpower,
+                    !Environment.shared.opco.isPHI,
                     let gasForecast = billForecast.gas,
                     let gasUsage = gasForecast.projectedUsage {
                     return String(format: "%d %@", Int(gasUsage), gasForecast.meterUnit)
+                } else if Environment.shared.opco.isPHI,
+                    gasCost > 0,
+                    let toDateCost = billForecast.gas?.toDateCost,
+                    toDateCost > 0 {
+                    return gasCost.currencyString
                 }
                 return gasCost.currencyString
             }
             return nil
-        }
+    }
     
     private(set) lazy var projectionSubLabelString: Driver<String?> = Driver.combineLatest(self.billForecastDriver,
                                                                                            self.isGas)
@@ -200,7 +210,7 @@ class HomeProjectedBillCardViewModel {
                                                                                               self.isGas,
                                                                                               self.accountDetailDriver)
         .map { billForecast, isGas, accountDetail in
-            if !accountDetail.isModeledForOpower {
+            if !accountDetail.isModeledForOpower && !Environment.shared.opco.isPHI {
                 var toDateString: String? = nil
                 if !isGas,
                     let elecForecast = billForecast.electric,
@@ -216,11 +226,30 @@ class HomeProjectedBillCardViewModel {
                 }
             } else {
                 var toDateString: String? = nil
-                if !isGas, let toDateCost = billForecast.electric?.toDateCost {
-                    toDateString = toDateCost.currencyString
-                } else if isGas, let toDateCost = billForecast.gas?.toDateCost {
-                    toDateString = toDateCost.currencyString
+
+                if Environment.shared.opco.isPHI {
+                    if !isGas,
+                        let toDateCost = billForecast.electric?.toDateCost,
+                        toDateCost > 0,
+                        let projectedCost = billForecast.electric?.projectedCost,
+                        projectedCost > 0 {
+                        toDateString = toDateCost.currencyString
+                    }
+                    else if isGas,
+                        let toDateCost = billForecast.gas?.toDateCost,
+                        toDateCost > 0,
+                        let projectedCost = billForecast.gas?.projectedCost,
+                        projectedCost > 0 {
+                        toDateString = toDateCost.currencyString
+                    }
+                } else {
+                    if !isGas, let toDateCost = billForecast.electric?.toDateCost {
+                        toDateString = toDateCost.currencyString
+                    } else if isGas, let toDateCost = billForecast.gas?.toDateCost {
+                        toDateString = toDateCost.currencyString
+                    }
                 }
+                
                 if let str = toDateString {
                     return String(format: NSLocalizedString("You've spent about %@ so far this bill period.", comment: ""), str)
                 }

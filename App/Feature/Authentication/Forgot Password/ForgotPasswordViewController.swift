@@ -21,7 +21,7 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     @IBOutlet weak var submitButton: PrimaryButton!
     
-    let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
+    let viewModel = ForgotPasswordViewModel()
     
     let disposeBag = DisposeBag()
     
@@ -39,7 +39,7 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         instructionLabel.textColor = .deepGray
         instructionLabel.setLineHeight(lineHeight: 24)
         var placeholderText = "Username / Email Address"
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
             placeholderText = "Email"
         } else {
             placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"

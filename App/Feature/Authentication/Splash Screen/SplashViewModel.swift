@@ -9,43 +9,39 @@
 import RxSwift
 import RxCocoa
 
-class SplashViewModel{
-    
-    private var authService: AuthenticationService
-    let disposeBag = DisposeBag()
-    
-    init(authService: AuthenticationService) {
-        self.authService = authService
-    }
+struct SplashViewModel{
     
     func checkAppVersion(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
         var isOutOfDate = false
-        authService.getMinimumVersion()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { versionInfo in
-                isOutOfDate = self.checkIfOutOfDate(minVersion: versionInfo.iosObject.minVersion)
+        AnonymousService.checkMinVersion { (result: Result<String, Error>) in
+            switch result {
+            case .success(let minVersion):
+                isOutOfDate = self.checkIfOutOfDate(minVersion: minVersion)
                 onSuccess(isOutOfDate)
-            }, onError: { err in
-                onError(err.localizedDescription)
-            }).disposed(by: disposeBag)
+            case .failure(let error):
+                onError(error.localizedDescription)
+            }
+        }
     }
     
     func checkIfOutOfDate(minVersion:String) -> Bool {
         let dictionary = Bundle.main.infoDictionary!
-        let currentVersion = dictionary["CFBundleShortVersionString"] as! String
+        let currentVersion = dictionary["CFBundleShortVersionString"] as? String ?? ""
         
         return minVersion.compare(currentVersion, options: .numeric) == .orderedDescending
     }
     
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        authService.getMaintenanceMode(postNotification: false)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { maintenance in
-                completion(maintenance.stormModeStatus)
-            }, onError: { err in
-                completion(false)
-            })
-            .disposed(by: disposeBag)
+        AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let maintenanceMode):
+                    completion(maintenanceMode.storm)
+                case .failure(_):
+                    completion(false)
+                }
+            }
+        }
     }
     
     var errorTitleText: String? {

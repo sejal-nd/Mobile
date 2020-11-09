@@ -13,7 +13,7 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     
     let disposeBag = DisposeBag()
     
-    let viewModel = AccountLookupToolViewModel(authService: ServiceFactory.createAuthenticationService())
+    let viewModel = AccountLookupToolViewModel()
     
     weak var delegate: AccountLookupToolResultViewControllerDelegate?
     

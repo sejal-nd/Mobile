@@ -42,7 +42,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return #imageLiteral(resourceName: "Residential")
+                    return #imageLiteral(resourceName: "marketplace")
                 } else {
                     return #imageLiteral(resourceName: "Commercial")
                 }
@@ -61,19 +61,12 @@ class TemplateCardViewModel {
                 }
             case .comEd:
                 if accountDetail.isResidential {
-                    return accountDetail.isHourlyPricing ? #imageLiteral(resourceName: "EnrolledImage") : #imageLiteral(resourceName: "UnenrolledImage")
+                    return accountDetail.isHourlyPricing ? #imageLiteral(resourceName: "EnrolledImage") :#imageLiteral(resourceName: "marketplace")
                 } else {
                     return #imageLiteral(resourceName: "Commercial")
                 }
-            case .pepco:
-                // todo
-                return nil
-            case .ace:
-                // todo
-                return nil
-            case .delmarva:
-                // todo
-                return nil
+            case .ace, .delmarva, .pepco:
+                return accountDetail.isResidential ? (accountDetail.isEnergyWiseRewardsEnrolled ? #imageLiteral(resourceName: "EnergyWiseRewards-Enrolled") : #imageLiteral(resourceName:"EnergyWiseRewards-Unenrolled")) : #imageLiteral(resourceName:"SmallBusiness")
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -84,7 +77,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("PECO Marketplace", comment: "")
+                    return NSLocalizedString("Explore Energy-Saving Solutions for Your Home", comment: "")
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
@@ -103,18 +96,49 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
                         NSLocalizedString("Check Up On Your Hourly Pricing Savings", comment: "") :
-                        NSLocalizedString("Get Instant Rebates on Energy-Related Products", comment: "")
+                        NSLocalizedString("Explore Energy-Saving Solutions for Your Home", comment: "")
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
-            case .pepco:
-                return NSLocalizedString("todo", comment: "")
-            case .ace:
-                return NSLocalizedString("todo", comment: "")
-            case .delmarva:
-                return NSLocalizedString("todo", comment: "")
+            case .ace, .delmarva, .pepco:
+                /// The logic behind checking from utility code is one account can be tagged to ACE, DPL & PEPCO, so in order to keep it dynamic we had to look for the utility code rather that the selected opco
+                if accountDetail.opcoType == .ace {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+                        } else {
+                            return NSLocalizedString("Atlantic City Electric Has Ways to Save", comment: "")
+                        }
+                    } else {
+                         return NSLocalizedString("Lower your Business’s energy costs", comment: "")
+                    }
+                    
+                } else if accountDetail.opcoType == .delmarva {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+                        } else {
+                            return NSLocalizedString("Delmarva Bill Credits with Energy Wise Rewards", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Lower your Business’s energy costs", comment: "")
+                    }
+                    
+                } else if accountDetail.opcoType == .pepco {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Energy Wise Rewards Program", comment: "")
+                        } else {
+                            return NSLocalizedString("Pepco Bill Credits with Energy Wise Rewards", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Lower your Business’s energy costs", comment: "")
+                    }
+                } else {
+                    return ""
+                }
             }
-        }
+    }
         .asDriver(onErrorDriveWith: .empty())
      
     //Set body content string
@@ -123,7 +147,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Get instant discounts on energy-saving products. Free shipping on orders over $49.", comment: "")
+                    return NSLocalizedString("Find valuable information and solutions to help you manage and control your energy usage.", comment: "")
                 } else {
                     return NSLocalizedString("PECO can help you get on the fast track to substantial energy & cost savings.", comment: "")
                 }
@@ -144,19 +168,47 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
                         NSLocalizedString("Check Up On Your Hourly Pricing Savings", comment: "") :
-                        NSLocalizedString("Shop the ComEd Marketplace and receive instant savings on smart " +
-                            "thermostats, energy-efficient LEDs and more.", comment: "")
+                        NSLocalizedString("Find valuable information and solutions to help you manage and control your energy usage.", comment: "")
                 } else {
                     return NSLocalizedString("A FREE facility assessment can help you save money and energy", comment: "")
                 }
-            case .pepco:
-                return NSLocalizedString("todo", comment: "")
-            case .ace:
-                return NSLocalizedString("todo", comment: "")
-            case .delmarva:
-                return NSLocalizedString("todo", comment: "")
+            case .ace, .delmarva, .pepco:
+                /// The logic behind checking from utility code is one account can be tagged to ACE, DPL & PEPCO, so in order to keep it dynamic we had to look for the utility code rather that the selected opco
+                if accountDetail.opcoType == .ace {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+                        } else {
+                            return NSLocalizedString("Get cash back with Atlantic City Electric rebates on high-efficiency appliances & HVAC equipment.", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
+                    }
+                } else if accountDetail.opcoType == .delmarva {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+                        } else {
+                            return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
+                    }
+                } else if accountDetail.opcoType == .pepco {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return NSLocalizedString("Manage your Energy Wise Rewards device from the palm of your hand.", comment: "")
+                        } else {
+                            return NSLocalizedString("Join Energy Wise Rewards and get a smart thermostat or outdoor switch and $100 to $200 in bill credits from Jun—Sept.", comment: "")
+                        }
+                    } else {
+                        return NSLocalizedString("Save with financial incentives and energy efficiency upgrades.", comment: "")
+                    }
+                } else {
+                    return ""
+                }
             }
-        }
+    }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var bodyStringA11yLabel: Driver<String?> = self.bodyString.map {
@@ -172,7 +224,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Shop Now", comment: "")
+                    return NSLocalizedString("Save Now", comment: "")
                 } else {
                     return NSLocalizedString("Get started today", comment: "")
                 }
@@ -194,16 +246,16 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
                         NSLocalizedString("View My Savings!", comment: "") :
-                        NSLocalizedString("Shop Now", comment: "")
+                        NSLocalizedString("Save Now", comment: "")
                 } else {
                     return NSLocalizedString("Get started today", comment: "")
                 }
-            case .pepco:
-                return NSLocalizedString("todo", comment: "")
-            case .ace:
-                return NSLocalizedString("todo", comment: "")
-            case .delmarva:
-                return NSLocalizedString("todo", comment: "")
+            case .ace, .delmarva, .pepco:
+                if accountDetail.isEnergyWiseRewardsEnrolled {
+                    return NSLocalizedString("Manage Your Devices", comment: "")
+                } else {
+                    return NSLocalizedString("Learn More", comment: "")
+                }
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -235,18 +287,60 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
                         String(format: "https://hourlypricing.comed.com/rrtpmobile/servlet?type=home&account=%@", accountDetail.accountNumber) :
-                        "https://secure.comed.com/marketplace/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app"
+                    "https://secure.comed.com/marketplace/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app"
                 } else {
                     return "http://comed.com/BusinessSavings"
                 }
-            case .pepco:
-                return "todo"
-            case .ace:
-                return "todo"
-            case .delmarva:
-                return "todo"
+            case .ace, .delmarva, .pepco:
+                /// The logic behind checking from utility code is one account can be tagged to ACE, DPL & PEPCO, so in order to keep it dynamic we had to look for the utility code rather that the selected opco
+                
+                if accountDetail.opcoType == .ace {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return ""
+                        } else {
+                            return "https://www.atlanticcityelectric.com/WaysToSave/ForYourHome/Pages/default.aspx"
+                        }
+                    } else {
+                        return "https://www.atlanticcityelectric.com/WaysToSave/ForYourBusiness/Pages/default.aspx"
+                    }
+                } else if accountDetail.opcoType == .delmarva {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return ""
+                        } else {
+                            return "https://energywiserewards.delmarva.com/"
+                        }
+                    } else {
+                        if accountDetail.subOpco == .delmarvaMaryland {
+                            return "https://www.delmarva.com/WaysToSave/ForYourBusiness/Pages/Maryland.aspx"
+                        } else if accountDetail.subOpco == .delmarvaDelaware {
+                            return "https://www.delmarva.com/WaysToSave/ForYourBusiness/Pages/Delaware.aspx"
+                        } else {
+                            return ""
+                        }
+                    }
+                } else if accountDetail.opcoType == .pepco {
+                    if accountDetail.isResidential {
+                        if accountDetail.isEnergyWiseRewardsEnrolled {
+                            return ""
+                        } else {
+                            return "https://energywiserewards.pepco.com/"
+                        }
+                    } else {
+                        if accountDetail.subOpco == .pepcoDC {
+                            return "https://www.pepco.com/WaysToSave/ForYourBusiness/Pages/DC/DistrictOfColumbia.aspx"
+                        } else if accountDetail.subOpco == .pepcoMaryland {
+                            return "https://www.pepco.com/WaysToSave/ForYourBusiness/Pages/Maryland.aspx"
+                        } else {
+                            return ""
+                        }
+                    }
+                } else {
+                    return ""
+                }
             }
-        }
+    }
         .unwrap()
         .map { URL(string: $0) }.unwrap()
         .asDriver(onErrorDriveWith: .empty())
@@ -272,4 +366,7 @@ class TemplateCardViewModel {
         .map { $0.isResidential && $0.isHourlyPricing }
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var isEnergyWiseRewardsEnrolled: Driver<Bool> = self.accountDetailEvents.elements()
+        .map { $0.isEnergyWiseRewardsEnrolled && Environment.shared.opco.isPHI }
+           .asDriver(onErrorDriveWith: .empty())
 }

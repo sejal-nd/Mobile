@@ -140,9 +140,7 @@ class BillViewController: AccountPickerViewController {
     
     var refreshControl: UIRefreshControl?
     
-    let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService(),
-                                  authService: ServiceFactory.createAuthenticationService(),
-                                  usageService: ServiceFactory.createUsageService(useCache: true))
+    let viewModel = BillViewModel()
 
     var shortcutItem = ShortcutItem.none
 
@@ -165,14 +163,20 @@ class BillViewController: AccountPickerViewController {
                 self?.scrollView!.alwaysBounceVertical = true
             })
             .disposed(by: bag)
-
+        
         NotificationCenter.default.rx.notification(.didSelectEnrollInAutoPay, object: nil)
-        .subscribe(onNext: { [weak self] notification in
-            guard let self = self else { return }
-            if let accountDetail = notification.object as? AccountDetail {
-                self.navigateToAutoPay(accountDetail: accountDetail)
-            }
-        }).disposed(by: bag)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self = self else { return }
+                if let accountDetail = notification.object as? AccountDetail {
+                    self.navigateToAutoPay(accountDetail: accountDetail)
+                }
+            }).disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(.didRecievePaymentConfirmation, object: nil)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self = self else { return }
+                self.viewModel.fetchAccountDetail(isRefresh: true)
+            }).disposed(by: bag)
         
         usageBillImpactContentView.configure(withViewModel: viewModel)
     }
@@ -433,8 +437,8 @@ class BillViewController: AccountPickerViewController {
         usageBillImpactContentView.setInnerLoadingState(false)
     }
     
-    func showErrorState(error: ServiceError?) {
-        if error?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+    func showErrorState(error: NetworkingError?) {
+        if error == .noNetwork {
             scrollView?.isHidden = true
             noNetworkConnectionView.isHidden = false
         } else {
@@ -449,7 +453,7 @@ class BillViewController: AccountPickerViewController {
         prepaidView.isHidden = true
         maintenanceModeView.isHidden = true
         
-        if error?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+        if error == .blockAccount {
             genericErrorView.isHidden = true
             accountDisallowView.isHidden = false
         } else {
@@ -743,7 +747,7 @@ class BillViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
-                if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBillEnrollment {
+                if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBill {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: accountDetail)
                 } else {
                     var message = NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: "")
@@ -892,11 +896,13 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
             showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
         }
         GoogleAnalytics.log(event: .budgetBillEnrollComplete)
+        viewModel.fetchAccountDetail(isRefresh: true)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: UIViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
         GoogleAnalytics.log(event: .budgetBillUnEnrollComplete)
+        viewModel.fetchAccountDetail(isRefresh: true)
     }
 }
 

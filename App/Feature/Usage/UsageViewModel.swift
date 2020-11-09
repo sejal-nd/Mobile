@@ -15,16 +15,10 @@ fileprivate let firstfuelSessionTimeout = 900 // 15 minutes
 
 class UsageViewModel {
     
-    private let authService: AuthenticationService
-    private let accountService: AccountService
-    private let usageService: UsageService
     
     // MARK: - Init
     
-    required init(authService: AuthenticationService, accountService: AccountService, usageService: UsageService) {
-        self.authService = authService
-        self.accountService = accountService
-        self.usageService = usageService
+    required init() {
     }
     
     // MARK: - Data Fetching
@@ -35,35 +29,34 @@ class UsageViewModel {
         fetchAllDataTrigger.onNext(())
     }
     
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchAllDataTrigger
+    private lazy var maintenanceModeEvents: Observable<Event<MaintenanceMode>> = fetchAllDataTrigger
         // Clear cache on refresh or account switch
-        .do(onNext: { [weak self] in self?.usageService.clearCache() })
-        .toAsyncRequest { [weak self] in
-            self?.authService.getMaintenanceMode() ?? .empty()
+        .do(onNext: { [weak self] in UsageService.clearCache() })
+        .toAsyncRequest {
+            AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)
         }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
         .filter {
-            !($0.element?.allStatus ?? false) &&
-            !($0.element?.usageStatus ?? false)
+            !($0.element?.all ?? false) &&
+            !($0.element?.usage ?? false)
         }
         .toAsyncRequest { [weak self] _ in
-            self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
+            AccountService.rx.fetchAccountDetails()
         }
     
-    private lazy var commercialDataEvents: Observable<Event<SSOData>> = accountDetailEvents
+    private lazy var commercialDataEvents: Observable<Event<SSODataResponse>> = accountDetailEvents
         .elements()
-        .toAsyncRequest { [weak self] accountDetail -> Observable<SSOData> in
+        .toAsyncRequest { [weak self] accountDetail -> Observable<SSODataResponse> in
             // Start the timer. The FirstFuel session is only valid for [firstfuelSessionTimeout] seconds -
             // so we automatically reload after that amount of time.
             // Replace timer with .empty() for residential accounts
             guard !accountDetail.isResidential, let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             return Observable<Int>
                 .timer(.seconds(0), period: .seconds(firstfuelSessionTimeout), scheduler: MainScheduler.instance)
-                .flatMapLatest { [weak self] _ -> Observable<SSOData> in
+                .flatMapLatest { [weak self] _ -> Observable<SSODataResponse> in
                     guard let self = self else { return .empty() }
-                    return self.accountService
-                        .fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber,
+                    return AccountService.rx.fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber,
                                                premiseNumber: premiseNumber)
                 }
         }
@@ -75,7 +68,7 @@ class UsageViewModel {
                                                                          ssoData: commercialDataEvents.elements(),
                                                                          errorTrigger: commercialErrorTrigger)
     
-    private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
+    private lazy var billAnalysisEvents: Observable<Event<(CompareBillResult, BillForecastResult?)>> = Observable
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
                        lastYearPreviousBillSelectedSegmentIndex.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
@@ -85,15 +78,15 @@ class UsageViewModel {
             let isGas = self.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasIndex)
             
-            let billComparison = self.usageService
-                .fetchBillComparison(accountNumber: accountDetail.accountNumber,
+            let billComparison = UsageService.rx
+                .compareBill(accountNumber: accountDetail.accountNumber,
                                      premiseNumber: accountDetail.premiseNumber!,
                                      yearAgo: yearsIndex == 0,
                                      gas: isGas)
             
             let billForecast: Observable<BillForecastResult?>
             if accountDetail.isAMIAccount {
-                billForecast = self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
+                billForecast = UsageService.rx.fetchBillForecast(accountNumber: accountDetail.accountNumber,
                                                                    premiseNumber: accountDetail.premiseNumber!)
                     .map { $0 }
                     .catchErrorJustReturn(nil)
@@ -109,7 +102,7 @@ class UsageViewModel {
     private(set) lazy var accountDetail: Driver<AccountDetail> = accountDetailEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var billComparison: Driver<BillComparison> = billAnalysisEvents.elements()
+    private lazy var billComparison: Driver<CompareBillResult> = billAnalysisEvents.elements()
         .map { $0.0 }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -117,7 +110,7 @@ class UsageViewModel {
         .map { $1 }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var noPreviousData: Driver<Bool> = billComparison.map { $0.compared == nil }
+    private(set) lazy var noPreviousData: Driver<Bool> = billComparison.map { $0.comparedBill == nil }
 
     
     // RX CODE C / P Bill ANalysis
@@ -155,8 +148,8 @@ class UsageViewModel {
     private(set) lazy var showMainErrorState: Driver<Void> = Observable
         .merge(accountDetailEvents.errors(), commercialDataEvents.errors(), commercialErrorTrigger.asObservable())
         .filter {
-            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue &&
-            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue
+            ($0 as? NetworkingError) != .noNetwork &&
+            ($0 as? NetworkingError) != .blockAccount
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -164,19 +157,19 @@ class UsageViewModel {
     
     private(set) lazy var showAccountDisallowState: Driver<Void> = accountDetailEvents
         .filter { $0.error != nil }
-        .filter { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue }
+        .filter { ($0.error as? NetworkingError) == .blockAccount }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showNoNetworkState: Driver<Void> = Observable
         .merge(accountDetailEvents.errors(), billAnalysisEvents.errors())
-        .filter { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .filter { ($0 as? NetworkingError) == .noNetwork }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents
         .elements()
-        .filter { $0.usageStatus }
+        .filter { $0.usage }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -205,12 +198,12 @@ class UsageViewModel {
     // MARK: - Bill Analysis States
     
     private(set) lazy var showBillComparisonContents: Driver<Void> = billAnalysisEvents
-        .filter { $0.element?.0.reference != nil }
+        .filter { $0.element?.0.referenceBill != nil }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showBillComparisonErrorState: Driver<Void> = billAnalysisEvents
-        .filter { $0.error != nil || $0.element?.0.reference == nil }
+        .filter { $0.error != nil || $0.element?.0.referenceBill == nil }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -219,17 +212,8 @@ class UsageViewModel {
             switch Environment.shared.opco {
             case .comEd:
                 return false
-            case .bge, .peco:
+            case .ace, .bge, .delmarva, .pepco, .peco:
                 return accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC"
-            case .pepco:
-                // todo
-                return false
-            case .ace:
-                // todo
-                return false
-            case .delmarva:
-                // todo
-                return false
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -261,7 +245,7 @@ class UsageViewModel {
     
     private(set) lazy var noDataBarDateLabelText: Driver<String?> =
         Driver.combineLatest(billComparison, lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
-            guard let reference = $0.reference else { return nil }
+            guard let reference = $0.referenceBill else { return nil }
             if $1 == 0 { // Last Year
                 let lastYearDate = Calendar.opCo.date(byAdding: .year, value: -1, to: reference.endDate)!
                 return "\(Calendar.opCo.component(.year, from: lastYearDate))"
@@ -275,8 +259,8 @@ class UsageViewModel {
     
     private(set) lazy var previousBarHeightConstraintValue: Driver<CGFloat> =
         Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
-            guard let reference = billComparison.reference else { return 134 }
-            guard let compared = billComparison.compared else { return 0 }
+            guard let reference = billComparison.referenceBill else { return 134 }
+            guard let compared = billComparison.comparedBill else { return 0 }
             if compared.charges < 0 {
                 return 3
             } else if let projectedCost = projectedCost { // We are displaying a projection
@@ -300,11 +284,11 @@ class UsageViewModel {
         }
     
     private(set) lazy var previousBarDollarLabelText: Driver<String?> = billComparison
-        .map { $0.compared?.charges.currencyString }
+        .map { $0.comparedBill?.charges.currencyString }
     
     private(set) lazy var previousBarDateLabelText: Driver<String?> =
         Driver.combineLatest(billComparison, lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
-            guard let compared = $0.compared else { return nil }
+            guard let compared = $0.comparedBill else { return nil }
             if $1 == 0 { // Last Year
                 return "\(Calendar.opCo.component(.year, from: compared.endDate))"
             } else { // Previous Bill
@@ -316,8 +300,8 @@ class UsageViewModel {
     
     private(set) lazy var currentBarHeightConstraintValue: Driver<CGFloat> =
         Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
-            guard let reference = billComparison.reference else { return 0 }
-            guard let compared = billComparison.compared else { return 134 }
+            guard let reference = billComparison.referenceBill else { return 0 }
+            guard let compared = billComparison.comparedBill else { return 134 }
             if reference.charges < 0 {
                 return 3
             } else if let projectedCost = projectedCost { // We are displaying a projection
@@ -341,13 +325,13 @@ class UsageViewModel {
         }
     
     private(set) lazy var currentBarDollarLabelText: Driver<String?> = billComparison.map {
-        guard let reference = $0.reference else { return nil }
+        guard let reference = $0.referenceBill else { return nil }
         return reference.charges.currencyString
     }
     
     private(set) lazy var currentBarDateLabelText: Driver<String?> =
         Driver.combineLatest(billComparison, lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
-            guard let reference = $0.reference else { return nil }
+            guard let reference = $0.referenceBill else { return nil }
             if $1 == 0 { // Last Year
                 return "\(Calendar.opCo.component(.year, from: reference.endDate))"
             } else { // Previous Bill
@@ -369,6 +353,19 @@ class UsageViewModel {
                 return billForecast?.electric?.projectedCost
             }
         }
+    
+    private(set) lazy var toDateCost: Driver<Double?> =
+           Driver.combineLatest(accountDetail,
+                                billForecast,
+                                electricGasSelectedSegmentIndex.asDriver())
+           { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
+               guard let this = self else { return nil }
+               if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
+                   return billForecast?.gas?.toDateCost
+               } else {
+                   return billForecast?.electric?.toDateCost
+               }
+           }
     
     private(set) lazy var projectedCostSoFar: Driver<Double?> =
         Driver.combineLatest(accountDetail,
@@ -405,8 +402,8 @@ class UsageViewModel {
     private(set) lazy var projectedBarHeightConstraintValue: Driver<CGFloat> =
         Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
             guard let projectedCost = projectedCost else { return 3 }
-            let reference = billComparison.reference?.charges ?? 0
-            let compared = billComparison.compared?.charges ?? 0
+            let reference = billComparison.referenceBill?.charges ?? 0
+            let compared = billComparison.comparedBill?.charges ?? 0
             if max(projectedCost, reference, compared) == projectedCost {
                 return 134
             } else if max(reference, compared) == reference {
@@ -429,9 +426,10 @@ class UsageViewModel {
         Driver.combineLatest(accountDetail,
                              projectedCost,
                              projectedUsage,
-                             billComparison)
-        { [weak self] accountDetail, cost, usage, billComparison in
-            if accountDetail.isModeledForOpower {
+                             billComparison,
+                             toDateCost)
+        { [weak self] accountDetail, cost, usage, billComparison, toDateCost in
+            if accountDetail.isModeledForOpower || (Environment.shared.opco.isPHI && cost > 0 && toDateCost > 0) {
                 return cost?.currencyString
             } else {
                 guard let usage = usage else { return nil }
@@ -531,7 +529,7 @@ class UsageViewModel {
     }
     
     private(set) lazy var previousBarA11yLabel: Driver<String?> = billComparison.map {
-        guard let compared = $0.compared else { return nil }
+        guard let compared = $0.comparedBill else { return nil }
         
         let dateString = "\(compared.startDate.shortMonthDayAndYearString) to \(compared.endDate.shortMonthDayAndYearString)"
         
@@ -555,7 +553,7 @@ class UsageViewModel {
     }
     
     private(set) lazy var currentBarA11yLabel: Driver<String?> = billComparison.map {
-        guard let reference = $0.reference else { return nil }
+        guard let reference = $0.referenceBill else { return nil }
         
         let dateString = "\(reference.startDate.shortMonthDayAndYearString) to \(reference.endDate.shortMonthDayAndYearString)"
         
@@ -582,8 +580,10 @@ class UsageViewModel {
         Driver.combineLatest(accountDetail,
                              billComparison,
                              billForecast,
+                             projectedCost,
+                             toDateCost,
                              electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] accountDetail, billComparison, billForecast, electricGasSelectedIndex in
+        { [weak self] accountDetail, billComparison, billForecast, projectedCost, toDateCost, electricGasSelectedIndex in
             guard let this = self else { return nil }
             guard let billForecast = billForecast else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
@@ -601,7 +601,7 @@ class UsageViewModel {
             
             
             var detailString = ""
-            if accountDetail.isModeledForOpower {
+            if accountDetail.isModeledForOpower || (Environment.shared.opco.isPHI && projectedCost > 0 && toDateCost > 0) {
                 let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
                     "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                 if isGas {
@@ -690,11 +690,11 @@ class UsageViewModel {
                     return NSLocalizedString("Previous Bill", comment: "")
                 }
             case .previous:
-                if let compared = billComparison.compared {
+                if let compared = billComparison.comparedBill {
                     return "\(compared.startDate.shortMonthDayAndYearString) - \(compared.endDate.shortMonthDayAndYearString)"
                 }
             case .current:
-                if let reference = billComparison.reference {
+                if let reference = billComparison.referenceBill {
                     return "\(reference.startDate.shortMonthDayAndYearString) - \(reference.endDate.shortMonthDayAndYearString)"
                 }
             case .projected:
@@ -722,11 +722,11 @@ class UsageViewModel {
             let localizedString = NSLocalizedString("Avg. Temp %d° F", comment: "")
             switch barGraphSelection {
             case .previous:
-                if let compared = billComparison.compared, let temp = compared.averageTemperature {
+                if let compared = billComparison.comparedBill, let temp = compared.averageTemperature {
                     return String(format: localizedString, Int(temp.rounded()))
                 }
             case .current:
-                if let reference = billComparison.reference, let temp = reference.averageTemperature {
+                if let reference = billComparison.referenceBill, let temp = reference.averageTemperature {
                     return String(format: localizedString, Int(temp.rounded()))
                 }
             case .noData, .projected, .projectionNotAvailable:
@@ -741,8 +741,10 @@ class UsageViewModel {
                              billComparison,
                              barGraphSelection.asDriver(),
                              billForecast,
-                             electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] accountDetail, billComparison, barGraphSelection, billForecast, electricGasSelectedIndex in
+                             electricGasSelectedSegmentIndex.asDriver(),
+                             projectedCost,
+                             toDateCost)
+        { [weak self] accountDetail, billComparison, barGraphSelection, billForecast, electricGasSelectedIndex, projectedCost, toDateCost in
             guard let this = self else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
@@ -751,7 +753,7 @@ class UsageViewModel {
             case .noData:
                 return NSLocalizedString("Not enough data available.", comment: "")
             case .previous:
-                if let compared = billComparison.compared {
+                if let compared = billComparison.comparedBill {
                     let daysInBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
                     let avgUsagePerDay = compared.usage / Double(daysInBillPeriod)
                     if compared.charges < 0 {
@@ -762,7 +764,7 @@ class UsageViewModel {
                     }
                 }
             case .current:
-                if let reference = billComparison.reference {
+                if let reference = billComparison.referenceBill {
                     let daysInBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
                     let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
                     if reference.charges < 0 {
@@ -773,7 +775,7 @@ class UsageViewModel {
                     }
                 }
             case .projected:
-                if accountDetail.isModeledForOpower {
+                if accountDetail.isModeledForOpower || (Environment.shared.opco.isPHI && projectedCost > 0 && toDateCost > 0) {
                     let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
                         "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                     if let gasForecast = billForecast?.gas, isGas {
@@ -827,7 +829,7 @@ class UsageViewModel {
         .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
     
     private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = billComparison.map {
-        guard let compared = $0.compared else { return .deepGray }
+        guard let compared = $0.comparedBill else { return .deepGray }
         return compared.charges < 0 ? .successGreenText : .deepGray
     }
     
@@ -837,7 +839,7 @@ class UsageViewModel {
         .map { $0 ? SystemFont.bold.of(textStyle: .footnote) : SystemFont.semibold.of(textStyle: .footnote) }
     
     private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = billComparison.map {
-        guard let reference = $0.reference else { return .deepGray }
+        guard let reference = $0.referenceBill else { return .deepGray }
         return reference.charges < 0 ? .successGreenText : .deepGray
     }
     
@@ -876,23 +878,23 @@ class UsageViewModel {
             case .peco:
                 break
             case .pepco:
-                // todo
-                
-                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
-                    usageTools.append(.peakTimeSavings)
-                }
+                usageTools.insert(.energyWiseRewards, at: 1)
+                #warning("Uncomment this in Release 2, Commented for R1")
+                /* 
+                if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && accountDetail.subOpco == .pepcoMaryland {
+                    usageTools.append(.peakEnergySavings)
+                }*/
             case .ace:
-                // todo
-                
-                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
-                    usageTools.append(.peakTimeSavings)
-                }
+                usageTools.insert(.energyWiseRewards, at: 1)
             case .delmarva:
-                // todo
-                
-                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
-                    usageTools.append(.peakTimeSavings)
+                if accountDetail.isEnergyWiseRewardsEligible || accountDetail.isEnergyWiseRewardsEnrolled {
+                    usageTools.insert(.energyWiseRewards, at: 1)
                 }
+                #warning("Uncomment this in Release 2, Commented for R1")
+                /*
+                if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && (accountDetail.subOpco == .delmarvaMaryland || accountDetail.subOpco == .delmarvaDelaware) {
+                    usageTools.append(.peakEnergySavings)
+                }*/
             }
             
             return usageTools

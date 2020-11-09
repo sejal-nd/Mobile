@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_thermostat.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

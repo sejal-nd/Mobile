@@ -15,7 +15,6 @@ final class EditNicknameViewModel {
     
     let disposeBag = DisposeBag()
     
-    private let accountService: AccountService
     
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
@@ -31,8 +30,7 @@ final class EditNicknameViewModel {
     /// `EditNicknameViewModel` initializer
     /// - Parameters:
     ///   - accountService: `AccountService` instance
-    required init(accountService: AccountService) {
-        self.accountService = accountService
+    required init() {
         if AccountsStore.shared.accounts != nil && !AccountsStore.shared.accounts.isEmpty {
             let currentAccount = AccountsStore.shared.currentAccount
             if let accountNickname = currentAccount.accountNickname {
@@ -70,19 +68,20 @@ final class EditNicknameViewModel {
     ///   - onError: onError Block that will notify error case
     func setAccountNickname(onSuccess: @escaping () -> Void,
                             onError: @escaping (String) -> Void) {
-        accountService.setAccountNickname(nickname: accountNickName.value, accountNumber: accountNumber)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                self.accountService.fetchAccounts()
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { __SRD in
+        AccountService.setAccountNickname(nickname: accountNickName.value, accountNumber: accountNumber) { nicknameResult in
+            switch nicknameResult {
+            case .success:
+                AccountService.fetchAccounts { accountsResult in
+                    switch accountsResult {
+                    case .success:
                         onSuccess()
-                    }, onError: { error in
-                        onError(error.localizedDescription)
-                    }).disposed(by: self.disposeBag)
-            }, onError: { error in
-                onError(error.localizedDescription)
-            }).disposed(by: disposeBag)
+                    case .failure(let error):
+                        onError(error.description)
+                    }
+                }
+            case .failure(let error):
+                onError(error.description)
+            }
+        }
     }
 }

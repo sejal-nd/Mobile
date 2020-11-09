@@ -7,17 +7,19 @@
 //
 
 import Foundation
-import Mapper
 
-struct PaymentDetails: Mappable {
+struct PaymentDetails: Codable {
     let amount: Double
     let date: Date
     let confirmationNumber: String
-    
-    init(map: Mapper) throws {
-        amount = try map.from("amount")
-        date = try map.from("date", transformation: DateParser().extractDate)
-        confirmationNumber = try map.from("confirmationNumber")
+
+    init?(dict: [String: Any]) {
+        guard let amount = dict["amount"] as? Double,
+            let dateString = dict["date"] as? String,
+            let confirmationNumber = dict["confirmationNumber"] as? String else { return nil }
+        self.amount = amount
+        self.date = dateString.extractDate() ?? Date()
+        self.confirmationNumber = confirmationNumber
     }
     
     init(amount: Double, date: Date, confirmationNumber: String) {
@@ -48,8 +50,8 @@ class RecentPaymentsStore {
                     return nil
                 }
             } else if let paymentDetailsDictionary = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.paymentDetailsDictionary),
-                let paymentDictionary = paymentDetailsDictionary[account.accountNumber] as? NSDictionary,
-                let paymentDetails = PaymentDetails.from(paymentDictionary) {
+                let paymentDictionary = paymentDetailsDictionary[account.accountNumber] as? [String: Any],
+                let paymentDetails = PaymentDetails(dict: paymentDictionary) {
                 
                 if paymentDetails.date.addingTimeInterval(paymentTimeLimit) > .now {
                     paymentDetailsCache[account.accountNumber] = paymentDetails

@@ -177,7 +177,8 @@ class ReviewPaymentViewController: UIViewController {
         
         footerLabel.textColor = .deepGray
         footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        footerLabel.text = viewModel.reviewPaymentFooterLabelText
+        let reviewPaymentFooterLabelText = viewModel.reviewPaymentFooterLabelText
+        footerLabel.text = reviewPaymentFooterLabelText
         
         // Hide additional recipient view for edit payment flow
         if let _ = viewModel.billingHistoryItem {
@@ -207,7 +208,7 @@ class ReviewPaymentViewController: UIViewController {
         alternateViewTextView.backgroundColor = .softGray
         alternateViewTextView.textColor = .deepGray
         alternateViewTextView.font = SystemFont.regular.of(textStyle: .callout)
-        alternateViewTextView.text = NSLocalizedString("Add an additional email address and/or mobile phone number in the box below if you’d like us to send this payment confirmation via text message or to an email different from the one associated with your My Account. Standard messaging rates apply.", comment: "")
+        alternateViewTextView.text = NSLocalizedString("A confirmation will be sent to the email address associated with your My Account. If you'd like to send this payment confirmation to an additional email or via text message, add the recipients below. Standard messaging rates apply.", comment: "")
         
         addAdditionaRecipientButton.setTitleColor(.deepGray, for: .normal)
         addAdditionaRecipientButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
@@ -324,16 +325,16 @@ class ReviewPaymentViewController: UIViewController {
         
         FirebaseUtility.logEvent(.reviewPaymentSubmit)
         
-        let handleError = { [weak self] (err: ServiceError) in
+        let handleError = { [weak self] (error: NetworkingError) in
             guard let self = self else { return }
             
             LoadingView.hide()
             let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
-                forError: err,
+                forError: error,
                 walletItem: self.viewModel.selectedWalletItem.value!,
                 okHandler: { [weak self] _ in
                     guard let self = self else { return }
-                    if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
+                    if error == .walletItemIdTimeout {
                         guard let navCtl = self.navigationController else { return }
                         
                         let makePaymentVC = UIStoryboard(name: "Payment", bundle: nil)
@@ -401,22 +402,7 @@ class ReviewPaymentViewController: UIViewController {
                     }
                     
                     self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-                }, onError: { [weak self] error in
-                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
-                        switch bankOrCard {
-                        case .bank:
-                            GoogleAnalytics.log(event: .eCheckError, dimensions: [
-                                .errorCode: error.serviceCode,
-                                .paymentTempWalletItem: temp ? "true" : "false"
-                                ])
-                        case .card:
-                            GoogleAnalytics.log(event: .cardError, dimensions: [
-                                .errorCode: error.serviceCode,
-                                .paymentTempWalletItem: temp ? "true" : "false"
-                                ])
-                        }
-                    }
-                    
+                }, onError: { error in
                     handleError(error)
             })
         }

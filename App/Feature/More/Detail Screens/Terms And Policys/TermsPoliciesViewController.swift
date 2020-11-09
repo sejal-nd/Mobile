@@ -26,6 +26,9 @@ class TermsPoliciesViewController: UIViewController {
         
         title = NSLocalizedString("Policies and Terms", comment: "")
         
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+        
         let request = URLRequest(url: viewModel.termPoliciesURL)
         webView.load(request)
     }
@@ -35,5 +38,23 @@ class TermsPoliciesViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+}
+
+extension TermsPoliciesViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        if navigationAction.navigationType == .linkActivated,
+           let url = navigationAction.request.url,
+           !url.absoluteString.contains("ex path") {
+            UIApplication.shared.openUrlIfCan(url)
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
+    }
+}
+
+extension TermsPoliciesViewController: WKUIDelegate {
     
 }

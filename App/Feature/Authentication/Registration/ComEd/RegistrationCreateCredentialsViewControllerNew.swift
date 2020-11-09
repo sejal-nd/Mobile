@@ -40,6 +40,7 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
     @IBOutlet weak var lowercaseCheck: UIImageView!
     @IBOutlet weak var numberCheck: UIImageView!
     @IBOutlet weak var specialCharacterCheck: UIImageView!
+    @IBOutlet weak var contain3PassworCaseCheck: UIImageView!
     
     @IBOutlet weak var primaryProfileSwitchView: UIView!
     @IBOutlet weak var primaryProfileLabel: UILabel!
@@ -88,7 +89,7 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
             primaryProfileSwitchView.isHidden = true
         }
 
-        if self.viewModel.isPaperlessEbillEligible {
+        if self.viewModel.isPaperlessEbillEligible && Environment.shared.opco != .bge{
             eBillEnrollView.isHidden = false
             eBillCheckBox.rx.isChecked.bind(to: viewModel.paperlessEbill).disposed(by: disposeBag)
             eBillCheckBox.isChecked = !(Environment.shared.opco == .ace)
@@ -110,6 +111,11 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         primaryProfileCheckbox.isAccessibilityElement = true
         primaryProfileCheckbox.accessibilityLabel = NSLocalizedString("Set as primary profile for this account", comment: "")
         setupAccessibility()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        createPasswordTextField.checkAccessoryImageView.isHidden = true
+        confirmPasswordTextField.checkAccessoryImageView.isHidden = true
     }
     
     // MARK: - Actions
@@ -361,6 +367,9 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
             self?.specialCharacterCheck.isAccessibilityElement = valid
             self?.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met", comment: "")
         }).disposed(by: disposeBag)
+        
+        // Must contain 3 conditions
+         viewModel.mustContain3IsValid.map(checkImageOrNil).drive(contain3PassworCaseCheck.rx.image).disposed(by: disposeBag)
         
         // Password cannot match email
         viewModel.passwordMatchesUsername

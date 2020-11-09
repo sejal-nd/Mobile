@@ -29,7 +29,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     
     let accountNumberLength = (Environment.shared.opco == .bge || Environment.shared.opco == .peco || Environment.shared.opco == .comEd) ? 10 : 11
    
-    let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
+    let viewModel = ForgotUsernameViewModel()
     
     let disposeBag = DisposeBag()
 
@@ -37,7 +37,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         super.viewDidLoad()
         
         addCloseButton()
-        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
                         ? NSLocalizedString("Forgot Email", comment: "")
                         : NSLocalizedString("Forgot Username", comment: "")
         

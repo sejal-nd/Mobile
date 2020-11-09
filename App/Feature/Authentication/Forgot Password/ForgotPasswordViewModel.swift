@@ -11,17 +11,11 @@ import RxCocoa
 
 class ForgotPasswordViewModel {
     let disposeBag = DisposeBag()
-    
-    let authService: AuthenticationService
-    
+        
     let username = BehaviorRelay(value: "")
     
-    required init(authService: AuthenticationService) {
-        self.authService = authService
-    }
-    
     func getInstructionLabelText() -> String {
-        let userName = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        let userName = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
             ? NSLocalizedString("email", comment: "")
             : NSLocalizedString("username/email address", comment: "")
         
@@ -29,18 +23,20 @@ class ForgotPasswordViewModel {
     }
     
     func submitForgotPassword(onSuccess: @escaping () -> Void, onProfileNotFound: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
-        authService.recoverPassword(username: username.value)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+        let usernameRequest = UsernameRequest(username: username.value)
+        AnonymousService.recoverPassword(request: usernameRequest) { result in
+            switch result {
+            case .success:
                 onSuccess()
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
-                    onProfileNotFound(serviceError.localizedDescription)
-                } else {
-                    onError(serviceError.localizedDescription)
+            case .failure(let error):
+                if error == .passwordProtected {
+                    onError(error.description)
                 }
-            }).disposed(by: disposeBag)
+                else {
+                    onError("Incorrect username/email address.")
+                }
+            }
+        }
     }
     
     private(set) lazy var submitButtonEnabled: Driver<Bool> = self.username.asDriver().map { $0.count > 0 }

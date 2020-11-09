@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1160"
+   LastUpgradeVersion = "1200"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "67EDC32324C1EBCC001A8494"
-               BuildableName = "ACE-Watch.app"
-               BlueprintName = "ACE-Watch"
+               BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
+               BuildableName = "EUMobile-Watch.app"
+               BlueprintName = "EUMobile-Watch"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,16 +28,16 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "67DDB52824535D32006CD6EB"
-               BuildableName = "ACE.app"
-               BlueprintName = "ACE"
+               BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
+               BuildableName = "EUMobile.app"
+               BlueprintName = "EUMobile"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Develop"
+      buildConfiguration = "Staging-ACE"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -45,7 +45,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Develop"
+      buildConfiguration = "Staging-ACE"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -54,52 +54,45 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/BGE">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "67EDC32324C1EBCC001A8494"
-            BuildableName = "ACE-Watch.app"
-            BlueprintName = "ACE-Watch"
+            BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
+            BuildableName = "EUMobile-Watch.app"
+            BlueprintName = "EUMobile-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-shouldLogAPI"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Staging-ACE"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/BGE">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "67EDC32324C1EBCC001A8494"
-            BuildableName = "ACE-Watch.app"
-            BlueprintName = "ACE-Watch"
+            BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
+            BuildableName = "EUMobile-Watch.app"
+            BlueprintName = "EUMobile-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "67EDC32324C1EBCC001A8494"
-            BuildableName = "ACE-Watch.app"
-            BlueprintName = "ACE-Watch"
-            ReferencedContainer = "container:Mobile.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Develop">
+      buildConfiguration = "Staging-ACE">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Production-ACE"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

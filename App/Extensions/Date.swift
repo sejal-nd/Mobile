@@ -316,18 +316,9 @@ extension DateFormatter {
         switch Environment.shared.opco {
         case .bge:
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        case .comEd:
+        case .comEd, .peco:
             formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
-        case .peco:
-            formatter.dateFormat = "h:mm a zz 'on' M/dd/yyyy"
-        case .pepco:
-            // todo
-            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        case .ace:
-            // todo
-            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        case .delmarva:
-            // todo
+        case .ace, .delmarva, .pepco:
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
         }
         return formatter
@@ -389,9 +380,9 @@ extension TimeZone {
     static let opCo: TimeZone = {
         switch Environment.shared.opco {
         case .ace, .bge, .delmarva, .peco, .pepco :
-            return TimeZone(identifier: "America/New_York")!
+            return TimeZone.current //TimeZone(identifier: "America/New_York")!
         case .comEd:
-            return TimeZone(identifier: "America/Chicago")!
+            return TimeZone.current //TimeZone(identifier: "America/Chicago")!
         }
     }()
     

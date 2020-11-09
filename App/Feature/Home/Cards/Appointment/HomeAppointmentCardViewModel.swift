@@ -27,7 +27,7 @@ class HomeAppointmentCardViewModel {
                 return false
             }
             
-            return appointments[0].status == .canceled
+            return appointments[0].statusType == .canceled
         }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -39,7 +39,7 @@ class HomeAppointmentCardViewModel {
                 return #imageLiteral(resourceName: "ic_appt_confirmed")
             }
             
-            switch appointments[0].status {
+            switch appointments[0].statusType {
             case .scheduled:
                 return #imageLiteral(resourceName: "ic_appt_confirmed")
             case .onOurWay:
@@ -52,6 +52,8 @@ class HomeAppointmentCardViewModel {
                 return #imageLiteral(resourceName: "ic_appt_complete")
             case .canceled:
                 return #imageLiteral(resourceName: "ic_appt_canceled")
+            case .none:
+                return UIImage()
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -72,7 +74,7 @@ class HomeAppointmentCardViewModel {
             
             let appointment = appointments[0]
             
-            switch appointment.status {
+            switch appointment.statusType {
             case .scheduled:
                 let regularText: String
                 let boldText: String
@@ -132,6 +134,10 @@ class HomeAppointmentCardViewModel {
                 return NSLocalizedString("Your appointment has been canceled.", comment: "")
                     .attributedString(textAlignment: .center,
                                       otherAttributes: standardAttributes)
+            case .none:
+                return NSLocalizedString("", comment: "")
+                .attributedString(textAlignment: .center,
+                                  otherAttributes: standardAttributes)
             }
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -142,11 +148,13 @@ class HomeAppointmentCardViewModel {
                 return NSLocalizedString("View Details", comment: "")
             }
             
-            switch appointments[0].status {
+            switch appointments[0].statusType {
             case .scheduled, .inProgress, .onOurWay, .enRoute:
                 return NSLocalizedString("View Details", comment: "")
             case .canceled, .complete:
                 return NSLocalizedString("Contact Us", comment: "")
+            case .none:
+                return NSLocalizedString("", comment: "")
             }
         }
         .asDriver(onErrorDriveWith: .empty())

@@ -41,7 +41,7 @@ class ReportOutageViewModelTests: XCTestCase {
         case .comEd:
             expectedString = NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
         case .peco:
-            expectedString = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
+            expectedString = NSLocalizedString("To report a downed or sparking power line, please call 1-800-841-4141.\n\nIf you smell natural gas, leave the area immediately and call 1-800-841-4141 or 1-844-841-4151.", comment: "")
         case .pepco:
             expectedString = ""
         case .ace:

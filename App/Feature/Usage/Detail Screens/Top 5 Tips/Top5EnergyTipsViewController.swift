@@ -18,8 +18,7 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
     let disposeBag = DisposeBag()
     var accountDetail: AccountDetail!
     
-    private lazy var viewModel = Top5EnergyTipsViewModel(usageService: ServiceFactory.createUsageService(useCache: false),
-                                                         accountDetail: self.accountDetail)
+    private lazy var viewModel = Top5EnergyTipsViewModel(accountDetail: self.accountDetail)
     var energyTips = [EnergyTip]()
     
     override func viewDidLoad() {

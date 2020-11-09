@@ -32,7 +32,7 @@ class ForgotUsernameResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
             ? NSLocalizedString("Forgot Email", comment: "")
             : NSLocalizedString("Forgot Username", comment: "")
         
@@ -54,7 +54,7 @@ class ForgotUsernameResultViewController: UIViewController {
         usernameEmailLabel.textColor = .deepGray
         usernameEmailLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         singleAccountValueLabel.textColor = .deepGray
-        usernameEmailLabel.text = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        usernameEmailLabel.text = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
                ? NSLocalizedString("Email", comment: "")
                : NSLocalizedString("Username / Email Address", comment: "")
         singleAccountValueLabel.font = OpenSans.regular.of(textStyle: .headline)
@@ -84,7 +84,7 @@ class ForgotUsernameResultViewController: UIViewController {
         if UIScreen.main.bounds.width <= 375 {
             // Prevent text from getting cut off on iPhone 5/SE with dynamic font all the way up
             topLabel2.text = NSLocalizedString("if you remember", comment: "")
-            let topLabelText = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+            let topLabelText = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
                 ? NSLocalizedString("your email or you can answer a security question to view your full email", comment: "")
                 : NSLocalizedString("your username or you can answer a security question to view your full username", comment: "")
             topLabel3.text = topLabelText

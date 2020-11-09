@@ -23,7 +23,7 @@ final class EditAccountNickNameViewController: AccountPickerViewController {
     @IBOutlet weak private var saveNicknameButton: PrimaryButton!
     
     /// `EditNicknameViewModel` Instance
-    private let viewModel = EditNicknameViewModel(accountService: ServiceFactory.createAccountService())
+    private let viewModel = EditNicknameViewModel()
     
     /// `NSLayoutConstraint` instance for Footer Bottom View
     @IBOutlet weak private var footerBottomAnchor: NSLayoutConstraint!

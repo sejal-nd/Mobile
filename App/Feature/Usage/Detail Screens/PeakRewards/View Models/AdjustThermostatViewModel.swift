@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 
 class AdjustThermostatViewModel {
-    let peakRewardsService: PeakRewardsService
     let accountDetail: AccountDetail
     let device: SmartThermostatDevice
     
@@ -30,8 +29,7 @@ class AdjustThermostatViewModel {
     let saveAction = PublishSubject<Void>()
     let loadInitialData = PublishSubject<Void>()
     
-    init(peakRewardsService: PeakRewardsService, accountDetail: AccountDetail, device: SmartThermostatDevice) {
-        self.peakRewardsService = peakRewardsService
+    init(accountDetail: AccountDetail, device: SmartThermostatDevice) {
         self.accountDetail = accountDetail
         self.device = device
     }
@@ -39,9 +37,9 @@ class AdjustThermostatViewModel {
     private lazy var currentSettingsEvents: Observable<Event<SmartThermostatDeviceSettings>> = self.loadInitialData
         .flatMapLatest { [weak self] _ -> Observable<Event<SmartThermostatDeviceSettings>> in
             guard let self = self else { return .empty() }
-            return self.peakRewardsService.fetchDeviceSettings(accountNumber: self.accountDetail.accountNumber,
+            return PeakRewardsService.rx.fetchDeviceSettings(accountNumber: self.accountDetail.accountNumber,
                                                                premiseNumber: self.premiseNumber,
-                                                               device: self.device)
+                                                               deviceSerialNumber: self.device.serialNumber)
                 .trackActivity(self.initialLoadTracker)
                 .materialize()
         }
@@ -83,9 +81,9 @@ class AdjustThermostatViewModel {
         .withLatestFrom(self.updatedSettings)
         .flatMapLatest { [weak self] updatedSettings -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
-            return self.peakRewardsService.updateDeviceSettings(forDevice: self.device,
-                                                                accountNumber: self.accountDetail.accountNumber,
+            return PeakRewardsService.rx.updateDeviceSettings(accountNumber: self.accountDetail.accountNumber,
                                                                 premiseNumber: self.premiseNumber,
+                                                                deviceSerialNumber: self.device.serialNumber,
                                                                 settings: updatedSettings)
                 .trackActivity(self.saveTracker)
                 .materialize()
@@ -96,6 +94,6 @@ class AdjustThermostatViewModel {
         .do(onNext: { GoogleAnalytics.log(event: .adjustThermToast) })
     
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
-        .map { ($0 as? ServiceError)?.errorDescription ?? "" }
+        .map { ($0 as? NetworkingError)?.description ?? "" }
     
 }

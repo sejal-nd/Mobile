@@ -61,6 +61,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var bankCreditCardNumberLabel: UILabel!
     @IBOutlet private weak var bankCreditCardExpiredContainer: UIView!
     @IBOutlet private weak var expiredLabel: UILabel!
+    @IBOutlet private weak var makeAPaymentButton: PrimaryButton!
     
     @IBOutlet private weak var saveAPaymentAccountButton: ButtonControl!
     @IBOutlet private weak var saveAPaymentAccountLabel: UILabel!
@@ -71,10 +72,9 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var minimumPaymentLabel: UILabel!
     
     @IBOutlet private weak var convenienceFeeLabel: UILabel!
-        
-    @IBOutlet private weak var oneTouchSliderContainer: UIView!
-    @IBOutlet private weak var oneTouchSlider: OneTouchSlider!
-
+    
+    @IBOutlet private weak var makePaymentContainer: UIView!
+    
     @IBOutlet private weak var scheduledPaymentContainer: UIView!
     @IBOutlet private weak var scheduledPaymentBox: UIView!
     @IBOutlet private weak var scheduledImageView: UIImageView!
@@ -87,8 +87,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var autoPayButtonLabel: UILabel!
     
     @IBOutlet private weak var oneTouchPayTCButton: ButtonControl!
-    @IBOutlet private weak var oneTouchPayTCButtonLabel: UILabel!
-    @IBOutlet weak var oneTouchPayTCSpacerView: UIView!
+    @IBOutlet weak var makeAPaymentSpacerView: UIView!
     
     @IBOutlet private weak var viewBillButton: UIButton!
     
@@ -156,7 +155,7 @@ class HomeBillCardView: UIView {
         
         bankCreditNumberButton.layer.borderWidth = 1
         bankCreditNumberButton.layer.cornerRadius = 15
-
+        
         bankCreditCardNumberLabel.textColor = .deepGray
         bankCreditCardNumberLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
@@ -169,7 +168,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
         tutorialButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-                
+        
         paymentDescriptionLabel.textColor = .deepGray
         paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
         
@@ -181,7 +180,7 @@ class HomeBillCardView: UIView {
         
         dueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-
+        
         slideToPayConfirmationDetailLabel.textColor = .deepGray
         slideToPayConfirmationDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
@@ -201,11 +200,6 @@ class HomeBillCardView: UIView {
         autoPayBox.layer.borderWidth = 1
         autoPayButtonLabel.textColor = .actionBlue
         autoPayButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        
-        oneTouchPayTCButtonLabel.textColor = .actionBlue
-        oneTouchPayTCButtonLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        oneTouchPayTCButtonLabel.text = NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms & Conditions.", comment: "")
-        oneTouchPayTCButton.accessibilityLabel = oneTouchPayTCButtonLabel.text
         
         viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
@@ -256,7 +250,6 @@ class HomeBillCardView: UIView {
         bankCreditCardNumberLabel.textColor = .white
         minimumPaymentLabel.textColor = .white
         convenienceFeeLabel.textColor = .white
-        oneTouchPayTCButtonLabel.textColor = .white
         billNotReadyLabel.textColor = .white
         errorLabel.textColor = .white
         maintenanceModeLabel.textColor = .white
@@ -266,7 +259,7 @@ class HomeBillCardView: UIView {
         bankCreditNumberButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         bankCreditNumberButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
         bankCreditNumberButton.shouldFadeSubviewsOnPress = true
-
+        
         expiredLabel.textColor = .white
         saveAPaymentAccountButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         saveAPaymentAccountButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
@@ -298,8 +291,8 @@ class HomeBillCardView: UIView {
             } else {
                 LoadingView.hide(animated: true)
             }
-            })
-            .disposed(by: bag)
+        })
+        .disposed(by: bag)
         
         viewModel.showLoadingState
             .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
@@ -347,7 +340,7 @@ class HomeBillCardView: UIView {
         viewModel.showBankCreditNumberButton.not().drive(bankCreditNumberButton.rx.isHidden).disposed(by: bag)
         viewModel.bankCreditButtonBorderWidth.drive(bankCreditNumberButton.rx.borderWidth).disposed(by: bag)
         viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredContainer.rx.isHidden).disposed(by: bag)
-       
+        
         viewModel.showBankCreditExpiredLabel.asObservable().subscribe(onNext: { [weak self] show in
             if show {
                 self?.bankCreditNumberButton.layer.borderColor = UIColor.errorRed.cgColor
@@ -360,12 +353,11 @@ class HomeBillCardView: UIView {
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showScheduledPayment.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showAutoPay.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).disposed(by: bag)
         
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(tutorialButton.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentDescriptionLabel.rx.isHidden).disposed(by: bag)
-        viewModel.showSaveAPaymentAccountButton.drive(oneTouchPayTCSpacerView.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.drive(makeAPaymentSpacerView.rx.isHidden).disposed(by: bag)
         
         // Subview States
         viewModel.paymentDescriptionText.drive(paymentDescriptionLabel.rx.attributedText).disposed(by: bag)
@@ -386,21 +378,15 @@ class HomeBillCardView: UIView {
         viewModel.bankCreditCardButtonAccessibilityLabel.drive(bankCreditNumberButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.minMaxPaymentAllowedText.drive(minimumPaymentLabel.rx.text).disposed(by: bag)
         viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
-        viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).disposed(by: bag)
-        viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
-
+        viewModel.showMakePaymentButton.not().drive(makePaymentContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showMakePaymentButton.not().drive(makeAPaymentSpacerView.rx.isHidden).disposed(by: bag)
+        
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButtonLabel.rx.text).disposed(by: bag)
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.slideToPayConfirmationDetailText.drive(slideToPayConfirmationDetailLabel.rx.text).disposed(by: bag)
         
-        // Actions
-        oneTouchSlider.didFinishSwipe
-            .mapTo(())
-            .do(onNext: { LoadingView.show(animated: true) })
-            .drive(viewModel.submitOneTouchPay)
-            .disposed(by: bag)
     }
     
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
@@ -413,7 +399,6 @@ class HomeBillCardView: UIView {
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
             FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bill_slide_to_pay)])
-            self?.oneTouchSlider.reset(animated: true)
         })
         .mapTo(())
     
@@ -433,9 +418,8 @@ class HomeBillCardView: UIView {
             return ($0, $1)
         }
         .map { [weak self] error, walletItem in
-            let err = error as! ServiceError
             return UIAlertController.paymentusErrorAlertController(
-                forError: err,
+                forError: error as? NetworkingError ?? .unknown,
                 walletItem: walletItem!,
                 customMessageForSessionExpired: NSLocalizedString("Please try to Slide to Pay again.", comment: ""),
                 callHandler: { _ in
@@ -450,8 +434,7 @@ class HomeBillCardView: UIView {
     func oneTouchBGELegalAlert(observer: AnyObserver<UIViewController>) -> UIAlertController {
         let alertController2 = UIAlertController(title: "",
                                                  message: NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: ""), preferredStyle: .alert)
-        alertController2.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] _ in
-            self?.oneTouchSlider.reset(animated: true)
+        alertController2.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
             observer.onCompleted()
         })
         alertController2.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
@@ -468,8 +451,8 @@ class HomeBillCardView: UIView {
                                                     message: NSLocalizedString("If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.", comment: ""), preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             return alertController
-    }
-
+        }
+    
     private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver
         .merge(tutorialButton.rx.tap.asDriver())
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
@@ -509,7 +492,8 @@ class HomeBillCardView: UIView {
                oneTouchPayErrorAlert,
                tutorialViewController,
                bgeasyViewController,
-               autoPayAlert)
+               autoPayAlert,
+               makeAPaymentReviewViewController)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> =
@@ -564,6 +548,16 @@ class HomeBillCardView: UIView {
             }
         }
         .asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var makeAPaymentReviewViewController: Driver<UIViewController> = makeAPaymentButton.rx.touchUpInside
+        .asObservable()
+        .withLatestFrom(self.viewModel.accountDetailEvents.elements())
+        .map { [weak self] accountDetail in
+            let vc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
+            vc.accountDetail = accountDetail
+            return vc
+            #warning("re-add new payment flow logic for dec release")
+        }.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(walletViewController,
                                                                                          addOTPViewController,

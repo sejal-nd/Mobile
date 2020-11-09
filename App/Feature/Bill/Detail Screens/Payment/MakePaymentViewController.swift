@@ -102,7 +102,8 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail, billingHistoryItem: billingHistoryItem)
+        viewModel = PaymentViewModel(accountDetail: accountDetail,
+                                     billingHistoryItem: billingHistoryItem)
         
         navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
         
@@ -466,7 +467,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             
             let calendarVC = PDTSimpleCalendarViewController()
             calendarVC.extendedLayoutIncludesOpaqueBars = true
-            calendarVC.calendar = .opCo
+            calendarVC.calendar = Calendar.current
             calendarVC.delegate = self
             calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
             calendarVC.selectedDate = self.viewModel.paymentDate.value

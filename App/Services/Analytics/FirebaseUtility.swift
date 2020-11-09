@@ -18,7 +18,6 @@ struct FirebaseUtility {
         case errorNonFatal
         
         case login
-        case keepMeSignedIn
         
         case autoPay
         case budgetBill
@@ -83,7 +82,6 @@ struct FirebaseUtility {
     
     /// Name of user property -> Mapped directly to Firebase
     enum UserProperty: String {
-        case isKeepMeSignedInEnabled
         case isBiometricsEnabled
         
         case isControlGroup
@@ -103,11 +101,11 @@ struct FirebaseUtility {
     
     /// This method should only be called once from App Delegate: Configures Firebase
     public static func configure() {
-        guard let filePath = Bundle.main.path(forResource: Environment.shared.firebaseConfigFile, ofType: "plist"),
+        guard let filePath = Bundle.main.path(forResource: "GoogleService-Info-\(Environment.shared.environmentName.rawValue)-Flavor\(Environment.shared.opco.rawValue)", ofType: "plist"),
             let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
                 return dLog("Failed to load Firebase Analytics")
         }
-        
+        print("FIB CONFIGURED")
         FirebaseApp.configure(options: fileopts)
     }
     

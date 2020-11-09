@@ -12,41 +12,37 @@ import RxCocoa
 class ForgotUsernameViewModel {
     let disposeBag = DisposeBag()
     
-    private var authService: AuthenticationService
-    
     let phoneNumber = BehaviorRelay(value: "")
     let identifierNumber = BehaviorRelay(value: "")
     let accountNumber = BehaviorRelay(value: "")
     
-    var maskedUsernames = [ForgotUsernameMasked]()
+    var maskedUsernames = [ForgotMaskedUsername]()
     var selectedUsernameIndex = 0
     
     let securityQuestionAnswer = BehaviorRelay(value: "")
-    
-    required init(authService: AuthenticationService) {
-        self.authService = authService
-    }
-    
+
     func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let acctNum: String? = accountNumber.value.isEmpty ? nil : accountNumber.value
         let identifier: String? = identifierNumber.value.isEmpty ? nil : identifierNumber.value
-        authService.recoverMaskedUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { usernames in
-                self.maskedUsernames = usernames
+        
+        let recoverMaskedUsernameRequest = RecoverMaskedUsernameRequest(phone: extractDigitsFrom(phoneNumber.value),
+                                                                  identifier: identifier ?? "",
+                                                                  accountNumber: acctNum ?? "")
+        
+        AnonymousService.recoverMaskedUsername(request: recoverMaskedUsernameRequest) { result in
+            switch result {
+            case .success(let forgotMaskedUsernameRequest):
+                self.maskedUsernames = forgotMaskedUsernameRequest.maskedUsernames
                 onSuccess()
                 GoogleAnalytics.log(event: .forgotUsernameAccountValidate)
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue ||
-                    serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
-                    onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
-                } else if serviceError.serviceCode == ServiceErrorCode.fnMultiAccountFound.rawValue {
+            case .failure(let error):
+                if error == .multiAccount {
                     onNeedAccountNumber()
                 } else {
-                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
+                    onError(error.title, error.description)
                 }
-            }).disposed(by: disposeBag)
+            }
+        }
     }
     
     func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
@@ -55,23 +51,25 @@ class ForgotUsernameViewModel {
         let identifier: String? = identifierNumber.value.count > 0 ? identifierNumber.value : nil
         GoogleAnalytics.log(event: .forgotUsernameSecuritySubmit)
         
-        authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value),
-                                    identifier: identifier,
-                                    accountNumber: acctNum,
-                                    questionId: maskedUsername.questionId,
-                                    questionResponse: securityQuestionAnswer.value,
-                                    cipher: maskedUsername.cipher)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { username in
+        let recoverUsernameRequest = RecoverUsernameRequest(phone: extractDigitsFrom(phoneNumber.value),
+                                                            identifier: identifier,
+                                                            accountNumber: acctNum,
+                                                            questionId: String(maskedUsername.questionId),
+                                                            securityAnswer: securityQuestionAnswer.value,
+                                                            cipherString: maskedUsername.cipher)
+        
+        AnonymousService.recoverUsername(request: recoverUsernameRequest, completion: { result in
+            switch result {
+            case .success(let username):
                 onSuccess(username)
-            }, onError: { error in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.fnProfBadSecurity.rawValue {
-                    onAnswerNoMatch(serviceError.localizedDescription)
+            case .failure(let error):
+                if error == .incorrectSecurityQuestion {
+                    onAnswerNoMatch(error.localizedDescription)
                 } else {
                     onError(error.localizedDescription)
                 }
-            }).disposed(by: disposeBag)
+            }
+        })
     }
     
     func getSecurityQuestion() -> String {

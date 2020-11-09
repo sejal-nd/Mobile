@@ -65,7 +65,7 @@ class BudgetBillingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, billService: ServiceFactory.createBillService(), alertsService: ServiceFactory.createAlertsService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail)
         
         title = NSLocalizedString("Budget Billing", comment: "")
         
@@ -76,10 +76,10 @@ class BudgetBillingViewController: UIViewController {
         
         descriptionHeaderLabel.textColor = .deepGray
         descriptionHeaderLabel.font = SystemFont.regular.of(textStyle: .body)
-        if accountDetail.isBudgetBillEnrollment {
-            descriptionHeaderLabel.text = NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.", comment: "")
+        if accountDetail.isBudgetBill {
+            descriptionHeaderLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.\n\nPlease refer to your full bill for additional details.", comment: "") : NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.", comment: "")
         } else {
-            descriptionHeaderLabel.text = NSLocalizedString("Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill. It’s a predictable monthly payment that eliminates monthly or seasonal variation.", comment: "")
+            descriptionHeaderLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("If you prefer a consistent and predictable monthly payment throughout the year that eliminates monthly or seasonal variation, Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill.", comment: "") :  NSLocalizedString("Budget Billing spreads out your utility payments evenly throughout the year, so you will know what to expect each month.", comment: "")
         }
         descriptionHeaderLabel.setLineHeight(lineHeight: 24)
         
@@ -97,7 +97,7 @@ class BudgetBillingViewController: UIViewController {
         footerLabel.text = viewModel.footerLabelText
 
         // When BGE user is enrolled they get a series of card views with information
-        if Environment.shared.opco == .bge && accountDetail.isBudgetBillEnrollment {
+        if Environment.shared.opco == .bge && accountDetail.isBudgetBill {
             for card in bgeEnrolledInfoCardViews {
                 card.layer.borderColor = UIColor.accentGray.cgColor
                 card.layer.borderWidth = 1
@@ -160,7 +160,7 @@ class BudgetBillingViewController: UIViewController {
         unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
         unenrollButton.setTitle(NSLocalizedString("Unenroll", comment: ""), for: .normal)
         
-        if accountDetail.isBudgetBillEnrollment {
+        if accountDetail.isBudgetBill {
             yourPaymentWouldBeLabel.isHidden = true
             paymentAmountView.isHidden = true
             footerContainerView.isHidden = true
@@ -173,36 +173,35 @@ class BudgetBillingViewController: UIViewController {
         loadingIndicator.isHidden = false
         bgeEnrolledInfoContainerView.isHidden = true
         stickyFooterView.isHidden = true
-        viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBillingInfo) in
+        viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBilling) in
             guard let self = self else { return }
             
-            self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
+            self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill.currencyString
             self.scrollView.isHidden = false
             self.loadingIndicator.isHidden = true
             self.stickyFooterView.isHidden = false
             
-            if Environment.shared.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
-                self.monthlyAmountLabel.text = budgetBillingInfo.budgetBill ?? budgetBillingInfo.averageMonthlyBill
+            if Environment.shared.opco == .bge && self.accountDetail.isBudgetBill {
+                self.monthlyAmountLabel.text = budgetBillingInfo.budgetBill?.currencyString ?? budgetBillingInfo.averageMonthlyBill.currencyString
                 self.lastPaymentDateLabel.text = self.accountDetail.billingInfo.lastPaymentDate?.mmDdYyyyString
-                self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff
-                self.currentBalanceLabel.text = budgetBillingInfo.budgetBillBalance
-                self.accDifferenceLabel.text = budgetBillingInfo.budgetBillDifference
+                self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff?.currencyString
+                self.currentBalanceLabel.text = budgetBillingInfo.budgetBillBalance?.currencyString
+                self.accDifferenceLabel.text = budgetBillingInfo.budgetBillDifference?.currencyString
                 self.bgeEnrolledInfoContainerView.isHidden = false
                 
-                if let budgetBillDifference = budgetBillingInfo.budgetBillDifference {
-                    if budgetBillingInfo.budgetBillDifferenceDecimal < 0 {
-                        self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
-                    } else if budgetBillingInfo.budgetBillDifferenceDecimal > 0 {
-                        self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
-                    } else {
-                        self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
-                    }
+                let budgetBillDifference = budgetBillingInfo.budgetBillDifference ?? 0
+                if budgetBillDifference < 0 {
+                    self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
+                } else if budgetBillDifference > 0 {
+                    self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
+                } else {
+                    self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
                 }
                 
-                if budgetBillingInfo.isUSPPParticipant {
-                    // USPP Participants cannot unenroll
-                    self.stickyFooterView.isHidden = true
-                }
+//                if budgetBillingInfo.isUSPPParticipant {
+//                    // USPP Participants cannot unenroll
+//                    self.stickyFooterView.isHidden = true
+//                }
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
             }
@@ -256,12 +255,12 @@ class BudgetBillingViewController: UIViewController {
     }
     
     @IBAction func onUnenrollPress() {
-        if Environment.shared.opco == .bge {
+        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
             GoogleAnalytics.log(event: .budgetBillUnEnrollOffer)
             
             FirebaseUtility.logEvent(.budgetBillingSubmit)
             
-            let message = bgeDynamicUnenrollMessage ?? ""
+            let message = Environment.shared.opco.isPHI ? "You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage." : bgeDynamicUnenrollMessage ?? ""
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
                 GoogleAnalytics.log(event: .budgetBillUnEnrollCancel) }))

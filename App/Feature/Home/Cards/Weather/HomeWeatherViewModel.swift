@@ -17,33 +17,26 @@ class HomeWeatherViewModel {
     let defaultZip : String? = Environment.shared.opco == .bge ? "20201" : nil
     
     let accountDetailEvents: Observable<Event<AccountDetail>>
-    let weatherService: WeatherService
-    let usageService: UsageService
-    
     let accountDetailTracker: ActivityTracker
     
     init(accountDetailEvents: Observable<Event<AccountDetail>>,
-         weatherService: WeatherService,
-         usageService: UsageService,
          accountDetailTracker: ActivityTracker) {
         self.accountDetailEvents = accountDetailEvents
-        self.weatherService = weatherService
-        self.usageService = usageService
         self.accountDetailTracker = accountDetailTracker
     }
     
     //MARK: - Weather
-    private lazy var weatherEvents: Observable<Event<WeatherItem>> = accountDetailEvents.elements()
+    private lazy var weatherEvents: Observable<Event<Weather>> = accountDetailEvents.elements()
         .map { [weak self] in
             guard AccountsStore.shared.currentIndex != nil else {
                 return nil
             }
             
-            return AccountsStore.shared.currentAccount.currentPremise?.zipCode ?? $0.zipCode ?? self?.defaultZip
+            return AccountsStore.shared.currentAccount.currentPremise?.townDetail.code ?? $0.zipCode ?? self?.defaultZip
         }
         .unwrap()
         .toAsyncRequest { [weak self] in
-            self?.weatherService.fetchWeather(address: $0) ?? .empty()
+            WeatherService.rx.getWeather(address: $0)
         }
     
     private(set) lazy var greeting: Driver<String?> = Observable<Int>
@@ -56,7 +49,7 @@ class HomeWeatherViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var weatherTemp: Driver<String?> = weatherEvents.elements()
-        .map { "\($0.temperature)°F" }
+        .map { "\($0.temperature ?? 0)°F" }
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
     
@@ -131,10 +124,10 @@ class HomeWeatherViewModel {
             let randomIndex = Int.random(in: 0...2)
             let tipName = weatherItem.isHighTemperature ? hotTips[randomIndex] : coldTips[randomIndex]
             
-            return this.usageService.fetchEnergyTipByName(accountNumber: accountDetail.accountNumber,
+            return UsageService.rx.fetchEnergyTipByName(accountNumber: accountDetail.accountNumber,
                                                           premiseNumber: premiseNumber,
                                                           tipName: tipName)
-                .map { $0.body }
+                .map { ($0.body ?? "") }
     }
     
     private(set) lazy var temperatureTipModalData: Driver<(title: String, image: UIImage, body: String, onClose: (() -> ())?)> = Observable
@@ -148,7 +141,7 @@ class HomeWeatherViewModel {
         .asDriver(onErrorDriveWith: .empty())
 }
 
-fileprivate extension WeatherItem {
+fileprivate extension Weather {
     
     var isHighTemperature: Bool {
         switch Environment.shared.opco {

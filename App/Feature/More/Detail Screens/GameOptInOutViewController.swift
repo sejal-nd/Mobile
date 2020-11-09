@@ -24,18 +24,16 @@ class GameOptInOutViewController: UIViewController {
     @IBOutlet var labels: [UILabel]!
     @IBOutlet weak var optInOutButton: PrimaryButton!
     
-    let gameService = ServiceFactory.createGameService()
-    
     let bag = DisposeBag()
     
     let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)! // Can't get to this screen if nil
     var optedOut = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = NSLocalizedString("BGE's Play-n-Save Pilot", comment: "")
-
+        
         for bullet in bulletPoints {
             bullet.backgroundColor = .primaryColor
             bullet.layer.cornerRadius = 2.5
@@ -48,10 +46,11 @@ class GameOptInOutViewController: UIViewController {
         
         scrollView.isHidden = true
         stickyFooterView.isHidden = true
-        gameService.fetchGameUser(accountNumber: gameAccountNumber)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] user in
-                guard let self = self, let gameUser = user else { return }
+        
+        GameService.fetchGameUser(accountNumber: gameAccountNumber) { [weak self] result in
+            switch result {
+            case .success(let gameUser):
+                guard let self = self, let gameUser = gameUser else { return }
                 self.loadingIndicator.isHidden = true
                 
                 self.optedOut = gameUser.optedOut
@@ -64,9 +63,10 @@ class GameOptInOutViewController: UIViewController {
                 
                 self.scrollView.isHidden = false
                 self.stickyFooterView.isHidden = false
-            }, onError: { _ in
-                self.loadingIndicator.isHidden = true
-            }).disposed(by: bag)
+            case .failure:
+                self?.loadingIndicator.isHidden = true
+            }
+        }
         
     }
     
@@ -79,10 +79,11 @@ class GameOptInOutViewController: UIViewController {
     @IBAction func onOptInOutPress() {
         let updateGameUser = {
             LoadingView.show()
-            let optObject = ["optedOut": !self.optedOut]
-            self.gameService.updateGameUser(accountNumber: self.gameAccountNumber, keyValues: optObject)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] gameUser in
+            
+            let gmaeUserRequest = GameUserRequest(optedOut: String(!self.optedOut))
+            GameService.updateGameUser(accountNumber: self.gameAccountNumber, request: gmaeUserRequest) { [weak self] result in
+                switch result {
+                case .success(let gameUser):
                     LoadingView.hide()
                     guard let self = self else { return }
                     
@@ -99,14 +100,15 @@ class GameOptInOutViewController: UIViewController {
                     
                     self.delegate?.gameOptInOutViewController(self, didOptOut: gameUser.optedOut)
                     self.navigationController?.popViewController(animated: true)
-                }, onError: { [weak self] err in
+                case .failure(let error):
                     LoadingView.hide()
-                    let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-                                                  message: err.localizedDescription,
+                    let alert = UIAlertController(title: error.title,
+                                                  message: error.description,
                                                   preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self?.present(alert, animated: true, completion: nil)
-                }).disposed(by: self.bag)
+                }
+            }
         }
         
         if !optedOut {

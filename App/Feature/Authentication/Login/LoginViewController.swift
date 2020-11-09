@@ -24,8 +24,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var loginFormView: UIView!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
     @IBOutlet weak var passwordTextField: FloatLabelTextField!
-    @IBOutlet weak var keepMeSignedInCheckbox: Checkbox!
-    @IBOutlet weak var keepMeSignedInLabel: UILabel!
     @IBOutlet weak var signInButton: PrimaryButton!
     @IBOutlet weak var forgotUsernamePasswordButton: UIButton!
     @IBOutlet weak var eyeballButton: UIButton!
@@ -33,7 +31,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var biometricLabel: UILabel!
     @IBOutlet weak var biometricButton: ButtonControl!
 
-    var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), registrationService: ServiceFactory.createRegistrationService())
+    var viewModel = LoginViewModel()
     var viewAlreadyAppeared = false
     var forgotUsernamePopulated = false
     
@@ -84,11 +82,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         viewModel.biometricsEnabled.asDriver().not().drive(biometricButton.rx.isHidden).disposed(by: disposeBag)
 
-        keepMeSignedInLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        keepMeSignedInLabel.textColor = .deepGray
-        keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
         var placeholderText = "Username / Email Address"
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
             placeholderText = "Email"
         } else {
             placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
@@ -131,8 +126,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         // Update the text field appearance in case data binding autofilled text
         usernameTextField.textField.sendActions(for: .editingDidEnd)
 
-        keepMeSignedInCheckbox.rx.isChecked.bind(to: viewModel.keepMeSignedIn).disposed(by: disposeBag)
-
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver().drive(onNext: { [weak self] _ in
             self?.passwordTextField.textField.becomeFirstResponder()
         }).disposed(by: disposeBag)
@@ -144,7 +137,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         forgotUsernamePasswordButton.titleLabel?.numberOfLines = 0
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
-        let forgotUsernamePasswordButtonTitle = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        let forgotUsernamePasswordButtonTitle = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
             ? "Forgot your email or password?"
             : "Forgot your username or password?"
         UIView.performWithoutAnimation { // Prevents ugly setTitle animation
@@ -159,10 +152,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         biometricLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         biometricLabel.text = biometricsString
         biometricButton.accessibilityLabel = biometricsString
-
-        keepMeSignedInLabel.isAccessibilityElement = false
-        keepMeSignedInCheckbox.isAccessibilityElement = true
-        keepMeSignedInCheckbox.accessibilityLabel = keepMeSignedInLabel.text
 
         viewModel.checkForMaintenance(onCompletion: { [weak self] in
             if let guid = UserDefaults.standard.string(forKey: UserDefaultKeys.accountVerificationDeepLinkGuid) {
@@ -224,7 +213,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             if (Environment.shared.opco != .bge && Environment.shared.opco != .delmarva && Environment.shared.opco != .pepco && Environment.shared.opco != .ace) && !viewModel.usernameIsValidEmailAddress {
                 // ComEd/PECO only email validation. If not valid email then fail before making the call
                 var message = ""
-                if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+                if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
                     message = NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
                 } else {
                     message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
@@ -253,11 +242,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                 return
             }
         }
-
-        FirebaseUtility.logEvent(.keepMeSignedIn, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: keepMeSignedInCheckbox.isChecked.description)])
         
         GoogleAnalytics.log(event: .loginOffer, dimensions: [
-            .keepMeSignedIn: keepMeSignedInCheckbox.isChecked ? "true" : "false",
             .fingerprintUsed: "disabled"
         ])
 
@@ -310,7 +296,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                             }))
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp(isStormMode: isStormMode)
+                                self?.launchMainApp(isStormMode: isStormMode, isBiometricAuthenticationAllowed: true)
                                 FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: true.description)])
                                 GoogleAnalytics.log(event: .touchIDEnable)
                             }))
@@ -369,7 +355,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         view.endEditing(true)
 
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let forgotUsername = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration)
+        let forgotUsername = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
                   ? "Forgot Email"
                   : "Forgot Username"
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString(forgotUsername, comment: ""), style: .default, handler: { _ in
@@ -427,9 +413,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         })
     }
 
-    func launchMainApp(isStormMode: Bool) {
+    func launchMainApp(isStormMode: Bool, isBiometricAuthenticationAllowed: Bool = false) {
         FirebaseUtility.setUserProperty(.isBiometricsEnabled, value: viewModel.biometricsEnabled.value.description)
-        FirebaseUtility.setUserProperty(.isKeepMeSignedInEnabled, value: viewModel.keepMeSignedIn.value.description)
 
         FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
         GoogleAnalytics.log(event: .loginComplete)
@@ -445,6 +430,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             navController.navigationItem.largeTitleDisplayMode = .never
             navController.setNavigationBarHidden(true, animated: false)
             navController.setViewControllers([viewController], animated: false)
+            if isBiometricAuthenticationAllowed {
+                let toastMessage = String(format: "%@ Enabled", viewModel.biometricsString()!)
+                viewController.showBiometricEnabledToast(message: toastMessage)
+            }
         }
     }
 
@@ -463,8 +452,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             guard let self = self else { return }
 
             GoogleAnalytics.log(event: .loginOffer,
-                                 dimensions: [.keepMeSignedIn: self.keepMeSignedInCheckbox.isChecked ? "true":"false",
-                                              .fingerprintUsed: "enabled"])
+                                 dimensions: [.fingerprintUsed: "enabled"])
 
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
