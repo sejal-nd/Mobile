@@ -16,6 +16,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     @IBOutlet weak var dueAmountDescriptionLabel: UILabel!
+    @IBOutlet weak var paymentAmountContainer: UIView!
     
     @IBOutlet weak var activeSeveranceTextContainer: UIView!
     @IBOutlet weak var youArePayingLabel: UILabel!
@@ -53,6 +54,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var selectPaymentLabel: UILabel!
     @IBOutlet weak var bankAccountNotAvailableBottomContraint: NSLayoutConstraint!
     @IBOutlet weak var bankAccountNotAvailable: NSLayoutConstraint!
+    @IBOutlet weak var editPaymentMethodIcon: UIImageView!
     
     // -- Payment Date View -- //
     @IBOutlet weak var paymentDateLabel: UILabel!
@@ -99,12 +101,23 @@ class TapToPayReviewPaymentViewController: UIViewController {
         youArePayingLabel.textColor = .deepGray
         youArePayingLabel.font = SystemFont.regular.of(size: 13)
         youArePayingLabel.text = NSLocalizedString("You’re Paying", comment: "")
+        youArePayingLabel.isAccessibilityElement = true
+        youArePayingLabel.accessibilityLabel = youArePayingLabel.text
+        
+        paymentAmountContainer.isAccessibilityElement = true
+        paymentAmountContainer.accessibilityLabel = youArePayingLabel.text
+        paymentAmountContainerButton.isAccessibilityElement = false
         
         amountLabel.textColor = .deepGray
         amountLabel.font = SystemFont.semibold.of(size: 22)
+        amountLabel.isAccessibilityElement = true
+        amountLabel.accessibilityElementsHidden = false
+        amountLabel.accessibilityLabel = amountLabel.text
         
         convenienceFeeLabel.textColor = .deepGray
         convenienceFeeLabel.font = SystemFont.regular.of(size: 12)
+        convenienceFeeLabel.isAccessibilityElement = true
+        convenienceFeeLabel.accessibilityLabel = convenienceFeeLabel.text
         
         addAdditionaRecipientButton.setTitleColor(.deepGray, for: .normal)
         addAdditionaRecipientButton.titleLabel?.font = SystemFont.medium.of(size: 16)
@@ -119,12 +132,20 @@ class TapToPayReviewPaymentViewController: UIViewController {
         termsNConditionsButton.setTitleColor(.actionBlue, for: .normal)
         termsNConditionsButton.titleLabel?.text = NSLocalizedString("Terms & Conditions.", comment: "")
         termsNConditionsButton.titleLabel?.font = SystemFont.semibold.of(size: 12)
+        termsNConditionsButton.accessibilityLabel = termsNConditionsButton.titleLabel?.text
+        
+        paymentMethodContainer.isAccessibilityElement = true
+        paymentMethodContainer.accessibilityLabel = NSLocalizedString("Payment Method", comment: "")
         
         paymentMethodAccountNumberLabel.textColor = .deepGray
         paymentMethodAccountNumberLabel.font = SystemFont.regular.of(size: 16)
+        paymentMethodAccountNumberLabel.isAccessibilityElement = true
+        paymentMethodAccountNumberLabel.accessibilityLabel = paymentMethodAccountNumberLabel.text
         
         paymentMethodNicknameLabel.textColor = .middleGray
         paymentMethodNicknameLabel.font = SystemFont.regular.of(size: 12)
+        paymentMethodNicknameLabel.isAccessibilityElement = true
+        paymentMethodNicknameLabel.accessibilityLabel = paymentMethodNicknameLabel.text
         
         bankAccount.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         bankAccount.backgroundColorOnPress = .actionBlue
@@ -159,15 +180,18 @@ class TapToPayReviewPaymentViewController: UIViewController {
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .deepGray
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.accessibilityLabel = errorLabel.text
         
         // Overpaying
         overPayingAmountLabel.textColor = .errorRed
         overPayingAmountLabel.font = SystemFont.semibold.of(size: 12)
         overPayingAmountLabel.text = NSLocalizedString("Overpaying: $0.00", comment: "")
+        overPayingAmountLabel.isAccessibilityElement = true
+        overPayingAmountLabel.accessibilityLabel = overPayingAmountLabel.text
         
         overPayingHeaderLabel.textColor = .deepGray
-           overPayingHeaderLabel.font = SystemFont.regular.of(size: 15)
-           overPayingHeaderLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your total amount due.", comment: "")
+        overPayingHeaderLabel.font = SystemFont.regular.of(size: 15)
+        overPayingHeaderLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your total amount due.", comment: "")
         
         overPayingLabel.textColor = .deepGray
         overPayingLabel.font = SystemFont.regular.of(size: 15)
@@ -180,6 +204,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
                 guard let self = self else { return }
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
+        
+        self.editPaymentAmountButton.isAccessibilityElement = true
+        self.editPaymentAmountButton.accessibilityLabel = NSLocalizedString("Edit Payment Amount", comment: "")
+        
+        self.editPaymentMethodIcon.isAccessibilityElement = true
+        self.editPaymentMethodIcon.accessibilityLabel = NSLocalizedString("Edit Payment Method", comment: "")
         
         configureAdditionalRecipientsView()
         bindViewContent()
@@ -244,6 +274,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
             guard let self = self else { return }
             self.paymentDateEditIcon.image = enableDate ? #imageLiteral(resourceName: "ic_edit") : #imageLiteral(resourceName: "ic_edit_disabled")
             self.paymentDateButton.isUserInteractionEnabled = enableDate
+            self.paymentDateEditIcon.isAccessibilityElement = true
+            self.paymentDateEditIcon.accessibilityLabel = enableDate ? NSLocalizedString("Edit Payment date", comment: "") :  NSLocalizedString("Edit Payment date, disabled", comment: "")
         }).disposed(by: bag)
         
         // OverPaying
