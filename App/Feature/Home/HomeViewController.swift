@@ -601,6 +601,7 @@ class HomeViewController: AccountPickerViewController {
                 } else if viewController is TapToPayReviewPaymentViewController {
                     let newNavController = LargeTitleNavigationController(rootViewController: viewController)
                     newNavController.modalPresentationStyle = .fullScreen
+                    FirebaseUtility.logEvent(.makePaymentStart)
                     self?.present(newNavController, animated: true, completion: nil)
                 } else {
                     self?.present(viewController, animated: true, completion: nil)
