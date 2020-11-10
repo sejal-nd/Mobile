@@ -6,7 +6,7 @@
 	<string>production</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>webcredentials:azstg.pepco.com</string>
+		<string>webcredentials:azstage.pepco.com</string>
 		<string>webcredentials:azstg-secure.pepco.com</string>
 		<string>applinks:azstg-secure.pepco.com</string>
 	</array>

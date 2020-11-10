@@ -13,7 +13,6 @@ public typealias HTTPBody = Data
 
 public enum Router {
     public enum ApiAccess: String {
-        case admin
         case anon
         case auth
         case none
