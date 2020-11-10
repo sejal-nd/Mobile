@@ -210,6 +210,9 @@ struct EventParameter {
         case verification_complete
         case answer_question_complete
         
+        case cancel
+        case autopay
+        
         case account_complete
         case resend_email
         case ebill_enroll
