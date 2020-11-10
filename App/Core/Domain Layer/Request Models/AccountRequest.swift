@@ -9,6 +9,9 @@
 import Foundation
 
 public struct AccountRequest: Encodable {
+    let firstName: String
+    let lastName: String
+    let nickName: String
     let username: String
     let password: String
     let accountNumber: String?
@@ -24,6 +27,9 @@ public struct AccountRequest: Encodable {
     let shouldEnrollEbill: String
     
     enum CodingKeys: String, CodingKey {
+        case firstName = "FirstName"
+        case lastName = "LastName"
+        case nickName = "nickname"
         case username
         case password
         case accountNumber = "account_num"

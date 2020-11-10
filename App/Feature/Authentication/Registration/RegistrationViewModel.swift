@@ -23,9 +23,9 @@ class RegistrationViewModel {
     let dueDate = BehaviorRelay<Date?>(value: nil)
     var selectedSegmentIndex = BehaviorRelay(value: 0)
     
-    let firstName = BehaviorRelay(value: "")
-    let lastName = BehaviorRelay(value: "")
-    let accountNickname = BehaviorRelay(value: "")
+    let firstName = BehaviorRelay<String?>(value: nil)
+    let lastName = BehaviorRelay<String?>(value: nil)
+    let accountNickname = BehaviorRelay<String?>(value: nil)
 
     let username = BehaviorRelay(value: "")
     let newPassword = BehaviorRelay(value: "")
@@ -138,7 +138,10 @@ class RegistrationViewModel {
     
     func registerUser(onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let accountNumber = self.hasMultipleAccount ? selectedAccount.value?.accountNumber ?? "": self.accountNumber.value
-        let accountRequest = AccountRequest(username: username.value,
+        let accountRequest = AccountRequest(firstName: firstName.value ?? "",
+                                            lastName: lastName.value ?? "",
+                                            nickName: accountNickname.value ?? "",
+                                            username: username.value,
                                             password: newPassword.value,
                                             accountNumber: accountNumber,
                                             identifier: identifierNumber.value,
@@ -256,10 +259,10 @@ class RegistrationViewModel {
         self.username.asDriver().map { !$0.isEmpty }
     
     private(set) lazy var firstNameHasText: Driver<Bool> =
-          self.firstName.asDriver().map { !$0.isEmpty }
+        self.firstName.asDriver().map { !($0?.isEmpty ?? true) }
     
     private(set) lazy var lastNameHasText: Driver<Bool> =
-          self.lastName.asDriver().map { !$0.isEmpty }
+        self.lastName.asDriver().map { !($0?.isEmpty ?? true) }
     
     private(set) lazy var newUsernameIsValidBool: Driver<Bool> =
         self.username.asDriver().map { text -> Bool in
@@ -311,8 +314,8 @@ class RegistrationViewModel {
     
     private(set) lazy var firstNameIsValid: Driver<String?> =
         self.firstName.asDriver().map { text -> String? in
-            if !text.isEmpty {
-                if text.count > kMaxUsernameChars {
+            if !(text?.isEmpty ?? true) {
+                if text?.count > kMaxUsernameChars {
                     return "Maximum of 255 characters allowed"
                 }
             } else {
@@ -323,8 +326,8 @@ class RegistrationViewModel {
     
     private(set) lazy var lastNameIsValid: Driver<String?> =
         self.lastName.asDriver().map { text -> String? in
-            if !text.isEmpty {
-                if text.count > kMaxUsernameChars {
+            if !(text?.isEmpty ?? true) {
+                if text?.count > kMaxUsernameChars {
                     return "Maximum of 255 characters allowed"
                 }
             } else {
