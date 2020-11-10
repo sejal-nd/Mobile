@@ -393,6 +393,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         collapseButton.isSelected = false
         collapseButton.setImage(#imageLiteral(resourceName: "ic_caret_down"), for: .normal)
         collapseButton.setImage(#imageLiteral(resourceName: "ic_caret_up"), for: .selected)
+        collapseButton.isAccessibilityElement = false
         
         alternateEmailNumberView.isHidden = true
         alternateEmailNumberView.backgroundColor = .softGray
