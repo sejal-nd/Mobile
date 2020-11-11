@@ -67,10 +67,11 @@ class BGEAutoPayViewModel {
                 self.isError.accept(false)
                 onSuccess?()
             }, onError: { [weak self] error in
-                guard let self = self else { return }
+                guard let self = self,
+                      let networkingError = error as? NetworkingError else { return }
                 self.isLoading.accept(false)
                 self.isError.accept(true)
-                onError?(error.localizedDescription)
+                onError?(networkingError.description)
             })
             .disposed(by: disposeBag)
     }

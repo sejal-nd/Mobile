@@ -67,7 +67,7 @@ class BudgetBillingViewModel {
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
                 onSuccess()
             case .failure(let error):
-                onError(error.localizedDescription)
+                onError(error.description)
             }
         }
     }

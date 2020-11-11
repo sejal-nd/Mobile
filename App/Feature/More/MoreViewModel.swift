@@ -58,7 +58,7 @@ class MoreViewModel {
                                                 BiometricService.setStoredPassword(password: self.password.value)
                                                 onSuccess()
                                             case .failure(let error):
-                                                onError(error.localizedDescription)
+                                                onError(error.description)
                                             }
         }
     }

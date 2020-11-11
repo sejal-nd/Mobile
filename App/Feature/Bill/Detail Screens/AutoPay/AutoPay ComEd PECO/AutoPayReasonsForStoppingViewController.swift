@@ -71,9 +71,9 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
         LoadingView.show()
         
         FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enrolled_start)])
-
+        
         FirebaseUtility.logEvent(.autoPaySubmit)
-
+        
         viewModel.unenroll()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] enrolled in
@@ -89,12 +89,13 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
                 self.dismissModal()
             }, onError: { [weak self] error in
                 LoadingView.hide()
-                guard let self = self else { return }
+                guard let self = self,
+                      let networkingError = error as? NetworkingError else { return }
                 
                 FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
                 
                 let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-                                                        message: error.localizedDescription, preferredStyle: .alert)
+                                                        message: networkingError.description, preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
             })
