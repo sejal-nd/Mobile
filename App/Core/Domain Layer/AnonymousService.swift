@@ -9,7 +9,7 @@
 import Foundation
 
 enum AnonymousService {
-    static func checkMinVersion(completion: @escaping (Result<String, Error>) -> ()) {
+    static func checkMinVersion(completion: @escaping (Result<String, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .minVersion) { (result: Result<MinimumVersion, NetworkingError>) in
             switch result {
             case .success(let data):
