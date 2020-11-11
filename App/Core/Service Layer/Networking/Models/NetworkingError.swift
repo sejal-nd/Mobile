@@ -185,7 +185,7 @@ extension NetworkingError: LocalizedError {
         case .profileNotFound:
             return NSLocalizedString("Your verification link is no longer valid", comment: "")
         case .accountNotFound:
-            return NSLocalizedString("No Account Found", comment: "Error title")
+            return NSLocalizedString("We're sorry, we weren't able to process your request.", comment: "Error title")
         case .lockedForgotPassword:
             return NSLocalizedString("Account Locked", comment: "Error title")
         case .passwordProtected:
@@ -222,7 +222,9 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Payment Issue", comment: "Error title")
         case .walletItemIdTimeout:
             return NSLocalizedString("Password Protected Account", comment: "Error title")
-        case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .noProfileExists, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+        case .noProfileExists:
+            return NSLocalizedString("We're sorry, we weren't able to process your request.", comment: "Error title")
+        case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Sorry, That Didn't Quite Work.", comment: "Error title")
         }
     }
@@ -259,7 +261,7 @@ extension NetworkingError: LocalizedError {
         case .profileNotFound:
             return NSLocalizedString("If you have already verified your account, please sign in to access your account. If your link has expired, please re-register.", comment: "")
         case .accountNotFound:
-            return NSLocalizedString("Sorry, we couldn’t find an account with that email address.", comment: "Error description")
+            return NSLocalizedString("The information entered does not match our records. Please try again.", comment: "Error description")
         case .lockedForgotPassword:
             return NSLocalizedString("Access to this account is locked because of too many incorrect security question attempts. It may be locked out for the next 15 minutes. Please try again later.", comment: "Error description")
         case .passwordProtected:
@@ -296,7 +298,9 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Please try again later.", comment: "Error description")
         case .walletItemIdTimeout:
             return NSLocalizedString("Your account is password protected and can’t be accessed through this app.", comment: "Error description")
-        case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .noProfileExists, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+        case .noProfileExists:
+            return NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: "Error description")
+        case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Please try again later.", comment: "Error description")
         }
     }
