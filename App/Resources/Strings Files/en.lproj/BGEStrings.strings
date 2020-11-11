@@ -8,7 +8,7 @@
 
 "%@ of the total is due immediately." = "%@ of the total is past due.";
 
-"Total Amount Due Immediately" = "Total Amount Past Due";
+"Total Amount Due Immediately" = "Total Amount Due Immediately";
 
 "%@ of the total is due immediately for your multi-premise account." = "%@ of the total is past due for your multi-premise account.";
 
