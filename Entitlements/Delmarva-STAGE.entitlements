@@ -6,7 +6,7 @@
 	<string>production</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>webcredentials:azstg.delmarva.com</string>
+		<string>webcredentials:azstage.delmarva.com</string>
 		<string>applinks:azstg-secure.delmarva.com</string>
 		<string>webcredentials:azstg-secure.delmarva.com</string>
 	</array>
