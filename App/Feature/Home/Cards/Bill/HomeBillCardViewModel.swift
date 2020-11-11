@@ -488,7 +488,7 @@ class HomeBillCardViewModel {
             case (false, true):
                 string = NSLocalizedString("The total amount must be paid immediately to catch up on your DPA.", comment: "")
             case (false, false):
-                let format = "%@ of the total must be paid immediately to catch up on your DPA."
+                let format = "%@ of the total is due immediately to catch up on your DPA."
                 string = String.localizedStringWithFormat(format, amountString)
             }
             
