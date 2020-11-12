@@ -31,74 +31,46 @@ public struct AlertPreferencesRequest: Encodable {
         var preferences = [AlertRequest]()
         
         if !Environment.shared.opco.isPHI {
-            if alertPreferences.highUsage {
-                preferences.append(AlertRequest(programName: "High Usage Residential Alert",
-                                                          alertThreshold: alertPreferences.alertThreshold))
+            preferences.append(AlertRequest(isActive: alertPreferences.highUsage, programName: "High Usage Residential Alert",
+                                                      alertThreshold: alertPreferences.alertThreshold))
+            
+            if let smartEnergyRewardsActive = alertPreferences.smartEnergyRewards {
+                preferences.append(AlertRequest(isActive: smartEnergyRewardsActive, programName: "Energy Savings Day Alert"))
             }
             
-            if alertPreferences.smartEnergyRewards ?? false {
-                preferences.append(AlertRequest(programName: "Energy Savings Day Alert"))
+            if let energySavingsDayResultsActive = alertPreferences.energySavingsDayResults {
+                preferences.append(AlertRequest(isActive: energySavingsDayResultsActive, programName: "Energy Savings Day Results"))
             }
             
-            if alertPreferences.energySavingsDayResults ?? false {
-                preferences.append(AlertRequest(programName: "Energy Savings Day Results"))
+            if let peakTimeSavingsActuve = alertPreferences.peakTimeSavings {
+                preferences.append(AlertRequest(isActive: peakTimeSavingsActuve, programName: "Peak Time Savings"))
             }
             
-            if alertPreferences.peakTimeSavings ?? false {
-                preferences.append(AlertRequest(programName: "Peak Time Savings"))
+            preferences.append(AlertRequest(isActive: alertPreferences.outage, programName: "Outage Notifications"))
+            preferences.append(AlertRequest(isActive: alertPreferences.scheduledMaint, programName: "Planned Outage"))
+            preferences.append(AlertRequest(isActive: alertPreferences.severeWeather, programName: "Severe Weather"))
+            
+            if Environment.shared.opco == .bge {
+                preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: "Paperless Billing"))
+            } else {
+                preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: "Bill is Ready"))
             }
             
-            if alertPreferences.outage {
-                preferences.append(AlertRequest(programName: "Outage Notifications"))
+            if Environment.shared.opco == .bge {
+                preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentDue, programName: "Payment Reminder", daysPrior: alertPreferences.paymentDueDaysBefore))
+            } else {
+                preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentDue, programName: "Payment Reminders", daysPrior: alertPreferences.paymentDueDaysBefore))
             }
             
-            if alertPreferences.scheduledMaint {
-                preferences.append(AlertRequest(programName: "Planned Outage"))
-            }
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentPosted, programName: "Payment Posted"))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentPastDue, programName: "Payment Past Due"))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.budgetBilling, programName: "Budget Billing"))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.appointmentTracking, programName: "Customer Appointments"))
             
-            if alertPreferences.severeWeather {
-                preferences.append(AlertRequest(programName: "Severe Weather"))
-            }
-            
-            if alertPreferences.billReady {
-                if Environment.shared.opco == .bge {
-                    preferences.append(AlertRequest(programName: "Paperless Billing"))
-                } else {
-                    preferences.append(AlertRequest(programName: "Bill is Ready"))
-                }
-            }
-            
-            if alertPreferences.paymentDue {
-                if Environment.shared.opco == .bge {
-                    preferences.append(AlertPreferencesRequest.AlertRequest(programName: "Payment Reminder", daysPrior: alertPreferences.paymentDueDaysBefore))
-                } else {
-                    preferences.append(AlertPreferencesRequest.AlertRequest(programName: "Payment Reminders", daysPrior: alertPreferences.paymentDueDaysBefore))
-                }
-            }
-            
-            if alertPreferences.paymentPosted {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: "Payment Posted"))
-            }
-            
-            if alertPreferences.paymentPastDue {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: "Payment Past Due"))
-            }
-            
-            if alertPreferences.budgetBilling {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: "Budget Billing"))
-            }
-            
-            if alertPreferences.appointmentTracking {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: "Customer Appointments"))
-            }
-            
-            if alertPreferences.forYourInfo {
-                if Environment.shared.opco == .bge {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: "News"))
-                } else {
-                    preferences.append(AlertPreferencesRequest.AlertRequest(programName: "Marketing"))
-
-                }
+            if Environment.shared.opco == .bge {
+                preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: "News"))
+            } else {
+                preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: "Marketing"))
             }
         }
         else {
@@ -114,36 +86,14 @@ public struct AlertPreferencesRequest: Encodable {
             let budgetBillingProgramName = "Budget Billing" + " " + opcoIdentifier
             let forYourInfoProgramName = "News" + " " + opcoIdentifier
             
-            if alertPreferences.outage {
-                preferences.append(AlertRequest(programName: outageProgramName))
-            }
-            
-            if alertPreferences.severeWeather {
-                preferences.append(AlertRequest(programName: severeWeatherProgramName))
-            }
-            if alertPreferences.billReady {
-                preferences.append(AlertRequest(programName: billReadyProgramName))
-            }
-            
-            if alertPreferences.paymentDue {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: paymentDueProgramName, daysPrior: alertPreferences.paymentDueDaysBefore))
-            }
-            
-            if alertPreferences.paymentPosted {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: paymentPostedProgramName))
-            }
-            
-            if alertPreferences.paymentPastDue {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: paymentPastDueProgramName))
-            }
-            
-            if alertPreferences.budgetBilling {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: budgetBillingProgramName))
-            }
-            
-            if alertPreferences.forYourInfo {
-                preferences.append(AlertPreferencesRequest.AlertRequest(programName: forYourInfoProgramName))
-            }
+            preferences.append(AlertRequest(isActive: alertPreferences.outage, programName: outageProgramName))
+            preferences.append(AlertRequest(isActive: alertPreferences.severeWeather, programName: severeWeatherProgramName))
+            preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: billReadyProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentDue, programName: paymentDueProgramName, daysPrior: alertPreferences.paymentDueDaysBefore))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentPosted, programName: paymentPostedProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentPastDue, programName: paymentPastDueProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.budgetBilling, programName: budgetBillingProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: forYourInfoProgramName))
         }
         
         alertPreferenceRequests = preferences

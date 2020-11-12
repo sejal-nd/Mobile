@@ -13,13 +13,13 @@ struct SplashViewModel{
     
     func checkAppVersion(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
         var isOutOfDate = false
-        AnonymousService.checkMinVersion { (result: Result<String, Error>) in
+        AnonymousService.checkMinVersion { (result: Result<String, NetworkingError>) in
             switch result {
             case .success(let minVersion):
                 isOutOfDate = self.checkIfOutOfDate(minVersion: minVersion)
                 onSuccess(isOutOfDate)
             case .failure(let error):
-                onError(error.localizedDescription)
+                onError(error.description)
             }
         }
     }
