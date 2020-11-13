@@ -64,9 +64,9 @@ class ForgotUsernameViewModel {
                 onSuccess(username)
             case .failure(let error):
                 if error == .incorrectSecurityQuestion {
-                    onAnswerNoMatch(error.localizedDescription)
+                    onAnswerNoMatch(error.description)
                 } else {
-                    onError(error.localizedDescription)
+                    onError(error.description)
                 }
             }
         })
