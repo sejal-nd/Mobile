@@ -51,9 +51,9 @@ public struct AlertPreferencesRequest: Encodable {
             preferences.append(AlertRequest(isActive: alertPreferences.severeWeather, programName: "Severe Weather"))
             
             if Environment.shared.opco == .bge {
-                preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: "Paperless Billing"))
-            } else {
                 preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: "Bill is Ready"))
+            } else {
+                preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: "Paperless Billing"))
             }
             
             if Environment.shared.opco == .bge {
@@ -68,9 +68,9 @@ public struct AlertPreferencesRequest: Encodable {
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.appointmentTracking, programName: "Customer Appointments"))
             
             if Environment.shared.opco == .bge {
-                preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: "News"))
-            } else {
                 preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: "Marketing"))
+            } else {
+                preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: "News"))
             }
         }
         else {
