@@ -910,13 +910,13 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A confirmation email will be sent to you shortly." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lh-aU-J3e">
-                                                                <rect key="frame" x="0.0" y="158.5" width="374" height="22"/>
+                                                                <rect key="frame" x="0.0" y="165.5" width="374" height="22"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="mol-eP-9SS">
-                                                                <rect key="frame" x="0.0" y="220.5" width="374" height="270.5"/>
+                                                                <rect key="frame" x="0.0" y="227.5" width="374" height="263.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFp-2D-igx" userLabel="Payment Info View">
                                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="152"/>
@@ -1055,7 +1055,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zM-zF-QjM">
-                                                                        <rect key="frame" x="0.0" y="254" width="374" height="16.5"/>
+                                                                        <rect key="frame" x="0.0" y="247" width="374" height="16.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1074,7 +1074,7 @@
                                                             <constraint firstItem="mol-eP-9SS" firstAttribute="leading" secondItem="vzm-NS-YqJ" secondAttribute="leading" id="1oY-DU-Riu"/>
                                                             <constraint firstItem="mol-eP-9SS" firstAttribute="top" secondItem="1Lh-aU-J3e" secondAttribute="bottom" constant="40" id="6Xk-y5-Rhc"/>
                                                             <constraint firstAttribute="bottom" secondItem="mol-eP-9SS" secondAttribute="bottom" id="B2N-om-rJv"/>
-                                                            <constraint firstItem="1Lh-aU-J3e" firstAttribute="top" secondItem="hqk-rB-zQF" secondAttribute="bottom" constant="5" id="HQ0-0t-ZuT"/>
+                                                            <constraint firstItem="1Lh-aU-J3e" firstAttribute="top" secondItem="hqk-rB-zQF" secondAttribute="bottom" constant="12" id="HQ0-0t-ZuT"/>
                                                             <constraint firstAttribute="trailing" secondItem="hqk-rB-zQF" secondAttribute="trailing" id="Tfi-kQ-vvb"/>
                                                             <constraint firstItem="hqk-rB-zQF" firstAttribute="leading" secondItem="vzm-NS-YqJ" secondAttribute="leading" id="XFz-FG-RFO"/>
                                                             <constraint firstItem="1Lh-aU-J3e" firstAttribute="leading" secondItem="vzm-NS-YqJ" secondAttribute="leading" id="aWk-nD-yTc"/>
