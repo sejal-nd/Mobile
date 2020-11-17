@@ -148,7 +148,7 @@ extension OutageStatusView {
 
         if AccountsStore.shared.accounts != nil && !AccountsStore.shared.accounts.isEmpty {
             let currentAccount = AccountsStore.shared.currentAccount
-
+            isOutageStatusInactive = outageStatus.isInactive
             if isOutageStatusInactive {
                 return .inactive
             } else if currentAccount.isFinaled || currentAccount.serviceType == nil {

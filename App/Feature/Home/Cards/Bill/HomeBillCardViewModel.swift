@@ -277,12 +277,12 @@ class HomeBillCardViewModel {
                 return .paymentPending
             }
             
-            if billingInfo.netDueAmount > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
-                return .billReadyAutoPay
-            }
-            
             if scheduledPayment?.amount > 0 {
                 return .paymentScheduled
+            }
+            
+            if billingInfo.netDueAmount > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
+                return .billReadyAutoPay
             }
             
             if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {

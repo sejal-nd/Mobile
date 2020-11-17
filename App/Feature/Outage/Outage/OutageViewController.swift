@@ -165,6 +165,7 @@ class OutageViewController: AccountPickerViewController {
     private func loadOutageStatus(sender: UIRefreshControl? = nil) {
         viewModel.fetchData(onSuccess: { [weak self] outageStatus in
             
+            self?.viewModel.isOutageStatusInactive = outageStatus.isInactive
             // Pull to Refresh
             if sender != nil {
                 sender?.endRefreshing()
