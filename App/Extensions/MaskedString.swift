@@ -23,6 +23,9 @@ extension String {
     }
     
     func last4Digits() -> String {
+        if self.count < 4 {
+            return self
+        }
         let endIndex = self.index(self.endIndex, offsetBy: -4)
         return self.replacingCharacters(in: self.startIndex..<endIndex, with: "")
     }

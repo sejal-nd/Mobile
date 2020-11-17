@@ -416,11 +416,11 @@ class HomeBillCardView: UIView {
         .filter { !$0.isBGEasy && !StormModeStatus.shared.isOn }
         .map { accountDetail in
             switch Environment.shared.opco {
-            case .bge:
+            case .ace, .bge, .delmarva, .pepco:
                 let vc = UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
                 vc.accountDetail = accountDetail
                 return vc
-            case .peco, .comEd, .pepco, .ace, .delmarva:
+            case .peco, .comEd:
                 let vc = UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "AutoPay") as! AutoPayViewController
                 vc.accountDetail = accountDetail
                 return vc
