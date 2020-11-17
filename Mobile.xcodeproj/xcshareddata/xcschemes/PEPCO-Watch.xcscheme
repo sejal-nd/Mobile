@@ -54,8 +54,10 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/$(BUILD_DISPLAY_NAME)">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
@@ -63,7 +65,7 @@
             BlueprintName = "EUMobile-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-shouldLogAPI"
@@ -77,8 +79,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/$(BUILD_DISPLAY_NAME)">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
@@ -86,7 +90,16 @@
             BlueprintName = "EUMobile-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "35F9DD222333C33F00AAA2B2"
+            BuildableName = "EUMobile-Watch.app"
+            BlueprintName = "EUMobile-Watch"
+            ReferencedContainer = "container:Mobile.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Staging-PEPCO">

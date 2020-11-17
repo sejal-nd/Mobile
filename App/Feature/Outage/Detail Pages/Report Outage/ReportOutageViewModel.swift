@@ -190,7 +190,7 @@ class ReportOutageViewModel {
             case .success(let reportedOutage):
                 onSuccess(reportedOutage)
             case .failure(let error):
-                onError(error.localizedDescription)
+                onError(error.description)
             }
         }
     }

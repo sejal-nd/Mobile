@@ -71,15 +71,7 @@ public enum NetworkingLayer {
         
         var retryCount = 3
         
-        #warning("This may create an infinite loop")
         // Check refresh token
-        
-        if isRefreshingToken {
-            DispatchQueue.global(qos: .default).async {
-                refreshTokenDispatchGroup.wait()
-            }
-        }
-        
         if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Environment.shared.environmentName != .aut {
             // Refresh expired
             dLog("❌ Refresh Token Expired... Logging user out...")
@@ -93,7 +85,7 @@ public enum NetworkingLayer {
             // Decrease retry counter
             retryCount -= 1
             
-            refreshToken(session: session, urlRequest: urlRequest, completion: completion)
+            refreshToken(router: router, completion: completion)
         } else {
             // Perform initial request
             NetworkingLayer.dataTask(session: session,
@@ -102,14 +94,12 @@ public enum NetworkingLayer {
         }
     }
     
-    private static func refreshToken<T: Decodable>(session: URLSession, urlRequest: URLRequest, completion: @escaping (Result<T, NetworkingError>) -> ()) {
+    private static func refreshToken<T: Decodable>(router: Router, completion: @escaping (Result<T, NetworkingError>) -> ()) {
         DispatchQueue.global(qos: .default).async {
             if isRefreshingToken {
                 refreshTokenDispatchGroup.wait()
                 DispatchQueue.main.async {
-                    NetworkingLayer.dataTask(session: session,
-                                             urlRequest: urlRequest,
-                                             completion: completion)
+                    NetworkingLayer.request(router: router, completion: completion)
                 }
                 return
             }
@@ -132,9 +122,7 @@ public enum NetworkingLayer {
                         
                         // Perform initial request
                         DispatchQueue.main.async {
-                            NetworkingLayer.dataTask(session: session,
-                                                     urlRequest: urlRequest,
-                                                     completion: completion)
+                            NetworkingLayer.request(router: router, completion: completion)
                         }
                     } catch {
                         DispatchQueue.main.async {

@@ -148,7 +148,11 @@ class PaperlessEBillViewModel {
             .subscribe(onNext: { responseArray in
                 onSuccess(changedStatus)
             }, onError: { error in
-                onError(error.localizedDescription)
+                guard let networkingError = error as? NetworkingError else {
+                    onError("Please try again later.")
+                    return
+                }
+                onError(networkingError.description)
             })
             .disposed(by: bag)
     }
