@@ -276,6 +276,7 @@ class HomeViewController: AccountPickerViewController {
         
         // If update, show the update view.
         // Hide weather and personalize button at the top.
+        // For PHI the update view will come at the second position for other EU apps it will be at the top most position after account picker
         viewModel.importantUpdate
             .filter { $0 != nil }
             .drive(onNext: { [weak self] update in
@@ -287,7 +288,7 @@ class HomeViewController: AccountPickerViewController {
                     importantUpdateView.configure(withUpdate: update)
                 } else {
                     let importantUpdateView = HomeUpdateView.create(withUpdate: update)
-                    self.mainStackView.insertArrangedSubview(importantUpdateView, at: 0)
+                    self.mainStackView.insertArrangedSubview(importantUpdateView, at: !Environment.shared.opco.isPHI ? 0 : 1)
                     importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
                     importantUpdateView.button.rx.touchUpInside.asDriver()
                         .drive(onNext: { [weak self] in
