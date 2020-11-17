@@ -5,3 +5,15 @@
   Created by Cody Dillon on 4/2/20.
   Copyright © 2020 Exelon Corporation. All rights reserved.
 */
+
+"%@ of the total is due immediately." = "%@ of the total is past due.";
+
+"Total Amount Due Immediately" = "Total Amount Due Immediately";
+
+"%@ of the total is due immediately for your multi-premise account." = "%@ of the total is past due for your multi-premise account.";
+
+"Due Immediately" = "Past Due";
+
+"If you enroll today, AutoPay will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due immediately." = "If you enroll today, AutoPay will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due.";
+
+"You are successfully enrolled in AutoPay and will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due immediately." = "You are successfully enrolled in AutoPay and will begin with your next bill. You must submit a separate payment for your account balance of %@.";

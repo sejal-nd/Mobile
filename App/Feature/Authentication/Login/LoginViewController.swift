@@ -82,12 +82,13 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         viewModel.biometricsEnabled.asDriver().not().drive(biometricButton.rx.isHidden).disposed(by: disposeBag)
 
-        var placeholderText = "Username / Email Address"
+        let placeholderText: String
         if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
-            placeholderText = "Email"
+            placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Email"
         } else {
-            placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
+            placeholderText = "Username / Email Address"
         }
+        
         usernameTextField.placeholder = NSLocalizedString(placeholderText, comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .next
@@ -137,9 +138,14 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         forgotUsernamePasswordButton.titleLabel?.numberOfLines = 0
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
-        let forgotUsernamePasswordButtonTitle = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
-            ? "Forgot your email or password?"
-            : "Forgot your username or password?"
+        
+        let forgotUsernamePasswordButtonTitle: String
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
+            forgotUsernamePasswordButtonTitle = Environment.shared.opco.isPHI ? "Forgot your username or password?" : "Forgot your email or password?"
+        } else {
+            forgotUsernamePasswordButtonTitle = "Forgot your username or password?"
+        }
+        
         UIView.performWithoutAnimation { // Prevents ugly setTitle animation
             self.forgotUsernamePasswordButton.setTitle(NSLocalizedString(forgotUsernamePasswordButtonTitle, comment: ""), for: .normal)
             self.forgotUsernamePasswordButton.layoutIfNeeded()
@@ -355,9 +361,14 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         view.endEditing(true)
 
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let forgotUsername = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
-                  ? "Forgot Email"
-                  : "Forgot Username"
+        
+        let forgotUsername: String
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
+            forgotUsername = Environment.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
+        } else {
+            forgotUsername = "Forgot Username"
+        }
+        
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString(forgotUsername, comment: ""), style: .default, handler: { _ in
             self.forgotUsername()
         }))

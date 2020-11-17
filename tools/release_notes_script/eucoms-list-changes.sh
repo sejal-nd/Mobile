@@ -29,7 +29,7 @@ for i in "$@"; do
     shift
 done
 
-AZURE_DEVOPS_URL=https://exelontfs.visualstudio.com/${TARGET_PROJECT}/_git/${TARGET_REPO}
+AZURE_DEVOPS_URL=https://dev.azure.com/exelontfs/${TARGET_PROJECT}/_git/${TARGET_REPO}
 
 
 if [ -z "$TOKEN" ]; then
@@ -48,19 +48,19 @@ if [ -z "$PULL_REQUEST_NUMBER" ]; then
     git log --first-parent ${TARGET_BRANCH}..${SOURCE_BRANCH} | \
     grep -i "work items" | \
     sed 's/Related work items: //' | \
-    perl -pe "s,#(\d+),https://exelontfs.visualstudio.com/${TARGET_PROJECT}/_workitems/edit/\$1,g; s/,/\n/g; s/ +//g;" | \
+    perl -pe "s,#(\d+),https://dev.azure.com/exelontfs/${TARGET_PROJECT}/_workitems/edit/\$1,g; s/,/\n/g; s/ +//g;" | \
     sort | \
     uniq > $ROOT/work-items.txt
 
     git log --first-parent ${TARGET_BRANCH}..${SOURCE_BRANCH} | \
     grep -i "merged pr" | \
-    perl -ne "print \"https://exelontfs.visualstudio.com/${TARGET_PROJECT}/_git/${TARGET_REPO}/pullrequest/\${1}\n\" if m/merged pr (\d+)/i;" |
+    perl -ne "print \"https://dev.azure.com/exelontfs/${TARGET_PROJECT}/_git/${TARGET_REPO}/pullrequest/\${1}\n\" if m/merged pr (\d+)/i;" |
     sort | \
     uniq > $ROOT/pull-reqs.txt
 else
     
     # We are only looking at a single specified pull request instead of basing it on git commit logs
-    echo "https://exelontfs.visualstudio.com/${TARGET_PROJECT}/_git/${TARGET_REPO}/pullrequest/${PULL_REQUEST_NUMBER}" > $ROOT/pull-reqs.txt
+    echo "https://dev.azure.com/exelontfs/${TARGET_PROJECT}/_git/${TARGET_REPO}/pullrequest/${PULL_REQUEST_NUMBER}" > $ROOT/pull-reqs.txt
 
 fi
 
@@ -122,7 +122,7 @@ while read line; do
         while read workitemid; do
             item="$(basename $workitemid)"
             
-            echo "https://exelontfs.visualstudio.com/${TARGET_PROJECT}/_workitems/edit/${item} " >> $ROOT/work-items.txt
+            echo "https://dev.azure.com/exelontfs/${TARGET_PROJECT}/_workitems/edit/${item} " >> $ROOT/work-items.txt
             
         done < $ROOT/pr_work_item_ids.txt
     fi

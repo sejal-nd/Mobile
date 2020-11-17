@@ -30,7 +30,7 @@ class TapToPayViewModel {
     let paymentDate: BehaviorRelay<Date>
     let selectedDate: BehaviorRelay<Date>
     
-    let editpaymentAmountValue = BehaviorRelay<Double>(value: 0)
+    var editpaymentAmountValue = BehaviorRelay<Double>(value: 0)
     
     let paymentId = BehaviorRelay<String?>(value: nil)
     let wouldBeSelectedWalletItemIsExpired = BehaviorRelay(value: false)
@@ -61,6 +61,7 @@ class TapToPayViewModel {
         
         // If editing, default to the amount paid. If not editing, default to total amount due
         paymentAmount = BehaviorRelay(value: billingHistoryItem?.amountPaid ?? netDueAmount)
+        editpaymentAmountValue = BehaviorRelay(value: billingHistoryItem?.amountPaid ?? netDueAmount)
         
         // May be updated later...see computeDefaultPaymentDate()
         paymentDate = BehaviorRelay(value: billingHistoryItem?.date ?? .now)
@@ -271,6 +272,14 @@ class TapToPayViewModel {
                 return paymentAmount.currencyString
             }
     }
+    
+    private(set) lazy var editPaymentDisplayString: Driver<String?> = Driver
+        .combineLatest(editpaymentAmountValue.asDriver(), reviewPaymentShouldShowConvenienceFee)
+        .map { [weak self] editPaymentAmount, showConvenienceFeeBox in
+            guard let self = self else { return nil }
+            return editPaymentAmount.currencyString
+    }
+    
     
     var convenienceFee: Double {
         return accountDetail.value.billingInfo.convenienceFee
@@ -577,7 +586,7 @@ class TapToPayViewModel {
     
     private(set) lazy var shouldShowSelectPaymentAmount: Driver<Bool> = self.selectedWalletItem.asDriver().map { [weak self] in
         guard let self = self else { return false }
-        guard let bankOrCard = $0?.bankOrCard else { return false }
+        let bankOrCard = $0?.bankOrCard == .bank ? BankOrCard.bank : BankOrCard.card
         
         if self.paymentAmounts.isEmpty {
             return false
@@ -600,8 +609,7 @@ class TapToPayViewModel {
                                     editpaymentAmountValue.asDriver(),
                                     amountDue.asDriver())
         { (walletItem, accountDetail, paymentAmount, amountDue) -> String? in
-            guard let walletItem = walletItem else { return nil }
-            if walletItem.bankOrCard == .bank {
+            if let walletItem = walletItem, walletItem.bankOrCard == .bank {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
                 if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
@@ -643,8 +651,8 @@ class TapToPayViewModel {
     }()
     
     private(set) lazy var paymentFieldsValid: Driver<Bool> = Driver
-        .combineLatest(shouldShowContent, paymentAmountErrorMessage, isPaymentDateValid) {
-            return $0 && $1 == nil && $2
+        .combineLatest(shouldShowContent, paymentAmountErrorMessage) {
+            return $0 && $1 == nil
     }
     
     private(set) lazy var isOverpaying: Driver<Bool> = {

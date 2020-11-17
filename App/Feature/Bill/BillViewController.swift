@@ -779,9 +779,22 @@ class BillViewController: AccountPickerViewController {
                 let (titleOpt, messageOpt, accountDetail) = alertInfo
                 let goToMakePayment = { [weak self] in
                     guard let self = self else { return }
-                    let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
-                    paymentVc.accountDetail = accountDetail
-                    self.navigationController?.pushViewController(paymentVc, animated: true)
+                    switch Environment.shared.opco {
+                    case .ace, .delmarva, .pepco:
+                        let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
+                        paymentVc.accountDetail = accountDetail
+                        self.navigationController?.pushViewController(paymentVc, animated: true)
+                        
+                    case .bge, .comEd, .peco:
+                        let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
+                        guard let vc = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return }
+                        vc.accountDetail = accountDetail
+                        let newNavController = LargeTitleNavigationController(rootViewController: vc)
+                        newNavController.modalPresentationStyle = .fullScreen
+                        FirebaseUtility.logEvent(.makePaymentStart)
+                        self.present(newNavController, animated: true, completion: nil)
+                        
+                    }
                 }
                 
                 if let title = titleOpt, let message = messageOpt {

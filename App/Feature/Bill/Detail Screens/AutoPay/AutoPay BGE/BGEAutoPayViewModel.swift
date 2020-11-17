@@ -211,7 +211,7 @@ class BGEAutoPayViewModel {
     
     private(set) lazy var walletItemAccountNumberText: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let item = $0 else { return "" }
-        if let last4Digits = item.maskedAccountNumber {
+        if let last4Digits = item.maskedAccountNumber?.last4Digits() {
             return "**** \(last4Digits)"
         }
         return ""

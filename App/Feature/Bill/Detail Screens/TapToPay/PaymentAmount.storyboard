@@ -90,7 +90,7 @@
                                                             <rect key="frame" x="0.0" y="1536" width="414" height="95"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tS-Ll-U9e" userLabel="Done" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
-                                                                    <rect key="frame" x="48.5" y="20" width="317" height="55"/>
+                                                                    <rect key="frame" x="38.5" y="20" width="317" height="55"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="317" id="BIJ-pG-DgN"/>
                                                                         <constraint firstAttribute="height" constant="55" id="bZC-8u-HyI"/>
@@ -103,7 +103,7 @@
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <constraints>
-                                                                <constraint firstItem="7tS-Ll-U9e" firstAttribute="centerX" secondItem="FRL-Ge-oak" secondAttribute="centerX" id="FAX-Jg-VKc"/>
+                                                                <constraint firstItem="7tS-Ll-U9e" firstAttribute="centerX" secondItem="FRL-Ge-oak" secondAttribute="centerX" constant="-10" id="FAX-Jg-VKc"/>
                                                                 <constraint firstAttribute="bottom" secondItem="7tS-Ll-U9e" secondAttribute="bottom" constant="20" id="hZO-fZ-ZhR"/>
                                                                 <constraint firstItem="7tS-Ll-U9e" firstAttribute="top" secondItem="FRL-Ge-oak" secondAttribute="top" constant="20" id="jp2-zs-m1O"/>
                                                             </constraints>

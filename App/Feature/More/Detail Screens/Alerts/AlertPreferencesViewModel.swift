@@ -168,7 +168,7 @@ class AlertPreferencesViewModel {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
                                               [.billIsReady(self.accountDetail)]))
                     }
-                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentPosted, .paymentPastDue]
                     if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
@@ -185,7 +185,7 @@ class AlertPreferencesViewModel {
                                               [.billIsReady(self.accountDetail)]))
                     }
                     
-                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentPosted, .paymentPastDue]
                     if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }
@@ -202,7 +202,7 @@ class AlertPreferencesViewModel {
                                               [.billIsReady(self.accountDetail)]))
                     }
                     
-                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentPosted, .paymentPastDue]
                     if self.accountDetail.isBudgetBill && self.accountDetail.isResidential {
                         paymentOptions.append(.budgetBillingReview)
                     }

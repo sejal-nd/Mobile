@@ -277,12 +277,12 @@ class HomeBillCardViewModel {
                 return .paymentPending
             }
             
-            if billingInfo.netDueAmount > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
-                return .billReadyAutoPay
-            }
-            
             if scheduledPayment?.amount > 0 {
                 return .paymentScheduled
+            }
+            
+            if billingInfo.netDueAmount > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
+                return .billReadyAutoPay
             }
             
             if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {
@@ -488,7 +488,7 @@ class HomeBillCardViewModel {
             case (false, true):
                 string = NSLocalizedString("The total amount must be paid immediately to catch up on your DPA.", comment: "")
             case (false, false):
-                let format = "%@ of the total must be paid immediately to catch up on your DPA."
+                let format = "%@ of the total is due immediately to catch up on your DPA."
                 string = String.localizedStringWithFormat(format, amountString)
             }
             
@@ -498,7 +498,8 @@ class HomeBillCardViewModel {
                 return nil
             }
             if billingInfo.restorationAmount == billingInfo.netDueAmount {
-                return NSAttributedString(string: NSLocalizedString("The total amount must be paid immediately to restore service.", comment: ""))
+                let string =  NSLocalizedString("The total amount must be paid immediately to restore service.", comment: "")
+                return NSAttributedString(string: string, attributes: attributes)
             } else {
                 let localizedText = NSLocalizedString("%@ of the total must be paid immediately to restore service.", comment: "")
                 let string = String.localizedStringWithFormat(localizedText, amountString)

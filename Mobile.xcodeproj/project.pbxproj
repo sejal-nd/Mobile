@@ -6861,7 +6861,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -6899,7 +6899,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -6985,7 +6985,7 @@
 		0EB93B5E202CA3C70049E7A2 /* Testing-BGE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.bge.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
 				ALERT_URL = azstage.bge.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
@@ -7054,12 +7054,12 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://bge-sit-620.paymentus.io/xotp/pm/bge";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -7092,7 +7092,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -7281,7 +7281,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -7321,7 +7321,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7357,7 +7357,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7393,7 +7393,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7425,12 +7425,13 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7510,7 +7511,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -7551,7 +7552,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -7589,7 +7590,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -7626,7 +7627,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -7658,13 +7659,14 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -7684,7 +7686,7 @@
 		67A9867624F950F900BD46E7 /* Automation-PECO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.peco.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
 				ALERT_URL = azstage.peco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
@@ -7753,12 +7755,12 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://peco-sit-622.paymentus.io/xotp/pm/peco";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -7790,7 +7792,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -7975,7 +7977,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8057,7 +8059,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8080,7 +8082,7 @@
 		67A9867C24F9510500BD46E7 /* Testing-PECO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.peco.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
 				ALERT_URL = azstage.peco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
@@ -8149,12 +8151,12 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://comd-sit-622.paymentus.io/xotp/pm/peco";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -8187,7 +8189,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -8335,7 +8337,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -8372,7 +8374,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -8391,7 +8393,7 @@
 		67A9868224F9510D00BD46E7 /* Staging-PECO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.peco.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
 				ALERT_URL = azstage.peco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
@@ -8460,7 +8462,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -8500,7 +8502,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -8604,7 +8606,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -8640,7 +8642,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -8722,7 +8724,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -8761,7 +8763,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -8865,7 +8867,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -8902,7 +8904,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -8985,7 +8987,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -9023,7 +9025,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -9121,13 +9123,14 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -9159,12 +9162,13 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -9184,11 +9188,11 @@
 		67A986B024FD3E8500BD46E7 /* Automation-ACE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.atlanticcityelectric.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
 				ALERT_URL = azstage.atlanticcityelectric.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
-				ASSOCIATED_DOMAIN = "azstg-secure.ace.com";
+				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
 				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -9258,7 +9262,7 @@
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -9286,7 +9290,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -9557,7 +9561,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -9580,11 +9584,11 @@
 		67A986B624FD3E8B00BD46E7 /* Testing-ACE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.atlanticcityelectric.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
 				ALERT_URL = azstage.atlanticcityelectric.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
-				ASSOCIATED_DOMAIN = "azstg-secure.ace.com";
+				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
 				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -9684,7 +9688,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -9873,7 +9877,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -9892,11 +9896,11 @@
 		67A986BC24FD3E9300BD46E7 /* Staging-ACE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.atlanticcityelectric.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
 				ALERT_URL = azstage.atlanticcityelectric.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
-				ASSOCIATED_DOMAIN = "azstg-secure.ace.com";
+				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
 				BASE_URL = "xze-e-n-eudapi-ace-s-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -9997,7 +10001,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -10142,7 +10146,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -10165,7 +10169,7 @@
 				ALERT_URL = atlanticcityelectric.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "e9a6ea32-b142-4414-9e6d-d686f7364d95";
-				ASSOCIATED_DOMAIN = secure.ace.com;
+				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
 				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -10259,7 +10263,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-1";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -10405,7 +10409,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -10429,8 +10433,8 @@
 				ALERT_URL = atlanticcityelectric.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "e717a9ba-bed1-443f-8311-9653b4bd058b";
-				ASSOCIATED_DOMAIN = secure.ace.com;
-				BASE_URL = mcs.mobileenv.bge.com;
+				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
+				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.ifactorconsulting.ace;
@@ -10522,7 +10526,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-1";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -10625,6 +10629,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -10663,12 +10668,13 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -10688,7 +10694,7 @@
 		67A986E924FD41DB00BD46E7 /* Automation-DPL */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.delmarva.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
 				ALERT_URL = azstage.delmarva.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
@@ -10762,7 +10768,7 @@
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -10790,7 +10796,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -11061,7 +11067,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -11084,7 +11090,7 @@
 		67A986EF24FD41E200BD46E7 /* Testing-DPL */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.delmarva.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
 				ALERT_URL = azstage.delmarva.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
@@ -11188,7 +11194,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -11377,7 +11383,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -11396,7 +11402,7 @@
 		67A986F524FD41E900BD46E7 /* Staging-DPL */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.delmarva.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
 				ALERT_URL = azstage.delmarva.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
@@ -11501,7 +11507,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -11646,7 +11652,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -11763,7 +11769,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-1";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -11909,7 +11915,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -11934,7 +11940,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "9f85e63c-c1a6-40de-811b-df4074860f14";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
-				BASE_URL = mcs.mobileenv.bge.com;
+				BASE_URL = mcs.mobileenv.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.ifactorconsulting.delmarva;
@@ -12026,7 +12032,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-1";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -12129,6 +12135,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -12167,12 +12174,13 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -12192,7 +12200,7 @@
 		67A9870724FD41FE00BD46E7 /* Automation-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.pepco.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
 				ALERT_URL = azstage.pepco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
@@ -12266,7 +12274,7 @@
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://phi-sit-621.paymentus.io/xotp/pm/phi";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -12294,7 +12302,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -12565,7 +12573,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -12588,7 +12596,7 @@
 		67A9870D24FD420400BD46E7 /* Testing-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.pepco.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
 				ALERT_URL = azstage.pepco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
@@ -12692,6 +12700,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -12880,7 +12889,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -12899,7 +12908,7 @@
 		67A9871324FD420D00BD46E7 /* Staging-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.pepco.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
 				ALERT_URL = azstage.pepco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
@@ -13004,7 +13013,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -13149,7 +13158,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -13266,7 +13275,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-1";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -13412,7 +13421,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -13437,7 +13446,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5e8d65a7-7ffb-46b9-99f1-34d4080f52dd";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
-				BASE_URL = mcs.mobileenv.bge.com;
+				BASE_URL = mcs.mobileenv.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.ifactorconsulting.pepco;
@@ -13529,7 +13538,7 @@
 				EXCLUDED_ARCHS = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-1";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -13632,6 +13641,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -13670,12 +13680,13 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.8.0;
+				MARKETING_VERSION = 5.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -13695,7 +13706,7 @@
 		67D562F924ED9DD100852551 /* Automation-ComEd */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.comed.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
 				ALERT_URL = azstage.comed.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
@@ -13754,7 +13765,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
+				GOOGLE_ANALYTICS_ID = "UA-76742208-16";
 				HEADER_SEARCH_PATHS = "";
 				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
@@ -13764,12 +13775,12 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://comd-sit-623.paymentus.io/xotp/pm/comd";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -13801,7 +13812,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13986,7 +13997,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -14068,7 +14079,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -14091,7 +14102,7 @@
 		67D562FF24ED9DD300852551 /* Testing-ComEd */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.comed.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
 				ALERT_URL = azstage.comed.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
@@ -14160,12 +14171,12 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://comd-sit-623.paymentus.io/xotp/pm/comd";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -14198,7 +14209,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14346,7 +14357,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -14383,7 +14394,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -14402,7 +14413,7 @@
 		67D5630524ED9DD500852551 /* Staging-ComEd */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.comed.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
 				ALERT_URL = azstage.comed.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
@@ -14471,7 +14482,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -14511,7 +14522,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14615,7 +14626,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -14651,7 +14662,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -14733,7 +14744,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -14772,7 +14783,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -14876,7 +14887,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -14913,7 +14924,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -14996,7 +15007,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15034,7 +15045,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -15132,13 +15143,14 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -15170,12 +15182,13 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_BITCODE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.8.0;
+				MARKETING_VERSION = 10.9.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -15195,7 +15208,7 @@
 		9CEB30CF22612D8500DD725C /* Automation-BGE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.bge.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
 				ALERT_URL = azstage.bge.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
@@ -15264,12 +15277,12 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://bge-sit-620.paymentus.io/xotp/pm/bge";
+				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -15301,7 +15314,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -15489,7 +15502,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				OTHER_LDFLAGS = "-ObjC";
@@ -15528,7 +15541,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -15547,7 +15560,7 @@
 		B58B5AF61E51497B0051FD5F /* Staging-BGE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACCOUNT_URL = "https://aztst.bge.com/MyAccount";
+				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
 				ALERT_URL = azstage.bge.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
@@ -15616,7 +15629,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -15656,7 +15669,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";

@@ -32,9 +32,13 @@ class ForgotUsernameResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
-            ? NSLocalizedString("Forgot Email", comment: "")
-            : NSLocalizedString("Forgot Username", comment: "")
+        let navigationTitle: String
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
+            navigationTitle = Environment.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
+        } else {
+            navigationTitle = "Forgot Username"
+        }
+        title = navigationTitle
         
         styleTopLabels()
         
@@ -54,9 +58,15 @@ class ForgotUsernameResultViewController: UIViewController {
         usernameEmailLabel.textColor = .deepGray
         usernameEmailLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         singleAccountValueLabel.textColor = .deepGray
-        usernameEmailLabel.text = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
-               ? NSLocalizedString("Email", comment: "")
-               : NSLocalizedString("Username / Email Address", comment: "")
+        
+        let usernameEmailLabelText: String
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
+            usernameEmailLabelText = Environment.shared.opco.isPHI ? "Username / Email Address" : "Email"
+        } else {
+            usernameEmailLabelText = "Username / Email Address"
+        }
+        
+        usernameEmailLabel.text = usernameEmailLabelText
         singleAccountValueLabel.font = OpenSans.regular.of(textStyle: .headline)
         singleAccountValueLabel.text = viewModel.maskedUsernames.first?.email
         
