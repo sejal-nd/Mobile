@@ -106,9 +106,10 @@ class BGEAutoPayViewModel {
                 if let amountType = autoPayInfo.amountType {
                     self.amountToPay.accept(amountType)
                 }
-                
-                if let amountThreshold = autoPayInfo.amountThreshold {
-                    self.amountNotToExceed.accept(amountThreshold)
+
+                if let amountThreshold = autoPayInfo.amountThreshold,
+                   let amountThresholdDouble = Double(amountThreshold) {
+                    self.amountNotToExceed.accept(amountThresholdDouble)
                 }
                 
                 if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue,
@@ -123,7 +124,14 @@ class BGEAutoPayViewModel {
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
         
-        let request = AutoPayEnrollBGERequest(amountType: amountToPay.value.rawValue, paymentDaysBeforeDue: String(daysBefore), isUpdate: false, walletItemId: selectedWalletItem.value?.walletItemId, amountThreshold: amountNotToExceed.value.twoDecimalString)
+        let paymentDateType: String
+        if whenToPay.value == .beforeDueDate {
+            paymentDateType = "before due"
+        } else {
+            paymentDateType = "liability"
+        }
+        
+        let request = AutoPayEnrollBGERequest(amountType: amountToPay.value.rawValue, paymentDateType: paymentDateType, paymentDaysBeforeDue: String(daysBefore), isUpdate: false, walletItemId: selectedWalletItem.value?.walletItemId, amountThreshold: amountNotToExceed.value.twoDecimalString, effectivePeriod: "untilCanceled")
         
         PaymentService.enrollAutoPayBGE(accountNumber: accountDetail.accountNumber, request: request) { result in
             switch result {
@@ -138,7 +146,14 @@ class BGEAutoPayViewModel {
     func update(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
         
-        let request = AutoPayEnrollBGERequest(amountType: amountToPay.value.rawValue, paymentDaysBeforeDue: String(daysBefore), isUpdate: true, walletItemId: selectedWalletItem.value?.walletItemId, amountThreshold: amountNotToExceed.value.twoDecimalString, confirmationNumber: confirmationNumber)
+        let paymentDateType: String
+        if whenToPay.value == .beforeDueDate {
+            paymentDateType = "before due"
+        } else {
+            paymentDateType = "liability"
+        }
+
+        let request = AutoPayEnrollBGERequest(amountType: amountToPay.value.rawValue, paymentDateType: paymentDateType, paymentDaysBeforeDue: String(daysBefore), isUpdate: true, walletItemId: selectedWalletItem.value?.walletItemId, amountThreshold: amountNotToExceed.value.twoDecimalString, confirmationNumber: confirmationNumber, effectivePeriod: "untilCanceled")
         
         PaymentService.updateAutoPayBGE(accountNumber: accountDetail.accountNumber, request: request) { result in
                         switch result {
