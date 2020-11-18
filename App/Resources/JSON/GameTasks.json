@@ -1094,5 +1094,255 @@
             "rentOrOwn": "RENT/OWN",
             "season": "SUMMER"
         }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E1",
+            "description": "Weatherize your windows using shutters, weather stripping, or insulated drapes. 🏠 Help keep energy in and save ⚡️.",
+            "title": "Keep It In ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E2",
+            "description": "Lumi Logic 💡 The average home loses up to 30% of its heating and cooling ⚡️ through leaks around windows and doors 💨",
+            "title": "Lumi Logic 💡 ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E3",
+            "description": "🔄 Change the filter 🌥 Use blinds  🤲 Keep vents clear",
+            "title": "Keep Your A/C Running Efficiently 🧊",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E4",
+            "description": "Lumi Logic 💡 Home electronic appliances are in standby 75% of the time and can account for 5％-10％ of total ⚡️ costs.",
+            "title": "Lumi Logic 💡 ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E5",
+            "description": "⏰ to get started off right. Start a new energy savings habit, and earn a streak this week. ⚡️",
+            "title": "Make  Moves 📈",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E6",
+            "description": "✂️ out the dry cycle and open the dishwasher to let the 🍽 dry overnight while you sleep. 🌙",
+            "title": "Air Dry Dishes Habit Pro💨🍽",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E8",
+            "description": "Lumi Logic 💡 The U.S. is the ✌️ energy-consuming country in the 🌎.  5％ of the world's people use 26％ of the world's energy. 😯",
+            "title": "Lumi Logic 💡 ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E9",
+            "description": "Habits don't end 🥶🦃. You have to replace them. Swap an energy ineffienct habit out today. 🔄",
+            "title": "🛑 Bad Habits",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E10",
+            "description": "Opening and closing your window blinds properly can save up to 25％ on ⚡️bills. 🧐",
+            "title": "It's as Simple as Open and Close",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E11",
+            "description": "Lumi Logic 💡 Energy consumption in the U.S peaks in July with around 50% of a home's energy bill spent on cooling. Now where was that fan again? 🧐",
+            "title": "Lumi Logic 💡 ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E12",
+            "description": "Take some time to disconnect. 🔌 Power off all non-essential electronics for a period of time. 🎚",
+            "title": "Energy Sabbath ⚡️",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E13",
+            "description": "Raise the 🌡 by 4℉ and turn on your fan. Guess What? You will maintain the same level of comfort. Keep it easy and breezy.",
+            "title": "Easy and Breezy ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E14",
+            "description": "Lumi Logic 💡  About 75% of the energy used by a washer goes toward heating the water. 💰 Save money. 👚 Save your clothes. 🌍 Save the planet.",
+            "title": "Lumi Logic 💡 ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E15",
+            "description": "Energy Reminder 🧺 Don't forget to cold wash your clothes! This saves energy and the life of your clothes. ",
+            "title": "Energy Reminder ⚡️",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E16",
+            "description": "Cold Wash 🧺 Join the community effort and clean up your laundry routine! Together, we can reduce 24,000 lbs of CO2.",
+            "title": "Cold and Bold ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E17",
+            "description": "Energy Reminder ⚡️ Don't forget to hang dry! 👕 Together, we can save 2,000 lbs of CO2.",
+            "title": "Energy Reminder ⚡️",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E18",
+            "description": "The heated drying cycle on a dishwasher uses at least 15％ more energy than air-drying. Switch today. ✅",
+            "title": "High and Dry ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E20",
+            "description": "Want to lower your power bills this season? 💰 Check out BGE's energy-saving tools using the below \"Usage\" tab ⬇️ and save! ",
+            "title": "Energy Savings at Your Fingertips ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E21",
+            "title": "",
+            "description": "Want to keep $ in your pocket and lower your footprint? Make your home smart. Check out these smart home devices at BGE's Marketplace 🏠 (https://www.bgemarketplace.com/)",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E24",
+            "description": "⚡️Save energy 💰Save money ",
+            "title": "Why Wait?",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E25",
+            "description": "Take an energy break— just boardgames, bikes, books, puzzles, walks, and chats. 🚲📚🧩🚶‍♀️💚",
+            "title": "Energy Timeout ⏰",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E26",
+            "description": "Lumi Logic 💡  Recycle 1 aluminum can. Save enough energy to power a TV for 3 hours.",
+            "title": "Lumi Logic 💡 ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E27",
+            "description": "All planet-saving superheroes need cool gadgets. Shop our energy efficient products and power up ⚡ (https://www.bgemarketplace.com/)",
+            "title": "Save the Day!",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E29",
+            "description": "\"The Earth is a fine place and worth fighting for.\" - Ernest Hemingway",
+            "title": "Join The Fight",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "E30",
+            "description": "We see you doing your part. We want you to know it matters. Thank you for helping the planet. 🌿",
+            "title": "Thank You!",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
     }
 ]
