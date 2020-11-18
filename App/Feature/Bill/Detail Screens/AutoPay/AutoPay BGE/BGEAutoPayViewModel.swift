@@ -111,9 +111,10 @@ class BGEAutoPayViewModel {
                     self.amountNotToExceed.accept(amountThreshold)
                 }
                 
-                if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
-                    self.numberOfDaysBeforeDueDate.accept(paymentDaysBeforeDue)
-                    self.whenToPay.accept(paymentDaysBeforeDue == 0 ? .onDueDate : .beforeDueDate)
+                if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue,
+                   let paymentDaysBeforeDueInteger = Int(paymentDaysBeforeDue) {
+                    self.numberOfDaysBeforeDueDate.accept(paymentDaysBeforeDueInteger)
+                    self.whenToPay.accept(paymentDaysBeforeDueInteger == 0 ? .onDueDate : .beforeDueDate)
                 }
             })
             .mapTo(())
