@@ -239,7 +239,7 @@ public enum NetworkingLayer {
                 // Default decode
                 return response
             } else {
-                dLog("❌ Failed to decode network response")
+                dLog("❌ Failed to decode network response: \(error)")
                 dLog(error.localizedDescription)
                 throw error
             }
@@ -260,7 +260,7 @@ public enum NetworkingLayer {
             dLog("❌ Failed to decode network response data")
             throw NetworkingError.decoding
         }
-        
+                
         return responseData
     }
     

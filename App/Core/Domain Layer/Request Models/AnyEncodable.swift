@@ -33,7 +33,6 @@ extension Encodable {
             if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
                 dLog("Request Body:\n\(String(decoding: data, as: UTF8.self))")
             }
-            
             return data
         } catch {
             fatalError("Error encoding object: \(error)")
