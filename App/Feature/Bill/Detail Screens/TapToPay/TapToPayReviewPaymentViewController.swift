@@ -342,6 +342,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         
         // Bank button when no payment method selected
         bankAccount.rx.touchUpInside
+            .do(onNext: { GoogleAnalytics.log(event: .addBankNewWallet) })
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let actionSheet = UIAlertController
@@ -354,6 +355,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
             }).disposed(by: bag)
         // Credit card button when no payment method selected
         creditDebitCard.rx.touchUpInside
+             .do(onNext: { GoogleAnalytics.log(event: .addCardNewWallet) })
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let actionSheet = UIAlertController
@@ -502,6 +504,17 @@ class TapToPayReviewPaymentViewController: UIViewController {
         
         FirebaseUtility.logEvent(.reviewPaymentSubmit)
         
+        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {
+            switch bankOrCard {
+            case .bank:
+                GoogleAnalytics.log(event: .eCheckOffer)
+                GoogleAnalytics.log(event: .eCheckSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+            case .card:
+                GoogleAnalytics.log(event: .cardOffer)
+                GoogleAnalytics.log(event: .cardSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+            }
+        }
+        
         let handleError = { [weak self] (error: NetworkingError) in
             guard let self = self else { return }
             
@@ -575,7 +588,14 @@ class TapToPayReviewPaymentViewController: UIViewController {
                         
                         FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .alternateContact, value: contactType)])
                     }
-                    
+                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                        switch bankOrCard {
+                        case .bank:
+                            GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                        case .card:
+                            GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                        }
+                    }
                     self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
                 }, onError: { error in
                     handleError(error)
@@ -668,6 +688,7 @@ extension TapToPayReviewPaymentViewController: PaymentusFormViewControllerDelega
         viewModel.selectedWalletItem.accept(walletItem)
         fetchData(initialFetch: false)
         if !walletItem.isTemporary {
+            GoogleAnalytics.log(event: walletItem.bankOrCard == .bank ? .eCheckAddNewWallet : .cardAddNewWallet, dimensions: [.otpEnabled: walletItem.isDefault ? "enabled" : "disabled"])
             let toastMessage = walletItem.bankOrCard == .bank ?
                 NSLocalizedString("Bank account added", comment: "") :
                 NSLocalizedString("Card added", comment: "")
