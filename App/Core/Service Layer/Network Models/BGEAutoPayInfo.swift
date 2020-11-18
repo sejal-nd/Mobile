@@ -21,8 +21,8 @@ public struct BGEAutoPayInfo: Decodable {
     let amountType: AmountType?
     let paymentDateType: String?
     let confirmationNumber: String
-    let amountThreshold: Double?
-    let paymentDaysBeforeDue: Int?
+    let amountThreshold: String?
+    let paymentDaysBeforeDue: String?
     
     enum CodingKeys: String, CodingKey {
         case dateSetup = "date_setup"

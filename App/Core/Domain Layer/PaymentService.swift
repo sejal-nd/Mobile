@@ -19,8 +19,7 @@ public enum PaymentService {
         
         if request.isUpdate {
             router = .updateAutoPay(accountNumber: accountNumber, request: request)
-        }
-        else {
+        } else {
             router = .autoPayEnroll(accountNumber: accountNumber, request: request)
         }
         
