@@ -240,35 +240,36 @@ class GameHomeViewModel {
             return nil
         }
         
-        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date,
-            let nextTaskDate = Calendar.current.date(byAdding: .day, value: 4, to: lastTaskDate) {
-            let interval = Int(nextTaskDate.timeIntervalSinceNow)
-            let days = interval / 86400
-            let hours = (interval % 86400) / 3600
-            let minutes = ((interval % 86400) % 3600) / 60
-            
-            var timeString = ""
-            if days > 0 {
-                timeString += "\(days) \(days == 1 ? "day" : "days")"
-                if hours > 0 {
-                    timeString += " and \(hours) \(hours == 1 ? "hour" : "hours")"
-                }
-                return "Check back in \(timeString) for your next challenge!"
-            }
-            if hours > 0 {
-                timeString += "\(hours) \(hours == 1 ? "hour" : "hours")"
-                if minutes > 0 {
-                    timeString += " and \(minutes) \(minutes == 1 ? "minute" : "minutes")"
-                }
-                return "Check back in \(timeString) for your next challenge!"
-            }
-            if minutes > 0 {
-                timeString += "\(minutes) \(minutes == 1 ? "minute" : "minutes")"
-                return "Check back in \(timeString) for your next challenge!"
-            }
-            
-            return "Check back soon for your next challenge!"
-        }
+        #warning("TESTING ONLY")
+//        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date,
+//            let nextTaskDate = Calendar.current.date(byAdding: .day, value: 4, to: lastTaskDate) {
+//            let interval = Int(nextTaskDate.timeIntervalSinceNow)
+//            let days = interval / 86400
+//            let hours = (interval % 86400) / 3600
+//            let minutes = ((interval % 86400) % 3600) / 60
+//
+//            var timeString = ""
+//            if days > 0 {
+//                timeString += "\(days) \(days == 1 ? "day" : "days")"
+//                if hours > 0 {
+//                    timeString += " and \(hours) \(hours == 1 ? "hour" : "hours")"
+//                }
+//                return "Check back in \(timeString) for your next challenge!"
+//            }
+//            if hours > 0 {
+//                timeString += "\(hours) \(hours == 1 ? "hour" : "hours")"
+//                if minutes > 0 {
+//                    timeString += " and \(minutes) \(minutes == 1 ? "minute" : "minutes")"
+//                }
+//                return "Check back in \(timeString) for your next challenge!"
+//            }
+//            if minutes > 0 {
+//                timeString += "\(minutes) \(minutes == 1 ? "minute" : "minutes")"
+//                return "Check back in \(timeString) for your next challenge!"
+//            }
+//
+//            return "Check back soon for your next challenge!"
+//        }
         
         return nil
     }

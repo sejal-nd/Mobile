@@ -402,7 +402,21 @@ class ReviewPaymentViewController: UIViewController {
                     }
                     
                     self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-                }, onError: { error in
+                }, onError: { [weak self] error in
+                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                        switch bankOrCard {
+                        case .bank:
+                            GoogleAnalytics.log(event: .eCheckError, dimensions: [
+                                .errorCode: error.title ,
+                                .paymentTempWalletItem: temp ? "true" : "false"
+                            ])
+                        case .card:
+                            GoogleAnalytics.log(event: .cardError, dimensions: [
+                                .errorCode: error.title,
+                                .paymentTempWalletItem: temp ? "true" : "false"
+                            ])
+                        }
+                    }
                     handleError(error)
             })
         }

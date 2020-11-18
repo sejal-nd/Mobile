@@ -54,8 +54,8 @@ struct GameUser: Decodable {
             taskIndex = 0
         }
         
-        pilotGroup = try container.decode(String.self, forKey: .pilotGroup)
-        cluster = try container.decode(String.self, forKey: .cluster)
-        onboardingRentOrOwnAnswer = try container.decode(String.self, forKey: .onboardingRentOrOwnAnswer)
+        pilotGroup = try container.decodeIfPresent(String.self, forKey: .pilotGroup)
+        cluster = try container.decodeIfPresent(String.self, forKey: .cluster)
+        onboardingRentOrOwnAnswer = try container.decodeIfPresent(String.self, forKey: .onboardingRentOrOwnAnswer)
     }
 }

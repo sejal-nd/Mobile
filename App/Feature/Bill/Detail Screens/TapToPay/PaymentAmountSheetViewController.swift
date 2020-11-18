@@ -189,7 +189,9 @@ class PaymentAmountSheetViewController: UIViewController {
                 }
                 
                 self.paymentAmountTextField.textField.text = amount.currencyString
-
+                if !self.paymentAmountsStack.isHidden {
+                    self.lastSheetLevel = .top
+                }
                 self.paymentAmount = amount
                 self.viewModel.editpaymentAmountValue.accept(amount)
             })
@@ -383,7 +385,7 @@ class PaymentAmountSheetViewController: UIViewController {
     }
     
     @IBAction func doneAction(_ sender: Any) {
-        self.viewModel.paymentAmount.accept(self.paymentAmount)
+        self.viewModel.paymentAmount.accept(self.viewModel.editpaymentAmountValue.value)
         lastSheetLevel = .closed
     }
 }
