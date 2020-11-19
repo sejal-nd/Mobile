@@ -32,6 +32,12 @@ public struct MaintenanceMode: Decodable {
     }
     
     public init(from decoder: Decoder) throws {
+        
+        // Prodbeta builds should ignore any maintenance response
+        if Environment.shared.environmentName == .prodbeta {
+            return
+        }
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let iosContainer = try container.nestedContainer(keyedBy: CodingKeys.self,
                                                          forKey: .iOS)
