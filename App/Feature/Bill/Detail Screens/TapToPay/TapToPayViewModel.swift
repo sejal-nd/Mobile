@@ -105,7 +105,6 @@ class TapToPayViewModel {
                     }
                 }
                 
-                
                 if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
                     if walletItems.count > 1 {
                         let activeWalletItems =  walletItems.filter({(!$0.isExpired)})
