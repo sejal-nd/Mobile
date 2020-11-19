@@ -247,12 +247,14 @@ class HomeViewController: AccountPickerViewController {
                     .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
                     .drive(onNext: { [weak self] in
                         guard let self = self else { return }
-                        let sb = UIStoryboard(name: "Game", bundle: nil)
-                        if let navController = sb.instantiateViewController(withIdentifier: "GameOnboarding") as? UINavigationController,
-                            let vc = navController.viewControllers.first as? GameOnboardingIntroViewController {
-                            vc.accountDetail = $0
-                            self.present(navController, animated: true, completion: nil)
-                        }
+                        self.navigateToGameOnboarding(accountDetail: $0)
+                    }).disposed(by: self.bag)
+                
+                gameOnboardingCardView.imageButton.rx.touchUpInside.asDriver()
+                    .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+                    .drive(onNext: { [weak self] in
+                        guard let self = self else { return }
+                        self.navigateToGameOnboarding(accountDetail: $0)
                     }).disposed(by: self.bag)
                 
                 let index = self.topPersonalizeButton != nil ? 1 : 0
@@ -322,6 +324,15 @@ class HomeViewController: AccountPickerViewController {
                 })
             })
             .disposed(by: bag)
+    }
+    
+    func navigateToGameOnboarding(accountDetail: AccountDetail) {
+        let sb = UIStoryboard(name: "Game", bundle: nil)
+        if let navController = sb.instantiateViewController(withIdentifier: "GameOnboarding") as? UINavigationController,
+           let vc = navController.viewControllers.first as? GameOnboardingIntroViewController {
+            vc.accountDetail = accountDetail
+            self.present(navController, animated: true, completion: nil)
+        }
     }
     
     func navigateToAutoPay(accountDetail: AccountDetail) {
