@@ -215,10 +215,15 @@ public enum NetworkingLayer {
         }
 
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom() { decoder -> Date in
+        jsonDecoder.dateDecodingStrategy = .custom() { decoder throws -> Date in
             let container = try decoder.singleValueContainer()
             let dateString = try container.decode(String.self)
-            return dateString.extractDate() ?? Date()
+            
+            guard let date = dateString.extractDate() else {
+                throw NetworkingError.decoding
+            }
+            
+            return date
         }
         
         let responseWrapper: AzureResponseContainer<T>
