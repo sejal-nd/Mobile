@@ -103,18 +103,6 @@ class TapToPayViewModel {
                             }
                         }
                     }
-                } else {
-                    if let walletItem = self.selectedWalletItem.value {
-                        
-                    }
-                    else  {
-                        if defaultWalletItem != nil { // Choose the default item
-                            self.selectedWalletItem.accept(defaultWalletItem!)
-                        } else if walletItems.count > 0 { // If no default item, choose the first item
-                            self.selectedWalletItem.accept(walletItems.first)
-                            
-                        }
-                    }
                 }
                 
                 
@@ -131,6 +119,8 @@ class TapToPayViewModel {
                         
                         self.wouldBeSelectedWalletItemIsExpired.accept(true)
                     }
+                } else {
+                    self.wouldBeSelectedWalletItemIsExpired.accept(false)
                 }
                 
                 onSuccess?()
