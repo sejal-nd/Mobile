@@ -1,8 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "img_hat_partyhat.pdf",
-      "idiom" : "universal"
+      "filename" : "hat_partyhat.pdf",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
