@@ -118,7 +118,7 @@ class TapToPayViewModel {
                         
                         self.wouldBeSelectedWalletItemIsExpired.accept(true)
                     }
-                } else {
+                } else if walletItems.count > 1 {
                     self.wouldBeSelectedWalletItemIsExpired.accept(false)
                 }
                 
