@@ -99,7 +99,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="dgO-ou-Esd"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <state key="normal" title="Return to Lumi">
                                         <color key="titleColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>

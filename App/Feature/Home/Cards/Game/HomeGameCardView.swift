@@ -84,7 +84,7 @@ class HomeGameCardView: UIView {
         }
         
         contentChip.widthAnchor.constraint(equalToConstant: contentWidth).isActive = true
-        contentChip.fullyRoundCorners(diameter: contentWidth, borderColor: .primaryColor, borderWidth: 1.0)
+        contentChip.fullyRoundCorners(diameter: 20.0, borderColor: .primaryColor, borderWidth: 1.0)
         contentChip.textColor = .primaryColor
         
         insightCip.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
