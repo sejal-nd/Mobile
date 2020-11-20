@@ -106,9 +106,20 @@ class TapToPayViewModel {
                 }
                 
                 if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
-                    self.selectedWalletItem.accept(nil)
-                    
-                    self.wouldBeSelectedWalletItemIsExpired.accept(true)
+                    if walletItems.count > 1 {
+                        let activeWalletItems =  walletItems.filter({(!$0.isExpired)})
+                        if let activeWalletItem = activeWalletItems.first {
+                            self.selectedWalletItem.accept(activeWalletItem)
+                            
+                            self.wouldBeSelectedWalletItemIsExpired.accept(false)
+                        }
+                    } else {
+                        self.selectedWalletItem.accept(nil)
+                        
+                        self.wouldBeSelectedWalletItemIsExpired.accept(true)
+                    }
+                } else if walletItems.count > 1 {
+                    self.wouldBeSelectedWalletItemIsExpired.accept(false)
                 }
                 
                 onSuccess?()
@@ -450,12 +461,16 @@ class TapToPayViewModel {
             self.hasWalletItems.asDriver(),
             self.shouldShowPaymentMethodExpiredButton.asDriver(),
             isOverpaying,
-            overpayingSwitchValue.asDriver())
+            overpayingSwitchValue.asDriver(),
+            paymentFieldsValid.asDriver())
         {
             if !$0 || !$1 || !$2 || $3{
                 return false
             }
             if $4 && !$5 {
+                return false
+            }
+            if !$6 {
                 return false
             }
             
@@ -603,6 +618,53 @@ class TapToPayViewModel {
         return true
     }
     
+    private(set) lazy var paymentAmountReviewPageErrorMessage: Driver<String?> = {
+        return Driver.combineLatest(selectedWalletItem.asDriver(),
+                                    accountDetail.asDriver(),
+                                    paymentAmount.asDriver(),
+                                    amountDue.asDriver())
+        { (walletItem, accountDetail, paymentAmount, amountDue) -> String? in
+            if let walletItem = walletItem, walletItem.bankOrCard == .bank {
+                let minPayment = accountDetail.billingInfo.minPaymentAmount
+                let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
+                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
+                    }
+                } else {
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                    } else if paymentAmount > amountDue {
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
+                    }
+                }
+            } else {
+                let minPayment = accountDetail.billingInfo.minPaymentAmount
+                let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
+                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
+                    }
+                } else {
+                    if paymentAmount < minPayment {
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
+                    } else if paymentAmount > amountDue {
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
+                    } else if paymentAmount > maxPayment {
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
+                    }
+                }
+            }
+            return nil
+        }
+    }()
+    
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
         return Driver.combineLatest(selectedWalletItem.asDriver(),
                                     accountDetail.asDriver(),
@@ -652,6 +714,11 @@ class TapToPayViewModel {
     
     private(set) lazy var paymentFieldsValid: Driver<Bool> = Driver
         .combineLatest(shouldShowContent, paymentAmountErrorMessage) {
+            return $0 && $1 == nil
+    }
+
+    private(set) lazy var paymentFieldReviewPaymentValid: Driver<Bool> = Driver
+        .combineLatest(shouldShowContent, paymentAmountReviewPageErrorMessage) {
             return $0 && $1 == nil
     }
     
