@@ -1116,6 +1116,22 @@
         }
     },
     {
+        "type": "quiz",
+        "quiz": {
+            "question": "Leaks around windows and doors can account for up to how much heating and cooling loss of an average home?",
+            "answers": [
+                { "answer": "20%", "correct": false },
+                { "answer": "30%", "correct": true },
+                { "answer": "40%", "correct": false }
+            ],
+            "answerDescription": "Leaks around doors in windows can account for up to 30% of an average home's heating and cooling loss.",
+            "tipId": "E2",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
         "type": "tip",
         "tip": {
             "id": "E3",
