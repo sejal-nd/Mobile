@@ -172,6 +172,9 @@ class OutageViewController: AccountPickerViewController {
                 self?.viewModel.hasJustReportedOutage = false
                 RemoteConfigUtility.shared.fetchCloudValues()
             }
+            else {
+                self?.tableView.reloadData()
+            }
             
             guard let `self` = self else { return }
             
@@ -390,6 +393,7 @@ extension OutageViewController: UITableViewDelegate {
 extension OutageViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         accountsLoaded = true
+        viewModel.hasJustReportedOutage = false
         configureState(.loading)
         loadOutageStatus()
     }

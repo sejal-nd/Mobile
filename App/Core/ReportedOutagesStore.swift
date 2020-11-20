@@ -54,8 +54,8 @@ class ReportedOutagesStore {
             if let report = newValue, let reportedTime = report.reportedTime {
                 var dict = [String: Any]()
                 dict["reportedTime"] = DateFormatter.yyyyMMddTHHmmssZZZZZFormatter.string(from: reportedTime)
-                if let etr = report.etr?.apiFormatString {
-                    dict["etr"] = etr
+                if let etr = report.etr {
+                    dict["etr"] = etr.apiFormatString
                 }
                 reportDictionary[accountNumber] = dict
                 UserDefaults.standard.set(reportDictionary, forKey: UserDefaultKeys.reportedOutagesDictionary)
