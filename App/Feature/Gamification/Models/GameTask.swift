@@ -9,7 +9,8 @@
 import Foundation
 
 struct GameTask: Decodable {
-    let type: GameTaskType
+    let type:
+        GameTaskType
     let tip: GameTip?
     let quiz: GameQuiz?
     let survey: GameSurvey?

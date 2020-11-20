@@ -239,6 +239,11 @@ class HomeViewModel {
         return !gameUser.onboardingComplete && !gameUser.optedOut
     }
     
+    private(set) lazy var gameUser = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { user -> GameUser? in
+        guard let gameUser = user, !gameUser.optedOut else { return nil }
+        return gameUser
+    }
+    
     private lazy var prepaidStatus = accountDetailEvents.elements()
         .mapAt(\.prepaidStatus)
         .startWith(.inactive)

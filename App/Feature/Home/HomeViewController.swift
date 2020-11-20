@@ -48,6 +48,8 @@ class HomeViewController: AccountPickerViewController {
     var opcoIdentityView: OpcoIdentityCardView!
     var opcoIdentityViewHeightConstraint: NSLayoutConstraint!
     
+    var gameCardView: HomeGameCardView?
+    
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
     
@@ -229,6 +231,20 @@ class HomeViewController: AccountPickerViewController {
                 self.appointmentCardView = appointmentCardView
             })
             .disposed(by: bag)
+        
+        Observable.zip(viewModel.gameUser.asObservable(), viewModel.accountDetailEvents.elements().asObservable())
+            .subscribe(onNext: {
+                if let gameUser = $0 {
+                    let gameCardView = HomeGameCardView.create(gameUser: gameUser, accountDetail: $1)
+                    
+                    let index = 1
+                    self.contentStackView.insertArrangedSubview(gameCardView, at: index)
+                    self.gameCardView = gameCardView
+                } else {
+                    self.gameCardView?.removeFromSuperview()
+                    self.gameCardView = nil
+                }
+            }).disposed(by: bag)
         
         viewModel.showGameOnboardingCard
             .distinctUntilChanged()
