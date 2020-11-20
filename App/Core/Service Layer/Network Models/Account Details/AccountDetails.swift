@@ -299,6 +299,7 @@ public struct AccountDetail: Decodable {
                                                    forKey: .buildingNumber)
         self.premiseNumber = try container.decodeIfPresent(String.self,
                                                            forKey: .premiseNumber)
+        AccountsStore.shared.premiseNumber = self.premiseNumber
         self.amiAccountIdentifier = try container.decode(String.self,
                                                          forKey: .amiAccountIdentifier)
         self.amiCustomerIdentifier = try container.decode(String.self,

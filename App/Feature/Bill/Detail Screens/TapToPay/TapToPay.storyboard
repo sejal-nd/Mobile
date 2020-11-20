@@ -113,8 +113,14 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="with a $1.50 convenience fee included, applied by Paymentus, our payment partner." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIH-MB-BXc">
-                                                                        <rect key="frame" x="20" y="64" width="330" height="32"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Payment must be less than or equal to total amount due" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0f-3a-Thb">
+                                                                        <rect key="frame" x="20" y="69" width="330" height="14.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="with a $1.50 convenience fee included, applied by Paymentus, our payment partner." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIH-MB-BXc">
+                                                                        <rect key="frame" x="20" y="67" width="330" height="29"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -143,7 +149,8 @@
                                                                 <constraints>
                                                                     <constraint firstItem="AIH-MB-BXc" firstAttribute="leading" secondItem="h8K-aV-8e9" secondAttribute="leading" constant="20" id="Bh6-7d-qNH"/>
                                                                     <constraint firstAttribute="trailing" secondItem="QJ7-qq-lsx" secondAttribute="trailing" constant="80" id="CLR-va-8iN"/>
-                                                                    <constraint firstItem="AIH-MB-BXc" firstAttribute="top" secondItem="R2y-eD-eTN" secondAttribute="bottom" constant="5" id="J9i-T2-gvC"/>
+                                                                    <constraint firstItem="j0f-3a-Thb" firstAttribute="top" secondItem="R2y-eD-eTN" secondAttribute="bottom" constant="3" id="EHr-IW-OWB"/>
+                                                                    <constraint firstItem="AIH-MB-BXc" firstAttribute="top" secondItem="j0f-3a-Thb" secondAttribute="bottom" constant="3" id="HQd-o1-9yp"/>
                                                                     <constraint firstAttribute="trailing" secondItem="sTt-JZ-ggt" secondAttribute="trailing" constant="20" id="Nk7-LA-2e0"/>
                                                                     <constraint firstItem="sTt-JZ-ggt" firstAttribute="leading" secondItem="h8K-aV-8e9" secondAttribute="leading" constant="20" id="O9o-iK-XAS"/>
                                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="PtJ-19-VYA"/>
@@ -153,6 +160,8 @@
                                                                     <constraint firstAttribute="bottom" secondItem="sTt-JZ-ggt" secondAttribute="bottom" constant="20" id="c8j-eM-Yhc"/>
                                                                     <constraint firstAttribute="bottom" secondItem="AIH-MB-BXc" secondAttribute="bottom" constant="44" id="eBn-jN-TAY"/>
                                                                     <constraint firstItem="sTt-JZ-ggt" firstAttribute="top" secondItem="AIH-MB-BXc" secondAttribute="bottom" constant="8" id="f0P-Xe-WW6"/>
+                                                                    <constraint firstItem="j0f-3a-Thb" firstAttribute="leading" secondItem="h8K-aV-8e9" secondAttribute="leading" constant="20" id="f7E-4Z-HwZ"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="j0f-3a-Thb" secondAttribute="trailing" constant="64" id="fwR-Br-yHa"/>
                                                                     <constraint firstItem="kWd-lf-2FS" firstAttribute="centerY" secondItem="R2y-eD-eTN" secondAttribute="centerY" id="k3a-CO-Eoq"/>
                                                                     <constraint firstAttribute="trailing" secondItem="AIH-MB-BXc" secondAttribute="trailing" constant="64" id="lZ2-gJ-XQB"/>
                                                                     <constraint firstItem="QJ7-qq-lsx" firstAttribute="top" secondItem="h8K-aV-8e9" secondAttribute="top" constant="10" id="mhl-bP-mOd"/>
@@ -811,6 +820,7 @@
                         <outlet property="paymentDateLabel" destination="C9J-ty-g6d" id="uRA-aN-Xp7"/>
                         <outlet property="paymentDatePastDueLabel" destination="vNS-xm-8Sh" id="i6F-MM-KWi"/>
                         <outlet property="paymentDateTitleLabel" destination="RnJ-GD-6Cj" id="puo-9a-jiG"/>
+                        <outlet property="paymentErrorLabel" destination="j0f-3a-Thb" id="MYD-YZ-QFB"/>
                         <outlet property="paymentMethodAccountNumberLabel" destination="tbC-8a-2wr" id="yIl-Nm-OiG"/>
                         <outlet property="paymentMethodButton" destination="V0a-03-Szl" id="Rg9-fH-fGH"/>
                         <outlet property="paymentMethodContainer" destination="MOR-Xl-W4v" id="9J8-o5-0Aq"/>
