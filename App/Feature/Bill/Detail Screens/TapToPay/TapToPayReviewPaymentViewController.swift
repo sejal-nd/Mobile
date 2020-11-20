@@ -23,6 +23,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var paymentsAssociatedTextLabel: UILabel!
     @IBOutlet weak var submitDescriptionLabel: UILabel!
     @IBOutlet weak var termsNConditionsButton: UIButton!
+    @IBOutlet weak var paymentErrorLabel: UILabel!
     @IBOutlet weak var paymentAmountContainerButton: ButtonControl!
     
     // -- Additional Recipients View -- //
@@ -197,6 +198,15 @@ class TapToPayReviewPaymentViewController: UIViewController {
         overPayingLabel.font = SystemFont.regular.of(size: 15)
         overPayingLabel.text = NSLocalizedString("Yes, I achnowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
         
+        paymentErrorLabel.textColor = .errorRed
+        paymentErrorLabel.font = SystemFont.semibold.of(size: 12)
+        
+        paymentsAssociatedTextLabel.textColor = .deepGray
+        paymentsAssociatedTextLabel.font = SystemFont.regular.of(size: 12)
+        
+        submitButton.titleLabel?.textColor = .white
+        submitButton.titleLabel?.font = SystemFont.semibold.of(size: 17)
+        
         viewModel.fetchData(initialFetch: true, onSuccess: { [weak self] in
             guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
@@ -235,6 +245,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.convenienceDisplayString.asDriver()
             .drive(convenienceFeeLabel.rx.text)
             .disposed(by: bag)
+        
+        viewModel.paymentAmountReviewPageErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
+            self?.paymentErrorLabel.text = errorMessage
+        }).disposed(by: bag)
+        viewModel.paymentFieldReviewPaymentValid.asDriver().drive(paymentErrorLabel.rx.isHidden).disposed(by: bag)
         
         // Selected Wallet Item
         viewModel.selectedWalletItemImage.drive(paymentMethodImageView.rx.image).disposed(by: bag)
@@ -402,7 +417,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         
         alternateViewTextView.backgroundColor = .softGray
         alternateViewTextView.textColor = .deepGray
-        alternateViewTextView.font = SystemFont.regular.of(textStyle: .callout)
+        alternateViewTextView.font = SystemFont.regular.of(size: 15)
         alternateViewTextView.text = NSLocalizedString("A confirmation will be sent to the email address associated with your My Account. If you'd like to send this payment confirmation to an additional email or via text message, add the recipients below. Standard messaging rates apply.", comment: "")
         
         addAdditionaRecipientButton.setTitleColor(.deepGray, for: .normal)

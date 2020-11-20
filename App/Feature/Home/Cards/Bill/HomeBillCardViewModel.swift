@@ -391,9 +391,8 @@ class HomeBillCardViewModel {
         .distinctUntilChanged()
     private(set) lazy var showMakePaymentButton: Driver<Bool> = Driver.combineLatest(showAutoPay,
                                                                                      showScheduledPayment,
-                                                                                     accountDetailDriver,
                                                                                      billState)
-    { return $0 || $1 || !($2.billingInfo.netDueAmount > 0) || $3 == .billPaid || $3 == .billPaidIntermediate || $3 == .paymentPending ? false : true }
+    { return $0 || $1 || $2 == .billPaid || $2 == .billPaidIntermediate || $2 == .paymentPending ? false : true }
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     

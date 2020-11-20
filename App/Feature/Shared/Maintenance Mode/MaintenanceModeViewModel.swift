@@ -134,7 +134,9 @@ class MaintenanceModeViewModel{
             switch result {
             case .success(let maintenanceMode):
                 self?.maintenance = maintenanceMode
-            case .failure:
+                onSuccess(self?.maintenance?.all ?? false)
+            case .failure(let error):
+                onError(error.localizedDescription)
                 break
             }
         }

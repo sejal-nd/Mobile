@@ -14,7 +14,8 @@ final class AccountsStore {
     var accounts: [Account]!
     var currentIndex: Int!
     var customerIdentifier: String!
-    
+    var premiseNumber: String?
+
     // Private init protects against another instance being accidentally instantiated
     private init() {
         // Load from disk

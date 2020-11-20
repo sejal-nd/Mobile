@@ -9,12 +9,18 @@
 import Foundation
 
 struct BillForecastResult: Decodable {
-    let electric: BillForecast?
-    let gas: BillForecast?
+    var electric: BillForecast? = nil
+    var gas: BillForecast? = nil
     
     public init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        self.electric = try container.decodeIfPresent(BillForecast.self)
-        self.gas = try container.decodeIfPresent(BillForecast.self)
+        
+        while let forecast = try container.decodeIfPresent(BillForecast.self) {
+            if forecast.meterType == "GAS" {
+                self.gas = forecast
+            } else if forecast.meterType == "ELEC" {
+                self.electric = forecast
+            }
+        }
     }
 }
