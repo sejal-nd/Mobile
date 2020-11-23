@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 
 enum HomeCard: Int {
-    case bill, usage, template, projectedBill, outageStatus, prepaidActive, prepaidPending, nothing
+    case bill, usage, template, projectedBill, outageStatus, prepaidActive, prepaidPending, nothing, game
     
     static let editableCards: [HomeCard] = {
-        return [.bill, .usage, .template, .outageStatus, .projectedBill]
+        return [.bill, .usage, .template, .outageStatus, .projectedBill, .game]
     }()
     
     init?(id: String) {
@@ -35,6 +35,8 @@ enum HomeCard: Int {
             return NSLocalizedString("Projected Bill", comment: "")
         case .outageStatus:
             return NSLocalizedString("Outage Status", comment: "")
+        case .game:
+            return NSLocalizedString("Play-n-Save", comment: "")
         case .prepaidActive, .prepaidPending, .nothing:
             return ""
         }
@@ -58,6 +60,8 @@ enum HomeCard: Int {
             return "prepaidPending"
         case .nothing:
             return "nothing"
+        case .game:
+            return "game"
         }
     }
     
@@ -72,7 +76,7 @@ enum HomeCard: Int {
     
     var isAlwaysAvailable: Bool {
         switch self {
-        case .usage, .projectedBill:
+        case .usage, .projectedBill, .game:
             return false
         default:
             return true

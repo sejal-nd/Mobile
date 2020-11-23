@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class HomeGameCardView: UIView {
     
@@ -18,23 +19,40 @@ class HomeGameCardView: UIView {
     @IBOutlet private weak var insightCip: UILabel!
     @IBOutlet weak var lumiButton: UIButton!
     @IBOutlet weak var contentView: UIView!
-    
-    var gameUser: GameUser!
-    var accountDetail: AccountDetail!
+    @IBOutlet weak var contentStackView: UIStackView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
     var currentTaskIndex = -1
     var taskType: GameTaskType? = nil
     var isInsightAvailable = false
     
-    static func create(gameUser: GameUser, accountDetail: AccountDetail) -> HomeGameCardView {
+    var viewModel: GameHomeViewModel = GameHomeViewModel()
+    let disposeBag = DisposeBag()
+    
+    static func create(withViewModel viewModel: GameHomeViewModel) -> HomeGameCardView {
         let view = Bundle.main.loadViewFromNib() as HomeGameCardView
-        view.gameUser = gameUser
-        view.accountDetail = accountDetail
-        view.currentTaskIndex = gameUser.taskIndex
-        view.taskType = view.checkForAvailableTask()?.type
-        view.styleViews()
-                
+        view.viewModel = viewModel
+        view.setup()
         return view
+    }
+    
+    func setup() {
+        viewModel.fetchData()
+        viewModel.hasInsightsAvailable().drive(onNext: {
+            self.insightCip.isHidden = !$0
+        }).disposed(by: disposeBag)
+        
+        viewModel.gameUser.subscribe(onNext: {
+            if $0 != nil {
+                self.currentTaskIndex = self.viewModel.gameUser.value?.taskIndex ?? 0
+                self.taskType = self.checkForAvailableTask()?.type
+                self.styleViews()
+            }
+        }).disposed(by: disposeBag)
+        
+        viewModel.loading.not().bind(to: loadingView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.loading.bind(to: contentStackView.rx.isHidden).disposed(by: disposeBag)
     }
     
     func styleViews() {
@@ -55,7 +73,7 @@ class HomeGameCardView: UIView {
         if taskType == nil && !isInsightAvailable {
             tasksView.isHidden = true
             heightAnchor.constraint(equalToConstant: 164).isActive = true
-            contentView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+//            contentView.heightAnchor.constraint(equalToConstant: 80).isActive = true
             self.layoutIfNeeded()
             
             detailLabel.text = nextAvaiableTaskTimeString
@@ -68,7 +86,7 @@ class HomeGameCardView: UIView {
         }
         
         heightAnchor.constraint(equalToConstant: 164).isActive = true
-        contentView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+//        contentView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         detailLabel.text = NSLocalizedString("New content available!", comment: "")
         
@@ -88,11 +106,14 @@ class HomeGameCardView: UIView {
         contentChip.textColor = .primaryColor
         
         insightCip.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
-        insightCip.fullyRoundCorners(diameter: 60.0, borderColor: .primaryColor, borderWidth: 1.0)
+        insightCip.fullyRoundCorners(diameter: 20.0, borderColor: .primaryColor, borderWidth: 1.0)
         insightCip.textColor = .primaryColor
     }
     
     private func checkForAvailableTask() -> GameTask? {
+        guard let gameUser = viewModel.gameUser.value,
+              let accountDetail = viewModel.accountDetail.value else { return nil}
+        #warning("Gamification Testing Only! Uncomment for Release!")
         if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
             let daysSinceLastTask = abs(lastTaskDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current))
             if daysSinceLastTask < 4 {

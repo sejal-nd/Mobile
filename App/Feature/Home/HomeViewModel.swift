@@ -75,6 +75,8 @@ class HomeViewModel {
     private(set) lazy var prepaidPendingCardViewModel =
         HomePrepaidCardViewModel(isActive: false)
     
+    private(set) lazy var gameCardViewModel = GameHomeViewModel()
+    
     private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated, RxNotifications.shared.recentPaymentsUpdated)
     
     private lazy var recentPaymentsFetchTrigger = Observable

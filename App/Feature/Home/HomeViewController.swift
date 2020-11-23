@@ -232,19 +232,16 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        Observable.zip(viewModel.gameUser.asObservable(), viewModel.accountDetailEvents.elements().asObservable())
+        viewModel.gameUser.asObservable().subscribe(onNext: { gameUser in
+            self.gameCardView?.isHidden = gameUser == nil
+        }).disposed(by: bag)
+        
+        viewModel.accountDetailEvents.elements().asObservable()
             .subscribe(onNext: {
-                if let gameUser = $0 {
-                    let gameCardView = HomeGameCardView.create(gameUser: gameUser, accountDetail: $1)
-                    
-                    let index = 1
-                    self.contentStackView.insertArrangedSubview(gameCardView, at: index)
-                    self.gameCardView = gameCardView
-                } else {
-                    self.gameCardView?.removeFromSuperview()
-                    self.gameCardView = nil
-                }
-            }).disposed(by: bag)
+                self.viewModel.gameCardViewModel.accountDetail.accept($0)
+                self.viewModel.gameCardViewModel.fetchData()
+            })
+            .disposed(by: bag)
         
         viewModel.showGameOnboardingCard
             .distinctUntilChanged()
@@ -597,6 +594,19 @@ class HomeViewController: AccountPickerViewController {
             }
             
             return prepaidActiveCardView
+        case .game:
+            let gameCardView: HomeGameCardView
+            if let gameCard = self.gameCardView {
+                gameCardView = gameCard
+            } else {
+                gameCardView = .create(withViewModel: viewModel.gameCardViewModel)
+                gameCardView.lumiButton.rx.tap.subscribe(onNext: { _ in
+                    NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
+                }).disposed(by: self.bag)
+                self.gameCardView = gameCardView
+            }
+            
+            return gameCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }

@@ -239,7 +239,7 @@ class GameHomeViewModel {
         if currentTaskIndex >= GameTaskStore.shared.tasks.count {
             return nil
         }
-        
+
         if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date,
             let nextTaskDate = Calendar.current.date(byAdding: .day, value: 4, to: lastTaskDate) {
             let interval = Int(nextTaskDate.timeIntervalSinceNow)
@@ -286,6 +286,36 @@ class GameHomeViewModel {
                     let accountNumber = self.accountDetail.value?.accountNumber,
                     valid,
                     let endDate = date else { return false }
-                return self.coreDataManager.getWeeklyInsight(accountNumber: accountNumber, endDate: endDate) == nil
+                var weeklyInsightAvailable = self.coreDataManager.getWeeklyInsight(accountNumber: accountNumber, endDate: endDate) == nil
+                return weeklyInsightAvailable
             }
+    
+    func hasDailyInsightAvailable() -> Observable<Bool> {
+        return self.usageData.asObservable().map {
+            if let dailyUsageData = $0 {
+                var insightAvailable = false
+                var date = Calendar.current.startOfDay(for: Date.now) // Based on user's timezone so their current "today" is always displayed
+                let startDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
+                
+                while date > startDate, !insightAvailable {
+                    if let match = dailyUsageData.dailyUsage.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
+                        let accountNumber = self.accountDetail.value!.accountNumber
+                        let canCollect = self.coreDataManager.getCollectedCoin(accountNumber: accountNumber, date: match.date, gas: self.selectedSegmentIndex == 1) == nil
+                        
+                        insightAvailable = canCollect || insightAvailable
+                    }
+                    date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+                }
+                                
+                return insightAvailable
+            }
+            else {
+                return false
+            }
+        }
+    }
+    
+    func hasInsightsAvailable() -> Driver<Bool> {
+        return Driver.combineLatest(shouldShowWeeklyInsightUnreadIndicator, hasDailyInsightAvailable().asDriver(onErrorJustReturn: false)).map { $0 || $1 }
+    }
 }
