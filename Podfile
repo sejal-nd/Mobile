@@ -19,6 +19,8 @@ def iOS_pods
   pod 'Firebase/RemoteConfig'
   pod 'AppCenter', '1.14'
   pod 'surveymonkey-ios-sdk', '2.0.5'
+  pod 'ForeSee/Core', '6.0.1'
+  pod 'ForeSee/ForeSeeFeedback', '6.0.1'
 end
 
 def iOS_UnitTestPods

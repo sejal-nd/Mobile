@@ -1,0 +1,20 @@
+{
+  "clientId": "FSRTESTINGCODECID12345==",
+  "cppParameters": {
+    
+  },
+  "feedback": {
+    "feedbackSurveys": [
+      {
+        "name": "Survey 1",
+        "feedbackId": "KNq7KG8Foud0L1PhJkWtCZvPn8v88bkQ"
+      },
+      {
+        "name": "Survey 2",
+        "feedbackId": "gUL187QH9ZxalPWaq0CTMk0F28fTwnGO"
+      }
+    ],
+    "surveyCompletionPageDelay": 3
+  },
+  "measures": {},
+}
