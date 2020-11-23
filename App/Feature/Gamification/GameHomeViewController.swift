@@ -431,13 +431,14 @@ class GameHomeViewController: AccountPickerViewController {
     // MARK:-
     
     private func checkForAvailableTask() {
-        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
-            let daysSinceLastTask = abs(lastTaskDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current))
-            if daysSinceLastTask < 4 {
-                viewModel.currentTask = nil
-                return
-            }
-        }
+        #warning("Gamification Testing Only! Remove for Release!")
+//        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
+//            let daysSinceLastTask = abs(lastTaskDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current))
+//            if daysSinceLastTask < 4 {
+//                viewModel.currentTask = nil
+//                return
+//            }
+//        }
         
         if let gameUser = viewModel.gameUser.value, let accountDetail = viewModel.accountDetail.value {
             while true {
