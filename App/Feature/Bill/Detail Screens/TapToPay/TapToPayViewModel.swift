@@ -508,7 +508,7 @@ class TapToPayViewModel {
             case .bank?:
                 maxDate = Calendar.opCo.date(byAdding: .day, value: 180, to: today) ?? today
             default:
-                return false
+                maxDate = Calendar.opCo.date(byAdding: .day, value: 180, to: today) ?? today
             }
             
             return DateInterval(start: minDate, end: maxDate).contains(opCoTimeDate)
