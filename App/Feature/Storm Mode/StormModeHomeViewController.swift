@@ -533,7 +533,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.finalPayTextView.text = NSLocalizedString("Outage Status and Outage reporting are not available for this account.", comment: "")
                 self.billButton.isHidden = false
                 self.outageSectionContainer.isHidden = false
-                self.reportOutageButton.isEnabled = false
+                self.reportOutageButton.configure(image: #imageLiteral(resourceName:  "ic_reportoutagewhite"), text: NSLocalizedString("Report Outage", comment: ""), enabled: false)
             } else {
                 self.accountDisallowView.isHidden = true
                 self.finalPayView.isHidden = false
