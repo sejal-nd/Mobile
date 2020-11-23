@@ -513,6 +513,8 @@ class HomeViewController: AccountPickerViewController {
             prepaidPendingCardView = nil
         case .prepaidActive:
             prepaidActiveCardView = nil
+        case .game:
+            gameCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
