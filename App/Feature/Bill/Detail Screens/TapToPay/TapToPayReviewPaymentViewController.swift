@@ -105,7 +105,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         youArePayingLabel.isAccessibilityElement = true
         youArePayingLabel.accessibilityLabel = youArePayingLabel.text
         
-        paymentAmountContainer.isAccessibilityElement = true
+        paymentAmountContainer.isAccessibilityElement = false
         paymentAmountContainer.accessibilityLabel = youArePayingLabel.text
         paymentAmountContainerButton.isAccessibilityElement = false
         
@@ -119,6 +119,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
         convenienceFeeLabel.font = SystemFont.regular.of(size: 12)
         convenienceFeeLabel.isAccessibilityElement = true
         convenienceFeeLabel.accessibilityLabel = convenienceFeeLabel.text
+        
+        self.paymentAmountContainer.accessibilityElements = [youArePayingLabel as Any,
+                                                             amountLabel as Any,
+                                                             convenienceFeeLabel as Any,
+                                                             editPaymentAmountButton as Any]
         
         addAdditionaRecipientButton.setTitleColor(.deepGray, for: .normal)
         addAdditionaRecipientButton.titleLabel?.font = SystemFont.medium.of(size: 16)
@@ -135,8 +140,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
         termsNConditionsButton.titleLabel?.font = SystemFont.semibold.of(size: 12)
         termsNConditionsButton.accessibilityLabel = termsNConditionsButton.titleLabel?.text
         
-        paymentMethodContainer.isAccessibilityElement = true
-        paymentMethodContainer.accessibilityLabel = NSLocalizedString("Payment Method", comment: "")
+        paymentMethodContainer.isAccessibilityElement = false
+        paymentMethodButton.isAccessibilityElement = false
         
         paymentMethodAccountNumberLabel.textColor = .deepGray
         paymentMethodAccountNumberLabel.font = SystemFont.regular.of(size: 16)
@@ -163,6 +168,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
         creditCardTitleLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
         creditCardTitleLabel.textColor = .actionBlue
         creditCardTitleLabel.font = SystemFont.semibold.of(size: 12)
+        
+        self.paymentDateButton.isAccessibilityElement = false
         
         paymentDateLabel.textColor = .deepGray
         paymentDateLabel.font = SystemFont.semibold.of(size: 16)
@@ -220,6 +227,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
         
         self.editPaymentMethodIcon.isAccessibilityElement = true
         self.editPaymentMethodIcon.accessibilityLabel = NSLocalizedString("Edit Payment Method", comment: "")
+        self.editPaymentMethodIcon.accessibilityTraits = UIAccessibilityTraits.button
+        
+        self.stickyPaymentFooterView.accessibilityElements = [submitDescriptionLabel as Any,
+                                                              termsNConditionsButton as Any,
+                                                              submitButton as Any]
         
         configureAdditionalRecipientsView()
         bindViewContent()
@@ -254,7 +266,9 @@ class TapToPayReviewPaymentViewController: UIViewController {
         // Selected Wallet Item
         viewModel.selectedWalletItemImage.drive(paymentMethodImageView.rx.image).disposed(by: bag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentMethodAccountNumberLabel.rx.text).disposed(by: bag)
+        viewModel.selectedWalletItemMaskedAccountString.drive(paymentMethodAccountNumberLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.selectedWalletItemNickname.drive(paymentMethodNicknameLabel.rx.text).disposed(by: bag)
+        viewModel.selectedWalletItemNickname.drive(paymentMethodNicknameLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.showSelectedWalletItemNickname.not().drive(paymentMethodNicknameLabel.rx.isHidden).disposed(by: bag)
         
         viewModel.isCashOnlyUser.not().drive(cashOnlyPaymentMethodLabel.rx.isHidden).disposed(by: bag)
@@ -291,6 +305,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
             self.paymentDateButton.isUserInteractionEnabled = enableDate
             self.paymentDateEditIcon.isAccessibilityElement = true
             self.paymentDateEditIcon.accessibilityLabel = enableDate ? NSLocalizedString("Edit Payment date", comment: "") :  NSLocalizedString("Edit Payment date, disabled", comment: "")
+            self.paymentDateEditIcon.accessibilityTraits = UIAccessibilityTraits.button
         }).disposed(by: bag)
         
         // OverPaying
@@ -401,7 +416,10 @@ class TapToPayReviewPaymentViewController: UIViewController {
     func configureAdditionalRecipientsView() {
         
         viewModel.totalPaymentDisplayString.drive(amountLabel.rx.text).disposed(by: bag)
+        viewModel.totalPaymentDisplayString.drive(amountLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.convenienceDisplayString.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
+        viewModel.convenienceDisplayString.drive(convenienceFeeLabel.rx.accessibilityLabel).disposed(by: bag)
+        
         viewModel.dueAmountDescriptionText.drive(dueAmountDescriptionLabel.rx.attributedText).disposed(by: bag)
         
         // Active Severance Label
@@ -517,6 +535,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
         self.view.isUserInteractionEnabled = false
         submitButton.setLoading()
         
+        submitButton.isAccessibilityElement = true
+        submitButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
+            UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
+        })
+        
         FirebaseUtility.logEvent(.reviewPaymentSubmit)
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {
@@ -582,6 +606,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
                     //LoadingView.hide()
                     self?.submitButton.reset()
                     self?.view.isUserInteractionEnabled = true
+                    UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
                     
                     FirebaseUtility.logEvent(.paymentNetworkComplete)
                     
