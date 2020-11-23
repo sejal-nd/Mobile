@@ -988,6 +988,9 @@
 		C3B6556024ABD9790048C64B /* SERResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6555F24ABD9790048C64B /* SERResult.swift */; };
 		C3B6557024ABE6780048C64B /* BillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6556F24ABE6780048C64B /* BillingInfo.swift */; };
 		C3B6558024ACD9080048C64B /* PaymentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6557F24ACD9080048C64B /* PaymentItem.swift */; };
+		C3BCD53E2567238C006F405E /* HomeGameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCD53D2567238C006F405E /* HomeGameCardView.swift */; };
+		C3BCD5442567239D006F405E /* HomeGameCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BCD5432567239D006F405E /* HomeGameCardView.xib */; };
+		C3C5696C256C33F60039C8A4 /* forsee_configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = C3C5696B256C33F60039C8A4 /* forsee_configuration.json */; };
 		C3DC821F251A518B0014D571 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		C3DC8224251A525A0014D571 /* AlertsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E835D1C81FB631AA008CE250 /* AlertsStore.swift */; };
 		C3DF2B9D24CB32D000A6D4EC /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF2B9C24CB32D000A6D4EC /* BillService.swift */; };
@@ -2071,6 +2074,9 @@
 		C3B6555F24ABD9790048C64B /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		C3B6556F24ABE6780048C64B /* BillingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingInfo.swift; sourceTree = "<group>"; };
 		C3B6557F24ACD9080048C64B /* PaymentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItem.swift; sourceTree = "<group>"; };
+		C3BCD53D2567238C006F405E /* HomeGameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameCardView.swift; sourceTree = "<group>"; };
+		C3BCD5432567239D006F405E /* HomeGameCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameCardView.xib; sourceTree = "<group>"; };
+		C3C5696B256C33F60039C8A4 /* forsee_configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = forsee_configuration.json; sourceTree = "<group>"; };
 		C3DF2B9C24CB32D000A6D4EC /* BillService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
 		C3DF2BA924CB42BB00A6D4EC /* BillService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BillService+Rx.swift"; sourceTree = "<group>"; };
 		C3DF2BB624CB42CE00A6D4EC /* PaymentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentService+Rx.swift"; sourceTree = "<group>"; };
@@ -4054,6 +4060,7 @@
 			isa = PBXGroup;
 			children = (
 				9C34D745239EE92400DF7FE2 /* GameTasks.json */,
+				C3C5696B256C33F60039C8A4 /* forsee_configuration.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -4486,6 +4493,8 @@
 			children = (
 				9CC9978D237B4A0200C68300 /* HomeGameOnboardingCardView.swift */,
 				9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */,
+				C3BCD53D2567238C006F405E /* HomeGameCardView.swift */,
+				C3BCD5432567239D006F405E /* HomeGameCardView.xib */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -5299,6 +5308,7 @@
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw-FlavorBGE.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
+				C3BCD5442567239D006F405E /* HomeGameCardView.xib in Resources */,
 				67A986A724F9693300BD46E7 /* Appt_otw-FlavorPECO.json in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
@@ -5333,6 +5343,7 @@
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				675F4DDA24AB828200A828F9 /* AutoPayEnrollMock.json in Resources */,
 				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
+				C3C5696C256C33F60039C8A4 /* forsee_configuration.json in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				C338283424E30D6900F133C5 /* PeakRewardsOverridesMock.json in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
@@ -5503,6 +5514,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSeeFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -5520,6 +5535,10 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -5547,6 +5566,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSeeFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -5565,6 +5588,10 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -5799,6 +5826,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EUMobile/Pods-EUMobile-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
+				"${PODS_ROOT}/ForeSee/lib/ForeSeeFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -5816,6 +5847,10 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -6234,6 +6269,7 @@
 				C36C395024ED842B00BA83B6 /* AccountResult.swift in Sources */,
 				675F4CFC24AB828200A828F9 /* TokenResponse.swift in Sources */,
 				54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
+				C3BCD53E2567238C006F405E /* HomeGameCardView.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				9CE549712399941300025BD5 /* GameRewardViewController.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
