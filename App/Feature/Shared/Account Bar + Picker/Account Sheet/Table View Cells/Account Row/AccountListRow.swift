@@ -80,13 +80,13 @@ class AccountListRow: UITableViewCell {
         tableView.reloadData() // So we can update the a11y settings per-cell
         
         // Animate constraint change
-        UIView.animate(withDuration: 0.3) { [unowned self] in
-            self.stackView.layoutIfNeeded()
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.stackView.layoutIfNeeded()
         }
         
         // Animate carrot image
-        UIView.transition(with: caretImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [unowned self] in
-            self.caretImageView.image = self.cellState == .collapsed ? #imageLiteral(resourceName: "ic_caret_down.pdf") : #imageLiteral(resourceName: "ic_caret_up.pdf")
+        UIView.transition(with: caretImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [weak self] in
+            self?.caretImageView.image = self?.cellState == .collapsed ? #imageLiteral(resourceName: "ic_caret_down.pdf") : #imageLiteral(resourceName: "ic_caret_up.pdf")
         }, completion: nil)
     }
     

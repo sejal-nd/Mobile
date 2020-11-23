@@ -71,16 +71,16 @@ class AccountSheetViewController: UIViewController {
             
             
             // Animate Bottom Sheet
-            UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: { [unowned self] in
-                self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: { [weak self] in
+                self?.view.layoutIfNeeded()
             }, completion: nil)
 
             // Animate Background
             guard lastSheetLevel == .closed else { return }
-            UIView.animate(withDuration: 0.3, animations: { [unowned self] in
-                self.backgroundView.alpha = 0.0
-                }, completion: { [unowned self] _ in
-                    self.dismiss(animated: false, completion: nil)
+            UIView.animate(withDuration: 0.3, animations: { [weak self] in
+                self?.backgroundView.alpha = 0.0
+                }, completion: { [weak self] _ in
+                    self?.dismiss(animated: false, completion: nil)
             })
         }
     }
@@ -188,8 +188,8 @@ class AccountSheetViewController: UIViewController {
                 bottomSheetViewTopConstraint.constant = newLocation
                 
                 // Animate Constraint Change
-                UIView.animate(withDuration: 0.1) { [unowned self] in
-                    self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 0.1) { [weak self] in
+                    self?.view.layoutIfNeeded()
                 }
             }
         case .ended, .failed, .cancelled:
@@ -275,8 +275,8 @@ class AccountSheetViewController: UIViewController {
     }
     
     private func presentBottomSheet() {
-        UIView.animate(withDuration: 0.3) { [unowned self] in
-            self.backgroundView.alpha = 1.0
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.backgroundView.alpha = 1.0
         }
         
         lastSheetLevel = .middle
