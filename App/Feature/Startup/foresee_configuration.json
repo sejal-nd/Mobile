@@ -1,0 +1,17 @@
+{
+  "clientId": "lw0wZhwrtNvtD+p6FbzVJQ==",
+  "feedback": {
+    "feedbackSurveys": [
+      {
+        "name": "Survey 1",
+        "feedbackId": "pMgL2pPOxl"
+      },
+      {
+        "name": "Survey 2",
+        "feedbackId": "Hu0bPldjGo"
+      }
+    ],
+    "surveyCompletionPageDelay": 3
+  },
+  "measures": {}
+}

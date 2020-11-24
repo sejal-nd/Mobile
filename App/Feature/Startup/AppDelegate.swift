@@ -14,6 +14,7 @@ import RxSwift
 import UserNotifications
 import PDTSimpleCalendar
 import CoreData
+import ForeSee
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -98,6 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self?.configureQuickActions(isAuthenticated: $0)
             })
             .disposed(by: disposeBag)
+        
+        ForeSee.start()
         
         return true
     }
