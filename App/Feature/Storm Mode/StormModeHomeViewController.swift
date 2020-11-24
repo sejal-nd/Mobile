@@ -429,16 +429,27 @@ class StormModeHomeViewController: AccountPickerViewController {
         case .bge:
             gasOnlyPhone1Label.text = "1-800-685-0123"
             gasOnlyPhone2Label.text = "1-877-778-7798"
-        case .ace, .comEd, .pepco:
+        case .comEd:
             gasOnlyPhone1Label.text = ""
         case .peco:
             gasOnlyPhone1Label.text = "1-800-841-4141"
-        case .delmarva:
-            gasOnlyPhone1Label.text = "302-454-0317"
+        case .ace, .pepco, .delmarva:
+            if AccountsStore.shared.accountOpco == .ace || AccountsStore.shared.accountOpco == .pepco {
+                gasOnlyPhone1Label.text = ""
+                gasOnlyPhone1Button.isHidden = true
+            } else {
+                gasOnlyPhone1Label.text = "302-454-0317"
+                gasOnlyPhone1Button.isHidden = false
+            }
         }
         
         gasOnlyPhone1Button.accessibilityLabel = gasOnlyPhone1Label.text
         gasOnlyPhone2Button.accessibilityLabel = gasOnlyPhone2Label.text
+    }
+    
+    override func setupUpdatedData() {
+        super.setupUpdatedData()
+        configureGasOnlyText()
     }
     
     private func configureRemoteConfig() {
