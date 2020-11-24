@@ -135,13 +135,6 @@ class HomeContentViewController: UIViewController {
         
         FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .tapped_fab)])
         
-        // Tracking for the 'Try the FAB' task
-        if inGame && GameTaskStore.shared.tryFabActivated {
-            GameTaskStore.shared.tryFabWentHome = true
-        } else if !inGame && GameTaskStore.shared.tryFabActivated && GameTaskStore.shared.tryFabWentHome {
-            GameTaskStore.shared.tryFabWentBackToGame = true
-        }
-        
         UserDefaults.standard.set(!self.inGame, forKey: UserDefaultKeys.prefersGameHome)
         
         flipping = true

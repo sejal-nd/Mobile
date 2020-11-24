@@ -16,4 +16,5 @@ enum GameTaskType: String, Decodable {
     case homeProfile = "homeprofile"
     case survey = "survey"
     case checkIn = "checkin"
+    case onboarding = "onboarding"
 }

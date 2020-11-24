@@ -164,17 +164,10 @@ class GameHomeViewController: AccountPickerViewController {
         if !welcomedUser {
             welcomedUser = true
             
-            if GameTaskStore.shared.tryFabWentBackToGame {
-                if loadedInitialGameUser {
-                    GameTaskStore.shared.tryFabActivated = false
-                    awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
-                }
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-                    guard let self = self else { return }
-                    self.energyBuddyView.playHappyAnimation()
-                    self.energyBuddyView.showWelcomeMessage(isFirstTimeSeeingBuddy: self.viewModel.points == 0)
-                }
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+                guard let self = self else { return }
+                self.energyBuddyView.playHappyAnimation()
+                self.energyBuddyView.showWelcomeMessage(isFirstTimeSeeingBuddy: self.viewModel.points == 0)
             }
         }
         
@@ -258,11 +251,8 @@ class GameHomeViewController: AccountPickerViewController {
                 }
             }
             
-            if GameTaskStore.shared.tryFabWentBackToGame {
-                if self.viewDidAppear {
-                    GameTaskStore.shared.tryFabActivated = false
-                    self.awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
-                }
+            if self.viewModel.currentTaskIndex == 0 {
+                self.awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
             } else {
                 self.checkForAvailableTask()
             }
@@ -375,10 +365,7 @@ class GameHomeViewController: AccountPickerViewController {
             return
         }
         
-        if task.type == .fab {
-            let fabVc = GameTryFabViewController.create()
-            self.tabBarController?.present(fabVc, animated: true, completion: nil)
-        } else if task.type == .eBill || task.type == .homeProfile {
+        if task.type == .eBill || task.type == .homeProfile {
             let enrollVc = GameEnrollmentViewController.create(withTaskType: task.type)
             enrollVc.delegate = self
             self.tabBarController?.present(enrollVc, animated: true, completion: nil)
@@ -539,7 +526,7 @@ class GameHomeViewController: AccountPickerViewController {
                 energyBuddyView.showHalfWayMessage()
             } else if result == .levelUp {
                 energyBuddyView.playSuperHappyAnimation(withSparkles: true)
-                energyBuddyView.showLevelUpMessage()
+                energyBuddyView.showLevelUpMessage(isFirstTimeSeeingBuddy: viewModel.currentTaskIndex == 0)
             }
         } else {
             energyBuddyView.playHappyAnimation()
@@ -585,7 +572,7 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func presentGift(_ gift: Gift) {
-        let rewardVc = GameRewardViewController.create(withGift: gift)
+        let rewardVc = GameRewardViewController.create(withGift: gift, isWelcomeGift: viewModel.currentTaskIndex == 1)
         rewardVc.delegate = self
         self.tabBarController?.present(rewardVc, animated: true, completion: nil)
     }

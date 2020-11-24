@@ -30,13 +30,15 @@ class GameRewardViewController: UIViewController {
     var animating = false
     
     var gift: Gift! // Passed into create() function
+    var isWelcomeGift = false  // Passed into create() function
         
-    static func create(withGift gift: Gift) -> GameRewardViewController {
+    static func create(withGift gift: Gift, isWelcomeGift: Bool = false) -> GameRewardViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "RewardPopup") as! GameRewardViewController
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         vc.gift = gift
+        vc.isWelcomeGift = isWelcomeGift
         return vc
     }
     
@@ -53,8 +55,21 @@ class GameRewardViewController: UIViewController {
         closeButton.isHidden = true
         
         titleLabel.textColor = .deepGray
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        titleLabel.text = NSLocalizedString("Here’s a gift for your hard work!", comment: "")
+        
+        if isWelcomeGift {
+            let attributedText = NSMutableAttributedString()
+            let attributedTitle = NSAttributedString(string: NSLocalizedString("Here’s a welcome gift!\n\n", comment: ""), attributes: [NSAttributedString.Key.font: SystemFont.regular.of(textStyle: .headline)])
+            let attributedSubtitle = NSAttributedString(string: NSLocalizedString("Unlock more by earning points!", comment: ""), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)])
+            
+            attributedText.append(attributedTitle)
+            attributedText.append(attributedSubtitle)
+            
+            titleLabel.attributedText = attributedText
+        }
+        else {
+            titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+            titleLabel.text = NSLocalizedString("Here’s a gift for your hard work!", comment: "")
+        }
     }
     
     @IBAction func onButtonPress() {

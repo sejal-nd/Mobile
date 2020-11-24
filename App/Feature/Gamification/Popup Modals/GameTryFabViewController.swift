@@ -66,7 +66,6 @@ class GameTryFabViewController: UIViewController {
     }
     
     @IBAction func onTryItNowPress() {
-        GameTaskStore.shared.tryFabActivated = true
         dismiss(self)
     }
 }

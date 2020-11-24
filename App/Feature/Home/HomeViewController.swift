@@ -232,8 +232,12 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        viewModel.gameUser.asObservable().subscribe(onNext: { gameUser in
-            self.gameCardView?.isHidden = gameUser == nil
+        viewModel.gameUser.asObservable().subscribe(onNext: {
+            if let gameUser = $0 {
+                self.gameCardView?.isHidden = !gameUser.onboardingComplete
+            } else {
+                self.gameCardView?.isHidden = true
+            }
         }).disposed(by: bag)
         
         viewModel.accountDetailEvents.elements().asObservable()
