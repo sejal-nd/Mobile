@@ -403,19 +403,20 @@ class StormModeHomeViewController: AccountPickerViewController {
         case .peco:
             group1Label.text = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call", comment: "")
             phone1Label.text = "1-800-841-4141"
-        case .pepco:
-            group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
-            phone1Label.text = "1-877-737-2662"
-        case .ace:
-            group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
-            phone1Label.text = "1-800-833-7476"
-        case .delmarva:
-            group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and then call ", comment: "")
-            group2Label.text = NSLocalizedString("To report a downed or sparking power line, please call ", comment: "")
-        
-            phone1Label.text = "302-454-0317"
-            phone3Label.text = "1-800-898-8042"
-            phone4Button.isHidden = true
+        case .ace, .delmarva, .pepco:
+            if AccountsStore.shared.accountOpco == .ace {
+                group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
+                phone1Label.text = "1-800-833-7476"
+            } else if AccountsStore.shared.accountOpco == .delmarva {
+                group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and then call ", comment: "")
+                group2Label.text = NSLocalizedString("To report a downed or sparking power line, please call ", comment: "")
+                phone1Label.text = "302-454-0317"
+                phone3Label.text = "1-800-898-8042"
+                phone4Button.isHidden = true
+            } else if AccountsStore.shared.accountOpco == .pepco {
+                group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
+                phone1Label.text = "1-877-737-2662"
+            }
         }
         
         phone1Button.accessibilityLabel = phone1Label.text
@@ -450,6 +451,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func setupUpdatedData() {
         super.setupUpdatedData()
         configureGasOnlyText()
+        configureContactText()
     }
     
     private func configureRemoteConfig() {
