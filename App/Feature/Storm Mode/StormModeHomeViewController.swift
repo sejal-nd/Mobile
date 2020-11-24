@@ -407,15 +407,42 @@ class StormModeHomeViewController: AccountPickerViewController {
             if AccountsStore.shared.accountOpco == .ace {
                 group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
                 phone1Label.text = "1-800-833-7476"
+                
+                group2Label.isHidden = true
+                phone2Label.isHidden = true
+                phone3Label.isHidden = true
+                phone4Label.isHidden = true
+                phone2Button.isHidden = true
+                phone3Button.isHidden = true
+                phone3Button.isHidden = true
+                phone4Button.isHidden = true
+
             } else if AccountsStore.shared.accountOpco == .delmarva {
                 group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and then call ", comment: "")
                 group2Label.text = NSLocalizedString("To report a downed or sparking power line, please call ", comment: "")
                 phone1Label.text = "302-454-0317"
                 phone3Label.text = "1-800-898-8042"
+                
+                group2Label.isHidden = false
+                phone2Label.isHidden = true
+                phone3Label.isHidden = false
+                phone4Label.isHidden = true
+                phone2Button.isHidden = true
+                phone3Button.isHidden = false
                 phone4Button.isHidden = true
+
             } else if AccountsStore.shared.accountOpco == .pepco {
                 group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
                 phone1Label.text = "1-877-737-2662"
+               
+                group2Label.isHidden = true
+                phone2Label.isHidden = true
+                phone3Label.isHidden = true
+                phone4Label.isHidden = true
+                phone2Button.isHidden = true
+                phone3Button.isHidden = true
+                phone3Button.isHidden = true
+                phone4Button.isHidden = true
             }
         }
         
