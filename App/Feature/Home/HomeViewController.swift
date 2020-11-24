@@ -898,12 +898,12 @@ extension HomeViewController: AccountPickerDelegate {
         
         if AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber &&
             !optedOutLocal && onboardingCompleteLocal && UI_USER_INTERFACE_IDIOM() != .pad {
-            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
+//            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
             if prefersGameHome {
                 NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
             }
         } else {
-            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
+//            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
         }
     }
 }

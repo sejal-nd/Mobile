@@ -41,6 +41,9 @@ class GameHomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var returnToDashboardButton: UIButton!
+    @IBOutlet weak var taskIndicatorButton: PrimaryButton!
+    @IBOutlet weak var taskIndicatorView: UIView!
     
     private var coinViews = [DailyInsightCoinView]()
     
@@ -54,7 +57,7 @@ class GameHomeViewController: AccountPickerViewController {
     var welcomedUser = false
     var loadedInitialGameUser = false
     var didGoToHomeProfile = false
-    var viewDidAppear = false
+    var didAppear = false
     
     var pointEarnAnimator: UIViewPropertyAnimator?
         
@@ -117,6 +120,24 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         viewModel.fetchData()
+        
+        returnToDashboardButton.rx.tap.subscribe(onNext: {
+            NotificationCenter.default.post(name: .gameSwitchToHomeView, object: nil)
+        }).disposed(by: bag)
+        
+        if !welcomedUser {
+            welcomedUser = true
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+                guard let self = self else { return }
+                self.energyBuddyView.playHappyAnimation()
+                self.energyBuddyView.showWelcomeMessage(isFirstTimeSeeingBuddy: self.viewModel.points == 0)
+            }
+        }
+        
+        taskIndicatorButton.rx.tap.subscribe(onNext: {
+            self.showTaskOptions()
+        }).disposed(by: bag)
     }
     
     override func viewDidLayoutSubviews() {
@@ -157,18 +178,8 @@ class GameHomeViewController: AccountPickerViewController {
             "selected_acc": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
         ])
 
-        if viewDidAppear { // Only do this on the 2nd `viewDidAppear` and beyond. The initial play is done in `viewDidLayoutSubviews`
+        if didAppear { // Only do this on the 2nd `viewDidAppear` and beyond. The initial play is done in `viewDidLayoutSubviews`
             energyBuddyView.playDefaultAnimations()
-        }
-        
-        if !welcomedUser {
-            welcomedUser = true
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-                guard let self = self else { return }
-                self.energyBuddyView.playHappyAnimation()
-                self.energyBuddyView.showWelcomeMessage(isFirstTimeSeeingBuddy: self.viewModel.points == 0)
-            }
         }
         
         if didGoToHomeProfile {
@@ -184,7 +195,7 @@ class GameHomeViewController: AccountPickerViewController {
                 appDelegate.tipIdWaitingToBeShown = nil
             }
         
-        viewDidAppear = true
+        didAppear = true
     }
         
     override func viewWillDisappear(_ animated: Bool) {
@@ -360,6 +371,10 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     @objc func onBuddyTap() {
+        showTaskOptions()
+    }
+    
+    func showTaskOptions() {
         guard let task = viewModel.currentTask else {
             showEnergyBuddyTooltip()
             return
@@ -434,7 +449,7 @@ class GameHomeViewController: AccountPickerViewController {
                         viewModel.currentTaskIndex += 1
                     } else {
                         viewModel.currentTask = task
-                        energyBuddyView.setTaskIndicator(task.type)
+                        self.setTaskIndicator(task.type)
                         break
                     }
                 } else {
@@ -559,7 +574,7 @@ class GameHomeViewController: AccountPickerViewController {
         }
 
         if advanceTaskIndex { // If advancing index, update index + points in the same request
-            energyBuddyView.setTaskIndicator(nil)
+            self.setTaskIndicator(nil)
             viewModel.currentTask = nil
             
             viewModel.currentTaskIndex += 1
@@ -598,6 +613,16 @@ class GameHomeViewController: AccountPickerViewController {
         }
     }
 
+    // Pass `nil` to hide indicator
+    func setTaskIndicator(_ type: GameTaskType?) {
+        guard let taskType = type else {
+            taskIndicatorView.isHidden = true
+            return
+        }
+
+        taskIndicatorButton.setTitle(viewModel.taskIndicatorText(for: taskType), for: .normal)
+        taskIndicatorView.isHidden = false
+    }
 }
 
 // MARK: - AccountPickerDelegate
@@ -713,7 +738,7 @@ extension GameHomeViewController: GameEnrollmentViewControllerDelegate {
     func gameEnrollmentViewControllerDidPressNotInterested(_ gameEnrollmentViewController: GameEnrollmentViewController) {
         tabBarController?.dismiss(animated: true, completion: nil)
         
-        energyBuddyView.setTaskIndicator(nil)
+        self.setTaskIndicator(nil)
         viewModel.currentTask = nil
         
         viewModel.currentTaskIndex += 1
@@ -745,7 +770,7 @@ extension GameHomeViewController: GameSurveyViewControllerDelegate {
                 self.awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
             })
         } else {
-            energyBuddyView.setTaskIndicator(nil)
+            self.setTaskIndicator(nil)
             viewModel.currentTask = nil
             
             viewModel.currentTaskIndex += 1
@@ -758,7 +783,7 @@ extension GameHomeViewController: GameSurveyViewControllerDelegate {
 extension GameHomeViewController: GameCheckInViewControllerDelegate {
     
     func gameCheckInViewController(_ gameCheckInViewController: GameCheckInViewController, selectedResponse: String) {
-        energyBuddyView.setTaskIndicator(nil)
+        self.setTaskIndicator(nil)
         viewModel.currentTask = nil
         
         viewModel.currentTaskIndex += 1
@@ -766,7 +791,7 @@ extension GameHomeViewController: GameCheckInViewControllerDelegate {
     }
     
     func gameCheckInViewControllerSelectedNotInterested(_ gameCheckInViewController: GameCheckInViewController) {
-        energyBuddyView.setTaskIndicator(nil)
+        self.setTaskIndicator(nil)
         viewModel.currentTask = nil
         
         viewModel.currentTaskIndex += 1

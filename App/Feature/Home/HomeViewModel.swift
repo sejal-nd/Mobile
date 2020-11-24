@@ -234,10 +234,6 @@ class HomeViewModel {
     
     private(set) lazy var showGameOnboardingCard = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { user -> Bool in
         guard let gameUser = user else { return false }
-        
-        if gameUser.onboardingComplete && !gameUser.optedOut {
-            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
-        }
         return !gameUser.onboardingComplete && !gameUser.optedOut
     }
     

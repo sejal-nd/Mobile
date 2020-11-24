@@ -91,6 +91,7 @@ class HomeContentViewController: UIViewController {
             .subscribeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.inGame = false
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
                 self?.switchViews(animated: false, onCompletion: nil)
             })
             .disposed(by: bag)
@@ -100,6 +101,7 @@ class HomeContentViewController: UIViewController {
             .subscribeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.inGame = true
+                UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
                 self?.switchViews(animated: false, onCompletion: nil)
             })
             .disposed(by: bag)
@@ -135,13 +137,17 @@ class HomeContentViewController: UIViewController {
         
         FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .tapped_fab)])
         
-        UserDefaults.standard.set(!self.inGame, forKey: UserDefaultKeys.prefersGameHome)
+//        UserDefaults.standard.set(!self.inGame, forKey: UserDefaultKeys.prefersGameHome)
         
         flipping = true
         switchViews(animated: true) { [weak self] in
             guard let self = self else { return }
             self.flipping = false
         }
+    }
+    
+    override var shouldAutomaticallyForwardAppearanceMethods: Bool {
+        return true
     }
     
     func switchViews(animated: Bool, onCompletion: (() -> Void)?) {

@@ -318,4 +318,18 @@ class GameHomeViewModel {
     func hasInsightsAvailable() -> Driver<Bool> {
         return Driver.combineLatest(shouldShowWeeklyInsightUnreadIndicator, hasDailyInsightAvailable().asDriver(onErrorJustReturn: false)).map { $0 || $1 }
     }
+    
+    func taskIndicatorText(for taskType: GameTaskType) -> String {
+        var taskIndicatorText: String
+        switch taskType {
+        case .tip:
+            taskIndicatorText = NSLocalizedString("New Tip Available!", comment: "")
+        case .quiz:
+            taskIndicatorText = NSLocalizedString("New Quiz Available!", comment: "")
+        default:
+            taskIndicatorText = NSLocalizedString("New Task Available!", comment: "")
+        }
+        
+        return taskIndicatorText
+    }
 }
