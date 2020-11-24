@@ -442,9 +442,9 @@ class ReviewPaymentViewController: UIViewController {
         self.alternateContactDivider.isHidden = self.collapseButton.isSelected ? true : false
         
         // Animate expand/collapse
-        UIView.animate(withDuration: 0.3) { [unowned self] in
-            self.view.layoutIfNeeded()
-            self.alternateEmailNumberView.isHidden = self.collapseButton.isSelected ? false : true
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.view.layoutIfNeeded()
+            self?.alternateEmailNumberView.isHidden = (self?.collapseButton.isSelected ?? false) ? false : true
         }
     }
 }
