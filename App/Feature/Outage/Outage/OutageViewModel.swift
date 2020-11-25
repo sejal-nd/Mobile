@@ -14,7 +14,8 @@ class OutageViewModel {
     var outageStatus: OutageStatus?
     var isOutageStatusInactive = false
     var hasJustReportedOutage = false
-
+    var isUserAuthenticated = false
+    
     // Remote Config Values
     var streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
     var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
@@ -124,6 +125,11 @@ class OutageViewModel {
     var outageReportedDateString: String {
         if let reportedOutage = reportedOutage, let reportedTime = reportedOutage.reportedTime {
             let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedTime)
+            if let accountNum = !isUserAuthenticated ? accountNumber : AccountsStore.shared.currentAccount.accountNumber {
+                UserDefaults.standard.set(timeString, forKey: accountNum)
+                UserDefaults.standard.set(reportedTime, forKey: UserDefaultKeys.reportedOutageTime + "-" + accountNum)
+                UserDefaults.standard.synchronize()
+            }
             return String(format: NSLocalizedString("Reported %@", comment: ""), timeString)
         }
 

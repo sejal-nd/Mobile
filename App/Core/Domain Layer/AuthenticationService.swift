@@ -120,6 +120,7 @@ extension AuthenticationService {
                             case .success(let accountDetail):
                                 UserDefaults.standard.set(accountDetail.customerNumber, forKey: UserDefaultKeys.customerIdentifier)
                                 AccountsStore.shared.customerIdentifier = accountDetail.customerNumber
+                                AccountsStore.shared.accountOpco = accountDetail.opcoType ?? Environment.shared.opco
                                 completion(.success((false)))
                             case .failure(let error):
                                 completion(.failure(error))

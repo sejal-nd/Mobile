@@ -46,12 +46,26 @@ class AccountPickerViewController: UIViewController {
         AccountService.fetchAccounts { [weak self] result in
             switch result {
             case .success:
-                self?.accountPicker.setLoading(false)
-                self?.accountPicker.refresh()
+                AccountService.fetchAccountDetails { [weak self] accountDetailsResult in
+                    switch accountDetailsResult {
+                    case .success(let accountDetail):
+                        AccountsStore.shared.premiseNumber = accountDetail.premiseNumber
+                        AccountsStore.shared.accountOpco = accountDetail.opcoType ?? Environment.shared.opco
+                        self?.accountPicker.setLoading(false)
+                        self?.accountPicker.refresh()
+                        self?.setupUpdatedData()
+                    case .failure:
+                        AuthenticationService.logout()
+                    }
+                }
             case .failure:
                 AuthenticationService.logout()
             }
         }
+    }
+    
+    func setupUpdatedData() {
+        // Override this method to re-populate data with latest Account Details
     }
     
 }

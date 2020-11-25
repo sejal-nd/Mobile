@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "img_homecard_lumi.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

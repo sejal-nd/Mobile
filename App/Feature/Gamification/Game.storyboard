@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +29,7 @@
         <!--Game Onboarding Intro View Controller-->
         <scene sceneID="VfE-Wf-Ysh">
             <objects>
-                <viewController id="3os-sw-E9Y" customClass="GameOnboardingIntroViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3os-sw-E9Y" customClass="GameOnboardingIntroViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IeQ-Rb-VA1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,10 +50,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ai2-x4-KA8" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ai2-x4-KA8" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="777" width="414" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXI-Op-KPY" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXI-Op-KPY" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Got it"/>
                                         <constraints>
@@ -63,17 +65,18 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <viewLayoutGuide key="safeArea" id="uQb-xg-HlT"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="pXI-Op-KPY" firstAttribute="leading" secondItem="Ai2-x4-KA8" secondAttribute="leading" constant="20" id="VBS-ys-sGV"/>
                                     <constraint firstItem="pXI-Op-KPY" firstAttribute="top" secondItem="Ai2-x4-KA8" secondAttribute="top" constant="15" id="Xq0-7O-Wg5"/>
                                     <constraint firstItem="pXI-Op-KPY" firstAttribute="bottom" secondItem="uQb-xg-HlT" secondAttribute="bottom" constant="-15" id="c61-yZ-8Of"/>
                                     <constraint firstAttribute="trailing" secondItem="pXI-Op-KPY" secondAttribute="trailing" constant="20" id="vK7-eV-NT7"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="uQb-xg-HlT"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="JKo-nS-Wxg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="VC2-i6-5ar" firstAttribute="centerX" secondItem="JKo-nS-Wxg" secondAttribute="centerX" id="BSg-IK-KIY"/>
                             <constraint firstAttribute="bottom" secondItem="Ai2-x4-KA8" secondAttribute="bottom" id="Emj-6m-bhN"/>
@@ -86,7 +89,6 @@
                             <constraint firstItem="VC2-i6-5ar" firstAttribute="top" secondItem="JKo-nS-Wxg" secondAttribute="top" constant="65" id="pJn-CU-hnG"/>
                             <constraint firstItem="kVs-gT-ebb" firstAttribute="leading" secondItem="JKo-nS-Wxg" secondAttribute="leading" constant="20" id="qQW-2C-46M"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="JKo-nS-Wxg"/>
                     </view>
                     <navigationItem key="navigationItem" id="7pj-R8-zed"/>
                     <connections>
@@ -101,7 +103,7 @@
         <!--Game Onboarding Step1 View Controller-->
         <scene sceneID="YIH-et-aZg">
             <objects>
-                <viewController id="Nx5-gD-aKH" customClass="GameOnboardingStep1ViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Nx5-gD-aKH" customClass="GameOnboardingStep1ViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bis-Gq-Olh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +116,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1 of 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Se7-xB-PhY">
-                                <rect key="frame" x="166.5" y="57" width="81.5" height="20.5"/>
+                                <rect key="frame" x="166.5" y="57" width="81" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -134,7 +136,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="01l-q7-hv2">
                                                 <rect key="frame" x="16" y="77.5" width="382" height="230"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doU-hb-8yh" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doU-hb-8yh" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4C-Gc-jLj">
@@ -144,7 +146,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="6ah-rB-Wtu"/>
                                                             <constraint firstItem="E4C-Gc-jLj" firstAttribute="centerY" secondItem="doU-hb-8yh" secondAttribute="centerY" id="SpK-FZ-NAC"/>
@@ -158,7 +160,7 @@
                                                             <action selector="onButtonPress:" destination="Nx5-gD-aKH" eventType="touchUpInside" id="t7C-y8-0hw"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Pm-30-Yx5" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Pm-30-Yx5" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="80" width="382" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqt-IG-kRg">
@@ -168,7 +170,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="xqt-IG-kRg" secondAttribute="trailing" constant="8" id="5EA-Mv-0OD"/>
                                                             <constraint firstAttribute="height" constant="70" id="6hJ-fl-YDH"/>
@@ -182,7 +184,7 @@
                                                             <action selector="onButtonPress:" destination="Nx5-gD-aKH" eventType="touchUpInside" id="vVK-7t-PYn"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zu1-Qa-MBg" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zu1-Qa-MBg" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="160" width="382" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzY-zV-YVG">
@@ -192,7 +194,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="RzY-zV-YVG" firstAttribute="leading" secondItem="zu1-Qa-MBg" secondAttribute="leading" constant="8" id="XRi-Qe-Cpc"/>
                                                             <constraint firstAttribute="height" constant="70" id="c1j-1u-dxS"/>
@@ -209,7 +211,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="01l-q7-hv2" secondAttribute="bottom" id="FD9-Gu-wbk"/>
                                             <constraint firstItem="01l-q7-hv2" firstAttribute="leading" secondItem="IFG-L0-L8Y" secondAttribute="leading" constant="16" id="Gd2-uq-lMI"/>
@@ -231,10 +233,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="DfK-Xx-dOu"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="eBc-cU-d7B"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmC-j8-GrH" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmC-j8-GrH" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="777" width="414" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITJ-dF-qCK" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITJ-dF-qCK" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Continue"/>
                                         <constraints>
@@ -246,17 +248,18 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <viewLayoutGuide key="safeArea" id="DAg-WH-5Zp"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="ITJ-dF-qCK" secondAttribute="trailing" constant="20" id="3Sm-pp-9J6"/>
                                     <constraint firstItem="ITJ-dF-qCK" firstAttribute="top" secondItem="nmC-j8-GrH" secondAttribute="top" constant="15" id="Ck2-le-GAV"/>
                                     <constraint firstItem="ITJ-dF-qCK" firstAttribute="leading" secondItem="nmC-j8-GrH" secondAttribute="leading" constant="20" id="gf0-6w-RUc"/>
                                     <constraint firstItem="ITJ-dF-qCK" firstAttribute="bottom" secondItem="DAg-WH-5Zp" secondAttribute="bottom" constant="-15" id="nBy-r8-muh"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="DAg-WH-5Zp"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="RtB-sL-prp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Se7-xB-PhY" firstAttribute="centerX" secondItem="RtB-sL-prp" secondAttribute="centerX" id="2bD-Sd-1up"/>
                             <constraint firstItem="RtB-sL-prp" firstAttribute="trailing" secondItem="Qln-jV-Gh3" secondAttribute="trailing" id="35c-6D-1bP"/>
@@ -270,7 +273,6 @@
                             <constraint firstItem="Se7-xB-PhY" firstAttribute="top" secondItem="azB-e9-k2m" secondAttribute="top" id="phN-i5-Ndl"/>
                             <constraint firstItem="azB-e9-k2m" firstAttribute="leading" secondItem="RtB-sL-prp" secondAttribute="leading" constant="20" id="vnp-Nu-PFP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="RtB-sL-prp"/>
                     </view>
                     <navigationItem key="navigationItem" id="9gr-Ms-SRK"/>
                     <connections>
@@ -293,7 +295,7 @@
         <!--Large Title Navigation Controller-->
         <scene sceneID="a8s-C2-w3m">
             <objects>
-                <navigationController storyboardIdentifier="GameHomeLargeTitleNav" id="Wdr-2P-dbW" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="GameHomeLargeTitleNav" id="Wdr-2P-dbW" customClass="LargeTitleNavigationController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KlC-iq-qHU">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -309,12 +311,12 @@
         <!--Game Home View Controller-->
         <scene sceneID="JZk-LG-6h4">
             <objects>
-                <viewController storyboardIdentifier="GameHome" id="SHv-hv-hfX" customClass="GameHomeViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameHome" id="SHv-hv-hfX" customClass="GameHomeViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ebf-o6-4QO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="dgs-Gl-hBv" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="dgs-Gl-hBv" customClass="AccountPicker" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -323,31 +325,63 @@
                                 <rect key="frame" x="0.0" y="138" width="414" height="724"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3th-xB-uV2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="987"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1037.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byt-aM-5F2" customClass="EnergyBuddyView" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
-                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-27.5" translatesAutoresizingMaskIntoConstraints="NO" id="6s7-7G-6Nf">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="427.5"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byt-aM-5F2" customClass="EnergyBuddyView" customModule="EUMobile" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="350" id="CD7-jm-9Y9"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrF-J8-m8M">
+                                                        <rect key="frame" x="0.0" y="322.5" width="414" height="105"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IsP-uj-QjN" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
+                                                                <rect key="frame" x="30" y="0.0" width="354" height="55"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="55" id="lra-13-g2y"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <state key="normal" title="New Tip Available!"/>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="IsP-uj-QjN" firstAttribute="leading" secondItem="mrF-J8-m8M" secondAttribute="leading" constant="30" id="3PM-wx-Daq"/>
+                                                            <constraint firstItem="IsP-uj-QjN" firstAttribute="top" secondItem="mrF-J8-m8M" secondAttribute="top" id="XsY-iq-4Yl"/>
+                                                            <constraint firstAttribute="trailing" secondItem="IsP-uj-QjN" secondAttribute="trailing" constant="30" id="lr4-R0-oaf"/>
+                                                            <constraint firstAttribute="height" constant="105" id="rp0-jS-5fI"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="350" id="CD7-jm-9Y9"/>
+                                                    <constraint firstItem="mrF-J8-m8M" firstAttribute="leading" secondItem="6s7-7G-6Nf" secondAttribute="leading" id="Fv5-gh-8tY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="mrF-J8-m8M" secondAttribute="trailing" id="ZUF-0s-Jw1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Byt-aM-5F2" secondAttribute="trailing" id="aRD-SG-3qH"/>
+                                                    <constraint firstItem="Byt-aM-5F2" firstAttribute="top" secondItem="6s7-7G-6Nf" secondAttribute="top" id="hYC-4x-5L0"/>
+                                                    <constraint firstItem="Byt-aM-5F2" firstAttribute="leading" secondItem="6s7-7G-6Nf" secondAttribute="leading" id="uXS-WR-jYf"/>
                                                 </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FM4-m6-wid" customClass="GameProgressBar" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="253" width="348" height="20"/>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FM4-m6-wid" customClass="GameProgressBar" customModule="EUMobile" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="267.5" width="348" height="20"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2k-WS-7yM">
                                                         <rect key="frame" x="4" y="4" width="340" height="12"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHC-fP-56e">
                                                         <rect key="frame" x="4" y="4" width="360" height="12"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="360" id="vnK-SO-0AG"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="rHC-fP-56e" firstAttribute="top" secondItem="FM4-m6-wid" secondAttribute="top" constant="4" id="GBY-JY-M8O"/>
                                                     <constraint firstAttribute="trailing" secondItem="w2k-WS-7yM" secondAttribute="trailing" constant="4" id="MUN-IN-prq"/>
@@ -365,26 +399,26 @@
                                                 </connections>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzy-Cz-66l" userLabel="Viewed Tips Button">
-                                                <rect key="frame" x="350" y="178" width="48" height="54"/>
+                                                <rect key="frame" x="350" y="192.5" width="48" height="54"/>
                                                 <state key="normal" image="ic_history"/>
                                                 <connections>
                                                     <action selector="onViewedTipsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="K5q-v3-jfd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-ij-bxm" userLabel="Gift Button">
-                                                <rect key="frame" x="350" y="236" width="48" height="54"/>
+                                                <rect key="frame" x="350" y="250.5" width="48" height="54"/>
                                                 <state key="normal" image="ic_gifts"/>
                                                 <connections>
                                                     <action selector="onGiftsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="uPm-so-XcS"/>
                                                 </connections>
                                             </button>
                                             <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHj-MC-jbY">
-                                                <rect key="frame" x="350" y="236" width="48" height="48"/>
+                                                <rect key="frame" x="350" y="250.5" width="48" height="48"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVZ-z3-SyK">
                                                         <rect key="frame" x="4" y="16" width="40" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" systemColor="systemGreenColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -397,9 +431,9 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK2-4u-l6B">
-                                                <rect key="frame" x="16" y="316" width="382" height="651"/>
+                                                <rect key="frame" x="16" y="393.5" width="382" height="563"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4CG-4d-xpR" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4CG-4d-xpR" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="20" width="34.5" height="24"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_streak" translatesAutoresizingMaskIntoConstraints="NO" id="gbg-cu-Nb4">
@@ -429,7 +463,7 @@
                                                         </connections>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Insight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-gJ-F04">
-                                                        <rect key="frame" x="144.5" y="20" width="93.5" height="20.5"/>
+                                                        <rect key="frame" x="144.5" y="20" width="93" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -443,12 +477,12 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="js0-ey-UCb">
-                                                        <rect key="frame" x="10" y="70.5" width="362" height="580.5"/>
+                                                        <rect key="frame" x="10" y="70.5" width="362" height="492.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwp-AP-1YJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="75"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nah-d7-pIj" customClass="SegmentedControl" customModule="BGE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nah-d7-pIj" customClass="SegmentedControl" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="4" y="0.0" width="354" height="45"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
@@ -459,7 +493,7 @@
                                                                         </connections>
                                                                     </view>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="nah-d7-pIj" firstAttribute="top" secondItem="Xwp-AP-1YJ" secondAttribute="top" id="98b-F4-7Zh"/>
                                                                     <constraint firstAttribute="trailing" secondItem="nah-d7-pIj" secondAttribute="trailing" constant="4" id="UWI-uL-vL1"/>
@@ -468,14 +502,14 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="py0-US-tII">
-                                                                <rect key="frame" x="0.0" y="75" width="362" height="311"/>
+                                                                <rect key="frame" x="0.0" y="75" width="362" height="223"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="rkE-mK-mKb">
                                                                         <rect key="frame" x="0.0" y="0.0" width="362" height="70"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="36" placeholderIntrinsicHeight="70" translatesAutoresizingMaskIntoConstraints="NO" id="VUc-ee-68t">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="70"/>
-                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             </view>
                                                                         </subviews>
                                                                     </stackView>
@@ -489,7 +523,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="bottom" secondItem="63T-YS-TBR" secondAttribute="bottom" constant="12" id="A0m-X1-Jd0"/>
                                                                             <constraint firstAttribute="trailing" secondItem="63T-YS-TBR" secondAttribute="trailing" constant="15" id="CBI-Ei-7Xy"/>
@@ -505,21 +539,22 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jo1-J9-BZo">
-                                                                        <rect key="frame" x="101.5" y="173" width="159" height="138"/>
+                                                                        <rect key="frame" x="90" y="173" width="182" height="50"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BmY-iO-8Gx">
-                                                                                <rect key="frame" x="0.0" y="63" width="12" height="12"/>
-                                                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <rect key="frame" x="0.0" y="19" width="12" height="12"/>
+                                                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="12" id="ZjW-Ov-Myo"/>
                                                                                     <constraint firstAttribute="height" constant="12" id="djq-CW-4QN"/>
                                                                                 </constraints>
                                                                             </view>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o69-UN-Zhc">
-                                                                                <rect key="frame" x="22" y="44" width="137" height="50"/>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o69-UN-Zhc">
+                                                                                <rect key="frame" x="22" y="0.0" width="160" height="50"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="50" id="Hs9-PW-OSC"/>
                                                                                 </constraints>
+                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                                 <state key="normal" title="View Weekly Insight"/>
                                                                                 <connections>
                                                                                     <segue destination="Fbm-X7-8l6" kind="show" id="hes-jr-smX"/>
@@ -528,7 +563,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="TMx-7h-ScJ" firstAttribute="centerX" secondItem="3Q4-nN-y0m" secondAttribute="centerX" id="BCv-mc-NOA"/>
                                                                     <constraint firstItem="3Q4-nN-y0m" firstAttribute="top" secondItem="TMx-7h-ScJ" secondAttribute="bottom" constant="-1" id="HXd-r8-K1W"/>
@@ -544,14 +579,14 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-4f-Tdn">
-                                                                <rect key="frame" x="0.0" y="386" width="362" height="128"/>
+                                                                <rect key="frame" x="0.0" y="298" width="362" height="128"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="80" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-OJ-CJu" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="80" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-OJ-CJu" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="141" y="54" width="80" height="20"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     </view>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="cfe-OJ-CJu" firstAttribute="centerY" secondItem="8oG-4f-Tdn" secondAttribute="centerY" id="Nfz-lA-bAp"/>
                                                                     <constraint firstAttribute="height" constant="128" id="qQm-G2-8oW"/>
@@ -559,7 +594,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gky-iO-N7T">
-                                                                <rect key="frame" x="0.0" y="514" width="362" height="66.5"/>
+                                                                <rect key="frame" x="0.0" y="426" width="362" height="66.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiR-Ts-noa">
                                                                         <rect key="frame" x="10" y="16" width="342" height="20.5"/>
@@ -568,7 +603,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="bottom" secondItem="jiR-Ts-noa" secondAttribute="bottom" constant="30" id="CEe-0e-xEN"/>
                                                                     <constraint firstItem="jiR-Ts-noa" firstAttribute="leading" secondItem="gky-iO-N7T" secondAttribute="leading" constant="10" id="R6O-4H-Ibc"/>
@@ -585,7 +620,7 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="4CG-4d-xpR" firstAttribute="leading" secondItem="dK2-4u-l6B" secondAttribute="leading" constant="20" id="0HQ-UJ-mMh"/>
                                                     <constraint firstItem="1IL-gJ-F04" firstAttribute="centerX" secondItem="dK2-4u-l6B" secondAttribute="centerX" id="5hs-t7-Ljd"/>
@@ -599,26 +634,55 @@
                                                     <constraint firstAttribute="trailing" secondItem="ez0-jX-MMj" secondAttribute="trailing" constant="20" id="sbV-sR-4H9"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn9-A2-DZm">
+                                                <rect key="frame" x="16" y="971.5" width="382" height="46"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eSf-iY-W2V" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
+                                                        <rect key="frame" x="13" y="1" width="356" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="uHr-hI-EzH"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <state key="normal" title="Return to Dashboard"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="condensationValue">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="eSf-iY-W2V" firstAttribute="centerX" secondItem="fn9-A2-DZm" secondAttribute="centerX" id="7TA-cy-tgC"/>
+                                                    <constraint firstItem="eSf-iY-W2V" firstAttribute="top" secondItem="fn9-A2-DZm" secondAttribute="top" priority="999" constant="1" id="GCt-zG-3Ba"/>
+                                                    <constraint firstAttribute="bottom" secondItem="eSf-iY-W2V" secondAttribute="bottom" priority="999" id="JBR-F8-dI1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="eSf-iY-W2V" secondAttribute="trailing" constant="13" id="aF4-T2-Pmz"/>
+                                                    <constraint firstItem="eSf-iY-W2V" firstAttribute="leading" secondItem="fn9-A2-DZm" secondAttribute="leading" constant="13" id="cpe-21-wTc"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="Byt-aM-5F2" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" id="0p7-Qz-hPr"/>
-                                            <constraint firstAttribute="trailing" secondItem="Byt-aM-5F2" secondAttribute="trailing" id="5qk-Hr-Y9m"/>
                                             <constraint firstAttribute="trailing" secondItem="Uzy-Cz-66l" secondAttribute="trailing" constant="16" id="8ke-rP-5Rf"/>
+                                            <constraint firstItem="dK2-4u-l6B" firstAttribute="top" secondItem="6s7-7G-6Nf" secondAttribute="bottom" constant="-34" id="DLd-rs-2dD"/>
                                             <constraint firstItem="dK2-4u-l6B" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" constant="16" id="EkX-bt-KHH"/>
+                                            <constraint firstAttribute="trailing" secondItem="6s7-7G-6Nf" secondAttribute="trailing" id="Gxv-PM-Wqg"/>
                                             <constraint firstAttribute="trailing" secondItem="dK2-4u-l6B" secondAttribute="trailing" constant="16" id="HyJ-jA-f5s"/>
                                             <constraint firstAttribute="trailing" secondItem="FM4-m6-wid" secondAttribute="trailing" constant="50" id="JW2-tt-3gw"/>
-                                            <constraint firstItem="dK2-4u-l6B" firstAttribute="top" secondItem="FM4-m6-wid" secondAttribute="bottom" constant="43" id="SSM-4P-Nsu"/>
+                                            <constraint firstAttribute="trailing" secondItem="fn9-A2-DZm" secondAttribute="trailing" constant="16" id="NC6-wI-an5"/>
                                             <constraint firstItem="FM4-m6-wid" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" constant="16" id="Vxx-Az-0d3"/>
                                             <constraint firstItem="ud1-ij-bxm" firstAttribute="top" secondItem="Uzy-Cz-66l" secondAttribute="bottom" constant="4" id="WTo-Z2-Fb0"/>
-                                            <constraint firstItem="Byt-aM-5F2" firstAttribute="top" secondItem="3th-xB-uV2" secondAttribute="top" id="bXm-G3-go6"/>
-                                            <constraint firstItem="dK2-4u-l6B" firstAttribute="top" secondItem="Byt-aM-5F2" secondAttribute="bottom" constant="-34" id="cu3-hB-bCP"/>
+                                            <constraint firstItem="6s7-7G-6Nf" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" id="WwS-lT-Qwj"/>
+                                            <constraint firstItem="6s7-7G-6Nf" firstAttribute="top" secondItem="3th-xB-uV2" secondAttribute="top" id="aov-jk-Iue"/>
                                             <constraint firstItem="DHj-MC-jbY" firstAttribute="width" secondItem="ud1-ij-bxm" secondAttribute="width" id="f63-9W-FVR"/>
-                                            <constraint firstAttribute="bottom" secondItem="dK2-4u-l6B" secondAttribute="bottom" constant="20" id="gzZ-mp-xFN"/>
+                                            <constraint firstItem="fn9-A2-DZm" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" constant="16" id="pUj-a7-VYR"/>
+                                            <constraint firstItem="fn9-A2-DZm" firstAttribute="top" secondItem="dK2-4u-l6B" secondAttribute="bottom" constant="15" id="sEA-0D-szm"/>
                                             <constraint firstItem="DHj-MC-jbY" firstAttribute="centerX" secondItem="ud1-ij-bxm" secondAttribute="centerX" id="vEp-tM-IPJ"/>
                                             <constraint firstAttribute="trailing" secondItem="ud1-ij-bxm" secondAttribute="trailing" constant="16" id="vXj-2D-fmn"/>
                                             <constraint firstItem="ud1-ij-bxm" firstAttribute="centerY" secondItem="FM4-m6-wid" secondAttribute="centerY" id="ve6-6N-6hb"/>
+                                            <constraint firstItem="FM4-m6-wid" firstAttribute="bottom" secondItem="6s7-7G-6Nf" secondAttribute="bottom" constant="-140" id="yYr-iF-xcM"/>
                                             <constraint firstItem="DHj-MC-jbY" firstAttribute="top" secondItem="ud1-ij-bxm" secondAttribute="top" id="ytO-Bd-gFd"/>
+                                            <constraint firstAttribute="bottom" secondItem="fn9-A2-DZm" secondAttribute="bottom" constant="20" id="zau-Vc-3IC"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -633,7 +697,8 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="YqY-4l-kBh"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="eJe-1t-4KF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="eJe-1t-4KF" firstAttribute="trailing" secondItem="dgs-Gl-hBv" secondAttribute="trailing" id="0jG-ys-lcN"/>
                             <constraint firstItem="dgs-Gl-hBv" firstAttribute="leading" secondItem="eJe-1t-4KF" secondAttribute="leading" id="IHN-ca-QCX"/>
@@ -643,7 +708,6 @@
                             <constraint firstItem="LnJ-gS-54q" firstAttribute="top" secondItem="dgs-Gl-hBv" secondAttribute="bottom" id="qZ1-iQ-5PV"/>
                             <constraint firstItem="LnJ-gS-54q" firstAttribute="leading" secondItem="eJe-1t-4KF" secondAttribute="leading" id="zvL-XE-brp"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="eJe-1t-4KF"/>
                     </view>
                     <navigationItem key="navigationItem" id="5rc-3D-1Ge"/>
                     <connections>
@@ -663,11 +727,14 @@
                         <outlet property="pointEarnLabel" destination="iVZ-z3-SyK" id="Vsa-PS-3sG"/>
                         <outlet property="pointEarnView" destination="DHj-MC-jbY" id="4jW-6R-Iwc"/>
                         <outlet property="progressBar" destination="FM4-m6-wid" id="Ls8-Ak-8NL"/>
+                        <outlet property="returnToDashboardButton" destination="eSf-iY-W2V" id="YcG-ad-YtD"/>
                         <outlet property="scrollView" destination="LnJ-gS-54q" id="WA6-Qn-KAW"/>
                         <outlet property="segmentedControl" destination="nah-d7-pIj" id="mqh-in-mta"/>
                         <outlet property="segmentedControlContainer" destination="Xwp-AP-1YJ" id="XHU-Xh-rwT"/>
                         <outlet property="streakButton" destination="4CG-4d-xpR" id="cEI-Pl-0nU"/>
                         <outlet property="streakLabel" destination="KK8-MO-vnG" id="bQn-iS-Jz3"/>
+                        <outlet property="taskIndicatorButton" destination="IsP-uj-QjN" id="5mI-cN-Rfi"/>
+                        <outlet property="taskIndicatorView" destination="mrF-J8-m8M" id="V5z-4J-Js8"/>
                         <outlet property="weeklyInsightButton" destination="o69-UN-Zhc" id="8na-3b-JPz"/>
                         <outlet property="weeklyInsightUnreadIndicator" destination="BmY-iO-8Gx" id="aP8-hC-aXk"/>
                         <segue destination="UFp-Nz-kjp" kind="show" identifier="giftSegue" id="DyQ-kU-OFA"/>
@@ -683,7 +750,7 @@
         <!--Gifts View Controller-->
         <scene sceneID="ZFO-oD-lhE">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="UFp-Nz-kjp" customClass="GiftsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="UFp-Nz-kjp" customClass="GiftsViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A7X-tF-4z1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -715,7 +782,8 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="vC9-wq-1bO"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="X9b-tH-Zas"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5Fv-hy-hVn" firstAttribute="top" secondItem="cdk-GD-G96" secondAttribute="bottom" id="0nY-dN-5q1"/>
                             <constraint firstItem="5Fv-hy-hVn" firstAttribute="leading" secondItem="X9b-tH-Zas" secondAttribute="leading" id="4M6-m3-Nfw"/>
@@ -728,7 +796,6 @@
                             <constraint firstItem="cdk-GD-G96" firstAttribute="leading" secondItem="X9b-tH-Zas" secondAttribute="leading" id="pDG-6C-GCr"/>
                             <constraint firstItem="X9b-tH-Zas" firstAttribute="trailing" secondItem="cdk-GD-G96" secondAttribute="trailing" id="y3s-U5-Cdm"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="X9b-tH-Zas"/>
                     </view>
                     <navigationItem key="navigationItem" id="tug-gS-MEk"/>
                     <connections>
@@ -743,11 +810,11 @@
         <!--Gift Collection View Controller-->
         <scene sceneID="oyf-X5-cdt">
             <objects>
-                <collectionViewController storyboardIdentifier="GiftCollection" id="14G-Iy-xRg" customClass="GiftCollectionViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="GiftCollection" id="14G-Iy-xRg" customClass="GiftCollectionViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="45F-Yh-gN6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="vBs-LY-x0f">
                             <size key="itemSize" width="0.0" height="0.0"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -755,7 +822,7 @@
                             <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GiftCell" id="4OO-py-pYP" customClass="GiftCollectionViewCell" customModule="BGE" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GiftCell" id="4OO-py-pYP" customClass="GiftCollectionViewCell" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="105" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FUa-U7-KLY">
@@ -806,17 +873,17 @@
         <!--Viewed Tips View Controller-->
         <scene sceneID="L8i-th-fAz">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="Khv-gx-ANe" customClass="ViewedTipsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="Khv-gx-ANe" customClass="ViewedTipsViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="asl-G9-vSs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nrX-l3-uiM">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ViewedTipCell" rowHeight="60" id="dEC-pu-gP7" customClass="ViewedTipTableViewCell" customModule="BGE" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ViewedTipCell" rowHeight="60" id="dEC-pu-gP7" customClass="ViewedTipTableViewCell" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dEC-pu-gP7" id="nyn-2B-uvh">
@@ -870,19 +937,19 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-Bj-z2G">
-                                <rect key="frame" x="85.5" y="406" width="243.5" height="138.5"/>
+                                <rect key="frame" x="86" y="406" width="242.5" height="138.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_tips_emptystate" translatesAutoresizingMaskIntoConstraints="NO" id="dff-pR-REM">
-                                        <rect key="frame" x="71.5" y="0.0" width="100" height="100"/>
+                                        <rect key="frame" x="71" y="0.0" width="100" height="100"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't viewed any tips yet." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lw3-aU-Lcs">
-                                        <rect key="frame" x="0.0" y="118" width="243.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="118" width="242.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Lw3-aU-Lcs" firstAttribute="top" secondItem="dff-pR-REM" secondAttribute="bottom" constant="18" id="AWK-7q-27M"/>
                                     <constraint firstAttribute="bottom" secondItem="Lw3-aU-Lcs" secondAttribute="bottom" id="Feh-zo-81B"/>
@@ -893,7 +960,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="q3q-Fb-82u"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="q3q-Fb-82u" firstAttribute="trailing" secondItem="nrX-l3-uiM" secondAttribute="trailing" id="IPM-or-bjc"/>
                             <constraint firstItem="Azb-Bj-z2G" firstAttribute="centerY" secondItem="q3q-Fb-82u" secondAttribute="centerY" id="LxX-MA-Cza"/>
@@ -904,7 +972,6 @@
                             <constraint firstItem="Azb-Bj-z2G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="q3q-Fb-82u" secondAttribute="leading" constant="16" id="vdL-0A-Imd"/>
                             <constraint firstItem="nrX-l3-uiM" firstAttribute="leading" secondItem="q3q-Fb-82u" secondAttribute="leading" id="zi8-j8-Ese"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="q3q-Fb-82u"/>
                     </view>
                     <navigationItem key="navigationItem" id="NX9-Xn-zI9"/>
                     <connections>
@@ -940,7 +1007,7 @@
         <!--Large Title Navigation Controller-->
         <scene sceneID="4YD-Ik-gqV">
             <objects>
-                <navigationController id="Fbm-X7-8l6" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="Fbm-X7-8l6" customClass="LargeTitleNavigationController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="8Sr-jj-t3a"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ef5-Lf-zYb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -957,7 +1024,7 @@
         <!--Game Tip View Controller-->
         <scene sceneID="x7s-b9-n2C">
             <objects>
-                <viewController storyboardIdentifier="TipPopup" id="TyM-h4-aTu" customClass="GameTipViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TipPopup" id="TyM-h4-aTu" customClass="GameTipViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e6d-d6-ykt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1008,7 +1075,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                         </constraints>
                                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                         <state key="normal" title="Set Reminder" image="ic_reminder">
-                                                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="titleColor" systemColor="linkColor"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="onReminderPress" destination="TyM-h4-aTu" eventType="touchUpInside" id="gb7-b4-uVH"/>
@@ -1029,7 +1096,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                         </constraints>
                                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                         <state key="normal" title="Favorite" image="ic_favetip">
-                                                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="titleColor" systemColor="linkColor"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="onFavoritePress" destination="TyM-h4-aTu" eventType="touchUpInside" id="rg9-jR-Hvu"/>
@@ -1038,7 +1105,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="0Ht-Lj-dbk" firstAttribute="leading" secondItem="74E-Z5-bTU" secondAttribute="leading" constant="20" id="6FO-dW-bZM"/>
                                                             <constraint firstItem="io0-gF-5Q5" firstAttribute="top" secondItem="0Ht-Lj-dbk" secondAttribute="bottom" constant="35" id="8jF-J5-XME"/>
@@ -1082,14 +1149,14 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 <viewLayoutGuide key="frameLayoutGuide" id="veS-hc-5Vq"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="3DQ-FV-tN7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4sf-vu-Dvd" secondAttribute="trailing" id="F6t-cS-X0E"/>
                             <constraint firstAttribute="bottom" secondItem="4sf-vu-Dvd" secondAttribute="bottom" id="HyH-te-kqA"/>
                             <constraint firstItem="4sf-vu-Dvd" firstAttribute="top" secondItem="e6d-d6-ykt" secondAttribute="top" id="KoY-xi-aOc"/>
                             <constraint firstItem="4sf-vu-Dvd" firstAttribute="leading" secondItem="e6d-d6-ykt" secondAttribute="leading" id="Xqq-kw-lrl"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="3DQ-FV-tN7"/>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="yas-Dz-Xrq" id="oPI-5V-y6l"/>
@@ -1110,7 +1177,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
         <!--Game Onboarding Step2 View Controller-->
         <scene sceneID="mxc-SF-VFE">
             <objects>
-                <viewController id="Cjp-yO-sUW" customClass="GameOnboardingStep2ViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Cjp-yO-sUW" customClass="GameOnboardingStep2ViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6F8-Od-Q7r">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1123,7 +1190,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 2 of 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJo-H7-wUI">
-                                <rect key="frame" x="165" y="57" width="84" height="20.5"/>
+                                <rect key="frame" x="165.5" y="57" width="83.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1143,7 +1210,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lxp-XY-0BH">
                                                 <rect key="frame" x="16" y="77.5" width="382" height="150"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oy2-bB-8zj" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oy2-bB-8zj" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdJ-fe-Ojc">
@@ -1153,7 +1220,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="LdJ-fe-Ojc" firstAttribute="centerY" secondItem="oy2-bB-8zj" secondAttribute="centerY" id="bjN-3b-4pP"/>
                                                             <constraint firstAttribute="height" constant="70" id="fKA-oZ-4Ac"/>
@@ -1167,7 +1234,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                             <action selector="onButtonPress:" destination="Cjp-yO-sUW" eventType="touchUpInside" id="gzJ-75-5fr"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y9k-Wf-sIv" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y9k-Wf-sIv" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="80" width="382" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8F-47-e7b">
@@ -1177,7 +1244,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="d8F-47-e7b" secondAttribute="trailing" constant="8" id="1yp-7T-vNi"/>
                                                             <constraint firstAttribute="height" constant="70" id="Sel-rA-25u"/>
@@ -1194,7 +1261,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="lxp-XY-0BH" secondAttribute="bottom" id="Gyh-rY-HIG"/>
                                             <constraint firstAttribute="trailing" secondItem="HgR-Ps-E4n" secondAttribute="trailing" constant="20" id="KsJ-r1-u69"/>
@@ -1216,10 +1283,10 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 <viewLayoutGuide key="contentLayoutGuide" id="YBb-YC-XkX"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="tMV-yU-6IF"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea7-Er-aXb" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea7-Er-aXb" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="777" width="414" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeZ-dr-peV" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeZ-dr-peV" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Done"/>
                                         <constraints>
@@ -1231,17 +1298,18 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <viewLayoutGuide key="safeArea" id="9Um-KH-92B"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="HeZ-dr-peV" secondAttribute="trailing" constant="20" id="4R3-8t-eAQ"/>
                                     <constraint firstItem="HeZ-dr-peV" firstAttribute="top" secondItem="Ea7-Er-aXb" secondAttribute="top" constant="15" id="GVw-vF-Jdo"/>
                                     <constraint firstItem="HeZ-dr-peV" firstAttribute="bottom" secondItem="9Um-KH-92B" secondAttribute="bottom" constant="-15" id="VeU-1a-Qb8"/>
                                     <constraint firstItem="HeZ-dr-peV" firstAttribute="leading" secondItem="Ea7-Er-aXb" secondAttribute="leading" constant="20" id="qAV-qn-5xK"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="9Um-KH-92B"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ezt-IH-K76"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ea7-Er-aXb" firstAttribute="leading" secondItem="ezt-IH-K76" secondAttribute="leading" id="7Ap-TH-qxT"/>
                             <constraint firstItem="ezt-IH-K76" firstAttribute="trailing" secondItem="Ea7-Er-aXb" secondAttribute="trailing" id="7Tr-zN-wdp"/>
@@ -1255,7 +1323,6 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                             <constraint firstItem="ctg-dp-Xx9" firstAttribute="leading" secondItem="ezt-IH-K76" secondAttribute="leading" constant="20" id="pbh-Qs-XNL"/>
                             <constraint firstItem="BJo-H7-wUI" firstAttribute="centerX" secondItem="ezt-IH-K76" secondAttribute="centerX" id="yRr-34-0tA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ezt-IH-K76"/>
                     </view>
                     <navigationItem key="navigationItem" id="WMN-PA-5ql"/>
                     <connections>
@@ -1275,7 +1342,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
         <!--Weekly Insight-->
         <scene sceneID="OKd-WU-v8v">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="wo1-Rx-2vT" customClass="WeeklyInsightViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="wo1-Rx-2vT" customClass="WeeklyInsightViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xzW-ua-tpi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1289,9 +1356,9 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uu8-3e-X5s">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vA8-wu-pf9" customClass="SegmentedControl" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vA8-wu-pf9" customClass="SegmentedControl" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="32" y="0.0" width="350" height="45"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="ML4-VD-OBN"/>
                                                         </constraints>
@@ -1300,7 +1367,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         </connections>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="vA8-wu-pf9" firstAttribute="top" secondItem="uu8-3e-X5s" secondAttribute="top" id="99X-Uu-Rqf"/>
                                                     <constraint firstAttribute="trailing" secondItem="vA8-wu-pf9" secondAttribute="trailing" constant="32" id="ayf-HN-OkJ"/>
@@ -1315,28 +1382,28 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         <rect key="frame" x="20" y="0.0" width="374" height="523"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="This Week: 9/22 - 9/28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xl-BX-FgK">
-                                                                <rect key="frame" x="0.0" y="0.0" width="177" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="174.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iam-WY-Yu9">
                                                                 <rect key="frame" x="0.0" y="25.5" width="100" height="15"/>
-                                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="2x1-Bt-jyw"/>
                                                                     <constraint firstAttribute="width" constant="100" id="Aat-Zz-Rbs"/>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Last Week: 9/15 - 9/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-gr-5fv">
-                                                                <rect key="frame" x="0.0" y="55.5" width="172" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="55.5" width="170" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZo-Mm-s3z">
                                                                 <rect key="frame" x="0.0" y="81" width="100" height="15"/>
-                                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="lVI-Xg-4nt"/>
                                                                     <constraint firstAttribute="width" constant="100" id="slh-x9-7ia"/>
@@ -1376,7 +1443,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="iam-WY-Yu9" firstAttribute="top" secondItem="7Xl-BX-FgK" secondAttribute="bottom" constant="5" id="035-PO-QbD"/>
                                                             <constraint firstItem="m6R-D2-xeN" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="3f6-QB-P0K"/>
@@ -1407,7 +1474,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                             <constraint firstItem="VAF-IP-htO" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="wGr-cM-vYe"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KT6-Vj-dT6" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KT6-Vj-dT6" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="523" width="414" height="81"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="This is an estimate and the actual amount may vary based on your energy use, taxes, and fees." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gka-ua-AFU">
@@ -1417,7 +1484,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="gka-ua-AFU" firstAttribute="top" secondItem="KT6-Vj-dT6" secondAttribute="top" constant="20" id="UVx-ct-Ztm"/>
                                                             <constraint firstAttribute="bottom" secondItem="gka-ua-AFU" secondAttribute="bottom" constant="20" id="ZVj-ax-pPL"/>
@@ -1426,7 +1493,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="KT6-Vj-dT6" secondAttribute="trailing" id="W5i-UV-e6x"/>
                                                     <constraint firstItem="KT6-Vj-dT6" firstAttribute="top" secondItem="MUe-f4-seL" secondAttribute="bottom" id="WoG-oW-x9k"/>
@@ -1440,12 +1507,12 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Qn-wN-89A">
                                                 <rect key="frame" x="0.0" y="709" width="414" height="300"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="NTU-8g-kfH" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="NTU-8g-kfH" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="177" y="140" width="60" height="20"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="NTU-8g-kfH" firstAttribute="centerY" secondItem="8Qn-wN-89A" secondAttribute="centerY" id="Hpt-gH-YwI"/>
                                                     <constraint firstItem="NTU-8g-kfH" firstAttribute="centerX" secondItem="8Qn-wN-89A" secondAttribute="centerX" id="Hw4-Kj-sZ3"/>
@@ -1462,7 +1529,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="MhG-qC-aOt" secondAttribute="trailing" constant="20" id="7LO-c6-end"/>
                                                     <constraint firstItem="MhG-qC-aOt" firstAttribute="centerY" secondItem="SZ2-mi-hbA" secondAttribute="centerY" id="qFe-NC-MMZ"/>
@@ -1484,14 +1551,14 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 <viewLayoutGuide key="frameLayoutGuide" id="9GH-x0-QVv"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rfB-sW-JMv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="rfB-sW-JMv" firstAttribute="trailing" secondItem="vdv-bd-s7f" secondAttribute="trailing" id="DeJ-hy-bR3"/>
                             <constraint firstItem="vdv-bd-s7f" firstAttribute="leading" secondItem="rfB-sW-JMv" secondAttribute="leading" id="Vcq-hy-avU"/>
                             <constraint firstAttribute="bottom" secondItem="vdv-bd-s7f" secondAttribute="bottom" id="XR8-uw-y7O"/>
                             <constraint firstAttribute="top" secondItem="vdv-bd-s7f" secondAttribute="top" id="klI-cl-QNS"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="rfB-sW-JMv"/>
                     </view>
                     <navigationItem key="navigationItem" title="Weekly Insight" id="KxE-9B-kvI"/>
                     <connections>
@@ -1521,7 +1588,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
         <!--Game Quiz View Controller-->
         <scene sceneID="mVE-fB-gWq">
             <objects>
-                <viewController storyboardIdentifier="QuizPopup" id="cSK-Qr-bX7" customClass="GameQuizViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuizPopup" id="cSK-Qr-bX7" customClass="GameQuizViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vSe-uq-sDy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1565,12 +1632,12 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <rect key="frame" x="20" y="448" width="312" height="106"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Clothes dryers use more energy than any other appliance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s70-2G-Cwp">
-                                                                        <rect key="frame" x="12.5" y="0.0" width="287" height="41"/>
+                                                                        <rect key="frame" x="13.5" y="0.0" width="285.5" height="41"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z04-pf-0Az" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z04-pf-0Az" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="48.5" y="61" width="215" height="45"/>
                                                                         <accessibility key="accessibilityConfiguration" label="View tip"/>
                                                                         <constraints>
@@ -1585,7 +1652,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="GaO-Sp-nH1" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="16" id="1JR-Me-Otd"/>
                                                             <constraint firstAttribute="trailing" secondItem="GaO-Sp-nH1" secondAttribute="trailing" constant="16" id="55H-Vs-u7L"/>
@@ -1632,14 +1699,14 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 <viewLayoutGuide key="frameLayoutGuide" id="f9t-TB-DXk"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="CzV-Ep-x0P"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Gp7-a8-hCN" firstAttribute="leading" secondItem="vSe-uq-sDy" secondAttribute="leading" id="CmZ-m5-1gI"/>
                             <constraint firstAttribute="bottom" secondItem="Gp7-a8-hCN" secondAttribute="bottom" id="KcX-qo-x7W"/>
                             <constraint firstAttribute="trailing" secondItem="Gp7-a8-hCN" secondAttribute="trailing" id="ZcZ-0n-zeb"/>
                             <constraint firstItem="Gp7-a8-hCN" firstAttribute="top" secondItem="vSe-uq-sDy" secondAttribute="top" id="xwn-gl-dSl"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="CzV-Ep-x0P"/>
                     </view>
                     <connections>
                         <outlet property="answerDescriptionLabel" destination="s70-2G-Cwp" id="wuv-I4-vdu"/>
@@ -1659,7 +1726,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
         <!--Game Try Fab View Controller-->
         <scene sceneID="rBK-7o-RRF">
             <objects>
-                <viewController storyboardIdentifier="TryFabPopup" id="8XR-20-w4a" customClass="GameTryFabViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TryFabPopup" id="8XR-20-w4a" customClass="GameTryFabViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ago-r8-ILF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1671,90 +1738,60 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="84Y-gl-1ge">
-                                                <rect key="frame" x="31" y="119.5" width="352" height="657"/>
+                                                <rect key="frame" x="31" y="85.5" width="352" height="725"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTV-AV-Dkq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="657"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="725"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaE-ig-ky9">
                                                                 <rect key="frame" x="15" y="15" width="24" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="rH9-yA-f7J">
-                                                                <rect key="frame" x="121" y="0.0" width="110" height="110"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="rH9-yA-f7J">
+                                                                <rect key="frame" x="66" y="59" width="220" height="200"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Hello!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-68-VRU">
-                                                                <rect key="frame" x="20" y="130" width="312" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Hello! I’m Lumi!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-68-VRU">
+                                                                <rect key="frame" x="20" y="279" width="312" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55P-6l-iMG">
-                                                                <rect key="frame" x="20" y="180.5" width="312" height="223.5"/>
-                                                                <string key="text">I’m Lumi!
-
-I’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.
-
-To see your old home screen, use the button at the bottom of the previous screen to swap between the two versions. It looks like this:</string>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55P-6l-iMG">
+                                                                <rect key="frame" x="20" y="329.5" width="312" height="142.5"/>
+                                                                <string key="text">I’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and usage insights to help you lower your energy use.   In order to personalize your experience, we’d like to ask you a few questions!</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifa-Gi-eda">
-                                                                <rect key="frame" x="148.5" y="416" width="55" height="55"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_fab_on_game" translatesAutoresizingMaskIntoConstraints="NO" id="eG4-nk-7bI">
-                                                                        <rect key="frame" x="11.5" y="11.5" width="32" height="32"/>
-                                                                    </imageView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="eG4-nk-7bI" firstAttribute="centerY" secondItem="ifa-Gi-eda" secondAttribute="centerY" id="7cO-zJ-qCu"/>
-                                                                    <constraint firstItem="eG4-nk-7bI" firstAttribute="centerX" secondItem="ifa-Gi-eda" secondAttribute="centerX" id="m21-r9-Xfa"/>
-                                                                    <constraint firstAttribute="width" constant="55" id="m83-ey-uiO"/>
-                                                                    <constraint firstAttribute="height" constant="55" id="z7O-gb-lyN"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Return to the home screen and try tapping it to receive points toward your first gift!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orM-OU-bAb">
-                                                                <rect key="frame" x="16" y="491" width="316" height="61"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xc-tl-eb0" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="68.5" y="572" width="215" height="45"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xc-tl-eb0" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
+                                                                <rect key="frame" x="68.5" y="640" width="215" height="45"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Try it now"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="215" id="8TM-5m-cyk"/>
                                                                     <constraint firstAttribute="height" constant="45" id="sp2-Vf-hza"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Try It Now"/>
+                                                                <state key="normal" title="Got it!"/>
                                                                 <connections>
                                                                     <action selector="onTryItNowPress" destination="8XR-20-w4a" eventType="touchUpInside" id="KS5-gB-p64"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="1xc-tl-eb0" firstAttribute="centerX" secondItem="RTV-AV-Dkq" secondAttribute="centerX" id="2vq-P2-aP0"/>
                                                             <constraint firstAttribute="bottom" secondItem="1xc-tl-eb0" secondAttribute="bottom" constant="40" id="56b-Gg-qpg"/>
                                                             <constraint firstItem="rH9-yA-f7J" firstAttribute="centerX" secondItem="RTV-AV-Dkq" secondAttribute="centerX" id="6Bl-IO-EQ7"/>
-                                                            <constraint firstItem="1xc-tl-eb0" firstAttribute="top" secondItem="orM-OU-bAb" secondAttribute="bottom" constant="20" id="8We-lo-ff9"/>
                                                             <constraint firstItem="ZaE-ig-ky9" firstAttribute="top" secondItem="RTV-AV-Dkq" secondAttribute="top" constant="15" id="9ea-92-1GL"/>
+                                                            <constraint firstItem="rH9-yA-f7J" firstAttribute="top" secondItem="ZaE-ig-ky9" secondAttribute="bottom" constant="20" id="FiN-O7-DYa"/>
                                                             <constraint firstItem="aeV-68-VRU" firstAttribute="top" secondItem="rH9-yA-f7J" secondAttribute="bottom" constant="20" id="Hxc-jU-7o5"/>
-                                                            <constraint firstItem="orM-OU-bAb" firstAttribute="leading" secondItem="RTV-AV-Dkq" secondAttribute="leading" constant="16" id="Lcb-U5-GzC"/>
-                                                            <constraint firstItem="ifa-Gi-eda" firstAttribute="top" secondItem="55P-6l-iMG" secondAttribute="bottom" constant="12" id="LzH-L1-fQc"/>
                                                             <constraint firstItem="55P-6l-iMG" firstAttribute="leading" secondItem="RTV-AV-Dkq" secondAttribute="leading" constant="20" id="N4N-Jt-W6Q"/>
                                                             <constraint firstAttribute="trailing" secondItem="55P-6l-iMG" secondAttribute="trailing" constant="20" id="QQo-mO-LXM"/>
                                                             <constraint firstItem="aeV-68-VRU" firstAttribute="leading" secondItem="RTV-AV-Dkq" secondAttribute="leading" constant="20" id="ROx-yu-cY4"/>
+                                                            <constraint firstItem="1xc-tl-eb0" firstAttribute="top" secondItem="55P-6l-iMG" secondAttribute="bottom" constant="168" id="VZh-Wr-XNr"/>
                                                             <constraint firstItem="ZaE-ig-ky9" firstAttribute="leading" secondItem="RTV-AV-Dkq" secondAttribute="leading" constant="15" id="WT4-BU-b0S"/>
-                                                            <constraint firstAttribute="trailing" secondItem="orM-OU-bAb" secondAttribute="trailing" constant="20" id="fiv-Iy-i7c"/>
                                                             <constraint firstItem="55P-6l-iMG" firstAttribute="top" secondItem="aeV-68-VRU" secondAttribute="bottom" constant="30" id="hQX-Mh-ClK"/>
                                                             <constraint firstAttribute="trailing" secondItem="aeV-68-VRU" secondAttribute="trailing" constant="20" id="il6-kP-axD"/>
-                                                            <constraint firstItem="ifa-Gi-eda" firstAttribute="centerX" secondItem="RTV-AV-Dkq" secondAttribute="centerX" id="q2V-ch-f2f"/>
-                                                            <constraint firstItem="orM-OU-bAb" firstAttribute="top" secondItem="ifa-Gi-eda" secondAttribute="bottom" constant="20" id="rAq-Wf-BI3"/>
-                                                            <constraint firstItem="rH9-yA-f7J" firstAttribute="top" secondItem="RTV-AV-Dkq" secondAttribute="top" id="ynh-C5-rvV"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -1783,21 +1820,19 @@ To see your old home screen, use the button at the bottom of the previous screen
                                 <viewLayoutGuide key="frameLayoutGuide" id="n5e-6y-72C"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="cfC-SC-hFb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Yvt-J9-goW" secondAttribute="trailing" id="K98-Ij-Bsf"/>
                             <constraint firstItem="Yvt-J9-goW" firstAttribute="top" secondItem="Ago-r8-ILF" secondAttribute="top" id="YNb-EF-zjm"/>
                             <constraint firstAttribute="bottom" secondItem="Yvt-J9-goW" secondAttribute="bottom" id="edR-r0-9yY"/>
                             <constraint firstItem="Yvt-J9-goW" firstAttribute="leading" secondItem="Ago-r8-ILF" secondAttribute="leading" id="ifd-Gk-wph"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cfC-SC-hFb"/>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="ZaE-ig-ky9" id="9hk-qI-q9K"/>
                         <outlet property="contentView" destination="HGs-n0-pSh" id="TFT-ew-C1i"/>
                         <outlet property="detailLabel1" destination="55P-6l-iMG" id="We6-zY-sme"/>
-                        <outlet property="detailLabel2" destination="orM-OU-bAb" id="nK1-F1-ilp"/>
-                        <outlet property="fabButtonRepresentation" destination="ifa-Gi-eda" id="Qvt-PC-1ua"/>
                         <outlet property="popupView" destination="RTV-AV-Dkq" id="Qaw-My-8WJ"/>
                         <outlet property="titleLabel" destination="aeV-68-VRU" id="pCW-eh-X74"/>
                     </connections>
@@ -1809,7 +1844,7 @@ To see your old home screen, use the button at the bottom of the previous screen
         <!--Game Reward View Controller-->
         <scene sceneID="YEe-Nu-3Ej">
             <objects>
-                <viewController storyboardIdentifier="RewardPopup" id="lYG-Yi-RJV" customClass="GameRewardViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RewardPopup" id="lYG-Yi-RJV" customClass="GameRewardViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="agu-bf-u0M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1843,7 +1878,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="img_gift" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-Mc-CSK">
                                                                         <rect key="frame" x="101" y="70.5" width="150" height="146"/>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vir-7N-Ekq" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vir-7N-Ekq" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="68.5" y="241.5" width="215" height="45"/>
                                                                         <accessibility key="accessibilityConfiguration" label="Open gift"/>
                                                                         <constraints>
@@ -1856,7 +1891,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="wPO-VE-Jqn" firstAttribute="top" secondItem="L64-RD-uob" secondAttribute="top" constant="30" id="0Oe-CY-PiU"/>
                                                                     <constraint firstItem="wPO-VE-Jqn" firstAttribute="leading" secondItem="L64-RD-uob" secondAttribute="leading" constant="20" id="2py-la-K6u"/>
@@ -1871,7 +1906,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="L64-RD-uob" secondAttribute="trailing" id="Yql-Qx-lRJ"/>
                                                             <constraint firstAttribute="bottom" secondItem="L64-RD-uob" secondAttribute="bottom" id="c2r-dS-OWr"/>
@@ -1905,14 +1940,14 @@ To see your old home screen, use the button at the bottom of the previous screen
                                 <viewLayoutGuide key="frameLayoutGuide" id="5SJ-ul-qz5"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="dwe-GK-Dn0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="th4-as-gV0" firstAttribute="top" secondItem="agu-bf-u0M" secondAttribute="top" id="W56-OU-eJW"/>
                             <constraint firstAttribute="trailing" secondItem="th4-as-gV0" secondAttribute="trailing" id="cGk-at-ywx"/>
                             <constraint firstAttribute="bottom" secondItem="th4-as-gV0" secondAttribute="bottom" id="i6L-Yz-SQ2"/>
                             <constraint firstItem="th4-as-gV0" firstAttribute="leading" secondItem="agu-bf-u0M" secondAttribute="leading" id="nAP-5h-RDU"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dwe-GK-Dn0"/>
                     </view>
                     <connections>
                         <outlet property="button" destination="Vir-7N-Ekq" id="KJ8-sI-d6M"/>
@@ -1931,7 +1966,7 @@ To see your old home screen, use the button at the bottom of the previous screen
         <!--Large Title Navigation Controller-->
         <scene sceneID="PTk-eC-45u">
             <objects>
-                <navigationController id="RfZ-f7-JoK" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="RfZ-f7-JoK" customClass="LargeTitleNavigationController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="QDH-wT-ubd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rbb-Q4-paP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -1948,7 +1983,7 @@ To see your old home screen, use the button at the bottom of the previous screen
         <!--Set Reminder-->
         <scene sceneID="44P-Nw-Gev">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="BcK-BZ-SMg" customClass="SetReminderViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="BcK-BZ-SMg" customClass="SetReminderViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9d2-41-vAg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1962,11 +1997,11 @@ To see your old home screen, use the button at the bottom of the previous screen
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="c7Y-wZ-uXp">
                                                 <rect key="frame" x="20" y="30" width="374" height="140"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="uj4-6w-LoO" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="uj4-6w-LoO" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLa-KL-PVD" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLa-KL-PVD" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="85" width="374" height="55"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="pL0-0N-yyT"/>
@@ -1981,7 +2016,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="c7Y-wZ-uXp" secondAttribute="trailing" constant="20" id="6XS-d2-CzW"/>
                                             <constraint firstItem="c7Y-wZ-uXp" firstAttribute="leading" secondItem="izx-Ta-z9b" secondAttribute="leading" constant="20" id="6YO-GH-cUB"/>
@@ -2000,10 +2035,10 @@ To see your old home screen, use the button at the bottom of the previous screen
                                 <viewLayoutGuide key="contentLayoutGuide" id="vlD-qs-mot"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="kSz-9j-TE0"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uss-XY-EXT" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uss-XY-EXT" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="723" width="414" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxd-Oi-rBu" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxd-Oi-rBu" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Save"/>
                                         <constraints>
@@ -2015,17 +2050,18 @@ To see your old home screen, use the button at the bottom of the previous screen
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <viewLayoutGuide key="safeArea" id="z24-41-0Zh"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="sxd-Oi-rBu" secondAttribute="trailing" constant="20" id="WwG-fU-Pge"/>
                                     <constraint firstItem="sxd-Oi-rBu" firstAttribute="bottom" secondItem="z24-41-0Zh" secondAttribute="bottom" constant="-15" id="YBt-tE-ocz"/>
                                     <constraint firstItem="sxd-Oi-rBu" firstAttribute="top" secondItem="uss-XY-EXT" secondAttribute="top" constant="15" id="fax-CG-GfW"/>
                                     <constraint firstItem="sxd-Oi-rBu" firstAttribute="leading" secondItem="uss-XY-EXT" secondAttribute="leading" constant="20" id="lYo-TO-kH8"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="z24-41-0Zh"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="J9l-Ss-lL7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uss-XY-EXT" firstAttribute="leading" secondItem="J9l-Ss-lL7" secondAttribute="leading" id="DeN-qM-Wz1"/>
                             <constraint firstItem="uss-XY-EXT" firstAttribute="top" secondItem="noy-QR-HnQ" secondAttribute="bottom" id="GfK-IN-scV"/>
@@ -2035,7 +2071,6 @@ To see your old home screen, use the button at the bottom of the previous screen
                             <constraint firstItem="noy-QR-HnQ" firstAttribute="leading" secondItem="J9l-Ss-lL7" secondAttribute="leading" id="qVF-sd-cq6"/>
                             <constraint firstAttribute="bottom" secondItem="uss-XY-EXT" secondAttribute="bottom" id="vwN-e7-0b1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="J9l-Ss-lL7"/>
                     </view>
                     <navigationItem key="navigationItem" title="Set Reminder" id="kL8-q7-VYd"/>
                     <connections>
@@ -2052,7 +2087,7 @@ To see your old home screen, use the button at the bottom of the previous screen
         <!--Game Enrollment View Controller-->
         <scene sceneID="bYz-e0-n1k">
             <objects>
-                <viewController storyboardIdentifier="EnrollmentPopup" id="Kep-wm-vDP" customClass="GameEnrollmentViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnrollmentPopup" id="Kep-wm-vDP" customClass="GameEnrollmentViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xZp-qR-5fv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2089,9 +2124,9 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aS7-Cl-ghm" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aS7-Cl-ghm" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="68.5" y="241.5" width="215" height="45"/>
-                                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Try it now"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="215" id="3my-yX-QbM"/>
@@ -2101,7 +2136,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                     <action selector="onCTAPress" destination="Kep-wm-vDP" eventType="touchUpInside" id="uXZ-Y9-KKO"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CL-vK-yHE">
+                                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CL-vK-yHE">
                                                                 <rect key="frame" x="114.5" y="309.5" width="123" height="30"/>
                                                                 <state key="normal" title="I'm Not Interested"/>
                                                                 <connections>
@@ -2109,7 +2144,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="SFw-EP-XRr" secondAttribute="trailing" constant="20" id="11D-h8-eeC"/>
                                                             <constraint firstAttribute="trailing" secondItem="zuJ-q8-Irb" secondAttribute="trailing" constant="20" id="3XU-nn-ypi"/>
@@ -2154,14 +2189,14 @@ To see your old home screen, use the button at the bottom of the previous screen
                                 <viewLayoutGuide key="frameLayoutGuide" id="B3y-ia-ATT"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="qfJ-Bm-gw3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="18I-KU-CWe" firstAttribute="leading" secondItem="xZp-qR-5fv" secondAttribute="leading" id="2TY-fV-q5W"/>
                             <constraint firstItem="18I-KU-CWe" firstAttribute="top" secondItem="xZp-qR-5fv" secondAttribute="top" id="BrO-tL-Hds"/>
                             <constraint firstAttribute="trailing" secondItem="18I-KU-CWe" secondAttribute="trailing" id="QUT-gK-guW"/>
                             <constraint firstAttribute="bottom" secondItem="18I-KU-CWe" secondAttribute="bottom" id="pkf-C5-Ljn"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="qfJ-Bm-gw3"/>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="Zca-8B-HwZ" id="FT3-HF-5b0"/>
@@ -2180,7 +2215,7 @@ To see your old home screen, use the button at the bottom of the previous screen
         <!--Game Survey View Controller-->
         <scene sceneID="y3H-dv-qKi">
             <objects>
-                <viewController storyboardIdentifier="SurveyPopup" id="e4m-GK-B6a" customClass="GameSurveyViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SurveyPopup" id="e4m-GK-B6a" customClass="GameSurveyViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zys-vY-Udu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2217,9 +2252,9 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCq-Pv-vqq" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCq-Pv-vqq" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="68.5" y="231.5" width="215" height="45"/>
-                                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Take survey"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="poJ-Hr-B2v"/>
@@ -2241,7 +2276,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                         </constraints>
                                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                         <state key="normal" title="Remind Me Later">
-                                                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="titleColor" systemColor="linkColor"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="onRemindMeLaterPress" destination="e4m-GK-B6a" eventType="touchUpInside" id="uaN-CG-EaG"/>
@@ -2262,7 +2297,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                         </constraints>
                                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                         <state key="normal" title="I'm Not Interested">
-                                                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="titleColor" systemColor="linkColor"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="onNotInterestedPress" destination="e4m-GK-B6a" eventType="touchUpInside" id="fbv-sp-q8f"/>
@@ -2271,7 +2306,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="Isv-Ll-Lhw" firstAttribute="leading" secondItem="KpM-sR-XpK" secondAttribute="leading" constant="15" id="0kC-OP-a2a"/>
                                                             <constraint firstAttribute="trailing" secondItem="svV-bL-6i7" secondAttribute="trailing" constant="20" id="1Pz-ey-qVZ"/>
@@ -2317,14 +2352,14 @@ To see your old home screen, use the button at the bottom of the previous screen
                                 <viewLayoutGuide key="frameLayoutGuide" id="qFU-ja-3H6"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="zo5-Ya-3h0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="PJT-Mb-av9" secondAttribute="bottom" id="80v-Nd-UZQ"/>
                             <constraint firstAttribute="trailing" secondItem="PJT-Mb-av9" secondAttribute="trailing" id="OkD-WF-Qyv"/>
                             <constraint firstItem="PJT-Mb-av9" firstAttribute="top" secondItem="zys-vY-Udu" secondAttribute="top" id="aAi-zx-6YB"/>
                             <constraint firstItem="PJT-Mb-av9" firstAttribute="leading" secondItem="zys-vY-Udu" secondAttribute="leading" id="fyO-1M-yjR"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="zo5-Ya-3h0"/>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="Isv-Ll-Lhw" id="0i9-Uw-W9P"/>
@@ -2345,7 +2380,7 @@ To see your old home screen, use the button at the bottom of the previous screen
         <!--Game Check In View Controller-->
         <scene sceneID="UGW-q1-QX7">
             <objects>
-                <viewController storyboardIdentifier="CheckInPopup" id="sgN-Yr-Br3" customClass="GameCheckInViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CheckInPopup" id="sgN-Yr-Br3" customClass="GameCheckInViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nbt-uD-0HZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2385,7 +2420,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iy2-ae-oa6">
                                                                 <rect key="frame" x="18" y="251.5" width="316" height="320"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4E-bP-hQq" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4E-bP-hQq" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="316" height="45"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="45" id="ldP-C7-18f"/>
@@ -2400,7 +2435,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                             <action selector="onButtonPress:" destination="sgN-Yr-Br3" eventType="touchUpInside" id="qjz-u4-6w7"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joe-oy-Rwb" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joe-oy-Rwb" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="91.5" width="316" height="45"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="45" id="QOb-sK-kqN"/>
@@ -2415,7 +2450,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                             <action selector="onButtonPress:" destination="sgN-Yr-Br3" eventType="touchUpInside" id="FDS-hc-Wt7"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amn-A9-MLJ" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amn-A9-MLJ" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="183" width="316" height="45"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="45" id="oMD-DH-mNR"/>
@@ -2430,7 +2465,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                             <action selector="onButtonPress:" destination="sgN-Yr-Br3" eventType="touchUpInside" id="Pye-yC-zYo"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWF-Bb-1Di">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWF-Bb-1Di">
                                                                         <rect key="frame" x="0.0" y="275" width="316" height="45"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="45" id="oPy-5p-Z8K"/>
@@ -2443,7 +2478,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="EmL-rB-95A" firstAttribute="leading" secondItem="RMy-WJ-zj0" secondAttribute="leading" constant="20" id="DT5-zh-Cby"/>
                                                             <constraint firstItem="5vb-Ro-zZL" firstAttribute="top" secondItem="EmL-rB-95A" secondAttribute="bottom" constant="20" id="FwG-zk-fgF"/>
@@ -2487,14 +2522,14 @@ To see your old home screen, use the button at the bottom of the previous screen
                                 <viewLayoutGuide key="frameLayoutGuide" id="sqa-rk-DjS"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="suW-NJ-IJW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LIX-MH-fcz" firstAttribute="leading" secondItem="nbt-uD-0HZ" secondAttribute="leading" id="VQk-wW-veJ"/>
                             <constraint firstAttribute="trailing" secondItem="LIX-MH-fcz" secondAttribute="trailing" id="bRl-Xx-g3V"/>
                             <constraint firstItem="LIX-MH-fcz" firstAttribute="top" secondItem="nbt-uD-0HZ" secondAttribute="top" id="oEa-CM-Fhb"/>
                             <constraint firstAttribute="bottom" secondItem="LIX-MH-fcz" secondAttribute="bottom" id="xoR-R5-0ZO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="suW-NJ-IJW"/>
                     </view>
                     <connections>
                         <outlet property="button1" destination="v4E-bP-hQq" id="YLY-Vq-oph"/>
@@ -2519,7 +2554,6 @@ To see your old home screen, use the button at the bottom of the previous screen
         <image name="ic_caret" width="8" height="13"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_energybuddy" width="110" height="110"/>
-        <image name="ic_fab_on_game" width="32" height="32"/>
         <image name="ic_favetip" width="25" height="24"/>
         <image name="ic_gift_locked" width="84" height="84"/>
         <image name="ic_gifts" width="48" height="54"/>
@@ -2536,5 +2570,20 @@ To see your old home screen, use the button at the bottom of the previous screen
         <image name="ic_viewedtip_reminder" width="25" height="24"/>
         <image name="img_gift" width="150" height="146"/>
         <image name="img_onboarding" width="220" height="200"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
