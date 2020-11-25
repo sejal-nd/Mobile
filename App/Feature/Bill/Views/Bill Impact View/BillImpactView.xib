@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillImpactView" customModule="BGE" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillImpactView" customModule="EUMobile" customModuleProvider="target">
             <connections>
                 <outlet property="billPeriodAmountLabel" destination="417-fh-HIE" id="yzN-V5-5TQ"/>
                 <outlet property="billPeriodCaretImageView" destination="BJw-Aw-QZ5" id="I95-gN-a4Q"/>
@@ -75,7 +75,7 @@
                             <rect key="frame" x="0.0" y="76.5" width="375" height="40.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Reasons Why Your Bill is..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCb-eA-a02">
-                                    <rect key="frame" x="31" y="20" width="200.5" height="20.5"/>
+                                    <rect key="frame" x="31" y="20" width="281" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -91,12 +91,12 @@
                                 <constraint firstItem="SCb-eA-a02" firstAttribute="top" secondItem="Wxs-t2-Wbb" secondAttribute="top" constant="20" id="Of1-tm-m8V"/>
                                 <constraint firstAttribute="bottom" secondItem="SCb-eA-a02" secondAttribute="bottom" id="Wis-Rw-yuO"/>
                                 <constraint firstAttribute="trailing" secondItem="vYl-Gi-Xhc" secondAttribute="trailing" constant="31" id="ikI-a7-z1S"/>
-                                <constraint firstItem="vYl-Gi-Xhc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SCb-eA-a02" secondAttribute="trailing" constant="8" id="j0t-eR-MwL"/>
+                                <constraint firstItem="vYl-Gi-Xhc" firstAttribute="leading" secondItem="SCb-eA-a02" secondAttribute="trailing" constant="8" id="j0t-eR-MwL"/>
                                 <constraint firstItem="vYl-Gi-Xhc" firstAttribute="top" secondItem="Wxs-t2-Wbb" secondAttribute="top" constant="20" id="s6i-Sv-Kbp"/>
                                 <constraint firstItem="SCb-eA-a02" firstAttribute="leading" secondItem="Wxs-t2-Wbb" secondAttribute="leading" constant="31" id="wPO-Hp-zK0"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjl-S5-jSt" customClass="SegmentedControl" customModule="BGE" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjl-S5-jSt" customClass="SegmentedControl" customModule="EUMobile" customModuleProvider="target">
                             <rect key="frame" x="16" y="141" width="343" height="45"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -109,7 +109,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2B-ja-QBu" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2B-ja-QBu" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
                             <rect key="frame" x="97.5" y="267" width="180" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="0Lq-6z-YSb"/>
@@ -410,7 +410,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kd4-ZJ-5YP">
                             <rect key="frame" x="0.0" y="658" width="375" height="92"/>
                             <subviews>
-                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="80" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="IdP-qv-6ys" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="80" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="IdP-qv-6ys" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                     <rect key="frame" x="147.5" y="40" width="80" height="12"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
