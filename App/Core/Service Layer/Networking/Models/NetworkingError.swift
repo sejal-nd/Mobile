@@ -62,7 +62,8 @@ public enum NetworkingError: Error, Equatable {
     case paymentAccountVelocityCard
     case utilityAccountVelocity
     case walletItemIdTimeout
-    
+    case tooManyPerAccount
+
     init(errorCode: String) {
         switch errorCode {
         case "INVALID-PROFILE-TYPE":
@@ -133,6 +134,8 @@ public enum NetworkingError: Error, Equatable {
             self = .blockedPaymentMethod
         case "accountNumber.suspended":
             self = .blockedUtilityAccount
+        case "accountNumber.tooManyPerAccount":
+            self = .tooManyPerAccount
         case "paymentMethodType.blocked":
             self = .blockedPaymentType
         case "xmlPayment.duplicate":
@@ -226,6 +229,8 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("We're sorry, we weren't able to process your request.", comment: "Error title")
         case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Sorry, That Didn't Quite Work.", comment: "Error title")
+        case .tooManyPerAccount:
+            return NSLocalizedString("Unable to process electronic payments", comment: "Error title")
         }
     }
     
@@ -302,6 +307,9 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: "Error description")
         case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Please try again later.", comment: "Error description")
+        case .tooManyPerAccount:
+            return NSLocalizedString("Electronic payments for your utility account are not available at this time due to overuse. Please review other payment options, or contact \(AccountsStore.shared.accountOpco.displayString) customer service for further assistance.", comment: "Error description")
+
         }
     }
 }
