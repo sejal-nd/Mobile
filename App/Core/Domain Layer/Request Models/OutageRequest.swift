@@ -19,7 +19,6 @@ public struct OutageRequest: Encodable {
     var isUnusual: OutageTrivalent? //ComEd
     var unusualMessage: String? //ComEd
     var isNeighbor: OutageTrivalent? //ComEd
-    var comment: String = ""
     
     enum CodingKeys: String, CodingKey {
         case accountNumber = "account_number"
@@ -29,9 +28,8 @@ public struct OutageRequest: Encodable {
         case phoneNumber = "phone"
         case phoneExtension = "ext"
         case isUnusual = "unusual"
-        case unusualMessage
+        case unusualMessage = "unusual_specify"
         case isNeighbor = "neighbor"
-        case comment = "unusual_specify"
     }
 }
 

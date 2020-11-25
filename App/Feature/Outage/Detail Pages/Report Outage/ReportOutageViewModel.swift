@@ -113,23 +113,23 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.flickering
         }
         
-        var outageRequest = OutageRequest(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-        issue: outageIssue,
-        phoneNumber: extractDigitsFrom(phoneNumber.value))
+        var outageRequest = OutageRequest(accountNumber: accountNumber ?? AccountsStore.shared.currentAccount.accountNumber,
+                                          issue: outageIssue,
+                                          phoneNumber: extractDigitsFrom(phoneNumber.value))
         
-        var comment: String? = nil
+        var comment = ""
         let unwrappedComment = comments.value
         if !unwrappedComment.isEmpty {
             if let data = unwrappedComment.data(using: .nonLossyASCII) { // Emojis would cause request to fail
-                comment = String(data: data, encoding: .utf8)
+                comment = String(data: data, encoding: .utf8) ?? ""
             } else {
                 comment = unwrappedComment
             }
         }
         
-        if let comment = comment {
-            outageRequest.isUnusual = OutageTrivalent.yes
-            outageRequest.comment = comment
+        if !comment.isEmpty {
+            outageRequest.isUnusual = .yes
+            outageRequest.unusualMessage = comment
         }
         
         if phoneExtension.value.count > 0 {
@@ -175,7 +175,7 @@ class ReportOutageViewModel {
         
         if !comment.isEmpty {
             outageRequest.isUnusual = .yes
-            outageRequest.comment = comment
+            outageRequest.unusualMessage = comment
         }
         
         if phoneExtension.value.count > 0 {
