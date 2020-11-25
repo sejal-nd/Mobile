@@ -265,7 +265,9 @@ class GameHomeViewController: AccountPickerViewController {
             if self.viewModel.currentTaskIndex == 0 {
                 self.awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
             } else {
-                self.checkForAvailableTask()
+                let task = self.viewModel.checkForAvailableTask()
+                self.viewModel.currentTask = task
+                self.setTaskIndicator(task?.type)
             }
             
             self.loadedInitialGameUser = true
@@ -431,79 +433,6 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     // MARK:-
-    
-    private func checkForAvailableTask() {
-        #warning("Gamification Testing Only! Remove for Release!")
-//        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
-//            let daysSinceLastTask = abs(lastTaskDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current))
-//            if daysSinceLastTask < 4 {
-//                viewModel.currentTask = nil
-//                return
-//            }
-//        }
-        
-        if let gameUser = viewModel.gameUser.value, let accountDetail = viewModel.accountDetail.value {
-            while true {
-                if let task = GameTaskStore.shared.tasks.get(at: viewModel.currentTaskIndex) {
-                    if shouldFilterOutTask(task: task, gameUser: gameUser, accountDetail: accountDetail) {
-                        viewModel.currentTaskIndex += 1
-                    } else {
-                        viewModel.currentTask = task
-                        self.setTaskIndicator(task.type)
-                        break
-                    }
-                } else {
-                    break
-                }
-            }
-        }
-    }
-    
-    private func shouldFilterOutTask(task: GameTask, gameUser: GameUser, accountDetail: AccountDetail) -> Bool {
-        if let survey = task.survey {
-            if survey.surveyNumber == 1 && UserDefaults.standard.bool(forKey: UserDefaultKeys.gameSurvey1Complete) {
-                return true
-            }
-            if survey.surveyNumber == 2 && UserDefaults.standard.bool(forKey: UserDefaultKeys.gameSurvey2Complete) {
-                return true
-            }
-        }
-        
-        // eBill Enroll Task: Should filter out if already enrolled, or ineligible for enrollment
-        if task.type == .eBill && (accountDetail.isEBillEnrollment || accountDetail.eBillEnrollStatus != .canEnroll) {
-            return true
-        }
-                
-        // Tip/Quiz will either be "RENT", "OWN" or "RENT/OWN". If user's rent/own onboarding response
-        // is not contained in that string, task should be filtered out
-        if let gameUserRentOrOwn = gameUser.onboardingRentOrOwnAnswer?.uppercased() {
-            if let tip = task.tip, !tip.rentOrOwn.uppercased().contains(gameUserRentOrOwn) {
-                return true
-            }
-            if let quiz = task.quiz, !quiz.rentOrOwn.uppercased().contains(gameUserRentOrOwn) {
-                return true
-            }
-        }
-        
-        // Season will either be "WINTER", "SUMMER", or nil. Winter tips should only be displayed
-        // in October - March, while Summer tips should only be displayed in April - September
-        var taskSeason: String?
-        if let tip = task.tip, let tipSeason = tip.season?.uppercased() {
-            taskSeason = tipSeason
-        } else if let quiz = task.quiz, let quizSeason = quiz.season?.uppercased() {
-            taskSeason = quizSeason
-        }
-        if let season = taskSeason, let month = Calendar.current.dateComponents([.month], from: Date.now).month {
-            if season == "SUMMER" && month >= 10 && month <= 3 { // October - March, filter out summer tips
-                return true
-            }
-            if season == "WINTER" && month >= 4 && month <= 9 { // April - September, filter out winter tips
-                return true
-            }
-        }
-        
-        return false
-    }
     
     private func showEnergyBuddyTooltip() {
         FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .viewed_task_empty_state)])
