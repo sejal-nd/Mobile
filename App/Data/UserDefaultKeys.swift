@@ -19,6 +19,7 @@ struct UserDefaultKeys {
     static let loggedInUsername = "kLoggedInUsername" // The username of the currently logged in user
     
     static let customerIdentifier = "kCustomerIdentifier" // Persist Customer Identifer (from login) to disk
+    static let reportedOutageTime = "kReportedOutageTime" // Persists Reported Outage
     
     static let paymentDetailsDictionary = "kPaymentDetailsDictionary"
     static let reportedOutagesDictionary = "kReportedOutagesDictionary"
