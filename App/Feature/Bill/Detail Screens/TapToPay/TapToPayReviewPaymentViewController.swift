@@ -203,7 +203,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         
         overPayingLabel.textColor = .deepGray
         overPayingLabel.font = SystemFont.regular.of(size: 15)
-        overPayingLabel.text = NSLocalizedString("Yes, I achnowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
+        overPayingLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
         
         paymentErrorLabel.textColor = .errorRed
         paymentErrorLabel.font = SystemFont.semibold.of(size: 12)

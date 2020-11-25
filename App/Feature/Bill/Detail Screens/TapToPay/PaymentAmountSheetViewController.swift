@@ -102,6 +102,7 @@ class PaymentAmountSheetViewController: UIViewController {
         paymentAmountTextField.setKeyboardType(.decimalPad)
         
         viewModel.editPaymentDisplayString.drive(paymentAmountTextField.textField.rx.text).disposed(by: bag)
+         self.viewModel.editpaymentAmountValue.accept(self.viewModel.paymentAmount.value)
         
         viewModel.paymentAmountErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
             self?.paymentAmountTextField.setError(errorMessage)
