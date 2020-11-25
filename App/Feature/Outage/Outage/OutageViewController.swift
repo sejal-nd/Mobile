@@ -66,6 +66,8 @@ class OutageViewController: AccountPickerViewController {
         
         configureTableHeaderFooterView()
         
+        viewModel.isUserAuthenticated = userState == .authenticated
+        
         configureUserState(userState)
     }
     
@@ -74,6 +76,7 @@ class OutageViewController: AccountPickerViewController {
         
         let shouldHideNavigationBar = userState == .authenticated ? true : false
         navigationController?.setNavigationBarHidden(shouldHideNavigationBar, animated: true)
+        clearTimestampForReportedOutage()
     }
     
     override func viewDidLayoutSubviews() {
@@ -144,6 +147,22 @@ class OutageViewController: AccountPickerViewController {
             self?.viewModel.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
             self?.viewModel.streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
             self?.tableView.reloadData()
+        }
+    }
+    
+    private func clearTimestampForReportedOutage() {
+        let accountnum = (userState == .authenticated) ? AccountsStore.shared.currentAccount.accountNumber : viewModel.accountNumber
+        if let accountNumber = accountnum {
+            let key = UserDefaultKeys.reportedOutageTime + "-" + accountNumber
+            if let reportedDate = UserDefaults.standard.object(forKey: key) as? Date {
+                let difference = Calendar.current.dateComponents([.second], from: reportedDate, to: Date()).second
+                if difference >= 8 * 60 * 60 {
+                    UserDefaults.standard.removeObject(forKey: key)
+                    UserDefaults.standard.removeObject(forKey: accountNumber)
+                    UserDefaults.standard.synchronize()
+                    tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -326,7 +345,12 @@ extension OutageViewController: UITableViewDataSource {
         
         switch indexPath {
         case IndexPath(row: 0, section: 0):
-            let detailText = (accountsLoaded && viewModel.reportedOutage != nil) ? viewModel.outageReportedDateString : nil
+            var detailText = (accountsLoaded && viewModel.reportedOutage != nil) ? viewModel.outageReportedDateString : nil
+            let key = userState == .unauthenticated ? viewModel.accountNumber : AccountsStore.shared.currentAccount.accountNumber
+            if detailText == nil,
+                let reportedTime = UserDefaults.standard.object(forKey: key ?? AccountsStore.shared.currentAccount.accountNumber) as? String {
+                detailText = reportedTime
+            }
             cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: detailText)
         case IndexPath(row: 1, section: 0):
             let title = Environment.shared.opco.isPHI ? "Report Street Light Problem" : "Report Street Light Outage"
