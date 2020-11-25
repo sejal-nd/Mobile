@@ -38,7 +38,7 @@ struct Gift {
     
     // All gifts should have a thumbImage
     var thumbImage: UIImage? {
-        UIImage(named: "\(id)_thumb")
+        UIImage(named: "\(id)_thumb") ?? UIImage(named: id)
     }
     
     // Backgrounds only
@@ -76,7 +76,11 @@ class GiftInventory {
         "bg_baltimoreharbor", "hat_beaniefootball", "hat_capbaseball", "bg_ellicottcity",
         "hat_tophat", "acc_monocle", "hat_bow", "hat_capgreen", "hat_stripedbow", "bg_colonialmd",
         "hat_colonial", "hat_cowboy", "bg_falltrees", "hat_ghost", "hat_beretblack", "hat_paper",
-        "bg_space", "hat_ecocrown"
+        "bg_space", "hat_ecocrown", "bg_snow", "hat_antlers", "acc_mask_md", "hat_partyhat",
+        "hat_rainbowhair", "bg_wfh", "acc_mustache", "acc_mask_leaves", "hat_monstera",
+        "acc_mask_electric", "hat_antennae", "acc_mustachebeard", "bg_pride", "hat_beehivehair",
+        "acc_honglasses", "acc_heartglasses", "acc_freckles", "acc_goatee", "bg_bgetanks",
+        "acc_secretmask", "hat_magichat", "hat_princesshat", "acc_unicornhorn"
     ]
     
     private let customMessages = [

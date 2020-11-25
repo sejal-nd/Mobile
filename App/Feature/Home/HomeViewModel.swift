@@ -75,6 +75,8 @@ class HomeViewModel {
     private(set) lazy var prepaidPendingCardViewModel =
         HomePrepaidCardViewModel(isActive: false)
     
+    private(set) lazy var gameCardViewModel = GameHomeViewModel()
+    
     private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated, RxNotifications.shared.recentPaymentsUpdated)
     
     private lazy var recentPaymentsFetchTrigger = Observable
@@ -232,11 +234,12 @@ class HomeViewModel {
     
     private(set) lazy var showGameOnboardingCard = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { user -> Bool in
         guard let gameUser = user else { return false }
-        
-        if gameUser.onboardingComplete && !gameUser.optedOut {
-            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
-        }
         return !gameUser.onboardingComplete && !gameUser.optedOut
+    }
+    
+    private(set) lazy var gameUser = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { user -> GameUser? in
+        guard let gameUser = user, !gameUser.optedOut else { return nil }
+        return gameUser
     }
     
     private lazy var prepaidStatus = accountDetailEvents.elements()

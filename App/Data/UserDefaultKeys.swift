@@ -60,4 +60,5 @@ struct UserDefaultKeys {
     static let gameSurvey2Complete = "kGameSurvey2Complete"
     static let gameStreakDateTracker = "kGameStreakDateTracker"
     static let gameStreakCount = "kGameStreakCount"
+    static let gameOnboardingCardVersion = "kGameOnboardingCardVersion"
 }

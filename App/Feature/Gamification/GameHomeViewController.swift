@@ -41,6 +41,9 @@ class GameHomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var returnToDashboardButton: UIButton!
+    @IBOutlet weak var taskIndicatorButton: PrimaryButton!
+    @IBOutlet weak var taskIndicatorView: UIView!
     
     private var coinViews = [DailyInsightCoinView]()
     
@@ -54,7 +57,7 @@ class GameHomeViewController: AccountPickerViewController {
     var welcomedUser = false
     var loadedInitialGameUser = false
     var didGoToHomeProfile = false
-    var viewDidAppear = false
+    var didAppear = false
     
     var pointEarnAnimator: UIViewPropertyAnimator?
         
@@ -117,6 +120,24 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         viewModel.fetchData()
+        
+        returnToDashboardButton.rx.tap.subscribe(onNext: {
+            NotificationCenter.default.post(name: .gameSwitchToHomeView, object: nil)
+        }).disposed(by: bag)
+        
+        if !welcomedUser {
+            welcomedUser = true
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+                guard let self = self else { return }
+                self.energyBuddyView.playHappyAnimation()
+                self.energyBuddyView.showWelcomeMessage(isFirstTimeSeeingBuddy: self.viewModel.points == 0)
+            }
+        }
+        
+        taskIndicatorButton.rx.tap.subscribe(onNext: {
+            self.showTaskOptions()
+        }).disposed(by: bag)
     }
     
     override func viewDidLayoutSubviews() {
@@ -157,25 +178,8 @@ class GameHomeViewController: AccountPickerViewController {
             "selected_acc": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
         ])
 
-        if viewDidAppear { // Only do this on the 2nd `viewDidAppear` and beyond. The initial play is done in `viewDidLayoutSubviews`
+        if didAppear { // Only do this on the 2nd `viewDidAppear` and beyond. The initial play is done in `viewDidLayoutSubviews`
             energyBuddyView.playDefaultAnimations()
-        }
-        
-        if !welcomedUser {
-            welcomedUser = true
-            
-            if GameTaskStore.shared.tryFabWentBackToGame {
-                if loadedInitialGameUser {
-                    GameTaskStore.shared.tryFabActivated = false
-                    awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
-                }
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-                    guard let self = self else { return }
-                    self.energyBuddyView.playHappyAnimation()
-                    self.energyBuddyView.showWelcomeMessage(isFirstTimeSeeingBuddy: self.viewModel.points == 0)
-                }
-            }
         }
         
         if didGoToHomeProfile {
@@ -191,7 +195,7 @@ class GameHomeViewController: AccountPickerViewController {
                 appDelegate.tipIdWaitingToBeShown = nil
             }
         
-        viewDidAppear = true
+        didAppear = true
     }
         
     override func viewWillDisappear(_ animated: Bool) {
@@ -258,11 +262,8 @@ class GameHomeViewController: AccountPickerViewController {
                 }
             }
             
-            if GameTaskStore.shared.tryFabWentBackToGame {
-                if self.viewDidAppear {
-                    GameTaskStore.shared.tryFabActivated = false
-                    self.awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
-                }
+            if self.viewModel.currentTaskIndex == 0 {
+                self.awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
             } else {
                 self.checkForAvailableTask()
             }
@@ -370,15 +371,16 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     @objc func onBuddyTap() {
+        showTaskOptions()
+    }
+    
+    func showTaskOptions() {
         guard let task = viewModel.currentTask else {
             showEnergyBuddyTooltip()
             return
         }
         
-        if task.type == .fab {
-            let fabVc = GameTryFabViewController.create()
-            self.tabBarController?.present(fabVc, animated: true, completion: nil)
-        } else if task.type == .eBill || task.type == .homeProfile {
+        if task.type == .eBill || task.type == .homeProfile {
             let enrollVc = GameEnrollmentViewController.create(withTaskType: task.type)
             enrollVc.delegate = self
             self.tabBarController?.present(enrollVc, animated: true, completion: nil)
@@ -431,13 +433,14 @@ class GameHomeViewController: AccountPickerViewController {
     // MARK:-
     
     private func checkForAvailableTask() {
-        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
-            let daysSinceLastTask = abs(lastTaskDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current))
-            if daysSinceLastTask < 4 {
-                viewModel.currentTask = nil
-                return
-            }
-        }
+        #warning("Gamification Testing Only! Remove for Release!")
+//        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
+//            let daysSinceLastTask = abs(lastTaskDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current))
+//            if daysSinceLastTask < 4 {
+//                viewModel.currentTask = nil
+//                return
+//            }
+//        }
         
         if let gameUser = viewModel.gameUser.value, let accountDetail = viewModel.accountDetail.value {
             while true {
@@ -446,7 +449,7 @@ class GameHomeViewController: AccountPickerViewController {
                         viewModel.currentTaskIndex += 1
                     } else {
                         viewModel.currentTask = task
-                        energyBuddyView.setTaskIndicator(task.type)
+                        self.setTaskIndicator(task.type)
                         break
                     }
                 } else {
@@ -505,7 +508,7 @@ class GameHomeViewController: AccountPickerViewController {
     private func showEnergyBuddyTooltip() {
         FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .viewed_task_empty_state)])
         
-        let message = NSMutableAttributedString(string: NSLocalizedString("I’m Lumi!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nAlong the way, you’ll be awarded with points for checking your daily and weekly insights as well as any tips, quizzes, or other challenges I might have for you! With those points, you can unlock backgrounds, hats, and accessories.", comment: ""))
+        let message = NSMutableAttributedString(string: NSLocalizedString("I’m Lumi!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and usage insights to help you lower your energy use.\n\nIn order to personalize your experience, we’d like to ask you a few questions!", comment: ""))
         if let taskTimeStr = viewModel.nextAvaiableTaskTimeString {
             let attrString = NSMutableAttributedString(string: "\n\n\(taskTimeStr)", attributes: [
                 .foregroundColor: UIColor.primaryColor,
@@ -538,7 +541,7 @@ class GameHomeViewController: AccountPickerViewController {
                 energyBuddyView.showHalfWayMessage()
             } else if result == .levelUp {
                 energyBuddyView.playSuperHappyAnimation(withSparkles: true)
-                energyBuddyView.showLevelUpMessage()
+                energyBuddyView.showLevelUpMessage(isFirstTimeSeeingBuddy: viewModel.currentTaskIndex == 0)
             }
         } else {
             energyBuddyView.playHappyAnimation()
@@ -571,7 +574,7 @@ class GameHomeViewController: AccountPickerViewController {
         }
 
         if advanceTaskIndex { // If advancing index, update index + points in the same request
-            energyBuddyView.setTaskIndicator(nil)
+            self.setTaskIndicator(nil)
             viewModel.currentTask = nil
             
             viewModel.currentTaskIndex += 1
@@ -584,7 +587,7 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func presentGift(_ gift: Gift) {
-        let rewardVc = GameRewardViewController.create(withGift: gift)
+        let rewardVc = GameRewardViewController.create(withGift: gift, isWelcomeGift: viewModel.currentTaskIndex == 1)
         rewardVc.delegate = self
         self.tabBarController?.present(rewardVc, animated: true, completion: nil)
     }
@@ -610,6 +613,16 @@ class GameHomeViewController: AccountPickerViewController {
         }
     }
 
+    // Pass `nil` to hide indicator
+    func setTaskIndicator(_ type: GameTaskType?) {
+        guard let taskType = type else {
+            taskIndicatorView.isHidden = true
+            return
+        }
+
+        taskIndicatorButton.setTitle(viewModel.taskIndicatorText(for: taskType), for: .normal)
+        taskIndicatorView.isHidden = false
+    }
 }
 
 // MARK: - AccountPickerDelegate
@@ -725,7 +738,7 @@ extension GameHomeViewController: GameEnrollmentViewControllerDelegate {
     func gameEnrollmentViewControllerDidPressNotInterested(_ gameEnrollmentViewController: GameEnrollmentViewController) {
         tabBarController?.dismiss(animated: true, completion: nil)
         
-        energyBuddyView.setTaskIndicator(nil)
+        self.setTaskIndicator(nil)
         viewModel.currentTask = nil
         
         viewModel.currentTaskIndex += 1
@@ -757,7 +770,7 @@ extension GameHomeViewController: GameSurveyViewControllerDelegate {
                 self.awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
             })
         } else {
-            energyBuddyView.setTaskIndicator(nil)
+            self.setTaskIndicator(nil)
             viewModel.currentTask = nil
             
             viewModel.currentTaskIndex += 1
@@ -770,7 +783,7 @@ extension GameHomeViewController: GameSurveyViewControllerDelegate {
 extension GameHomeViewController: GameCheckInViewControllerDelegate {
     
     func gameCheckInViewController(_ gameCheckInViewController: GameCheckInViewController, selectedResponse: String) {
-        energyBuddyView.setTaskIndicator(nil)
+        self.setTaskIndicator(nil)
         viewModel.currentTask = nil
         
         viewModel.currentTaskIndex += 1
@@ -778,7 +791,7 @@ extension GameHomeViewController: GameCheckInViewControllerDelegate {
     }
     
     func gameCheckInViewControllerSelectedNotInterested(_ gameCheckInViewController: GameCheckInViewController) {
-        energyBuddyView.setTaskIndicator(nil)
+        self.setTaskIndicator(nil)
         viewModel.currentTask = nil
         
         viewModel.currentTaskIndex += 1

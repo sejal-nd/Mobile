@@ -189,6 +189,14 @@ extension DateFormatter {
         return dateFormatter
     }()
     
+    @nonobjc static let yyyyMMddTHHmmssSSSZZZZZFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        return dateFormatter
+    }()
+    
     @nonobjc static let yyyyMMddFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .opCo

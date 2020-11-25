@@ -48,6 +48,8 @@ class HomeViewController: AccountPickerViewController {
     var opcoIdentityView: OpcoIdentityCardView!
     var opcoIdentityViewHeightConstraint: NSLayoutConstraint!
     
+    var gameCardView: HomeGameCardView?
+    
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
     
@@ -230,6 +232,21 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+        viewModel.gameUser.asObservable().subscribe(onNext: {
+            if let gameUser = $0 {
+                self.gameCardView?.isHidden = !gameUser.onboardingComplete
+            } else {
+                self.gameCardView?.isHidden = true
+            }
+        }).disposed(by: bag)
+        
+        viewModel.accountDetailEvents.elements().asObservable()
+            .subscribe(onNext: {
+                self.viewModel.gameCardViewModel.accountDetail.accept($0)
+                self.viewModel.gameCardViewModel.fetchData()
+            })
+            .disposed(by: bag)
+        
         viewModel.showGameOnboardingCard
             .distinctUntilChanged()
             .drive(onNext: { [weak self] showCard in
@@ -247,12 +264,14 @@ class HomeViewController: AccountPickerViewController {
                     .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
                     .drive(onNext: { [weak self] in
                         guard let self = self else { return }
-                        let sb = UIStoryboard(name: "Game", bundle: nil)
-                        if let navController = sb.instantiateViewController(withIdentifier: "GameOnboarding") as? UINavigationController,
-                            let vc = navController.viewControllers.first as? GameOnboardingIntroViewController {
-                            vc.accountDetail = $0
-                            self.present(navController, animated: true, completion: nil)
-                        }
+                        self.navigateToGameOnboarding(accountDetail: $0)
+                    }).disposed(by: self.bag)
+                
+                gameOnboardingCardView.imageButton.rx.touchUpInside.asDriver()
+                    .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+                    .drive(onNext: { [weak self] in
+                        guard let self = self else { return }
+                        self.navigateToGameOnboarding(accountDetail: $0)
                     }).disposed(by: self.bag)
                 
                 let index = self.topPersonalizeButton != nil ? 1 : 0
@@ -322,6 +341,15 @@ class HomeViewController: AccountPickerViewController {
                 })
             })
             .disposed(by: bag)
+    }
+    
+    func navigateToGameOnboarding(accountDetail: AccountDetail) {
+        let sb = UIStoryboard(name: "Game", bundle: nil)
+        if let navController = sb.instantiateViewController(withIdentifier: "GameOnboarding") as? UINavigationController,
+           let vc = navController.viewControllers.first as? GameOnboardingIntroViewController {
+            vc.accountDetail = accountDetail
+            self.present(navController, animated: true, completion: nil)
+        }
     }
     
     func navigateToAutoPay(accountDetail: AccountDetail) {
@@ -489,6 +517,8 @@ class HomeViewController: AccountPickerViewController {
             prepaidPendingCardView = nil
         case .prepaidActive:
             prepaidActiveCardView = nil
+        case .game:
+            gameCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -570,6 +600,19 @@ class HomeViewController: AccountPickerViewController {
             }
             
             return prepaidActiveCardView
+        case .game:
+            let gameCardView: HomeGameCardView
+            if let gameCard = self.gameCardView {
+                gameCardView = gameCard
+            } else {
+                gameCardView = .create(withViewModel: viewModel.gameCardViewModel)
+                gameCardView.lumiButton.rx.tap.subscribe(onNext: { _ in
+                    NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
+                }).disposed(by: self.bag)
+                self.gameCardView = gameCardView
+            }
+            
+            return gameCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -855,12 +898,12 @@ extension HomeViewController: AccountPickerDelegate {
         
         if AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber &&
             !optedOutLocal && onboardingCompleteLocal && UI_USER_INTERFACE_IDIOM() != .pad {
-            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
+//            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
             if prefersGameHome {
                 NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
             }
         } else {
-            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
+//            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
         }
     }
 }

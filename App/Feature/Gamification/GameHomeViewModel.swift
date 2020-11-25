@@ -239,37 +239,36 @@ class GameHomeViewModel {
         if currentTaskIndex >= GameTaskStore.shared.tasks.count {
             return nil
         }
-        
-        #warning("TESTING ONLY")
-//        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date,
-//            let nextTaskDate = Calendar.current.date(byAdding: .day, value: 4, to: lastTaskDate) {
-//            let interval = Int(nextTaskDate.timeIntervalSinceNow)
-//            let days = interval / 86400
-//            let hours = (interval % 86400) / 3600
-//            let minutes = ((interval % 86400) % 3600) / 60
-//
-//            var timeString = ""
-//            if days > 0 {
-//                timeString += "\(days) \(days == 1 ? "day" : "days")"
-//                if hours > 0 {
-//                    timeString += " and \(hours) \(hours == 1 ? "hour" : "hours")"
-//                }
-//                return "Check back in \(timeString) for your next challenge!"
-//            }
-//            if hours > 0 {
-//                timeString += "\(hours) \(hours == 1 ? "hour" : "hours")"
-//                if minutes > 0 {
-//                    timeString += " and \(minutes) \(minutes == 1 ? "minute" : "minutes")"
-//                }
-//                return "Check back in \(timeString) for your next challenge!"
-//            }
-//            if minutes > 0 {
-//                timeString += "\(minutes) \(minutes == 1 ? "minute" : "minutes")"
-//                return "Check back in \(timeString) for your next challenge!"
-//            }
-//
-//            return "Check back soon for your next challenge!"
-//        }
+
+        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date,
+            let nextTaskDate = Calendar.current.date(byAdding: .day, value: 4, to: lastTaskDate) {
+            let interval = Int(nextTaskDate.timeIntervalSinceNow)
+            let days = interval / 86400
+            let hours = (interval % 86400) / 3600
+            let minutes = ((interval % 86400) % 3600) / 60
+
+            var timeString = ""
+            if days > 0 {
+                timeString += "\(days) \(days == 1 ? "day" : "days")"
+                if hours > 0 {
+                    timeString += " and \(hours) \(hours == 1 ? "hour" : "hours")"
+                }
+                return "Check back in \(timeString) for your next challenge!"
+            }
+            if hours > 0 {
+                timeString += "\(hours) \(hours == 1 ? "hour" : "hours")"
+                if minutes > 0 {
+                    timeString += " and \(minutes) \(minutes == 1 ? "minute" : "minutes")"
+                }
+                return "Check back in \(timeString) for your next challenge!"
+            }
+            if minutes > 0 {
+                timeString += "\(minutes) \(minutes == 1 ? "minute" : "minutes")"
+                return "Check back in \(timeString) for your next challenge!"
+            }
+
+            return "Check back soon for your next challenge!"
+        }
         
         return nil
     }
@@ -287,6 +286,50 @@ class GameHomeViewModel {
                     let accountNumber = self.accountDetail.value?.accountNumber,
                     valid,
                     let endDate = date else { return false }
-                return self.coreDataManager.getWeeklyInsight(accountNumber: accountNumber, endDate: endDate) == nil
+                var weeklyInsightAvailable = self.coreDataManager.getWeeklyInsight(accountNumber: accountNumber, endDate: endDate) == nil
+                return weeklyInsightAvailable
             }
+    
+    func hasDailyInsightAvailable() -> Observable<Bool> {
+        return self.usageData.asObservable().map {
+            if let dailyUsageData = $0 {
+                var insightAvailable = false
+                var date = Calendar.current.startOfDay(for: Date.now) // Based on user's timezone so their current "today" is always displayed
+                let startDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
+                
+                while date > startDate, !insightAvailable {
+                    if let match = dailyUsageData.dailyUsage.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
+                        let accountNumber = self.accountDetail.value!.accountNumber
+                        let canCollect = self.coreDataManager.getCollectedCoin(accountNumber: accountNumber, date: match.date, gas: self.selectedSegmentIndex == 1) == nil
+                        
+                        insightAvailable = canCollect || insightAvailable
+                    }
+                    date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+                }
+                                
+                return insightAvailable
+            }
+            else {
+                return false
+            }
+        }
+    }
+    
+    func hasInsightsAvailable() -> Driver<Bool> {
+        return Driver.combineLatest(shouldShowWeeklyInsightUnreadIndicator, hasDailyInsightAvailable().asDriver(onErrorJustReturn: false)).map { $0 || $1 }
+    }
+    
+    func taskIndicatorText(for taskType: GameTaskType) -> String {
+        var taskIndicatorText: String
+        switch taskType {
+        case .tip:
+            taskIndicatorText = NSLocalizedString("New Tip Available!", comment: "")
+        case .quiz:
+            taskIndicatorText = NSLocalizedString("New Quiz Available!", comment: "")
+        default:
+            taskIndicatorText = NSLocalizedString("New Task Available!", comment: "")
+        }
+        
+        return taskIndicatorText
+    }
 }

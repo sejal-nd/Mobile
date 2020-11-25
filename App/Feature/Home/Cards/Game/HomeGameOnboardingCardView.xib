@@ -1,49 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="HomeGameOnboardingCardView" customModule="BGE" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="HomeGameOnboardingCardView" customModule="EUMobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2b-V5-tbA">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_card_coin" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Q-rK-EYk">
-                            <rect key="frame" x="79.5" y="20" width="255" height="79"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Unlock data and insights to help you save money and the environment at the same time!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LE5-ao-dmz">
-                            <rect key="frame" x="15" y="119" width="384" height="41"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8si-QM-sBm">
-                            <rect key="frame" x="176.5" y="170" width="61" height="50"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="WNE-aq-8HX">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vQ-oN-VLQ">
+                                    <rect key="frame" x="35.5" y="0.0" width="343" height="303.5"/>
+                                    <state key="normal" image="img_gamification_home_v1"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Join BGE’s Play-n-Save Pilot!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LE5-ao-dmz">
+                                    <rect key="frame" x="98.5" y="316.5" width="217" height="23.5"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save on your bill with personalized insights, tips and quizzes." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enp-c2-blO">
+                                    <rect key="frame" x="25" y="353" width="364" height="34"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8si-QM-sBm">
+                                    <rect key="frame" x="160.5" y="400" width="93" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="oNt-74-6cF"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                    <state key="normal" title="Start Saving!">
+                                        <color key="titleColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="oNt-74-6cF"/>
+                                <constraint firstItem="enp-c2-blO" firstAttribute="leading" secondItem="WNE-aq-8HX" secondAttribute="leading" constant="25" id="2p1-iA-jQh"/>
+                                <constraint firstAttribute="trailing" secondItem="enp-c2-blO" secondAttribute="trailing" constant="25" id="mFG-T8-OvT"/>
                             </constraints>
-                            <state key="normal" title="Let's Go!">
-                                <color key="titleColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                        </button>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="LE5-ao-dmz" firstAttribute="top" secondItem="Z9Q-rK-EYk" secondAttribute="bottom" constant="20" id="2Ui-5f-Lab"/>
-                        <constraint firstAttribute="trailing" secondItem="LE5-ao-dmz" secondAttribute="trailing" constant="15" id="Gh6-oj-fbC"/>
-                        <constraint firstAttribute="bottom" secondItem="8si-QM-sBm" secondAttribute="bottom" id="YVf-3N-82n"/>
-                        <constraint firstItem="Z9Q-rK-EYk" firstAttribute="centerX" secondItem="s2b-V5-tbA" secondAttribute="centerX" id="car-LT-K2t"/>
-                        <constraint firstItem="LE5-ao-dmz" firstAttribute="leading" secondItem="s2b-V5-tbA" secondAttribute="leading" constant="15" id="ijd-F3-KXF"/>
-                        <constraint firstItem="8si-QM-sBm" firstAttribute="top" secondItem="LE5-ao-dmz" secondAttribute="bottom" constant="10" id="lop-8h-EBq"/>
-                        <constraint firstItem="8si-QM-sBm" firstAttribute="centerX" secondItem="s2b-V5-tbA" secondAttribute="centerX" id="szJ-7a-oT5"/>
-                        <constraint firstItem="Z9Q-rK-EYk" firstAttribute="top" secondItem="s2b-V5-tbA" secondAttribute="top" constant="20" id="wnZ-Ab-edr"/>
+                        <constraint firstAttribute="bottom" secondItem="WNE-aq-8HX" secondAttribute="bottom" id="5oy-Uq-5Fe"/>
+                        <constraint firstItem="WNE-aq-8HX" firstAttribute="top" secondItem="s2b-V5-tbA" secondAttribute="top" id="dan-4j-SwD"/>
+                        <constraint firstAttribute="trailing" secondItem="WNE-aq-8HX" secondAttribute="trailing" id="kDk-Rd-P9n"/>
+                        <constraint firstItem="WNE-aq-8HX" firstAttribute="leading" secondItem="s2b-V5-tbA" secondAttribute="leading" id="z5F-8q-tn8"/>
                     </constraints>
                 </view>
             </subviews>
@@ -57,14 +76,15 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="clippingView" destination="s2b-V5-tbA" id="ikz-MR-XE1"/>
-                <outlet property="imageView" destination="Z9Q-rK-EYk" id="Inr-j3-f9p"/>
-                <outlet property="label" destination="LE5-ao-dmz" id="Vef-u7-bTU"/>
+                <outlet property="imageButton" destination="7vQ-oN-VLQ" id="hEO-B3-RT7"/>
+                <outlet property="label" destination="enp-c2-blO" id="rlW-QU-ehY"/>
                 <outlet property="letsGoButton" destination="8si-QM-sBm" id="8YW-0s-AnQ"/>
+                <outlet property="title" destination="LE5-ao-dmz" id="wgN-RP-feb"/>
             </connections>
-            <point key="canvasLocation" x="147.82608695652175" y="-78.348214285714278"/>
+            <point key="canvasLocation" x="147.82608695652175" y="-66.294642857142861"/>
         </view>
     </objects>
     <resources>
-        <image name="onboarding_card_coin" width="255" height="62"/>
+        <image name="img_gamification_home_v1" width="343" height="242"/>
     </resources>
 </document>
