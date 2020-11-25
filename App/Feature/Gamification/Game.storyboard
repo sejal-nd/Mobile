@@ -325,10 +325,10 @@
                                 <rect key="frame" x="0.0" y="138" width="414" height="724"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3th-xB-uV2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1037.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="960"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-27.5" translatesAutoresizingMaskIntoConstraints="NO" id="6s7-7G-6Nf">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="427.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byt-aM-5F2" customClass="EnergyBuddyView" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
@@ -337,8 +337,8 @@
                                                             <constraint firstAttribute="height" constant="350" id="CD7-jm-9Y9"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrF-J8-m8M">
-                                                        <rect key="frame" x="0.0" y="322.5" width="414" height="105"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrF-J8-m8M">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IsP-uj-QjN" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="30" y="0.0" width="354" height="55"/>
@@ -367,7 +367,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FM4-m6-wid" customClass="GameProgressBar" customModule="EUMobile" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="267.5" width="348" height="20"/>
+                                                <rect key="frame" x="16" y="190" width="348" height="20"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2k-WS-7yM">
                                                         <rect key="frame" x="4" y="4" width="340" height="12"/>
@@ -399,21 +399,21 @@
                                                 </connections>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzy-Cz-66l" userLabel="Viewed Tips Button">
-                                                <rect key="frame" x="350" y="192.5" width="48" height="54"/>
+                                                <rect key="frame" x="350" y="115" width="48" height="54"/>
                                                 <state key="normal" image="ic_history"/>
                                                 <connections>
                                                     <action selector="onViewedTipsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="K5q-v3-jfd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-ij-bxm" userLabel="Gift Button">
-                                                <rect key="frame" x="350" y="250.5" width="48" height="54"/>
+                                                <rect key="frame" x="350" y="173" width="48" height="54"/>
                                                 <state key="normal" image="ic_gifts"/>
                                                 <connections>
                                                     <action selector="onGiftsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="uPm-so-XcS"/>
                                                 </connections>
                                             </button>
                                             <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHj-MC-jbY">
-                                                <rect key="frame" x="350" y="250.5" width="48" height="48"/>
+                                                <rect key="frame" x="350" y="173" width="48" height="48"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVZ-z3-SyK">
                                                         <rect key="frame" x="4" y="16" width="40" height="16"/>
@@ -431,7 +431,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK2-4u-l6B">
-                                                <rect key="frame" x="16" y="393.5" width="382" height="563"/>
+                                                <rect key="frame" x="16" y="316" width="382" height="563"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4CG-4d-xpR" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="20" width="34.5" height="24"/>
@@ -635,7 +635,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn9-A2-DZm">
-                                                <rect key="frame" x="16" y="971.5" width="382" height="46"/>
+                                                <rect key="frame" x="16" y="894" width="382" height="46"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eSf-iY-W2V" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
                                                         <rect key="frame" x="13" y="1" width="356" height="45"/>
