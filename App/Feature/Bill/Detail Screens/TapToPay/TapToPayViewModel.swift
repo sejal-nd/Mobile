@@ -285,10 +285,10 @@ class TapToPayViewModel {
     }
     
     private(set) lazy var editPaymentDisplayString: Driver<String?> = Driver
-        .combineLatest(editpaymentAmountValue.asDriver(), reviewPaymentShouldShowConvenienceFee)
-        .map { [weak self] editPaymentAmount, showConvenienceFeeBox in
+        .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFee)
+        .map { [weak self] paymentAmount, showConvenienceFeeBox in
             guard let self = self else { return nil }
-            return editPaymentAmount.currencyString
+            return paymentAmount.currencyString
     }
     
     
