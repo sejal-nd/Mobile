@@ -420,6 +420,7 @@ extension OutageViewController: AccountPickerDelegate {
         viewModel.hasJustReportedOutage = false
         configureState(.loading)
         loadOutageStatus()
+        clearTimestampForReportedOutage()
     }
 }
 

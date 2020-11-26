@@ -82,7 +82,7 @@ public struct AlertPreferencesRequest: Encodable {
             let paymentDueProgramName = "Payment Reminder" + " " + opcoIdentifier
             let paymentPostedProgramName = "Payment Posted" + " " + opcoIdentifier
             let paymentPastDueProgramName = "Payment Past Due" + " " + opcoIdentifier
-            let billReadyProgramName = "Bill Ready" + " " + opcoIdentifier
+            let billReadyProgramName = "Bill is Ready" + " " + opcoIdentifier
             let budgetBillingProgramName = "Budget Billing" + " " + opcoIdentifier
             let forYourInfoProgramName = "News" + " " + opcoIdentifier
             
