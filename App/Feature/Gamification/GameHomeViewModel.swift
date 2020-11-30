@@ -42,7 +42,7 @@ class GameHomeViewModel {
         if Environment.shared.environmentName == .prod {
             return 60 * 60 * 24 * 4 // 4 days
         } else {
-            return 60 * 2 // 2 minutes
+            return 10 // 10 seconds
         }
     }()
     

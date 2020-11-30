@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import WebKit
 
 final class iTronSmartThermostatViewController: UIViewController {
     

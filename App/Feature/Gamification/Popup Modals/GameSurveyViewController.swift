@@ -32,9 +32,7 @@ class GameSurveyViewController: UIViewController {
     @IBOutlet weak var notInterestedButton: UIButton!
 
     let accountNumber = AccountsStore.shared.currentAccount.accountNumber
-    
-    private let surveyManager = SurveyMonkeyManager()
-    
+        
     var survey: GameSurvey! // Passed into create()
             
     static func create(withSurvey survey: GameSurvey) -> GameSurveyViewController {
@@ -99,15 +97,6 @@ class GameSurveyViewController: UIViewController {
     }
         
     @IBAction func onTakeSurveyPress() {
-//        let surveyHash = survey.surveyNumber == 1 ? "Q9M87WC" : "Q9ZMCRY"
-//        surveyManager.presentSurvey(withHash: surveyHash, from: self) { [weak self] in
-//            guard let self = self else { return }
-//            self.setSurveyComplete()
-//            self.presentingViewController?.dismiss(animated: true, completion: {
-//                self.delegate?.gameSurveyViewControllerDidFinish(self, surveyComplete: true)
-//            })
-//        }
-        
         ForeSee.resetState()
         
         let surveyName = survey.surveyNumber == 1 ? "Survey 1" : "Survey 2"
