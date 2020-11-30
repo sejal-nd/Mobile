@@ -13,7 +13,7 @@
 		<key>com.exelon.mobile.delmarva.prodbeta.watchkitapp</key>
 		<string>Delmarva Production Beta Watchkit App Enterprise</string>
 		<key>com.exelon.mobile.delmarva.prodbeta.watchkitapp.watchkitextension</key>
-		<string>Delmarva Production Beta WatchkitExt Ent</string>
+		<string>Delmarva Production Beta WatchkitExtension Ent</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>

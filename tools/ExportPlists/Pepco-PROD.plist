@@ -10,9 +10,9 @@
 	<dict>
 		<key>com.ifactorconsulting.pepco</key>
 		<string>Pepco App Store</string>
-		<key>com.exelon.mobile.pepco.watchkitapp</key>
-		<string>Pepco Watchkit App Store</string>
-		<key>com.exelon.mobile.pepco.watchkitapp.watchkitextension</key>
+		<key>com.ifactorconsulting.pepco.watchkitapp</key>
+		<string>Pepco WatchKit App Store</string>
+		<key>com.ifactorconsulting.pepco.watchkitapp.watchkitextension</key>
 		<string>Pepco Watchkit Extension App Store</string>
 	</dict>
 	<key>signingCertificate</key>
