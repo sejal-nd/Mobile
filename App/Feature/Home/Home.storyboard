@@ -371,33 +371,13 @@
                                     <segue destination="c2T-h3-4Jv" kind="embed" id="lkE-SL-30l"/>
                                 </connections>
                             </containerView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zwa-mm-vVg" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="343" y="791" width="55" height="55"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_fab_on_home" translatesAutoresizingMaskIntoConstraints="NO" id="QiT-2A-8Tz">
-                                        <rect key="frame" x="11.5" y="11.5" width="32" height="32"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                <constraints>
-                                    <constraint firstItem="QiT-2A-8Tz" firstAttribute="centerX" secondItem="Zwa-mm-vVg" secondAttribute="centerX" id="2IF-J0-Vf0"/>
-                                    <constraint firstAttribute="height" constant="55" id="H30-K8-hNJ"/>
-                                    <constraint firstItem="QiT-2A-8Tz" firstAttribute="centerY" secondItem="Zwa-mm-vVg" secondAttribute="centerY" id="i8N-Yh-NFU"/>
-                                    <constraint firstAttribute="width" constant="55" id="qIH-gX-HOw"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="onFabPress" destination="GkP-jV-MfK" eventType="touchUpInside" id="9Mg-ay-Dvi"/>
-                                </connections>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="e0n-34-LHd"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="e0n-34-LHd" firstAttribute="bottom" secondItem="Zwa-mm-vVg" secondAttribute="bottom" constant="16" id="AJd-II-Rur"/>
                             <constraint firstAttribute="bottom" secondItem="f2z-qx-fNE" secondAttribute="bottom" id="Alt-gK-zi9"/>
                             <constraint firstItem="f2z-qx-fNE" firstAttribute="leading" secondItem="e0n-34-LHd" secondAttribute="leading" id="CDB-Iw-tS0"/>
                             <constraint firstItem="e0n-34-LHd" firstAttribute="trailing" secondItem="f2z-qx-fNE" secondAttribute="trailing" id="QSx-ao-S4W"/>
-                            <constraint firstAttribute="trailing" secondItem="Zwa-mm-vVg" secondAttribute="trailing" constant="16" id="b4e-Jo-vy1"/>
                             <constraint firstItem="f2z-qx-fNE" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="bqg-Cz-rpj"/>
                         </constraints>
                     </view>
@@ -407,8 +387,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="containerView" destination="f2z-qx-fNE" id="cvc-pT-kUB"/>
-                        <outlet property="fab" destination="Zwa-mm-vVg" id="v6Q-G7-b9Q"/>
-                        <outlet property="fabImageView" destination="QiT-2A-8Tz" id="xxb-L3-ljl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1048,16 +1026,12 @@
     </scenes>
     <resources>
         <image name="ic_add" width="16" height="16"/>
-        <image name="ic_fab_on_home" width="32" height="32"/>
         <image name="ic_grip" width="15" height="25"/>
         <image name="ic_lock_white" width="125" height="126"/>
         <image name="ic_savings_caretleft" width="24" height="24"/>
         <image name="ic_savings_caretright" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

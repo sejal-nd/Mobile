@@ -266,6 +266,11 @@ class HomeViewController: AccountPickerViewController {
                     .drive(onNext: { [weak self] in
                         guard let self = self else { return }
                         self.navigateToGameOnboarding(accountDetail: $0)
+                        
+                        FirebaseUtility.logEvent(.gamification, customParameters: [
+                            "action": EventParameter.Value.onboard_start.rawValue,
+                            "onboarding_card_version": "\(gameOnboardingCardView.version.rawValue)"
+                        ])
                     }).disposed(by: self.bag)
                 
                 gameOnboardingCardView.imageButton.rx.touchUpInside.asDriver()
@@ -273,6 +278,10 @@ class HomeViewController: AccountPickerViewController {
                     .drive(onNext: { [weak self] in
                         guard let self = self else { return }
                         self.navigateToGameOnboarding(accountDetail: $0)
+                        FirebaseUtility.logEvent(.gamification, customParameters: [
+                            "action": EventParameter.Value.onboard_start.rawValue,
+                            "onboarding_card_version": "\(gameOnboardingCardView.version.rawValue)"
+                        ])
                     }).disposed(by: self.bag)
                 
                 let index = self.topPersonalizeButton != nil ? 1 : 0
