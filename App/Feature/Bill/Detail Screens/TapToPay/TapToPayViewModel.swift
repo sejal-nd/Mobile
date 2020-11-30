@@ -462,7 +462,7 @@ class TapToPayViewModel {
             self.shouldShowPaymentMethodExpiredButton.asDriver(),
             isOverpaying,
             overpayingSwitchValue.asDriver(),
-            paymentFieldsValid.asDriver())
+            paymentFieldReviewPaymentValid.asDriver())
         {
             if !$0 || !$1 || !$2 || $3{
                 return false
