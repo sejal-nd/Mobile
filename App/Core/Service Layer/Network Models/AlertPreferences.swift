@@ -71,7 +71,7 @@ public struct AlertPreferences: Decodable {
                 scheduledMaint = true
             case "Severe Weather", "Severe Weather \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 severeWeather = true
-            case "Paperless Billing", "Bill is Ready", "Bill Ready \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
+            case "Paperless Billing", "Bill is Ready", "Bill is Ready \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 billReady = true
             case "Payment Reminder", "Payment Reminders", "Payment Reminder \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
                 paymentDue = true

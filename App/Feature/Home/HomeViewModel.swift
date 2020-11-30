@@ -237,8 +237,8 @@ class HomeViewModel {
         return !gameUser.onboardingComplete && !gameUser.optedOut
     }
     
-    private(set) lazy var gameUser = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { user -> GameUser? in
-        guard let gameUser = user, !gameUser.optedOut else { return nil }
+    private(set) lazy var gameUser = gameUserEvents.asDriver(onErrorDriveWith: .empty()).map { event -> GameUser? in
+        guard let gameUser = event.element, !(gameUser?.optedOut ?? false) else { return nil }
         return gameUser
     }
     
@@ -314,4 +314,32 @@ class HomeViewModel {
             return (oldCards.1, newCards)
         }
         .asDriver(onErrorDriveWith: .empty())
+    
+    lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = Observable
+        .combineLatest(accountDetailEvents.elements(), scheduledPaymentEvents.elements())
+          .map { accountDetail, scheduledPayment in
+              if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+                  return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
+                      "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
+                      "of your bill from the bank account you originally submitted. You may make a one-time payment " +
+                      "now, but it may result in duplicate payment processing. Do you want to continue with a " +
+                      "one-time payment?", comment: ""), accountDetail)
+              } else if accountDetail.isAutoPay {
+                  return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You currently " +
+                      "have automatic payments set up. To avoid a duplicate payment, please review your payment " +
+                      "activity before proceeding. Would you like to continue making an additional payment?\n\nNote: " +
+                      "If you recently enrolled in AutoPay and you have not yet received a new bill, you will need " +
+                      "to submit a payment for your current bill if you have not already done so.", comment: ""), accountDetail)
+              } else if let scheduledPaymentAmount = scheduledPayment?.amount,
+                  let scheduledPaymentDate = scheduledPayment?.date,
+                  scheduledPaymentAmount > 0 {
+                  let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
+                  return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. " +
+                      "To avoid a duplicate payment, please review your payment activity before proceeding. Would " +
+                      "you like to continue making an additional payment?", comment: ""),
+                                                 scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString), accountDetail)
+              }
+              return (nil, nil, accountDetail)
+      }
+    
 }

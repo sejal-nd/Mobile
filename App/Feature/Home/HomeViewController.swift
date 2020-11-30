@@ -232,11 +232,12 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        viewModel.gameUser.asObservable().subscribe(onNext: {
+        viewModel.gameUser.asDriver().drive(onNext: {
             if let gameUser = $0 {
                 self.gameCardView?.isHidden = !gameUser.onboardingComplete
             } else {
-                self.gameCardView?.isHidden = true
+                self.gameCardView?.removeFromSuperview()
+                self.gameCardView = nil
             }
         }).disposed(by: bag)
         
@@ -637,16 +638,25 @@ class HomeViewController: AccountPickerViewController {
                     let newNavController = LargeTitleNavigationController(rootViewController: viewController)
                     newNavController.modalPresentationStyle = .formSheet
                     self?.present(newNavController, animated: true, completion: nil)
-                } else if viewController is MakePaymentViewController {
-                    #warning("Remove this elseif block once the new payment flow is in for PHI as well")
-                    viewController.hidesBottomBarWhenPushed = true
-                    self?.navigationController?.pushViewController(viewController, animated: true)
-                    return
-                } else if viewController is TapToPayReviewPaymentViewController {
-                    let newNavController = LargeTitleNavigationController(rootViewController: viewController)
-                    newNavController.modalPresentationStyle = .fullScreen
-                    FirebaseUtility.logEvent(.makePaymentStart)
-                    self?.present(newNavController, animated: true, completion: nil)
+                }  else if viewController is TapToPayReviewPaymentViewController ||
+                    viewController is MakePaymentViewController {
+                    self?.viewModel.makePaymentScheduledPaymentAlertInfo
+                    .single()
+                    .subscribe(onNext: { [weak self] alertInfo in
+                            guard let self = self else { return }
+                            let (titleOpt, messageOpt, _) = alertInfo
+                            if let title = titleOpt, let message = messageOpt {
+                                let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { _ in
+                                    self.goToMakeAPaymentFlow(viewController: viewController)
+                                }))
+                                self.present(alertVc, animated: true, completion: nil)
+                            } else {
+                                self.goToMakeAPaymentFlow(viewController: viewController)
+                            }
+                        }).disposed(by: billCardView.bag)
+                    
                 } else {
                     self?.present(viewController, animated: true, completion: nil)
                 }
@@ -675,6 +685,23 @@ class HomeViewController: AccountPickerViewController {
                 self.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: billCardView.bag)
+    }
+    
+    func goToMakeAPaymentFlow(viewController: UIViewController?) {
+        if let vc = viewController {
+            if viewController is MakePaymentViewController {
+                #warning("Remove this elseif block once the new payment flow is in for PHI as well")
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+                return
+            } else if viewController is TapToPayReviewPaymentViewController {
+                
+                let newNavController = LargeTitleNavigationController(rootViewController: vc)
+                newNavController.modalPresentationStyle = .fullScreen
+                FirebaseUtility.logEvent(.makePaymentStart)
+                self.present(newNavController, animated: true, completion: nil)
+            }
+        }
     }
     
     func bindUsageCard() {

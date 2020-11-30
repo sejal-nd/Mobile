@@ -580,10 +580,9 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yi-1y-yxA">
-                                                                <rect key="frame" x="20" y="0.0" width="255" height="60"/>
+                                                                <rect key="frame" x="20" y="0.0" width="394" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="Vwr-oH-OtM"/>
-                                                                    <constraint firstAttribute="width" constant="255" id="opI-Xh-Uma"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -595,6 +594,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="3yi-1y-yxA" secondAttribute="trailing" id="Ax1-k1-p8P"/>
                                                             <constraint firstAttribute="bottom" secondItem="3yi-1y-yxA" secondAttribute="bottom" id="DTG-Nv-VYf"/>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="UMv-ph-VFJ"/>
                                                             <constraint firstItem="LZZ-e6-IEK" firstAttribute="centerY" secondItem="pdz-5s-qyW" secondAttribute="centerY" id="k0A-nt-spc"/>
@@ -616,15 +616,15 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHh-pd-rOo">
                                                         <rect key="frame" x="0.0" y="1126" width="414" height="321"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Hhb-v6-SI1" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Hhb-v6-SI1" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="241" width="374" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="LbX-ng-N1S" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="LbX-ng-N1S" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="124" width="374" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="keY-Ha-kh6">
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="keY-Ha-kh6">
                                                                 <rect key="frame" x="15" y="20" width="389" height="83"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <string key="text">A confirmation will be sent to the email address associated with your My Account. If you'd like to send this payment confirmation to an additional email or via text message, add the recipients below. Standard messaging rates apply.</string>
@@ -639,6 +639,7 @@
                                                             <constraint firstItem="keY-Ha-kh6" firstAttribute="top" secondItem="QHh-pd-rOo" secondAttribute="top" constant="20" id="Fb6-e2-Q83"/>
                                                             <constraint firstItem="Hhb-v6-SI1" firstAttribute="leading" secondItem="QHh-pd-rOo" secondAttribute="leading" constant="20" id="K1s-cG-VzC"/>
                                                             <constraint firstItem="LbX-ng-N1S" firstAttribute="top" secondItem="keY-Ha-kh6" secondAttribute="bottom" constant="21" id="Lh1-21-zOw"/>
+                                                            <constraint firstItem="Hhb-v6-SI1" firstAttribute="top" relation="lessThanOrEqual" secondItem="LbX-ng-N1S" secondAttribute="bottom" priority="750" constant="47" id="PoA-Jf-NnG"/>
                                                             <constraint firstItem="Hhb-v6-SI1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="LbX-ng-N1S" secondAttribute="bottom" priority="250" constant="40" id="XKU-sd-8Va"/>
                                                             <constraint firstAttribute="trailing" secondItem="Hhb-v6-SI1" secondAttribute="trailing" constant="20" id="cRL-vT-P8N"/>
                                                             <constraint firstAttribute="trailing" secondItem="keY-Ha-kh6" secondAttribute="trailing" constant="10" id="f1S-G2-whW"/>
@@ -699,6 +700,7 @@
                                     <constraint firstItem="FYf-LO-fR8" firstAttribute="height" secondItem="Lgg-gx-JBI" secondAttribute="height" multiplier="2.05984" priority="250" id="1Vg-Nb-vtX"/>
                                     <constraint firstAttribute="bottom" secondItem="FYf-LO-fR8" secondAttribute="bottom" id="Rdo-OC-ZDK"/>
                                     <constraint firstItem="FYf-LO-fR8" firstAttribute="centerX" secondItem="Lgg-gx-JBI" secondAttribute="centerX" id="ezT-6S-LuO"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="hki-qh-4pA"/>
                                     <constraint firstItem="FYf-LO-fR8" firstAttribute="top" secondItem="Lgg-gx-JBI" secondAttribute="top" id="ngJ-fP-GXN"/>
                                     <constraint firstItem="FYf-LO-fR8" firstAttribute="width" secondItem="Lgg-gx-JBI" secondAttribute="width" priority="750" id="p7m-GR-idR"/>
                                     <constraint firstAttribute="trailing" secondItem="FYf-LO-fR8" secondAttribute="trailing" id="swO-eG-j0e"/>
@@ -829,6 +831,8 @@
                         <outlet property="paymentsAssociatedTextLabel" destination="lgK-qb-1r5" id="qjL-vL-mHS"/>
                         <outlet property="sameDayPaymentWarningLabel" destination="tfg-Fk-BFl" id="oBe-xu-zZp"/>
                         <outlet property="scrollView" destination="Lgg-gx-JBI" id="5tk-tF-795"/>
+                        <outlet property="scrollViewLeadingConstraint" destination="iFX-Re-3nP" id="8do-wJ-DbY"/>
+                        <outlet property="scrollViewTrailingConstraint" destination="YMa-gf-F94" id="O9z-zV-9GI"/>
                         <outlet property="selectPaymentButton" destination="ykG-17-gwK" id="5zM-YW-olc"/>
                         <outlet property="selectPaymentLabel" destination="97c-BV-Hhr" id="7Zg-13-CyH"/>
                         <outlet property="selectPaymentMethodContainer" destination="h0W-BA-DNh" id="pdI-h9-4Fc"/>
