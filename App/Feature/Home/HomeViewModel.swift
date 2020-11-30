@@ -237,8 +237,8 @@ class HomeViewModel {
         return !gameUser.onboardingComplete && !gameUser.optedOut
     }
     
-    private(set) lazy var gameUser = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { user -> GameUser? in
-        guard let gameUser = user, !gameUser.optedOut else { return nil }
+    private(set) lazy var gameUser = gameUserEvents.asDriver(onErrorDriveWith: .empty()).map { event -> GameUser? in
+        guard let gameUser = event.element, !(gameUser?.optedOut ?? false) else { return nil }
         return gameUser
     }
     

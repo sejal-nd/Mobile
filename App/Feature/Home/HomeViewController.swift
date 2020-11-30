@@ -232,11 +232,12 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        viewModel.gameUser.asObservable().subscribe(onNext: {
+        viewModel.gameUser.asDriver().drive(onNext: {
             if let gameUser = $0 {
                 self.gameCardView?.isHidden = !gameUser.onboardingComplete
             } else {
-                self.gameCardView?.isHidden = true
+                self.gameCardView?.removeFromSuperview()
+                self.gameCardView = nil
             }
         }).disposed(by: bag)
         

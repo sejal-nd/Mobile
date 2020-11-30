@@ -1100,7 +1100,7 @@
         "tip": {
             "id": "E1",
             "description": "Weatherize your windows using shutters, weather stripping, or insulated drapes. 🏠 Help keep energy in and save ⚡️.",
-            "title": "Keep It In ",
+            "title": "Keep It In",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
@@ -1110,7 +1110,7 @@
         "tip": {
             "id": "E2",
             "description": "Lumi Logic 💡 The average home loses up to 30% of its heating and cooling ⚡️ through leaks around windows and doors 💨",
-            "title": "Lumi Logic 💡 ",
+            "title": "Lumi Logic 💡",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
