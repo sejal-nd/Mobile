@@ -367,7 +367,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FM4-m6-wid" customClass="GameProgressBar" customModule="EUMobile" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="190" width="348" height="20"/>
+                                                <rect key="frame" x="16" y="250" width="348" height="20"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2k-WS-7yM">
                                                         <rect key="frame" x="4" y="4" width="340" height="12"/>
@@ -399,21 +399,21 @@
                                                 </connections>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzy-Cz-66l" userLabel="Viewed Tips Button">
-                                                <rect key="frame" x="350" y="115" width="48" height="54"/>
+                                                <rect key="frame" x="350" y="175" width="48" height="54"/>
                                                 <state key="normal" image="ic_history"/>
                                                 <connections>
                                                     <action selector="onViewedTipsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="K5q-v3-jfd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-ij-bxm" userLabel="Gift Button">
-                                                <rect key="frame" x="350" y="173" width="48" height="54"/>
+                                                <rect key="frame" x="350" y="233" width="48" height="54"/>
                                                 <state key="normal" image="ic_gifts"/>
                                                 <connections>
                                                     <action selector="onGiftsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="uPm-so-XcS"/>
                                                 </connections>
                                             </button>
                                             <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHj-MC-jbY">
-                                                <rect key="frame" x="350" y="173" width="48" height="48"/>
+                                                <rect key="frame" x="350" y="233" width="48" height="48"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVZ-z3-SyK">
                                                         <rect key="frame" x="4" y="16" width="40" height="16"/>
@@ -680,7 +680,7 @@
                                             <constraint firstItem="DHj-MC-jbY" firstAttribute="centerX" secondItem="ud1-ij-bxm" secondAttribute="centerX" id="vEp-tM-IPJ"/>
                                             <constraint firstAttribute="trailing" secondItem="ud1-ij-bxm" secondAttribute="trailing" constant="16" id="vXj-2D-fmn"/>
                                             <constraint firstItem="ud1-ij-bxm" firstAttribute="centerY" secondItem="FM4-m6-wid" secondAttribute="centerY" id="ve6-6N-6hb"/>
-                                            <constraint firstItem="FM4-m6-wid" firstAttribute="bottom" secondItem="6s7-7G-6Nf" secondAttribute="bottom" constant="-140" id="yYr-iF-xcM"/>
+                                            <constraint firstItem="FM4-m6-wid" firstAttribute="bottom" secondItem="6s7-7G-6Nf" secondAttribute="bottom" constant="-80" id="yYr-iF-xcM"/>
                                             <constraint firstItem="DHj-MC-jbY" firstAttribute="top" secondItem="ud1-ij-bxm" secondAttribute="top" id="ytO-Bd-gFd"/>
                                             <constraint firstAttribute="bottom" secondItem="fn9-A2-DZm" secondAttribute="bottom" constant="20" id="zau-Vc-3IC"/>
                                         </constraints>
@@ -727,6 +727,7 @@
                         <outlet property="pointEarnLabel" destination="iVZ-z3-SyK" id="Vsa-PS-3sG"/>
                         <outlet property="pointEarnView" destination="DHj-MC-jbY" id="4jW-6R-Iwc"/>
                         <outlet property="progressBar" destination="FM4-m6-wid" id="Ls8-Ak-8NL"/>
+                        <outlet property="progressBarBottomConstraint" destination="yYr-iF-xcM" id="ppt-A7-W4P"/>
                         <outlet property="returnToDashboardButton" destination="eSf-iY-W2V" id="YcG-ad-YtD"/>
                         <outlet property="scrollView" destination="LnJ-gS-54q" id="WA6-Qn-KAW"/>
                         <outlet property="segmentedControl" destination="nah-d7-pIj" id="mqh-in-mta"/>
