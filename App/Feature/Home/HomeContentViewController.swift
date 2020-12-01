@@ -12,10 +12,7 @@ import RxSwift
 class HomeContentViewController: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
-    
-    @IBOutlet weak var fab: ButtonControl!
-    @IBOutlet weak var fabImageView: UIImageView!
-    
+        
     var inGame = false
     var flipping = false
     
@@ -28,46 +25,9 @@ class HomeContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fab.isHidden = true
-        
-        fab.layer.cornerRadius = 27.5
-        fab.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 5), radius: 10)
-        let fabColor = UIColor(red: 17/255, green: 57/255, blue: 112/255, alpha: 1)
-        fab.normalBackgroundColor = fabColor
-        fab.backgroundColorOnPress = fabColor.darker()
-        
         setupNotifications()
         //displayInitialView()
     }
-    
-//    private func displayInitialView() {
-//        var viewController: UIViewController
-//        if UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome) {
-//            let sb = UIStoryboard(name: "Game", bundle: nil)
-//            viewController = sb.instantiateViewController(withIdentifier: "GameHome")
-//            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
-//            inGame = true
-//        } else {
-//            viewController = storyboard!.instantiateViewController(withIdentifier: "Home")
-//            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
-//            inGame = false
-//        }
-//        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-//
-//        addChild(viewController)
-//        containerView.addSubview(viewController.view)
-//        view.sendSubviewToBack(viewController.view)
-//
-//        NSLayoutConstraint.activate([
-//            viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
-//            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-//            viewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-//            viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-//        ])
-//        viewController.didMove(toParent: self)
-//
-//        containerView = viewController.view
-//    }
     
     private func setupNotifications() {
         NotificationCenter.default.rx.notification(.gameOnboardingComplete, object: nil)
@@ -93,6 +53,7 @@ class HomeContentViewController: UIViewController {
                 self?.inGame = false
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
                 self?.switchViews(animated: false, onCompletion: nil)
+                FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .switch_to_game_view)])
             })
             .disposed(by: bag)
         
@@ -103,16 +64,7 @@ class HomeContentViewController: UIViewController {
                 self?.inGame = true
                 UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
                 self?.switchViews(animated: false, onCompletion: nil)
-            })
-            .disposed(by: bag)
-        
-        NotificationCenter.default.rx.notification(.gameSetFabHidden, object: nil)
-            .asObservable()
-            .subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] noti in
-                if let isHidden = noti.object as? Bool {
-                    self?.fab.isHidden = isHidden
-                }
+                FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .switch_to_home_view)])
             })
             .disposed(by: bag)
     }
@@ -121,7 +73,6 @@ class HomeContentViewController: UIViewController {
     private func onGameOnboardingComplete() {
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
         switchViews(animated: false, onCompletion: nil)
-        fab.isHidden = false
     }
     
     // Upon opt out, switches to the normal home view without animation, and hides the FAB
@@ -129,21 +80,6 @@ class HomeContentViewController: UIViewController {
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
         inGame = true // Ensure that switchViews will change to home screen
         switchViews(animated: false, onCompletion: nil)
-        fab.isHidden = true
-    }
-    
-    @IBAction func onFabPress() {
-        if flipping { return }
-        
-        FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .tapped_fab)])
-        
-//        UserDefaults.standard.set(!self.inGame, forKey: UserDefaultKeys.prefersGameHome)
-        
-        flipping = true
-        switchViews(animated: true) { [weak self] in
-            guard let self = self else { return }
-            self.flipping = false
-        }
     }
     
     override var shouldAutomaticallyForwardAppearanceMethods: Bool {
@@ -154,7 +90,6 @@ class HomeContentViewController: UIViewController {
         let duration = animated ? 1.0 : 0.0
         if inGame {
             inGame = false
-            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
             
             let controller = storyboard!.instantiateViewController(withIdentifier: "Home")
             controller.view.translatesAutoresizingMaskIntoConstraints = false
@@ -177,7 +112,6 @@ class HomeContentViewController: UIViewController {
             view.sendSubviewToBack(controller.view)
         } else {
             inGame = true
-            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
             
             let sb = UIStoryboard(name: "Game", bundle: nil)
             let controller = sb.instantiateViewController(withIdentifier: "GameHome")
