@@ -15,6 +15,7 @@ class GameHomeViewController: AccountPickerViewController {
     @IBOutlet weak var energyBuddyView: EnergyBuddyView!
     
     @IBOutlet weak var progressBar: GameProgressBar!
+    @IBOutlet weak var progressBarBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var pointEarnView: UIView!
     @IBOutlet weak var pointEarnLabel: UILabel!
@@ -546,11 +547,15 @@ class GameHomeViewController: AccountPickerViewController {
     func setTaskIndicator(_ type: GameTaskType?) {
         guard let taskType = type else {
             taskIndicatorView.isHidden = true
+            progressBarBottomConstraint.constant = -80
+            progressBar.superview?.layoutIfNeeded()
             return
         }
 
         taskIndicatorButton.setTitle(viewModel.taskIndicatorText(for: taskType), for: .normal)
         taskIndicatorView.isHidden = false
+        progressBarBottomConstraint.constant = -140
+        progressBar.superview?.layoutIfNeeded()
     }
 }
 
