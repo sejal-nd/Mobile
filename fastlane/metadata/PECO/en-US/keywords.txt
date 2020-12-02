@@ -1,5 +1,1 @@
-PECO
-Exelon
-PECO Energy Company
-Exelon Utilities
-An Exelon Company
+PECO,Exelon,PECO Energy Company,Exelon Utilities,An Exelon Company
