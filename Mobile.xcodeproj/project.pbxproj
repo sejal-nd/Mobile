@@ -6911,6 +6911,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 43C595B99CA75F9BED804429 /* Pods-EUMobile.production-bge.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.bge.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -8775,6 +8776,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 453ECA14264F16C2D99A5A93 /* Pods-EUMobile.production beta-peco.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.peco.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -9037,6 +9039,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F1AD21F74AD6C9B51C915609 /* Pods-EUMobile.production-peco.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.peco.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -10279,6 +10282,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04DA65D561626DA7E9A0148C /* Pods-EUMobile.production beta-ace.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.atlanticcityelectric.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -10542,6 +10546,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5473B0661AAB4BFD6BA64A50 /* Pods-EUMobile.production-ace.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.atlanticcityelectric.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -11785,6 +11790,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD69C7B6AE1C0C5003D1EE99 /* Pods-EUMobile.production beta-dpl.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.delmarva.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -12048,6 +12054,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8325CFAAF4FB66D75AFA4D2C /* Pods-EUMobile.production-dpl.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.delmarva.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -13291,6 +13298,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5787AB480B84D6871E773FED /* Pods-EUMobile.production beta-pepco.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.pepco.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -13554,6 +13562,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1F8BBA9477698730EA2A3BD /* Pods-EUMobile.production-pepco.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.pepco.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -14795,6 +14804,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F45940BA33DBDE3EA960224 /* Pods-EUMobile.production beta-comed.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.comed.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -15057,6 +15067,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A209029245B5BAA7C5C3A29 /* Pods-EUMobile.production-comed.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.comed.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
@@ -15553,6 +15564,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65A34083A174EA78549ACFDB /* Pods-EUMobile.production beta-bge.xcconfig */;
 			buildSettings = {
+				ALERT_URL = www.bge.com;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
