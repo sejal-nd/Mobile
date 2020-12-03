@@ -535,7 +535,6 @@
 		8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE981E54EAB8003F640D /* checkmark.json */; };
 		8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5AE991E54EAB8003F640D /* loading.json */; };
 		8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
-		98EA32BA8AC61CB3D2A5B368 /* Pods_EUMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64762A1CD2362D3133101D37 /* Pods_EUMobile.framework */; };
 		9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
 		9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
 		9C0A2C3C23A042DC002C4B8E /* message_bubble_unique.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */; };
@@ -995,7 +994,16 @@
 		C3DF2B9D24CB32D000A6D4EC /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF2B9C24CB32D000A6D4EC /* BillService.swift */; };
 		C3DF2BAA24CB42BB00A6D4EC /* BillService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF2BA924CB42BB00A6D4EC /* BillService+Rx.swift */; };
 		C3DF2BB724CB42CE00A6D4EC /* PaymentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF2BB624CB42CE00A6D4EC /* PaymentService+Rx.swift */; };
+		C3E31E9C25794A0900D7FDAA /* ForeSee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9625794A0100D7FDAA /* ForeSee.framework */; };
+		C3E31E9D25794A0900D7FDAA /* ForeSee.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9625794A0100D7FDAA /* ForeSee.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3E31E9E25794A0B00D7FDAA /* ForeSeeFeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9725794A0100D7FDAA /* ForeSeeFeedback.framework */; };
+		C3E31E9F25794A0C00D7FDAA /* ForeSeeFeedback.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9725794A0100D7FDAA /* ForeSeeFeedback.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3E31EA025794A0E00D7FDAA /* ForeSeeLegacy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9425794A0000D7FDAA /* ForeSeeLegacy.framework */; };
+		C3E31EA125794A0E00D7FDAA /* ForeSeeLegacy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9425794A0000D7FDAA /* ForeSeeLegacy.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3E31EA225794A1100D7FDAA /* ForeSeeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9525794A0000D7FDAA /* ForeSeeUtilities.framework */; };
+		C3E31EA325794A1100D7FDAA /* ForeSeeUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9525794A0000D7FDAA /* ForeSeeUtilities.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3E67AAE251532E200A2B04F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2324AB828000A828F9 /* Account.swift */; };
+		C8F95FB76F50334BC5162649 /* Pods_EUMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3FDD6CD872BFB6C5171060 /* Pods_EUMobile.framework */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA215201F7900CC00689422 /* HomeBillCardView.swift */; };
 		CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA215211F7900CC00689422 /* HomeBillCardView.xib */; };
@@ -1195,6 +1203,20 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C3E31E622579472200D7FDAA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C3E31EA125794A0E00D7FDAA /* ForeSeeLegacy.framework in Embed Frameworks */,
+				C3E31E9D25794A0900D7FDAA /* ForeSee.framework in Embed Frameworks */,
+				C3E31E9F25794A0C00D7FDAA /* ForeSeeFeedback.framework in Embed Frameworks */,
+				C3E31EA325794A1100D7FDAA /* ForeSeeUtilities.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -1253,6 +1275,7 @@
 		2A2DF775E50AC944A2490B10 /* Pods-EUMobileUITests.staging-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.staging-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.staging-dpl.xcconfig"; sourceTree = "<group>"; };
 		2C9152BB1B80F2204DE3849E /* Pods-EUMobile-Watch.automation-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.automation-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.automation-bge.xcconfig"; sourceTree = "<group>"; };
 		2C93EB550EF7A99848465AB8 /* Pods-EUMobileUITests.production beta-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production beta-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production beta-bge.xcconfig"; sourceTree = "<group>"; };
+		2F3FDD6CD872BFB6C5171060 /* Pods_EUMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewModel.swift; sourceTree = "<group>"; };
 		2FA5D8631F17D88500A8B16B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "App/Feature/Outage/Detail Pages/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -1462,7 +1485,6 @@
 		607AC6F054624370BF003A37 /* Pods-EUMobile-Watch.staging-ace.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.staging-ace.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.staging-ace.xcconfig"; sourceTree = "<group>"; };
 		61BAD08B6C69D69D65897391 /* Pods-EUMobile-Watch.testing-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.testing-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.testing-peco.xcconfig"; sourceTree = "<group>"; };
 		639B72AB36CFA3B2A89822AB /* Pods-EUMobile-Watch.testing-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.testing-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.testing-bge.xcconfig"; sourceTree = "<group>"; };
-		64762A1CD2362D3133101D37 /* Pods_EUMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A34083A174EA78549ACFDB /* Pods-EUMobile.production beta-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.production beta-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.production beta-bge.xcconfig"; sourceTree = "<group>"; };
 		667260BE8F673703710FBBA9 /* Pods-EUMobileUITests.production-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production-bge.xcconfig"; sourceTree = "<group>"; };
 		673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusContainer.swift; sourceTree = "<group>"; };
@@ -2077,6 +2099,10 @@
 		C3DF2B9C24CB32D000A6D4EC /* BillService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillService.swift; sourceTree = "<group>"; };
 		C3DF2BA924CB42BB00A6D4EC /* BillService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BillService+Rx.swift"; sourceTree = "<group>"; };
 		C3DF2BB624CB42CE00A6D4EC /* PaymentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentService+Rx.swift"; sourceTree = "<group>"; };
+		C3E31E9425794A0000D7FDAA /* ForeSeeLegacy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForeSeeLegacy.framework; path = ForeSee/lib/ForeSeeLegacy.framework; sourceTree = "<group>"; };
+		C3E31E9525794A0000D7FDAA /* ForeSeeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForeSeeUtilities.framework; path = ForeSee/lib/ForeSeeUtilities.framework; sourceTree = "<group>"; };
+		C3E31E9625794A0100D7FDAA /* ForeSee.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForeSee.framework; path = ForeSee/lib/ForeSee.framework; sourceTree = "<group>"; };
+		C3E31E9725794A0100D7FDAA /* ForeSeeFeedback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForeSeeFeedback.framework; path = ForeSee/lib/ForeSeeFeedback.framework; sourceTree = "<group>"; };
 		C7E0C0BAF1A45B37103F0C1E /* Pods-EUMobileUITests.production-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production-comed.xcconfig"; sourceTree = "<group>"; };
 		CA7C927F43DA322FC8B20D4F /* Pods-EUMobileUnitTests.production beta-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.production beta-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.production beta-dpl.xcconfig"; sourceTree = "<group>"; };
 		CD69C7B6AE1C0C5003D1EE99 /* Pods-EUMobile.production beta-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.production beta-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.production beta-dpl.xcconfig"; sourceTree = "<group>"; };
@@ -2268,7 +2294,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98EA32BA8AC61CB3D2A5B368 /* Pods_EUMobile.framework in Frameworks */,
+				C3E31EA225794A1100D7FDAA /* ForeSeeUtilities.framework in Frameworks */,
+				C3E31E9E25794A0B00D7FDAA /* ForeSeeFeedback.framework in Frameworks */,
+				C3E31E9C25794A0900D7FDAA /* ForeSee.framework in Frameworks */,
+				C8F95FB76F50334BC5162649 /* Pods_EUMobile.framework in Frameworks */,
+				C3E31EA025794A0E00D7FDAA /* ForeSeeLegacy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4217,6 +4247,10 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3E31E9625794A0100D7FDAA /* ForeSee.framework */,
+				C3E31E9725794A0100D7FDAA /* ForeSeeFeedback.framework */,
+				C3E31E9425794A0000D7FDAA /* ForeSeeLegacy.framework */,
+				C3E31E9525794A0000D7FDAA /* ForeSeeUtilities.framework */,
 				823AA55F201247CF009CAEF0 /* XCTest.framework */,
 				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
 				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
@@ -4231,11 +4265,11 @@
 				B5AC073B1E52A2BD00BBA4ED /* Security.framework */,
 				B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */,
 				E83F02821FB380700062A348 /* UserNotifications.framework */,
-				64762A1CD2362D3133101D37 /* Pods_EUMobile.framework */,
 				277650B6F85C6AC146C5F8C2 /* Pods_EUMobile_Watch.framework */,
 				4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */,
 				B8A3A4A7A4BBF2DD357F1C3F /* Pods_EUMobileUITests.framework */,
 				9D644E4E93BE61A753CA9E15 /* Pods_EUMobileUnitTests.framework */,
+				2F3FDD6CD872BFB6C5171060 /* Pods_EUMobile.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -5030,6 +5064,7 @@
 				676D1FF624F6D47400D41035 /* Set Project Prefix */,
 				F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */,
 				35F9DD4D2333C34200AAA2B2 /* Embed Watch Content */,
+				C3E31E622579472200D7FDAA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5509,10 +5544,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -5530,10 +5561,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -5561,10 +5588,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -5583,10 +5606,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -5821,10 +5840,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EUMobile/Pods-EUMobile-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
-				"${PODS_ROOT}/ForeSee/lib/ForeSeeFeedback.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -5842,10 +5857,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeFeedback.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -6911,7 +6922,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 43C595B99CA75F9BED804429 /* Pods-EUMobile.production-bge.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -6922,11 +6932,17 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -7104,7 +7120,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB6EBAD591557CFFD5908F39 /* Pods-EUMobile.testing-bge.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -7115,11 +7130,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -7805,7 +7826,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DDEF458E5CADC49A1E5FF938 /* Pods-EUMobile.automation-peco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -7815,11 +7835,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -8201,7 +8227,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E44697E146149D3855380BA /* Pods-EUMobile.testing-peco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -8212,11 +8237,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -8514,7 +8545,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B31DBFF938C83F4EE7B3ED6D /* Pods-EUMobile.staging-peco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -8525,11 +8555,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8775,7 +8811,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 453ECA14264F16C2D99A5A93 /* Pods-EUMobile.production beta-peco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
@@ -8786,11 +8821,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -9037,7 +9078,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F1AD21F74AD6C9B51C915609 /* Pods-EUMobile.production-peco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -9048,11 +9088,17 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -9307,7 +9353,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03887A32AE36E2DC8993892C /* Pods-EUMobile.automation-ace.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -9317,12 +9362,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -9703,7 +9754,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF3B226E496185FFA9C50AA1 /* Pods-EUMobile.testing-ace.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -9715,12 +9765,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10017,7 +10073,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB3C3D31F917DEDDB7AB3E32 /* Pods-EUMobile.staging-ace.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -10028,12 +10083,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -10279,7 +10340,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04DA65D561626DA7E9A0148C /* Pods-EUMobile.production beta-ace.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
@@ -10290,12 +10350,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10542,7 +10608,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5473B0661AAB4BFD6BA64A50 /* Pods-EUMobile.production-ace.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -10553,12 +10618,18 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10813,7 +10884,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 96F199A88F0F24BE989A8571 /* Pods-EUMobile.automation-dpl.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -10823,12 +10893,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -11209,7 +11285,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E12CFAADB9CFE0D48062A5B9 /* Pods-EUMobile.testing-dpl.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				BASE_URL = "xze-e-n-eudapi-dpl-t-ams-01.azure-api.net";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -11221,12 +11296,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -11523,7 +11604,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9DB65CA7D32B14559382AA44 /* Pods-EUMobile.staging-dpl.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -11534,12 +11614,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -11785,7 +11871,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD69C7B6AE1C0C5003D1EE99 /* Pods-EUMobile.production beta-dpl.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
@@ -11796,12 +11881,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -12048,7 +12139,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8325CFAAF4FB66D75AFA4D2C /* Pods-EUMobile.production-dpl.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -12059,12 +12149,18 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -12319,7 +12415,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E3C6B38B44B652352E21FDA /* Pods-EUMobile.automation-pepco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -12329,12 +12424,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -12715,7 +12816,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FB2AABC43C76F4D509DB42C4 /* Pods-EUMobile.testing-pepco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				BASE_URL = "xze-e-n-eudapi-pepco-t-ams-01.azure-api.net";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -12727,12 +12827,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -13029,7 +13135,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B65136AAFEC13ED058A429C4 /* Pods-EUMobile.staging-pepco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -13040,12 +13145,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -13291,7 +13402,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5787AB480B84D6871E773FED /* Pods-EUMobile.production beta-pepco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
@@ -13302,12 +13412,18 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -13554,7 +13670,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1F8BBA9477698730EA2A3BD /* Pods-EUMobile.production-pepco.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -13565,12 +13680,18 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.0.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -13825,7 +13946,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17F61858A62CCE19EAAB47E1 /* Pods-EUMobile.automation-comed.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -13835,11 +13955,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -14221,7 +14347,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2887DEDAAA436EDBF2C6824D /* Pods-EUMobile.testing-comed.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -14232,11 +14357,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -14534,7 +14665,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B61B9BA1D8016C1C5FC883A3 /* Pods-EUMobile.staging-comed.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -14545,11 +14675,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.9.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -14795,7 +14931,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F45940BA33DBDE3EA960224 /* Pods-EUMobile.production beta-comed.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
@@ -14806,11 +14941,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -15057,7 +15198,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A209029245B5BAA7C5C3A29 /* Pods-EUMobile.production-comed.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -15068,11 +15208,17 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -15327,7 +15473,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E7CCA7BB68A1A045F7C6651 /* Pods-EUMobile.automation-bge.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -15337,11 +15482,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -15553,7 +15704,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65A34083A174EA78549ACFDB /* Pods-EUMobile.production beta-bge.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
@@ -15564,11 +15714,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -15681,7 +15837,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EABA3D058CF18DEADFF4BE31 /* Pods-EUMobile.staging-bge.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -15692,11 +15847,17 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ForeSee/lib",
+					"$(PROJECT_DIR)/ForeSee/lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.9.0;
 				ONLY_ACTIVE_ARCH = YES;
