@@ -20,9 +20,9 @@ public struct BillingHistoryResult: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        billingHistoryItems = try container.decode([BillingHistoryItem].self,
-                                                   forKey: .billingHistoryItems)
-        
+        let optionalDateItems = try container.decode([BillingHistoryItem].self, forKey: .billingHistoryItems)
+        billingHistoryItems = optionalDateItems.filter({ $0._date != nil })
+                
         upcoming = billingHistoryItems.filter{ $0.isFuture }.sorted(by: { $0.date < $1.date })
         past = billingHistoryItems.filter { !$0.isFuture }.sorted(by: { $0.date > $1.date })
         
