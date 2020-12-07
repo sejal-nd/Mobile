@@ -13,7 +13,10 @@ public struct BillingHistoryItem: Codable {
     let billerID: String?
     let ccfGas: Double?
     let chargeAmount: Double?
-    let date: Date
+    let _date: Date?
+    var date: Date {
+        _date ?? .now
+    }
     let welcomeDescription: String?
     let kwhElec: Double?
     let maskedAccountNumber: String?
@@ -40,7 +43,7 @@ public struct BillingHistoryItem: Codable {
         case billerID = "biller_id"
         case ccfGas = "ccf_gas"
         case chargeAmount = "charge_amount"
-        case date = "date"
+        case _date = "date"
         case welcomeDescription = "description"
         case kwhElec = "kwh_elec"
         case maskedAccountNumber = "masked_wallet_item_account_number"
