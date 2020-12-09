@@ -264,8 +264,8 @@ class HomeViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var cardPreferenceChanges = Observable
-        .combineLatest(HomeCardPrefsStore.shared.listObservable, prepaidStatus, accountDetailEvents.elements())
-        .map({ (cards, prepaidStatus, accountDetails) -> ([HomeCard], AccountDetail.PrepaidStatus) in
+        .combineLatest(HomeCardPrefsStore.shared.listObservable, prepaidStatus, accountDetailEvents.elements(), gameUser.asObservable())
+        .map({ (cards, prepaidStatus, accountDetails, gameUser) -> ([HomeCard], AccountDetail.PrepaidStatus) in
             var newCards = cards
             if Environment.shared.opco == .bge && accountDetails.isResidential {
                 switch accountDetails.peakRewards {
@@ -279,6 +279,17 @@ class HomeViewModel {
                         default:
                             break
                         }
+                    }
+                }
+            }
+            
+            if Environment.shared.opco != .bge || gameUser == nil || gameUser?.optedOut == true {
+                for (index, card) in newCards.enumerated() {
+                    switch card {
+                    case .game:
+                        newCards.remove(at: index)
+                    default:
+                        break
                     }
                 }
             }
