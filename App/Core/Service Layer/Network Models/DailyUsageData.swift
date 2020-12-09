@@ -34,6 +34,6 @@ struct DailyUsageData: Decodable {
             self.unit = unit
         }
         
-        self.dailyUsage = try streamsContainer.decode([DailyUsage].self, forKey: .intervals)
+        self.dailyUsage = try streamsContainer.decode([DailyUsage].self, forKey: .intervals).sorted(by: { $0.date > $1.date })
     }
 }
