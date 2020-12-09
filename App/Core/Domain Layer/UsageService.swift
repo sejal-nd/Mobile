@@ -27,13 +27,25 @@ struct UsageService {
         } else {
             NetworkingLayer.request(router: .compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, encodable: encodedObject)) { (result: Result<CompareBillResult, NetworkingError>) in
                 switch result {
-                case .success(let compareBillResult):
+                case .success(var billComparison):
                     if useCache {
                         let params = UsageCache.ComparisonParams(accountNumber: accountNumber, premiseNumber: premiseNumber, yearAgo: yearAgo, gas: gas)
-                        self.cache[params] = compareBillResult
+                        self.cache[params] = billComparison
                     }
                     
-                    completion(.success(compareBillResult))
+                    // If the OPower API has no bill comparison data from a year ago, it falls back to the user's last bill (for no comprehensible reason). So we try to fix that here by cutting out bills that aren't between 11 and 13 months prior.
+                    let startRangeComponents = DateComponents(calendar: .opCo, timeZone: .opCo, month: -13, day: 1)
+                    let endRangeComponents = DateComponents(calendar: .opCo, timeZone: .opCo, month: -11)
+                    if let referenceDate = billComparison.referenceBill?.startDate,
+                        let compareDate = billComparison.comparedBill?.startDate,
+                        let startRange = Calendar.opCo.date(byAdding: startRangeComponents, to: referenceDate),
+                        let endRange = Calendar.opCo.date(byAdding: endRangeComponents, to: referenceDate),
+                        yearAgo == true && !(startRange..<endRange ~= compareDate) {
+                        
+                        billComparison.comparedBill = nil
+                    }
+                    
+                    completion(.success(billComparison))
                 case .failure(let error):
                     completion(.failure(error))
                 }

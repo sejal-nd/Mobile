@@ -352,6 +352,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             }))
             self.present(alertVC, animated: true, completion: nil)
         }, onError: { [weak self] (title, message) in
+            self?.viewModel.password.accept("")
             self?.navigationController?.view.isUserInteractionEnabled = true
             self?.showErrorAlertWith(title: title, message: message)
         })
