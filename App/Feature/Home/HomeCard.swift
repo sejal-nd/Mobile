@@ -13,7 +13,13 @@ enum HomeCard: Int {
     case bill, usage, template, projectedBill, outageStatus, prepaidActive, prepaidPending, nothing, game
     
     static let editableCards: [HomeCard] = {
-        return [.bill, .usage, .template, .outageStatus, .projectedBill, .game]
+        var cards: [HomeCard] = [.bill, .usage, .template, .outageStatus, .projectedBill]
+        
+        if Environment.shared.opco == .bge {
+            cards.append(.game)
+        }
+        
+        return cards
     }()
     
     init?(id: String) {
