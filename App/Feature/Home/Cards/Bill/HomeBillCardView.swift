@@ -432,18 +432,11 @@ class HomeBillCardView: UIView {
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { [weak self] accountDetail in
-            switch Environment.shared.opco {
-            case .ace, .delmarva, .pepco:
-                let vc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
-                vc.accountDetail = accountDetail
-                return vc
-            case .bge, .comEd, .peco:
-                let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
-                guard let vc = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return UIViewController()}
-                vc.accountDetail = accountDetail
-                return vc
-            }
-    }.asDriver(onErrorDriveWith: .empty())
+            let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
+            guard let vc = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return UIViewController()}
+            vc.accountDetail = accountDetail
+            return vc
+        }.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(
         billingHistoryViewController,
