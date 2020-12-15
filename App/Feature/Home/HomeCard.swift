@@ -16,7 +16,7 @@ enum HomeCard: Int {
         var cards: [HomeCard] = [.bill, .usage, .template, .outageStatus, .projectedBill]
         
         if Environment.shared.opco == .bge {
-            cards.append(.game)
+            cards[1] = .game
         }
         
         return cards
@@ -125,8 +125,16 @@ final class HomeCardPrefsStore {
             UserDefaults.standard.set(stringValues, forKey: UserDefaultKeys.homeCardPrefsList)
         }
     }
-    
-    static let defaultList: [HomeCard] = [.bill, .game, .usage, .template]
+        
+    static let defaultList: [HomeCard] = {
+        var cards: [HomeCard] = [.bill, .usage, .template]
+        
+        if Environment.shared.opco == .bge {
+            cards[1] = .game
+        }
+        
+        return cards
+    }()
     
     // Private init protects against another instance being accidentally instantiated
     private init() {
