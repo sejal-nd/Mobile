@@ -22,8 +22,8 @@ struct DailyUsageData: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let usageData = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .usageData)
-        let streamsContainer = try usageData.nestedContainer(keyedBy: CodingKeys.self, forKey: .streams)
-        var intervalsContainer = try streamsContainer.nestedUnkeyedContainer(forKey: .intervals)
+        var streamsArray = try usageData.nestedUnkeyedContainer(forKey: .streams)
+        let streamsContainer = try streamsArray.nestedContainer(keyedBy: CodingKeys.self)
         let unit = try usageData.decode(String.self, forKey: .unit)
         
         if unit == "KWH" {
@@ -34,6 +34,6 @@ struct DailyUsageData: Decodable {
             self.unit = unit
         }
         
-        self.dailyUsage = try intervalsContainer.decode([DailyUsage].self)
+        self.dailyUsage = try streamsContainer.decode([DailyUsage].self, forKey: .intervals).sorted(by: { $0.date > $1.date })
     }
 }

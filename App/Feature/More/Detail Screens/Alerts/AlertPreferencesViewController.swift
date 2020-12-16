@@ -332,9 +332,9 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         case .billIsReady:
             toggleVariable = viewModel.billReady
             switch Environment.shared.opco {
-            case .bge:
+            case .ace, .bge, .delmarva, .pepco:
                 break
-            case .ace, .comEd, .delmarva, .peco, .pepco:
+            case .comEd, .peco:
                 cell.checkbox.rx.isChecked.asDriver()
                     .distinctUntilChanged()
                     .skip(1)

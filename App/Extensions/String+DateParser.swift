@@ -18,6 +18,10 @@ extension String {
             return date
         }
         
+        if let date = DateFormatter.yyyyMMddTHHmmssSSSZZZZZFormatter.date(from: self) {
+            return date
+        }
+        
         if let date = self.apiFormatDate {
             return date
         }

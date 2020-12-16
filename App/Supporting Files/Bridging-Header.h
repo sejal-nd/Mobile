@@ -6,7 +6,6 @@
 #define EXBridgingHeader_h
 
 #import "A0SimpleKeychain.h"
-#import "SurveyMonkeyManager.h"
 
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"

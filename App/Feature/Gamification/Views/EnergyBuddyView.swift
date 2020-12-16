@@ -60,6 +60,7 @@ class EnergyBuddyView: UIView {
         NSLocalizedString("Wow, this is great!", comment: ""),
         NSLocalizedString("Wow!", comment: "")
     ]
+    let firstTaskMessage = NSLocalizedString("Well Done!", comment: "")
     
     var confettiEnabled = false
 
@@ -258,9 +259,13 @@ class EnergyBuddyView: UIView {
         animateSpeechBubble()
     }
     
-    func showLevelUpMessage() {
-        let randomInt = Int.random(in: 0..<levelUpMessages.count)
-        speechBubbleLabel.text = levelUpMessages[randomInt]
+    func showLevelUpMessage(isFirstTimeSeeingBuddy: Bool = false) {
+        if isFirstTimeSeeingBuddy {
+            speechBubbleLabel.text = firstTaskMessage
+        } else {
+            let randomInt = Int.random(in: 0..<levelUpMessages.count)
+            speechBubbleLabel.text = levelUpMessages[randomInt]
+        }
         
         animateSpeechBubble()
     }

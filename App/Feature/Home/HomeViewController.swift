@@ -48,6 +48,8 @@ class HomeViewController: AccountPickerViewController {
     var opcoIdentityView: OpcoIdentityCardView!
     var opcoIdentityViewHeightConstraint: NSLayoutConstraint!
     
+    var gameCardView: HomeGameCardView?
+    
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
     
@@ -230,6 +232,22 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+        viewModel.gameUser.asDriver().drive(onNext: {
+            if let gameUser = $0 {
+                self.gameCardView?.isHidden = !gameUser.onboardingComplete
+            } else {
+                self.gameCardView?.removeFromSuperview()
+                self.gameCardView = nil
+            }
+        }).disposed(by: bag)
+        
+        viewModel.accountDetailEvents.elements().asObservable()
+            .subscribe(onNext: {
+                self.viewModel.gameCardViewModel.accountDetail.accept($0)
+                self.viewModel.gameCardViewModel.fetchData()
+            })
+            .disposed(by: bag)
+        
         viewModel.showGameOnboardingCard
             .distinctUntilChanged()
             .drive(onNext: { [weak self] showCard in
@@ -247,12 +265,23 @@ class HomeViewController: AccountPickerViewController {
                     .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
                     .drive(onNext: { [weak self] in
                         guard let self = self else { return }
-                        let sb = UIStoryboard(name: "Game", bundle: nil)
-                        if let navController = sb.instantiateViewController(withIdentifier: "GameOnboarding") as? UINavigationController,
-                            let vc = navController.viewControllers.first as? GameOnboardingIntroViewController {
-                            vc.accountDetail = $0
-                            self.present(navController, animated: true, completion: nil)
-                        }
+                        self.navigateToGameOnboarding(accountDetail: $0)
+                        
+                        FirebaseUtility.logEvent(.gamification, customParameters: [
+                            "action": EventParameter.Value.onboard_start.rawValue,
+                            "onboarding_card_version": "\(gameOnboardingCardView.version.rawValue)"
+                        ])
+                    }).disposed(by: self.bag)
+                
+                gameOnboardingCardView.imageButton.rx.touchUpInside.asDriver()
+                    .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+                    .drive(onNext: { [weak self] in
+                        guard let self = self else { return }
+                        self.navigateToGameOnboarding(accountDetail: $0)
+                        FirebaseUtility.logEvent(.gamification, customParameters: [
+                            "action": EventParameter.Value.onboard_start.rawValue,
+                            "onboarding_card_version": "\(gameOnboardingCardView.version.rawValue)"
+                        ])
                     }).disposed(by: self.bag)
                 
                 let index = self.topPersonalizeButton != nil ? 1 : 0
@@ -322,6 +351,15 @@ class HomeViewController: AccountPickerViewController {
                 })
             })
             .disposed(by: bag)
+    }
+    
+    func navigateToGameOnboarding(accountDetail: AccountDetail) {
+        let sb = UIStoryboard(name: "Game", bundle: nil)
+        if let navController = sb.instantiateViewController(withIdentifier: "GameOnboarding") as? UINavigationController,
+           let vc = navController.viewControllers.first as? GameOnboardingIntroViewController {
+            vc.accountDetail = accountDetail
+            self.present(navController, animated: true, completion: nil)
+        }
     }
     
     func navigateToAutoPay(accountDetail: AccountDetail) {
@@ -489,6 +527,8 @@ class HomeViewController: AccountPickerViewController {
             prepaidPendingCardView = nil
         case .prepaidActive:
             prepaidActiveCardView = nil
+        case .game:
+            gameCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -570,6 +610,19 @@ class HomeViewController: AccountPickerViewController {
             }
             
             return prepaidActiveCardView
+        case .game:
+            let gameCardView: HomeGameCardView
+            if let gameCard = self.gameCardView {
+                gameCardView = gameCard
+            } else {
+                gameCardView = .create(withViewModel: viewModel.gameCardViewModel)
+                gameCardView.lumiButton.rx.tap.subscribe(onNext: { _ in
+                    NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
+                }).disposed(by: self.bag)
+                self.gameCardView = gameCardView
+            }
+            
+            return gameCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -594,16 +647,25 @@ class HomeViewController: AccountPickerViewController {
                     let newNavController = LargeTitleNavigationController(rootViewController: viewController)
                     newNavController.modalPresentationStyle = .formSheet
                     self?.present(newNavController, animated: true, completion: nil)
-                } else if viewController is MakePaymentViewController {
-                    #warning("Remove this elseif block once the new payment flow is in for PHI as well")
-                    viewController.hidesBottomBarWhenPushed = true
-                    self?.navigationController?.pushViewController(viewController, animated: true)
-                    return
-                } else if viewController is TapToPayReviewPaymentViewController {
-                    let newNavController = LargeTitleNavigationController(rootViewController: viewController)
-                    newNavController.modalPresentationStyle = .fullScreen
-                    FirebaseUtility.logEvent(.makePaymentStart)
-                    self?.present(newNavController, animated: true, completion: nil)
+                }  else if viewController is TapToPayReviewPaymentViewController ||
+                    viewController is MakePaymentViewController {
+                    self?.viewModel.makePaymentScheduledPaymentAlertInfo
+                    .single()
+                    .subscribe(onNext: { [weak self] alertInfo in
+                            guard let self = self else { return }
+                            let (titleOpt, messageOpt, _) = alertInfo
+                            if let title = titleOpt, let message = messageOpt {
+                                let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { _ in
+                                    self.goToMakeAPaymentFlow(viewController: viewController)
+                                }))
+                                self.present(alertVc, animated: true, completion: nil)
+                            } else {
+                                self.goToMakeAPaymentFlow(viewController: viewController)
+                            }
+                        }).disposed(by: billCardView.bag)
+                    
                 } else {
                     self?.present(viewController, animated: true, completion: nil)
                 }
@@ -632,6 +694,15 @@ class HomeViewController: AccountPickerViewController {
                 self.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: billCardView.bag)
+    }
+    
+    func goToMakeAPaymentFlow(viewController: UIViewController?) {
+        if let vc = viewController {
+            let newNavController = LargeTitleNavigationController(rootViewController: vc)
+            newNavController.modalPresentationStyle = .fullScreen
+            FirebaseUtility.logEvent(.makePaymentStart)
+            self.present(newNavController, animated: true, completion: nil)
+        }
     }
     
     func bindUsageCard() {
@@ -855,12 +926,12 @@ extension HomeViewController: AccountPickerDelegate {
         
         if AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber &&
             !optedOutLocal && onboardingCompleteLocal && UI_USER_INTERFACE_IDIOM() != .pad {
-            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
+//            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
             if prefersGameHome {
                 NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
             }
         } else {
-            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
+//            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
         }
     }
 }

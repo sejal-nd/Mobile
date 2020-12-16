@@ -184,9 +184,10 @@ class SplashViewController: UIViewController{
             performDeepLink = false // Reset state
         } else if shortcutItem == .reportOutage {
             let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let unauthenticatedStoryboard = UIStoryboard(name: "Unauthenticated", bundle: nil)
             let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
             let unauthenticatedUser = loginStoryboard.instantiateViewController(withIdentifier: "unauthenticatedUserViewController")
-            guard let unauthenticatedOutageValidate = loginStoryboard
+            guard let unauthenticatedOutageValidate = unauthenticatedStoryboard
                 .instantiateViewController(withIdentifier: "unauthenticatedOutageValidateAccountViewController")
                 as? UnauthenticatedOutageValidateAccountViewController else {
                     return

@@ -83,6 +83,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var dateWarningstackviewTopContraint: NSLayoutConstraint!
     @IBOutlet weak var paymentAmountContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var convienceFeeBottomLabel: NSLayoutConstraint!
+    @IBOutlet weak var scrollViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollViewLeadingConstraint: NSLayoutConstraint!
     
     var viewModel: TapToPayViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
@@ -203,7 +205,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         
         overPayingLabel.textColor = .deepGray
         overPayingLabel.font = SystemFont.regular.of(size: 15)
-        overPayingLabel.text = NSLocalizedString("Yes, I achnowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
+        overPayingLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
         
         paymentErrorLabel.textColor = .errorRed
         paymentErrorLabel.font = SystemFont.semibold.of(size: 12)
@@ -228,6 +230,14 @@ class TapToPayReviewPaymentViewController: UIViewController {
         self.editPaymentMethodIcon.isAccessibilityElement = true
         self.editPaymentMethodIcon.accessibilityLabel = NSLocalizedString("Edit Payment Method", comment: "")
         self.editPaymentMethodIcon.accessibilityTraits = UIAccessibilityTraits.button
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            scrollViewTrailingConstraint.priority = UILayoutPriority(rawValue: 750)
+            scrollViewLeadingConstraint.priority = UILayoutPriority(rawValue: 750)
+        } else {
+            scrollViewTrailingConstraint.priority = UILayoutPriority(rawValue: 1000)
+            scrollViewLeadingConstraint.priority = UILayoutPriority(rawValue: 1000)
+        }
         
         self.stickyPaymentFooterView.accessibilityElements = [submitDescriptionLabel as Any,
                                                               termsNConditionsButton as Any,
@@ -432,6 +442,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         
         alternateEmailNumberView.isHidden = true
         alternateEmailNumberView.backgroundColor = .softGray
+        self.alternateContactDivider.isHidden = true
         
         alternateViewTextView.backgroundColor = .softGray
         alternateViewTextView.textColor = .deepGray

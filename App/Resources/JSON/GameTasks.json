@@ -1,6 +1,6 @@
 [
     {
-        "type": "fab"
+        "type": "onboarding"
     },
     {
         "type": "tip",
@@ -1100,7 +1100,7 @@
         "tip": {
             "id": "E1",
             "description": "Weatherize your windows using shutters, weather stripping, or insulated drapes. 🏠 Help keep energy in and save ⚡️.",
-            "title": "Keep It In ",
+            "title": "Keep It In",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
@@ -1110,7 +1110,22 @@
         "tip": {
             "id": "E2",
             "description": "Lumi Logic 💡 The average home loses up to 30% of its heating and cooling ⚡️ through leaks around windows and doors 💨",
-            "title": "Lumi Logic 💡 ",
+            "title": "Lumi Logic 💡",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Leaks around windows and doors can account for up to how much heating and cooling loss of an average home?",
+            "answers": [
+                { "answer": "20%", "correct": false },
+                { "answer": "30%", "correct": true },
+                { "answer": "40%", "correct": false }
+            ],
+            "answerDescription": "Leaks around doors in windows can account for up to 30% of an average home's heating and cooling loss.",
+            "tipId": "E2",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
@@ -1132,6 +1147,21 @@
             "description": "Lumi Logic 💡 Home electronic appliances are in standby 75% of the time and can account for 5％-10％ of total ⚡️ costs.",
             "title": "Lumi Logic 💡 ",
             "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Home electronic appliances are in standby what percent of time?",
+            "answers": [
+                { "answer": "50%", "correct": false },
+                { "answer": "75%", "correct": true },
+                { "answer": "85%", "correct": false }
+            ],
+            "answerDescription": "Home electronic appliances are in standby 75% of the time",
+            "tipId": "E4",
+            "serviceType": "ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
     },
@@ -1166,6 +1196,20 @@
         }
     },
     {
+        "type": "quiz",
+        "quiz": {
+            "question": "The U.S. is the #1 energy-consuming country in the 🌎.",
+            "answers": [
+                { "answer": "TRUE", "correct": false },
+                { "answer": "FALSE", "correct": true }
+            ],
+            "answerDescription": "The U.S. is the ✌️ energy-consuming country in the 🌎.",
+            "tipId": "E8",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
         "type": "tip",
         "tip": {
             "id": "E9",
@@ -1186,11 +1230,41 @@
         }
     },
     {
+        "type": "quiz",
+        "quiz": {
+            "question": "________ your window blinds properly can save up to 25％ on ⚡️bills. 🧐",
+            "answers": [
+                { "answer": "Opening", "correct": false },
+                { "answer": "Closing", "correct": false },
+                { "answer": "All of the above", "correct": true }
+            ],
+            "answerDescription": "Timing is key. Close blinds on hot summer days and open blinds on sunny winter days to save!",
+            "tipId": "E10",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
         "type": "tip",
         "tip": {
             "id": "E11",
             "description": "Lumi Logic 💡 Energy consumption in the U.S peaks in July with around 50% of a home's energy bill spent on cooling. Now where was that fan again? 🧐",
             "title": "Lumi Logic 💡 ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Energy consumption in the U.S peaks in what summer month?",
+            "answers": [
+                { "answer": "June", "correct": false },
+                { "answer": "July", "correct": true },
+                { "answer": "August", "correct": false }
+            ],
+            "answerDescription": "Julying? U.S. energy consumption peaks in July!",
+            "tipId": "E11",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
@@ -1216,11 +1290,40 @@
         }
     },
     {
+        "type": "quiz",
+        "quiz": {
+            "question": "Raise the 🌡 by ___ ℉ and run a fan to maintain the same level of comfort.",
+            "answers": [
+                { "answer": "4℉", "correct": true },
+                { "answer": "5℉", "correct": false },
+                { "answer": "6℉", "correct": false }
+            ],
+            "answerDescription": "Raise the temperature by 4℉ and turn on your fan for a nice easy, breezy time.",
+            "tipId": "E13",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
         "type": "tip",
         "tip": {
             "id": "E14",
             "description": "Lumi Logic 💡  About 75% of the energy used by a washer goes toward heating the water. 💰 Save money. 👚 Save your clothes. 🌍 Save the planet.",
             "title": "Lumi Logic 💡 ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": " About 75% of the energy used by a washer goes toward heating or cooling the water?",
+            "answers": [
+                { "answer": "Heating", "correct": true },
+                { "answer": "Cooling", "correct": false }
+            ],
+            "answerDescription": "Heating the water while doing your laundry can be costly!",
+            "tipId": "E14",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
@@ -1266,6 +1369,21 @@
         }
     },
     {
+        "type": "quiz",
+        "quiz": {
+            "question": "The heated drying cycle on a dishwasher uses at least ____％ more energy than air-drying.",
+            "answers": [
+                { "answer": "25%", "correct": false },
+                { "answer": "20%", "correct": false },
+                { "answer": "15%", "correct": true }
+            ],
+            "answerDescription": "The heated drying cycle can cost 15% more than air drying your dishes. Make the switch today!",
+            "tipId": "E18",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
         "type": "tip",
         "tip": {
             "id": "E20",
@@ -1279,7 +1397,7 @@
         "type": "tip",
         "tip": {
             "id": "E21",
-            "title": "",
+            "title": "You're Smart, but is Your Home?",
             "description": "Want to keep $ in your pocket and lower your footprint? Make your home smart. Check out these smart home devices at BGE's Marketplace 🏠 (https://www.bgemarketplace.com/)",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
@@ -1291,6 +1409,19 @@
             "id": "E24",
             "description": "⚡️Save energy 💰Save money ",
             "title": "Why Wait?",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Open the window and point a fan in or out of a room to keep cool air in.",
+            "answers": [
+                { "answer": "In", "correct": false },
+                { "answer": "Out", "correct": true }
+            ],
+            "answerDescription": "Pointing a fan out of a room gets rid of the hot air. Bring on the cool.",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
@@ -1311,6 +1442,21 @@
             "id": "E26",
             "description": "Lumi Logic 💡  Recycle 1 aluminum can. Save enough energy to power a TV for 3 hours.",
             "title": "Lumi Logic 💡 ",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Recycle __ aluminum can. Save enough energy to power a TV for 3 hours.",
+            "answers": [
+                { "answer": "1", "correct": true },
+                { "answer": "3", "correct": false },
+                { "answer": "5", "correct": false }
+            ],
+            "answerDescription": "Recycling just 1 aluminum can save enough energy to power a TV for 3 hours!",
+            "tipId": "E26",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }

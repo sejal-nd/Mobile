@@ -5,14 +5,14 @@
 	<key>compileBitcode</key>
 	<true/>
 	<key>method</key>
-	<string>enterprise</string>
+	<string>app-store</string>
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.ifactorconsulting.delmarva</key>
 		<string>Delmarva App Store</string>
-		<key>com.exelon.mobile.delmarva.watchkitapp</key>
-		<string>Delmarva Watchkit App Store</string>
-		<key>com.exelon.mobile.delmarva.watchkitapp.watchkitextension</key>
+		<key>com.ifactorconsulting.delmarva.watchkitapp</key>
+		<string>Delmarva WatchKit App Store</string>
+		<key>com.ifactorconsulting.delmarva.watchkitapp.watchkitextension</key>
 		<string>Delmarva Watchkit Extension App Store</string>
 	</dict>
 	<key>signingCertificate</key>

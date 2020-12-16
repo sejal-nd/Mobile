@@ -277,18 +277,20 @@ class TapToPayViewModel {
         .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFee)
         .map { [weak self] paymentAmount, showConvenienceFeeBox in
             guard let self = self else { return nil }
+            let payment = Environment.shared.opco.isPHI ? (paymentAmount >= .zero ? paymentAmount : .zero) : paymentAmount
             if showConvenienceFeeBox {
-                return (paymentAmount + self.convenienceFee).currencyString
+                return (payment + self.convenienceFee).currencyString
             } else {
-                return paymentAmount.currencyString
+                return payment.currencyString
             }
     }
     
     private(set) lazy var editPaymentDisplayString: Driver<String?> = Driver
-        .combineLatest(editpaymentAmountValue.asDriver(), reviewPaymentShouldShowConvenienceFee)
-        .map { [weak self] editPaymentAmount, showConvenienceFeeBox in
+        .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFee)
+        .map { [weak self] paymentAmount, showConvenienceFeeBox in
             guard let self = self else { return nil }
-            return editPaymentAmount.currencyString
+            let payment = Environment.shared.opco.isPHI ? (paymentAmount >= .zero ? paymentAmount : .zero) : paymentAmount
+            return payment.currencyString
     }
     
     
@@ -314,7 +316,8 @@ class TapToPayViewModel {
         var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
                                                          .foregroundColor: UIColor.deepGray]
         let string: String
-        guard let dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
+        guard var dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
+        dueAmount = Environment.shared.opco.isPHI ? (dueAmount >= .zero ? dueAmount : .zero) : dueAmount
         attributes[.foregroundColor] = UIColor.deepGray
         attributes[.font] = SystemFont.semibold.of(size: 17)
         if billingInfo.pastDueAmount > 0 {
@@ -462,7 +465,7 @@ class TapToPayViewModel {
             self.shouldShowPaymentMethodExpiredButton.asDriver(),
             isOverpaying,
             overpayingSwitchValue.asDriver(),
-            paymentFieldsValid.asDriver())
+            paymentFieldReviewPaymentValid.asDriver())
         {
             if !$0 || !$1 || !$2 || $3{
                 return false

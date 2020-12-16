@@ -129,9 +129,14 @@ class StormModeBillViewController: AccountPickerViewController {
                 let (titleOpt, messageOpt, accountDetail) = alertInfo
                 let goToMakePayment = { [weak self] in
                     guard let this = self else { return }
-                    let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
-                    paymentVc.accountDetail = accountDetail
-                    this.navigationController?.pushViewController(paymentVc, animated: true)
+                    
+                    let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
+                    guard let tapToPayViewController = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return }
+                    tapToPayViewController.accountDetail = accountDetail
+                    let newNavController = LargeTitleNavigationController(rootViewController: tapToPayViewController)
+                    newNavController.modalPresentationStyle = .fullScreen
+                    FirebaseUtility.logEvent(.makePaymentStart)
+                    this.present(newNavController, animated: true, completion: nil)
                 }
                 
                 if let title = titleOpt, let message = messageOpt {
@@ -170,13 +175,14 @@ class StormModeBillViewController: AccountPickerViewController {
         
         billCardView.modalViewControllers
             .drive(onNext: { [weak self] viewController in
-                if viewController is MakePaymentViewController {
-                    #warning("Remove this if block once the new payment flow is in for PHI as well")
-                    viewController.hidesBottomBarWhenPushed = true
-                    self?.navigationController?.pushViewController(viewController, animated: true)
-                    return
+                if viewController is TapToPayReviewPaymentViewController {
+                    let newNavController = LargeTitleNavigationController(rootViewController: viewController)
+                    newNavController.modalPresentationStyle = .fullScreen
+                    FirebaseUtility.logEvent(.makePaymentStart)
+                    self?.present(newNavController, animated: true, completion: nil)
+                } else {
+                    self?.present(viewController, animated: true, completion: nil)
                 }
-                self?.present(viewController, animated: true, completion: nil)
             })
             .disposed(by: billCardView.bag)
         

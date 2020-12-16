@@ -10,10 +10,16 @@ import RxSwift
 import RxCocoa
 
 enum HomeCard: Int {
-    case bill, usage, template, projectedBill, outageStatus, prepaidActive, prepaidPending, nothing
+    case bill, usage, template, projectedBill, outageStatus, prepaidActive, prepaidPending, nothing, game
     
     static let editableCards: [HomeCard] = {
-        return [.bill, .usage, .template, .outageStatus, .projectedBill]
+        var cards: [HomeCard] = [.bill, .usage, .template, .outageStatus, .projectedBill]
+        
+        if Environment.shared.opco == .bge {
+            cards.append(.game)
+        }
+        
+        return cards
     }()
     
     init?(id: String) {
@@ -35,6 +41,8 @@ enum HomeCard: Int {
             return NSLocalizedString("Projected Bill", comment: "")
         case .outageStatus:
             return NSLocalizedString("Outage Status", comment: "")
+        case .game:
+            return NSLocalizedString("Play-n-Save", comment: "")
         case .prepaidActive, .prepaidPending, .nothing:
             return ""
         }
@@ -58,12 +66,14 @@ enum HomeCard: Int {
             return "prepaidPending"
         case .nothing:
             return "nothing"
+        case .game:
+            return "game"
         }
     }
     
     var isOptional: Bool {
         switch self {
-        case .bill, .template:
+        case .bill, .template, .game:
             return false
         default:
             return true
@@ -72,7 +82,7 @@ enum HomeCard: Int {
     
     var isAlwaysAvailable: Bool {
         switch self {
-        case .usage, .projectedBill:
+        case .usage, .projectedBill, .game:
             return false
         default:
             return true
@@ -83,17 +93,17 @@ enum HomeCard: Int {
         // Update these in versions with new cards
         switch Environment.shared.opco {
         case .bge:
-            return Version(major: 1, minor: 2, patch: 5)
+            return Version(major: 2, minor: 9, patch: 0)
         case .peco:
-            return Version(major: 1, minor: 2, patch: 5)
+            return Version(major: 2, minor: 9, patch: 0)
         case .comEd:
-            return Version(major: 9, minor: 0, patch: 5)
+            return Version(major: 10, minor: 9, patch: 0)
         case .pepco:
-            return Version(major: 1, minor: 2, patch: 5)
+            return Version(major: 2, minor: 9, patch: 0)
         case .ace:
-            return Version(major: 1, minor: 2, patch: 5)
+            return Version(major: 2, minor: 9, patch: 0)
         case .delmarva:
-            return Version(major: 1, minor: 2, patch: 5)
+            return Version(major: 2, minor: 9, patch: 0)
         }
     }()
 }
@@ -116,7 +126,7 @@ final class HomeCardPrefsStore {
         }
     }
     
-    static let defaultList: [HomeCard] = [.bill, .usage, .template]
+    static let defaultList: [HomeCard] = [.bill, .game, .usage, .template]
     
     // Private init protects against another instance being accidentally instantiated
     private init() {

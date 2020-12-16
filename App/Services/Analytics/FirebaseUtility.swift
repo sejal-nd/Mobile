@@ -339,6 +339,8 @@ struct EventParameter {
         case toggled_gas_elec
         case viewed_task_empty_state
         case tapped_fab
+        case switch_to_game_view
+        case switch_to_home_view
         case final_gift_unlocked
         case seven_day_streak
     }

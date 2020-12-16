@@ -18,7 +18,6 @@ def iOS_pods
   pod 'Firebase/Core', '5.19.0'
   pod 'Firebase/RemoteConfig'
   pod 'AppCenter', '1.14'
-  pod 'surveymonkey-ios-sdk', '2.0.5'
 end
 
 def iOS_UnitTestPods
@@ -26,7 +25,7 @@ def iOS_UnitTestPods
 end
 
 def iOS_UITestPods
-  pod 'surveymonkey-ios-sdk', '2.0.5'
+  
 end
 
 target 'EUMobile' do

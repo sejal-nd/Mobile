@@ -37,6 +37,15 @@ class GameHomeViewModel {
     
     let streakCount = BehaviorRelay<Int>(value: 1)
     
+    // seconds between each task
+    lazy var taskInterval: Int = {
+        if Environment.shared.environmentName == .prod {
+            return 60 * 60 * 24 * 4 // 4 days
+        } else {
+            return 10 // 10 seconds
+        }
+    }()
+    
     var points: Double {
         get {
             return UserDefaults.standard.double(forKey: UserDefaultKeys.gamePointsLocal)
@@ -239,37 +248,36 @@ class GameHomeViewModel {
         if currentTaskIndex >= GameTaskStore.shared.tasks.count {
             return nil
         }
-        
-        #warning("TESTING ONLY")
-//        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date,
-//            let nextTaskDate = Calendar.current.date(byAdding: .day, value: 4, to: lastTaskDate) {
-//            let interval = Int(nextTaskDate.timeIntervalSinceNow)
-//            let days = interval / 86400
-//            let hours = (interval % 86400) / 3600
-//            let minutes = ((interval % 86400) % 3600) / 60
-//
-//            var timeString = ""
-//            if days > 0 {
-//                timeString += "\(days) \(days == 1 ? "day" : "days")"
-//                if hours > 0 {
-//                    timeString += " and \(hours) \(hours == 1 ? "hour" : "hours")"
-//                }
-//                return "Check back in \(timeString) for your next challenge!"
-//            }
-//            if hours > 0 {
-//                timeString += "\(hours) \(hours == 1 ? "hour" : "hours")"
-//                if minutes > 0 {
-//                    timeString += " and \(minutes) \(minutes == 1 ? "minute" : "minutes")"
-//                }
-//                return "Check back in \(timeString) for your next challenge!"
-//            }
-//            if minutes > 0 {
-//                timeString += "\(minutes) \(minutes == 1 ? "minute" : "minutes")"
-//                return "Check back in \(timeString) for your next challenge!"
-//            }
-//
-//            return "Check back soon for your next challenge!"
-//        }
+
+        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date,
+           let nextTaskDate = Calendar.current.date(byAdding: .second, value: self.taskInterval, to: lastTaskDate) {
+            let interval = Int(nextTaskDate.timeIntervalSinceNow)
+            let days = interval / 86400
+            let hours = (interval % 86400) / 3600
+            let minutes = ((interval % 86400) % 3600) / 60
+
+            var timeString = ""
+            if days > 0 {
+                timeString += "\(days) \(days == 1 ? "day" : "days")"
+                if hours > 0 {
+                    timeString += " and \(hours) \(hours == 1 ? "hour" : "hours")"
+                }
+                return "Check back in \(timeString) for your next challenge!"
+            }
+            if hours > 0 {
+                timeString += "\(hours) \(hours == 1 ? "hour" : "hours")"
+                if minutes > 0 {
+                    timeString += " and \(minutes) \(minutes == 1 ? "minute" : "minutes")"
+                }
+                return "Check back in \(timeString) for your next challenge!"
+            }
+            if minutes > 0 {
+                timeString += "\(minutes) \(minutes == 1 ? "minute" : "minutes")"
+                return "Check back in \(timeString) for your next challenge!"
+            }
+
+            return "Check back soon for your next challenge!"
+        }
         
         return nil
     }
@@ -287,6 +295,122 @@ class GameHomeViewModel {
                     let accountNumber = self.accountDetail.value?.accountNumber,
                     valid,
                     let endDate = date else { return false }
-                return self.coreDataManager.getWeeklyInsight(accountNumber: accountNumber, endDate: endDate) == nil
+                var weeklyInsightAvailable = self.coreDataManager.getWeeklyInsight(accountNumber: accountNumber, endDate: endDate) == nil
+                return weeklyInsightAvailable
             }
+    
+    func hasDailyInsightAvailable() -> Observable<Bool> {
+        return self.usageData.asObservable().map {
+            if let dailyUsageData = $0 {
+                var insightAvailable = false
+                var date = Calendar.current.startOfDay(for: Date.now) // Based on user's timezone so their current "today" is always displayed
+                let startDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
+                
+                while date > startDate, !insightAvailable {
+                    if let match = dailyUsageData.dailyUsage.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
+                        let accountNumber = self.accountDetail.value!.accountNumber
+                        let canCollect = self.coreDataManager.getCollectedCoin(accountNumber: accountNumber, date: match.date, gas: self.selectedSegmentIndex == 1) == nil
+                        
+                        insightAvailable = canCollect || insightAvailable
+                    }
+                    date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+                }
+                                
+                return insightAvailable
+            }
+            else {
+                return false
+            }
+        }
+    }
+    
+    func hasInsightsAvailable() -> Driver<Bool> {
+        return Driver.combineLatest(shouldShowWeeklyInsightUnreadIndicator, hasDailyInsightAvailable().asDriver(onErrorJustReturn: false)).map { $0 || $1 }
+    }
+    
+    func taskIndicatorText(for taskType: GameTaskType) -> String {
+        var taskIndicatorText: String
+        switch taskType {
+        case .tip:
+            taskIndicatorText = NSLocalizedString("New Tip Available!", comment: "")
+        case .quiz:
+            taskIndicatorText = NSLocalizedString("New Quiz Available!", comment: "")
+        default:
+            taskIndicatorText = NSLocalizedString("New Task Available!", comment: "")
+        }
+        
+        return taskIndicatorText
+    }
+    
+    func checkForAvailableTask() -> GameTask? {
+        guard let gameUser = gameUser.value,
+              let accountDetail = accountDetail.value else { return nil}
+        #warning("Gamification Testing Only! Uncomment for Release!")
+        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
+            let secondsSinceLastTask = abs(lastTaskDate.interval(ofComponent: .second, fromDate: Date.now, usingCalendar: Calendar.current))
+            if secondsSinceLastTask < taskInterval {
+                return nil
+            }
+        }
+        
+        while true {
+            if let task = GameTaskStore.shared.tasks.get(at: currentTaskIndex) {
+                if shouldFilterOutTask(task: task, gameUser: gameUser, accountDetail: accountDetail) {
+                    self.currentTaskIndex += 1
+                } else {
+                    return task
+                }
+            } else {
+                break
+            }
+        }
+        
+        return nil
+    }
+    
+    private func shouldFilterOutTask(task: GameTask, gameUser: GameUser, accountDetail: AccountDetail) -> Bool {
+        if let survey = task.survey {
+            if survey.surveyNumber == 1 && UserDefaults.standard.bool(forKey: UserDefaultKeys.gameSurvey1Complete) {
+                return true
+            }
+            if survey.surveyNumber == 2 && UserDefaults.standard.bool(forKey: UserDefaultKeys.gameSurvey2Complete) {
+                return true
+            }
+        }
+        
+        // eBill Enroll Task: Should filter out if already enrolled, or ineligible for enrollment
+        if task.type == .eBill && (accountDetail.isEBillEnrollment || accountDetail.eBillEnrollStatus != .canEnroll) {
+            return true
+        }
+                
+        // Tip/Quiz will either be "RENT", "OWN" or "RENT/OWN". If user's rent/own onboarding response
+        // is not contained in that string, task should be filtered out
+        if let gameUserRentOrOwn = gameUser.onboardingRentOrOwnAnswer?.uppercased() {
+            if let tip = task.tip, !tip.rentOrOwn.uppercased().contains(gameUserRentOrOwn) {
+                return true
+            }
+            if let quiz = task.quiz, !quiz.rentOrOwn.uppercased().contains(gameUserRentOrOwn) {
+                return true
+            }
+        }
+        
+        // Season will either be "WINTER", "SUMMER", or nil. Winter tips should only be displayed
+        // in October - March, while Summer tips should only be displayed in April - September
+        var taskSeason: String?
+        if let tip = task.tip, let tipSeason = tip.season?.uppercased() {
+            taskSeason = tipSeason
+        } else if let quiz = task.quiz, let quizSeason = quiz.season?.uppercased() {
+            taskSeason = quizSeason
+        }
+        if let season = taskSeason, let month = Calendar.current.dateComponents([.month], from: Date.now).month {
+            if season == "SUMMER" && month >= 10 && month <= 3 { // October - March, filter out summer tips
+                return true
+            }
+            if season == "WINTER" && month >= 4 && month <= 9 { // April - September, filter out winter tips
+                return true
+            }
+        }
+        
+        return false
+    }
 }
