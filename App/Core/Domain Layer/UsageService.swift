@@ -22,7 +22,8 @@ struct UsageService {
                                                              yearAgo: yearAgo,
                                                              gas: gas)
         
-        if let cachedData = cache[cacheParams] {
+        if useCache,
+           let cachedData = cache[cacheParams] {
             completion(.success(cachedData))
         } else {
             NetworkingLayer.request(router: .compareBill(accountNumber: accountNumber, premiseNumber: premiseNumber, encodable: encodedObject)) { (result: Result<CompareBillResult, NetworkingError>) in
