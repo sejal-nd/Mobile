@@ -231,4 +231,19 @@ class LoginViewModel {
         return numRulesMet >= 3
     }
     
+    private(set) lazy var usernameEntered: Driver<Bool> = self.username.asDriver().map { [weak self] username -> Bool in
+        guard let `self` = self else { return false }
+        return !username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
+    private(set) lazy var passwordEntered: Driver<Bool> = self.password.asDriver().map { [weak self] password -> Bool in
+        guard let `self` = self else { return false }
+        return !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
+    private(set) lazy var signInButtonEnabled: Driver<Bool> = {
+        return Driver.combineLatest(self.usernameEntered,
+                                      self.passwordEntered)
+        { $0 && $1}
+    }()
 }
