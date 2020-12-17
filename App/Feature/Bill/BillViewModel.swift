@@ -75,7 +75,8 @@ class BillViewModel {
             return UsageService.rx.compareBill(accountNumber: accountDetail.accountNumber,
                                                          premiseNumber: accountDetail.premiseNumber!,
                                                          yearAgo: compareToLastYear,
-                                                         gas: isGas)
+                                                         gas: isGas,
+                                                         useCache: false)
         }
     
     private(set) lazy var accountDetailError: Driver<NetworkingError?> = dataEvents.errors()
