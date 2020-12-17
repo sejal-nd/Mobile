@@ -82,7 +82,8 @@ class UsageViewModel {
                 .compareBill(accountNumber: accountDetail.accountNumber,
                                      premiseNumber: accountDetail.premiseNumber!,
                                      yearAgo: yearsIndex == 0,
-                                     gas: isGas)
+                                     gas: isGas,
+                                     useCache: false)
             
             let billForecast: Observable<BillForecastResult?>
             if accountDetail.isAMIAccount {
