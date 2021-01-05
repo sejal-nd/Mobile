@@ -746,7 +746,7 @@ class TapToPayViewModel {
     
     private(set) lazy var overpayingValueDisplayString: Driver<String?> = Driver
         .combineLatest(amountDue.asDriver(), paymentAmount.asDriver())
-        { "Overpaying: "+($1 - $0).currencyString }
+            { "Overpaying: " + ($1 - (Environment.shared.opco.isPHI ? ($0 > .zero ? $0 : .zero) : $0)).currencyString }
     
     private(set) lazy var shouldShowOverpaymentSwitchView: Driver<Bool> = isOverpaying
     
