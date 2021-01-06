@@ -133,10 +133,32 @@ class BGEAutoPayViewModel {
         
         let request = AutoPayEnrollBGERequest(amountType: amountToPay.value.rawValue, paymentDateType: paymentDateType, paymentDaysBeforeDue: String(daysBefore), isUpdate: false, walletItemId: selectedWalletItem.value?.walletItemId, amountThreshold: amountNotToExceed.value.twoDecimalString, effectivePeriod: "untilCanceled")
         
-        PaymentService.enrollAutoPayBGE(accountNumber: accountDetail.accountNumber, request: request) { result in
+        PaymentService.enrollAutoPayBGE(accountNumber: accountDetail.accountNumber, request: request) { [weak self] result in
             switch result {
             case .success:
-                onSuccess()
+                if Environment.shared.opco.isPHI {
+                    let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue
+                    let billReadyProgramName = "Bill is Ready" + " " + opcoIdentifier
+                    let alertPreferencesRequest = AlertPreferencesRequest(alertPreferenceRequests: [AlertPreferencesRequest.AlertRequest(isActive: true, type: "push", programName: billReadyProgramName)])
+                    if let accountNumber = self?.accountDetail.accountNumber {
+                        AlertService.setAlertPreferences(accountNumber: accountNumber,
+                                                         request: alertPreferencesRequest) { alertResult in
+                            switch alertResult {
+                            case .success:
+                                onSuccess()
+                                dLog("Enrolled in Bill Is Ready push notification")
+                            case .failure(let error):
+                                onError(error.description)
+                                dLog("Failed to enroll in Bill Is Ready push notification")
+                            }
+                            onSuccess()
+                        }
+                    } else {
+                        onSuccess()
+                    }
+                } else {
+                    onSuccess()
+                }
             case .failure(let error):
                 onError(error.description)
             }
