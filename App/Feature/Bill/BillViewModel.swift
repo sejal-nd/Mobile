@@ -496,7 +496,7 @@ class BillViewModel {
                 lastPaymentAmount > 0,
                 let billDate = accountDetail.billingInfo.billDate,
                 billDate < lastPaymentDate {
-                return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), lastPaymentAmount.currencyString, lastPaymentDate.mmDdYyyyString)
+                return String(format: NSLocalizedString("Thank you for your %@ payment on %@", comment: ""), lastPaymentAmount.currencyString, lastPaymentDate.mmDdYyyyString)
             }
             return nil
         }
