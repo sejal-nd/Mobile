@@ -91,6 +91,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     var billingHistoryItem: BillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
     
     var bag = DisposeBag()
+    var animatedView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -565,6 +566,14 @@ class TapToPayReviewPaymentViewController: UIViewController {
             }
         }
         
+        // Animated View
+        animatedView.frame =  self.view.frame
+        animatedView.frame.size.width = animatedView.frame.size.height + 150
+        animatedView.layer.cornerRadius = animatedView.frame.size.height / 2
+        animatedView.frame.origin = CGPoint.init(x: self.view.frame.size.width - 100, y: self.view.frame.size.height)
+        animatedView.backgroundColor = UIColor(red: 0/255, green: 103/255, blue: 177/255, alpha: 1)
+        self.view.window?.addSubview(animatedView)
+        
         let handleError = { [weak self] (error: NetworkingError) in
             guard let self = self else { return }
             
@@ -647,7 +656,20 @@ class TapToPayReviewPaymentViewController: UIViewController {
                             GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
                         }
                     }
-                    self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                    
+                    UIView.animate(withDuration: 1.5, animations: {  [weak self]  in
+                        guard let self = self else {return}
+                        self.animatedView.center = CGPoint.init(x: self.view.frame.size.width, y: self.view.frame.size.height)
+                        }, completion: { [weak self] _ in
+                            self?.animatedView.layer.cornerRadius = .zero
+                            UIView.animate(withDuration: 0.2, animations: {  [weak self]  in
+                                self?.animatedView.frame = self?.view.window?.bounds as! CGRect
+                                }, completion: { [weak self] _ in
+                                    self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                                    self?.animatedView.removeFromSuperview()
+                            })
+                    })
+                    
                 }, onError: { error in
                     handleError(error)
             })
