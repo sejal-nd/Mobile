@@ -222,6 +222,10 @@ class TapToPayViewModel {
             return date.isInToday(calendar: .opCo)
     }
     
+    private(set) lazy var shouldShowLatePaymentWarning: Driver<Bool> =
+        paymentDate.asDriver().map { date in
+            return date > self.accountDetail.value.billingInfo.dueByDate
+    }
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
     var canEditPaymentDate: Bool {
