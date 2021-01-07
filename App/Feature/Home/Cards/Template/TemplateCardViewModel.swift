@@ -258,7 +258,7 @@ class TemplateCardViewModel {
                 }
             case .ace, .delmarva, .pepco:
                 if accountDetail.isEnergyWiseRewardsEnrolled {
-                    return NSLocalizedString("Manage Your Devices", comment: "")
+                    return NSLocalizedString("Adjust Your Thermostat", comment: "")
                 } else {
                     return NSLocalizedString("Learn More", comment: "")
                 }
