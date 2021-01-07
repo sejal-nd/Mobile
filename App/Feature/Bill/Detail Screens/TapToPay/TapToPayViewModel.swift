@@ -224,7 +224,7 @@ class TapToPayViewModel {
     
     private(set) lazy var shouldShowLatePaymentWarning: Driver<Bool> =
         paymentDate.asDriver().map { date in
-            return date > self.accountDetail.value.billingInfo.dueByDate
+            return Environment.shared.opco.isPHI && date > self.accountDetail.value.billingInfo.dueByDate
     }
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
