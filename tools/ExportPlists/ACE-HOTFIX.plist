@@ -16,7 +16,7 @@
 		<string>ACE Hotfix Watchkit WatchkitExtension Enterprise</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>
+	<string>8C71906E18219258F3FEE656EE6E6E2274B973E8</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>
