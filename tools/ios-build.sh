@@ -350,7 +350,7 @@ if [[ $target_phases = *"build"* ]]; then
             appcenter distribute release \
                 --app $target_app_center_app \
                 --token $APP_CENTER_API_TOKEN \
-                --file "build/output/$target_scheme/$target_scheme.ipa" \
+                --file "build/output/$target_scheme/EUMobile.ipa" \
                 --group "$APP_CENTER_GROUP" \
                 --release-notes-file "tools/release_notes_script/release_notes.txt"
 
@@ -424,7 +424,7 @@ done
 echo \"Uploading app to app center for distribution to group \$APP_CENTER_GROUP\"
 appcenter distribute release \\
 --app \"$target_app_center_app\" \\
---file \"build/output/$target_scheme/$target_scheme.ipa\" \\
+--file \"build/output/$target_scheme/EUMobile.ipa\" \\
 --token \$APP_CENTER_API_TOKEN \\
 --group \"\$APP_CENTER_GROUP\" \\
 --release-notes-file \"tools/release_notes_script/release_notes.txt\"
@@ -439,9 +439,9 @@ if [[ $target_phases = *"nowsecure"* ]]; then
     if [ "$CONFIGURATION" == "Staging" ]; then
 
         if [ -n "$NOWSECURE_API_TOKEN" ]; then
-            echo "Uploading ./build/output/$target_scheme/$target_scheme.ipa to NowSecure"
+            echo "Uploading ./build/output/$target_scheme/EUMobile.ipa to NowSecure"
             pwd
-            curl -H "Authorization: Bearer ${NOWSECURE_API_TOKEN}" -X POST https://lab-api.nowsecure.com/build/ --data-binary @./build/output/$target_scheme/$target_scheme.ipa
+            curl -H "Authorization: Bearer ${NOWSECURE_API_TOKEN}" -X POST https://lab-api.nowsecure.com/build/ --data-binary @./build/output/$target_scheme/EUMobile.ipa
         else
             echo "NowSecure API token is missing, can't upload binary!"
         fi
