@@ -995,13 +995,13 @@
 		C3DF2BAA24CB42BB00A6D4EC /* BillService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF2BA924CB42BB00A6D4EC /* BillService+Rx.swift */; };
 		C3DF2BB724CB42CE00A6D4EC /* PaymentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF2BB624CB42CE00A6D4EC /* PaymentService+Rx.swift */; };
 		C3E31E9C25794A0900D7FDAA /* ForeSee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9625794A0100D7FDAA /* ForeSee.framework */; };
-		C3E31E9D25794A0900D7FDAA /* ForeSee.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9625794A0100D7FDAA /* ForeSee.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3E31E9D25794A0900D7FDAA /* ForeSee.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9625794A0100D7FDAA /* ForeSee.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3E31E9E25794A0B00D7FDAA /* ForeSeeFeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9725794A0100D7FDAA /* ForeSeeFeedback.framework */; };
-		C3E31E9F25794A0C00D7FDAA /* ForeSeeFeedback.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9725794A0100D7FDAA /* ForeSeeFeedback.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3E31E9F25794A0C00D7FDAA /* ForeSeeFeedback.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9725794A0100D7FDAA /* ForeSeeFeedback.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3E31EA025794A0E00D7FDAA /* ForeSeeLegacy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9425794A0000D7FDAA /* ForeSeeLegacy.framework */; };
-		C3E31EA125794A0E00D7FDAA /* ForeSeeLegacy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9425794A0000D7FDAA /* ForeSeeLegacy.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3E31EA125794A0E00D7FDAA /* ForeSeeLegacy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9425794A0000D7FDAA /* ForeSeeLegacy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3E31EA225794A1100D7FDAA /* ForeSeeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9525794A0000D7FDAA /* ForeSeeUtilities.framework */; };
-		C3E31EA325794A1100D7FDAA /* ForeSeeUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9525794A0000D7FDAA /* ForeSeeUtilities.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3E31EA325794A1100D7FDAA /* ForeSeeUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31E9525794A0000D7FDAA /* ForeSeeUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3E67AAE251532E200A2B04F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2324AB828000A828F9 /* Account.swift */; };
 		C8F95FB76F50334BC5162649 /* Pods_EUMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3FDD6CD872BFB6C5171060 /* Pods_EUMobile.framework */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };

@@ -71,6 +71,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var overPayingHeaderLabel: UILabel!
     @IBOutlet weak var overPayingCheckbox: Checkbox!
     @IBOutlet weak var overPayingLabel: UILabel!
+    @IBOutlet weak var latePaymentErrorLabel: UILabel!
     
     
     // -- Review Payment View -- //
@@ -207,6 +208,13 @@ class TapToPayReviewPaymentViewController: UIViewController {
         overPayingLabel.font = SystemFont.regular.of(size: 15)
         overPayingLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
         
+        latePaymentErrorLabel.textColor = .errorRed
+        latePaymentErrorLabel.font = SystemFont.regular.of(size: 12)
+        latePaymentErrorLabel.numberOfLines = .zero
+        latePaymentErrorLabel.text = "The Selected date is past your bill's due date and could result in a late payment"
+        latePaymentErrorLabel.isAccessibilityElement = true
+        latePaymentErrorLabel.accessibilityLabel = latePaymentErrorLabel.text
+        
         paymentErrorLabel.textColor = .errorRed
         paymentErrorLabel.font = SystemFont.semibold.of(size: 12)
         
@@ -307,6 +315,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.shouldShowSameDayPaymentWarning.drive(onNext: { [weak self] showSameDayWarning in
             guard let self = self else { return }
             self.sameDayPaymentWarningLabel.isHidden = !showSameDayWarning
+        }).disposed(by: bag)
+        
+        viewModel.shouldShowLatePaymentWarning.drive(onNext: { [weak self] showLatePaymentWarning in
+            guard let self = self else { return }
+            self.latePaymentErrorLabel.isHidden = !showLatePaymentWarning
         }).disposed(by: bag)
         
         viewModel.enablePaymentDate.drive(onNext: { [weak self]  enableDate in
