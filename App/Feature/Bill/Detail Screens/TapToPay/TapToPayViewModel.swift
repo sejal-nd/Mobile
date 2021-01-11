@@ -222,6 +222,10 @@ class TapToPayViewModel {
             return date.isInToday(calendar: .opCo)
     }
     
+    private(set) lazy var shouldShowLatePaymentWarning: Driver<Bool> =
+        paymentDate.asDriver().map { date in
+            return Environment.shared.opco.isPHI && date > self.accountDetail.value.billingInfo.dueByDate
+    }
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
     var canEditPaymentDate: Bool {
@@ -746,7 +750,7 @@ class TapToPayViewModel {
     
     private(set) lazy var overpayingValueDisplayString: Driver<String?> = Driver
         .combineLatest(amountDue.asDriver(), paymentAmount.asDriver())
-        { "Overpaying: "+($1 - $0).currencyString }
+            { "Overpaying: " + ($1 - (Environment.shared.opco.isPHI ? ($0 > .zero ? $0 : .zero) : $0)).currencyString }
     
     private(set) lazy var shouldShowOverpaymentSwitchView: Driver<Bool> = isOverpaying
     

@@ -273,7 +273,6 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("This override is already scheduled.", comment: "Error description")
         case .failedLogin:
             return NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
-            
         case .failed:
             return NSLocalizedString("No scheduled payments were found for this account.", comment: "Error description")
         case .noEventResults:
@@ -327,8 +326,7 @@ extension NetworkingError: LocalizedError {
         case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Please try again later.", comment: "Error description")
         case .tooManyPerAccount:
-            return NSLocalizedString("Electronic payments for your utility account are not available at this time due to overuse. Please review other payment options, or contact \(AccountsStore.shared.accountOpco.displayString) customer service for further assistance.", comment: "Error description")
-
+            return NSLocalizedString("Electronic payments for your utility account are not available at this time due to overuse. Please contact \(AccountsStore.shared.accountOpco.displayString) customer service for further assistance.", comment: "Error description")
         }
     }
 }

@@ -493,6 +493,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         } else if let splashVC = (window.rootViewController as? UINavigationController)?.viewControllers.last as? SplashViewController {
             splashVC.shortcutItem = shortcutItem
+        } else if StormModeStatus.shared.isOn && shortcutItem == .reportOutage {
+            (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
         } else if shortcutItem == .reportOutage {
             let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
             let unauthenticatedStoryboard = UIStoryboard(name: "Unauthenticated", bundle: nil)
