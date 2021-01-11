@@ -623,53 +623,53 @@ class TapToPayReviewPaymentViewController: UIViewController {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self?.present(alertVc, animated: true, completion: nil)
                 }, onSuccess: { [weak self] in
-                    //LoadingView.hide()
-                    self?.submitButton.reset()
-                    self?.view.isUserInteractionEnabled = true
-                    UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
-                    
-                    FirebaseUtility.logEvent(.paymentNetworkComplete)
-                    
-                    FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
-                    
-                    if let viewModel = self?.viewModel,
-                        viewModel.billingHistoryItem == nil {
-                        var contactType = EventParameter.Value.none
-                        if !viewModel.emailAddress.value.isEmpty &&
-                            !viewModel.phoneNumber.value.isEmpty {
-                            contactType = .both
-                        } else if !viewModel.emailAddress.value.isEmpty {
-                            contactType = .email
-                        } else if !viewModel.phoneNumber.value.isEmpty {
-                            contactType = .text
-                        } else {
-                            contactType = .none
+                    self?.submitButton.setSuccess(animationCompletion: {
+                        
+                        self?.view.isUserInteractionEnabled = true
+                        UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
+                        
+                        FirebaseUtility.logEvent(.paymentNetworkComplete)
+                        
+                        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
+                        
+                        if let viewModel = self?.viewModel,
+                            viewModel.billingHistoryItem == nil {
+                            var contactType = EventParameter.Value.none
+                            if !viewModel.emailAddress.value.isEmpty &&
+                                !viewModel.phoneNumber.value.isEmpty {
+                                contactType = .both
+                            } else if !viewModel.emailAddress.value.isEmpty {
+                                contactType = .email
+                            } else if !viewModel.phoneNumber.value.isEmpty {
+                                contactType = .text
+                            } else {
+                                contactType = .none
+                            }
+                            
+                            FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .alternateContact, value: contactType)])
+                        }
+                        if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                            switch bankOrCard {
+                            case .bank:
+                                GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                            case .card:
+                                GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                            }
                         }
                         
-                        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .alternateContact, value: contactType)])
-                    }
-                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
-                        switch bankOrCard {
-                        case .bank:
-                            GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
-                        case .card:
-                            GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
-                        }
-                    }
-                    
-                    UIView.animate(withDuration: 1.5, animations: {  [weak self]  in
-                        guard let self = self else {return}
-                        self.animatedView.center = CGPoint.init(x: self.view.frame.size.width, y: self.view.frame.size.height)
-                        }, completion: { [weak self] _ in
-                            self?.animatedView.layer.cornerRadius = .zero
-                            UIView.animate(withDuration: 0.2, animations: {  [weak self]  in
-                                self?.animatedView.frame = self?.view.window?.bounds as! CGRect
-                                }, completion: { [weak self] _ in
-                                    self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-                                    self?.animatedView.removeFromSuperview()
-                            })
+                        UIView.animate(withDuration: 0.9, animations: {  [weak self]  in
+                            guard let self = self else {return}
+                            self.animatedView.center = CGPoint.init(x: self.view.frame.size.width, y: self.view.frame.size.height)
+                            }, completion: { [weak self] _ in
+                                self?.animatedView.layer.cornerRadius = .zero
+                                UIView.animate(withDuration: 0.2, animations: {  [weak self]  in
+                                    self?.animatedView.frame = self?.view.window?.bounds as! CGRect
+                                    }, completion: { [weak self] _ in
+                                        self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                                        self?.animatedView.removeFromSuperview()
+                                })
+                        })
                     })
-                    
                 }, onError: { error in
                     handleError(error)
             })
