@@ -8492,7 +8492,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				BASE_URL = "xze-e-n-eudapi-peco-s-ams-01.azure-api.net";
+				BASE_URL = mcsstg.mobileenv.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
 				BUNDLE_ID = com.exelon.mobile.peco.staging;
@@ -10039,7 +10039,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
-				BASE_URL = "xze-e-n-eudapi-ace-s-ams-01.azure-api.net";
+				BASE_URL = mcsstg.mobileenv.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
 				BUNDLE_ID = com.exelon.mobile.ace.staging;
@@ -11590,7 +11590,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				BASE_URL = "xze-e-n-eudapi-dpl-s-ams-01.azure-api.net";
+				BASE_URL = mcsstg.mobileenv.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging;
@@ -13141,7 +13141,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				BASE_URL = "xze-e-n-eudapi-pepco-s-ams-01.azure-api.net";
+				BASE_URL = mcsstg.mobileenv.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging;
@@ -14691,7 +14691,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				BASE_URL = "xze-e-n-eudapi-comed-s-ams-01.azure-api.net";
+				BASE_URL = mcsstg.mobileenv.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
 				BUNDLE_ID = com.exelon.mobile.comed.staging;
@@ -15886,7 +15886,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				BASE_URL = "xze-e-n-eudapi-bge-s-ams-01.azure-api.net";
+				BASE_URL = mcsstg.mobileenv.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
 				BUNDLE_ID = com.exelon.mobile.bge.staging;
