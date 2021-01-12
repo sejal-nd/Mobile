@@ -161,6 +161,15 @@ public enum PaymentCategoryType: String, Decodable {
 public enum BankOrCard {
     case bank
     case card
+    
+    var sortOrder: Int {
+        switch self {
+        case .bank:
+            return 0
+        case .card:
+            return 1
+        }
+    }
 }
 
 public enum PaymentMethodType {
