@@ -25,7 +25,7 @@ extension UIAlertController {
                 message = NSLocalizedString("Please select another payment method. The previously selected payment method has been disabled and is not available.", comment: "")
             } else {
                 if let maskedNum = walletItem.maskedAccountNumber {
-                    message = String.localizedStringWithFormat("Please select another payment method. Card ending in %@ was declined.", maskedNum)
+                    message = String.localizedStringWithFormat("Please select another payment method. Card ending in %@ was declined.", maskedNum.last4Digits())
                 } else { // Should never happen, but just in case
                     message = NSLocalizedString("Please select another payment method. Card was declined.", comment: "")
                 }
