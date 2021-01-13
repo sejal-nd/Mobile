@@ -130,25 +130,6 @@ class UnauthenticatedOutageViewModel {
         return ""
     }
     
-    var accountNotFoundMessage: String {
-        var contactNumber = ""
-        switch Environment.shared.opco {
-        case .ace:
-            contactNumber = "1-800-642-3780"
-        case .bge:
-            contactNumber = "1-877-778-2222"
-        case .comEd:
-            contactNumber = "1-800-334-7661"
-        case .delmarva:
-            contactNumber = "1-800-375-7117"
-        case .peco:
-            contactNumber = "1-800-494-4000"
-        case .pepco:
-            contactNumber = "202-833-7500"
-        }
-        return NSLocalizedString("The information entered does not match our records. Please double check that the information entered is correct and try again.\n\n Still not working? Outage status and report an outage may not be available for this account. Please call Customer Service at \(contactNumber) for further assistance.", comment: "")
-    }
-    
     var footerTextViewText: NSAttributedString {
         var localizedString: String
         let phoneNumbers: [String]
