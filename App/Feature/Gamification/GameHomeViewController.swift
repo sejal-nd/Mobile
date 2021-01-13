@@ -438,7 +438,7 @@ class GameHomeViewController: AccountPickerViewController {
     private func showEnergyBuddyTooltip() {
         FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .viewed_task_empty_state)])
         
-        let message = NSMutableAttributedString(string: NSLocalizedString("I’m Lumi!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and usage insights to help you lower your energy use.\n\nIn order to personalize your experience, we’d like to ask you a few questions!", comment: ""))
+        let message = NSMutableAttributedString(string: NSLocalizedString("I’m Lumi!\n\n I’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nAlong the way, you’ll be awarded with points for checking your daily and weekly insights as well as any tips, quizzes, or other challenges I might have for you! With those points, you can unlock backgrounds, hats, and accessories.", comment: ""))
         if let taskTimeStr = viewModel.nextAvaiableTaskTimeString {
             let attrString = NSMutableAttributedString(string: "\n\n\(taskTimeStr)", attributes: [
                 .foregroundColor: UIColor.primaryColor,
