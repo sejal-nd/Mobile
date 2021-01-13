@@ -11,6 +11,10 @@ import AVFoundation
 import RxSwift
 import RxCocoa
 
+#if canImport(SwiftUI)
+import SwiftUI
+#endif
+
 class LandingViewController: UIViewController {
     
     let disposeBag = DisposeBag()
@@ -22,6 +26,7 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var continueAsGuestButon: UIButton!
     @IBOutlet weak var tabletView: UIView!
     @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var debugButton: UIButton!
     @IBOutlet weak var videoView: UIView!
     
     private var playerLayer: AVPlayerLayer!
@@ -47,15 +52,21 @@ class LandingViewController: UIViewController {
         logoBackgroundView.backgroundColor = .primaryColor
         view.backgroundColor = .primaryColor
         
-        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            switch Environment.shared.environmentName {
-            case .prod, .prodbeta:
-                versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
-            default:
-                versionLabel.text = String(format: NSLocalizedString("Version %@ - Tier %@ - URL %@" , comment: ""), version, Environment.shared.environmentName.rawValue, Environment.shared.projectPrefix)
-            }
+        // Version Label
+        if let version = Bundle.main.versionNumber {
+            versionLabel.text = "Version \(version)"
         } else {
             versionLabel.text = nil
+        }
+        
+        // Debug Button
+        switch Environment.shared.environmentName {
+        case .aut, .dev, .test, .stage:
+            debugButton.isHidden = false
+            debugButton.isEnabled = true
+        default:
+            debugButton.isHidden = true
+            debugButton.isEnabled = false
         }
         
         versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -124,6 +135,18 @@ class LandingViewController: UIViewController {
             performSegue(withIdentifier: "registrationSegueNew", sender: self)
         } else {
             performSegue(withIdentifier: "registrationSegue", sender: self)
+        }
+    }
+    
+    @IBAction func onDebugMenuPress(_ sender: Any) {
+        switch Environment.shared.environmentName {
+        case .aut, .dev, .test, .stage:
+            if #available(iOS 14, *) {
+                let debugViewHostingController = UIHostingController(rootView: DebugMenu())
+                present(debugViewHostingController, animated: true, completion: nil)
+            }
+        default:
+            break
         }
     }
     
