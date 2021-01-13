@@ -62,7 +62,9 @@ public enum NetworkingError: Error, Equatable {
     case paymentAccountVelocityCard
     case utilityAccountVelocity
     case walletItemIdTimeout
-    
+    case tooManyPerAccount
+    case temporaryPasswordExpired
+
     init(errorCode: String) {
         switch errorCode {
         case "INVALID-PROFILE-TYPE":
@@ -133,6 +135,8 @@ public enum NetworkingError: Error, Equatable {
             self = .blockedPaymentMethod
         case "accountNumber.suspended":
             self = .blockedUtilityAccount
+        case "accountNumber.tooManyPerAccount":
+            self = .tooManyPerAccount
         case "paymentMethodType.blocked":
             self = .blockedPaymentType
         case "xmlPayment.duplicate":
@@ -145,6 +149,8 @@ public enum NetworkingError: Error, Equatable {
             self = .utilityAccountVelocity
         case "tokenizedProfile.notProcessed":
             self = .walletItemIdTimeout
+        case "FN_ACCT_PWD_EXPIRED":
+            self = .temporaryPasswordExpired
         default:
             self = .generic
         }
@@ -157,7 +163,7 @@ extension NetworkingError: LocalizedError {
     public var title: String {
         switch self {
         case .inactive:
-            return NSLocalizedString("Inactive Account", comment: "Error title")
+            return NSLocalizedString("", comment: "Error title")
         case .notCustomer, .invalidUser:
             return NSLocalizedString("No Data Found", comment: "Error title")
         case .userExists:
@@ -224,15 +230,40 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Password Protected Account", comment: "Error title")
         case .noProfileExists:
             return NSLocalizedString("We're sorry, we weren't able to process your request.", comment: "Error title")
-        case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+        case .peakRewardsOverrides, .unknown, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Sorry, That Didn't Quite Work.", comment: "Error title")
+        case .tooManyPerAccount:
+            return NSLocalizedString("Unable to process electronic payments", comment: "Error title")
+        case .accountLookupNotFound:
+            return NSLocalizedString("", comment: "Error title")
+        case .temporaryPasswordExpired:
+            return NSLocalizedString("", comment: "Error title")
         }
+    }
+    
+    var accountNotFoundMessage: String {
+        var contactNumber = ""
+        switch Environment.shared.opco {
+        case .ace:
+            contactNumber = "1-800-642-3780"
+        case .bge:
+            contactNumber = "1-877-778-2222"
+        case .comEd:
+            contactNumber = "1-800-334-7661"
+        case .delmarva:
+            contactNumber = "1-800-375-7117"
+        case .peco:
+            contactNumber = "1-800-494-4000"
+        case .pepco:
+            contactNumber = "202-833-7500"
+        }
+        return NSLocalizedString("The information entered does not match our records. Please double check that the information entered is correct and try again.\n\n Still not working? Outage status and report an outage may not be available for this account. Please call Customer Service at \(contactNumber) for further assistance.", comment: "Error description")
     }
     
     public var description: String {
         switch self {
         case .inactive:
-            return NSLocalizedString("We can’t load data for this account because it is no longer active.", comment: "Error description")
+            return accountNotFoundMessage
         case .notCustomer, .invalidUser:
             return NSLocalizedString("There was no data associated with this account.", comment: "Error description")
         case .userExists:
@@ -249,7 +280,6 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("This override is already scheduled.", comment: "Error description")
         case .failedLogin:
             return NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
-            
         case .failed:
             return NSLocalizedString("No scheduled payments were found for this account.", comment: "Error description")
         case .noEventResults:
@@ -300,8 +330,14 @@ extension NetworkingError: LocalizedError {
             return NSLocalizedString("Your account is password protected and can’t be accessed through this app.", comment: "Error description")
         case .noProfileExists:
             return NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: "Error description")
-        case .peakRewardsOverrides, .unknown, .accountLookupNotFound, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
+        case .peakRewardsOverrides, .unknown, .invalidURL, .invalidResponse, .invalidData, .decoding, .generic, .invalidProfile, .utilityAccountVelocity:
             return NSLocalizedString("Please try again later.", comment: "Error description")
+        case .tooManyPerAccount:
+            return NSLocalizedString("Electronic payments for your utility account are not available at this time due to overuse. Please contact \(AccountsStore.shared.accountOpco.displayString) customer service for further assistance.", comment: "Error description")
+        case .accountLookupNotFound:
+            return NSLocalizedString("Invalid Information - The information entered does not match our records. Please try again", comment: "Error Description")
+        case .temporaryPasswordExpired:
+            return NSLocalizedString("Your temporary password has expired. Please request a new temporary password.", comment: "Error description")
         }
     }
 }

@@ -1,7 +1,1 @@
-BGE
-Exelon
-Baltimore Gas and Electric
-Exelon Utilities
-An Exelon Company
-BG&E
-Baltimore Power
+utility,power,electric,outage,report,restoration,washington,dc,maryland,storm,energy

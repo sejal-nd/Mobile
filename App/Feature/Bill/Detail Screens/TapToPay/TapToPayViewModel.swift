@@ -222,6 +222,10 @@ class TapToPayViewModel {
             return date.isInToday(calendar: .opCo)
     }
     
+    private(set) lazy var shouldShowLatePaymentWarning: Driver<Bool> =
+        paymentDate.asDriver().map { date in
+            return Environment.shared.opco.isPHI && date > self.accountDetail.value.billingInfo.dueByDate
+    }
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
     var canEditPaymentDate: Bool {
@@ -277,10 +281,11 @@ class TapToPayViewModel {
         .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFee)
         .map { [weak self] paymentAmount, showConvenienceFeeBox in
             guard let self = self else { return nil }
+            let payment = Environment.shared.opco.isPHI ? (paymentAmount >= .zero ? paymentAmount : .zero) : paymentAmount
             if showConvenienceFeeBox {
-                return (paymentAmount + self.convenienceFee).currencyString
+                return (payment + self.convenienceFee).currencyString
             } else {
-                return paymentAmount.currencyString
+                return payment.currencyString
             }
     }
     
@@ -288,7 +293,8 @@ class TapToPayViewModel {
         .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFee)
         .map { [weak self] paymentAmount, showConvenienceFeeBox in
             guard let self = self else { return nil }
-            return paymentAmount.currencyString
+            let payment = Environment.shared.opco.isPHI ? (paymentAmount >= .zero ? paymentAmount : .zero) : paymentAmount
+            return payment.currencyString
     }
     
     
@@ -314,7 +320,8 @@ class TapToPayViewModel {
         var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
                                                          .foregroundColor: UIColor.deepGray]
         let string: String
-        guard let dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
+        guard var dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
+        dueAmount = Environment.shared.opco.isPHI ? (dueAmount >= .zero ? dueAmount : .zero) : dueAmount
         attributes[.foregroundColor] = UIColor.deepGray
         attributes[.font] = SystemFont.semibold.of(size: 17)
         if billingInfo.pastDueAmount > 0 {
@@ -743,7 +750,7 @@ class TapToPayViewModel {
     
     private(set) lazy var overpayingValueDisplayString: Driver<String?> = Driver
         .combineLatest(amountDue.asDriver(), paymentAmount.asDriver())
-        { "Overpaying: "+($1 - $0).currencyString }
+            { "Overpaying: " + ($1 - (Environment.shared.opco.isPHI ? ($0 > .zero ? $0 : .zero) : $0)).currencyString }
     
     private(set) lazy var shouldShowOverpaymentSwitchView: Driver<Bool> = isOverpaying
     

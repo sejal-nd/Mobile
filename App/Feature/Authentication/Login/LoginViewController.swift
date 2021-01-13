@@ -81,6 +81,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             .disposed(by: disposeBag)
 
         viewModel.biometricsEnabled.asDriver().not().drive(biometricButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.signInButtonEnabled.drive(signInButton.rx.isEnabled).disposed(by: disposeBag)
 
         let placeholderText: String
         if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
@@ -352,6 +353,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             }))
             self.present(alertVC, animated: true, completion: nil)
         }, onError: { [weak self] (title, message) in
+            self?.viewModel.password.accept("")
             self?.navigationController?.view.isUserInteractionEnabled = true
             self?.showErrorAlertWith(title: title, message: message)
         })

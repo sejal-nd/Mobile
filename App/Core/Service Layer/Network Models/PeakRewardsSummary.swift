@@ -99,6 +99,22 @@ public struct SmartThermostatDeviceSettings: Codable {
     let fan: SmartThermostatFan
     let hold: Bool
     
+    enum CodingKeys: String, CodingKey {
+        case temp
+        case mode
+        case fan
+        case hold
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        temp = try container.decodeIfPresent(Temperature.self, forKey: .temp) ?? Temperature(value: 70.0, scale: .fahrenheit)
+        mode = try container.decodeIfPresent(SmartThermostatMode.self, forKey: .mode) ?? .off
+        fan = try container.decodeIfPresent(SmartThermostatFan.self, forKey: .fan) ?? .auto
+        hold = try container.decodeIfPresent(Bool.self, forKey: .hold) ?? false
+    }
+    
     init(temp: Temperature = Temperature(value: 70.0, scale: .fahrenheit),
          mode: SmartThermostatMode = .off,
          fan: SmartThermostatFan = .auto,
@@ -107,13 +123,6 @@ public struct SmartThermostatDeviceSettings: Codable {
         self.mode = mode
         self.fan = fan
         self.hold = hold
-    }
-    
-    func toDictionary() -> [String: Any] {
-        return ["temp": temp.fahrenheit,
-                "mode": mode.rawValue,
-                "fan": fan.rawValue,
-                "hold": hold]
     }
 }
 
@@ -258,6 +267,11 @@ struct Temperature: Codable, Equatable {
     
     init(value: Float, scale: TemperatureScale) {
         self.init(value: Double(value), scale: scale)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode("\(fahrenheit)")
     }
     
     var fahrenheit: Int {

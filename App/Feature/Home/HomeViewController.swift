@@ -698,18 +698,10 @@ class HomeViewController: AccountPickerViewController {
     
     func goToMakeAPaymentFlow(viewController: UIViewController?) {
         if let vc = viewController {
-            if viewController is MakePaymentViewController {
-                #warning("Remove this elseif block once the new payment flow is in for PHI as well")
-                vc.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(vc, animated: true)
-                return
-            } else if viewController is TapToPayReviewPaymentViewController {
-                
-                let newNavController = LargeTitleNavigationController(rootViewController: vc)
-                newNavController.modalPresentationStyle = .fullScreen
-                FirebaseUtility.logEvent(.makePaymentStart)
-                self.present(newNavController, animated: true, completion: nil)
-            }
+            let newNavController = LargeTitleNavigationController(rootViewController: vc)
+            newNavController.modalPresentationStyle = .fullScreen
+            FirebaseUtility.logEvent(.makePaymentStart)
+            self.present(newNavController, animated: true, completion: nil)
         }
     }
     

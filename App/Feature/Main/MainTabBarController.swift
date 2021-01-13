@@ -76,9 +76,8 @@ class MainTabBarController: UITabBarController {
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.didTapOnShortcutItem, object: nil)
-            .asObservable()
-            .subscribe(onNext: { [weak self] notification in
+        Observable.zip(NotificationCenter.default.rx.notification(.didTapOnShortcutItem, object: nil).asObservable(), AccountService.rx.fetchAccounts())
+            .subscribe(onNext: { [weak self] (notification, _) in
                 guard let self = self else { return }
                 guard let shortcutItem = notification.object as? ShortcutItem else {
                     return

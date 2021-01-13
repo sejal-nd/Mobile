@@ -145,8 +145,30 @@ class PaperlessEBillViewModel {
             .toArray()
             .observeOn(MainScheduler.instance)
         .asObservable()
-            .subscribe(onNext: { responseArray in
-                onSuccess(changedStatus)
+            .subscribe(onNext: { [weak self] responseArray in
+                if Environment.shared.opco.isPHI {
+                    let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue
+                    let billReadyProgramName = "Bill is Ready" + " " + opcoIdentifier
+                    let alertPreferencesRequest = AlertPreferencesRequest(alertPreferenceRequests: [AlertPreferencesRequest.AlertRequest(isActive: true, type: "push", programName: billReadyProgramName)])
+                    if let accountNumber = self?.initialAccountDetail.value.accountNumber {
+                        AlertService.setAlertPreferences(accountNumber: accountNumber,
+                                                         request: alertPreferencesRequest) { alertResult in
+                            switch alertResult {
+                            case .success:
+                                onSuccess(changedStatus)
+                                dLog("Enrolled in Bill Is Ready push notification")
+                            case .failure(let error):
+                                onError(error.description)
+                                dLog("Failed to enroll in Bill Is Ready push notification")
+                            }
+                            onSuccess(changedStatus)
+                        }
+                    } else {
+                        onSuccess(changedStatus)
+                    }
+                } else {
+                    onSuccess(changedStatus)
+                }
             }, onError: { error in
                 guard let networkingError = error as? NetworkingError else {
                     onError("Please try again later.")
