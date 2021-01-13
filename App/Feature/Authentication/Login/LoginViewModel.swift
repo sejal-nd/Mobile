@@ -81,6 +81,8 @@ class LoginViewModel {
                                             } else {
                                                 onError(nil, error.description)
                                             }
+                                        } else if error == .invalidUser {
+                                            onRegistrationNotComplete()
                                         } else {
                                             onError(error.title, error.description)
                                         }
