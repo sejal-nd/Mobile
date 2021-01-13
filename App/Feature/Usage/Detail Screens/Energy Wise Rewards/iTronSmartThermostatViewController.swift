@@ -70,6 +70,7 @@ extension iTronSmartThermostatViewController {
         webView.navigationDelegate = self
         webView.uiDelegate = self
         webView.isHidden = true
+        webView.customUserAgent = "Mobile"
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
