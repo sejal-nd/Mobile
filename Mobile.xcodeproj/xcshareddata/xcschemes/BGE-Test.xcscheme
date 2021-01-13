@@ -23,7 +23,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Production Beta-PEPCO"
+      buildConfiguration = "Test-BGE"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -50,7 +50,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Production Beta-PEPCO"
+      buildConfiguration = "Test-BGE"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -77,7 +77,7 @@
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Production Beta-PEPCO"
+      buildConfiguration = "Test-BGE"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -94,10 +94,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Production Beta-PEPCO">
+      buildConfiguration = "Test-BGE">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Production Beta-PEPCO"
+      buildConfiguration = "Test-BGE"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

@@ -23,7 +23,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Staging-PEPCO"
+      buildConfiguration = "Stage-PEPCO"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -50,7 +50,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Staging-PEPCO"
+      buildConfiguration = "Stage-PEPCO"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -85,7 +85,7 @@
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Staging-PEPCO"
+      buildConfiguration = "Stage-PEPCO"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -102,10 +102,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Staging-PEPCO">
+      buildConfiguration = "Stage-PEPCO">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Staging-PEPCO"
+      buildConfiguration = "Stage-PEPCO"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

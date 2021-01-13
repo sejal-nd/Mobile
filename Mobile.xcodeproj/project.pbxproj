@@ -6793,7 +6793,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		087630E71E72F5D000FA7020 /* Staging-BGE */ = {
+		087630E71E72F5D000FA7020 /* Stage-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 49F8B3864DEA8DC2079BD2FD /* Pods-EUMobileUITests.staging-bge.xcconfig */;
 			buildSettings = {
@@ -6825,9 +6825,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-BGE";
+			name = "Stage-BGE";
 		};
-		087630E91E72F5D000FA7020 /* Production Beta-BGE */ = {
+		087630E91E72F5D000FA7020 /* ProdBeta-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C93EB550EF7A99848465AB8 /* Pods-EUMobileUITests.production beta-bge.xcconfig */;
 			buildSettings = {
@@ -6859,9 +6859,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-BGE";
+			name = "ProdBeta-BGE";
 		};
-		0E131751202B583000865819 /* Production-BGE */ = {
+		0E131751202B583000865819 /* Prod-BGE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
@@ -6944,9 +6944,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production-BGE";
+			name = "Prod-BGE";
 		};
-		0E131752202B583000865819 /* Production-BGE */ = {
+		0E131752202B583000865819 /* Prod-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 43C595B99CA75F9BED804429 /* Pods-EUMobile.production-bge.xcconfig */;
 			buildSettings = {
@@ -6989,9 +6989,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-BGE";
+			name = "Prod-BGE";
 		};
-		0E131758202B583000865819 /* Production-BGE */ = {
+		0E131758202B583000865819 /* Prod-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8DFFC4B3A30782CF615E4BE0 /* Pods-EUMobileUnitTests.production-bge.xcconfig */;
 			buildSettings = {
@@ -7022,9 +7022,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-BGE";
+			name = "Prod-BGE";
 		};
-		0E13175B202B583000865819 /* Production-BGE */ = {
+		0E13175B202B583000865819 /* Prod-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 667260BE8F673703710FBBA9 /* Pods-EUMobileUITests.production-bge.xcconfig */;
 			buildSettings = {
@@ -7056,9 +7056,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-BGE";
+			name = "Prod-BGE";
 		};
-		0EB93B5E202CA3C70049E7A2 /* Testing-BGE */ = {
+		0EB93B5E202CA3C70049E7A2 /* Test-BGE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
@@ -7146,9 +7146,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Testing-BGE";
+			name = "Test-BGE";
 		};
-		0EB93B5F202CA3C70049E7A2 /* Testing-BGE */ = {
+		0EB93B5F202CA3C70049E7A2 /* Test-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB6EBAD591557CFFD5908F39 /* Pods-EUMobile.testing-bge.xcconfig */;
 			buildSettings = {
@@ -7189,9 +7189,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-BGE";
+			name = "Test-BGE";
 		};
-		0EB93B65202CA3C70049E7A2 /* Testing-BGE */ = {
+		0EB93B65202CA3C70049E7A2 /* Test-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE8DC34B7BC4A15578646ACB /* Pods-EUMobileUnitTests.testing-bge.xcconfig */;
 			buildSettings = {
@@ -7241,9 +7241,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-BGE";
+			name = "Test-BGE";
 		};
-		0EB93B68202CA3C70049E7A2 /* Testing-BGE */ = {
+		0EB93B68202CA3C70049E7A2 /* Test-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 227972160A78412A19B9EF06 /* Pods-EUMobileUITests.testing-bge.xcconfig */;
 			buildSettings = {
@@ -7300,7 +7300,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-BGE";
+			name = "Test-BGE";
 		};
 		35F9DD3F2333C34200AAA2B2 /* Automation-BGE */ = {
 			isa = XCBuildConfiguration;
@@ -7384,7 +7384,7 @@
 			};
 			name = "Automation-BGE";
 		};
-		35F9DD402333C34200AAA2B2 /* Testing-BGE */ = {
+		35F9DD402333C34200AAA2B2 /* Test-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C49ACDAEA64149B8CDB7740 /* Pods-EUMobile-Watch Extension.testing-bge.xcconfig */;
 			buildSettings = {
@@ -7418,9 +7418,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-BGE";
+			name = "Test-BGE";
 		};
-		35F9DD412333C34200AAA2B2 /* Staging-BGE */ = {
+		35F9DD412333C34200AAA2B2 /* Stage-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 861A0309F587F45FAA57CAA2 /* Pods-EUMobile-Watch Extension.staging-bge.xcconfig */;
 			buildSettings = {
@@ -7454,9 +7454,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-BGE";
+			name = "Stage-BGE";
 		};
-		35F9DD432333C34200AAA2B2 /* Production Beta-BGE */ = {
+		35F9DD432333C34200AAA2B2 /* ProdBeta-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE93228EC1D97D5F1CA05E39 /* Pods-EUMobile-Watch Extension.production beta-bge.xcconfig */;
 			buildSettings = {
@@ -7492,9 +7492,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-BGE";
+			name = "ProdBeta-BGE";
 		};
-		35F9DD442333C34200AAA2B2 /* Production-BGE */ = {
+		35F9DD442333C34200AAA2B2 /* Prod-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 25EE28FB5A274E3F91751C4D /* Pods-EUMobile-Watch Extension.production-bge.xcconfig */;
 			buildSettings = {
@@ -7531,7 +7531,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-BGE";
+			name = "Prod-BGE";
 		};
 		35F9DD472333C34200AAA2B2 /* Automation-BGE */ = {
 			isa = XCBuildConfiguration;
@@ -7616,7 +7616,7 @@
 			};
 			name = "Automation-BGE";
 		};
-		35F9DD482333C34200AAA2B2 /* Testing-BGE */ = {
+		35F9DD482333C34200AAA2B2 /* Test-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 639B72AB36CFA3B2A89822AB /* Pods-EUMobile-Watch.testing-bge.xcconfig */;
 			buildSettings = {
@@ -7652,9 +7652,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-BGE";
+			name = "Test-BGE";
 		};
-		35F9DD492333C34200AAA2B2 /* Staging-BGE */ = {
+		35F9DD492333C34200AAA2B2 /* Stage-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D5E37566A70318121E60F8D8 /* Pods-EUMobile-Watch.staging-bge.xcconfig */;
 			buildSettings = {
@@ -7689,9 +7689,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-BGE";
+			name = "Stage-BGE";
 		};
-		35F9DD4B2333C34200AAA2B2 /* Production Beta-BGE */ = {
+		35F9DD4B2333C34200AAA2B2 /* ProdBeta-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A4964C32DD442A8E3F73D83 /* Pods-EUMobile-Watch.production beta-bge.xcconfig */;
 			buildSettings = {
@@ -7728,9 +7728,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-BGE";
+			name = "ProdBeta-BGE";
 		};
-		35F9DD4C2333C34200AAA2B2 /* Production-BGE */ = {
+		35F9DD4C2333C34200AAA2B2 /* Prod-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9922BBB33C6F2F49A1042D4E /* Pods-EUMobile-Watch.production-bge.xcconfig */;
 			buildSettings = {
@@ -7768,7 +7768,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-BGE";
+			name = "Prod-BGE";
 		};
 		67A9867624F950F900BD46E7 /* Automation-PECO */ = {
 			isa = XCBuildConfiguration;
@@ -8173,7 +8173,7 @@
 			};
 			name = "Automation-PECO";
 		};
-		67A9867C24F9510500BD46E7 /* Testing-PECO */ = {
+		67A9867C24F9510500BD46E7 /* Test-PECO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
@@ -8261,9 +8261,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Testing-PECO";
+			name = "Test-PECO";
 		};
-		67A9867D24F9510500BD46E7 /* Testing-PECO */ = {
+		67A9867D24F9510500BD46E7 /* Test-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E44697E146149D3855380BA /* Pods-EUMobile.testing-peco.xcconfig */;
 			buildSettings = {
@@ -8304,9 +8304,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PECO";
+			name = "Test-PECO";
 		};
-		67A9867E24F9510500BD46E7 /* Testing-PECO */ = {
+		67A9867E24F9510500BD46E7 /* Test-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03AE56A2825B5B8E3D295908 /* Pods-EUMobileUnitTests.testing-peco.xcconfig */;
 			buildSettings = {
@@ -8356,9 +8356,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PECO";
+			name = "Test-PECO";
 		};
-		67A9867F24F9510500BD46E7 /* Testing-PECO */ = {
+		67A9867F24F9510500BD46E7 /* Test-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B40DC1769E8DB2A33C522DBD /* Pods-EUMobileUITests.testing-peco.xcconfig */;
 			buildSettings = {
@@ -8415,9 +8415,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PECO";
+			name = "Test-PECO";
 		};
-		67A9868024F9510500BD46E7 /* Testing-PECO */ = {
+		67A9868024F9510500BD46E7 /* Test-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61BAD08B6C69D69D65897391 /* Pods-EUMobile-Watch.testing-peco.xcconfig */;
 			buildSettings = {
@@ -8453,9 +8453,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PECO";
+			name = "Test-PECO";
 		};
-		67A9868124F9510500BD46E7 /* Testing-PECO */ = {
+		67A9868124F9510500BD46E7 /* Test-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BC802B7D4B8BDD524294E567 /* Pods-EUMobile-Watch Extension.testing-peco.xcconfig */;
 			buildSettings = {
@@ -8489,9 +8489,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PECO";
+			name = "Test-PECO";
 		};
-		67A9868224F9510D00BD46E7 /* Staging-PECO */ = {
+		67A9868224F9510D00BD46E7 /* Stage-PECO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
@@ -8581,9 +8581,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Staging-PECO";
+			name = "Stage-PECO";
 		};
-		67A9868324F9510D00BD46E7 /* Staging-PECO */ = {
+		67A9868324F9510D00BD46E7 /* Stage-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B31DBFF938C83F4EE7B3ED6D /* Pods-EUMobile.staging-peco.xcconfig */;
 			buildSettings = {
@@ -8624,9 +8624,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PECO";
+			name = "Stage-PECO";
 		};
-		67A9868424F9510D00BD46E7 /* Staging-PECO */ = {
+		67A9868424F9510D00BD46E7 /* Stage-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 461F3F60603AF9ECBB8B781C /* Pods-EUMobileUnitTests.staging-peco.xcconfig */;
 			buildSettings = {
@@ -8657,9 +8657,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PECO";
+			name = "Stage-PECO";
 		};
-		67A9868524F9510D00BD46E7 /* Staging-PECO */ = {
+		67A9868524F9510D00BD46E7 /* Stage-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F2E1B012FEC9D22D185F2C6C /* Pods-EUMobileUITests.staging-peco.xcconfig */;
 			buildSettings = {
@@ -8691,9 +8691,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PECO";
+			name = "Stage-PECO";
 		};
-		67A9868624F9510D00BD46E7 /* Staging-PECO */ = {
+		67A9868624F9510D00BD46E7 /* Stage-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9DECBD957CBA3A8D663BAB85 /* Pods-EUMobile-Watch.staging-peco.xcconfig */;
 			buildSettings = {
@@ -8728,9 +8728,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PECO";
+			name = "Stage-PECO";
 		};
-		67A9868724F9510D00BD46E7 /* Staging-PECO */ = {
+		67A9868724F9510D00BD46E7 /* Stage-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C53A42494BE03F3DBD6C835 /* Pods-EUMobile-Watch Extension.staging-peco.xcconfig */;
 			buildSettings = {
@@ -8764,9 +8764,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PECO";
+			name = "Stage-PECO";
 		};
-		67A9868824F9511500BD46E7 /* Production Beta-PECO */ = {
+		67A9868824F9511500BD46E7 /* ProdBeta-PECO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
@@ -8850,9 +8850,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production Beta-PECO";
+			name = "ProdBeta-PECO";
 		};
-		67A9868924F9511500BD46E7 /* Production Beta-PECO */ = {
+		67A9868924F9511500BD46E7 /* ProdBeta-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 453ECA14264F16C2D99A5A93 /* Pods-EUMobile.production beta-peco.xcconfig */;
 			buildSettings = {
@@ -8895,9 +8895,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PECO";
+			name = "ProdBeta-PECO";
 		};
-		67A9868A24F9511500BD46E7 /* Production Beta-PECO */ = {
+		67A9868A24F9511500BD46E7 /* ProdBeta-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FD9A57B61BBA438EEEB6A2D /* Pods-EUMobileUnitTests.production beta-peco.xcconfig */;
 			buildSettings = {
@@ -8928,9 +8928,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PECO";
+			name = "ProdBeta-PECO";
 		};
-		67A9868B24F9511500BD46E7 /* Production Beta-PECO */ = {
+		67A9868B24F9511500BD46E7 /* ProdBeta-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF3FB52B2419FBC220F4B6ED /* Pods-EUMobileUITests.production beta-peco.xcconfig */;
 			buildSettings = {
@@ -8962,9 +8962,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PECO";
+			name = "ProdBeta-PECO";
 		};
-		67A9868C24F9511500BD46E7 /* Production Beta-PECO */ = {
+		67A9868C24F9511500BD46E7 /* ProdBeta-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F7AE6C4AEDB359E192CCB378 /* Pods-EUMobile-Watch.production beta-peco.xcconfig */;
 			buildSettings = {
@@ -9001,9 +9001,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PECO";
+			name = "ProdBeta-PECO";
 		};
-		67A9868D24F9511500BD46E7 /* Production Beta-PECO */ = {
+		67A9868D24F9511500BD46E7 /* ProdBeta-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48436D9E2AA6C236DDA2B13A /* Pods-EUMobile-Watch Extension.production beta-peco.xcconfig */;
 			buildSettings = {
@@ -9039,9 +9039,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PECO";
+			name = "ProdBeta-PECO";
 		};
-		67A9868E24F9511D00BD46E7 /* Production-PECO */ = {
+		67A9868E24F9511D00BD46E7 /* Prod-PECO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
@@ -9124,9 +9124,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production-PECO";
+			name = "Prod-PECO";
 		};
-		67A9868F24F9511D00BD46E7 /* Production-PECO */ = {
+		67A9868F24F9511D00BD46E7 /* Prod-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F1AD21F74AD6C9B51C915609 /* Pods-EUMobile.production-peco.xcconfig */;
 			buildSettings = {
@@ -9169,9 +9169,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PECO";
+			name = "Prod-PECO";
 		};
-		67A9869024F9511D00BD46E7 /* Production-PECO */ = {
+		67A9869024F9511D00BD46E7 /* Prod-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D419B82170A455E01F909AA6 /* Pods-EUMobileUnitTests.production-peco.xcconfig */;
 			buildSettings = {
@@ -9202,9 +9202,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PECO";
+			name = "Prod-PECO";
 		};
-		67A9869124F9511D00BD46E7 /* Production-PECO */ = {
+		67A9869124F9511D00BD46E7 /* Prod-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 822AD289DA7D4C7790A90FEC /* Pods-EUMobileUITests.production-peco.xcconfig */;
 			buildSettings = {
@@ -9236,9 +9236,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PECO";
+			name = "Prod-PECO";
 		};
-		67A9869224F9511D00BD46E7 /* Production-PECO */ = {
+		67A9869224F9511D00BD46E7 /* Prod-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A9371C87FD1DD44F3FEDFD15 /* Pods-EUMobile-Watch.production-peco.xcconfig */;
 			buildSettings = {
@@ -9276,9 +9276,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PECO";
+			name = "Prod-PECO";
 		};
-		67A9869324F9511D00BD46E7 /* Production-PECO */ = {
+		67A9869324F9511D00BD46E7 /* Prod-PECO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B60442AD575D567787325506 /* Pods-EUMobile-Watch Extension.production-peco.xcconfig */;
 			buildSettings = {
@@ -9315,7 +9315,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PECO";
+			name = "Prod-PECO";
 		};
 		67A986B024FD3E8500BD46E7 /* Automation-ACE */ = {
 			isa = XCBuildConfiguration;
@@ -9720,7 +9720,7 @@
 			};
 			name = "Automation-ACE";
 		};
-		67A986B624FD3E8B00BD46E7 /* Testing-ACE */ = {
+		67A986B624FD3E8B00BD46E7 /* Test-ACE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
@@ -9808,9 +9808,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Testing-ACE";
+			name = "Test-ACE";
 		};
-		67A986B724FD3E8B00BD46E7 /* Testing-ACE */ = {
+		67A986B724FD3E8B00BD46E7 /* Test-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF3B226E496185FFA9C50AA1 /* Pods-EUMobile.testing-ace.xcconfig */;
 			buildSettings = {
@@ -9851,9 +9851,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ACE";
+			name = "Test-ACE";
 		};
-		67A986B824FD3E8B00BD46E7 /* Testing-ACE */ = {
+		67A986B824FD3E8B00BD46E7 /* Test-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 58AFB18EF2926FFC597DE08C /* Pods-EUMobileUnitTests.testing-ace.xcconfig */;
 			buildSettings = {
@@ -9903,9 +9903,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ACE";
+			name = "Test-ACE";
 		};
-		67A986B924FD3E8B00BD46E7 /* Testing-ACE */ = {
+		67A986B924FD3E8B00BD46E7 /* Test-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 68D36CE014A99FEBEEC49B46 /* Pods-EUMobileUITests.testing-ace.xcconfig */;
 			buildSettings = {
@@ -9962,9 +9962,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ACE";
+			name = "Test-ACE";
 		};
-		67A986BA24FD3E8B00BD46E7 /* Testing-ACE */ = {
+		67A986BA24FD3E8B00BD46E7 /* Test-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 58797A748813B54EABB91066 /* Pods-EUMobile-Watch.testing-ace.xcconfig */;
 			buildSettings = {
@@ -10000,9 +10000,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ACE";
+			name = "Test-ACE";
 		};
-		67A986BB24FD3E8B00BD46E7 /* Testing-ACE */ = {
+		67A986BB24FD3E8B00BD46E7 /* Test-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 414D2598397F9450CF24382B /* Pods-EUMobile-Watch Extension.testing-ace.xcconfig */;
 			buildSettings = {
@@ -10036,9 +10036,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ACE";
+			name = "Test-ACE";
 		};
-		67A986BC24FD3E9300BD46E7 /* Staging-ACE */ = {
+		67A986BC24FD3E9300BD46E7 /* Stage-ACE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
@@ -10128,9 +10128,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Staging-ACE";
+			name = "Stage-ACE";
 		};
-		67A986BD24FD3E9300BD46E7 /* Staging-ACE */ = {
+		67A986BD24FD3E9300BD46E7 /* Stage-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB3C3D31F917DEDDB7AB3E32 /* Pods-EUMobile.staging-ace.xcconfig */;
 			buildSettings = {
@@ -10172,9 +10172,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ACE";
+			name = "Stage-ACE";
 		};
-		67A986BE24FD3E9300BD46E7 /* Staging-ACE */ = {
+		67A986BE24FD3E9300BD46E7 /* Stage-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B5C0982B8602EFFCAE08958 /* Pods-EUMobileUnitTests.staging-ace.xcconfig */;
 			buildSettings = {
@@ -10205,9 +10205,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ACE";
+			name = "Stage-ACE";
 		};
-		67A986BF24FD3E9300BD46E7 /* Staging-ACE */ = {
+		67A986BF24FD3E9300BD46E7 /* Stage-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F72B01B8A62134C3A84839AB /* Pods-EUMobileUITests.staging-ace.xcconfig */;
 			buildSettings = {
@@ -10239,9 +10239,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ACE";
+			name = "Stage-ACE";
 		};
-		67A986C024FD3E9300BD46E7 /* Staging-ACE */ = {
+		67A986C024FD3E9300BD46E7 /* Stage-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 607AC6F054624370BF003A37 /* Pods-EUMobile-Watch.staging-ace.xcconfig */;
 			buildSettings = {
@@ -10276,9 +10276,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ACE";
+			name = "Stage-ACE";
 		};
-		67A986C124FD3E9300BD46E7 /* Staging-ACE */ = {
+		67A986C124FD3E9300BD46E7 /* Stage-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F35A0E862603EADB36A6C701 /* Pods-EUMobile-Watch Extension.staging-ace.xcconfig */;
 			buildSettings = {
@@ -10312,9 +10312,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ACE";
+			name = "Stage-ACE";
 		};
-		67A986C224FD3E9900BD46E7 /* Production Beta-ACE */ = {
+		67A986C224FD3E9900BD46E7 /* ProdBeta-ACE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
@@ -10398,9 +10398,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production Beta-ACE";
+			name = "ProdBeta-ACE";
 		};
-		67A986C324FD3E9900BD46E7 /* Production Beta-ACE */ = {
+		67A986C324FD3E9900BD46E7 /* ProdBeta-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04DA65D561626DA7E9A0148C /* Pods-EUMobile.production beta-ace.xcconfig */;
 			buildSettings = {
@@ -10444,9 +10444,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ACE";
+			name = "ProdBeta-ACE";
 		};
-		67A986C424FD3E9900BD46E7 /* Production Beta-ACE */ = {
+		67A986C424FD3E9900BD46E7 /* ProdBeta-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB478DBD1D2515A55D1C5FE2 /* Pods-EUMobileUnitTests.production beta-ace.xcconfig */;
 			buildSettings = {
@@ -10477,9 +10477,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ACE";
+			name = "ProdBeta-ACE";
 		};
-		67A986C524FD3E9900BD46E7 /* Production Beta-ACE */ = {
+		67A986C524FD3E9900BD46E7 /* ProdBeta-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD2E0CE62BF95C209B62F574 /* Pods-EUMobileUITests.production beta-ace.xcconfig */;
 			buildSettings = {
@@ -10511,9 +10511,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ACE";
+			name = "ProdBeta-ACE";
 		};
-		67A986C624FD3E9900BD46E7 /* Production Beta-ACE */ = {
+		67A986C624FD3E9900BD46E7 /* ProdBeta-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8F4F66D6C7EDC750B2D74924 /* Pods-EUMobile-Watch.production beta-ace.xcconfig */;
 			buildSettings = {
@@ -10550,9 +10550,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ACE";
+			name = "ProdBeta-ACE";
 		};
-		67A986C724FD3E9900BD46E7 /* Production Beta-ACE */ = {
+		67A986C724FD3E9900BD46E7 /* ProdBeta-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A53797F893F2219EFA1BBAF /* Pods-EUMobile-Watch Extension.production beta-ace.xcconfig */;
 			buildSettings = {
@@ -10588,9 +10588,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ACE";
+			name = "ProdBeta-ACE";
 		};
-		67A986C824FD3E9F00BD46E7 /* Production-ACE */ = {
+		67A986C824FD3E9F00BD46E7 /* Prod-ACE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
@@ -10673,9 +10673,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production-ACE";
+			name = "Prod-ACE";
 		};
-		67A986C924FD3E9F00BD46E7 /* Production-ACE */ = {
+		67A986C924FD3E9F00BD46E7 /* Prod-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5473B0661AAB4BFD6BA64A50 /* Pods-EUMobile.production-ace.xcconfig */;
 			buildSettings = {
@@ -10719,9 +10719,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ACE";
+			name = "Prod-ACE";
 		};
-		67A986CA24FD3E9F00BD46E7 /* Production-ACE */ = {
+		67A986CA24FD3E9F00BD46E7 /* Prod-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8951835E259D4593D9CBC586 /* Pods-EUMobileUnitTests.production-ace.xcconfig */;
 			buildSettings = {
@@ -10752,9 +10752,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ACE";
+			name = "Prod-ACE";
 		};
-		67A986CB24FD3E9F00BD46E7 /* Production-ACE */ = {
+		67A986CB24FD3E9F00BD46E7 /* Prod-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 959CA31A5D3A482B9655D965 /* Pods-EUMobileUITests.production-ace.xcconfig */;
 			buildSettings = {
@@ -10786,9 +10786,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ACE";
+			name = "Prod-ACE";
 		};
-		67A986CC24FD3E9F00BD46E7 /* Production-ACE */ = {
+		67A986CC24FD3E9F00BD46E7 /* Prod-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F710138B432A8243B2A7E48C /* Pods-EUMobile-Watch.production-ace.xcconfig */;
 			buildSettings = {
@@ -10826,9 +10826,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ACE";
+			name = "Prod-ACE";
 		};
-		67A986CD24FD3E9F00BD46E7 /* Production-ACE */ = {
+		67A986CD24FD3E9F00BD46E7 /* Prod-ACE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E49BCAF3A3562CDBA642773 /* Pods-EUMobile-Watch Extension.production-ace.xcconfig */;
 			buildSettings = {
@@ -10865,7 +10865,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ACE";
+			name = "Prod-ACE";
 		};
 		67A986E924FD41DB00BD46E7 /* Automation-DPL */ = {
 			isa = XCBuildConfiguration;
@@ -11270,7 +11270,7 @@
 			};
 			name = "Automation-DPL";
 		};
-		67A986EF24FD41E200BD46E7 /* Testing-DPL */ = {
+		67A986EF24FD41E200BD46E7 /* Test-DPL */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
@@ -11358,9 +11358,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Testing-DPL";
+			name = "Test-DPL";
 		};
-		67A986F024FD41E200BD46E7 /* Testing-DPL */ = {
+		67A986F024FD41E200BD46E7 /* Test-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E12CFAADB9CFE0D48062A5B9 /* Pods-EUMobile.testing-dpl.xcconfig */;
 			buildSettings = {
@@ -11402,9 +11402,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-DPL";
+			name = "Test-DPL";
 		};
-		67A986F124FD41E200BD46E7 /* Testing-DPL */ = {
+		67A986F124FD41E200BD46E7 /* Test-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 179C61ADBF5FE3AC2DC6D699 /* Pods-EUMobileUnitTests.testing-dpl.xcconfig */;
 			buildSettings = {
@@ -11454,9 +11454,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-DPL";
+			name = "Test-DPL";
 		};
-		67A986F224FD41E200BD46E7 /* Testing-DPL */ = {
+		67A986F224FD41E200BD46E7 /* Test-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 69A6BDCE169D1F38DD08BD97 /* Pods-EUMobileUITests.testing-dpl.xcconfig */;
 			buildSettings = {
@@ -11513,9 +11513,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-DPL";
+			name = "Test-DPL";
 		};
-		67A986F324FD41E200BD46E7 /* Testing-DPL */ = {
+		67A986F324FD41E200BD46E7 /* Test-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E3C6AE7A5584AD418E572AC /* Pods-EUMobile-Watch.testing-dpl.xcconfig */;
 			buildSettings = {
@@ -11551,9 +11551,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-DPL";
+			name = "Test-DPL";
 		};
-		67A986F424FD41E200BD46E7 /* Testing-DPL */ = {
+		67A986F424FD41E200BD46E7 /* Test-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 02A6576311711D256002EA45 /* Pods-EUMobile-Watch Extension.testing-dpl.xcconfig */;
 			buildSettings = {
@@ -11587,9 +11587,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-DPL";
+			name = "Test-DPL";
 		};
-		67A986F524FD41E900BD46E7 /* Staging-DPL */ = {
+		67A986F524FD41E900BD46E7 /* Stage-DPL */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
@@ -11679,9 +11679,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Staging-DPL";
+			name = "Stage-DPL";
 		};
-		67A986F624FD41E900BD46E7 /* Staging-DPL */ = {
+		67A986F624FD41E900BD46E7 /* Stage-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9DB65CA7D32B14559382AA44 /* Pods-EUMobile.staging-dpl.xcconfig */;
 			buildSettings = {
@@ -11723,9 +11723,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-DPL";
+			name = "Stage-DPL";
 		};
-		67A986F724FD41E900BD46E7 /* Staging-DPL */ = {
+		67A986F724FD41E900BD46E7 /* Stage-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B62BB719FFE52997BE422E00 /* Pods-EUMobileUnitTests.staging-dpl.xcconfig */;
 			buildSettings = {
@@ -11756,9 +11756,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-DPL";
+			name = "Stage-DPL";
 		};
-		67A986F824FD41E900BD46E7 /* Staging-DPL */ = {
+		67A986F824FD41E900BD46E7 /* Stage-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2A2DF775E50AC944A2490B10 /* Pods-EUMobileUITests.staging-dpl.xcconfig */;
 			buildSettings = {
@@ -11790,9 +11790,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-DPL";
+			name = "Stage-DPL";
 		};
-		67A986F924FD41E900BD46E7 /* Staging-DPL */ = {
+		67A986F924FD41E900BD46E7 /* Stage-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E9AB1D928EA27A19337CCF3 /* Pods-EUMobile-Watch.staging-dpl.xcconfig */;
 			buildSettings = {
@@ -11827,9 +11827,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-DPL";
+			name = "Stage-DPL";
 		};
-		67A986FA24FD41E900BD46E7 /* Staging-DPL */ = {
+		67A986FA24FD41E900BD46E7 /* Stage-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5AE7B91F475CB5524C5915AF /* Pods-EUMobile-Watch Extension.staging-dpl.xcconfig */;
 			buildSettings = {
@@ -11863,9 +11863,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-DPL";
+			name = "Stage-DPL";
 		};
-		67A986FB24FD41F100BD46E7 /* Production Beta-DPL */ = {
+		67A986FB24FD41F100BD46E7 /* ProdBeta-DPL */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
@@ -11949,9 +11949,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production Beta-DPL";
+			name = "ProdBeta-DPL";
 		};
-		67A986FC24FD41F100BD46E7 /* Production Beta-DPL */ = {
+		67A986FC24FD41F100BD46E7 /* ProdBeta-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD69C7B6AE1C0C5003D1EE99 /* Pods-EUMobile.production beta-dpl.xcconfig */;
 			buildSettings = {
@@ -11995,9 +11995,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-DPL";
+			name = "ProdBeta-DPL";
 		};
-		67A986FD24FD41F100BD46E7 /* Production Beta-DPL */ = {
+		67A986FD24FD41F100BD46E7 /* ProdBeta-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA7C927F43DA322FC8B20D4F /* Pods-EUMobileUnitTests.production beta-dpl.xcconfig */;
 			buildSettings = {
@@ -12028,9 +12028,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-DPL";
+			name = "ProdBeta-DPL";
 		};
-		67A986FE24FD41F100BD46E7 /* Production Beta-DPL */ = {
+		67A986FE24FD41F100BD46E7 /* ProdBeta-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0604A049DEC3DC40A87CCCF8 /* Pods-EUMobileUITests.production beta-dpl.xcconfig */;
 			buildSettings = {
@@ -12062,9 +12062,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-DPL";
+			name = "ProdBeta-DPL";
 		};
-		67A986FF24FD41F100BD46E7 /* Production Beta-DPL */ = {
+		67A986FF24FD41F100BD46E7 /* ProdBeta-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7A3A372E98EDBBEA14881D6 /* Pods-EUMobile-Watch.production beta-dpl.xcconfig */;
 			buildSettings = {
@@ -12101,9 +12101,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-DPL";
+			name = "ProdBeta-DPL";
 		};
-		67A9870024FD41F100BD46E7 /* Production Beta-DPL */ = {
+		67A9870024FD41F100BD46E7 /* ProdBeta-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EFEC23A2FA2CCE30A4F38077 /* Pods-EUMobile-Watch Extension.production beta-dpl.xcconfig */;
 			buildSettings = {
@@ -12139,9 +12139,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-DPL";
+			name = "ProdBeta-DPL";
 		};
-		67A9870124FD41F600BD46E7 /* Production-DPL */ = {
+		67A9870124FD41F600BD46E7 /* Prod-DPL */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
@@ -12224,9 +12224,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production-DPL";
+			name = "Prod-DPL";
 		};
-		67A9870224FD41F600BD46E7 /* Production-DPL */ = {
+		67A9870224FD41F600BD46E7 /* Prod-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8325CFAAF4FB66D75AFA4D2C /* Pods-EUMobile.production-dpl.xcconfig */;
 			buildSettings = {
@@ -12270,9 +12270,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-DPL";
+			name = "Prod-DPL";
 		};
-		67A9870324FD41F600BD46E7 /* Production-DPL */ = {
+		67A9870324FD41F600BD46E7 /* Prod-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A076D4ADE121B848BB59E3A7 /* Pods-EUMobileUnitTests.production-dpl.xcconfig */;
 			buildSettings = {
@@ -12303,9 +12303,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-DPL";
+			name = "Prod-DPL";
 		};
-		67A9870424FD41F600BD46E7 /* Production-DPL */ = {
+		67A9870424FD41F600BD46E7 /* Prod-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F274497C557D6EDDC7549DB1 /* Pods-EUMobileUITests.production-dpl.xcconfig */;
 			buildSettings = {
@@ -12337,9 +12337,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-DPL";
+			name = "Prod-DPL";
 		};
-		67A9870524FD41F600BD46E7 /* Production-DPL */ = {
+		67A9870524FD41F600BD46E7 /* Prod-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B69BFB3AF5147755A9F0214B /* Pods-EUMobile-Watch.production-dpl.xcconfig */;
 			buildSettings = {
@@ -12377,9 +12377,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-DPL";
+			name = "Prod-DPL";
 		};
-		67A9870624FD41F600BD46E7 /* Production-DPL */ = {
+		67A9870624FD41F600BD46E7 /* Prod-DPL */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0118B0AA602CB188524B0E2 /* Pods-EUMobile-Watch Extension.production-dpl.xcconfig */;
 			buildSettings = {
@@ -12416,7 +12416,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-DPL";
+			name = "Prod-DPL";
 		};
 		67A9870724FD41FE00BD46E7 /* Automation-PEPCO */ = {
 			isa = XCBuildConfiguration;
@@ -12821,7 +12821,7 @@
 			};
 			name = "Automation-PEPCO";
 		};
-		67A9870D24FD420400BD46E7 /* Testing-PEPCO */ = {
+		67A9870D24FD420400BD46E7 /* Test-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
@@ -12909,9 +12909,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Testing-PEPCO";
+			name = "Test-PEPCO";
 		};
-		67A9870E24FD420400BD46E7 /* Testing-PEPCO */ = {
+		67A9870E24FD420400BD46E7 /* Test-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FB2AABC43C76F4D509DB42C4 /* Pods-EUMobile.testing-pepco.xcconfig */;
 			buildSettings = {
@@ -12953,9 +12953,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PEPCO";
+			name = "Test-PEPCO";
 		};
-		67A9870F24FD420400BD46E7 /* Testing-PEPCO */ = {
+		67A9870F24FD420400BD46E7 /* Test-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EC874AC2318F8B9F406340A0 /* Pods-EUMobileUnitTests.testing-pepco.xcconfig */;
 			buildSettings = {
@@ -13005,9 +13005,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PEPCO";
+			name = "Test-PEPCO";
 		};
-		67A9871024FD420400BD46E7 /* Testing-PEPCO */ = {
+		67A9871024FD420400BD46E7 /* Test-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6F463728A54542B03B55269A /* Pods-EUMobileUITests.testing-pepco.xcconfig */;
 			buildSettings = {
@@ -13064,9 +13064,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PEPCO";
+			name = "Test-PEPCO";
 		};
-		67A9871124FD420400BD46E7 /* Testing-PEPCO */ = {
+		67A9871124FD420400BD46E7 /* Test-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F1A905CD68EDBC8DC3871781 /* Pods-EUMobile-Watch.testing-pepco.xcconfig */;
 			buildSettings = {
@@ -13102,9 +13102,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PEPCO";
+			name = "Test-PEPCO";
 		};
-		67A9871224FD420400BD46E7 /* Testing-PEPCO */ = {
+		67A9871224FD420400BD46E7 /* Test-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8598FBE5609A9A8322055522 /* Pods-EUMobile-Watch Extension.testing-pepco.xcconfig */;
 			buildSettings = {
@@ -13138,9 +13138,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-PEPCO";
+			name = "Test-PEPCO";
 		};
-		67A9871324FD420D00BD46E7 /* Staging-PEPCO */ = {
+		67A9871324FD420D00BD46E7 /* Stage-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
@@ -13230,9 +13230,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Staging-PEPCO";
+			name = "Stage-PEPCO";
 		};
-		67A9871424FD420D00BD46E7 /* Staging-PEPCO */ = {
+		67A9871424FD420D00BD46E7 /* Stage-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B65136AAFEC13ED058A429C4 /* Pods-EUMobile.staging-pepco.xcconfig */;
 			buildSettings = {
@@ -13274,9 +13274,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PEPCO";
+			name = "Stage-PEPCO";
 		};
-		67A9871524FD420D00BD46E7 /* Staging-PEPCO */ = {
+		67A9871524FD420D00BD46E7 /* Stage-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1158AEB028D150A00BA29B5E /* Pods-EUMobileUnitTests.staging-pepco.xcconfig */;
 			buildSettings = {
@@ -13307,9 +13307,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PEPCO";
+			name = "Stage-PEPCO";
 		};
-		67A9871624FD420D00BD46E7 /* Staging-PEPCO */ = {
+		67A9871624FD420D00BD46E7 /* Stage-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9FCB1D13A1FFCED53918025F /* Pods-EUMobileUITests.staging-pepco.xcconfig */;
 			buildSettings = {
@@ -13341,9 +13341,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PEPCO";
+			name = "Stage-PEPCO";
 		};
-		67A9871724FD420D00BD46E7 /* Staging-PEPCO */ = {
+		67A9871724FD420D00BD46E7 /* Stage-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A751709662F7C7610D69522 /* Pods-EUMobile-Watch.staging-pepco.xcconfig */;
 			buildSettings = {
@@ -13378,9 +13378,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PEPCO";
+			name = "Stage-PEPCO";
 		};
-		67A9871824FD420D00BD46E7 /* Staging-PEPCO */ = {
+		67A9871824FD420D00BD46E7 /* Stage-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AC769B235334938AFD27A80B /* Pods-EUMobile-Watch Extension.staging-pepco.xcconfig */;
 			buildSettings = {
@@ -13414,9 +13414,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-PEPCO";
+			name = "Stage-PEPCO";
 		};
-		67A9871924FD421400BD46E7 /* Production Beta-PEPCO */ = {
+		67A9871924FD421400BD46E7 /* ProdBeta-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
@@ -13500,9 +13500,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production Beta-PEPCO";
+			name = "ProdBeta-PEPCO";
 		};
-		67A9871A24FD421400BD46E7 /* Production Beta-PEPCO */ = {
+		67A9871A24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5787AB480B84D6871E773FED /* Pods-EUMobile.production beta-pepco.xcconfig */;
 			buildSettings = {
@@ -13546,9 +13546,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PEPCO";
+			name = "ProdBeta-PEPCO";
 		};
-		67A9871B24FD421400BD46E7 /* Production Beta-PEPCO */ = {
+		67A9871B24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C31F2698BDD9346D4A1F953 /* Pods-EUMobileUnitTests.production beta-pepco.xcconfig */;
 			buildSettings = {
@@ -13579,9 +13579,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PEPCO";
+			name = "ProdBeta-PEPCO";
 		};
-		67A9871C24FD421400BD46E7 /* Production Beta-PEPCO */ = {
+		67A9871C24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8151F6FCC01F118B8C5FFE9B /* Pods-EUMobileUITests.production beta-pepco.xcconfig */;
 			buildSettings = {
@@ -13613,9 +13613,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PEPCO";
+			name = "ProdBeta-PEPCO";
 		};
-		67A9871D24FD421400BD46E7 /* Production Beta-PEPCO */ = {
+		67A9871D24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3D3045F79F54E7DF95219619 /* Pods-EUMobile-Watch.production beta-pepco.xcconfig */;
 			buildSettings = {
@@ -13652,9 +13652,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PEPCO";
+			name = "ProdBeta-PEPCO";
 		};
-		67A9871E24FD421400BD46E7 /* Production Beta-PEPCO */ = {
+		67A9871E24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B10CA7EB48C638232A5F54D3 /* Pods-EUMobile-Watch Extension.production beta-pepco.xcconfig */;
 			buildSettings = {
@@ -13690,9 +13690,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-PEPCO";
+			name = "ProdBeta-PEPCO";
 		};
-		67A9871F24FD421C00BD46E7 /* Production-PEPCO */ = {
+		67A9871F24FD421C00BD46E7 /* Prod-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
@@ -13775,9 +13775,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production-PEPCO";
+			name = "Prod-PEPCO";
 		};
-		67A9872024FD421C00BD46E7 /* Production-PEPCO */ = {
+		67A9872024FD421C00BD46E7 /* Prod-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1F8BBA9477698730EA2A3BD /* Pods-EUMobile.production-pepco.xcconfig */;
 			buildSettings = {
@@ -13821,9 +13821,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PEPCO";
+			name = "Prod-PEPCO";
 		};
-		67A9872124FD421C00BD46E7 /* Production-PEPCO */ = {
+		67A9872124FD421C00BD46E7 /* Prod-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8B803B964B065CB099534942 /* Pods-EUMobileUnitTests.production-pepco.xcconfig */;
 			buildSettings = {
@@ -13854,9 +13854,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PEPCO";
+			name = "Prod-PEPCO";
 		};
-		67A9872224FD421C00BD46E7 /* Production-PEPCO */ = {
+		67A9872224FD421C00BD46E7 /* Prod-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2686E2F920A0417F76329129 /* Pods-EUMobileUITests.production-pepco.xcconfig */;
 			buildSettings = {
@@ -13888,9 +13888,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PEPCO";
+			name = "Prod-PEPCO";
 		};
-		67A9872324FD421C00BD46E7 /* Production-PEPCO */ = {
+		67A9872324FD421C00BD46E7 /* Prod-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D02C695A3A346EA4B9DE84D6 /* Pods-EUMobile-Watch.production-pepco.xcconfig */;
 			buildSettings = {
@@ -13928,9 +13928,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PEPCO";
+			name = "Prod-PEPCO";
 		};
-		67A9872424FD421C00BD46E7 /* Production-PEPCO */ = {
+		67A9872424FD421C00BD46E7 /* Prod-PEPCO */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79E507B91BCE8AE67D51AB9F /* Pods-EUMobile-Watch Extension.production-pepco.xcconfig */;
 			buildSettings = {
@@ -13967,7 +13967,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-PEPCO";
+			name = "Prod-PEPCO";
 		};
 		67D562F924ED9DD100852551 /* Automation-ComEd */ = {
 			isa = XCBuildConfiguration;
@@ -14372,7 +14372,7 @@
 			};
 			name = "Automation-ComEd";
 		};
-		67D562FF24ED9DD300852551 /* Testing-ComEd */ = {
+		67D562FF24ED9DD300852551 /* Test-ComEd */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
@@ -14460,9 +14460,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Testing-ComEd";
+			name = "Test-ComEd";
 		};
-		67D5630024ED9DD300852551 /* Testing-ComEd */ = {
+		67D5630024ED9DD300852551 /* Test-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2887DEDAAA436EDBF2C6824D /* Pods-EUMobile.testing-comed.xcconfig */;
 			buildSettings = {
@@ -14503,9 +14503,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ComEd";
+			name = "Test-ComEd";
 		};
-		67D5630124ED9DD300852551 /* Testing-ComEd */ = {
+		67D5630124ED9DD300852551 /* Test-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DFE888F49EFAD08A824C33C0 /* Pods-EUMobileUnitTests.testing-comed.xcconfig */;
 			buildSettings = {
@@ -14555,9 +14555,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ComEd";
+			name = "Test-ComEd";
 		};
-		67D5630224ED9DD300852551 /* Testing-ComEd */ = {
+		67D5630224ED9DD300852551 /* Test-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 58D50E79BCA0DFD8B783487F /* Pods-EUMobileUITests.testing-comed.xcconfig */;
 			buildSettings = {
@@ -14614,9 +14614,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ComEd";
+			name = "Test-ComEd";
 		};
-		67D5630324ED9DD300852551 /* Testing-ComEd */ = {
+		67D5630324ED9DD300852551 /* Test-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79BA7A5401AC7B83A28CE042 /* Pods-EUMobile-Watch.testing-comed.xcconfig */;
 			buildSettings = {
@@ -14652,9 +14652,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ComEd";
+			name = "Test-ComEd";
 		};
-		67D5630424ED9DD300852551 /* Testing-ComEd */ = {
+		67D5630424ED9DD300852551 /* Test-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F4A88446FD6A3C7713D13687 /* Pods-EUMobile-Watch Extension.testing-comed.xcconfig */;
 			buildSettings = {
@@ -14688,9 +14688,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Testing-ComEd";
+			name = "Test-ComEd";
 		};
-		67D5630524ED9DD500852551 /* Staging-ComEd */ = {
+		67D5630524ED9DD500852551 /* Stage-ComEd */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
@@ -14780,9 +14780,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Staging-ComEd";
+			name = "Stage-ComEd";
 		};
-		67D5630624ED9DD500852551 /* Staging-ComEd */ = {
+		67D5630624ED9DD500852551 /* Stage-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B61B9BA1D8016C1C5FC883A3 /* Pods-EUMobile.staging-comed.xcconfig */;
 			buildSettings = {
@@ -14823,9 +14823,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ComEd";
+			name = "Stage-ComEd";
 		};
-		67D5630724ED9DD500852551 /* Staging-ComEd */ = {
+		67D5630724ED9DD500852551 /* Stage-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83170F55ED70C0534D59EC48 /* Pods-EUMobileUnitTests.staging-comed.xcconfig */;
 			buildSettings = {
@@ -14856,9 +14856,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ComEd";
+			name = "Stage-ComEd";
 		};
-		67D5630824ED9DD500852551 /* Staging-ComEd */ = {
+		67D5630824ED9DD500852551 /* Stage-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 398873D6C240B941FE58BD6F /* Pods-EUMobileUITests.staging-comed.xcconfig */;
 			buildSettings = {
@@ -14890,9 +14890,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ComEd";
+			name = "Stage-ComEd";
 		};
-		67D5630924ED9DD500852551 /* Staging-ComEd */ = {
+		67D5630924ED9DD500852551 /* Stage-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C1F24379D20CF9BB17C3824D /* Pods-EUMobile-Watch.staging-comed.xcconfig */;
 			buildSettings = {
@@ -14927,9 +14927,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ComEd";
+			name = "Stage-ComEd";
 		};
-		67D5630A24ED9DD500852551 /* Staging-ComEd */ = {
+		67D5630A24ED9DD500852551 /* Stage-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0EF447ACA6C432A81FCE83DA /* Pods-EUMobile-Watch Extension.staging-comed.xcconfig */;
 			buildSettings = {
@@ -14963,9 +14963,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-ComEd";
+			name = "Stage-ComEd";
 		};
-		67D5631124ED9DD900852551 /* Production Beta-ComEd */ = {
+		67D5631124ED9DD900852551 /* ProdBeta-ComEd */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
@@ -15049,9 +15049,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production Beta-ComEd";
+			name = "ProdBeta-ComEd";
 		};
-		67D5631224ED9DD900852551 /* Production Beta-ComEd */ = {
+		67D5631224ED9DD900852551 /* ProdBeta-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F45940BA33DBDE3EA960224 /* Pods-EUMobile.production beta-comed.xcconfig */;
 			buildSettings = {
@@ -15094,9 +15094,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ComEd";
+			name = "ProdBeta-ComEd";
 		};
-		67D5631324ED9DD900852551 /* Production Beta-ComEd */ = {
+		67D5631324ED9DD900852551 /* ProdBeta-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E09041F4B75B5D0C735657B /* Pods-EUMobileUnitTests.production beta-comed.xcconfig */;
 			buildSettings = {
@@ -15127,9 +15127,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ComEd";
+			name = "ProdBeta-ComEd";
 		};
-		67D5631424ED9DD900852551 /* Production Beta-ComEd */ = {
+		67D5631424ED9DD900852551 /* ProdBeta-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83C3B79B7D9C7520B52D1317 /* Pods-EUMobileUITests.production beta-comed.xcconfig */;
 			buildSettings = {
@@ -15161,9 +15161,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ComEd";
+			name = "ProdBeta-ComEd";
 		};
-		67D5631524ED9DD900852551 /* Production Beta-ComEd */ = {
+		67D5631524ED9DD900852551 /* ProdBeta-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4085B06295820BCC99687BEE /* Pods-EUMobile-Watch.production beta-comed.xcconfig */;
 			buildSettings = {
@@ -15200,9 +15200,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ComEd";
+			name = "ProdBeta-ComEd";
 		};
-		67D5631624ED9DD900852551 /* Production Beta-ComEd */ = {
+		67D5631624ED9DD900852551 /* ProdBeta-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 570BBEA6012E9EECA68C7FE3 /* Pods-EUMobile-Watch Extension.production beta-comed.xcconfig */;
 			buildSettings = {
@@ -15238,9 +15238,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-ComEd";
+			name = "ProdBeta-ComEd";
 		};
-		67D5631724ED9DDB00852551 /* Production-ComEd */ = {
+		67D5631724ED9DDB00852551 /* Prod-ComEd */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
@@ -15323,9 +15323,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production-ComEd";
+			name = "Prod-ComEd";
 		};
-		67D5631824ED9DDB00852551 /* Production-ComEd */ = {
+		67D5631824ED9DDB00852551 /* Prod-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A209029245B5BAA7C5C3A29 /* Pods-EUMobile.production-comed.xcconfig */;
 			buildSettings = {
@@ -15368,9 +15368,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ComEd";
+			name = "Prod-ComEd";
 		};
-		67D5631924ED9DDB00852551 /* Production-ComEd */ = {
+		67D5631924ED9DDB00852551 /* Prod-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 77DE4F0930E16B3678E32D84 /* Pods-EUMobileUnitTests.production-comed.xcconfig */;
 			buildSettings = {
@@ -15401,9 +15401,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ComEd";
+			name = "Prod-ComEd";
 		};
-		67D5631A24ED9DDB00852551 /* Production-ComEd */ = {
+		67D5631A24ED9DDB00852551 /* Prod-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7E0C0BAF1A45B37103F0C1E /* Pods-EUMobileUITests.production-comed.xcconfig */;
 			buildSettings = {
@@ -15435,9 +15435,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ComEd";
+			name = "Prod-ComEd";
 		};
-		67D5631B24ED9DDB00852551 /* Production-ComEd */ = {
+		67D5631B24ED9DDB00852551 /* Prod-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB7090464872325DDE88E994 /* Pods-EUMobile-Watch.production-comed.xcconfig */;
 			buildSettings = {
@@ -15475,9 +15475,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ComEd";
+			name = "Prod-ComEd";
 		};
-		67D5631C24ED9DDB00852551 /* Production-ComEd */ = {
+		67D5631C24ED9DDB00852551 /* Prod-ComEd */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E55D391D3FAF0A192D506A6E /* Pods-EUMobile-Watch Extension.production-comed.xcconfig */;
 			buildSettings = {
@@ -15514,7 +15514,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production-ComEd";
+			name = "Prod-ComEd";
 		};
 		9CEB30CF22612D8500DD725C /* Automation-BGE */ = {
 			isa = XCBuildConfiguration;
@@ -15754,7 +15754,7 @@
 			};
 			name = "Automation-BGE";
 		};
-		B58B5AE81E4E28740051FD5F /* Production Beta-BGE */ = {
+		B58B5AE81E4E28740051FD5F /* ProdBeta-BGE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
@@ -15838,9 +15838,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Production Beta-BGE";
+			name = "ProdBeta-BGE";
 		};
-		B58B5AEB1E4E28740051FD5F /* Production Beta-BGE */ = {
+		B58B5AEB1E4E28740051FD5F /* ProdBeta-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65A34083A174EA78549ACFDB /* Pods-EUMobile.production beta-bge.xcconfig */;
 			buildSettings = {
@@ -15883,9 +15883,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-BGE";
+			name = "ProdBeta-BGE";
 		};
-		B58B5AF61E51497B0051FD5F /* Staging-BGE */ = {
+		B58B5AF61E51497B0051FD5F /* Stage-BGE */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
@@ -15975,9 +15975,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Staging-BGE";
+			name = "Stage-BGE";
 		};
-		B58B5AF71E51497B0051FD5F /* Staging-BGE */ = {
+		B58B5AF71E51497B0051FD5F /* Stage-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EABA3D058CF18DEADFF4BE31 /* Pods-EUMobile.staging-bge.xcconfig */;
 			buildSettings = {
@@ -16018,9 +16018,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-BGE";
+			name = "Stage-BGE";
 		};
-		B5AC06DF1E52238900BBA4ED /* Staging-BGE */ = {
+		B5AC06DF1E52238900BBA4ED /* Stage-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FD84282033A174F03913D21 /* Pods-EUMobileUnitTests.staging-bge.xcconfig */;
 			buildSettings = {
@@ -16051,9 +16051,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Staging-BGE";
+			name = "Stage-BGE";
 		};
-		B5AC06E11E52238900BBA4ED /* Production Beta-BGE */ = {
+		B5AC06E11E52238900BBA4ED /* ProdBeta-BGE */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0F2885CE252AEDF0D4017EF5 /* Pods-EUMobileUnitTests.production beta-bge.xcconfig */;
 			buildSettings = {
@@ -16084,7 +16084,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Production Beta-BGE";
+			name = "ProdBeta-BGE";
 		};
 /* End XCBuildConfiguration section */
 
@@ -16098,33 +16098,33 @@
 				67A9870A24FD41FE00BD46E7 /* Automation-PEPCO */,
 				67D562FC24ED9DD100852551 /* Automation-ComEd */,
 				67A9867924F950F900BD46E7 /* Automation-PECO */,
-				0EB93B68202CA3C70049E7A2 /* Testing-BGE */,
-				67A986B924FD3E8B00BD46E7 /* Testing-ACE */,
-				67A986F224FD41E200BD46E7 /* Testing-DPL */,
-				67A9871024FD420400BD46E7 /* Testing-PEPCO */,
-				67D5630224ED9DD300852551 /* Testing-ComEd */,
-				67A9867F24F9510500BD46E7 /* Testing-PECO */,
-				087630E71E72F5D000FA7020 /* Staging-BGE */,
-				67A986BF24FD3E9300BD46E7 /* Staging-ACE */,
-				67A986F824FD41E900BD46E7 /* Staging-DPL */,
-				67A9871624FD420D00BD46E7 /* Staging-PEPCO */,
-				67D5630824ED9DD500852551 /* Staging-ComEd */,
-				67A9868524F9510D00BD46E7 /* Staging-PECO */,
-				087630E91E72F5D000FA7020 /* Production Beta-BGE */,
-				67A986C524FD3E9900BD46E7 /* Production Beta-ACE */,
-				67A986FE24FD41F100BD46E7 /* Production Beta-DPL */,
-				67A9871C24FD421400BD46E7 /* Production Beta-PEPCO */,
-				67D5631424ED9DD900852551 /* Production Beta-ComEd */,
-				67A9868B24F9511500BD46E7 /* Production Beta-PECO */,
-				0E13175B202B583000865819 /* Production-BGE */,
-				67A986CB24FD3E9F00BD46E7 /* Production-ACE */,
-				67A9870424FD41F600BD46E7 /* Production-DPL */,
-				67A9872224FD421C00BD46E7 /* Production-PEPCO */,
-				67D5631A24ED9DDB00852551 /* Production-ComEd */,
-				67A9869124F9511D00BD46E7 /* Production-PECO */,
+				0EB93B68202CA3C70049E7A2 /* Test-BGE */,
+				67A986B924FD3E8B00BD46E7 /* Test-ACE */,
+				67A986F224FD41E200BD46E7 /* Test-DPL */,
+				67A9871024FD420400BD46E7 /* Test-PEPCO */,
+				67D5630224ED9DD300852551 /* Test-ComEd */,
+				67A9867F24F9510500BD46E7 /* Test-PECO */,
+				087630E71E72F5D000FA7020 /* Stage-BGE */,
+				67A986BF24FD3E9300BD46E7 /* Stage-ACE */,
+				67A986F824FD41E900BD46E7 /* Stage-DPL */,
+				67A9871624FD420D00BD46E7 /* Stage-PEPCO */,
+				67D5630824ED9DD500852551 /* Stage-ComEd */,
+				67A9868524F9510D00BD46E7 /* Stage-PECO */,
+				087630E91E72F5D000FA7020 /* ProdBeta-BGE */,
+				67A986C524FD3E9900BD46E7 /* ProdBeta-ACE */,
+				67A986FE24FD41F100BD46E7 /* ProdBeta-DPL */,
+				67A9871C24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67D5631424ED9DD900852551 /* ProdBeta-ComEd */,
+				67A9868B24F9511500BD46E7 /* ProdBeta-PECO */,
+				0E13175B202B583000865819 /* Prod-BGE */,
+				67A986CB24FD3E9F00BD46E7 /* Prod-ACE */,
+				67A9870424FD41F600BD46E7 /* Prod-DPL */,
+				67A9872224FD421C00BD46E7 /* Prod-PEPCO */,
+				67D5631A24ED9DDB00852551 /* Prod-ComEd */,
+				67A9869124F9511D00BD46E7 /* Prod-PECO */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Testing-BGE";
+			defaultConfigurationName = "Test-BGE";
 		};
 		35F9DD3E2333C34200AAA2B2 /* Build configuration list for PBXNativeTarget "EUMobile-Watch Extension" */ = {
 			isa = XCConfigurationList;
@@ -16135,33 +16135,33 @@
 				67A9870C24FD41FE00BD46E7 /* Automation-PEPCO */,
 				67D562FE24ED9DD100852551 /* Automation-ComEd */,
 				67A9867B24F950F900BD46E7 /* Automation-PECO */,
-				35F9DD402333C34200AAA2B2 /* Testing-BGE */,
-				67A986BB24FD3E8B00BD46E7 /* Testing-ACE */,
-				67A986F424FD41E200BD46E7 /* Testing-DPL */,
-				67A9871224FD420400BD46E7 /* Testing-PEPCO */,
-				67D5630424ED9DD300852551 /* Testing-ComEd */,
-				67A9868124F9510500BD46E7 /* Testing-PECO */,
-				35F9DD412333C34200AAA2B2 /* Staging-BGE */,
-				67A986C124FD3E9300BD46E7 /* Staging-ACE */,
-				67A986FA24FD41E900BD46E7 /* Staging-DPL */,
-				67A9871824FD420D00BD46E7 /* Staging-PEPCO */,
-				67D5630A24ED9DD500852551 /* Staging-ComEd */,
-				67A9868724F9510D00BD46E7 /* Staging-PECO */,
-				35F9DD432333C34200AAA2B2 /* Production Beta-BGE */,
-				67A986C724FD3E9900BD46E7 /* Production Beta-ACE */,
-				67A9870024FD41F100BD46E7 /* Production Beta-DPL */,
-				67A9871E24FD421400BD46E7 /* Production Beta-PEPCO */,
-				67D5631624ED9DD900852551 /* Production Beta-ComEd */,
-				67A9868D24F9511500BD46E7 /* Production Beta-PECO */,
-				35F9DD442333C34200AAA2B2 /* Production-BGE */,
-				67A986CD24FD3E9F00BD46E7 /* Production-ACE */,
-				67A9870624FD41F600BD46E7 /* Production-DPL */,
-				67A9872424FD421C00BD46E7 /* Production-PEPCO */,
-				67D5631C24ED9DDB00852551 /* Production-ComEd */,
-				67A9869324F9511D00BD46E7 /* Production-PECO */,
+				35F9DD402333C34200AAA2B2 /* Test-BGE */,
+				67A986BB24FD3E8B00BD46E7 /* Test-ACE */,
+				67A986F424FD41E200BD46E7 /* Test-DPL */,
+				67A9871224FD420400BD46E7 /* Test-PEPCO */,
+				67D5630424ED9DD300852551 /* Test-ComEd */,
+				67A9868124F9510500BD46E7 /* Test-PECO */,
+				35F9DD412333C34200AAA2B2 /* Stage-BGE */,
+				67A986C124FD3E9300BD46E7 /* Stage-ACE */,
+				67A986FA24FD41E900BD46E7 /* Stage-DPL */,
+				67A9871824FD420D00BD46E7 /* Stage-PEPCO */,
+				67D5630A24ED9DD500852551 /* Stage-ComEd */,
+				67A9868724F9510D00BD46E7 /* Stage-PECO */,
+				35F9DD432333C34200AAA2B2 /* ProdBeta-BGE */,
+				67A986C724FD3E9900BD46E7 /* ProdBeta-ACE */,
+				67A9870024FD41F100BD46E7 /* ProdBeta-DPL */,
+				67A9871E24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67D5631624ED9DD900852551 /* ProdBeta-ComEd */,
+				67A9868D24F9511500BD46E7 /* ProdBeta-PECO */,
+				35F9DD442333C34200AAA2B2 /* Prod-BGE */,
+				67A986CD24FD3E9F00BD46E7 /* Prod-ACE */,
+				67A9870624FD41F600BD46E7 /* Prod-DPL */,
+				67A9872424FD421C00BD46E7 /* Prod-PEPCO */,
+				67D5631C24ED9DDB00852551 /* Prod-ComEd */,
+				67A9869324F9511D00BD46E7 /* Prod-PECO */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Testing-BGE";
+			defaultConfigurationName = "Test-BGE";
 		};
 		35F9DD462333C34200AAA2B2 /* Build configuration list for PBXNativeTarget "EUMobile-Watch" */ = {
 			isa = XCConfigurationList;
@@ -16172,33 +16172,33 @@
 				67A9870B24FD41FE00BD46E7 /* Automation-PEPCO */,
 				67D562FD24ED9DD100852551 /* Automation-ComEd */,
 				67A9867A24F950F900BD46E7 /* Automation-PECO */,
-				35F9DD482333C34200AAA2B2 /* Testing-BGE */,
-				67A986BA24FD3E8B00BD46E7 /* Testing-ACE */,
-				67A986F324FD41E200BD46E7 /* Testing-DPL */,
-				67A9871124FD420400BD46E7 /* Testing-PEPCO */,
-				67D5630324ED9DD300852551 /* Testing-ComEd */,
-				67A9868024F9510500BD46E7 /* Testing-PECO */,
-				35F9DD492333C34200AAA2B2 /* Staging-BGE */,
-				67A986C024FD3E9300BD46E7 /* Staging-ACE */,
-				67A986F924FD41E900BD46E7 /* Staging-DPL */,
-				67A9871724FD420D00BD46E7 /* Staging-PEPCO */,
-				67D5630924ED9DD500852551 /* Staging-ComEd */,
-				67A9868624F9510D00BD46E7 /* Staging-PECO */,
-				35F9DD4B2333C34200AAA2B2 /* Production Beta-BGE */,
-				67A986C624FD3E9900BD46E7 /* Production Beta-ACE */,
-				67A986FF24FD41F100BD46E7 /* Production Beta-DPL */,
-				67A9871D24FD421400BD46E7 /* Production Beta-PEPCO */,
-				67D5631524ED9DD900852551 /* Production Beta-ComEd */,
-				67A9868C24F9511500BD46E7 /* Production Beta-PECO */,
-				35F9DD4C2333C34200AAA2B2 /* Production-BGE */,
-				67A986CC24FD3E9F00BD46E7 /* Production-ACE */,
-				67A9870524FD41F600BD46E7 /* Production-DPL */,
-				67A9872324FD421C00BD46E7 /* Production-PEPCO */,
-				67D5631B24ED9DDB00852551 /* Production-ComEd */,
-				67A9869224F9511D00BD46E7 /* Production-PECO */,
+				35F9DD482333C34200AAA2B2 /* Test-BGE */,
+				67A986BA24FD3E8B00BD46E7 /* Test-ACE */,
+				67A986F324FD41E200BD46E7 /* Test-DPL */,
+				67A9871124FD420400BD46E7 /* Test-PEPCO */,
+				67D5630324ED9DD300852551 /* Test-ComEd */,
+				67A9868024F9510500BD46E7 /* Test-PECO */,
+				35F9DD492333C34200AAA2B2 /* Stage-BGE */,
+				67A986C024FD3E9300BD46E7 /* Stage-ACE */,
+				67A986F924FD41E900BD46E7 /* Stage-DPL */,
+				67A9871724FD420D00BD46E7 /* Stage-PEPCO */,
+				67D5630924ED9DD500852551 /* Stage-ComEd */,
+				67A9868624F9510D00BD46E7 /* Stage-PECO */,
+				35F9DD4B2333C34200AAA2B2 /* ProdBeta-BGE */,
+				67A986C624FD3E9900BD46E7 /* ProdBeta-ACE */,
+				67A986FF24FD41F100BD46E7 /* ProdBeta-DPL */,
+				67A9871D24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67D5631524ED9DD900852551 /* ProdBeta-ComEd */,
+				67A9868C24F9511500BD46E7 /* ProdBeta-PECO */,
+				35F9DD4C2333C34200AAA2B2 /* Prod-BGE */,
+				67A986CC24FD3E9F00BD46E7 /* Prod-ACE */,
+				67A9870524FD41F600BD46E7 /* Prod-DPL */,
+				67A9872324FD421C00BD46E7 /* Prod-PEPCO */,
+				67D5631B24ED9DDB00852551 /* Prod-ComEd */,
+				67A9869224F9511D00BD46E7 /* Prod-PECO */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Testing-BGE";
+			defaultConfigurationName = "Test-BGE";
 		};
 		B58B5ABC1E4E28740051FD5F /* Build configuration list for PBXProject "Mobile" */ = {
 			isa = XCConfigurationList;
@@ -16209,33 +16209,33 @@
 				67A9870724FD41FE00BD46E7 /* Automation-PEPCO */,
 				67D562F924ED9DD100852551 /* Automation-ComEd */,
 				67A9867624F950F900BD46E7 /* Automation-PECO */,
-				0EB93B5E202CA3C70049E7A2 /* Testing-BGE */,
-				67A986B624FD3E8B00BD46E7 /* Testing-ACE */,
-				67A986EF24FD41E200BD46E7 /* Testing-DPL */,
-				67A9870D24FD420400BD46E7 /* Testing-PEPCO */,
-				67D562FF24ED9DD300852551 /* Testing-ComEd */,
-				67A9867C24F9510500BD46E7 /* Testing-PECO */,
-				B58B5AF61E51497B0051FD5F /* Staging-BGE */,
-				67A986BC24FD3E9300BD46E7 /* Staging-ACE */,
-				67A986F524FD41E900BD46E7 /* Staging-DPL */,
-				67A9871324FD420D00BD46E7 /* Staging-PEPCO */,
-				67D5630524ED9DD500852551 /* Staging-ComEd */,
-				67A9868224F9510D00BD46E7 /* Staging-PECO */,
-				B58B5AE81E4E28740051FD5F /* Production Beta-BGE */,
-				67A986C224FD3E9900BD46E7 /* Production Beta-ACE */,
-				67A986FB24FD41F100BD46E7 /* Production Beta-DPL */,
-				67A9871924FD421400BD46E7 /* Production Beta-PEPCO */,
-				67D5631124ED9DD900852551 /* Production Beta-ComEd */,
-				67A9868824F9511500BD46E7 /* Production Beta-PECO */,
-				0E131751202B583000865819 /* Production-BGE */,
-				67A986C824FD3E9F00BD46E7 /* Production-ACE */,
-				67A9870124FD41F600BD46E7 /* Production-DPL */,
-				67A9871F24FD421C00BD46E7 /* Production-PEPCO */,
-				67D5631724ED9DDB00852551 /* Production-ComEd */,
-				67A9868E24F9511D00BD46E7 /* Production-PECO */,
+				0EB93B5E202CA3C70049E7A2 /* Test-BGE */,
+				67A986B624FD3E8B00BD46E7 /* Test-ACE */,
+				67A986EF24FD41E200BD46E7 /* Test-DPL */,
+				67A9870D24FD420400BD46E7 /* Test-PEPCO */,
+				67D562FF24ED9DD300852551 /* Test-ComEd */,
+				67A9867C24F9510500BD46E7 /* Test-PECO */,
+				B58B5AF61E51497B0051FD5F /* Stage-BGE */,
+				67A986BC24FD3E9300BD46E7 /* Stage-ACE */,
+				67A986F524FD41E900BD46E7 /* Stage-DPL */,
+				67A9871324FD420D00BD46E7 /* Stage-PEPCO */,
+				67D5630524ED9DD500852551 /* Stage-ComEd */,
+				67A9868224F9510D00BD46E7 /* Stage-PECO */,
+				B58B5AE81E4E28740051FD5F /* ProdBeta-BGE */,
+				67A986C224FD3E9900BD46E7 /* ProdBeta-ACE */,
+				67A986FB24FD41F100BD46E7 /* ProdBeta-DPL */,
+				67A9871924FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67D5631124ED9DD900852551 /* ProdBeta-ComEd */,
+				67A9868824F9511500BD46E7 /* ProdBeta-PECO */,
+				0E131751202B583000865819 /* Prod-BGE */,
+				67A986C824FD3E9F00BD46E7 /* Prod-ACE */,
+				67A9870124FD41F600BD46E7 /* Prod-DPL */,
+				67A9871F24FD421C00BD46E7 /* Prod-PEPCO */,
+				67D5631724ED9DDB00852551 /* Prod-ComEd */,
+				67A9868E24F9511D00BD46E7 /* Prod-PECO */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Testing-BGE";
+			defaultConfigurationName = "Test-BGE";
 		};
 		B58B5AE91E4E28740051FD5F /* Build configuration list for PBXNativeTarget "EUMobile" */ = {
 			isa = XCConfigurationList;
@@ -16246,33 +16246,33 @@
 				67A9870824FD41FE00BD46E7 /* Automation-PEPCO */,
 				67D562FA24ED9DD100852551 /* Automation-ComEd */,
 				67A9867724F950F900BD46E7 /* Automation-PECO */,
-				0EB93B5F202CA3C70049E7A2 /* Testing-BGE */,
-				67A986B724FD3E8B00BD46E7 /* Testing-ACE */,
-				67A986F024FD41E200BD46E7 /* Testing-DPL */,
-				67A9870E24FD420400BD46E7 /* Testing-PEPCO */,
-				67D5630024ED9DD300852551 /* Testing-ComEd */,
-				67A9867D24F9510500BD46E7 /* Testing-PECO */,
-				B58B5AF71E51497B0051FD5F /* Staging-BGE */,
-				67A986BD24FD3E9300BD46E7 /* Staging-ACE */,
-				67A986F624FD41E900BD46E7 /* Staging-DPL */,
-				67A9871424FD420D00BD46E7 /* Staging-PEPCO */,
-				67D5630624ED9DD500852551 /* Staging-ComEd */,
-				67A9868324F9510D00BD46E7 /* Staging-PECO */,
-				B58B5AEB1E4E28740051FD5F /* Production Beta-BGE */,
-				67A986C324FD3E9900BD46E7 /* Production Beta-ACE */,
-				67A986FC24FD41F100BD46E7 /* Production Beta-DPL */,
-				67A9871A24FD421400BD46E7 /* Production Beta-PEPCO */,
-				67D5631224ED9DD900852551 /* Production Beta-ComEd */,
-				67A9868924F9511500BD46E7 /* Production Beta-PECO */,
-				0E131752202B583000865819 /* Production-BGE */,
-				67A986C924FD3E9F00BD46E7 /* Production-ACE */,
-				67A9870224FD41F600BD46E7 /* Production-DPL */,
-				67A9872024FD421C00BD46E7 /* Production-PEPCO */,
-				67D5631824ED9DDB00852551 /* Production-ComEd */,
-				67A9868F24F9511D00BD46E7 /* Production-PECO */,
+				0EB93B5F202CA3C70049E7A2 /* Test-BGE */,
+				67A986B724FD3E8B00BD46E7 /* Test-ACE */,
+				67A986F024FD41E200BD46E7 /* Test-DPL */,
+				67A9870E24FD420400BD46E7 /* Test-PEPCO */,
+				67D5630024ED9DD300852551 /* Test-ComEd */,
+				67A9867D24F9510500BD46E7 /* Test-PECO */,
+				B58B5AF71E51497B0051FD5F /* Stage-BGE */,
+				67A986BD24FD3E9300BD46E7 /* Stage-ACE */,
+				67A986F624FD41E900BD46E7 /* Stage-DPL */,
+				67A9871424FD420D00BD46E7 /* Stage-PEPCO */,
+				67D5630624ED9DD500852551 /* Stage-ComEd */,
+				67A9868324F9510D00BD46E7 /* Stage-PECO */,
+				B58B5AEB1E4E28740051FD5F /* ProdBeta-BGE */,
+				67A986C324FD3E9900BD46E7 /* ProdBeta-ACE */,
+				67A986FC24FD41F100BD46E7 /* ProdBeta-DPL */,
+				67A9871A24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67D5631224ED9DD900852551 /* ProdBeta-ComEd */,
+				67A9868924F9511500BD46E7 /* ProdBeta-PECO */,
+				0E131752202B583000865819 /* Prod-BGE */,
+				67A986C924FD3E9F00BD46E7 /* Prod-ACE */,
+				67A9870224FD41F600BD46E7 /* Prod-DPL */,
+				67A9872024FD421C00BD46E7 /* Prod-PEPCO */,
+				67D5631824ED9DDB00852551 /* Prod-ComEd */,
+				67A9868F24F9511D00BD46E7 /* Prod-PECO */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Testing-BGE";
+			defaultConfigurationName = "Test-BGE";
 		};
 		B5AC06DC1E52238900BBA4ED /* Build configuration list for PBXNativeTarget "EUMobileUnitTests" */ = {
 			isa = XCConfigurationList;
@@ -16283,33 +16283,33 @@
 				67A9870924FD41FE00BD46E7 /* Automation-PEPCO */,
 				67D562FB24ED9DD100852551 /* Automation-ComEd */,
 				67A9867824F950F900BD46E7 /* Automation-PECO */,
-				0EB93B65202CA3C70049E7A2 /* Testing-BGE */,
-				67A986B824FD3E8B00BD46E7 /* Testing-ACE */,
-				67A986F124FD41E200BD46E7 /* Testing-DPL */,
-				67A9870F24FD420400BD46E7 /* Testing-PEPCO */,
-				67D5630124ED9DD300852551 /* Testing-ComEd */,
-				67A9867E24F9510500BD46E7 /* Testing-PECO */,
-				B5AC06DF1E52238900BBA4ED /* Staging-BGE */,
-				67A986BE24FD3E9300BD46E7 /* Staging-ACE */,
-				67A986F724FD41E900BD46E7 /* Staging-DPL */,
-				67A9871524FD420D00BD46E7 /* Staging-PEPCO */,
-				67D5630724ED9DD500852551 /* Staging-ComEd */,
-				67A9868424F9510D00BD46E7 /* Staging-PECO */,
-				B5AC06E11E52238900BBA4ED /* Production Beta-BGE */,
-				67A986C424FD3E9900BD46E7 /* Production Beta-ACE */,
-				67A986FD24FD41F100BD46E7 /* Production Beta-DPL */,
-				67A9871B24FD421400BD46E7 /* Production Beta-PEPCO */,
-				67D5631324ED9DD900852551 /* Production Beta-ComEd */,
-				67A9868A24F9511500BD46E7 /* Production Beta-PECO */,
-				0E131758202B583000865819 /* Production-BGE */,
-				67A986CA24FD3E9F00BD46E7 /* Production-ACE */,
-				67A9870324FD41F600BD46E7 /* Production-DPL */,
-				67A9872124FD421C00BD46E7 /* Production-PEPCO */,
-				67D5631924ED9DDB00852551 /* Production-ComEd */,
-				67A9869024F9511D00BD46E7 /* Production-PECO */,
+				0EB93B65202CA3C70049E7A2 /* Test-BGE */,
+				67A986B824FD3E8B00BD46E7 /* Test-ACE */,
+				67A986F124FD41E200BD46E7 /* Test-DPL */,
+				67A9870F24FD420400BD46E7 /* Test-PEPCO */,
+				67D5630124ED9DD300852551 /* Test-ComEd */,
+				67A9867E24F9510500BD46E7 /* Test-PECO */,
+				B5AC06DF1E52238900BBA4ED /* Stage-BGE */,
+				67A986BE24FD3E9300BD46E7 /* Stage-ACE */,
+				67A986F724FD41E900BD46E7 /* Stage-DPL */,
+				67A9871524FD420D00BD46E7 /* Stage-PEPCO */,
+				67D5630724ED9DD500852551 /* Stage-ComEd */,
+				67A9868424F9510D00BD46E7 /* Stage-PECO */,
+				B5AC06E11E52238900BBA4ED /* ProdBeta-BGE */,
+				67A986C424FD3E9900BD46E7 /* ProdBeta-ACE */,
+				67A986FD24FD41F100BD46E7 /* ProdBeta-DPL */,
+				67A9871B24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67D5631324ED9DD900852551 /* ProdBeta-ComEd */,
+				67A9868A24F9511500BD46E7 /* ProdBeta-PECO */,
+				0E131758202B583000865819 /* Prod-BGE */,
+				67A986CA24FD3E9F00BD46E7 /* Prod-ACE */,
+				67A9870324FD41F600BD46E7 /* Prod-DPL */,
+				67A9872124FD421C00BD46E7 /* Prod-PEPCO */,
+				67D5631924ED9DDB00852551 /* Prod-ComEd */,
+				67A9869024F9511D00BD46E7 /* Prod-PECO */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Testing-BGE";
+			defaultConfigurationName = "Test-BGE";
 		};
 /* End XCConfigurationList section */
 
