@@ -126,7 +126,6 @@ struct InfoPlist: Codable {
         case appCenterID = "App Center ID"
         case buildFlavor = "Build Flavor"
         case environmentTier = "Environment Tier"
-        case projectPrefix = "Project Environment Prefix"
     }
 }
 
@@ -143,7 +142,6 @@ struct Environment {
     let oAuthEndpoint: String
     let paymentusUrl: String
     let sharepointBaseURL: String
-    let projectPrefix: String
     
     var clientSecret: String {
         var id = ""
@@ -190,7 +188,6 @@ struct Environment {
             gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain
             appCenterId = infoPlist.appCenterID
-            projectPrefix = infoPlist.projectPrefix
         } catch {
             fatalError("Could not get data from plist: \(error)")
         }
