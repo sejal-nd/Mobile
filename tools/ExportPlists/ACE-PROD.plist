@@ -11,7 +11,7 @@
 		<key>com.ifactorconsulting.ace</key>
 		<string>ACE App Store</string>
 		<key>com.ifactorconsulting.ace.watchkitapp</key>
-		<string>ACE WatchKit App Store</string>
+		<string>ACE Watchkit App Store</string>
 		<key>com.ifactorconsulting.ace.watchkitapp.watchkitextension</key>
 		<string>ACE Watchkit Extension App Store</string>
 	</dict>
