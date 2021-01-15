@@ -175,6 +175,13 @@ struct SmartThermostatDeviceSchedule: Codable {
     let returnInfo: SmartThermostatPeriodInfo
     let sleepInfo: SmartThermostatPeriodInfo
     
+    enum CodingKeys: String, CodingKey {
+        case wakeInfo = "wake"
+        case leaveInfo = "leave"
+        case returnInfo = "return"
+        case sleepInfo = "sleep"
+    }
+    
     init(wakeInfo: SmartThermostatPeriodInfo,
          leaveInfo: SmartThermostatPeriodInfo,
          returnInfo: SmartThermostatPeriodInfo,
