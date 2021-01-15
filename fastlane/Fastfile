@@ -16,7 +16,7 @@
 skip_docs # skip autogenerating the README.md, we are manually writing it
 
 default_platform(:ios)
-  desc "Generate new screenshots, or upload a pre-built IPA to App Store"
+  desc "Generate new screenshots, or upload a pre-built IPA to the App Store"
 platform :ios do
 
   lane :screenshots do
@@ -28,21 +28,26 @@ platform :ios do
     )
   end
 
-  lane :uploadBuild do
-    update_fastlane
+  platform :ios do |options|
+    lane :uploadBuild do
+      update_fastlane
 
-    deliver(
-      app_identifier: ENV["APP_IDENTIFIER"],
-      ipa: ENV["IPA_PATH"],
-      username: "e20600@exelonds.com",
-      submit_for_review: false,
-      force: true,
-      metadata_path: ENV["METADATA_PATH"],
-      screenshots_path: ENV["SCREENSHOTS_PATH"],
-    )
+      deliver(
+      #   api_key_path: options[:api_key_path],
+        app_identifier: options[:bundle_id],
+        ipa: options[:ipa_path],
+        team_id: "YU7Y757VB5",
+        submit_for_review: false,
+        skip_screenshots: true,
+        skip_metadata: true,
+        skip_app_version_update: true,
+        run_precheck_before_submit: false,
+        precheck_include_in_app_purchases: false,
+        force: true
+      )
 
+    end
   end
-end
 
 platform :ios do
   desc "Refresh DSYMS"
