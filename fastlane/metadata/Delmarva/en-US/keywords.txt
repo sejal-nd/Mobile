@@ -1,1 +1,0 @@
-utility,electric,outage,report,restoration,delaware,maryland,storm,energy
