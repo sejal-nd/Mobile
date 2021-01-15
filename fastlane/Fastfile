@@ -33,7 +33,7 @@ platform :ios do
       update_fastlane
 
       deliver(
-      #   api_key_path: options[:api_key_path],
+        api_key_path: options[:api_key_path],
         app_identifier: options[:bundle_id],
         ipa: options[:ipa_path],
         team_id: "YU7Y757VB5",
