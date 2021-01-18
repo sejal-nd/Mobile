@@ -24,7 +24,7 @@ final class EnergyWiseRewardsViewController: DismissableFormSheetViewController 
     // MARK: - View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Energy Wise Rewards", comment: "")
+        title = NSLocalizedString("Adjust Thermostat", comment: "")
         styleViews()
         energyWiseRewardsInformationLabel.text = viewModel.energyWiseRewardsInformation
         adjustThermostatButton.rx.touchUpInside.asDriver()
