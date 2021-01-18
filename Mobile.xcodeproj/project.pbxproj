@@ -336,6 +336,11 @@
 		675F4E2F24B4DB3500A828F9 /* AnonOutageStatusMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4E2E24B4DB3500A828F9 /* AnonOutageStatusMock.json */; };
 		675F4E3C24B4DC1900A828F9 /* NewMockDataKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4E3B24B4DC1900A828F9 /* NewMockDataKey.swift */; };
 		676279EF247DB11100A57FBC /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 676279EE247DB11100A57FBC /* TermPolicies.html */; };
+		676434CB25AF692600DA6448 /* DebugMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434C925AF692600DA6448 /* DebugMenu.swift */; };
+		676434CC25AF692600DA6448 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434CA25AF692600DA6448 /* InfoLabel.swift */; };
+		676434D425AF6D7200DA6448 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434D325AF6D7200DA6448 /* Bundle+Version.swift */; };
+		676434DD25AF702800DA6448 /* ProjectURLSuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */; };
+		676434E425AF703C00DA6448 /* ProjectURLSuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */; };
 		67893A9724DB1E26000143D6 /* GameService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893A9624DB1E26000143D6 /* GameService+Rx.swift */; };
 		67893AB024DB248C000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
 		67893ABD24DB2F9B000143D6 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893ABC24DB2F9B000143D6 /* AlertService.swift */; };
@@ -1606,6 +1611,10 @@
 		675F4E2E24B4DB3500A828F9 /* AnonOutageStatusMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AnonOutageStatusMock.json; sourceTree = "<group>"; };
 		675F4E3B24B4DC1900A828F9 /* NewMockDataKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMockDataKey.swift; sourceTree = "<group>"; };
 		676279EE247DB11100A57FBC /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
+		676434C925AF692600DA6448 /* DebugMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugMenu.swift; sourceTree = "<group>"; };
+		676434CA25AF692600DA6448 /* InfoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
+		676434D325AF6D7200DA6448 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
+		676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectURLSuffix.swift; sourceTree = "<group>"; };
 		67893A9624DB1E26000143D6 /* GameService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameService+Rx.swift"; sourceTree = "<group>"; };
 		67893AAF24DB248C000143D6 /* DailyUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
 		67893ABC24DB2F9B000143D6 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
@@ -2759,6 +2768,7 @@
 				35A2B88324A1E092004B38BC /* Login.storyboard */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
+				676434C825AF692600DA6448 /* Debug Menu */,
 				35CEB01C230D84CA00366440 /* Splash Screen */,
 				352B8D9C230D7449007F8CEE /* Login */,
 				9C153DB522E8F410002DA062 /* Registration */,
@@ -3885,6 +3895,16 @@
 			path = "Mock JSONS";
 			sourceTree = "<group>";
 		};
+		676434C825AF692600DA6448 /* Debug Menu */ = {
+			isa = PBXGroup;
+			children = (
+				676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */,
+				676434C925AF692600DA6448 /* DebugMenu.swift */,
+				676434CA25AF692600DA6448 /* InfoLabel.swift */,
+			);
+			path = "Debug Menu";
+			sourceTree = "<group>";
+		};
 		67A9869424F9683C00BD46E7 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
@@ -4354,6 +4374,7 @@
 				359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */,
 				9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */,
 				C300793B2436669F00A9BEB0 /* LocalizedString.swift */,
+				676434D325AF6D7200DA6448 /* Bundle+Version.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5062,7 +5083,6 @@
 				C3E31E622579472200D7FDAA /* Embed Frameworks */,
 				B58B5ABF1E4E28740051FD5F /* Resources */,
 				67D5632E24EECD0000852551 /* Set Build Number */,
-				676D1FF624F6D47400D41035 /* Set Project Prefix */,
 				F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */,
 				35F9DD4D2333C34200AAA2B2 /* Embed Watch Content */,
 				0E9BB58425827FAF00EF6BE3 /* Remove any i386 or x86_64 architectures from linked frameworks */,
@@ -5667,24 +5687,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		676D1FF624F6D47400D41035 /* Set Project Prefix */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Set Project Prefix";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Possible Project Specific Environments\ndeclare -a POSSIBLE_CONFIGURATIONS=(\"phi\" \"billing\" \"payments\" \"mma\" \"hotfix\")\n\n# Get current git branch\ngit_version=$(git log -1 --format=\"%h\")\ngit_branch=$(git symbolic-ref --short -q HEAD)\n\necho $git_branch\n# Entry in plist to be updated\nplistEntryName=\"Project\\ Environment\\ Prefix\"\n\n# If git branch contains substring of possible project specific env's edit plist for PROJECT_PREFIX\nif [[ $git_branch == *\"phi\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /phimobile\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /phimobile\"\nelif [[ $git_branch == *\"billing\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /billing\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /billing\"\nelif [[ $git_branch == *\"payments\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /paymentenhancements\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /paymentenhancements\"\nelif [[ $git_branch == *\"mma\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /manage-my-account\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /manage-my-account\"\nelif [[ $git_branch == *\"hotfix\"* ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :$plistEntryName /hotfix\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  echo \"EUMobile Project Environment Prefix set: /hotfix\"\nelse\n  echo \"No Project Environment Prefix set due to git path: $git_branch\"\nfi\n";
-		};
 		67D5632E24EECD0000852551 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5938,6 +5940,7 @@
 				C3055B682538F81B000DB89C /* Wallet.swift in Sources */,
 				C3055C062538FB38000DB89C /* SubOpCo.swift in Sources */,
 				C3055B642538F81B000DB89C /* OutageStatusContainer.swift in Sources */,
+				676434E425AF703C00DA6448 /* ProjectURLSuffix.swift in Sources */,
 				C3055BE22538FB11000DB89C /* ReleaseOfInfoRequest.swift in Sources */,
 				C3055B672538F81B000DB89C /* BillingHistoryItem.swift in Sources */,
 				C3055C082538FB38000DB89C /* ShortcutItem.swift in Sources */,
@@ -6160,6 +6163,7 @@
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
 				359BDB2822D398F0007002B0 /* UIColor+Image.swift in Sources */,
+				676434D425AF6D7200DA6448 /* Bundle+Version.swift in Sources */,
 				675F4C9624AB828100A828F9 /* BillingHistoryItem.swift in Sources */,
 				35A6C6C3211C7ADE00C2A58F /* TitleTableViewCell.swift in Sources */,
 				C338280924E1BF9900F133C5 /* DateRequest.swift in Sources */,
@@ -6471,6 +6475,7 @@
 				E83F027F1FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
 				B0AD7FEE205841C80090B40D /* SequenceForEach.swift in Sources */,
 				B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				676434CC25AF692600DA6448 /* InfoLabel.swift in Sources */,
 				67D73AE2246C47EF00450B63 /* NoNetworkConnectionView.swift in Sources */,
 				B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
@@ -6562,6 +6567,7 @@
 				B06B08822226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				30A1A0D4254004EF00D18EAC /* EditAccountNickNameViewController.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				676434CB25AF692600DA6448 /* DebugMenu.swift in Sources */,
 				E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				675F4D2624AB828200A828F9 /* NetworkingError.swift in Sources */,
 				225FF85A1EC56B480079010C /* Date.swift in Sources */,
@@ -6569,6 +6575,7 @@
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				E8C453271EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
+				676434DD25AF702800DA6448 /* ProjectURLSuffix.swift in Sources */,
 				825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				67F950FC24BCA111009B5F07 /* RegistrationValidateAccountViewControllerNew.swift in Sources */,
 				673FA0FD24C8ACCA00210BCD /* DailyUsageData.swift in Sources */,

@@ -22,9 +22,10 @@ To support various development environments each OpCo has multiple schemes
 - ProdBeta
 - Production
 
-## Git Branch -> Base URL Path Prefix
+## Project URL Path
 
-Depending what git branch you are on will determine the value for  `Project Environment Prefix` and therefore the Azure base URL.  This is managed by a build phase: `Set Project Prefix`
+Navigate to the Debug Menu on the landing screen then select the desired project in the `Project URL Suffix` menu.  Then restart the app.
+
 | Git Branch   |    URL Prefix                        |
 | -------------- | ------------------------------- |
 |   phi/             |    /phimobile                        |
@@ -32,8 +33,6 @@ Depending what git branch you are on will determine the value for  `Project Envi
 |   payments/  |    /paymentenhancements  |
 |   mma/          |    /manage-my-account      |
 |   hotfix/         |    /hotfix                               |
-
-Example base URL in git branch: `phi/feature/primaryButton` building for test tier with OpCo ACE would result in the base URL:  `http://xze-e-n-eudapi-ace-t-ams-01.azure-api.net/phimobile/mobile/custom`
 
 ## Third Party Libraries
 
