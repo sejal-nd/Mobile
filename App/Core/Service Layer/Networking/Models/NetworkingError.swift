@@ -235,7 +235,7 @@ extension NetworkingError: LocalizedError {
         case .tooManyPerAccount:
             return NSLocalizedString("Unable to process electronic payments", comment: "Error title")
         case .accountLookupNotFound:
-            return NSLocalizedString("", comment: "Error title")
+            return NSLocalizedString("Invalid Information", comment: "Error title")
         case .temporaryPasswordExpired:
             return NSLocalizedString("", comment: "Error title")
         }
@@ -335,7 +335,7 @@ extension NetworkingError: LocalizedError {
         case .tooManyPerAccount:
             return NSLocalizedString("Electronic payments for your utility account are not available at this time due to overuse. Please contact \(AccountsStore.shared.accountOpco.displayString) customer service for further assistance.", comment: "Error description")
         case .accountLookupNotFound:
-            return NSLocalizedString("Invalid Information - The information entered does not match our records. Please try again", comment: "Error Description")
+            return NSLocalizedString("The information entered does not match our records. Please try again", comment: "Error Description")
         case .temporaryPasswordExpired:
             return NSLocalizedString("Your temporary password has expired. Please request a new temporary password.", comment: "Error description")
         }
