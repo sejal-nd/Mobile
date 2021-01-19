@@ -37,6 +37,13 @@ default_platform(:ios)
         force: true
       )
 
+      version = get_version_number(
+        target: "EUMobile"
+      )
+
+      add_git_tag(
+        tag: version,
+        includes_lane: false
+      )
     end
   end
-  
