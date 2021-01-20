@@ -20,5 +20,7 @@ public struct Wallet: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.walletItems = try container.decode([WalletItem].self,
                                            forKey: .walletItems)
+        walletItems = walletItems.sorted { $0.bankOrCard.sortOrder < $1.bankOrCard.sortOrder }
+                                   .sorted { $0.isDefault && !$1.isDefault }
     }
 }
