@@ -20,13 +20,28 @@
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "087630DD1E72F5D000FA7020"
+               BuildableName = "EUMobileUITests.xctest"
+               BlueprintName = "EUMobileUITests"
+               ReferencedContainer = "container:Mobile.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "ProdBeta-DPL"
+      buildConfiguration = "Automation-Delmarva"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -50,7 +65,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "ProdBeta-DPL"
+      buildConfiguration = "Automation-Delmarva"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -71,21 +86,21 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-FIRDebugEnabled"
-            isEnabled = "NO">
+            argument = "-FIRAnalyticsDebugEnabled"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-shouldLogAPI"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-FIRDebugDisabled"
-            isEnabled = "YES">
+            argument = "-FIRAnalyticsDebugDisabled"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "ProdBeta-DPL"
+      buildConfiguration = "Automation-Delmarva"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -102,10 +117,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "ProdBeta-DPL">
+      buildConfiguration = "Automation-Delmarva">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "ProdBeta-DPL"
+      buildConfiguration = "Automation-Delmarva"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

@@ -11043,7 +11043,7 @@
 			};
 			name = "Prod-ACE";
 		};
-		67A986E924FD41DB00BD46E7 /* Automation-DPL */ = {
+		67A986E924FD41DB00BD46E7 /* Automation-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
@@ -11131,9 +11131,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Automation-DPL";
+			name = "Automation-Delmarva";
 		};
-		67A986EA24FD41DB00BD46E7 /* Automation-DPL */ = {
+		67A986EA24FD41DB00BD46E7 /* Automation-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 96F199A88F0F24BE989A8571 /* Pods-EUMobile.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11169,9 +11169,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-DPL";
+			name = "Automation-Delmarva";
 		};
-		67A986EB24FD41DB00BD46E7 /* Automation-DPL */ = {
+		67A986EB24FD41DB00BD46E7 /* Automation-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 416412C7D6C69461DFBD7462 /* Pods-EUMobileUnitTests.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11221,9 +11221,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-DPL";
+			name = "Automation-Delmarva";
 		};
-		67A986EC24FD41DB00BD46E7 /* Automation-DPL */ = {
+		67A986EC24FD41DB00BD46E7 /* Automation-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5AB78A4437B04AE4DAE79239 /* Pods-EUMobileUITests.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11275,9 +11275,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-DPL";
+			name = "Automation-Delmarva";
 		};
-		67A986ED24FD41DB00BD46E7 /* Automation-DPL */ = {
+		67A986ED24FD41DB00BD46E7 /* Automation-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F08AFD4DFE87824EC127C0F6 /* Pods-EUMobile-Watch.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11358,9 +11358,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-DPL";
+			name = "Automation-Delmarva";
 		};
-		67A986EE24FD41DB00BD46E7 /* Automation-DPL */ = {
+		67A986EE24FD41DB00BD46E7 /* Automation-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F0658711AB60AD87D4E3A63 /* Pods-EUMobile-Watch Extension.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11440,9 +11440,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-DPL";
+			name = "Automation-Delmarva";
 		};
-		67A986EF24FD41E200BD46E7 /* Test-DPL */ = {
+		67A986EF24FD41E200BD46E7 /* Test-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
@@ -11530,9 +11530,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Test-DPL";
+			name = "Test-Delmarva";
 		};
-		67A986F024FD41E200BD46E7 /* Test-DPL */ = {
+		67A986F024FD41E200BD46E7 /* Test-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C297214013AF219D8F6BC0B /* Pods-EUMobile.test-dpl.xcconfig */;
 			buildSettings = {
@@ -11570,9 +11570,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-DPL";
+			name = "Test-Delmarva";
 		};
-		67A986F124FD41E200BD46E7 /* Test-DPL */ = {
+		67A986F124FD41E200BD46E7 /* Test-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E087E0374A41CB6C262960D /* Pods-EUMobileUnitTests.test-dpl.xcconfig */;
 			buildSettings = {
@@ -11622,9 +11622,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-DPL";
+			name = "Test-Delmarva";
 		};
-		67A986F224FD41E200BD46E7 /* Test-DPL */ = {
+		67A986F224FD41E200BD46E7 /* Test-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 35FB4814A68B1B65B3BE45C8 /* Pods-EUMobileUITests.test-dpl.xcconfig */;
 			buildSettings = {
@@ -11681,9 +11681,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-DPL";
+			name = "Test-Delmarva";
 		};
-		67A986F324FD41E200BD46E7 /* Test-DPL */ = {
+		67A986F324FD41E200BD46E7 /* Test-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 557818F050678DC92D9F3593 /* Pods-EUMobile-Watch.test-dpl.xcconfig */;
 			buildSettings = {
@@ -11719,9 +11719,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-DPL";
+			name = "Test-Delmarva";
 		};
-		67A986F424FD41E200BD46E7 /* Test-DPL */ = {
+		67A986F424FD41E200BD46E7 /* Test-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 73EB2D16DB28F3B8382C1638 /* Pods-EUMobile-Watch Extension.test-dpl.xcconfig */;
 			buildSettings = {
@@ -11755,9 +11755,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-DPL";
+			name = "Test-Delmarva";
 		};
-		67A986F524FD41E900BD46E7 /* Stage-DPL */ = {
+		67A986F524FD41E900BD46E7 /* Stage-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
@@ -11847,9 +11847,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Stage-DPL";
+			name = "Stage-Delmarva";
 		};
-		67A986F624FD41E900BD46E7 /* Stage-DPL */ = {
+		67A986F624FD41E900BD46E7 /* Stage-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E5A8A407451C4F76CCE700B4 /* Pods-EUMobile.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -11887,9 +11887,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-DPL";
+			name = "Stage-Delmarva";
 		};
-		67A986F724FD41E900BD46E7 /* Stage-DPL */ = {
+		67A986F724FD41E900BD46E7 /* Stage-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1895138B3357981EFDD29E5 /* Pods-EUMobileUnitTests.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -11920,9 +11920,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-DPL";
+			name = "Stage-Delmarva";
 		};
-		67A986F824FD41E900BD46E7 /* Stage-DPL */ = {
+		67A986F824FD41E900BD46E7 /* Stage-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C825EDE97E1E1D68EAB61DE /* Pods-EUMobileUITests.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -11954,9 +11954,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-DPL";
+			name = "Stage-Delmarva";
 		};
-		67A986F924FD41E900BD46E7 /* Stage-DPL */ = {
+		67A986F924FD41E900BD46E7 /* Stage-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E3726ADD96C0D0099CCB15F /* Pods-EUMobile-Watch.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -11991,9 +11991,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-DPL";
+			name = "Stage-Delmarva";
 		};
-		67A986FA24FD41E900BD46E7 /* Stage-DPL */ = {
+		67A986FA24FD41E900BD46E7 /* Stage-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B5D1261FAC3B66881523B2C /* Pods-EUMobile-Watch Extension.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -12027,9 +12027,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-DPL";
+			name = "Stage-Delmarva";
 		};
-		67A986FB24FD41F100BD46E7 /* ProdBeta-DPL */ = {
+		67A986FB24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
@@ -12113,9 +12113,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "ProdBeta-DPL";
+			name = "ProdBeta-Delmarva";
 		};
-		67A986FC24FD41F100BD46E7 /* ProdBeta-DPL */ = {
+		67A986FC24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3426FF03A4F50E0F15A71C46 /* Pods-EUMobile.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12154,9 +12154,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-DPL";
+			name = "ProdBeta-Delmarva";
 		};
-		67A986FD24FD41F100BD46E7 /* ProdBeta-DPL */ = {
+		67A986FD24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8B2D77528B7E9B5CCCCA0588 /* Pods-EUMobileUnitTests.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12187,9 +12187,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-DPL";
+			name = "ProdBeta-Delmarva";
 		};
-		67A986FE24FD41F100BD46E7 /* ProdBeta-DPL */ = {
+		67A986FE24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8153A94D7A50381B1386C071 /* Pods-EUMobileUITests.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12221,9 +12221,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-DPL";
+			name = "ProdBeta-Delmarva";
 		};
-		67A986FF24FD41F100BD46E7 /* ProdBeta-DPL */ = {
+		67A986FF24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9AB5A5645326086EBD194E41 /* Pods-EUMobile-Watch.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12260,9 +12260,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-DPL";
+			name = "ProdBeta-Delmarva";
 		};
-		67A9870024FD41F100BD46E7 /* ProdBeta-DPL */ = {
+		67A9870024FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 012445878AA48DB87AA473DA /* Pods-EUMobile-Watch Extension.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12298,9 +12298,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-DPL";
+			name = "ProdBeta-Delmarva";
 		};
-		67A9870124FD41F600BD46E7 /* Prod-DPL */ = {
+		67A9870124FD41F600BD46E7 /* Prod-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
@@ -12383,9 +12383,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Prod-DPL";
+			name = "Prod-Delmarva";
 		};
-		67A9870224FD41F600BD46E7 /* Prod-DPL */ = {
+		67A9870224FD41F600BD46E7 /* Prod-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB7C4B350818B1402CDCA1A5 /* Pods-EUMobile.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12424,9 +12424,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-DPL";
+			name = "Prod-Delmarva";
 		};
-		67A9870324FD41F600BD46E7 /* Prod-DPL */ = {
+		67A9870324FD41F600BD46E7 /* Prod-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D54BF2EC45A1EE0B8794682F /* Pods-EUMobileUnitTests.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12457,9 +12457,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-DPL";
+			name = "Prod-Delmarva";
 		};
-		67A9870424FD41F600BD46E7 /* Prod-DPL */ = {
+		67A9870424FD41F600BD46E7 /* Prod-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1AA98D5819100D5B654E8F4E /* Pods-EUMobileUITests.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12491,9 +12491,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-DPL";
+			name = "Prod-Delmarva";
 		};
-		67A9870524FD41F600BD46E7 /* Prod-DPL */ = {
+		67A9870524FD41F600BD46E7 /* Prod-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0D6D810102B8631C03A99066 /* Pods-EUMobile-Watch.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12531,9 +12531,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-DPL";
+			name = "Prod-Delmarva";
 		};
-		67A9870624FD41F600BD46E7 /* Prod-DPL */ = {
+		67A9870624FD41F600BD46E7 /* Prod-Delmarva */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C437B943D30BBD2CEAB96CE3 /* Pods-EUMobile-Watch Extension.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12570,9 +12570,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-DPL";
+			name = "Prod-Delmarva";
 		};
-		67A9870724FD41FE00BD46E7 /* Automation-PEPCO */ = {
+		67A9870724FD41FE00BD46E7 /* Automation-Pepco */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
@@ -12660,9 +12660,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Automation-PEPCO";
+			name = "Automation-Pepco";
 		};
-		67A9870824FD41FE00BD46E7 /* Automation-PEPCO */ = {
+		67A9870824FD41FE00BD46E7 /* Automation-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E3C6B38B44B652352E21FDA /* Pods-EUMobile.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12698,9 +12698,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PEPCO";
+			name = "Automation-Pepco";
 		};
-		67A9870924FD41FE00BD46E7 /* Automation-PEPCO */ = {
+		67A9870924FD41FE00BD46E7 /* Automation-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2982725852FF6796BD1B661E /* Pods-EUMobileUnitTests.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12750,9 +12750,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PEPCO";
+			name = "Automation-Pepco";
 		};
-		67A9870A24FD41FE00BD46E7 /* Automation-PEPCO */ = {
+		67A9870A24FD41FE00BD46E7 /* Automation-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 556FF12FC61C210CB346659C /* Pods-EUMobileUITests.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12804,9 +12804,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PEPCO";
+			name = "Automation-Pepco";
 		};
-		67A9870B24FD41FE00BD46E7 /* Automation-PEPCO */ = {
+		67A9870B24FD41FE00BD46E7 /* Automation-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 50D5861B9EC07EDCDEBDB94F /* Pods-EUMobile-Watch.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12887,9 +12887,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PEPCO";
+			name = "Automation-Pepco";
 		};
-		67A9870C24FD41FE00BD46E7 /* Automation-PEPCO */ = {
+		67A9870C24FD41FE00BD46E7 /* Automation-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6AA35A7B74F9EF1C134D8787 /* Pods-EUMobile-Watch Extension.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12969,9 +12969,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PEPCO";
+			name = "Automation-Pepco";
 		};
-		67A9870D24FD420400BD46E7 /* Test-PEPCO */ = {
+		67A9870D24FD420400BD46E7 /* Test-Pepco */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
@@ -13059,9 +13059,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Test-PEPCO";
+			name = "Test-Pepco";
 		};
-		67A9870E24FD420400BD46E7 /* Test-PEPCO */ = {
+		67A9870E24FD420400BD46E7 /* Test-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E346469C997E882D81CDE35F /* Pods-EUMobile.test-pepco.xcconfig */;
 			buildSettings = {
@@ -13099,9 +13099,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-PEPCO";
+			name = "Test-Pepco";
 		};
-		67A9870F24FD420400BD46E7 /* Test-PEPCO */ = {
+		67A9870F24FD420400BD46E7 /* Test-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C813908E885550427617CFAA /* Pods-EUMobileUnitTests.test-pepco.xcconfig */;
 			buildSettings = {
@@ -13151,9 +13151,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-PEPCO";
+			name = "Test-Pepco";
 		};
-		67A9871024FD420400BD46E7 /* Test-PEPCO */ = {
+		67A9871024FD420400BD46E7 /* Test-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30BC3D32D6200634EF1DAB2C /* Pods-EUMobileUITests.test-pepco.xcconfig */;
 			buildSettings = {
@@ -13210,9 +13210,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-PEPCO";
+			name = "Test-Pepco";
 		};
-		67A9871124FD420400BD46E7 /* Test-PEPCO */ = {
+		67A9871124FD420400BD46E7 /* Test-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D23AB91103BE45B2F138BDC /* Pods-EUMobile-Watch.test-pepco.xcconfig */;
 			buildSettings = {
@@ -13248,9 +13248,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-PEPCO";
+			name = "Test-Pepco";
 		};
-		67A9871224FD420400BD46E7 /* Test-PEPCO */ = {
+		67A9871224FD420400BD46E7 /* Test-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 57CABACE71B62815B0CEA4E9 /* Pods-EUMobile-Watch Extension.test-pepco.xcconfig */;
 			buildSettings = {
@@ -13284,9 +13284,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Test-PEPCO";
+			name = "Test-Pepco";
 		};
-		67A9871324FD420D00BD46E7 /* Stage-PEPCO */ = {
+		67A9871324FD420D00BD46E7 /* Stage-Pepco */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
@@ -13376,9 +13376,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Stage-PEPCO";
+			name = "Stage-Pepco";
 		};
-		67A9871424FD420D00BD46E7 /* Stage-PEPCO */ = {
+		67A9871424FD420D00BD46E7 /* Stage-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E41D4B7BE3896ECD1FD6BCC2 /* Pods-EUMobile.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13416,9 +13416,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PEPCO";
+			name = "Stage-Pepco";
 		};
-		67A9871524FD420D00BD46E7 /* Stage-PEPCO */ = {
+		67A9871524FD420D00BD46E7 /* Stage-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C9EDA94A5E092263E0DADB4 /* Pods-EUMobileUnitTests.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13449,9 +13449,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PEPCO";
+			name = "Stage-Pepco";
 		};
-		67A9871624FD420D00BD46E7 /* Stage-PEPCO */ = {
+		67A9871624FD420D00BD46E7 /* Stage-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A2BF335D89FACBEABCD25D6 /* Pods-EUMobileUITests.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13483,9 +13483,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PEPCO";
+			name = "Stage-Pepco";
 		};
-		67A9871724FD420D00BD46E7 /* Stage-PEPCO */ = {
+		67A9871724FD420D00BD46E7 /* Stage-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB32E1EB1BBF540CF4ACABBB /* Pods-EUMobile-Watch.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13520,9 +13520,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PEPCO";
+			name = "Stage-Pepco";
 		};
-		67A9871824FD420D00BD46E7 /* Stage-PEPCO */ = {
+		67A9871824FD420D00BD46E7 /* Stage-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38210305D27493C485B997B4 /* Pods-EUMobile-Watch Extension.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13556,9 +13556,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PEPCO";
+			name = "Stage-Pepco";
 		};
-		67A9871924FD421400BD46E7 /* ProdBeta-PEPCO */ = {
+		67A9871924FD421400BD46E7 /* ProdBeta-Pepco */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
@@ -13642,9 +13642,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "ProdBeta-PEPCO";
+			name = "ProdBeta-Pepco";
 		};
-		67A9871A24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
+		67A9871A24FD421400BD46E7 /* ProdBeta-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 118010E5F4E2E915788A2F57 /* Pods-EUMobile.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13683,9 +13683,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PEPCO";
+			name = "ProdBeta-Pepco";
 		};
-		67A9871B24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
+		67A9871B24FD421400BD46E7 /* ProdBeta-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 077CBE69EDB02D291A47648F /* Pods-EUMobileUnitTests.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13716,9 +13716,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PEPCO";
+			name = "ProdBeta-Pepco";
 		};
-		67A9871C24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
+		67A9871C24FD421400BD46E7 /* ProdBeta-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D37425BB716FC2E8A1D03CFE /* Pods-EUMobileUITests.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13750,9 +13750,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PEPCO";
+			name = "ProdBeta-Pepco";
 		};
-		67A9871D24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
+		67A9871D24FD421400BD46E7 /* ProdBeta-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9B4F5E1670E9B115B0F7AF3A /* Pods-EUMobile-Watch.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13789,9 +13789,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PEPCO";
+			name = "ProdBeta-Pepco";
 		};
-		67A9871E24FD421400BD46E7 /* ProdBeta-PEPCO */ = {
+		67A9871E24FD421400BD46E7 /* ProdBeta-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BD09DCEF20106546296795F /* Pods-EUMobile-Watch Extension.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13827,9 +13827,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PEPCO";
+			name = "ProdBeta-Pepco";
 		};
-		67A9871F24FD421C00BD46E7 /* Prod-PEPCO */ = {
+		67A9871F24FD421C00BD46E7 /* Prod-Pepco */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
@@ -13912,9 +13912,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Prod-PEPCO";
+			name = "Prod-Pepco";
 		};
-		67A9872024FD421C00BD46E7 /* Prod-PEPCO */ = {
+		67A9872024FD421C00BD46E7 /* Prod-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E400A8C0015E1805A8508CEA /* Pods-EUMobile.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -13953,9 +13953,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PEPCO";
+			name = "Prod-Pepco";
 		};
-		67A9872124FD421C00BD46E7 /* Prod-PEPCO */ = {
+		67A9872124FD421C00BD46E7 /* Prod-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 162AE315BA02A4619C520495 /* Pods-EUMobileUnitTests.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -13986,9 +13986,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PEPCO";
+			name = "Prod-Pepco";
 		};
-		67A9872224FD421C00BD46E7 /* Prod-PEPCO */ = {
+		67A9872224FD421C00BD46E7 /* Prod-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2444C3C6B5136D09964CD470 /* Pods-EUMobileUITests.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -14020,9 +14020,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PEPCO";
+			name = "Prod-Pepco";
 		};
-		67A9872324FD421C00BD46E7 /* Prod-PEPCO */ = {
+		67A9872324FD421C00BD46E7 /* Prod-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7CD67AA0AEBFC45AFCF97BD /* Pods-EUMobile-Watch.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -14060,9 +14060,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PEPCO";
+			name = "Prod-Pepco";
 		};
-		67A9872424FD421C00BD46E7 /* Prod-PEPCO */ = {
+		67A9872424FD421C00BD46E7 /* Prod-Pepco */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A5F8B1D0C92421C0E157C91E /* Pods-EUMobile-Watch Extension.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -14099,7 +14099,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PEPCO";
+			name = "Prod-Pepco";
 		};
 		67D562F924ED9DD100852551 /* Automation-ComEd */ = {
 			isa = XCBuildConfiguration;
@@ -16191,32 +16191,32 @@
 			buildConfigurations = (
 				9CEB30D922612D8500DD725C /* Automation-BGE */,
 				67A986B324FD3E8500BD46E7 /* Automation-ACE */,
-				67A986EC24FD41DB00BD46E7 /* Automation-DPL */,
-				67A9870A24FD41FE00BD46E7 /* Automation-PEPCO */,
+				67A986EC24FD41DB00BD46E7 /* Automation-Delmarva */,
+				67A9870A24FD41FE00BD46E7 /* Automation-Pepco */,
 				67D562FC24ED9DD100852551 /* Automation-ComEd */,
 				67A9867924F950F900BD46E7 /* Automation-PECO */,
 				0EB93B68202CA3C70049E7A2 /* Test-BGE */,
 				67A986B924FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F224FD41E200BD46E7 /* Test-DPL */,
-				67A9871024FD420400BD46E7 /* Test-PEPCO */,
+				67A986F224FD41E200BD46E7 /* Test-Delmarva */,
+				67A9871024FD420400BD46E7 /* Test-Pepco */,
 				67D5630224ED9DD300852551 /* Test-ComEd */,
 				67A9867F24F9510500BD46E7 /* Test-PECO */,
 				087630E71E72F5D000FA7020 /* Stage-BGE */,
 				67A986BF24FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F824FD41E900BD46E7 /* Stage-DPL */,
-				67A9871624FD420D00BD46E7 /* Stage-PEPCO */,
+				67A986F824FD41E900BD46E7 /* Stage-Delmarva */,
+				67A9871624FD420D00BD46E7 /* Stage-Pepco */,
 				67D5630824ED9DD500852551 /* Stage-ComEd */,
 				67A9868524F9510D00BD46E7 /* Stage-PECO */,
 				087630E91E72F5D000FA7020 /* ProdBeta-BGE */,
 				67A986C524FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FE24FD41F100BD46E7 /* ProdBeta-DPL */,
-				67A9871C24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67A986FE24FD41F100BD46E7 /* ProdBeta-Delmarva */,
+				67A9871C24FD421400BD46E7 /* ProdBeta-Pepco */,
 				67D5631424ED9DD900852551 /* ProdBeta-ComEd */,
 				67A9868B24F9511500BD46E7 /* ProdBeta-PECO */,
 				0E13175B202B583000865819 /* Prod-BGE */,
 				67A986CB24FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870424FD41F600BD46E7 /* Prod-DPL */,
-				67A9872224FD421C00BD46E7 /* Prod-PEPCO */,
+				67A9870424FD41F600BD46E7 /* Prod-Delmarva */,
+				67A9872224FD421C00BD46E7 /* Prod-Pepco */,
 				67D5631A24ED9DDB00852551 /* Prod-ComEd */,
 				67A9869124F9511D00BD46E7 /* Prod-PECO */,
 			);
@@ -16228,32 +16228,32 @@
 			buildConfigurations = (
 				35F9DD3F2333C34200AAA2B2 /* Automation-BGE */,
 				67A986B524FD3E8500BD46E7 /* Automation-ACE */,
-				67A986EE24FD41DB00BD46E7 /* Automation-DPL */,
-				67A9870C24FD41FE00BD46E7 /* Automation-PEPCO */,
+				67A986EE24FD41DB00BD46E7 /* Automation-Delmarva */,
+				67A9870C24FD41FE00BD46E7 /* Automation-Pepco */,
 				67D562FE24ED9DD100852551 /* Automation-ComEd */,
 				67A9867B24F950F900BD46E7 /* Automation-PECO */,
 				35F9DD402333C34200AAA2B2 /* Test-BGE */,
 				67A986BB24FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F424FD41E200BD46E7 /* Test-DPL */,
-				67A9871224FD420400BD46E7 /* Test-PEPCO */,
+				67A986F424FD41E200BD46E7 /* Test-Delmarva */,
+				67A9871224FD420400BD46E7 /* Test-Pepco */,
 				67D5630424ED9DD300852551 /* Test-ComEd */,
 				67A9868124F9510500BD46E7 /* Test-PECO */,
 				35F9DD412333C34200AAA2B2 /* Stage-BGE */,
 				67A986C124FD3E9300BD46E7 /* Stage-ACE */,
-				67A986FA24FD41E900BD46E7 /* Stage-DPL */,
-				67A9871824FD420D00BD46E7 /* Stage-PEPCO */,
+				67A986FA24FD41E900BD46E7 /* Stage-Delmarva */,
+				67A9871824FD420D00BD46E7 /* Stage-Pepco */,
 				67D5630A24ED9DD500852551 /* Stage-ComEd */,
 				67A9868724F9510D00BD46E7 /* Stage-PECO */,
 				35F9DD432333C34200AAA2B2 /* ProdBeta-BGE */,
 				67A986C724FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A9870024FD41F100BD46E7 /* ProdBeta-DPL */,
-				67A9871E24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67A9870024FD41F100BD46E7 /* ProdBeta-Delmarva */,
+				67A9871E24FD421400BD46E7 /* ProdBeta-Pepco */,
 				67D5631624ED9DD900852551 /* ProdBeta-ComEd */,
 				67A9868D24F9511500BD46E7 /* ProdBeta-PECO */,
 				35F9DD442333C34200AAA2B2 /* Prod-BGE */,
 				67A986CD24FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870624FD41F600BD46E7 /* Prod-DPL */,
-				67A9872424FD421C00BD46E7 /* Prod-PEPCO */,
+				67A9870624FD41F600BD46E7 /* Prod-Delmarva */,
+				67A9872424FD421C00BD46E7 /* Prod-Pepco */,
 				67D5631C24ED9DDB00852551 /* Prod-ComEd */,
 				67A9869324F9511D00BD46E7 /* Prod-PECO */,
 			);
@@ -16265,32 +16265,32 @@
 			buildConfigurations = (
 				35F9DD472333C34200AAA2B2 /* Automation-BGE */,
 				67A986B424FD3E8500BD46E7 /* Automation-ACE */,
-				67A986ED24FD41DB00BD46E7 /* Automation-DPL */,
-				67A9870B24FD41FE00BD46E7 /* Automation-PEPCO */,
+				67A986ED24FD41DB00BD46E7 /* Automation-Delmarva */,
+				67A9870B24FD41FE00BD46E7 /* Automation-Pepco */,
 				67D562FD24ED9DD100852551 /* Automation-ComEd */,
 				67A9867A24F950F900BD46E7 /* Automation-PECO */,
 				35F9DD482333C34200AAA2B2 /* Test-BGE */,
 				67A986BA24FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F324FD41E200BD46E7 /* Test-DPL */,
-				67A9871124FD420400BD46E7 /* Test-PEPCO */,
+				67A986F324FD41E200BD46E7 /* Test-Delmarva */,
+				67A9871124FD420400BD46E7 /* Test-Pepco */,
 				67D5630324ED9DD300852551 /* Test-ComEd */,
 				67A9868024F9510500BD46E7 /* Test-PECO */,
 				35F9DD492333C34200AAA2B2 /* Stage-BGE */,
 				67A986C024FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F924FD41E900BD46E7 /* Stage-DPL */,
-				67A9871724FD420D00BD46E7 /* Stage-PEPCO */,
+				67A986F924FD41E900BD46E7 /* Stage-Delmarva */,
+				67A9871724FD420D00BD46E7 /* Stage-Pepco */,
 				67D5630924ED9DD500852551 /* Stage-ComEd */,
 				67A9868624F9510D00BD46E7 /* Stage-PECO */,
 				35F9DD4B2333C34200AAA2B2 /* ProdBeta-BGE */,
 				67A986C624FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FF24FD41F100BD46E7 /* ProdBeta-DPL */,
-				67A9871D24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67A986FF24FD41F100BD46E7 /* ProdBeta-Delmarva */,
+				67A9871D24FD421400BD46E7 /* ProdBeta-Pepco */,
 				67D5631524ED9DD900852551 /* ProdBeta-ComEd */,
 				67A9868C24F9511500BD46E7 /* ProdBeta-PECO */,
 				35F9DD4C2333C34200AAA2B2 /* Prod-BGE */,
 				67A986CC24FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870524FD41F600BD46E7 /* Prod-DPL */,
-				67A9872324FD421C00BD46E7 /* Prod-PEPCO */,
+				67A9870524FD41F600BD46E7 /* Prod-Delmarva */,
+				67A9872324FD421C00BD46E7 /* Prod-Pepco */,
 				67D5631B24ED9DDB00852551 /* Prod-ComEd */,
 				67A9869224F9511D00BD46E7 /* Prod-PECO */,
 			);
@@ -16302,32 +16302,32 @@
 			buildConfigurations = (
 				9CEB30CF22612D8500DD725C /* Automation-BGE */,
 				67A986B024FD3E8500BD46E7 /* Automation-ACE */,
-				67A986E924FD41DB00BD46E7 /* Automation-DPL */,
-				67A9870724FD41FE00BD46E7 /* Automation-PEPCO */,
+				67A986E924FD41DB00BD46E7 /* Automation-Delmarva */,
+				67A9870724FD41FE00BD46E7 /* Automation-Pepco */,
 				67D562F924ED9DD100852551 /* Automation-ComEd */,
 				67A9867624F950F900BD46E7 /* Automation-PECO */,
 				0EB93B5E202CA3C70049E7A2 /* Test-BGE */,
 				67A986B624FD3E8B00BD46E7 /* Test-ACE */,
-				67A986EF24FD41E200BD46E7 /* Test-DPL */,
-				67A9870D24FD420400BD46E7 /* Test-PEPCO */,
+				67A986EF24FD41E200BD46E7 /* Test-Delmarva */,
+				67A9870D24FD420400BD46E7 /* Test-Pepco */,
 				67D562FF24ED9DD300852551 /* Test-ComEd */,
 				67A9867C24F9510500BD46E7 /* Test-PECO */,
 				B58B5AF61E51497B0051FD5F /* Stage-BGE */,
 				67A986BC24FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F524FD41E900BD46E7 /* Stage-DPL */,
-				67A9871324FD420D00BD46E7 /* Stage-PEPCO */,
+				67A986F524FD41E900BD46E7 /* Stage-Delmarva */,
+				67A9871324FD420D00BD46E7 /* Stage-Pepco */,
 				67D5630524ED9DD500852551 /* Stage-ComEd */,
 				67A9868224F9510D00BD46E7 /* Stage-PECO */,
 				B58B5AE81E4E28740051FD5F /* ProdBeta-BGE */,
 				67A986C224FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FB24FD41F100BD46E7 /* ProdBeta-DPL */,
-				67A9871924FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67A986FB24FD41F100BD46E7 /* ProdBeta-Delmarva */,
+				67A9871924FD421400BD46E7 /* ProdBeta-Pepco */,
 				67D5631124ED9DD900852551 /* ProdBeta-ComEd */,
 				67A9868824F9511500BD46E7 /* ProdBeta-PECO */,
 				0E131751202B583000865819 /* Prod-BGE */,
 				67A986C824FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870124FD41F600BD46E7 /* Prod-DPL */,
-				67A9871F24FD421C00BD46E7 /* Prod-PEPCO */,
+				67A9870124FD41F600BD46E7 /* Prod-Delmarva */,
+				67A9871F24FD421C00BD46E7 /* Prod-Pepco */,
 				67D5631724ED9DDB00852551 /* Prod-ComEd */,
 				67A9868E24F9511D00BD46E7 /* Prod-PECO */,
 			);
@@ -16339,32 +16339,32 @@
 			buildConfigurations = (
 				9CEB30D022612D8500DD725C /* Automation-BGE */,
 				67A986B124FD3E8500BD46E7 /* Automation-ACE */,
-				67A986EA24FD41DB00BD46E7 /* Automation-DPL */,
-				67A9870824FD41FE00BD46E7 /* Automation-PEPCO */,
+				67A986EA24FD41DB00BD46E7 /* Automation-Delmarva */,
+				67A9870824FD41FE00BD46E7 /* Automation-Pepco */,
 				67D562FA24ED9DD100852551 /* Automation-ComEd */,
 				67A9867724F950F900BD46E7 /* Automation-PECO */,
 				0EB93B5F202CA3C70049E7A2 /* Test-BGE */,
 				67A986B724FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F024FD41E200BD46E7 /* Test-DPL */,
-				67A9870E24FD420400BD46E7 /* Test-PEPCO */,
+				67A986F024FD41E200BD46E7 /* Test-Delmarva */,
+				67A9870E24FD420400BD46E7 /* Test-Pepco */,
 				67D5630024ED9DD300852551 /* Test-ComEd */,
 				67A9867D24F9510500BD46E7 /* Test-PECO */,
 				B58B5AF71E51497B0051FD5F /* Stage-BGE */,
 				67A986BD24FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F624FD41E900BD46E7 /* Stage-DPL */,
-				67A9871424FD420D00BD46E7 /* Stage-PEPCO */,
+				67A986F624FD41E900BD46E7 /* Stage-Delmarva */,
+				67A9871424FD420D00BD46E7 /* Stage-Pepco */,
 				67D5630624ED9DD500852551 /* Stage-ComEd */,
 				67A9868324F9510D00BD46E7 /* Stage-PECO */,
 				B58B5AEB1E4E28740051FD5F /* ProdBeta-BGE */,
 				67A986C324FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FC24FD41F100BD46E7 /* ProdBeta-DPL */,
-				67A9871A24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67A986FC24FD41F100BD46E7 /* ProdBeta-Delmarva */,
+				67A9871A24FD421400BD46E7 /* ProdBeta-Pepco */,
 				67D5631224ED9DD900852551 /* ProdBeta-ComEd */,
 				67A9868924F9511500BD46E7 /* ProdBeta-PECO */,
 				0E131752202B583000865819 /* Prod-BGE */,
 				67A986C924FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870224FD41F600BD46E7 /* Prod-DPL */,
-				67A9872024FD421C00BD46E7 /* Prod-PEPCO */,
+				67A9870224FD41F600BD46E7 /* Prod-Delmarva */,
+				67A9872024FD421C00BD46E7 /* Prod-Pepco */,
 				67D5631824ED9DDB00852551 /* Prod-ComEd */,
 				67A9868F24F9511D00BD46E7 /* Prod-PECO */,
 			);
@@ -16376,32 +16376,32 @@
 			buildConfigurations = (
 				9CEB30D622612D8500DD725C /* Automation-BGE */,
 				67A986B224FD3E8500BD46E7 /* Automation-ACE */,
-				67A986EB24FD41DB00BD46E7 /* Automation-DPL */,
-				67A9870924FD41FE00BD46E7 /* Automation-PEPCO */,
+				67A986EB24FD41DB00BD46E7 /* Automation-Delmarva */,
+				67A9870924FD41FE00BD46E7 /* Automation-Pepco */,
 				67D562FB24ED9DD100852551 /* Automation-ComEd */,
 				67A9867824F950F900BD46E7 /* Automation-PECO */,
 				0EB93B65202CA3C70049E7A2 /* Test-BGE */,
 				67A986B824FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F124FD41E200BD46E7 /* Test-DPL */,
-				67A9870F24FD420400BD46E7 /* Test-PEPCO */,
+				67A986F124FD41E200BD46E7 /* Test-Delmarva */,
+				67A9870F24FD420400BD46E7 /* Test-Pepco */,
 				67D5630124ED9DD300852551 /* Test-ComEd */,
 				67A9867E24F9510500BD46E7 /* Test-PECO */,
 				B5AC06DF1E52238900BBA4ED /* Stage-BGE */,
 				67A986BE24FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F724FD41E900BD46E7 /* Stage-DPL */,
-				67A9871524FD420D00BD46E7 /* Stage-PEPCO */,
+				67A986F724FD41E900BD46E7 /* Stage-Delmarva */,
+				67A9871524FD420D00BD46E7 /* Stage-Pepco */,
 				67D5630724ED9DD500852551 /* Stage-ComEd */,
 				67A9868424F9510D00BD46E7 /* Stage-PECO */,
 				B5AC06E11E52238900BBA4ED /* ProdBeta-BGE */,
 				67A986C424FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FD24FD41F100BD46E7 /* ProdBeta-DPL */,
-				67A9871B24FD421400BD46E7 /* ProdBeta-PEPCO */,
+				67A986FD24FD41F100BD46E7 /* ProdBeta-Delmarva */,
+				67A9871B24FD421400BD46E7 /* ProdBeta-Pepco */,
 				67D5631324ED9DD900852551 /* ProdBeta-ComEd */,
 				67A9868A24F9511500BD46E7 /* ProdBeta-PECO */,
 				0E131758202B583000865819 /* Prod-BGE */,
 				67A986CA24FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870324FD41F600BD46E7 /* Prod-DPL */,
-				67A9872124FD421C00BD46E7 /* Prod-PEPCO */,
+				67A9870324FD41F600BD46E7 /* Prod-Delmarva */,
+				67A9872124FD421C00BD46E7 /* Prod-Pepco */,
 				67D5631924ED9DDB00852551 /* Prod-ComEd */,
 				67A9869024F9511D00BD46E7 /* Prod-PECO */,
 			);
