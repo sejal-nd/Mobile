@@ -37,7 +37,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Staging-PECO"
+      buildConfiguration = "Stage-PECO"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -45,7 +45,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Staging-PECO"
+      buildConfiguration = "Stage-PECO"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -72,7 +72,7 @@
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Staging-PECO"
+      buildConfiguration = "Stage-PECO"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -89,10 +89,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Staging-PECO">
+      buildConfiguration = "Stage-PECO">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Production-PECO"
+      buildConfiguration = "Stage-PECO"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

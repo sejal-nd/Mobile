@@ -23,7 +23,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Automation-BGE"
+      buildConfiguration = "Stage-ComEd"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -41,18 +41,18 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "087630DD1E72F5D000FA7020"
-               BuildableName = "EUMobileUITests.xctest"
-               BlueprintName = "EUMobileUITests"
+               BlueprintIdentifier = "B5AC06D41E52238900BBA4ED"
+               BuildableName = "EUMobileUnitTests.xctest"
+               BlueprintName = "EUMobileUnitTests"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Automation-BGE"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      buildConfiguration = "Stage-ComEd"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -69,9 +69,23 @@
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-FIRDebugEnabled"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-shouldLogAPI"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-FIRDebugDisabled"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Automation-BGE"
+      buildConfiguration = "Stage-ComEd"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -88,10 +102,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Automation-BGE">
+      buildConfiguration = "Stage-ComEd">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Automation-BGE"
+      buildConfiguration = "Stage-ComEd"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

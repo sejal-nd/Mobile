@@ -37,7 +37,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Staging-DPL"
+      buildConfiguration = "Stage-Delmarva"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -45,7 +45,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Staging-DPL"
+      buildConfiguration = "Stage-Delmarva"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -72,7 +72,7 @@
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Staging-DPL"
+      buildConfiguration = "Stage-Delmarva"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -89,10 +89,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Staging-DPL">
+      buildConfiguration = "Stage-Delmarva">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Production-DPL"
+      buildConfiguration = "Stage-Delmarva"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

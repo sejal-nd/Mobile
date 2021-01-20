@@ -23,7 +23,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Automation-BGE"
+      buildConfiguration = "Test-Pepco"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -38,25 +38,19 @@
       </MacroExpansion>
       <Testables>
          <TestableReference
-            skipped = "NO"
-            useTestSelectionWhitelist = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "087630DD1E72F5D000FA7020"
-               BuildableName = "EUMobileUITests.xctest"
-               BlueprintName = "EUMobileUITests"
+               BlueprintIdentifier = "B5AC06D41E52238900BBA4ED"
+               BuildableName = "EUMobileUnitTests.xctest"
+               BlueprintName = "EUMobileUnitTests"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
-            <SelectedTests>
-               <Test
-                  Identifier = "ScreenshotsUITests/testScreenshots()">
-               </Test>
-            </SelectedTests>
          </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Automation-BGE"
+      buildConfiguration = "Test-Pepco"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -75,9 +69,15 @@
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-shouldLogAPI"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Automation-BGE"
+      buildConfiguration = "Test-Pepco"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -94,10 +94,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Automation-BGE">
+      buildConfiguration = "Test-Pepco">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Automation-BGE"
+      buildConfiguration = "Test-Pepco"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
