@@ -244,6 +244,9 @@ fileprivate class TimePickerView: BasePickerView {
         datePicker.calendar = .opCo
         datePicker.datePickerMode = .time
         datePicker.minuteInterval = 15
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
         mainStack.addArrangedSubview(datePicker)
         accessibleElements = [cancelButton, doneButton, datePicker]
     }
