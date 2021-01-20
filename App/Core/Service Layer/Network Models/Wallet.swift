@@ -21,14 +21,6 @@ public struct Wallet: Decodable {
         self.walletItems = try container.decode([WalletItem].self,
                                            forKey: .walletItems)
         walletItems = walletItems.sorted { $0.bankOrCard.sortOrder < $1.bankOrCard.sortOrder }
-        var items = [WalletItem]()
-        walletItems.forEach { (walletItem) in
-            if walletItem.isDefault {
-                items.insert(walletItem, at: .zero)
-            } else {
-                items.append(walletItem)
-            }
-        }
-        walletItems = items
+                                   .sorted { $0.isDefault && !$1.isDefault }
     }
 }
