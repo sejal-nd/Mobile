@@ -123,6 +123,10 @@ class BillingHistoryViewController: UIViewController {
             if vc is UIAlertController || vc is BGEasyViewController {
                 // UIAlertController (3rd party supplier case) and BGEasyViewController are modals
                 present(vc, animated: true, completion: nil)
+            } else if vc is TapToPayReviewPaymentViewController {
+                let newNavController = LargeTitleNavigationController(rootViewController: vc)
+                newNavController.modalPresentationStyle = .fullScreen
+                self.present(newNavController, animated: true, completion: nil)
             } else {
                 navigationController?.pushViewController(vc, animated: true)
             }
@@ -168,7 +172,8 @@ class BillingHistoryViewController: UIViewController {
                     if billingHistoryItem.isAutoPayPayment { // Scheduled AutoPay payment
                         return billingHistoryDetailsVc(billingHistoryItem)
                     } else { // Normal scheduled payment
-                        let vc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
+                        let storyboard = UIStoryboard(name: "TapToPay", bundle: nil)
+                        guard let vc = storyboard.instantiateViewController(withIdentifier: "TapToPayReviewPaymentViewController") as? TapToPayReviewPaymentViewController else { return UIViewController()}
                         vc.accountDetail = viewModel.accountDetail
                         vc.billingHistoryItem = billingHistoryItem
                         return vc

@@ -164,6 +164,10 @@ class TapToPayViewModel {
             switch result {
             case .success(let confirmationNumber):
                 self?.confirmationNumber = confirmationNumber.confirmationNumber
+                let paymentDetails = PaymentDetails(amount: (self?.paymentAmount.value)!,
+                                                    date: (self?.paymentDate.value)!,
+                                                    confirmationNumber: self?.confirmationNumber ?? "")
+                RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
                 onSuccess()
             case .failure(let error):
                 onError(error)
@@ -324,16 +328,22 @@ class TapToPayViewModel {
         dueAmount = Environment.shared.opco.isPHI ? (dueAmount >= .zero ? dueAmount : .zero) : dueAmount
         attributes[.foregroundColor] = UIColor.deepGray
         attributes[.font] = SystemFont.semibold.of(size: 17)
-        if billingInfo.pastDueAmount > 0 {
-            if billingInfo.pastDueAmount == billingInfo.netDueAmount {
-                string = String.localizedStringWithFormat("You have %@ due immediately", dueAmount.currencyString)
-                attributes[.foregroundColor] = UIColor.errorRed
-                attributes[.font] = SystemFont.semibold.of(size: 17)
-            } else {
+        if self.billingHistoryItem != nil {
+            guard let billingHistory = self.billingHistoryItem ,
+                  let amountPaid = billingHistory.amountPaid else { return NSAttributedString(string: "", attributes: attributes)}
+            string = "You have $\(String(describing: billingHistory.amountPaid ?? 0)) scheduled for \(billingHistory.date.fullMonthDayAndYearString). Confirmation #\(String(describing: billingHistory.paymentID ?? ""))"
+        } else {
+            if billingInfo.pastDueAmount > 0 {
+                if billingInfo.pastDueAmount == billingInfo.netDueAmount {
+                    string = String.localizedStringWithFormat("You have %@ due immediately", dueAmount.currencyString)
+                    attributes[.foregroundColor] = UIColor.errorRed
+                    attributes[.font] = SystemFont.semibold.of(size: 17)
+                } else {
+                    string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
+                }
+            }  else {
                 string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
             }
-        }  else {
-            string = String.localizedStringWithFormat("You have %@ due by %@", dueAmount.currencyString, billingInfo.dueByDate?.fullMonthDayAndYearString ?? "--")
         }
         
         return NSAttributedString(string: string, attributes: attributes)
