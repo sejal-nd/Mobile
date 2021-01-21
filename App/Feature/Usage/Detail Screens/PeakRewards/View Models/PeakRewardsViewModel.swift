@@ -158,6 +158,12 @@ class PeakRewardsViewModel {
                         } else {
                             body = NSLocalizedString("You have not been cycled today", comment: "")
                         }
+                    default:
+                        if let start = override?.start, start.isInToday(calendar: .opCo) && override?.stop != nil {
+                            body = NSLocalizedString("You have been cycled today", comment: "")
+                        } else {
+                            body = NSLocalizedString("You have not been cycled today", comment: "")
+                        }
                     }
                     
                     return (program.displayName, body)
