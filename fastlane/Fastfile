@@ -2,12 +2,9 @@
 skip_docs # skip autogenerating the README.md, we are manually writing it
 
 default_platform(:ios)
-  desc "Upload a pre-built IPA to the App Store"
-
   platform :ios do
+    desc "Upload a pre-built IPA to the App Store and tag release"
     lane :uploadBuild do |options|
-      update_fastlane
-
       deliver(
         api_key_path: options[:api_key_path],
         app_identifier: options[:bundle_id],
@@ -34,6 +31,7 @@ default_platform(:ios)
       )
     end
 
+    desc "Upload a pre-built IPA to App Center and distribute"
     lane :uploadAppCenter do |options|
       appcenter_upload(
         api_token: options[:app_center_api_token],
@@ -41,6 +39,7 @@ default_platform(:ios)
         owner_type: "organization",
         app_name: options[:app_name],
         file: options[:file_path],
+        release_notes: options[:release_notes]
         destinations: options[:destinations]
       )
     end
