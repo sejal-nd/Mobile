@@ -92,7 +92,7 @@ class TapToPayConfirmationViewController: UIViewController {
         
         // [iOS bug?] Need to set the text in here or the label doesn't wrap to 2 lines
         titleLabel.text = viewModel.paymentId.value != nil ?
-            NSLocalizedString("Thank you for modifying your payment.", comment: "") :
+            NSLocalizedString("Thank you for editing your payment.", comment: "") :
             NSLocalizedString("Thank you for your payment", comment: "")
     }
     
