@@ -74,51 +74,56 @@ class PaymentViewModel {
 
     // MARK: - Service Calls
 
-    func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
-        isFetching.accept(true)
-        
-        WalletService.fetchWalletItems { [weak self] result in
-            switch result {
-            case .success(let walletItemContainer):
-                guard let self = self else { return }
-                let walletItems = walletItemContainer.walletItems
-                self.isFetching.accept(false)
-                
-                self.walletItems.accept(walletItems)
-                let defaultWalletItem = walletItems.first(where: { $0.isDefault })
-                
-                if initialFetch {
-                    if self.paymentId.value == nil { // If not modifiying payment
-                        self.computeDefaultPaymentDate()
-                        if self.accountDetail.value.isCashOnly {
-                            if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
-                                self.selectedWalletItem.accept(defaultWalletItem!)
-                            } else if let firstCard = walletItems.first(where: { $0.bankOrCard == .card }) {
-                                // If no default item, choose the first credit card
-                                self.selectedWalletItem.accept(firstCard)
-                            }
-                        } else {
-                            if defaultWalletItem != nil { // Choose the default item
-                                self.selectedWalletItem.accept(defaultWalletItem!)
-                            } else if walletItems.count > 0 { // If no default item, choose the first item
-                                self.selectedWalletItem.accept(walletItems.first)
+    func fetchData(forEditPaymentFlow: Bool, initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
+        if forEditPaymentFlow {
+            if let selectedItem = selectedWalletItem.value {
+                walletItems.accept([selectedItem])
+            }
+        } else {
+            isFetching.accept(true)
+            WalletService.fetchWalletItems { [weak self] result in
+                switch result {
+                case .success(let walletItemContainer):
+                    guard let self = self else { return }
+                    let walletItems = walletItemContainer.walletItems
+                    self.isFetching.accept(false)
+                    
+                    self.walletItems.accept(walletItems)
+                    let defaultWalletItem = walletItems.first(where: { $0.isDefault })
+                    
+                    if initialFetch {
+                        if self.paymentId.value == nil { // If not modifiying payment
+                            self.computeDefaultPaymentDate()
+                            if self.accountDetail.value.isCashOnly {
+                                if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
+                                    self.selectedWalletItem.accept(defaultWalletItem!)
+                                } else if let firstCard = walletItems.first(where: { $0.bankOrCard == .card }) {
+                                    // If no default item, choose the first credit card
+                                    self.selectedWalletItem.accept(firstCard)
+                                }
+                            } else {
+                                if defaultWalletItem != nil { // Choose the default item
+                                    self.selectedWalletItem.accept(defaultWalletItem!)
+                                } else if walletItems.count > 0 { // If no default item, choose the first item
+                                    self.selectedWalletItem.accept(walletItems.first)
+                                }
                             }
                         }
                     }
+                    
+                    if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
+                        self.selectedWalletItem.accept(nil)
+                        self.wouldBeSelectedWalletItemIsExpired.accept(true)
+                    }
+                    
+                    onSuccess?()
+                case .failure:
+                    self?.isFetching.accept(false)
+                    self?.isError.accept(true)
+                    onError?()
                 }
                 
-                if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
-                    self.selectedWalletItem.accept(nil)
-                    self.wouldBeSelectedWalletItemIsExpired.accept(true)
-                }
-                
-                onSuccess?()
-            case .failure:
-                self?.isFetching.accept(false)
-                self?.isError.accept(true)
-                onError?()
             }
-            
         }
     }
 

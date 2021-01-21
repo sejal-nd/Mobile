@@ -255,7 +255,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     func fetchData(initialFetch: Bool) {
-        viewModel.fetchData(initialFetch: initialFetch, onSuccess: { [weak self] in
+        viewModel.fetchData(forEditPaymentFlow: (billingHistoryItem != nil), initialFetch: initialFetch, onSuccess: { [weak self] in
             guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] in
