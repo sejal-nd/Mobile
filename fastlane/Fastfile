@@ -39,7 +39,7 @@ default_platform(:ios)
         owner_type: "organization",
         app_name: options[:app_name],
         file: options[:file_path],
-        release_notes: options[:release_notes]
+        release_notes: options[:release_notes],
         destinations: options[:destinations]
       )
     end
