@@ -36,7 +36,7 @@ default_platform(:ios)
 
     lane :uploadAppCenter do |options|
       appcenter_upload(
-        api_token: options[:app_center_token],
+        api_token: options[:app_center_api_token],
         owner_name: "Exelon-Digital-Projects",
         owner_type: "organization",
         app_name: options[:app_name],
