@@ -88,9 +88,11 @@ struct PeakRewardsOverride: Decodable, Equatable {
     
 }
 
-enum OverrideStatus: String, Codable {
+enum OverrideStatus: String, DefaultCaseCodable {
     case scheduled = "Scheduled"
     case active = "Active"
+    case cancelled = "Cancelled"
+    case unknown
 }
 
 public struct SmartThermostatDeviceSettings: Codable {
