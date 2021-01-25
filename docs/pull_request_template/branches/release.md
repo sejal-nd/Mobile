@@ -15,5 +15,5 @@ _Put an `x` in the boxes that apply_
 # Checklist
 
 - [ ] This code has passed UAT testing
-- [ ] I am aware that this is generating a new `ProdBeta` build on App Center for `UAT Testers`
-- [ ] I am aware that this will generate a new `Prod` build on the Apple App Store and App Center
+- [ ] I am aware that this is generating a new `RC` build on App Center for `UAT Testers`
+- [ ] I am aware that this will generate a new `Release` build on the Apple App Store and App Center

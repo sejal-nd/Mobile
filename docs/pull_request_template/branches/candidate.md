@@ -15,4 +15,4 @@ _Put an `x` in the boxes that apply_
 # Checklist
 
 - [ ] This code has passed QA testing
-- [ ] I am aware that this is generating a new `Stage` build on App Center for `UAT Testers`
+- [ ] I am aware that this is generating a new `Beta` build on App Center for `UAT Testers`
