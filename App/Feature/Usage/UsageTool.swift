@@ -28,7 +28,7 @@ enum UsageTool {
         case .peakTimeSavings:
             return NSLocalizedString("Peak Time Savings", comment: "")
         case .energyWiseRewards:
-            return NSLocalizedString("Energy Wise Rewards", comment: "")
+            return NSLocalizedString("Adjust Thermostat", comment: "")
         case .peakEnergySavings:
             return NSLocalizedString("Peak Energy Savings", comment: "")
         }

@@ -30,7 +30,7 @@ class ReportOutageViewModel {
     { [weak self] in
         guard let self = self else { return false }
         let digitsOnlyString = self.extractDigitsFrom($1)
-        return !$0 && digitsOnlyString.count == 10
+        return Environment.shared.opco.isPHI ? !$0 : !$0 && digitsOnlyString.count == 10
     }
     
     var footerTextViewText: NSAttributedString {

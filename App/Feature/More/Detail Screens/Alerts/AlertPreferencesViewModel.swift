@@ -611,10 +611,8 @@ class AlertPreferencesViewModel {
             case (.billIsReady(let accountDetail), .ace): fallthrough
             case (.billIsReady(let accountDetail), .delmarva): fallthrough
             case (.billIsReady(let accountDetail), .pepco):
-                return accountDetail.isResidential ?
-                    NSLocalizedString("Receive an alert when your bill is ready to be viewed online. If you are signed up for Automatic Payment or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.", comment: "") :
-                    NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert contains the bill due date and amount due. If you are signed up for Automatic Payment or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.\n\nPlease note that this notification is mandatory for customers enrolled in Paperless eBill.", comment: "")
-                
+                return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. If you are signed up for AutoPay or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.\n\nPlease note that this notification is required for customers enrolled in Paperless eBill or AutoPay.", comment: "")
+               
             // Payment Due Reminder
             case (.paymentDueReminder, .bge):
                 return NSLocalizedString("Choose to receive an alert 1 to 14 days before your payment due date. Customers are responsible for payment for the total amount due on their account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")

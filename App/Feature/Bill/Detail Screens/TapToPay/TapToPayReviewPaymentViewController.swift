@@ -101,7 +101,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
                                       billingHistoryItem: billingHistoryItem)
         
         addCloseButton()
-        title = NSLocalizedString("Review Payment", comment: "")
+        if billingHistoryItem != nil {
+            title = NSLocalizedString("Edit Payment", comment: "")
+        } else {
+            title = NSLocalizedString("Review Payment", comment: "")
+        }
         
         youArePayingLabel.textColor = .deepGray
         youArePayingLabel.font = SystemFont.regular.of(size: 13)
@@ -584,7 +588,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         animatedView.frame.size.width = animatedView.frame.size.height + 150
         animatedView.layer.cornerRadius = animatedView.frame.size.height / 2
         animatedView.frame.origin = CGPoint.init(x: self.view.frame.size.width - 100, y: self.view.frame.size.height)
-        animatedView.backgroundColor = UIColor(red: 0/255, green: 103/255, blue: 177/255, alpha: 1)
+        animatedView.backgroundColor = UIColor.primaryColor
         self.view.window?.addSubview(animatedView)
         
         let handleError = { [weak self] (error: NetworkingError) in
@@ -623,7 +627,19 @@ class TapToPayReviewPaymentViewController: UIViewController {
                 
                 FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
                 
-                self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                UIView.animate(withDuration: 0.4, animations: {  [weak self]  in
+                    guard let self = self else {return}
+                    self.animatedView.center = CGPoint.init(x: self.view.frame.size.width, y: self.view.frame.size.height)
+                    }, completion: { [weak self] _ in
+                        self?.animatedView.layer.cornerRadius = .zero
+                        UIView.animate(withDuration: 0.18, animations: {  [weak self]  in
+                            
+                            self?.animatedView.frame = self?.view.window?.bounds as! CGRect
+                            }, completion: { [weak self] _ in
+                                self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                                self?.animatedView.removeFromSuperview()
+                        })
+                })
             }, onError: { error in
                 handleError(error)
             })
@@ -670,12 +686,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
                             }
                         }
                         
-                        UIView.animate(withDuration: 0.9, animations: {  [weak self]  in
+                        UIView.animate(withDuration: 0.4, animations: {  [weak self]  in
                             guard let self = self else {return}
                             self.animatedView.center = CGPoint.init(x: self.view.frame.size.width, y: self.view.frame.size.height)
                             }, completion: { [weak self] _ in
                                 self?.animatedView.layer.cornerRadius = .zero
-                                UIView.animate(withDuration: 0.2, animations: {  [weak self]  in
+                                UIView.animate(withDuration: 0.18, animations: {  [weak self]  in
                                     self?.animatedView.frame = self?.view.window?.bounds as! CGRect
                                     }, completion: { [weak self] _ in
                                         self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
