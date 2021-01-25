@@ -39,9 +39,9 @@ struct DebugMenu: View {
                               value: bundleID)
                 }
                 
-                Section(header: Text("Azure URL"),
+                Section(header: Text("Project Settings"),
                         footer: Text("Relaunch the app for changes to take affect.").padding(.bottom)) {
-                    InfoLabel(title: "Base URL",
+                    InfoLabel(title: "Azure Base URL",
                               value: "https://\(Environment.shared.baseUrl)")
                     Picker(selection: $selectedProjectTier, label: Text("Project Tier").fontWeight(.medium)) {
                         ForEach(ProjectTier.allCases, id: \.self) { value in

@@ -34,7 +34,7 @@ public struct MaintenanceMode: Decodable {
     public init(from decoder: Decoder) throws {
         
         // Prodbeta builds should ignore any maintenance response
-        if Environment.shared.environmentName == .prodbeta {
+        if Environment.shared.environmentName == .rc {
             return
         }
         

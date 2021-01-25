@@ -106,12 +106,9 @@ enum OpCo: String {
 
 enum EnvironmentName: String {
     case aut = "AUT"
-    case dev = "DEV"
-    case test = "TEST"
-    case stage = "STAGE"
-    case prodbeta = "PRODBETA"
-    case prod = "PROD"
-    case hotfix = "HOTFIX"
+    case beta = "BETA"
+    case rc = "RC"
+    case release = "RELEASE"
 }
 
 struct InfoPlist: Codable {
@@ -163,7 +160,7 @@ struct Environment {
     var clientSecret: String {
         var secret = ""
         switch Environment.shared.environmentName {
-        case .prodbeta, .prod:
+        case .rc, .release:
             secret = "wQrbiqG3Ddefftp3"
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
@@ -181,7 +178,7 @@ struct Environment {
     var clientID: String {
         var id = ""
         switch Environment.shared.environmentName {
-        case .prodbeta, .prod:
+        case .rc, .release:
             id = "jk8UMnMb2kSISwAgX0OFGhMEAfMEoGTd"
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
@@ -217,7 +214,7 @@ struct Environment {
             associatedDomain = infoPlist.associatedDomain
             appCenterId = infoPlist.appCenterID
             
-            if envName == .test || envName == .stage {
+            if envName == .beta {
                 let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
                 let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
                 switch projectTier {
