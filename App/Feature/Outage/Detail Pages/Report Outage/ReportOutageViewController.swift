@@ -82,9 +82,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         title = NSLocalizedString("Report Outage", comment: "")
         
         style()
-        if !opco.isPHI {
-            viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
-        }
+        viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         if unauthenticatedExperience,
             let accountNumberText = viewModel.outageStatus?.maskedAccountNumber,
