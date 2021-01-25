@@ -7028,7 +7028,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		087630E71E72F5D000FA7020 /* Stage-BGE */ = {
+		087630E71E72F5D000FA7020 /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E1D5A4A1B916BE0A5630D6B /* Pods-EUMobileUITests.stage-bge.xcconfig */;
 			buildSettings = {
@@ -7060,9 +7060,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-BGE";
+			name = "BGE-Beta";
 		};
-		087630E91E72F5D000FA7020 /* ProdBeta-BGE */ = {
+		087630E91E72F5D000FA7020 /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2F27A4C51FF083935B51457 /* Pods-EUMobileUITests.prodbeta-bge.xcconfig */;
 			buildSettings = {
@@ -7094,9 +7094,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-BGE";
+			name = "BGE-RC";
 		};
-		0E131751202B583000865819 /* Prod-BGE */ = {
+		0E131751202B583000865819 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
@@ -7179,9 +7179,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Prod-BGE";
+			name = "BGE-Release";
 		};
-		0E131752202B583000865819 /* Prod-BGE */ = {
+		0E131752202B583000865819 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2125B05ADABB8323A4141F28 /* Pods-EUMobile.prod-bge.xcconfig */;
 			buildSettings = {
@@ -7219,9 +7219,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-BGE";
+			name = "BGE-Release";
 		};
-		0E131758202B583000865819 /* Prod-BGE */ = {
+		0E131758202B583000865819 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B18A6F6F1A5A3D79E9A22F82 /* Pods-EUMobileUnitTests.prod-bge.xcconfig */;
 			buildSettings = {
@@ -7252,9 +7252,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-BGE";
+			name = "BGE-Release";
 		};
-		0E13175B202B583000865819 /* Prod-BGE */ = {
+		0E13175B202B583000865819 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89995C0F931A975B3979B56B /* Pods-EUMobileUITests.prod-bge.xcconfig */;
 			buildSettings = {
@@ -7286,249 +7286,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-BGE";
+			name = "BGE-Release";
 		};
-		0EB93B5E202CA3C70049E7A2 /* Test-BGE */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
-				ALERT_URL = azstage.bge.com;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
-				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				BASE_URL = "xze-e-n-eudapi-bge-t-ams-01.azure-api.net";
-				BUILD_DISPLAY_NAME = BGE;
-				BUILD_FLAVOR = BGE;
-				BUNDLE_ID = com.exelon.mobile.bge.testing;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = TEST;
-				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-8";
-				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
-				INFOPLIST_PREFIX_HEADER = "";
-				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.10.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-development.exeloncorp.com";
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
-			};
-			name = "Test-BGE";
-		};
-		0EB93B5F202CA3C70049E7A2 /* Test-BGE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68A2B01FFCACB64D965D63A2 /* Pods-EUMobile.test-bge.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = EUMobile;
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-BGE";
-		};
-		0EB93B65202CA3C70049E7A2 /* Test-BGE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 740790B581B077B7715A11E1 /* Pods-EUMobileUnitTests.test-bge.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-				);
-				INFOPLIST_FILE = UnitTests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EUMobile.app/EUMobile";
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-BGE";
-		};
-		0EB93B68202CA3C70049E7A2 /* Test-BGE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4419270550AA4D7C8AD70A39 /* Pods-EUMobileUITests.test-bge.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UITests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-BGE";
-		};
-		35F9DD3F2333C34200AAA2B2 /* Automation-BGE */ = {
+		35F9DD3F2333C34200AAA2B2 /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3FD3118686EEE5E68066C101 /* Pods-EUMobile-Watch Extension.automation-bge.xcconfig */;
 			buildSettings = {
@@ -7608,45 +7368,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-BGE";
+			name = "BGE-AUT";
 		};
-		35F9DD402333C34200AAA2B2 /* Test-BGE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D90B8508BCE0996C1E5C2865 /* Pods-EUMobile-Watch Extension.test-bge.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.bge.testing.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Watchkit WatchkitExtension Enterprise";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-BGE";
-		};
-		35F9DD412333C34200AAA2B2 /* Stage-BGE */ = {
+		35F9DD412333C34200AAA2B2 /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E29899808BCF121313F1EC5B /* Pods-EUMobile-Watch Extension.stage-bge.xcconfig */;
 			buildSettings = {
@@ -7680,9 +7404,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-BGE";
+			name = "BGE-Beta";
 		};
-		35F9DD432333C34200AAA2B2 /* ProdBeta-BGE */ = {
+		35F9DD432333C34200AAA2B2 /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 73B8046335B9E6BFC009E296 /* Pods-EUMobile-Watch Extension.prodbeta-bge.xcconfig */;
 			buildSettings = {
@@ -7718,9 +7442,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-BGE";
+			name = "BGE-RC";
 		};
-		35F9DD442333C34200AAA2B2 /* Prod-BGE */ = {
+		35F9DD442333C34200AAA2B2 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 990CFE6D8E19D5E978562338 /* Pods-EUMobile-Watch Extension.prod-bge.xcconfig */;
 			buildSettings = {
@@ -7757,9 +7481,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-BGE";
+			name = "BGE-Release";
 		};
-		35F9DD472333C34200AAA2B2 /* Automation-BGE */ = {
+		35F9DD472333C34200AAA2B2 /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C9152BB1B80F2204DE3849E /* Pods-EUMobile-Watch.automation-bge.xcconfig */;
 			buildSettings = {
@@ -7840,47 +7564,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-BGE";
+			name = "BGE-AUT";
 		};
-		35F9DD482333C34200AAA2B2 /* Test-BGE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94F4E04510D19796B6E64BE3 /* Pods-EUMobile-Watch.test-bge.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = "EUMobile-Watch Extension";
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "BGE Testing Watchkit App Enterprise Dist";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-BGE";
-		};
-		35F9DD492333C34200AAA2B2 /* Stage-BGE */ = {
+		35F9DD492333C34200AAA2B2 /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B586C9FD0D8DDE1EAA4D27C9 /* Pods-EUMobile-Watch.stage-bge.xcconfig */;
 			buildSettings = {
@@ -7915,9 +7601,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-BGE";
+			name = "BGE-Beta";
 		};
-		35F9DD4B2333C34200AAA2B2 /* ProdBeta-BGE */ = {
+		35F9DD4B2333C34200AAA2B2 /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5CB6C612CFACA87E987C3DE0 /* Pods-EUMobile-Watch.prodbeta-bge.xcconfig */;
 			buildSettings = {
@@ -7954,9 +7640,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-BGE";
+			name = "BGE-RC";
 		};
-		35F9DD4C2333C34200AAA2B2 /* Prod-BGE */ = {
+		35F9DD4C2333C34200AAA2B2 /* BGE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A19C64E37F777A72D04B6B3B /* Pods-EUMobile-Watch.prod-bge.xcconfig */;
 			buildSettings = {
@@ -7994,9 +7680,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-BGE";
+			name = "BGE-Release";
 		};
-		67A9867624F950F900BD46E7 /* Automation-PECO */ = {
+		67A9867624F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
@@ -8084,9 +7770,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Automation-PECO";
+			name = "PECO-AUT";
 		};
-		67A9867724F950F900BD46E7 /* Automation-PECO */ = {
+		67A9867724F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DDEF458E5CADC49A1E5FF938 /* Pods-EUMobile.automation-peco.xcconfig */;
 			buildSettings = {
@@ -8122,9 +7808,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PECO";
+			name = "PECO-AUT";
 		};
-		67A9867824F950F900BD46E7 /* Automation-PECO */ = {
+		67A9867824F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BFFB3D5D6A88FCE12F342B2D /* Pods-EUMobileUnitTests.automation-peco.xcconfig */;
 			buildSettings = {
@@ -8174,9 +7860,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PECO";
+			name = "PECO-AUT";
 		};
-		67A9867924F950F900BD46E7 /* Automation-PECO */ = {
+		67A9867924F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CDCE1DDE46AAD173AA694992 /* Pods-EUMobileUITests.automation-peco.xcconfig */;
 			buildSettings = {
@@ -8228,9 +7914,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PECO";
+			name = "PECO-AUT";
 		};
-		67A9867A24F950F900BD46E7 /* Automation-PECO */ = {
+		67A9867A24F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD6400B1D128D62D88B7AB8D /* Pods-EUMobile-Watch.automation-peco.xcconfig */;
 			buildSettings = {
@@ -8311,9 +7997,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PECO";
+			name = "PECO-AUT";
 		};
-		67A9867B24F950F900BD46E7 /* Automation-PECO */ = {
+		67A9867B24F950F900BD46E7 /* PECO-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D4575C15FF876DFDF0263D7D /* Pods-EUMobile-Watch Extension.automation-peco.xcconfig */;
 			buildSettings = {
@@ -8393,323 +8079,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-PECO";
+			name = "PECO-AUT";
 		};
-		67A9867C24F9510500BD46E7 /* Test-PECO */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
-				ALERT_URL = azstage.peco.com;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
-				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				BASE_URL = "xze-e-n-eudapi-peco-t-ams-01.azure-api.net";
-				BUILD_DISPLAY_NAME = PECO;
-				BUILD_FLAVOR = PECO;
-				BUNDLE_ID = com.exelon.mobile.peco.testing;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = TEST;
-				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-17";
-				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
-				INFOPLIST_PREFIX_HEADER = "";
-				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.10.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-development.exeloncorp.com";
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
-			};
-			name = "Test-PECO";
-		};
-		67A9867D24F9510500BD46E7 /* Test-PECO */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E21C6CD4C9163F95ACA5D12 /* Pods-EUMobile.test-peco.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = EUMobile;
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Testing Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-PECO";
-		};
-		67A9867E24F9510500BD46E7 /* Test-PECO */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C64E73AF9C3983ED5E456E2 /* Pods-EUMobileUnitTests.test-peco.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-				);
-				INFOPLIST_FILE = UnitTests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EUMobile.app/EUMobile";
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-PECO";
-		};
-		67A9867F24F9510500BD46E7 /* Test-PECO */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FEB276898336338D6D7384C9 /* Pods-EUMobileUITests.test-peco.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UITests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-PECO";
-		};
-		67A9868024F9510500BD46E7 /* Test-PECO */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C4A9B30EF82933671A81CFF /* Pods-EUMobile-Watch.test-peco.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = "EUMobile-Watch Extension";
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Testing Watchkit App Enterprise Dist";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-PECO";
-		};
-		67A9868124F9510500BD46E7 /* Test-PECO */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DB16737BEC28DE312C81D95 /* Pods-EUMobile-Watch Extension.test-peco.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.peco.testing.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Testing Watchkit WatchkitExtension Enterprise";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-PECO";
-		};
-		67A9868224F9510D00BD46E7 /* Stage-PECO */ = {
+		67A9868224F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
@@ -8799,9 +8171,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Stage-PECO";
+			name = "PECO-Beta";
 		};
-		67A9868324F9510D00BD46E7 /* Stage-PECO */ = {
+		67A9868324F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AA20EB8A6BEE3FF67C96F443 /* Pods-EUMobile.stage-peco.xcconfig */;
 			buildSettings = {
@@ -8838,9 +8210,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PECO";
+			name = "PECO-Beta";
 		};
-		67A9868424F9510D00BD46E7 /* Stage-PECO */ = {
+		67A9868424F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 39F704AA05D721EC6322B05A /* Pods-EUMobileUnitTests.stage-peco.xcconfig */;
 			buildSettings = {
@@ -8871,9 +8243,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PECO";
+			name = "PECO-Beta";
 		};
-		67A9868524F9510D00BD46E7 /* Stage-PECO */ = {
+		67A9868524F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17B66CA8B7A7303FB2C94592 /* Pods-EUMobileUITests.stage-peco.xcconfig */;
 			buildSettings = {
@@ -8905,9 +8277,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PECO";
+			name = "PECO-Beta";
 		};
-		67A9868624F9510D00BD46E7 /* Stage-PECO */ = {
+		67A9868624F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9658F3F744A62D0571EDE9C5 /* Pods-EUMobile-Watch.stage-peco.xcconfig */;
 			buildSettings = {
@@ -8942,9 +8314,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PECO";
+			name = "PECO-Beta";
 		};
-		67A9868724F9510D00BD46E7 /* Stage-PECO */ = {
+		67A9868724F9510D00BD46E7 /* PECO-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6183A70FA08EB8247E64FACA /* Pods-EUMobile-Watch Extension.stage-peco.xcconfig */;
 			buildSettings = {
@@ -8978,9 +8350,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-PECO";
+			name = "PECO-Beta";
 		};
-		67A9868824F9511500BD46E7 /* ProdBeta-PECO */ = {
+		67A9868824F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
@@ -9064,9 +8436,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "ProdBeta-PECO";
+			name = "PECO-RC";
 		};
-		67A9868924F9511500BD46E7 /* ProdBeta-PECO */ = {
+		67A9868924F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 64859E458B5973DD77314B29 /* Pods-EUMobile.prodbeta-peco.xcconfig */;
 			buildSettings = {
@@ -9104,9 +8476,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PECO";
+			name = "PECO-RC";
 		};
-		67A9868A24F9511500BD46E7 /* ProdBeta-PECO */ = {
+		67A9868A24F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CCA35BEFC04A47876965291 /* Pods-EUMobileUnitTests.prodbeta-peco.xcconfig */;
 			buildSettings = {
@@ -9137,9 +8509,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PECO";
+			name = "PECO-RC";
 		};
-		67A9868B24F9511500BD46E7 /* ProdBeta-PECO */ = {
+		67A9868B24F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D0FA8EA9CB42DD416EE1DF5 /* Pods-EUMobileUITests.prodbeta-peco.xcconfig */;
 			buildSettings = {
@@ -9171,9 +8543,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PECO";
+			name = "PECO-RC";
 		};
-		67A9868C24F9511500BD46E7 /* ProdBeta-PECO */ = {
+		67A9868C24F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 23468BEAF0571991D5D43A28 /* Pods-EUMobile-Watch.prodbeta-peco.xcconfig */;
 			buildSettings = {
@@ -9210,9 +8582,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PECO";
+			name = "PECO-RC";
 		};
-		67A9868D24F9511500BD46E7 /* ProdBeta-PECO */ = {
+		67A9868D24F9511500BD46E7 /* PECO-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 142B81477646D8F8C94D236B /* Pods-EUMobile-Watch Extension.prodbeta-peco.xcconfig */;
 			buildSettings = {
@@ -9248,9 +8620,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-PECO";
+			name = "PECO-RC";
 		};
-		67A9868E24F9511D00BD46E7 /* Prod-PECO */ = {
+		67A9868E24F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
@@ -9333,9 +8705,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Prod-PECO";
+			name = "PECO-Release";
 		};
-		67A9868F24F9511D00BD46E7 /* Prod-PECO */ = {
+		67A9868F24F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2927C28A32D9774AEE49E95B /* Pods-EUMobile.prod-peco.xcconfig */;
 			buildSettings = {
@@ -9373,9 +8745,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PECO";
+			name = "PECO-Release";
 		};
-		67A9869024F9511D00BD46E7 /* Prod-PECO */ = {
+		67A9869024F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 771508308852597C06F1AE9F /* Pods-EUMobileUnitTests.prod-peco.xcconfig */;
 			buildSettings = {
@@ -9406,9 +8778,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PECO";
+			name = "PECO-Release";
 		};
-		67A9869124F9511D00BD46E7 /* Prod-PECO */ = {
+		67A9869124F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 598DC4CB4D6E664933F4A9F9 /* Pods-EUMobileUITests.prod-peco.xcconfig */;
 			buildSettings = {
@@ -9440,9 +8812,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PECO";
+			name = "PECO-Release";
 		};
-		67A9869224F9511D00BD46E7 /* Prod-PECO */ = {
+		67A9869224F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F2C98A6B3B8048A0BDD5BA0 /* Pods-EUMobile-Watch.prod-peco.xcconfig */;
 			buildSettings = {
@@ -9480,9 +8852,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PECO";
+			name = "PECO-Release";
 		};
-		67A9869324F9511D00BD46E7 /* Prod-PECO */ = {
+		67A9869324F9511D00BD46E7 /* PECO-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E873F0165F115C2E8C011B7D /* Pods-EUMobile-Watch Extension.prod-peco.xcconfig */;
 			buildSettings = {
@@ -9519,9 +8891,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-PECO";
+			name = "PECO-Release";
 		};
-		67A986B024FD3E8500BD46E7 /* Automation-ACE */ = {
+		67A986B024FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
@@ -9609,9 +8981,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Automation-ACE";
+			name = "ACE-AUT";
 		};
-		67A986B124FD3E8500BD46E7 /* Automation-ACE */ = {
+		67A986B124FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03887A32AE36E2DC8993892C /* Pods-EUMobile.automation-ace.xcconfig */;
 			buildSettings = {
@@ -9647,9 +9019,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ACE";
+			name = "ACE-AUT";
 		};
-		67A986B224FD3E8500BD46E7 /* Automation-ACE */ = {
+		67A986B224FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8538399514AFED24556DC817 /* Pods-EUMobileUnitTests.automation-ace.xcconfig */;
 			buildSettings = {
@@ -9699,9 +9071,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ACE";
+			name = "ACE-AUT";
 		};
-		67A986B324FD3E8500BD46E7 /* Automation-ACE */ = {
+		67A986B324FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 425510525CAB28859456BDB7 /* Pods-EUMobileUITests.automation-ace.xcconfig */;
 			buildSettings = {
@@ -9753,9 +9125,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ACE";
+			name = "ACE-AUT";
 		};
-		67A986B424FD3E8500BD46E7 /* Automation-ACE */ = {
+		67A986B424FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E3B9D5654E10459150AB25E9 /* Pods-EUMobile-Watch.automation-ace.xcconfig */;
 			buildSettings = {
@@ -9836,9 +9208,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ACE";
+			name = "ACE-AUT";
 		};
-		67A986B524FD3E8500BD46E7 /* Automation-ACE */ = {
+		67A986B524FD3E8500BD46E7 /* ACE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 44841584A64CD67D91A96B83 /* Pods-EUMobile-Watch Extension.automation-ace.xcconfig */;
 			buildSettings = {
@@ -9918,323 +9290,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ACE";
+			name = "ACE-AUT";
 		};
-		67A986B624FD3E8B00BD46E7 /* Test-ACE */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
-				ALERT_URL = azstage.atlanticcityelectric.com;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
-				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
-				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
-				BUILD_DISPLAY_NAME = "AC Electric";
-				BUILD_FLAVOR = ACE;
-				BUNDLE_ID = com.exelon.mobile.ace.testing;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = TEST;
-				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
-				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
-				INFOPLIST_PREFIX_HEADER = "";
-				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.10.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-development.exeloncorp.com";
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
-			};
-			name = "Test-ACE";
-		};
-		67A986B724FD3E8B00BD46E7 /* Test-ACE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F64BBB52E9E436DEC829C74E /* Pods-EUMobile.test-ace.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
-				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = EUMobile;
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Testing Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ACE";
-		};
-		67A986B824FD3E8B00BD46E7 /* Test-ACE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEDF613D45390960DFECB3AB /* Pods-EUMobileUnitTests.test-ace.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-				);
-				INFOPLIST_FILE = UnitTests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EUMobile.app/EUMobile";
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ACE";
-		};
-		67A986B924FD3E8B00BD46E7 /* Test-ACE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DECE5426DCE4C38D758F674 /* Pods-EUMobileUITests.test-ace.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UITests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ACE";
-		};
-		67A986BA24FD3E8B00BD46E7 /* Test-ACE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 799ED9F706D08F5444A3E0CD /* Pods-EUMobile-Watch.test-ace.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = "EUMobile-Watch Extension";
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Testing Watchkit App Enterprise Dist";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ACE";
-		};
-		67A986BB24FD3E8B00BD46E7 /* Test-ACE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CE9F1DE186299963EE77609 /* Pods-EUMobile-Watch Extension.test-ace.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.ace.testing.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "ACE Testing Watchkit WatchkitExtension Enterprise";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ACE";
-		};
-		67A986BC24FD3E9300BD46E7 /* Stage-ACE */ = {
+		67A986BC24FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
@@ -10324,9 +9382,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Stage-ACE";
+			name = "ACE-Beta";
 		};
-		67A986BD24FD3E9300BD46E7 /* Stage-ACE */ = {
+		67A986BD24FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 973DE2A58A58A09EB86C217E /* Pods-EUMobile.stage-ace.xcconfig */;
 			buildSettings = {
@@ -10364,9 +9422,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ACE";
+			name = "ACE-Beta";
 		};
-		67A986BE24FD3E9300BD46E7 /* Stage-ACE */ = {
+		67A986BE24FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F6F35FFF4AAEADF794ECDC9 /* Pods-EUMobileUnitTests.stage-ace.xcconfig */;
 			buildSettings = {
@@ -10397,9 +9455,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ACE";
+			name = "ACE-Beta";
 		};
-		67A986BF24FD3E9300BD46E7 /* Stage-ACE */ = {
+		67A986BF24FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4685F9077DB2DE3E42A55815 /* Pods-EUMobileUITests.stage-ace.xcconfig */;
 			buildSettings = {
@@ -10431,9 +9489,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ACE";
+			name = "ACE-Beta";
 		};
-		67A986C024FD3E9300BD46E7 /* Stage-ACE */ = {
+		67A986C024FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 57561CC677BE484F81AD2C1E /* Pods-EUMobile-Watch.stage-ace.xcconfig */;
 			buildSettings = {
@@ -10468,9 +9526,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ACE";
+			name = "ACE-Beta";
 		};
-		67A986C124FD3E9300BD46E7 /* Stage-ACE */ = {
+		67A986C124FD3E9300BD46E7 /* ACE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E8585F318AB10493078448D /* Pods-EUMobile-Watch Extension.stage-ace.xcconfig */;
 			buildSettings = {
@@ -10504,9 +9562,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ACE";
+			name = "ACE-Beta";
 		};
-		67A986C224FD3E9900BD46E7 /* ProdBeta-ACE */ = {
+		67A986C224FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
@@ -10590,9 +9648,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "ProdBeta-ACE";
+			name = "ACE-RC";
 		};
-		67A986C324FD3E9900BD46E7 /* ProdBeta-ACE */ = {
+		67A986C324FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CE8E4861CFB6C52CCB44821 /* Pods-EUMobile.prodbeta-ace.xcconfig */;
 			buildSettings = {
@@ -10631,9 +9689,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ACE";
+			name = "ACE-RC";
 		};
-		67A986C424FD3E9900BD46E7 /* ProdBeta-ACE */ = {
+		67A986C424FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 024D697A573860284F0B35F0 /* Pods-EUMobileUnitTests.prodbeta-ace.xcconfig */;
 			buildSettings = {
@@ -10664,9 +9722,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ACE";
+			name = "ACE-RC";
 		};
-		67A986C524FD3E9900BD46E7 /* ProdBeta-ACE */ = {
+		67A986C524FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BF67A892CEE2CF206F5D518B /* Pods-EUMobileUITests.prodbeta-ace.xcconfig */;
 			buildSettings = {
@@ -10698,9 +9756,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ACE";
+			name = "ACE-RC";
 		};
-		67A986C624FD3E9900BD46E7 /* ProdBeta-ACE */ = {
+		67A986C624FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41B330311AF80FC262DBA178 /* Pods-EUMobile-Watch.prodbeta-ace.xcconfig */;
 			buildSettings = {
@@ -10737,9 +9795,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ACE";
+			name = "ACE-RC";
 		};
-		67A986C724FD3E9900BD46E7 /* ProdBeta-ACE */ = {
+		67A986C724FD3E9900BD46E7 /* ACE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FB72945F9D626CDDBD595316 /* Pods-EUMobile-Watch Extension.prodbeta-ace.xcconfig */;
 			buildSettings = {
@@ -10775,9 +9833,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ACE";
+			name = "ACE-RC";
 		};
-		67A986C824FD3E9F00BD46E7 /* Prod-ACE */ = {
+		67A986C824FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
@@ -10860,9 +9918,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Prod-ACE";
+			name = "ACE-Release";
 		};
-		67A986C924FD3E9F00BD46E7 /* Prod-ACE */ = {
+		67A986C924FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26237AD67F36995251A3B14F /* Pods-EUMobile.prod-ace.xcconfig */;
 			buildSettings = {
@@ -10901,9 +9959,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ACE";
+			name = "ACE-Release";
 		};
-		67A986CA24FD3E9F00BD46E7 /* Prod-ACE */ = {
+		67A986CA24FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A840C1A288A1CD680C2A3818 /* Pods-EUMobileUnitTests.prod-ace.xcconfig */;
 			buildSettings = {
@@ -10934,9 +9992,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ACE";
+			name = "ACE-Release";
 		};
-		67A986CB24FD3E9F00BD46E7 /* Prod-ACE */ = {
+		67A986CB24FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F07AA9DDC38A84B77E9009B /* Pods-EUMobileUITests.prod-ace.xcconfig */;
 			buildSettings = {
@@ -10968,9 +10026,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ACE";
+			name = "ACE-Release";
 		};
-		67A986CC24FD3E9F00BD46E7 /* Prod-ACE */ = {
+		67A986CC24FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD4EA2C8FDEA161F5FFD3D30 /* Pods-EUMobile-Watch.prod-ace.xcconfig */;
 			buildSettings = {
@@ -11008,9 +10066,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ACE";
+			name = "ACE-Release";
 		};
-		67A986CD24FD3E9F00BD46E7 /* Prod-ACE */ = {
+		67A986CD24FD3E9F00BD46E7 /* ACE-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7E6D5E22EC2474A18B6DDED /* Pods-EUMobile-Watch Extension.prod-ace.xcconfig */;
 			buildSettings = {
@@ -11047,9 +10105,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ACE";
+			name = "ACE-Release";
 		};
-		67A986E924FD41DB00BD46E7 /* Automation-Delmarva */ = {
+		67A986E924FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
@@ -11137,9 +10195,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Automation-Delmarva";
+			name = "Delmarva-AUT";
 		};
-		67A986EA24FD41DB00BD46E7 /* Automation-Delmarva */ = {
+		67A986EA24FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 96F199A88F0F24BE989A8571 /* Pods-EUMobile.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11175,9 +10233,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Delmarva";
+			name = "Delmarva-AUT";
 		};
-		67A986EB24FD41DB00BD46E7 /* Automation-Delmarva */ = {
+		67A986EB24FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 416412C7D6C69461DFBD7462 /* Pods-EUMobileUnitTests.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11227,9 +10285,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Delmarva";
+			name = "Delmarva-AUT";
 		};
-		67A986EC24FD41DB00BD46E7 /* Automation-Delmarva */ = {
+		67A986EC24FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5AB78A4437B04AE4DAE79239 /* Pods-EUMobileUITests.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11281,9 +10339,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Delmarva";
+			name = "Delmarva-AUT";
 		};
-		67A986ED24FD41DB00BD46E7 /* Automation-Delmarva */ = {
+		67A986ED24FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F08AFD4DFE87824EC127C0F6 /* Pods-EUMobile-Watch.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11364,9 +10422,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Delmarva";
+			name = "Delmarva-AUT";
 		};
-		67A986EE24FD41DB00BD46E7 /* Automation-Delmarva */ = {
+		67A986EE24FD41DB00BD46E7 /* Delmarva-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F0658711AB60AD87D4E3A63 /* Pods-EUMobile-Watch Extension.automation-dpl.xcconfig */;
 			buildSettings = {
@@ -11446,324 +10504,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Delmarva";
+			name = "Delmarva-AUT";
 		};
-		67A986EF24FD41E200BD46E7 /* Test-Delmarva */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
-				ALERT_URL = azstage.delmarva.com;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
-				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				BASE_URL = "xze-e-n-eudapi-dpl-t-ams-01.azure-api.net";
-				BUILD_DISPLAY_NAME = Delmarva;
-				BUILD_FLAVOR = DPL;
-				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = TEST;
-				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
-				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
-				INFOPLIST_PREFIX_HEADER = "";
-				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.10.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-development.exeloncorp.com";
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
-			};
-			name = "Test-Delmarva";
-		};
-		67A986F024FD41E200BD46E7 /* Test-Delmarva */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C297214013AF219D8F6BC0B /* Pods-EUMobile.test-dpl.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				BASE_URL = "xze-e-n-eudapi-dpl-t-ams-01.azure-api.net";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
-				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = EUMobile;
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Testing Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Delmarva";
-		};
-		67A986F124FD41E200BD46E7 /* Test-Delmarva */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E087E0374A41CB6C262960D /* Pods-EUMobileUnitTests.test-dpl.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-				);
-				INFOPLIST_FILE = UnitTests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EUMobile.app/EUMobile";
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Delmarva";
-		};
-		67A986F224FD41E200BD46E7 /* Test-Delmarva */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35FB4814A68B1B65B3BE45C8 /* Pods-EUMobileUITests.test-dpl.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UITests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Delmarva";
-		};
-		67A986F324FD41E200BD46E7 /* Test-Delmarva */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 557818F050678DC92D9F3593 /* Pods-EUMobile-Watch.test-dpl.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = "EUMobile-Watch Extension";
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Testing Watchkit App Enterprise Dist";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Delmarva";
-		};
-		67A986F424FD41E200BD46E7 /* Test-Delmarva */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73EB2D16DB28F3B8382C1638 /* Pods-EUMobile-Watch Extension.test-dpl.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.delmarva.testing.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Testing Watchkit WatchkitExtension Ent";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Delmarva";
-		};
-		67A986F524FD41E900BD46E7 /* Stage-Delmarva */ = {
+		67A986F524FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
@@ -11853,9 +10596,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Stage-Delmarva";
+			name = "Delmarva-Beta";
 		};
-		67A986F624FD41E900BD46E7 /* Stage-Delmarva */ = {
+		67A986F624FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E5A8A407451C4F76CCE700B4 /* Pods-EUMobile.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -11893,9 +10636,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Delmarva";
+			name = "Delmarva-Beta";
 		};
-		67A986F724FD41E900BD46E7 /* Stage-Delmarva */ = {
+		67A986F724FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1895138B3357981EFDD29E5 /* Pods-EUMobileUnitTests.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -11926,9 +10669,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Delmarva";
+			name = "Delmarva-Beta";
 		};
-		67A986F824FD41E900BD46E7 /* Stage-Delmarva */ = {
+		67A986F824FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C825EDE97E1E1D68EAB61DE /* Pods-EUMobileUITests.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -11960,9 +10703,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Delmarva";
+			name = "Delmarva-Beta";
 		};
-		67A986F924FD41E900BD46E7 /* Stage-Delmarva */ = {
+		67A986F924FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E3726ADD96C0D0099CCB15F /* Pods-EUMobile-Watch.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -11997,9 +10740,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Delmarva";
+			name = "Delmarva-Beta";
 		};
-		67A986FA24FD41E900BD46E7 /* Stage-Delmarva */ = {
+		67A986FA24FD41E900BD46E7 /* Delmarva-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B5D1261FAC3B66881523B2C /* Pods-EUMobile-Watch Extension.stage-dpl.xcconfig */;
 			buildSettings = {
@@ -12033,9 +10776,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Delmarva";
+			name = "Delmarva-Beta";
 		};
-		67A986FB24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
+		67A986FB24FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
@@ -12119,9 +10862,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "ProdBeta-Delmarva";
+			name = "Delmarva-RC";
 		};
-		67A986FC24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
+		67A986FC24FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3426FF03A4F50E0F15A71C46 /* Pods-EUMobile.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12160,9 +10903,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Delmarva";
+			name = "Delmarva-RC";
 		};
-		67A986FD24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
+		67A986FD24FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8B2D77528B7E9B5CCCCA0588 /* Pods-EUMobileUnitTests.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12193,9 +10936,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Delmarva";
+			name = "Delmarva-RC";
 		};
-		67A986FE24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
+		67A986FE24FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8153A94D7A50381B1386C071 /* Pods-EUMobileUITests.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12227,9 +10970,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Delmarva";
+			name = "Delmarva-RC";
 		};
-		67A986FF24FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
+		67A986FF24FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9AB5A5645326086EBD194E41 /* Pods-EUMobile-Watch.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12266,9 +11009,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Delmarva";
+			name = "Delmarva-RC";
 		};
-		67A9870024FD41F100BD46E7 /* ProdBeta-Delmarva */ = {
+		67A9870024FD41F100BD46E7 /* Delmarva-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 012445878AA48DB87AA473DA /* Pods-EUMobile-Watch Extension.prodbeta-dpl.xcconfig */;
 			buildSettings = {
@@ -12304,9 +11047,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Delmarva";
+			name = "Delmarva-RC";
 		};
-		67A9870124FD41F600BD46E7 /* Prod-Delmarva */ = {
+		67A9870124FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
@@ -12389,9 +11132,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Prod-Delmarva";
+			name = "Delmarva-Release";
 		};
-		67A9870224FD41F600BD46E7 /* Prod-Delmarva */ = {
+		67A9870224FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB7C4B350818B1402CDCA1A5 /* Pods-EUMobile.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12430,9 +11173,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Delmarva";
+			name = "Delmarva-Release";
 		};
-		67A9870324FD41F600BD46E7 /* Prod-Delmarva */ = {
+		67A9870324FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D54BF2EC45A1EE0B8794682F /* Pods-EUMobileUnitTests.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12463,9 +11206,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Delmarva";
+			name = "Delmarva-Release";
 		};
-		67A9870424FD41F600BD46E7 /* Prod-Delmarva */ = {
+		67A9870424FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1AA98D5819100D5B654E8F4E /* Pods-EUMobileUITests.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12497,9 +11240,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Delmarva";
+			name = "Delmarva-Release";
 		};
-		67A9870524FD41F600BD46E7 /* Prod-Delmarva */ = {
+		67A9870524FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0D6D810102B8631C03A99066 /* Pods-EUMobile-Watch.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12537,9 +11280,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Delmarva";
+			name = "Delmarva-Release";
 		};
-		67A9870624FD41F600BD46E7 /* Prod-Delmarva */ = {
+		67A9870624FD41F600BD46E7 /* Delmarva-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C437B943D30BBD2CEAB96CE3 /* Pods-EUMobile-Watch Extension.prod-dpl.xcconfig */;
 			buildSettings = {
@@ -12576,9 +11319,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Delmarva";
+			name = "Delmarva-Release";
 		};
-		67A9870724FD41FE00BD46E7 /* Automation-Pepco */ = {
+		67A9870724FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
@@ -12666,9 +11409,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Automation-Pepco";
+			name = "Pepco-AUT";
 		};
-		67A9870824FD41FE00BD46E7 /* Automation-Pepco */ = {
+		67A9870824FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E3C6B38B44B652352E21FDA /* Pods-EUMobile.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12704,9 +11447,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Pepco";
+			name = "Pepco-AUT";
 		};
-		67A9870924FD41FE00BD46E7 /* Automation-Pepco */ = {
+		67A9870924FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2982725852FF6796BD1B661E /* Pods-EUMobileUnitTests.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12756,9 +11499,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Pepco";
+			name = "Pepco-AUT";
 		};
-		67A9870A24FD41FE00BD46E7 /* Automation-Pepco */ = {
+		67A9870A24FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 556FF12FC61C210CB346659C /* Pods-EUMobileUITests.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12810,9 +11553,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Pepco";
+			name = "Pepco-AUT";
 		};
-		67A9870B24FD41FE00BD46E7 /* Automation-Pepco */ = {
+		67A9870B24FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 50D5861B9EC07EDCDEBDB94F /* Pods-EUMobile-Watch.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12893,9 +11636,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Pepco";
+			name = "Pepco-AUT";
 		};
-		67A9870C24FD41FE00BD46E7 /* Automation-Pepco */ = {
+		67A9870C24FD41FE00BD46E7 /* Pepco-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6AA35A7B74F9EF1C134D8787 /* Pods-EUMobile-Watch Extension.automation-pepco.xcconfig */;
 			buildSettings = {
@@ -12975,324 +11718,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-Pepco";
+			name = "Pepco-AUT";
 		};
-		67A9870D24FD420400BD46E7 /* Test-Pepco */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
-				ALERT_URL = azstage.pepco.com;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
-				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				BASE_URL = "xze-e-n-eudapi-pepco-t-ams-01.azure-api.net";
-				BUILD_DISPLAY_NAME = Pepco;
-				BUILD_FLAVOR = PEPCO;
-				BUNDLE_ID = com.exelon.mobile.pepco.testing;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = TEST;
-				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "";
-				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
-				INFOPLIST_PREFIX_HEADER = "";
-				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.10.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-development.exeloncorp.com";
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/phi";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
-			};
-			name = "Test-Pepco";
-		};
-		67A9870E24FD420400BD46E7 /* Test-Pepco */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E346469C997E882D81CDE35F /* Pods-EUMobile.test-pepco.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				BASE_URL = "xze-e-n-eudapi-pepco-t-ams-01.azure-api.net";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
-				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = EUMobile;
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Testing Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Pepco";
-		};
-		67A9870F24FD420400BD46E7 /* Test-Pepco */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C813908E885550427617CFAA /* Pods-EUMobileUnitTests.test-pepco.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-				);
-				INFOPLIST_FILE = UnitTests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EUMobile.app/EUMobile";
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Pepco";
-		};
-		67A9871024FD420400BD46E7 /* Test-Pepco */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30BC3D32D6200634EF1DAB2C /* Pods-EUMobileUITests.test-pepco.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UITests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Pepco";
-		};
-		67A9871124FD420400BD46E7 /* Test-Pepco */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D23AB91103BE45B2F138BDC /* Pods-EUMobile-Watch.test-pepco.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = "EUMobile-Watch Extension";
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Testing Watchkit App Enterprise Dist";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Pepco";
-		};
-		67A9871224FD420400BD46E7 /* Test-Pepco */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57CABACE71B62815B0CEA4E9 /* Pods-EUMobile-Watch Extension.test-pepco.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.pepco.testing.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco Testing Watchkit WatchkitExtension Ent";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-Pepco";
-		};
-		67A9871324FD420D00BD46E7 /* Stage-Pepco */ = {
+		67A9871324FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
@@ -13382,9 +11810,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Stage-Pepco";
+			name = "Pepco-Beta";
 		};
-		67A9871424FD420D00BD46E7 /* Stage-Pepco */ = {
+		67A9871424FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E41D4B7BE3896ECD1FD6BCC2 /* Pods-EUMobile.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13422,9 +11850,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Pepco";
+			name = "Pepco-Beta";
 		};
-		67A9871524FD420D00BD46E7 /* Stage-Pepco */ = {
+		67A9871524FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C9EDA94A5E092263E0DADB4 /* Pods-EUMobileUnitTests.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13455,9 +11883,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Pepco";
+			name = "Pepco-Beta";
 		};
-		67A9871624FD420D00BD46E7 /* Stage-Pepco */ = {
+		67A9871624FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A2BF335D89FACBEABCD25D6 /* Pods-EUMobileUITests.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13489,9 +11917,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Pepco";
+			name = "Pepco-Beta";
 		};
-		67A9871724FD420D00BD46E7 /* Stage-Pepco */ = {
+		67A9871724FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB32E1EB1BBF540CF4ACABBB /* Pods-EUMobile-Watch.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13526,9 +11954,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Pepco";
+			name = "Pepco-Beta";
 		};
-		67A9871824FD420D00BD46E7 /* Stage-Pepco */ = {
+		67A9871824FD420D00BD46E7 /* Pepco-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38210305D27493C485B997B4 /* Pods-EUMobile-Watch Extension.stage-pepco.xcconfig */;
 			buildSettings = {
@@ -13562,9 +11990,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-Pepco";
+			name = "Pepco-Beta";
 		};
-		67A9871924FD421400BD46E7 /* ProdBeta-Pepco */ = {
+		67A9871924FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
@@ -13648,9 +12076,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "ProdBeta-Pepco";
+			name = "Pepco-RC";
 		};
-		67A9871A24FD421400BD46E7 /* ProdBeta-Pepco */ = {
+		67A9871A24FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 118010E5F4E2E915788A2F57 /* Pods-EUMobile.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13689,9 +12117,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Pepco";
+			name = "Pepco-RC";
 		};
-		67A9871B24FD421400BD46E7 /* ProdBeta-Pepco */ = {
+		67A9871B24FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 077CBE69EDB02D291A47648F /* Pods-EUMobileUnitTests.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13722,9 +12150,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Pepco";
+			name = "Pepco-RC";
 		};
-		67A9871C24FD421400BD46E7 /* ProdBeta-Pepco */ = {
+		67A9871C24FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D37425BB716FC2E8A1D03CFE /* Pods-EUMobileUITests.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13756,9 +12184,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Pepco";
+			name = "Pepco-RC";
 		};
-		67A9871D24FD421400BD46E7 /* ProdBeta-Pepco */ = {
+		67A9871D24FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9B4F5E1670E9B115B0F7AF3A /* Pods-EUMobile-Watch.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13795,9 +12223,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Pepco";
+			name = "Pepco-RC";
 		};
-		67A9871E24FD421400BD46E7 /* ProdBeta-Pepco */ = {
+		67A9871E24FD421400BD46E7 /* Pepco-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BD09DCEF20106546296795F /* Pods-EUMobile-Watch Extension.prodbeta-pepco.xcconfig */;
 			buildSettings = {
@@ -13833,9 +12261,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-Pepco";
+			name = "Pepco-RC";
 		};
-		67A9871F24FD421C00BD46E7 /* Prod-Pepco */ = {
+		67A9871F24FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
@@ -13918,9 +12346,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Prod-Pepco";
+			name = "Pepco-Release";
 		};
-		67A9872024FD421C00BD46E7 /* Prod-Pepco */ = {
+		67A9872024FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E400A8C0015E1805A8508CEA /* Pods-EUMobile.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -13959,9 +12387,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Pepco";
+			name = "Pepco-Release";
 		};
-		67A9872124FD421C00BD46E7 /* Prod-Pepco */ = {
+		67A9872124FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 162AE315BA02A4619C520495 /* Pods-EUMobileUnitTests.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -13992,9 +12420,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Pepco";
+			name = "Pepco-Release";
 		};
-		67A9872224FD421C00BD46E7 /* Prod-Pepco */ = {
+		67A9872224FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2444C3C6B5136D09964CD470 /* Pods-EUMobileUITests.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -14026,9 +12454,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Pepco";
+			name = "Pepco-Release";
 		};
-		67A9872324FD421C00BD46E7 /* Prod-Pepco */ = {
+		67A9872324FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7CD67AA0AEBFC45AFCF97BD /* Pods-EUMobile-Watch.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -14066,9 +12494,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Pepco";
+			name = "Pepco-Release";
 		};
-		67A9872424FD421C00BD46E7 /* Prod-Pepco */ = {
+		67A9872424FD421C00BD46E7 /* Pepco-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A5F8B1D0C92421C0E157C91E /* Pods-EUMobile-Watch Extension.prod-pepco.xcconfig */;
 			buildSettings = {
@@ -14105,9 +12533,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-Pepco";
+			name = "Pepco-Release";
 		};
-		67D562F924ED9DD100852551 /* Automation-ComEd */ = {
+		67D562F924ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
@@ -14195,9 +12623,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Automation-ComEd";
+			name = "ComEd-AUT";
 		};
-		67D562FA24ED9DD100852551 /* Automation-ComEd */ = {
+		67D562FA24ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17F61858A62CCE19EAAB47E1 /* Pods-EUMobile.automation-comed.xcconfig */;
 			buildSettings = {
@@ -14233,9 +12661,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ComEd";
+			name = "ComEd-AUT";
 		};
-		67D562FB24ED9DD100852551 /* Automation-ComEd */ = {
+		67D562FB24ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF107A80A9A6E53CC26B8A42 /* Pods-EUMobileUnitTests.automation-comed.xcconfig */;
 			buildSettings = {
@@ -14285,9 +12713,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ComEd";
+			name = "ComEd-AUT";
 		};
-		67D562FC24ED9DD100852551 /* Automation-ComEd */ = {
+		67D562FC24ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 929260701CCA9FC22FF75E01 /* Pods-EUMobileUITests.automation-comed.xcconfig */;
 			buildSettings = {
@@ -14339,9 +12767,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ComEd";
+			name = "ComEd-AUT";
 		};
-		67D562FD24ED9DD100852551 /* Automation-ComEd */ = {
+		67D562FD24ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1420449F90646CC84E3CAFC3 /* Pods-EUMobile-Watch.automation-comed.xcconfig */;
 			buildSettings = {
@@ -14422,9 +12850,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ComEd";
+			name = "ComEd-AUT";
 		};
-		67D562FE24ED9DD100852551 /* Automation-ComEd */ = {
+		67D562FE24ED9DD100852551 /* ComEd-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442A2F484271DD4190FF853F /* Pods-EUMobile-Watch Extension.automation-comed.xcconfig */;
 			buildSettings = {
@@ -14504,323 +12932,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-ComEd";
+			name = "ComEd-AUT";
 		};
-		67D562FF24ED9DD300852551 /* Test-ComEd */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
-				ALERT_URL = azstage.comed.com;
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
-				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				BASE_URL = "xze-e-n-eudapi-comed-t-ams-01.azure-api.net";
-				BUILD_DISPLAY_NAME = ComEd;
-				BUILD_FLAVOR = COMED;
-				BUNDLE_ID = com.exelon.mobile.comed.testing;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT_TIER = TEST;
-				EXCLUDED_SOURCE_FILE_NAMES = "*-Flavor*.*";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GOOGLE_ANALYTICS_ID = "UA-76742208-16";
-				HEADER_SEARCH_PATHS = "";
-				INCLUDED_SOURCE_FILE_NAMES = "*-Flavor$(BUILD_FLAVOR)*.*";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
-				INFOPLIST_PREFIX_HEADER = "";
-				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.10.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OAUTH_URL = "api-development.exeloncorp.com";
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
-				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VALIDATE_WORKSPACE = YES;
-			};
-			name = "Test-ComEd";
-		};
-		67D5630024ED9DD300852551 /* Test-ComEd */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20604A8E35CC7B2497F070BF /* Pods-EUMobile.test-comed.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.10.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
-				PRODUCT_NAME = EUMobile;
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Testing Enterprise Dist";
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "";
-				VALIDATE_WORKSPACE = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ComEd";
-		};
-		67D5630124ED9DD300852551 /* Test-ComEd */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46D561AA450591702D10CB14 /* Pods-EUMobileUnitTests.test-comed.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-				);
-				INFOPLIST_FILE = UnitTests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EUMobile.app/EUMobile";
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ComEd";
-		};
-		67D5630224ED9DD300852551 /* Test-ComEd */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F4B3CDC2022559FA84504CA /* Pods-EUMobileUITests.test-comed.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UITests/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "App/Supporting Files/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ComEd";
-		};
-		67D5630324ED9DD300852551 /* Test-ComEd */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4A4AB573C3071D882114C52 /* Pods-EUMobile-Watch.test-comed.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IBSC_MODULE = "EUMobile-Watch Extension";
-				INFOPLIST_FILE = Watch/Configuration/Info.plist;
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
-				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Testing WatchKit App";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ComEd";
-		};
-		67D5630424ED9DD300852551 /* Test-ComEd */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A50644D525BB590D6C08086 /* Pods-EUMobile-Watch Extension.test-comed.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-TEST";
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				BUNDLE_ID = com.exelon.mobile.comed.testing.watchkitapp;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
-				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.10.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
-				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "ComEd Testing WatchKit Extension";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Test-ComEd";
-		};
-		67D5630524ED9DD500852551 /* Stage-ComEd */ = {
+		67D5630524ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
@@ -14910,9 +13024,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Stage-ComEd";
+			name = "ComEd-Beta";
 		};
-		67D5630624ED9DD500852551 /* Stage-ComEd */ = {
+		67D5630624ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 96D240199C8B706D30CEE9EB /* Pods-EUMobile.stage-comed.xcconfig */;
 			buildSettings = {
@@ -14949,9 +13063,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ComEd";
+			name = "ComEd-Beta";
 		};
-		67D5630724ED9DD500852551 /* Stage-ComEd */ = {
+		67D5630724ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 367B540DAE6087D02BBFDD5E /* Pods-EUMobileUnitTests.stage-comed.xcconfig */;
 			buildSettings = {
@@ -14982,9 +13096,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ComEd";
+			name = "ComEd-Beta";
 		};
-		67D5630824ED9DD500852551 /* Stage-ComEd */ = {
+		67D5630824ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85536F76A4D7E8753556E6A1 /* Pods-EUMobileUITests.stage-comed.xcconfig */;
 			buildSettings = {
@@ -15016,9 +13130,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ComEd";
+			name = "ComEd-Beta";
 		};
-		67D5630924ED9DD500852551 /* Stage-ComEd */ = {
+		67D5630924ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0D5082160C05ECE12428637B /* Pods-EUMobile-Watch.stage-comed.xcconfig */;
 			buildSettings = {
@@ -15053,9 +13167,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ComEd";
+			name = "ComEd-Beta";
 		};
-		67D5630A24ED9DD500852551 /* Stage-ComEd */ = {
+		67D5630A24ED9DD500852551 /* ComEd-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A0F958558A7C4625129969F /* Pods-EUMobile-Watch Extension.stage-comed.xcconfig */;
 			buildSettings = {
@@ -15089,9 +13203,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-ComEd";
+			name = "ComEd-Beta";
 		};
-		67D5631124ED9DD900852551 /* ProdBeta-ComEd */ = {
+		67D5631124ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
@@ -15175,9 +13289,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "ProdBeta-ComEd";
+			name = "ComEd-RC";
 		};
-		67D5631224ED9DD900852551 /* ProdBeta-ComEd */ = {
+		67D5631224ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 36FC52FE80B75EABF453EA04 /* Pods-EUMobile.prodbeta-comed.xcconfig */;
 			buildSettings = {
@@ -15215,9 +13329,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ComEd";
+			name = "ComEd-RC";
 		};
-		67D5631324ED9DD900852551 /* ProdBeta-ComEd */ = {
+		67D5631324ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF0F0D4B47062C9851598FD9 /* Pods-EUMobileUnitTests.prodbeta-comed.xcconfig */;
 			buildSettings = {
@@ -15248,9 +13362,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ComEd";
+			name = "ComEd-RC";
 		};
-		67D5631424ED9DD900852551 /* ProdBeta-ComEd */ = {
+		67D5631424ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E1830229C94EFAD436517948 /* Pods-EUMobileUITests.prodbeta-comed.xcconfig */;
 			buildSettings = {
@@ -15282,9 +13396,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ComEd";
+			name = "ComEd-RC";
 		};
-		67D5631524ED9DD900852551 /* ProdBeta-ComEd */ = {
+		67D5631524ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D2C21D2F91D657F800A0580D /* Pods-EUMobile-Watch.prodbeta-comed.xcconfig */;
 			buildSettings = {
@@ -15321,9 +13435,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ComEd";
+			name = "ComEd-RC";
 		};
-		67D5631624ED9DD900852551 /* ProdBeta-ComEd */ = {
+		67D5631624ED9DD900852551 /* ComEd-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1665BDB09F2D967022BFDD2 /* Pods-EUMobile-Watch Extension.prodbeta-comed.xcconfig */;
 			buildSettings = {
@@ -15359,9 +13473,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-ComEd";
+			name = "ComEd-RC";
 		};
-		67D5631724ED9DDB00852551 /* Prod-ComEd */ = {
+		67D5631724ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
@@ -15444,9 +13558,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Prod-ComEd";
+			name = "ComEd-Release";
 		};
-		67D5631824ED9DDB00852551 /* Prod-ComEd */ = {
+		67D5631824ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1B990865BEA691D0A7DE1A13 /* Pods-EUMobile.prod-comed.xcconfig */;
 			buildSettings = {
@@ -15484,9 +13598,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ComEd";
+			name = "ComEd-Release";
 		};
-		67D5631924ED9DDB00852551 /* Prod-ComEd */ = {
+		67D5631924ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7C92D899B3F95969C91CABF /* Pods-EUMobileUnitTests.prod-comed.xcconfig */;
 			buildSettings = {
@@ -15517,9 +13631,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ComEd";
+			name = "ComEd-Release";
 		};
-		67D5631A24ED9DDB00852551 /* Prod-ComEd */ = {
+		67D5631A24ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B1517AA743756F23C51B88FA /* Pods-EUMobileUITests.prod-comed.xcconfig */;
 			buildSettings = {
@@ -15551,9 +13665,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ComEd";
+			name = "ComEd-Release";
 		};
-		67D5631B24ED9DDB00852551 /* Prod-ComEd */ = {
+		67D5631B24ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA1B021215C985B2999AACA4 /* Pods-EUMobile-Watch.prod-comed.xcconfig */;
 			buildSettings = {
@@ -15591,9 +13705,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ComEd";
+			name = "ComEd-Release";
 		};
-		67D5631C24ED9DDB00852551 /* Prod-ComEd */ = {
+		67D5631C24ED9DDB00852551 /* ComEd-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A547451FCDE3E1109B5D124 /* Pods-EUMobile-Watch Extension.prod-comed.xcconfig */;
 			buildSettings = {
@@ -15630,9 +13744,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Prod-ComEd";
+			name = "ComEd-Release";
 		};
-		9CEB30CF22612D8500DD725C /* Automation-BGE */ = {
+		9CEB30CF22612D8500DD725C /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
@@ -15720,9 +13834,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Automation-BGE";
+			name = "BGE-AUT";
 		};
-		9CEB30D022612D8500DD725C /* Automation-BGE */ = {
+		9CEB30D022612D8500DD725C /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E7CCA7BB68A1A045F7C6651 /* Pods-EUMobile.automation-bge.xcconfig */;
 			buildSettings = {
@@ -15758,9 +13872,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-BGE";
+			name = "BGE-AUT";
 		};
-		9CEB30D622612D8500DD725C /* Automation-BGE */ = {
+		9CEB30D622612D8500DD725C /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F758AEDA83F8AEB46FABCBE4 /* Pods-EUMobileUnitTests.automation-bge.xcconfig */;
 			buildSettings = {
@@ -15810,9 +13924,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-BGE";
+			name = "BGE-AUT";
 		};
-		9CEB30D922612D8500DD725C /* Automation-BGE */ = {
+		9CEB30D922612D8500DD725C /* BGE-AUT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 582DD6F247A5BF31AE8D8C56 /* Pods-EUMobileUITests.automation-bge.xcconfig */;
 			buildSettings = {
@@ -15864,9 +13978,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Automation-BGE";
+			name = "BGE-AUT";
 		};
-		B58B5AE81E4E28740051FD5F /* ProdBeta-BGE */ = {
+		B58B5AE81E4E28740051FD5F /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
@@ -15950,9 +14064,9 @@
 				VALIDATE_PRODUCT = YES;
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "ProdBeta-BGE";
+			name = "BGE-RC";
 		};
-		B58B5AEB1E4E28740051FD5F /* ProdBeta-BGE */ = {
+		B58B5AEB1E4E28740051FD5F /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6DAEDA4A16B6AD82F01B2E48 /* Pods-EUMobile.prodbeta-bge.xcconfig */;
 			buildSettings = {
@@ -15990,9 +14104,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-BGE";
+			name = "BGE-RC";
 		};
-		B58B5AF61E51497B0051FD5F /* Stage-BGE */ = {
+		B58B5AF61E51497B0051FD5F /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
@@ -16082,9 +14196,9 @@
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VALIDATE_WORKSPACE = YES;
 			};
-			name = "Stage-BGE";
+			name = "BGE-Beta";
 		};
-		B58B5AF71E51497B0051FD5F /* Stage-BGE */ = {
+		B58B5AF71E51497B0051FD5F /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7D8FA9F8DFF4118E593AE757 /* Pods-EUMobile.stage-bge.xcconfig */;
 			buildSettings = {
@@ -16121,9 +14235,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-BGE";
+			name = "BGE-Beta";
 		};
-		B5AC06DF1E52238900BBA4ED /* Stage-BGE */ = {
+		B5AC06DF1E52238900BBA4ED /* BGE-Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A93F55E33689BE241EB8677 /* Pods-EUMobileUnitTests.stage-bge.xcconfig */;
 			buildSettings = {
@@ -16154,9 +14268,9 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Stage-BGE";
+			name = "BGE-Beta";
 		};
-		B5AC06E11E52238900BBA4ED /* ProdBeta-BGE */ = {
+		B5AC06E11E52238900BBA4ED /* BGE-RC */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1783A48F8E8229E202A2C7C6 /* Pods-EUMobileUnitTests.prodbeta-bge.xcconfig */;
 			buildSettings = {
@@ -16187,7 +14301,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "ProdBeta-BGE";
+			name = "BGE-RC";
 		};
 /* End XCBuildConfiguration section */
 
@@ -16195,224 +14309,188 @@
 		087630EA1E72F5D000FA7020 /* Build configuration list for PBXNativeTarget "EUMobileUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9CEB30D922612D8500DD725C /* Automation-BGE */,
-				67A986B324FD3E8500BD46E7 /* Automation-ACE */,
-				67A986EC24FD41DB00BD46E7 /* Automation-Delmarva */,
-				67A9870A24FD41FE00BD46E7 /* Automation-Pepco */,
-				67D562FC24ED9DD100852551 /* Automation-ComEd */,
-				67A9867924F950F900BD46E7 /* Automation-PECO */,
-				0EB93B68202CA3C70049E7A2 /* Test-BGE */,
-				67A986B924FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F224FD41E200BD46E7 /* Test-Delmarva */,
-				67A9871024FD420400BD46E7 /* Test-Pepco */,
-				67D5630224ED9DD300852551 /* Test-ComEd */,
-				67A9867F24F9510500BD46E7 /* Test-PECO */,
-				087630E71E72F5D000FA7020 /* Stage-BGE */,
-				67A986BF24FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F824FD41E900BD46E7 /* Stage-Delmarva */,
-				67A9871624FD420D00BD46E7 /* Stage-Pepco */,
-				67D5630824ED9DD500852551 /* Stage-ComEd */,
-				67A9868524F9510D00BD46E7 /* Stage-PECO */,
-				087630E91E72F5D000FA7020 /* ProdBeta-BGE */,
-				67A986C524FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FE24FD41F100BD46E7 /* ProdBeta-Delmarva */,
-				67A9871C24FD421400BD46E7 /* ProdBeta-Pepco */,
-				67D5631424ED9DD900852551 /* ProdBeta-ComEd */,
-				67A9868B24F9511500BD46E7 /* ProdBeta-PECO */,
-				0E13175B202B583000865819 /* Prod-BGE */,
-				67A986CB24FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870424FD41F600BD46E7 /* Prod-Delmarva */,
-				67A9872224FD421C00BD46E7 /* Prod-Pepco */,
-				67D5631A24ED9DDB00852551 /* Prod-ComEd */,
-				67A9869124F9511D00BD46E7 /* Prod-PECO */,
+				9CEB30D922612D8500DD725C /* BGE-AUT */,
+				67A986B324FD3E8500BD46E7 /* ACE-AUT */,
+				67A986EC24FD41DB00BD46E7 /* Delmarva-AUT */,
+				67A9870A24FD41FE00BD46E7 /* Pepco-AUT */,
+				67D562FC24ED9DD100852551 /* ComEd-AUT */,
+				67A9867924F950F900BD46E7 /* PECO-AUT */,
+				087630E71E72F5D000FA7020 /* BGE-Beta */,
+				67A986BF24FD3E9300BD46E7 /* ACE-Beta */,
+				67A986F824FD41E900BD46E7 /* Delmarva-Beta */,
+				67A9871624FD420D00BD46E7 /* Pepco-Beta */,
+				67D5630824ED9DD500852551 /* ComEd-Beta */,
+				67A9868524F9510D00BD46E7 /* PECO-Beta */,
+				087630E91E72F5D000FA7020 /* BGE-RC */,
+				67A986C524FD3E9900BD46E7 /* ACE-RC */,
+				67A986FE24FD41F100BD46E7 /* Delmarva-RC */,
+				67A9871C24FD421400BD46E7 /* Pepco-RC */,
+				67D5631424ED9DD900852551 /* ComEd-RC */,
+				67A9868B24F9511500BD46E7 /* PECO-RC */,
+				0E13175B202B583000865819 /* BGE-Release */,
+				67A986CB24FD3E9F00BD46E7 /* ACE-Release */,
+				67A9870424FD41F600BD46E7 /* Delmarva-Release */,
+				67A9872224FD421C00BD46E7 /* Pepco-Release */,
+				67D5631A24ED9DDB00852551 /* ComEd-Release */,
+				67A9869124F9511D00BD46E7 /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Test-BGE";
+			defaultConfigurationName = "ACE-AUT";
 		};
 		35F9DD3E2333C34200AAA2B2 /* Build configuration list for PBXNativeTarget "EUMobile-Watch Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				35F9DD3F2333C34200AAA2B2 /* Automation-BGE */,
-				67A986B524FD3E8500BD46E7 /* Automation-ACE */,
-				67A986EE24FD41DB00BD46E7 /* Automation-Delmarva */,
-				67A9870C24FD41FE00BD46E7 /* Automation-Pepco */,
-				67D562FE24ED9DD100852551 /* Automation-ComEd */,
-				67A9867B24F950F900BD46E7 /* Automation-PECO */,
-				35F9DD402333C34200AAA2B2 /* Test-BGE */,
-				67A986BB24FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F424FD41E200BD46E7 /* Test-Delmarva */,
-				67A9871224FD420400BD46E7 /* Test-Pepco */,
-				67D5630424ED9DD300852551 /* Test-ComEd */,
-				67A9868124F9510500BD46E7 /* Test-PECO */,
-				35F9DD412333C34200AAA2B2 /* Stage-BGE */,
-				67A986C124FD3E9300BD46E7 /* Stage-ACE */,
-				67A986FA24FD41E900BD46E7 /* Stage-Delmarva */,
-				67A9871824FD420D00BD46E7 /* Stage-Pepco */,
-				67D5630A24ED9DD500852551 /* Stage-ComEd */,
-				67A9868724F9510D00BD46E7 /* Stage-PECO */,
-				35F9DD432333C34200AAA2B2 /* ProdBeta-BGE */,
-				67A986C724FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A9870024FD41F100BD46E7 /* ProdBeta-Delmarva */,
-				67A9871E24FD421400BD46E7 /* ProdBeta-Pepco */,
-				67D5631624ED9DD900852551 /* ProdBeta-ComEd */,
-				67A9868D24F9511500BD46E7 /* ProdBeta-PECO */,
-				35F9DD442333C34200AAA2B2 /* Prod-BGE */,
-				67A986CD24FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870624FD41F600BD46E7 /* Prod-Delmarva */,
-				67A9872424FD421C00BD46E7 /* Prod-Pepco */,
-				67D5631C24ED9DDB00852551 /* Prod-ComEd */,
-				67A9869324F9511D00BD46E7 /* Prod-PECO */,
+				35F9DD3F2333C34200AAA2B2 /* BGE-AUT */,
+				67A986B524FD3E8500BD46E7 /* ACE-AUT */,
+				67A986EE24FD41DB00BD46E7 /* Delmarva-AUT */,
+				67A9870C24FD41FE00BD46E7 /* Pepco-AUT */,
+				67D562FE24ED9DD100852551 /* ComEd-AUT */,
+				67A9867B24F950F900BD46E7 /* PECO-AUT */,
+				35F9DD412333C34200AAA2B2 /* BGE-Beta */,
+				67A986C124FD3E9300BD46E7 /* ACE-Beta */,
+				67A986FA24FD41E900BD46E7 /* Delmarva-Beta */,
+				67A9871824FD420D00BD46E7 /* Pepco-Beta */,
+				67D5630A24ED9DD500852551 /* ComEd-Beta */,
+				67A9868724F9510D00BD46E7 /* PECO-Beta */,
+				35F9DD432333C34200AAA2B2 /* BGE-RC */,
+				67A986C724FD3E9900BD46E7 /* ACE-RC */,
+				67A9870024FD41F100BD46E7 /* Delmarva-RC */,
+				67A9871E24FD421400BD46E7 /* Pepco-RC */,
+				67D5631624ED9DD900852551 /* ComEd-RC */,
+				67A9868D24F9511500BD46E7 /* PECO-RC */,
+				35F9DD442333C34200AAA2B2 /* BGE-Release */,
+				67A986CD24FD3E9F00BD46E7 /* ACE-Release */,
+				67A9870624FD41F600BD46E7 /* Delmarva-Release */,
+				67A9872424FD421C00BD46E7 /* Pepco-Release */,
+				67D5631C24ED9DDB00852551 /* ComEd-Release */,
+				67A9869324F9511D00BD46E7 /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Test-BGE";
+			defaultConfigurationName = "ACE-AUT";
 		};
 		35F9DD462333C34200AAA2B2 /* Build configuration list for PBXNativeTarget "EUMobile-Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				35F9DD472333C34200AAA2B2 /* Automation-BGE */,
-				67A986B424FD3E8500BD46E7 /* Automation-ACE */,
-				67A986ED24FD41DB00BD46E7 /* Automation-Delmarva */,
-				67A9870B24FD41FE00BD46E7 /* Automation-Pepco */,
-				67D562FD24ED9DD100852551 /* Automation-ComEd */,
-				67A9867A24F950F900BD46E7 /* Automation-PECO */,
-				35F9DD482333C34200AAA2B2 /* Test-BGE */,
-				67A986BA24FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F324FD41E200BD46E7 /* Test-Delmarva */,
-				67A9871124FD420400BD46E7 /* Test-Pepco */,
-				67D5630324ED9DD300852551 /* Test-ComEd */,
-				67A9868024F9510500BD46E7 /* Test-PECO */,
-				35F9DD492333C34200AAA2B2 /* Stage-BGE */,
-				67A986C024FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F924FD41E900BD46E7 /* Stage-Delmarva */,
-				67A9871724FD420D00BD46E7 /* Stage-Pepco */,
-				67D5630924ED9DD500852551 /* Stage-ComEd */,
-				67A9868624F9510D00BD46E7 /* Stage-PECO */,
-				35F9DD4B2333C34200AAA2B2 /* ProdBeta-BGE */,
-				67A986C624FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FF24FD41F100BD46E7 /* ProdBeta-Delmarva */,
-				67A9871D24FD421400BD46E7 /* ProdBeta-Pepco */,
-				67D5631524ED9DD900852551 /* ProdBeta-ComEd */,
-				67A9868C24F9511500BD46E7 /* ProdBeta-PECO */,
-				35F9DD4C2333C34200AAA2B2 /* Prod-BGE */,
-				67A986CC24FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870524FD41F600BD46E7 /* Prod-Delmarva */,
-				67A9872324FD421C00BD46E7 /* Prod-Pepco */,
-				67D5631B24ED9DDB00852551 /* Prod-ComEd */,
-				67A9869224F9511D00BD46E7 /* Prod-PECO */,
+				35F9DD472333C34200AAA2B2 /* BGE-AUT */,
+				67A986B424FD3E8500BD46E7 /* ACE-AUT */,
+				67A986ED24FD41DB00BD46E7 /* Delmarva-AUT */,
+				67A9870B24FD41FE00BD46E7 /* Pepco-AUT */,
+				67D562FD24ED9DD100852551 /* ComEd-AUT */,
+				67A9867A24F950F900BD46E7 /* PECO-AUT */,
+				35F9DD492333C34200AAA2B2 /* BGE-Beta */,
+				67A986C024FD3E9300BD46E7 /* ACE-Beta */,
+				67A986F924FD41E900BD46E7 /* Delmarva-Beta */,
+				67A9871724FD420D00BD46E7 /* Pepco-Beta */,
+				67D5630924ED9DD500852551 /* ComEd-Beta */,
+				67A9868624F9510D00BD46E7 /* PECO-Beta */,
+				35F9DD4B2333C34200AAA2B2 /* BGE-RC */,
+				67A986C624FD3E9900BD46E7 /* ACE-RC */,
+				67A986FF24FD41F100BD46E7 /* Delmarva-RC */,
+				67A9871D24FD421400BD46E7 /* Pepco-RC */,
+				67D5631524ED9DD900852551 /* ComEd-RC */,
+				67A9868C24F9511500BD46E7 /* PECO-RC */,
+				35F9DD4C2333C34200AAA2B2 /* BGE-Release */,
+				67A986CC24FD3E9F00BD46E7 /* ACE-Release */,
+				67A9870524FD41F600BD46E7 /* Delmarva-Release */,
+				67A9872324FD421C00BD46E7 /* Pepco-Release */,
+				67D5631B24ED9DDB00852551 /* ComEd-Release */,
+				67A9869224F9511D00BD46E7 /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Test-BGE";
+			defaultConfigurationName = "ACE-AUT";
 		};
 		B58B5ABC1E4E28740051FD5F /* Build configuration list for PBXProject "Mobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9CEB30CF22612D8500DD725C /* Automation-BGE */,
-				67A986B024FD3E8500BD46E7 /* Automation-ACE */,
-				67A986E924FD41DB00BD46E7 /* Automation-Delmarva */,
-				67A9870724FD41FE00BD46E7 /* Automation-Pepco */,
-				67D562F924ED9DD100852551 /* Automation-ComEd */,
-				67A9867624F950F900BD46E7 /* Automation-PECO */,
-				0EB93B5E202CA3C70049E7A2 /* Test-BGE */,
-				67A986B624FD3E8B00BD46E7 /* Test-ACE */,
-				67A986EF24FD41E200BD46E7 /* Test-Delmarva */,
-				67A9870D24FD420400BD46E7 /* Test-Pepco */,
-				67D562FF24ED9DD300852551 /* Test-ComEd */,
-				67A9867C24F9510500BD46E7 /* Test-PECO */,
-				B58B5AF61E51497B0051FD5F /* Stage-BGE */,
-				67A986BC24FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F524FD41E900BD46E7 /* Stage-Delmarva */,
-				67A9871324FD420D00BD46E7 /* Stage-Pepco */,
-				67D5630524ED9DD500852551 /* Stage-ComEd */,
-				67A9868224F9510D00BD46E7 /* Stage-PECO */,
-				B58B5AE81E4E28740051FD5F /* ProdBeta-BGE */,
-				67A986C224FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FB24FD41F100BD46E7 /* ProdBeta-Delmarva */,
-				67A9871924FD421400BD46E7 /* ProdBeta-Pepco */,
-				67D5631124ED9DD900852551 /* ProdBeta-ComEd */,
-				67A9868824F9511500BD46E7 /* ProdBeta-PECO */,
-				0E131751202B583000865819 /* Prod-BGE */,
-				67A986C824FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870124FD41F600BD46E7 /* Prod-Delmarva */,
-				67A9871F24FD421C00BD46E7 /* Prod-Pepco */,
-				67D5631724ED9DDB00852551 /* Prod-ComEd */,
-				67A9868E24F9511D00BD46E7 /* Prod-PECO */,
+				9CEB30CF22612D8500DD725C /* BGE-AUT */,
+				67A986B024FD3E8500BD46E7 /* ACE-AUT */,
+				67A986E924FD41DB00BD46E7 /* Delmarva-AUT */,
+				67A9870724FD41FE00BD46E7 /* Pepco-AUT */,
+				67D562F924ED9DD100852551 /* ComEd-AUT */,
+				67A9867624F950F900BD46E7 /* PECO-AUT */,
+				B58B5AF61E51497B0051FD5F /* BGE-Beta */,
+				67A986BC24FD3E9300BD46E7 /* ACE-Beta */,
+				67A986F524FD41E900BD46E7 /* Delmarva-Beta */,
+				67A9871324FD420D00BD46E7 /* Pepco-Beta */,
+				67D5630524ED9DD500852551 /* ComEd-Beta */,
+				67A9868224F9510D00BD46E7 /* PECO-Beta */,
+				B58B5AE81E4E28740051FD5F /* BGE-RC */,
+				67A986C224FD3E9900BD46E7 /* ACE-RC */,
+				67A986FB24FD41F100BD46E7 /* Delmarva-RC */,
+				67A9871924FD421400BD46E7 /* Pepco-RC */,
+				67D5631124ED9DD900852551 /* ComEd-RC */,
+				67A9868824F9511500BD46E7 /* PECO-RC */,
+				0E131751202B583000865819 /* BGE-Release */,
+				67A986C824FD3E9F00BD46E7 /* ACE-Release */,
+				67A9870124FD41F600BD46E7 /* Delmarva-Release */,
+				67A9871F24FD421C00BD46E7 /* Pepco-Release */,
+				67D5631724ED9DDB00852551 /* ComEd-Release */,
+				67A9868E24F9511D00BD46E7 /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Test-BGE";
+			defaultConfigurationName = "ACE-AUT";
 		};
 		B58B5AE91E4E28740051FD5F /* Build configuration list for PBXNativeTarget "EUMobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9CEB30D022612D8500DD725C /* Automation-BGE */,
-				67A986B124FD3E8500BD46E7 /* Automation-ACE */,
-				67A986EA24FD41DB00BD46E7 /* Automation-Delmarva */,
-				67A9870824FD41FE00BD46E7 /* Automation-Pepco */,
-				67D562FA24ED9DD100852551 /* Automation-ComEd */,
-				67A9867724F950F900BD46E7 /* Automation-PECO */,
-				0EB93B5F202CA3C70049E7A2 /* Test-BGE */,
-				67A986B724FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F024FD41E200BD46E7 /* Test-Delmarva */,
-				67A9870E24FD420400BD46E7 /* Test-Pepco */,
-				67D5630024ED9DD300852551 /* Test-ComEd */,
-				67A9867D24F9510500BD46E7 /* Test-PECO */,
-				B58B5AF71E51497B0051FD5F /* Stage-BGE */,
-				67A986BD24FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F624FD41E900BD46E7 /* Stage-Delmarva */,
-				67A9871424FD420D00BD46E7 /* Stage-Pepco */,
-				67D5630624ED9DD500852551 /* Stage-ComEd */,
-				67A9868324F9510D00BD46E7 /* Stage-PECO */,
-				B58B5AEB1E4E28740051FD5F /* ProdBeta-BGE */,
-				67A986C324FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FC24FD41F100BD46E7 /* ProdBeta-Delmarva */,
-				67A9871A24FD421400BD46E7 /* ProdBeta-Pepco */,
-				67D5631224ED9DD900852551 /* ProdBeta-ComEd */,
-				67A9868924F9511500BD46E7 /* ProdBeta-PECO */,
-				0E131752202B583000865819 /* Prod-BGE */,
-				67A986C924FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870224FD41F600BD46E7 /* Prod-Delmarva */,
-				67A9872024FD421C00BD46E7 /* Prod-Pepco */,
-				67D5631824ED9DDB00852551 /* Prod-ComEd */,
-				67A9868F24F9511D00BD46E7 /* Prod-PECO */,
+				9CEB30D022612D8500DD725C /* BGE-AUT */,
+				67A986B124FD3E8500BD46E7 /* ACE-AUT */,
+				67A986EA24FD41DB00BD46E7 /* Delmarva-AUT */,
+				67A9870824FD41FE00BD46E7 /* Pepco-AUT */,
+				67D562FA24ED9DD100852551 /* ComEd-AUT */,
+				67A9867724F950F900BD46E7 /* PECO-AUT */,
+				B58B5AF71E51497B0051FD5F /* BGE-Beta */,
+				67A986BD24FD3E9300BD46E7 /* ACE-Beta */,
+				67A986F624FD41E900BD46E7 /* Delmarva-Beta */,
+				67A9871424FD420D00BD46E7 /* Pepco-Beta */,
+				67D5630624ED9DD500852551 /* ComEd-Beta */,
+				67A9868324F9510D00BD46E7 /* PECO-Beta */,
+				B58B5AEB1E4E28740051FD5F /* BGE-RC */,
+				67A986C324FD3E9900BD46E7 /* ACE-RC */,
+				67A986FC24FD41F100BD46E7 /* Delmarva-RC */,
+				67A9871A24FD421400BD46E7 /* Pepco-RC */,
+				67D5631224ED9DD900852551 /* ComEd-RC */,
+				67A9868924F9511500BD46E7 /* PECO-RC */,
+				0E131752202B583000865819 /* BGE-Release */,
+				67A986C924FD3E9F00BD46E7 /* ACE-Release */,
+				67A9870224FD41F600BD46E7 /* Delmarva-Release */,
+				67A9872024FD421C00BD46E7 /* Pepco-Release */,
+				67D5631824ED9DDB00852551 /* ComEd-Release */,
+				67A9868F24F9511D00BD46E7 /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Test-BGE";
+			defaultConfigurationName = "ACE-AUT";
 		};
 		B5AC06DC1E52238900BBA4ED /* Build configuration list for PBXNativeTarget "EUMobileUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9CEB30D622612D8500DD725C /* Automation-BGE */,
-				67A986B224FD3E8500BD46E7 /* Automation-ACE */,
-				67A986EB24FD41DB00BD46E7 /* Automation-Delmarva */,
-				67A9870924FD41FE00BD46E7 /* Automation-Pepco */,
-				67D562FB24ED9DD100852551 /* Automation-ComEd */,
-				67A9867824F950F900BD46E7 /* Automation-PECO */,
-				0EB93B65202CA3C70049E7A2 /* Test-BGE */,
-				67A986B824FD3E8B00BD46E7 /* Test-ACE */,
-				67A986F124FD41E200BD46E7 /* Test-Delmarva */,
-				67A9870F24FD420400BD46E7 /* Test-Pepco */,
-				67D5630124ED9DD300852551 /* Test-ComEd */,
-				67A9867E24F9510500BD46E7 /* Test-PECO */,
-				B5AC06DF1E52238900BBA4ED /* Stage-BGE */,
-				67A986BE24FD3E9300BD46E7 /* Stage-ACE */,
-				67A986F724FD41E900BD46E7 /* Stage-Delmarva */,
-				67A9871524FD420D00BD46E7 /* Stage-Pepco */,
-				67D5630724ED9DD500852551 /* Stage-ComEd */,
-				67A9868424F9510D00BD46E7 /* Stage-PECO */,
-				B5AC06E11E52238900BBA4ED /* ProdBeta-BGE */,
-				67A986C424FD3E9900BD46E7 /* ProdBeta-ACE */,
-				67A986FD24FD41F100BD46E7 /* ProdBeta-Delmarva */,
-				67A9871B24FD421400BD46E7 /* ProdBeta-Pepco */,
-				67D5631324ED9DD900852551 /* ProdBeta-ComEd */,
-				67A9868A24F9511500BD46E7 /* ProdBeta-PECO */,
-				0E131758202B583000865819 /* Prod-BGE */,
-				67A986CA24FD3E9F00BD46E7 /* Prod-ACE */,
-				67A9870324FD41F600BD46E7 /* Prod-Delmarva */,
-				67A9872124FD421C00BD46E7 /* Prod-Pepco */,
-				67D5631924ED9DDB00852551 /* Prod-ComEd */,
-				67A9869024F9511D00BD46E7 /* Prod-PECO */,
+				9CEB30D622612D8500DD725C /* BGE-AUT */,
+				67A986B224FD3E8500BD46E7 /* ACE-AUT */,
+				67A986EB24FD41DB00BD46E7 /* Delmarva-AUT */,
+				67A9870924FD41FE00BD46E7 /* Pepco-AUT */,
+				67D562FB24ED9DD100852551 /* ComEd-AUT */,
+				67A9867824F950F900BD46E7 /* PECO-AUT */,
+				B5AC06DF1E52238900BBA4ED /* BGE-Beta */,
+				67A986BE24FD3E9300BD46E7 /* ACE-Beta */,
+				67A986F724FD41E900BD46E7 /* Delmarva-Beta */,
+				67A9871524FD420D00BD46E7 /* Pepco-Beta */,
+				67D5630724ED9DD500852551 /* ComEd-Beta */,
+				67A9868424F9510D00BD46E7 /* PECO-Beta */,
+				B5AC06E11E52238900BBA4ED /* BGE-RC */,
+				67A986C424FD3E9900BD46E7 /* ACE-RC */,
+				67A986FD24FD41F100BD46E7 /* Delmarva-RC */,
+				67A9871B24FD421400BD46E7 /* Pepco-RC */,
+				67D5631324ED9DD900852551 /* ComEd-RC */,
+				67A9868A24F9511500BD46E7 /* PECO-RC */,
+				0E131758202B583000865819 /* BGE-Release */,
+				67A986CA24FD3E9F00BD46E7 /* ACE-Release */,
+				67A9870324FD41F600BD46E7 /* Delmarva-Release */,
+				67A9872124FD421C00BD46E7 /* Pepco-Release */,
+				67D5631924ED9DDB00852551 /* ComEd-Release */,
+				67A9869024F9511D00BD46E7 /* PECO-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Test-BGE";
+			defaultConfigurationName = "ACE-AUT";
 		};
 /* End XCConfigurationList section */
 

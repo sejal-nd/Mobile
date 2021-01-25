@@ -23,7 +23,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "ProdBeta-PECO"
+      buildConfiguration = "PECO-RC"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -31,7 +31,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "ProdBeta-PECO"
+      buildConfiguration = "PECO-RC"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -58,7 +58,7 @@
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "ProdBeta-PECO"
+      buildConfiguration = "PECO-RC"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -75,10 +75,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "ProdBeta-PECO">
+      buildConfiguration = "PECO-RC">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "ProdBeta-PECO"
+      buildConfiguration = "PECO-RC"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
