@@ -24,6 +24,23 @@ enum OpCo: String {
             return true
         }
     }
+
+    var urlDisplayString: String {
+        switch self {
+        case .ace:
+            return "atlanticcityelectric"
+        case .bge:
+            return "bge"
+        case .comEd:
+            return "comed"
+        case .delmarva:
+            return "delmarvapower"
+        case .peco:
+            return "peco"
+        case .pepco:
+            return "pepco"
+        }
+    }
     
     var displayString: String {
         switch self {
@@ -144,29 +161,39 @@ struct Environment {
     let sharepointBaseURL: String
     
     var clientSecret: String {
-        var id = ""
+        var secret = ""
         switch Environment.shared.environmentName {
-        case .aut, .test, .dev:
-            id = "WbCpJpfgV64WTTDg"
-        case .stage, .hotfix:
-            id = "61MnQzuXNLdlsBOu"
         case .prodbeta, .prod:
-            id = "wQrbiqG3Ddefftp3"
+            secret = "wQrbiqG3Ddefftp3"
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .test:
+                secret = "WbCpJpfgV64WTTDg"
+            case .stage:
+                secret = "61MnQzuXNLdlsBOu"
+            }
         }
-        return id
+        return secret
     }
     
     var clientID: String {
-        var secret = ""
+        var id = ""
         switch Environment.shared.environmentName {
-        case .aut, .test, .dev:
-            secret = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
-        case .stage, .hotfix:
-            secret = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"
         case .prodbeta, .prod:
-            secret = "jk8UMnMb2kSISwAgX0OFGhMEAfMEoGTd"
+            id = "jk8UMnMb2kSISwAgX0OFGhMEAfMEoGTd"
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .test:
+                id = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
+            case .stage:
+                id = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"
+            }
         }
-        return secret
+        return id
     }
     
     private init() {
@@ -178,19 +205,35 @@ struct Environment {
             let data = try Data(contentsOf: plistURL)
             let infoPlist = try decoder.decode(InfoPlist.self, from: data)
             
-            environmentName = EnvironmentName(rawValue: infoPlist.environmentTier)!
-            opco = OpCo(rawValue: infoPlist.buildFlavor)!
-            baseUrl = infoPlist.baseURL
-            oAuthEndpoint = infoPlist.oauthURL
+            let envName = EnvironmentName(rawValue: infoPlist.environmentTier)!
+            environmentName = envName
+            
+            let operatingCompany = OpCo(rawValue: infoPlist.buildFlavor)!
+            opco = operatingCompany
             paymentusUrl = infoPlist.paymentURL
             sharepointBaseURL = infoPlist.alertURL
             myAccountUrl = infoPlist.accountURL
             gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain
             appCenterId = infoPlist.appCenterID
+            
+            if envName == .test || envName == .stage {
+                let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+                let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+                switch projectTier {
+                case .test:
+                    baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
+                    oAuthEndpoint = "api-development.exeloncorp.com"
+                case .stage:
+                    baseUrl = "mcsstg.mobileenv.\(operatingCompany.urlDisplayString).com"
+                    oAuthEndpoint = "api-stage.exeloncorp.com"
+                }
+            } else {
+                baseUrl = infoPlist.baseURL
+                oAuthEndpoint = infoPlist.oauthURL
+            }
         } catch {
             fatalError("Could not get data from plist: \(error)")
         }
     }
 }
-
