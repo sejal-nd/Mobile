@@ -16,6 +16,7 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     case mma = "Manage My Account"
     case payments = "Payment Enhancements"
     case phi = "PHI"
+    case hotfix = "Hotfix"
     
     var projectPath: String {
         switch self {
@@ -29,6 +30,8 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
             return "/paymentenhancements"
         case .phi:
             return "/phimobile"
+        case .hotfix:
+            return "/hotfix"
         }
     }
 }

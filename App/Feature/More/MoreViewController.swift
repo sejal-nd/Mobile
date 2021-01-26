@@ -27,7 +27,7 @@ class MoreViewController: UIViewController {
         didSet {
             if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
                 switch Environment.shared.environmentName {
-                case .prod, .prodbeta:
+                case .release, .rc:
                     versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
                 default:
                     versionLabel.text = String(format: NSLocalizedString("Version %@ - Tier %@", comment: ""), version, Environment.shared.environmentName.rawValue)

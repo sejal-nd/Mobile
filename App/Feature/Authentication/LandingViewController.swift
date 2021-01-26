@@ -61,7 +61,7 @@ class LandingViewController: UIViewController {
         
         // Debug Button
         switch Environment.shared.environmentName {
-        case .aut, .dev, .test, .stage:
+        case .aut, .beta:
             debugButton.isHidden = false
             debugButton.isEnabled = true
         default:
@@ -140,7 +140,7 @@ class LandingViewController: UIViewController {
     
     @IBAction func onDebugMenuPress(_ sender: Any) {
         switch Environment.shared.environmentName {
-        case .aut, .dev, .test, .stage:
+        case .aut, .beta:
             if #available(iOS 14, *) {
                 let debugViewHostingController = UIHostingController(rootView: DebugMenu())
                 present(debugViewHostingController, animated: true, completion: nil)

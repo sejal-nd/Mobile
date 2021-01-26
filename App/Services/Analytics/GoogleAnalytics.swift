@@ -265,7 +265,7 @@ struct GoogleAnalytics {
     
     static var isAnalyticsEnabled: Bool {
         switch Environment.shared.environmentName {
-        case .test, .stage, .prodbeta, .prod:
+        case .beta, .rc, .release:
             return true
         default:
             return false
