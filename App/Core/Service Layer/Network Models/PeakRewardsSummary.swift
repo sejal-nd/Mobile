@@ -88,9 +88,11 @@ struct PeakRewardsOverride: Decodable, Equatable {
     
 }
 
-enum OverrideStatus: String, Codable {
+enum OverrideStatus: String, DefaultCaseCodable {
     case scheduled = "Scheduled"
     case active = "Active"
+    case cancelled = "Cancelled"
+    case unknown
 }
 
 public struct SmartThermostatDeviceSettings: Codable {
@@ -175,6 +177,13 @@ struct SmartThermostatDeviceSchedule: Codable {
     let returnInfo: SmartThermostatPeriodInfo
     let sleepInfo: SmartThermostatPeriodInfo
     
+    enum CodingKeys: String, CodingKey {
+        case wakeInfo = "wake"
+        case leaveInfo = "leave"
+        case returnInfo = "return"
+        case sleepInfo = "sleep"
+    }
+    
     init(wakeInfo: SmartThermostatPeriodInfo,
          leaveInfo: SmartThermostatPeriodInfo,
          returnInfo: SmartThermostatPeriodInfo,
@@ -237,12 +246,28 @@ struct SmartThermostatPeriodInfo: Codable {
         return DateFormatter.hmmaFormatter.string(from: startTime)
     }
     
+    enum CodingKeys: String, CodingKey {
+        case coolTemp
+        case heatTemp
+        case startTime
+    }
+    
     init(startTime: Date,
          coolTemp: Temperature,
          heatTemp: Temperature) {
         self.startTime = startTime
         self.coolTemp = coolTemp
         self.heatTemp = heatTemp
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(coolTemp, forKey: .coolTemp)
+        try container.encode(heatTemp, forKey: .heatTemp)
+        
+        let formattedDate = DateFormatter.HHmmFormatter.string(from: startTime)
+        try container.encode(formattedDate, forKey: .startTime)
     }
 }
 

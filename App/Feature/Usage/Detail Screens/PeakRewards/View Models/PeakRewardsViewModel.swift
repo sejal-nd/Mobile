@@ -29,6 +29,7 @@ class PeakRewardsViewModel {
     //MARK: - Actions
     let loadInitialData = PublishSubject<Void>()
     let overridesUpdated = PublishSubject<Void>()
+    let loadDeviceScheduleData = PublishSubject<Void>()
     let deviceScheduleChanged = PublishSubject<Void>()
     
     //MARK: - Init
@@ -78,22 +79,24 @@ class PeakRewardsViewModel {
         }
         .unwrap()
     
-    private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = Observable
-        .merge(self.selectedDevice.asObservable(), self.deviceScheduleChanged.withLatestFrom(self.selectedDevice.asObservable()))
-        .flatMapLatest { [weak self] device -> Observable<Event<SmartThermostatDeviceSchedule?>> in
-            guard let self = self else { return .empty() }
-            guard device.isSmartThermostat else {
-                return Observable.just(Event<SmartThermostatDeviceSchedule?>.next(nil))
+    private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = loadDeviceScheduleData.flatMapLatest {
+        Observable
+            .merge(self.selectedDevice.asObservable(), self.deviceScheduleChanged.withLatestFrom(self.selectedDevice.asObservable()))
+            .flatMapLatest { [weak self] device -> Observable<Event<SmartThermostatDeviceSchedule?>> in
+                guard let self = self else { return .empty() }
+                guard device.isSmartThermostat else {
+                    return Observable.just(Event<SmartThermostatDeviceSchedule?>.next(nil))
+                }
+                
+                return PeakRewardsService.rx.fetchSmartThermostatSchedule(accountNumber: self.accountDetail.accountNumber,
+                                                                          premiseNumber: self.premiseNumber, deviceSerialNumber: device.serialNumber)
+                    .map { $0 } // Type inference makes this optional
+                    .trackActivity(self.deviceScheduleFetchTracker)
+                    .materialize()
+                    .filter { !$0.isCompleted }
             }
-            
-            return PeakRewardsService.rx.fetchSmartThermostatSchedule(accountNumber: self.accountDetail.accountNumber,
-                                                                         premiseNumber: self.premiseNumber, deviceSerialNumber: device.serialNumber)
-                .map { $0 } // Type inference makes this optional
-                .trackActivity(self.deviceScheduleFetchTracker)
-                .materialize()
-                .filter { !$0.isCompleted }
-        }
-        .share(replay: 1)
+    }
+    .share(replay: 1)
     
     //MARK: - View Values
     private(set) lazy var devices: Driver<[SmartThermostatDevice]> = self.peakRewardsSummaryEvents.elements()
@@ -151,6 +154,12 @@ class PeakRewardsViewModel {
                         if program.stopDate == nil {
                             body = NSLocalizedString("You have not been cycled today", comment: "")
                         } else if let startDate = program.startDate, startDate.isInToday(calendar: .opCo) {
+                            body = NSLocalizedString("You have been cycled today", comment: "")
+                        } else {
+                            body = NSLocalizedString("You have not been cycled today", comment: "")
+                        }
+                    default:
+                        if let start = override?.start, start.isInToday(calendar: .opCo) && override?.stop != nil {
                             body = NSLocalizedString("You have been cycled today", comment: "")
                         } else {
                             body = NSLocalizedString("You have not been cycled today", comment: "")

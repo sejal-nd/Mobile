@@ -39,3 +39,13 @@ extension Encodable {
         }
     }
 }
+
+// Codable protocol with a default value used with enums
+protocol DefaultCaseCodable: Codable & CaseIterable & RawRepresentable
+where RawValue: Decodable, AllCases: BidirectionalCollection { }
+
+extension DefaultCaseCodable {
+    init(from decoder: Decoder) throws {
+        self = try Self(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? Self.allCases.last!
+    }
+}

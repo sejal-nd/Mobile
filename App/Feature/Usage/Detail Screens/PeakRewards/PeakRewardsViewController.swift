@@ -53,6 +53,7 @@ class PeakRewardsViewController: UIViewController {
         bindViews()
         bindActions()
         viewModel.loadInitialData.onNext(())
+        viewModel.loadDeviceScheduleData.onNext(())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -220,6 +221,9 @@ class PeakRewardsViewController: UIViewController {
                 guard let self = self else { return }
                 vc.saveSuccess.bind(to: self.viewModel.deviceScheduleChanged).disposed(by: vc.disposeBag)
                 vc.saveSuccess.asDriver(onErrorDriveWith: .empty())
+                    .do(onNext: { [weak self] in
+                        self?.viewModel.loadDeviceScheduleData.onNext(())
+                    })
                     .delay(.milliseconds(500))
                     .drive(onNext: { [weak self] in
                         self?.view.showToast(NSLocalizedString("Schedule updated", comment: ""))
