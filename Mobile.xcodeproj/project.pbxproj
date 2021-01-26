@@ -31,7 +31,7 @@
 		22EF55982170507700070C13 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF55962170507700070C13 /* AppointmentDetailViewController.swift */; };
 		22EF559B2170507700070C13 /* AppointmentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22EF55972170507700070C13 /* AppointmentDetailViewController.xib */; };
 		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
-		2FA5D85F1F17D2A300A8B16B /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		2FA5D85F1F17D2A300A8B16B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
 		301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06C71E521B3200BBA4ED /* Assets.xcassets */; };
 		30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30636F0724C82F2F00CCBFAE /* OpcoIdentityCardView.swift */; };
@@ -170,7 +170,7 @@
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
@@ -399,7 +399,7 @@
 		67A986E024FD41A100BD46E7 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD0924535EE6006CD6EB /* Assets-FlavorPEPCO.xcassets */; };
 		67A986E124FD41A100BD46E7 /* Assets-FlavorDPL.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD872457389E006CD6EB /* Assets-FlavorDPL.xcassets */; };
 		67A986E224FD41A100BD46E7 /* Assets-FlavorACE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67DDBD8A245738B8006CD6EB /* Assets-FlavorACE.xcassets */; };
-		67A9873324FD4C5F00BD46E7 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		67A9873324FD4C5F00BD46E7 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		67AE888225BF5274008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
 		67AE888B25BF5C8D008519B4 /* ProjectTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE888125BF5274008519B4 /* ProjectTier.swift */; };
 		67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */; };
@@ -436,7 +436,7 @@
 		67D73AE8246C47EF00450B63 /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AE1246C47EF00450B63 /* NoNetworkConnectionView.xib */; };
 		67D73AF1246C480500450B63 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67D73AEF246C480500450B63 /* BillingHistoryTableViewCell.xib */; };
 		67D73AF7246C480500450B63 /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73AF0246C480500450B63 /* BillingHistoryTableViewCell.swift */; };
-		67D73B00246C72F100450B63 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		67D73B00246C72F100450B63 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		67DDBDBF24646E38006CD6EB /* Color+OpCo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DDBDBE24646E38006CD6EB /* Color+OpCo.swift */; };
 		67E78D892509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D882509541A001AB1BD /* landing_video-FlavorPEPCO.mp4 */; };
 		67E78D8B25095439001AB1BD /* landing_video-FlavorPECO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 67E78D8A25095439001AB1BD /* landing_video-FlavorPECO.mp4 */; };
@@ -5649,7 +5649,7 @@
 				67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				67A986AD24F96CF600BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
 				67D08A9B2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
-				67A9873324FD4C5F00BD46E7 /* BuildFile in Resources */,
+				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
 				67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */,
 				C3118C5525391A70002A2832 /* Bill-FlavorACE.storyboard in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
@@ -5685,7 +5685,7 @@
 				35F9DD5D2333C45900AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
 				C338282824E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
 				67D08A9C2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
-				67D73B00246C72F100450B63 /* BuildFile in Resources */,
+				67D73B00246C72F100450B63 /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6424,7 +6424,7 @@
 				C3055B5D2538F81B000DB89C /* ScheduledPayment.swift in Sources */,
 				35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */,
 				C3055B4D2538F812000DB89C /* PremiseInfo.swift in Sources */,
-				35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */,
+				35F9DD932333D83F00AAA2B2 /* (null) in Sources */,
 				C3055BFD2538FB11000DB89C /* ValidateAccountRequest.swift in Sources */,
 				C3055B822538F81B000DB89C /* AccountLookupResults.swift in Sources */,
 				35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */,
@@ -6740,7 +6740,7 @@
 				C320FDA324DC62DE0012E4ED /* WalletRequest.swift in Sources */,
 				2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */,
 				675F4DF224AB828200A828F9 /* NetworkingLayer.swift in Sources */,
-				2FA5D85F1F17D2A300A8B16B /* BuildFile in Sources */,
+				2FA5D85F1F17D2A300A8B16B /* (null) in Sources */,
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B04DDF5B21FA800C00594ACF /* Date+Now.swift in Sources */,
@@ -7402,7 +7402,7 @@
 			baseConfigurationReference = B6A0F9703B9DD37820E154C3 /* Pods-EUMobile.bge-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -7510,7 +7510,7 @@
 			baseConfigurationReference = 697855185BBFD538A59DA8A8 /* Pods-EUMobile-Watch Extension.bge-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7549,6 +7549,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -7591,7 +7592,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7644963F9069C1C33201ABD2 /* Pods-EUMobile-Watch Extension.bge-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7602,6 +7603,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -7628,7 +7630,7 @@
 			baseConfigurationReference = FC580DA17B282CE565155979 /* Pods-EUMobile-Watch Extension.bge-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7639,6 +7641,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -7666,7 +7669,7 @@
 			baseConfigurationReference = 6331F58E23AADD90265EA7D5 /* Pods-EUMobile-Watch Extension.bge-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7678,6 +7681,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -7705,7 +7709,7 @@
 			baseConfigurationReference = 1B711F2A3540AD1315F0A0DC /* Pods-EUMobile-Watch.bge-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7744,6 +7748,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -7787,7 +7792,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE60CB34CA163B81BF311DAF /* Pods-EUMobile-Watch.bge-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7798,6 +7803,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -7825,7 +7831,7 @@
 			baseConfigurationReference = BFD03516A3C81B252FA85AAF /* Pods-EUMobile-Watch.bge-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7836,6 +7842,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -7864,7 +7871,7 @@
 			baseConfigurationReference = AA15170BE92CB5AF1C2BD94E /* Pods-EUMobile-Watch.bge-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7876,6 +7883,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -7993,8 +8001,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DBE229F6DAA0D7263F768A37 /* Pods-EUMobile.peco-aut.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
@@ -8138,7 +8146,7 @@
 			baseConfigurationReference = F12094DBCBD76241DA6E3231 /* Pods-EUMobile-Watch.peco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8177,6 +8185,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -8221,7 +8230,7 @@
 			baseConfigurationReference = ED993B1244451389181057C4 /* Pods-EUMobile-Watch Extension.peco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.peco.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -8260,6 +8269,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -8394,7 +8404,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C9EF509CB69C6BD8BC4BCC3 /* Pods-EUMobile.peco-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -8501,7 +8511,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 94D56EE8642BE663AD7AA9EC /* Pods-EUMobile-Watch.peco-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8512,6 +8522,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -8538,7 +8549,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9E19773DC10424A6ED7D58B3 /* Pods-EUMobile-Watch Extension.peco-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.peco.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8549,6 +8560,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -8661,9 +8673,9 @@
 			baseConfigurationReference = 913BD0B6FA88CE1449774B87 /* Pods-EUMobile.peco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -8769,7 +8781,7 @@
 			baseConfigurationReference = 18CFDD6F433CE3918FE2AE09 /* Pods-EUMobile-Watch.peco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8780,6 +8792,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -8808,7 +8821,7 @@
 			baseConfigurationReference = 21C06E439FF0E3B0841F704C /* Pods-EUMobile-Watch Extension.peco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.peco.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8819,6 +8832,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -8931,7 +8945,7 @@
 			baseConfigurationReference = 2AEAE0E6E5F9912B446F7542 /* Pods-EUMobile.peco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -9039,7 +9053,7 @@
 			baseConfigurationReference = 3E48B304225C532442701FF0 /* Pods-EUMobile-Watch.peco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9051,6 +9065,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -9079,7 +9094,7 @@
 			baseConfigurationReference = 2AA4F42A6246075A1C68C114 /* Pods-EUMobile-Watch Extension.peco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.peco.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9091,6 +9106,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -9207,8 +9223,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30FA80756A48AB9DC1934F7A /* Pods-EUMobile.ace-aut.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
@@ -9352,7 +9368,7 @@
 			baseConfigurationReference = 7262164C734E2BAB5F8870AF /* Pods-EUMobile-Watch.ace-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9391,6 +9407,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -9435,7 +9452,7 @@
 			baseConfigurationReference = 82D413914DDDEE3845AF6B48 /* Pods-EUMobile-Watch Extension.ace-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.ace.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9474,6 +9491,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -9608,7 +9626,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24A26F01575E0A81574F9B67 /* Pods-EUMobile.ace-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -9716,7 +9734,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2970025E51E4A6B5E1D1ED99 /* Pods-EUMobile-Watch.ace-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9727,6 +9745,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -9753,7 +9772,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 850912589FDDEB8CCDC52095 /* Pods-EUMobile-Watch Extension.ace-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.ace.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9764,6 +9783,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -9876,9 +9896,9 @@
 			baseConfigurationReference = BBAE55A4DFC33620498824A7 /* Pods-EUMobile.ace-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -9985,7 +10005,7 @@
 			baseConfigurationReference = 6F49D2B17C512CD5B1E59FDA /* Pods-EUMobile-Watch.ace-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9996,6 +10016,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -10024,7 +10045,7 @@
 			baseConfigurationReference = F2E7F5A8E56156CB0BED53CE /* Pods-EUMobile-Watch Extension.ace-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.ace.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10035,6 +10056,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -10147,7 +10169,7 @@
 			baseConfigurationReference = F70313F84BA5FD09CF744337 /* Pods-EUMobile.ace-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -10256,7 +10278,7 @@
 			baseConfigurationReference = 3C5923E3B63A606655431D28 /* Pods-EUMobile-Watch.ace-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10268,6 +10290,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -10296,7 +10319,7 @@
 			baseConfigurationReference = A45588476C6425C907C3D24E /* Pods-EUMobile-Watch Extension.ace-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.ifactorconsulting.ace.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10308,6 +10331,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -10424,8 +10448,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8601B9200263DE0DFF4528CC /* Pods-EUMobile.delmarva-aut.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
@@ -10569,7 +10593,7 @@
 			baseConfigurationReference = 9FF2F983CC65F2076F1692C5 /* Pods-EUMobile-Watch.delmarva-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10608,6 +10632,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -10652,7 +10677,7 @@
 			baseConfigurationReference = 7D11661D59DF180131F2A40A /* Pods-EUMobile-Watch Extension.delmarva-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -10691,6 +10716,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -10825,7 +10851,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EC7969E0A5F7924698395552 /* Pods-EUMobile.delmarva-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -10933,7 +10959,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34D5D8773E8D72600EFCF9F9 /* Pods-EUMobile-Watch.delmarva-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10944,6 +10970,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -10970,7 +10997,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B0127D91530943199AC1B6B /* Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10981,6 +11008,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -11093,9 +11121,9 @@
 			baseConfigurationReference = D87C9685FCCF09C7D91603D2 /* Pods-EUMobile.delmarva-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -11202,7 +11230,7 @@
 			baseConfigurationReference = AAFF79EAA4875A0741BB38FE /* Pods-EUMobile-Watch.delmarva-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11213,6 +11241,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -11241,7 +11270,7 @@
 			baseConfigurationReference = 017D366557838085CD2AFE33 /* Pods-EUMobile-Watch Extension.delmarva-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.delmarva.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -11252,6 +11281,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -11364,7 +11394,7 @@
 			baseConfigurationReference = 90D0B26FE99EFBEA227C60F8 /* Pods-EUMobile.delmarva-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -11473,7 +11503,7 @@
 			baseConfigurationReference = CF13F95E464D0327C171CB43 /* Pods-EUMobile-Watch.delmarva-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11485,6 +11515,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -11513,7 +11544,7 @@
 			baseConfigurationReference = 76E8F31D7C4ECD9B16EE1BAD /* Pods-EUMobile-Watch Extension.delmarva-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.ifactorconsulting.delmarva.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -11525,6 +11556,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -11641,8 +11673,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 76268D74E667D234121B2A16 /* Pods-EUMobile.pepco-aut.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
@@ -11786,7 +11818,7 @@
 			baseConfigurationReference = 00EEF1DB7F3DD4C93D1C8532 /* Pods-EUMobile-Watch.pepco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -11825,6 +11857,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -11869,7 +11902,7 @@
 			baseConfigurationReference = A41C34AF96B6708AB6F0BF98 /* Pods-EUMobile-Watch Extension.pepco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -11908,6 +11941,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -12042,7 +12076,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5EAD472E49BC6B15EA1BB719 /* Pods-EUMobile.pepco-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -12150,7 +12184,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB7CA6327A54535477F5B485 /* Pods-EUMobile-Watch.pepco-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12161,6 +12195,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -12187,7 +12222,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2FA4E3C94BF52FE7EEB2C520 /* Pods-EUMobile-Watch Extension.pepco-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -12198,6 +12233,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -12310,9 +12346,9 @@
 			baseConfigurationReference = 10AB530BBE9FC1BAC5B2B69D /* Pods-EUMobile.pepco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -12419,7 +12455,7 @@
 			baseConfigurationReference = 57A7F069D5F46C830E71DBC0 /* Pods-EUMobile-Watch.pepco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12430,6 +12466,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -12458,7 +12495,7 @@
 			baseConfigurationReference = 72A1670FD5FF5C793D4A2F34 /* Pods-EUMobile-Watch Extension.pepco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.pepco.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -12469,6 +12506,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -12581,7 +12619,7 @@
 			baseConfigurationReference = 48CAD1C641D85E5D906EF408 /* Pods-EUMobile.pepco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -12690,7 +12728,7 @@
 			baseConfigurationReference = DCC4E5C04DE2F93F0CFEAB8C /* Pods-EUMobile-Watch.pepco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12702,6 +12740,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -12730,7 +12769,7 @@
 			baseConfigurationReference = E88A7AABE5C30289D86CA31B /* Pods-EUMobile-Watch Extension.pepco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.ifactorconsulting.pepco.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -12742,6 +12781,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -12858,8 +12898,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE2CD0FB94EBF7FB32F742B0 /* Pods-EUMobile.comed-aut.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
@@ -13003,7 +13043,7 @@
 			baseConfigurationReference = 16663E1A946C593658B029ED /* Pods-EUMobile-Watch.comed-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13042,6 +13082,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -13086,7 +13127,7 @@
 			baseConfigurationReference = 385CB5E1682E397F6854E3B4 /* Pods-EUMobile-Watch Extension.comed-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -13125,6 +13166,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT_TIER = AUT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -13259,7 +13301,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F6937A8758EFD1E596A9A04F /* Pods-EUMobile.comed-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -13366,7 +13408,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 431E8E7552EFD5BBEC6673DC /* Pods-EUMobile-Watch.comed-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13377,6 +13419,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -13403,7 +13446,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F4B8009FB41AC05E0B70C86 /* Pods-EUMobile-Watch Extension.comed-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13414,6 +13457,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -13526,9 +13570,9 @@
 			baseConfigurationReference = A8BD924B25D8A2E006CD664A /* Pods-EUMobile.comed-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -13634,7 +13678,7 @@
 			baseConfigurationReference = FC0FC6D61469ACD6C5194D6C /* Pods-EUMobile-Watch.comed-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13645,6 +13689,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -13673,7 +13718,7 @@
 			baseConfigurationReference = F2CA79AF0B4AC8A2C84D9978 /* Pods-EUMobile-Watch Extension.comed-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13684,6 +13729,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -13796,7 +13842,7 @@
 			baseConfigurationReference = A4985310A19F4BF46E4CBF6F /* Pods-EUMobile.comed-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -13904,7 +13950,7 @@
 			baseConfigurationReference = C587F978F7FF9677FFB3079A /* Pods-EUMobile-Watch.comed-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13916,6 +13962,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
@@ -13944,7 +13991,7 @@
 			baseConfigurationReference = 0BEA05717FA29D769AE2897C /* Pods-EUMobile-Watch Extension.comed-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PROD";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.iphoneproduction.exelon.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13956,6 +14003,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = YES;
+				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -14072,8 +14120,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F11238B3B4D3CC678A7812DA /* Pods-EUMobile.bge-aut.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-AUT";
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-TEST.entitlements";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
@@ -14303,9 +14351,9 @@
 			baseConfigurationReference = C5F180B3C7D252D0D5862467 /* Pods-EUMobile.bge-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-PRODBETA";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-PROD.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
@@ -14435,7 +14483,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0BA01FDC771112716F0452A5 /* Pods-EUMobile.bge-beta.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-STAGE";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
