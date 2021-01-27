@@ -17,7 +17,11 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     case payments = "Payment Enhancements"
     case phi = "PHI"
     case hotfix = "Hotfix"
-    
+}
+
+// MARK: Convenience
+
+extension ProjectURLSuffix {
     var projectPath: String {
         switch self {
         case .none:
