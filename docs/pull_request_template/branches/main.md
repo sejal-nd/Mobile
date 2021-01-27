@@ -31,5 +31,5 @@ _Put an `x` in the boxes that apply_
 - [ ] I have made corresponding changes to the documentation
 - [ ] My changes generate no new warnings
 - [ ] I am aware this is generating a new `Beta` build on App Center for `IT Testers`
-- [ ] ~I have added tests that prove my fix is effective or that my feature works~
-- [ ] ~New and existing unit tests pass locally with my changes~
+- [ ] ~~I have added tests that prove my fix is effective or that my feature works~~
+- [ ] ~~New and existing unit tests pass locally with my changes~~
