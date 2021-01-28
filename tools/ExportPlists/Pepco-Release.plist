@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>compileBitcode</key>
-	<true/>
 	<key>method</key>
 	<string>app-store</string>
 	<key>provisioningProfiles</key>
@@ -16,7 +14,7 @@
 		<string>Pepco Watchkit Extension App Store</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>Apple Distribution</string>
+	<string>C2A40A8BD71740CEFEEAF89B981924A5028D66AE</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>
