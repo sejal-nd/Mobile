@@ -7402,6 +7402,7 @@
 			baseConfigurationReference = B6A0F9703B9DD37820E154C3 /* Pods-EUMobile.bge-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
+				APP_CENTER_ID = "b04a00b3-2d34-4f42-b02c-adff70038646";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -8001,6 +8002,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DBE229F6DAA0D7263F768A37 /* Pods-EUMobile.peco-aut.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -8404,6 +8406,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C9EF509CB69C6BD8BC4BCC3 /* Pods-EUMobile.peco-beta.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "263b80d6-242b-4962-9a64-01731f98056b";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -8673,6 +8676,7 @@
 			baseConfigurationReference = 913BD0B6FA88CE1449774B87 /* Pods-EUMobile.peco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
+				APP_CENTER_ID = "bc1003d8-3723-489a-a3e4-2572fdb9855a";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
@@ -8945,6 +8949,7 @@
 			baseConfigurationReference = 2AEAE0E6E5F9912B446F7542 /* Pods-EUMobile.peco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.peco.com;
+				APP_CENTER_ID = "6c8fc049-b612-4605-add7-28f214eb7b25";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -9116,7 +9121,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO WatchkitExtension App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -9223,6 +9228,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30FA80756A48AB9DC1934F7A /* Pods-EUMobile.ace-aut.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -9626,6 +9632,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24A26F01575E0A81574F9B67 /* Pods-EUMobile.ace-beta.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "236e33d9-c10a-4dae-92d8-75c3f0b41450";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -9896,6 +9903,7 @@
 			baseConfigurationReference = BBAE55A4DFC33620498824A7 /* Pods-EUMobile.ace-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
+				APP_CENTER_ID = "e5857243-5111-4157-b065-e5f37b038882";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
@@ -10169,6 +10177,7 @@
 			baseConfigurationReference = F70313F84BA5FD09CF744337 /* Pods-EUMobile.ace-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
+				APP_CENTER_ID = "00c0fa1f-9044-498c-89d2-757cb59ea2e1";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -10448,6 +10457,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8601B9200263DE0DFF4528CC /* Pods-EUMobile.delmarva-aut.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -10851,6 +10861,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EC7969E0A5F7924698395552 /* Pods-EUMobile.delmarva-beta.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "ee9f1ca8-fe59-4c5f-80d3-ebcef6ae7168";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -11121,6 +11132,7 @@
 			baseConfigurationReference = D87C9685FCCF09C7D91603D2 /* Pods-EUMobile.delmarva-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
+				APP_CENTER_ID = "f7e3323c-b32b-4986-b23f-d19488de011b";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
@@ -11394,6 +11406,7 @@
 			baseConfigurationReference = 90D0B26FE99EFBEA227C60F8 /* Pods-EUMobile.delmarva-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
+				APP_CENTER_ID = "01d29f65-ea73-4353-a9e4-3de7f4e0b56f";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -11526,7 +11539,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Delmarva WatchKit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Delmarva Watchkit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -11673,6 +11686,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 76268D74E667D234121B2A16 /* Pods-EUMobile.pepco-aut.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -12076,6 +12090,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5EAD472E49BC6B15EA1BB719 /* Pods-EUMobile.pepco-beta.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "7f015d81-de56-4f18-a90d-d17a93ee65d4";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -12346,6 +12361,7 @@
 			baseConfigurationReference = 10AB530BBE9FC1BAC5B2B69D /* Pods-EUMobile.pepco-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
+				APP_CENTER_ID = "6601aeb6-77db-4d4a-b031-1604b3e8c4e7";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
@@ -12619,6 +12635,7 @@
 			baseConfigurationReference = 48CAD1C641D85E5D906EF408 /* Pods-EUMobile.pepco-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
+				APP_CENTER_ID = "9cc9a98f-3a76-4b61-870c-c35b2b9a8a04";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -12751,7 +12768,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
-				PROVISIONING_PROFILE_SPECIFIER = "Pepco WatchKit App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "Pepco Watchkit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
@@ -12898,6 +12915,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE2CD0FB94EBF7FB32F742B0 /* Pods-EUMobile.comed-aut.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -13301,6 +13319,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F6937A8758EFD1E596A9A04F /* Pods-EUMobile.comed-beta.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "3c531e04-e7cc-44c0-96e3-5a67f815484a";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -13570,6 +13589,7 @@
 			baseConfigurationReference = A8BD924B25D8A2E006CD664A /* Pods-EUMobile.comed-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
+				APP_CENTER_ID = "5186b477-0f34-40ae-99bd-814fdef24a60";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
@@ -13842,6 +13862,7 @@
 			baseConfigurationReference = A4985310A19F4BF46E4CBF6F /* Pods-EUMobile.comed-release.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.comed.com;
+				APP_CENTER_ID = "5dbfd30c-4ed4-4d1e-ab4f-225796ef9a4e";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
@@ -14120,6 +14141,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F11238B3B4D3CC678A7812DA /* Pods-EUMobile.bge-aut.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
@@ -14351,6 +14373,7 @@
 			baseConfigurationReference = C5F180B3C7D252D0D5862467 /* Pods-EUMobile.bge-rc.xcconfig */;
 			buildSettings = {
 				ALERT_URL = www.bge.com;
+				APP_CENTER_ID = "addf3952-2a38-47e1-a361-b0680bb17c82";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
@@ -14483,6 +14506,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0BA01FDC771112716F0452A5 /* Pods-EUMobile.bge-beta.xcconfig */;
 			buildSettings = {
+				APP_CENTER_ID = "d63492ab-45ec-4d90-9e5a-963fa127e697";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
