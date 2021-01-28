@@ -19,6 +19,7 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     case hotfix = "Hotfix"
 }
 
+
 // MARK: Convenience
 
 extension ProjectURLSuffix {
