@@ -11,11 +11,10 @@ import SwiftUI
 
 @available(iOS 14, *)
 struct DebugMenu: View {
-    @SwiftUI.Environment(\.presentationMode) private var presentationMode
-    
     @AppStorage("selectedProjectURL") private var selectedProjectURL: ProjectURLSuffix = .none
     @AppStorage("selectedProjectTier") private var selectedProjectTier: ProjectTier = .stage
     
+    let dismiss: () -> Void
     
     private var versionString: String {
         Bundle.main.versionNumber ?? "N/A"
@@ -74,9 +73,7 @@ struct DebugMenu: View {
             .navigationTitle("Debug Menu")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
+                    Button(action: dismiss) {
                         Image(systemName: "xmark.circle.fill")
                     }
                 }
@@ -88,6 +85,8 @@ struct DebugMenu: View {
 @available(iOS 14, *)
 struct DebugMenu_Previews: PreviewProvider {
     static var previews: some View {
-        DebugMenu()
+        DebugMenu() {
+            // Dismiss
+        }
     }
 }

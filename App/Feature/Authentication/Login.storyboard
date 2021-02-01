@@ -186,6 +186,24 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                     <constraint firstItem="S7q-8S-Oz3" firstAttribute="top" secondItem="4gI-bY-LIR" secondAttribute="top" id="aCk-vZ-AbZ"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnV-W7-jxP" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="20" y="830" width="175" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="3pk-Bw-dLh"/>
+                                    <constraint firstAttribute="width" constant="175" id="Xks-os-fj1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Debug Menu">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onDebugMenuPress:" destination="vi5-8X-nCv" eventType="touchUpInside" id="5eJ-fx-Fqw"/>
+                                    <action selector="onDebugMenuPress:" destination="yCw-uU-voO" eventType="touchUpInside" id="NgR-1X-1oy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mU1-Og-T39"/>
                         <color key="backgroundColor" red="0.43137254901960786" green="0.72156862745098038" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -194,6 +212,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                             <constraint firstItem="4gI-bY-LIR" firstAttribute="leading" secondItem="mU1-Og-T39" secondAttribute="leading" priority="999" constant="29" id="BHg-iV-ib9"/>
                             <constraint firstItem="X3D-MD-vsH" firstAttribute="centerX" secondItem="mU1-Og-T39" secondAttribute="centerX" id="Ce6-hX-7tF"/>
                             <constraint firstItem="mU1-Og-T39" firstAttribute="bottom" secondItem="4kW-TI-zcw" secondAttribute="bottom" id="D6F-va-hHk"/>
+                            <constraint firstItem="mU1-Og-T39" firstAttribute="bottom" secondItem="GnV-W7-jxP" secondAttribute="bottom" id="Mxz-oM-BYA"/>
                             <constraint firstItem="4kW-TI-zcw" firstAttribute="leading" secondItem="mU1-Og-T39" secondAttribute="leading" priority="750" id="S6i-x8-wCB"/>
                             <constraint firstItem="AUs-jP-wTI" firstAttribute="top" secondItem="p0C-6w-drJ" secondAttribute="topMargin" constant="198" id="TS1-Yd-fmR"/>
                             <constraint firstItem="mU1-Og-T39" firstAttribute="trailing" secondItem="4kW-TI-zcw" secondAttribute="trailing" priority="750" id="XCh-5z-WFY"/>
@@ -204,6 +223,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                             <constraint firstItem="mU1-Og-T39" firstAttribute="trailing" secondItem="AUs-jP-wTI" secondAttribute="trailing" priority="999" constant="29" id="izI-Ix-vmZ"/>
                             <constraint firstItem="4gI-bY-LIR" firstAttribute="centerY" secondItem="p0C-6w-drJ" secondAttribute="centerY" id="jXM-j2-64S"/>
                             <constraint firstItem="X3D-MD-vsH" firstAttribute="leading" secondItem="mU1-Og-T39" secondAttribute="leading" priority="999" constant="29" id="lMk-No-hOZ"/>
+                            <constraint firstItem="GnV-W7-jxP" firstAttribute="leading" secondItem="mU1-Og-T39" secondAttribute="leading" constant="20" id="lhM-fm-mB4"/>
                             <constraint firstItem="mU1-Og-T39" firstAttribute="trailing" secondItem="4gI-bY-LIR" secondAttribute="trailing" priority="999" constant="29" id="pjS-gv-j7S"/>
                             <constraint firstItem="4gI-bY-LIR" firstAttribute="centerX" secondItem="mU1-Og-T39" secondAttribute="centerX" id="u7t-TT-VrS"/>
                             <constraint firstItem="mU1-Og-T39" firstAttribute="trailing" secondItem="X3D-MD-vsH" secondAttribute="trailing" priority="999" constant="29" id="ydw-SY-HcP"/>
@@ -211,6 +231,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                     </view>
                     <navigationItem key="navigationItem" id="hVO-jf-FyV"/>
                     <connections>
+                        <outlet property="debugButton" destination="GnV-W7-jxP" id="lAS-RG-UFe"/>
                         <outlet property="errorTextView" destination="qjN-8f-H9S" id="gNX-AA-4am"/>
                         <outlet property="errorTitleLabel" destination="fmW-i8-t3P" id="hTI-MG-bEe"/>
                         <outlet property="errorView" destination="4gI-bY-LIR" id="hb3-UJ-pNa"/>
@@ -226,7 +247,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgS-ip-as2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-67.5" y="88.75"/>
+            <point key="canvasLocation" x="-68.115942028985515" y="88.392857142857139"/>
         </scene>
         <!--Large Title Navigation Controller-->
         <scene sceneID="XqL-Np-I6b">
@@ -369,9 +390,10 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKI-Yo-BGg" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="20" y="818" width="175" height="32"/>
+                                <rect key="frame" x="20" y="830" width="175" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="175" id="o6O-gK-dNv"/>
+                                    <constraint firstAttribute="height" constant="32" id="vbj-eJ-3u1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Debug Menu">
@@ -397,7 +419,6 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                             <constraint firstItem="cn2-ei-69X" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jAP-dP-E5T" secondAttribute="bottom" constant="32" id="0q2-gn-sW3"/>
                             <constraint firstAttribute="bottom" secondItem="NyF-Jg-tI8" secondAttribute="bottom" id="1Jl-uV-vag"/>
                             <constraint firstItem="jAP-dP-E5T" firstAttribute="leading" secondItem="ahA-qN-Vae" secondAttribute="leading" id="4SS-qN-Djd"/>
-                            <constraint firstItem="eKI-Yo-BGg" firstAttribute="top" secondItem="cn2-ei-69X" secondAttribute="bottom" constant="12" id="A8V-Ld-QYM"/>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="trailing" secondItem="cn2-ei-69X" secondAttribute="trailing" priority="999" constant="29" id="BDh-Bo-Wi8"/>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="bottom" secondItem="cn2-ei-69X" secondAttribute="bottom" constant="56" id="Bhu-dQ-0hQ"/>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="trailing" secondItem="Rwh-jf-fVT" secondAttribute="trailing" constant="29" id="C7m-hU-WlY"/>
@@ -409,7 +430,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="bottom" secondItem="Rwh-jf-fVT" secondAttribute="bottom" constant="21" id="cuz-Tk-enC"/>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="trailing" secondItem="jAP-dP-E5T" secondAttribute="trailing" id="dLJ-wC-flv"/>
                             <constraint firstItem="NyF-Jg-tI8" firstAttribute="leading" secondItem="ahA-qN-Vae" secondAttribute="leading" id="hod-hh-GDw"/>
-                            <constraint firstItem="ahA-qN-Vae" firstAttribute="bottom" secondItem="eKI-Yo-BGg" secondAttribute="bottom" constant="12" id="mcv-0e-oEj"/>
+                            <constraint firstItem="ahA-qN-Vae" firstAttribute="bottom" secondItem="eKI-Yo-BGg" secondAttribute="bottom" id="mcv-0e-oEj"/>
                             <constraint firstItem="ahA-qN-Vae" firstAttribute="trailing" secondItem="NyF-Jg-tI8" secondAttribute="trailing" id="rEk-Cj-8z7"/>
                         </constraints>
                     </view>
