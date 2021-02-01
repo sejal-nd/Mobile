@@ -11,11 +11,10 @@ import SwiftUI
 
 @available(iOS 14, *)
 struct DebugMenu: View {
-    @SwiftUI.Environment(\.presentationMode) private var presentationMode
-    
-    @AppStorage("selectedProjectURL") private var selectedProjectURL: ProjectURLSuffix = .none
     @AppStorage("selectedProjectTier") private var selectedProjectTier: ProjectTier = .stage
+    @AppStorage("selectedProjectURL") private var selectedProjectURL: ProjectURLSuffix = .none
     
+    let dismiss: () -> Void
     
     private var versionString: String {
         Bundle.main.versionNumber ?? "N/A"
@@ -55,10 +54,11 @@ struct DebugMenu: View {
                                 .font(.system(.body, design: .monospaced))
                         }
                     }
+                    Button("Restart App", action: restartApp)
                 }
                 
                 Section(header: Text("Other URLs"),
-                        footer: Text("Note: This menu is only available at the TEST and STAGE tier.").padding(.bottom)) {
+                        footer: Text("Note: This menu is only available at the BETA tier.").padding(.bottom)) {
                     InfoLabel(title: "Associated Domaine",
                               value: Environment.shared.associatedDomain)
                     InfoLabel(title: "Account URL",
@@ -74,20 +74,33 @@ struct DebugMenu: View {
             .navigationTitle("Debug Menu")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
+                    Button(action: dismiss) {
                         Image(systemName: "xmark.circle.fill")
                     }
                 }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Reset", action: reset)
+                }
             }
         }
+    }
+    
+    private func reset() {
+        selectedProjectTier = .stage
+        selectedProjectURL = .none
+    }
+    
+    private func restartApp() {
+        exit(0)
     }
 }
 
 @available(iOS 14, *)
 struct DebugMenu_Previews: PreviewProvider {
     static var previews: some View {
-        DebugMenu()
+        DebugMenu() {
+            // Dismiss
+        }
     }
 }
