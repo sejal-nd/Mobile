@@ -11,8 +11,8 @@ import SwiftUI
 
 @available(iOS 14, *)
 struct DebugMenu: View {
-    @AppStorage("selectedProjectURL") private var selectedProjectURL: ProjectURLSuffix = .none
     @AppStorage("selectedProjectTier") private var selectedProjectTier: ProjectTier = .stage
+    @AppStorage("selectedProjectURL") private var selectedProjectURL: ProjectURLSuffix = .none
     
     let dismiss: () -> Void
     
@@ -54,6 +54,7 @@ struct DebugMenu: View {
                                 .font(.system(.body, design: .monospaced))
                         }
                     }
+                    Button("Restart App", action: restartApp)
                 }
                 
                 Section(header: Text("Other URLs"),
@@ -77,8 +78,21 @@ struct DebugMenu: View {
                         Image(systemName: "xmark.circle.fill")
                     }
                 }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Reset", action: reset)
+                }
             }
         }
+    }
+    
+    private func reset() {
+        selectedProjectTier = .stage
+        selectedProjectURL = .none
+    }
+    
+    private func restartApp() {
+        exit(0)
     }
 }
 
