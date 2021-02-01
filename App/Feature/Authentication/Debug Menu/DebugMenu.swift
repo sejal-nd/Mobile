@@ -99,8 +99,6 @@ struct DebugMenu: View {
 @available(iOS 14, *)
 struct DebugMenu_Previews: PreviewProvider {
     static var previews: some View {
-        DebugMenu() {
-            // Dismiss
-        }
+        DebugMenu(dismiss: { })
     }
 }
