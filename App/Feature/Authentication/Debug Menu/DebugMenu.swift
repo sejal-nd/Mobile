@@ -58,7 +58,7 @@ struct DebugMenu: View {
                 }
                 
                 Section(header: Text("Other URLs"),
-                        footer: Text("Note: This menu is only available at the TEST and STAGE tier.").padding(.bottom)) {
+                        footer: Text("Note: This menu is only available at the BETA tier.").padding(.bottom)) {
                     InfoLabel(title: "Associated Domaine",
                               value: Environment.shared.associatedDomain)
                     InfoLabel(title: "Account URL",
