@@ -18,7 +18,7 @@ import SwiftUI
 class LandingViewController: UIViewController {
     
     let disposeBag = DisposeBag()
-
+    
     @IBOutlet weak var logoBackgroundView: UIView!
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var signInButton: PrimaryButton!
@@ -38,17 +38,17 @@ class LandingViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
         continueAsGuestButon.setTitle(NSLocalizedString("Continue as Guest", comment: ""), for: .normal)
         continueAsGuestButon.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
-
+        
         logoBackgroundView.backgroundColor = .primaryColor
         view.backgroundColor = .primaryColor
         
@@ -90,7 +90,7 @@ class LandingViewController: UIViewController {
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         backgroundVideoResume(at: avPlayerPlaybackTime)
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -142,7 +142,9 @@ class LandingViewController: UIViewController {
         switch Environment.shared.environmentName {
         case .aut, .beta:
             if #available(iOS 14, *) {
-                let debugViewHostingController = UIHostingController(rootView: DebugMenu())
+                let debugViewHostingController = UIHostingController(rootView: DebugMenu() { [weak self] in
+                    self?.dismiss(animated: true, completion: nil)
+                })
                 present(debugViewHostingController, animated: true, completion: nil)
             }
         default:
@@ -211,5 +213,5 @@ class LandingViewController: UIViewController {
         guard let avPlayer = avPlayer else { return }
         playerLayer.player = avPlayer
     }
-     
+    
 }

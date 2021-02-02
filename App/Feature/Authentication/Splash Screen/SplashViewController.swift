@@ -11,6 +11,10 @@ import RxCocoa
 import RxSwift
 import Lottie
 
+#if canImport(SwiftUI)
+import SwiftUI
+#endif
+
 class SplashViewController: UIViewController{
     @IBOutlet weak var imageView: UIView!
     
@@ -27,6 +31,7 @@ class SplashViewController: UIViewController{
     @IBOutlet weak var errorTitleLabel: UILabel!
     @IBOutlet weak var errorTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var retryButton: ButtonControl!
+    @IBOutlet weak var debugButton: SecondaryButton!
     
     var performDeepLink = false
     var shortcutItem = ShortcutItem.none
@@ -77,6 +82,15 @@ class SplashViewController: UIViewController{
             imageView.isHidden = true
         }
 
+        // Debug Button
+        switch Environment.shared.environmentName {
+        case .aut, .beta:
+            debugButton.isHidden = false
+            debugButton.isEnabled = true
+        default:
+            debugButton.isHidden = true
+            debugButton.isEnabled = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -173,6 +187,21 @@ class SplashViewController: UIViewController{
         enquiryTextView.tintColor = .actionBlue // For the phone numbers
         enquiryTextView.attributedText = viewModel.enquiryFooterText
         enquiryTextView.isScrollEnabled = false
+    }
+    
+    
+    @IBAction func onDebugMenuPress(_ sender: Any) {
+        switch Environment.shared.environmentName {
+        case .aut, .beta:
+            if #available(iOS 14, *) {
+                let debugViewHostingController = UIHostingController(rootView: DebugMenu() { [weak self] in
+                    self?.dismiss(animated: true, completion: nil)
+                })
+                present(debugViewHostingController, animated: true, completion: nil)
+            }
+        default:
+            break
+        }
     }
     
     private func navigate() {
