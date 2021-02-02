@@ -54,7 +54,7 @@ class BillingHistoryDetailsViewModel {
     var paymentMethodString: String? {
         guard let maskedAcctNum = billingHistoryItem.maskedAccountNumber,
             !maskedAcctNum.isEmpty else { return nil }
-        return "**** \(maskedAcctNum)"
+        return "**** \(maskedAcctNum.last4Digits())"
     }
     
     var paymentType: String? {
@@ -97,7 +97,7 @@ class BillingHistoryDetailsViewModel {
     }
     
     var confirmationNumber: String? {
-        return billingHistoryItem.confirmationNumber
+        return billingHistoryItem.paymentID
     }
     
     var shouldShowCancelPayment: Bool {

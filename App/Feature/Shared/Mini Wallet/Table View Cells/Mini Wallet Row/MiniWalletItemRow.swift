@@ -13,7 +13,9 @@ class MiniWalletItemRow: UITableViewCell {
     @IBOutlet weak var paymentTypeImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
-
+    @IBOutlet weak var expiredView: UIView!
+    @IBOutlet weak var expiredLabel: UILabel!
+    
     var isEnabled = true {
         didSet {
             if isEnabled {
@@ -21,7 +23,8 @@ class MiniWalletItemRow: UITableViewCell {
                 paymentTypeImageView.alpha = 1.0
                 titleLabel.alpha = 1.0
                 subtitleLabel.alpha = 1.0
-                
+                expiredLabel.alpha = 1.0
+                expiredView.alpha = 1.0
                 selectionStyle = .default
                 accessibilityTraits = .button
             } else {
@@ -29,7 +32,8 @@ class MiniWalletItemRow: UITableViewCell {
                 paymentTypeImageView.alpha = 0.4
                 titleLabel.alpha = 0.4
                 subtitleLabel.alpha = 0.4
-                
+                expiredLabel.alpha = 0.4
+                expiredView.alpha = 0.4
                 selectionStyle = .none
                 accessibilityTraits = [.button, .notEnabled]
             }
@@ -46,6 +50,11 @@ class MiniWalletItemRow: UITableViewCell {
         style()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        expiredView.layer.cornerRadius = expiredView.bounds.height / 2
+    }
+    
     // MARK: - Helper
     
     private func style() {
@@ -58,6 +67,13 @@ class MiniWalletItemRow: UITableViewCell {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .softGray
         selectedBackgroundView = backgroundView
+        
+        // Expired
+        expiredLabel.textColor = .errorRed
+        expiredLabel.font = SystemFont.regular.of(textStyle: .caption2)
+        
+        expiredView.layer.borderColor = UIColor.errorRed.cgColor
+        expiredView.layer.borderWidth = 1
     }
     
     
@@ -96,5 +112,8 @@ class MiniWalletItemRow: UITableViewCell {
         
         // Accessibility
         self.accessibilityLabel = "\(selectionAccessibilityString) \(walletItem.accessibilityDescription())"
+        
+        expiredView.isHidden = !walletItem.isExpired
+        expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""
     }
 }

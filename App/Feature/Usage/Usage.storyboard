@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -481,7 +482,7 @@
                                                                                 <rect key="frame" x="98.5" y="0.0" width="120" height="120"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Your usage overview will be available here once we have two full months of data." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyK-N7-CES">
-                                                                                <rect key="frame" x="14" y="120" width="289" height="61"/>
+                                                                                <rect key="frame" x="15" y="120" width="287.5" height="61"/>
                                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -520,7 +521,7 @@
                                                         <rect key="frame" x="0.0" y="703.5" width="343" height="37.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="My Usage Tools" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZf-vb-Dqq">
-                                                                <rect key="frame" x="105" y="8" width="133" height="21.5"/>
+                                                                <rect key="frame" x="105.5" y="8" width="132" height="21.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                                 </accessibility>
@@ -676,6 +677,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="cev-GK-pkH"/>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="auv-xw-MUC" firstAttribute="leading" secondItem="cev-GK-pkH" secondAttribute="leading" id="0Lh-pn-Cq0"/>
@@ -696,7 +698,6 @@
                             <constraint firstItem="3t7-EB-sYC" firstAttribute="leading" secondItem="cev-GK-pkH" secondAttribute="leading" id="tw8-SS-SbR"/>
                             <constraint firstItem="VT3-VG-S91" firstAttribute="top" secondItem="cev-GK-pkH" secondAttribute="top" id="zG4-yN-n8F"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cev-GK-pkH"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xky-OI-AF6">
                         <barButtonItem key="backBarButtonItem" title=" " id="VbN-2t-IC7"/>
@@ -815,6 +816,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="wn6-dZ-bkL"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4ZP-ao-iBr" firstAttribute="leading" secondItem="wn6-dZ-bkL" secondAttribute="leading" id="2L6-We-328"/>
@@ -828,7 +830,6 @@
                             <constraint firstItem="wn6-dZ-bkL" firstAttribute="trailing" secondItem="4ZP-ao-iBr" secondAttribute="trailing" id="pGn-nu-9dd"/>
                             <constraint firstItem="wn6-dZ-bkL" firstAttribute="trailing" secondItem="Z7X-BP-57O" secondAttribute="trailing" priority="999" constant="29" id="spZ-e7-z6q"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="wn6-dZ-bkL"/>
                     </view>
                     <navigationItem key="navigationItem" title="Usage" id="DhO-Tm-MCz"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -858,7 +859,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KbD-o0-Xwl" customClass="AccountInfoBar" customModule="EUMobile" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Lcl-tP-btZ"/>
                                                 </constraints>
@@ -878,7 +879,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="KbD-o0-Xwl" firstAttribute="leading" secondItem="9ij-hX-7cJ" secondAttribute="leading" id="08C-Jq-WvD"/>
                                             <constraint firstAttribute="trailing" secondItem="KbD-o0-Xwl" secondAttribute="trailing" id="9dU-ix-SQS"/>
@@ -905,7 +906,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIr-9N-eR7" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="723" width="414" height="85"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-UT-7Wk" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-UT-7Wk" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="78o-Ww-LPd"/>
@@ -917,6 +918,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="mWs-MU-4OQ"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="9Dl-UT-7Wk" firstAttribute="leading" secondItem="mWs-MU-4OQ" secondAttribute="leading" constant="20" id="9Wg-5y-Pnw"/>
@@ -924,9 +926,9 @@
                                     <constraint firstItem="mWs-MU-4OQ" firstAttribute="trailing" secondItem="9Dl-UT-7Wk" secondAttribute="trailing" constant="20" id="L9X-nO-RWq"/>
                                     <constraint firstAttribute="height" constant="85" id="VUl-Qb-0H9"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="mWs-MU-4OQ"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="kma-hA-zPw"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kSk-sh-P43" firstAttribute="leading" secondItem="kma-hA-zPw" secondAttribute="leading" id="1u9-Pw-0jk"/>
@@ -937,7 +939,6 @@
                             <constraint firstItem="aIr-9N-eR7" firstAttribute="trailing" secondItem="kma-hA-zPw" secondAttribute="trailing" id="n4Z-Ju-axo"/>
                             <constraint firstItem="kSk-sh-P43" firstAttribute="trailing" secondItem="kma-hA-zPw" secondAttribute="trailing" id="y7E-ET-7Jt"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="kma-hA-zPw"/>
                     </view>
                     <navigationItem key="navigationItem" title="Energy Wise Rewards" id="L8N-ON-WZj"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -971,7 +972,7 @@
                             </wkWebView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXR-ce-JnV" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="177" y="415" width="60" height="12"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="e43-MV-tiZ"/>
                                     <constraint firstAttribute="height" constant="12" id="oYr-bq-lE9"/>
@@ -987,7 +988,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1Ge-QX-5bL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kPe-fM-CyF" firstAttribute="top" secondItem="1Ge-QX-5bL" secondAttribute="top" id="Jvq-Ke-X8j"/>
                             <constraint firstItem="1Ge-QX-5bL" firstAttribute="trailing" secondItem="kPe-fM-CyF" secondAttribute="trailing" id="RHg-af-wcy"/>
@@ -999,7 +1001,6 @@
                             <constraint firstItem="szn-od-FOs" firstAttribute="centerY" secondItem="eja-Vc-IQn" secondAttribute="centerY" id="k4m-gK-ymo"/>
                             <constraint firstItem="1Ge-QX-5bL" firstAttribute="trailing" secondItem="szn-od-FOs" secondAttribute="trailing" priority="999" constant="30" id="okF-4R-K2q"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1Ge-QX-5bL"/>
                     </view>
                     <navigationItem key="navigationItem" id="aLD-HT-9EZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1031,7 +1032,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTV-DQ-cGf">
-                                <rect key="frame" x="43.5" y="400.5" width="327.5" height="41"/>
+                                <rect key="frame" x="44.5" y="400.5" width="325.5" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Syd-J8-9ZE"/>
                                 </constraints>
@@ -1040,6 +1041,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="uQg-wJ-RIl"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rTV-DQ-cGf" firstAttribute="centerX" secondItem="uQg-wJ-RIl" secondAttribute="centerX" id="Bcv-1o-eP5"/>
@@ -1053,7 +1055,6 @@
                             <constraint firstItem="rTV-DQ-cGf" firstAttribute="centerY" secondItem="D3W-uP-Yk7" secondAttribute="centerY" id="xeg-zK-enn"/>
                             <constraint firstItem="rTV-DQ-cGf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="D3W-uP-Yk7" secondAttribute="leadingMargin" constant="20" id="ye9-Wb-6i7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="uQg-wJ-RIl"/>
                     </view>
                     <navigationItem key="navigationItem" title="Top 5 Energy Tips" id="LfX-GP-nw3"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1099,7 +1100,7 @@
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36E-Vt-Mb8" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36E-Vt-Mb8" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="27" width="335" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="K6p-ro-EE7"/>
@@ -1119,7 +1120,7 @@
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-uI-1yE" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-uI-1yE" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="43.5" width="335" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="Ve7-mn-iyY"/>
@@ -1139,7 +1140,7 @@
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-qc-yXZ" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-qc-yXZ" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="43.5" width="335" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="AaA-eV-aN8"/>
@@ -1155,7 +1156,7 @@
                                                                     <constraint firstAttribute="height" id="yaz-ec-Gqu"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6q-N0-rQx" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6q-N0-rQx" customClass="DisclosureButton" customModule="EUMobile" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="118.5" width="335" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="OhM-y5-dTm"/>
@@ -1208,7 +1209,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-i3-nXX" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="727" width="375" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHW-w3-9OX" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHW-w3-9OX" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="335" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Save Profile"/>
                                         <constraints>
@@ -1221,6 +1222,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="fW0-ra-VGR"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="fW0-ra-VGR" firstAttribute="trailing" secondItem="oHW-w3-9OX" secondAttribute="trailing" priority="999" constant="20" id="A4i-Vb-qJw"/>
@@ -1229,7 +1231,6 @@
                                     <constraint firstItem="fW0-ra-VGR" firstAttribute="bottom" secondItem="oHW-w3-9OX" secondAttribute="bottom" constant="15" id="Q2e-PA-1M2"/>
                                     <constraint firstItem="oHW-w3-9OX" firstAttribute="top" secondItem="nW8-i3-nXX" secondAttribute="top" constant="15" id="Sny-TV-kGk"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="fW0-ra-VGR"/>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="CMj-S6-iYy" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="157.5" y="417" width="60" height="12"/>
@@ -1246,6 +1247,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Vs8-js-0Sc"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="nW8-i3-nXX" secondAttribute="bottom" id="58C-iA-vNt"/>
@@ -1264,7 +1266,6 @@
                             <constraint firstItem="Vs8-js-0Sc" firstAttribute="trailing" secondItem="Jht-Fq-yF3" secondAttribute="trailing" id="hjy-md-CcQ"/>
                             <constraint firstItem="Jht-Fq-yF3" firstAttribute="leading" secondItem="Vs8-js-0Sc" secondAttribute="leading" id="uDO-K1-ZZX"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Vs8-js-0Sc"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Home Profile" id="miD-if-yCC"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1313,6 +1314,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="qY6-iI-yH9"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FGl-Sf-zZE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qY6-iI-yH9" secondAttribute="leading" constant="29" id="1KM-uz-tBz"/>
@@ -1324,7 +1326,6 @@
                             <constraint firstItem="FGl-Sf-zZE" firstAttribute="centerX" secondItem="qY6-iI-yH9" secondAttribute="centerX" id="rtm-FE-kMg"/>
                             <constraint firstItem="FGl-Sf-zZE" firstAttribute="centerY" secondItem="xg4-ga-5iC" secondAttribute="centerY" id="txf-j3-ULc"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="qY6-iI-yH9"/>
                     </view>
                     <navigationItem key="navigationItem" title="Hourly Pricing" id="8Jy-C1-xnO"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1361,7 +1362,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="355.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Season 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFs-ju-0fc">
-                                                                        <rect key="frame" x="118.5" y="0.0" width="98" height="20.5"/>
+                                                                        <rect key="frame" x="119" y="0.0" width="97.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1370,7 +1371,7 @@
                                                                         <rect key="frame" x="28" y="40.5" width="279" height="269"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHt-Yp-O0c">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHt-Yp-O0c">
                                                                         <rect key="frame" x="111.5" y="325.5" width="112" height="30"/>
                                                                         <state key="normal" title="View All Savings"/>
                                                                     </button>
@@ -1432,7 +1433,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="qAg-fp-rav" secondAttribute="trailing" constant="20" id="48Q-fx-dg8"/>
                                                     <constraint firstItem="qAg-fp-rav" firstAttribute="leading" secondItem="c4e-It-NA0" secondAttribute="leading" constant="20" id="e57-Hz-odL"/>
@@ -1468,7 +1469,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1O-Zy-Ypu">
-                                <rect key="frame" x="51.5" y="302.5" width="272.5" height="41"/>
+                                <rect key="frame" x="52" y="302.5" width="271" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="f95-Yr-kaf"/>
                                 </constraints>
@@ -1477,6 +1478,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="92h-Ic-VAD"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0Fm-l3-5yU" firstAttribute="centerY" secondItem="whR-g5-Q9c" secondAttribute="centerY" id="3pd-8t-Dif"/>
@@ -1490,7 +1492,6 @@
                             <constraint firstItem="0Fm-l3-5yU" firstAttribute="centerX" secondItem="92h-Ic-VAD" secondAttribute="centerX" id="j4f-1z-Vlm"/>
                             <constraint firstItem="r1O-Zy-Ypu" firstAttribute="centerY" secondItem="whR-g5-Q9c" secondAttribute="centerY" id="jO9-hQ-Uok"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="92h-Ic-VAD"/>
                     </view>
                     <navigationItem key="navigationItem" title="Usage" id="L4v-gR-3RB">
                         <barButtonItem key="backBarButtonItem" title=" " id="4Dx-QD-9lo"/>
@@ -1525,7 +1526,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZP-bM-X5P">
-                                <rect key="frame" x="263" y="32" width="55.5" height="21"/>
+                                <rect key="frame" x="263" y="32" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1778,6 +1779,7 @@
                                 </connections>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="JBd-cS-dm9"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Cps-6D-t0d" firstAttribute="top" secondItem="tpe-dq-8TL" secondAttribute="bottom" id="3PP-fg-6tn"/>
@@ -1792,7 +1794,6 @@
                             <constraint firstItem="LD7-jj-7zH" firstAttribute="top" secondItem="Cps-6D-t0d" secondAttribute="bottom" id="xBG-Ns-tsD"/>
                             <constraint firstItem="JBd-cS-dm9" firstAttribute="trailing" secondItem="LD7-jj-7zH" secondAttribute="trailing" id="zXg-If-YWT"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="JBd-cS-dm9"/>
                     </view>
                     <navigationItem key="navigationItem" title="Total Savings" id="Vg6-iW-by0"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1842,6 +1843,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="dml-Sp-3R6"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FJ3-aO-SIl" firstAttribute="centerY" secondItem="zX6-zb-yJY" secondAttribute="centerY" id="1hR-Wf-c8Q"/>
@@ -1855,7 +1857,6 @@
                             <constraint firstItem="aj4-wr-X5y" firstAttribute="centerX" secondItem="dml-Sp-3R6" secondAttribute="centerX" id="vDt-7R-na5"/>
                             <constraint firstItem="aj4-wr-X5y" firstAttribute="centerY" secondItem="zX6-zb-yJY" secondAttribute="centerY" id="yqT-sX-fTE"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dml-Sp-3R6"/>
                     </view>
                     <navigationItem key="navigationItem" title="Usage" id="zjC-ow-efQ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1883,73 +1884,28 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yfv-G7-h7G">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65g-vp-U0O" customClass="AccountInfoBar" customModule="EUMobile" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_smartenergy_phi" translatesAutoresizingMaskIntoConstraints="NO" id="Hac-uP-o5U">
+                                                <rect key="frame" x="147" y="46" width="120" height="120"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="L41-Rk-p1g"/>
+                                                    <constraint firstAttribute="height" constant="120" id="JVC-MK-RQY"/>
+                                                    <constraint firstAttribute="width" constant="120" id="zyM-oH-XBm"/>
                                                 </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scheduled Peak Savings Day" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvd-YF-Hs6">
-                                                <rect key="frame" x="20" y="72" width="374" height="20.5"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvd-YF-Hs6">
+                                                <rect key="frame" x="20" y="186" width="374" height="101.5"/>
+                                                <string key="text">Reduce your energy use below 4.00 kWh during the Peak Savings Day on Wednesday, September 19, 2018, from 01:00 PM to 02:00 PM. The more you reduce, the greater the opportunity to earn a credit.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nej-NS-nC4">
-                                                <rect key="frame" x="20" y="102.5" width="374" height="140"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCv-Mg-Yk5">
-                                                        <rect key="frame" x="20" y="20" width="334" height="100"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="GCv-Mg-Yk5" firstAttribute="top" secondItem="Nej-NS-nC4" secondAttribute="top" constant="20" id="9iR-cB-cWW"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="Bw7-qY-vfr"/>
-                                                    <constraint firstItem="GCv-Mg-Yk5" firstAttribute="leading" secondItem="Nej-NS-nC4" secondAttribute="leading" constant="20" id="Cpg-Qf-01g"/>
-                                                    <constraint firstAttribute="bottom" secondItem="GCv-Mg-Yk5" secondAttribute="bottom" constant="20" id="R0Z-59-dcO"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="bUV-8a-Yay"/>
-                                                    <constraint firstAttribute="trailing" secondItem="GCv-Mg-Yk5" secondAttribute="trailing" constant="20" id="fQ1-QE-WvB"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEN-nV-ws4">
-                                                <rect key="frame" x="0.0" y="262.5" width="414" height="164"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-aV-nXz">
-                                                        <rect key="frame" x="20" y="20" width="374" height="124"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="OnO-aV-nXz" firstAttribute="leading" secondItem="VEN-nV-ws4" secondAttribute="leading" constant="20" id="4Yj-Xh-ZoI"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="164" id="A6v-Ms-sOv"/>
-                                                    <constraint firstItem="OnO-aV-nXz" firstAttribute="top" secondItem="VEN-nV-ws4" secondAttribute="top" constant="20" id="MAo-Fa-iuW"/>
-                                                    <constraint firstAttribute="trailing" secondItem="OnO-aV-nXz" secondAttribute="trailing" constant="20" id="Z8z-tb-aCd"/>
-                                                    <constraint firstAttribute="bottom" secondItem="OnO-aV-nXz" secondAttribute="bottom" constant="20" id="v6o-m5-fa4"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="VEN-nV-ws4" firstAttribute="leading" secondItem="Yfv-G7-h7G" secondAttribute="leading" id="45y-fw-yqo"/>
-                                            <constraint firstItem="Nej-NS-nC4" firstAttribute="leading" secondItem="Yfv-G7-h7G" secondAttribute="leading" constant="20" id="A4p-gN-5p9"/>
-                                            <constraint firstAttribute="trailing" secondItem="kvd-YF-Hs6" secondAttribute="trailing" constant="20" id="LPH-8k-85b"/>
-                                            <constraint firstItem="65g-vp-U0O" firstAttribute="top" secondItem="Yfv-G7-h7G" secondAttribute="top" id="X61-2i-W8j"/>
-                                            <constraint firstAttribute="trailing" secondItem="VEN-nV-ws4" secondAttribute="trailing" id="YLs-ht-Vbx"/>
-                                            <constraint firstItem="Nej-NS-nC4" firstAttribute="top" secondItem="kvd-YF-Hs6" secondAttribute="bottom" constant="10" id="fj7-am-RI5"/>
-                                            <constraint firstItem="VEN-nV-ws4" firstAttribute="top" secondItem="Nej-NS-nC4" secondAttribute="bottom" constant="20" id="moE-yn-ngx"/>
-                                            <constraint firstItem="kvd-YF-Hs6" firstAttribute="top" secondItem="65g-vp-U0O" secondAttribute="bottom" constant="22" id="r7s-Th-MYH"/>
-                                            <constraint firstAttribute="trailing" secondItem="65g-vp-U0O" secondAttribute="trailing" id="uPb-Hp-Nwp"/>
-                                            <constraint firstItem="65g-vp-U0O" firstAttribute="leading" secondItem="Yfv-G7-h7G" secondAttribute="leading" id="v0e-A7-PSI"/>
-                                            <constraint firstItem="kvd-YF-Hs6" firstAttribute="leading" secondItem="Yfv-G7-h7G" secondAttribute="leading" constant="20" id="yBS-ab-r40"/>
-                                            <constraint firstAttribute="trailing" secondItem="Nej-NS-nC4" secondAttribute="trailing" constant="20" id="zgZ-NI-NRs"/>
+                                            <constraint firstItem="kvd-YF-Hs6" firstAttribute="top" secondItem="Hac-uP-o5U" secondAttribute="bottom" constant="20" id="19D-b1-dVH"/>
+                                            <constraint firstItem="Hac-uP-o5U" firstAttribute="centerX" secondItem="Yfv-G7-h7G" secondAttribute="centerX" id="CuQ-Xn-JQD"/>
+                                            <constraint firstItem="Hac-uP-o5U" firstAttribute="top" secondItem="Yfv-G7-h7G" secondAttribute="top" constant="46" id="PVE-vr-If8"/>
+                                            <constraint firstItem="kvd-YF-Hs6" firstAttribute="leading" secondItem="Yfv-G7-h7G" secondAttribute="leading" constant="20" id="fZh-aY-MiS"/>
+                                            <constraint firstAttribute="trailing" secondItem="kvd-YF-Hs6" secondAttribute="trailing" constant="20" id="gHq-Gc-Tor"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1967,15 +1923,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0E-O2-W4w" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="723" width="414" height="85"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yik-ir-EB4" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yik-ir-EB4" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="Xoa-lp-Z9S"/>
                                             <constraint firstAttribute="height" constant="55" id="z58-Kk-lCp"/>
                                         </constraints>
                                         <state key="normal" title="Peak Energy Savings History"/>
+                                        <connections>
+                                            <segue destination="1rr-Zq-1hI" kind="show" identifier="peakSavingsHistorySegue" id="2pp-wb-CoB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="QIO-gs-L6t"/>
                                 <constraints>
                                     <constraint firstItem="Yik-ir-EB4" firstAttribute="top" secondItem="QIO-gs-L6t" secondAttribute="top" constant="15" id="7Gc-CY-hmq"/>
                                     <constraint firstAttribute="height" constant="85" id="BKe-C6-VCB"/>
@@ -1983,10 +1943,10 @@
                                     <constraint firstItem="Yik-ir-EB4" firstAttribute="leading" secondItem="QIO-gs-L6t" secondAttribute="leading" constant="20" id="WyM-Hh-Rli"/>
                                     <constraint firstItem="QIO-gs-L6t" firstAttribute="trailing" secondItem="Yik-ir-EB4" secondAttribute="trailing" constant="20" id="g9D-Bh-bwt"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="QIO-gs-L6t"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ZXM-rl-1A4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="r0E-O2-W4w" firstAttribute="trailing" secondItem="ZXM-rl-1A4" secondAttribute="trailing" id="5bd-qx-Dig"/>
                             <constraint firstItem="r0E-O2-W4w" firstAttribute="leading" secondItem="ZXM-rl-1A4" secondAttribute="leading" id="Beu-fJ-UxK"/>
@@ -1996,22 +1956,67 @@
                             <constraint firstItem="ZXM-rl-1A4" firstAttribute="bottom" secondItem="r0E-O2-W4w" secondAttribute="bottom" id="gSY-8E-32S"/>
                             <constraint firstAttribute="bottom" secondItem="M7g-8m-aGm" secondAttribute="bottom" id="iMs-T1-gKs"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ZXM-rl-1A4"/>
                     </view>
                     <navigationItem key="navigationItem" title="Peak Energy Savings" id="E2K-oZ-Ryc"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="borderedBackgroundView" destination="Nej-NS-nC4" id="eBb-qi-oGB"/>
-                        <outlet property="programDescriptionLabel" destination="GCv-Mg-Yk5" id="E2k-Fn-4fD"/>
-                        <outlet property="programSuggestionLabel" destination="OnO-aV-nXz" id="JgF-Mm-gwk"/>
-                        <outlet property="programSuggestionView" destination="VEN-nV-ws4" id="8iS-CL-ixh"/>
-                        <outlet property="programTitleLabel" destination="kvd-YF-Hs6" id="MRf-ZY-xOA"/>
+                        <outlet property="programDetailsLabel" destination="kvd-YF-Hs6" id="uxj-ci-PWr"/>
                         <outlet property="view" destination="cLc-cC-uNd" id="3Wi-Wk-gPD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgC-at-18y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1346.376811594203" y="1668.75"/>
+            <point key="canvasLocation" x="1587" y="1669"/>
+        </scene>
+        <!--Peak Energy Savings History View Controller-->
+        <scene sceneID="cOU-WM-1tn">
+            <objects>
+                <viewController storyboardIdentifier="PeakEnergySavingsHistoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1rr-Zq-1hI" customClass="PeakEnergySavingsHistoryViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yfg-F2-crb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zre-nb-OHa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csj-7M-Woi" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="360" width="60" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEK-Zm-z4Z">
+                                <rect key="frame" x="30" y="356" width="354" height="20.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6J6-hm-eqV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6J6-hm-eqV" firstAttribute="trailing" secondItem="zre-nb-OHa" secondAttribute="trailing" id="7Ai-Wc-NNn"/>
+                            <constraint firstItem="zre-nb-OHa" firstAttribute="leading" secondItem="6J6-hm-eqV" secondAttribute="leading" id="Ja5-N3-gmK"/>
+                            <constraint firstItem="6J6-hm-eqV" firstAttribute="bottom" secondItem="zre-nb-OHa" secondAttribute="bottom" id="kps-oW-Jco"/>
+                            <constraint firstItem="zre-nb-OHa" firstAttribute="top" secondItem="6J6-hm-eqV" secondAttribute="top" id="ua8-e0-9UJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hKu-Mx-Ez1"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="BEK-Zm-z4Z" id="Nof-ic-Jeh"/>
+                        <outlet property="loadingIndicator" destination="csj-7M-Woi" id="KGO-pI-gKM"/>
+                        <outlet property="view" destination="Yfg-F2-crb" id="r3z-nz-G06"/>
+                        <outlet property="webView" destination="zre-nb-OHa" id="ew1-hf-ha9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1gd-wz-I4W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2545" y="1668"/>
         </scene>
     </scenes>
     <resources>
@@ -2023,7 +2028,11 @@
         <image name="ic_phi_thermostat" width="43" height="43"/>
         <image name="ic_savings_caretleft" width="24" height="24"/>
         <image name="ic_savings_caretright" width="24" height="24"/>
+        <image name="ic_smartenergy_phi" width="120" height="120"/>
         <image name="ic_smartenergyempty" width="120" height="120"/>
         <image name="img_predictedstripes" width="300" height="300"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
