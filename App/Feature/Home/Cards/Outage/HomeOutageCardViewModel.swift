@@ -109,6 +109,10 @@ class HomeOutageCardViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var getError: Driver<Error> =  outageStatusEvents.errors()
+        .map{ $0 }
+        .asDriver(onErrorDriveWith: .empty())
+    
     private(set) lazy var showReportedOutageTime: Driver<Bool> = Driver
         .merge(self.outageReported, self.currentOutageStatus.mapTo(()))
         .map { [weak self] in

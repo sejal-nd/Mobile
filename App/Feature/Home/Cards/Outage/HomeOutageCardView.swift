@@ -127,7 +127,7 @@ class HomeOutageCardView: UIView {
         
         errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        errorLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "") : NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
     
     private func showLoadingState() {
@@ -213,6 +213,22 @@ class HomeOutageCardView: UIView {
         viewModel.showErrorState
             .drive(onNext: { [weak self] in self?.showErrorState() })
             .disposed(by: bag)
+        
+        if Environment.shared.opco.isPHI  {
+            viewModel.getError
+                .drive(onNext: { [weak self] err in
+                    if let error  = err as? NetworkingError {
+                        if error == .inactive || error == .finaled {
+                            self?.errorLabel.text = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
+                        } else if error == .noPay {
+                            self?.errorLabel.text = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
+                        } else {
+                            self?.errorLabel.text = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
+                        }
+                    }
+                })
+                .disposed(by: bag)
+        }
         
         viewModel.showOutstandingBalanceWarning
             .drive(onNext: { [weak self] in self?.showOutstandingBalanceWarning() })
