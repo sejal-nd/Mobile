@@ -1,7 +1,5 @@
 
-skip_docs # Skip autogenerating the README.md, we are manually writing it
-
-opt_out_usage # Do not send usage analytics
+skip_docs # skip autogenerating the README.md, we are manually writing it
 
 default_platform(:ios)
   platform :ios do
