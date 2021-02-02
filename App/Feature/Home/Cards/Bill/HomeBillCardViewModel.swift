@@ -462,7 +462,13 @@ class HomeBillCardViewModel {
                 let format = "%@ of the total is due immediately for your multi-premise account.".localized()
                 string = String(format: format, amount)
             case (false, true):
-                string = NSLocalizedString("Your bill is past due.", comment: "")
+                if accountDetail.serviceType == nil && Environment.shared.opco == .bge && accountDetail.billingInfo.pastDueAmount > 0 {
+                    guard let amount = billingInfo.pastDueAmount?.currencyString else { return nil }
+                    let format = "%@ must be paid immediately. Your account has been stopped.".localized()
+                    string = String(format: format, amount)
+                } else {
+                    string = NSLocalizedString("Your bill is past due.", comment: "")
+                }
             case (true, true):
                 string = NSLocalizedString("Your bill is past due for your multi-premise account.", comment: "")
             }

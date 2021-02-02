@@ -91,6 +91,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var cancelPaymentButton: ButtonControl!
     @IBOutlet weak var cancelPaymentLabel: UILabel!
     
+    @IBOutlet weak var creditCardDateRangeError: UILabel!
+    
     var viewModel: TapToPayViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
     var billingHistoryItem: BillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
@@ -196,6 +198,10 @@ class TapToPayReviewPaymentViewController: UIViewController {
         sameDayPaymentWarningLabel.textColor = .deepGray
         sameDayPaymentWarningLabel.font = SystemFont.regular.of(size: 12)
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same-day payments cannot be edited or canceled after submission.", comment: "")
+        
+        creditCardDateRangeError.textColor = .errorRed
+        creditCardDateRangeError.font = SystemFont.semibold.of(size: 12)
+        creditCardDateRangeError.text = NSLocalizedString("Error: Credit card payments cannot be scheduled more than 90 days in advance.", comment: "")
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .deepGray
@@ -336,6 +342,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
         viewModel.shouldShowLatePaymentWarning.drive(onNext: { [weak self] showLatePaymentWarning in
             guard let self = self else { return }
             self.latePaymentErrorLabel.isHidden = !showLatePaymentWarning
+        }).disposed(by: bag)
+        
+        viewModel.showCreditCardDateRangeError.drive(onNext: { [weak self] showcreditCardDateRangeError in
+            guard let self = self else { return }
+            self.creditCardDateRangeError.isHidden = !showcreditCardDateRangeError
         }).disposed(by: bag)
         
         viewModel.enablePaymentDate.drive(onNext: { [weak self]  enableDate in

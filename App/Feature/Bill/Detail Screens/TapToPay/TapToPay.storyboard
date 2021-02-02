@@ -448,7 +448,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ibB-eC-2F9">
-                                                                        <rect key="frame" x="20" y="67.5" width="369" height="49.5"/>
+                                                                        <rect key="frame" x="20" y="67.5" width="369" height="67"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Past due payments cannot be scheduled for a later date." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNS-xm-8Sh">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="369" height="14.5"/>
@@ -464,6 +464,12 @@
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITc-Dv-Czz">
                                                                                 <rect key="frame" x="0.0" y="35" width="369" height="14.5"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPq-Dw-uaJ">
+                                                                                <rect key="frame" x="0.0" y="52.5" width="369" height="14.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -860,6 +866,7 @@
                         <outlet property="collapseButton" destination="LZZ-e6-IEK" id="2cr-cH-2IC"/>
                         <outlet property="convenienceFeeLabel" destination="AIH-MB-BXc" id="CA4-h4-UdK"/>
                         <outlet property="convienceFeeBottomLabel" destination="eBn-jN-TAY" id="3T7-mi-zUd"/>
+                        <outlet property="creditCardDateRangeError" destination="UPq-Dw-uaJ" id="aBK-PZ-Rvv"/>
                         <outlet property="creditCardTitleLabel" destination="O9B-Tp-KnM" id="Il6-sX-dCx"/>
                         <outlet property="creditDebitCard" destination="MeF-rm-r3H" id="nDs-jU-jy3"/>
                         <outlet property="dateWarningStackBottomConstraint" destination="4np-jc-DJj" id="eeb-Cs-224"/>
@@ -967,7 +974,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="798"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEG-DE-tfD" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="723"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="720.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="vbY-XG-cy1">
                                                 <rect key="frame" x="20" y="10" width="374" height="606.5"/>
@@ -979,19 +986,19 @@
                                                                 <rect key="frame" x="139" y="10" width="96" height="96"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your payment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqk-rB-zQF">
-                                                                <rect key="frame" x="0.0" y="126" width="374" height="27.5"/>
+                                                                <rect key="frame" x="0.0" y="126" width="374" height="23.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A confirmation email will be sent to you shortly." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lh-aU-J3e">
-                                                                <rect key="frame" x="0.0" y="165.5" width="374" height="22"/>
+                                                                <rect key="frame" x="0.0" y="161.5" width="374" height="19"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="mol-eP-9SS">
-                                                                <rect key="frame" x="0.0" y="227.5" width="374" height="263.5"/>
+                                                                <rect key="frame" x="0.0" y="220.5" width="374" height="270.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFp-2D-igx" userLabel="Payment Info View">
                                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="152"/>
@@ -1130,7 +1137,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zM-zF-QjM">
-                                                                        <rect key="frame" x="0.0" y="247" width="374" height="16.5"/>
+                                                                        <rect key="frame" x="0.0" y="256.5" width="374" height="14"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1200,10 +1207,10 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffq-hG-9Vw" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="646.5" width="414" height="76.5"/>
+                                                <rect key="frame" x="0.0" y="646.5" width="414" height="74"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPE-ph-7Xj">
-                                                        <rect key="frame" x="20" y="30" width="374" height="16.5"/>
+                                                        <rect key="frame" x="20" y="30" width="374" height="14"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="3cP-vO-eTq"/>
                                                         </constraints>

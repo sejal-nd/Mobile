@@ -337,6 +337,13 @@ class TapToPayViewModel {
             }
     }
     
+    private(set) lazy var showCreditCardDateRangeError: Driver<Bool> =
+        Driver.combineLatest(self.selectedWalletItem.asDriver(), paymentDate.asDriver()) { selectedWalletItem, paymentDateValue in
+            let today = Calendar.opCo.startOfDay(for: .now)
+            let maxCardDate = Calendar.opCo.date(byAdding: .day, value: 90, to: today) ?? today
+            return selectedWalletItem?.bankOrCard == .card && paymentDateValue > maxCardDate
+        }
+    
     private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
         let billingInfo = $0.billingInfo
         var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
@@ -497,7 +504,8 @@ class TapToPayViewModel {
             self.shouldShowPaymentMethodExpiredButton.asDriver(),
             isOverpaying,
             overpayingSwitchValue.asDriver(),
-            paymentFieldReviewPaymentValid.asDriver())
+            paymentFieldReviewPaymentValid.asDriver(),
+            showCreditCardDateRangeError)
         {
             if !$0 || !$1 || !$2 || $3{
                 return false
@@ -506,6 +514,10 @@ class TapToPayViewModel {
                 return false
             }
             if !$6 {
+                return false
+            }
+            
+            if $7 {
                 return false
             }
             
