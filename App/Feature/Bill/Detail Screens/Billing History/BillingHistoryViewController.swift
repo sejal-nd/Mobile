@@ -255,7 +255,7 @@ class BillingHistoryViewController: UIViewController {
 extension BillingHistoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        indexPath.section == .zero && indexPath.row == .zero && viewModel.shouldShowAutoPayCell ? UITableView.automaticDimension : 60.0
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
