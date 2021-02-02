@@ -878,26 +878,26 @@ class UsageViewModel {
                 }
             case .peco:
                 break
-            case .pepco:
-                usageTools.insert(.energyWiseRewards, at: 1)
-                #warning("Uncomment this in Release 2, Commented for R1")
-                /* 
-                if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && accountDetail.subOpco == .pepcoMaryland {
-                    usageTools.append(.peakEnergySavings)
-                }*/
-            case .ace:
-                usageTools.insert(.energyWiseRewards, at: 1)
-            case .delmarva:
-                if accountDetail.isEnergyWiseRewardsEligible || accountDetail.isEnergyWiseRewardsEnrolled {
+            case .ace, .delmarva, .pepco:
+                if accountDetail.opcoType == .ace {
                     usageTools.insert(.energyWiseRewards, at: 1)
-                }
-                #warning("Uncomment this in Release 2, Commented for R1")
-                /*
-                if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && (accountDetail.subOpco == .delmarvaMaryland || accountDetail.subOpco == .delmarvaDelaware) {
+                } else if accountDetail.opcoType == .delmarva {
+                    if accountDetail.isEnergyWiseRewardsEligible || accountDetail.isEnergyWiseRewardsEnrolled {
+                        usageTools.insert(.energyWiseRewards, at: 1)
+                    }
+                    if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && (accountDetail.subOpco == .delmarvaMaryland || accountDetail.subOpco == .delmarvaDelaware) {
+                        usageTools.append(.peakEnergySavings)
+                    }
+                } else if accountDetail.opcoType == .pepco {
+                    usageTools.insert(.energyWiseRewards, at: 1)
                     usageTools.append(.peakEnergySavings)
-                }*/
+                    #warning("Uncomment this in Release 2, Commented for R1")
+                    /*
+                    if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && accountDetail.subOpco == .pepcoMaryland {
+                        usageTools.append(.peakEnergySavings)
+                    }*/
+                }
             }
-            
             return usageTools
         }
     
