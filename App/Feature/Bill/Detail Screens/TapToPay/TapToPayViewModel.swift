@@ -175,6 +175,20 @@ class TapToPayViewModel {
         }
     }
     
+    func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let cancelRequest = SchedulePaymentCancelRequest(paymentAmount: paymentAmount.value)
+        
+        PaymentService.cancelSchduledPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value ?? "", request: cancelRequest) { result in
+            switch result {
+            case .success:
+                onSuccess()
+            case .failure(let error):
+                onError(error.description)
+            }
+            
+        }
+    }
+    
     // MARK: - Payment Date Stuff
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
@@ -190,6 +204,10 @@ class TapToPayViewModel {
             }
         }
         return true
+    }
+    
+    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = paymentId.asDriver().map {
+        return $0 != nil
     }
     
     private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
@@ -308,7 +326,7 @@ class TapToPayViewModel {
     
     private(set) lazy var convenienceDisplayString: Driver<String?> =
         Driver.combineLatest(self.selectedWalletItem.asDriver(), walletItemDriver) { selectedWalletItem, walletItem in
-            guard let walletItem = walletItem else {
+            guard let walletItem = selectedWalletItem else {
                 return NSLocalizedString("with no convenience fee", comment: "")
                 
             }
@@ -318,6 +336,13 @@ class TapToPayViewModel {
                 return String.localizedStringWithFormat("with a %@ convenience fee included, applied by Paymentus, our payment partner.", self.convenienceFee.currencyString)
             }
     }
+    
+    private(set) lazy var showCreditCardDateRangeError: Driver<Bool> =
+        Driver.combineLatest(self.selectedWalletItem.asDriver(), paymentDate.asDriver()) { selectedWalletItem, paymentDateValue in
+            let today = Calendar.opCo.startOfDay(for: .now)
+            let maxCardDate = Calendar.opCo.date(byAdding: .day, value: 90, to: today) ?? today
+            return selectedWalletItem?.bankOrCard == .card && paymentDateValue > maxCardDate
+        }
     
     private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
         let billingInfo = $0.billingInfo
@@ -479,7 +504,8 @@ class TapToPayViewModel {
             self.shouldShowPaymentMethodExpiredButton.asDriver(),
             isOverpaying,
             overpayingSwitchValue.asDriver(),
-            paymentFieldReviewPaymentValid.asDriver())
+            paymentFieldReviewPaymentValid.asDriver(),
+            showCreditCardDateRangeError)
         {
             if !$0 || !$1 || !$2 || $3{
                 return false
@@ -488,6 +514,10 @@ class TapToPayViewModel {
                 return false
             }
             if !$6 {
+                return false
+            }
+            
+            if $7 {
                 return false
             }
             

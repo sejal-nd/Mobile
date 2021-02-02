@@ -389,10 +389,10 @@ class HomeBillCardViewModel {
                                                                                      walletItemDriver)
         { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
         .distinctUntilChanged()
-    private(set) lazy var showMakePaymentButton: Driver<Bool> = Driver.combineLatest(showAutoPay,
-                                                                                     showScheduledPayment,
-                                                                                     billState)
-    { return $0 || $1 || $2 == .billPaid || $2 == .billPaidIntermediate || $2 == .paymentPending ? false : true }
+    
+    private(set) lazy var showMakePaymentButton: Driver<Bool> = accountDetailDriver.map {
+        return ($0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge || Environment.shared.opco.isPHI ) ? true : false
+    }
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
@@ -462,7 +462,13 @@ class HomeBillCardViewModel {
                 let format = "%@ of the total is due immediately for your multi-premise account.".localized()
                 string = String(format: format, amount)
             case (false, true):
-                string = NSLocalizedString("Your bill is past due.", comment: "")
+                if accountDetail.serviceType == nil && Environment.shared.opco == .bge && accountDetail.billingInfo.pastDueAmount > 0 {
+                    guard let amount = billingInfo.pastDueAmount?.currencyString else { return nil }
+                    let format = "%@ must be paid immediately. Your account has been stopped.".localized()
+                    string = String(format: format, amount)
+                } else {
+                    string = NSLocalizedString("Your bill is past due.", comment: "")
+                }
             case (true, true):
                 string = NSLocalizedString("Your bill is past due for your multi-premise account.", comment: "")
             }
