@@ -87,6 +87,10 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var scrollViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollViewLeadingConstraint: NSLayoutConstraint!
     
+    // Cancel Payment
+    @IBOutlet weak var cancelPaymentButton: ButtonControl!
+    @IBOutlet weak var cancelPaymentLabel: UILabel!
+    
     var viewModel: TapToPayViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
     var billingHistoryItem: BillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
@@ -252,6 +256,13 @@ class TapToPayReviewPaymentViewController: UIViewController {
             scrollViewLeadingConstraint.priority = UILayoutPriority(rawValue: 1000)
         }
         
+        
+        let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
+        cancelPaymentButton.accessibilityLabel = cancelPaymentText
+        cancelPaymentLabel.text = cancelPaymentText
+        cancelPaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        cancelPaymentLabel.textColor = .actionBlue
+        
         self.stickyPaymentFooterView.accessibilityElements = [submitDescriptionLabel as Any,
                                                               termsNConditionsButton as Any,
                                                               submitButton as Any]
@@ -353,6 +364,13 @@ class TapToPayReviewPaymentViewController: UIViewController {
         // Show content
         viewModel.shouldShowContent.drive(onNext: { [weak self] shouldShow in
             self?.stickyPaymentFooterView.isHidden = !shouldShow
+        }).disposed(by: bag)
+        
+        // Cancel Payment
+        viewModel.shouldShowCancelPaymentButton.not().drive(cancelPaymentButton.rx.isHidden).disposed(by: bag)
+        
+        cancelPaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            self?.onCancelPaymentPress()
         }).disposed(by: bag)
         
     }
@@ -704,6 +722,36 @@ class TapToPayReviewPaymentViewController: UIViewController {
             })
         }
         
+    }
+    
+    @IBAction func onCancelPaymentPress() {
+        let alertTitle = NSLocalizedString("Are you sure you want to cancel this automatic payment?", comment: "")
+        let alertMessage = NSLocalizedString("Canceling this payment will not impact your AutoPay enrollment. Future bills will still be paid automatically.", comment: "")
+        let alertConfirm = NSLocalizedString("Yes", comment: "")
+        let alertDeny = NSLocalizedString("No", comment: "")
+        
+        let confirmAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        confirmAlert.addAction(UIAlertAction(title: alertDeny, style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: alertConfirm, style: .destructive, handler: { [weak self] _ in
+            LoadingView.show()
+            self?.viewModel.cancelPayment(onSuccess: { [weak self] in
+                LoadingView.hide()
+                if let confirmationNumber = self?.billingHistoryItem?.paymentID,
+                   let storedConfirmationNumber = RecentPaymentsStore.shared[AccountsStore.shared.currentAccount]?.confirmationNumber,
+                   confirmationNumber == storedConfirmationNumber {
+                    RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = nil
+                    NotificationCenter.default.post(name: .didRecievePaymentCancelConfirmation, object: nil)
+                    NotificationCenter.default.post(name: .didRecievePaymentConfirmation, object: nil)
+                }
+                self?.dismiss(animated: true, completion: nil)
+            }, onError: { [weak self] errMessage in
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertVc, animated: true, completion: nil)
+            })
+        }))
+        present(confirmAlert, animated: true, completion: nil)
     }
     
 }

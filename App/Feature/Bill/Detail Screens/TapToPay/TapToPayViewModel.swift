@@ -175,6 +175,20 @@ class TapToPayViewModel {
         }
     }
     
+    func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let cancelRequest = SchedulePaymentCancelRequest(paymentAmount: paymentAmount.value)
+        
+        PaymentService.cancelSchduledPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value ?? "", request: cancelRequest) { result in
+            switch result {
+            case .success:
+                onSuccess()
+            case .failure(let error):
+                onError(error.description)
+            }
+            
+        }
+    }
+    
     // MARK: - Payment Date Stuff
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
@@ -190,6 +204,10 @@ class TapToPayViewModel {
             }
         }
         return true
+    }
+    
+    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = paymentId.asDriver().map {
+        return $0 != nil
     }
     
     private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()

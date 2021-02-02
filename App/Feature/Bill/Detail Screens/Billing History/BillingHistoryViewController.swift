@@ -62,6 +62,12 @@ class BillingHistoryViewController: UIViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true
+        
+        NotificationCenter.default.rx.notification(.didRecievePaymentCancelConfirmation, object: nil)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self = self else { return }
+                self.onPaymentCancel()
+            }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
