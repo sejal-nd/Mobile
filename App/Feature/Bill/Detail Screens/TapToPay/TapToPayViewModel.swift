@@ -326,7 +326,7 @@ class TapToPayViewModel {
     
     private(set) lazy var convenienceDisplayString: Driver<String?> =
         Driver.combineLatest(self.selectedWalletItem.asDriver(), walletItemDriver) { selectedWalletItem, walletItem in
-            guard let walletItem = walletItem else {
+            guard let walletItem = selectedWalletItem else {
                 return NSLocalizedString("with no convenience fee", comment: "")
                 
             }
