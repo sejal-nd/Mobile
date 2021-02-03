@@ -11,7 +11,7 @@ default_platform(:ios)
         ipa: options[:ipa_path],
         metadata_path: options[:metadata_path],
         team_id: "YU7Y757VB5",
-        submit_for_review: false,
+        submit_for_review: true,
         skip_screenshots: true,
         ignore_language_directory_validation: true,
         run_precheck_before_submit: false,
