@@ -30,8 +30,8 @@ default_platform(:ios)
       )
     end
 
-    desc "Package and build app, resulting in an IPA file to upload to App Center and distribute to a given distribution group with DSYM Zip"
-    lane :packageAndUpload do |options|
+    desc "Package and build the app, resulting in an IPA file"
+    lane :package do |options|
       build_app(
         workspace: "Mobile.xcworkspace",
         configuration: options[:configuration],
@@ -41,7 +41,10 @@ default_platform(:ios)
         output_name: "EUMobile.ipa", # Specify the name of the .ipa file to generate (including file extension)
         export_options: options[:export_options_path] # Path to export Plist
       )
+    end
 
+    desc "Upload a pre-built IPA and DSYM Zip to App Center and distribute"
+    lane :app_center_upload do |options|
       appcenter_upload(
         api_token: options[:app_center_api_token],
         owner_name: "Exelon-Digital-Projects",
