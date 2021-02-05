@@ -84,6 +84,7 @@ struct DebugMenu: View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func reset() {
