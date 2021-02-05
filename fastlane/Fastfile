@@ -30,6 +30,23 @@ default_platform(:ios)
       )
     end
 
+    desc "Adds a git tag of the Xcode project number, e.g. 5.10.0"
+    lane :tag_release do
+      version = get_version_number(
+        target: "EUMobile"
+      )
+
+      if !git_tag_exists(tag: version)
+        # Tags git release commit: ex: 5.10.0
+        add_git_tag(
+          tag: version,
+          includes_lane: false
+        )
+
+        push_git_tags
+      end
+    end
+
     desc "Package and build the app, resulting in an IPA file"
     lane :package do |options|
       build_app(
