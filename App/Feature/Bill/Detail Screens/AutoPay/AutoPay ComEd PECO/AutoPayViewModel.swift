@@ -35,7 +35,7 @@ class AutoPayViewModel {
     required init(accountDetail: AccountDetail) {
         self.accountDetail = accountDetail
         enrollmentStatus = BehaviorRelay(value: accountDetail.isAutoPay ? .enrolled : .unenrolled)
-        termsAndConditionsCheck = BehaviorRelay(value: Environment.shared.opco != .comEd)
+        termsAndConditionsCheck = BehaviorRelay(value: Configuration.shared.opco != .comEd)
     }
     
     func enroll() -> Observable<Bool> {
@@ -109,7 +109,7 @@ class AutoPayViewModel {
                                  self.accountNumberIsValid,
                                  self.confirmAccountNumberMatches]
         
-        if Environment.shared.opco == .comEd {
+        if Configuration.shared.opco == .comEd {
             validationDrivers.append(self.termsAndConditionsCheck.asDriver())
         }
         
@@ -150,13 +150,13 @@ class AutoPayViewModel {
     
     let tacSwitchAccessibilityLabel = "I agree to ComEd’s AutoPay Terms and Conditions"
     
-    let shouldShowTermsAndConditionsCheck = Environment.shared.opco == .comEd
+    let shouldShowTermsAndConditionsCheck = Configuration.shared.opco == .comEd
     
     var shouldShowThirdPartyLabel: Bool {
-        return Environment.shared.opco == .peco && (accountDetail.isSupplier || accountDetail.isDualBillOption)
+        return Configuration.shared.opco == .peco && (accountDetail.isSupplier || accountDetail.isDualBillOption)
     }
     
-    let reasonStrings = [String(format: NSLocalizedString("Closing %@ account", comment: ""), Environment.shared.opco.displayString),
+    let reasonStrings = [String(format: NSLocalizedString("Closing %@ account", comment: ""), Configuration.shared.opco.displayString),
                          NSLocalizedString("Changing bank account", comment: ""),
                          NSLocalizedString("Dissatisfied with the program", comment: ""),
                          NSLocalizedString("Program no longer meets my needs", comment: ""),
@@ -165,7 +165,7 @@ class AutoPayViewModel {
     private(set) lazy var footerText: Driver<String?> = self.enrollmentStatus.asDriver().map { [weak self] enrollmentStatus in
         guard let self = self else { return nil }
 		var footerText: String
-        switch (Environment.shared.opco, enrollmentStatus) {
+        switch (Configuration.shared.opco, enrollmentStatus) {
         case (.peco, .unenrolled):
             footerText = NSLocalizedString("Your recurring payment will apply to the next PECO bill you receive. You will need to submit a payment for your current PECO bill if you have not already done so.", comment: "")
         case (.comEd, .unenrolled):

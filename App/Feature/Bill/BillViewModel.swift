@@ -177,7 +177,7 @@ class BillViewModel {
     
     private(set) lazy var showCreditScenario: Driver<Bool> = currentAccountDetail.map {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return false }
-        return netDueAmount < 0 && (Environment.shared.opco == .bge || Environment.shared.opco.isPHI)
+        return netDueAmount < 0 && (Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI)
     }
     
     private(set) lazy var showTotalAmountAndLedger: Driver<Bool> =
@@ -207,10 +207,10 @@ class BillViewModel {
         $0.billingInfo.lastPaymentAmount > 0 && $0.billingInfo.netDueAmount ?? 0 == 0
     }
     
-    let showAmountDueTooltip = Environment.shared.opco == .peco
+    let showAmountDueTooltip = Configuration.shared.opco == .peco
     
     private(set) lazy var showMakeAPaymentButton: Driver<Bool> = currentAccountDetail.map {
-        $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge || Environment.shared.opco.isPHI
+        $0.billingInfo.netDueAmount > 0 || Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI
     }
     
     private(set) lazy var showBillPaidFakeButton: Driver<Bool> =
@@ -224,7 +224,7 @@ class BillViewModel {
     
     private(set) lazy var showPaperless: Driver<Bool> = currentAccountDetail.map {
         // ComEd/PECO commercial customers should always see the button
-        if !$0.isResidential && Environment.shared.opco != .bge {
+        if !$0.isResidential && Configuration.shared.opco != .bge {
             return true
         }
         
@@ -237,14 +237,14 @@ class BillViewModel {
     private(set) lazy var showBudget: Driver<Bool> = currentAccountDetail.map {
         return $0.isBudgetBillEligible ||
             $0.isBudgetBill ||
-            Environment.shared.opco == .bge
+            Configuration.shared.opco == .bge
     }
     
     //MARK: - Banner Alert Text
     
     private(set) lazy var alertBannerText: Driver<String?> = currentAccountDetail.map { accountDetail in
         let billingInfo = accountDetail.billingInfo
-        let status = Environment.shared.opco.isPHI ? "is inactive" : "has been finaled"
+        let status = Configuration.shared.opco.isPHI ? "is inactive" : "has been finaled"
         // Finaled
         if billingInfo.pastDueAmount > .zero && accountDetail.isFinaled {
             return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account \(status) and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
@@ -254,7 +254,7 @@ class BillViewModel {
         if let restorationAmount = accountDetail.billingInfo.restorationAmount,
             restorationAmount > 0 &&
                 accountDetail.isCutOutNonPay &&
-                Environment.shared.opco != .bge {
+                Configuration.shared.opco != .bge {
             if restorationAmount == billingInfo.netDueAmount {
                 return NSLocalizedString("The total amount must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.", comment: "")
             } else {
@@ -298,12 +298,12 @@ class BillViewModel {
         // Catch Up
         if let dueByDate = billingInfo.dueByDate,
             let amtDpaReinst = billingInfo.amtDpaReinst,
-            Environment.shared.opco != .bge && amtDpaReinst > 0 {
+            Configuration.shared.opco != .bge && amtDpaReinst > 0 {
             let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now))
             let amountString = amtDpaReinst.currencyString
             
             let string: String
-            switch (days > 0 && Environment.shared.opco != .peco, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
+            switch (days > 0 && Configuration.shared.opco != .peco, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
             case (true, true):
                 let format = "The total amount must be paid by %@ to catch up on your DPA."
                 return String.localizedStringWithFormat(format, dueByDate.mmDdYyyyString)
@@ -350,7 +350,7 @@ class BillViewModel {
     private(set) lazy var totalAmountText: Driver<String> = currentAccountDetail.map {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return "--" }
         
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .pepco: // For credit scenario we want to show the positive number
             return abs(netDueAmount).currencyString
         case .comEd, .peco:
@@ -386,7 +386,7 @@ class BillViewModel {
     private(set) lazy var pastDueText: Driver<String> = currentAccountDetail
         .map { accountDetail in
             let billingInfo = accountDetail.billingInfo
-            if Environment.shared.opco != .bge && billingInfo.amtDpaReinst > 0 &&
+            if Configuration.shared.opco != .bge && billingInfo.amtDpaReinst > 0 &&
                 billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
                 return NSLocalizedString("Catch Up on Agreement Amount", comment: "")
             } else {
@@ -395,7 +395,7 @@ class BillViewModel {
     }
     
     private(set) lazy var pastDueAmountText: Driver<String> = currentAccountDetail.map {
-        if Environment.shared.opco != .bge && $0.billingInfo.amtDpaReinst > 0 &&
+        if Configuration.shared.opco != .bge && $0.billingInfo.amtDpaReinst > 0 &&
             $0.billingInfo.amtDpaReinst == $0.billingInfo.pastDueAmount {
             return $0.billingInfo.amtDpaReinst?.currencyString ?? "--"
         } else {
@@ -407,7 +407,7 @@ class BillViewModel {
         .map { accountDetail in
             let billingInfo = accountDetail.billingInfo
             if let date = billingInfo.dueByDate,
-                Environment.shared.opco != .bge &&
+                Configuration.shared.opco != .bge &&
                 billingInfo.amtDpaReinst > 0 &&
                 billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
                 let string = String.localizedStringWithFormat("Due by %@", date.mmDdYyyyString)
@@ -442,7 +442,7 @@ class BillViewModel {
     
     //MARK: - Pending Payments
     let pendingPaymentsText: String = {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return NSLocalizedString("Payments Processing", comment: "")
         case .comEd, .peco, .pepco, .ace, .delmarva:
@@ -467,7 +467,7 @@ class BillViewModel {
     
     //MARK: - Catch Up
     private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {
-        !$0.isLowIncome && $0.billingInfo.amtDpaReinst > 0 && Environment.shared.opco == .comEd
+        !$0.isLowIncome && $0.billingInfo.amtDpaReinst > 0 && Configuration.shared.opco == .comEd
     }
     
     private(set) lazy var catchUpDisclaimerText: Driver<String> = currentAccountDetail.map {
@@ -478,7 +478,7 @@ class BillViewModel {
     //MARK: - Payment Status
     private(set) lazy var paymentStatusText: Driver<String?> = data
         .map { accountDetail, scheduledPayment in
-            if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+            if Configuration.shared.opco == .bge && accountDetail.isBGEasy {
                 return NSLocalizedString("You are enrolled in BGEasy", comment: "")
             } else if accountDetail.isAutoPay {
                 return NSLocalizedString("You are enrolled in AutoPay", comment: "")
@@ -499,7 +499,7 @@ class BillViewModel {
     
     private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = data
         .map { accountDetail, scheduledPayment in
-            if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+            if Configuration.shared.opco == .bge && accountDetail.isBGEasy {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
                     "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
                     "of your bill from the bank account you originally submitted. You may make a one-time payment " +
@@ -724,10 +724,10 @@ class BillViewModel {
     private(set) lazy var showPaperlessEnrolledView: Driver<Bool> = currentAccountDetail.map {
         // Always hide for ComEd/PECO commercial customers
         var showPaperlessEnrolledView = false
-        if Environment.shared.opco.isPHI {
+        if Configuration.shared.opco.isPHI {
             showPaperlessEnrolledView = $0.eBillEnrollStatus == .canUnenroll
         } else {
-            if !$0.isResidential && Environment.shared.opco != .bge {
+            if !$0.isResidential && Configuration.shared.opco != .bge {
                 showPaperlessEnrolledView = false
             } else {
                 showPaperlessEnrolledView = $0.eBillEnrollStatus == .canUnenroll
@@ -780,7 +780,7 @@ class BillViewModel {
         .distinctUntilChanged()
     
     var prepaidUrl: URL {
-        return URL(string: Environment.shared.myAccountUrl)!
+        return URL(string: Configuration.shared.myAccountUrl)!
     }
     
     // MARK: - Helpers
@@ -789,7 +789,7 @@ class BillViewModel {
     private func isGas(accountDetail: AccountDetail, electricGasSelectedIndex: Int) -> Bool {
         if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
             return true
-        } else if Environment.shared.opco != .comEd && accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" {
+        } else if Configuration.shared.opco != .comEd && accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" {
             return electricGasSelectedIndex == 1
         }
         // Default to electric

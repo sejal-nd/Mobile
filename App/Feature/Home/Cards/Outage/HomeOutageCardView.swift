@@ -214,7 +214,7 @@ class HomeOutageCardView: UIView {
             .drive(onNext: { [weak self] in self?.showErrorState() })
             .disposed(by: bag)
         
-        if Environment.shared.opco.isPHI  {
+        if Configuration.shared.opco.isPHI  {
             viewModel.getError
                 .drive(onNext: { [weak self] err in
                     if let error  = err as? NetworkingError {

@@ -39,10 +39,10 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         instructionLabel.textColor = .deepGray
         instructionLabel.setLineHeight(lineHeight: 24)
         var placeholderText = "Username / Email Address"
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
             placeholderText = "Email"
         } else {
-            placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
+            placeholderText = Configuration.shared.opco.isPHI ? "Username (Email Address)" : "Username / Email Address"
         }
         
         usernameTextField.placeholder = NSLocalizedString(placeholderText, comment: "")
@@ -84,7 +84,7 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
     @IBAction func onSubmitPress() {
         view.endEditing(true)
         // For PHI opcos, user cannot request for forgot password flow with a username, hence restricting the flow to email only
-        if !viewModel.username.value.isValidEmail() && Environment.shared.opco.isPHI {
+        if !viewModel.username.value.isValidEmail() && Configuration.shared.opco.isPHI {
             usernameTextField.setError(NSLocalizedString("Username (Email Address) is invalid.", comment: ""))
             return
         }
@@ -100,7 +100,7 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         }, onProfileNotFound: { [weak self] error in
             LoadingView.hide()
             guard let self = self else { return }
-            let errorMessage = Environment.shared.opco.isPHI ? "Username (Email Address) is invalid." : error
+            let errorMessage = Configuration.shared.opco.isPHI ? "Username (Email Address) is invalid." : error
 
             self.usernameTextField.setError(NSLocalizedString(errorMessage, comment: ""))
             self.accessibilityErrorLabel()

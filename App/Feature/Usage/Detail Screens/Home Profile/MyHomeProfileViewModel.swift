@@ -165,7 +165,7 @@ class MyHomeProfileViewModel {
         }
     
     var homeTypeInfo: String {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .delmarva, .pepco:
             return NSLocalizedString("This is the type of home you are in.", comment: "")
         case .bge, .comEd, .peco:
@@ -174,7 +174,7 @@ class MyHomeProfileViewModel {
     }
     
     var heatingFuelInfo: String {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .delmarva, .pepco:
             return NSLocalizedString("Neighbor Comparison includes homes with similar heating source.", comment: "")
         case .bge, .comEd, .peco:

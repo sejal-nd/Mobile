@@ -126,8 +126,8 @@ class CommercialUsageViewModel {
 
 fileprivate let jsString = "var data={SAMLResponse:'%@',RelayState:'%@'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','%@');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
 
-fileprivate let isProd = Environment.shared.environmentName == .release ||
-    Environment.shared.environmentName == .rc
+fileprivate let isProd = Configuration.shared.environmentName == .release ||
+    Configuration.shared.environmentName == .rc
 
 fileprivate var logLevel: String {
     return isProd ? "INFO" : "DEBUG"

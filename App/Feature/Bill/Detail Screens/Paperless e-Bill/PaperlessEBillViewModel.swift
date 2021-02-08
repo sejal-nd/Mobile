@@ -38,7 +38,7 @@ class PaperlessEBillViewModel {
     init(initialAccountDetail accountDetail: AccountDetail) {
         self.initialAccountDetail = BehaviorRelay(value: accountDetail)
         
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             self.accounts = BehaviorRelay(value: [AccountsStore.shared.accounts.filter { accountDetail.accountNumber == $0.accountNumber }.first!])
         case .ace, .comEd, .delmarva, .peco, .pepco:
@@ -134,7 +134,7 @@ class PaperlessEBillViewModel {
                 GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
         
         var changedStatus: PaperlessEBillChangedStatus
-        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+        if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
             changedStatus = !enrollObservables.isEmpty ? .enroll : .unenroll
         } else { // EM-1780 ComEd/PECO should always show Mixed
             changedStatus = .mixed
@@ -146,8 +146,8 @@ class PaperlessEBillViewModel {
             .observeOn(MainScheduler.instance)
         .asObservable()
             .subscribe(onNext: { [weak self] responseArray in
-                if Environment.shared.opco.isPHI {
-                    let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue
+                if Configuration.shared.opco.isPHI {
+                    let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue
                     let billReadyProgramName = "Bill is Ready" + " " + opcoIdentifier
                     let alertPreferencesRequest = AlertPreferencesRequest(alertPreferenceRequests: [AlertPreferencesRequest.AlertRequest(isActive: true, type: "push", programName: billReadyProgramName)])
                     if let accountNumber = self?.initialAccountDetail.value.accountNumber {
@@ -180,10 +180,10 @@ class PaperlessEBillViewModel {
     }
     
     var footerText: String? {
-        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+        if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
             return nil
         }
-        let opcoString = Environment.shared.opco.displayString
+        let opcoString = Configuration.shared.opco.displayString
         return String.localizedStringWithFormat("Your enrollment status may take up to 24 hours to update and may not be reflected immediately.\n\nIf you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through %@.com, you will be automatically unenrolled from MyCheckFree.", opcoString)
     }
     

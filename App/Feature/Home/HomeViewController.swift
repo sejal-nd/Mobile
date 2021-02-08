@@ -78,8 +78,8 @@ class HomeViewController: AccountPickerViewController {
             .subscribe(onNext: { accountDetail in
                 let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
                 
-                let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
-                    (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
+                let isPeakSmart = (Configuration.shared.opco == .bge && accountDetail.isSERAccount) ||
+                    (Configuration.shared.opco != .bge && accountDetail.isPTSAccount)
                                 
                 GoogleAnalytics.log(event: .profileLoaded,
                               dimensions: [.residentialAMI: residentialAMIString,
@@ -143,7 +143,7 @@ class HomeViewController: AccountPickerViewController {
         // Create weather card
         weatherView = .create(withViewModel: viewModel.weatherViewModel)
 
-        if Environment.shared.opco.isPHI {
+        if Configuration.shared.opco.isPHI {
             // Create Opco Identifier Card
             opcoIdentityView = .create()
             mainStackView.insertArrangedSubview(opcoIdentityView, at: 0)
@@ -317,7 +317,7 @@ class HomeViewController: AccountPickerViewController {
                     importantUpdateView.configure(withUpdate: update)
                 } else {
                     let importantUpdateView = HomeUpdateView.create(withUpdate: update)
-                    self.mainStackView.insertArrangedSubview(importantUpdateView, at: !Environment.shared.opco.isPHI ? 0 : 1)
+                    self.mainStackView.insertArrangedSubview(importantUpdateView, at: !Configuration.shared.opco.isPHI ? 0 : 1)
                     importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
                     importantUpdateView.button.rx.touchUpInside.asDriver()
                         .drive(onNext: { [weak self] in
@@ -365,7 +365,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func navigateToAutoPay(accountDetail: AccountDetail) {
-        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI  {
+        if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI  {
             if accountDetail.isBGEasy {
                 let storyboard = UIStoryboard(name: "Bill", bundle: Bundle.main)
                 if let bgeEasyViewController = storyboard.instantiateViewController(withIdentifier: "BGEasy") as?  BGEasyViewController {
@@ -443,7 +443,7 @@ class HomeViewController: AccountPickerViewController {
         
         AppRating.present()
         
-        if Environment.shared.environmentName != .aut {
+        if Configuration.shared.environmentName != .aut {
             let authOptions: UNAuthorizationOptions
             if #available(iOS 12.0, *) {
                 authOptions = [.badge, .alert, .sound, .providesAppNotificationSettings]
@@ -716,8 +716,8 @@ class HomeViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in
                 let residentialAMIString = String(format: "%@%@", $0.isResidential ? "Residential/" : "Commercial/", $0.isAMIAccount ? "AMI" : "Non-AMI")
                 
-                let isPeakSmart = (Environment.shared.opco == .bge && $0.isSERAccount) ||
-                    (Environment.shared.opco != .bge && $0.isPTSAccount)
+                let isPeakSmart = (Configuration.shared.opco == .bge && $0.isSERAccount) ||
+                    (Configuration.shared.opco != .bge && $0.isPTSAccount)
                 
                 GoogleAnalytics.log(event: .viewUsageLink,
                               dimensions: [.residentialAMI: residentialAMIString,
@@ -894,7 +894,7 @@ extension HomeViewController: AccountPickerDelegate {
         viewModel.fetchData.onNext(())
         
         if let account = accountPicker.currentAccount {
-            if Environment.shared.opco.isPHI {
+            if Configuration.shared.opco.isPHI {
                 if accountPicker.accounts.count > 1 && account.accountNickname?.count == .zero {
                     opcoIdentityView.reset()
                     mainStackView.removeArrangedSubview(opcoIdentityView)

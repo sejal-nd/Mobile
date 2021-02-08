@@ -74,7 +74,7 @@ class OutageInterfaceController: WKInterfaceController {
                 
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setHidden(true)
-                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Environment.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
+                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Configuration.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
                 dLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 loadingImageGroup.setHidden(true)
@@ -139,7 +139,7 @@ class OutageInterfaceController: WKInterfaceController {
                 powerStatusLabel.setText("POWER IS OUT")
 
                 guard let etr = outageStatus?.estimatedRestorationDate else {
-                    etrDetailLabel.setText(Environment.shared.opco.isPHI ? "Pending Assessment" : "Assessing Damage")
+                    etrDetailLabel.setText(Configuration.shared.opco.isPHI ? "Pending Assessment" : "Assessing Damage")
                     return
                 }
                 etrDetailLabel.setText(DateFormatter.outageOpcoDateFormatter.string(from: etr))

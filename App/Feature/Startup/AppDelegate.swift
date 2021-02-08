@@ -51,9 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
         }
         
-        dLog("Environment " + Environment.shared.environmentName.rawValue)
+        dLog("Configuration " + Configuration.shared.environmentName.rawValue)
         
-        if let appCenterId = Environment.shared.appCenterId {
+        if let appCenterId = Configuration.shared.appCenterId {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
@@ -327,7 +327,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupAnalytics() {
         let gai = GAI.sharedInstance()
-        _ = gai?.tracker(withTrackingId: Environment.shared.gaTrackingId)
+        _ = gai?.tracker(withTrackingId: Configuration.shared.gaTrackingId)
         
         FirebaseUtility.configure()
         

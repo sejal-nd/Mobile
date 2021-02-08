@@ -276,7 +276,7 @@ class UsageViewController: AccountPickerViewController {
     // MARK: - Style Views
     
     private func styleBarGraph() {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             projectedBarView.backgroundColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 0.2)
             projectedBarView.layer.borderColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 0.4).cgColor

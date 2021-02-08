@@ -50,7 +50,7 @@ class AccountPickerViewController: UIViewController {
                     switch accountDetailsResult {
                     case .success(let accountDetail):
                         AccountsStore.shared.premiseNumber = accountDetail.premiseNumber
-                        AccountsStore.shared.accountOpco = accountDetail.opcoType ?? Environment.shared.opco
+                        AccountsStore.shared.accountOpco = accountDetail.opcoType ?? Configuration.shared.opco
                         self?.accountPicker.setLoading(false)
                         self?.accountPicker.refresh()
                         self?.setupUpdatedData()

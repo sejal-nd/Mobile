@@ -76,7 +76,7 @@ class StormModeBillViewModel {
         .asDriver(onErrorDriveWith: .empty())
 
     private(set) lazy var showMakeAPaymentButton: Driver<Bool> = accountDetail
-        .map { $0.billingInfo.netDueAmount ?? 0 > 0 || (Environment.shared.opco == .bge || Environment.shared.opco.isPHI) }
+        .map { $0.billingInfo.netDueAmount ?? 0 > 0 || (Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI) }
         .asDriver(onErrorDriveWith: .empty())
 
     private lazy var accountDetailNoNetwork: Observable<Bool> = accountDetailEvents
@@ -94,7 +94,7 @@ class StormModeBillViewModel {
     private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = Observable
         .combineLatest(accountDetail, scheduledPayment)
         .map { accountDetail, scheduledPayment in
-            if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+            if Configuration.shared.opco == .bge && accountDetail.isBGEasy {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
                     "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
                     "of your bill from the bank account you originally submitted. You may make a one-time payment " +

@@ -83,7 +83,7 @@ class SplashViewController: UIViewController{
         }
 
         // Debug Button
-        switch Environment.shared.environmentName {
+        switch Configuration.shared.environmentName {
         case .aut, .beta:
             debugButton.isHidden = false
             debugButton.isEnabled = true
@@ -106,7 +106,7 @@ class SplashViewController: UIViewController{
         super.viewDidLayoutSubviews()
 
         if !AuthenticationService.isLoggedIn() && splashAnimationView == nil {
-            splashAnimationView = AnimationView(name: "splash-Flavor\(Environment.shared.opco.rawValue)")
+            splashAnimationView = AnimationView(name: "splash-Flavor\(Configuration.shared.opco.rawValue)")
             splashAnimationView!.frame.size = splashAnimationContainer.frame.size
             splashAnimationView!.loopMode = .playOnce
             splashAnimationView!.contentMode = .scaleAspectFit
@@ -118,7 +118,7 @@ class SplashViewController: UIViewController{
                 }
             }
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.taglineString)
+                UIAccessibility.post(notification: .announcement, argument: Configuration.shared.opco.taglineString)
             }
         }
         
@@ -191,7 +191,7 @@ class SplashViewController: UIViewController{
     
     
     @IBAction func onDebugMenuPress(_ sender: Any) {
-        switch Environment.shared.environmentName {
+        switch Configuration.shared.environmentName {
         case .aut, .beta:
             if #available(iOS 14, *) {
                 let debugViewHostingController = UIHostingController(rootView: DebugMenu() { [weak self] in
@@ -273,7 +273,7 @@ class SplashViewController: UIViewController{
     func handleOutOfDate() {
         let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
         requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
-            UIApplication.shared.openUrlIfCan(Environment.shared.opco.appStoreLink)
+            UIApplication.shared.openUrlIfCan(Configuration.shared.opco.appStoreLink)
         })
         present(requireUpdateAlert,animated: true, completion: nil)
     }

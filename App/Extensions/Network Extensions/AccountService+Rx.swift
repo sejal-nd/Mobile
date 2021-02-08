@@ -23,7 +23,7 @@ extension Reactive where Base == AccountService {
     static func fetchAccountDetails(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber,
                                     payments: Bool = true,
                                     programs: Bool = true,
-                                    budgetBilling: Bool = Environment.shared.opco.isPHI ? true : false,
+                                    budgetBilling: Bool = Configuration.shared.opco.isPHI ? true : false,
                                     alertPreferenceEligibilities: Bool = false) -> Observable<AccountDetail> {
         return Observable.create { observer -> Disposable in
             AccountService.fetchAccountDetails(accountNumber: accountNumber, payments: payments, programs: programs, budgetBilling: budgetBilling, alertPreferenceEligibilities: alertPreferenceEligibilities) { observer.handle(result: $0) }
@@ -116,9 +116,9 @@ extension Reactive where Base == AccountService {
             return Disposables.create()
         }.catchError { error in
             let networkError = error as? NetworkingError ?? NetworkingError.unknown
-            if Environment.shared.opco == .bge && networkError == .accountLookupNotFound {
+            if Configuration.shared.opco == .bge && networkError == .accountLookupNotFound {
                 return Observable.just([])
-            } else if (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) && networkError == .failed {
+            } else if (Configuration.shared.opco == .comEd || Configuration.shared.opco == .peco) && networkError == .failed {
                 return Observable.just([])
             } else {
                 throw networkError

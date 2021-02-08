@@ -32,11 +32,11 @@ extension UIAlertController {
             }
         case .blockedUtilityAccount:
             title = NSLocalizedString("Unable to process electronic payments", comment: "")
-            message = String.localizedStringWithFormat("Your utility account has been disabled and electronic payments are not available at this time. Please review other payment options, or contact %@ customer service for further assistance.", Environment.shared.opco.displayString)
+            message = String.localizedStringWithFormat("Your utility account has been disabled and electronic payments are not available at this time. Please review other payment options, or contact %@ customer service for further assistance.", Configuration.shared.opco.displayString)
             includeCallCTA = true
         case .blockedPaymentType:
             title = NSLocalizedString("Payment Method Unavailable", comment: "")
-            message = String.localizedStringWithFormat("%@ payments are not available on your account at this time. Please select another payment method or contact %@ customer service.", walletItem.paymentMethodType.displayString, Environment.shared.opco.displayString)
+            message = String.localizedStringWithFormat("%@ payments are not available on your account at this time. Please select another payment method or contact %@ customer service.", walletItem.paymentMethodType.displayString, Configuration.shared.opco.displayString)
             includeCallCTA = true
         case .duplicatePayment:
             title = NSLocalizedString("Duplicate Payment", comment: "")
@@ -48,7 +48,7 @@ extension UIAlertController {
             message = NSLocalizedString("Electronic payments with this payment method are not available at this time due to overuse.", comment: "")
         case .utilityAccountVelocity:
             title = NSLocalizedString("Unable to process electronic payments", comment: "")
-            message = String.localizedStringWithFormat("Electronic payments for your utility account are not available at this time due to overuse. Please review other payment options, or contact %@ customer service for further assistance.", Environment.shared.opco.displayString)
+            message = String.localizedStringWithFormat("Electronic payments for your utility account are not available at this time due to overuse. Please review other payment options, or contact %@ customer service for further assistance.", Configuration.shared.opco.displayString)
             includeCallCTA = true
         case .walletItemIdTimeout:
             title = error.title

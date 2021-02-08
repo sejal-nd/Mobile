@@ -155,7 +155,7 @@ class BillingHistoryViewController: UIViewController {
                     let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEasy") as! BGEasyViewController
                     return vc
                 } else if viewModel.accountDetail.isAutoPay {
-                    if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                    if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                         let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
                         vc.accountDetail = viewModel.accountDetail
                         vc.delegate = self
@@ -193,7 +193,7 @@ class BillingHistoryViewController: UIViewController {
                 viewModel.billingHistory!.past[indexPath.row] :
                 viewModel.billingHistory!.mostRecentSixMonths[indexPath.row]
             if billingHistoryItem.isBillPDF {
-                if Environment.shared.opco == .comEd &&
+                if Configuration.shared.opco == .comEd &&
                     viewModel.accountDetail.hasElectricSupplier &&
                     viewModel.accountDetail.isSingleBillOption {
                     let alertTitle = "You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image."

@@ -39,7 +39,7 @@ class TemplateCardViewModel {
     //Set main image for the template
     private(set) lazy var templateImage: Driver<UIImage?> = self.accountDetailEvents.elements()
         .map { accountDetail -> UIImage? in
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
                     return #imageLiteral(resourceName: "marketplace")
@@ -80,7 +80,7 @@ class TemplateCardViewModel {
     //Set title string
     private(set) lazy var titleString: Driver<String?> = self.accountDetailEvents.elements()
         .map { accountDetail -> String? in
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
                     return NSLocalizedString("Explore Energy-Saving Solutions for Your Home", comment: "")
@@ -150,7 +150,7 @@ class TemplateCardViewModel {
     //Set body content string
     private(set) lazy var bodyString: Driver<String?> = self.accountDetailEvents.elements()
         .map { accountDetail -> String? in
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
                     return NSLocalizedString("Find valuable information and solutions to help you manage and control your energy usage.", comment: "")
@@ -227,7 +227,7 @@ class TemplateCardViewModel {
     //Set call to action string
     private(set) lazy var ctaString: Driver<String?> = self.accountDetailEvents.elements()
         .map { accountDetail -> String? in
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
                     return NSLocalizedString("Save Now", comment: "")
@@ -269,7 +269,7 @@ class TemplateCardViewModel {
     //Set call to action URL to navigate to
     private(set) lazy var ctaUrl: Driver<URL> = self.accountDetailEvents.elements()
         .map { accountDetail -> String? in
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
                     return "https://www.pecomarketplace.com"
@@ -352,7 +352,7 @@ class TemplateCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var linkToEcobee: Driver<Bool> = self.accountDetailEvents.elements().map {
-        Environment.shared.opco == .bge
+        Configuration.shared.opco == .bge
             && $0.isResidential
             && $0.peakRewards == "ECOBEE WIFI"
         }
@@ -360,7 +360,7 @@ class TemplateCardViewModel {
     
     private(set) lazy var linkToPeakRewards: Driver<Bool> = self.accountDetailEvents.elements()
         .map {
-            Environment.shared.opco == .bge
+            Configuration.shared.opco == .bge
                 && $0.isResidential
                 && $0.peakRewards == "ACTIVE"
         }
@@ -373,6 +373,6 @@ class TemplateCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var isEnergyWiseRewardsEnrolled: Driver<Bool> = self.accountDetailEvents.elements()
-        .map { $0.isEnergyWiseRewardsEnrolled && Environment.shared.opco.isPHI }
+        .map { $0.isEnergyWiseRewardsEnrolled && Configuration.shared.opco.isPHI }
            .asDriver(onErrorDriveWith: .empty())
 }

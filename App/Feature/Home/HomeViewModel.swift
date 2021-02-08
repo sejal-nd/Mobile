@@ -199,7 +199,7 @@ class HomeViewModel {
     
     private(set) lazy var appointments = Observable.merge(appointmentEvents.elements(), appointmentsUpdates)
     
-    private(set) lazy var showAppointmentCard = Observable.just(Environment.shared.opco == .peco)
+    private(set) lazy var showAppointmentCard = Observable.just(Configuration.shared.opco == .peco)
         .flatMap { shouldShow -> Observable<Bool> in
             if shouldShow {
                 return Observable
@@ -220,7 +220,7 @@ class HomeViewModel {
             return [self.gameTracker]
         }, requestSelector: { [weak self] (accountDetail, _) -> Observable<GameUser?> in
             guard let self = self,
-                Environment.shared.opco == .bge,
+                Configuration.shared.opco == .bge,
                 AccountsStore.shared.currentAccount.isMultipremise == false,
                 accountDetail.premiseNumber != nil,
                 accountDetail.isAMIAccount,
@@ -267,7 +267,7 @@ class HomeViewModel {
         .combineLatest(HomeCardPrefsStore.shared.listObservable, prepaidStatus, accountDetailEvents.elements(), gameUser.asObservable())
         .map({ (cards, prepaidStatus, accountDetails, gameUser) -> ([HomeCard], AccountDetail.PrepaidStatus) in
             var newCards = cards
-            if Environment.shared.opco == .bge && accountDetails.isResidential {
+            if Configuration.shared.opco == .bge && accountDetails.isResidential {
                 switch accountDetails.peakRewards {
                 case "ACTIVE"?, "ECOBEE WIFI"?:
                     break
@@ -283,7 +283,7 @@ class HomeViewModel {
                 }
             }
             
-            if Environment.shared.opco != .bge || gameUser == nil || gameUser?.optedOut == true {
+            if Configuration.shared.opco != .bge || gameUser == nil || gameUser?.optedOut == true {
                 for (index, card) in newCards.enumerated() {
                     switch card {
                     case .game:
@@ -329,7 +329,7 @@ class HomeViewModel {
     lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = Observable
         .combineLatest(accountDetailEvents.elements(), scheduledPaymentEvents.elements())
           .map { accountDetail, scheduledPayment in
-              if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+              if Configuration.shared.opco == .bge && accountDetail.isBGEasy {
                   return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
                       "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
                       "of your bill from the bank account you originally submitted. You may make a one-time payment " +

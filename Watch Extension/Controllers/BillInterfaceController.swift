@@ -104,7 +104,7 @@ class BillInterfaceController: WKInterfaceController {
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setHidden(true)
-                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Environment.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
+                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Configuration.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
                 
                 loadingImageGroup.setHidden(true)
                 
