@@ -45,9 +45,9 @@ class BudgetBillingViewModel {
                     AlertService.setAlertPreferences(accountNumber: self?.accountDetail.accountNumber ?? "", request: alertPreferencesRequest) { alertResult in
                         switch alertResult {
                         case .success:
-                            dLog("Enrolled in the budget billing push notification")
+                            Log.info("Enrolled in the budget billing push notification")
                         case .failure:
-                            dLog("Failed to enroll in the budget billing push notification")
+                            Log.info("Failed to enroll in the budget billing push notification")
                         }
                         onSuccess()
                     }

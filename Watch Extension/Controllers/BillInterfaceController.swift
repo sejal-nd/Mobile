@@ -88,7 +88,7 @@ class BillInterfaceController: WKInterfaceController {
                 loadingImageGroup.setHidden(true)
                 errorGroup.setHidden(true)
                 
-                dLog("Loaded")
+                Log.info("Loaded")
             case .loading:
                 loadingImageGroup.setHidden(false)
                 
@@ -96,7 +96,7 @@ class BillInterfaceController: WKInterfaceController {
                 billGroup.setHidden(true)
                 errorGroup.setHidden(true)
                 
-                dLog("Loading")
+                Log.info("Loading")
             case .error(let error):
                 
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
@@ -111,7 +111,7 @@ class BillInterfaceController: WKInterfaceController {
                 
                 billGroup.setHidden(true)
                 
-                dLog("Error: \(error.localizedDescription)")
+                Log.info("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.maintenanceMode.name)
@@ -123,7 +123,7 @@ class BillInterfaceController: WKInterfaceController {
                 
                 billGroup.setHidden(true)
                 
-                dLog("Maintenance Mode")
+                Log.info("Maintenance Mode")
             case .passwordProtected:
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.passwordProtected.name)
@@ -134,7 +134,7 @@ class BillInterfaceController: WKInterfaceController {
                 
                 billGroup.setHidden(true)
                 
-                dLog("Password Protected")
+                Log.info("Password Protected")
             }
         }
     }
@@ -356,7 +356,7 @@ extension BillInterfaceController {
     }
     
     private func configureAccountDetails(_ accountDetails: AccountDetail) {
-        dLog("Account detail did update")
+        Log.info("Account detail did update")
         
         // Hides all groups
         hideAllStates()
