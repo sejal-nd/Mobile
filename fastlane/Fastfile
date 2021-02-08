@@ -62,7 +62,6 @@ default_platform(:ios)
         app_name: options[:app_name],
         file: options[:file_path],
         release_notes: sh("cat ReleaseNotes.md"),
-        should_clip: false,
         destinations: options[:destinations],
         dsym: options[:dsym_path]
       )
