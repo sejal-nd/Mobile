@@ -103,7 +103,7 @@ struct FirebaseUtility {
     public static func configure() {
         guard let filePath = Bundle.main.path(forResource: "GoogleService-Info-\(Configuration.shared.environmentName.rawValue)-Flavor\(Configuration.shared.opco.rawValue)", ofType: "plist"),
             let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
-                return dLog("Failed to load Firebase Analytics")
+                return Log.info("Failed to load Firebase Analytics")
         }
         print("FIB CONFIGURED")
         FirebaseApp.configure(options: fileopts)

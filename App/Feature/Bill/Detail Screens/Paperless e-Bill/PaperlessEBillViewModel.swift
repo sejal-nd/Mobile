@@ -156,10 +156,10 @@ class PaperlessEBillViewModel {
                             switch alertResult {
                             case .success:
                                 onSuccess(changedStatus)
-                                dLog("Enrolled in Bill Is Ready push notification")
+                                Log.info("Enrolled in Bill Is Ready push notification")
                             case .failure(let error):
                                 onError(error.description)
-                                dLog("Failed to enroll in Bill Is Ready push notification")
+                                Log.info("Failed to enroll in Bill Is Ready push notification")
                             }
                             onSuccess(changedStatus)
                         }

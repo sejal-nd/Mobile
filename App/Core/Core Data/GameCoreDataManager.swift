@@ -24,9 +24,9 @@ struct GameCoreDataManager {
         
         do {
             try managedContext.save()
-            dLog("Added collected coin for \(date) to Core Data")
+            Log.info("Added collected coin for \(date) to Core Data")
         } catch let error as NSError {
-            dLog("Could not save collected coin. \(error), \(error.userInfo)")
+            Log.info("Could not save collected coin. \(error), \(error.userInfo)")
         }
     }
     
@@ -43,10 +43,10 @@ struct GameCoreDataManager {
                 managedContext.delete(collectedCoin)
                 try managedContext.save()
             } else {
-                dLog("Collected coin for \(date) does not exist in Core Data, so it can't be deleted")
+                Log.info("Collected coin for \(date) does not exist in Core Data, so it can't be deleted")
             }
         } catch let error as NSError {
-            dLog("Could not delete collected coin for \(date). \(error), \(error.userInfo)")
+            Log.info("Could not delete collected coin for \(date). \(error), \(error.userInfo)")
         }
     }
     
@@ -65,7 +65,7 @@ struct GameCoreDataManager {
                 return nil
             }
         } catch let error as NSError {
-            dLog("Could not get collected coin. \(error), \(error.userInfo)")
+            Log.info("Could not get collected coin. \(error), \(error.userInfo)")
             return nil
         }
     }
@@ -87,12 +87,12 @@ struct GameCoreDataManager {
             
             do {
                 try managedContext.save()
-                dLog("Added viewed tip with ID \(tipId) to Core Data")
+                Log.info("Added viewed tip with ID \(tipId) to Core Data")
             } catch let error as NSError {
-                dLog("Could not save viewed tip. \(error), \(error.userInfo)")
+                Log.info("Could not save viewed tip. \(error), \(error.userInfo)")
             }
         } else {
-            dLog("Not saving tip because it already exists in Core Data.")
+            Log.info("Not saving tip because it already exists in Core Data.")
         }
     }
     
@@ -116,7 +116,7 @@ struct GameCoreDataManager {
             }
             return tupleArray
         } catch let error as NSError {
-            dLog("Could not get viewed tip. \(error), \(error.userInfo)")
+            Log.info("Could not get viewed tip. \(error), \(error.userInfo)")
             return []
         }
     }
@@ -134,7 +134,7 @@ struct GameCoreDataManager {
                 return tip.value(forKey: "favorite") as? Bool ?? false
             }
         } catch let error as NSError {
-            dLog("Could not get viewed tip. \(error), \(error.userInfo)")
+            Log.info("Could not get viewed tip. \(error), \(error.userInfo)")
         }
         return false
     }
@@ -152,13 +152,13 @@ struct GameCoreDataManager {
                 viewedTip.setValue(isFavorite, forKey: "favorite")
                 do {
                     try managedContext.save()
-                    dLog("Updated tip with ID \(tipId) in Core Data")
+                    Log.info("Updated tip with ID \(tipId) in Core Data")
                 } catch let error as NSError {
-                    dLog("Could not update viewed tip. \(error), \(error.userInfo)")
+                    Log.info("Could not update viewed tip. \(error), \(error.userInfo)")
                 }
             }
         } catch let error as NSError {
-            dLog("Could not get viewed tip. \(error), \(error.userInfo)")
+            Log.info("Could not get viewed tip. \(error), \(error.userInfo)")
         }
     }
     
@@ -182,14 +182,14 @@ struct GameCoreDataManager {
             
             do {
                 try managedContext.save()
-                dLog("Added weekly insight for \(endDate) to Core Data")
+                Log.info("Added weekly insight for \(endDate) to Core Data")
                 return true
             } catch let error as NSError {
-                dLog("Could not save weekly insight. \(error), \(error.userInfo)")
+                Log.info("Could not save weekly insight. \(error), \(error.userInfo)")
                 return false
             }
         } else {
-            dLog("Not saving weekly insight because it already exists in Core Data.")
+            Log.info("Not saving weekly insight because it already exists in Core Data.")
             return false
         }
     }
@@ -209,7 +209,7 @@ struct GameCoreDataManager {
                 return nil
             }
         } catch let error as NSError {
-            dLog("Could not get weekly insight. \(error), \(error.userInfo)")
+            Log.info("Could not get weekly insight. \(error), \(error.userInfo)")
             return nil
         }
     }
