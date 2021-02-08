@@ -568,6 +568,24 @@ class TapToPayViewModel {
         return false // Will never execute
     }
     
+    /// Returns Error Phone Number for Paymentus
+    var errorPhoneNumber: String {
+        switch Environment.shared.opco {
+        case .bge:
+            return "1-800-685-0123"
+        case .comEd:
+            return "1-800-334-7661"
+        case .peco:
+            return "1-800-494-4000"
+        case .pepco:
+            return "202-833-7500"
+        case .ace:
+            return "1-800-642-3780"
+        case .delmarva:
+            return "1-800-375-7117"
+        }
+    }
+    
     private(set) lazy var shouldShowPaymentMethodExpiredButton: Driver<Bool> =
         self.wouldBeSelectedWalletItemIsExpired.asDriver()
     
