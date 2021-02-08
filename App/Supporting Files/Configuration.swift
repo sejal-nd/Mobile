@@ -34,7 +34,7 @@ enum OpCo: String {
         case .comEd:
             return "comed"
         case .delmarva:
-            return "delmarvapower"
+            return "delmarva"
         case .peco:
             return "peco"
         case .pepco:
