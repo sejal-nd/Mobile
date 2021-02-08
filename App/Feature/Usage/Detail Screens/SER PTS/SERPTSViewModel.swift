@@ -30,7 +30,7 @@ class SERPTSViewModel {
     }
     
     var shouldShowSmartEnergyRewards: Bool {
-        if Environment.shared.opco != .peco {
+        if Configuration.shared.opco != .peco {
             return accountDetail.isSERAccount || accountDetail.isPTSAccount
         }
         return false
@@ -55,7 +55,7 @@ class SERPTSViewModel {
             if !eventResults.isEmpty {
                 return NSLocalizedString("You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
             } else {
-                let programName = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") : NSLocalizedString("Smart Energy Rewards", comment: "")
+                let programName = Configuration.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") : NSLocalizedString("Smart Energy Rewards", comment: "")
                 return NSLocalizedString("As a \(programName) customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent \(programName) season will display here once available.", comment: "")
             }
         }

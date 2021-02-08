@@ -55,7 +55,7 @@ public enum NetworkingLayer {
         
         // Configure URL Session (Mock or regular)
         let session: URLSession
-        if Environment.shared.environmentName == .aut {
+        if Configuration.shared.environmentName == .aut {
             // Mock
             let username = UserSession.token
             let mockUser = NewMockDataKey(rawValue: username) ?? .default
@@ -72,7 +72,7 @@ public enum NetworkingLayer {
         var retryCount = 3
         
         // Check refresh token
-        if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Environment.shared.environmentName != .aut {
+        if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Configuration.shared.environmentName != .aut {
             // Refresh expired
             dLog("❌ Refresh Token Expired... Logging user out...")
             
@@ -80,7 +80,7 @@ public enum NetworkingLayer {
             AuthenticationService.logout()
             completion(.failure(.invalidToken))
         }
-        else if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Environment.shared.environmentName != .aut {
+        else if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Configuration.shared.environmentName != .aut {
             // token expired
             // Decrease retry counter
             retryCount -= 1
@@ -109,8 +109,8 @@ public enum NetworkingLayer {
             isRefreshingToken = true
             refreshTokenDispatchGroup.enter()
             // Refresh Token
-            let refreshTokenRequest = RefreshTokenRequest(clientId: Environment.shared.clientID,
-                                                          clientSecret: Environment.shared.clientSecret,
+            let refreshTokenRequest = RefreshTokenRequest(clientId: Configuration.shared.clientID,
+                                                          clientSecret: Configuration.shared.clientSecret,
                                                           refreshToken: UserSession.refreshToken)
             
             NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
@@ -171,7 +171,7 @@ public enum NetworkingLayer {
             }
             
             // Validate response if not using mock
-            guard response != nil || Environment.shared.environmentName == .aut else {
+            guard response != nil || Configuration.shared.environmentName == .aut else {
                 dLog("❌ Data task empty response.")
                 DispatchQueue.main.async {
                     completion(.failure(.invalidResponse))

@@ -85,14 +85,14 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         createPasswordTextField.bringSubviewToFront(passwordEyeBall)
         confirmPasswordTextField.bringSubviewToFront(confirmPasswordEyeBall)
         
-        if Environment.shared.opco == .bge || viewModel.accountType.value == "residential" {
+        if Configuration.shared.opco == .bge || viewModel.accountType.value == "residential" {
             primaryProfileSwitchView.isHidden = true
         }
 
-        if self.viewModel.isPaperlessEbillEligible && Environment.shared.opco != .bge{
+        if self.viewModel.isPaperlessEbillEligible && Configuration.shared.opco != .bge{
             eBillEnrollView.isHidden = false
             eBillCheckBox.rx.isChecked.bind(to: viewModel.paperlessEbill).disposed(by: disposeBag)
-            eBillCheckBox.isChecked = !(Environment.shared.opco == .ace)
+            eBillCheckBox.isChecked = !(Configuration.shared.opco == .ace)
         } else {
             eBillEnrollView.isHidden = true
         }
@@ -233,7 +233,7 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         
         confirmPasswordTextField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
-        confirmPasswordTextField.textField.returnKeyType = Environment.shared.opco.isPHI ? .next : .done
+        confirmPasswordTextField.textField.returnKeyType = Configuration.shared.opco.isPHI ? .next : .done
         confirmPasswordTextField.textField.delegate = self
         
         accountNicknameTextField.placeholder = NSLocalizedString("Account Nickname", comment: "")
@@ -249,7 +249,7 @@ class RegistrationCreateCredentialsViewControllerNew: KeyboardAvoidingStickyFoot
         
         accountNicknameTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNickname).disposed(by: disposeBag)
 
-        if Environment.shared.opco.isPHI {
+        if Configuration.shared.opco.isPHI {
             
             firstNameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
                 .drive(onNext: { [weak self] in
@@ -491,7 +491,7 @@ extension RegistrationCreateCredentialsViewControllerNew: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if Environment.shared.opco.isPHI {
+        if Configuration.shared.opco.isPHI {
             if textField == firstNameTextField.textField {
                 lastNameTextField.textField.becomeFirstResponder()
             } else if textField == lastNameTextField.textField {

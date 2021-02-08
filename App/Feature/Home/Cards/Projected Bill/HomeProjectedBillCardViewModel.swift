@@ -143,11 +143,11 @@ class HomeProjectedBillCardViewModel {
                     }
                 }
                 if !accountDetail.isModeledForOpower,
-                    !Environment.shared.opco.isPHI,
+                    !Configuration.shared.opco.isPHI,
                     let elecForecast = billForecast.electric,
                     let elecUsage = elecForecast.projectedUsage {
                     return String(format: "%d %@", Int(elecUsage), elecForecast.meterUnit)
-                } else if Environment.shared.opco.isPHI,
+                } else if Configuration.shared.opco.isPHI,
                     elecCost > 0,
                     let toDateCost = billForecast.electric?.toDateCost,
                     toDateCost > 0 {
@@ -165,11 +165,11 @@ class HomeProjectedBillCardViewModel {
                     }
                 }
                 if !accountDetail.isModeledForOpower,
-                    !Environment.shared.opco.isPHI,
+                    !Configuration.shared.opco.isPHI,
                     let gasForecast = billForecast.gas,
                     let gasUsage = gasForecast.projectedUsage {
                     return String(format: "%d %@", Int(gasUsage), gasForecast.meterUnit)
-                } else if Environment.shared.opco.isPHI,
+                } else if Configuration.shared.opco.isPHI,
                     gasCost > 0,
                     let toDateCost = billForecast.gas?.toDateCost,
                     toDateCost > 0 {
@@ -210,7 +210,7 @@ class HomeProjectedBillCardViewModel {
                                                                                               self.isGas,
                                                                                               self.accountDetailDriver)
         .map { billForecast, isGas, accountDetail in
-            if !accountDetail.isModeledForOpower && !Environment.shared.opco.isPHI {
+            if !accountDetail.isModeledForOpower && !Configuration.shared.opco.isPHI {
                 var toDateString: String? = nil
                 if !isGas,
                     let elecForecast = billForecast.electric,
@@ -227,7 +227,7 @@ class HomeProjectedBillCardViewModel {
             } else {
                 var toDateString: String? = nil
 
-                if Environment.shared.opco.isPHI {
+                if Configuration.shared.opco.isPHI {
                     if !isGas,
                         let toDateCost = billForecast.electric?.toDateCost,
                         toDateCost > 0,

@@ -134,7 +134,7 @@ class HomeOutageCardViewModel {
     
     private(set) lazy var etrText: Driver<String> = Driver.merge(self.storedEtr, self.fetchedEtr)
         .map {
-            guard let etrText = $0 else { return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "") }
+            guard let etrText = $0 else { return Configuration.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "") }
             return String.localizedStringWithFormat(DateFormatter.outageOpcoDateFormatter.string(from: etrText))
         }
         .distinctUntilChanged()
@@ -163,7 +163,7 @@ class HomeOutageCardViewModel {
     
     private(set) lazy var accountNonPayFinaledMessage: Driver<NSAttributedString> = currentOutageStatus
         .map { outageStatus -> String in
-            if Environment.shared.opco == .bge {
+            if Configuration.shared.opco == .bge {
                 return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
             } else if outageStatus.isFinaled {
                 return NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")

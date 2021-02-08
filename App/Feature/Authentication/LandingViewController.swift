@@ -60,7 +60,7 @@ class LandingViewController: UIViewController {
         }
         
         // Debug Button
-        switch Environment.shared.environmentName {
+        switch Configuration.shared.environmentName {
         case .aut, .beta:
             debugButton.isHidden = false
             debugButton.isEnabled = true
@@ -78,7 +78,7 @@ class LandingViewController: UIViewController {
         
         logoBackgroundView.addShadow(color: .primaryColorDark, opacity: 0.5, offset: CGSize(width: 0, height: 9), radius: 11)
         let a11yText = NSLocalizedString("%@, an Exelon Company", comment: "")
-        logoImageView.accessibilityLabel = String(format: a11yText, Environment.shared.opco.displayString)
+        logoImageView.accessibilityLabel = String(format: a11yText, Configuration.shared.opco.displayString)
         
         backgroundVideoSetup()
     }
@@ -139,7 +139,7 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction func onDebugMenuPress(_ sender: Any) {
-        switch Environment.shared.environmentName {
+        switch Configuration.shared.environmentName {
         case .aut, .beta:
             if #available(iOS 14, *) {
                 let debugViewHostingController = UIHostingController(rootView: DebugMenu() { [weak self] in
@@ -159,7 +159,7 @@ class LandingViewController: UIViewController {
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
         
         view.sendSubviewToBack(videoView)
-        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video-Flavor\(Environment.shared.opco.rawValue)", ofType: "mp4")!)
+        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video-Flavor\(Configuration.shared.opco.rawValue)", ofType: "mp4")!)
         let asset = AVAsset(url: movieUrl)
         let avPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: avPlayerItem)
@@ -202,7 +202,7 @@ class LandingViewController: UIViewController {
     }
     
     private func backgroundVideoResume(at playbackTime: CMTime) {
-        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video-Flavor\(Environment.shared.opco.rawValue)", ofType: "mp4")!)
+        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video-Flavor\(Configuration.shared.opco.rawValue)", ofType: "mp4")!)
         let asset = AVAsset(url: movieUrl)
         let avPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: avPlayerItem)

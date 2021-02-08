@@ -9,7 +9,7 @@
 import UIKit
 
 class ContactUsViewModel {
-    let opco = Environment.shared.opco
+    let opco = Configuration.shared.opco
     
     var emergencyAttrString: NSAttributedString {
         let emergencyAttrString: NSMutableAttributedString
@@ -95,7 +95,7 @@ class ContactUsViewModel {
     }
     var onlineFormUrl: URL {
         let urlString: String
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             urlString = "https://bge.custhelp.com/app/ContactUs"
         case .comEd:

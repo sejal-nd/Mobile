@@ -136,8 +136,8 @@ class BGEAutoPayViewModel {
         PaymentService.enrollAutoPayBGE(accountNumber: accountDetail.accountNumber, request: request) { [weak self] result in
             switch result {
             case .success:
-                if Environment.shared.opco.isPHI {
-                    let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue
+                if Configuration.shared.opco.isPHI {
+                    let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue
                     let billReadyProgramName = "Bill is Ready" + " " + opcoIdentifier
                     let alertPreferencesRequest = AlertPreferencesRequest(alertPreferenceRequests: [AlertPreferencesRequest.AlertRequest(isActive: true, type: "push", programName: billReadyProgramName)])
                     if let accountNumber = self?.accountDetail.accountNumber {
@@ -297,7 +297,7 @@ class BGEAutoPayViewModel {
     
     var learnMoreDescriptionText: String {
         if accountDetail.isResidential {
-            if Environment.shared.opco.isPHI {
+            if Configuration.shared.opco.isPHI {
                 let formatText = """
                            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
                            

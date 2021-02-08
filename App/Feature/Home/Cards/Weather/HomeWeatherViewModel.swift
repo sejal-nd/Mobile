@@ -14,7 +14,7 @@ fileprivate let coldTips = ["tip080_set_thermostat_wisely_winter","tip033_clear_
 fileprivate let hotTips = ["tip021_let_ac_breathe","tip020_keep_out_solar_heat","tip084_use_fans_for_cooling"]
 
 class HomeWeatherViewModel {
-    let defaultZip : String? = Environment.shared.opco == .bge ? "20201" : nil
+    let defaultZip : String? = Configuration.shared.opco == .bge ? "20201" : nil
     
     let accountDetailEvents: Observable<Event<AccountDetail>>
     let accountDetailTracker: ActivityTracker
@@ -144,7 +144,7 @@ class HomeWeatherViewModel {
 fileprivate extension Weather {
     
     var isHighTemperature: Bool {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .pepco:
             return temperature >= 86
         case .comEd:
@@ -155,7 +155,7 @@ fileprivate extension Weather {
     }
     
     var isLowTemperature: Bool {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .pepco:
             return temperature <= 32
         case .comEd:

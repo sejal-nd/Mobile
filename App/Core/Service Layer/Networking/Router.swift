@@ -20,7 +20,7 @@ public enum Router {
         public var path: String {
             switch self {
             case .anon:
-                return "\(rawValue)/\(Environment.shared.opco.urlString)"
+                return "\(rawValue)/\(Configuration.shared.opco.urlString)"
             case .none:
                 return ""
             default:
@@ -158,13 +158,13 @@ public enum Router {
     public var host: String {
         switch self {
         case .fetchToken, .refreshToken:
-            return Environment.shared.oAuthEndpoint
+            return Configuration.shared.oAuthEndpoint
         case .weather:
             return "api.weather.gov"
         case .alertBanner, .newsAndUpdates:
-            return Environment.shared.sharepointBaseURL
+            return Configuration.shared.sharepointBaseURL
         default:
-            return Environment.shared.baseUrl
+            return Configuration.shared.baseUrl
         }
     }
     
@@ -237,7 +237,7 @@ public enum Router {
             return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
         case .billPDF(let accountNumber, let date, let documentID):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
-            return Environment.shared.opco.isPHI ? "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
+            return Configuration.shared.opco.isPHI ? "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
         case .scheduledPayment(let accountNumber, _):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/schedule"
         case .scheduledPaymentUpdate(let accountNumber, let paymentId, _):

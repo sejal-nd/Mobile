@@ -111,18 +111,18 @@ class NoNetworkConnectionView: UIView {
     }
     
     private func configureContactText() {
-        if Environment.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             contactGroup2StackView.isHidden = true
             phone2Button.isHidden = true
         }
         
-        if Environment.shared.opco == .delmarva {
+        if Configuration.shared.opco == .delmarva {
             contactGroup2StackView.isHidden = false
             phone2Button.isHidden = true
             phone4Button.isHidden = true
         }
         
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
             group2Label.text = NSLocalizedString("For downed or sparking power lines, please call", comment: "")

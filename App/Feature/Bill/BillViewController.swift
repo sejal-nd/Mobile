@@ -673,7 +673,7 @@ class BillViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
-                if Environment.shared.opco == .comEd &&
+                if Configuration.shared.opco == .comEd &&
                     accountDetail.hasElectricSupplier &&
                     accountDetail.isSingleBillOption {
                     let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
@@ -731,10 +731,10 @@ class BillViewController: AccountPickerViewController {
 			.withLatestFrom(viewModel.currentAccountDetail)
 			.drive(onNext: { [weak self] accountDetail in
                 guard let self = self else { return }
-                if Environment.shared.opco.isPHI {
+                if Configuration.shared.opco.isPHI {
                     self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
                 } else {
-                    if !accountDetail.isResidential && Environment.shared.opco != .bge {
+                    if !accountDetail.isResidential && Configuration.shared.opco != .bge {
                         self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: accountDetail)
                     } else {
                         self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
@@ -815,7 +815,7 @@ class BillViewController: AccountPickerViewController {
     }
     
     func navigateToAutoPay(accountDetail: AccountDetail) {
-        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI  {
+        if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI  {
             if accountDetail.isBGEasy {
                 self.performSegue(withIdentifier: "viewBGEasySegue", sender: accountDetail)
             } else {
@@ -886,7 +886,7 @@ extension BillViewController: AccountPickerDelegate {
 extension BillViewController: BudgetBillingViewControllerDelegate {
 
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: UIViewController, averageMonthlyBill: String?) {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             let textFormat = NSLocalizedString("Enrolled in Budget Billing - your monthly rate is %@", comment: "")
             showDelayedToast(withMessage: String(format: textFormat, averageMonthlyBill ?? "--"))
@@ -915,10 +915,10 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
         var toastMessage: String
         switch didChangeStatus {
         case .enroll:
-            toastMessage = Environment.shared.opco.isPHI ? NSLocalizedString("Paperless eBill changes saved", comment: "") : NSLocalizedString("Enrolled in Paperless eBill", comment: "")
+            toastMessage = Configuration.shared.opco.isPHI ? NSLocalizedString("Paperless eBill changes saved", comment: "") : NSLocalizedString("Enrolled in Paperless eBill", comment: "")
             showDelayedToast(withMessage: toastMessage)
         case .unenroll:
-            toastMessage = Environment.shared.opco.isPHI ? NSLocalizedString("Paperless eBill changes saved", comment: "") : NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
+            toastMessage = Configuration.shared.opco.isPHI ? NSLocalizedString("Paperless eBill changes saved", comment: "") : NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
             showDelayedToast(withMessage: toastMessage)
         case .mixed: // ComEd/PECO only
             let action = InfoAlertAction(ctaText: NSLocalizedString("I understand", comment: ""))

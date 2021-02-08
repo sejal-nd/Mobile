@@ -27,7 +27,7 @@ public enum AuthenticationService {
                       password: String,
                       completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
         
-        if Environment.shared.environmentName != .aut {
+        if Configuration.shared.environmentName != .aut {
             performLogin(username: username,
                          password: password,
                          completion: completion)
@@ -40,9 +40,9 @@ public enum AuthenticationService {
     static func validateLogin(username: String,
                               password: String,
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
-        let tokenRequest = TokenRequest(clientId: Environment.shared.clientID,
-                                        clientSecret: Environment.shared.clientSecret,
-                                        username: "\(Environment.shared.opco.urlString)\\\(username)",
+        let tokenRequest = TokenRequest(clientId: Configuration.shared.clientID,
+                                        clientSecret: Configuration.shared.clientSecret,
+                                        username: "\(Configuration.shared.opco.urlString)\\\(username)",
                                         password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
             switch result {
@@ -89,9 +89,9 @@ extension AuthenticationService {
     private static func performLogin(username: String,
                                      password: String,
                                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
-        let tokenRequest = TokenRequest(clientId: Environment.shared.clientID,
-                                        clientSecret: Environment.shared.clientSecret,
-                                        username: "\(Environment.shared.opco.urlString)\\\(username)",
+        let tokenRequest = TokenRequest(clientId: Configuration.shared.clientID,
+                                        clientSecret: Configuration.shared.clientSecret,
+                                        username: "\(Configuration.shared.opco.urlString)\\\(username)",
                                         password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
@@ -120,7 +120,7 @@ extension AuthenticationService {
                             case .success(let accountDetail):
                                 UserDefaults.standard.set(accountDetail.customerNumber, forKey: UserDefaultKeys.customerIdentifier)
                                 AccountsStore.shared.customerIdentifier = accountDetail.customerNumber
-                                AccountsStore.shared.accountOpco = accountDetail.opcoType ?? Environment.shared.opco
+                                AccountsStore.shared.accountOpco = accountDetail.opcoType ?? Configuration.shared.opco
                                 completion(.success((false)))
                             case .failure(let error):
                                 completion(.failure(error))

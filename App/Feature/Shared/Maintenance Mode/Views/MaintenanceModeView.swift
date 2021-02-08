@@ -107,7 +107,7 @@ class MaintenanceModeView: UIView {
         var localizedString: String
         
         let phoneNumbers: [String]
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"
             let phone2 = "1-877-778-7798"

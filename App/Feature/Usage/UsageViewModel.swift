@@ -210,7 +210,7 @@ class UsageViewModel {
     
     private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = accountDetailEvents.elements()
         .map { accountDetail in
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .comEd:
                 return false
             case .ace, .bge, .delmarva, .pepco, .peco:
@@ -430,7 +430,7 @@ class UsageViewModel {
                              billComparison,
                              toDateCost)
         { [weak self] accountDetail, cost, usage, billComparison, toDateCost in
-            if accountDetail.isModeledForOpower || (Environment.shared.opco.isPHI && cost > 0 && toDateCost > 0) {
+            if accountDetail.isModeledForOpower || (Configuration.shared.opco.isPHI && cost > 0 && toDateCost > 0) {
                 return cost?.currencyString
             } else {
                 guard let usage = usage else { return nil }
@@ -602,7 +602,7 @@ class UsageViewModel {
             
             
             var detailString = ""
-            if accountDetail.isModeledForOpower || (Environment.shared.opco.isPHI && projectedCost > 0 && toDateCost > 0) {
+            if accountDetail.isModeledForOpower || (Configuration.shared.opco.isPHI && projectedCost > 0 && toDateCost > 0) {
                 let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
                     "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                 if isGas {
@@ -776,7 +776,7 @@ class UsageViewModel {
                     }
                 }
             case .projected:
-                if accountDetail.isModeledForOpower || (Environment.shared.opco.isPHI && projectedCost > 0 && toDateCost > 0) {
+                if accountDetail.isModeledForOpower || (Configuration.shared.opco.isPHI && projectedCost > 0 && toDateCost > 0) {
                     let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
                         "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                     if let gasForecast = billForecast?.gas, isGas {
@@ -861,7 +861,7 @@ class UsageViewModel {
         .map { accountDetail in
             var usageTools: [UsageTool] = [.usageData, .energyTips, .homeProfile]
             
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .bge:
                 if accountDetail.peakRewards == "ACTIVE" {
                     usageTools.insert(.peakRewards, at: 1)
@@ -907,7 +907,7 @@ class UsageViewModel {
     private func isGas(accountDetail: AccountDetail, electricGasSelectedIndex: Int) -> Bool {
         if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
             return true
-        } else if Environment.shared.opco != .comEd && accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" {
+        } else if Configuration.shared.opco != .comEd && accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" {
             return electricGasSelectedIndex == 1
         }
         // Default to electric

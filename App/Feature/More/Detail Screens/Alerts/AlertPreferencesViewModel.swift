@@ -51,7 +51,7 @@ class AlertPreferencesViewModel {
     var initialBillThresholdValue = ""
     
     var shouldEnrollPaperlessEBill: Bool {
-        if Environment.shared.opco == .bge { return false }
+        if Configuration.shared.opco == .bge { return false }
         return initialBillReadyValue == false && billReady.value == true
     }
     
@@ -75,7 +75,7 @@ class AlertPreferencesViewModel {
         isError.accept(false)
         
         var observables = [fetchAccountDetail(), fetchAlertPreferences()]
-        if Environment.shared.opco == .comEd {
+        if Configuration.shared.opco == .comEd {
             observables.append(fetchAlertLanguage())
         }
         
@@ -84,7 +84,7 @@ class AlertPreferencesViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 
-                switch Environment.shared.opco {
+                switch Configuration.shared.opco {
                 case .bge:
                     var usageOptions: [AlertPreferencesOptions] = []
                     if self.isHUAEligible {
@@ -279,7 +279,7 @@ class AlertPreferencesViewModel {
     
     func saveChanges(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var observables = [saveAlertPreferences()]
-        if Environment.shared.opco == .comEd && english.value != initialEnglishValue {
+        if Configuration.shared.opco == .comEd && english.value != initialEnglishValue {
             observables.append(saveAlertLanguage())
         }
         
@@ -428,7 +428,7 @@ class AlertPreferencesViewModel {
     }
     
     var isHUAEligible: Bool {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge, .comEd:
             return self.accountDetail.isHUAEligible ?? false
         case .peco, .pepco, .ace, .delmarva:
@@ -438,7 +438,7 @@ class AlertPreferencesViewModel {
     }
     
     var isPTSEligible: Bool {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge, .peco, .pepco, .ace, .delmarva:
             return false
         case .comEd:
@@ -447,7 +447,7 @@ class AlertPreferencesViewModel {
     }
     
     var isPTREligible: Bool {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return self.accountDetail.isPTREligible ?? false
         case .comEd, .peco, .pepco, .ace, .delmarva:
@@ -456,14 +456,14 @@ class AlertPreferencesViewModel {
     }
     
     var showAccountInfoBar: Bool {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .comEd, .delmarva, .peco, .pepco:
             return true
         }
     }
     
     var billThresholdToolTipText: String {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month. If no selection is made, we will alert you if your usage is 30% and $30 higher compared to the same time last year.", comment: "")
         case .comEd:
@@ -482,7 +482,7 @@ class AlertPreferencesViewModel {
     }
     
     var showLanguageSection: Bool {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .comEd:
             return true
         case .bge, .peco, .pepco, .ace, .delmarva:
@@ -517,11 +517,11 @@ class AlertPreferencesViewModel {
             case .energySavingsDayResults:
                 return NSLocalizedString("Energy Savings Day Results", comment: "")
             case .outage:
-                return Environment.shared.opco.isPHI ? NSLocalizedString("Outage Alerts", comment: "") : NSLocalizedString("Outage", comment: "")
+                return Configuration.shared.opco.isPHI ? NSLocalizedString("Outage Alerts", comment: "") : NSLocalizedString("Outage", comment: "")
             case .scheduledMaintenanceOutage:
                 return NSLocalizedString("Scheduled Maintenance Outage", comment: "")
             case .severeWeather:
-                return Environment.shared.opco.isPHI ? NSLocalizedString("Severe Weather Alert", comment: "") : NSLocalizedString("Severe Weather", comment: "")
+                return Configuration.shared.opco.isPHI ? NSLocalizedString("Severe Weather Alert", comment: "") : NSLocalizedString("Severe Weather", comment: "")
             case .billIsReady:
                 return NSLocalizedString("Bill is Ready", comment: "")
             case .paymentDueReminder:
@@ -535,14 +535,14 @@ class AlertPreferencesViewModel {
             case .appointmentTracking:
                 return NSLocalizedString("Appointment Tracking", comment: "")
             case .forYourInformation:
-                return Environment.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
+                return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
                 return NSLocalizedString("Lumi Updates", comment: "")
             }
         }
         
         var detailText: String {
-            switch (self, Environment.shared.opco) {
+            switch (self, Configuration.shared.opco) {
                 
                 // High Usage
             case (.highUsage, .bge): fallthrough

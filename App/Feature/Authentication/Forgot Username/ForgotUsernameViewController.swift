@@ -27,7 +27,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var continueButton: PrimaryButton!
     
-    let accountNumberLength = (Environment.shared.opco == .bge || Environment.shared.opco == .peco || Environment.shared.opco == .comEd) ? 10 : 11
+    let accountNumberLength = (Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd) ? 10 : 11
    
     let viewModel = ForgotUsernameViewModel()
     
@@ -38,14 +38,14 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         
         addCloseButton()
         let navigationTitle: String
-              if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
-                  navigationTitle = Environment.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
+              if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+                  navigationTitle = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
               } else {
                   navigationTitle = "Forgot Username"
               }
         title = navigationTitle
         
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             accountNumberContainerView.isHidden = true
         } else {
             identifierContainerView.isHidden = true
@@ -57,7 +57,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         
-        phoneNumberTextField.placeholder = Environment.shared.opco.isPHI ? NSLocalizedString("Phone Number*", comment: "") : NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = Configuration.shared.opco.isPHI ? NSLocalizedString("Phone Number*", comment: "") : NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
@@ -155,7 +155,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     private func accessibilityErrorLabel() {
         var message = ""
         message += phoneNumberTextField.getError()
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             message += identifierTextField.getError()
         } else {
             message += accountNumberTextField.getError()
@@ -198,7 +198,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBAction func onAccountNumberTooltipPress() {
         let description: String
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             description = NSLocalizedString("Your Customer Account Number may be found in the top right portion on your bill in the bill summary section. Please enter 10-digits including leading zeros.", comment: "")
         case .comEd:

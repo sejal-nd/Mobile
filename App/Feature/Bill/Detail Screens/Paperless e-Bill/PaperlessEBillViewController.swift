@@ -210,12 +210,12 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .learn_more)])
         
         let description: String
-        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+        if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
             description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
         } else {
             description = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.", comment: "")
         }
-        let infoModal = InfoModalViewController(title: Environment.shared.opco.isPHI ? NSLocalizedString("What is Paperless eBill?", comment: "") : NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
+        let infoModal = InfoModalViewController(title: Configuration.shared.opco.isPHI ? NSLocalizedString("What is Paperless eBill?", comment: "") : NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     

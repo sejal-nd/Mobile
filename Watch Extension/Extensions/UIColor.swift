@@ -10,7 +10,7 @@ import WatchKit
 
 extension UIColor {
     static var primary: UIColor {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return UIColor(red: 103.0/255.0, green: 179.0/255.0, blue: 96.0/255.0, alpha: 1.0)
         case .comEd:

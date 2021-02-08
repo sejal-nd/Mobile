@@ -77,9 +77,9 @@ class BudgetBillingViewController: UIViewController {
         descriptionHeaderLabel.textColor = .deepGray
         descriptionHeaderLabel.font = SystemFont.regular.of(textStyle: .body)
         if accountDetail.isBudgetBill {
-            descriptionHeaderLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.\n\nPlease refer to your full bill for additional details.", comment: "") : NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.", comment: "")
+            descriptionHeaderLabel.text = Configuration.shared.opco.isPHI ? NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.\n\nPlease refer to your full bill for additional details.", comment: "") : NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.", comment: "")
         } else {
-            descriptionHeaderLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("If you prefer a consistent and predictable monthly payment throughout the year that eliminates monthly or seasonal variation, Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill.", comment: "") :  NSLocalizedString("Budget Billing spreads out your utility payments evenly throughout the year, so you will know what to expect each month.", comment: "")
+            descriptionHeaderLabel.text = Configuration.shared.opco.isPHI ? NSLocalizedString("If you prefer a consistent and predictable monthly payment throughout the year that eliminates monthly or seasonal variation, Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill.", comment: "") :  NSLocalizedString("Budget Billing spreads out your utility payments evenly throughout the year, so you will know what to expect each month.", comment: "")
         }
         descriptionHeaderLabel.setLineHeight(lineHeight: 24)
         
@@ -97,7 +97,7 @@ class BudgetBillingViewController: UIViewController {
         footerLabel.text = viewModel.footerLabelText
 
         // When BGE user is enrolled they get a series of card views with information
-        if Environment.shared.opco == .bge && accountDetail.isBudgetBill {
+        if Configuration.shared.opco == .bge && accountDetail.isBudgetBill {
             for card in bgeEnrolledInfoCardViews {
                 card.layer.borderColor = UIColor.accentGray.cgColor
                 card.layer.borderWidth = 1
@@ -181,7 +181,7 @@ class BudgetBillingViewController: UIViewController {
             self.loadingIndicator.isHidden = true
             self.stickyFooterView.isHidden = false
             
-            if Environment.shared.opco == .bge && self.accountDetail.isBudgetBill {
+            if Configuration.shared.opco == .bge && self.accountDetail.isBudgetBill {
                 self.monthlyAmountLabel.text = budgetBillingInfo.budgetBill?.currencyString ?? budgetBillingInfo.averageMonthlyBill.currencyString
                 self.lastPaymentDateLabel.text = self.accountDetail.billingInfo.lastPaymentDate?.mmDdYyyyString
                 self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff?.currencyString
@@ -255,12 +255,12 @@ class BudgetBillingViewController: UIViewController {
     }
     
     @IBAction func onUnenrollPress() {
-        if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+        if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
             GoogleAnalytics.log(event: .budgetBillUnEnrollOffer)
             
             FirebaseUtility.logEvent(.budgetBillingSubmit)
             
-            let message = Environment.shared.opco.isPHI ? "You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage." : bgeDynamicUnenrollMessage ?? ""
+            let message = Configuration.shared.opco.isPHI ? "You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage." : bgeDynamicUnenrollMessage ?? ""
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
                 GoogleAnalytics.log(event: .budgetBillUnEnrollCancel) }))

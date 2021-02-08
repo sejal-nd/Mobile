@@ -84,8 +84,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         viewModel.signInButtonEnabled.drive(signInButton.rx.isEnabled).disposed(by: disposeBag)
 
         let placeholderText: String
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
-            placeholderText = Environment.shared.opco.isPHI ? "Username (Email Address)" : "Email"
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+            placeholderText = Configuration.shared.opco.isPHI ? "Username (Email Address)" : "Email"
         } else {
             placeholderText = "Username / Email Address"
         }
@@ -104,7 +104,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
         let a11yText = NSLocalizedString("%@, an Exelon Company", comment: "")
-        opcoLogo.accessibilityLabel = String(format: a11yText, Environment.shared.opco.displayString)
+        opcoLogo.accessibilityLabel = String(format: a11yText, Configuration.shared.opco.displayString)
 
         // Two-way data binding for the username/password fields
         viewModel.username.asDriver().drive(usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
@@ -141,8 +141,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
         
         let forgotUsernamePasswordButtonTitle: String
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
-            forgotUsernamePasswordButtonTitle = Environment.shared.opco.isPHI ? "Forgot your username or password?" : "Forgot your email or password?"
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+            forgotUsernamePasswordButtonTitle = Configuration.shared.opco.isPHI ? "Forgot your username or password?" : "Forgot your email or password?"
         } else {
             forgotUsernamePasswordButtonTitle = "Forgot your username or password?"
         }
@@ -216,11 +216,11 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func onLoginPress() {
         view.endEditing(true)
 
-        if Environment.shared.environmentName != .aut { // Otherwise all our mock data usernames would fail
-            if (Environment.shared.opco != .bge && Environment.shared.opco != .delmarva && Environment.shared.opco != .pepco && Environment.shared.opco != .ace) && !viewModel.usernameIsValidEmailAddress {
+        if Configuration.shared.environmentName != .aut { // Otherwise all our mock data usernames would fail
+            if (Configuration.shared.opco != .bge && Configuration.shared.opco != .delmarva && Configuration.shared.opco != .pepco && Configuration.shared.opco != .ace) && !viewModel.usernameIsValidEmailAddress {
                 // ComEd/PECO only email validation. If not valid email then fail before making the call
                 var message = ""
-                if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
+                if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
                     message = NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
                 } else {
                     message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
@@ -365,8 +365,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let forgotUsername: String
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
-            forgotUsername = Environment.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+            forgotUsername = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
         } else {
             forgotUsername = "Forgot Username"
         }

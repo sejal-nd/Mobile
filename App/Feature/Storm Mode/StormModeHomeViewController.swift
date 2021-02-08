@@ -73,13 +73,13 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             phone2Button.roundCorners(.allCorners, radius: 4)
             phone2Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            phone2Button.isHidden = Environment.shared.opco != .bge
+            phone2Button.isHidden = Configuration.shared.opco != .bge
         }
     }
     @IBOutlet weak var phone2Label: UILabel!
     @IBOutlet weak var contactGroup2StackView: UIStackView! {
         didSet {
-            contactGroup2StackView.isHidden = Environment.shared.opco != .bge && Environment.shared.opco != .delmarva
+            contactGroup2StackView.isHidden = Configuration.shared.opco != .bge && Configuration.shared.opco != .delmarva
         }
     }
     @IBOutlet weak var group2Label: UILabel! {
@@ -120,7 +120,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             gasOnlyPhone1Button.roundCorners(.allCorners, radius: 4)
             gasOnlyPhone1Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            gasOnlyPhone1Button.isHidden = Environment.shared.opco == .comEd
+            gasOnlyPhone1Button.isHidden = Configuration.shared.opco == .comEd
         }
     }
     @IBOutlet private weak var gasOnlyPhone1Label: UILabel!
@@ -129,7 +129,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             gasOnlyPhone2Button.roundCorners(.allCorners, radius: 4)
             gasOnlyPhone2Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            gasOnlyPhone2Button.isHidden = Environment.shared.opco != .bge
+            gasOnlyPhone2Button.isHidden = Configuration.shared.opco != .bge
         }
     }
     @IBOutlet private weak var gasOnlyPhone2Label: UILabel!
@@ -169,9 +169,9 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             // Apply different colors for ADA contrast compliance (ComEd default color is already compliant)
             accountDisallowIconImageView.image = UIImage(named: "ic_lock_opco")?.withRenderingMode(.alwaysTemplate)
-            if Environment.shared.opco == .bge {
+            if Configuration.shared.opco == .bge {
                 accountDisallowIconImageView.tintColor = UIColor(red: 102/255, green: 179/255, blue: 96/255, alpha: 1)
-            } else if Environment.shared.opco == .peco {
+            } else if Configuration.shared.opco == .peco {
                 accountDisallowIconImageView.tintColor = UIColor(red: 0, green: 162/255, blue: 1, alpha: 1)
             }
         }
@@ -194,7 +194,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     @IBOutlet weak var reportStreetlightOutageButton: DisclosureCellButton! {
         didSet {
-            reportStreetlightOutageButton.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage_white"), text: Environment.shared.opco.isPHI ? NSLocalizedString("Report Street Light Problem", comment: "") : NSLocalizedString("Report Street Light Outage", comment: ""))
+            reportStreetlightOutageButton.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage_white"), text: Configuration.shared.opco.isPHI ? NSLocalizedString("Report Street Light Problem", comment: "") : NSLocalizedString("Report Street Light Outage", comment: ""))
         }
     }
     
@@ -217,7 +217,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    private var loadingLottieAnimation = AnimationView(name: "sm_outage_loading-Flavor\(Environment.shared.opco.rawValue)")
+    private var loadingLottieAnimation = AnimationView(name: "sm_outage_loading-Flavor\(Configuration.shared.opco.rawValue)")
     private var refreshControl: UIRefreshControl?
     
     let viewModel = StormModeHomeViewModel()
@@ -239,7 +239,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         view.backgroundColor = .stormModeBlack
         
         let gradientColor: UIColor
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             gradientColor = .bgeGreen
         case .ace, .comEd, .delmarva, .peco, .pepco:
@@ -389,7 +389,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     // MARK: - Helper
     
     private func configureContactText() {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
             group2Label.text = NSLocalizedString("For downed or sparking power lines, please call", comment: "")
@@ -453,7 +453,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     private func configureGasOnlyText() {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             gasOnlyPhone1Label.text = "1-800-685-0123"
             gasOnlyPhone2Label.text = "1-877-778-7798"
@@ -577,7 +577,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             } else {
                 self.accountDisallowView.isHidden = true
                 self.finalPayView.isHidden = false
-                self.finalPayTitleLabel.isHidden = !Environment.shared.opco.isPHI
+                self.finalPayTitleLabel.isHidden = !Configuration.shared.opco.isPHI
                 self.finalPayTitleLabel.text = NSLocalizedString("Outage Unavailable", comment: "")
                 self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
                 self.billButton.isHidden = false

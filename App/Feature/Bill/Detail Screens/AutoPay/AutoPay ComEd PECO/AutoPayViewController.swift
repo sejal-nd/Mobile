@@ -332,11 +332,11 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     @IBAction func unenrollButtonPress(_ sender: Any) {
         view.endEditing(true)
         
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .comEd, .peco:
             performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
         case .ace, .bge, .delmarva, .pepco:
-            fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
+            fatalError("Opco Not Implemented: \(Configuration.shared.opco.displayString)")
         }
     }
     
