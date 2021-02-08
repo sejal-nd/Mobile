@@ -641,7 +641,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
                     }
                 },
                 callHandler: { _ in
-                   // UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
+                    UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
                 }
             )
             self.present(paymentusAlertVC, animated: true, completion: nil)
