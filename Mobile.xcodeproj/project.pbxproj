@@ -211,6 +211,28 @@
 		54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */; };
 		54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */; };
 		671448C224731680004D2AFF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Configuration.swift */; };
+		67247EF325D2D6750024467D /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247EF225D2D6750024467D /* WatchApp.swift */; };
+		67247F0225D2D7380024467D /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F0125D2D7380024467D /* AuthenticationController.swift */; };
+		67247F0825D2D7FB0024467D /* WatchFlowContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */; };
+		67247F1325D2D8EC0024467D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F1225D2D8EC0024467D /* SignInView.swift */; };
+		67247F1D25D2D9000024467D /* ReportOutageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F1C25D2D9000024467D /* ReportOutageView.swift */; };
+		67247F2325D2D90C0024467D /* AccountList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F2225D2D90C0024467D /* AccountList.swift */; };
+		67247F2925D2D9190024467D /* OutageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F2825D2D9190024467D /* OutageView.swift */; };
+		67247F2F25D2D9200024467D /* UsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F2E25D2D9200024467D /* UsageView.swift */; };
+		67247F3525D2D92B0024467D /* BillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F3425D2D92B0024467D /* BillView.swift */; };
+		67247F4725D2DDE20024467D /* ErrorContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F4625D2DDE20024467D /* ErrorContainerView.swift */; };
+		67247F4D25D2DF1B0024467D /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F4C25D2DF1B0024467D /* ErrorState.swift */; };
+		67247F5325D2DF7E0024467D /* ImageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F5225D2DF7E0024467D /* ImageTextView.swift */; };
+		67247F6125D2E33A0024467D /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F6025D2E33A0024467D /* AccountInfoBar.swift */; };
+		67247F6825D2E4E00024467D /* OutageFlowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F6725D2E4E00024467D /* OutageFlowContainerView.swift */; };
+		67247F6E25D2E4EA0024467D /* OutageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F6D25D2E4EA0024467D /* OutageContainerView.swift */; };
+		67247F7825D2E5A50024467D /* OutageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F7725D2E5A50024467D /* OutageState.swift */; };
+		67247F8325D2FE3C0024467D /* UsageFlowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F8225D2FE3C0024467D /* UsageFlowContainerView.swift */; };
+		67247F8D25D2FE510024467D /* UsageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F8C25D2FE510024467D /* UsageContainerView.swift */; };
+		67247FA025D2FE6C0024467D /* BillFlowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F9F25D2FE6C0024467D /* BillFlowContainerView.swift */; };
+		67247FA625D2FE750024467D /* BillContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FA525D2FE750024467D /* BillContainerView.swift */; };
+		67247FB425D3063F0024467D /* UsageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FB325D3063F0024467D /* UsageState.swift */; };
+		67247FBE25D314040024467D /* BillState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FBD25D314040024467D /* BillState.swift */; };
 		673FA0CA24C899CD00210BCD /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */; };
 		673FA0D724C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */; };
 		673FA0E424C89A1900210BCD /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0E324C89A1900210BCD /* AccountLookupResults.swift */; };
@@ -1566,6 +1588,28 @@
 		64859E458B5973DD77314B29 /* Pods-EUMobile.prodbeta-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prodbeta-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prodbeta-peco.xcconfig"; sourceTree = "<group>"; };
 		65A34083A174EA78549ACFDB /* Pods-EUMobile.production beta-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.production beta-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.production beta-bge.xcconfig"; sourceTree = "<group>"; };
 		667260BE8F673703710FBBA9 /* Pods-EUMobileUITests.production-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production-bge.xcconfig"; sourceTree = "<group>"; };
+		67247EF225D2D6750024467D /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
+		67247F0125D2D7380024467D /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
+		67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFlowContainer.swift; sourceTree = "<group>"; };
+		67247F1225D2D8EC0024467D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		67247F1C25D2D9000024467D /* ReportOutageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportOutageView.swift; sourceTree = "<group>"; };
+		67247F2225D2D90C0024467D /* AccountList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountList.swift; sourceTree = "<group>"; };
+		67247F2825D2D9190024467D /* OutageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageView.swift; sourceTree = "<group>"; };
+		67247F2E25D2D9200024467D /* UsageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageView.swift; sourceTree = "<group>"; };
+		67247F3425D2D92B0024467D /* BillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillView.swift; sourceTree = "<group>"; };
+		67247F4625D2DDE20024467D /* ErrorContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorContainerView.swift; sourceTree = "<group>"; };
+		67247F4C25D2DF1B0024467D /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
+		67247F5225D2DF7E0024467D /* ImageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextView.swift; sourceTree = "<group>"; };
+		67247F6025D2E33A0024467D /* AccountInfoBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
+		67247F6725D2E4E00024467D /* OutageFlowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageFlowContainerView.swift; sourceTree = "<group>"; };
+		67247F6D25D2E4EA0024467D /* OutageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageContainerView.swift; sourceTree = "<group>"; };
+		67247F7725D2E5A50024467D /* OutageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageState.swift; sourceTree = "<group>"; };
+		67247F8225D2FE3C0024467D /* UsageFlowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageFlowContainerView.swift; sourceTree = "<group>"; };
+		67247F8C25D2FE510024467D /* UsageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageContainerView.swift; sourceTree = "<group>"; };
+		67247F9F25D2FE6C0024467D /* BillFlowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillFlowContainerView.swift; sourceTree = "<group>"; };
+		67247FA525D2FE750024467D /* BillContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillContainerView.swift; sourceTree = "<group>"; };
+		67247FB325D3063F0024467D /* UsageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageState.swift; sourceTree = "<group>"; };
+		67247FBD25D314040024467D /* BillState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillState.swift; sourceTree = "<group>"; };
 		673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusContainer.swift; sourceTree = "<group>"; };
 		673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotMaskedUsernames.swift; sourceTree = "<group>"; };
 		673FA0E324C89A1900210BCD /* AccountLookupResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResults.swift; sourceTree = "<group>"; };
@@ -3953,6 +3997,9 @@
 		35E7C79F21907EA400BA13C6 /* Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				67247FC825D315410024467D /* Components */,
+				67247F1125D2D8DA0024467D /* SwiftUI Temp */,
+				67247F0025D2D71E0024467D /* NewControllers */,
 				35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */,
 				35E7C7FB2190805C00BA13C6 /* Controllers */,
 				35E7C7D82190802400BA13C6 /* Views */,
@@ -4099,6 +4146,81 @@
 				355B10452369E54E0038EAD3 /* KeychainKeys.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		67247F0025D2D71E0024467D /* NewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				67247F0125D2D7380024467D /* AuthenticationController.swift */,
+			);
+			path = NewControllers;
+			sourceTree = "<group>";
+		};
+		67247F1125D2D8DA0024467D /* SwiftUI Temp */ = {
+			isa = PBXGroup;
+			children = (
+				67247EF225D2D6750024467D /* WatchApp.swift */,
+				67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */,
+				67247F6625D2E4CD0024467D /* Outage */,
+				67247F8125D2FE1C0024467D /* Usage */,
+				67247F9625D2FE5A0024467D /* Bill */,
+				67247FC725D315260024467D /* Error */,
+				67247F1225D2D8EC0024467D /* SignInView.swift */,
+				67247F2225D2D90C0024467D /* AccountList.swift */,
+			);
+			path = "SwiftUI Temp";
+			sourceTree = "<group>";
+		};
+		67247F6625D2E4CD0024467D /* Outage */ = {
+			isa = PBXGroup;
+			children = (
+				67247F7725D2E5A50024467D /* OutageState.swift */,
+				67247F6725D2E4E00024467D /* OutageFlowContainerView.swift */,
+				67247F6D25D2E4EA0024467D /* OutageContainerView.swift */,
+				67247F2825D2D9190024467D /* OutageView.swift */,
+				67247F1C25D2D9000024467D /* ReportOutageView.swift */,
+			);
+			path = Outage;
+			sourceTree = "<group>";
+		};
+		67247F8125D2FE1C0024467D /* Usage */ = {
+			isa = PBXGroup;
+			children = (
+				67247FB325D3063F0024467D /* UsageState.swift */,
+				67247F8225D2FE3C0024467D /* UsageFlowContainerView.swift */,
+				67247F8C25D2FE510024467D /* UsageContainerView.swift */,
+				67247F2E25D2D9200024467D /* UsageView.swift */,
+			);
+			path = Usage;
+			sourceTree = "<group>";
+		};
+		67247F9625D2FE5A0024467D /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				67247FBD25D314040024467D /* BillState.swift */,
+				67247F9F25D2FE6C0024467D /* BillFlowContainerView.swift */,
+				67247FA525D2FE750024467D /* BillContainerView.swift */,
+				67247F3425D2D92B0024467D /* BillView.swift */,
+			);
+			path = Bill;
+			sourceTree = "<group>";
+		};
+		67247FC725D315260024467D /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				67247F4C25D2DF1B0024467D /* ErrorState.swift */,
+				67247F4625D2DDE20024467D /* ErrorContainerView.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		67247FC825D315410024467D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				67247F6025D2E33A0024467D /* AccountInfoBar.swift */,
+				67247F5225D2DF7E0024467D /* ImageTextView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		674A11F82523889C00AF0D38 /* Energy Wise Rewards */ = {
@@ -6388,6 +6510,7 @@
 				35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */,
 				C3055C0E2538FBEF000DB89C /* AnonymousService.swift in Sources */,
 				C3055C072538FB38000DB89C /* CreditCard.swift in Sources */,
+				67247F6125D2E33A0024467D /* AccountInfoBar.swift in Sources */,
 				C3055B5C2538F81B000DB89C /* BillPDF.swift in Sources */,
 				C3055B532538F81B000DB89C /* DailyUsageData.swift in Sources */,
 				C3055B6F2538F81B000DB89C /* AlertPreferences.swift in Sources */,
@@ -6406,14 +6529,18 @@
 				30DD882F25495243007C320D /* AnonMeterPingRequest.swift in Sources */,
 				C3055C152538FBEF000DB89C /* UsageService.swift in Sources */,
 				C3055B542538F81B000DB89C /* UsageTip.swift in Sources */,
+				67247EF325D2D6750024467D /* WatchApp.swift in Sources */,
 				C3055C422538FCEE000DB89C /* AzureError.swift in Sources */,
+				67247F8325D2FE3C0024467D /* UsageFlowContainerView.swift in Sources */,
 				C3055C502538FD7C000DB89C /* URLSessionConfiguration.swift in Sources */,
+				67247F5325D2DF7E0024467D /* ImageTextView.swift in Sources */,
 				C3055C382538FC99000DB89C /* RxNotifications.swift in Sources */,
 				C3055C1B2538FBEF000DB89C /* RegistrationService.swift in Sources */,
 				35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */,
 				C3055BFB2538FB11000DB89C /* GameUserRequest.swift in Sources */,
 				C3055B5B2538F81B000DB89C /* ForecastBill.swift in Sources */,
 				C3055B612538F81B000DB89C /* DateRequest.swift in Sources */,
+				67247F7825D2E5A50024467D /* OutageState.swift in Sources */,
 				C3055B692538F81B000DB89C /* SERResult.swift in Sources */,
 				C3055B3D2538F6EB000DB89C /* OutageStatus.swift in Sources */,
 				C3055BEE2538FB11000DB89C /* SchedulePaymentCancelRequest.swift in Sources */,
@@ -6433,16 +6560,19 @@
 				35F9DD932333D83F00AAA2B2 /* (null) in Sources */,
 				C3055BFD2538FB11000DB89C /* ValidateAccountRequest.swift in Sources */,
 				C3055B822538F81B000DB89C /* AccountLookupResults.swift in Sources */,
+				67247F1325D2D8EC0024467D /* SignInView.swift in Sources */,
 				35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */,
 				C3055B752538F81B000DB89C /* HomeProfile.swift in Sources */,
 				C3055BF82538FB11000DB89C /* UsernameRequest.swift in Sources */,
 				C3055B632538F81B000DB89C /* GenericResponse.swift in Sources */,
 				C3055BF62538FB11000DB89C /* BillingHistoryRequest.swift in Sources */,
 				C3055B5F2538F81B000DB89C /* PaymentResult.swift in Sources */,
+				67247F0225D2D7380024467D /* AuthenticationController.swift in Sources */,
 				C3055BD52538FB04000DB89C /* NetworkingError.swift in Sources */,
 				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
 				3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */,
 				C3055B6A2538F81B000DB89C /* ForgotMaskedUsername.swift in Sources */,
+				67247F1D25D2D9000024467D /* ReportOutageView.swift in Sources */,
 				C3055BE12538FB11000DB89C /* HomeProfileUpdateRequest.swift in Sources */,
 				C3055C162538FBEF000DB89C /* AppointmentService.swift in Sources */,
 				35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */,
@@ -6450,26 +6580,33 @@
 				C3118C7325391BA8002A2832 /* AccountNumberRequest.swift in Sources */,
 				35F9DDA52333D88B00AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				C3055B5E2538F81B000DB89C /* AutoPayResult.swift in Sources */,
+				67247F4725D2DDE20024467D /* ErrorContainerView.swift in Sources */,
+				67247F2325D2D90C0024467D /* AccountList.swift in Sources */,
 				C3055BF02538FB11000DB89C /* AlertPreferencesRequest.swift in Sources */,
 				C3055B552538F81B000DB89C /* Payments.swift in Sources */,
 				C3055C022538FB38000DB89C /* Weekday.swift in Sources */,
 				C3055B582538F81B000DB89C /* VoidDecodable.swift in Sources */,
 				C3055C192538FBEF000DB89C /* PaymentService.swift in Sources */,
+				67247F3525D2D92B0024467D /* BillView.swift in Sources */,
+				67247F6825D2E4E00024467D /* OutageFlowContainerView.swift in Sources */,
 				C3055C3D2538FCA6000DB89C /* Router.swift in Sources */,
 				C3055B742538F81B000DB89C /* ValidatedAccountResponse.swift in Sources */,
 				C3055BF12538FB11000DB89C /* AccountLookupRequest.swift in Sources */,
+				67247FA025D2FE6C0024467D /* BillFlowContainerView.swift in Sources */,
 				C3055C202538FC0A000DB89C /* String+DateParser.swift in Sources */,
 				35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */,
 				35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				C3055B722538F81B000DB89C /* AccountLookupResult.swift in Sources */,
 				C3055B562538F81B000DB89C /* ForgotMaskedUsernames.swift in Sources */,
 				C3055B6B2538F81B000DB89C /* SharePointAlert.swift in Sources */,
+				67247F6E25D2E4EA0024467D /* OutageContainerView.swift in Sources */,
 				C3055C4A2538FD6E000DB89C /* URLProtocolMock.swift in Sources */,
 				35F9DD712333D14D00AAA2B2 /* AccountListInterfaceController.swift in Sources */,
 				C3055BFC2538FB11000DB89C /* AnonOutageRequest.swift in Sources */,
 				C3055BE92538FB11000DB89C /* AnyEncodable.swift in Sources */,
 				C3055BDA2538FB11000DB89C /* AccountNicknameRequest.swift in Sources */,
 				C3055BE62538FB11000DB89C /* DailyUsageRequest.swift in Sources */,
+				67247FA625D2FE750024467D /* BillContainerView.swift in Sources */,
 				C3055B662538F81B000DB89C /* TokenResponse.swift in Sources */,
 				C3055BF22538FB11000DB89C /* AutoPayEnrollBGERequest.swift in Sources */,
 				C3055BEA2538FB11000DB89C /* RecoverUsernameRequest.swift in Sources */,
@@ -6492,6 +6629,7 @@
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				C3055BEF2538FB11000DB89C /* WalletItemDeleteRequest.swift in Sources */,
 				355B104A2369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
+				67247F8D25D2FE510024467D /* UsageContainerView.swift in Sources */,
 				35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */,
 				C3055C142538FBEF000DB89C /* BillService.swift in Sources */,
 				C3055BE42538FB11000DB89C /* WalletItemRequest.swift in Sources */,
@@ -6500,12 +6638,16 @@
 				C3055BDE2538FB11000DB89C /* EmailRequest.swift in Sources */,
 				C3055BFA2538FB11000DB89C /* RefreshTokenRequest.swift in Sources */,
 				C3055BDD2538FB11000DB89C /* WalletEncryptionKeyRequest.swift in Sources */,
+				67247FBE25D314040024467D /* BillState.swift in Sources */,
+				67247FB425D3063F0024467D /* UsageState.swift in Sources */,
 				35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */,
 				C3055B4E2538F812000DB89C /* CustomerInfo.swift in Sources */,
 				C3055C032538FB38000DB89C /* PushNotification.swift in Sources */,
+				67247F4D25D2DF1B0024467D /* ErrorState.swift in Sources */,
 				C3055BE72538FB11000DB89C /* AlertRegistrationRequest.swift in Sources */,
 				C3055C452538FCEE000DB89C /* ApigeeError.swift in Sources */,
 				35F9DDB72333D8F100AAA2B2 /* Date.swift in Sources */,
+				67247F0825D2D7FB0024467D /* WatchFlowContainer.swift in Sources */,
 				C3055B842538F81B000DB89C /* Weather.swift in Sources */,
 				35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */,
 				C3055BF42538FB11000DB89C /* TokenRequest.swift in Sources */,
@@ -6541,6 +6683,7 @@
 				C3055B7C2538F81B000DB89C /* GameUser.swift in Sources */,
 				C3055BF72538FB11000DB89C /* RecoverMaskedUsernameRequest.swift in Sources */,
 				C3055C2A2538FC74000DB89C /* UserSession.swift in Sources */,
+				67247F2F25D2D9200024467D /* UsageView.swift in Sources */,
 				C3055B7B2538F81B000DB89C /* CompareBillResult.swift in Sources */,
 				35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */,
 				C3055B852538F81B000DB89C /* WalletItem.swift in Sources */,
@@ -6548,6 +6691,7 @@
 				C3055B622538F81B000DB89C /* DailyUsage.swift in Sources */,
 				C3055C052538FB38000DB89C /* BankAccount.swift in Sources */,
 				35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */,
+				67247F2925D2D9190024467D /* OutageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7593,7 +7737,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-AUT";
 		};
@@ -7630,7 +7774,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Beta";
 		};
@@ -7669,7 +7813,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-RC";
 		};
@@ -7709,7 +7853,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Release";
 		};
@@ -7793,7 +7937,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-AUT";
 		};
@@ -7831,7 +7975,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Beta";
 		};
@@ -7871,7 +8015,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-RC";
 		};
@@ -7912,7 +8056,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Release";
 		};
@@ -8231,7 +8375,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-AUT";
 		};
@@ -8314,7 +8458,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-AUT";
 		};
@@ -8552,7 +8696,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Beta";
 		};
@@ -8589,7 +8733,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Beta";
 		};
@@ -8824,7 +8968,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-RC";
 		};
@@ -8863,7 +9007,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-RC";
 		};
@@ -9098,7 +9242,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Release";
 		};
@@ -9138,7 +9282,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Release";
 		};
@@ -9457,7 +9601,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-AUT";
 		};
@@ -9540,7 +9684,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-AUT";
 		};
@@ -9779,7 +9923,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Beta";
 		};
@@ -9816,7 +9960,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Beta";
 		};
@@ -10052,7 +10196,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-RC";
 		};
@@ -10091,7 +10235,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-RC";
 		};
@@ -10327,7 +10471,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Release";
 		};
@@ -10367,7 +10511,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Release";
 		};
@@ -10686,7 +10830,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-AUT";
 		};
@@ -10769,7 +10913,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-AUT";
 		};
@@ -11008,7 +11152,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Beta";
 		};
@@ -11045,7 +11189,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Beta";
 		};
@@ -11281,7 +11425,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-RC";
 		};
@@ -11320,7 +11464,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-RC";
 		};
@@ -11556,7 +11700,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Release";
 		};
@@ -11596,7 +11740,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Release";
 		};
@@ -11915,7 +12059,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-AUT";
 		};
@@ -11998,7 +12142,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-AUT";
 		};
@@ -12237,7 +12381,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Beta";
 		};
@@ -12274,7 +12418,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Beta";
 		};
@@ -12510,7 +12654,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-RC";
 		};
@@ -12549,7 +12693,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-RC";
 		};
@@ -12785,7 +12929,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Release";
 		};
@@ -12825,7 +12969,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Release";
 		};
@@ -13144,7 +13288,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-AUT";
 		};
@@ -13227,7 +13371,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-AUT";
 		};
@@ -13465,7 +13609,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Beta";
 		};
@@ -13502,7 +13646,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Beta";
 		};
@@ -13737,7 +13881,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-RC";
 		};
@@ -13776,7 +13920,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-RC";
 		};
@@ -14011,7 +14155,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Release";
 		};
@@ -14051,7 +14195,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Release";
 		};
