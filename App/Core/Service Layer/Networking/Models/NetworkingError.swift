@@ -163,7 +163,7 @@ extension NetworkingError: LocalizedError {
     public var title: String {
         switch self {
         case .inactive:
-            return NSLocalizedString("", comment: "Error title")
+            return NSLocalizedString("Error", comment: "Error title")
         case .notCustomer, .invalidUser:
             return NSLocalizedString("No Data Found", comment: "Error title")
         case .userExists:
