@@ -36,6 +36,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var alternateContactDivider: UIView!
     @IBOutlet weak var addAdditionaRecipientButton: UIButton!
+    @IBOutlet weak var addAdditionalRecipeintBottomDivider: UIView!
     
     // -- Payment Method View -- //
     @IBOutlet weak var bankAccount: ButtonControl!
@@ -109,6 +110,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
         addCloseButton()
         if billingHistoryItem != nil {
             title = NSLocalizedString("Edit Payment", comment: "")
+            addAdditionalRecipients.isHidden = true
+            addAdditionalRecipeintBottomDivider.isHidden = true
         } else {
             title = NSLocalizedString("Review Payment", comment: "")
         }
