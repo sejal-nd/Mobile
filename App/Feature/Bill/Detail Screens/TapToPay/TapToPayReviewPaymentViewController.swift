@@ -739,8 +739,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
     }
     
     @IBAction func onCancelPaymentPress() {
-        let alertTitle = NSLocalizedString("Are you sure you want to cancel this automatic payment?", comment: "")
-        let alertMessage = NSLocalizedString("Canceling this payment will not impact your AutoPay enrollment. Future bills will still be paid automatically.", comment: "")
+        let alertTitle = NSLocalizedString("Cancel Payment", comment: "")
+        let alertMessage = NSLocalizedString("Are you sure you want to cancel this payment?", comment: "")
         let alertConfirm = NSLocalizedString("Yes", comment: "")
         let alertDeny = NSLocalizedString("No", comment: "")
         
