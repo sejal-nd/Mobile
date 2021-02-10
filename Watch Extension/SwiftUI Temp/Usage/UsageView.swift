@@ -66,9 +66,11 @@ struct UsageView: View {
     var body: some View {
         VStack {
             ZStack {
-                Image("usageGraph21") // todo
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                if watchUsage != nil {
+                    Image("usageGraph21") // todo
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
                 
                 VStack {
                     Image(AppImage.gas.name)

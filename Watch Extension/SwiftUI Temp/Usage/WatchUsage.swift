@@ -20,8 +20,7 @@ struct WatchUsage: Identifiable {
                   gasBillPeriod: String? = nil,
                   gasProgress: Double = 0.0,
                   gasTimeToNextForecast: String? = nil,
-                  electricBillForecast: BillForecast? = nil,
-                  gasBillForecast: BillForecast? = nil) {
+                  billForecastResult: BillForecastResult? = nil) {
         self.fuelTypes = fuelTypes
         self.electricUsageCost = electricUsageCost
         self.electricProjetedUsageCost = electricProjetedUsageCost
@@ -33,17 +32,15 @@ struct WatchUsage: Identifiable {
         self.gasBillPeriod = gasBillPeriod
         self.gasProgress = gasProgress
         self.gasTimeToNextForecast = gasTimeToNextForecast
-        self.electricBillForecast = electricBillForecast
-        self.gasBillForecast = gasBillForecast
+        self.billForecastResult = billForecastResult
     }
     
     init(accountDetails: AccountDetail,
          daysToNextForecast: Int = 0,
-         electricBillForecast: BillForecast?,
-         gasBillForecast: BillForecast?) {
+         billForecastResult: BillForecastResult?) {
         
         var forecastTypes = [FuelType]()
-        if let billForecast = electricBillForecast {
+        if let billForecast = billForecastResult?.electric {
             forecastTypes.append(.electric)
             
             if accountDetails.isModeledForOpower,
@@ -85,7 +82,7 @@ struct WatchUsage: Identifiable {
             } else {
                 self.electricTimeToNextForecast = "\(daysToNextForecast) days"
             }
-        } else if let billForecast = gasBillForecast {
+        } else if let billForecast = billForecastResult?.gas {
             forecastTypes.append(.gas)
             
             if accountDetails.isModeledForOpower,
@@ -130,8 +127,7 @@ struct WatchUsage: Identifiable {
         }
         
         self.fuelTypes = forecastTypes
-        self.electricBillForecast = electricBillForecast
-        self.gasBillForecast = gasBillForecast
+        self.billForecastResult = billForecastResult
     }
     
     var id: UUID = UUID()
@@ -149,8 +145,7 @@ struct WatchUsage: Identifiable {
     var gasProgress: Double = 0.0
     var gasTimeToNextForecast: String? = nil
     
-    var electricBillForecast: BillForecast? = nil
-    var gasBillForecast: BillForecast? = nil
+    var billForecastResult: BillForecastResult? = nil
 }
 
 extension WatchUsage: Equatable {
