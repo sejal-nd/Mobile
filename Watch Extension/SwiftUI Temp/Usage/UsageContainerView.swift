@@ -17,7 +17,7 @@ struct UsageContainerView: View {
                 AccountInfoBar(accountID: "234783242")
                 
                 switch usageState {
-                case .loaded:
+                case .loading, .loaded:
                     UsageView(usageState: usageState)
                 case .unavailable:
                     ImageTextView(imageName: AppImage.usage.name,

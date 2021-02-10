@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BillFlowContainerView: View {
-    @State private var billState: BillState = .loaded
+    @State private var billState: BillState = .loading
     @State private var errorState: ErrorState? = nil
     
     var body: some View {
@@ -18,6 +18,7 @@ struct BillFlowContainerView: View {
                 ErrorContainerView(errorState: errorState)
             } else {
                 BillContainerView(billState: billState)
+                    .redacted(reason: billState == .loading ? .placeholder : [])
             }
         }
         .navigationTitle("Bill")

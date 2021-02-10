@@ -11,6 +11,7 @@ import SwiftUI
 enum OutageState: Int, Identifiable, Equatable {
     var id: Int { rawValue }
     
+    case loading
     case loaded
     case gasOnly
     case unavailable

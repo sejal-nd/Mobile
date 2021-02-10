@@ -10,19 +10,28 @@ import SwiftUI
 
 struct WatchFlowContainer: View {
     @EnvironmentObject var authenticationController: AuthenticationController
-
+    
+    @SceneStorage("selectedTab") private var selectedTab: Tab = .outage
+    
     var body: some View {
-//        if authenticationController.isLoggedIn {
-            TabView {
-                OutageFlowContainerView()
-                
-                UsageFlowContainerView()
-                
-                BillFlowContainerView()
-            }
-//        } else {
-//            SignInView()
-//        }
+        //        if authenticationController.isLoggedIn {
+        TabView(selection: $selectedTab) {
+            AccountListContainerView()
+                .tag(Tab.accountList)
+            
+            OutageFlowContainerView()
+                .tag(Tab.outage)
+            
+            UsageFlowContainerView()
+                .tag(Tab.usage)
+            
+            BillFlowContainerView()
+                .tag(Tab.bill)
+        }
+        
+        //        } else {
+        //            SignInView()
+        //        }
     }
 }
 

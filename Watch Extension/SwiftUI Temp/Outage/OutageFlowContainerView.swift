@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct OutageFlowContainerView: View {
-    @State private var outageState: OutageState = .loaded
-    @State private var errorState: ErrorState? = nil
+    @State private var outageState: OutageState = .loading
+    @State private var watchOutage: WatchOutage?
+    @State private var errorState: ErrorState?
     
     @State private var isPresented = false
     
@@ -19,12 +20,14 @@ struct OutageFlowContainerView: View {
             if let errorState = errorState {
                 ErrorContainerView(errorState: errorState)
             } else {
-                OutageContainerView(outageState: outageState)
+                OutageContainerView(outageState: outageState,
+                                    watchOutage: watchOutage)
                     .sheet(isPresented: $isPresented,
                            content: reportOutageContent)
                     .onTapGesture {
                         isPresented.toggle()
                     }
+                    .redacted(reason: outageState == .loading ? .placeholder : [])
             }
         }
         .navigationTitle("Outage")

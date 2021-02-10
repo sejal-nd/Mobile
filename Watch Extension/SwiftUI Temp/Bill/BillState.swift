@@ -11,6 +11,7 @@ import SwiftUI
 enum BillState: Int, Identifiable, Equatable {
     var id: Int { rawValue }
     
+    case loading
     case loaded
     case unavailable
 }

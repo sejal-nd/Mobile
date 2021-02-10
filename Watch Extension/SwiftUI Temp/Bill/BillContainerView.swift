@@ -17,12 +17,12 @@ struct BillContainerView: View {
                 AccountInfoBar(accountID: "234783242")
                 
                 switch billState {
-                case .loaded:
+                case .loading, .loaded:
                     BillView(billState: billState)
                 case .unavailable:
                     #warning("Todo")
                     ImageTextView(imageName: AppImage.billNotReady.name,
-                                  text: "Usage is not available for this account")
+                                  text: "Your bill will be available here once it is ready")
                 }
             }
         }

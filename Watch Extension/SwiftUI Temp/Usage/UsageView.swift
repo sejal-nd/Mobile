@@ -25,7 +25,12 @@ struct UsageView: View {
                         .fontWeight(.semibold)
                 }
             }
-            .padding(.bottom, 16)
+            
+            Button(action: {}) {
+                Label("Electric",
+                      image: AppImage.electric.name)
+            }
+            .padding(.vertical, 16)
             
             VStack(alignment: .leading,
                    spacing: 16) {

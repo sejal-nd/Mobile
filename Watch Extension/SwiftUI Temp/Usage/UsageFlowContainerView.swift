@@ -9,15 +9,16 @@
 import SwiftUI
 
 struct UsageFlowContainerView: View {
-    @State private var usageState: UsageState = .loaded
+    @State private var usageState: UsageState = .loading
     @State private var errorState: ErrorState? = nil
     
     var body: some View {
-        Group {
+        VStack {
             if let errorState = errorState {
                 ErrorContainerView(errorState: errorState)
             } else {
                 UsageContainerView(usageState: usageState)
+                    .redacted(reason: usageState == .loading ? .placeholder : [])
             }
         }
         .navigationTitle("Usage")

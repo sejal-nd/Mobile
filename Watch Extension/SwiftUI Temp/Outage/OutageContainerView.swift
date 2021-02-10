@@ -10,6 +10,8 @@ import SwiftUI
 
 struct OutageContainerView: View {
     let outageState: OutageState
+    let watchOutage: WatchOutage?
+    
     #warning("image sizes are not correct right now.")
     var body: some View {
 //        ScrollView {
@@ -18,8 +20,9 @@ struct OutageContainerView: View {
 //                Spacer()
                 
                 switch outageState {
-                case .loaded:
-                    OutageView(outageState: outageState)
+                case .loading, .loaded:
+                    OutageView(outageState: outageState,
+                               watchOutage: watchOutage)
                 case .gasOnly:
                     ImageTextView(imageName: AppImage.gas.name,
                                   text: "Outage reporting for gas only accounts is not allowed online.")
@@ -36,6 +39,19 @@ struct OutageContainerView: View {
 
 struct OutageContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        OutageContainerView(outageState: .loaded)
+        OutageContainerView(outageState: .loading,
+                            watchOutage: nil)
+        
+        OutageContainerView(outageState: .loaded,
+                            watchOutage: PreviewData.outageOn)
+        
+        OutageContainerView(outageState: .loaded,
+                            watchOutage: PreviewData.outageOff)
+        
+        OutageContainerView(outageState: .gasOnly,
+                            watchOutage: nil)
+        
+        OutageContainerView(outageState: .unavailable,
+                            watchOutage: nil)
     }
 }

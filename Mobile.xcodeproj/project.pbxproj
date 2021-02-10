@@ -233,6 +233,15 @@
 		67247FA625D2FE750024467D /* BillContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FA525D2FE750024467D /* BillContainerView.swift */; };
 		67247FB425D3063F0024467D /* UsageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FB325D3063F0024467D /* UsageState.swift */; };
 		67247FBE25D314040024467D /* BillState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FBD25D314040024467D /* BillState.swift */; };
+		67247FCE25D33B400024467D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FCD25D33B400024467D /* CardView.swift */; };
+		67247FD425D33C010024467D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FD325D33C010024467D /* Color.swift */; };
+		67247FDE25D33D170024467D /* BillCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FDD25D33D170024467D /* BillCard.swift */; };
+		67247FE425D43AC60024467D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FE325D43AC60024467D /* Tab.swift */; };
+		67247FEF25D43DAD0024467D /* AccountListContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FEE25D43DAD0024467D /* AccountListContainerView.swift */; };
+		67247FFD25D43DD70024467D /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FFC25D43DD70024467D /* AccountRow.swift */; };
+		6724800325D441810024467D /* WatchAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724800225D441810024467D /* WatchAccount.swift */; };
+		6724801525D444B60024467D /* WatchOutage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724801425D444B60024467D /* WatchOutage.swift */; };
+		6724801F25D44A380024467D /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724801E25D44A380024467D /* PreviewData.swift */; };
 		673FA0CA24C899CD00210BCD /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */; };
 		673FA0D724C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */; };
 		673FA0E424C89A1900210BCD /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0E324C89A1900210BCD /* AccountLookupResults.swift */; };
@@ -1610,6 +1619,15 @@
 		67247FA525D2FE750024467D /* BillContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillContainerView.swift; sourceTree = "<group>"; };
 		67247FB325D3063F0024467D /* UsageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageState.swift; sourceTree = "<group>"; };
 		67247FBD25D314040024467D /* BillState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillState.swift; sourceTree = "<group>"; };
+		67247FCD25D33B400024467D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		67247FD325D33C010024467D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		67247FDD25D33D170024467D /* BillCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCard.swift; sourceTree = "<group>"; };
+		67247FE325D43AC60024467D /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		67247FEE25D43DAD0024467D /* AccountListContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListContainerView.swift; sourceTree = "<group>"; };
+		67247FFC25D43DD70024467D /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
+		6724800225D441810024467D /* WatchAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAccount.swift; sourceTree = "<group>"; };
+		6724801425D444B60024467D /* WatchOutage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOutage.swift; sourceTree = "<group>"; };
+		6724801E25D44A380024467D /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusContainer.swift; sourceTree = "<group>"; };
 		673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotMaskedUsernames.swift; sourceTree = "<group>"; };
 		673FA0E324C89A1900210BCD /* AccountLookupResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResults.swift; sourceTree = "<group>"; };
@@ -4070,6 +4088,7 @@
 		35E7C7EA2190804E00BA13C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				67247FD325D33C010024467D /* Color.swift */,
 				35FB502E234D091000C50162 /* UIColor.swift */,
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
 				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
@@ -4144,6 +4163,7 @@
 			children = (
 				35E7C7DC2190802C00BA13C6 /* Constants.swift */,
 				355B10452369E54E0038EAD3 /* KeychainKeys.swift */,
+				6724801E25D44A380024467D /* PreviewData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -4159,14 +4179,15 @@
 		67247F1125D2D8DA0024467D /* SwiftUI Temp */ = {
 			isa = PBXGroup;
 			children = (
+				67247FE325D43AC60024467D /* Tab.swift */,
 				67247EF225D2D6750024467D /* WatchApp.swift */,
 				67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */,
+				67247FED25D43D8D0024467D /* Account List */,
 				67247F6625D2E4CD0024467D /* Outage */,
 				67247F8125D2FE1C0024467D /* Usage */,
 				67247F9625D2FE5A0024467D /* Bill */,
 				67247FC725D315260024467D /* Error */,
 				67247F1225D2D8EC0024467D /* SignInView.swift */,
-				67247F2225D2D90C0024467D /* AccountList.swift */,
 			);
 			path = "SwiftUI Temp";
 			sourceTree = "<group>";
@@ -4174,6 +4195,7 @@
 		67247F6625D2E4CD0024467D /* Outage */ = {
 			isa = PBXGroup;
 			children = (
+				6724801425D444B60024467D /* WatchOutage.swift */,
 				67247F7725D2E5A50024467D /* OutageState.swift */,
 				67247F6725D2E4E00024467D /* OutageFlowContainerView.swift */,
 				67247F6D25D2E4EA0024467D /* OutageContainerView.swift */,
@@ -4201,6 +4223,7 @@
 				67247F9F25D2FE6C0024467D /* BillFlowContainerView.swift */,
 				67247FA525D2FE750024467D /* BillContainerView.swift */,
 				67247F3425D2D92B0024467D /* BillView.swift */,
+				67247FDD25D33D170024467D /* BillCard.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -4219,8 +4242,20 @@
 			children = (
 				67247F6025D2E33A0024467D /* AccountInfoBar.swift */,
 				67247F5225D2DF7E0024467D /* ImageTextView.swift */,
+				67247FCD25D33B400024467D /* CardView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		67247FED25D43D8D0024467D /* Account List */ = {
+			isa = PBXGroup;
+			children = (
+				6724800225D441810024467D /* WatchAccount.swift */,
+				67247FEE25D43DAD0024467D /* AccountListContainerView.swift */,
+				67247F2225D2D90C0024467D /* AccountList.swift */,
+				67247FFC25D43DD70024467D /* AccountRow.swift */,
+			);
+			path = "Account List";
 			sourceTree = "<group>";
 		};
 		674A11F82523889C00AF0D38 /* Energy Wise Rewards */ = {
@@ -6537,10 +6572,12 @@
 				C3055C382538FC99000DB89C /* RxNotifications.swift in Sources */,
 				C3055C1B2538FBEF000DB89C /* RegistrationService.swift in Sources */,
 				35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */,
+				6724801F25D44A380024467D /* PreviewData.swift in Sources */,
 				C3055BFB2538FB11000DB89C /* GameUserRequest.swift in Sources */,
 				C3055B5B2538F81B000DB89C /* ForecastBill.swift in Sources */,
 				C3055B612538F81B000DB89C /* DateRequest.swift in Sources */,
 				67247F7825D2E5A50024467D /* OutageState.swift in Sources */,
+				67247FDE25D33D170024467D /* BillCard.swift in Sources */,
 				C3055B692538F81B000DB89C /* SERResult.swift in Sources */,
 				C3055B3D2538F6EB000DB89C /* OutageStatus.swift in Sources */,
 				C3055BEE2538FB11000DB89C /* SchedulePaymentCancelRequest.swift in Sources */,
@@ -6549,7 +6586,9 @@
 				C3055C252538FC6F000DB89C /* NetworkingLayer.swift in Sources */,
 				C3055B832538F81B000DB89C /* PeakRewardsSummary.swift in Sources */,
 				35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */,
+				67247FD425D33C010024467D /* Color.swift in Sources */,
 				C3055B712538F81B000DB89C /* PaymentItem.swift in Sources */,
+				6724800325D441810024467D /* WatchAccount.swift in Sources */,
 				C3055C182538FBEF000DB89C /* WalletService.swift in Sources */,
 				C3055C4B2538FD6E000DB89C /* NewMockDataKey.swift in Sources */,
 				355B10372369DB190038EAD3 /* WatchSessionMananger.swift in Sources */,
@@ -6567,6 +6606,7 @@
 				C3055B632538F81B000DB89C /* GenericResponse.swift in Sources */,
 				C3055BF62538FB11000DB89C /* BillingHistoryRequest.swift in Sources */,
 				C3055B5F2538F81B000DB89C /* PaymentResult.swift in Sources */,
+				67247FCE25D33B400024467D /* CardView.swift in Sources */,
 				67247F0225D2D7380024467D /* AuthenticationController.swift in Sources */,
 				C3055BD52538FB04000DB89C /* NetworkingError.swift in Sources */,
 				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
@@ -6592,12 +6632,15 @@
 				C3055C3D2538FCA6000DB89C /* Router.swift in Sources */,
 				C3055B742538F81B000DB89C /* ValidatedAccountResponse.swift in Sources */,
 				C3055BF12538FB11000DB89C /* AccountLookupRequest.swift in Sources */,
+				67247FE425D43AC60024467D /* Tab.swift in Sources */,
 				67247FA025D2FE6C0024467D /* BillFlowContainerView.swift in Sources */,
 				C3055C202538FC0A000DB89C /* String+DateParser.swift in Sources */,
 				35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */,
 				35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				C3055B722538F81B000DB89C /* AccountLookupResult.swift in Sources */,
+				67247FEF25D43DAD0024467D /* AccountListContainerView.swift in Sources */,
 				C3055B562538F81B000DB89C /* ForgotMaskedUsernames.swift in Sources */,
+				67247FFD25D43DD70024467D /* AccountRow.swift in Sources */,
 				C3055B6B2538F81B000DB89C /* SharePointAlert.swift in Sources */,
 				67247F6E25D2E4EA0024467D /* OutageContainerView.swift in Sources */,
 				C3055C4A2538FD6E000DB89C /* URLProtocolMock.swift in Sources */,
@@ -6688,6 +6731,7 @@
 				35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */,
 				C3055B852538F81B000DB89C /* WalletItem.swift in Sources */,
 				35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */,
+				6724801525D444B60024467D /* WatchOutage.swift in Sources */,
 				C3055B622538F81B000DB89C /* DailyUsage.swift in Sources */,
 				C3055C052538FB38000DB89C /* BankAccount.swift in Sources */,
 				35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */,
@@ -7758,6 +7802,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -7770,6 +7815,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -7796,6 +7842,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -7809,6 +7856,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -7836,6 +7884,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -7849,6 +7898,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -7958,6 +8008,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -7971,6 +8022,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -7997,6 +8049,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -8011,6 +8064,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -8038,6 +8092,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -8052,6 +8107,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -8679,6 +8735,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -8692,6 +8749,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -8717,6 +8775,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8729,6 +8788,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -8950,6 +9010,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -8964,6 +9025,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -8990,6 +9052,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -9003,6 +9066,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -9224,6 +9288,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -9238,6 +9303,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -9265,6 +9331,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -9278,6 +9345,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -9906,6 +9974,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -9919,6 +9988,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -9944,6 +10014,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -9956,6 +10027,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -10178,6 +10250,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -10192,6 +10265,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -10218,6 +10292,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -10231,6 +10306,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -10453,6 +10529,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -10467,6 +10544,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -10494,6 +10572,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -10507,6 +10586,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -11135,6 +11215,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -11148,6 +11229,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -11173,6 +11255,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -11185,6 +11268,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -11407,6 +11491,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -11421,6 +11506,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -11447,6 +11533,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -11460,6 +11547,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -11682,6 +11770,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -11696,6 +11785,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -11723,6 +11813,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -11736,6 +11827,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -12364,6 +12456,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -12377,6 +12470,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -12402,6 +12496,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -12414,6 +12509,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -12636,6 +12732,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -12650,6 +12747,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -12676,6 +12774,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -12689,6 +12788,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -12911,6 +13011,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -12925,6 +13026,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -12952,6 +13054,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -12965,6 +13068,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -13592,6 +13696,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -13605,6 +13710,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -13630,6 +13736,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -13642,6 +13749,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -13863,6 +13971,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -13877,6 +13986,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -13903,6 +14013,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -13916,6 +14027,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -14137,6 +14249,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -14151,6 +14264,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
@@ -14178,6 +14292,7 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -14191,6 +14306,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
