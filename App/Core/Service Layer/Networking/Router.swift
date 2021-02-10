@@ -171,7 +171,7 @@ public enum Router {
     private var basePath: String {
         let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
         let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
-        return "/mobile/custom\(projectURLSuffix.projectPath)"
+        return "\(projectURLSuffix.projectPath)/mobile/custom"
     }
     
     public var apiAccess: ApiAccess {
