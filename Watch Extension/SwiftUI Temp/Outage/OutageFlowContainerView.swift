@@ -9,25 +9,43 @@
 import SwiftUI
 
 struct OutageFlowContainerView: View {
-    @State private var outageState: OutageState = .loading
-    @State private var watchOutage: WatchOutage?
-    @State private var errorState: ErrorState?
-    
+    @State private var state: OutageState = .loading
     @State private var isPresented = false
     
     var body: some View {
         Group {
-            if let errorState = errorState {
-                ErrorContainerView(errorState: errorState)
-            } else {
-                OutageContainerView(outageState: outageState,
-                                    watchOutage: watchOutage)
+            switch state {
+            case .loading:
+                OutageContainerView(outage: PreviewData.outageOn,
+                                    account: PreviewData.accounts[0],
+                                    isLoading: true)
+                    .redacted(reason: .placeholder)
+            case .loaded(let outage, let account):
+                VStack(spacing: 0) {
+                    AccountInfoBar(accountID: account.accountID)
+                OutageContainerView(outage: outage,
+                                    account: account,
+                                    isLoading: false)
                     .sheet(isPresented: $isPresented,
                            content: reportOutageContent)
                     .onTapGesture {
                         isPresented.toggle()
                     }
-                    .redacted(reason: outageState == .loading ? .placeholder : [])
+                }
+            case .gasOnly(let account):
+                VStack(spacing: 0) {
+                    AccountInfoBar(accountID: account.accountID)
+                ImageTextView(imageName: AppImage.gas.name,
+                              text: "Outage reporting for gas only accounts is not allowed online.")
+                }
+            case .unavailable(let account):
+                VStack(spacing: 0) {
+                    AccountInfoBar(accountID: account.accountID)
+                ImageTextView(imageName: AppImage.outageUnavailable.name,
+                              text: "Outage Status and Reporting are not available for this account.")
+                }
+            case .error(let errorState):
+                ErrorContainerView(errorState: errorState)
             }
         }
         .navigationTitle("Outage")

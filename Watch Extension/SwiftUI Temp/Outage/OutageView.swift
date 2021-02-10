@@ -9,16 +9,13 @@
 import SwiftUI
 
 struct OutageView: View {
-    let outageState: OutageState
-    let watchOutage: WatchOutage?
+    let outage: WatchOutage
+    let account: WatchAccount
+    var isLoading = false
     //    @State private var wave = false
     
-    private var isPowerOn: Bool {
-        watchOutage?.isPowerOn ?? true
-    }
-    
     private var powerText: String {
-        isPowerOn ? "POWER IS ON" : "POWER IS OUT"
+        outage.isPowerOn ? "POWER IS ON" : "POWER IS OUT"
     }
     
     var body: some View {
@@ -30,15 +27,15 @@ struct OutageView: View {
                 .fontWeight(.semibold)
                 .padding(.bottom, 4)
             
-            if let estimatedRestoration = watchOutage?.estimatedRestoration {
+            if let estimatedRestoration = outage.estimatedRestoration {
                 Text("Estimated Restoration")
                     .font(.footnote)
                 Text(estimatedRestoration)
                     .font(.footnote)
             }
             
-            if watchOutage != nil {
-                Image(isPowerOn ? "On_37" : "Out_37")
+            if !isLoading {
+                Image(outage.isPowerOn ? "On_37" : "Out_37")
                     .frame(height: 25)
             }
             
@@ -58,15 +55,15 @@ struct OutageView: View {
 }
 
 
-struct OutageView_Previews: PreviewProvider {
-    static var previews: some View {
-        OutageView(outageState: .loading,
-                   watchOutage: nil)
-        
-        OutageView(outageState: .loaded,
-                   watchOutage: PreviewData.outageOff)
-        
-        OutageView(outageState: .loaded,
-                   watchOutage: PreviewData.outageOn)
-    }
-}
+//struct OutageView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        OutageView(outageState: .loading,
+//                   watchOutage: nil)
+//
+//        OutageView(outageState: .loaded,
+//                   watchOutage: PreviewData.outageOff)
+//
+//        OutageView(outageState: .loaded,
+//                   watchOutage: PreviewData.outageOn)
+//    }
+//}
