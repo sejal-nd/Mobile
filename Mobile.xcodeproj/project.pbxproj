@@ -242,6 +242,9 @@
 		6724800325D441810024467D /* WatchAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724800225D441810024467D /* WatchAccount.swift */; };
 		6724801525D444B60024467D /* WatchOutage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724801425D444B60024467D /* WatchOutage.swift */; };
 		6724801F25D44A380024467D /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724801E25D44A380024467D /* PreviewData.swift */; };
+		6724803925D455320024467D /* WatchUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724803825D455320024467D /* WatchUsage.swift */; };
+		6724804325D4553F0024467D /* WatchBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724804225D4553F0024467D /* WatchBill.swift */; };
+		6724804925D457800024467D /* FuelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724804825D457800024467D /* FuelType.swift */; };
 		673FA0CA24C899CD00210BCD /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */; };
 		673FA0D724C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */; };
 		673FA0E424C89A1900210BCD /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0E324C89A1900210BCD /* AccountLookupResults.swift */; };
@@ -1628,6 +1631,9 @@
 		6724800225D441810024467D /* WatchAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAccount.swift; sourceTree = "<group>"; };
 		6724801425D444B60024467D /* WatchOutage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOutage.swift; sourceTree = "<group>"; };
 		6724801E25D44A380024467D /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
+		6724803825D455320024467D /* WatchUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchUsage.swift; sourceTree = "<group>"; };
+		6724804225D4553F0024467D /* WatchBill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchBill.swift; sourceTree = "<group>"; };
+		6724804825D457800024467D /* FuelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelType.swift; sourceTree = "<group>"; };
 		673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusContainer.swift; sourceTree = "<group>"; };
 		673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotMaskedUsernames.swift; sourceTree = "<group>"; };
 		673FA0E324C89A1900210BCD /* AccountLookupResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResults.swift; sourceTree = "<group>"; };
@@ -4208,6 +4214,8 @@
 		67247F8125D2FE1C0024467D /* Usage */ = {
 			isa = PBXGroup;
 			children = (
+				6724804825D457800024467D /* FuelType.swift */,
+				6724803825D455320024467D /* WatchUsage.swift */,
 				67247FB325D3063F0024467D /* UsageState.swift */,
 				67247F8225D2FE3C0024467D /* UsageFlowContainerView.swift */,
 				67247F8C25D2FE510024467D /* UsageContainerView.swift */,
@@ -4219,6 +4227,7 @@
 		67247F9625D2FE5A0024467D /* Bill */ = {
 			isa = PBXGroup;
 			children = (
+				6724804225D4553F0024467D /* WatchBill.swift */,
 				67247FBD25D314040024467D /* BillState.swift */,
 				67247F9F25D2FE6C0024467D /* BillFlowContainerView.swift */,
 				67247FA525D2FE750024467D /* BillContainerView.swift */,
@@ -6547,7 +6556,9 @@
 				C3055C072538FB38000DB89C /* CreditCard.swift in Sources */,
 				67247F6125D2E33A0024467D /* AccountInfoBar.swift in Sources */,
 				C3055B5C2538F81B000DB89C /* BillPDF.swift in Sources */,
+				6724804925D457800024467D /* FuelType.swift in Sources */,
 				C3055B532538F81B000DB89C /* DailyUsageData.swift in Sources */,
+				6724804325D4553F0024467D /* WatchBill.swift in Sources */,
 				C3055B6F2538F81B000DB89C /* AlertPreferences.swift in Sources */,
 				35F9DE52233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
 				C3055B682538F81B000DB89C /* Wallet.swift in Sources */,
@@ -6557,6 +6568,7 @@
 				C3055BE22538FB11000DB89C /* ReleaseOfInfoRequest.swift in Sources */,
 				C3055B672538F81B000DB89C /* BillingHistoryItem.swift in Sources */,
 				C3055C082538FB38000DB89C /* ShortcutItem.swift in Sources */,
+				6724803925D455320024467D /* WatchUsage.swift in Sources */,
 				C3055C332538FC91000DB89C /* AuthenticationService.swift in Sources */,
 				35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */,
 				C3055B592538F81B000DB89C /* BGEAutoPayInfo.swift in Sources */,

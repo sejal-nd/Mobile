@@ -10,14 +10,16 @@ import SwiftUI
 
 struct UsageFlowContainerView: View {
     @State private var usageState: UsageState = .loading
-    @State private var errorState: ErrorState? = nil
+    @State private var watchUsage: WatchUsage?
+    @State private var errorState: ErrorState?
     
     var body: some View {
         VStack {
             if let errorState = errorState {
                 ErrorContainerView(errorState: errorState)
             } else {
-                UsageContainerView(usageState: usageState)
+                UsageContainerView(usageState: usageState,
+                                   watchUsage: watchUsage)
                     .redacted(reason: usageState == .loading ? .placeholder : [])
             }
         }
