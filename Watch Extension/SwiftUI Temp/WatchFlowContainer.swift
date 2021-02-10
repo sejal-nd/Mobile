@@ -16,7 +16,7 @@ struct WatchFlowContainer: View {
     var body: some View {
         //        if authenticationController.isLoggedIn {
         TabView(selection: $selectedTab) {
-            AccountListContainerView()
+            AccountListFlowContainerView()
                 .tag(Tab.accountList)
             
             OutageFlowContainerView()

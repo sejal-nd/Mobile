@@ -13,26 +13,26 @@ struct WatchAccount: Identifiable {
          accountID: String,
          address: String,
          isResidential: Bool,
-         details: AccountDetail? = nil) {
+         account: Account? = nil) {
         self.id = id
         self.accountID = accountID
         self.address = address
         self.isResidential = isResidential
-        self.details = details
+        self.account = account
     }
     
-    init(details: AccountDetail) {
-        self.accountID = details.accountNumber
-        self.address = details.address ?? ""
-        self.isResidential = details.isResidential
-        self.details = details
+    init(account: Account) {
+        self.accountID = account.accountNumber
+        self.address = account.address ?? ""
+        self.isResidential = account.isResidential
+        self.account = account
     }
     
     var id: UUID = UUID()
     let accountID: String
     let address: String
     let isResidential: Bool
-    var details: AccountDetail? = nil
+    var account: Account? = nil
 }
 
 extension WatchAccount: Equatable {

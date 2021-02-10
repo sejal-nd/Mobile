@@ -9,7 +9,6 @@
 import Foundation
 
 struct AnalyticUtility {
-    
     enum ScreenName: String {
         case sign_in_screen_view
         case please_sync_screen_view

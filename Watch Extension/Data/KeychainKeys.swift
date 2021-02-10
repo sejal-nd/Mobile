@@ -11,7 +11,6 @@ import Foundation
 // MARK: - Keychain Keys
 
 enum keychainKeys {
-    // WatchOS
     static let authToken = "authToken"
     static let askForUpdate = "askForUpdate"
     static let outageReported = "outageReported"

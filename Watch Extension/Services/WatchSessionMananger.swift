@@ -80,6 +80,7 @@ extension WatchSessionManager {
                 }
             }
             #elseif os(watchOS)
+            
             // New MCS Auth Token
             if let authToken = applicationContext[UserSession.tokenKeychainKey] as? String {
                 // Save to KeyChain

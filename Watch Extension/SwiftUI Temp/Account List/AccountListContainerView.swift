@@ -9,14 +9,15 @@
 import SwiftUI
 
 struct AccountListContainerView: View {
+    let accounts: [WatchAccount]
+    
     var body: some View {
-        AccountList(accounts: [])
-            .navigationTitle("Accounts")
+        AccountList(accounts: accounts)
     }
 }
 
 struct AccountListContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountListContainerView()
+        AccountListContainerView(accounts: PreviewData.accounts)
     }
 }
