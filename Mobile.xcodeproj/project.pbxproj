@@ -70,8 +70,8 @@
 		3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3559C8B52301E4FF00481A87 /* AutoPay.storyboard */; };
 		3559C8BA23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */; };
 		355B10372369DB190038EAD3 /* WatchSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionController.swift */; };
-		355B10412369E4820038EAD3 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainManager.swift */; };
-		355B10442369E48D0038EAD3 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainManager.swift */; };
+		355B10412369E4820038EAD3 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainController.swift */; };
+		355B10442369E48D0038EAD3 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainController.swift */; };
 		355B10462369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		355B104A2369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		356AC12C25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */; };
@@ -182,13 +182,13 @@
 		35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */; };
-		35F9DDBE2333D91D00AAA2B2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainManager.swift */; };
+		35F9DDBE2333D91D00AAA2B2 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainController.swift */; };
 		35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
 		35F9DDC523340C9B00AAA2B2 /* Main-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */; };
 		35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
-		35F9DE52233A583700AAA2B2 /* AnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */; };
+		35F9DE52233A583700AAA2B2 /* AnalyticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticController.swift */; };
 		35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
 		35FB5030234D091100C50162 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB502E234D091000C50162 /* UIColor.swift */; };
 		38067936D320131E8A71A633 /* Pods_EUMobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A3A4A7A4BBF2DD357F1C3F /* Pods_EUMobileUITests.framework */; };
@@ -1388,7 +1388,7 @@
 		355B10452369E54E0038EAD3 /* KeychainKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
 		356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayReviewPaymentViewController.swift; sourceTree = "<group>"; };
 		356AC13225064E5F000CF867 /* TapToPay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TapToPay.storyboard; sourceTree = "<group>"; };
-		356C7F8021909997003E8A90 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		356C7F8021909997003E8A90 /* KeychainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainController.swift; sourceTree = "<group>"; };
 		3575232C22C53A1B00A0AFAC /* AccountListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountListRow.xib; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
@@ -1502,7 +1502,7 @@
 		35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-FlavorBGE.storyboard"; sourceTree = "<group>"; };
 		35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorCOMED.xcassets"; sourceTree = "<group>"; };
 		35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
-		35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticUtility.swift; sourceTree = "<group>"; };
+		35F9DE50233A583700AAA2B2 /* AnalyticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticController.swift; sourceTree = "<group>"; };
 		35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageInterfaceController.swift; sourceTree = "<group>"; };
 		35FB4814A68B1B65B3BE45C8 /* Pods-EUMobileUITests.test-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.test-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.test-dpl.xcconfig"; sourceTree = "<group>"; };
 		35FB502E234D091000C50162 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -4155,8 +4155,8 @@
 		67247F0025D2D71E0024467D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */,
-				356C7F8021909997003E8A90 /* KeychainManager.swift */,
+				35F9DE50233A583700AAA2B2 /* AnalyticController.swift */,
+				356C7F8021909997003E8A90 /* KeychainController.swift */,
 				355B10352369DB180038EAD3 /* WatchSessionController.swift */,
 				6724807925D475F60024467D /* NetworkController.swift */,
 			);
@@ -6557,7 +6557,7 @@
 				C3055B532538F81B000DB89C /* DailyUsageData.swift in Sources */,
 				6724804325D4553F0024467D /* WatchBill.swift in Sources */,
 				C3055B6F2538F81B000DB89C /* AlertPreferences.swift in Sources */,
-				35F9DE52233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
+				35F9DE52233A583700AAA2B2 /* AnalyticController.swift in Sources */,
 				C3055B682538F81B000DB89C /* Wallet.swift in Sources */,
 				C3055C062538FB38000DB89C /* SubOpCo.swift in Sources */,
 				C3055B642538F81B000DB89C /* OutageStatusContainer.swift in Sources */,
@@ -6676,7 +6676,7 @@
 				C3055C1A2538FBEF000DB89C /* PeakRewardsService.swift in Sources */,
 				35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */,
 				C3055B792538F81B000DB89C /* MinimumVersion.swift in Sources */,
-				35F9DDBE2333D91D00AAA2B2 /* KeychainManager.swift in Sources */,
+				35F9DDBE2333D91D00AAA2B2 /* KeychainController.swift in Sources */,
 				C3055B6E2538F81B000DB89C /* Alert.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				C3055BEF2538FB11000DB89C /* WalletItemDeleteRequest.swift in Sources */,
@@ -6798,7 +6798,7 @@
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */,
-				355B10412369E4820038EAD3 /* KeychainManager.swift in Sources */,
+				355B10412369E4820038EAD3 /* KeychainController.swift in Sources */,
 				0EF60FD320EE8104006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
 				674A11F3252387A100AF0D38 /* SubOpCo.swift in Sources */,
 				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
@@ -7312,7 +7312,7 @@
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
-				355B10442369E48D0038EAD3 /* KeychainManager.swift in Sources */,
+				355B10442369E48D0038EAD3 /* KeychainController.swift in Sources */,
 				9CE700AF231865AA00191C05 /* SERPTSViewModel.swift in Sources */,
 				354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */,
 				9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,

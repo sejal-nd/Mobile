@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AnalyticUtility {
+struct AnalyticController {
     enum ScreenName: String {
         case sign_in_screen_view
         case please_sync_screen_view

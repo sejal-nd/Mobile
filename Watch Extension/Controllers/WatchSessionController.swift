@@ -17,6 +17,7 @@ class WatchSessionController: NSObject, WCSessionDelegate {
     static let shared = WatchSessionController()
     
     var authTokenDidUpdate: (() -> Void)? = nil
+    var outageReportedFromPhone: (() -> Void)? = nil
     
     private override init() {
         super.init()
@@ -45,7 +46,6 @@ class WatchSessionController: NSObject, WCSessionDelegate {
         session?.delegate = self
         session?.activate()
     }
-    
 }
 
 
@@ -53,7 +53,6 @@ class WatchSessionController: NSObject, WCSessionDelegate {
 // Use when your app needs only the latest info: If the data was not sent, it will be replaced.
 
 extension WatchSessionController {
-    
     // Sender
     func updateApplicationContext(applicationContext: [String : Any]) throws {
         guard let session = validSession else {
@@ -72,36 +71,22 @@ extension WatchSessionController {
     // Receiver
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         DispatchQueue.main.async { [weak self] in
-            #if os(iOS)
-            #warning("todo, what does ths do?")
-            if let needsUpdate = applicationContext[keychainKeys.askForUpdate] as? Bool, needsUpdate {
-                //check for valid jwt else clear and log out
-                if AuthenticationService.isLoggedIn() {
-                    let authToken = UserSession.token
-                    try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.authToken : authToken])
-                }
-            }
-            #elseif os(watchOS)
-            
-            // New MCS Auth Token
+            #if os(watchOS)
+            // New Azure Auth Token
             if let authToken = applicationContext[UserSession.tokenKeychainKey] as? String {
                 // Save to KeyChain
-                KeychainManager.shared[keychainKeys.authToken] = authToken
-                KeychainManager.shared[UserSession.tokenKeychainKey] = authToken
-
+                KeychainController.shared[keychainKeys.authToken] = authToken
+                KeychainController.shared[UserSession.tokenKeychainKey] = authToken
+                KeychainController.shared[UserSession.refreshTokenKeychainKey] = (applicationContext[UserSession.refreshTokenKeychainKey] ?? "") as? String
+                KeychainController.shared[UserSession.tokenExpirationDateKeychainKey] = (applicationContext[UserSession.tokenExpirationDateKeychainKey] ?? "") as? String
+                KeychainController.shared[UserSession.refreshTokenExpirationDateKeychainKey] = (applicationContext[UserSession.refreshTokenExpirationDateKeychainKey] ?? "") as? String
+                
                 self?.authTokenDidUpdate?()
             }
             
-            
-            #warning("todo, cleanup")
-            KeychainManager.shared[UserSession.refreshTokenKeychainKey] = (applicationContext[UserSession.refreshTokenKeychainKey] ?? "") as? String
-            KeychainManager.shared[UserSession.tokenExpirationDateKeychainKey] = (applicationContext[UserSession.tokenExpirationDateKeychainKey] ?? "") as? String
-            KeychainManager.shared[UserSession.refreshTokenExpirationDateKeychainKey] = (applicationContext[UserSession.refreshTokenExpirationDateKeychainKey] ?? "") as? String
-            
-            // User reported outage on mobile app
-            #warning("todo, consider")
+            // User reported outage on phone
             if let outageReported = applicationContext[keychainKeys.outageReported] as? Bool, outageReported {
-                NotificationCenter.default.post(name: Notification.Name.outageReported, object: nil)
+                self?.outageReportedFromPhone?()
             }
             #endif
         }
@@ -113,7 +98,6 @@ extension WatchSessionController {
 // Use when your app needs all the data: FIFO queue
 
 extension WatchSessionController {
-    
     // Sender
     func transferUserInfo(userInfo: [String : Any]) {
         validSession?.transferUserInfo(userInfo)
@@ -123,7 +107,7 @@ extension WatchSessionController {
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
             #if os(iOS)
-
+            
             // Logging
             if let value = userInfo["console"] as? String {
                 Log.info("WATCH CONSOLE: \(value)")
@@ -131,7 +115,7 @@ extension WatchSessionController {
             }
             
             guard let screenName = userInfo["screenName"] as? String else {
-                Log.info("Failed to parse user info dictionary with key: screenName")
+                Log.error("Failed to parse user info dictionary with key: screenName")
                 return
             }
             
@@ -139,14 +123,12 @@ extension WatchSessionController {
             #endif
         }
     }
-    
 }
 
 
 // MARK: - Unused Required Delegate Methods
 
 extension WatchSessionController {
-    
     @available(iOS 9.3, *)
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
     
@@ -155,5 +137,4 @@ extension WatchSessionController {
     
     func sessionDidDeactivate(_ session: WCSession) { }
     #endif
-    
 }

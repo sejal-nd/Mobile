@@ -33,6 +33,9 @@ extension PreviewData {
     
     static let outageOff = WatchOutage(isPowerOn: false,
                                        estimatedRestoration: "10:30AM 10/09/2018")
+    
+    static let outageReported = WatchOutage(isPowerOn: false,
+                                            estimatedRestoration: Configuration.shared.opco.isPHI ? "Pending Assessment" : "Assessing Damage")
 }
 
 // MARK: Usage

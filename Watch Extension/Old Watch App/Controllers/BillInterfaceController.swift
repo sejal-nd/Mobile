@@ -99,7 +99,7 @@ class BillInterfaceController: WKInterfaceController {
                 Log.info("Loading")
             case .error(let error):
                 
-                try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
+//                try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
                 
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.error.name)
@@ -163,7 +163,7 @@ class BillInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        AnalyticUtility.logScreenView(.bill_screen_view)
+        AnalyticController.logScreenView(.bill_screen_view)
     }
     
     deinit {

@@ -9,26 +9,29 @@
 import SwiftUI
 
 struct UsageView: View {
+    internal init(usage: WatchUsage, account: WatchAccount, isLoading: Bool) {
+        self.usage = usage
+        self.account = account
+        self.isLoading = isLoading
+        
+        if usage.fuelTypes.count == 2 {
+            hasBothFuelTypes = true
+        } else {
+            if usage.fuelTypes.contains(.electric) {
+                isShowingElectric = true
+            } else {
+                isShowingElectric = false
+            }            
+        }
+    }
+    
     let usage: WatchUsage
     let account: WatchAccount
     let isLoading: Bool
 
     @State private var isShowingElectric = true
     
-    private var hasBothFuelTypes: Bool {
-        if usage.fuelTypes.count == 2 {
-            return true
-        } else {
-            if usage.fuelTypes.contains(.electric) {
-                isShowingElectric = true
-            } else {
-                isShowingElectric = false
-            }
-            
-            return false
-        }
-        
-    }
+    private var hasBothFuelTypes = false
     
     private var usageCostText: String {
         if isShowingElectric {

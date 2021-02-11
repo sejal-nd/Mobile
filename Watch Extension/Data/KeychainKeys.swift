@@ -12,6 +12,5 @@ import Foundation
 
 enum keychainKeys {
     static let authToken = "authToken"
-    static let askForUpdate = "askForUpdate"
     static let outageReported = "outageReported"
 }

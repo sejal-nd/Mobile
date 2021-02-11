@@ -20,7 +20,7 @@ public enum AuthenticationService {
     #if os(iOS)
     private static let tokenKeychain = A0SimpleKeychain()
     #elseif os(watchOS)
-    private static let tokenKeychain = KeychainManager.shared
+    private static let tokenKeychain = KeychainController.shared
     #endif
     
     static func login(username: String,

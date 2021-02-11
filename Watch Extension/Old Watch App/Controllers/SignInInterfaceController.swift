@@ -14,9 +14,9 @@ class SignInInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        AnalyticUtility.logScreenView(.sign_in_screen_view)
+        AnalyticController.logScreenView(.sign_in_screen_view)
         
-        try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
+//        try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
     }
 
 }

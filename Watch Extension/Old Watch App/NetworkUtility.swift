@@ -146,7 +146,7 @@ extension NetworkUtility {
     private func fetchFeatureData(semaphore: DispatchSemaphore, dispatchQueue: DispatchQueue) {
         var maintenanceStatuses = [MaintenanceModeStatus]()
         
-        guard KeychainManager.shared[keychainKeys.authToken] != nil,
+        guard KeychainController.shared[keychainKeys.authToken] != nil,
             let _ = AccountsStore.shared.currentIndex else {
                 Log.info("Could not find auth token in Accounts Manager Fetch Account Details.")
                 self.notificationCenter.post(name: .errorDidOccur, object: (NetworkError.missingToken, Feature.all))
@@ -259,7 +259,7 @@ extension NetworkUtility {
     /// Fetches the account list associated with a particular MyAccount.
     /// - Parameter result: Either an array of `Account` or a `NetworkError`.
     private func fetchAccountList(result: @escaping (Result<[Account], NetworkError>) -> ()) {
-        guard KeychainManager.shared[keychainKeys.authToken] != nil else {
+        guard KeychainController.shared[keychainKeys.authToken] != nil else {
             Log.info("No Auth Token: Account list fetch termimated.")
             result(.failure(.missingToken))
             return
@@ -298,7 +298,7 @@ extension NetworkUtility {
     private func fetchAccountDetails(result: @escaping (Result<AccountDetail, NetworkError>) -> ()) {
         Log.info("Fetching Account Details...")
         
-        guard KeychainManager.shared[keychainKeys.authToken] != nil,
+        guard KeychainController.shared[keychainKeys.authToken] != nil,
             let _ = AccountsStore.shared.currentIndex else {
                 Log.info("Could not find auth token in Accounts Manager Fetch Account Details.")
                 result(.failure(.missingToken))

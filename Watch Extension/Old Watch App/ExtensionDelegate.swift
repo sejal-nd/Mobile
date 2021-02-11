@@ -22,7 +22,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     // MARK: - Helper
     
     private func setInitialScreen() {
-        let authToken = KeychainManager.shared[keychainKeys.authToken]
+        let authToken = KeychainController.shared[keychainKeys.authToken]
         
         if authToken != nil {
             WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject),

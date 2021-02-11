@@ -23,6 +23,12 @@ class NetworkController: ObservableObject {
             self?.setLoginStatus()
             self?.fetchData()
         }
+        
+        WatchSessionController.shared.outageReportedFromPhone = { [weak self] () -> Void in
+            let account = WatchAccount(account: AccountsStore.shared.currentAccount)
+            self?.outageState = .loaded(outage: PreviewData.outageReported,
+                                        account: account)
+        }
     }
 }
 
@@ -56,7 +62,7 @@ extension NetworkController {
     }
     
     private func setLoginStatus() {
-        let authToken = KeychainManager.shared[keychainKeys.authToken]
+        let authToken = KeychainController.shared[keychainKeys.authToken]
         isLoggedIn = authToken != nil
     }
     
@@ -87,7 +93,7 @@ extension NetworkController {
         
         Log.info("Fetching Maintenance Mode Status...")
         
-        guard KeychainManager.shared[keychainKeys.authToken] != nil,
+        guard KeychainController.shared[keychainKeys.authToken] != nil,
               let _ = AccountsStore.shared.currentIndex else {
             Log.error("Could not find auth token in Accounts Manager Fetch Account Details.")
             

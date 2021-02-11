@@ -8,18 +8,18 @@
 
 import Foundation
 
-open class KeychainManager {
+open class KeychainController {
     open var loggingEnabled = false
     
     private init() {}
     
-    private static var _shared: KeychainManager?
-    public static var shared: KeychainManager {
+    private static var _shared: KeychainController?
+    public static var shared: KeychainController {
         get {
             if _shared == nil {
                 DispatchQueue.global().sync(flags: .barrier) {
                     if _shared == nil {
-                        _shared = KeychainManager()
+                        _shared = KeychainController()
                     }
                 }
             }
