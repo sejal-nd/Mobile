@@ -12,29 +12,22 @@ struct UsageView: View {
     let usage: WatchUsage
     let account: WatchAccount
     let isLoading: Bool
-    
-    //    let usageState: UsageState
-    //    let watchUsage: WatchUsage?
-    
+
     @State private var isShowingElectric = true
-    private var hasBothFuelTypes = false
     
-    init(usage: WatchUsage,
-         account: WatchAccount,
-         isLoading: Bool) {
-        self.usage = usage
-        self.account = account
-        self.isLoading = isLoading
-        
+    private var hasBothFuelTypes: Bool {
         if usage.fuelTypes.count == 2 {
-            self.hasBothFuelTypes = true
+            return true
         } else {
             if usage.fuelTypes.contains(.electric) {
                 isShowingElectric = true
             } else {
                 isShowingElectric = false
             }
+            
+            return false
         }
+        
     }
     
     private var usageCostText: String {
