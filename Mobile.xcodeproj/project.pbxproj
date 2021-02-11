@@ -4024,15 +4024,11 @@
 		35E7C79F21907EA400BA13C6 /* Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				672480EE25D5B0F50024467D /* Old Watch App */,
 				67247FC825D315410024467D /* Components */,
-				67247F1125D2D8DA0024467D /* SwiftUI Temp */,
-				67247F0025D2D71E0024467D /* NewControllers */,
-				35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */,
-				35E7C7FB2190805C00BA13C6 /* Controllers */,
-				35E7C7D82190802400BA13C6 /* Views */,
-				35E7C7E22190803900BA13C6 /* Services */,
+				67247F1125D2D8DA0024467D /* Features */,
+				67247F0025D2D71E0024467D /* Controllers */,
 				35F9DE4C2339106800AAA2B2 /* Data */,
-				35E7C7DB2190802C00BA13C6 /* Utility */,
 				35E7C7EA2190804E00BA13C6 /* Extensions */,
 				35E7C8082190806700BA13C6 /* Configurations */,
 			);
@@ -4075,31 +4071,11 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		35E7C7DB2190802C00BA13C6 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */,
-				3527DB37234B86E000DA4553 /* BillUtility.swift */,
-				35BAA1782367454F0053E58A /* NetworkUtility.swift */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		35E7C7E22190803900BA13C6 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				356C7F8021909997003E8A90 /* KeychainManager.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		35E7C7EA2190804E00BA13C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				67247FD325D33C010024467D /* Color.swift */,
-				35FB502E234D091000C50162 /* UIColor.swift */,
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
-				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4176,16 +4152,18 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		67247F0025D2D71E0024467D /* NewControllers */ = {
+		67247F0025D2D71E0024467D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */,
+				356C7F8021909997003E8A90 /* KeychainManager.swift */,
 				355B10352369DB180038EAD3 /* WatchSessionController.swift */,
 				6724807925D475F60024467D /* NetworkController.swift */,
 			);
-			path = NewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		67247F1125D2D8DA0024467D /* SwiftUI Temp */ = {
+		67247F1125D2D8DA0024467D /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				67247FE325D43AC60024467D /* Tab.swift */,
@@ -4198,7 +4176,7 @@
 				67247FC725D315260024467D /* Error */,
 				67247F1225D2D8EC0024467D /* SignInView.swift */,
 			);
-			path = "SwiftUI Temp";
+			path = Features;
 			sourceTree = "<group>";
 		};
 		67247F6625D2E4CD0024467D /* Outage */ = {
@@ -4270,6 +4248,20 @@
 				67247FFC25D43DD70024467D /* AccountRow.swift */,
 			);
 			path = "Account List";
+			sourceTree = "<group>";
+		};
+		672480EE25D5B0F50024467D /* Old Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */,
+				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
+				35FB502E234D091000C50162 /* UIColor.swift */,
+				35BAA1782367454F0053E58A /* NetworkUtility.swift */,
+				3527DB37234B86E000DA4553 /* BillUtility.swift */,
+				35E7C7D82190802400BA13C6 /* Views */,
+				35E7C7FB2190805C00BA13C6 /* Controllers */,
+			);
+			path = "Old Watch App";
 			sourceTree = "<group>";
 		};
 		674A11F82523889C00AF0D38 /* Energy Wise Rewards */ = {
