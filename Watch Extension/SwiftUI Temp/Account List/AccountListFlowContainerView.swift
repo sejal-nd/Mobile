@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AccountListFlowContainerView: View {
-    @State private var state: AccountListState = .loading
+    var state: AccountListState = .loading
     
     var body: some View {
         Group {
@@ -29,6 +29,10 @@ struct AccountListFlowContainerView: View {
 
 struct AccountListFlowContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountListFlowContainerView()
+        AccountListFlowContainerView(state: .loading)
+        
+        AccountListFlowContainerView(state: .loaded(accounts: PreviewData.accounts))
+        
+        AccountListFlowContainerView(state: .error(errorState: .other))
     }
 }

@@ -107,7 +107,7 @@ extension UserSession {
         
         // Login on Apple Watch
         if let token = tokenResponse.token {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [tokenKeychainKey : token, refreshTokenKeychainKey: refreshToken, tokenExpirationDateKeychainKey: "\(tokenExpirationDate.timeIntervalSince1970)", refreshTokenExpirationDateKeychainKey: "\(refreshTokenExpirationDate.timeIntervalSince1970)"])
+            try? WatchSessionController.shared.updateApplicationContext(applicationContext: [tokenKeychainKey : token, refreshTokenKeychainKey: refreshToken, tokenExpirationDateKeychainKey: "\(tokenExpirationDate.timeIntervalSince1970)", refreshTokenExpirationDateKeychainKey: "\(refreshTokenExpirationDate.timeIntervalSince1970)"])
         }
         #elseif os(watchOS)
         tokenKeychain[UserSession.tokenKeychainKey] = token

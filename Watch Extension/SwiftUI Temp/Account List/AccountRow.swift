@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct AccountRow: View {
+    @EnvironmentObject private var networkController: NetworkController
+    
+    let accounts: [WatchAccount]
     let account: WatchAccount
-    let didSelectAccount: () -> Void
     
     private var imageName: String {
         account.isResidential ? "house.fill" : "building.2.fill"
@@ -29,22 +31,30 @@ struct AccountRow: View {
         .contentShape(Rectangle())
         .onTapGesture(perform: didSelectAccount)
     }
+    
+    private func didSelectAccount() {
+        // Select new account
+        AccountsStore.shared.currentIndex = accounts.firstIndex(of: account) ?? 0
+        
+        // Fetch new account data
+        networkController.fetchFeatureData()
+    }
 }
 
 struct AccountRow_Previews: PreviewProvider {
     static var previews: some View {
         // Residential, short address
-        AccountRow(account: PreviewData.accounts[0],
-                   didSelectAccount: { })
+        AccountRow(accounts: PreviewData.accounts,
+                   account: PreviewData.accounts[0])
         
         // Commercial, long address
-        AccountRow(account: PreviewData.accounts[1],
-                   didSelectAccount: { })
+        AccountRow(accounts: PreviewData.accounts,
+                   account: PreviewData.accounts[1])
             .previewDevice("Apple Watch Series 6 - 40mm")
         
         // Residential, long address
-        AccountRow(account: PreviewData.accounts[2],
-                   didSelectAccount: { })
+        AccountRow(accounts: PreviewData.accounts,
+                   account: PreviewData.accounts[2])
             .previewDevice("Apple Watch Series 6 - 44mm")
     }
 }

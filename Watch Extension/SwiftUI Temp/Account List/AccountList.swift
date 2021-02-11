@@ -14,18 +14,10 @@ struct AccountList: View {
     var body: some View {
         List {
             ForEach(accounts) { account in
-                AccountRow(account: account) {
-                    didSelectAccount(account)
-                }
+                AccountRow(accounts: accounts,
+                           account: account)
             }
         }
-    }
-    
-    private func didSelectAccount(_ account: WatchAccount) {
-        AccountsStore.shared.currentIndex = accounts.firstIndex(of: account) ?? 0
-        
-        #warning("todo, trigger network requests similar to app init")
-        //        NotificationCenter.default.post(name: .currentAccountUpdated, object: AccountsStore.shared.currentAccount)
     }
 }
 

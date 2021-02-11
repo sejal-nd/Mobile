@@ -10,8 +10,8 @@ import SwiftUI
 
 enum UsageState {
     case loading
-    case loaded(usage: WatchUsage, acccount: WatchAccount)
-    case unforecasted(acccount: WatchAccount, days: Int)
-    case unavailable(acccount: WatchAccount)
+    case loaded(usage: WatchUsage, account: WatchAccount)
+    case unforecasted(account: WatchAccount, days: Int)
+    case unavailable(account: WatchAccount)
     case error(errorState: ErrorState)
 }

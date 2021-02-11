@@ -408,7 +408,7 @@ extension NetworkUtility {
     /// Reload Data every 15 minutes without the loading indicator if the app is reachable
     @objc private func reloadPollingData() {
         Log.info("Polling new data...")
-        guard WatchSessionManager.shared.validSession != nil else { return }
+        guard WatchSessionController.shared.validSession != nil else { return }
         
         fetchData(shouldLoadAccountList: false)
     }

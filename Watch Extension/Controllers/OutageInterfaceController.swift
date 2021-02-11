@@ -63,7 +63,7 @@ class OutageInterfaceController: WKInterfaceController {
                 shouldAnimateStatusImage = false
                 Log.info("Loading")
             case .error(let error):
-                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
+                try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
                 loadingImageGroup.setHidden(true)
                 
                 reportOutageTapGesture.isEnabled = false

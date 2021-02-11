@@ -99,7 +99,7 @@ class BillInterfaceController: WKInterfaceController {
                 Log.info("Loading")
             case .error(let error):
                 
-                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
+                try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
                 
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.error.name)

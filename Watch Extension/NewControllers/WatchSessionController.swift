@@ -13,9 +13,10 @@ import WatchKit
 import Foundation
 #endif
 
-class WatchSessionManager: NSObject, WCSessionDelegate {
+class WatchSessionController: NSObject, WCSessionDelegate {
+    static let shared = WatchSessionController()
     
-    static let shared = WatchSessionManager()
+    var authTokenDidUpdate: (() -> Void)? = nil
     
     private override init() {
         super.init()
@@ -51,7 +52,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
 // MARK: - Application Context
 // Use when your app needs only the latest info: If the data was not sent, it will be replaced.
 
-extension WatchSessionManager {
+extension WatchSessionController {
     
     // Sender
     func updateApplicationContext(applicationContext: [String : Any]) throws {
@@ -70,13 +71,14 @@ extension WatchSessionManager {
     
     // Receiver
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             #if os(iOS)
+            #warning("todo, what does ths do?")
             if let needsUpdate = applicationContext[keychainKeys.askForUpdate] as? Bool, needsUpdate {
                 //check for valid jwt else clear and log out
                 if AuthenticationService.isLoggedIn() {
                     let authToken = UserSession.token
-                    try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.authToken : authToken])
+                    try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.authToken : authToken])
                 }
             }
             #elseif os(watchOS)
@@ -86,18 +88,18 @@ extension WatchSessionManager {
                 // Save to KeyChain
                 KeychainManager.shared[keychainKeys.authToken] = authToken
                 KeychainManager.shared[UserSession.tokenKeychainKey] = authToken
-                
-                NetworkUtility.shared.resetInMemoryCache()
-                
-                // Reload Screens
-                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
+
+                self?.authTokenDidUpdate?()
             }
             
+            
+            #warning("todo, cleanup")
             KeychainManager.shared[UserSession.refreshTokenKeychainKey] = (applicationContext[UserSession.refreshTokenKeychainKey] ?? "") as? String
             KeychainManager.shared[UserSession.tokenExpirationDateKeychainKey] = (applicationContext[UserSession.tokenExpirationDateKeychainKey] ?? "") as? String
             KeychainManager.shared[UserSession.refreshTokenExpirationDateKeychainKey] = (applicationContext[UserSession.refreshTokenExpirationDateKeychainKey] ?? "") as? String
             
             // User reported outage on mobile app
+            #warning("todo, consider")
             if let outageReported = applicationContext[keychainKeys.outageReported] as? Bool, outageReported {
                 NotificationCenter.default.post(name: Notification.Name.outageReported, object: nil)
             }
@@ -110,7 +112,7 @@ extension WatchSessionManager {
 // MARK: - User Info
 // Use when your app needs all the data: FIFO queue
 
-extension WatchSessionManager {
+extension WatchSessionController {
     
     // Sender
     func transferUserInfo(userInfo: [String : Any]) {
@@ -143,7 +145,7 @@ extension WatchSessionManager {
 
 // MARK: - Unused Required Delegate Methods
 
-extension WatchSessionManager {
+extension WatchSessionController {
     
     @available(iOS 9.3, *)
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }

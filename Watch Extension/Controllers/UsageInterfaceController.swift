@@ -173,7 +173,7 @@ class UsageInterfaceController: WKInterfaceController {
                 nextForecastImage.setImageNamed(AppImage.usage.name)
                 nextForecastDetailLabel.setText("Usage is not available for this account.")
             case .error(let serviceError):
-                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
+                try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
                 // Hide all other groups
                 loadingImageGroup.setHidden(true)
                 errorGroup.setHidden(true)

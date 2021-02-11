@@ -9,7 +9,6 @@
 import Foundation
 
 open class KeychainManager {
-    
     open var loggingEnabled = false
     
     private init() {}

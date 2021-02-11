@@ -20,12 +20,12 @@ struct AnalyticUtility {
     }
     
     static func logScreenView(_ screenName: ScreenName) {
-        WatchSessionManager.shared.transferUserInfo(userInfo: ["screenName": screenName.rawValue])
+        WatchSessionController.shared.transferUserInfo(userInfo: ["screenName": screenName.rawValue])
     }
     
     /// Used for relaying apple watch device log to iPhone console
     /// - Parameter value: Value to be displayed in log
     static func logConsole(_ value: String) {
-        WatchSessionManager.shared.transferUserInfo(userInfo: ["console": value])
+        WatchSessionController.shared.transferUserInfo(userInfo: ["console": value])
     }
 }

@@ -68,14 +68,14 @@ struct OutageFlowContainerView_Previews: PreviewProvider {
         OutageFlowContainerView(state: .loading)
         
         OutageFlowContainerView(state: .loaded(outage: PreviewData.outageOn,
-                                               acccount: PreviewData.accounts[0]))
+                                               account: PreviewData.accounts[0]))
         
         OutageFlowContainerView(state: .loaded(outage: PreviewData.outageOff,
-                                               acccount: PreviewData.accounts[1]))
+                                               account: PreviewData.accounts[1]))
         
-        OutageFlowContainerView(state: .gasOnly(acccount: PreviewData.accounts[0]))
+        OutageFlowContainerView(state: .gasOnly(account: PreviewData.accounts[0]))
         
-        OutageFlowContainerView(state: .unavailable(acccount: PreviewData.accounts[0]))
+        OutageFlowContainerView(state: .unavailable(account: PreviewData.accounts[0]))
         
         OutageFlowContainerView(state: .error(errorState: .maintenanceMode))
         

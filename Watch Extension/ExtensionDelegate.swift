@@ -13,7 +13,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         Log.info("NOTICE: Apple Watch App Did Finish Launching.")
         
-        WatchSessionManager.shared.start()
+        WatchSessionController.shared.start()
 
         setInitialScreen()
     }

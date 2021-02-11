@@ -64,33 +64,32 @@ struct UsageFlowContainerView_Previews: PreviewProvider {
         UsageFlowContainerView(state: .loading)
         
         Group {
-            
             // Electric
             UsageFlowContainerView(state: .loaded(usage: PreviewData.usageElectricModeled,
-                                                  acccount: PreviewData.accounts[0]))
+                                                  account: PreviewData.accounts[0]))
             
             UsageFlowContainerView(state: .loaded(usage: PreviewData.usageElectricUnmodeled,
-                                                  acccount: PreviewData.accounts[0]))
+                                                  account: PreviewData.accounts[0]))
             
             // Gas
             UsageFlowContainerView(state: .loaded(usage: PreviewData.usageGasModeled,
-                                                  acccount: PreviewData.accounts[0]))
+                                                  account: PreviewData.accounts[0]))
             
             UsageFlowContainerView(state: .loaded(usage: PreviewData.usageGasUnmodeled,
-                                                  acccount: PreviewData.accounts[0]))
+                                                  account: PreviewData.accounts[0]))
             
             // Both
             UsageFlowContainerView(state: .loaded(usage: PreviewData.usageGasAndElectricModeled,
-                                                  acccount: PreviewData.accounts[0]))
+                                                  account: PreviewData.accounts[0]))
             
             UsageFlowContainerView(state: .loaded(usage: PreviewData.usageGasAndElectricUnmodeled,
-                                                  acccount: PreviewData.accounts[0]))
+                                                  account: PreviewData.accounts[0]))
         }
         
-        UsageFlowContainerView(state: .unforecasted(acccount: PreviewData.accounts[0],
+        UsageFlowContainerView(state: .unforecasted(account: PreviewData.accounts[0],
                                                     days: 5))
         
-        UsageFlowContainerView(state: .unavailable(acccount: PreviewData.accounts[0]))
+        UsageFlowContainerView(state: .unavailable(account: PreviewData.accounts[0]))
         
         Group {
             UsageFlowContainerView(state: .error(errorState: .maintenanceMode))
