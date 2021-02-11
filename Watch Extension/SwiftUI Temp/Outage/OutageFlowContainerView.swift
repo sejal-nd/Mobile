@@ -9,9 +9,12 @@
 import SwiftUI
 
 struct OutageFlowContainerView: View {
-    @State private var state: OutageState = .loading
+    
+    #warning("this will come from controller")
     @State private var isPresented = false
     
+    var state: OutageState = .loading
+
     var body: some View {
         Group {
             switch state {
@@ -23,26 +26,28 @@ struct OutageFlowContainerView: View {
             case .loaded(let outage, let account):
                 VStack(spacing: 0) {
                     AccountInfoBar(accountID: account.accountID)
-                OutageContainerView(outage: outage,
-                                    account: account,
-                                    isLoading: false)
-                    .sheet(isPresented: $isPresented,
-                           content: reportOutageContent)
-                    .onTapGesture {
-                        isPresented.toggle()
-                    }
+                    OutageContainerView(outage: outage,
+                                        account: account,
+                                        isLoading: false)
+                        .sheet(isPresented: $isPresented,
+                               content: reportOutageContent)
+                        .onTapGesture {
+                            isPresented.toggle()
+                        }
                 }
             case .gasOnly(let account):
                 VStack(spacing: 0) {
                     AccountInfoBar(accountID: account.accountID)
-                ImageTextView(imageName: AppImage.gas.name,
-                              text: "Outage reporting for gas only accounts is not allowed online.")
+                    #warning("image sizes are not correct right now.")
+                    ImageTextView(imageName: AppImage.gas.name,
+                                  text: "Outage reporting for gas only accounts is not allowed online.")
                 }
             case .unavailable(let account):
                 VStack(spacing: 0) {
                     AccountInfoBar(accountID: account.accountID)
-                ImageTextView(imageName: AppImage.outageUnavailable.name,
-                              text: "Outage Status and Reporting are not available for this account.")
+                    #warning("image sizes are not correct right now.")
+                    ImageTextView(imageName: AppImage.outageUnavailable.name,
+                                  text: "Outage Status and Reporting are not available for this account.")
                 }
             case .error(let errorState):
                 ErrorContainerView(errorState: errorState)
@@ -59,6 +64,22 @@ struct OutageFlowContainerView: View {
 
 struct OutageFlowContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        OutageFlowContainerView()
+        OutageFlowContainerView(state: .loading)
+        
+        OutageFlowContainerView(state: .loaded(outage: PreviewData.outageOn,
+                                               acccount: PreviewData.accounts[0]))
+        
+        OutageFlowContainerView(state: .loaded(outage: PreviewData.outageOff,
+                                               acccount: PreviewData.accounts[1]))
+        
+        OutageFlowContainerView(state: .gasOnly(acccount: PreviewData.accounts[0]))
+        
+        OutageFlowContainerView(state: .unavailable(acccount: PreviewData.accounts[0]))
+        
+        OutageFlowContainerView(state: .error(errorState: .maintenanceMode))
+        
+        OutageFlowContainerView(state: .error(errorState: .passwordProtected))
+        
+        OutageFlowContainerView(state: .error(errorState: .other))
     }
 }

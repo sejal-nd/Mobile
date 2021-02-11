@@ -19,7 +19,8 @@ struct WatchFlowContainer: View {
             AccountListFlowContainerView()
                 .tag(Tab.accountList)
             
-            OutageFlowContainerView()
+            #warning("todo")
+            OutageFlowContainerView(state: .loading)
                 .tag(Tab.outage)
             
             UsageFlowContainerView()

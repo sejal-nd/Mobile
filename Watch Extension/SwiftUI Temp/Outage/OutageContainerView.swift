@@ -13,28 +13,26 @@ struct OutageContainerView: View {
     let account: WatchAccount
     let isLoading: Bool
 
-    #warning("image sizes are not correct right now.")
+    #warning("does this view have a pupose anymore? Favor this over the flow controller?")
+    
     var body: some View {
         OutageView(outage: outage,
                    account: account)
     }
 }
 
-//struct OutageContainerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OutageContainerView(outageState: .loading,
-//                            watchOutage: nil)
-//        
-//        OutageContainerView(outageState: .loaded,
-//                            watchOutage: PreviewData.outageOn)
-//        
-//        OutageContainerView(outageState: .loaded,
-//                            watchOutage: PreviewData.outageOff)
-//        
-//        OutageContainerView(outageState: .gasOnly,
-//                            watchOutage: nil)
-//        
-//        OutageContainerView(outageState: .unavailable,
-//                            watchOutage: nil)
-//    }
-//}
+struct OutageContainerView_Previews: PreviewProvider {
+    static var previews: some View {
+        OutageContainerView(outage: PreviewData.outageOn,
+                            account: PreviewData.accounts[0],
+                            isLoading: true)
+        
+        OutageContainerView(outage: PreviewData.outageOn,
+                            account: PreviewData.accounts[0],
+                            isLoading: false)
+        
+        OutageContainerView(outage: PreviewData.outageOff,
+                            account: PreviewData.accounts[0],
+                            isLoading: false)
+    }
+}

@@ -54,16 +54,18 @@ struct OutageView: View {
     }
 }
 
-
-//struct OutageView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OutageView(outageState: .loading,
-//                   watchOutage: nil)
-//
-//        OutageView(outageState: .loaded,
-//                   watchOutage: PreviewData.outageOff)
-//
-//        OutageView(outageState: .loaded,
-//                   watchOutage: PreviewData.outageOn)
-//    }
-//}
+struct OutageView_Previews: PreviewProvider {
+    static var previews: some View {
+        OutageView(outage: PreviewData.outageOn,
+                   account: PreviewData.accounts[0],
+                   isLoading: true)
+        
+        OutageView(outage: PreviewData.outageOn,
+                   account: PreviewData.accounts[0],
+                   isLoading: false)
+        
+        OutageView(outage: PreviewData.outageOff,
+                   account: PreviewData.accounts[0],
+                   isLoading: false)
+    }
+}
