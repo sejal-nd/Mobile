@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-enum UsageState: Int, Identifiable, Equatable {
-    var id: Int { rawValue }
-    
+enum UsageState {
     case loading
-    case loaded
-    case unavailable
+    case loaded(usage: WatchUsage, acccount: WatchAccount)
+    case unforecasted(acccount: WatchAccount, days: Int)
+    case unavailable(acccount: WatchAccount)
+    case error(errorState: ErrorState)
 }

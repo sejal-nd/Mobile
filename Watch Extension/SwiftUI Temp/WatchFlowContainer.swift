@@ -23,7 +23,7 @@ struct WatchFlowContainer: View {
             OutageFlowContainerView(state: .loading)
                 .tag(Tab.outage)
             
-            UsageFlowContainerView()
+            UsageFlowContainerView(state: .loading)
                 .tag(Tab.usage)
             
             BillFlowContainerView()

@@ -9,18 +9,50 @@
 import SwiftUI
 
 struct UsageFlowContainerView: View {
-    @State private var usageState: UsageState = .loading
-    @State private var watchUsage: WatchUsage?
-    @State private var errorState: ErrorState?
+    var state: UsageState = .loading
     
     var body: some View {
-        VStack {
-            if let errorState = errorState {
+        Group {
+            switch state {
+            case .loading:
+                ScrollView {
+                    VStack(spacing: 0) {
+                        AccountInfoBar(accountID: PreviewData.accounts[0].accountID)
+                        UsageContainerView(usage: PreviewData.usageElectricModeled,
+                                           account: PreviewData.accounts[0],
+                                           isLoading: true)
+                            .redacted(reason: .placeholder)
+                    }
+                }
+            case .loaded(let usage, let account):
+                ScrollView {
+                    VStack(spacing: 0) {
+                        AccountInfoBar(accountID: account.accountID)
+                        UsageContainerView(usage: usage,
+                                           account: account,
+                                           isLoading: false)
+                    }
+                }
+            case .unforecasted(let account, let daysToForecast):
+                ScrollView {
+                    VStack(spacing: 0) {
+                        AccountInfoBar(accountID: account.accountID)
+                        #warning("image sizes are not correct right now.")
+                        ImageTextView(imageName: AppImage.gas.name,
+                                      text: "Outage reporting for gas only accounts is not allowed online.")
+                    }
+                }
+            case .unavailable(let account):
+                ScrollView {
+                    VStack(spacing: 0) {
+                        AccountInfoBar(accountID: account.accountID)
+                        #warning("image sizes are not correct right now.")
+                        ImageTextView(imageName: AppImage.usage.name,
+                                      text: "Usage is not available for this account")
+                    }
+                }
+            case .error(let errorState):
                 ErrorContainerView(errorState: errorState)
-            } else {
-                UsageContainerView(usageState: usageState,
-                                   watchUsage: watchUsage)
-                    .redacted(reason: usageState == .loading ? .placeholder : [])
             }
         }
         .navigationTitle("Usage")
@@ -29,6 +61,43 @@ struct UsageFlowContainerView: View {
 
 struct UsageFlowContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        UsageFlowContainerView()
+        UsageFlowContainerView(state: .loading)
+        
+        Group {
+            
+            // Electric
+            UsageFlowContainerView(state: .loaded(usage: PreviewData.usageElectricModeled,
+                                                  acccount: PreviewData.accounts[0]))
+            
+            UsageFlowContainerView(state: .loaded(usage: PreviewData.usageElectricUnmodeled,
+                                                  acccount: PreviewData.accounts[0]))
+            
+            // Gas
+            UsageFlowContainerView(state: .loaded(usage: PreviewData.usageGasModeled,
+                                                  acccount: PreviewData.accounts[0]))
+            
+            UsageFlowContainerView(state: .loaded(usage: PreviewData.usageGasUnmodeled,
+                                                  acccount: PreviewData.accounts[0]))
+            
+            // Both
+            UsageFlowContainerView(state: .loaded(usage: PreviewData.usageGasAndElectricModeled,
+                                                  acccount: PreviewData.accounts[0]))
+            
+            UsageFlowContainerView(state: .loaded(usage: PreviewData.usageGasAndElectricUnmodeled,
+                                                  acccount: PreviewData.accounts[0]))
+        }
+        
+        UsageFlowContainerView(state: .unforecasted(acccount: PreviewData.accounts[0],
+                                                    days: 5))
+        
+        UsageFlowContainerView(state: .unavailable(acccount: PreviewData.accounts[0]))
+        
+        Group {
+            UsageFlowContainerView(state: .error(errorState: .maintenanceMode))
+            
+            UsageFlowContainerView(state: .error(errorState: .passwordProtected))
+            
+            UsageFlowContainerView(state: .error(errorState: .other))
+        }
     }
 }

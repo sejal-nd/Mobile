@@ -9,71 +9,48 @@
 import SwiftUI
 
 struct UsageContainerView: View {
-    let usageState: UsageState
-    let watchUsage: WatchUsage?
+    let usage: WatchUsage
+    let account: WatchAccount
+    let isLoading: Bool
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                AccountInfoBar(accountID: "234783242")
-                
-                switch usageState {
-                case .loading, .loaded:
-                    UsageView(usageState: usageState,
-                              watchUsage: watchUsage)
-                case .unavailable:
-                    ImageTextView(imageName: AppImage.usage.name,
-                                  text: "Usage is not available for this account")
-                }
-            }
-        }
+        UsageView(usage: usage,
+                  account: account,
+                  isLoading: isLoading)
     }
 }
 
 struct UsageContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            UsageContainerView(usageState: .loading,
-                               watchUsage: nil)
-            
-            UsageContainerView(usageState: .unavailable,
-                               watchUsage: nil)
-        }
+        UsageContainerView(usage: PreviewData.usageElectricModeled,
+                           account: PreviewData.accounts[0],
+                           isLoading: true)
         
         // Electric
-        Group {
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageElectricModeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageElectricUnmodeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageElectricUnforecasted)
-        }
+        UsageContainerView(usage: PreviewData.usageElectricModeled,
+                           account: PreviewData.accounts[0],
+                           isLoading: false)
+        
+        UsageContainerView(usage: PreviewData.usageElectricUnmodeled,
+                           account: PreviewData.accounts[0],
+                           isLoading: false)
         
         // Gas
-        Group {
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasModeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasUnmodeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasUnforecasted)
-        }
+        UsageContainerView(usage: PreviewData.usageGasModeled,
+                           account: PreviewData.accounts[0],
+                           isLoading: false)
+        
+        UsageContainerView(usage: PreviewData.usageGasUnmodeled,
+                           account: PreviewData.accounts[0],
+                           isLoading: false)
         
         // Both
-        Group {
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasAndElectricModeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasAndElectricUnmodeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasAndElectricUnforecasted)
-        }
+        UsageContainerView(usage: PreviewData.usageGasAndElectricModeled,
+                           account: PreviewData.accounts[0],
+                           isLoading: false)
+        
+        UsageContainerView(usage: PreviewData.usageGasAndElectricUnmodeled,
+                           account: PreviewData.accounts[0],
+                           isLoading: false)
     }
 }

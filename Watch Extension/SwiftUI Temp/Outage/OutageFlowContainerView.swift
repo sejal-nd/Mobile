@@ -9,20 +9,21 @@
 import SwiftUI
 
 struct OutageFlowContainerView: View {
-    
-    #warning("this will come from controller")
     @State private var isPresented = false
     
     var state: OutageState = .loading
-
+    
     var body: some View {
         Group {
             switch state {
             case .loading:
-                OutageContainerView(outage: PreviewData.outageOn,
-                                    account: PreviewData.accounts[0],
-                                    isLoading: true)
-                    .redacted(reason: .placeholder)
+                VStack(spacing: 0) {
+                    AccountInfoBar(accountID: PreviewData.accounts[0].accountID)
+                    OutageContainerView(outage: PreviewData.outageOn,
+                                        account: PreviewData.accounts[0],
+                                        isLoading: true)
+                        .redacted(reason: .placeholder)
+                }
             case .loaded(let outage, let account):
                 VStack(spacing: 0) {
                     AccountInfoBar(accountID: account.accountID)

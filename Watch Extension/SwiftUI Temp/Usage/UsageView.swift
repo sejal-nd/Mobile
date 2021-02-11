@@ -9,51 +9,55 @@
 import SwiftUI
 
 struct UsageView: View {
-    let usageState: UsageState
-    let watchUsage: WatchUsage?
+    let usage: WatchUsage
+    let account: WatchAccount
+    let isLoading: Bool
     
-    var hasBothFuelTypes = false
+    //    let usageState: UsageState
+    //    let watchUsage: WatchUsage?
+    
     @State private var isShowingElectric = true
+    private var hasBothFuelTypes = false
     
-    init(usageState: UsageState,
-         watchUsage: WatchUsage?) {
-        self.usageState = usageState
-        self.watchUsage = watchUsage
+    init(usage: WatchUsage,
+         account: WatchAccount,
+         isLoading: Bool) {
+        self.usage = usage
+        self.account = account
+        self.isLoading = isLoading
         
-        if let watchUsage = watchUsage {
-            if watchUsage.fuelTypes.count == 2 {
-                self.hasBothFuelTypes = true
+        if usage.fuelTypes.count == 2 {
+            self.hasBothFuelTypes = true
+        } else {
+            if usage.fuelTypes.contains(.electric) {
+                isShowingElectric = true
             } else {
-                if watchUsage.fuelTypes.contains(.electric) {
-                    isShowingElectric = true
-                } else {
-                    isShowingElectric = false
-                }
+                isShowingElectric = false
             }
         }
     }
     
     private var usageCostText: String {
         if isShowingElectric {
-            return watchUsage?.electricUsageCost ?? ""
+            return usage.electricUsageCost ?? ""
         } else {
-            return watchUsage?.gasUsageCost ?? ""
+            return usage.gasUsageCost ?? ""
         }
     }
     
     private var projectedUsageCostText: String {
         if isShowingElectric {
-            return watchUsage?.electricProjetedUsageCost ?? ""
+            return usage.electricProjetedUsageCost ?? ""
         } else {
-            return watchUsage?.gasProjetedUsageCost ?? ""
+            return usage.gasProjetedUsageCost ?? ""
         }
     }
     
     private var billPeriodText: String {
         if isShowingElectric {
-            return watchUsage?.electricBillPeriod ?? ""
+            return usage.electricBillPeriod ?? ""
         } else {
-            return watchUsage?.gasBillPeriod ?? ""
+            return usage.gasBillPeriod ?? ""
         }
     }
     
@@ -66,7 +70,7 @@ struct UsageView: View {
     var body: some View {
         VStack {
             ZStack {
-                if watchUsage != nil {
+                if !isLoading {
                     Image("usageGraph21") // todo
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -85,8 +89,8 @@ struct UsageView: View {
                 Button(action: {
                     isShowingElectric.toggle()
                 }) {
-                    Label("Electric",
-                          image: AppImage.electric.name)
+                    Label(isShowingElectric ? "Electric" : "Gas",
+                          image: isShowingElectric ? AppImage.electric.name : AppImage.gas.name)
                 }
                 .padding(.bottom, 16)
             }
@@ -128,48 +132,35 @@ struct UsageView: View {
 
 struct UsageView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            UsageContainerView(usageState: .loading,
-                               watchUsage: nil)
-            
-            UsageContainerView(usageState: .unavailable,
-                               watchUsage: nil)
-        }
+        UsageView(usage: PreviewData.usageElectricModeled,
+                  account: PreviewData.accounts[0],
+                  isLoading: true)
         
         // Electric
-        Group {
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageElectricModeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageElectricUnmodeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageElectricUnforecasted)
-        }
+        UsageView(usage: PreviewData.usageElectricModeled,
+                  account: PreviewData.accounts[0],
+                  isLoading: false)
+        
+        UsageView(usage: PreviewData.usageElectricUnmodeled,
+                  account: PreviewData.accounts[0],
+                  isLoading: false)
         
         // Gas
-        Group {
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasModeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasUnmodeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasUnforecasted)
-        }
+        UsageView(usage: PreviewData.usageGasModeled,
+                  account: PreviewData.accounts[0],
+                  isLoading: false)
+        
+        UsageView(usage: PreviewData.usageGasUnmodeled,
+                  account: PreviewData.accounts[0],
+                  isLoading: false)
         
         // Both
-        Group {
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasAndElectricModeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasAndElectricUnmodeled)
-            
-            UsageContainerView(usageState: .loaded,
-                               watchUsage: PreviewData.usageGasAndElectricUnforecasted)
-        }
+        UsageView(usage: PreviewData.usageGasAndElectricModeled,
+                  account: PreviewData.accounts[0],
+                  isLoading: false)
+        
+        UsageView(usage: PreviewData.usageGasAndElectricUnmodeled,
+                  account: PreviewData.accounts[0],
+                  isLoading: false)
     }
 }

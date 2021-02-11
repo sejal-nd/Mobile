@@ -11,7 +11,7 @@ import SwiftUI
 enum OutageState {
     case loading
     case loaded(outage: WatchOutage, acccount: WatchAccount)
-    case error(errorState: ErrorState)
     case gasOnly(acccount: WatchAccount)
     case unavailable(acccount: WatchAccount)
+    case error(errorState: ErrorState)
 }
