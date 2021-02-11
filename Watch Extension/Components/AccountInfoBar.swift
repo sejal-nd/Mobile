@@ -9,12 +9,17 @@
 import SwiftUI
 
 struct AccountInfoBar: View {
-    let accountID: String
+    let account: WatchAccount
+    
+    private var imageName: String {
+        account.isResidential ? "house.fill" : "building.2.fill"
+    }
+
     var body: some View {
         HStack {
             Spacer()
-            Label(accountID,
-                  systemImage: "house.fill")
+            Label(account.accountID,
+                  systemImage: imageName)
             Spacer()
         }
         .padding(.bottom, 8)
@@ -23,6 +28,6 @@ struct AccountInfoBar: View {
 
 struct AccountInfoBar_Previews: PreviewProvider {
     static var previews: some View {
-        AccountInfoBar(accountID: "0453257831")
+        AccountInfoBar(account: PreviewData.accounts[0])
     }
 }

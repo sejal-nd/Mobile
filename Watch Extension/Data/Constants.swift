@@ -10,6 +10,10 @@ import WatchKit
 
 // MARK: - Notification Names
 
+#warning("Audit, remove unused")
+
+
+#warning("none of these are used anymore")
 extension Notification.Name {
     static let outageReported: Notification.Name = Notification.Name(rawValue: "outageReportedNotificationName")
     static let currentAccountUpdated: Notification.Name = Notification.Name(rawValue: "currentAccountUpdated")

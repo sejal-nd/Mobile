@@ -17,7 +17,7 @@ struct UsageFlowContainerView: View {
             case .loading:
                 ScrollView {
                     VStack(spacing: 0) {
-                        AccountInfoBar(accountID: PreviewData.accounts[0].accountID)
+                        AccountInfoBar(account: PreviewData.accounts[0])
                         UsageContainerView(usage: PreviewData.usageElectricModeled,
                                            account: PreviewData.accounts[0],
                                            isLoading: true)
@@ -27,7 +27,7 @@ struct UsageFlowContainerView: View {
             case .loaded(let usage, let account):
                 ScrollView {
                     VStack(spacing: 0) {
-                        AccountInfoBar(accountID: account.accountID)
+                        AccountInfoBar(account: account)
                         UsageContainerView(usage: usage,
                                            account: account,
                                            isLoading: false)
@@ -36,7 +36,7 @@ struct UsageFlowContainerView: View {
             case .unforecasted(let account, let daysToForecast):
                 ScrollView {
                     VStack(spacing: 0) {
-                        AccountInfoBar(accountID: account.accountID)
+                        AccountInfoBar(account: account)
                         #warning("image sizes are not correct right now.")
                         ImageTextView(imageName: AppImage.gas.name,
                                       text: "Outage reporting for gas only accounts is not allowed online.")
@@ -45,7 +45,7 @@ struct UsageFlowContainerView: View {
             case .unavailable(let account):
                 ScrollView {
                     VStack(spacing: 0) {
-                        AccountInfoBar(accountID: account.accountID)
+                        AccountInfoBar(account: account)
                         #warning("image sizes are not correct right now.")
                         ImageTextView(imageName: AppImage.usage.name,
                                       text: "Usage is not available for this account")

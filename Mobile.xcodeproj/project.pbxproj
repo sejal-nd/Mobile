@@ -4157,8 +4157,8 @@
 			children = (
 				35F9DE50233A583700AAA2B2 /* AnalyticController.swift */,
 				356C7F8021909997003E8A90 /* KeychainController.swift */,
-				355B10352369DB180038EAD3 /* WatchSessionController.swift */,
 				6724807925D475F60024467D /* NetworkController.swift */,
+				355B10352369DB180038EAD3 /* WatchSessionController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

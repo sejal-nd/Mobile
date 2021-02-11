@@ -17,9 +17,9 @@ extension Color {
     static var opco: Color {
         switch Configuration.shared.opco {
         case .bge:
-            return Color(red: 103.0/255,
-                         green: 179.0/255,
-                         blue: 96.0/255,
+            return Color(red: 103/255,
+                         green: 179/255,
+                         blue: 96/255,
                          opacity: 1.0)
         case .comEd:
             return Color(red: 235/255,
@@ -27,9 +27,9 @@ extension Color {
                          blue: 61/255,
                          opacity: 1.0)
         case .peco:
-            return Color(red: 0.0/255,
-                         green: 162.0/255,
-                         blue: 255.0/255,
+            return Color(red: 0/255,
+                         green: 162/255,
+                         blue: 255/255,
                          opacity: 1.0)
         case .ace, .delmarva, .pepco:
             return Color(red: 0/255,

@@ -14,7 +14,8 @@ struct BillContainerView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                AccountInfoBar(accountID: "234783242")
+                #warning("todo")
+//                AccountInfoBar(account: )
                 
                 switch billState {
                 case .loading, .loaded:
