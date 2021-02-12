@@ -14,14 +14,12 @@ import Foundation
 #endif
 
 class WatchSessionController: NSObject, WCSessionDelegate {
+    private override init() { }
+    
     static let shared = WatchSessionController()
     
     var authTokenDidUpdate: (() -> Void)? = nil
     var outageReportedFromPhone: (() -> Void)? = nil
-    
-    private override init() {
-        super.init()
-    }
     
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
     
@@ -76,7 +74,7 @@ extension WatchSessionController {
             // New Azure Auth Token
             if let authToken = applicationContext[UserSession.tokenKeychainKey] as? String {
                 // Save to KeyChain
-                KeychainController.shared[keychainKeys.authToken] = authToken
+                KeychainController.shared[AppConstant.WatchSessionKey.authToken] = authToken
                 KeychainController.shared[UserSession.tokenKeychainKey] = authToken
                 KeychainController.shared[UserSession.refreshTokenKeychainKey] = (applicationContext[UserSession.refreshTokenKeychainKey] ?? "") as? String
                 KeychainController.shared[UserSession.tokenExpirationDateKeychainKey] = (applicationContext[UserSession.tokenExpirationDateKeychainKey] ?? "") as? String
@@ -86,7 +84,7 @@ extension WatchSessionController {
             }
             
             // User reported outage on phone
-            if let outageReported = applicationContext[keychainKeys.outageReported] as? Bool, outageReported {
+            if let outageReported = applicationContext[AppConstant.WatchSessionKey.outageReported] as? Bool, outageReported {
                 self?.outageReportedFromPhone?()
             }
             #endif
@@ -98,9 +96,6 @@ extension WatchSessionController {
 /// Use when your app needs all the data: FIFO queue
 
 extension WatchSessionController {
-    private static let consoleKey = "console"
-    private static let screenNameKey = "screenName"
-    
     // Sender
     func transferUserInfo(userInfo: [String : Any]) {
         validSession?.transferUserInfo(userInfo)
@@ -112,12 +107,12 @@ extension WatchSessionController {
             #if os(iOS)
             
             // Logging
-            if let value = userInfo[WatchSessionController.consoleKey] as? String {
+            if let value = userInfo[AppConstant.WatchSessionKey.consoleUser] as? String {
                 Log.info("WATCH CONSOLE: \(value)")
                 return
             }
             
-            guard let screenName = userInfo[WatchSessionController.screenNameKey] as? String else {
+            guard let screenName = userInfo[AppConstant.WatchSessionKey.screenName] as? String else {
                 Log.error("Failed to parse user info dictionary with key: screenName")
                 return
             }

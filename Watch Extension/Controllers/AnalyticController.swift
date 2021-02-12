@@ -18,13 +18,15 @@ enum AnalyticController {
         case accountList = "account_list_screen_view"
     }
     
+    /// Used for relaying apple watch analytics to iPhone `Firebase` tool
+    /// - Parameter value: Value to be logged in `Firebase`
     static func logScreenView(_ screenName: ScreenName) {
-        WatchSessionController.shared.transferUserInfo(userInfo: ["screenName": screenName.rawValue])
+        WatchSessionController.shared.transferUserInfo(userInfo: [AppConstant.WatchSessionKey.screenName: screenName.rawValue])
     }
     
     /// Used for relaying apple watch device log to iPhone console
     /// - Parameter value: Value to be displayed in log
     static func logConsole(_ value: String) {
-        WatchSessionController.shared.transferUserInfo(userInfo: ["console": value])
+        WatchSessionController.shared.transferUserInfo(userInfo: [AppConstant.WatchSessionKey.consoleUser: value])
     }
 }

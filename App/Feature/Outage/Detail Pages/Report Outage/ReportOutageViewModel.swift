@@ -143,7 +143,7 @@ class ReportOutageViewModel {
             switch result {
             case .success:
                 onSuccess()
-                try? WatchSessionController.shared.updateApplicationContext(applicationContext: [keychainKeys.outageReported : true])
+                try? WatchSessionController.shared.updateApplicationContext(applicationContext: [AppConstant.WatchSessionKey.outageReported : true])
             case .failure(let error):
                 onError(error.description)
             }

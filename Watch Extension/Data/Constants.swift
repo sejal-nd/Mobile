@@ -6,7 +6,38 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
+#if os(watchOS)
 import WatchKit
+#elseif os(iOS)
+import UIKit
+#else
+import Foundation
+#endif
+
+enum AppConstant {
+    enum WatchSessionKey {
+        static let consoleUser = "console"
+        static let screenName = "screenName"
+        static let authToken = "authToken"
+        static let outageReported = "outageReported"
+    }
+    
+    enum ImageName {
+        case todo
+        
+        var name: String {
+            switch self {
+            case .todo:
+                return ""
+            }
+        }
+    }
+}
+
+
+
+
+#warning("REMOVE ALL BELOW")
 
 // MARK: - Notification Names
 

@@ -9,25 +9,11 @@
 import Foundation
 
 open class KeychainController {
-    open var loggingEnabled = false
+    private init() { }
     
-    private init() {}
-    
-    #warning("audit and refine this.... remove force unwraps ect....")
-    private static var _shared: KeychainController?
-    public static var shared: KeychainController {
-        get {
-            if _shared == nil {
-                DispatchQueue.global().sync(flags: .barrier) {
-                    if _shared == nil {
-                        _shared = KeychainController()
-                    }
-                }
-            }
-            return _shared!
-        }
-    }
-    
+    static let shared = KeychainController()
+
+    /// Allows syntax of `KeychainController.shared[XZY]`
     open subscript(key: String) -> String? {
         get {
             return load(withKey: key)
@@ -67,12 +53,10 @@ open class KeychainController {
         var result: CFTypeRef?
         let status = SecItemCopyMatching(query, &result)
         
-        guard
-            let resultsDict = result as? NSDictionary,
+        guard let resultsDict = result as? NSDictionary,
             let resultsData = resultsDict.value(forKey: kSecValueData as String) as? Data,
-            status == noErr
-            else {
-                Log.info("Load status: \(status)")
+            status == noErr else {
+                Log.error("Load status: \(status)")
                 return nil
         }
         return String(data: resultsData, encoding: .utf8)

@@ -33,7 +33,7 @@ enum UserSession {
         #if os(iOS)
         token = tokenKeychain.string(forKey: tokenKeychainKey) ?? ""
         #elseif os(watchOS)
-        token = tokenKeychain[keychainKeys.authToken] ?? ""
+        token = tokenKeychain[AppConstant.WatchSessionKey.authToken] ?? ""
         #endif
         return token
     }
