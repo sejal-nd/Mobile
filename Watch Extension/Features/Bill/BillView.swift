@@ -17,67 +17,94 @@ struct BillView: View {
         ScrollView {
             VStack(spacing: 16) {
                 // Alert
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(systemName: "info.circle")
-                            .foregroundColor(.orange)
-                        Spacer()
-                        Text("$150.00 is due immediately") // alert Text
+                if let alertText = bill.alertText {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.orange)
+                            Spacer()
+                            Text(alertText)
+                        }
                     }
+                    .padding()
+                    .background(CardView())
                 }
-                .padding()
-                .background(CardView())
                 
-                // Normal Bill
-                Group {
-                    Text("$1000.00")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Text("Total Amount Due")
-                    
-                    // Auto Pay
-                    ImageTextView(imageName: AppImage.autoPay.name,
-                                  text: "You are enrolled in Autopay")
-                    
-                    // Scheduled Payment
-                    ImageTextView(imageName: AppImage.scheduledPayment.name,
-                                  text: "Thank you for scheduling your $1000.00 payment for 12/20/2018")
-                    
-                    // Thank You For Payment
-                    VStack(spacing: 2) {
-                        ImageTextView(imageName: AppImage.paymentConfirmation.name,
-                                      text: "Thank you for your payment")
-                        Text("$1000.00")
-                            .font(.title2)
-                            .fontWeight(.semibold)
+                // Bill Ready
+                if bill.isBillReady {
+                    Group {
+                        if let totalAmountDueText = bill.totalAmountDueText,
+                           let totalAmountDueDateText = bill.totalAmountDueDateText {
+                            Text(totalAmountDueText)
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            Text(totalAmountDueDateText)
+                        }
+                        
+                        // Auto Pay
+                        if bill.isEnrolledInAutoPay {
+                            ImageTextView(imageName: AppImage.autoPay.name,
+                                          text: "You are enrolled in Autopay")
+                        }
+                        
+                        // Scheduled Payment
+                        if let scheduledPaymentText = bill.scheduledPaymentAmountText {
+                            ImageTextView(imageName: AppImage.scheduledPayment.name,
+                                          text: scheduledPaymentText)
+                        }
+                        
+                        // Thank You For Payment
+                        if let paymentReceivedAmountText = bill.paymentReceivedAmountText,
+                           let paymentReceivedDateText = bill.paymentReceivedDateText {
+                            ImageTextView(imageName: AppImage.paymentConfirmation.name,
+                                          text: "Thank you for scheduling your \(paymentReceivedAmountText) payment for \(paymentReceivedDateText)")
+                            
+                        }
                     }
+                } else {
+                    // Bill not ready
+                    ImageTextView(imageName: AppImage.billNotReady.name,
+                                  text: "Your bill will be available here once it is ready")
                 }
                 
                 Group {
                     // Catch Up on Agreement
-                    BillCard(value: "$150.00",
-                             title: "Catch Up on Agreement Amount",
-                             dateText: "Due by 09/25/2020")
+                    if let catchUpAmountText = bill.catchUpAmountText,
+                       let catchUpDateText = bill.catchUpDateText {
+                        BillCard(value: catchUpAmountText,
+                                 title: "Catch Up on Agreement Amount",
+                                 dateText: catchUpDateText)
+                    }
                     
                     // Past Due Amount
-                    BillCard(value: "$500.00",
-                             title: "Past Due Amount",
-                             dateText: "Due Immdiately",
-                             dateColor: .red)
+                    if let pastDueAmountText = bill.pastDueAmountText {
+                        BillCard(value: pastDueAmountText,
+                                 title: "Past Due Amount",
+                                 dateText: "Due Immdiately",
+                                 dateColor: .red)
+                    }
                     
                     // Current Bill
-                    BillCard(value: "$500.00",
-                             title: "Current Bill Amount",
-                             dateText: "Due by 09/25/2020")
+                    if let currentBillAmountText = bill.currentBillAmountText,
+                       let currentBillDateText = bill.currentBillDateText {
+                        BillCard(value: currentBillAmountText,
+                                 title: "Current Bill Amount",
+                                 dateText: currentBillDateText)
+                    }
                     
                     // Pending Payments
-                    BillCard(value: "-$500.00",
-                             title: "Pending Payments")
+                    if let pendingPaymentAmountText = bill.pendingPaymentAmountText {
+                        BillCard(value: pendingPaymentAmountText,
+                                 title: "Pending Payments")
+                    }
                     
                     // Remaining Balance Due
-                    BillCard(value: "$80.00",
-                             title: "Remaining Balance Due",
-                             dateText: "Due by 09/25/2020")
+                    if let remainingBalanceAmountText = bill.remainingBalanceAmountText {
+                        BillCard(value: remainingBalanceAmountText,
+                                 title: "Remaining Balance Due",
+                                 dateText: "Due Immediately",
+                                 dateColor: .red)
+                    }
                 }
                 
                 Text("If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.")

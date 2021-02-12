@@ -276,6 +276,8 @@ class BillUtility {
         return NSAttributedString(string: string, attributes: attributes)
     }()
     
+    #warning("BREAK")
+    
     //MARK: - Past Due
     private(set) lazy var pastDueText: String = {
         if Configuration.shared.opco != .bge && billingInfo.amtDpaReinst > 0 &&

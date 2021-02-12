@@ -9,14 +9,10 @@
 import SwiftUI
 
 struct WatchOutage: Identifiable {
-    init(id: UUID = UUID(),
-         isPowerOn: Bool,
-         estimatedRestoration: String? = nil,
-         outageStatus: OutageStatus? = nil) {
-        self.id = id
+    init(isPowerOn: Bool,
+         estimatedRestoration: String? = nil) {
         self.isPowerOn = isPowerOn
         self.estimatedRestoration = estimatedRestoration
-        self.outageStatus = outageStatus
     }
     
     init(outageStatus: OutageStatus) {

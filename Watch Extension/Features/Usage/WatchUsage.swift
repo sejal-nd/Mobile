@@ -19,8 +19,7 @@ struct WatchUsage: Identifiable {
                   gasProjetedUsageCost: String? = nil,
                   gasBillPeriod: String? = nil,
                   gasProgress: Double = 0.0,
-                  gasTimeToNextForecast: String? = nil,
-                  billForecastResult: BillForecastResult? = nil) {
+                  gasTimeToNextForecast: String? = nil) {
         self.fuelTypes = fuelTypes
         self.electricUsageCost = electricUsageCost
         self.electricProjetedUsageCost = electricProjetedUsageCost
@@ -32,7 +31,6 @@ struct WatchUsage: Identifiable {
         self.gasBillPeriod = gasBillPeriod
         self.gasProgress = gasProgress
         self.gasTimeToNextForecast = gasTimeToNextForecast
-        self.billForecastResult = billForecastResult
     }
     
     init(accountDetails: AccountDetail,

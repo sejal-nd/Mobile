@@ -9,16 +9,12 @@
 import Foundation
 
 struct WatchAccount: Identifiable {
-    init(id: UUID = UUID(),
-         accountID: String,
+    init(accountID: String,
          address: String,
-         isResidential: Bool,
-         account: Account? = nil) {
-        self.id = id
+         isResidential: Bool) {
         self.accountID = accountID
         self.address = address
         self.isResidential = isResidential
-        self.account = account
     }
     
     init(account: Account) {
