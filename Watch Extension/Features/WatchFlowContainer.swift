@@ -25,8 +25,7 @@ struct WatchFlowContainer: View {
                 UsageFlowContainerView(state: networkController.usageState)
                     .tag(Tab.usage)
                 
-                #warning("todo")
-                BillFlowContainerView()
+                BillFlowContainerView(state: networkController.billingState)
                     .tag(Tab.bill)
             }
         } else {

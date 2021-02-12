@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct BillView: View {
-    let billState: BillState
+    let bill: WatchBill
+    let account: WatchAccount
+    let isLoading: Bool
     
     var body: some View {
         ScrollView {
@@ -87,8 +89,8 @@ struct BillView: View {
     }
 }
 
-struct BillView_Previews: PreviewProvider {
-    static var previews: some View {
-        BillView(billState: .loaded)
-    }
-}
+//struct BillView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BillView(billState: .loaded)
+//    }
+//}

@@ -9,29 +9,19 @@
 import SwiftUI
 
 struct BillContainerView: View {
-    let billState: BillState
+    let bill: WatchBill
+    let account: WatchAccount
+    let isLoading: Bool
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                #warning("todo")
-//                AccountInfoBar(account: )
-                
-                switch billState {
-                case .loading, .loaded:
-                    BillView(billState: billState)
-                case .unavailable:
-                    #warning("Todo")
-                    ImageTextView(imageName: AppImage.billNotReady.name,
-                                  text: "Your bill will be available here once it is ready")
-                }
-            }
-        }
+        BillView(bill: bill,
+                 account: account,
+                 isLoading: isLoading)
     }
 }
 
-struct BillContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        BillContainerView(billState: .loaded)
-    }
-}
+//struct BillContainerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BillContainerView(billState: .loaded)
+//    }
+//}

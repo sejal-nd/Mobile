@@ -8,10 +8,9 @@
 
 import SwiftUI
 
-enum BillState: Int, Identifiable, Equatable {
-    var id: Int { rawValue }
-    
+enum BillState {
     case loading
-    case loaded
-    case unavailable
+    case loaded(bill: WatchBill, account: WatchAccount)
+    case unavailable(account: WatchAccount)
+    case error(errorState: ErrorState)
 }

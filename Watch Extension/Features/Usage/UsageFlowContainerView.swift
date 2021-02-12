@@ -21,8 +21,8 @@ struct UsageFlowContainerView: View {
                         UsageContainerView(usage: PreviewData.usageElectricModeled,
                                            account: PreviewData.accounts[0],
                                            isLoading: true)
-                            .redacted(reason: .placeholder)
                     }
+                    .redacted(reason: .placeholder)
                 }
             case .loaded(let usage, let account):
                 ScrollView {

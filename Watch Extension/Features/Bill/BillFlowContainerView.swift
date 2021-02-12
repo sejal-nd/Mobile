@@ -9,16 +9,42 @@
 import SwiftUI
 
 struct BillFlowContainerView: View {
-    @State private var billState: BillState = .loading
-    @State private var errorState: ErrorState? = nil
+    var state: BillState = .loading
     
     var body: some View {
         Group {
-            if let errorState = errorState {
+            switch state {
+            case .loading:
+                ScrollView {
+                    VStack(spacing: 0) {
+                        AccountInfoBar(account: PreviewData.accounts[0])
+                        #warning("todo add preview data when it exists")
+//                        BillContainerView(bill: <#T##WatchBill#>,
+//                                          account: <#T##WatchAccount#>,
+//                                          isLoading: true)
+                    }
+                    .redacted(reason: .placeholder)
+                }
+            case .loaded(let bill, let account):
+                ScrollView {
+                    VStack(spacing: 0) {
+                        AccountInfoBar(account: account)
+                        BillContainerView(bill: bill,
+                                          account: account,
+                                          isLoading: false)
+                    }
+                }
+            case .unavailable(let account):
+                ScrollView {
+                    VStack(spacing: 0) {
+                        AccountInfoBar(account: account)
+                        #warning("image sizes are not correct right now.")
+                        ImageTextView(imageName: AppImage.billNotReady.name,
+                                      text: "Bill is not available for this account")
+                    }
+                }
+            case .error(let errorState):
                 ErrorContainerView(errorState: errorState)
-            } else {
-                BillContainerView(billState: billState)
-                    .redacted(reason: billState == .loading ? .placeholder : [])
             }
         }
         .navigationTitle("Bill")

@@ -13,7 +13,7 @@ class NetworkController: ObservableObject {
     @Published var accountListState: AccountListState = .loading
     @Published var outageState: OutageState = .loading
     @Published var usageState: UsageState = .loading
-    //    @Published var bill: WatchBill
+    @Published var billingState: BillState = .loading
     
     init() {
         setLoginStatus()
@@ -88,8 +88,7 @@ extension NetworkController {
         accountListState = .loading
         outageState = .loading
         usageState = .loading
-        #warning("todo")
-        // billingState = .loading
+        billingState = .loading
         
         Log.info("Fetching Maintenance Mode Status...")
         
@@ -112,8 +111,7 @@ extension NetworkController {
                     
                     self?.outageState = .error(errorState: .maintenanceMode)
                     self?.usageState = .error(errorState: .maintenanceMode)
-                    #warning("bill state goes here")
-                    //                        self?.billState = .error(errorState: .maintenanceMode)
+                    self?.billingState = .error(errorState: .maintenanceMode)
                     return
                 }
                 
@@ -128,12 +126,15 @@ extension NetworkController {
                             
                             self?.outageState = .error(errorState: .passwordProtected)
                             self?.usageState = .error(errorState: .passwordProtected)
-                            #warning("bill state goes here")
-                            //                        self?.billState = .error(errorState: .passwordProtected)
+                            self?.billingState = .error(errorState: .passwordProtected)
                             return
                         }
                         
                         let account = WatchAccount(account: AccountsStore.shared.currentAccount)
+                        
+                        // MARK: Billing
+                        let bill = WatchBill(accountDetails: accountDetail)
+                        self?.billingState = .loaded(bill: bill, account: account)
                         
                         if !maintenanceMode.outage {
                             // MARK: Outage
@@ -195,8 +196,7 @@ extension NetworkController {
                         
                         self?.outageState = .error(errorState: .other)
                         self?.usageState = .error(errorState: .other)
-                        #warning("bill state goes here")
-                    //                        self?.billState = .error(errorState: .other)
+                        self?.billingState = .error(errorState: .other)
                     }
                 }
                 
@@ -205,8 +205,7 @@ extension NetworkController {
                 
                 self?.outageState = .error(errorState: .other)
                 self?.usageState = .error(errorState: .other)
-                #warning("bill state goes here")
-            //                        self?.usageState = .error(errorState: .other)
+                self?.billingState = .error(errorState: .other)
             }
         }
     }
