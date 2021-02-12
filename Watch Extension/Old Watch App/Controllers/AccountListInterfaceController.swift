@@ -28,7 +28,7 @@ class AccountListInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        AnalyticController.logScreenView(.account_list_screen_view)
+//        AnalyticController.logScreenView(.account_list_screen_view)
     }
 
     

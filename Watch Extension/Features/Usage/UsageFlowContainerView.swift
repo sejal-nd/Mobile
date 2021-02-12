@@ -56,6 +56,11 @@ struct UsageFlowContainerView: View {
             }
         }
         .navigationTitle("Usage")
+        .onAppear(perform: logAnalytics)
+    }
+    
+    private func logAnalytics() {
+        AnalyticController.logScreenView(.usage)
     }
 }
 

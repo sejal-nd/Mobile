@@ -55,6 +55,11 @@ struct OutageFlowContainerView: View {
             }
         }
         .navigationTitle("Outage")
+        .onAppear(perform: logAnalytics)
+    }
+    
+    private func logAnalytics() {
+        AnalyticController.logScreenView(.outage)
     }
     
     @ViewBuilder

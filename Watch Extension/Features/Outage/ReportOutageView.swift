@@ -15,6 +15,11 @@ struct ReportOutageView: View {
     var body: some View {
         ImageTextView(imageName: imageName,
                       text: text)
+            .onAppear(perform: logAnalytics)
+    }
+    
+    private func logAnalytics() {
+        AnalyticController.logScreenView(.reportOuage)
     }
 }
 

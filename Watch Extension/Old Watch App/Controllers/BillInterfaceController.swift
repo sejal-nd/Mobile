@@ -163,7 +163,7 @@ class BillInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        AnalyticController.logScreenView(.bill_screen_view)
+//        AnalyticController.logScreenView(.bill_screen_view)
     }
     
     deinit {

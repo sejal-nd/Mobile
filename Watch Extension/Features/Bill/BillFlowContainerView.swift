@@ -48,6 +48,11 @@ struct BillFlowContainerView: View {
             }
         }
         .navigationTitle("Bill")
+        .onAppear(perform: logAnalytics)
+    }
+    
+    private func logAnalytics() {
+        AnalyticController.logScreenView(.bill)
     }
 }
 

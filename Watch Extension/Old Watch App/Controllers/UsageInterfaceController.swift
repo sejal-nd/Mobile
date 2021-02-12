@@ -218,7 +218,7 @@ class UsageInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        AnalyticController.logScreenView(.usage_screen_view)
+//        AnalyticController.logScreenView(.usage_screen_view)
     }
     
     deinit {

@@ -24,6 +24,11 @@ struct AccountListFlowContainerView: View {
             }
         }
         .navigationTitle("Accounts")
+        .onAppear(perform: logAnalytics)
+    }
+    
+    private func logAnalytics() {
+        AnalyticController.logScreenView(.accountList)
     }
 }
 
