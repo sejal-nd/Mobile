@@ -35,7 +35,7 @@ class WatchSessionController: NSObject, WCSessionDelegate {
             return session
         }
         
-        Log.info("Invalid Watch Session.")
+        Log.error("Invalid Watch Session.")
         return nil
         #else
         return session
@@ -48,22 +48,21 @@ class WatchSessionController: NSObject, WCSessionDelegate {
     }
 }
 
-
 // MARK: - Application Context
-// Use when your app needs only the latest info: If the data was not sent, it will be replaced.
+/// Use when your app needs only the latest info: If the data was not sent, it will be replaced.
 
 extension WatchSessionController {
     // Sender
     func updateApplicationContext(applicationContext: [String : Any]) throws {
         guard let session = validSession else {
-            Log.info("Failed to update application context, invalid session.")
+            Log.warning("Failed to update application context, invalid session.")
             return
         }
         
         do {
             try session.updateApplicationContext(applicationContext)
         } catch let error {
-            Log.info("Failed to update application context:\n\(error.localizedDescription)")
+            Log.error("Failed to update application context:\n\(error.localizedDescription)")
             throw error
         }
     }
@@ -72,6 +71,8 @@ extension WatchSessionController {
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         DispatchQueue.main.async { [weak self] in
             #if os(watchOS)
+            
+            #warning("This does not work as expected.")
             // New Azure Auth Token
             if let authToken = applicationContext[UserSession.tokenKeychainKey] as? String {
                 // Save to KeyChain
@@ -93,11 +94,13 @@ extension WatchSessionController {
     }
 }
 
-
 // MARK: - User Info
-// Use when your app needs all the data: FIFO queue
+/// Use when your app needs all the data: FIFO queue
 
 extension WatchSessionController {
+    private static let consoleKey = "console"
+    private static let screenNameKey = "screenName"
+    
     // Sender
     func transferUserInfo(userInfo: [String : Any]) {
         validSession?.transferUserInfo(userInfo)
@@ -109,12 +112,12 @@ extension WatchSessionController {
             #if os(iOS)
             
             // Logging
-            if let value = userInfo["console"] as? String {
+            if let value = userInfo[WatchSessionController.consoleKey] as? String {
                 Log.info("WATCH CONSOLE: \(value)")
                 return
             }
             
-            guard let screenName = userInfo["screenName"] as? String else {
+            guard let screenName = userInfo[WatchSessionController.screenNameKey] as? String else {
                 Log.error("Failed to parse user info dictionary with key: screenName")
                 return
             }
@@ -129,7 +132,6 @@ extension WatchSessionController {
 // MARK: - Unused Required Delegate Methods
 
 extension WatchSessionController {
-    @available(iOS 9.3, *)
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
     
     #if os(iOS)

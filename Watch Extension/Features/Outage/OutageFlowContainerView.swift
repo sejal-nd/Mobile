@@ -22,8 +22,8 @@ struct OutageFlowContainerView: View {
                     OutageContainerView(outage: PreviewData.outageOn,
                                         account: PreviewData.accounts[0],
                                         isLoading: true)
-                        .redacted(reason: .placeholder)
                 }
+                .redacted(reason: .placeholder)
             case .loaded(let outage, let account):
                 VStack(spacing: 0) {
                     AccountInfoBar(account: account)

@@ -13,6 +13,7 @@ open class KeychainController {
     
     private init() {}
     
+    #warning("audit and refine this.... remove force unwraps ect....")
     private static var _shared: KeychainController?
     public static var shared: KeychainController {
         get {

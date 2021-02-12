@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AnalyticController {
+enum AnalyticController {
     enum ScreenName: String {
         case signIn = "sign_in_screen_view"
         case reportOuage = "report_outage_screen_view"
