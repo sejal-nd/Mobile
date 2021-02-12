@@ -18,8 +18,15 @@ struct AccountRow: View {
         account.isResidential ? "house.fill" : "building.2.fill"
     }
     
+    private var currentAccount: WatchAccount {
+        WatchAccount(account: AccountsStore.shared.currentAccount)
+    }
+    
     var body: some View {
         HStack(spacing: 4) {
+            if account == currentAccount {
+                Image(systemName: "checkmark")
+            }
             Image(systemName: imageName)
             VStack(alignment: .leading,
                    spacing: 4) {

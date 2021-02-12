@@ -9,10 +9,10 @@
 import SwiftUI
 
 extension Color {
-    static let watchSystemBackground = Color(red: 49/255,
-                                             green: 50/255,
-                                             blue: 51/255,
-                                             opacity: 1.0)
+    static let watchCardBackground = Color(red: 49/255,
+                                           green: 50/255,
+                                           blue: 51/255,
+                                           opacity: 1.0)
     
     static var opco: Color {
         switch Configuration.shared.opco {

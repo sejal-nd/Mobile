@@ -12,7 +12,7 @@ struct CardView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 8.0,
                          style: .continuous)
-            .foregroundColor(Color.watchSystemBackground)
+            .foregroundColor(Color.watchCardBackground)
     }
 }
 
