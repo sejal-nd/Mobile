@@ -890,12 +890,9 @@ class UsageViewModel {
                     }
                 } else if accountDetail.opcoType == .pepco {
                     usageTools.insert(.energyWiseRewards, at: 1)
-                    usageTools.append(.peakEnergySavings)
-                    #warning("Uncomment this in Release 2, Commented for R1")
-                    /*
                     if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && accountDetail.subOpco == .pepcoMaryland {
                         usageTools.append(.peakEnergySavings)
-                    }*/
+                    }
                 }
             }
             return usageTools

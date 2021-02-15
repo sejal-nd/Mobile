@@ -1984,14 +1984,16 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csj-7M-Woi" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="177" y="360" width="60" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csj-7M-Woi" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="387" width="60" height="12"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="NJy-ir-VLR"/>
+                                    <constraint firstAttribute="width" constant="60" id="Rna-EA-3NR"/>
+                                </constraints>
                             </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEK-Zm-z4Z">
-                                <rect key="frame" x="30" y="356" width="354" height="20.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEK-Zm-z4Z">
+                                <rect key="frame" x="20" y="383" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2001,9 +2003,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6J6-hm-eqV" firstAttribute="trailing" secondItem="zre-nb-OHa" secondAttribute="trailing" id="7Ai-Wc-NNn"/>
+                            <constraint firstItem="6J6-hm-eqV" firstAttribute="trailing" secondItem="BEK-Zm-z4Z" secondAttribute="trailing" constant="20" id="92W-w9-i44"/>
+                            <constraint firstItem="csj-7M-Woi" firstAttribute="centerY" secondItem="Yfg-F2-crb" secondAttribute="centerY" id="En1-NW-oqK"/>
+                            <constraint firstItem="BEK-Zm-z4Z" firstAttribute="leading" secondItem="6J6-hm-eqV" secondAttribute="leading" constant="20" id="HfT-hv-MQE"/>
+                            <constraint firstItem="BEK-Zm-z4Z" firstAttribute="centerY" secondItem="Yfg-F2-crb" secondAttribute="centerY" id="JIY-wK-jQj"/>
                             <constraint firstItem="zre-nb-OHa" firstAttribute="leading" secondItem="6J6-hm-eqV" secondAttribute="leading" id="Ja5-N3-gmK"/>
+                            <constraint firstItem="BEK-Zm-z4Z" firstAttribute="centerX" secondItem="Yfg-F2-crb" secondAttribute="centerX" id="TFA-jJ-6pk"/>
                             <constraint firstItem="6J6-hm-eqV" firstAttribute="bottom" secondItem="zre-nb-OHa" secondAttribute="bottom" id="kps-oW-Jco"/>
                             <constraint firstItem="zre-nb-OHa" firstAttribute="top" secondItem="6J6-hm-eqV" secondAttribute="top" id="ua8-e0-9UJ"/>
+                            <constraint firstItem="csj-7M-Woi" firstAttribute="centerX" secondItem="Yfg-F2-crb" secondAttribute="centerX" id="x6d-oA-03U"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hKu-Mx-Ez1"/>
