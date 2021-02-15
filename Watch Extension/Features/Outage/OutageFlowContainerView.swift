@@ -20,7 +20,7 @@ struct OutageFlowContainerView: View {
                 VStack(spacing: 0) {
                     AccountInfoBar(account: PreviewData.accountDefault)
                     OutageContainerView(outage: PreviewData.outageDefault,
-                                        account: accountDefault,
+                                        account: PreviewData.accountDefault,
                                         isLoading: true)
                 }
                 .redacted(reason: .placeholder)
