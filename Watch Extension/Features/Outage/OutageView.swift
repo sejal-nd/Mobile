@@ -36,6 +36,7 @@ struct OutageView: View {
             
             if !isLoading {
                 Image(outage.isPowerOn ? "On_37" : "Out_37")
+                    .resizable()
                     .frame(height: 25)
             }
             

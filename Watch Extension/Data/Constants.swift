@@ -29,6 +29,7 @@ enum AppConstant {
         case error
         case gas
         case maintenanceMode
+        case noOutageData
         case noUsageData
         case passwordProtected
         case scheduledPayment
@@ -47,6 +48,8 @@ enum AppConstant {
                 return "New_gas"
             case .maintenanceMode:
                 return "New_maintenance"
+            case .noOutageData:
+                return "New_noOutageData"
             case .noUsageData:
                 return "New_noUsageData"
             case .passwordProtected:

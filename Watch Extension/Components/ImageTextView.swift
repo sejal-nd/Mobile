@@ -22,6 +22,8 @@ struct ImageTextView: View {
                     .frame(width: 100, height: 100)
             } else {
                 Image(imageName)
+                    .resizable()
+                    .frame(width: 100, height: 100)
             }
             Text(text)
                 .multilineTextAlignment(.center)

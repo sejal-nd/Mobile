@@ -37,18 +37,22 @@ struct OutageFlowContainerView: View {
                         }
                 }
             case .gasOnly(let account):
-                VStack(spacing: 0) {
-                    AccountInfoBar(account: account)
-                    #warning("image sizes are not correct right now.")
-                    ImageTextView(imageName: AppImage.gas.name,
-                                  text: "Outage reporting for gas only accounts is not allowed online.")
+                ScrollView {
+                    VStack(spacing: 0) {
+                        AccountInfoBar(account: account)
+                        ImageTextView(imageName: AppConstant.ImageName.gas.name,
+                                      imageColor: .opco,
+                                      text: "Outage reporting for gas only accounts is not allowed online.")
+                    }
                 }
             case .unavailable(let account):
-                VStack(spacing: 0) {
-                    AccountInfoBar(account: account)
-                    #warning("image sizes are not correct right now.")
-                    ImageTextView(imageName: AppImage.outageUnavailable.name,
-                                  text: "Outage Status and Reporting are not available for this account.")
+                ScrollView {
+                    VStack(spacing: 0) {
+                        AccountInfoBar(account: account)
+                        ImageTextView(imageName: AppConstant.ImageName.noOutageData.name,
+                                      imageColor: .opco,
+                                      text: "Outage Status and Reporting are not available for this account.")
+                    }
                 }
             case .error(let errorState):
                 ErrorContainerView(errorState: errorState)
