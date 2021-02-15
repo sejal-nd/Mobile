@@ -38,6 +38,7 @@ struct AccountListFlowContainerView_Previews: PreviewProvider {
         
         AccountListFlowContainerView(state: .loaded(accounts: PreviewData.accounts))
         
+        // Maintenance mode & PW protected cannot occur here
         AccountListFlowContainerView(state: .error(errorState: .other))
     }
 }
