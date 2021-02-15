@@ -17,9 +17,9 @@ struct UsageFlowContainerView: View {
             case .loading:
                 ScrollView {
                     VStack(spacing: 0) {
-                        AccountInfoBar(account: PreviewData.accounts[0])
-                        UsageContainerView(usage: PreviewData.usageElectricModeled,
-                                           account: PreviewData.accounts[0],
+                        AccountInfoBar(account: PreviewData.accountDefault)
+                        UsageContainerView(usage: PreviewData.usageDefault,
+                                           account: PreviewData.accountDefault,
                                            isLoading: true)
                     }
                     .redacted(reason: .placeholder)
@@ -37,17 +37,18 @@ struct UsageFlowContainerView: View {
                 ScrollView {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
-                        #warning("image sizes are not correct right now.")
-                        ImageTextView(imageName: AppImage.gas.name,
-                                      text: "Outage reporting for gas only accounts is not allowed online.")
+                        ImageTextView(imageName: AppConstant.ImageName.noUsageData.name,
+                                      imageColor: .opco,
+                                      title: "\(daysToForecast) days",
+                                      text: "until next forecast")
                     }
                 }
             case .unavailable(let account):
                 ScrollView {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
-                        #warning("image sizes are not correct right now.")
-                        ImageTextView(imageName: AppImage.usage.name,
+                        ImageTextView(imageName: AppConstant.ImageName.noUsageData.name,
+                                      imageColor: .opco,
                                       text: "Usage is not available for this account")
                     }
                 }

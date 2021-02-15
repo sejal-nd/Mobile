@@ -51,18 +51,18 @@ struct AccountRow_Previews: PreviewProvider {
         // Residential, short address
         AccountRow(accounts: PreviewData.accounts,
                    account: PreviewData.accounts[0],
-                   currentAccount: PreviewData.accounts[0])
+                   currentAccount: PreviewData.accountDefault)
         
         // Commercial, long address
         AccountRow(accounts: PreviewData.accounts,
                    account: PreviewData.accounts[1],
-                   currentAccount: PreviewData.accounts[0])
+                   currentAccount: PreviewData.accountDefault)
             .previewDevice("Apple Watch Series 6 - 40mm")
         
         // Residential, long address
         AccountRow(accounts: PreviewData.accounts,
                    account: PreviewData.accounts[2],
-                   currentAccount: PreviewData.accounts[0])
+                   currentAccount: PreviewData.accountDefault)
             .previewDevice("Apple Watch Series 6 - 44mm")
     }
 }

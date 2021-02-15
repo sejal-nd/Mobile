@@ -11,6 +11,7 @@ import SwiftUI
 struct ImageTextView: View {
     let imageName: String
     var imageColor: Color? = nil
+    var title: String? = nil
     let text: String
     
     var body: some View {
@@ -25,6 +26,13 @@ struct ImageTextView: View {
                     .resizable()
                     .frame(width: 100, height: 100)
             }
+            
+            if let title = title {
+                Text(title)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+            }
+            
             Text(text)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -36,6 +44,14 @@ struct ImageTextView: View {
 struct ImageTextView_Previews: PreviewProvider {
     static var previews: some View {
         ImageTextView(imageName: AppImage.maintenanceMode.name,
+                      text: "Scheduled Maintenance")
+        
+        ImageTextView(imageName: AppImage.maintenanceMode.name,
+                      imageColor: .red,
+                      text: "Scheduled Maintenance")
+        
+        ImageTextView(imageName: AppImage.maintenanceMode.name,
+                      title: "7 days",
                       text: "Scheduled Maintenance")
     }
 }

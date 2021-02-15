@@ -18,9 +18,9 @@ struct OutageFlowContainerView: View {
             switch state {
             case .loading:
                 VStack(spacing: 0) {
-                    AccountInfoBar(account: PreviewData.accounts[0])
-                    OutageContainerView(outage: PreviewData.outageOn,
-                                        account: PreviewData.accounts[0],
+                    AccountInfoBar(account: PreviewData.accountDefault)
+                    OutageContainerView(outage: PreviewData.outageDefault,
+                                        account: accountDefault,
                                         isLoading: true)
                 }
                 .redacted(reason: .placeholder)

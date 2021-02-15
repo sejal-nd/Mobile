@@ -13,6 +13,10 @@ enum PreviewData { }
 // MARK: Account
 
 extension PreviewData {
+    static let accountDefault = WatchAccount(accountID: "XXXXXXXXX",
+                                             address: "10 Anywhere Lane",
+                                             isResidential: true)
+    
     static let accounts = [
         WatchAccount(accountID: "798123445",
                      address: "10 Anywhere…",
@@ -29,6 +33,8 @@ extension PreviewData {
 // MARK: Outage
 
 extension PreviewData {
+    static let outageDefault = WatchOutage(isPowerOn: true)
+    
     static let outageOn = WatchOutage(isPowerOn: true)
     
     static let outageOff = WatchOutage(isPowerOn: false,
@@ -41,6 +47,12 @@ extension PreviewData {
 // MARK: Usage
 
 extension PreviewData {
+    static let usageDefault = WatchUsage(fuelTypes: [.electric, .gas],
+                                         electricUsageCost: "$XX",
+                                         electricProjetedUsageCost: "$XXX.XX",
+                                         electricBillPeriod: "N/A",
+                                         electricProgress: 0.0)
+    
     // Electric
     static let usageElectricModeled = WatchUsage(fuelTypes: [.electric],
                                                  electricUsageCost: "$80",

@@ -28,6 +28,6 @@ struct AccountInfoBar: View {
 
 struct AccountInfoBar_Previews: PreviewProvider {
     static var previews: some View {
-        AccountInfoBar(account: PreviewData.accounts[0])
+        AccountInfoBar(account: PreviewData.accountDefault)
     }
 }

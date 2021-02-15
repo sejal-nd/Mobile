@@ -18,20 +18,22 @@ struct UsageView: View {
             hasBothFuelTypes = true
         } else {
             if usage.fuelTypes.contains(.electric) {
-                isShowingElectric = true
+                self._isShowingElectric = State(initialValue: true)
             } else {
-                isShowingElectric = false
-            }            
+                self._isShowingElectric = State(initialValue: false)
+            }
         }
     }
     
     let usage: WatchUsage
     let account: WatchAccount
     let isLoading: Bool
-
+    
     @State private var isShowingElectric = true
     
     private var hasBothFuelTypes = false
+    
+    #warning("we could extract these vars out?")
     
     private var usageCostText: String {
         if isShowingElectric {
@@ -73,7 +75,10 @@ struct UsageView: View {
                 }
                 
                 VStack {
-                    Image(AppImage.gas.name)
+                    Image(isShowingElectric ? AppConstant.ImageName.electric.name : AppConstant.ImageName.gas.name)
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .foregroundColor(isLoading ? nil : .opco)
                     Text("Spent So Far")
                     Text(usageCostText)
                         .fontWeight(.semibold)
@@ -85,8 +90,9 @@ struct UsageView: View {
                 Button(action: {
                     isShowingElectric.toggle()
                 }) {
-                    Label(isShowingElectric ? "Electric" : "Gas",
-                          image: isShowingElectric ? AppImage.electric.name : AppImage.gas.name)
+                    Label(isShowingElectric ? "Gas" : "Electric",
+                          image: isShowingElectric ? AppConstant.ImageName.gas.name : AppConstant.ImageName.electric.name)
+                        .foregroundColor(.opco)
                 }
                 .padding(.bottom, 16)
             }
