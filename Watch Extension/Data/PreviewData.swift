@@ -98,3 +98,28 @@ extension PreviewData {
                                                             electricTimeToNextForecast: "3 Days",
                                                             gasTimeToNextForecast: "1 Day")
 }
+
+// MARK: Billing
+
+extension PreviewData {
+    static let billDefault = WatchBill(totalAmountDueText: "$0.00",
+                                        totalAmountDueDateText: "Due by MM/DD/YYYY",
+                                        isBillReady: true)
+    
+    static let billStandard = WatchBill(totalAmountDueText: "$1000.00",
+                                        totalAmountDueDateText: "Amount due in 5 days",
+                                        isBillReady: true)
+    
+    static let billAutoPay = WatchBill(totalAmountDueText: "$1000.00",
+                                               totalAmountDueDateText: "Amount due in 5 days",
+                                               isBillReady: true,
+                                               isEnrolledInAutoPay: true)
+    
+    static let billPrecarious = WatchBill(alertText: "Your bill is past due.",
+                                          totalAmountDueText: "$200.00",
+                                          totalAmountDueDateText: "Amount due immediately",
+                                          isBillReady: true,
+                                          pastDueAmountText: "$125.00",
+                                          currentBillAmountText: "$75.00",
+                                          currentBillDateText: "Due by 09/25/2021")
+}

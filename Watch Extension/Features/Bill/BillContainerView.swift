@@ -20,8 +20,22 @@ struct BillContainerView: View {
     }
 }
 
-//struct BillContainerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BillContainerView(billState: .loaded)
-//    }
-//}
+struct BillContainerView_Previews: PreviewProvider {
+    static var previews: some View {
+        BillContainerView(bill: PreviewData.billDefault,
+                          account: PreviewData.accounts[0],
+                          isLoading: true)
+        
+        BillContainerView(bill: PreviewData.billStandard,
+                          account: PreviewData.accounts[0],
+                          isLoading: false)
+        
+        BillContainerView(bill: PreviewData.billAutoPay,
+                          account: PreviewData.accounts[0],
+                          isLoading: false)
+        
+        BillContainerView(bill: PreviewData.billPrecarious,
+                          account: PreviewData.accounts[0],
+                          isLoading: false)
+    }
+}

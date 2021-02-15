@@ -116,8 +116,22 @@ struct BillView: View {
     }
 }
 
-//struct BillView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BillView(billState: .loaded)
-//    }
-//}
+struct BillView_Previews: PreviewProvider {
+    static var previews: some View {
+        BillView(bill: PreviewData.billDefault,
+                 account: PreviewData.accounts[0],
+                 isLoading: true)
+        
+        BillView(bill: PreviewData.billStandard,
+                 account: PreviewData.accounts[0],
+                 isLoading: false)
+        
+        BillView(bill: PreviewData.billAutoPay,
+                 account: PreviewData.accounts[0],
+                 isLoading: false)
+        
+        BillView(bill: PreviewData.billPrecarious,
+                 account: PreviewData.accounts[0],
+                 isLoading: false)
+    }
+}

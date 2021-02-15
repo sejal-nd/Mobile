@@ -18,10 +18,9 @@ struct BillFlowContainerView: View {
                 ScrollView {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: PreviewData.accounts[0])
-                        #warning("todo add preview data when it exists")
-//                        BillContainerView(bill: <#T##WatchBill#>,
-//                                          account: <#T##WatchAccount#>,
-//                                          isLoading: true)
+                        BillContainerView(bill: PreviewData.billDefault,
+                                          account: PreviewData.accounts[0],
+                                          isLoading: true)
                     }
                     .redacted(reason: .placeholder)
                 }
@@ -58,6 +57,25 @@ struct BillFlowContainerView: View {
 
 struct BillFlowContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        BillFlowContainerView()
+        BillFlowContainerView(state: .loading)
+        
+        BillFlowContainerView(state: .loaded(bill: PreviewData.billStandard,
+                                             account: PreviewData.accounts[0]))
+        
+        BillFlowContainerView(state: .loaded(bill: PreviewData.billAutoPay,
+                                             account: PreviewData.accounts[0]))
+        
+        BillFlowContainerView(state: .loaded(bill: PreviewData.billPrecarious,
+                                             account: PreviewData.accounts[0]))
+        
+        BillFlowContainerView(state: .unavailable(account: PreviewData.accounts[0]))
+        
+        Group {
+            BillFlowContainerView(state: .error(errorState: .maintenanceMode))
+            
+            BillFlowContainerView(state: .error(errorState: .passwordProtected))
+            
+            BillFlowContainerView(state: .error(errorState: .other))
+        }
     }
 }
