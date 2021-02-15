@@ -356,7 +356,7 @@ class TapToPayViewModel {
         if self.billingHistoryItem != nil {
             guard let billingHistory = self.billingHistoryItem ,
                   let amountPaid = billingHistory.amountPaid else { return NSAttributedString(string: "", attributes: attributes)}
-            string = "You have $\(String(describing: billingHistory.amountPaid ?? 0)) scheduled for \(billingHistory.date.fullMonthDayAndYearString). Confirmation #\(String(describing: billingHistory.paymentID ?? ""))"
+            string = "You have \(String(describing: amountPaid.currencyString)) scheduled for \(billingHistory.date.fullMonthDayAndYearString). Confirmation #\(String(describing: billingHistory.paymentID ?? ""))"
         } else {
             if billingInfo.pastDueAmount > 0 {
                 if billingInfo.pastDueAmount == billingInfo.netDueAmount {
