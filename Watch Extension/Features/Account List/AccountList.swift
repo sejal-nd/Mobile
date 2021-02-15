@@ -11,11 +11,20 @@ import SwiftUI
 struct AccountList: View {
     let accounts: [WatchAccount]
     
+    private var currentAccount: WatchAccount? {
+        // Work around since account store does not correctly use optionality
+        guard AccountsStore.shared.accounts != nil,
+              AccountsStore.shared.currentIndex != nil,
+              AccountsStore.shared.currentAccount != nil else { return nil }
+        return WatchAccount(account: AccountsStore.shared.currentAccount)
+    }
+    
     var body: some View {
         List {
             ForEach(accounts) { account in
                 AccountRow(accounts: accounts,
-                           account: account)
+                           account: account,
+                           currentAccount: currentAccount)
             }
         }
     }

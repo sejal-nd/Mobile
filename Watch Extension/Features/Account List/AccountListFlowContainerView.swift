@@ -15,7 +15,7 @@ struct AccountListFlowContainerView: View {
         Group {
             switch state {
             case .loading:
-                AccountListContainerView(accounts: [])
+                AccountListContainerView(accounts: PreviewData.accounts)
                     .redacted(reason: .placeholder)
             case .loaded(let accounts):
                 AccountListContainerView(accounts: accounts)

@@ -13,18 +13,16 @@ struct AccountRow: View {
     
     let accounts: [WatchAccount]
     let account: WatchAccount
+    let currentAccount: WatchAccount?
     
     private var imageName: String {
         account.isResidential ? "house.fill" : "building.2.fill"
     }
     
-    private var currentAccount: WatchAccount {
-        WatchAccount(account: AccountsStore.shared.currentAccount)
-    }
-    
     var body: some View {
         HStack(spacing: 4) {
-            if account == currentAccount {
+            if let currentAccount = currentAccount,
+               account == currentAccount {
                 Image(systemName: "checkmark")
             }
             Image(systemName: imageName)
@@ -52,16 +50,19 @@ struct AccountRow_Previews: PreviewProvider {
     static var previews: some View {
         // Residential, short address
         AccountRow(accounts: PreviewData.accounts,
-                   account: PreviewData.accounts[0])
+                   account: PreviewData.accounts[0],
+                   currentAccount: PreviewData.accounts[0])
         
         // Commercial, long address
         AccountRow(accounts: PreviewData.accounts,
-                   account: PreviewData.accounts[1])
+                   account: PreviewData.accounts[1],
+                   currentAccount: PreviewData.accounts[0])
             .previewDevice("Apple Watch Series 6 - 40mm")
         
         // Residential, long address
         AccountRow(accounts: PreviewData.accounts,
-                   account: PreviewData.accounts[2])
+                   account: PreviewData.accounts[2],
+                   currentAccount: PreviewData.accounts[0])
             .previewDevice("Apple Watch Series 6 - 44mm")
     }
 }
