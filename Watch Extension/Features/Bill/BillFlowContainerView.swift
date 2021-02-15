@@ -17,9 +17,9 @@ struct BillFlowContainerView: View {
             case .loading:
                 ScrollView {
                     VStack(spacing: 0) {
-                        AccountInfoBar(account: PreviewData.accounts[0])
+                        AccountInfoBar(account: PreviewData.accountDefault)
                         BillContainerView(bill: PreviewData.billDefault,
-                                          account: PreviewData.accounts[0],
+                                          account: PreviewData.accountDefault,
                                           isLoading: true)
                     }
                     .redacted(reason: .placeholder)
@@ -37,8 +37,8 @@ struct BillFlowContainerView: View {
                 ScrollView {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
-                        #warning("image sizes are not correct right now.")
                         ImageTextView(imageName: AppImage.billNotReady.name,
+                                      imageColor: .opco,
                                       text: "Bill is not available for this account")
                     }
                 }

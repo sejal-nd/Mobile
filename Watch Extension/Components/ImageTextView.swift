@@ -19,11 +19,13 @@ struct ImageTextView: View {
             if let imageColor = imageColor {
                 Image(imageName)
                     .resizable()
+                    .aspectRatio(contentMode: .fit)
                     .foregroundColor(imageColor)
                     .frame(width: 100, height: 100)
             } else {
                 Image(imageName)
                     .resizable()
+                    .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
             }
             
