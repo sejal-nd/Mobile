@@ -23,6 +23,7 @@ enum AppConstant {
     }
     
     enum ImageName {
+        case alert
         case autoPay
         case billNotReady
         case electric
@@ -33,9 +34,13 @@ enum AppConstant {
         case noUsageData
         case passwordProtected
         case scheduledPayment
+        case thankYouPayment
         
         var name: String {
+            #warning("todo, should all be rawValue...., may switch to String enum since we are not using animations")
             switch self {
+            case .alert:
+                return "New_alert"
             case .autoPay:
                 return "New_autoPay"
             case .billNotReady:
@@ -56,6 +61,8 @@ enum AppConstant {
                 return "New_passwordProtected"
             case .scheduledPayment:
                 return "New_scheduledPayment"
+            case .thankYouPayment:
+                return "New_thankYouPayment"
             }
         }
     }

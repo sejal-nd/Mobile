@@ -206,6 +206,7 @@
 		54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */; };
 		54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */; };
 		671448C224731680004D2AFF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Configuration.swift */; };
+		67167ABD25DB0E6A00C7E02D /* AnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67167ABC25DB0E6A00C7E02D /* AnimatedImage.swift */; };
 		67247EF325D2D6750024467D /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247EF225D2D6750024467D /* WatchApp.swift */; };
 		67247F0825D2D7FB0024467D /* WatchFlowContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */; };
 		67247F1325D2D8EC0024467D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F1225D2D8EC0024467D /* SignInView.swift */; };
@@ -1598,6 +1599,7 @@
 		64859E458B5973DD77314B29 /* Pods-EUMobile.prodbeta-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prodbeta-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prodbeta-peco.xcconfig"; sourceTree = "<group>"; };
 		65A34083A174EA78549ACFDB /* Pods-EUMobile.production beta-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.production beta-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.production beta-bge.xcconfig"; sourceTree = "<group>"; };
 		667260BE8F673703710FBBA9 /* Pods-EUMobileUITests.production-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production-bge.xcconfig"; sourceTree = "<group>"; };
+		67167ABC25DB0E6A00C7E02D /* AnimatedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedImage.swift; sourceTree = "<group>"; };
 		67247EF225D2D6750024467D /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
 		67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFlowContainer.swift; sourceTree = "<group>"; };
 		67247F1225D2D8EC0024467D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -4229,6 +4231,7 @@
 				67247F6025D2E33A0024467D /* AccountInfoBar.swift */,
 				67247F5225D2DF7E0024467D /* ImageTextView.swift */,
 				67247FCD25D33B400024467D /* CardView.swift */,
+				67167ABC25DB0E6A00C7E02D /* AnimatedImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -6679,6 +6682,7 @@
 				67247F8D25D2FE510024467D /* UsageContainerView.swift in Sources */,
 				35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */,
 				C3055C142538FBEF000DB89C /* BillService.swift in Sources */,
+				67167ABD25DB0E6A00C7E02D /* AnimatedImage.swift in Sources */,
 				C3055BE42538FB11000DB89C /* WalletItemRequest.swift in Sources */,
 				C3055B422538F703000DB89C /* Configuration.swift in Sources */,
 				C3055B7F2538F81B000DB89C /* MaintenanceMode.swift in Sources */,
@@ -7917,6 +7921,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8000,6 +8005,7 @@
 			baseConfigurationReference = FE60CB34CA163B81BF311DAF /* Pods-EUMobile-Watch.bge-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8041,6 +8047,7 @@
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8083,6 +8090,7 @@
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8361,6 +8369,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8727,6 +8736,7 @@
 			baseConfigurationReference = 94D56EE8642BE663AD7AA9EC /* Pods-EUMobile-Watch.peco-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9002,6 +9012,7 @@
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9279,6 +9290,7 @@
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9599,6 +9611,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9966,6 +9979,7 @@
 			baseConfigurationReference = 2970025E51E4A6B5E1D1ED99 /* Pods-EUMobile-Watch.ace-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10242,6 +10256,7 @@
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10520,6 +10535,7 @@
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10840,6 +10856,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -11207,6 +11224,7 @@
 			baseConfigurationReference = 34D5D8773E8D72600EFCF9F9 /* Pods-EUMobile-Watch.delmarva-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11483,6 +11501,7 @@
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11761,6 +11780,7 @@
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12081,6 +12101,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -12448,6 +12469,7 @@
 			baseConfigurationReference = BB7CA6327A54535477F5B485 /* Pods-EUMobile-Watch.pepco-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12724,6 +12746,7 @@
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13002,6 +13025,7 @@
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13322,6 +13346,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13688,6 +13713,7 @@
 			baseConfigurationReference = 431E8E7552EFD5BBEC6673DC /* Pods-EUMobile-Watch.comed-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13963,6 +13989,7 @@
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -14240,6 +14267,7 @@
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
