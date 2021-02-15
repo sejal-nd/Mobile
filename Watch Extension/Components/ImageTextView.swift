@@ -10,11 +10,19 @@ import SwiftUI
 
 struct ImageTextView: View {
     let imageName: String
+    var imageColor: Color? = nil
     let text: String
     
     var body: some View {
         VStack(spacing: 8) {
-            Image(imageName)
+            if let imageColor = imageColor {
+                Image(imageName)
+                    .resizable()
+                    .foregroundColor(imageColor)
+                    .frame(width: 100, height: 100)
+            } else {
+                Image(imageName)
+            }
             Text(text)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)

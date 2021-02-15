@@ -14,11 +14,11 @@ struct ErrorContainerView: View {
     private var imageName: String {
         switch errorState {
         case .maintenanceMode:
-            return AppImage.maintenanceMode.name
+            return AppConstant.ImageName.maintenanceMode.name
         case .passwordProtected:
-            return AppImage.passwordProtected.name
+            return AppConstant.ImageName.passwordProtected.name
         case .other:
-            return AppImage.error.name
+            return AppConstant.ImageName.error.name
         }
     }
     
@@ -34,7 +34,20 @@ struct ErrorContainerView: View {
     }
     
     var body: some View {
+        switch errorState {
+        case .maintenanceMode:
+            errorContent()
+        case .passwordProtected, .other:
+            ScrollView {
+                errorContent()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func errorContent() -> some View {
         ImageTextView(imageName: imageName,
+                      imageColor: .opco,
                       text: text)
     }
 }
@@ -42,5 +55,9 @@ struct ErrorContainerView: View {
 struct ErrorContainerView_Previews: PreviewProvider {
     static var previews: some View {
         ErrorContainerView(errorState: .maintenanceMode)
+        
+        ErrorContainerView(errorState: .passwordProtected)
+        
+        ErrorContainerView(errorState: .other)
     }
 }

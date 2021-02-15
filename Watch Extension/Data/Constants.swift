@@ -23,12 +23,36 @@ enum AppConstant {
     }
     
     enum ImageName {
-        case todo
+        case autoPay
+        case billNotReady
+        case electric
+        case error
+        case gas
+        case maintenanceMode
+        case noUsageData
+        case passwordProtected
+        case scheduledPayment
         
         var name: String {
             switch self {
-            case .todo:
-                return ""
+            case .autoPay:
+                return "New_autoPay"
+            case .billNotReady:
+                return "New_billNotReady"
+            case .electric:
+                return "New_electric"
+            case .error:
+                return "New_error"
+            case .gas:
+                return "New_gas"
+            case .maintenanceMode:
+                return "New_maintenance"
+            case .noUsageData:
+                return "New_noUsageData"
+            case .passwordProtected:
+                return "New_passwordProtected"
+            case .scheduledPayment:
+                return "New_scheduledPayment"
             }
         }
     }
