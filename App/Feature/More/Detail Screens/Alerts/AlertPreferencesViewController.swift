@@ -375,6 +375,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             toggleVariable = viewModel.forYourInfo
         case .energyBuddyUpdates:
             toggleVariable = viewModel.energyBuddyUpdates
+        case .grantStatus:
+            toggleVariable = viewModel.grantStatus
         }
         
         if let toggleVariable = toggleVariable {

@@ -39,6 +39,7 @@ class AlertPreferencesViewModel {
     let forYourInfo = BehaviorRelay(value: false)
     let energyBuddyUpdates = BehaviorRelay(value: false)
     let english = BehaviorRelay(value: true) // Language selection. False = Spanish
+    let grantStatus = BehaviorRelay(value: false)
     
     var hasPreferencesChanged = BehaviorRelay(value: false)
     
@@ -87,6 +88,8 @@ class AlertPreferencesViewModel {
                 switch Configuration.shared.opco {
                 case .bge:
                     var usageOptions: [AlertPreferencesOptions] = []
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue, .grantStatus]
+                    
                     if self.isHUAEligible {
                         usageOptions.append(.highUsage)
                     }
@@ -95,6 +98,10 @@ class AlertPreferencesViewModel {
                         usageOptions.append(contentsOf: [.smartEnergyRewards, .energySavingsDayResults])
                     }
                     
+//                    if self.isOHEPEligible {
+//                        paymentOptions.append(.grantStatus)
+//                    }
+                    
                     self.sections = [
                         (NSLocalizedString("Usage", comment: ""), usageOptions),
                         (NSLocalizedString("Outage", comment: ""),
@@ -102,7 +109,7 @@ class AlertPreferencesViewModel {
                         (NSLocalizedString("Billing", comment: ""),
                          [.billIsReady(self.accountDetail)]),
                         (NSLocalizedString("Payment", comment: ""),
-                         [.paymentDueReminder, .paymentPosted, .paymentPastDue]),
+                         paymentOptions),
                         (NSLocalizedString("Customer Appointments", comment: ""),
                          [.appointmentTracking]),
                         (NSLocalizedString("News", comment: ""),
@@ -263,6 +270,7 @@ class AlertPreferencesViewModel {
                 self.appointmentTracking.accept(alertPrefs.appointmentTracking)
                 self.forYourInfo.accept(alertPrefs.forYourInfo)
                 self.energyBuddyUpdates.accept(UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference))
+                self.grantStatus.accept(alertPrefs.grantStatus)
             })
             .mapTo(())
     }
@@ -307,40 +315,86 @@ class AlertPreferencesViewModel {
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0 != $1.paymentDueDaysBefore }
     
-    private lazy var booleanPrefsChanged = Observable<Bool>
-        .combineLatest([highUsage.asObservable(),
-                        peakTimeSavings.asObservable(),
-                        smartEnergyRewards.asObservable(),
-                        energySavingsDayResults.asObservable(),
-                        outage.asObservable(),
-                        scheduledMaint.asObservable(),
-                        severeWeather.asObservable(),
-                        billReady.asObservable(),
-                        paymentDue.asObservable(),
-                        paymentPosted.asObservable(),
-                        paymentPastDue.asObservable(),
-                        budgetBilling.asObservable(),
-                        appointmentTracking.asObservable(),
-                        forYourInfo.asObservable()])
-        .map { prefs in
-            AlertPreferences(highUsage: prefs[0],
-                             peakTimeSavings: prefs[1],
-                             smartEnergyRewards: prefs[2],
-                             energySavingsDayResults: prefs[3],
-                             outage: prefs[4],
-                             scheduledMaint: prefs[5],
-                             severeWeather: prefs[6],
-                             billReady: prefs[7],
-                             paymentDue: prefs[8],
-                             paymentDueDaysBefore: 0,
-                             paymentPosted: prefs[9],
-                             paymentPastDue: prefs[10],
-                             budgetBilling: prefs[11],
-                             appointmentTracking: prefs[12],
-                             forYourInfo: prefs[13])
-    }
-    .withLatestFrom(alertPrefs.asObservable().unwrap())
-    { $0.isDifferent(fromOriginal: $1) }
+//    private lazy var boolean1PrefsChanged =
+//        Observable<AlertPreferences>.just(AlertPreferences(highUsage: highUsage.value, peakTimeSavings: peakTimeSavings.value, smartEnergyRewards: smartEnergyRewards.value, energySavingsDayResults: energySavingsDayResults.value, outage: outage.value, scheduledMaint: scheduledMaint.value, severeWeather: severeWeather.value, billReady: billReady.value, paymentDue: paymentDue.value, paymentDueDaysBefore: paymentDueDaysBefore.value, paymentPosted: paymentPosted.value, paymentPastDue: paymentPastDue.value, budgetBilling: budgetBilling.value, appointmentTracking: appointmentTracking.value, forYourInfo: forYourInfo.value, grantStatus: grantStatus.value))
+//        .withLatestFrom(alertPrefs.asObservable().unwrap())
+//            { $0.isDifferent(fromOriginal: $1) }
+    
+    private lazy var usagePrefs = Observable.combineLatest([highUsage.asObservable(),
+                                                            peakTimeSavings.asObservable(),
+                                                            smartEnergyRewards.asObservable(),
+                                                            energySavingsDayResults.asObservable()])
+    
+    private lazy var outagePrefs = Observable.combineLatest([outage.asObservable(),
+                                                             scheduledMaint.asObservable(),
+                                                             severeWeather.asObservable()])
+    
+    private lazy var billingPrefs = Observable.combineLatest([billReady.asObservable(),
+                                                              budgetBilling.asObservable()])
+    
+    private lazy var paymentPrefs = Observable.combineLatest([paymentDue.asObservable(),
+                                                              paymentPosted.asObservable(),
+                                                              paymentPastDue.asObservable(),
+                                                              grantStatus.asObservable()])
+    
+    private lazy var appointmentPrefs = Observable.combineLatest([appointmentTracking.asObservable()])
+    
+    private lazy var newsPrefs = Observable.combineLatest([forYourInfo.asObservable()])
+    
+    private lazy var newPrefs = Observable
+        .combineLatest([usagePrefs, outagePrefs, billingPrefs, paymentPrefs, appointmentPrefs, newsPrefs])
+    
+    private lazy var booleanPrefsChanged =
+        newPrefs
+        .map { prefs -> AlertPreferences in
+            let usagePrefs = prefs[0]
+            let outagePrefs = prefs[1]
+            let billingPrefs = prefs[2]
+            let paymentPrefs = prefs[3]
+            let appointmentPrefs = prefs[4]
+            let newsPrefs = prefs[5]
+            
+            return AlertPreferences(highUsage: usagePrefs[0],
+                                    peakTimeSavings: usagePrefs[1],
+                                    smartEnergyRewards: usagePrefs[2],
+                                    energySavingsDayResults: usagePrefs[3],
+                                    outage: outagePrefs[0],
+                                    scheduledMaint: outagePrefs[1],
+                                    severeWeather: outagePrefs[2],
+                                    billReady: billingPrefs[0],
+                                    paymentDue: paymentPrefs[0],
+                                    paymentDueDaysBefore: 0,
+                                    paymentPosted: paymentPrefs[1],
+                                    paymentPastDue: paymentPrefs[2],
+                                    budgetBilling: billingPrefs[1],
+                                    appointmentTracking: appointmentPrefs[0],
+                                    forYourInfo: newsPrefs[0],
+                                    grantStatus: paymentPrefs[3])
+        }
+        .withLatestFrom(alertPrefs.asObservable().unwrap())
+            { $0.isDifferent(fromOriginal: $1) }
+    
+//    private lazy var booleanPrefsChanged =
+//        newPrefs
+//        .map { prefs in
+//            AlertPreferences(highUsage: prefs[0],
+//                             peakTimeSavings: prefs[1],
+//                             smartEnergyRewards: prefs[2],
+//                             energySavingsDayResults: prefs[3],
+//                             outage: prefs[4],
+//                             scheduledMaint: prefs[5],
+//                             severeWeather: prefs[6],
+//                             billReady: prefs[7],
+//                             paymentDue: prefs[8],
+//                             paymentDueDaysBefore: 0,
+//                             paymentPosted: prefs[9],
+//                             paymentPastDue: prefs[10],
+//                             budgetBilling: prefs[11],
+//                             appointmentTracking: prefs[12],
+//                             forYourInfo: prefs[13])
+//    }
+//    .withLatestFrom(alertPrefs.asObservable().unwrap())
+//    { $0.isDifferent(fromOriginal: $1) }
     
     private lazy var billThresholdPrefChanged = billThreshold.asObservable()
         .map { [weak self] in
@@ -398,7 +452,8 @@ class AlertPreferencesViewModel {
                                                 paymentPastDue: paymentPastDue.value,
                                                 budgetBilling: budgetBilling.value,
                                                 appointmentTracking: appointmentTracking.value,
-                                                forYourInfo: forYourInfo.value)
+                                                forYourInfo: forYourInfo.value,
+                                                grantStatus: grantStatus.value)
         let alertPreferenceRequest = AlertPreferencesRequest(alertPreferences: alertPreferences)
         
         return nonLanguagePrefsChanged.flatMap {
@@ -455,6 +510,15 @@ class AlertPreferencesViewModel {
         }
     }
     
+    var isOHEPEligible: Bool {
+        switch Configuration.shared.opco {
+        case .bge:
+            return self.accountDetail.isLowIncome // TODO is this the correct field?
+        default:
+            return false
+        }
+    }
+    
     var showAccountInfoBar: Bool {
         switch Configuration.shared.opco {
         case .ace, .bge, .comEd, .delmarva, .peco, .pepco:
@@ -498,7 +562,7 @@ class AlertPreferencesViewModel {
         // Billing
         case billIsReady(AccountDetail)
         // Payment
-        case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview
+        case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview, grantStatus
         // Customer Appointments
         case appointmentTracking
         // News
@@ -538,6 +602,8 @@ class AlertPreferencesViewModel {
                 return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
                 return NSLocalizedString("Lumi Updates", comment: "")
+            case .grantStatus:
+                return NSLocalizedString("Payment Assistance Grant Status", comment: "")
             }
         }
         
@@ -677,6 +743,8 @@ class AlertPreferencesViewModel {
             // Energy Buddy
             case (.energyBuddyUpdates, _):
                 return NSLocalizedString("Receive a notification when Lumi has new data, tips, and insights to help you save energy and money.", comment: "")
+            case (.grantStatus, _):
+                return NSLocalizedString("Receive a notification when your payment assistance grant’s status has changed. Included will be the change in grant status and type of grant applied to your BGE account.", comment: "")
             default:
                 return ""
             }

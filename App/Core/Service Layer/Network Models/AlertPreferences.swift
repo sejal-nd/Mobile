@@ -26,6 +26,7 @@ public struct AlertPreferences: Decodable {
     var budgetBilling = false // ComEd/PECO only
     var appointmentTracking = false
     var forYourInfo = false
+    var grantStatus = false
     
     enum CodingKeys: String, CodingKey {
         case preferences = "alertPreferences"
@@ -47,6 +48,7 @@ public struct AlertPreferences: Decodable {
         case budgetBilling
         case appointmentTracking
         case forYourInfo
+        case grantStatus
     }
     
     public init(from decoder: Decoder) throws {
@@ -88,13 +90,15 @@ public struct AlertPreferences: Decodable {
                 appointmentTracking = true
             case "News", "Marketing", "News \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 forYourInfo = true
+            case "Payment Assistance Grant Status":
+                grantStatus = true
             default:
                 break
             }
         }
     }
     
-    public init(highUsage: Bool = false, alertThreshold: Int? = nil, previousAlertThreshold: Int? = nil, peakTimeSavings: Bool? = false, smartEnergyRewards: Bool? = false, energySavingsDayResults: Bool? = false, outage: Bool = false, scheduledMaint: Bool = false, severeWeather: Bool = false, billReady: Bool = false, paymentDue: Bool = false, paymentDueDaysBefore: Int = 1, paymentPosted: Bool = false, paymentPastDue: Bool = false, budgetBilling: Bool = false, appointmentTracking: Bool = false, forYourInfo: Bool = false) {
+    public init(highUsage: Bool = false, alertThreshold: Int? = nil, previousAlertThreshold: Int? = nil, peakTimeSavings: Bool? = false, smartEnergyRewards: Bool? = false, energySavingsDayResults: Bool? = false, outage: Bool = false, scheduledMaint: Bool = false, severeWeather: Bool = false, billReady: Bool = false, paymentDue: Bool = false, paymentDueDaysBefore: Int = 1, paymentPosted: Bool = false, paymentPastDue: Bool = false, budgetBilling: Bool = false, appointmentTracking: Bool = false, forYourInfo: Bool = false, grantStatus: Bool = false) {
         self.highUsage = highUsage
         self.alertThreshold = alertThreshold
         self.previousAlertThreshold = previousAlertThreshold
@@ -112,6 +116,7 @@ public struct AlertPreferences: Decodable {
         self.budgetBilling = budgetBilling
         self.appointmentTracking = appointmentTracking
         self.forYourInfo = forYourInfo
+        self.grantStatus = grantStatus
     }
     
     public struct AlertPreference: Decodable {
@@ -142,6 +147,7 @@ extension AlertPreferences {
             paymentPastDue != originalPrefs.paymentPastDue ||
             budgetBilling != originalPrefs.budgetBilling ||
             appointmentTracking != originalPrefs.appointmentTracking ||
-            forYourInfo != originalPrefs.forYourInfo
+            forYourInfo != originalPrefs.forYourInfo ||
+            grantStatus != originalPrefs.grantStatus
     }
 }
