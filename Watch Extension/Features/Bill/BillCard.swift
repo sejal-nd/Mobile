@@ -10,6 +10,7 @@ import SwiftUI
 
 struct BillCard: View {
     let value: String
+    var shouldItalisizeValue = false
     let title: String
     var dateText: String? = nil
     var dateColor: Color = .primary
@@ -18,7 +19,13 @@ struct BillCard: View {
         HStack {
             Spacer()
             VStack(spacing: 8) {
-                Text(value)
+                if shouldItalisizeValue {
+                    Text(value)
+                        .italic()
+                } else {
+                    Text(value)
+
+                }
                 Text(title)
                     .multilineTextAlignment(.center)
                 

@@ -54,10 +54,10 @@ struct BillView: View {
                         }
                         
                         // Thank You For Payment
-                        if let paymentReceivedAmountText = bill.paymentReceivedAmountText,
-                           let paymentReceivedDateText = bill.paymentReceivedDateText {
+                        if let paymentReceivedAmountText = bill.paymentReceivedAmountText {
                             ImageTextView(imageName: AppImage.paymentConfirmation.name,
-                                          text: "Thank you for scheduling your \(paymentReceivedAmountText) payment for \(paymentReceivedDateText)")
+                                          title: paymentReceivedAmountText,
+                                          text: "Thank you for your payment")
                             
                         }
                     }
@@ -95,6 +95,7 @@ struct BillView: View {
                     // Pending Payments
                     if let pendingPaymentAmountText = bill.pendingPaymentAmountText {
                         BillCard(value: pendingPaymentAmountText,
+                                 shouldItalisizeValue: true,
                                  title: "Pending Payments")
                     }
                     

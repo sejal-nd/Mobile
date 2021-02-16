@@ -16,7 +16,6 @@ struct WatchBill: Identifiable {
          isEnrolledInAutoPay: Bool = false,
          scheduledPaymentAmountText: String? = nil,
          paymentReceivedAmountText: String? = nil,
-         paymentReceivedDateText: String? = nil,
          catchUpAmountText: String? = nil,
          catchUpDateText: String? = nil,
          pastDueAmountText: String? = nil,
@@ -31,7 +30,6 @@ struct WatchBill: Identifiable {
         self.isEnrolledInAutoPay = isEnrolledInAutoPay
         self.scheduledPaymentAmountText = scheduledPaymentAmountText
         self.paymentReceivedAmountText = paymentReceivedAmountText
-        self.paymentReceivedDateText = paymentReceivedDateText
         self.catchUpAmountText = catchUpAmountText
         self.catchUpDateText = catchUpDateText
         self.pastDueAmountText = pastDueAmountText
@@ -59,7 +57,6 @@ struct WatchBill: Identifiable {
         self.scheduledPaymentAmountText = createScheduledPaymentAmountText(billingInfo: billingInfo,
                                                                            opco: opco)
         self.paymentReceivedAmountText = createPaymentReceivedAmountText(billingInfo: billingInfo)
-        self.paymentReceivedDateText = createPaymentReceivedDateText(billingInfo: billingInfo)
         
         self.catchUpAmountText = createCatchUpAmountText(billingInfo: billingInfo,
                                                          opco: opco)
@@ -87,7 +84,6 @@ struct WatchBill: Identifiable {
     var scheduledPaymentAmountText: String?
     
     var paymentReceivedAmountText: String?
-    var paymentReceivedDateText: String?
     
     var catchUpAmountText: String?
     var catchUpDateText: String?
@@ -349,10 +345,5 @@ extension WatchBill {
         guard let lastPaymentAmount = billingInfo.lastPaymentAmount,
               lastPaymentAmount > 0 && billingInfo.netDueAmount ?? 0 == 0 else { return nil }
         return lastPaymentAmount.currencyString
-    }
-    
-    private func createPaymentReceivedDateText(billingInfo: BillingInfo) -> String? {
-        guard let dateString = billingInfo.lastPaymentDate?.mmDdYyyyString else { return nil }
-        return "Payment Date \(dateString)"
     }
 }

@@ -11,6 +11,7 @@ import SwiftUI
 struct ImageTextView: View {
     let imageName: String
     var imageColor: Color? = nil
+    var imageSize: CGFloat = 100
     var title: String? = nil
     let text: String
     
@@ -21,12 +22,12 @@ struct ImageTextView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(imageColor)
-                    .frame(width: 100, height: 100)
+                    .frame(width: imageSize, height: imageSize)
             } else {
                 Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
+                    .frame(width: imageSize, height: imageSize)
             }
             
             if let title = title {

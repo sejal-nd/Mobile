@@ -59,14 +59,25 @@ struct BillFlowContainerView_Previews: PreviewProvider {
     static var previews: some View {
         BillFlowContainerView(state: .loading)
         
-        BillFlowContainerView(state: .loaded(bill: PreviewData.billStandard,
-                                             account: PreviewData.accounts[0]))
-        
-        BillFlowContainerView(state: .loaded(bill: PreviewData.billAutoPay,
-                                             account: PreviewData.accounts[0]))
-        
-        BillFlowContainerView(state: .loaded(bill: PreviewData.billPrecarious,
-                                             account: PreviewData.accounts[0]))
+        Group {
+            BillFlowContainerView(state: .loaded(bill: PreviewData.billStandard,
+                                                 account: PreviewData.accounts[0]))
+            
+            BillFlowContainerView(state: .loaded(bill: PreviewData.billAutoPay,
+                                                 account: PreviewData.accounts[0]))
+            
+            BillFlowContainerView(state: .loaded(bill: PreviewData.billPrecarious,
+                                                 account: PreviewData.accounts[0]))
+
+            BillFlowContainerView(state: .loaded(bill: PreviewData.billScheduled,
+                                                 account: PreviewData.accounts[0]))
+            
+            BillFlowContainerView(state: .loaded(bill: PreviewData.billReceived,
+                                                 account: PreviewData.accounts[0]))
+            
+            BillFlowContainerView(state: .loaded(bill: PreviewData.billPendingPayment,
+                                                 account: PreviewData.accounts[0]))
+        }
         
         BillFlowContainerView(state: .unavailable(account: PreviewData.accounts[0]))
         
