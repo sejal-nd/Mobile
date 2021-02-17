@@ -35,6 +35,14 @@ struct UsageView: View {
     
     #warning("we could extract these vars out?")
     
+    private var progress: Int {
+        if isShowingElectric {
+            return usage.electricProgress
+        } else {
+            return usage.gasProgress
+        }
+    }
+    
     private var usageCostText: String {
         if isShowingElectric {
             return usage.electricUsageCost ?? ""
@@ -69,7 +77,7 @@ struct UsageView: View {
         VStack {
             ZStack {
                 if !isLoading {
-                    Image("usageGraph21") // todo
+                    Image("usageGraph\(progress)")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }

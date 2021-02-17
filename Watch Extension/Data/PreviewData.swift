@@ -51,20 +51,20 @@ extension PreviewData {
                                          electricUsageCost: "$XX",
                                          electricProjetedUsageCost: "$XXX.XX",
                                          electricBillPeriod: "N/A",
-                                         electricProgress: 0.0)
+                                         electricProgress: 0)
     
     // Electric
     static let usageElectricModeled = WatchUsage(fuelTypes: [.electric],
                                                  electricUsageCost: "$80",
                                                  electricProjetedUsageCost: "$120",
                                                  electricBillPeriod: "May 24 - Jun 19",
-                                                 electricProgress: 65.0)
+                                                 electricProgress: 65)
     
     static let usageElectricUnmodeled = WatchUsage(fuelTypes: [.electric],
                                                    electricUsageCost: "21 kWh",
                                                    electricProjetedUsageCost: "36 kWh",
                                                    electricBillPeriod: "May 24 - Jun 19",
-                                                   electricProgress: 65.0)
+                                                   electricProgress: 65)
     
     static let usageElectricUnforecasted = WatchUsage(fuelTypes: [.electric],
                                                       electricTimeToNextForecast: "5 Days")
@@ -74,13 +74,13 @@ extension PreviewData {
                                             gasUsageCost: "$80",
                                             gasProjetedUsageCost: "$120",
                                             gasBillPeriod: "May 24 - Jun 19",
-                                            gasProgress: 65.0)
+                                            gasProgress: 65)
     
     static let usageGasUnmodeled = WatchUsage(fuelTypes: [.gas],
                                               gasUsageCost: "21 kWh",
                                               gasProjetedUsageCost: "36 kWh",
                                               gasBillPeriod: "May 24 - Jun 19",
-                                              gasProgress: 65.0)
+                                              gasProgress: 65)
     
     static let usageGasUnforecasted = WatchUsage(fuelTypes: [.gas],
                                                  gasTimeToNextForecast: "5 Days")
@@ -90,7 +90,7 @@ extension PreviewData {
                                                        electricUsageCost: "$80",
                                                        electricProjetedUsageCost: "$120",
                                                        electricBillPeriod: "May 24 - Jun 19",
-                                                       electricProgress: 65.0,
+                                                       electricProgress: 65,
                                                        gasUsageCost: "$120",
                                                        gasProjetedUsageCost: "$160",
                                                        gasBillPeriod: "May 29 - Jun 25",
@@ -100,7 +100,7 @@ extension PreviewData {
                                                          electricUsageCost: "80 kWh",
                                                          electricProjetedUsageCost: "120 kWh",
                                                          electricBillPeriod: "May 24 - Jun 19",
-                                                         electricProgress: 65.0,
+                                                         electricProgress: 65,
                                                          gasUsageCost: "120 CCF",
                                                          gasProjetedUsageCost: "160 CCF",
                                                          gasBillPeriod: "May 29 - Jun 25",

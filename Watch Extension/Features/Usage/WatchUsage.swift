@@ -13,12 +13,12 @@ struct WatchUsage: Identifiable {
                   electricUsageCost: String? = nil,
                   electricProjetedUsageCost: String? = nil,
                   electricBillPeriod: String? = nil,
-                  electricProgress: Double = 0.0,
+                  electricProgress: Int = 0,
                   electricTimeToNextForecast: String? = nil,
                   gasUsageCost: String? = nil,
                   gasProjetedUsageCost: String? = nil,
                   gasBillPeriod: String? = nil,
-                  gasProgress: Double = 0.0,
+                  gasProgress: Int = 0,
                   gasTimeToNextForecast: String? = nil) {
         self.fuelTypes = fuelTypes
         self.electricUsageCost = electricUsageCost
@@ -65,14 +65,16 @@ struct WatchUsage: Identifiable {
                let projectedCost = billForecast.projectedCost {
                 
                 // Set Image
-                let progress = toDateCost / projectedCost
-                self.electricProgress = progress.isNaN ? 0.0 : progress // handle division by 0
+                let value = toDateCost / projectedCost
+                let progress = value.isNaN ? 0 : Int(floor(value * 100))
+                self.gasProgress = progress
             } else if let toDateUsage = billForecast.toDateUsage,
                       let projectedUsage = billForecast.projectedUsage {
                 
                 // Set Image
-                let progress = toDateUsage / projectedUsage
-                self.electricProgress = progress.isNaN ? 0.0 : progress // handle division by 0
+                let value = toDateUsage / projectedUsage
+                let progress = value.isNaN ? 0 : Int(floor(value * 100))
+                self.gasProgress = progress
             }
             
             if daysToNextForecast == 1 {
@@ -107,14 +109,16 @@ struct WatchUsage: Identifiable {
                let projectedCost = billForecast.projectedCost {
                 
                 // Set Image
-                let progress = toDateCost / projectedCost
-                self.gasProgress = progress.isNaN ? 0.0 : progress // handle division by 0
+                let value = toDateCost / projectedCost
+                let progress = value.isNaN ? 0 : Int(floor(value * 100))
+                self.gasProgress = progress
             } else if let toDateUsage = billForecast.toDateUsage,
                       let projectedUsage = billForecast.projectedUsage {
                 
                 // Set Image
-                let progress = toDateUsage / projectedUsage
-                self.gasProgress = progress.isNaN ? 0.0 : progress // handle division by 0
+                let value = toDateUsage / projectedUsage
+                let progress = value.isNaN ? 0 : Int(floor(value * 100))
+                self.gasProgress = progress
             }
             
             if daysToNextForecast == 1 {
@@ -134,13 +138,13 @@ struct WatchUsage: Identifiable {
     var electricUsageCost: String? = nil
     var electricProjetedUsageCost: String? = nil
     var electricBillPeriod: String? = nil
-    var electricProgress: Double = 0.0
+    var electricProgress: Int = 0
     var electricTimeToNextForecast: String? = nil
     
     var gasUsageCost: String? = nil
     var gasProjetedUsageCost: String? = nil
     var gasBillPeriod: String? = nil
-    var gasProgress: Double = 0.0
+    var gasProgress: Int = 0
     var gasTimeToNextForecast: String? = nil
     
     var billForecastResult: BillForecastResult? = nil
