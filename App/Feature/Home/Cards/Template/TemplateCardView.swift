@@ -91,7 +91,7 @@ class TemplateCardView: UIView {
         let attributedErrorText = viewModel.errorLabelText.attributedString(textAlignment: .center, lineHeight: 26)
         errorLabel.attributedText = attributedErrorText
         let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
-        errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.shared.opco.displayString, attributedErrorText)
+        errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Configuration.shared.opco.displayString, attributedErrorText)
         
         callToActionButton.rx.touchUpInside.asObservable()
             .withLatestFrom(viewModel.ctaUrl.asObservable())

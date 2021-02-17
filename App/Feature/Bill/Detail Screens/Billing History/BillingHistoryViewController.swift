@@ -62,6 +62,12 @@ class BillingHistoryViewController: UIViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true
+        
+        NotificationCenter.default.rx.notification(.didRecievePaymentCancelConfirmation, object: nil)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self = self else { return }
+                self.onPaymentCancel()
+            }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,7 +155,7 @@ class BillingHistoryViewController: UIViewController {
                     let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEasy") as! BGEasyViewController
                     return vc
                 } else if viewModel.accountDetail.isAutoPay {
-                    if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                    if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                         let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
                         vc.accountDetail = viewModel.accountDetail
                         vc.delegate = self
@@ -187,7 +193,7 @@ class BillingHistoryViewController: UIViewController {
                 viewModel.billingHistory!.past[indexPath.row] :
                 viewModel.billingHistory!.mostRecentSixMonths[indexPath.row]
             if billingHistoryItem.isBillPDF {
-                if Environment.shared.opco == .comEd &&
+                if Configuration.shared.opco == .comEd &&
                     viewModel.accountDetail.hasElectricSupplier &&
                     viewModel.accountDetail.isSingleBillOption {
                     let alertTitle = "You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image."
@@ -249,7 +255,7 @@ class BillingHistoryViewController: UIViewController {
 extension BillingHistoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        indexPath.section == .zero && indexPath.row == .zero && viewModel.shouldShowAutoPayCell ? UITableView.automaticDimension : 60.0
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

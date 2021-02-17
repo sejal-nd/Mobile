@@ -26,11 +26,11 @@ class MoreViewController: UIViewController {
     @IBOutlet private weak var versionLabel: UILabel! {
         didSet {
             if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-                switch Environment.shared.environmentName {
+                switch Configuration.shared.environmentName {
                 case .release, .rc:
                     versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
                 default:
-                    versionLabel.text = String(format: NSLocalizedString("Version %@ - Tier %@", comment: ""), version, Environment.shared.environmentName.rawValue)
+                    versionLabel.text = String(format: NSLocalizedString("Version %@ - Tier %@", comment: ""), version, Configuration.shared.environmentName.rawValue)
                 }
             } else {
                 versionLabel.text = nil
@@ -203,7 +203,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return Environment.shared.opco.isPHI ? 2 : 3
+            return Configuration.shared.opco.isPHI ? 2 : 3
         case 1:
             return 7
         case 2:
@@ -223,7 +223,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 1:
                 return 60
             case 2:
-                return Environment.shared.opco.isPHI ? .zero : 60
+                return Configuration.shared.opco.isPHI ? .zero : 60
             default:
                 return 60
             }
@@ -237,14 +237,14 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 guard AccountsStore.shared.accounts != nil else { return 0 }
                 return (RemoteConfigUtility.shared.bool(forKey: .hasDefaultAccount) && AccountsStore.shared.accounts.count > 1) ? 60 : 0
             case 3:
-                return Environment.shared.opco == .peco ? 60 : 0
+                return Configuration.shared.opco == .peco ? 60 : 0
             case 4:
-                return Environment.shared.opco == .bge ? 60 : 0
+                return Configuration.shared.opco == .bge ? 60 : 0
             case 5:
                 let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
                 return isGameUser ? 60 : 0
             case 6:
-                return Environment.shared.opco.isPHI ? 60 : .zero
+                return Configuration.shared.opco.isPHI ? 60 : .zero
             default:
                 return 60
             }
@@ -253,7 +253,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 return 60
             case 1:
-                return Environment.shared.opco.isPHI && viewModel.billingVideosUrl == nil ? .zero : 60
+                return Configuration.shared.opco.isPHI && viewModel.billingVideosUrl == nil ? .zero : 60
             case 2:
                 return 60
             default:

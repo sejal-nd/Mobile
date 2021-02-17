@@ -40,7 +40,7 @@ extension URLSession {
         // Set User Agent Headers
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
             let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
-            let userAgentString = "\(Environment.shared.opco.displayString) Mobile App/\(version).\(build) (iOS \(systemVersion); Apple \(modelIdentifier))"
+            let userAgentString = "\(Configuration.shared.opco.displayString) Mobile App/\(version).\(build) (iOS \(systemVersion); Apple \(modelIdentifier))"
             sessionConfiguration.httpAdditionalHeaders = ["User-Agent": userAgentString]
         }
         

@@ -82,7 +82,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         
         passwordStrengthView.isHidden = true
         
-        if Environment.shared.opco == .bge || viewModel.accountType.value == "residential" {
+        if Configuration.shared.opco == .bge || viewModel.accountType.value == "residential" {
             primaryProfileSwitchView.isHidden = true
         }
         

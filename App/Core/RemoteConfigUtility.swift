@@ -60,14 +60,14 @@ final class RemoteConfigUtility {
         RemoteConfig.remoteConfig().fetch(withExpirationDuration: fetchDuration) { [weak self] status, error in
             
             if let error = error {
-                dLog("Error fetching remote config values from firebase\(error)")
+                Log.info("Error fetching remote config values from firebase\(error)")
                 return
             }
             
             RemoteConfig.remoteConfig().activateFetched()
             self?.fetchComplete = true
             self?.loadingDoneCallback?()
-            dLog("Retrieved remote config values from firebase")
+            Log.info("Retrieved remote config values from firebase")
         }
     }
     

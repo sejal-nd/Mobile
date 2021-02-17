@@ -65,28 +65,28 @@ public struct AlertPreferences: Decodable {
                 energySavingsDayResults = true
             case "Peak Time Savings":
                 peakTimeSavings = true
-            case "Outage Notifications", "Outage \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
+            case "Outage Notifications", "Outage \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 outage = true
             case "Planned Outage":
                 scheduledMaint = true
-            case "Severe Weather", "Severe Weather \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
+            case "Severe Weather", "Severe Weather \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 severeWeather = true
-            case "Paperless Billing", "Bill is Ready", "Bill is Ready \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
+            case "Paperless Billing", "Bill is Ready", "Bill is Ready \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 billReady = true
-            case "Payment Reminder", "Payment Reminders", "Payment Reminder \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
+            case "Payment Reminder", "Payment Reminders", "Payment Reminder \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 paymentDue = true
                 if let daysBefore = preference.daysPrior {
                     paymentDueDaysBefore = daysBefore
                 }
-            case "Payment Posted", "Payment Posted \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
+            case "Payment Posted", "Payment Posted \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 paymentPosted = true
-            case "Payment Past Due", "Payment Past Due \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
+            case "Payment Past Due", "Payment Past Due \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 paymentPastDue = true
-            case "Budget Billing", "Budget Billing \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
+            case "Budget Billing", "Budget Billing \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 budgetBilling = true
             case "Customer Appointments":
                 appointmentTracking = true
-            case "News", "Marketing", "News \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue)":
+            case "News", "Marketing", "News \(AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue)":
                 forYourInfo = true
             default:
                 break

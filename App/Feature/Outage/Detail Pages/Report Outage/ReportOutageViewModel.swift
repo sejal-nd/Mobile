@@ -30,13 +30,13 @@ class ReportOutageViewModel {
     { [weak self] in
         guard let self = self else { return false }
         let digitsOnlyString = self.extractDigitsFrom($1)
-        return Environment.shared.opco.isPHI ? !$0 : !$0 && digitsOnlyString.count == 10
+        return Configuration.shared.opco.isPHI ? !$0 : !$0 && digitsOnlyString.count == 10
     }
     
     var footerTextViewText: NSAttributedString {
         var localizedString: String
         let phoneNumbers: [String]
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"
             let phone2 = "1-877-778-7798"
@@ -102,7 +102,7 @@ class ReportOutageViewModel {
     }()
     
     lazy var shouldPingPHIMeter: Bool = {
-        return shouldPingMeter && (Environment.shared.opco == .pepco || Environment.shared.opco == .delmarva)
+        return shouldPingMeter && (Configuration.shared.opco == .pepco || Configuration.shared.opco == .delmarva)
     }()
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {

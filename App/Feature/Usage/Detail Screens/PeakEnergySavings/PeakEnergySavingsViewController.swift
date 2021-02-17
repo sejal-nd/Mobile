@@ -20,27 +20,13 @@ final class PeakEnergySavingsViewController: DismissableFormSheetViewController 
 
     // MARK: - IBOutlets
     
-    /// `UILabel` instance of the Program Title Label
-    @IBOutlet private weak var programTitleLabel: UILabel!
-    
-    /// `UIView` instance of the Bordered Background View
-    @IBOutlet private weak var borderedBackgroundView: UIView!
-    
-    /// `UILabel` instance of the Program Description Label
-    @IBOutlet private weak var programDescriptionLabel: UILabel!
-    
-    /// `UIView` instance of the Program Suggestion View
-    @IBOutlet private weak var programSuggestionView: UIView!
-
-    /// `UILabel` instance of the Program Suggestion Label
-    @IBOutlet private weak var programSuggestionLabel: UILabel!
+    /// `UILabel` instance of the Program Details Label
+    @IBOutlet private weak var programDetailsLabel: UILabel!
     
     // MARK: - View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Peak Energy Savings", comment: "")
-        programDescriptionLabel.text = viewModel.programDescription
-        programSuggestionLabel.text = viewModel.programSuggestion
         styleViews()
     }
     
@@ -52,7 +38,12 @@ final class PeakEnergySavingsViewController: DismissableFormSheetViewController 
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        switch segue.destination {
+        case let vc as PeakEnergySavingsHistoryViewController:
+            vc.accountDetail = accountDetail
+        default:
+            break
+        }
     }
 }
 
@@ -61,16 +52,10 @@ extension PeakEnergySavingsViewController {
     
     /// This function customizes the UI Elements
     private func styleViews() {
-        [programTitleLabel, programDescriptionLabel, programSuggestionLabel].forEach {
-            $0?.textColor = .deepGray
-            $0?.font = SystemFont.regular.of(textStyle: .body)
-            $0?.setLineHeight(lineHeight: 24.0)
-            $0?.textAlignment = .center
-        }
-        borderedBackgroundView.layer.borderColor = UIColor.accentGray.cgColor
-        borderedBackgroundView.layer.borderWidth = 1.0
-        programSuggestionView.addTopBorder(color: .accentGray, width: 1.0)
-        programSuggestionView.addBottomBorder(color: .accentGray, width: 1.0)
+        programDetailsLabel.textColor = .deepGray
+        programDetailsLabel.font = SystemFont.regular.of(textStyle: .body)
+        programDetailsLabel.setLineHeight(lineHeight: 24.0)
+        programDetailsLabel.textAlignment = .natural
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
         helpButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         navigationItem.rightBarButtonItem = helpButton

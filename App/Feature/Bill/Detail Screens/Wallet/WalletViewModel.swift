@@ -81,10 +81,10 @@ class WalletViewModel {
     }
 
     var emptyFooterLabelString: String {
-        return Environment.shared.opco.isPHI ? NSLocalizedString("We accept: VISA, MasterCard, Discover and American Express Credit Cards or Check Cards.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "") : NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
+        return Configuration.shared.opco.isPHI ? NSLocalizedString("We accept: VISA, MasterCard, Discover and American Express Credit Cards or Check Cards.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "") : NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
     }
     
     var footerLabelString: String {
-        return Environment.shared.opco.isPHI ? NSLocalizedString("We accept: VISA, MasterCard, Discover and American Express Credit Cards or Check Cards.", comment: "") : NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "")
+        return Configuration.shared.opco.isPHI ? NSLocalizedString("We accept: VISA, MasterCard, Discover and American Express Credit Cards or Check Cards.", comment: "") : NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "")
     }
 }

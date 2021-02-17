@@ -64,7 +64,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     var delegate: ReportOutageDelegate?
     let viewModel = ReportOutageViewModel()
-    let opco = Environment.shared.opco
+    let opco = Configuration.shared.opco
     
     let disposeBag = DisposeBag()
     
@@ -100,10 +100,10 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             meterPingStackView.isHidden = false
             meterPingStatusContainer.isHidden = true
             
-            meterPingCurrentStatusLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: "")
+            meterPingCurrentStatusLabel.text = Configuration.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: "")
             
             meterPingFuseBoxView.isHidden = true
-            meterPingFuseBoxLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("I have checked my circuit breakers or fuse box and would still like to report an outage.", comment: "") : NSLocalizedString("I have checked my circuit breakers or fuse box and I would still like to report an outage.", comment: "")
+            meterPingFuseBoxLabel.text = Configuration.shared.opco.isPHI ? NSLocalizedString("I have checked my circuit breakers or fuse box and would still like to report an outage.", comment: "") : NSLocalizedString("I have checked my circuit breakers or fuse box and I would still like to report an outage.", comment: "")
             meterPingFuseBoxLabel.isAccessibilityElement = false
             meterPingFuseBoxCheckbox.accessibilityLabel = meterPingFuseBoxLabel.text
             meterPingFuseBoxCheckbox.rx.isChecked.asDriver().not().drive(viewModel.reportFormHidden).disposed(by: disposeBag)
@@ -223,7 +223,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: ""))
+                UIAccessibility.post(notification: .announcement, argument: Configuration.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: ""))
             })
             
             viewModel.meterPingGetStatus(onComplete: { [weak self] meterPingInfo in
@@ -242,9 +242,9 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                         problemsFound = true
                     }
                 }
-                self.meterPingStatusTitleLabel.isHidden = Environment.shared.opco.isPHI
-                self.meterPingSeparatorView.isHidden = Environment.shared.opco.isPHI
-                if Environment.shared.opco.isPHI {
+                self.meterPingStatusTitleLabel.isHidden = Configuration.shared.opco.isPHI
+                self.meterPingSeparatorView.isHidden = Configuration.shared.opco.isPHI
+                if Configuration.shared.opco.isPHI {
                     self.meterPingStatusTitleLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
                     self.meterPingStatusTitleLabelTopAnchor.constant = 0.0
                     self.meterPingStatusSeparatorTopAnchor.constant = 0.0
@@ -258,7 +258,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     self.meterPingStatusContainer.isHidden = true
                 } else {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("No Problems Found", comment: "")
-                    self.meterPingStatusDescriptionLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("Our status check has verified that electrical service is being delivered to your meter.", comment: "") : NSLocalizedString("Our status check verified your property's meter is operational and \(Environment.shared.opco.displayString) electrical service is being delivered to your home.", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = Configuration.shared.opco.isPHI ? NSLocalizedString("Our status check has verified that electrical service is being delivered to your meter.", comment: "") : NSLocalizedString("Our status check verified your property's meter is operational and \(Configuration.shared.opco.displayString) electrical service is being delivered to your home.", comment: "")
                     
                     self.meterPingFuseBoxView.isHidden = false
                     self.meterPingStatusContainer.isHidden = false
@@ -286,7 +286,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         
         if viewModel.shouldPingPHIMeter && unauthenticatedExperience {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: ""))
+                UIAccessibility.post(notification: .announcement, argument: Configuration.shared.opco.isPHI ? NSLocalizedString("Checking Meter Status", comment: "") : NSLocalizedString("Verifying Meter Status", comment: ""))
             })
             
             viewModel.meterPingGetStatusAnon(onComplete: { [weak self] meterPingInfo in
@@ -305,9 +305,9 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                         problemsFound = true
                     }
                 }
-                self.meterPingStatusTitleLabel.isHidden = Environment.shared.opco.isPHI
-                self.meterPingSeparatorView.isHidden = Environment.shared.opco.isPHI
-                if Environment.shared.opco.isPHI {
+                self.meterPingStatusTitleLabel.isHidden = Configuration.shared.opco.isPHI
+                self.meterPingSeparatorView.isHidden = Configuration.shared.opco.isPHI
+                if Configuration.shared.opco.isPHI {
                     self.meterPingStatusTitleLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
                     self.meterPingStatusTitleLabelTopAnchor.constant = 0.0
                     self.meterPingStatusSeparatorTopAnchor.constant = 0.0
@@ -320,7 +320,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     self.meterPingStatusContainer.isHidden = true
                 } else {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("No Problems Found", comment: "")
-                    self.meterPingStatusDescriptionLabel.text = Environment.shared.opco.isPHI ? NSLocalizedString("Our status check has verified that electrical service is being delivered to your meter.", comment: "") : NSLocalizedString("Our status check verified your property's meter is operational and \(Environment.shared.opco.displayString) electrical service is being delivered to your home.", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = Configuration.shared.opco.isPHI ? NSLocalizedString("Our status check has verified that electrical service is being delivered to your meter.", comment: "") : NSLocalizedString("Our status check verified your property's meter is operational and \(Configuration.shared.opco.displayString) electrical service is being delivered to your home.", comment: "")
                     
                     self.meterPingFuseBoxView.isHidden = false
                     self.meterPingStatusContainer.isHidden = false

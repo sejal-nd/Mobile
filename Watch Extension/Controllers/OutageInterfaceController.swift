@@ -52,7 +52,7 @@ class OutageInterfaceController: WKInterfaceController {
                 loadingImageGroup.setHidden(true)
                 reportOutageTapGesture.isEnabled = true
                 self.outageState = outageState
-                dLog("Loaded")
+                Log.info("Loaded")
             case .loading:
                 loadingImageGroup.setHidden(false)
                 reportOutageTapGesture.isEnabled = false
@@ -61,7 +61,7 @@ class OutageInterfaceController: WKInterfaceController {
                 etrGroup.setHidden(true)
                 errorGroup.setHidden(true)
                 shouldAnimateStatusImage = false
-                dLog("Loading")
+                Log.info("Loading")
             case .error(let error):
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
                 loadingImageGroup.setHidden(true)
@@ -74,8 +74,8 @@ class OutageInterfaceController: WKInterfaceController {
                 
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setHidden(true)
-                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Environment.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
-                dLog("Error: \(error.localizedDescription)")
+                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Configuration.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
+                Log.info("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 loadingImageGroup.setHidden(true)
                 
@@ -88,7 +88,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.maintenanceMode.name)
                 errorTitleLabel.setText("Scheduled Maintenance")
                 errorDetailLabel.setText("Outage is currently unavailable due to scheduled maintenance.")
-                dLog("Maintenance Mode")
+                Log.info("Maintenance Mode")
             case .passwordProtected:
                 loadingImageGroup.setHidden(true)
                 
@@ -102,7 +102,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.passwordProtected.name)
                 errorTitleLabel.setText("Password Protected")
                 errorDetailLabel.setText("Your account cannot be accessed through this app.")
-                dLog("Password Protected")
+                Log.info("Password Protected")
             }
         }
     }
@@ -126,7 +126,7 @@ class OutageInterfaceController: WKInterfaceController {
                 shouldAnimateStatusImage = true
                 
                 powerStatusLabel.setText("POWER IS ON")
-                dLog("Outage Status: power on")
+                Log.info("Outage Status: power on")
             case .powerOut(let outageStatus):
                 statusGroup.setHidden(false)
                 powerStatusImage.setHidden(false)
@@ -139,11 +139,11 @@ class OutageInterfaceController: WKInterfaceController {
                 powerStatusLabel.setText("POWER IS OUT")
 
                 guard let etr = outageStatus?.estimatedRestorationDate else {
-                    etrDetailLabel.setText(Environment.shared.opco.isPHI ? "Pending Assessment" : "Assessing Damage")
+                    etrDetailLabel.setText(Configuration.shared.opco.isPHI ? "Pending Assessment" : "Assessing Damage")
                     return
                 }
                 etrDetailLabel.setText(DateFormatter.outageOpcoDateFormatter.string(from: etr))
-                dLog("Outage Status: power out")
+                Log.info("Outage Status: power out")
             case .gasOnly:
                 statusGroup.setHidden(true)
                 powerStatusImage.setHidden(true)
@@ -154,7 +154,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.gas.name)
                 errorTitleLabel.setText("Gas Only Account")
                 errorDetailLabel.setText("Reporting of issues for gas only accounts not allowed online.")
-                dLog("Outage Status: Gas Only")
+                Log.info("Outage Status: Gas Only")
             case .unavilable:
                 statusGroup.setHidden(true)
                 powerStatusImage.setHidden(true)
@@ -165,7 +165,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.outageUnavailable.name)
                 errorTitleLabel.setText("Outage Unavailable")
                 errorDetailLabel.setText("Outage Status and Outage Reporting are not available for this account.")
-                dLog("Outage Unavailable")
+                Log.info("Outage Unavailable")
             }
         }
     }

@@ -80,6 +80,10 @@ enum AccountService {
         NetworkingLayer.request(router: .iTronssoData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
     
+    static func fetchPeakEnergySavingsHistorySSOData(accountNumber: String, premiseNumber: String, completion: @escaping (Result<SSODataResponse, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .peakEnergySavingsHistoryData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
+    }
+    
     static func fetchScheduledPayments(accountNumber: String, completion: @escaping (Result<[PaymentItem], NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .payments(accountNumber: accountNumber)) { (result: Result<Payments, NetworkingError>) in
             switch result {

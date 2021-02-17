@@ -17,7 +17,7 @@ public struct MaintenanceMode: Decodable {
     public var home = false
     public var storm = false
     public var alerts = false
-    public var message = "The \(Environment.shared.opco.displayString) App is currently unavailable due to maintenance."
+    public var message = "The \(Configuration.shared.opco.displayString) App is currently unavailable due to maintenance."
     
     enum CodingKeys: String, CodingKey {
         case iOS = "ios"
@@ -34,7 +34,7 @@ public struct MaintenanceMode: Decodable {
     public init(from decoder: Decoder) throws {
         
         // Prodbeta builds should ignore any maintenance response
-        if Environment.shared.environmentName == .rc {
+        if Configuration.shared.environmentName == .rc {
             return
         }
         

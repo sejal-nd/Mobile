@@ -104,7 +104,7 @@ class StormModeHomeViewModel {
                 return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
             }
         }
-        return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
+        return Configuration.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
     }
     
     var outageReportedDateString: String {
@@ -119,7 +119,7 @@ class StormModeHomeViewModel {
     var gasOnlyMessage: String {
         var firstLine = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
         let secondLine: String?
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             secondLine = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
         case .delmarva:
@@ -139,7 +139,7 @@ class StormModeHomeViewModel {
     }
     
     var accountNonPayFinaledMessage: String {
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
         } else {
             if currentOutageStatus!.isFinaled {

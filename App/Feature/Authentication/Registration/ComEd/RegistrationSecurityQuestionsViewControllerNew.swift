@@ -67,7 +67,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
         
         bindViewModel()
         
-        if Environment.shared.opco == .bge || RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+        if Configuration.shared.opco == .bge || RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             // BGE users only need to answer 2 questions
             question3QuestionButton.isHidden = true
             question3AnswerTextField.isHidden = true
@@ -102,7 +102,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
                     self.scrollView.isHidden = false
                     self.toggleAccountListing(false)
                 }
-                let opco = Environment.shared.opco
+                let opco = Configuration.shared.opco
                 if opco == .bge {
                     self.eBillAutoEnrollView.isHidden = false
                     self.eBillAutoEnrollDescriptionTextField.font = SystemFont.regular.of(textStyle: .callout)
@@ -132,7 +132,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
     func loadAccounts() {
         viewModel.loadAccounts(onSuccess: { [weak self] in
             guard let self = self else { return }
-            let opco = Environment.shared.opco
+            let opco = Configuration.shared.opco
             
             if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
                 UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)

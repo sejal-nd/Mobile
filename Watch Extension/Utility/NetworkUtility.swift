@@ -148,7 +148,7 @@ extension NetworkUtility {
         
         guard KeychainManager.shared[keychainKeys.authToken] != nil,
             let _ = AccountsStore.shared.currentIndex else {
-                dLog("Could not find auth token in Accounts Manager Fetch Account Details.")
+                Log.info("Could not find auth token in Accounts Manager Fetch Account Details.")
                 self.notificationCenter.post(name: .errorDidOccur, object: (NetworkError.missingToken, Feature.all))
                 return
         }
@@ -260,7 +260,7 @@ extension NetworkUtility {
     /// - Parameter result: Either an array of `Account` or a `NetworkError`.
     private func fetchAccountList(result: @escaping (Result<[Account], NetworkError>) -> ()) {
         guard KeychainManager.shared[keychainKeys.authToken] != nil else {
-            dLog("No Auth Token: Account list fetch termimated.")
+            Log.info("No Auth Token: Account list fetch termimated.")
             result(.failure(.missingToken))
             return
         }
@@ -269,7 +269,7 @@ extension NetworkUtility {
             switch networkResult {
             case .success(let accounts):
                 guard let firstAccount = accounts.first else {
-                    dLog("No first account in account list: Terminated.")
+                    Log.info("No first account in account list: Terminated.")
                     result(.failure(.invalidAccount))
                     return
                 }
@@ -283,10 +283,10 @@ extension NetworkUtility {
                 result(.success(accounts))
             case .failure(let error):
                 if error == .passwordProtected {
-                    dLog("Failed to retrieve account list.  Password Protected Account.")
+                    Log.info("Failed to retrieve account list.  Password Protected Account.")
                     result(.failure(.passwordProtected))
                 } else {
-                    dLog("Failed to retrieve account list: \(error.localizedDescription)")
+                    Log.info("Failed to retrieve account list: \(error.localizedDescription)")
                     result(.failure(.fetchError))
                 }
             }
@@ -296,11 +296,11 @@ extension NetworkUtility {
     /// Fetches key info about an account, specifically if the account is password protected.  Also required for fetching usage data.
     /// - Parameter result: Either `AccountDetail` or `NetworkError`.
     private func fetchAccountDetails(result: @escaping (Result<AccountDetail, NetworkError>) -> ()) {
-        dLog("Fetching Account Details...")
+        Log.info("Fetching Account Details...")
         
         guard KeychainManager.shared[keychainKeys.authToken] != nil,
             let _ = AccountsStore.shared.currentIndex else {
-                dLog("Could not find auth token in Accounts Manager Fetch Account Details.")
+                Log.info("Could not find auth token in Accounts Manager Fetch Account Details.")
                 result(.failure(.missingToken))
                 return
         }
@@ -308,10 +308,10 @@ extension NetworkUtility {
         AccountService.fetchAccountDetails { networkResult in
             switch networkResult {
             case .success(let accountDetail):
-                dLog("Account Details Fetched.")
+                Log.info("Account Details Fetched.")
                 result(.success(accountDetail))
             case .failure(let error):
-                dLog("Failed to Fetch Account Details. \(error.localizedDescription)")
+                Log.info("Failed to Fetch Account Details. \(error.localizedDescription)")
                 result(.failure(.fetchError))
             }
         }
@@ -323,16 +323,16 @@ extension NetworkUtility {
     ///
     /// - Parameter result: Either `Maintenance` or `NetworkError`.
     private func fetchMaintenanceModeStatus(result: @escaping (Result<MaintenanceMode, NetworkError>) -> ()) {
-        dLog("Fetching Maintenance Mode Status...")
+        Log.info("Fetching Maintenance Mode Status...")
         
         
         AnonymousService.maintenanceMode { networkResult in
             switch networkResult {
             case .success(let maintenanceMode):
-                dLog("Maintenance Mode Fetched.")
+                Log.info("Maintenance Mode Fetched.")
                 result(.success(maintenanceMode))
             case .failure(let error):
-                dLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
+                Log.info("Failed to retrieve maintenance mode: \(error.localizedDescription)")
                 result(.failure(.fetchError))
             }
         }
@@ -341,10 +341,10 @@ extension NetworkUtility {
     /// Fetches outage data for the current account.
     /// - Parameter result: Either `OutageStatus` or `NetworkError`.
     private func fetchOutageStatus(result: @escaping (Result<OutageStatus, NetworkError>) -> ()) {
-        dLog("Fetching Outage Status...")
+        Log.info("Fetching Outage Status...")
         
         guard let _ = AccountsStore.shared.currentIndex else {
-            dLog("Failed to retreive current account while fetching outage status.")
+            Log.info("Failed to retreive current account while fetching outage status.")
             result(.failure(.missingToken))
             return
         }
@@ -352,11 +352,11 @@ extension NetworkUtility {
         OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumberString: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { networkResult in
             switch networkResult {
             case .success(let outageStatus):
-                dLog("Outage Status Fetched.")
+                Log.info("Outage Status Fetched.")
 
                 result(.success(outageStatus))
             case .failure(let error):
-                dLog("Failed to retrieve outage status: \(error.localizedDescription)")
+                Log.info("Failed to retrieve outage status: \(error.localizedDescription)")
                 
                 result(.failure(.fetchError))
             }
@@ -367,20 +367,20 @@ extension NetworkUtility {
     /// - Parameter accountDetail: contains specific info about a users selected account.
     /// - Parameter result: Either `BillForecastResult` or `NetworkError`.
     private func fetchUsageData(accountDetail: AccountDetail, result: @escaping (Result<BillForecastResult, NetworkError>) -> ()) {
-        dLog("Fetching Usage Data...")
+        Log.info("Fetching Usage Data...")
         
         guard accountDetail.isAMIAccount else {
-            dLog("Account invalid for usage data due to not being an AMI Account.")
+            Log.info("Account invalid for usage data due to not being an AMI Account.")
             result(.failure(.featureUnavailable))
             return
         }
         guard let premiseNumber = accountDetail.premiseNumber else {
-            dLog("Account invalid for usage data due to non existant premise number.")
+            Log.info("Account invalid for usage data due to non existant premise number.")
             result(.failure(.invalidAccount))
             return
         }
         guard !accountDetail.isFinaled else {
-            dLog("Account isFinaled Usage Data Unavailable.")
+            Log.info("Account isFinaled Usage Data Unavailable.")
             result(.failure(.featureUnavailable))
             return
         }
@@ -389,10 +389,10 @@ extension NetworkUtility {
         UsageService.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber, useCache: false) { networkResult in
             switch networkResult {
             case .success(let billForecastResult):
-                dLog("Usage Data Fetched.")
+                Log.info("Usage Data Fetched.")
                 result(.success(billForecastResult))
             case .failure(let error):
-                dLog("Failed to retrieve usage data: \(error.localizedDescription)")
+                Log.info("Failed to retrieve usage data: \(error.localizedDescription)")
                 result(.failure(.fetchError))
             }
         }
@@ -407,7 +407,7 @@ extension NetworkUtility {
     
     /// Reload Data every 15 minutes without the loading indicator if the app is reachable
     @objc private func reloadPollingData() {
-        dLog("Polling new data...")
+        Log.info("Polling new data...")
         guard WatchSessionManager.shared.validSession != nil else { return }
         
         fetchData(shouldLoadAccountList: false)
@@ -422,10 +422,10 @@ extension NetworkUtility {
     
     /// User selected account did update
     @objc func currentAccountDidUpdate(_ notification: NSNotification) {
-        dLog("Current Account Did Update")
+        Log.info("Current Account Did Update")
         
         guard let account = notification.object as? Account else {
-            dLog("Failed to update current account, no account recieved in notification.")
+            Log.info("Failed to update current account, no account recieved in notification.")
             error = (.invalidAccount, .all)
             
             notificationCenter.post(name: .errorDidOccur, object: (NetworkError.invalidAccount, Feature.all))

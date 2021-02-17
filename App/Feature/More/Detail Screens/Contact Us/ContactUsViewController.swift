@@ -84,18 +84,18 @@ class ContactUsViewController: UIViewController {
         emergencyNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         emergencyNumberTextView.linkTapDelegate = self
         
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             emergencyNumberTextView.isHidden = true
             bgeOnlySpacer.isHidden = true
             bgeGasNumberLabel.text = NSLocalizedString("Gas Emergency", comment: "")
             bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
-        } else if Environment.shared.opco == .peco {
+        } else if Configuration.shared.opco == .peco {
             emergencyNumberTextView.isHidden = true
             bgeOnlySpacer.isHidden = true
             bgeGasNumberLabel.text = NSLocalizedString("Gas Emergency", comment: "")
             bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
             bgePowerLineNumber2TextView.superview?.isHidden = true
-        } else if Environment.shared.opco == .delmarva {
+        } else if Configuration.shared.opco == .delmarva {
             // Only the first row is needed, rest needs to be hidden
             bgeOnlyStackView.isHidden = false
             bgePowerLineNumber1TextView.isHidden = true
@@ -196,7 +196,7 @@ class ContactUsViewController: UIViewController {
         
         // add spacer buttons to fill the last row
         // PHI has a different design hence not adding spacerButtons to the main stack
-        while buttons.count % rowCount != 0 && !Environment.shared.opco.isPHI {
+        while buttons.count % rowCount != 0 && !Configuration.shared.opco.isPHI {
             let spacerButton = UIButton(type: .custom)
             spacerButton.isAccessibilityElement = false
             buttons.append(spacerButton)
@@ -227,7 +227,7 @@ class ContactUsViewController: UIViewController {
         trailingConstraint.priority = UILayoutPriority(rawValue: 999)
         // For PHI opcos, the placement of the social media icons is little different hence using custom width per opco
         var width: CGFloat = .zero
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge, .comEd, .pepco, .peco:
             width = 430
         case .ace, .delmarva:

@@ -40,14 +40,14 @@ class BudgetBillingViewModel {
             switch result {
             case .success:
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
-                if Environment.shared.opco != .bge {
+                if Configuration.shared.opco != .bge {
                     let alertPreferencesRequest = AlertPreferencesRequest(alertPreferenceRequests: [AlertPreferencesRequest.AlertRequest(isActive: true, type: "push", programName: "Budget Billing")])
                     AlertService.setAlertPreferences(accountNumber: self?.accountDetail.accountNumber ?? "", request: alertPreferencesRequest) { alertResult in
                         switch alertResult {
                         case .success:
-                            dLog("Enrolled in the budget billing push notification")
+                            Log.info("Enrolled in the budget billing push notification")
                         case .failure:
-                            dLog("Failed to enroll in the budget billing push notification")
+                            Log.info("Failed to enroll in the budget billing push notification")
                         }
                         onSuccess()
                     }
@@ -76,7 +76,7 @@ class BudgetBillingViewModel {
         self.selectedUnenrollmentReason.asDriver().map { $0 != -1 }
     
     var footerLabelText: String? {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.\n\nBudget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
         case .comEd:
@@ -100,7 +100,7 @@ class BudgetBillingViewModel {
     
     func reasonString(forIndex index: Int) -> String {
         if index == 0 {
-            return String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.shared.opco.displayString)
+            return String(format: NSLocalizedString("Closing %@ Account", comment: ""), Configuration.shared.opco.displayString)
         } else if index == 1 {
             return NSLocalizedString("Changing Bank Account", comment: "")
         } else if index == 2 {

@@ -107,7 +107,7 @@ class ChangePasswordViewModel {
         if hasStrongPassword && !resetPasswordWorkflow {
             if let loggedInUsername = BiometricService.getStoredUsername() {
                 SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value),
-                                          domain: Environment.shared.associatedDomain) { [weak self] error in
+                                          domain: Configuration.shared.associatedDomain) { [weak self] error in
                     DispatchQueue.main.async {
                         if error != nil {
                             // Error Saving SWC
@@ -158,7 +158,7 @@ class ChangePasswordViewModel {
                         // Save to SWC if iOS 11. iOS 12 should handle this automagically.
                     else {
                         if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
-                            SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                            SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Configuration.shared.associatedDomain, completion: { _ in })
                         }
                     }
                     
@@ -188,7 +188,7 @@ class ChangePasswordViewModel {
                         // Save to SWC if iOS 11. iOS 12 should handle this automagically.
                     else {
                         if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
-                            SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                            SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Configuration.shared.associatedDomain, completion: { _ in })
                         }
                     }
                     

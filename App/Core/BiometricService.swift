@@ -34,7 +34,7 @@ enum BiometricService {
             do {
                 try fileUrl.setResourceValues(resourceValues)
             } catch let error {
-                dLog("Failed to set resource values: \(error.localizedDescription)")
+                Log.info("Failed to set resource values: \(error.localizedDescription)")
             }
         }
     }

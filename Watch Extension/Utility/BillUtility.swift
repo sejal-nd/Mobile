@@ -11,7 +11,7 @@ import WatchKit
 class BillUtility {
     private let accountDetails: AccountDetail
     private let billingInfo: BillingInfo
-    private let opco = Environment.shared.opco
+    private let opco = Configuration.shared.opco
     
     init(accountDetails: AccountDetail) {
         self.accountDetails = accountDetails
@@ -37,7 +37,7 @@ class BillUtility {
     }
     
     private lazy var billState: BillState = {
-        let opco = Environment.shared.opco
+        let opco = Configuration.shared.opco
         // Note: Removed Bill internmediate payed as it is not needed.
         
         if accountDetails.isFinaled && billingInfo.pastDueAmount > 0 {
@@ -151,7 +151,7 @@ class BillUtility {
         if let restorationAmount = accountDetails.billingInfo.restorationAmount,
             restorationAmount > 0 &&
                 accountDetails.isCutOutNonPay &&
-                Environment.shared.opco != .bge {
+                Configuration.shared.opco != .bge {
             return String.localizedStringWithFormat("%@ is due immediately to restore service.", restorationAmount.currencyString)
         }
         
@@ -174,7 +174,7 @@ class BillUtility {
         // Catch Up
         if let dueByDate = billingInfo.dueByDate,
             let amtDpaReinst = billingInfo.amtDpaReinst,
-            Environment.shared.opco != .bge && amtDpaReinst > 0 {
+            Configuration.shared.opco != .bge && amtDpaReinst > 0 {
             let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now))
             let amountString = amtDpaReinst.currencyString
             
@@ -235,7 +235,7 @@ class BillUtility {
     private(set) lazy var totalAmountText: String = {
         guard let netDueAmount = billingInfo.netDueAmount else { return "--" }
         
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .pepco: // For credit scenario we want to show the positive number
             return abs(netDueAmount).currencyString
         case .comEd, .peco:
@@ -245,7 +245,7 @@ class BillUtility {
     
     private lazy var isCreditBalance: Bool = {
         guard let netDueAmount = billingInfo.netDueAmount else { return false }
-        return netDueAmount < 0 && (Environment.shared.opco == .bge || Environment.shared.opco.isPHI)
+        return netDueAmount < 0 && (Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI)
     }()
     
     private(set) lazy var totalAmountDescriptionText: NSAttributedString = {
@@ -265,10 +265,10 @@ class BillUtility {
         } else if billingInfo.lastPaymentAmount > 0 && billingInfo.netDueAmount ?? 0 == 0 {
             string = NSLocalizedString("Total Amount Due", comment: "")
         } else if self.isCreditBalance {
-            if Environment.shared.opco.isPHI {
+            if Configuration.shared.opco.isPHI {
                 attributes[.foregroundColor] =  UIColor(red: 0/255, green: 122/255, blue: 51/255, alpha: 1)
             }
-            string = Environment.shared.opco.isPHI ? NSLocalizedString("Credit Balance - You have no amount due", comment: "") : NSLocalizedString("No Amount Due – Credit Balance", comment: "")
+            string = Configuration.shared.opco.isPHI ? NSLocalizedString("Credit Balance - You have no amount due", comment: "") : NSLocalizedString("No Amount Due – Credit Balance", comment: "")
         } else {
             string = String.localizedStringWithFormat("Total Amount Due By %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
         }
@@ -278,7 +278,7 @@ class BillUtility {
     
     //MARK: - Past Due
     private(set) lazy var pastDueText: String = {
-        if Environment.shared.opco != .bge && billingInfo.amtDpaReinst > 0 &&
+        if Configuration.shared.opco != .bge && billingInfo.amtDpaReinst > 0 &&
             billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
             return NSLocalizedString("Catch Up on Agreement Amount", comment: "")
         } else {
@@ -287,7 +287,7 @@ class BillUtility {
     }()
     
     private(set) lazy var pastDueAmountText: String = {
-        if Environment.shared.opco != .bge && billingInfo.amtDpaReinst > 0 &&
+        if Configuration.shared.opco != .bge && billingInfo.amtDpaReinst > 0 &&
             billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
             return billingInfo.amtDpaReinst?.currencyString ?? "--"
         } else {
@@ -297,7 +297,7 @@ class BillUtility {
     
     private(set) lazy var pastDueDateText: NSAttributedString = {
         if let date = billingInfo.dueByDate,
-            Environment.shared.opco != .bge &&
+            Configuration.shared.opco != .bge &&
                 billingInfo.amtDpaReinst > 0 &&
                 billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
             let string = String.localizedStringWithFormat("Due by %@", date.mmDdYyyyString)
@@ -338,7 +338,7 @@ class BillUtility {
     //MARK: - Pending Payments
     
     let pendingPaymentsText: String = {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return NSLocalizedString("Payments Processing", comment: "")
         case .ace, .delmarva, .pepco, .comEd, .peco:

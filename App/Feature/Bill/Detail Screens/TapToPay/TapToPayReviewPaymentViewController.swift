@@ -36,6 +36,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var alternateContactDivider: UIView!
     @IBOutlet weak var addAdditionaRecipientButton: UIButton!
+    @IBOutlet weak var addAdditionalRecipeintBottomDivider: UIView!
     
     // -- Payment Method View -- //
     @IBOutlet weak var bankAccount: ButtonControl!
@@ -87,6 +88,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var scrollViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollViewLeadingConstraint: NSLayoutConstraint!
     
+    // Cancel Payment
+    @IBOutlet weak var cancelPaymentButton: ButtonControl!
+    @IBOutlet weak var cancelPaymentLabel: UILabel!
+    
+    @IBOutlet weak var creditCardDateRangeError: UILabel!
+    
     var viewModel: TapToPayViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
     var billingHistoryItem: BillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
@@ -103,6 +110,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
         addCloseButton()
         if billingHistoryItem != nil {
             title = NSLocalizedString("Edit Payment", comment: "")
+            addAdditionalRecipients.isHidden = true
+            addAdditionalRecipeintBottomDivider.isHidden = true
         } else {
             title = NSLocalizedString("Review Payment", comment: "")
         }
@@ -193,6 +202,10 @@ class TapToPayReviewPaymentViewController: UIViewController {
         sameDayPaymentWarningLabel.font = SystemFont.regular.of(size: 12)
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same-day payments cannot be edited or canceled after submission.", comment: "")
         
+        creditCardDateRangeError.textColor = .errorRed
+        creditCardDateRangeError.font = SystemFont.semibold.of(size: 12)
+        creditCardDateRangeError.text = NSLocalizedString("Error: Credit card payments cannot be scheduled more than 90 days in advance.", comment: "")
+        
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .deepGray
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
@@ -251,6 +264,13 @@ class TapToPayReviewPaymentViewController: UIViewController {
             scrollViewTrailingConstraint.priority = UILayoutPriority(rawValue: 1000)
             scrollViewLeadingConstraint.priority = UILayoutPriority(rawValue: 1000)
         }
+        
+        
+        let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
+        cancelPaymentButton.accessibilityLabel = cancelPaymentText
+        cancelPaymentLabel.text = cancelPaymentText
+        cancelPaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        cancelPaymentLabel.textColor = .actionBlue
         
         self.stickyPaymentFooterView.accessibilityElements = [submitDescriptionLabel as Any,
                                                               termsNConditionsButton as Any,
@@ -327,6 +347,11 @@ class TapToPayReviewPaymentViewController: UIViewController {
             self.latePaymentErrorLabel.isHidden = !showLatePaymentWarning
         }).disposed(by: bag)
         
+        viewModel.showCreditCardDateRangeError.drive(onNext: { [weak self] showcreditCardDateRangeError in
+            guard let self = self else { return }
+            self.creditCardDateRangeError.isHidden = !showcreditCardDateRangeError
+        }).disposed(by: bag)
+        
         viewModel.enablePaymentDate.drive(onNext: { [weak self]  enableDate in
             guard let self = self else { return }
             self.paymentDateEditIcon.image = enableDate ? #imageLiteral(resourceName: "ic_edit") : #imageLiteral(resourceName: "ic_edit_disabled")
@@ -353,6 +378,13 @@ class TapToPayReviewPaymentViewController: UIViewController {
         // Show content
         viewModel.shouldShowContent.drive(onNext: { [weak self] shouldShow in
             self?.stickyPaymentFooterView.isHidden = !shouldShow
+        }).disposed(by: bag)
+        
+        // Cancel Payment
+        viewModel.shouldShowCancelPaymentButton.not().drive(cancelPaymentButton.rx.isHidden).disposed(by: bag)
+        
+        cancelPaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            self?.onCancelPaymentPress()
         }).disposed(by: bag)
         
     }
@@ -612,7 +644,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
                     }
                 },
                 callHandler: { _ in
-                   // UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
+                    UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
                 }
             )
             self.present(paymentusAlertVC, animated: true, completion: nil)
@@ -704,6 +736,36 @@ class TapToPayReviewPaymentViewController: UIViewController {
             })
         }
         
+    }
+    
+    @IBAction func onCancelPaymentPress() {
+        let alertTitle = NSLocalizedString("Cancel Payment", comment: "")
+        let alertMessage = NSLocalizedString("Are you sure you want to cancel this payment?", comment: "")
+        let alertConfirm = NSLocalizedString("Yes", comment: "")
+        let alertDeny = NSLocalizedString("No", comment: "")
+        
+        let confirmAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        confirmAlert.addAction(UIAlertAction(title: alertDeny, style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: alertConfirm, style: .destructive, handler: { [weak self] _ in
+            LoadingView.show()
+            self?.viewModel.cancelPayment(onSuccess: { [weak self] in
+                LoadingView.hide()
+                if let confirmationNumber = self?.billingHistoryItem?.paymentID,
+                   let storedConfirmationNumber = RecentPaymentsStore.shared[AccountsStore.shared.currentAccount]?.confirmationNumber,
+                   confirmationNumber == storedConfirmationNumber {
+                    RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = nil
+                    NotificationCenter.default.post(name: .didRecievePaymentCancelConfirmation, object: nil)
+                    NotificationCenter.default.post(name: .didRecievePaymentConfirmation, object: nil)
+                }
+                self?.dismiss(animated: true, completion: nil)
+            }, onError: { [weak self] errMessage in
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertVc, animated: true, completion: nil)
+            })
+        }))
+        present(confirmAlert, animated: true, completion: nil)
     }
     
 }

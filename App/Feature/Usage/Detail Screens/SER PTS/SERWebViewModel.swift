@@ -15,8 +15,8 @@ class SERWebViewModel {
     
     let accountDetail: AccountDetail
     
-    let isProd = Environment.shared.environmentName == .release
-        || Environment.shared.environmentName == .rc
+    let isProd = Configuration.shared.environmentName == .release
+        || Configuration.shared.environmentName == .rc
     
     required init(accountDetail: AccountDetail) {
         self.accountDetail = accountDetail

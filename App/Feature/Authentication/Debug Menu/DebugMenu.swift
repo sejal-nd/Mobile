@@ -29,9 +29,9 @@ struct DebugMenu: View {
             Form {
                 Section(header: Text("App Info")) {
                     InfoLabel(title: "OpCo",
-                              value: Environment.shared.opco.rawValue)
+                              value: Configuration.shared.opco.rawValue)
                     InfoLabel(title: "Tier",
-                              value: Environment.shared.environmentName.rawValue)
+                              value: Configuration.shared.environmentName.rawValue)
                     InfoLabel(title: "Version",
                               value: versionString)
                     InfoLabel(title: "Bundle ID",
@@ -41,7 +41,7 @@ struct DebugMenu: View {
                 Section(header: Text("Project Settings"),
                         footer: Text("Relaunch the app for changes to take affect.").padding(.bottom)) {
                     InfoLabel(title: "Azure Base URL",
-                              value: "https://\(Environment.shared.baseUrl)")
+                              value: "https://\(Configuration.shared.baseUrl)")
                     Picker(selection: $selectedProjectTier, label: Text("Project Tier").fontWeight(.medium)) {
                         ForEach(ProjectTier.allCases, id: \.self) { value in
                             Text(value.rawValue).tag(value.rawValue)
@@ -60,15 +60,15 @@ struct DebugMenu: View {
                 Section(header: Text("Other URLs"),
                         footer: Text("Note: This menu is only available at the BETA tier.").padding(.bottom)) {
                     InfoLabel(title: "Associated Domaine",
-                              value: Environment.shared.associatedDomain)
+                              value: Configuration.shared.associatedDomain)
                     InfoLabel(title: "Account URL",
-                              value: Environment.shared.myAccountUrl)
+                              value: Configuration.shared.myAccountUrl)
                     InfoLabel(title: "Sharepoint URL",
-                              value: Environment.shared.sharepointBaseURL)
+                              value: Configuration.shared.sharepointBaseURL)
                     InfoLabel(title: "oAuth URL",
-                              value: Environment.shared.oAuthEndpoint)
+                              value: Configuration.shared.oAuthEndpoint)
                     InfoLabel(title: "Payment URL",
-                              value: Environment.shared.paymentusUrl)
+                              value: Configuration.shared.paymentusUrl)
                 }
             }
             .navigationTitle("Debug Menu")
@@ -84,6 +84,7 @@ struct DebugMenu: View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func reset() {

@@ -63,7 +63,7 @@ class SERPTSViewController: UIViewController {
     }
     
     private func styleViews() {
-        title = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        title = Configuration.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .deepGray

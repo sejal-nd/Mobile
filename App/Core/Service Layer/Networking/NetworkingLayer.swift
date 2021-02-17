@@ -17,7 +17,7 @@ public enum NetworkingLayer {
                                              completion: @escaping (Result<T, NetworkingError>) -> ()) {
         // Ensure token exists for auth requests
         if router.apiAccess == .auth && router.token.isEmpty {
-            dLog("No token found: Request denied.")
+            Log.info("No token found: Request denied.")
             completion(.failure(.invalidToken))
             return
         }
@@ -30,23 +30,23 @@ public enum NetworkingLayer {
         components.queryItems = router.parameters
         
         guard let url = components.url else {
-            dLog("Invalid URL: Request denied.")
+            Log.info("Invalid URL: Request denied.")
             completion(.failure(.invalidURL))
             return
         }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
 
-        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            dLog("\n\n\n📬 URL: \(url.absoluteString)")
+        if ProcessInfo.processInfo.arguments.contains("-shoulLog.infoAPI") {
+            Log.info("\n\n\n📬 URL: \(url.absoluteString)")
         }
         
         // Set HTTP BODY
         if let httpBody = router.httpBody {
             urlRequest.httpBody = httpBody
             
-            if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-                dLog("Request Body:\n\(String(decoding: httpBody, as: UTF8.self))")
+            if ProcessInfo.processInfo.arguments.contains("-shoulLog.infoAPI") {
+                Log.info("Request Body:\n\(String(decoding: httpBody, as: UTF8.self))")
             }
         }
         
@@ -55,7 +55,7 @@ public enum NetworkingLayer {
         
         // Configure URL Session (Mock or regular)
         let session: URLSession
-        if Environment.shared.environmentName == .aut {
+        if Configuration.shared.environmentName == .aut {
             // Mock
             let username = UserSession.token
             let mockUser = NewMockDataKey(rawValue: username) ?? .default
@@ -72,15 +72,15 @@ public enum NetworkingLayer {
         var retryCount = 3
         
         // Check refresh token
-        if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Environment.shared.environmentName != .aut {
+        if router.apiAccess == .auth && UserSession.isRefreshTokenExpired && Configuration.shared.environmentName != .aut {
             // Refresh expired
-            dLog("❌ Refresh Token Expired... Logging user out...")
+            Log.error("Refresh Token Expired... Logging user out...")
             
             // Log Out
             AuthenticationService.logout()
             completion(.failure(.invalidToken))
         }
-        else if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Environment.shared.environmentName != .aut {
+        else if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Configuration.shared.environmentName != .aut {
             // token expired
             // Decrease retry counter
             retryCount -= 1
@@ -103,14 +103,14 @@ public enum NetworkingLayer {
                 }
                 return
             }
-            
-            dLog("📬 Token expired... Refreshing...")
+            Log.custom("📬",
+                       "Token expired... Refreshing...")
             
             isRefreshingToken = true
             refreshTokenDispatchGroup.enter()
             // Refresh Token
-            let refreshTokenRequest = RefreshTokenRequest(clientId: Environment.shared.clientID,
-                                                          clientSecret: Environment.shared.clientSecret,
+            let refreshTokenRequest = RefreshTokenRequest(clientId: Configuration.shared.clientID,
+                                                          clientSecret: Configuration.shared.clientSecret,
                                                           refreshToken: UserSession.refreshToken)
             
             NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
@@ -155,7 +155,7 @@ public enum NetworkingLayer {
         // Perform Data Task
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error as NSError? {
-                dLog("❌ Data task error: \(error)\n\n\(error.localizedDescription)")
+                Log.error("Data task error: \(error)\n\n\(error.localizedDescription)")
                 if error.domain == NSURLErrorDomain,
                     error.code == NSURLErrorNotConnectedToInternet {
                     DispatchQueue.main.async {
@@ -163,7 +163,7 @@ public enum NetworkingLayer {
                     }
                 }
                 
-                dLog(error.localizedDescription)
+                Log.info(error.localizedDescription)
                 DispatchQueue.main.async {
                     completion(.failure(.generic))
                 }
@@ -171,8 +171,8 @@ public enum NetworkingLayer {
             }
             
             // Validate response if not using mock
-            guard response != nil || Environment.shared.environmentName == .aut else {
-                dLog("❌ Data task empty response.")
+            guard response != nil || Configuration.shared.environmentName == .aut else {
+                Log.error("Data task empty response.")
                 DispatchQueue.main.async {
                     completion(.failure(.invalidResponse))
                 }
@@ -180,7 +180,7 @@ public enum NetworkingLayer {
             }
             
             guard let data = data else {
-                dLog("❌ Data task invalid data.")
+                Log.error("Data task invalid data.")
                 DispatchQueue.main.async {
                     completion(.failure(.invalidData))
                 }
@@ -188,7 +188,7 @@ public enum NetworkingLayer {
             }
 
             do {
-                dLog("\n\n\n\(LogType.response.symbol) RAW RESPONSE: \n\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
+                Log.info("\n\n\n RAW RESPONSE: \n\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
                 
                 let responseObject: T = try decode(data: data)
                 
@@ -210,8 +210,8 @@ public enum NetworkingLayer {
     }
 
     private static func decode<T: Decodable>(data: Data) throws -> T {
-        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            dLog("📬 Data Response:\n\(String(decoding: data, as: UTF8.self))")
+        if ProcessInfo.processInfo.arguments.contains("-shoulLog.infoAPI") {
+            Log.info("📬 Data Response:\n\(String(decoding: data, as: UTF8.self))")
         }
 
         let jsonDecoder = JSONDecoder()
@@ -232,7 +232,7 @@ public enum NetworkingLayer {
         } catch {
             if let apigeeError = try? jsonDecoder.decode(ApigeeError.self, from: data) {
                 // Apigee decode
-                dLog("❌ Apigee Error: \(apigeeError) \n\n\(apigeeError.errorDescription)")
+                Log.error("Apigee Error: \(apigeeError) \n\n\(apigeeError.errorDescription)")
                 let networkError = NetworkingError(errorCode: apigeeError.errorCode)
                 
                 if networkError != .generic {
@@ -244,14 +244,14 @@ public enum NetworkingLayer {
                 // Default decode
                 return response
             } else {
-                dLog("❌ Failed to decode network response: \(error)")
-                dLog(error.localizedDescription)
+                Log.error("Failed to decode network response: \(error)")
+                Log.info(error.localizedDescription)
                 throw error
             }
         }
         
         if let endpointError = responseWrapper.error {
-            dLog("❌ Endpoint Error:\n\nError Code: \(endpointError.code)\nAzure Context: \(endpointError.context ?? "")\nError Description: \(endpointError.description ?? "")")
+            Log.error("Endpoint Error:\n\nError Code: \(endpointError.code)\nAzure Context: \(endpointError.context ?? "")\nError Description: \(endpointError.description ?? "")")
             
             // Log user out
             if endpointError.code == "401" {
@@ -262,7 +262,7 @@ public enum NetworkingLayer {
         }
         
         guard let responseData = responseWrapper.data else {
-            dLog("❌ Failed to decode network response data")
+            Log.error("Failed to decode network response data")
             throw NetworkingError.decoding
         }
                 
@@ -273,7 +273,8 @@ public enum NetworkingLayer {
         URLSession.default.getAllTasks { tasks in
             tasks.forEach { $0.cancel() }
         }
-        dLog("🛑 Cancelled all URL Session requests.")
+        Log.custom("🛑",
+                   "Cancelled all URL Session requests.")
     }
     
     private static func addHTTPHeaders(_ httpHeaders: HTTPHeaders,

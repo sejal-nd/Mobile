@@ -157,7 +157,7 @@ class HomeBillCardViewModel {
         .map { accountDetail, walletItem in
             let startOfToday = Calendar.opCo.startOfDay(for: .now)
             let paymentDate: Date
-            if Environment.shared.opco == .bge &&
+            if Configuration.shared.opco == .bge &&
                 Calendar.opCo.component(.hour, from: .now) >= 20,
                 let tomorrow = Calendar.opCo.date(byAdding: .day, value: 1, to: startOfToday) {
                 paymentDate = tomorrow
@@ -243,7 +243,7 @@ class HomeBillCardViewModel {
         .combineLatest(accountDetailEvents.elements(), scheduledPaymentEvents.elements(), walletItem)
         .map { accountDetail, scheduledPayment, walletItem -> BillState in
             let billingInfo = accountDetail.billingInfo
-            let opco = Environment.shared.opco
+            let opco = Configuration.shared.opco
             
             if RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] != nil {
                 return .billPaidIntermediate
@@ -349,7 +349,7 @@ class HomeBillCardViewModel {
         }
     }
     
-    let showDueDateTooltip = Environment.shared.opco == .peco
+    let showDueDateTooltip = Configuration.shared.opco == .peco
     
     private(set) lazy var showReinstatementFeeText: Driver<Bool> = reinstatementFeeText.isNil().not()
     
@@ -389,10 +389,10 @@ class HomeBillCardViewModel {
                                                                                      walletItemDriver)
         { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
         .distinctUntilChanged()
-    private(set) lazy var showMakePaymentButton: Driver<Bool> = Driver.combineLatest(showAutoPay,
-                                                                                     showScheduledPayment,
-                                                                                     billState)
-    { return $0 || $1 || $2 == .billPaid || $2 == .billPaidIntermediate || $2 == .paymentPending ? false : true }
+    
+    private(set) lazy var showMakePaymentButton: Driver<Bool> = accountDetailDriver.map {
+        return ($0.billingInfo.netDueAmount > 0 || Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI ) ? true : false
+    }
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
@@ -412,7 +412,7 @@ class HomeBillCardViewModel {
                                                                      .foregroundColor: textColor])
             case .paymentPending:
                 let text: String
-                switch Environment.shared.opco {
+                switch Configuration.shared.opco {
                 case .bge:
                     text = NSLocalizedString("You have processing payments", comment: "")
                 case .ace, .comEd, .delmarva, .peco, .pepco:
@@ -462,7 +462,13 @@ class HomeBillCardViewModel {
                 let format = "%@ of the total is due immediately for your multi-premise account.".localized()
                 string = String(format: format, amount)
             case (false, true):
-                string = NSLocalizedString("Your bill is past due.", comment: "")
+                if accountDetail.serviceType == nil && Configuration.shared.opco == .bge && accountDetail.billingInfo.pastDueAmount > 0 {
+                    guard let amount = billingInfo.pastDueAmount?.currencyString else { return nil }
+                    let format = "%@ must be paid immediately. Your account has been stopped.".localized()
+                    string = String(format: format, amount)
+                } else {
+                    string = NSLocalizedString("Your bill is past due.", comment: "")
+                }
             case (true, true):
                 string = NSLocalizedString("Your bill is past due for your multi-premise account.", comment: "")
             }
@@ -477,7 +483,7 @@ class HomeBillCardViewModel {
             let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now))
             
             let string: String
-            switch (days > 0 && Environment.shared.opco != .peco, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
+            switch (days > 0 && Configuration.shared.opco != .peco, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
             case (true, true):
                 let format = "The total amount is due in %d day%@ to catch up on your DPA."
                 string = String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
@@ -545,7 +551,7 @@ class HomeBillCardViewModel {
             guard let amountString = billingInfo.pastDueAmount?.currencyString else {
                 return nil
             }
-            let status = Environment.shared.opco.isPHI ? "is inactive" : "has been finaled"
+            let status = Configuration.shared.opco.isPHI ? "is inactive" : "has been finaled"
             let string = String.localizedStringWithFormat("%@ must be paid immediately. Your account \(status).", amountString)
             return NSAttributedString(string: string, attributes: attributes)
         default:
@@ -596,7 +602,7 @@ class HomeBillCardViewModel {
                                           attributes: grayAttributes)
             }
         case .credit:
-            return Environment.shared.opco.isPHI ? NSAttributedString(string: NSLocalizedString("You have no amount due", comment: ""), attributes: grayAttributes) :
+            return Configuration.shared.opco.isPHI ? NSAttributedString(string: NSLocalizedString("You have no amount due", comment: ""), attributes: grayAttributes) :
                 NSAttributedString(string: NSLocalizedString("No Amount Due", comment: ""), attributes: grayAttributes)
         default:
             guard let dueByDate = accountDetail.billingInfo.dueByDate else { return nil }
@@ -608,7 +614,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var reinstatementFeeText: Driver<String?> = accountDetailDriver.map {
         guard let reinstateString = $0.billingInfo.atReinstateFee?.currencyString,
-            Environment.shared.opco == .comEd &&
+            Configuration.shared.opco == .comEd &&
                 $0.billingInfo.amtDpaReinst > 0 &&
                 $0.billingInfo.atReinstateFee > 0 &&
                 !$0.isLowIncome else {
@@ -682,11 +688,11 @@ class HomeBillCardViewModel {
             }
             
             let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount
-            if accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.shared.opco != .bge {
+            if accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Configuration.shared.opco != .bge {
                 return false
             }
             
-            if accountDetail.billingInfo.netDueAmount < 0 && Environment.shared.opco == .bge {
+            if accountDetail.billingInfo.netDueAmount < 0 && Configuration.shared.opco == .bge {
                 return false
             }
             
@@ -710,7 +716,7 @@ class HomeBillCardViewModel {
         .map { $0 == .paymentPending ? OpenSans.semibold.of(textStyle: .largeTitle): OpenSans.semibold.of(textStyle: .largeTitle) }
     
     private(set) lazy var amountColor: Driver<UIColor> = billState
-        .map { Environment.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .deepGray) : .deepGray }
+        .map { Configuration.shared.opco.isPHI ? ($0 == .credit ? .successGreenText : .deepGray) : .deepGray }
     
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
         Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
@@ -720,7 +726,7 @@ class HomeBillCardViewModel {
                     return String.localizedStringWithFormat("You have an automatic payment of %@ for %@.",
                                                             paymentAmountText,
                                                             paymentDateText)
-                } else if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+                } else if Configuration.shared.opco == .bge && accountDetail.isBGEasy {
                     return NSLocalizedString("You are enrolled in BGEasy", comment: "")
                 } else {
                     return NSLocalizedString("You are enrolled in AutoPay." , comment: "")
@@ -736,7 +742,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var slideToPayConfirmationDetailText: Driver<String?> = accountDetailDriver
         .map { _ in
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .bge:
                 return NSLocalizedString("It may take 24 hours for your payment status to update.", comment: "")
             case .comEd, .peco:
@@ -763,7 +769,7 @@ class HomeBillCardViewModel {
     }
     
     var errorPhoneNumber: String {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return "1-800-685-0123"
         case .comEd:

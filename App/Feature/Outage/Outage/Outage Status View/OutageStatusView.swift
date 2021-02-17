@@ -59,11 +59,11 @@ class OutageStatusView: UIView {
            let reportedETR = reportedOutage.etr {
             return DateFormatter.outageOpcoDateFormatter.string(from: reportedETR)
         }
-        return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
+        return Configuration.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
     }
     
     private var descriptionText: String {
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
         } else {
             var text = ""
@@ -116,6 +116,9 @@ class OutageStatusView: UIView {
         detailDescriptionLabel.font = OpenSans.regular.of(textStyle: .caption1)
         detailLabel.textColor = .deepGray
         detailLabel.font = OpenSans.semibold.of(textStyle: .caption1)
+        statusHeightConstraint.constant = 125
+        statusWidthConstraint.constant = 125
+
     }
     
     
@@ -187,8 +190,8 @@ extension OutageStatusView {
             }
             
             statusImageView.isHidden = true
-            statusHeightConstraint.constant = 107
-            statusWidthConstraint.constant = 107
+            statusHeightConstraint.constant = 125
+            statusWidthConstraint.constant = 125
             
             titleDescriptionLabel.isHidden = false
             titleDescriptionLabel.text = NSLocalizedString("Our records indicate", comment: "")
@@ -205,8 +208,8 @@ extension OutageStatusView {
             lottieAnimationView?.removeFromSuperview()
             lottieAnimationView = AnimationView(name: "outage_reported")
             statusImageView.isHidden = true
-            statusHeightConstraint.constant = 107
-            statusWidthConstraint.constant = 107
+            statusHeightConstraint.constant = 125
+            statusWidthConstraint.constant = 125
             
             titleDescriptionLabel.text = NSLocalizedString("Your outage is", comment: "")
             titleLabel.text = NSLocalizedString("REPORTED", comment: "")
