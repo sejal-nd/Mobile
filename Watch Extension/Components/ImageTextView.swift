@@ -46,14 +46,14 @@ struct ImageTextView: View {
 
 struct ImageTextView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageTextView(imageName: AppImage.maintenanceMode.name,
+        ImageTextView(imageName:AppConstant.ImageName.maintenanceMode.rawValue,
                       text: "Scheduled Maintenance")
         
-        ImageTextView(imageName: AppImage.maintenanceMode.name,
+        ImageTextView(imageName:AppConstant.ImageName.maintenanceMode.rawValue,
                       imageColor: .red,
                       text: "Scheduled Maintenance")
         
-        ImageTextView(imageName: AppImage.maintenanceMode.name,
+        ImageTextView(imageName:AppConstant.ImageName.maintenanceMode.rawValue,
                       title: "7 days",
                       text: "Scheduled Maintenance")
     }

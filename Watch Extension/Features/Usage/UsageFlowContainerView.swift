@@ -37,7 +37,7 @@ struct UsageFlowContainerView: View {
                 ScrollView {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
-                        ImageTextView(imageName: AppConstant.ImageName.noUsageData.name,
+                        ImageTextView(imageName: AppConstant.ImageName.noUsageData.rawValue,
                                       imageColor: .accentColor,
                                       title: "\(daysToForecast) days",
                                       text: "until next forecast")
@@ -47,7 +47,7 @@ struct UsageFlowContainerView: View {
                 ScrollView {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
-                        ImageTextView(imageName: AppConstant.ImageName.noUsageData.name,
+                        ImageTextView(imageName: AppConstant.ImageName.noUsageData.rawValue,
                                       imageColor: .accentColor,
                                       text: "Usage is not available for this account")
                     }

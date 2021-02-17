@@ -83,7 +83,7 @@ struct UsageView: View {
                 }
                 
                 VStack {
-                    Image(isShowingElectric ? AppConstant.ImageName.electric.name : AppConstant.ImageName.gas.name)
+                    Image(isShowingElectric ? AppConstant.ImageName.electric.rawValue : AppConstant.ImageName.gas.rawValue)
                         .resizable()
                         .frame(width: 60, height: 60)
                         .foregroundColor(isLoading ? nil : .accentColor)
@@ -99,7 +99,7 @@ struct UsageView: View {
                     isShowingElectric.toggle()
                 }) {
                     Label(isShowingElectric ? "Gas" : "Electric",
-                          image: isShowingElectric ? AppConstant.ImageName.gas.name : AppConstant.ImageName.electric.name)
+                          image: isShowingElectric ? AppConstant.ImageName.gas.rawValue : AppConstant.ImageName.electric.rawValue)
                         .foregroundColor(isLoading ? nil : .accentColor)
                 }
                 .padding(.bottom, 16)

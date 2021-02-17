@@ -43,19 +43,19 @@ struct BillView: View {
                         
                         // Auto Pay
                         if bill.isEnrolledInAutoPay {
-                            ImageTextView(imageName: AppImage.autoPay.name,
+                            ImageTextView(imageName: AppConstant.ImageName.autoPay.rawValue,
                                           text: "You are enrolled in Autopay")
                         }
                         
                         // Scheduled Payment
                         if let scheduledPaymentText = bill.scheduledPaymentAmountText {
-                            ImageTextView(imageName: AppImage.scheduledPayment.name,
+                            ImageTextView(imageName: AppConstant.ImageName.scheduledPayment.rawValue,
                                           text: scheduledPaymentText)
                         }
                         
                         // Thank You For Payment
                         if let paymentReceivedAmountText = bill.paymentReceivedAmountText {
-                            ImageTextView(imageName: AppImage.paymentConfirmation.name,
+                            ImageTextView(imageName: AppConstant.ImageName.thankYouPayment.rawValue,
                                           title: paymentReceivedAmountText,
                                           text: "Thank you for your payment")
                             
@@ -63,7 +63,7 @@ struct BillView: View {
                     }
                 } else {
                     // Bill not ready
-                    ImageTextView(imageName: AppImage.billNotReady.name,
+                    ImageTextView(imageName: AppConstant.ImageName.billNotReady.rawValue,
                                   text: "Your bill will be available here once it is ready")
                 }
                 

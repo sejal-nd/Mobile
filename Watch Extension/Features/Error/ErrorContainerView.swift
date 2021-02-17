@@ -14,11 +14,11 @@ struct ErrorContainerView: View {
     private var imageName: String {
         switch errorState {
         case .maintenanceMode:
-            return AppConstant.ImageName.maintenanceMode.name
+            return AppConstant.ImageName.maintenanceMode.rawValue
         case .passwordProtected:
-            return AppConstant.ImageName.passwordProtected.name
+            return AppConstant.ImageName.passwordProtected.rawValue
         case .other:
-            return AppConstant.ImageName.error.name
+            return AppConstant.ImageName.error.rawValue
         }
     }
     

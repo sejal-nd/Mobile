@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    private let imageName = AppImage.signin.name
+    private let imageName = AppConstant.ImageName.signIn.rawValue
     private let text = "Please sign in on your iPhone"
     
     var body: some View {

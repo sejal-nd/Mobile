@@ -56,9 +56,6 @@
 		3525887921FA5B5600C5492D /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
-		3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* BillUtility.swift */; };
-		352B19F8233BBE710090B442 /* Outage-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F7233BBE710090B442 /* Outage-FlavorBGE.storyboard */; };
-		352B19FA233BBEDD0090B442 /* Usage-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F9233BBEDD0090B442 /* Usage-FlavorBGE.storyboard */; };
 		352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35489DD524A248BF0040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
@@ -137,8 +134,6 @@
 		35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
 		35B9609D22B7BC79003BCC97 /* PremiseListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */; };
 		35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
-		35BAA17A2367454F0053E58A /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAA1782367454F0053E58A /* NetworkUtility.swift */; };
-		35BAA18F2368B5AA0053E58A /* Bill-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA18E2368B5AA0053E58A /* Bill-FlavorBGE.storyboard */; };
 		35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
 		35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */; };
@@ -157,15 +152,7 @@
 		35F9DD682333C85C00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
-		35F9DD6E2333D14D00AAA2B2 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */; };
-		35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
-		35F9DD712333D14D00AAA2B2 /* AccountListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */; };
-		35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
-		35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */; };
-		35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */; };
-		35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD932333D83F00AAA2B2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
@@ -183,11 +170,8 @@
 		35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
-		35F9DDC523340C9B00AAA2B2 /* Main-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */; };
 		35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DE52233A583700AAA2B2 /* AnalyticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticController.swift */; };
-		35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
-		35FB5030234D091100C50162 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB502E234D091000C50162 /* UIColor.swift */; };
 		38067936D320131E8A71A633 /* Pods_EUMobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A3A4A7A4BBF2DD357F1C3F /* Pods_EUMobileUITests.framework */; };
 		389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4465DE881F1FD07C0014537F /* TemplateCardView.xib */; };
@@ -445,9 +429,6 @@
 		67D08A9C2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08A9A2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets */; };
 		67D08AA22539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */; };
 		67D08AA32539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */; };
-		67D08AA92539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA82539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard */; };
-		67D08BB9253A224F0047E4C5 /* Usage-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5125391A6A002A2832 /* Usage-FlavorACE.storyboard */; };
-		67D08BBA253A225F0047E4C5 /* Outage-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5025391A6A002A2832 /* Outage-FlavorACE.storyboard */; };
 		67D5626324EADA7E00852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
 		67D5626724EADA9700852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
 		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
@@ -462,10 +443,6 @@
 		67D5632724EDC6F600852551 /* outage-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27A214834A900FBAD83 /* outage-FlavorCOMED.json */; };
 		67D5632824EDC6F600852551 /* sm_outage_loading-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2802148518C00FBAD83 /* sm_outage_loading-FlavorCOMED.json */; };
 		67D5632924EDC6F600852551 /* sm_outage-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2682146F06D00FBAD83 /* sm_outage-FlavorCOMED.json */; };
-		67D5633124EEFAA100852551 /* Main-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */; };
-		67D5633224EEFAA100852551 /* Outage-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1822368B20F0053E58A /* Outage-FlavorCOMED.storyboard */; };
-		67D5633324EEFAA100852551 /* Usage-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1842368B22C0053E58A /* Usage-FlavorCOMED.storyboard */; };
-		67D5633424EEFAA100852551 /* Bill-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1902368B5C80053E58A /* Bill-FlavorCOMED.storyboard */; };
 		67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */; };
 		67D5633624EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
@@ -967,15 +944,6 @@
 		C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C3087B0124BDEE8B005AE544 /* EnergyTipMock.json */; };
 		C3087B0C24BDEFA3005AE544 /* AnyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087B0B24BDEFA3005AE544 /* AnyObserver.swift */; };
 		C3087B1624BDF0D5005AE544 /* UsageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087B1524BDF0D5005AE544 /* UsageService+Rx.swift */; };
-		C3118C5525391A70002A2832 /* Bill-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C4F25391A69002A2832 /* Bill-FlavorACE.storyboard */; };
-		C3118C5925391A8A002A2832 /* Main-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5625391A82002A2832 /* Main-FlavorACE.storyboard */; };
-		C3118C5D25391A9F002A2832 /* Outage-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5A25391A9E002A2832 /* Outage-FlavorDPL.storyboard */; };
-		C3118C5E25391A9F002A2832 /* Usage-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5B25391A9E002A2832 /* Usage-FlavorDPL.storyboard */; };
-		C3118C5F25391A9F002A2832 /* Bill-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5C25391A9E002A2832 /* Bill-FlavorDPL.storyboard */; };
-		C3118C6225391AAA002A2832 /* Main-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6025391AA9002A2832 /* Main-FlavorDPL.storyboard */; };
-		C3118C6625391AB6002A2832 /* Usage-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6325391AB4002A2832 /* Usage-FlavorPEPCO.storyboard */; };
-		C3118C6725391AB6002A2832 /* Bill-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6425391AB4002A2832 /* Bill-FlavorPEPCO.storyboard */; };
-		C3118C6825391AB6002A2832 /* Outage-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6525391AB5002A2832 /* Outage-FlavorPEPCO.storyboard */; };
 		C3118C6E25391BA3002A2832 /* AccountNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3118C6D25391B71002A2832 /* AccountNumberRequest.swift */; };
 		C3118C7325391BA8002A2832 /* AccountNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3118C6D25391B71002A2832 /* AccountNumberRequest.swift */; };
 		C320FDA124DC5ED40012E4ED /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
@@ -1374,9 +1342,6 @@
 		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
-		3527DB37234B86E000DA4553 /* BillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUtility.swift; sourceTree = "<group>"; };
-		352B19F7233BBE710090B442 /* Outage-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Outage-FlavorBGE.storyboard"; path = "Watch/Storyboards/BGE/Outage-FlavorBGE.storyboard"; sourceTree = SOURCE_ROOT; };
-		352B19F9233BBEDD0090B442 /* Usage-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorBGE.storyboard"; sourceTree = "<group>"; };
 		352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unauthenticated.storyboard; sourceTree = "<group>"; };
 		3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCreateCredentialsViewControllerNew.swift; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1452,14 +1417,6 @@
 		35B9609822B7BC61003BCC97 /* PremiseListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiseListRow.xib; sourceTree = "<group>"; };
 		35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiseListRow.swift; sourceTree = "<group>"; };
 		35B960BE22C2A15A003BCC97 /* AccountListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountListRow.swift; sourceTree = "<group>"; };
-		35BAA1782367454F0053E58A /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
-		35BAA1822368B20F0053E58A /* Outage-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
-		35BAA1842368B22C0053E58A /* Usage-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
-		35BAA1882368B29A0053E58A /* Outage-FlavorPECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorPECO.storyboard"; sourceTree = "<group>"; };
-		35BAA18A2368B2A50053E58A /* Usage-FlavorPECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorPECO.storyboard"; sourceTree = "<group>"; };
-		35BAA18C2368B2BB0053E58A /* Bill-FlavorPECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorPECO.storyboard"; sourceTree = "<group>"; };
-		35BAA18E2368B5AA0053E58A /* Bill-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorBGE.storyboard"; sourceTree = "<group>"; };
-		35BAA1902368B5C80053E58A /* Bill-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
 		35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigUtility.swift; sourceTree = "<group>"; };
 		35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniWalletSheet.storyboard; sourceTree = "<group>"; };
 		35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletSheetViewController.swift; sourceTree = "<group>"; };
@@ -1481,30 +1438,17 @@
 		35E1F85724ADA49900574065 /* RegistrationSecurityQuestionsViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionsViewControllerNew.swift; sourceTree = "<group>"; };
 		35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35E7C7BE21907F2E00BA13C6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		35E7C7CA21907F2E00BA13C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-FlavorPECO.storyboard"; sourceTree = "<group>"; };
-		35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableRowController.swift; sourceTree = "<group>"; };
 		35E7C7DC2190802C00BA13C6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
-		35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnimateWithDuration+Completion.swift"; sourceTree = "<group>"; };
-		35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageInterfaceController.swift; sourceTree = "<group>"; };
-		35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInInterfaceController.swift; sourceTree = "<group>"; };
-		35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountListInterfaceController.swift; sourceTree = "<group>"; };
-		35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillInterfaceController.swift; sourceTree = "<group>"; };
-		35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageInterfaceController.swift; sourceTree = "<group>"; };
 		35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EUMobile-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "EUMobile-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorBGE.xcassets"; sourceTree = "<group>"; };
 		35F9DD5F2333C49600AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DD612333C74100AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DD692333C87A00AAA2B2 /* Assets-FlavorPECO.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorPECO.xcassets"; sourceTree = "<group>"; };
-		35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-FlavorBGE.storyboard"; sourceTree = "<group>"; };
 		35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorCOMED.xcassets"; sourceTree = "<group>"; };
-		35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
 		35F9DE50233A583700AAA2B2 /* AnalyticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticController.swift; sourceTree = "<group>"; };
-		35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageInterfaceController.swift; sourceTree = "<group>"; };
 		35FB4814A68B1B65B3BE45C8 /* Pods-EUMobileUITests.test-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.test-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.test-dpl.xcconfig"; sourceTree = "<group>"; };
-		35FB502E234D091000C50162 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		367B540DAE6087D02BBFDD5E /* Pods-EUMobileUnitTests.stage-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.stage-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.stage-comed.xcconfig"; sourceTree = "<group>"; };
 		36FC52FE80B75EABF453EA04 /* Pods-EUMobile.prodbeta-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prodbeta-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prodbeta-comed.xcconfig"; sourceTree = "<group>"; };
 		38210305D27493C485B997B4 /* Pods-EUMobile-Watch Extension.stage-pepco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.stage-pepco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.stage-pepco.xcconfig"; sourceTree = "<group>"; };
@@ -1793,7 +1737,6 @@
 		67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
 		67D08A9A2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorDPL.xcassets"; sourceTree = "<group>"; };
 		67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorPEPCO.xcassets"; sourceTree = "<group>"; };
-		67D08AA82539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
 		67D5626224EADA7E00852551 /* GameTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTip.swift; sourceTree = "<group>"; };
 		67D5626624EADA9600852551 /* GameQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuiz.swift; sourceTree = "<group>"; };
 		67D5626824EADAA700852551 /* GameSurvery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurvery.swift; sourceTree = "<group>"; };
@@ -2273,17 +2216,6 @@
 		C3087B0124BDEE8B005AE544 /* EnergyTipMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EnergyTipMock.json; sourceTree = "<group>"; };
 		C3087B0B24BDEFA3005AE544 /* AnyObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObserver.swift; sourceTree = "<group>"; };
 		C3087B1524BDF0D5005AE544 /* UsageService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsageService+Rx.swift"; sourceTree = "<group>"; };
-		C3118C4F25391A69002A2832 /* Bill-FlavorACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorACE.storyboard"; sourceTree = "<group>"; };
-		C3118C5025391A6A002A2832 /* Outage-FlavorACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorACE.storyboard"; sourceTree = "<group>"; };
-		C3118C5125391A6A002A2832 /* Usage-FlavorACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorACE.storyboard"; sourceTree = "<group>"; };
-		C3118C5725391A82002A2832 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-FlavorACE.storyboard"; sourceTree = "<group>"; };
-		C3118C5A25391A9E002A2832 /* Outage-FlavorDPL.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorDPL.storyboard"; sourceTree = "<group>"; };
-		C3118C5B25391A9E002A2832 /* Usage-FlavorDPL.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorDPL.storyboard"; sourceTree = "<group>"; };
-		C3118C5C25391A9E002A2832 /* Bill-FlavorDPL.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorDPL.storyboard"; sourceTree = "<group>"; };
-		C3118C6125391AA9002A2832 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-FlavorDPL.storyboard"; sourceTree = "<group>"; };
-		C3118C6325391AB4002A2832 /* Usage-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
-		C3118C6425391AB4002A2832 /* Bill-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
-		C3118C6525391AB5002A2832 /* Outage-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
 		C3118C6D25391B71002A2832 /* AccountNumberRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNumberRequest.swift; sourceTree = "<group>"; };
 		C320FDA024DC5ED40012E4ED /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		C320FDA224DC62DE0012E4ED /* WalletRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRequest.swift; sourceTree = "<group>"; };
@@ -4017,7 +3949,6 @@
 			children = (
 				35F9DD5E2333C47500AAA2B2 /* Configuration */,
 				35E7C7BC21907F2E00BA13C6 /* Resources */,
-				35E7C7C521907F2E00BA13C6 /* Storyboards */,
 			);
 			path = Watch;
 			sourceTree = "<group>";
@@ -4025,7 +3956,6 @@
 		35E7C79F21907EA400BA13C6 /* Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				672480EE25D5B0F50024467D /* Old Watch App */,
 				67247FC825D315410024467D /* Components */,
 				67247F1125D2D8DA0024467D /* Features */,
 				67247F0025D2D71E0024467D /* Controllers */,
@@ -4051,46 +3981,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		35E7C7C521907F2E00BA13C6 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DDF6233539CA00AAA2B2 /* ComEd */,
-				35F9DDC323340C5900AAA2B2 /* BGE */,
-				35F9DDC223340C5300AAA2B2 /* PECO */,
-				67EDC30724C1EA17001A8494 /* Pepco */,
-				67EDC31B24C1EB6E001A8494 /* ACE */,
-				67EDC31524C1EB6D001A8494 /* Delmarva */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		35E7C7D82190802400BA13C6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		35E7C7EA2190804E00BA13C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		35E7C7FB2190805C00BA13C6 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */,
-				35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */,
-				35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */,
-				35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */,
-				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
-				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		35E7C8082190806700BA13C6 /* Configurations */ = {
@@ -4107,39 +4003,6 @@
 				35F9DD5F2333C49600AAA2B2 /* Info.plist */,
 			);
 			path = Configuration;
-			sourceTree = "<group>";
-		};
-		35F9DDC223340C5300AAA2B2 /* PECO */ = {
-			isa = PBXGroup;
-			children = (
-				35E7C7C921907F2E00BA13C6 /* Main-FlavorPECO.storyboard */,
-				35BAA1882368B29A0053E58A /* Outage-FlavorPECO.storyboard */,
-				35BAA18A2368B2A50053E58A /* Usage-FlavorPECO.storyboard */,
-				35BAA18C2368B2BB0053E58A /* Bill-FlavorPECO.storyboard */,
-			);
-			path = PECO;
-			sourceTree = "<group>";
-		};
-		35F9DDC323340C5900AAA2B2 /* BGE */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */,
-				352B19F7233BBE710090B442 /* Outage-FlavorBGE.storyboard */,
-				352B19F9233BBEDD0090B442 /* Usage-FlavorBGE.storyboard */,
-				35BAA18E2368B5AA0053E58A /* Bill-FlavorBGE.storyboard */,
-			);
-			path = BGE;
-			sourceTree = "<group>";
-		};
-		35F9DDF6233539CA00AAA2B2 /* ComEd */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */,
-				35BAA1822368B20F0053E58A /* Outage-FlavorCOMED.storyboard */,
-				35BAA1842368B22C0053E58A /* Usage-FlavorCOMED.storyboard */,
-				35BAA1902368B5C80053E58A /* Bill-FlavorCOMED.storyboard */,
-			);
-			path = ComEd;
 			sourceTree = "<group>";
 		};
 		35F9DE4C2339106800AAA2B2 /* Data */ = {
@@ -4168,12 +4031,12 @@
 				67247FE325D43AC60024467D /* Tab.swift */,
 				67247EF225D2D6750024467D /* WatchApp.swift */,
 				67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */,
+				67247F1225D2D8EC0024467D /* SignInView.swift */,
 				67247FED25D43D8D0024467D /* Account List */,
 				67247F6625D2E4CD0024467D /* Outage */,
 				67247F8125D2FE1C0024467D /* Usage */,
 				67247F9625D2FE5A0024467D /* Bill */,
 				67247FC725D315260024467D /* Error */,
-				67247F1225D2D8EC0024467D /* SignInView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -4249,20 +4112,6 @@
 				67247FFC25D43DD70024467D /* AccountRow.swift */,
 			);
 			path = "Account List";
-			sourceTree = "<group>";
-		};
-		672480EE25D5B0F50024467D /* Old Watch App */ = {
-			isa = PBXGroup;
-			children = (
-				35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */,
-				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
-				35FB502E234D091000C50162 /* UIColor.swift */,
-				35BAA1782367454F0053E58A /* NetworkUtility.swift */,
-				3527DB37234B86E000DA4553 /* BillUtility.swift */,
-				35E7C7D82190802400BA13C6 /* Views */,
-				35E7C7FB2190805C00BA13C6 /* Controllers */,
-			);
-			path = "Old Watch App";
 			sourceTree = "<group>";
 		};
 		674A11F82523889C00AF0D38 /* Energy Wise Rewards */ = {
@@ -4771,39 +4620,6 @@
 				E89496351EE9E04000B76F8C /* NotificationNames.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		67EDC30724C1EA17001A8494 /* Pepco */ = {
-			isa = PBXGroup;
-			children = (
-				67D08AA82539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard */,
-				C3118C6425391AB4002A2832 /* Bill-FlavorPEPCO.storyboard */,
-				C3118C6525391AB5002A2832 /* Outage-FlavorPEPCO.storyboard */,
-				C3118C6325391AB4002A2832 /* Usage-FlavorPEPCO.storyboard */,
-			);
-			path = Pepco;
-			sourceTree = "<group>";
-		};
-		67EDC31524C1EB6D001A8494 /* Delmarva */ = {
-			isa = PBXGroup;
-			children = (
-				C3118C6025391AA9002A2832 /* Main-FlavorDPL.storyboard */,
-				C3118C5C25391A9E002A2832 /* Bill-FlavorDPL.storyboard */,
-				C3118C5A25391A9E002A2832 /* Outage-FlavorDPL.storyboard */,
-				C3118C5B25391A9E002A2832 /* Usage-FlavorDPL.storyboard */,
-			);
-			path = Delmarva;
-			sourceTree = "<group>";
-		};
-		67EDC31B24C1EB6E001A8494 /* ACE */ = {
-			isa = PBXGroup;
-			children = (
-				C3118C5625391A82002A2832 /* Main-FlavorACE.storyboard */,
-				C3118C4F25391A69002A2832 /* Bill-FlavorACE.storyboard */,
-				C3118C5025391A6A002A2832 /* Outage-FlavorACE.storyboard */,
-				C3118C5125391A6A002A2832 /* Usage-FlavorACE.storyboard */,
-			);
-			path = ACE;
 			sourceTree = "<group>";
 		};
 		829D3975203F1E7F008D7BAE /* Usage */ = {
@@ -5815,35 +5631,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67D08AA92539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard in Resources */,
-				C3118C5E25391A9F002A2832 /* Usage-FlavorDPL.storyboard in Resources */,
-				C3118C5925391A8A002A2832 /* Main-FlavorACE.storyboard in Resources */,
-				67D5633224EEFAA100852551 /* Outage-FlavorCOMED.storyboard in Resources */,
-				352B19F8233BBE710090B442 /* Outage-FlavorBGE.storyboard in Resources */,
-				35F9DDC523340C9B00AAA2B2 /* Main-FlavorBGE.storyboard in Resources */,
-				67D08BB9253A224F0047E4C5 /* Usage-FlavorACE.storyboard in Resources */,
-				67D5633124EEFAA100852551 /* Main-FlavorCOMED.storyboard in Resources */,
-				C3118C6625391AB6002A2832 /* Usage-FlavorPEPCO.storyboard in Resources */,
-				352B19FA233BBEDD0090B442 /* Usage-FlavorBGE.storyboard in Resources */,
 				67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				67A986AD24F96CF600BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
 				67D08A9B2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
 				67A9873324FD4C5F00BD46E7 /* (null) in Resources */,
 				67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */,
-				C3118C5525391A70002A2832 /* Bill-FlavorACE.storyboard in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
-				67D08BBA253A225F0047E4C5 /* Outage-FlavorACE.storyboard in Resources */,
-				C3118C6725391AB6002A2832 /* Bill-FlavorPEPCO.storyboard in Resources */,
-				C3118C6225391AAA002A2832 /* Main-FlavorDPL.storyboard in Resources */,
-				67D5633424EEFAA100852551 /* Bill-FlavorCOMED.storyboard in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
-				67D5633324EEFAA100852551 /* Usage-FlavorCOMED.storyboard in Resources */,
 				67D08AA22539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */,
-				35BAA18F2368B5AA0053E58A /* Bill-FlavorBGE.storyboard in Resources */,
-				C3118C5D25391A9F002A2832 /* Outage-FlavorDPL.storyboard in Resources */,
-				C3118C5F25391A9F002A2832 /* Bill-FlavorDPL.storyboard in Resources */,
-				C3118C6825391AB6002A2832 /* Outage-FlavorPEPCO.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6590,7 +6386,6 @@
 				67247F5325D2DF7E0024467D /* ImageTextView.swift in Sources */,
 				C3055C382538FC99000DB89C /* RxNotifications.swift in Sources */,
 				C3055C1B2538FBEF000DB89C /* RegistrationService.swift in Sources */,
-				35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */,
 				6724801F25D44A380024467D /* PreviewData.swift in Sources */,
 				C3055BFB2538FB11000DB89C /* GameUserRequest.swift in Sources */,
 				C3055B5B2538F81B000DB89C /* ForecastBill.swift in Sources */,
@@ -6628,7 +6423,6 @@
 				C3055BD52538FB04000DB89C /* NetworkingError.swift in Sources */,
 				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
 				6797115B25DD901F008A0080 /* Arc.swift in Sources */,
-				3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */,
 				C3055B6A2538F81B000DB89C /* ForgotMaskedUsername.swift in Sources */,
 				67247F1D25D2D9000024467D /* ReportOutageView.swift in Sources */,
 				C3055BE12538FB11000DB89C /* HomeProfileUpdateRequest.swift in Sources */,
@@ -6654,8 +6448,6 @@
 				67247FE425D43AC60024467D /* Tab.swift in Sources */,
 				67247FA025D2FE6C0024467D /* BillFlowContainerView.swift in Sources */,
 				C3055C202538FC0A000DB89C /* String+DateParser.swift in Sources */,
-				35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */,
-				35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				C3055B722538F81B000DB89C /* AccountLookupResult.swift in Sources */,
 				67247FEF25D43DAD0024467D /* AccountListContainerView.swift in Sources */,
 				C3055B562538F81B000DB89C /* ForgotMaskedUsernames.swift in Sources */,
@@ -6663,7 +6455,6 @@
 				C3055B6B2538F81B000DB89C /* SharePointAlert.swift in Sources */,
 				67247F6E25D2E4EA0024467D /* OutageContainerView.swift in Sources */,
 				C3055C4A2538FD6E000DB89C /* URLProtocolMock.swift in Sources */,
-				35F9DD712333D14D00AAA2B2 /* AccountListInterfaceController.swift in Sources */,
 				C3055BFC2538FB11000DB89C /* AnonOutageRequest.swift in Sources */,
 				C3055BE92538FB11000DB89C /* AnyEncodable.swift in Sources */,
 				C3055BDA2538FB11000DB89C /* AccountNicknameRequest.swift in Sources */,
@@ -6676,7 +6467,6 @@
 				C3055B5A2538F81B000DB89C /* BillingHistoryResult.swift in Sources */,
 				C3055BE52538FB11000DB89C /* ChangePasswordRequest.swift in Sources */,
 				C3055BE32538FB11000DB89C /* ScheduledPaymentUpdateRequest.swift in Sources */,
-				35F9DD6E2333D14D00AAA2B2 /* ExtensionDelegate.swift in Sources */,
 				C3055BED2538FB11000DB89C /* AutoPayEnrollRequest.swift in Sources */,
 				C3055C112538FBEF000DB89C /* WeatherService.swift in Sources */,
 				C3055BE02538FB11000DB89C /* AutoPayUnenrollRequest.swift in Sources */,
@@ -6684,7 +6474,6 @@
 				C3055BDF2538FB11000DB89C /* AlertLanguageRequest.swift in Sources */,
 				35F9DDA62333D88F00AAA2B2 /* Date+Now.swift in Sources */,
 				C3055C1A2538FBEF000DB89C /* PeakRewardsService.swift in Sources */,
-				35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */,
 				C3055B792538F81B000DB89C /* MinimumVersion.swift in Sources */,
 				35F9DDBE2333D91D00AAA2B2 /* KeychainController.swift in Sources */,
 				C3055B6E2538F81B000DB89C /* Alert.swift in Sources */,
@@ -6702,7 +6491,6 @@
 				C3055BDD2538FB11000DB89C /* WalletEncryptionKeyRequest.swift in Sources */,
 				67247FBE25D314040024467D /* BillState.swift in Sources */,
 				67247FB425D3063F0024467D /* UsageState.swift in Sources */,
-				35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */,
 				6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */,
 				C3055B4E2538F812000DB89C /* CustomerInfo.swift in Sources */,
 				C3055C032538FB38000DB89C /* PushNotification.swift in Sources */,
@@ -6718,7 +6506,6 @@
 				C3055B4C2538F812000DB89C /* AccountDetails.swift in Sources */,
 				C3055B6D2538F81B000DB89C /* ReportedOutageResult.swift in Sources */,
 				35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */,
-				35FB5030234D091100C50162 /* UIColor.swift in Sources */,
 				C3055C132538FBEF000DB89C /* GameService.swift in Sources */,
 				C3055BDB2538FB11000DB89C /* BudgetBillingUnenrollRequest.swift in Sources */,
 				C3055C042538FB38000DB89C /* ProfileStatus.swift in Sources */,
@@ -6738,9 +6525,7 @@
 				C3055B812538F81B000DB89C /* AccountResult.swift in Sources */,
 				C3055BF52538FB11000DB89C /* BillComparisonRequest.swift in Sources */,
 				C3055C0F2538FBEF000DB89C /* OutageService.swift in Sources */,
-				35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */,
 				C33C3386254C9C5400E59CF8 /* LanguageResult.swift in Sources */,
-				35BAA17A2367454F0053E58A /* NetworkUtility.swift in Sources */,
 				C3055C432538FCEE000DB89C /* GovWeatherErrorTodo.swift in Sources */,
 				67AE888B25BF5C8D008519B4 /* ProjectTier.swift in Sources */,
 				C3055B7C2538F81B000DB89C /* GameUser.swift in Sources */,
@@ -6751,7 +6536,6 @@
 				C3055B7B2538F81B000DB89C /* CompareBillResult.swift in Sources */,
 				35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */,
 				C3055B852538F81B000DB89C /* WalletItem.swift in Sources */,
-				35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */,
 				6724808625D47BB00024467D /* AccountListFlowContainerView.swift in Sources */,
 				6724801525D444B60024467D /* WatchOutage.swift in Sources */,
 				C3055B622538F81B000DB89C /* DailyUsage.swift in Sources */,
@@ -7425,36 +7209,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		35E7C7C921907F2E00BA13C6 /* Main-FlavorPECO.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				35E7C7CA21907F2E00BA13C6 /* Base */,
-			);
-			name = "Main-FlavorPECO.storyboard";
-			sourceTree = "<group>";
-		};
 		C300793A2436637600A9BEB0 /* BGEStrings.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C30079392436637600A9BEB0 /* en */,
 			);
 			name = BGEStrings.strings;
-			sourceTree = "<group>";
-		};
-		C3118C5625391A82002A2832 /* Main-FlavorACE.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3118C5725391A82002A2832 /* Base */,
-			);
-			name = "Main-FlavorACE.storyboard";
-			sourceTree = "<group>";
-		};
-		C3118C6025391AA9002A2832 /* Main-FlavorDPL.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3118C6125391AA9002A2832 /* Base */,
-			);
-			name = "Main-FlavorDPL.storyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

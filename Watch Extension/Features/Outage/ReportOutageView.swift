@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ReportOutageView: View {
-    private let imageName = AppImage.reportOutageSignIn.name
+    private let imageName = AppConstant.ImageName.reportOutageSignIn.rawValue
     private let text = "To report an outage, please use the mobile app"
     
     var body: some View {
