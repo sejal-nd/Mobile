@@ -394,6 +394,8 @@
 		678B621B24CF6AD3009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
 		678B622D24D09A1B009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
 		678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
+		6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115325DD87E3008A0080 /* OutageAnimation.swift */; };
+		6797115B25DD901F008A0080 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115A25DD901F008A0080 /* Arc.swift */; };
 		679C6EB124D1E84E00535DE7 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EB024D1E84E00535DE7 /* AppointmentService.swift */; };
 		679C6EBE24D1EBCA00535DE7 /* AppointmentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */; };
 		679C6ED824D1F0A800535DE7 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6ED724D1F0A800535DE7 /* Appointment.swift */; };
@@ -1775,6 +1777,8 @@
 		67893BC624E318D1000143D6 /* String+DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateParser.swift"; sourceTree = "<group>"; };
 		678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidateRegistrationMock.json; sourceTree = "<group>"; };
 		678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RegistrationQuestionsMock.json; sourceTree = "<group>"; };
+		6797115325DD87E3008A0080 /* OutageAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAnimation.swift; sourceTree = "<group>"; };
+		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
 		679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppointmentService+Rx.swift"; sourceTree = "<group>"; };
 		679C6ED724D1F0A800535DE7 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
@@ -4228,6 +4232,7 @@
 		67247FC825D315410024467D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6797115925DD9008008A0080 /* Outage Animation */,
 				67247F6025D2E33A0024467D /* AccountInfoBar.swift */,
 				67247F5225D2DF7E0024467D /* ImageTextView.swift */,
 				67247FCD25D33B400024467D /* CardView.swift */,
@@ -4511,6 +4516,15 @@
 				676434CA25AF692600DA6448 /* InfoLabel.swift */,
 			);
 			path = "Debug Menu";
+			sourceTree = "<group>";
+		};
+		6797115925DD9008008A0080 /* Outage Animation */ = {
+			isa = PBXGroup;
+			children = (
+				6797115A25DD901F008A0080 /* Arc.swift */,
+				6797115325DD87E3008A0080 /* OutageAnimation.swift */,
+			);
+			path = "Outage Animation";
 			sourceTree = "<group>";
 		};
 		67A9869424F9683C00BD46E7 /* PECO */ = {
@@ -6617,6 +6631,7 @@
 				67247FCE25D33B400024467D /* CardView.swift in Sources */,
 				C3055BD52538FB04000DB89C /* NetworkingError.swift in Sources */,
 				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
+				6797115B25DD901F008A0080 /* Arc.swift in Sources */,
 				3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */,
 				C3055B6A2538F81B000DB89C /* ForgotMaskedUsername.swift in Sources */,
 				67247F1D25D2D9000024467D /* ReportOutageView.swift in Sources */,
@@ -6692,6 +6707,7 @@
 				67247FBE25D314040024467D /* BillState.swift in Sources */,
 				67247FB425D3063F0024467D /* UsageState.swift in Sources */,
 				35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */,
+				6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */,
 				C3055B4E2538F812000DB89C /* CustomerInfo.swift in Sources */,
 				C3055C032538FB38000DB89C /* PushNotification.swift in Sources */,
 				67247F4D25D2DF1B0024467D /* ErrorState.swift in Sources */,

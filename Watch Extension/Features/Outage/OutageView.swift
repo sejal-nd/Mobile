@@ -12,7 +12,7 @@ struct OutageView: View {
     let outage: WatchOutage
     let account: WatchAccount
     var isLoading = false
-    //    @State private var wave = false
+    @State private var wave = false
     
     private var powerText: String {
         outage.isPowerOn ? "POWER IS ON" : "POWER IS OUT"
@@ -20,6 +20,8 @@ struct OutageView: View {
     
     var body: some View {
         VStack(spacing: 0) {
+            Spacer()
+            
             Text("Our records indicate")
                 .font(.subheadline)
             Text(powerText)
@@ -34,23 +36,11 @@ struct OutageView: View {
                     .font(.footnote)
             }
             
-            if !isLoading {
-                Image(outage.isPowerOn ? "On_37" : "Out_37")
-                    .resizable()
-                    .frame(height: 25)
-            }
+            Spacer()
             
-            //                Circle()
-            //                    .trim(from: 0.5, to: 1)
-            //                    .stroke(lineWidth: 40)
-            //                .frame(height: 25)
-            //                    .foregroundColor(.green)
-            //                    .scaleEffect(wave ? 2 : 1)
-            //                    .opacity(wave ? 0.1 : 1)
-            //                    .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: false).speed(0.5))
-            //                    .onAppear {
-            //                        wave.toggle()
-            //                    }
+            if !isLoading {
+                OutageAnimation(isPowerOn: outage.isPowerOn)
+            }
         }
     }
 }
