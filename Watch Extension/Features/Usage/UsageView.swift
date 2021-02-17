@@ -32,9 +32,7 @@ struct UsageView: View {
     @State private var isShowingElectric = true
     
     private var hasBothFuelTypes = false
-    
-    #warning("we could extract these vars out?")
-    
+        
     private var progress: Int {
         if isShowingElectric {
             return usage.electricProgress
@@ -70,9 +68,7 @@ struct UsageView: View {
     private var disclaimerText: String {
         "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees."
     }
-    
-    #warning("Todo:         self.electricProgress = electricProgress, self.electricTimeToNextForecast = electricTimeToNextForecast")
-    
+        
     var body: some View {
         VStack {
             ZStack {

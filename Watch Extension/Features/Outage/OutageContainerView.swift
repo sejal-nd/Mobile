@@ -12,8 +12,6 @@ struct OutageContainerView: View {
     let outage: WatchOutage
     let account: WatchAccount
     let isLoading: Bool
-
-    #warning("does this view have a pupose anymore? Favor this over the flow controller?")
     
     var body: some View {
         OutageView(outage: outage,

@@ -114,7 +114,7 @@ extension WatchBill {
                                        billingInfo: BillingInfo) -> String? {
         // Finaled
         if billingInfo.pastDueAmount > 0 && accountDetails.isFinaled {
-            return String.localizedStringWithFormat("%@ is due immediately.", billingInfo.pastDueAmount?.currencyString ?? "--")
+            return "\(billingInfo.pastDueAmount?.currencyString ?? "--") is due immediately."
         }
         
         // Restore Service
@@ -122,7 +122,7 @@ extension WatchBill {
            restorationAmount > 0 &&
             accountDetails.isCutOutNonPay &&
             Configuration.shared.opco != .bge {
-            return String.localizedStringWithFormat("%@ is due immediately to restore service.", restorationAmount.currencyString)
+            return "\(restorationAmount.currencyString) is due immediately to restore service."
         }
         
         // Avoid Shutoff
@@ -133,11 +133,9 @@ extension WatchBill {
             let dateString = date?.mmDdYyyyString ?? "--"
             
             if days > 0 {
-                let format = "%@ is due by %@ to avoid shutoff."
-                return String.localizedStringWithFormat(format, amountString, dateString)
+                return "\(amountString) is due by \(dateString) to avoid shutoff."
             } else {
-                let format = "%@ is due immediately to avoid shutoff."
-                return String.localizedStringWithFormat(format, amountString)
+                return "\(amountString) is due immediately to avoid shutoff."
             }
         }
         
@@ -149,20 +147,18 @@ extension WatchBill {
             let amountString = amtDpaReinst.currencyString
             
             if days > 0 {
-                let format = "%@ is due by %@ to catch up on your DPA."
-                return String.localizedStringWithFormat(format, amountString, dueByDate.mmDdYyyyString)
+                return "\(amountString) is due by \(dueByDate.mmDdYyyyString) to catch up on your DPA."
             } else {
-                let format = "%@ is due immediately to catch up on your DPA."
-                return String.localizedStringWithFormat(format, amountString)
+                return "\(amountString) is due immediately to catch up on your DPA."
             }
         }
         
         // Past Due
         if let pastDueAmount = billingInfo.pastDueAmount, pastDueAmount > 0 {
             if pastDueAmount == billingInfo.netDueAmount {
-                return NSLocalizedString("Your bill is past due.", comment: "")
+                return "Your bill is past due."
             } else {
-                return String.localizedStringWithFormat("%@ is due immediately.", pastDueAmount.currencyString)
+                return "\(pastDueAmount.currencyString) is due immediately."
             }
         }
         
@@ -263,7 +259,7 @@ extension WatchBill {
                                            opco: opco) {
             return opco.isPHI ? "Credit Balance - You have no amount due" : "No Amount Due – Credit Balance"
         } else {
-            return "Total Amount Due By \(billingInfo.dueByDate?.mmDdYyyyString ?? "--")"
+            return billingInfo.dueByDate?.dueByText ?? "Total Amount Due"
         }
     }
     

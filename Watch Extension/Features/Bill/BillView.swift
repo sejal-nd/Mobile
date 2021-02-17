@@ -37,8 +37,9 @@ struct BillView: View {
                            let totalAmountDueDateText = bill.totalAmountDueDateText {
                             Text(totalAmountDueText)
                                 .font(.title2)
-                                .fontWeight(.semibold)
+                                .fontWeight(.semibold)                            
                             Text(totalAmountDueDateText)
+                                .foregroundColor(totalAmountDueDateText == "Due immediately" ? .red : nil)
                         }
                         
                         // Auto Pay
