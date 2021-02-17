@@ -38,7 +38,7 @@ struct UsageFlowContainerView: View {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
                         ImageTextView(imageName: AppConstant.ImageName.noUsageData.name,
-                                      imageColor: .opco,
+                                      imageColor: .accentColor,
                                       title: "\(daysToForecast) days",
                                       text: "until next forecast")
                     }
@@ -48,7 +48,7 @@ struct UsageFlowContainerView: View {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
                         ImageTextView(imageName: AppConstant.ImageName.noUsageData.name,
-                                      imageColor: .opco,
+                                      imageColor: .accentColor,
                                       text: "Usage is not available for this account")
                     }
                 }

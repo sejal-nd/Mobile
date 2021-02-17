@@ -41,7 +41,7 @@ struct OutageFlowContainerView: View {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
                         ImageTextView(imageName: AppConstant.ImageName.gas.name,
-                                      imageColor: .opco,
+                                      imageColor: .accentColor,
                                       text: "Outage reporting for gas only accounts is not allowed online.")
                     }
                 }
@@ -50,7 +50,7 @@ struct OutageFlowContainerView: View {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
                         ImageTextView(imageName: AppConstant.ImageName.noOutageData.name,
-                                      imageColor: .opco,
+                                      imageColor: .accentColor,
                                       text: "Outage Status and Reporting are not available for this account.")
                     }
                 }

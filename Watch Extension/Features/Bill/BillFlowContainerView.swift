@@ -38,7 +38,7 @@ struct BillFlowContainerView: View {
                     VStack(spacing: 0) {
                         AccountInfoBar(account: account)
                         ImageTextView(imageName: AppImage.billNotReady.name,
-                                      imageColor: .opco,
+                                      imageColor: .accentColor,
                                       text: "Bill is not available for this account")
                     }
                 }

@@ -86,7 +86,7 @@ struct UsageView: View {
                     Image(isShowingElectric ? AppConstant.ImageName.electric.name : AppConstant.ImageName.gas.name)
                         .resizable()
                         .frame(width: 60, height: 60)
-                        .foregroundColor(isLoading ? nil : .opco)
+                        .foregroundColor(isLoading ? nil : .accentColor)
                     Text("Spent So Far")
                     Text(usageCostText)
                         .fontWeight(.semibold)
@@ -100,7 +100,7 @@ struct UsageView: View {
                 }) {
                     Label(isShowingElectric ? "Gas" : "Electric",
                           image: isShowingElectric ? AppConstant.ImageName.gas.name : AppConstant.ImageName.electric.name)
-                        .foregroundColor(.opco)
+                        .foregroundColor(isLoading ? nil : .accentColor)
                 }
                 .padding(.bottom, 16)
             }

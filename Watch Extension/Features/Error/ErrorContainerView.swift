@@ -47,7 +47,7 @@ struct ErrorContainerView: View {
     @ViewBuilder
     private func errorContent() -> some View {
         ImageTextView(imageName: imageName,
-                      imageColor: .opco,
+                      imageColor: .accentColor,
                       text: text)
     }
 }

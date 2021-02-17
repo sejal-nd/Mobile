@@ -229,7 +229,6 @@
 		67247FB425D3063F0024467D /* UsageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FB325D3063F0024467D /* UsageState.swift */; };
 		67247FBE25D314040024467D /* BillState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FBD25D314040024467D /* BillState.swift */; };
 		67247FCE25D33B400024467D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FCD25D33B400024467D /* CardView.swift */; };
-		67247FD425D33C010024467D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FD325D33C010024467D /* Color.swift */; };
 		67247FDE25D33D170024467D /* BillCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FDD25D33D170024467D /* BillCard.swift */; };
 		67247FE425D43AC60024467D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FE325D43AC60024467D /* Tab.swift */; };
 		67247FEF25D43DAD0024467D /* AccountListContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FEE25D43DAD0024467D /* AccountListContainerView.swift */; };
@@ -1624,7 +1623,6 @@
 		67247FB325D3063F0024467D /* UsageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageState.swift; sourceTree = "<group>"; };
 		67247FBD25D314040024467D /* BillState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillState.swift; sourceTree = "<group>"; };
 		67247FCD25D33B400024467D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		67247FD325D33C010024467D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		67247FDD25D33D170024467D /* BillCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCard.swift; sourceTree = "<group>"; };
 		67247FE325D43AC60024467D /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		67247FEE25D43DAD0024467D /* AccountListContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListContainerView.swift; sourceTree = "<group>"; };
@@ -4077,7 +4075,6 @@
 		35E7C7EA2190804E00BA13C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				67247FD325D33C010024467D /* Color.swift */,
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
 			);
 			path = Extensions;
@@ -6608,7 +6605,6 @@
 				C3055C252538FC6F000DB89C /* NetworkingLayer.swift in Sources */,
 				C3055B832538F81B000DB89C /* PeakRewardsSummary.swift in Sources */,
 				35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */,
-				67247FD425D33C010024467D /* Color.swift in Sources */,
 				C3055B712538F81B000DB89C /* PaymentItem.swift in Sources */,
 				6724800325D441810024467D /* WatchAccount.swift in Sources */,
 				C3055C182538FBEF000DB89C /* WalletService.swift in Sources */,
