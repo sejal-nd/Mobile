@@ -115,7 +115,9 @@ extension AuthenticationService {
                             completion(.failure(.invalidResponse))
                             return
                         }
-                        AccountService.fetchAccountDetails(accountNumber: accNumber) { (result: Result<AccountDetail, NetworkingError>) in
+                        let alertPreferenceEligibilities =  Configuration.shared.opco.isPHI
+                        AccountService.fetchAccountDetails(accountNumber: accNumber,
+                                                           alertPreferenceEligibilities: alertPreferenceEligibilities) { (result: Result<AccountDetail, NetworkingError>) in
                             switch result {
                             case .success(let accountDetail):
                                 UserDefaults.standard.set(accountDetail.customerNumber, forKey: UserDefaultKeys.customerIdentifier)

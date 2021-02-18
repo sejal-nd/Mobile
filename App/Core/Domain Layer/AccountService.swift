@@ -47,7 +47,7 @@ enum AccountService {
             queryItems.append(URLQueryItem(name: "budgetBilling", value: "false"))
         }
         
-        if alertPreferenceEligibilities || Configuration.shared.opco.isPHI {
+        if alertPreferenceEligibilities {
             queryItems.append(URLQueryItem(name: "alertPreferenceEligibilities", value: "true"))
         }
     
