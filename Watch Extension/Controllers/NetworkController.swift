@@ -49,15 +49,30 @@ extension NetworkController {
                 self?.accountListState = .loaded(accounts: watchAccounts)
                 completion(.success(()))
             case .failure(let error):
-                if error == .passwordProtected {
+                if error == .invalidToken {
+                    Log.error("Invalid oauth token, sign user out: \(error.localizedDescription)")
+                    
+                    self?.isLoggedIn = false
+                    
+                    self?.accountListState = .loading
+                    self?.outageState = .loading
+                    self?.usageState = .loading
+                    self?.billingState = .loading
+                } else if  error == .passwordProtected {
                     Log.error("Failed to retrieve account list.  Password Protected Account.")
                     
-                    self?.accountListState = .error(errorState: .passwordProtected)
+                    self?.outageState = .error(errorState: .passwordProtected)
+                    self?.usageState = .error(errorState: .passwordProtected)
+                    self?.billingState = .error(errorState: .passwordProtected)
                 } else {
                     Log.error("Failed to retrieve account list: \(error.localizedDescription)")
                     
                     self?.accountListState = .error(errorState: .other)
+                    self?.outageState = .error(errorState: .other)
+                    self?.usageState = .error(errorState: .other)
+                    self?.billingState = .error(errorState: .other)
                 }
+                
                 completion(.failure(error))
             }
         }
