@@ -29,8 +29,10 @@ struct AccountRow: View {
             VStack(alignment: .leading,
                    spacing: 4) {
                 Text(account.accountID)
-                Text(account.address)
-                    .lineLimit(1)
+                if !account.address.isEmpty {
+                    Text(account.address)
+                        .lineLimit(1)
+                }
             }
         }
         .contentShape(Rectangle())

@@ -15,7 +15,8 @@ struct OutageContainerView: View {
     
     var body: some View {
         OutageView(outage: outage,
-                   account: account)
+                   account: account,
+                   isLoading: isLoading)
     }
 }
 

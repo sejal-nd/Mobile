@@ -4036,7 +4036,6 @@
 				67247F6625D2E4CD0024467D /* Outage */,
 				67247F8125D2FE1C0024467D /* Usage */,
 				67247F9625D2FE5A0024467D /* Bill */,
-				67247FC725D315260024467D /* Error */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -4092,6 +4091,7 @@
 		67247FC825D315410024467D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				67247FC725D315260024467D /* Error */,
 				6797115925DD9008008A0080 /* Outage Animation */,
 				67247F6025D2E33A0024467D /* AccountInfoBar.swift */,
 				67247F5225D2DF7E0024467D /* ImageTextView.swift */,

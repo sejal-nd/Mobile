@@ -115,50 +115,36 @@ extension PreviewData {
 
 extension PreviewData {
     static let billDefault = WatchBill(totalAmountDueText: "$0.00",
-                                       totalAmountDueDateText: "Due by MM/DD/YYYY",
+                                       totalDueDateText: "Due by MM/DD/YYYY",
                                        isBillReady: true)
     
     static let billStandard = WatchBill(totalAmountDueText: "$1000.00",
-                                        totalAmountDueDateText: "Amount due in 5 days",
+                                        totalDueDateText: "Amount due in 5 days",
                                         isBillReady: true)
     
     static let billAutoPay = WatchBill(totalAmountDueText: "$1000.00",
-                                       totalAmountDueDateText: "Amount due in 5 days",
+                                       totalDueDateText: "Amount due in 5 days",
                                        isBillReady: true,
                                        isEnrolledInAutoPay: true)
     
     static let billReceived = WatchBill(totalAmountDueText: "$1000.00",
-                                        totalAmountDueDateText: "Amount due in 5 days",
+                                        totalDueDateText: "Amount due in 5 days",
                                         isBillReady: true,
                                         paymentReceivedAmountText: "$272.35")
     
     static let billScheduled = WatchBill(totalAmountDueText: "$1000.00",
-                                         totalAmountDueDateText: "Amount due in 5 days",
+                                         totalDueDateText: "Amount due in 5 days",
                                          isBillReady: true,
                                          scheduledPaymentAmountText: "$145.55")
     
     static let billPendingPayment = WatchBill(totalAmountDueText: "$1000.00",
-                                              totalAmountDueDateText: "Amount due in 5 days",
+                                              totalDueDateText: "Amount due in 5 days",
                                               isBillReady: true,
                                               pendingPaymentAmountText: "-$145.55")
     
-    //    static let billAutoPay = WatchBill(totalAmountDueText: "$1000.00",
-    //                                       totalAmountDueDateText: "Amount due in 5 days",
-    //                                       isBillReady: true,
-    //                                       scheduledPaymentAmountText: <#T##String?#>,
-    //                                       paymentReceivedAmountText: "$272.35",
-    //                                       paymentReceivedDateText: "test test ",
-    //                                       catchUpAmountText: <#T##String?#>,
-    //                                       catchUpDateText: <#T##String?#>,
-    //                                       pastDueAmountText: <#T##String?#>,
-    //                                       currentBillAmountText: <#T##String?#>,
-    //                                       currentBillDateText: <#T##String?#>,
-    //                                       pendingPaymentAmountText: <#T##String?#>,
-    //                                       remainingBalanceAmountText: <#T##String?#>)
-    //
     static let billPrecarious = WatchBill(alertText: "Your bill is past due.",
                                           totalAmountDueText: "$200.00",
-                                          totalAmountDueDateText: "Amount due immediately",
+                                          totalDueDateText: "Amount due immediately",
                                           isBillReady: true,
                                           pastDueAmountText: "$125.00",
                                           currentBillAmountText: "$75.00",

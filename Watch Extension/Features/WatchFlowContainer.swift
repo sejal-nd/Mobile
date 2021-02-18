@@ -16,20 +16,14 @@ struct WatchFlowContainer: View {
     var body: some View {
         if networkController.isLoggedIn {
             TabView(selection: $selectedTab) {
-                AccountListFlowContainerView(state: .error(errorState: .maintenanceMode))
+                AccountListFlowContainerView(state: networkController.accountListState)
                     .tag(Tab.accountList)
-                //                AccountListFlowContainerView(state: networkController.accountListState)
-//                    .tag(Tab.accountList)
                 
-                OutageFlowContainerView(state: .error(errorState: .passwordProtected))
+                OutageFlowContainerView(state: networkController.outageState)
                     .tag(Tab.outage)
-//                OutageFlowContainerView(state: networkController.outageState)
-//                    .tag(Tab.outage)
                 
-                UsageFlowContainerView(state: .error(errorState: .other))
+                UsageFlowContainerView(state: networkController.usageState)
                     .tag(Tab.usage)
-//                UsageFlowContainerView(state: networkController.usageState)
-//                    .tag(Tab.usage)
                 
                 BillFlowContainerView(state: networkController.billingState)
                     .tag(Tab.bill)

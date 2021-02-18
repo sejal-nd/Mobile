@@ -36,6 +36,8 @@ class NetworkController: ObservableObject {
 
 extension NetworkController {
     private func fetchAccounts(completion: @escaping (Result<Void, Error>) -> Void) {
+        accountListState = .loading
+        
         AccountService.fetchAccounts { [weak self] networkResult in
             switch networkResult {
             case .success(let accounts):
@@ -85,7 +87,6 @@ extension NetworkController {
     func fetchFeatureData() {
         setLoginStatus()
         
-        accountListState = .loading
         outageState = .loading
         usageState = .loading
         billingState = .loading
@@ -138,14 +139,21 @@ extension NetworkController {
                         
                         if !maintenanceMode.outage {
                             // MARK: Outage
+                            Log.info("Fetching Outage...")
                             OutageService.fetchOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumberString: AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "") { [weak self] networkResult in
                                 switch networkResult {
                                 case .success(let outageStatus):
                                     Log.info("Outage Status Fetched.")
                                     
                                     let watchOutage = WatchOutage(outageStatus: outageStatus)
-                                    self?.outageState = .loaded(outage: watchOutage,
-                                                                account: account)
+                                    if outageStatus.isGasOnly {
+                                        self?.outageState = .gasOnly(account: account)
+                                    } else if outageStatus.isFinaled || outageStatus.isNonService {
+                                        self?.outageState = .unavailable(account: account)
+                                    } else {
+                                        self?.outageState = .loaded(outage: watchOutage,
+                                                                    account: account)
+                                    }
                                 case .failure(let error):
                                     Log.error("Failed to retrieve outage status: \(error.localizedDescription)")
                                     
@@ -170,11 +178,12 @@ extension NetworkController {
                             }
                             
                             // MARK: Usage
+                            Log.info("Fetching Bill Forecast...")
                             UsageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
                                                            premiseNumber: premiseNumber) { [weak self] networkResult in
                                 switch networkResult {
                                 case .success(let billForecastResult):
-                                    Log.info("Usage Data Fetched.")
+                                    Log.info("Usage Data Loaded.")
                                     
                                     let usage = WatchUsage(accountDetails: accountDetail,
                                                            billForecastResult: billForecastResult)

@@ -67,14 +67,14 @@ struct WatchUsage: Identifiable {
                 // Set Image
                 let value = toDateCost / projectedCost
                 let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                self.gasProgress = progress
+                self.electricProgress = progress
             } else if let toDateUsage = billForecast.toDateUsage,
                       let projectedUsage = billForecast.projectedUsage {
                 
                 // Set Image
                 let value = toDateUsage / projectedUsage
                 let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                self.gasProgress = progress
+                self.electricProgress = progress
             }
             
             if daysToNextForecast == 1 {

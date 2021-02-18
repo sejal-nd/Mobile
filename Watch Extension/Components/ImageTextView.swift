@@ -11,7 +11,7 @@ import SwiftUI
 struct ImageTextView: View {
     let imageName: String
     var imageColor: Color? = nil
-    var imageSize: CGFloat = 100
+    var imageSize: CGFloat = 75
     var title: String? = nil
     let text: String
     

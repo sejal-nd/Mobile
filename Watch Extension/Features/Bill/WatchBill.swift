@@ -11,7 +11,7 @@ import SwiftUI
 struct WatchBill: Identifiable {
     init(alertText: String? = nil,
          totalAmountDueText: String? = nil,
-         totalAmountDueDateText: String? = nil,
+         totalDueDateText: String? = nil,
          isBillReady: Bool = false,
          isEnrolledInAutoPay: Bool = false,
          scheduledPaymentAmountText: String? = nil,
@@ -25,7 +25,7 @@ struct WatchBill: Identifiable {
          remainingBalanceAmountText: String? = nil) {
         self.alertText = alertText
         self.totalAmountDueText = totalAmountDueText
-        self.totalAmountDueDateText = totalAmountDueDateText
+        self.totalDueDateText = totalDueDateText
         self.isBillReady = isBillReady
         self.isEnrolledInAutoPay = isEnrolledInAutoPay
         self.scheduledPaymentAmountText = scheduledPaymentAmountText
@@ -47,11 +47,9 @@ struct WatchBill: Identifiable {
                                                billingInfo: billingInfo)
         self.totalAmountDueText = createTotalAmountDueText(billingInfo: billingInfo,
                                                            opco: opco)
-        self.totalAmountDueDateText = createTotalAmountDueDateText(billingInfo: billingInfo,
+        self.totalDueDateText = createTotalAmountDueDateText(billingInfo: billingInfo,
                                                                    opco: opco)
-        self.isBillReady = determineIfBillIsNotReady(accountDetails: accountDetails,
-                                                     billingInfo: billingInfo,
-                                                     opco: opco)
+        self.isBillReady = !determineIfBillIsNotReady(billingInfo: billingInfo)
         self.isEnrolledInAutoPay = determineIfAutoPay(accountDetails: accountDetails,
                                                       billingInfo: billingInfo)
         self.scheduledPaymentAmountText = createScheduledPaymentAmountText(billingInfo: billingInfo,
@@ -76,7 +74,11 @@ struct WatchBill: Identifiable {
     var alertText: String?
     
     var totalAmountDueText: String?
-    var totalAmountDueDateText: String?
+    var totalDueDateText: String?
+    
+    var shouldColorTotalDueDateText: Bool {
+        (totalDueDateText ?? "") == "Total Amount Due Immediately"
+    }
     
     var isBillReady = false
     var isEnrolledInAutoPay = false
@@ -166,59 +168,8 @@ extension WatchBill {
     }
     
     // MARK: Determine if bill is NOT ready
-    private func determineIfBillIsNotReady(accountDetails: AccountDetail,
-                                           billingInfo: BillingInfo,
-                                           opco: OpCo) -> Bool {
-        let opco = Configuration.shared.opco
-        
-        if accountDetails.isFinaled && billingInfo.pastDueAmount > 0 {
-            return false
-        }
-        
-        if opco != .bge && billingInfo.restorationAmount > 0 && accountDetails.isCutOutNonPay {
-            return false
-        }
-        
-        if billingInfo.disconnectNoticeArrears > 0 {
-            return false
-        }
-        
-        if opco != .bge && billingInfo.amtDpaReinst > 0 {
-            return false
-        }
-        
-        if billingInfo.pastDueAmount > 0 {
-            return false
-        }
-        
-        if billingInfo.pendingPaymentsTotal > 0 {
-            return false
-        }
-        
-        if billingInfo.netDueAmount > 0 && (accountDetails.isAutoPay || accountDetails.isBGEasy) {
-            return false
-        }
-        
-        if billingInfo.scheduledPayment?.amount > 0 {
-            return false
-        }
-        
-        if opco == .bge && billingInfo.netDueAmount < 0 {
-            return false
-        }
-        
-        if billingInfo.netDueAmount > 0 {
-            return false
-        }
-        
-        if let billDate = billingInfo.billDate,
-           let lastPaymentDate = billingInfo.lastPaymentDate,
-           billingInfo.lastPaymentAmount > 0,
-           billDate < lastPaymentDate {
-            return false
-        }
-        
-        return true
+    private func determineIfBillIsNotReady(billingInfo: BillingInfo) -> Bool {
+        return billingInfo.billDate == nil && (billingInfo.netDueAmount == nil || billingInfo.netDueAmount == 0)
     }
     
     // MARK: Total Amount Due
@@ -266,7 +217,7 @@ extension WatchBill {
     // MARK: AutoPay
     private func determineIfAutoPay(accountDetails: AccountDetail,
                                     billingInfo: BillingInfo) -> Bool {
-        return billingInfo.netDueAmount > 0 && (accountDetails.isAutoPay || accountDetails.isBGEasy)
+        return billingInfo.netDueAmount > 0 && (accountDetails.isAutoPay || accountDetails.isBGEasy || accountDetails.isAutoPayEligible)
     }
     
     // MARK: Scheduled Payment

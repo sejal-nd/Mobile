@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-enum BillState {
+enum BillState: Equatable {
     case loading
     case loaded(bill: WatchBill, account: WatchAccount)
     case unavailable(account: WatchAccount)

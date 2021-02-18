@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-enum UsageState {
+enum UsageState: Equatable {
     case loading
     case loaded(usage: WatchUsage, account: WatchAccount)
     case unforecasted(account: WatchAccount, days: Int)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AccountListState {
+enum AccountListState: Equatable {
     case loading
     case loaded(accounts: [WatchAccount])
     case error(errorState: ErrorState)

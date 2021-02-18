@@ -34,29 +34,33 @@ struct BillView: View {
                 if bill.isBillReady {
                     Group {
                         if let totalAmountDueText = bill.totalAmountDueText,
-                           let totalAmountDueDateText = bill.totalAmountDueDateText {
+                           let totalAmountDueDateText = bill.totalDueDateText {
                             Text(totalAmountDueText)
                                 .font(.title2)
                                 .fontWeight(.semibold)                            
                             Text(totalAmountDueDateText)
-                                .foregroundColor(totalAmountDueDateText == "Due immediately" ? .red : nil)
+                                .foregroundColor(bill.shouldColorTotalDueDateText ? .red : nil)
+                                .multilineTextAlignment(.center)
                         }
                         
                         // Auto Pay
                         if bill.isEnrolledInAutoPay {
                             ImageTextView(imageName: AppConstant.ImageName.autoPay.rawValue,
+                                          imageColor: .accentColor,
                                           text: "You are enrolled in Autopay")
                         }
                         
                         // Scheduled Payment
                         if let scheduledPaymentText = bill.scheduledPaymentAmountText {
                             ImageTextView(imageName: AppConstant.ImageName.scheduledPayment.rawValue,
+                                          imageColor: .accentColor,
                                           text: scheduledPaymentText)
                         }
                         
                         // Thank You For Payment
                         if let paymentReceivedAmountText = bill.paymentReceivedAmountText {
                             ImageTextView(imageName: AppConstant.ImageName.thankYouPayment.rawValue,
+                                          imageColor: .accentColor,
                                           title: paymentReceivedAmountText,
                                           text: "Thank you for your payment")
                             
@@ -65,6 +69,7 @@ struct BillView: View {
                 } else {
                     // Bill not ready
                     ImageTextView(imageName: AppConstant.ImageName.billNotReady.rawValue,
+                                  imageColor: .accentColor,
                                   text: "Your bill will be available here once it is ready")
                 }
                 

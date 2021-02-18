@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-enum OutageState {
+enum OutageState: Equatable {
     case loading
     case loaded(outage: WatchOutage, account: WatchAccount)
     case gasOnly(account: WatchAccount)

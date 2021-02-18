@@ -8,9 +8,7 @@
 
 import Foundation
 
-enum ErrorState: Int, Identifiable, Equatable {
-    var id: Int { rawValue }
-    
+enum ErrorState: Equatable {    
     case maintenanceMode
     case passwordProtected
     case other

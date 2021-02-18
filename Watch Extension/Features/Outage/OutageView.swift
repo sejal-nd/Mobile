@@ -11,8 +11,7 @@ import SwiftUI
 struct OutageView: View {
     let outage: WatchOutage
     let account: WatchAccount
-    var isLoading = false
-    @State private var wave = false
+    let isLoading: Bool
     
     private var powerText: String {
         outage.isPowerOn ? "POWER IS ON" : "POWER IS OUT"
@@ -29,7 +28,8 @@ struct OutageView: View {
                 .fontWeight(.semibold)
                 .padding(.bottom, 4)
             
-            if let estimatedRestoration = outage.estimatedRestoration {
+            if !outage.isPowerOn,
+               let estimatedRestoration = outage.estimatedRestoration {
                 Text("Estimated Restoration")
                     .font(.footnote)
                 Text(estimatedRestoration)

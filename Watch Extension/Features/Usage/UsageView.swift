@@ -124,7 +124,7 @@ struct UsageView: View {
                     Text("Bill Period")
                         .foregroundColor(.gray)
                     Text(billPeriodText)
-                        .foregroundColor(.gray)
+                        .fontWeight(.semibold)
                 }
                 
                 Text(disclaimerText)
