@@ -373,7 +373,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
         self.overPayingCheckbox.rx.isChecked.bind(to: viewModel.overpayingSwitchValue).disposed(by: bag)
         
         // Submit button enable/disable
-        viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: bag)
+        if billingHistoryItem != nil {
+            // Edit flow
+            viewModel.editPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: bag)
+        } else {
+            viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: bag)
+        }
         
         // Show content
         viewModel.shouldShowContent.drive(onNext: { [weak self] shouldShow in
