@@ -179,7 +179,12 @@ class BudgetBillingViewController: UIViewController {
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill.currencyString
             self.scrollView.isHidden = false
             self.loadingIndicator.isHidden = true
-            self.stickyFooterView.isHidden = false
+            
+            if Configuration.shared.opco == .comEd && self.viewModel.accountDetail.isPippEnrolled {
+                self.stickyFooterView.isHidden = true
+            } else {
+                self.stickyFooterView.isHidden = false
+            }
             
             if Configuration.shared.opco == .bge && self.accountDetail.isBudgetBill {
                 self.monthlyAmountLabel.text = budgetBillingInfo.budgetBill?.currencyString ?? budgetBillingInfo.averageMonthlyBill.currencyString
