@@ -79,7 +79,7 @@ extension NetworkController {
     }
     
     private func setLoginStatus() {
-        let authToken = KeychainController.shared[AppConstant.WatchSessionKey.authToken]
+        let authToken = KeychainController.shared[UserSession.tokenKeychainKey]
         isLoggedIn = authToken != nil
     }
     
@@ -108,7 +108,7 @@ extension NetworkController {
         
         Log.info("Fetching Maintenance Mode Status...")
         
-        guard KeychainController.shared[AppConstant.WatchSessionKey.authToken] != nil,
+        guard KeychainController.shared[UserSession.tokenKeychainKey] != nil,
               let _ = AccountsStore.shared.currentIndex else {
             Log.error("Could not find auth token in Accounts Manager Fetch Account Details.")
             

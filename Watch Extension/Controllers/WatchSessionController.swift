@@ -21,6 +21,12 @@ class WatchSessionController: NSObject, WCSessionDelegate {
     var authTokenDidUpdate: (() -> Void)? = nil
     var outageReportedFromPhone: (() -> Void)? = nil
     
+    #if os(iOS)
+    private let keychain = A0SimpleKeychain()
+    #elseif os(watchOS)
+    private let keychain = KeychainController.shared
+    #endif
+    
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
     
     /// isPaired - The user has to have their device paired to the watch'
@@ -68,21 +74,29 @@ extension WatchSessionController {
     // Receiver
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         DispatchQueue.main.async { [weak self] in
-            #if os(watchOS)
-            
-            #warning("This does not work as expected.")
-            // New Azure Auth Token
-            if let authToken = applicationContext[UserSession.tokenKeychainKey] as? String {
+            // Azure Auth Token
+            if let authToken = applicationContext[UserSession.tokenKeychainKey] as? String,
+               let tokenExpirationDate = applicationContext[UserSession.tokenExpirationDateKeychainKey] as? String,
+               let refreshToken = applicationContext[UserSession.refreshTokenKeychainKey] as? String,
+               let refreshTokenExpirationDate = applicationContext[UserSession.refreshTokenExpirationDateKeychainKey] as? String {
+                
                 // Save to KeyChain
-                KeychainController.shared[AppConstant.WatchSessionKey.authToken] = authToken
-                KeychainController.shared[UserSession.tokenKeychainKey] = authToken
-                KeychainController.shared[UserSession.refreshTokenKeychainKey] = (applicationContext[UserSession.refreshTokenKeychainKey] ?? "") as? String
-                KeychainController.shared[UserSession.tokenExpirationDateKeychainKey] = (applicationContext[UserSession.tokenExpirationDateKeychainKey] ?? "") as? String
-                KeychainController.shared[UserSession.refreshTokenExpirationDateKeychainKey] = (applicationContext[UserSession.refreshTokenExpirationDateKeychainKey] ?? "") as? String
+                #if os(watchOS)
+                self?.keychain[UserSession.tokenKeychainKey] = authToken
+                self?.keychain[UserSession.tokenExpirationDateKeychainKey] = tokenExpirationDate
+                self?.keychain[UserSession.refreshTokenKeychainKey] = refreshToken
+                self?.keychain[UserSession.refreshTokenExpirationDateKeychainKey] = refreshTokenExpirationDate
+                #elseif os(iOS)
+                self?.keychain.setString(authToken, forKey: UserSession.tokenKeychainKey)
+                self?.keychain.setString(tokenExpirationDate, forKey: UserSession.tokenExpirationDateKeychainKey)
+                self?.keychain.setString(refreshToken, forKey: UserSession.refreshTokenKeychainKey)
+                self?.keychain.setString(refreshTokenExpirationDate, forKey: UserSession.refreshTokenExpirationDateKeychainKey)
+                #endif
                 
                 self?.authTokenDidUpdate?()
             }
             
+            #if os(watchOS)
             // User reported outage on phone
             if let outageReported = applicationContext[AppConstant.WatchSessionKey.outageReported] as? Bool, outageReported {
                 self?.outageReportedFromPhone?()

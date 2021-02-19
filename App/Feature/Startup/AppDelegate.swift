@@ -278,8 +278,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Send jwt to watch if available
         guard AuthenticationService.isLoggedIn() else { return }
-        let accessToken = UserSession.token
-        try? WatchSessionController.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
+        UserSession.sendSessionToDevice()
     }
 
     // MARK: - Helper

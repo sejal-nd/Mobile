@@ -12,7 +12,6 @@ enum AppConstant {
     enum WatchSessionKey {
         static let consoleUser = "console"
         static let screenName = "screenName"
-        static let authToken = "authToken"
         static let outageReported = "outageReported"
     }
     

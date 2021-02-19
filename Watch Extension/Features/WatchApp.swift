@@ -24,5 +24,9 @@ struct WatchApp: App {
     
     private func appStartup() {
         WatchSessionController.shared.start()
+        
+        // Send jwt to phone if available
+        guard AuthenticationService.isLoggedIn() else { return }
+        UserSession.sendSessionToDevice()
     }
 }

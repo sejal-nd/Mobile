@@ -79,8 +79,7 @@ public enum NetworkingLayer {
             // Log Out
             AuthenticationService.logout()
             completion(.failure(.invalidToken))
-        }
-        else if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Configuration.shared.environmentName != .aut {
+        } else if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Configuration.shared.environmentName != .aut {
             // token expired
             // Decrease retry counter
             retryCount -= 1
