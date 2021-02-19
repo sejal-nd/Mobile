@@ -1,5 +1,5 @@
 //
-//  SharePointAlert.swift
+//  AzureAlerts.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 3/31/20.
@@ -8,19 +8,16 @@
 
 import Foundation
 
-public struct SharePointAlert: Decodable {
+public struct AzureAlerts: Decodable {
     public var alerts: [Alert]
     
     enum CodingKeys: String, CodingKey {
-        case data = "d"
-        case alerts = "results"
+        case alerts = "mobile"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let data = try container.nestedContainer(keyedBy: CodingKeys.self,
-                                                 forKey: .data)
-        self.alerts = try data.decode([Alert].self,
+        self.alerts = try container.decode([Alert].self,
                                       forKey: .alerts)
     }
 }

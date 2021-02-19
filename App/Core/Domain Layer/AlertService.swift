@@ -47,7 +47,7 @@ enum AlertService {
         
         let queryItem = URLQueryItem(name: "$filter", value: filterString)
         
-        NetworkingLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<SharePointAlert, NetworkingError>) in
+        NetworkingLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<AzureAlerts, NetworkingError>) in
             switch result {
             case .success(let data):
                 completion(.success(data.alerts))
