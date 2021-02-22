@@ -34,6 +34,7 @@ enum AccountService {
                                     programs: Bool = true,
                                     budgetBilling: Bool = true,
                                     alertPreferenceEligibilities: Bool = false,
+                                    includeMDM: Bool = true,
                                     completion: @escaping (Result<AccountDetail, NetworkingError>) -> ()) {
         
         var queryItems = [URLQueryItem]()
@@ -49,6 +50,10 @@ enum AccountService {
         
         if alertPreferenceEligibilities {
             queryItems.append(URLQueryItem(name: "alertPreferenceEligibilities", value: "true"))
+        }
+        
+        if !includeMDM {
+            queryItems.append(URLQueryItem(name: "includeMDM", value: "false"))
         }
     
         NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryItems: queryItems), completion: completion)
