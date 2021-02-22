@@ -17,7 +17,7 @@ class AlertPreferencesNotificationsSettingsCell: UITableViewCell {
         super.awakeFromNib()
         label.textColor = .deepGray
         label.font = SystemFont.regular.of(textStyle: .footnote)
-        label.text = String(format: NSLocalizedString("Your notifications are currently disabled on your device. Please visit your device settings to allow %@ to send notifications.", comment: ""), Environment.shared.opco.displayString)
+        label.text = String(format: NSLocalizedString("Your notifications are currently disabled on your device. Please visit your device settings to allow %@ to send notifications.", comment: ""), Configuration.shared.opco.displayString)
         button.setTitleColor(.actionBlue, for: .normal)
         button.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         button.titleLabel?.text = NSLocalizedString("Go to Settings", comment: "")

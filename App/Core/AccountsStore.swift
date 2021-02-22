@@ -31,7 +31,7 @@ final class AccountsStore {
     
     var billerID: String {
         var billerId: String = ""
-        if Environment.shared.opco.isPHI {
+        if Configuration.shared.opco.isPHI {
             let subOpco = currentAccount.opcoType
             if subOpco == .ace {
                 billerId = "ACERegistered"
@@ -41,7 +41,7 @@ final class AccountsStore {
                 billerId = "PEPCORegistered"
             }
         } else {
-            billerId = "\(Environment.shared.opco.rawValue)Registered"
+            billerId = "\(Configuration.shared.opco.rawValue)Registered"
         }
         return billerId
     }

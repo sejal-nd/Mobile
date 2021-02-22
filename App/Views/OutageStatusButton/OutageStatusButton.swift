@@ -73,7 +73,7 @@ class OutageStatusButton: UIView {
 
     private var innerBorderColor: UIColor {
         let color: UIColor
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             color = .bgeGreen
         case .comEd:
@@ -102,7 +102,7 @@ class OutageStatusButton: UIView {
             onLottieAnimation?.removeFromSuperview()
             
             if isStormMode {
-                onLottieAnimation = AnimationView(name: "sm_outage-Flavor\(Environment.shared.opco.rawValue)")
+                onLottieAnimation = AnimationView(name: "sm_outage-Flavor\(Configuration.shared.opco.rawValue)")
                 
                 outerCircleView.isHidden = true
                 
@@ -114,7 +114,7 @@ class OutageStatusButton: UIView {
                 reportedETRTitleLabel.textColor = .white
                 reportedETRLabel.textColor = .white
             } else {
-                onLottieAnimation = AnimationView(name: "outage-Flavor\(Environment.shared.opco.rawValue)")
+                onLottieAnimation = AnimationView(name: "outage-Flavor\(Configuration.shared.opco.rawValue)")
                 
                 outerCircleView.isHidden = false
                 

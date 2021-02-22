@@ -69,7 +69,7 @@ public struct Account: Decodable, Equatable, Hashable {
     
     // PHI will return nickname if it exists, otherwise account number is returned
     var displayName: String {
-        if Environment.shared.opco.isPHI {
+        if Configuration.shared.opco.isPHI {
             if let accountNickname = accountNickname {
                 return accountNickname
             } else {
@@ -84,7 +84,7 @@ public struct Account: Decodable, Equatable, Hashable {
     /// For PHI ocpos, this variable will return the opco type tagged to a a particular account
     /// Note: Currently the functionality is extended only for PHI opcos
     var opcoType: OpCo? {
-        if Environment.shared.opco.isPHI,
+        if Configuration.shared.opco.isPHI,
            let utilityCode = utilityCode {
             switch utilityCode {
             case "ACE":

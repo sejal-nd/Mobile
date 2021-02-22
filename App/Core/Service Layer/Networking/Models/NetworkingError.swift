@@ -163,7 +163,7 @@ extension NetworkingError: LocalizedError {
     public var title: String {
         switch self {
         case .inactive:
-            return NSLocalizedString("", comment: "Error title")
+            return NSLocalizedString("Error", comment: "Error title")
         case .notCustomer, .invalidUser:
             return NSLocalizedString("No Data Found", comment: "Error title")
         case .userExists:
@@ -243,7 +243,7 @@ extension NetworkingError: LocalizedError {
     
     var accountNotFoundMessage: String {
         var contactNumber = ""
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace:
             contactNumber = "1-800-642-3780"
         case .bge:
@@ -285,7 +285,7 @@ extension NetworkingError: LocalizedError {
         case .noEventResults:
             return NSLocalizedString("No events were found for this account.", comment: "Error description")
         case .accountNotActivated:
-            return NSLocalizedString("Find and click on the link in the email from \(Environment.shared.opco.displayString) within 48 hours from the time you registered. Once the link expires, you’ll need to re-register your account.", comment: "Error description")
+            return NSLocalizedString("Find and click on the link in the email from \(Configuration.shared.opco.displayString) within 48 hours from the time you registered. Once the link expires, you’ll need to re-register your account.", comment: "Error description")
         case .incorrectSecurityQuestion:
             return NSLocalizedString("Sorry, the answer to the security question isn’t right. Too many tries may result in your account becoming locked for 15 minutes.", comment: "Error description")
         case .profileNotFound:

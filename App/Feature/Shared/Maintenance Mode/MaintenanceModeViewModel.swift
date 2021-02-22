@@ -19,7 +19,7 @@ class MaintenanceModeViewModel{
     }
     
     var headerLabelText: String {
-        let fallbackText = String.localizedStringWithFormat("The %@ App is currently unavailable due to maintenance.", Environment.shared.opco.displayString)
+        let fallbackText = String.localizedStringWithFormat("The %@ App is currently unavailable due to maintenance.", Configuration.shared.opco.displayString)
         return maintenance?.message ?? fallbackText
     }
     
@@ -28,7 +28,7 @@ class MaintenanceModeViewModel{
         var localizedString: String
         let phoneNumbers: [String]
         
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"
             let phone2 = "1-877-778-7798"
@@ -107,7 +107,7 @@ class MaintenanceModeViewModel{
     let footerLabelText: NSAttributedString = {
         let phoneString: String
         var timings = "7AM to 7PM"
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             phoneString = "1-800-685-0123"
         case .comEd:

@@ -221,7 +221,7 @@ class TapToPayViewModel {
     }
     
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
-        if Environment.shared.opco == .bge || self?.paymentId.value != nil {
+        if Configuration.shared.opco == .bge || self?.paymentId.value != nil {
             return false
         }
         
@@ -246,7 +246,7 @@ class TapToPayViewModel {
     
     private(set) lazy var shouldShowLatePaymentWarning: Driver<Bool> =
         paymentDate.asDriver().map { date in
-            return Environment.shared.opco.isPHI && date > self.accountDetail.value.billingInfo.dueByDate
+            return Configuration.shared.opco.isPHI && date > self.accountDetail.value.billingInfo.dueByDate
     }
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
@@ -255,13 +255,13 @@ class TapToPayViewModel {
         let billingInfo = accountDetail.billingInfo
         
         // Existing requirement from before Paymentus
-        if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
+        if Configuration.shared.opco == .bge && accountDetail.isActiveSeverance {
             return false
         }
         
         // Precarious state 6: BGE can future date, ComEd/PECO cannot
         if accountDetail.isFinaled && billingInfo.pastDueAmount > 0 {
-            return Environment.shared.opco == .bge
+            return Configuration.shared.opco == .bge
         }
         
         // Precarious states 4 and 5 cannot future date
@@ -272,11 +272,11 @@ class TapToPayViewModel {
         
         // Precarious state 3
         if !accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0 {
-            return Environment.shared.opco == .bge || isDueDateInTheFuture
+            return Configuration.shared.opco == .bge || isDueDateInTheFuture
         }
         
         // If not one of the above precarious states...
-        if Environment.shared.opco == .bge { // BGE can always future date
+        if Configuration.shared.opco == .bge { // BGE can always future date
             return true
         } else { // ComEd/PECO can only future date if the due date has not passed
             return isDueDateInTheFuture
@@ -303,7 +303,7 @@ class TapToPayViewModel {
         .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFee)
         .map { [weak self] paymentAmount, showConvenienceFeeBox in
             guard let self = self else { return nil }
-            let payment = Environment.shared.opco.isPHI ? (paymentAmount >= .zero ? paymentAmount : .zero) : paymentAmount
+            let payment = Configuration.shared.opco.isPHI ? (paymentAmount >= .zero ? paymentAmount : .zero) : paymentAmount
             if showConvenienceFeeBox {
                 return (payment + self.convenienceFee).currencyString
             } else {
@@ -315,7 +315,7 @@ class TapToPayViewModel {
         .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFee)
         .map { [weak self] paymentAmount, showConvenienceFeeBox in
             guard let self = self else { return nil }
-            let payment = Environment.shared.opco.isPHI ? (paymentAmount >= .zero ? paymentAmount : .zero) : paymentAmount
+            let payment = Configuration.shared.opco.isPHI ? (paymentAmount >= .zero ? paymentAmount : .zero) : paymentAmount
             return payment.currencyString
     }
     
@@ -344,19 +344,31 @@ class TapToPayViewModel {
             return selectedWalletItem?.bankOrCard == .card && paymentDateValue > maxCardDate
         }
     
+    private(set) lazy var isPaymentDetailsEdited: Driver<Bool> = Driver
+        .combineLatest(self.paymentDate.asDriver(),
+                       self.paymentAmount.asDriver(),
+                       selectedWalletItem.asDriver()) { paymentDateValue, paymentAmountValue, selectedWalletItemValue in
+            if paymentDateValue.dayMonthDayString == self.billingHistoryItem?.date.dayMonthDayString &&
+                paymentAmountValue == self.billingHistoryItem?.amountPaid &&
+                selectedWalletItemValue?.maskedAccountNumber == self.billingHistoryItem?.maskedAccountNumber {
+                return false
+            }
+            return true
+        }
+    
     private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
         let billingInfo = $0.billingInfo
         var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
                                                          .foregroundColor: UIColor.deepGray]
         let string: String
         guard var dueAmount = billingInfo.netDueAmount else { return NSAttributedString() }
-        dueAmount = Environment.shared.opco.isPHI ? (dueAmount >= .zero ? dueAmount : .zero) : dueAmount
+        dueAmount = Configuration.shared.opco.isPHI ? (dueAmount >= .zero ? dueAmount : .zero) : dueAmount
         attributes[.foregroundColor] = UIColor.deepGray
         attributes[.font] = SystemFont.semibold.of(size: 17)
         if self.billingHistoryItem != nil {
             guard let billingHistory = self.billingHistoryItem ,
                   let amountPaid = billingHistory.amountPaid else { return NSAttributedString(string: "", attributes: attributes)}
-            string = "You have $\(String(describing: billingHistory.amountPaid ?? 0)) scheduled for \(billingHistory.date.fullMonthDayAndYearString). Confirmation #\(String(describing: billingHistory.paymentID ?? ""))"
+            string = "You have \(String(describing: amountPaid.currencyString)) scheduled for \(billingHistory.date.fullMonthDayAndYearString). Confirmation #\(String(describing: billingHistory.paymentID ?? ""))"
         } else {
             if billingInfo.pastDueAmount > 0 {
                 if billingInfo.pastDueAmount == billingInfo.netDueAmount {
@@ -524,6 +536,17 @@ class TapToPayViewModel {
             return true
     }
     
+    private(set) lazy var editPaymentSubmitButtonEnabled: Driver<Bool> = Driver
+        .combineLatest(
+            reviewPaymentSubmitButtonEnabled,
+            isPaymentDetailsEdited)
+        {
+            if $0 && $1 {
+                return true
+            }
+            return false
+        }
+    
     // Must combine selectedWalletItem because the date validation relies on bank vs card
     private(set) lazy var isPaymentDateValid: Driver<Bool> = Driver
         .combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver())
@@ -545,7 +568,7 @@ class TapToPayViewModel {
         }
         
         let today = Calendar.opCo.startOfDay(for: .now)
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .pepco:
             let minDate = today
             var maxDate: Date
@@ -566,6 +589,24 @@ class TapToPayViewModel {
             }
         }
         return false // Will never execute
+    }
+    
+    /// Returns Error Phone Number for Paymentus
+    var errorPhoneNumber: String {
+        switch Configuration.shared.opco {
+        case .bge:
+            return "1-800-685-0123"
+        case .comEd:
+            return "1-800-334-7661"
+        case .peco:
+            return "1-800-494-4000"
+        case .pepco:
+            return "202-833-7500"
+        case .ace:
+            return "1-800-642-3780"
+        case .delmarva:
+            return "1-800-375-7117"
+        }
     }
     
     private(set) lazy var shouldShowPaymentMethodExpiredButton: Driver<Bool> =
@@ -604,7 +645,7 @@ class TapToPayViewModel {
         var amounts: [(Double?, String)] = [totalAmount, other]
         var precariousAmounts = [(Double?, String)]()
         if let restorationAmount = billingInfo.restorationAmount, restorationAmount > 0 &&
-            Environment.shared.opco != .bge && accountDetail.value.isCutOutNonPay {
+            Configuration.shared.opco != .bge && accountDetail.value.isCutOutNonPay {
             guard pastDueAmount != netDueAmount || restorationAmount != netDueAmount else {
                 return []
             }
@@ -624,7 +665,7 @@ class TapToPayViewModel {
             }
             
             precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount", comment: "")))
-        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && Environment.shared.opco != .bge {
+        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && Configuration.shared.opco != .bge {
             guard pastDueAmount != netDueAmount || amtDpaReinst != netDueAmount else {
                 return []
             }
@@ -674,7 +715,7 @@ class TapToPayViewModel {
             if let walletItem = walletItem, walletItem.bankOrCard == .bank {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
-                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -692,7 +733,7 @@ class TapToPayViewModel {
             } else {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
-                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -721,7 +762,7 @@ class TapToPayViewModel {
             if let walletItem = walletItem, walletItem.bankOrCard == .bank {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
-                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -739,7 +780,7 @@ class TapToPayViewModel {
             } else {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
-                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -770,7 +811,7 @@ class TapToPayViewModel {
     }
     
     private(set) lazy var isOverpaying: Driver<Bool> = {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .pepco:
             return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver(), resultSelector: <)
         case .comEd, .peco:
@@ -790,7 +831,7 @@ class TapToPayViewModel {
     
     private(set) lazy var overpayingValueDisplayString: Driver<String?> = Driver
         .combineLatest(amountDue.asDriver(), paymentAmount.asDriver())
-            { "Overpaying: " + ($1 - (Environment.shared.opco.isPHI ? ($0 > .zero ? $0 : .zero) : $0)).currencyString }
+            { "Overpaying: " + ($1 - (Configuration.shared.opco.isPHI ? ($0 > .zero ? $0 : .zero) : $0)).currencyString }
     
     private(set) lazy var shouldShowOverpaymentSwitchView: Driver<Bool> = isOverpaying
     
@@ -806,7 +847,7 @@ class TapToPayViewModel {
      var confirmationFooterText: NSAttributedString {
          let accountDetail = self.accountDetail.value
          let billingInfo = accountDetail.billingInfo
-         let opco = Environment.shared.opco
+         let opco = Configuration.shared.opco
          
          // Only show text in these precarious situations
          guard (opco == .bge && accountDetail.isActiveSeverance) ||
@@ -818,7 +859,7 @@ class TapToPayViewModel {
          
          let boldText: String
          let bodyText: String
-         switch Environment.shared.opco {
+         switch Configuration.shared.opco {
          case .bge:
              boldText = ""
              bodyText = """

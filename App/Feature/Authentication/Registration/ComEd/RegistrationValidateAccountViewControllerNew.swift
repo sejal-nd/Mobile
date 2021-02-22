@@ -60,7 +60,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         stackView.setCustomSpacing(20, after: instructionLabel)
         stackView.setCustomSpacing(20, after: segmentContainer)
         segmentedControl.selectedIndex.accept(.zero)
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .comEd:
             illustrationImageView.image = #imageLiteral(resourceName: "img_resbill_comed.pdf")
         case .ace, .delmarva, .pepco:
@@ -98,7 +98,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             .drive(onNext: { [weak self] accountNumber, hasValidLength in
                 guard let self = self else { return }
                 if !accountNumber.isEmpty && !hasValidLength {
-                    let errorMessage = Environment.shared.opco.isPHI ? NSLocalizedString("Account number must be 11 digits long", comment: "") : NSLocalizedString("Account number must be 10 digits long", comment: "")
+                    let errorMessage = Configuration.shared.opco.isPHI ? NSLocalizedString("Account number must be 11 digits long", comment: "") : NSLocalizedString("Account number must be 10 digits long", comment: "")
                     self.accountNumberTextField?.setError(errorMessage)
                 }
                 self.accessibilityErrorLabel()
@@ -135,7 +135,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
                    .disposed(by: disposeBag)
         
         // Payment Date
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             dueDateButton.descriptionText = NSLocalizedString("Issued Date*", comment: "")
         } else {
         dueDateButton.descriptionText = NSLocalizedString("Due Date*", comment: "")
@@ -245,7 +245,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     
     @IBAction func onAccountNumberTooltipPress() {
         let description: String
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             description = NSLocalizedString("Your Customer Account Number may be found in the top right portion on your bill in the bill summary section. Please enter 10-digits including leading zeros.", comment: "")
         case .comEd:
@@ -345,7 +345,7 @@ extension RegistrationValidateAccountViewControllerNew: UITextFieldDelegate {
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == accountNumberTextField?.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Environment.shared.opco.isPHI ? 11 : 10)
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Configuration.shared.opco.isPHI ? 11 : 10)
         }
         
         return true

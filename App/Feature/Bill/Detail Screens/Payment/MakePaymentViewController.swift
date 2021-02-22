@@ -672,7 +672,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
         viewModel.paymentDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
-        if Environment.shared.opco.isPHI {
+        if Configuration.shared.opco.isPHI {
             viewModel.selectedDate.accept(date)
             paymentDateErrorLabel.textColor = .errorRed
             paymentDateErrorLabel.font = SystemFont.regular.of(textStyle: .footnote)

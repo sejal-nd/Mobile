@@ -208,7 +208,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func showCalendarPermissionsDeniedAlert() {
-        let title = String.localizedStringWithFormat("Adding to calendar is currently disabled on your device. Please visit your device settings to allow %@ to access your calendar.", Environment.shared.opco.displayString)
+        let title = String.localizedStringWithFormat("Adding to calendar is currently disabled on your device. Please visit your device settings to allow %@ to access your calendar.", Configuration.shared.opco.displayString)
         
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -271,21 +271,21 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         let loop: Bool
         switch viewModel.status {
         case .scheduled:
-            animationName = "Appt_Confirmed-Flavor\(Environment.shared.opco.rawValue)"
+            animationName = "Appt_Confirmed-Flavor\(Configuration.shared.opco.rawValue)"
             loop = false
         case .onOurWay:
             fallthrough
         case .enRoute:
-            animationName = "Appt_otw-Flavor\(Environment.shared.opco.rawValue)"
+            animationName = "Appt_otw-Flavor\(Configuration.shared.opco.rawValue)"
             loop = true
         case .inProgress:
-            animationName = "Appt_Inprogress-Flavor\(Environment.shared.opco.rawValue)"
+            animationName = "Appt_Inprogress-Flavor\(Configuration.shared.opco.rawValue)"
             loop = false
         case .complete:
-            animationName = "Appt_Complete-Flavor\(Environment.shared.opco.rawValue)"
+            animationName = "Appt_Complete-Flavor\(Configuration.shared.opco.rawValue)"
             loop = false
         case .canceled, .none:
-            animationName = "Appt_Canceled-Flavor\(Environment.shared.opco.rawValue)"
+            animationName = "Appt_Canceled-Flavor\(Configuration.shared.opco.rawValue)"
             loop = false
         }
         

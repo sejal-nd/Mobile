@@ -29,8 +29,8 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
         super.viewDidLoad()
         
         let navigationTitle: String
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
-            navigationTitle = Environment.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+            navigationTitle = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
         } else {
             navigationTitle = "Forgot Username"
         }

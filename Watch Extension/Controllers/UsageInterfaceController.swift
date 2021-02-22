@@ -186,9 +186,9 @@ class UsageInterfaceController: WKInterfaceController {
                 // set error data
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setText("Error")
-                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Environment.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
+                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Configuration.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
 
-                dLog("Usage Error State: \(serviceError.localizedDescription)")
+                Log.info("Usage Error State: \(serviceError.localizedDescription)")
             }
         }
     }

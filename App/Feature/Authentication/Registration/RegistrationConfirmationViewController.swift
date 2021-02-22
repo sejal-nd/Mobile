@@ -37,7 +37,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             iconImageView.image = #imageLiteral(resourceName: "ic_registration_confirmation")
             
-            let fullString = NSLocalizedString("A verification email has been sent to \(registeredUsername ?? "").\n\nClick on the link in the email from \(Environment.shared.opco.displayString) within 48 hours. Once the link expires, you’ll be required to start the registration process from the beginning.\n\n", comment: "")
+            let fullString = NSLocalizedString("A verification email has been sent to \(registeredUsername ?? "").\n\nClick on the link in the email from \(Configuration.shared.opco.displayString) within 48 hours. Once the link expires, you’ll be required to start the registration process from the beginning.\n\n", comment: "")
             let attrString = NSMutableAttributedString(string: fullString)
             
             let style = NSMutableParagraphStyle()
@@ -83,7 +83,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     }
     
     private var emailAddress: String {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .comEd:
             return "no-reply@comed.com"
         case .peco:

@@ -77,7 +77,7 @@ class ForgotUsernameViewModel {
     }
     
     private(set) lazy var continueButtonEnabled: Driver<Bool> = {
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             return Driver.combineLatest(self.phoneNumberHasTenDigits, self.identifierHasFourDigits, self.identifierIsNumeric)
             { $0 && $1 && $2 }
         } else {
@@ -107,7 +107,7 @@ class ForgotUsernameViewModel {
         .map { [weak self] text -> Bool in
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            let accountNumberLength = (Environment.shared.opco == .bge || Environment.shared.opco == .peco || Environment.shared.opco == .comEd) ? 10 : 11
+            let accountNumberLength = (Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd) ? 10 : 11
             return digitsOnlyString.count == accountNumberLength
         }
     

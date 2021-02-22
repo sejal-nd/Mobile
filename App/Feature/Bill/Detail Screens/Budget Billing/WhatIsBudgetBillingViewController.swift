@@ -28,7 +28,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         super.viewDidLoad()
         
         addCloseButton()
-        descriptionLabel.isHidden = !Environment.shared.opco.isPHI
+        descriptionLabel.isHidden = !Configuration.shared.opco.isPHI
         card1TitleLabel.textColor = .deepGray
         card1TitleLabel.font = OpenSans.semibold.of(textStyle: .title3)
         card1TitleLabel.text = NSLocalizedString("1 consistent bill over 12 months", comment: "")
@@ -62,7 +62,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         
         descriptionLabel.font = OpenSans.regular.of(textStyle: .body)
 
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             card1Bullet1Label.text = NSLocalizedString("Under this payment plan, BGE calculates your budget bill amount by averaging your 12 most recent gas and electric bills plus any accumulated imbalance amount.", comment: "")
             card1Bullet2Label.text = NSLocalizedString("BGE will still continue to read your meter each month and your bill will always show details of the actual charges and consumption for the billing period, as well as your account balance.", comment: "")

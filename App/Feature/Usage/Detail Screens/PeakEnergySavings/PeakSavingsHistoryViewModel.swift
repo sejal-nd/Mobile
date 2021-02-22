@@ -26,6 +26,6 @@ final class PeakSavingsHistoryViewModel {
     }
     
     func getWidgetJs(ssoData: SSODataResponse) -> String {
-        return "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(ssoData.relayState)'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
+        return "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(ssoData.relayStatePESC)'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
     }
 }

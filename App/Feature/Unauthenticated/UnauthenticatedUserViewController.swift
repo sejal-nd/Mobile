@@ -108,7 +108,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.unauthenticatedExperience = true
             vc.hasPressedStreetlightOutageMapButton = segue.identifier == "streetlightOutageMapSegue" ? true : false
-            if !Environment.shared.opco.isPHI {
+            if !Configuration.shared.opco.isPHI {
                 GoogleAnalytics.log(event: .viewOutageMapGuestMenu)
             }
             
@@ -149,11 +149,11 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0, indexPath.row == 2, outageMapURLString.isEmpty {
             return 0
-        } else if indexPath.section == 0, indexPath.row == 3, Environment.shared.opco == .peco {
+        } else if indexPath.section == 0, indexPath.row == 3, Configuration.shared.opco == .peco {
             return 0
         } else if indexPath.section == 0, indexPath.row == 3, streetlightOutageMapURLString.isEmpty {
             return 0
-        } else if indexPath.section == 1, indexPath.row == 2, Environment.shared.opco.isPHI, billingVideosUrl == nil {
+        } else if indexPath.section == 1, indexPath.row == 2, Configuration.shared.opco.isPHI, billingVideosUrl == nil {
             return 0
         }
         
@@ -174,7 +174,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 2:
                 cell.configure(image: UIImage(named: "ic_mapoutagewhite"), text: NSLocalizedString("View Outage Map", comment: ""))
             case 3:
-                let text = Environment.shared.opco.isPHI ? NSLocalizedString("Report Street Light Problem", comment: "") : NSLocalizedString("Report Street Light Outage", comment: "")
+                let text = Configuration.shared.opco.isPHI ? NSLocalizedString("Report Street Light Problem", comment: "") : NSLocalizedString("Report Street Light Outage", comment: "")
                 cell.configure(image: #imageLiteral(resourceName: "ic_streetlightoutage_white"), text: text)
             default:
                 return UITableViewCell()

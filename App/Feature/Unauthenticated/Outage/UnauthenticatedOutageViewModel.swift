@@ -39,7 +39,7 @@ class UnauthenticatedOutageViewModel {
                                                     } else if outageStatuses.count == 1 {
                                                         self.selectedOutageStatus.accept(outageStatuses.first!)
                                                         if outageStatuses.first!.isGasOnly {
-                                                            switch Environment.shared.opco {
+                                                            switch Configuration.shared.opco {
                                                             case .bge:
                                                                 onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""))
                                                                 return
@@ -94,7 +94,7 @@ class UnauthenticatedOutageViewModel {
     
     var accountNumberHasValidlength: Driver<Bool> {
         return self.accountNumber.asDriver().map {
-            $0.count == (Environment.shared.opco.isPHI ? 11 : 10)
+            $0.count == (Configuration.shared.opco.isPHI ? 11 : 10)
         }
     }
     
@@ -114,11 +114,11 @@ class UnauthenticatedOutageViewModel {
         } else if let statusETR = selectedOutageStatus.value!.estimatedRestorationDate {
             return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
         }
-        return Environment.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
+        return Configuration.shared.opco.isPHI ? NSLocalizedString("Pending Assessment", comment: "") : NSLocalizedString("Assessing Damage", comment: "")
     }
     
     var accountNonPayFinaledMessage: String {
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
         } else {
             if selectedOutageStatus.value!.isFinaled {
@@ -133,7 +133,7 @@ class UnauthenticatedOutageViewModel {
     var footerTextViewText: NSAttributedString {
         var localizedString: String
         let phoneNumbers: [String]
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"
             let phone2 = "1-877-778-7798"

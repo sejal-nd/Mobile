@@ -16,18 +16,28 @@ default_platform(:ios)
         ignore_language_directory_validation: true,
         run_precheck_before_submit: false,
         precheck_include_in_app_purchases: false,
+        submission_information: "{\"export_compliance_uses_encryption\": false, \"add_id_info_uses_idfa\": false }",
         force: true
       )
 
+      tag_release
+    end
+
+    desc "Adds a git tag of the Xcode project number, e.g. 5.10.0"
+    lane :tag_release do
       version = get_version_number(
         target: "EUMobile"
       )
 
-      # Tags git release commit: ex: 5.10.0
-      add_git_tag(
-        tag: version,
-        includes_lane: false
-      )
+      if !git_tag_exists(tag: version)
+        # Tags git release commit: ex: 5.10.0
+        add_git_tag(
+          tag: version,
+          includes_lane: false
+        )
+
+        push_git_tags
+      end
     end
 
     desc "Package and build the app, resulting in an IPA file"
@@ -51,7 +61,7 @@ default_platform(:ios)
         owner_type: "organization",
         app_name: options[:app_name],
         file: options[:file_path],
-        release_notes: options[:release_notes],
+        release_notes: sh("cat ReleaseNotes.md"),
         destinations: options[:destinations],
         dsym: options[:dsym_path]
       )

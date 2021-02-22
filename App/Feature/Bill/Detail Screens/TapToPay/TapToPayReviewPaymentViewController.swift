@@ -36,6 +36,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var alternateContactDivider: UIView!
     @IBOutlet weak var addAdditionaRecipientButton: UIButton!
+    @IBOutlet weak var addAdditionalRecipeintBottomDivider: UIView!
     
     // -- Payment Method View -- //
     @IBOutlet weak var bankAccount: ButtonControl!
@@ -109,6 +110,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
         addCloseButton()
         if billingHistoryItem != nil {
             title = NSLocalizedString("Edit Payment", comment: "")
+            addAdditionalRecipients.isHidden = true
+            addAdditionalRecipeintBottomDivider.isHidden = true
         } else {
             title = NSLocalizedString("Review Payment", comment: "")
         }
@@ -370,7 +373,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
         self.overPayingCheckbox.rx.isChecked.bind(to: viewModel.overpayingSwitchValue).disposed(by: bag)
         
         // Submit button enable/disable
-        viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: bag)
+        if billingHistoryItem != nil {
+            // Edit flow
+            viewModel.editPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: bag)
+        } else {
+            viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: bag)
+        }
         
         // Show content
         viewModel.shouldShowContent.drive(onNext: { [weak self] shouldShow in
@@ -641,7 +649,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
                     }
                 },
                 callHandler: { _ in
-                   // UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
+                    UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
                 }
             )
             self.present(paymentusAlertVC, animated: true, completion: nil)
@@ -736,8 +744,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
     }
     
     @IBAction func onCancelPaymentPress() {
-        let alertTitle = NSLocalizedString("Are you sure you want to cancel this automatic payment?", comment: "")
-        let alertMessage = NSLocalizedString("Canceling this payment will not impact your AutoPay enrollment. Future bills will still be paid automatically.", comment: "")
+        let alertTitle = NSLocalizedString("Cancel Payment", comment: "")
+        let alertMessage = NSLocalizedString("Are you sure you want to cancel this payment?", comment: "")
         let alertConfirm = NSLocalizedString("Yes", comment: "")
         let alertDeny = NSLocalizedString("No", comment: "")
         

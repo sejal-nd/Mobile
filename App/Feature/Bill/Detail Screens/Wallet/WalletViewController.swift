@@ -303,14 +303,14 @@ class WalletViewController: UIViewController {
         
         let title: String
         var message = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Bill & Payment Activity.", comment: "")
-        if Environment.shared.opco.isPHI {
+        if Configuration.shared.opco.isPHI {
             message = message + NSLocalizedString(" Utility Accounts enrolled in Autopay using this payment method will be unenrolled.", comment: "")
         }
         let toast: String
         if walletItemToEdit.bankOrCard == .bank {
             title = NSLocalizedString("Delete Bank Account?", comment: "")
             toast = NSLocalizedString("Bank Account deleted", comment: "")
-            if Environment.shared.opco == .bge {
+            if Configuration.shared.opco == .bge {
                 message += NSLocalizedString(" Utility Accounts enrolled in AutoPay using this payment method will be unenrolled.", comment: "")
             }
         } else {

@@ -180,7 +180,7 @@ class PaymentViewModel {
 
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
     func computeDefaultPaymentDate() {
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             paymentDate.accept(.now)
         } else {
             let acctDetail = accountDetail.value
@@ -195,7 +195,7 @@ class PaymentViewModel {
             
             // All the other states boil down to the due date being in the future
             if let dueDate = billingInfo.dueByDate {
-                paymentDate.accept(Environment.shared.opco.isPHI ? .now : isDueDateInTheFuture ? dueDate : .now)
+                paymentDate.accept(Configuration.shared.opco.isPHI ? .now : isDueDateInTheFuture ? dueDate : .now)
             } else { // Should never get here?
                 paymentDate.accept(.now)
             }
@@ -208,13 +208,13 @@ class PaymentViewModel {
         let billingInfo = accountDetail.billingInfo
         
         // Existing requirement from before Paymentus
-        if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
+        if Configuration.shared.opco == .bge && accountDetail.isActiveSeverance {
             return false
         }
         
         // Precarious state 6: BGE can future date, ComEd/PECO cannot
         if accountDetail.isFinaled && billingInfo.pastDueAmount > 0 {
-            return Environment.shared.opco == .bge
+            return Configuration.shared.opco == .bge
         }
         
         // Precarious states 4 and 5 cannot future date
@@ -225,11 +225,11 @@ class PaymentViewModel {
         
         // Precarious state 3
         if !accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0 {
-            return Environment.shared.opco == .bge || isDueDateInTheFuture
+            return Configuration.shared.opco == .bge || isDueDateInTheFuture
         }
         
         // If not one of the above precarious states...
-        if Environment.shared.opco == .bge { // BGE can always future date
+        if Configuration.shared.opco == .bge { // BGE can always future date
             return true
         } else { // ComEd/PECO can only future date if the due date has not passed
             return isDueDateInTheFuture
@@ -337,7 +337,7 @@ class PaymentViewModel {
         }
         
         let today = Calendar.opCo.startOfDay(for: .now)
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .pepco:
             let minDate = today
             var maxDate: Date
@@ -375,7 +375,7 @@ class PaymentViewModel {
     private(set) lazy var isSelectedPaymentDateBeyondDueDate: Driver<Bool> =
         selectedDate.asDriver().map { [weak self] date in
             guard let self = self else { return false }
-            return Environment.shared.opco.isPHI && (self.accountDetail.value.billingInfo.dueByDate < date) && self.canEditPaymentDate
+            return Configuration.shared.opco.isPHI && (self.accountDetail.value.billingInfo.dueByDate < date) && self.canEditPaymentDate
        }
     
       
@@ -454,7 +454,7 @@ class PaymentViewModel {
             if walletItem.bankOrCard == .bank {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
-                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -472,7 +472,7 @@ class PaymentViewModel {
             } else {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
-                if Environment.shared.opco == .bge || Environment.shared.opco.isPHI {
+                if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -544,7 +544,7 @@ class PaymentViewModel {
         var amounts: [(Double?, String)] = [totalAmount, other]
         var precariousAmounts = [(Double?, String)]()
         if let restorationAmount = billingInfo.restorationAmount, restorationAmount > 0 &&
-            Environment.shared.opco != .bge && accountDetail.value.isCutOutNonPay {
+            Configuration.shared.opco != .bge && accountDetail.value.isCutOutNonPay {
             guard pastDueAmount != netDueAmount || restorationAmount != netDueAmount else {
                 return []
             }
@@ -564,7 +564,7 @@ class PaymentViewModel {
             }
 
             precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount", comment: "")))
-        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && Environment.shared.opco != .bge {
+        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && Configuration.shared.opco != .bge {
             guard pastDueAmount != netDueAmount || amtDpaReinst != netDueAmount else {
                 return []
             }
@@ -660,7 +660,7 @@ class PaymentViewModel {
     }
     
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
-        if Environment.shared.opco == .bge || self?.paymentId.value != nil {
+        if Configuration.shared.opco == .bge || self?.paymentId.value != nil {
             return false
         }
 
@@ -712,7 +712,7 @@ class PaymentViewModel {
         self.selectedWalletItem.asDriver().map { $0?.bankOrCard == .card }
 
     private(set) lazy var isOverpaying: Driver<Bool> = {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .pepco:
             return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver(), resultSelector: <)
         case .comEd, .peco:
@@ -771,7 +771,7 @@ class PaymentViewModel {
     var confirmationFooterText: NSAttributedString {
         let accountDetail = self.accountDetail.value
         let billingInfo = accountDetail.billingInfo
-        let opco = Environment.shared.opco
+        let opco = Configuration.shared.opco
         
         // Only show text in these precarious situations
         guard (opco == .bge && accountDetail.isActiveSeverance) ||
@@ -783,7 +783,7 @@ class PaymentViewModel {
         
         let boldText: String
         let bodyText: String
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             boldText = ""
             bodyText = """
@@ -831,7 +831,7 @@ class PaymentViewModel {
     }
 
     var errorPhoneNumber: String {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return "1-800-685-0123"
         case .comEd:

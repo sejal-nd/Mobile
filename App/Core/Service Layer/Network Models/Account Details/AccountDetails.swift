@@ -389,7 +389,7 @@ public struct AccountDetail: Decodable {
     }
     
     var opcoType: OpCo? {
-        if Environment.shared.opco.isPHI,
+        if Configuration.shared.opco.isPHI,
            let utilityCode = utilityCode {
             switch utilityCode {
             case "ACE":

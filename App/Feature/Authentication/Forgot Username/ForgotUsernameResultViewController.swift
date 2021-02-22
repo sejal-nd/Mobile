@@ -33,8 +33,8 @@ class ForgotUsernameResultViewController: UIViewController {
         super.viewDidLoad()
         
         let navigationTitle: String
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
-            navigationTitle = Environment.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+            navigationTitle = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
         } else {
             navigationTitle = "Forgot Username"
         }
@@ -60,8 +60,8 @@ class ForgotUsernameResultViewController: UIViewController {
         singleAccountValueLabel.textColor = .deepGray
         
         let usernameEmailLabelText: String
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge {
-            usernameEmailLabelText = Environment.shared.opco.isPHI ? "Username / Email Address" : "Email"
+        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+            usernameEmailLabelText = Configuration.shared.opco.isPHI ? "Username / Email Address" : "Email"
         } else {
             usernameEmailLabelText = "Username / Email Address"
         }
@@ -94,7 +94,7 @@ class ForgotUsernameResultViewController: UIViewController {
         if UIScreen.main.bounds.width <= 375 {
             // Prevent text from getting cut off on iPhone 5/SE with dynamic font all the way up
             topLabel2.text = NSLocalizedString("if you remember", comment: "")
-            let topLabelText = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Environment.shared.opco != .bge
+            let topLabelText = RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge
                 ? NSLocalizedString("your email or you can answer a security question to view your full email", comment: "")
                 : NSLocalizedString("your username or you can answer a security question to view your full username", comment: "")
             topLabel3.text = topLabelText

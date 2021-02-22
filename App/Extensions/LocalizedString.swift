@@ -11,7 +11,7 @@ import UIKit
 
 extension String {
     func localized(comment: String? = nil) -> String {
-        return Environment.shared.opco == .bge ? localized(tableName: "BGEStrings", comment: comment) : NSLocalizedString(self, comment: comment ?? "")
+        return Configuration.shared.opco == .bge ? localized(tableName: "BGEStrings", comment: comment) : NSLocalizedString(self, comment: comment ?? "")
     }
     
     private func localized(tableName: String? = nil, comment: String? = nil) -> String {

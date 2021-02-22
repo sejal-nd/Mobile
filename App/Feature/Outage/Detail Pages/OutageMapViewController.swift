@@ -13,7 +13,7 @@ class OutageMapViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
-    let opco = Environment.shared.opco
+    let opco = Configuration.shared.opco
     
     var unauthenticatedExperience = false
     

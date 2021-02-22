@@ -15,7 +15,7 @@ enum HomeCard: Int {
     static let editableCards: [HomeCard] = {
         var cards: [HomeCard] = [.bill, .usage, .template, .outageStatus, .projectedBill]
         
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             cards[1] = .game
         }
         
@@ -91,7 +91,7 @@ enum HomeCard: Int {
     
     static let latestNewCardVersion: Version = {
         // Update these in versions with new cards
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return Version(major: 2, minor: 9, patch: 0)
         case .peco:
@@ -129,7 +129,7 @@ final class HomeCardPrefsStore {
     static let defaultList: [HomeCard] = {
         var cards: [HomeCard] = [.bill, .usage, .template]
         
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             cards[1] = .game
         }
         
