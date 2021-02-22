@@ -85,7 +85,10 @@ public struct AlertPreferencesRequest: Encodable {
             let billReadyProgramName = "Bill is Ready" + " " + opcoIdentifier
             let budgetBillingProgramName = "Budget Billing" + " " + opcoIdentifier
             let forYourInfoProgramName = "News" + " " + opcoIdentifier
-            
+            let highUsageAlertProgramName = "High Usage Alert" + " " + opcoIdentifier
+            let peakSavingsDayResultsProgramName = "Peak Savings Day Results" + " " + opcoIdentifier
+            let peakSavingsDayAlertProgramName = "PESC" + " " + opcoIdentifier
+
             preferences.append(AlertRequest(isActive: alertPreferences.outage, programName: outageProgramName))
             preferences.append(AlertRequest(isActive: alertPreferences.severeWeather, programName: severeWeatherProgramName))
             preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: billReadyProgramName))
@@ -94,6 +97,9 @@ public struct AlertPreferencesRequest: Encodable {
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentPastDue, programName: paymentPastDueProgramName))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.budgetBilling, programName: budgetBillingProgramName))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: forYourInfoProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.highUsage, programName: highUsageAlertProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.peakTimeSavingsDayAlert ?? false, programName: peakSavingsDayAlertProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.peakTimeSavingsDayResults ?? false, programName: peakSavingsDayResultsProgramName))
         }
         
         alertPreferenceRequests = preferences
