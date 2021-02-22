@@ -92,6 +92,9 @@ class GameTipViewController: UIViewController {
         datePicker.datePickerMode = .dateAndTime
         datePicker.date = tomorrow
         datePicker.minimumDate = hourFromNow
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss(_:)))
         tap.delegate = self

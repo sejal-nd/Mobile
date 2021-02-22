@@ -344,6 +344,18 @@ class TapToPayViewModel {
             return selectedWalletItem?.bankOrCard == .card && paymentDateValue > maxCardDate
         }
     
+    private(set) lazy var isPaymentDetailsEdited: Driver<Bool> = Driver
+        .combineLatest(self.paymentDate.asDriver(),
+                       self.paymentAmount.asDriver(),
+                       selectedWalletItem.asDriver()) { paymentDateValue, paymentAmountValue, selectedWalletItemValue in
+            if paymentDateValue.dayMonthDayString == self.billingHistoryItem?.date.dayMonthDayString &&
+                paymentAmountValue == self.billingHistoryItem?.amountPaid &&
+                selectedWalletItemValue?.maskedAccountNumber == self.billingHistoryItem?.maskedAccountNumber {
+                return false
+            }
+            return true
+        }
+    
     private(set) lazy var dueAmountDescriptionText: Driver<NSAttributedString> = accountDetailDriver.map {
         let billingInfo = $0.billingInfo
         var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
@@ -356,7 +368,7 @@ class TapToPayViewModel {
         if self.billingHistoryItem != nil {
             guard let billingHistory = self.billingHistoryItem ,
                   let amountPaid = billingHistory.amountPaid else { return NSAttributedString(string: "", attributes: attributes)}
-            string = "You have $\(String(describing: billingHistory.amountPaid ?? 0)) scheduled for \(billingHistory.date.fullMonthDayAndYearString). Confirmation #\(String(describing: billingHistory.paymentID ?? ""))"
+            string = "You have \(String(describing: amountPaid.currencyString)) scheduled for \(billingHistory.date.fullMonthDayAndYearString). Confirmation #\(String(describing: billingHistory.paymentID ?? ""))"
         } else {
             if billingInfo.pastDueAmount > 0 {
                 if billingInfo.pastDueAmount == billingInfo.netDueAmount {
@@ -523,6 +535,17 @@ class TapToPayViewModel {
             
             return true
     }
+    
+    private(set) lazy var editPaymentSubmitButtonEnabled: Driver<Bool> = Driver
+        .combineLatest(
+            reviewPaymentSubmitButtonEnabled,
+            isPaymentDetailsEdited)
+        {
+            if $0 && $1 {
+                return true
+            }
+            return false
+        }
     
     // Must combine selectedWalletItem because the date validation relies on bank vs card
     private(set) lazy var isPaymentDateValid: Driver<Bool> = Driver

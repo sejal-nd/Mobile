@@ -23,6 +23,9 @@ class AlertPreferencesViewModel {
     let billThreshold: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let billThresholdPlacheHolder = BehaviorRelay(value: "Bill Threshold (Optional)")
     let peakTimeSavings = BehaviorRelay(value: false)
+    let peakSavingsDayAlert = BehaviorRelay(value: false)
+    let peakSavingsDayResults = BehaviorRelay(value: false)
+
     let smartEnergyRewards = BehaviorRelay(value: false)
     let energySavingsDayResults = BehaviorRelay(value: false)
     
@@ -143,7 +146,7 @@ class AlertPreferencesViewModel {
                     
                 case .peco:
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
-                         [.outage, .severeWeather])]
+                                      [.outage, .severeWeather])]
                     
                     if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
@@ -160,8 +163,21 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .pepco:
+                    var usageOptions: [AlertPreferencesOptions] = []
+                    if self.isPeakSavingsDayAlertsEligible() {
+                        usageOptions.append(.peakSavingsDayAlert)
+                        usageOptions.append(.peakSavingsDayResults)
+                    }
+                    if self.isHUAEligible {
+                        usageOptions.append(.highUsage)
+                    }
+                    usageOptions.append(.highUsage)
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
-                         [.outage, .severeWeather])]
+                                      [.outage, .severeWeather])]
+                    
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
                     
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
@@ -176,8 +192,16 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .ace:
+                    var usageOptions: [AlertPreferencesOptions] = []
+                    if self.isHUAEligible {
+                        usageOptions.append(.highUsage)
+                    }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
+                    
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
                     
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
@@ -193,9 +217,21 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .delmarva:
+                    var usageOptions: [AlertPreferencesOptions] = []
+                    if self.isPeakSavingsDayAlertsEligible() {
+                        usageOptions.append(.peakSavingsDayAlert)
+                        usageOptions.append(.peakSavingsDayResults)
+                    }
+                    if self.isHUAEligible {
+                        usageOptions.append(.highUsage)
+                    }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
-                         [.outage, .severeWeather])]
+                                      [.outage, .severeWeather])]
                     
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
+
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
@@ -410,6 +446,21 @@ class AlertPreferencesViewModel {
         return AlertService.rx.setAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber, request: AlertLanguageRequest(language: english.value ? "English" : "Spanish"))
     }
     
+    private func isPeakSavingsDayAlertsEligible() -> Bool {
+        if let accountDetail = accountDetail {
+            let configuration = Configuration.shared.opco
+            if configuration == .delmarva {
+                return (accountDetail.subOpco == .delmarvaDelaware || accountDetail.subOpco == .delmarvaMaryland) && accountDetail.isResidential && (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled)
+            } else if configuration == .pepco {
+                return accountDetail.subOpco == .pepcoMaryland && accountDetail.isResidential && (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled)
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
     private func enrollPaperlessEBill() -> Observable<Void> {
         return BillService.rx.enrollPaperlessBilling(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
                                     email: accountDetail.customerInfo.emailAddress)
@@ -429,9 +480,9 @@ class AlertPreferencesViewModel {
     
     var isHUAEligible: Bool {
         switch Configuration.shared.opco {
-        case .bge, .comEd:
+        case .bge, .comEd, .pepco, .ace, .delmarva:
             return self.accountDetail.isHUAEligible ?? false
-        case .peco, .pepco, .ace, .delmarva:
+        case .peco:
             return false
         
         }
@@ -492,7 +543,7 @@ class AlertPreferencesViewModel {
     
     enum AlertPreferencesOptions {
         // Usage
-        case highUsage, peakTimeSavings, smartEnergyRewards, energySavingsDayResults
+        case highUsage, peakTimeSavings, smartEnergyRewards, energySavingsDayResults, peakSavingsDayAlert, peakSavingsDayResults
         // Outage
         case outage, scheduledMaintenanceOutage, severeWeather
         // Billing
@@ -512,6 +563,10 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("High Usage", comment: "")
             case .peakTimeSavings:
                 return NSLocalizedString("Peak Time Savings", comment: "")
+            case .peakSavingsDayAlert:
+                return NSLocalizedString("Peak Savings Day Alert", comment: "")
+            case .peakSavingsDayResults:
+                return NSLocalizedString("Peak Savings Day Results", comment: "")
             case .smartEnergyRewards:
                 return NSLocalizedString("Smart Energy Rewards", comment: "")
             case .energySavingsDayResults:
@@ -549,6 +604,10 @@ class AlertPreferencesViewModel {
             case (.highUsage, .peco): fallthrough
             case (.highUsage, .comEd):
                 return NSLocalizedString("Receive an alert if you are headed towards a bill that is higher than usual. This alert gives you time to reduce your usage before your next bill and helps to prevent billing surprises.", comment: "")
+            
+            case (.highUsage, .delmarva): fallthrough
+            case (.highUsage, .pepco):
+                return NSLocalizedString("Receive an alert when we notice your usage is trending higher than normal. You remain responsible for your actual energy use whether or not you receive an alert.", comment: "")
                 
             // Peak Time Savings
             case (.peakTimeSavings, .bge): fallthrough
@@ -556,6 +615,14 @@ class AlertPreferencesViewModel {
                 return ""
             case (.peakTimeSavings, .comEd):
                 return NSLocalizedString("Receive an alert on the day Peak Time Savings Hours occur — as early as 9 a.m. or at least 30 minutes prior to the start of the event.", comment: "")
+            
+            case (.peakSavingsDayAlert, .delmarva): fallthrough
+            case (.peakSavingsDayAlert, .pepco):
+                return NSLocalizedString("Receive an alert with the date and time of an upcoming Peak Savings Day. Earn $1.25 off your bill for every kilowatt-hour you save below your average energy use on a Peak Savings Day.", comment: "")
+                
+            case (.peakSavingsDayResults, .delmarva): fallthrough
+            case (.peakSavingsDayResults, .pepco):
+                return NSLocalizedString("Receive an alert following a Peak Savings Day to let you know how much you saved. Your credit will automatically appear on your next bill.", comment: "")
                 
             // Smart Energy Rewards
             case (.smartEnergyRewards, .bge):

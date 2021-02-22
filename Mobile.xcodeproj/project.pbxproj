@@ -295,7 +295,7 @@
 		675F4CA824AB828100A828F9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2324AB828000A828F9 /* Account.swift */; };
 		675F4CAE24AB828100A828F9 /* ValidatedAccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2424AB828000A828F9 /* ValidatedAccountResponse.swift */; };
 		675F4CB424AB828200A828F9 /* BillPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2524AB828000A828F9 /* BillPDF.swift */; };
-		675F4CBA24AB828200A828F9 /* SharePointAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2624AB828000A828F9 /* SharePointAlert.swift */; };
+		675F4CBA24AB828200A828F9 /* AzureAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2624AB828000A828F9 /* AzureAlerts.swift */; };
 		675F4CC024AB828200A828F9 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2724AB828000A828F9 /* HomeProfile.swift */; };
 		675F4CC624AB828200A828F9 /* AzureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2824AB828000A828F9 /* AzureError.swift */; };
 		675F4CCC24AB828200A828F9 /* CompareBillResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2924AB828000A828F9 /* CompareBillResult.swift */; };
@@ -837,7 +837,7 @@
 		C3055B682538F81B000DB89C /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2224AB828000A828F9 /* Wallet.swift */; };
 		C3055B692538F81B000DB89C /* SERResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6555F24ABD9790048C64B /* SERResult.swift */; };
 		C3055B6A2538F81B000DB89C /* ForgotMaskedUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2C24AB828000A828F9 /* ForgotMaskedUsername.swift */; };
-		C3055B6B2538F81B000DB89C /* SharePointAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2624AB828000A828F9 /* SharePointAlert.swift */; };
+		C3055B6B2538F81B000DB89C /* AzureAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B2624AB828000A828F9 /* AzureAlerts.swift */; };
 		C3055B6C2538F81B000DB89C /* BillForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1C24AB828000A828F9 /* BillForecastResult.swift */; };
 		C3055B6D2538F81B000DB89C /* ReportedOutageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B1224AB828000A828F9 /* ReportedOutageResult.swift */; };
 		C3055B6E2538F81B000DB89C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893B0524DB4314000143D6 /* Alert.swift */; };
@@ -1640,7 +1640,7 @@
 		675F4B2324AB828000A828F9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		675F4B2424AB828000A828F9 /* ValidatedAccountResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedAccountResponse.swift; sourceTree = "<group>"; };
 		675F4B2524AB828000A828F9 /* BillPDF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillPDF.swift; sourceTree = "<group>"; };
-		675F4B2624AB828000A828F9 /* SharePointAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePointAlert.swift; sourceTree = "<group>"; };
+		675F4B2624AB828000A828F9 /* AzureAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AzureAlerts.swift; sourceTree = "<group>"; };
 		675F4B2724AB828000A828F9 /* HomeProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeProfile.swift; sourceTree = "<group>"; };
 		675F4B2824AB828000A828F9 /* AzureError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AzureError.swift; sourceTree = "<group>"; };
 		675F4B2924AB828000A828F9 /* CompareBillResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareBillResult.swift; sourceTree = "<group>"; };
@@ -4253,7 +4253,7 @@
 				67893B8C24E3149E000143D6 /* ScheduledPayment.swift */,
 				C3B6554F24ABD9310048C64B /* SERInfo.swift */,
 				C3B6555F24ABD9790048C64B /* SERResult.swift */,
-				675F4B2624AB828000A828F9 /* SharePointAlert.swift */,
+				675F4B2624AB828000A828F9 /* AzureAlerts.swift */,
 				675F4B1124AB828000A828F9 /* SSODataResponse.swift */,
 				C33827EC24DDDB9900F133C5 /* StringResult.swift */,
 				C33C3384254C9C5200E59CF8 /* LanguageResult.swift */,
@@ -5587,7 +5587,6 @@
 					B58B5AC01E4E28740051FD5F = {
 						DevelopmentTeam = 38R4RRBYR8;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 0;
@@ -6466,6 +6465,7 @@
 				677958EB25E444FB00A08CC2 /* KeychainController.swift in Sources */,
 				C3055B6B2538F81B000DB89C /* SharePointAlert.swift in Sources */,
 				67247F6E25D2E4EA0024467D /* OutageContainerView.swift in Sources */,
+				C3055B6B2538F81B000DB89C /* AzureAlerts.swift in Sources */,
 				C3055C4A2538FD6E000DB89C /* URLProtocolMock.swift in Sources */,
 				C3055BFC2538FB11000DB89C /* AnonOutageRequest.swift in Sources */,
 				C3055BE92538FB11000DB89C /* AnyEncodable.swift in Sources */,
@@ -7058,7 +7058,7 @@
 				E87C41301FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				359BDB3822D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				675F4C2A24AB828100A828F9 /* PremiseInfo.swift in Sources */,
-				675F4CBA24AB828200A828F9 /* SharePointAlert.swift in Sources */,
+				675F4CBA24AB828200A828F9 /* AzureAlerts.swift in Sources */,
 				9CA1381D238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
@@ -7302,7 +7302,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
-				ALERT_URL = www.bge.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "8bfce822-abdf-4e5c-8425-0897f447692a";
 				ASSOCIATED_DOMAIN = secure.bge.com;
@@ -7914,7 +7913,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
-				ALERT_URL = azstage.peco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
@@ -8317,7 +8315,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
-				ALERT_URL = azstage.peco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
@@ -8597,7 +8594,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
-				ALERT_URL = www.peco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "fbc9f960-869c-47c4-a765-a650369ffca1";
 				ASSOCIATED_DOMAIN = secure.peco.com;
@@ -8876,7 +8872,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://peco.com/MyAccount";
-				ALERT_URL = www.peco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "0a416441-1ad6-4be2-b009-79f8b15f8b58";
 				ASSOCIATED_DOMAIN = secure.peco.com;
@@ -9156,7 +9151,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
-				ALERT_URL = azstage.atlanticcityelectric.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
@@ -9559,7 +9553,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
-				ALERT_URL = azstage.atlanticcityelectric.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
@@ -9840,7 +9833,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
-				ALERT_URL = www.atlanticcityelectric.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "e9a6ea32-b142-4414-9e6d-d686f7364d95";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
@@ -10120,7 +10112,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://atlanticcityelectric.com/MyAccount";
-				ALERT_URL = www.atlanticcityelectric.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "e717a9ba-bed1-443f-8311-9653b4bd058b";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
@@ -10401,7 +10392,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
-				ALERT_URL = azstage.delmarva.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
@@ -10804,7 +10794,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
-				ALERT_URL = azstage.delmarva.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
@@ -11085,7 +11074,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
-				ALERT_URL = www.delmarva.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "d3ecc389-d8ad-4806-a5d3-e067b7adb02d";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
@@ -11365,7 +11353,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://delmarva.com/MyAccount";
-				ALERT_URL = www.delmarva.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "9f85e63c-c1a6-40de-811b-df4074860f14";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
@@ -11646,7 +11633,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
-				ALERT_URL = azstage.pepco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
@@ -12049,7 +12035,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
-				ALERT_URL = azstage.pepco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
@@ -12330,7 +12315,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
-				ALERT_URL = www.pepco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "689f516c-90e8-48e5-b8a4-a9b51b0f0298";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
@@ -12610,7 +12594,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://pepco.com/MyAccount";
-				ALERT_URL = www.pepco.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5e8d65a7-7ffb-46b9-99f1-34d4080f52dd";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
@@ -12891,7 +12874,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
-				ALERT_URL = azstage.comed.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
@@ -13294,7 +13276,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
-				ALERT_URL = azstage.comed.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
@@ -13574,7 +13555,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
-				ALERT_URL = www.comed.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "c98a5583-5894-4b00-bf91-c0a7822376a9";
 				ASSOCIATED_DOMAIN = secure.comed.com;
@@ -13853,7 +13833,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://comed.com/MyAccount";
-				ALERT_URL = www.comed.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "9f56e08c-6fa5-4209-93a2-d773601a1e45";
 				ASSOCIATED_DOMAIN = secure.comed.com;
@@ -14133,7 +14112,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
-				ALERT_URL = azstage.bge.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
@@ -14368,7 +14346,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://bge.com/MyAccount";
-				ALERT_URL = www.bge.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "bddc73d9-4dfb-421f-a59f-71c08c3647e5";
 				ASSOCIATED_DOMAIN = secure.bge.com;
@@ -14496,7 +14473,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
-				ALERT_URL = azstage.bge.com;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";

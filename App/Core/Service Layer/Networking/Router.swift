@@ -94,7 +94,6 @@ public enum Router {
     case ssoData(accountNumber: String, premiseNumber: String)
     case ffssoData(accountNumber: String, premiseNumber: String)
     case iTronssoData(accountNumber: String, premiseNumber: String)
-    case peakEnergySavingsHistoryData(accountNumber: String, premiseNumber: String)
 
     case forecastBill(accountNumber: String, premiseNumber: String)
     case compareBill(accountNumber: String, premiseNumber: String, encodable: Encodable)
@@ -161,8 +160,6 @@ public enum Router {
             return Configuration.shared.oAuthEndpoint
         case .weather:
             return "api.weather.gov"
-        case .alertBanner, .newsAndUpdates:
-            return Configuration.shared.sharepointBaseURL
         default:
             return Configuration.shared.baseUrl
         }
@@ -234,7 +231,7 @@ public enum Router {
         case .payments(let accountNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments"
         case .alertBanner, .newsAndUpdates:
-            return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
+            return "\(basePath)/\(apiAccess.path)/config/alerts"
         case .billPDF(let accountNumber, let date, let documentID):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
             return Configuration.shared.opco.isPHI ? "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
@@ -277,8 +274,6 @@ public enum Router {
         case .ffssoData(let accountNumber, let premiseNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/ffssodata"
         case .iTronssoData(let accountNumber, let premiseNumber):
-            return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/sso/Intellisource"
-        case .peakEnergySavingsHistoryData(let accountNumber, let premiseNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/sso/Intellisource"
         case .energyTips(let accountNumber, let premiseNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips"
@@ -351,7 +346,7 @@ public enum Router {
         switch self {
         case .outageStatusAnon, .fetchToken, .refreshToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .meterPingAnon, .setAccountNickname:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .iTronssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule, .peakEnergySavingsHistoryData:
+        case .maintenanceMode, .accountDetails, .accounts, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .iTronssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChangeAnon, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
              .updateReleaseOfInfo, .validateConfirmationEmail, .setDefaultAccount, .updateAutoPay, .updateAutoPayBGE, .setAlertLanguage, .updateWalletItem, .budgetBillingEnroll:
@@ -431,7 +426,7 @@ public enum Router {
         case .payments:
             return "PaymentsMock"
         case .alertBanner, .newsAndUpdates:
-            return "SharePointAlertMock"
+            return "AzureAlertsMock"
         case .billPDF:
             return "BillPDFMock"
         case .scheduledPayment, .scheduledPaymentUpdate, .scheduledPaymentDelete:
