@@ -10,11 +10,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-
 final class EditNicknameViewModel {
-    
-    let disposeBag = DisposeBag()
-    
     
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
