@@ -11,21 +11,30 @@ import Foundation
 open class KeychainController {
     private init() { }
     
-    static let shared = KeychainController()
-
-    /// Allows syntax of `KeychainController.shared[XZY]`
-    open subscript(key: String) -> String? {
-        get {
-            return load(withKey: key)
-        } set {
-            DispatchQueue.global().sync(flags: .barrier) {
-                self.save(newValue, forKey: key)
-            }
-        }
+    static let `default` = KeychainController()
+    
+    func set(_ value: String,
+             forKey key: KeychainController.Key,
+             withAccessibility accessibility: KeychainItemAccessibility = .afterFirstUnlock) {
+        save(value, forKey: key.rawValue, accessibility: accessibility)
     }
     
-    private func save(_ string: String?, forKey key: String) {
-        let query = keychainQuery(withKey: key)
+    func string(forKey key: KeychainController.Key,
+                withAccessibility accessibility: KeychainItemAccessibility = .afterFirstUnlock) -> String? {
+        return load(forKey: key.rawValue, accessibility: accessibility)
+    }
+    
+    func remove(forKey key: KeychainController.Key,
+                withAccessibility accessibility: KeychainItemAccessibility = .afterFirstUnlock) {
+        save(nil, forKey: key.rawValue, accessibility: accessibility)
+    }
+}
+
+// MARK: Private API
+
+extension KeychainController {
+    private func save(_ string: String?, forKey key: String, accessibility: KeychainItemAccessibility) {
+        let query = keychainQuery(forKey: key, accessibility: accessibility)
         let objectData: Data? = string?.data(using: .utf8, allowLossyConversion: false)
         
         if SecItemCopyMatching(query, nil) == noErr {
@@ -45,8 +54,8 @@ open class KeychainController {
         }
     }
     
-    private func load(withKey key: String) -> String? {
-        let query = keychainQuery(withKey: key)
+    private func load(forKey key: String, accessibility: KeychainItemAccessibility) -> String? {
+        let query = keychainQuery(forKey: key, accessibility: accessibility)
         query.setValue(kCFBooleanTrue, forKey: kSecReturnData as String)
         query.setValue(kCFBooleanTrue, forKey: kSecReturnAttributes as String)
         
@@ -54,19 +63,19 @@ open class KeychainController {
         let status = SecItemCopyMatching(query, &result)
         
         guard let resultsDict = result as? NSDictionary,
-            let resultsData = resultsDict.value(forKey: kSecValueData as String) as? Data,
-            status == noErr else {
-                Log.error("Load status: \(status)")
-                return nil
+              let resultsData = resultsDict.value(forKey: kSecValueData as String) as? Data,
+              status == noErr else {
+            Log.error("Load status: \(status)")
+            return nil
         }
         return String(data: resultsData, encoding: .utf8)
     }
     
-    private func keychainQuery(withKey key: String) -> NSMutableDictionary {
+    private func keychainQuery(forKey key: String, accessibility: KeychainItemAccessibility) -> NSMutableDictionary {
         let result = NSMutableDictionary()
         result.setValue(kSecClassGenericPassword, forKey: kSecClass as String)
         result.setValue(key, forKey: kSecAttrService as String)
-        result.setValue(kSecAttrAccessibleAfterFirstUnlock, forKey: kSecAttrAccessible as String)
+        result.setValue(accessibility.value, forKey: kSecAttrAccessible as String)
         return result
     }
 }

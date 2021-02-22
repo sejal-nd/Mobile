@@ -8,13 +8,7 @@
 
 import Foundation
 
-enum AppConstant {
-    enum WatchSessionKey {
-        static let consoleUser = "console"
-        static let screenName = "screenName"
-        static let outageReported = "outageReported"
-    }
-    
+enum AppConstant {    
     enum ImageName: String {
         case alert
         case autoPay

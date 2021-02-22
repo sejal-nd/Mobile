@@ -10,19 +10,6 @@ import Foundation
 import RxSwift
 
 public enum AuthenticationService {
-    
-    private static let tokenKeychainKey = "jwtToken"
-    private static let tokenExpirationDateKeychainKey = "jwtTokenExpirationDate"
-    private static let refreshTokenKeychainKey = "jwtRefreshToken"
-    private static let refreshTokenExpirationDateKeychainKey = "jwtRefreshTokenExpirationDate"
-    private static let refreshTokenIssuedDateKeychainKey = "jwtRefreshTokenIssuedDate"
-    
-    #if os(iOS)
-    private static let tokenKeychain = A0SimpleKeychain()
-    #elseif os(watchOS)
-    private static let tokenKeychain = KeychainController.shared
-    #endif
-    
     static func login(username: String,
                       password: String,
                       completion: @escaping (Result<Bool, NetworkingError>) -> ()) {

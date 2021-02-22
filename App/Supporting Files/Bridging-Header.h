@@ -5,8 +5,6 @@
 #ifndef EXBridgingHeader_h
 #define EXBridgingHeader_h
 
-#import "A0SimpleKeychain.h"
-
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"

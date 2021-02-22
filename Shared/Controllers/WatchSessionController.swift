@@ -21,11 +21,7 @@ class WatchSessionController: NSObject, WCSessionDelegate {
     var authTokenDidUpdate: (() -> Void)? = nil
     var outageReportedFromPhone: (() -> Void)? = nil
     
-    #if os(iOS)
-    private let keychain = A0SimpleKeychain()
-    #elseif os(watchOS)
-    private let keychain = KeychainController.shared
-    #endif
+    private let keychain = KeychainController.default
     
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
     
@@ -52,10 +48,20 @@ class WatchSessionController: NSObject, WCSessionDelegate {
     }
 }
 
-// MARK: - Application Context
+// MARK: Application Context
 /// Use when your app needs only the latest info: If the data was not sent, it will be replaced.
 
 extension WatchSessionController {
+    enum Key {
+        static let tokenKeychainKey = "jwtToken"
+        static let tokenExpirationDateKeychainKey = "jwtTokenExpirationDate"
+        static let refreshTokenKeychainKey = "jwtRefreshToken"
+        static let refreshTokenExpirationDateKeychainKey = "jwtRefreshTokenExpirationDate"
+        static let consoleUser = "console"
+        static let screenName = "screenName"
+        static let outageReported = "outageReported"
+    }
+    
     // Sender
     func updateApplicationContext(applicationContext: [String : Any]) throws {
         guard let session = validSession else {
@@ -75,30 +81,23 @@ extension WatchSessionController {
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         DispatchQueue.main.async { [weak self] in
             // Azure Auth Token
-            if let authToken = applicationContext[UserSession.tokenKeychainKey] as? String,
-               let tokenExpirationDate = applicationContext[UserSession.tokenExpirationDateKeychainKey] as? String,
-               let refreshToken = applicationContext[UserSession.refreshTokenKeychainKey] as? String,
-               let refreshTokenExpirationDate = applicationContext[UserSession.refreshTokenExpirationDateKeychainKey] as? String {
+            if let authToken = applicationContext[WatchSessionController.Key.tokenKeychainKey] as? String,
+               let tokenExpirationDate = applicationContext[WatchSessionController.Key.tokenExpirationDateKeychainKey] as? String,
+               let refreshToken = applicationContext[WatchSessionController.Key.refreshTokenKeychainKey] as? String,
+               let refreshTokenExpirationDate = applicationContext[WatchSessionController.Key.refreshTokenExpirationDateKeychainKey] as? String {
                 
                 // Save to KeyChain
-                #if os(watchOS)
-                self?.keychain[UserSession.tokenKeychainKey] = authToken
-                self?.keychain[UserSession.tokenExpirationDateKeychainKey] = tokenExpirationDate
-                self?.keychain[UserSession.refreshTokenKeychainKey] = refreshToken
-                self?.keychain[UserSession.refreshTokenExpirationDateKeychainKey] = refreshTokenExpirationDate
-                #elseif os(iOS)
-                self?.keychain.setString(authToken, forKey: UserSession.tokenKeychainKey)
-                self?.keychain.setString(tokenExpirationDate, forKey: UserSession.tokenExpirationDateKeychainKey)
-                self?.keychain.setString(refreshToken, forKey: UserSession.refreshTokenKeychainKey)
-                self?.keychain.setString(refreshTokenExpirationDate, forKey: UserSession.refreshTokenExpirationDateKeychainKey)
-                #endif
+                self?.keychain.set(authToken, forKey: .tokenKeychainKey)
+                self?.keychain.set(tokenExpirationDate, forKey: .tokenExpirationDateKeychainKey)
+                self?.keychain.set(refreshToken, forKey: .refreshTokenKeychainKey)
+                self?.keychain.set(refreshTokenExpirationDate, forKey: .refreshTokenExpirationDateKeychainKey)
                 
                 self?.authTokenDidUpdate?()
             }
             
             #if os(watchOS)
             // User reported outage on phone
-            if let outageReported = applicationContext[AppConstant.WatchSessionKey.outageReported] as? Bool, outageReported {
+            if let outageReported = applicationContext[WatchSessionController.Key.outageReported] as? Bool, outageReported {
                 self?.outageReportedFromPhone?()
             }
             #endif
@@ -121,12 +120,12 @@ extension WatchSessionController {
             #if os(iOS)
             
             // Logging
-            if let value = userInfo[AppConstant.WatchSessionKey.consoleUser] as? String {
+            if let value = userInfo[WatchSessionController.Key.consoleUser] as? String {
                 Log.info("WATCH CONSOLE: \(value)")
                 return
             }
             
-            guard let screenName = userInfo[AppConstant.WatchSessionKey.screenName] as? String else {
+            guard let screenName = userInfo[WatchSessionController.Key.screenName] as? String else {
                 Log.error("Failed to parse user info dictionary with key: screenName")
                 return
             }

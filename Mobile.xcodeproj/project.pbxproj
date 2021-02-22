@@ -67,8 +67,6 @@
 		3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3559C8B52301E4FF00481A87 /* AutoPay.storyboard */; };
 		3559C8BA23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */; };
 		355B10372369DB190038EAD3 /* WatchSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionController.swift */; };
-		355B10412369E4820038EAD3 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainController.swift */; };
-		355B10442369E48D0038EAD3 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainController.swift */; };
 		356AC12C25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */; };
 		356AC13325064E5F000CF867 /* TapToPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 356AC13225064E5F000CF867 /* TapToPay.storyboard */; };
 		356D725924D2AF910058661F /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
@@ -166,7 +164,6 @@
 		35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */; };
-		35F9DDBE2333D91D00AAA2B2 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainController.swift */; };
 		35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
@@ -190,7 +187,6 @@
 		54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */; };
 		54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */; };
 		671448C224731680004D2AFF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Configuration.swift */; };
-		67167ABD25DB0E6A00C7E02D /* AnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67167ABC25DB0E6A00C7E02D /* AnimatedImage.swift */; };
 		67247EF325D2D6750024467D /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247EF225D2D6750024467D /* WatchApp.swift */; };
 		67247F0825D2D7FB0024467D /* WatchFlowContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */; };
 		67247F1325D2D8EC0024467D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F1225D2D8EC0024467D /* SignInView.swift */; };
@@ -312,7 +308,6 @@
 		675F4CFC24AB828200A828F9 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3124AB828000A828F9 /* TokenResponse.swift */; };
 		675F4D0E24AB828200A828F9 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
 		675F4D1424AB828200A828F9 /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
-		675F4D1A24AB828200A828F9 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3624AB828000A828F9 /* Test.swift */; };
 		675F4D2024AB828200A828F9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3724AB828000A828F9 /* UserSession.swift */; };
 		675F4D2624AB828200A828F9 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
 		675F4D2C24AB828200A828F9 /* OutageStatusMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B3C24AB828000A828F9 /* OutageStatusMock.json */; };
@@ -359,6 +354,12 @@
 		676434D425AF6D7200DA6448 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434D325AF6D7200DA6448 /* Bundle+Version.swift */; };
 		676434DD25AF702800DA6448 /* ProjectURLSuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */; };
 		676434E425AF703C00DA6448 /* ProjectURLSuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */; };
+		677958B425E4394500A08CC2 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677958B325E4394500A08CC2 /* KeychainItemAccessibility.swift */; };
+		677958C125E4399A00A08CC2 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677958B325E4394500A08CC2 /* KeychainItemAccessibility.swift */; };
+		677958EA25E444FB00A08CC2 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677958E925E444FB00A08CC2 /* KeychainController.swift */; };
+		677958EB25E444FB00A08CC2 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677958E925E444FB00A08CC2 /* KeychainController.swift */; };
+		6779590125E44B9D00A08CC2 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6779590025E44B9D00A08CC2 /* KeychainKeys.swift */; };
+		6779590225E44B9D00A08CC2 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6779590025E44B9D00A08CC2 /* KeychainKeys.swift */; };
 		67893A9724DB1E26000143D6 /* GameService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893A9624DB1E26000143D6 /* GameService+Rx.swift */; };
 		67893AB024DB248C000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
 		67893ABD24DB2F9B000143D6 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893ABC24DB2F9B000143D6 /* AlertService.swift */; };
@@ -596,8 +597,6 @@
 		9C62446822C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62446722C42B4200F14DA0 /* FloatLabelTextView.xib */; };
 		9C62447022C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62446C22C42B4900F14DA0 /* FloatLabelTextView.swift */; };
 		9C62447422C5617D00F14DA0 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControl.swift */; };
-		9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
-		9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
 		9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
 		9C7C902723B55F3100E40D1E /* GameSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */; };
@@ -1352,7 +1351,6 @@
 		355B10352369DB180038EAD3 /* WatchSessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionController.swift; sourceTree = "<group>"; };
 		356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayReviewPaymentViewController.swift; sourceTree = "<group>"; };
 		356AC13225064E5F000CF867 /* TapToPay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TapToPay.storyboard; sourceTree = "<group>"; };
-		356C7F8021909997003E8A90 /* KeychainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainController.swift; sourceTree = "<group>"; };
 		3575232C22C53A1B00A0AFAC /* AccountListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountListRow.xib; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
@@ -1544,7 +1542,6 @@
 		64859E458B5973DD77314B29 /* Pods-EUMobile.prodbeta-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prodbeta-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prodbeta-peco.xcconfig"; sourceTree = "<group>"; };
 		65A34083A174EA78549ACFDB /* Pods-EUMobile.production beta-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.production beta-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.production beta-bge.xcconfig"; sourceTree = "<group>"; };
 		667260BE8F673703710FBBA9 /* Pods-EUMobileUITests.production-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production-bge.xcconfig"; sourceTree = "<group>"; };
-		67167ABC25DB0E6A00C7E02D /* AnimatedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedImage.swift; sourceTree = "<group>"; };
 		67247EF225D2D6750024467D /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
 		67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFlowContainer.swift; sourceTree = "<group>"; };
 		67247F1225D2D8EC0024467D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -1657,7 +1654,6 @@
 		675F4B3124AB828000A828F9 /* TokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		675F4B3424AB828000A828F9 /* AccountLookupResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResult.swift; sourceTree = "<group>"; };
 		675F4B3524AB828000A828F9 /* UsageTip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageTip.swift; sourceTree = "<group>"; };
-		675F4B3624AB828000A828F9 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		675F4B3724AB828000A828F9 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		675F4B3924AB828000A828F9 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		675F4B3C24AB828000A828F9 /* OutageStatusMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OutageStatusMock.json; sourceTree = "<group>"; };
@@ -1703,6 +1699,9 @@
 		676434CA25AF692600DA6448 /* InfoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		676434D325AF6D7200DA6448 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
 		676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectURLSuffix.swift; sourceTree = "<group>"; };
+		677958B325E4394500A08CC2 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		677958E925E444FB00A08CC2 /* KeychainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainController.swift; sourceTree = "<group>"; };
+		6779590025E44B9D00A08CC2 /* KeychainKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
 		67893A9624DB1E26000143D6 /* GameService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameService+Rx.swift"; sourceTree = "<group>"; };
 		67893AAF24DB248C000143D6 /* DailyUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
 		67893ABC24DB2F9B000143D6 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
@@ -1969,8 +1968,6 @@
 		9C62446722C42B4200F14DA0 /* FloatLabelTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextView.xib; sourceTree = "<group>"; };
 		9C62446C22C42B4900F14DA0 /* FloatLabelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextView.swift; sourceTree = "<group>"; };
 		9C62447322C5617D00F14DA0 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
-		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
-		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7774802368C630009AF0F0 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
 		9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeViewController.swift; sourceTree = "<group>"; };
 		9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyViewController.swift; sourceTree = "<group>"; };
@@ -4018,9 +4015,7 @@
 			isa = PBXGroup;
 			children = (
 				35F9DE50233A583700AAA2B2 /* AnalyticController.swift */,
-				356C7F8021909997003E8A90 /* KeychainController.swift */,
 				6724807925D475F60024467D /* NetworkController.swift */,
-				355B10352369DB180038EAD3 /* WatchSessionController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -4096,7 +4091,6 @@
 				67247F6025D2E33A0024467D /* AccountInfoBar.swift */,
 				67247F5225D2DF7E0024467D /* ImageTextView.swift */,
 				67247FCD25D33B400024467D /* CardView.swift */,
-				67167ABC25DB0E6A00C7E02D /* AnimatedImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -4206,7 +4200,6 @@
 		675F4B0B24AB828000A828F9 /* Service Layer */ = {
 			isa = PBXGroup;
 			children = (
-				675F4B3624AB828000A828F9 /* Test.swift */,
 				675F4B3724AB828000A828F9 /* UserSession.swift */,
 				675F4B0C24AB828000A828F9 /* Network Models */,
 				675F4B3824AB828000A828F9 /* Networking */,
@@ -4362,6 +4355,33 @@
 				676434CA25AF692600DA6448 /* InfoLabel.swift */,
 			);
 			path = "Debug Menu";
+			sourceTree = "<group>";
+		};
+		677958A825E438E900A08CC2 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				677958E925E444FB00A08CC2 /* KeychainController.swift */,
+				677958B325E4394500A08CC2 /* KeychainItemAccessibility.swift */,
+				6779590025E44B9D00A08CC2 /* KeychainKeys.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		677958E325E43B4A00A08CC2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				677958E425E43B5300A08CC2 /* Controllers */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		677958E425E43B5300A08CC2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				355B10352369DB180038EAD3 /* WatchSessionController.swift */,
+				677958A825E438E900A08CC2 /* Keychain */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		6797115925DD9008008A0080 /* Outage Animation */ = {
@@ -4910,15 +4930,6 @@
 			path = FloatLabelTextView;
 			sourceTree = "<group>";
 		};
-		9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */ = {
-			isa = PBXGroup;
-			children = (
-				9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */,
-				9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */,
-			);
-			path = A0SimpleKeychain;
-			sourceTree = "<group>";
-		};
 		9CA411D823847FDC00C0B602 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -5142,6 +5153,7 @@
 			isa = PBXGroup;
 			children = (
 				674A114F2522502200AF0D38 /* README.md */,
+				677958E325E43B4A00A08CC2 /* Shared */,
 				B58B5AC31E4E28740051FD5F /* App */,
 				B5AC06D61E52238900BBA4ED /* UnitTests */,
 				087630DF1E72F5D000FA7020 /* UITests */,
@@ -5389,7 +5401,6 @@
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */,
 				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
 			);
 			path = Vendor;
@@ -6452,6 +6463,7 @@
 				67247FEF25D43DAD0024467D /* AccountListContainerView.swift in Sources */,
 				C3055B562538F81B000DB89C /* ForgotMaskedUsernames.swift in Sources */,
 				67247FFD25D43DD70024467D /* AccountRow.swift in Sources */,
+				677958EB25E444FB00A08CC2 /* KeychainController.swift in Sources */,
 				C3055B6B2538F81B000DB89C /* SharePointAlert.swift in Sources */,
 				67247F6E25D2E4EA0024467D /* OutageContainerView.swift in Sources */,
 				C3055C4A2538FD6E000DB89C /* URLProtocolMock.swift in Sources */,
@@ -6475,14 +6487,13 @@
 				35F9DDA62333D88F00AAA2B2 /* Date+Now.swift in Sources */,
 				C3055C1A2538FBEF000DB89C /* PeakRewardsService.swift in Sources */,
 				C3055B792538F81B000DB89C /* MinimumVersion.swift in Sources */,
-				35F9DDBE2333D91D00AAA2B2 /* KeychainController.swift in Sources */,
+				677958C125E4399A00A08CC2 /* KeychainItemAccessibility.swift in Sources */,
 				C3055B6E2538F81B000DB89C /* Alert.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				C3055BEF2538FB11000DB89C /* WalletItemDeleteRequest.swift in Sources */,
 				67247F8D25D2FE510024467D /* UsageContainerView.swift in Sources */,
 				35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */,
 				C3055C142538FBEF000DB89C /* BillService.swift in Sources */,
-				67167ABD25DB0E6A00C7E02D /* AnimatedImage.swift in Sources */,
 				C3055BE42538FB11000DB89C /* WalletItemRequest.swift in Sources */,
 				C3055B422538F703000DB89C /* Configuration.swift in Sources */,
 				C3055B7F2538F81B000DB89C /* MaintenanceMode.swift in Sources */,
@@ -6520,6 +6531,7 @@
 				C3055B602538F81B000DB89C /* BillForecast.swift in Sources */,
 				C3055B7E2538F81B000DB89C /* AnonOutageStatus.swift in Sources */,
 				C3055B782538F81B000DB89C /* EnergyTip.swift in Sources */,
+				6779590225E44B9D00A08CC2 /* KeychainKeys.swift in Sources */,
 				C3055B7A2538F81B000DB89C /* SERInfo.swift in Sources */,
 				C3055B702538F81B000DB89C /* BudgetBilling.swift in Sources */,
 				C3055B812538F81B000DB89C /* AccountResult.swift in Sources */,
@@ -6593,13 +6605,13 @@
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */,
-				355B10412369E4820038EAD3 /* KeychainController.swift in Sources */,
 				0EF60FD320EE8104006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
 				674A11F3252387A100AF0D38 /* SubOpCo.swift in Sources */,
 				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				C36C394324ED7D4800BA83B6 /* RegistrationService+Rx.swift in Sources */,
 				C33827ED24DDDB9900F133C5 /* StringResult.swift in Sources */,
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
+				677958EA25E444FB00A08CC2 /* KeychainController.swift in Sources */,
 				675F4B8E24AB828100A828F9 /* BillingHistoryRequest.swift in Sources */,
 				672480E925D5A7D10024467D /* WatchSessionController.swift in Sources */,
 				C3087A9924B65B0A005AE544 /* AccountService.swift in Sources */,
@@ -6718,7 +6730,6 @@
 				675F4CE424AB828200A828F9 /* MinimumVersion.swift in Sources */,
 				30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
-				675F4D1A24AB828200A828F9 /* Test.swift in Sources */,
 				9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
@@ -6791,6 +6802,7 @@
 				30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
+				677958B425E4394500A08CC2 /* KeychainItemAccessibility.swift in Sources */,
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				67893A9724DB1E26000143D6 /* GameService+Rx.swift in Sources */,
 				9CA4FA602385A2B900E33E7C /* GameProgressBar.swift in Sources */,
@@ -6933,7 +6945,6 @@
 				B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */,
-				9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				675F4C4824AB828100A828F9 /* GameUser.swift in Sources */,
@@ -7009,6 +7020,7 @@
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
+				6779590125E44B9D00A08CC2 /* KeychainKeys.swift in Sources */,
 				675F4CB424AB828200A828F9 /* BillPDF.swift in Sources */,
 				357757552114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				35B9609D22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
@@ -7088,7 +7100,6 @@
 				E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */,
 				357757512113611000E73542 /* DateParserTests.swift in Sources */,
 				3559C8B12301D41400481A87 /* WalletViewModel.swift in Sources */,
-				9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				224EFF23216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
@@ -7107,7 +7118,6 @@
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
-				355B10442369E48D0038EAD3 /* KeychainController.swift in Sources */,
 				9CE700AF231865AA00191C05 /* SERPTSViewModel.swift in Sources */,
 				354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */,
 				9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
@@ -7411,7 +7421,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Release";
 		};
@@ -8025,7 +8035,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-AUT";
 		};
@@ -8432,7 +8442,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Beta";
 		};
@@ -8707,7 +8717,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-RC";
 		};
@@ -8985,7 +8995,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Release";
 		};
@@ -9267,7 +9277,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-AUT";
 		};
@@ -9675,7 +9685,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Beta";
 		};
@@ -9951,7 +9961,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-RC";
 		};
@@ -10230,7 +10240,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Release";
 		};
@@ -10512,7 +10522,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-AUT";
 		};
@@ -10920,7 +10930,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Beta";
 		};
@@ -11196,7 +11206,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-RC";
 		};
@@ -11475,7 +11485,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Release";
 		};
@@ -11757,7 +11767,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-AUT";
 		};
@@ -12165,7 +12175,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Beta";
 		};
@@ -12441,7 +12451,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-RC";
 		};
@@ -12720,7 +12730,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Release";
 		};
@@ -13002,7 +13012,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-AUT";
 		};
@@ -13409,7 +13419,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Beta";
 		};
@@ -13684,7 +13694,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-RC";
 		};
@@ -13962,7 +13972,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Release";
 		};
@@ -14244,7 +14254,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-AUT";
 		};
@@ -14478,7 +14488,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-RC";
 		};
@@ -14611,7 +14621,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Beta";
 		};
