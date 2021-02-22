@@ -168,10 +168,16 @@ class AlertPreferencesViewModel {
                         usageOptions.append(.peakSavingsDayAlert)
                         usageOptions.append(.peakSavingsDayResults)
                     }
+                    if self.isHUAEligible {
+                        usageOptions.append(.highUsage)
+                    }
                     usageOptions.append(.highUsage)
-                    self.sections = [(NSLocalizedString("Usage", comment: ""), usageOptions),
-                                     (NSLocalizedString("Outage", comment: ""),
+                    self.sections = [(NSLocalizedString("Outage", comment: ""),
                                       [.outage, .severeWeather])]
+                    
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
                     
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
@@ -186,8 +192,16 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .ace:
+                    var usageOptions: [AlertPreferencesOptions] = []
+                    if self.isHUAEligible {
+                        usageOptions.append(.highUsage)
+                    }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
+                    
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
                     
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
@@ -208,10 +222,16 @@ class AlertPreferencesViewModel {
                         usageOptions.append(.peakSavingsDayAlert)
                         usageOptions.append(.peakSavingsDayResults)
                     }
-                    usageOptions.append(.highUsage)
-                    self.sections = [(NSLocalizedString("Usage", comment: ""), usageOptions),(NSLocalizedString("Outage", comment: ""),
-                                                                                              [.outage, .severeWeather])]
+                    if self.isHUAEligible {
+                        usageOptions.append(.highUsage)
+                    }
+                    self.sections = [(NSLocalizedString("Outage", comment: ""),
+                                      [.outage, .severeWeather])]
                     
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
+
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
@@ -428,7 +448,7 @@ class AlertPreferencesViewModel {
     
     private func isPeakSavingsDayAlertsEligible() -> Bool {
         if let accountDetail = accountDetail {
-            let configuration = accountDetail.opcoType
+            let configuration = Configuration.shared.opco
             if configuration == .delmarva {
                 return (accountDetail.subOpco == .delmarvaDelaware || accountDetail.subOpco == .delmarvaMaryland) && accountDetail.isResidential && (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled)
             } else if configuration == .pepco {
@@ -460,9 +480,9 @@ class AlertPreferencesViewModel {
     
     var isHUAEligible: Bool {
         switch Configuration.shared.opco {
-        case .bge, .comEd:
+        case .bge, .comEd, .pepco, .ace, .delmarva:
             return self.accountDetail.isHUAEligible ?? false
-        case .peco, .pepco, .ace, .delmarva:
+        case .peco:
             return false
         
         }
