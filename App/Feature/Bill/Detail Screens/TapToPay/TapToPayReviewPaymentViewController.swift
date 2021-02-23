@@ -609,7 +609,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
         
         FirebaseUtility.logEvent(.reviewPaymentSubmit)
         
-        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {
+        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
+            let temp = viewModel.selectedWalletItem.value?.isTemporary ?? false
             switch bankOrCard {
             case .bank:
                 GoogleAnalytics.log(event: .eCheckOffer)
@@ -714,7 +715,8 @@ class TapToPayReviewPaymentViewController: UIViewController {
                             
                             FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .alternateContact, value: contactType)])
                         }
-                        if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                        if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                            let temp = self?.viewModel.selectedWalletItem.value?.isTemporary ?? false
                             switch bankOrCard {
                             case .bank:
                                 GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
