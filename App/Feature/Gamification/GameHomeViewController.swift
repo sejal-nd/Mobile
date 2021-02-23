@@ -351,7 +351,7 @@ class GameHomeViewController: AccountPickerViewController {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
         
         let content = UNMutableNotificationContent()
-        content.title = "Lumi Misses You!"
+        content.title = "Lumi℠ Misses You!"
         content.body = "Check out new data, tips, and insights to help you save energy and money."
         content.sound = UNNotificationSound.default
         

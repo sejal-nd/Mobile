@@ -46,7 +46,7 @@ class GameTryFabViewController: UIViewController {
         
         detailLabel1.textColor = .deepGray
         detailLabel1.font = SystemFont.regular.of(textStyle: .footnote)
-        detailLabel1.text = NSLocalizedString("I’m Lumi!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nTo see your old home screen, use the button at the bottom of the previous screen to swap between the two versions. It looks like this:", comment: "")
+        detailLabel1.text = NSLocalizedString("I’m LUMI℠!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nTo see your old home screen, use the button at the bottom of the previous screen to swap between the two versions. It looks like this:", comment: "")
     
         detailLabel2.textColor = .deepGray
         detailLabel2.font = SystemFont.regular.of(textStyle: .footnote)

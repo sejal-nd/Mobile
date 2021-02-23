@@ -592,7 +592,7 @@ class AlertPreferencesViewModel {
             case .forYourInformation:
                 return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
-                return NSLocalizedString("Lumi Updates", comment: "")
+                return NSLocalizedString("LUMI℠ Updates", comment: "")
             }
         }
         
@@ -743,7 +743,7 @@ class AlertPreferencesViewModel {
                 
             // Energy Buddy
             case (.energyBuddyUpdates, _):
-                return NSLocalizedString("Receive a notification when Lumi has new data, tips, and insights to help you save energy and money.", comment: "")
+                return NSLocalizedString("Receive a notification when LUMI℠ has new data, tips, and insights to help you save energy and money.", comment: "")
             default:
                 return ""
             }
