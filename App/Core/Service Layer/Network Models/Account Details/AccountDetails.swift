@@ -36,6 +36,7 @@ public struct AccountDetail: Decodable {
     public var revenueClass: String?
     public var serviceAgreementCount: Int
     public var isSmartEnergyRewardsEnrolled: Bool
+    public var isPippEnrolled: Bool
     
     public var amountDue: String?
     public var dueDate: Date?
@@ -138,6 +139,7 @@ public struct AccountDetail: Decodable {
         case revenueClass
         case serviceAgreementCount
         case isSmartEnergyRewardsEnrolled = "smartEnergyRewardsStatus"
+        case isPippEnrolled
         
         case amountDue
         case dueDate
@@ -253,6 +255,7 @@ public struct AccountDetail: Decodable {
                                                           forKey: .serviceAgreementCount)
         self.isSmartEnergyRewardsEnrolled = try container.decode(Bool.self,
                                                                  forKey: .isSmartEnergyRewardsEnrolled)
+        self.isPippEnrolled = try container.decodeIfPresent(Bool.self, forKey: .isPippEnrolled) ?? false
         self.amountDue = try container.decodeIfPresent(String.self,
                                                        forKey: .amountDue)
         self.dueDate = try container.decodeIfPresent(Date.self,

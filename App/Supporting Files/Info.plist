@@ -6,8 +6,6 @@
 	<false/>
 	<key>Account URL</key>
 	<string>$(ACCOUNT_URL)</string>
-	<key>Alert URL</key>
-	<string>$(ALERT_URL)</string>
 	<key>App Center ID</key>
 	<string>$(APP_CENTER_ID)</string>
 	<key>Associated Domain</key>
