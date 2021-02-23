@@ -421,8 +421,8 @@ class AlertPreferencesViewModel {
         .share(replay: 1, scope: .forever)
     
     private(set) lazy var nonLanguagePrefsChanged = Observable // all alert prefs except language
-        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged)
-            { $0 || $1 || $2 || $3 }
+        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged, peakSavingsDayAlertChanged, peakTimeSavingsDayResultsChanged)
+            { $0 || $1 || $2 || $3 || $4 || $5}
         .startWith(false)
         .share(replay: 1, scope: .forever)
     

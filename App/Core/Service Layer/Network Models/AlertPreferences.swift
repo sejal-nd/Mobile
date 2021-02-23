@@ -153,8 +153,6 @@ extension AlertPreferences {
             paymentPastDue != originalPrefs.paymentPastDue ||
             budgetBilling != originalPrefs.budgetBilling ||
             appointmentTracking != originalPrefs.appointmentTracking ||
-            forYourInfo != originalPrefs.forYourInfo ||
-            peakTimeSavingsDayAlert != originalPrefs.peakTimeSavingsDayAlert ||
-            peakTimeSavingsDayResults != originalPrefs.peakTimeSavingsDayResults
+            forYourInfo != originalPrefs.forYourInfo
     }
 }
