@@ -63,8 +63,6 @@ struct DebugMenu: View {
                               value: Configuration.shared.associatedDomain)
                     InfoLabel(title: "Account URL",
                               value: Configuration.shared.myAccountUrl)
-                    InfoLabel(title: "Sharepoint URL",
-                              value: Configuration.shared.sharepointBaseURL)
                     InfoLabel(title: "oAuth URL",
                               value: Configuration.shared.oAuthEndpoint)
                     InfoLabel(title: "Payment URL",

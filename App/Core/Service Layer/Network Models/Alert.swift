@@ -11,10 +11,10 @@ import Foundation
 public struct Alert: Decodable {
     public var title: String
     public var message: String
-    public var isEnabled: Bool
-    public var customerType: String
-    public var modified: Date
-    public var created: Date
+    public var isEnabled: Bool?
+    public var customerType: String?
+    public var modified: Date?
+    public var created: Date?
     
     enum CodingKeys: String, CodingKey {
         case title = "Title"
@@ -32,13 +32,13 @@ public struct Alert: Decodable {
                                           forKey: .title)
         self.message = try container.decode(String.self,
                                             forKey: .message)
-        self.isEnabled = try container.decode(Bool.self,
+        self.isEnabled = try container.decodeIfPresent(Bool.self,
                                               forKey: .isEnabled)
-        self.customerType = try container.decode(String.self,
+        self.customerType = try container.decodeIfPresent(String.self,
                                                  forKey: .customerType)
-        self.modified = try container.decode(Date.self,
+        self.modified = try container.decodeIfPresent(Date.self,
                                              forKey: .modified)
-        self.created = try container.decode(Date.self,
+        self.created = try container.decodeIfPresent(Date.self,
                                             forKey: .created)
     }
 }
