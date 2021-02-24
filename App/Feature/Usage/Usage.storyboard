@@ -1891,21 +1891,26 @@
                                                     <constraint firstAttribute="width" constant="120" id="zyM-oH-XBm"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvd-YF-Hs6">
-                                                <rect key="frame" x="20" y="186" width="374" height="101.5"/>
-                                                <string key="text">Reduce your energy use below 4.00 kWh during the Peak Savings Day on Wednesday, September 19, 2018, from 01:00 PM to 02:00 PM. The more you reduce, the greater the opportunity to earn a credit.</string>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvd-YF-Hs6">
+                                                <rect key="frame" x="20" y="186" width="374" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="BgY-dl-05v" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                                <rect key="frame" x="177" y="387" width="60" height="12"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="kvd-YF-Hs6" firstAttribute="top" secondItem="Hac-uP-o5U" secondAttribute="bottom" constant="20" id="19D-b1-dVH"/>
+                                            <constraint firstItem="BgY-dl-05v" firstAttribute="centerX" secondItem="Yfv-G7-h7G" secondAttribute="centerX" id="5GW-w5-3Hb"/>
                                             <constraint firstItem="Hac-uP-o5U" firstAttribute="centerX" secondItem="Yfv-G7-h7G" secondAttribute="centerX" id="CuQ-Xn-JQD"/>
                                             <constraint firstItem="Hac-uP-o5U" firstAttribute="top" secondItem="Yfv-G7-h7G" secondAttribute="top" constant="46" id="PVE-vr-If8"/>
                                             <constraint firstItem="kvd-YF-Hs6" firstAttribute="leading" secondItem="Yfv-G7-h7G" secondAttribute="leading" constant="20" id="fZh-aY-MiS"/>
                                             <constraint firstAttribute="trailing" secondItem="kvd-YF-Hs6" secondAttribute="trailing" constant="20" id="gHq-Gc-Tor"/>
+                                            <constraint firstItem="BgY-dl-05v" firstAttribute="centerY" secondItem="Yfv-G7-h7G" secondAttribute="centerY" id="zuF-Xx-LQ7"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1960,6 +1965,8 @@
                     <navigationItem key="navigationItem" title="Peak Energy Savings" id="E2K-oZ-Ryc"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="imageView" destination="Hac-uP-o5U" id="XAH-sc-5rv"/>
+                        <outlet property="loadingIndicator" destination="BgY-dl-05v" id="Ur5-fK-GJf"/>
                         <outlet property="programDetailsLabel" destination="kvd-YF-Hs6" id="uxj-ci-PWr"/>
                         <outlet property="view" destination="cLc-cC-uNd" id="3Wi-Wk-gPD"/>
                     </connections>

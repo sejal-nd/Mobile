@@ -10,13 +10,14 @@ import Foundation
 
 final class PeakEnergySavingsViewModel {
     
-    let accountDetail: AccountDetail
-    var subOpco: SubOpCo?
-    
-    init(accountDetail: AccountDetail) {
-        self.accountDetail = accountDetail
-        if let opco = accountDetail.subOpco {
-            subOpco = opco
+    func fetchSERResults(accountNumber: String, success: @escaping (([SERResult]) -> ()), failure: @escaping (NetworkingError) ->()) {
+        AccountService.fetchSERResults(accountNumber: accountNumber) { (result) in
+            switch result {
+            case .success(let serInfo):
+                success(serInfo)
+            case .failure(let error):
+                failure(error)
+            }
         }
     }
 }
