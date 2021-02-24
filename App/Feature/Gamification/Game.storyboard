@@ -462,8 +462,8 @@
                                                             <action selector="onStreakButtonPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="ke4-JY-Wwh"/>
                                                         </connections>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LUMI℠ Daily Insight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-gJ-F04">
-                                                        <rect key="frame" x="116" y="20" width="150.5" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Insight by LUMI℠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-gJ-F04">
+                                                        <rect key="frame" x="104.5" y="20" width="173.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1349,7 +1349,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
             </objects>
             <point key="canvasLocation" x="4470" y="-3342"/>
         </scene>
-        <!--LUMI℠ Weekly Insight-->
+        <!--Weekly Insights by LUMI℠-->
         <scene sceneID="OKd-WU-v8v">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="wo1-Rx-2vT" customClass="WeeklyInsightViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
@@ -1570,7 +1570,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                             <constraint firstAttribute="top" secondItem="vdv-bd-s7f" secondAttribute="top" id="klI-cl-QNS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="LUMI℠ Weekly Insight" id="KxE-9B-kvI"/>
+                    <navigationItem key="navigationItem" title="Weekly Insights by LUMI℠" id="KxE-9B-kvI"/>
                     <connections>
                         <outlet property="billProjectionLabel" destination="VAF-IP-htO" id="TzA-GF-Mo8"/>
                         <outlet property="comparisonLabel" destination="m6R-D2-xeN" id="FJt-wI-NnO"/>

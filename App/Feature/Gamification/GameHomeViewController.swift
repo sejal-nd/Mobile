@@ -91,7 +91,7 @@ class GameHomeViewController: AccountPickerViewController {
         
         dailyInsightLabel.textColor = .deepGray
         dailyInsightLabel.font = OpenSans.regular.of(textStyle: .headline)
-        dailyInsightLabel.text = NSLocalizedString("LUMI℠ Daily Insight", comment: "")
+        dailyInsightLabel.text = NSLocalizedString("Daily Insight by LUMI℠", comment: "")
         
         streakLabel.textColor = .actionBlue
         streakLabel.font = SystemFont.semibold.of(size: 13)
@@ -414,10 +414,7 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     @IBAction func onDailyInsightTooltipPress() {
-        let attributedTitle = NSMutableAttributedString(string: NSLocalizedString("LUMI℠\n", comment: ""), attributes: [.font : UIFont.systemFont(ofSize: 20.0, weight: .semibold)])
-        
-        attributedTitle.append(NSAttributedString(string: NSLocalizedString("Daily Insight", comment: "")))
-        let alert = InfoAlertController(attributedTitle: attributedTitle,
+        let alert = InfoAlertController(title: "Daily Insight by LUMI℠",
                                         message: NSLocalizedString("Your daily usage will be compared to your previous week. Points for each day will be available for up to 7 days of data. Uncollected points for the days prior will be lost, so be sure to check at least once a week!\n\nSmart meter data is typically available within 24-48 hours of your usage.", comment: ""))
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
