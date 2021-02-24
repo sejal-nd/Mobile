@@ -160,8 +160,6 @@ public enum Router {
             return Configuration.shared.oAuthEndpoint
         case .weather:
             return "api.weather.gov"
-        case .alertBanner, .newsAndUpdates:
-            return Configuration.shared.sharepointBaseURL
         default:
             return Configuration.shared.baseUrl
         }
@@ -233,7 +231,7 @@ public enum Router {
         case .payments(let accountNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments"
         case .alertBanner, .newsAndUpdates:
-            return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
+            return "\(basePath)/\(apiAccess.path)/config/alerts"
         case .billPDF(let accountNumber, let date, let documentID):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
             return Configuration.shared.opco.isPHI ? "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
@@ -428,7 +426,7 @@ public enum Router {
         case .payments:
             return "PaymentsMock"
         case .alertBanner, .newsAndUpdates:
-            return "SharePointAlertMock"
+            return "AzureAlertsMock"
         case .billPDF:
             return "BillPDFMock"
         case .scheduledPayment, .scheduledPaymentUpdate, .scheduledPaymentDelete:

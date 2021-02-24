@@ -116,7 +116,6 @@ struct InfoPlist: Codable {
     let displayName: String
     let baseURL: String
     let oauthURL: String
-    let alertURL: String
     let accountURL: String
     let paymentURL: String
     let associatedDomain: String
@@ -132,7 +131,6 @@ struct InfoPlist: Codable {
         case displayName = "Build Display Name"
         case baseURL = "Base URL"
         case oauthURL = "OAuth URL"
-        case alertURL = "Alert URL"
         case accountURL = "Account URL"
         case paymentURL = "Payment URL"
         case associatedDomain = "Associated Domain"
@@ -155,7 +153,6 @@ struct Configuration {
     let baseUrl: String
     let oAuthEndpoint: String
     let paymentusUrl: String
-    let sharepointBaseURL: String
     
     var clientSecret: String {
         var secret = ""
@@ -208,7 +205,6 @@ struct Configuration {
             let operatingCompany = OpCo(rawValue: infoPlist.buildFlavor)!
             opco = operatingCompany
             paymentusUrl = infoPlist.paymentURL
-            sharepointBaseURL = infoPlist.alertURL
             myAccountUrl = infoPlist.accountURL
             gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain
