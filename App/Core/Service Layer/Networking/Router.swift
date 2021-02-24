@@ -117,7 +117,7 @@ public enum Router {
     case alertPreferencesUpdate(accountNumber: String, request: AlertPreferencesRequest)
     case fetchAlertLanguage(accountNumber: String)
     case setAlertLanguage(accountNumber: String, request: AlertLanguageRequest)
-    case alertBanner(additionalQueryItem: URLQueryItem)
+    case alertBanner
     
     // News & Updates
     case newsAndUpdates(additionalQueryItem: URLQueryItem)
@@ -383,10 +383,6 @@ public enum Router {
     
     public var parameters: [URLQueryItem]? {
         switch self {
-        case .alertBanner(let additionalQueryItem), .newsAndUpdates(let additionalQueryItem):
-            return [URLQueryItem(name: "$select", value: "Title,Message,Enable,CustomerType,Created,Modified"),
-                    URLQueryItem(name: "$orderby", value: "Modified desc"),
-                    additionalQueryItem]
         case .outageStatus(_, let summaryQueryItem):
             var queryItems = [URLQueryItem(name: "meterPing", value: "false")]
             if let summaryQueryItem = summaryQueryItem {
