@@ -26,8 +26,7 @@ class InfoAlertController: UIViewController {
     private let xButton = UIButton(type: .custom).usingAutoLayout()
     private var ctaButton: PrimaryButton?
     
-    private let titleString: String?
-    private let attributedTitle: NSAttributedString?
+    private let titleString: String
     private let message: String?
     private let attributedMessage: NSAttributedString?
     private let icon: UIImage?
@@ -35,7 +34,6 @@ class InfoAlertController: UIViewController {
     
     init(title: String, message: String, icon: UIImage? = nil, action: InfoAlertAction? = nil) {
         self.titleString = title
-        self.attributedTitle = nil
         self.message = message
         self.attributedMessage = nil
         self.icon = icon
@@ -48,33 +46,6 @@ class InfoAlertController: UIViewController {
     
     init(title: String, attributedMessage: NSAttributedString, icon: UIImage? = nil, action: InfoAlertAction? = nil) {
         self.titleString = title
-        self.attributedTitle = nil
-        self.message = nil
-        self.attributedMessage = attributedMessage
-        self.icon = icon
-        self.action = action
-        super.init(nibName: nil, bundle: nil)
-        
-        modalPresentationStyle = .overCurrentContext
-        modalTransitionStyle = .crossDissolve
-    }
-    
-    init(attributedTitle: NSAttributedString, message: String, icon: UIImage? = nil, action: InfoAlertAction? = nil) {
-        self.titleString = nil
-        self.attributedTitle = attributedTitle
-        self.message = message
-        self.attributedMessage = nil
-        self.icon = icon
-        self.action = action
-        super.init(nibName: nil, bundle: nil)
-        
-        modalPresentationStyle = .overCurrentContext
-        modalTransitionStyle = .crossDissolve
-    }
-    
-    init(attributedTitle: NSAttributedString, attributedMessage: NSAttributedString, icon: UIImage? = nil, action: InfoAlertAction? = nil) {
-        self.titleString = nil
-        self.attributedTitle = attributedTitle
         self.message = nil
         self.attributedMessage = attributedMessage
         self.icon = icon
@@ -168,13 +139,8 @@ class InfoAlertController: UIViewController {
     }
     
     private func populateViews() {
-        if let title = self.titleString {
-            titleLabel.text = title
-            titleLabel.accessibilityLabel = title
-        } else if let attributedTitle = self.attributedTitle {
-            titleLabel.attributedText = attributedTitle
-            titleLabel.accessibilityAttributedLabel = attributedTitle
-        }
+        titleLabel.text = titleString
+        titleLabel.accessibilityLabel = titleString
         titleLabel.accessibilityTraits.insert(.header)
         
         if let message = self.message {
