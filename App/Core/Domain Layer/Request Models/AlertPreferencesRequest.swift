@@ -97,7 +97,7 @@ public struct AlertPreferencesRequest: Encodable {
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentPastDue, programName: paymentPastDueProgramName))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.budgetBilling, programName: budgetBillingProgramName))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: forYourInfoProgramName))
-            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.highUsage, programName: highUsageAlertProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.highUsage, programName: highUsageAlertProgramName, alertThreshold: alertPreferences.alertThreshold))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.peakTimeSavingsDayAlert ?? false, programName: peakSavingsDayAlertProgramName))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.peakTimeSavingsDayResults ?? false, programName: peakSavingsDayResultsProgramName))
         }
