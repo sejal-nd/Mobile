@@ -171,7 +171,6 @@ class AlertPreferencesViewModel {
                     if self.isHUAEligible {
                         usageOptions.append(.highUsage)
                     }
-                    usageOptions.append(.highUsage)
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                                       [.outage, .severeWeather])]
                     
@@ -282,6 +281,8 @@ class AlertPreferencesViewModel {
                     self.billThreshold.accept("")
                 }
                 self.peakTimeSavings.accept(alertPrefs.peakTimeSavings ?? false)
+                self.peakSavingsDayAlert.accept(alertPrefs.peakTimeSavingsDayAlert ?? false)
+                self.peakSavingsDayResults.accept(alertPrefs.peakTimeSavingsDayResults ?? false)
                 self.smartEnergyRewards.accept(alertPrefs.smartEnergyRewards ?? false)
                 self.energySavingsDayResults.accept(alertPrefs.energySavingsDayResults ?? false)
                                 
@@ -342,6 +343,14 @@ class AlertPreferencesViewModel {
     private lazy var paymentDaysBeforeChanged = paymentDueDaysBefore.asObservable()
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0 != $1.paymentDueDaysBefore }
+    
+    private lazy var peakSavingsDayAlertChanged = peakSavingsDayAlert.asObservable()
+        .withLatestFrom(alertPrefs.asObservable().unwrap())
+        { $0 != $1.peakTimeSavingsDayAlert }
+    
+    private lazy var peakTimeSavingsDayResultsChanged = peakSavingsDayResults.asObservable()
+        .withLatestFrom(alertPrefs.asObservable().unwrap())
+        { $0 != $1.peakTimeSavingsDayResults }
     
     private lazy var booleanPrefsChanged = Observable<Bool>
         .combineLatest([highUsage.asObservable(),
@@ -406,14 +415,14 @@ class AlertPreferencesViewModel {
         .map { [weak self] in $0 != self?.initialEnergyBuddyUpdatesValue ?? false }
     
     private(set) lazy var prefsChanged = Observable
-        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, languagePrefChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged)
-        { $0 || $1 || $2 || $3 || $4 }
+        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, languagePrefChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged, peakSavingsDayAlertChanged, peakTimeSavingsDayResultsChanged)
+        { $0 || $1 || $2 || $3 || $4 || $5 || $6 }
         .startWith(false)
         .share(replay: 1, scope: .forever)
     
     private(set) lazy var nonLanguagePrefsChanged = Observable // all alert prefs except language
-        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged)
-            { $0 || $1 || $2 || $3 }
+        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged, peakSavingsDayAlertChanged, peakTimeSavingsDayResultsChanged)
+            { $0 || $1 || $2 || $3 || $4 || $5}
         .startWith(false)
         .share(replay: 1, scope: .forever)
     
@@ -434,7 +443,9 @@ class AlertPreferencesViewModel {
                                                 paymentPastDue: paymentPastDue.value,
                                                 budgetBilling: budgetBilling.value,
                                                 appointmentTracking: appointmentTracking.value,
-                                                forYourInfo: forYourInfo.value)
+                                                forYourInfo: forYourInfo.value,
+                                                peakTimeSavingsDayAlert: peakSavingsDayAlert.value,
+                                                peakTimeSavingsDayResults: peakSavingsDayResults.value)
         let alertPreferenceRequest = AlertPreferencesRequest(alertPreferences: alertPreferences)
         
         return nonLanguagePrefsChanged.flatMap {
