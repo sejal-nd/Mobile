@@ -196,12 +196,22 @@ class BudgetBillingViewController: UIViewController {
                 
                 let budgetBillDifference = budgetBillingInfo.budgetBillDifference ?? 0
                 if budgetBillDifference < 0 {
-                    self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
+                    print("budgetBillDifference: \(budgetBillDifference)")
+                    self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of %f beginning with your next bill.", comment: ""), budgetBillDifference)
                 } else if budgetBillDifference > 0 {
-                    self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of %@ beginning with your next bill.", comment: ""), budgetBillDifference)
+                    print("budgetBillDifference: \(budgetBillDifference)")
+                    self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of %f beginning with your next bill.", comment: ""), budgetBillDifference)
                 } else {
                     self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
                 }
+                
+//                if budgetBillDifference < 0 {
+//                    self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of \(budgetBillDifference) beginning with your next bill.", comment: "")
+//                } else if budgetBillDifference > 0 {
+//                    self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of \(budgetBillDifference) beginning with your next bill.", comment: "")
+//                } else {
+//                    self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
+//                }
                 
 //                if budgetBillingInfo.isUSPPParticipant {
 //                    // USPP Participants cannot unenroll
