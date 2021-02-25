@@ -196,10 +196,8 @@ class BudgetBillingViewController: UIViewController {
                 
                 let budgetBillDifference = budgetBillingInfo.budgetBillDifference ?? 0
                 if budgetBillDifference < 0 {
-                    print("budgetBillDifference: \(budgetBillDifference)")
                     self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of %f beginning with your next bill.", comment: ""), budgetBillDifference)
                 } else if budgetBillDifference > 0 {
-                    print("budgetBillDifference: \(budgetBillDifference)")
                     self.bgeDynamicUnenrollMessage = String(format: NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of %f beginning with your next bill.", comment: ""), budgetBillDifference)
                 } else {
                     self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
