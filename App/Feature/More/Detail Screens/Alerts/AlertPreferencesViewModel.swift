@@ -191,17 +191,9 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .ace:
-                    var usageOptions: [AlertPreferencesOptions] = []
-                    if self.isHUAEligible {
-                        usageOptions.append(.highUsage)
-                    }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
-                    
-                    if !usageOptions.isEmpty {
-                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
-                    }
-                    
+                   
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
@@ -491,9 +483,9 @@ class AlertPreferencesViewModel {
     
     var isHUAEligible: Bool {
         switch Configuration.shared.opco {
-        case .bge, .comEd, .pepco, .ace, .delmarva:
+        case .bge, .comEd, .pepco, .delmarva:
             return self.accountDetail.isHUAEligible ?? false
-        case .peco:
+        case .peco, .ace:
             return false
         
         }
