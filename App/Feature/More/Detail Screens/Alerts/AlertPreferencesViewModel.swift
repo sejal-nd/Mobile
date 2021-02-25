@@ -526,6 +526,8 @@ class AlertPreferencesViewModel {
     
     var billThresholdToolTipText: String {
         switch Configuration.shared.opco {
+        case .ace, .delmarva, .pepco:
+            return NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month. If no selection is made, we will alert you if your usage is 30% higher compared to the same time last year.", comment: "")
         case .bge:
             return NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month. If no selection is made, we will alert you if your usage is 30% and $30 higher compared to the same time last year.", comment: "")
         case .comEd:
