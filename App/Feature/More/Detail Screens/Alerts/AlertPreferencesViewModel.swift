@@ -191,17 +191,9 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .ace:
-                    var usageOptions: [AlertPreferencesOptions] = []
-                    if self.isHUAEligible {
-                        usageOptions.append(.highUsage)
-                    }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
-                    
-                    if !usageOptions.isEmpty {
-                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
-                    }
-                    
+                   
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
@@ -461,9 +453,9 @@ class AlertPreferencesViewModel {
         if let accountDetail = accountDetail {
             let configuration = Configuration.shared.opco
             if configuration == .delmarva {
-                return (accountDetail.subOpco == .delmarvaDelaware || accountDetail.subOpco == .delmarvaMaryland) && accountDetail.isResidential && (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled)
+                return (accountDetail.subOpco == .delmarvaDelaware || accountDetail.subOpco == .delmarvaMaryland) && accountDetail.isResidential && (accountDetail.isPESCEligible ?? false)
             } else if configuration == .pepco {
-                return accountDetail.subOpco == .pepcoMaryland && accountDetail.isResidential && (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled)
+                return accountDetail.subOpco == .pepcoMaryland && accountDetail.isResidential && (accountDetail.isPESCEligible ?? false)
             } else {
                 return false
             }
@@ -491,9 +483,9 @@ class AlertPreferencesViewModel {
     
     var isHUAEligible: Bool {
         switch Configuration.shared.opco {
-        case .bge, .comEd, .pepco, .ace, .delmarva:
+        case .bge, .comEd, .pepco, .delmarva:
             return self.accountDetail.isHUAEligible ?? false
-        case .peco:
+        case .peco, .ace:
             return false
         
         }
@@ -526,6 +518,8 @@ class AlertPreferencesViewModel {
     
     var billThresholdToolTipText: String {
         switch Configuration.shared.opco {
+        case .ace, .delmarva, .pepco:
+            return NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month. If no selection is made, we will alert you if your usage is 30% higher compared to the same time last year.", comment: "")
         case .bge:
             return NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month. If no selection is made, we will alert you if your usage is 30% and $30 higher compared to the same time last year.", comment: "")
         case .comEd:
