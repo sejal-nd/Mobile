@@ -205,19 +205,6 @@ class BudgetBillingViewController: UIViewController {
                     self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
                 }
                 
-//                if budgetBillDifference < 0 {
-//                    self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a credit of \(budgetBillDifference) beginning with your next bill.", comment: "")
-//                } else if budgetBillDifference > 0 {
-//                    self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage. This will include a debit of \(budgetBillDifference) beginning with your next bill.", comment: "")
-//                } else {
-//                    self.bgeDynamicUnenrollMessage = NSLocalizedString("You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage.", comment: "")
-//                }
-                
-//                if budgetBillingInfo.isUSPPParticipant {
-//                    // USPP Participants cannot unenroll
-//                    self.stickyFooterView.isHidden = true
-//                }
-                
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
             }
         }, onError: { [weak self] errMessage in
