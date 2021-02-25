@@ -461,9 +461,9 @@ class AlertPreferencesViewModel {
         if let accountDetail = accountDetail {
             let configuration = Configuration.shared.opco
             if configuration == .delmarva {
-                return (accountDetail.subOpco == .delmarvaDelaware || accountDetail.subOpco == .delmarvaMaryland) && accountDetail.isResidential && (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled)
+                return (accountDetail.subOpco == .delmarvaDelaware || accountDetail.subOpco == .delmarvaMaryland) && accountDetail.isResidential && (accountDetail.isPESCEligible ?? false)
             } else if configuration == .pepco {
-                return accountDetail.subOpco == .pepcoMaryland && accountDetail.isResidential && (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled)
+                return accountDetail.subOpco == .pepcoMaryland && accountDetail.isResidential && (accountDetail.isPESCEligible ?? false)
             } else {
                 return false
             }

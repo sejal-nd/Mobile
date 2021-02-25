@@ -885,12 +885,12 @@ class UsageViewModel {
                     if accountDetail.isEnergyWiseRewardsEligible || accountDetail.isEnergyWiseRewardsEnrolled {
                         usageTools.insert(.energyWiseRewards, at: 1)
                     }
-                    if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && (accountDetail.subOpco == .delmarvaMaryland || accountDetail.subOpco == .delmarvaDelaware) {
+                    if accountDetail.isPeakEnergySavingsCreditEnrolled && (accountDetail.subOpco == .delmarvaMaryland || accountDetail.subOpco == .delmarvaDelaware) {
                         usageTools.append(.peakEnergySavings)
                     }
                 } else if accountDetail.opcoType == .pepco {
                     usageTools.insert(.energyWiseRewards, at: 1)
-                    if (accountDetail.isPeakEnergySavingsCreditEligible || accountDetail.isPeakEnergySavingsCreditEnrolled) && accountDetail.subOpco == .pepcoMaryland {
+                    if accountDetail.isPeakEnergySavingsCreditEnrolled && accountDetail.subOpco == .pepcoMaryland {
                         usageTools.append(.peakEnergySavings)
                     }
                 }
