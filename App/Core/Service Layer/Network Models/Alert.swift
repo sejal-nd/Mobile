@@ -11,34 +11,26 @@ import Foundation
 public struct Alert: Decodable {
     public var title: String
     public var message: String
-    public var isEnabled: Bool?
-    public var customerType: String?
-    public var modified: Date?
-    public var created: Date?
+    public var order: Int
+    public var type: String
     
     enum CodingKeys: String, CodingKey {
         case title = "Title"
         case message = "Message"
-        case isEnabled = "Enable"
-        case customerType = "CustomerType"
-        case modified = "Modified"
-        case created = "Created"
+        case order = "Order"
+        case type = "AlertTypeString"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.title = try container.decode(String.self,
-                                          forKey: .title)
-        self.message = try container.decode(String.self,
-                                            forKey: .message)
-        self.isEnabled = try container.decodeIfPresent(Bool.self,
-                                              forKey: .isEnabled)
-        self.customerType = try container.decodeIfPresent(String.self,
-                                                 forKey: .customerType)
-        self.modified = try container.decodeIfPresent(Date.self,
-                                             forKey: .modified)
-        self.created = try container.decodeIfPresent(Date.self,
-                                            forKey: .created)
+        self.title = try container.decodeIfPresent(String.self,
+                                          forKey: .title) ?? ""
+        self.message = try container.decodeIfPresent(String.self,
+                                            forKey: .message) ?? ""
+        self.order = try container.decodeIfPresent(Int.self,
+                                                 forKey: .order) ?? 0
+        self.type = try container.decodeIfPresent(String.self,
+                                                 forKey: .type) ?? "None"
     }
 }
