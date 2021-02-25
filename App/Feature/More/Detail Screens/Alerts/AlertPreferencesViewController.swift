@@ -319,6 +319,10 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             }
         case .peakTimeSavings:
             toggleVariable = viewModel.peakTimeSavings
+        case .peakSavingsDayAlert:
+            toggleVariable = viewModel.peakSavingsDayAlert
+        case .peakSavingsDayResults:
+            toggleVariable = viewModel.peakSavingsDayResults
         case .smartEnergyRewards:
             toggleVariable = viewModel.smartEnergyRewards
         case .energySavingsDayResults:

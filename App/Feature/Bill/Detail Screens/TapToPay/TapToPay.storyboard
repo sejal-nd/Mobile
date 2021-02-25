@@ -448,7 +448,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ibB-eC-2F9">
-                                                                        <rect key="frame" x="20" y="67.5" width="369" height="67"/>
+                                                                        <rect key="frame" x="20" y="67.5" width="369" height="120"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Past due payments cannot be scheduled for a later date." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNS-xm-8Sh">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="369" height="14.5"/>
@@ -471,6 +471,12 @@
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPq-Dw-uaJ">
                                                                                 <rect key="frame" x="0.0" y="52.5" width="369" height="14.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCB-dZ-aNP" userLabel="Space">
+                                                                                <rect key="frame" x="0.0" y="70" width="369" height="50"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -502,7 +508,7 @@
                                                         <constraints>
                                                             <constraint firstItem="pwX-Ix-gld" firstAttribute="top" secondItem="F7a-ce-Vaq" secondAttribute="top" id="18P-lc-OCZ"/>
                                                             <constraint firstAttribute="bottom" secondItem="pwX-Ix-gld" secondAttribute="bottom" id="JpN-mf-cNx"/>
-                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="118.5" id="N77-6G-beZ"/>
+                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="N77-6G-beZ"/>
                                                             <constraint firstItem="pwX-Ix-gld" firstAttribute="leading" secondItem="F7a-ce-Vaq" secondAttribute="leading" id="PpN-Ga-ISt"/>
                                                             <constraint firstAttribute="trailing" secondItem="pwX-Ix-gld" secondAttribute="trailing" id="q7c-xa-NJb"/>
                                                         </constraints>
