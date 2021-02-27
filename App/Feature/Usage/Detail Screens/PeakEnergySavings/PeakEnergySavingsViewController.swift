@@ -86,11 +86,39 @@ extension PeakEnergySavingsViewController {
     private func fetchBaselineInformation() {
         loadingIndicator.isHidden = false
         viewModel.fetchSERResults(accountNumber: accountDetail.accountNumber) { [weak self] result in
-            self?.loadingIndicator.isHidden = true
-            self?.imageView.isHidden = false
+            guard let `self` = self else { return }
+            self.renderBaselineInformation(result: result)
+            self.loadingIndicator.isHidden = true
+            self.imageView.isHidden = false
         } failure: { [weak self] error in
-            self?.imageView.isHidden = false
-            self?.loadingIndicator.isHidden = true
+            guard let self = self else { return }
+            self.renderBaselineInformation(result: [], error: error)
+            self.imageView.isHidden = false
+            self.loadingIndicator.isHidden = true
+            
         }
+    }
+    
+    /// This method takes in a parameter of an array of `SERResult` and formats the display string and renders the baseline information on UI
+    /// - Parameter result: `SERResult` array instance
+    /// - Parameter error: `NetworkingError` error instance
+    private func renderBaselineInformation(result: [SERResult], error: NetworkingError? = nil) {
+        var baselineInformation = ""
+        if let _ = error {
+            baselineInformation = "Your Baseline will appear here when a Peak Savings Day is pending"
+        } else {
+            if result.isEmpty {
+                //PHI baseline information when there is no events from the API
+                baselineInformation = NSLocalizedString("Your Baseline will appear here when a Peak Savings Day is pending", comment: "")
+            } else {
+                if let event = result.first {
+                    let baselineDay = DateFormatter.dayMonthDayYearFormatter.string(from: event.eventStart)
+                    let baselineStartTime = DateFormatter.hmmaFormatter.string(from: event.eventStart)
+                    let baselineEndTime = DateFormatter.hmmaFormatter.string(from: event.eventEnd)
+                    baselineInformation = "Reduce your energy use below \(event.baselineKWH) kWh during the Peak Savings Day on \(baselineDay), from \(baselineStartTime) to \(baselineEndTime). The more you reduce, the greater the opportunity to earn a credit."
+                }
+            }
+        }
+        programDetailsLabel.text = baselineInformation
     }
 }
