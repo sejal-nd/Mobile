@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xNU-PN-Pey">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xNU-PN-Pey">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1162,7 +1162,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AY3-vS-Oof">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="288.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lumi teaches you how to make small changes that lead to big impacts. This feature includes:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvf-P2-4pq">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LUMI℠ teaches you how to make small changes that lead to big impacts. This feature includes:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvf-P2-4pq">
                                                 <rect key="frame" x="20" y="30" width="374" height="41"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -1447,6 +1447,13 @@
                                     <constraint firstItem="Jml-YF-e9E" firstAttribute="leading" secondItem="IzX-EK-otB" secondAttribute="leading" constant="20" id="iBs-Ie-m9Z"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0I-EZ-RhS">
+                                <rect key="frame" x="151.5" y="223" width="111" height="30"/>
+                                <state key="normal" title="Reset Nickname"/>
+                                <connections>
+                                    <action selector="resetNicknameAction:" destination="eT5-Kx-SqK" eventType="touchUpInside" id="RHl-ED-q02"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="njo-ht-n9o"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1457,6 +1464,8 @@
                             <constraint firstItem="njo-ht-n9o" firstAttribute="trailing" secondItem="7qd-KH-lf6" secondAttribute="trailing" id="8sJ-YE-BTL"/>
                             <constraint firstItem="gkm-lk-yJR" firstAttribute="top" secondItem="wl4-6F-b0k" secondAttribute="bottom" constant="30" id="ANH-Ur-ILc"/>
                             <constraint firstItem="gkm-lk-yJR" firstAttribute="leading" secondItem="njo-ht-n9o" secondAttribute="leading" constant="20" id="RYZ-fT-H4F"/>
+                            <constraint firstItem="f0I-EZ-RhS" firstAttribute="top" secondItem="gkm-lk-yJR" secondAttribute="bottom" constant="44" id="bNA-Ve-Tqs"/>
+                            <constraint firstItem="f0I-EZ-RhS" firstAttribute="centerX" secondItem="C9P-Dj-9Zp" secondAttribute="centerX" id="eNo-Ut-yeT"/>
                             <constraint firstItem="njo-ht-n9o" firstAttribute="bottom" secondItem="7qd-KH-lf6" secondAttribute="bottom" id="fCq-th-wT9"/>
                             <constraint firstItem="wl4-6F-b0k" firstAttribute="top" secondItem="njo-ht-n9o" secondAttribute="top" id="mDj-Oe-r2G"/>
                             <constraint firstItem="7qd-KH-lf6" firstAttribute="leading" secondItem="C9P-Dj-9Zp" secondAttribute="leading" id="vQK-CA-jD1"/>
@@ -1467,6 +1476,7 @@
                         <outlet property="accountPicker" destination="wl4-6F-b0k" id="LXU-IT-zxI"/>
                         <outlet property="footerBottomAnchor" destination="fCq-th-wT9" id="G1k-Qt-42M"/>
                         <outlet property="nickNametextField" destination="gkm-lk-yJR" id="YmZ-Er-NPw"/>
+                        <outlet property="resetNicknameButton" destination="f0I-EZ-RhS" id="59F-kL-NHi"/>
                         <outlet property="saveNicknameButton" destination="Jml-YF-e9E" id="Rwp-Na-ciH"/>
                     </connections>
                 </viewController>

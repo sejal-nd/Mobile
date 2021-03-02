@@ -28,6 +28,9 @@ final class EditAccountNickNameViewController: AccountPickerViewController {
     /// `NSLayoutConstraint` instance for Footer Bottom View
     @IBOutlet weak private var footerBottomAnchor: NSLayoutConstraint!
     
+    /// `Save Nickname` Button
+    @IBOutlet weak private var resetNicknameButton: UIButton!
+    
     /// Identifies whether device has a top notch or not
     var hasTopNotch: Bool {
         var safeAreaInset: CGFloat?
@@ -59,6 +62,11 @@ final class EditAccountNickNameViewController: AccountPickerViewController {
         performSaveOperation()
     }
     
+    @IBAction func resetNicknameAction(_ sender: Any) {
+        nickNametextField.textField.text = ""
+        viewModel.accountNickName.accept("")
+    }
+    
     // MARK: - Deinitializer
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -75,7 +83,7 @@ extension EditAccountNickNameViewController: AccountPickerDelegate {
             viewModel.storedAccountNickName = accountNickName
             viewModel.accountNumber = accountNumber
             viewModel.accountNickName.accept(accountNickName)
-            nickNametextField.textField.text = viewModel.accountNickName.value
+            nickNametextField.textField.text = viewModel.accountNickName.value == accountNumber ? "" : viewModel.accountNickName.value
             viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
         }
     }
@@ -96,7 +104,18 @@ extension EditAccountNickNameViewController {
         nickNametextField.textField.textContentType = .nickname
         nickNametextField.textField.delegate = self
         nickNametextField.textField.text = viewModel.accountNickName.value
+        resetNicknameButton.setTitleColor(.primaryColorDark, for: .normal)
+        resetNicknameButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
         viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.resetNicknameEnabled.asDriver().drive(resetNicknameButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.resetNicknameEnabled
+            .asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isEnabled in
+                self?.resetNicknameButton.setTitleColor(isEnabled ? .primaryColor : .deepGray, for: .normal)
+                self?.resetNicknameButton.alpha = isEnabled ? 1.0 : 0.4
+        }).disposed(by: disposeBag)
+        
     }
     
     /// This method performs operation of saving a nickname
@@ -107,6 +126,7 @@ extension EditAccountNickNameViewController {
             guard let self = self else { return }
             LoadingView.hide()
             self.view.showToast(NSLocalizedString("Nickname saved", comment: ""))
+            
             if let text = self.nickNametextField.textField.text {
                 self.viewModel.storedAccountNickName = text
                 self.viewModel.accountNickName.accept(text)

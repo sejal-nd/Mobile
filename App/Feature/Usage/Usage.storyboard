@@ -1891,9 +1891,8 @@
                                                     <constraint firstAttribute="width" constant="120" id="zyM-oH-XBm"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvd-YF-Hs6">
-                                                <rect key="frame" x="20" y="186" width="374" height="101.5"/>
-                                                <string key="text">Reduce your energy use below 4.00 kWh during the Peak Savings Day on Wednesday, September 19, 2018, from 01:00 PM to 02:00 PM. The more you reduce, the greater the opportunity to earn a credit.</string>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvd-YF-Hs6">
+                                                <rect key="frame" x="20" y="186" width="374" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1920,6 +1919,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="ctG-8x-MXG"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="BHT-Z6-ye9"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="BgY-dl-05v" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="415" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0E-O2-W4w" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="723" width="414" height="85"/>
                                 <subviews>
@@ -1948,6 +1951,7 @@
                         <viewLayoutGuide key="safeArea" id="ZXM-rl-1A4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="BgY-dl-05v" firstAttribute="centerX" secondItem="cLc-cC-uNd" secondAttribute="centerX" id="1uS-Lh-DVG"/>
                             <constraint firstItem="r0E-O2-W4w" firstAttribute="trailing" secondItem="ZXM-rl-1A4" secondAttribute="trailing" id="5bd-qx-Dig"/>
                             <constraint firstItem="r0E-O2-W4w" firstAttribute="leading" secondItem="ZXM-rl-1A4" secondAttribute="leading" id="Beu-fJ-UxK"/>
                             <constraint firstItem="M7g-8m-aGm" firstAttribute="top" secondItem="ZXM-rl-1A4" secondAttribute="top" id="IQu-Un-Lma"/>
@@ -1955,11 +1959,14 @@
                             <constraint firstItem="M7g-8m-aGm" firstAttribute="leading" secondItem="ZXM-rl-1A4" secondAttribute="leading" id="ewk-bu-rBw"/>
                             <constraint firstItem="ZXM-rl-1A4" firstAttribute="bottom" secondItem="r0E-O2-W4w" secondAttribute="bottom" id="gSY-8E-32S"/>
                             <constraint firstAttribute="bottom" secondItem="M7g-8m-aGm" secondAttribute="bottom" id="iMs-T1-gKs"/>
+                            <constraint firstItem="BgY-dl-05v" firstAttribute="centerY" secondItem="cLc-cC-uNd" secondAttribute="centerY" id="vfc-7G-Avi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Peak Energy Savings" id="E2K-oZ-Ryc"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="imageView" destination="Hac-uP-o5U" id="XAH-sc-5rv"/>
+                        <outlet property="loadingIndicator" destination="BgY-dl-05v" id="Ur5-fK-GJf"/>
                         <outlet property="programDetailsLabel" destination="kvd-YF-Hs6" id="uxj-ci-PWr"/>
                         <outlet property="view" destination="cLc-cC-uNd" id="3Wi-Wk-gPD"/>
                     </connections>
