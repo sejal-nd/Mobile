@@ -541,7 +541,11 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
 
     func forgotPasswordViewControllerDidSubmit(_ viewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
+            if RemoteConfigUtility.shared.bool(forKey: .hasForgotPasswordLink) {
+                self.view.showToast(NSLocalizedString("Password reset link sent to your email", comment: ""))
+            } else {
+                self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
+            }
             GoogleAnalytics.log(event: .forgotPasswordComplete)
         })
     }
