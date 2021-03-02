@@ -85,6 +85,8 @@ class HomeViewController: AccountPickerViewController {
                               dimensions: [.residentialAMI: residentialAMIString,
                                            .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
                                            .peakSmart: isPeakSmart ? "true" : "false"])
+                
+                self.checkPrimaryPhoneNumber(accountDetail: accountDetail)
             })
             .disposed(by: bag)
         
@@ -884,6 +886,29 @@ class HomeViewController: AccountPickerViewController {
         default:
             break
         }
+    }
+    
+    func checkPrimaryPhoneNumber(accountDetail: AccountDetail) {
+        if Configuration.shared.opco == OpCo.comEd && UserDefaults.standard.object(forKey: UserDefaultKeys.updatePhoneNumberReminderTimestamp) == nil {
+            if let primaryPhoneNumber = accountDetail.customerInfo.primaryPhoneNumber,
+               primaryPhoneNumber.contains("9999999") {
+                self.showPhoneNumberAlert()
+            }
+        }
+    }
+    
+    func showPhoneNumberAlert() {
+        presentAlert(title: "Update Your Phone Number",
+            message: "The primary phone number we have for your account is (999) 999-9999. Would you like to update it?",
+            style: .alert,
+            actions: [
+                UIAlertAction(title: "Update", style: .default) { action in
+                    UIApplication.shared.openUrlIfCan(string: "https://\(Configuration.shared.associatedDomain)/MyAccount/MyProfile/Pages/Secure/MyReportsAndAlerts.aspx")
+                },
+                UIAlertAction(title: "Not Now", style: .cancel, handler: nil)
+            ])
+        
+//        UserDefaults.standard.setValue(Date.now, forKey: UserDefaultKeys.updatePhoneNumberReminderTimestamp)
     }
 }
 
