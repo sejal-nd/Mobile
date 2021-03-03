@@ -85,10 +85,15 @@ class HomeViewController: AccountPickerViewController {
                               dimensions: [.residentialAMI: residentialAMIString,
                                            .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
                                            .peakSmart: isPeakSmart ? "true" : "false"])
-                
-                self.checkPrimaryPhoneNumber(accountDetail: accountDetail)
             })
             .disposed(by: bag)
+        
+        viewModel.showPhoneNumberPrompt
+            .subscribe(onNext: { showPhoneNumberPrompt in
+                if showPhoneNumberPrompt {
+                    self.showPhoneNumberAlert()
+                }
+            }).disposed(by: bag)
         
         viewSetup()
         styleViews()
@@ -888,18 +893,9 @@ class HomeViewController: AccountPickerViewController {
         }
     }
     
-    func checkPrimaryPhoneNumber(accountDetail: AccountDetail) {
-        if Configuration.shared.opco == OpCo.comEd && UserDefaults.standard.object(forKey: UserDefaultKeys.updatePhoneNumberReminderTimestamp) == nil {
-            if let primaryPhoneNumber = accountDetail.customerInfo.primaryPhoneNumber,
-               primaryPhoneNumber.contains("9999999") {
-                self.showPhoneNumberAlert()
-            }
-        }
-    }
-    
     func showPhoneNumberAlert() {
-        presentAlert(title: "Update Your Phone Number",
-            message: "The primary phone number we have for your account is (999) 999-9999. Would you like to update it?",
+        presentAlert(title: "Update Phone Number",
+            message: "The primary phone number we have for your account is (999) 999-9999. This can be used to verify your account. Would you like to update it?",
             style: .alert,
             actions: [
                 UIAlertAction(title: "Update", style: .default) { action in
@@ -908,7 +904,7 @@ class HomeViewController: AccountPickerViewController {
                 UIAlertAction(title: "Not Now", style: .cancel, handler: nil)
             ])
         
-//        UserDefaults.standard.setValue(Date.now, forKey: UserDefaultKeys.updatePhoneNumberReminderTimestamp)
+        UserDefaults.standard.setValue(Date.now, forKey: UserDefaultKeys.updatePhoneNumberReminderTimestamp)
     }
 }
 

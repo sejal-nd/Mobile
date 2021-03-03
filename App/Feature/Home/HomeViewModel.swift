@@ -353,4 +353,19 @@ class HomeViewModel {
               return (nil, nil, accountDetail)
       }
     
+    private let phonePromptInterval: TimeInterval = 60 * 60 * 24 * 365 // 365 days
+    private(set) lazy var showPhoneNumberPrompt = accountDetailEvents.elements().map {
+            Configuration.shared.opco == .comEd && $0.customerInfo.primaryPhoneNumber?.contains("9999999") == true
+        }.filter {
+            if $0 {
+                if let lastPrompt = UserDefaults.standard.object(forKey: UserDefaultKeys.updatePhoneNumberReminderTimestamp) as? Date {
+                    let nextPrompt = Date(timeInterval: self.phonePromptInterval, since: lastPrompt)
+                    return nextPrompt < Date.now
+                } else {
+                    return true
+                }
+            }
+            
+            return false
+        }
 }
