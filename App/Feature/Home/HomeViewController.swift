@@ -894,14 +894,14 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func showPhoneNumberAlert() {
-        presentAlert(title: "Update Phone Number",
-            message: "The primary phone number we have for your account is (999) 999-9999. This can be used to verify your account. Would you like to update it?",
+        presentAlert(title: NSLocalizedString("Update Phone Number", comment: ""),
+            message: NSLocalizedString("The primary phone number we have for your account is (999) 999-9999. This can be used to verify your account. Would you like to update it?", comment: ""),
             style: .alert,
             actions: [
-                UIAlertAction(title: "Update", style: .default) { action in
-                    UIApplication.shared.openUrlIfCan(string: "https://\(Configuration.shared.associatedDomain)/MyAccount/MyProfile/Pages/Secure/MyReportsAndAlerts.aspx")
+                UIAlertAction(title: NSLocalizedString("Update", comment: ""), style: .default) { action in
+                    UIApplication.shared.openUrlIfCan(string: self.viewModel.contactPrefsWebUrl)
                 },
-                UIAlertAction(title: "Not Now", style: .cancel, handler: nil)
+                UIAlertAction(title: NSLocalizedString("Not Now", comment: ""), style: .cancel, handler: nil)
             ])
         
         UserDefaults.standard.setValue(Date.now, forKey: UserDefaultKeys.updatePhoneNumberReminderTimestamp)

@@ -368,4 +368,13 @@ class HomeViewModel {
             
             return false
         }
+    
+    var contactPrefsWebUrl: String {
+        switch Configuration.shared.opco {
+        case .comEd:
+            return "https://\(Configuration.shared.associatedDomain)/MyAccount/MyProfile/Pages/Secure/MyReportsAndAlerts.aspx"
+        default:
+            return ""
+        }
+    }
 }
