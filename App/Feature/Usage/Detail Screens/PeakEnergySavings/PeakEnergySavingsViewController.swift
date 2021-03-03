@@ -105,17 +105,17 @@ extension PeakEnergySavingsViewController {
     private func renderBaselineInformation(result: [SERResult], error: NetworkingError? = nil) {
         var baselineInformation = ""
         if let _ = error {
-            baselineInformation = "Your Baseline will appear here when a Peak Savings Day is pending"
+            baselineInformation = NSLocalizedString("Please check back for your personalized baseline.", comment: "")
         } else {
             if result.isEmpty {
                 //PHI baseline information when there is no events from the API
-                baselineInformation = NSLocalizedString("Your Baseline will appear here when a Peak Savings Day is pending", comment: "")
+                baselineInformation = NSLocalizedString("Your Baseline will appear here when a Peak Savings Day is pending.", comment: "")
             } else {
                 if let event = result.first {
                     let baselineDay = DateFormatter.dayMonthDayYearFormatter.string(from: event.eventStart)
                     let baselineStartTime = DateFormatter.hmmaFormatter.string(from: event.eventStart)
                     let baselineEndTime = DateFormatter.hmmaFormatter.string(from: event.eventEnd)
-                    baselineInformation = "Reduce your energy use below \(event.baselineKWH) kWh during the Peak Savings Day on \(baselineDay), from \(baselineStartTime) to \(baselineEndTime). The more you reduce, the greater the opportunity to earn a credit."
+                    baselineInformation = NSLocalizedString("Reduce your energy use below \(event.baselineKWH) kWh during the Peak Savings Day on \(baselineDay), from \(baselineStartTime) to \(baselineEndTime). The more you reduce, the greater the opportunity to earn a credit.", comment: "")
                 }
             }
         }
