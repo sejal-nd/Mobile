@@ -66,7 +66,7 @@ extension PeakEnergySavingsHistoryViewController {
     
     // Apply Custom UI Styling
     private func styleView() {
-        title = NSLocalizedString("Peak Enegry Savings History", comment: "")
+        title = NSLocalizedString("Peak Energy Savings History", comment: "")
         
         webView.navigationDelegate = self
         webView.uiDelegate = self
