@@ -88,6 +88,13 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+        viewModel.showPhoneNumberPrompt
+            .subscribe(onNext: { showPhoneNumberPrompt in
+                if showPhoneNumberPrompt {
+                    self.showPhoneNumberAlert()
+                }
+            }).disposed(by: bag)
+        
         viewSetup()
         styleViews()
         bindLoadingStates()
@@ -884,6 +891,20 @@ class HomeViewController: AccountPickerViewController {
         default:
             break
         }
+    }
+    
+    func showPhoneNumberAlert() {
+        presentAlert(title: NSLocalizedString("Update Phone Number", comment: ""),
+            message: NSLocalizedString("The primary phone number we have for your account is (999) 999-9999. This can be used to verify your account. Would you like to update it?", comment: ""),
+            style: .alert,
+            actions: [
+                UIAlertAction(title: NSLocalizedString("Update", comment: ""), style: .default) { action in
+                    UIApplication.shared.openUrlIfCan(string: self.viewModel.contactPrefsWebUrl)
+                },
+                UIAlertAction(title: NSLocalizedString("Not Now", comment: ""), style: .cancel, handler: nil)
+            ])
+        
+        UserDefaults.standard.setValue(Date.now, forKey: UserDefaultKeys.updatePhoneNumberReminderTimestamp)
     }
 }
 
