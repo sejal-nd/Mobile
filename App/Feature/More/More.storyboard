@@ -1432,7 +1432,7 @@
                                             <constraint firstAttribute="height" constant="55" id="Q2Y-ak-ILn"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="Uzo-tp-1fA"/>
                                         </constraints>
-                                        <state key="normal" title="Save Nickname"/>
+                                        <state key="normal" title="Save Changes"/>
                                         <connections>
                                             <action selector="saveAction:" destination="eT5-Kx-SqK" eventType="touchUpInside" id="6jb-ig-a1o"/>
                                         </connections>

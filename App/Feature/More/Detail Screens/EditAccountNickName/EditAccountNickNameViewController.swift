@@ -125,7 +125,7 @@ extension EditAccountNickNameViewController {
         viewModel.setAccountNickname(onSuccess: { [weak self] in
             guard let self = self else { return }
             LoadingView.hide()
-            self.view.showToast(NSLocalizedString("Nickname saved", comment: ""))
+            self.view.showToast(NSLocalizedString("Changes Saved", comment: ""))
             
             if let text = self.nickNametextField.textField.text {
                 self.viewModel.storedAccountNickName = text
