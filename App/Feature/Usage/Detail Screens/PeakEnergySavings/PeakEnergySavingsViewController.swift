@@ -69,7 +69,7 @@ extension PeakEnergySavingsViewController {
         programDetailsLabel.textColor = .deepGray
         programDetailsLabel.font = SystemFont.regular.of(textStyle: .body)
         programDetailsLabel.setLineHeight(lineHeight: 24.0)
-        programDetailsLabel.textAlignment = .natural
+        programDetailsLabel.textAlignment = .center
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
         helpButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         navigationItem.rightBarButtonItem = helpButton
