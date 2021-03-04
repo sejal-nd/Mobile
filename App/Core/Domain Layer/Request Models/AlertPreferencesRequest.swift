@@ -65,6 +65,11 @@ public struct AlertPreferencesRequest: Encodable {
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentPosted, programName: "Payment Posted"))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentPastDue, programName: "Payment Past Due"))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.budgetBilling, programName: "Budget Billing"))
+            
+            if Configuration.shared.opco == .bge {
+                preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.grantStatus, programName: "Payment Assistance Grant Status"))
+            }
+            
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.appointmentTracking, programName: "Customer Appointments"))
             
             if Configuration.shared.opco == .bge {

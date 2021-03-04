@@ -92,6 +92,8 @@ public struct AccountDetail: Decodable {
     let isPeakEnergySavingsCreditEligible: Bool
     let isPeakEnergySavingsCreditEnrolled: Bool
     
+    let isOHEPEligible: Bool
+    
     public var customerInfo: CustomerInfo
     let billingInfo: BillingInfo
     let serInfo: SERInfo
@@ -199,6 +201,8 @@ public struct AccountDetail: Decodable {
         case isEnergyWiseRewardsEnrolled
         case isPeakEnergySavingsCreditEligible
         case isPeakEnergySavingsCreditEnrolled
+        
+        case isOHEPEligible
     }
     
     public init(from decoder: Decoder) throws {
@@ -338,6 +342,8 @@ public struct AccountDetail: Decodable {
                                                                                forKey: .isPeakEnergySavingsCreditEligible) ?? false
         self.isPeakEnergySavingsCreditEnrolled = try container.decodeIfPresent(Bool.self,
                                                                                forKey: .isPeakEnergySavingsCreditEnrolled) ?? false
+        
+        self.isOHEPEligible = try container.decodeIfPresent(Bool.self, forKey: .isOHEPEligible) ?? false
         
         self.customerInfo = try container.decode(CustomerInfo.self,
                                                  forKey: .customerInfo)

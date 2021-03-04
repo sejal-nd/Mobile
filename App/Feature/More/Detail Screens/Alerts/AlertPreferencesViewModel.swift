@@ -91,7 +91,7 @@ class AlertPreferencesViewModel {
                 switch Configuration.shared.opco {
                 case .bge:
                     var usageOptions: [AlertPreferencesOptions] = []
-                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue, .grantStatus]
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
                     
                     if self.isHUAEligible {
                         usageOptions.append(.highUsage)
@@ -101,9 +101,9 @@ class AlertPreferencesViewModel {
                         usageOptions.append(contentsOf: [.smartEnergyRewards, .energySavingsDayResults])
                     }
                     
-//                    if self.isOHEPEligible {
-//                        paymentOptions.append(.grantStatus)
-//                    }
+                    if self.isOHEPEligible {
+                        paymentOptions.append(.grantStatus)
+                    }
                     
                     self.sections = [
                         (NSLocalizedString("Usage", comment: ""), usageOptions),
@@ -542,7 +542,7 @@ class AlertPreferencesViewModel {
     var isOHEPEligible: Bool {
         switch Configuration.shared.opco {
         case .bge:
-            return self.accountDetail.isLowIncome // TODO is this the correct field?
+            return self.accountDetail.isOHEPEligible
         default:
             return false
         }
@@ -788,10 +788,10 @@ class AlertPreferencesViewModel {
             
                 
             // Energy Buddy
-            case (.energyBuddyUpdates, _):
+            case (.energyBuddyUpdates, .bge):
                 return NSLocalizedString("Receive a notification when LUMI℠ has new data, tips, and insights to help you save energy and money.", comment: "")
-            case (.grantStatus, _):
-                return NSLocalizedString("Receive a notification when your payment assistance grant’s status has changed. Included will be the change in grant status and type of grant applied to your BGE account.", comment: "")
+            case (.grantStatus, .bge):
+                return NSLocalizedString("Receive a notification when your payment assistance grant has been approved and a second notification when the grant funds have been applied to your BGE account.", comment: "")
             default:
                 return ""
             }
