@@ -199,8 +199,9 @@ class BillViewModel {
         $0.billingInfo.pendingPaymentsTotal > 0
     }
     
+    #warning("A short term fix for PHI customers. For the time being Hidden Remaining Balance Option for March, 2021 release will have to remove check for PHI after Long Term Solution is discussed with SAP")
     private(set) lazy var showRemainingBalanceDue: Driver<Bool> = currentAccountDetail.map {
-        $0.billingInfo.pendingPaymentsTotal > 0 && $0.billingInfo.remainingBalanceDue > 0
+        $0.billingInfo.pendingPaymentsTotal > 0 && $0.billingInfo.remainingBalanceDue > 0 && !Configuration.shared.opco.isPHI
     }
     
     private(set) lazy var showPaymentReceived: Driver<Bool> = currentAccountDetail.map {
