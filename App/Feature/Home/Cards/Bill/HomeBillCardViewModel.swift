@@ -476,8 +476,8 @@ class HomeBillCardViewModel {
             return NSAttributedString(string: string, attributes: attributes)
         case .catchUp:
             guard let amountString = billingInfo.amtDpaReinst?.currencyString,
-                let dueByDate = billingInfo.dueByDate else {
-                    return nil
+                  let dueByDate = billingInfo.dueByDate else {
+                return nil
             }
             
             let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now))
@@ -510,7 +510,7 @@ class HomeBillCardViewModel {
                 let string = String.localizedStringWithFormat(localizedText, amountString)
                 return NSAttributedString(string: string, attributes: attributes)
             }
-           
+            
         case .avoidShutoff, .eligibleForCutoff:
             guard let amountString = billingInfo.disconnectNoticeArrears?.currencyString else {
                 return nil
@@ -551,8 +551,16 @@ class HomeBillCardViewModel {
             guard let amountString = billingInfo.pastDueAmount?.currencyString else {
                 return nil
             }
+            var string = ""
+            let billingInfo = accountDetail.billingInfo
             let status = Configuration.shared.opco.isPHI ? "is inactive" : "has been finaled"
-            let string = String.localizedStringWithFormat("%@ must be paid immediately. Your account \(status).", amountString)
+            if billingInfo.pastDueAmount == billingInfo.netDueAmount {
+                string = NSLocalizedString("The total amount must be paid immediately. Your account \(status).", comment: "")
+            } else {
+                if billingInfo.pastDueAmount > .zero && accountDetail.isFinaled {
+                    string = String.localizedStringWithFormat("%@ must be paid immediately. Your account \(status).", billingInfo.pastDueAmount?.currencyString ?? "--")
+                }
+            }
             return NSAttributedString(string: string, attributes: attributes)
         default:
             if AccountsStore.shared.currentAccount.isMultipremise {
