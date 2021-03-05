@@ -50,6 +50,9 @@ enum AccountService {
         if alertPreferenceEligibilities {
             queryItems.append(URLQueryItem(name: "alertPreferenceEligibilities", value: "true"))
         }
+        
+        // include with every account details call to remove the MDM dependency
+        queryItems.append(URLQueryItem(name: "includeMDM", value: "false"))
     
         NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryItems: queryItems), completion: completion)
     }
@@ -78,10 +81,6 @@ enum AccountService {
     
     static func fetchiTronSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (Result<SSODataResponse, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .iTronssoData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
-    }
-    
-    static func fetchPeakEnergySavingsHistorySSOData(accountNumber: String, premiseNumber: String, completion: @escaping (Result<SSODataResponse, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .peakEnergySavingsHistoryData(accountNumber: accountNumber, premiseNumber: premiseNumber), completion: completion)
     }
     
     static func fetchScheduledPayments(accountNumber: String, completion: @escaping (Result<[PaymentItem], NetworkingError>) -> ()) {

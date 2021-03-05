@@ -11,6 +11,7 @@ import Foundation
 public struct SSODataResponse: Decodable {
     public var ssoPostURL: String
     public var relayState: String
+    public var relayStatePESC: String?
     public var nonResHost: String?
     public var nonResJSPath: String?
     public var samlResponse: String

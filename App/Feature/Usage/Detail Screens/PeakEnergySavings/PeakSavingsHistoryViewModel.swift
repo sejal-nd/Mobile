@@ -25,7 +25,10 @@ final class PeakSavingsHistoryViewModel {
         return .empty()
     }
     
-    func getWidgetJs(ssoData: SSODataResponse) -> String {
-        return "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(ssoData.relayState)'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
+    func getWidgetJs(ssoData: SSODataResponse) -> String? {
+        if let relayStatePESC = ssoData.relayStatePESC {
+            return "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(relayStatePESC)'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
+        }
+        return nil
     }
 }

@@ -52,7 +52,7 @@ class WeeklyInsightViewController: UIViewController {
         
         addCloseButton()
 
-        title = NSLocalizedString("Weekly Insight", comment: "")
+        title = NSLocalizedString("Weekly Insights by LUMI℠", comment: "")
         
         segmentedControl.items = [
             NSLocalizedString("Electric", comment: ""),

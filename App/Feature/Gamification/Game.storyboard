@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -462,8 +462,8 @@
                                                             <action selector="onStreakButtonPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="ke4-JY-Wwh"/>
                                                         </connections>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Insight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-gJ-F04">
-                                                        <rect key="frame" x="144.5" y="20" width="93" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Insight by LUMI℠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-gJ-F04">
+                                                        <rect key="frame" x="104.5" y="20" width="173.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1037,10 +1037,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v8D-vJ-C0N">
-                                                <rect key="frame" x="31" y="173" width="352" height="550"/>
+                                                <rect key="frame" x="31" y="170.5" width="352" height="555.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74E-Z5-bTU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="550"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="555.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yas-Dz-Xrq">
                                                                 <rect key="frame" x="15" y="15" width="24" height="24"/>
@@ -1050,14 +1050,20 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
                                                                 <rect key="frame" x="121" y="0.0" width="110" height="110"/>
                                                             </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LUMI℠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mo-Sv-jDi" userLabel="Lumi Label">
+                                                                <rect key="frame" x="20" y="110" width="312" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="I have a tip for you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-gj-X1f">
-                                                                <rect key="frame" x="20" y="130" width="312" height="20.5"/>
+                                                                <rect key="frame" x="20" y="135.5" width="312" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ht-Lj-dbk">
-                                                                <rect key="frame" x="20" y="170.5" width="312" height="243.5"/>
+                                                                <rect key="frame" x="20" y="176" width="312" height="243.5"/>
                                                                 <string key="text">Furniture, carpets and other objects can block vents and prevent heated or cooled air from traveling. This blockage makes your heating or cooling system work harder and prevents rooms from warming up or cooling down quickly. If you have forced air in your home, check to see that your air vents have sufficient room to breathe.
 
 This worked for 14,985 people and can save up to $10 per year.</string>
@@ -1066,7 +1072,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="io0-gF-5Q5">
-                                                                <rect key="frame" x="0.0" y="449" width="352" height="101"/>
+                                                                <rect key="frame" x="0.0" y="454.5" width="352" height="101"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcW-5m-1x6">
                                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="50"/>
@@ -1115,13 +1121,16 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                             <constraint firstItem="yas-Dz-Xrq" firstAttribute="top" secondItem="74E-Z5-bTU" secondAttribute="top" constant="15" id="IT4-VB-kR3"/>
                                                             <constraint firstAttribute="trailing" secondItem="io0-gF-5Q5" secondAttribute="trailing" id="KCo-Gk-1U8"/>
                                                             <constraint firstAttribute="trailing" secondItem="wMY-gj-X1f" secondAttribute="trailing" constant="20" id="Koh-ER-VT1"/>
+                                                            <constraint firstItem="2mo-Sv-jDi" firstAttribute="top" secondItem="Cex-WB-RL6" secondAttribute="bottom" id="M28-ay-xB9"/>
                                                             <constraint firstItem="Cex-WB-RL6" firstAttribute="centerX" secondItem="74E-Z5-bTU" secondAttribute="centerX" id="ZnO-Gn-PC6"/>
                                                             <constraint firstItem="wMY-gj-X1f" firstAttribute="leading" secondItem="74E-Z5-bTU" secondAttribute="leading" constant="20" id="gOO-bu-Ayt"/>
                                                             <constraint firstItem="yas-Dz-Xrq" firstAttribute="leading" secondItem="74E-Z5-bTU" secondAttribute="leading" constant="15" id="i2n-5W-xG8"/>
                                                             <constraint firstItem="Cex-WB-RL6" firstAttribute="top" secondItem="74E-Z5-bTU" secondAttribute="top" id="k7i-ny-b7M"/>
+                                                            <constraint firstItem="2mo-Sv-jDi" firstAttribute="leading" secondItem="74E-Z5-bTU" secondAttribute="leading" constant="20" id="mkG-Zd-lf2"/>
                                                             <constraint firstAttribute="bottom" secondItem="io0-gF-5Q5" secondAttribute="bottom" id="oI3-8d-Trt"/>
                                                             <constraint firstItem="0Ht-Lj-dbk" firstAttribute="top" secondItem="wMY-gj-X1f" secondAttribute="bottom" constant="20" id="oVd-Tj-Xhz"/>
-                                                            <constraint firstItem="wMY-gj-X1f" firstAttribute="top" secondItem="Cex-WB-RL6" secondAttribute="bottom" constant="20" id="qVr-2S-nSl"/>
+                                                            <constraint firstItem="wMY-gj-X1f" firstAttribute="top" secondItem="2mo-Sv-jDi" secondAttribute="bottom" constant="5" id="qVr-2S-nSl"/>
+                                                            <constraint firstAttribute="trailing" secondItem="2mo-Sv-jDi" secondAttribute="trailing" constant="20" id="uLq-3g-blJ"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -1340,7 +1349,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
             </objects>
             <point key="canvasLocation" x="4470" y="-3342"/>
         </scene>
-        <!--Weekly Insight-->
+        <!--Weekly Insights by LUMI℠-->
         <scene sceneID="OKd-WU-v8v">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="wo1-Rx-2vT" customClass="WeeklyInsightViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
@@ -1561,7 +1570,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                             <constraint firstAttribute="top" secondItem="vdv-bd-s7f" secondAttribute="top" id="klI-cl-QNS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Weekly Insight" id="KxE-9B-kvI"/>
+                    <navigationItem key="navigationItem" title="Weekly Insights by LUMI℠" id="KxE-9B-kvI"/>
                     <connections>
                         <outlet property="billProjectionLabel" destination="VAF-IP-htO" id="TzA-GF-Mo8"/>
                         <outlet property="comparisonLabel" destination="m6R-D2-xeN" id="FJt-wI-NnO"/>
@@ -1614,20 +1623,26 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Wrx-Pj-QqI">
                                                                 <rect key="frame" x="121" y="0.0" width="110" height="110"/>
                                                             </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LUMI℠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVQ-kx-qgP" userLabel="Lumi Label">
+                                                                <rect key="frame" x="20" y="110" width="312" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="I learned something cool, let’s see if you know it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxz-OG-aSI">
-                                                                <rect key="frame" x="20" y="130" width="312" height="41"/>
+                                                                <rect key="frame" x="20" y="135.5" width="312" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Which appliance do you think uses the most energy?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7M-7D-Ydl">
-                                                                <rect key="frame" x="20" y="201" width="312" height="41"/>
+                                                                <rect key="frame" x="20" y="206.5" width="312" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="56" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GaO-Sp-nH1">
-                                                                <rect key="frame" x="16" y="262" width="320" height="166"/>
+                                                                <rect key="frame" x="16" y="267.5" width="320" height="160.5"/>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7VM-8Y-KiR">
                                                                 <rect key="frame" x="20" y="448" width="312" height="106"/>
@@ -1660,12 +1675,15 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                             <constraint firstItem="jxz-OG-aSI" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="20" id="8n9-e5-Mh1"/>
                                                             <constraint firstItem="L7M-7D-Ydl" firstAttribute="top" secondItem="jxz-OG-aSI" secondAttribute="bottom" constant="30" id="9DW-wp-hB5"/>
                                                             <constraint firstAttribute="trailing" secondItem="7VM-8Y-KiR" secondAttribute="trailing" constant="20" id="COq-Bo-WVQ"/>
-                                                            <constraint firstItem="jxz-OG-aSI" firstAttribute="top" secondItem="Wrx-Pj-QqI" secondAttribute="bottom" constant="20" id="Ifh-Z1-toT"/>
+                                                            <constraint firstAttribute="trailing" secondItem="jVQ-kx-qgP" secondAttribute="trailing" constant="20" id="GuZ-Uk-CGj"/>
+                                                            <constraint firstItem="jxz-OG-aSI" firstAttribute="top" secondItem="jVQ-kx-qgP" secondAttribute="bottom" constant="5" id="Ifh-Z1-toT"/>
                                                             <constraint firstAttribute="trailing" secondItem="jxz-OG-aSI" secondAttribute="trailing" constant="20" id="KZk-ce-uTv"/>
                                                             <constraint firstItem="Aat-r5-6jU" firstAttribute="top" secondItem="HnS-PT-pzb" secondAttribute="top" constant="15" id="OWq-Ta-V5o"/>
                                                             <constraint firstAttribute="bottom" secondItem="7VM-8Y-KiR" secondAttribute="bottom" constant="20" id="Og6-eV-NK5"/>
                                                             <constraint firstItem="L7M-7D-Ydl" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="20" id="UwP-xd-dvH"/>
                                                             <constraint firstItem="7VM-8Y-KiR" firstAttribute="top" secondItem="GaO-Sp-nH1" secondAttribute="bottom" constant="20" id="Ysc-3Z-i96"/>
+                                                            <constraint firstItem="jVQ-kx-qgP" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="20" id="ajF-At-n0x"/>
+                                                            <constraint firstItem="jVQ-kx-qgP" firstAttribute="top" secondItem="Wrx-Pj-QqI" secondAttribute="bottom" id="bfp-a6-yh3"/>
                                                             <constraint firstItem="Aat-r5-6jU" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="15" id="cFb-eP-3BV"/>
                                                             <constraint firstItem="Wrx-Pj-QqI" firstAttribute="centerX" secondItem="HnS-PT-pzb" secondAttribute="centerX" id="eO9-fW-jRO"/>
                                                             <constraint firstItem="Wrx-Pj-QqI" firstAttribute="top" secondItem="HnS-PT-pzb" secondAttribute="top" id="kAL-FH-gfG"/>
@@ -1752,7 +1770,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="rH9-yA-f7J">
                                                                 <rect key="frame" x="66" y="59" width="220" height="200"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Hello! I’m Lumi!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-68-VRU">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Hello! I’m LUMI℠!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-68-VRU">
                                                                 <rect key="frame" x="20" y="279" width="312" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>

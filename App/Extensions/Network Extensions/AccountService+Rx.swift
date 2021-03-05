@@ -105,7 +105,7 @@ extension Reactive where Base == AccountService {
     
     static func fetchPeakEnergySavingsHistorySSOData(accountNumber: String, premiseNumber: String) -> Observable<SSODataResponse> {
         return Observable.create { observer -> Disposable in
-            AccountService.fetchPeakEnergySavingsHistorySSOData(accountNumber: accountNumber, premiseNumber: premiseNumber) { observer.handle(result: $0) }
+            AccountService.fetchSSOData(accountNumber: accountNumber, premiseNumber: premiseNumber) { observer.handle(result: $0) }
             return Disposables.create()
         }
     }

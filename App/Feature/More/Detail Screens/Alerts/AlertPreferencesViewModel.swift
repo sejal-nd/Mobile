@@ -23,6 +23,9 @@ class AlertPreferencesViewModel {
     let billThreshold: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let billThresholdPlacheHolder = BehaviorRelay(value: "Bill Threshold (Optional)")
     let peakTimeSavings = BehaviorRelay(value: false)
+    let peakSavingsDayAlert = BehaviorRelay(value: false)
+    let peakSavingsDayResults = BehaviorRelay(value: false)
+
     let smartEnergyRewards = BehaviorRelay(value: false)
     let energySavingsDayResults = BehaviorRelay(value: false)
     
@@ -143,7 +146,7 @@ class AlertPreferencesViewModel {
                     
                 case .peco:
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
-                         [.outage, .severeWeather])]
+                                      [.outage, .severeWeather])]
                     
                     if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
@@ -160,8 +163,20 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .pepco:
+                    var usageOptions: [AlertPreferencesOptions] = []
+                    if self.isPeakSavingsDayAlertsEligible() {
+                        usageOptions.append(.peakSavingsDayAlert)
+                        usageOptions.append(.peakSavingsDayResults)
+                    }
+                    if self.isHUAEligible {
+                        usageOptions.append(.highUsage)
+                    }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
-                         [.outage, .severeWeather])]
+                                      [.outage, .severeWeather])]
+                    
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
                     
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
@@ -178,7 +193,7 @@ class AlertPreferencesViewModel {
                 case .ace:
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
                          [.outage, .severeWeather])]
-                    
+                   
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
@@ -193,9 +208,21 @@ class AlertPreferencesViewModel {
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 case .delmarva:
+                    var usageOptions: [AlertPreferencesOptions] = []
+                    if self.isPeakSavingsDayAlertsEligible() {
+                        usageOptions.append(.peakSavingsDayAlert)
+                        usageOptions.append(.peakSavingsDayResults)
+                    }
+                    if self.isHUAEligible {
+                        usageOptions.append(.highUsage)
+                    }
                     self.sections = [(NSLocalizedString("Outage", comment: ""),
-                         [.outage, .severeWeather])]
+                                      [.outage, .severeWeather])]
                     
+                    if !usageOptions.isEmpty {
+                        self.sections.insert((NSLocalizedString("Usage", comment: ""), usageOptions), at: 0)
+                    }
+
                     if !self.accountDetail.isFinaled &&
                         (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
                         self.sections.append((NSLocalizedString("Billing", comment: ""),
@@ -246,6 +273,8 @@ class AlertPreferencesViewModel {
                     self.billThreshold.accept("")
                 }
                 self.peakTimeSavings.accept(alertPrefs.peakTimeSavings ?? false)
+                self.peakSavingsDayAlert.accept(alertPrefs.peakTimeSavingsDayAlert ?? false)
+                self.peakSavingsDayResults.accept(alertPrefs.peakTimeSavingsDayResults ?? false)
                 self.smartEnergyRewards.accept(alertPrefs.smartEnergyRewards ?? false)
                 self.energySavingsDayResults.accept(alertPrefs.energySavingsDayResults ?? false)
                                 
@@ -306,6 +335,14 @@ class AlertPreferencesViewModel {
     private lazy var paymentDaysBeforeChanged = paymentDueDaysBefore.asObservable()
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0 != $1.paymentDueDaysBefore }
+    
+    private lazy var peakSavingsDayAlertChanged = peakSavingsDayAlert.asObservable()
+        .withLatestFrom(alertPrefs.asObservable().unwrap())
+        { $0 != $1.peakTimeSavingsDayAlert }
+    
+    private lazy var peakTimeSavingsDayResultsChanged = peakSavingsDayResults.asObservable()
+        .withLatestFrom(alertPrefs.asObservable().unwrap())
+        { $0 != $1.peakTimeSavingsDayResults }
     
     private lazy var booleanPrefsChanged = Observable<Bool>
         .combineLatest([highUsage.asObservable(),
@@ -370,14 +407,14 @@ class AlertPreferencesViewModel {
         .map { [weak self] in $0 != self?.initialEnergyBuddyUpdatesValue ?? false }
     
     private(set) lazy var prefsChanged = Observable
-        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, languagePrefChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged)
-        { $0 || $1 || $2 || $3 || $4 }
+        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, languagePrefChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged, peakSavingsDayAlertChanged, peakTimeSavingsDayResultsChanged)
+        { $0 || $1 || $2 || $3 || $4 || $5 || $6 }
         .startWith(false)
         .share(replay: 1, scope: .forever)
     
     private(set) lazy var nonLanguagePrefsChanged = Observable // all alert prefs except language
-        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged)
-            { $0 || $1 || $2 || $3 }
+        .combineLatest(booleanPrefsChanged, paymentDaysBeforeChanged, energyBuddyUpdatesPrefChanged, billThresholdPrefChanged, peakSavingsDayAlertChanged, peakTimeSavingsDayResultsChanged)
+            { $0 || $1 || $2 || $3 || $4 || $5}
         .startWith(false)
         .share(replay: 1, scope: .forever)
     
@@ -398,7 +435,9 @@ class AlertPreferencesViewModel {
                                                 paymentPastDue: paymentPastDue.value,
                                                 budgetBilling: budgetBilling.value,
                                                 appointmentTracking: appointmentTracking.value,
-                                                forYourInfo: forYourInfo.value)
+                                                forYourInfo: forYourInfo.value,
+                                                peakTimeSavingsDayAlert: peakSavingsDayAlert.value,
+                                                peakTimeSavingsDayResults: peakSavingsDayResults.value)
         let alertPreferenceRequest = AlertPreferencesRequest(alertPreferences: alertPreferences)
         
         return nonLanguagePrefsChanged.flatMap {
@@ -408,6 +447,21 @@ class AlertPreferencesViewModel {
     
     private func saveAlertLanguage() -> Observable<Void> {
         return AlertService.rx.setAlertLanguage(accountNumber: AccountsStore.shared.currentAccount.accountNumber, request: AlertLanguageRequest(language: english.value ? "English" : "Spanish"))
+    }
+    
+    private func isPeakSavingsDayAlertsEligible() -> Bool {
+        if let accountDetail = accountDetail {
+            let configuration = Configuration.shared.opco
+            if configuration == .delmarva {
+                return (accountDetail.subOpco == .delmarvaDelaware || accountDetail.subOpco == .delmarvaMaryland) && accountDetail.isResidential && (accountDetail.isPESCEligible ?? false)
+            } else if configuration == .pepco {
+                return accountDetail.subOpco == .pepcoMaryland && accountDetail.isResidential && (accountDetail.isPESCEligible ?? false)
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
     }
     
     private func enrollPaperlessEBill() -> Observable<Void> {
@@ -429,9 +483,9 @@ class AlertPreferencesViewModel {
     
     var isHUAEligible: Bool {
         switch Configuration.shared.opco {
-        case .bge, .comEd:
+        case .bge, .comEd, .pepco, .delmarva:
             return self.accountDetail.isHUAEligible ?? false
-        case .peco, .pepco, .ace, .delmarva:
+        case .peco, .ace:
             return false
         
         }
@@ -464,6 +518,8 @@ class AlertPreferencesViewModel {
     
     var billThresholdToolTipText: String {
         switch Configuration.shared.opco {
+        case .ace, .delmarva, .pepco:
+            return NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month. If no selection is made, we will alert you if your usage is 30% higher compared to the same time last year.", comment: "")
         case .bge:
             return NSLocalizedString("You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month. If no selection is made, we will alert you if your usage is 30% and $30 higher compared to the same time last year.", comment: "")
         case .comEd:
@@ -492,7 +548,7 @@ class AlertPreferencesViewModel {
     
     enum AlertPreferencesOptions {
         // Usage
-        case highUsage, peakTimeSavings, smartEnergyRewards, energySavingsDayResults
+        case highUsage, peakTimeSavings, smartEnergyRewards, energySavingsDayResults, peakSavingsDayAlert, peakSavingsDayResults
         // Outage
         case outage, scheduledMaintenanceOutage, severeWeather
         // Billing
@@ -512,6 +568,10 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("High Usage", comment: "")
             case .peakTimeSavings:
                 return NSLocalizedString("Peak Time Savings", comment: "")
+            case .peakSavingsDayAlert:
+                return NSLocalizedString("Peak Savings Day Alert", comment: "")
+            case .peakSavingsDayResults:
+                return NSLocalizedString("Peak Savings Day Results", comment: "")
             case .smartEnergyRewards:
                 return NSLocalizedString("Smart Energy Rewards", comment: "")
             case .energySavingsDayResults:
@@ -537,7 +597,7 @@ class AlertPreferencesViewModel {
             case .forYourInformation:
                 return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
-                return NSLocalizedString("Lumi Updates", comment: "")
+                return NSLocalizedString("LUMI℠ Updates", comment: "")
             }
         }
         
@@ -549,6 +609,10 @@ class AlertPreferencesViewModel {
             case (.highUsage, .peco): fallthrough
             case (.highUsage, .comEd):
                 return NSLocalizedString("Receive an alert if you are headed towards a bill that is higher than usual. This alert gives you time to reduce your usage before your next bill and helps to prevent billing surprises.", comment: "")
+            
+            case (.highUsage, .delmarva): fallthrough
+            case (.highUsage, .pepco):
+                return NSLocalizedString("Receive an alert when we notice your usage is trending higher than normal. You remain responsible for your actual energy use whether or not you receive an alert.", comment: "")
                 
             // Peak Time Savings
             case (.peakTimeSavings, .bge): fallthrough
@@ -556,6 +620,14 @@ class AlertPreferencesViewModel {
                 return ""
             case (.peakTimeSavings, .comEd):
                 return NSLocalizedString("Receive an alert on the day Peak Time Savings Hours occur — as early as 9 a.m. or at least 30 minutes prior to the start of the event.", comment: "")
+            
+            case (.peakSavingsDayAlert, .delmarva): fallthrough
+            case (.peakSavingsDayAlert, .pepco):
+                return NSLocalizedString("Receive an alert with the date and time of an upcoming Peak Savings Day. Earn $1.25 off your bill for every kilowatt-hour you save below your average energy use on a Peak Savings Day.", comment: "")
+                
+            case (.peakSavingsDayResults, .delmarva): fallthrough
+            case (.peakSavingsDayResults, .pepco):
+                return NSLocalizedString("Receive an alert following a Peak Savings Day to let you know how much you saved. Your credit will automatically appear on your next bill.", comment: "")
                 
             // Smart Energy Rewards
             case (.smartEnergyRewards, .bge):
@@ -676,7 +748,7 @@ class AlertPreferencesViewModel {
                 
             // Energy Buddy
             case (.energyBuddyUpdates, _):
-                return NSLocalizedString("Receive a notification when Lumi has new data, tips, and insights to help you save energy and money.", comment: "")
+                return NSLocalizedString("Receive a notification when LUMI℠ has new data, tips, and insights to help you save energy and money.", comment: "")
             default:
                 return ""
             }

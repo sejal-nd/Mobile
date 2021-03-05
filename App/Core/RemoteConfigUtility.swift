@@ -16,6 +16,7 @@ final class RemoteConfigUtility {
         case billingVideoURL
         case hasNewRegistration
         case hasDefaultAccount
+        case hasForgotPasswordLink
     }
     
     static let shared = RemoteConfigUtility()
@@ -34,7 +35,8 @@ final class RemoteConfigUtility {
             RemoteConfigKey.streetlightMapURL.rawValue : "",
             RemoteConfigKey.billingVideoURL.rawValue : "",
             RemoteConfigKey.hasNewRegistration.rawValue : "false",
-            RemoteConfigKey.hasDefaultAccount.rawValue : "false"
+            RemoteConfigKey.hasDefaultAccount.rawValue : "false",
+            RemoteConfigKey.hasForgotPasswordLink.rawValue : "false"
         ]
         RemoteConfig.remoteConfig().setDefaults(appDefaults as? [String: NSObject])
     }

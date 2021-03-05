@@ -66,7 +66,7 @@ extension PeakEnergySavingsHistoryViewController {
     
     // Apply Custom UI Styling
     private func styleView() {
-        title = NSLocalizedString("Peak Enegry Savings History", comment: "")
+        title = NSLocalizedString("Peak Energy Savings History", comment: "")
         
         webView.navigationDelegate = self
         webView.uiDelegate = self
@@ -85,12 +85,11 @@ extension PeakEnergySavingsHistoryViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] ssoData in
                 
-                guard let self = self else {
-                    return
+                guard let self = self,
+                      let js = self.viewModel.getWidgetJs(ssoData: ssoData) else {
+                      return
                 }
-                
-                let js = self.viewModel.getWidgetJs(ssoData: ssoData)
-                
+        
                 self.webView.evaluateJavaScript(js, completionHandler: { (resp, err) in
                     if err != nil {
                         self.errorLabel.isHidden = false
