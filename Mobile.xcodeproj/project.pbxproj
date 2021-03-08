@@ -7428,7 +7428,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -7575,7 +7575,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -7616,7 +7616,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7654,7 +7654,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7694,7 +7694,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7775,7 +7775,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -7817,7 +7817,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -7856,7 +7856,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -7897,7 +7897,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -8025,7 +8025,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -8212,7 +8212,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8295,7 +8295,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8430,7 +8430,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -8536,7 +8536,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -8573,7 +8573,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -8699,7 +8699,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -8806,7 +8806,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -8845,7 +8845,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -8971,7 +8971,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -9079,7 +9079,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -9119,7 +9119,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -9248,7 +9248,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -9434,7 +9434,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -9517,7 +9517,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -9653,7 +9653,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -9759,7 +9759,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -9796,7 +9796,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -9923,7 +9923,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -10030,7 +10030,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -10069,7 +10069,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -10196,7 +10196,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -10304,7 +10304,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -10344,7 +10344,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -10473,7 +10473,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -10659,7 +10659,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -10742,7 +10742,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -10878,7 +10878,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -10984,7 +10984,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -11021,7 +11021,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -11148,7 +11148,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -11255,7 +11255,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -11294,7 +11294,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -11421,7 +11421,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -11529,7 +11529,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -11569,7 +11569,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -11698,7 +11698,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -11884,7 +11884,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -11967,7 +11967,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -12103,7 +12103,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12209,7 +12209,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -12246,7 +12246,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -12373,7 +12373,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -12480,7 +12480,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -12519,7 +12519,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -12646,7 +12646,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -12754,7 +12754,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -12794,7 +12794,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.10.1;
+				MARKETING_VERSION = 5.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -12922,7 +12922,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13109,7 +13109,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -13192,7 +13192,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -13327,7 +13327,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13433,7 +13433,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -13470,7 +13470,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -13596,7 +13596,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -13703,7 +13703,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -13742,7 +13742,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -13868,7 +13868,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -13976,7 +13976,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -14016,7 +14016,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.10.1;
+				MARKETING_VERSION = 10.11.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -14144,7 +14144,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14377,7 +14377,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -14509,7 +14509,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
