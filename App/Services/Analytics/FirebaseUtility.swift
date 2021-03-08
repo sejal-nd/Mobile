@@ -105,7 +105,7 @@ struct FirebaseUtility {
             let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
                 return Log.info("Failed to load Firebase Analytics")
         }
-        print("FIB CONFIGURED")
+
         FirebaseApp.configure(options: fileopts)
     }
     

@@ -65,7 +65,7 @@ enum Log {
         
             #if os(watchOS)
                 // Show log messages for watch in iOS console
-                WatchSessionManager.shared.transferUserInfo(userInfo: ["console": message])
+                WatchSessionController.shared.transferUserInfo(userInfo: ["console": message])
             #endif
         #endif
     }

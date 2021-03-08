@@ -274,12 +274,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - Watch Helper
     private func setupWatchConnectivity() {
         // Watch Connectivity
-        WatchSessionManager.shared.start()
+        WatchSessionController.shared.start()
 
         // Send jwt to watch if available
         guard AuthenticationService.isLoggedIn() else { return }
-        let accessToken = UserSession.token
-        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
+        UserSession.sendSessionToDevice()
     }
 
     // MARK: - Helper
