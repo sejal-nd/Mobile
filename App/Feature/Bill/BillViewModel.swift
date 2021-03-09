@@ -251,7 +251,7 @@ class BillViewModel {
         if billingInfo.pastDueAmount > 0 && accountDetail.isFinaled {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                 // Since the past due amount and the net due amount are both equal, it makes sense not to show the `pastDueAmount` and also its implemented similarly in Android as well
-                return "The total amount is past due and must be paid immediately. Your account \(status) and is no longer connected to your premise address."
+                return NSLocalizedString("The total amount must be paid immediately. Your account \(status) and is no longer connected to your premise address.", comment: "")
             } else {
                 if billingInfo.pastDueAmount > .zero && accountDetail.isFinaled {
                     return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account \(status) and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
