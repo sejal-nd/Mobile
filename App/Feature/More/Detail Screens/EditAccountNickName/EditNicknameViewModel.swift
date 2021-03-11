@@ -49,16 +49,6 @@ final class EditNicknameViewModel {
         return !(text == self.storedAccountNickName)
     }
     
-    private(set) lazy var resetNicknameEnabled: Driver<Bool> = self.getNickname.asDriver().map { [weak self] text -> Bool in
-        guard let self = self else { return false }
-        return !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-    }
-    
-    private(set) lazy var getNickname: Driver<String> = self.accountNickName.asDriver().map { [weak self] text -> String in
-        guard let self = self else { return "" }
-        return text == self.accountNumber ? "" : text
-    }
-    
     private lazy var fetchTrigger = Observable
            .merge(fetchAccountDetail,
                   RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount),

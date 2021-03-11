@@ -191,7 +191,7 @@ extension NetworkingError: LocalizedError {
         case .profileNotFound:
             return NSLocalizedString("Your verification link is no longer valid", comment: "")
         case .accountNotFound:
-            return NSLocalizedString("We're sorry, we weren't able to process your request.", comment: "Error title")
+            return NSLocalizedString("Error", comment: "Error title")
         case .lockedForgotPassword:
             return NSLocalizedString("Account Locked", comment: "Error title")
         case .passwordProtected:
@@ -291,7 +291,7 @@ extension NetworkingError: LocalizedError {
         case .profileNotFound:
             return NSLocalizedString("If you have already verified your account, please sign in to access your account. If your link has expired, please re-register.", comment: "")
         case .accountNotFound:
-            return NSLocalizedString("The information entered does not match our records. Please try again.", comment: "Error description")
+            return accountNotFoundMessage
         case .lockedForgotPassword:
             return NSLocalizedString("Access to this account is locked because of too many incorrect security question attempts. It may be locked out for the next 15 minutes. Please try again later.", comment: "Error description")
         case .passwordProtected:
