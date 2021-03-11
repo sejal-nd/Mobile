@@ -57,7 +57,7 @@ class AutoPayViewModel {
     func unenroll() -> Observable<Bool> {
         GoogleAnalytics.log(event: .autoPayUnenrollOffer)
         let unenrollRequest = AutoPayUnenrollRequest(reason: selectedUnenrollmentReason.value!)
-        return PaymentService.rx.autoPayUnenroll(accountNumber: accountNumber.value, request: unenrollRequest).map { _ in false }
+        return PaymentService.rx.autoPayUnenroll(accountNumber: accountDetail.accountNumber, request: unenrollRequest).map { _ in false }
     }
     
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
