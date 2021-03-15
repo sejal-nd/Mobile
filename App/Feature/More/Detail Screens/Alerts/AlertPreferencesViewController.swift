@@ -302,7 +302,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             
             if viewModel.shouldShowHUABillThreshold {
                 var thresholdStr: String? = nil
-                if let thresholdValue = viewModel.billThreshold.value {
+                if let thresholdValue = viewModel.billThreshold.value,
+                   !thresholdValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                     thresholdStr = "$\(thresholdValue)"
                 }
                 textFieldOptions = AlertPreferencesViewModel.AlertPrefTextFieldOptions(text: thresholdStr, placeHolder: viewModel.billThresholdPlacheHolder.value, showToolTip: true, textFieldType: .currency)
