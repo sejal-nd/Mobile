@@ -17,10 +17,9 @@ Each configuration defines specific values within the project target build setti
 
 To support various development environments each OpCo has multiple schemes
 - Automation
-- Testing
-- Staging
-- ProdBeta
-- Production
+- Beta
+- ReleaseCandidate
+- Release
 
 ## Project URL Path
 
@@ -57,4 +56,5 @@ Third party libraries are primarily managed using Cocoa Pods (https://github.com
 - GoogleAnalytics
 - Firebase
 - AppCenter
-- Survery Monkey
+- ForeSee
+
