@@ -2,7 +2,7 @@
 
 ## Installation
 **Requirements**
-- Xcode: 10.1
+- Xcode: 12.0
 - Cocoa Pods: 1.5.3
 After a fresh `git clone` from the "Exelon_Mobile_iOS" repository, open a terminal at the root project folder and run `pod install`.  Following this open the project workspace named: "Mobile.xcworkspace", the project is now open and working.
 
