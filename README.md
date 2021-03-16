@@ -25,13 +25,11 @@ To support various development environments each OpCo has multiple schemes
 
 Navigate to the Debug Menu on the landing screen then select the desired project in the `Project URL Suffix` menu.  Then restart the app.
 
-| Git Branch   |    URL Prefix                        |
-| -------------- | ------------------------------- |
-|   phi/             |    /phimobile                        |
-|   billing/        |    /billing                               |
-|   payments/  |    /paymentenhancements  |
-|   mma/          |    /manage-my-account      |
-|   hotfix/         |    /hotfix                               |
+## Git Branching Strategy
+
+The GIT Branching strategy can be found in the URL :
+
+https://exelontfs.visualstudio.com/EU-mobile/_wiki/wikis/EU-mobile.wiki/1386/Git-Branching-Strategy
 
 ## Third Party Libraries
 
