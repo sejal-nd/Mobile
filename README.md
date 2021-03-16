@@ -2,7 +2,7 @@
 
 ## Installation
 **Requirements**
-- Xcode: 10.1
+- Xcode: 12.0
 - Cocoa Pods: 1.5.3
 After a fresh `git clone` from the "Exelon_Mobile_iOS" repository, open a terminal at the root project folder and run `pod install`.  Following this open the project workspace named: "Mobile.xcworkspace", the project is now open and working.
 
@@ -17,22 +17,19 @@ Each configuration defines specific values within the project target build setti
 
 To support various development environments each OpCo has multiple schemes
 - Automation
-- Testing
-- Staging
-- ProdBeta
-- Production
+- Beta
+- ReleaseCandidate
+- Release
 
 ## Project URL Path
 
 Navigate to the Debug Menu on the landing screen then select the desired project in the `Project URL Suffix` menu.  Then restart the app.
 
-| Git Branch   |    URL Prefix                        |
-| -------------- | ------------------------------- |
-|   phi/             |    /phimobile                        |
-|   billing/        |    /billing                               |
-|   payments/  |    /paymentenhancements  |
-|   mma/          |    /manage-my-account      |
-|   hotfix/         |    /hotfix                               |
+## Git Branching Strategy
+
+The GIT Branching strategy can be found in the URL :
+
+https://exelontfs.visualstudio.com/EU-mobile/_wiki/wikis/EU-mobile.wiki/1386/Git-Branching-Strategy
 
 ## Third Party Libraries
 
@@ -57,4 +54,5 @@ Third party libraries are primarily managed using Cocoa Pods (https://github.com
 - GoogleAnalytics
 - Firebase
 - AppCenter
-- Survery Monkey
+- ForeSee
+
