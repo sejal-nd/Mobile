@@ -229,7 +229,7 @@ class HomeUsageCardView: UIView {
     private func styleSmartEnergyRewards() {
         smartEnergyRewardsTitleLabel.textColor = .deepGray
         smartEnergyRewardsTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
-        smartEnergyRewardsTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        smartEnergyRewardsTitleLabel.text = Configuration.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .deepGray
@@ -244,7 +244,7 @@ class HomeUsageCardView: UIView {
         
         smartEnergyRewardsEmptyStateTitleLabel.textColor = .deepGray
         smartEnergyRewardsEmptyStateTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
-        smartEnergyRewardsEmptyStateTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        smartEnergyRewardsEmptyStateTitleLabel.text = Configuration.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsEmptyStateDetailLabel.textColor = .deepGray

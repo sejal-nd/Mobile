@@ -38,9 +38,9 @@ struct AppRating {
     /// - Returns: true if the threshold was met and the
     ///     user should be prompted to rate the app.
     static func shouldRequestRating() -> Bool {
-        let isDev = Environment.shared.environmentName != .release &&
-            Environment.shared.environmentName != .rc &&
-            Environment.shared.environmentName != .beta
+        let isDev = Configuration.shared.environmentName != .release &&
+            Configuration.shared.environmentName != .rc &&
+            Configuration.shared.environmentName != .beta
         
         let value = UserDefaults.standard.integer(forKey: UserDefaultKeys.appRatingEventCount)
         
@@ -49,7 +49,7 @@ struct AppRating {
     
     /// Presents the Apple App Store Rating Prompt, its presentation is not guarenteed
     static func present() {
-        let env = Environment.shared.environmentName
+        let env = Configuration.shared.environmentName
         if AppRating.shouldRequestRating() && (env == .release || env == .rc) {
             SKStoreReviewController.requestReview()
         }

@@ -415,7 +415,7 @@ class HomeBillCardView: UIView {
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { !$0.isBGEasy && !StormModeStatus.shared.isOn }
         .map { accountDetail in
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .ace, .bge, .delmarva, .pepco:
                 let vc = UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
                 vc.accountDetail = accountDetail

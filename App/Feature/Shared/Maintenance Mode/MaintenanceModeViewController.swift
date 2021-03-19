@@ -84,7 +84,7 @@ class MaintenanceModeViewController: UIViewController {
             if !isMaintenance {
                 NotificationCenter.default.post(name: .didMaintenanceModeTurnOff, object: nil)
                 self.presentingViewController?.dismiss(animated: true, completion: {
-                    dLog("Dismissed MM")
+                    Log.info("Dismissed MM")
                 })
             } else {
                 self.headerLabel.text = self.viewModel.headerLabelText

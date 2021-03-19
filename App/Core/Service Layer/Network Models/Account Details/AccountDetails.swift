@@ -36,6 +36,7 @@ public struct AccountDetail: Decodable {
     public var revenueClass: String?
     public var serviceAgreementCount: Int
     public var isSmartEnergyRewardsEnrolled: Bool
+    public var isPippEnrolled: Bool
     
     public var amountDue: String?
     public var dueDate: Date?
@@ -82,6 +83,7 @@ public struct AccountDetail: Decodable {
     let isHUAEligible: Bool?
     let isPTREligible: Bool?
     let isPTSEligible: Bool?
+    let isPESCEligible: Bool?
     let hasThirdPartySupplier: Bool
     
     let isEnergyWiseRewardsEligible: Bool
@@ -138,6 +140,7 @@ public struct AccountDetail: Decodable {
         case revenueClass
         case serviceAgreementCount
         case isSmartEnergyRewardsEnrolled = "smartEnergyRewardsStatus"
+        case isPippEnrolled
         
         case amountDue
         case dueDate
@@ -185,6 +188,7 @@ public struct AccountDetail: Decodable {
         case isHUAEligible
         case isPTREligible
         case isPTSEligible
+        case isPESCEligible
         case hasElectricSupplier
         case isSingleBillOption
         case isSupplier
@@ -253,6 +257,7 @@ public struct AccountDetail: Decodable {
                                                           forKey: .serviceAgreementCount)
         self.isSmartEnergyRewardsEnrolled = try container.decode(Bool.self,
                                                                  forKey: .isSmartEnergyRewardsEnrolled)
+        self.isPippEnrolled = try container.decodeIfPresent(Bool.self, forKey: .isPippEnrolled) ?? false
         self.amountDue = try container.decodeIfPresent(String.self,
                                                        forKey: .amountDue)
         self.dueDate = try container.decodeIfPresent(Date.self,
@@ -345,6 +350,7 @@ public struct AccountDetail: Decodable {
         self.isHUAEligible = try container.decodeIfPresent(Bool.self, forKey: .isHUAEligible)
         self.isPTREligible = try container.decodeIfPresent(Bool.self, forKey: .isPTREligible)
         self.isPTSEligible = try container.decodeIfPresent(Bool.self, forKey: .isPTSEligible)
+        self.isPESCEligible = try container.decodeIfPresent(Bool.self, forKey: .isPESCEligible)
         self.hasThirdPartySupplier = try container.decodeIfPresent(Bool.self, forKey: .hasThirdPartySupplier) ?? false
         self.hasElectricSupplier = try container.decodeIfPresent(Bool.self, forKey: .hasElectricSupplier) ?? false
         self.isSingleBillOption = try container.decodeIfPresent(Bool.self, forKey: .isSingleBillOption) ?? false
@@ -389,7 +395,7 @@ public struct AccountDetail: Decodable {
     }
     
     var opcoType: OpCo? {
-        if Environment.shared.opco.isPHI,
+        if Configuration.shared.opco.isPHI,
            let utilityCode = utilityCode {
             switch utilityCode {
             case "ACE":

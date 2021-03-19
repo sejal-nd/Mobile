@@ -90,7 +90,7 @@ extension Date {
         var paymentDate = self
         
         if isInToday(calendar: .opCo) {
-            if Environment.shared.opco == .peco {
+            if Configuration.shared.opco == .peco {
                 let localCalendar = Calendar.current
                 let hour = localCalendar.component(.hour, from: self)
                 let minute = localCalendar.component(.minute, from: self)
@@ -309,6 +309,14 @@ extension DateFormatter {
         return dateFormatter
     }()
     
+    @nonobjc static let dayMonthDayYearFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "EEEE, MMMM d, yyyy"
+        return dateFormatter
+    }()
+    
     @nonobjc static let monthDayFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .opCo
@@ -321,7 +329,7 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.calendar = .opCo
         formatter.timeZone = .opCo
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
         case .comEd, .peco:
@@ -386,7 +394,7 @@ extension Calendar {
 
 extension TimeZone {
     static let opCo: TimeZone = {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace, .bge, .delmarva, .peco, .pepco :
             return TimeZone.current //TimeZone(identifier: "America/New_York")!
         case .comEd:

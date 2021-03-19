@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,14 +23,14 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iZi-Fe-6eW">
                             <rect key="frame" x="0.0" y="25" width="414" height="238"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="img_prepaidlogo" translatesAutoresizingMaskIntoConstraints="NO" id="ALZ-gJ-pza">
-                                    <rect key="frame" x="132" y="0.0" width="150" height="64"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="img_prepaiLog.infoo" translatesAutoresizingMaskIntoConstraints="NO" id="ALZ-gJ-pza">
+                                    <rect key="frame" x="143" y="0.0" width="128" height="120"/>
                                     <accessibility key="accessibilityConfiguration" label="Prepaid Power">
                                         <bool key="isElement" value="YES"/>
                                     </accessibility>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-sG-kSp" userLabel="Spacer">
-                                    <rect key="frame" x="207" y="64" width="0.0" height="30"/>
+                                    <rect key="frame" x="207" y="120" width="0.0" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" id="J1l-pe-Qvi"/>
@@ -42,20 +38,20 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take action to complete your Prepaid enrollment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WmA-iz-4VS">
-                                    <rect key="frame" x="22.5" y="94" width="369" height="23"/>
+                                    <rect key="frame" x="23.5" y="150" width="367" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wUz-Ol-5c8" userLabel="Spacer">
-                                    <rect key="frame" x="21" y="117" width="372" height="18"/>
+                                    <rect key="frame" x="21" y="150" width="372" height="18"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="rdK-FD-fE9"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Complete all required steps within 5 business days of starting your enrollment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQx-Yy-A8a">
-                                    <rect key="frame" x="21" y="135" width="372" height="33"/>
+                                    <rect key="frame" x="27" y="168" width="360" height="0.0"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -68,7 +64,7 @@
                                         <constraint firstAttribute="height" constant="20" id="7Wm-4Z-EzW"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idc-1Z-Kyu">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idc-1Z-Kyu">
                                     <rect key="frame" x="184" y="188" width="46" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="C52-dE-Tde"/>
@@ -99,6 +95,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Ojf-4D-Bwn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RhN-Zj-flO"/>
@@ -109,7 +106,6 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="callToActionButton" destination="Idc-1Z-Kyu" id="X5u-lV-spY"/>
                 <outlet property="clippingView" destination="Ojf-4D-Bwn" id="use-Ic-x2E"/>
@@ -120,6 +116,6 @@
         </view>
     </objects>
     <resources>
-        <image name="img_prepaidlogo" width="150" height="64"/>
+        <image name="img_prepaiLog.infoo" width="128" height="128"/>
     </resources>
 </document>

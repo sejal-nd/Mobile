@@ -39,7 +39,7 @@ class GameHomeViewModel {
     
     // seconds between each task
     lazy var taskInterval: Int = {
-        if Environment.shared.environmentName == .release {
+        if Configuration.shared.environmentName == .release {
             return 60 * 60 * 24 * 4 // 4 days
         } else {
             return 10 // 10 seconds

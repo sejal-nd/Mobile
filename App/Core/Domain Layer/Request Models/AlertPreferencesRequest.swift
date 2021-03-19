@@ -30,7 +30,7 @@ public struct AlertPreferencesRequest: Encodable {
     init(alertPreferences: AlertPreferences) {
         var preferences = [AlertRequest]()
         
-        if !Environment.shared.opco.isPHI {
+        if !Configuration.shared.opco.isPHI {
             preferences.append(AlertRequest(isActive: alertPreferences.highUsage, programName: "High Usage Residential Alert",
                                                       alertThreshold: alertPreferences.alertThreshold))
             
@@ -50,13 +50,13 @@ public struct AlertPreferencesRequest: Encodable {
             preferences.append(AlertRequest(isActive: alertPreferences.scheduledMaint, programName: "Planned Outage"))
             preferences.append(AlertRequest(isActive: alertPreferences.severeWeather, programName: "Severe Weather"))
             
-            if Environment.shared.opco == .bge {
+            if Configuration.shared.opco == .bge {
                 preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: "Bill is Ready"))
             } else {
                 preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: "Paperless Billing"))
             }
             
-            if Environment.shared.opco == .bge {
+            if Configuration.shared.opco == .bge {
                 preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentDue, programName: "Payment Reminder", daysPrior: alertPreferences.paymentDueDaysBefore))
             } else {
                 preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentDue, programName: "Payment Reminders", daysPrior: alertPreferences.paymentDueDaysBefore))
@@ -67,7 +67,7 @@ public struct AlertPreferencesRequest: Encodable {
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.budgetBilling, programName: "Budget Billing"))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.appointmentTracking, programName: "Customer Appointments"))
             
-            if Environment.shared.opco == .bge {
+            if Configuration.shared.opco == .bge {
                 preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: "Marketing"))
             } else {
                 preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: "News"))
@@ -75,7 +75,7 @@ public struct AlertPreferencesRequest: Encodable {
         }
         else {
             
-            let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Environment.shared.opco.rawValue
+            let opcoIdentifier = AccountsStore.shared.currentAccount.utilityCode?.uppercased() ?? Configuration.shared.opco.rawValue
             
             let outageProgramName = "Outage" + " " + opcoIdentifier
             let severeWeatherProgramName = "Severe Weather" + " " + opcoIdentifier
@@ -85,7 +85,10 @@ public struct AlertPreferencesRequest: Encodable {
             let billReadyProgramName = "Bill is Ready" + " " + opcoIdentifier
             let budgetBillingProgramName = "Budget Billing" + " " + opcoIdentifier
             let forYourInfoProgramName = "News" + " " + opcoIdentifier
-            
+            let highUsageAlertProgramName = "High Usage Alert" + " " + opcoIdentifier
+            let peakSavingsDayResultsProgramName = "Peak Savings Day Results" + " " + opcoIdentifier
+            let peakSavingsDayAlertProgramName = "PESC" + " " + opcoIdentifier
+
             preferences.append(AlertRequest(isActive: alertPreferences.outage, programName: outageProgramName))
             preferences.append(AlertRequest(isActive: alertPreferences.severeWeather, programName: severeWeatherProgramName))
             preferences.append(AlertRequest(isActive: alertPreferences.billReady, programName: billReadyProgramName))
@@ -94,6 +97,9 @@ public struct AlertPreferencesRequest: Encodable {
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.paymentPastDue, programName: paymentPastDueProgramName))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.budgetBilling, programName: budgetBillingProgramName))
             preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.forYourInfo, programName: forYourInfoProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.highUsage, programName: highUsageAlertProgramName, alertThreshold: alertPreferences.alertThreshold))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.peakTimeSavingsDayAlert ?? false, programName: peakSavingsDayAlertProgramName))
+            preferences.append(AlertPreferencesRequest.AlertRequest(isActive: alertPreferences.peakTimeSavingsDayResults ?? false, programName: peakSavingsDayResultsProgramName))
         }
         
         alertPreferenceRequests = preferences

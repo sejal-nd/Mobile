@@ -1,5 +1,5 @@
 //
-//  Environment.swift
+//  Configuration.swift
 //  Mobile
 //
 //  Created by Kenny Roethel on 2/13/17.
@@ -34,7 +34,7 @@ enum OpCo: String {
         case .comEd:
             return "comed"
         case .delmarva:
-            return "delmarvapower"
+            return "delmarva"
         case .peco:
             return "peco"
         case .pepco:
@@ -104,7 +104,7 @@ enum OpCo: String {
     }
 }
 
-enum EnvironmentName: String {
+enum ConfigurationName: String {
     case aut = "AUT"
     case beta = "BETA"
     case rc = "RC"
@@ -116,7 +116,6 @@ struct InfoPlist: Codable {
     let displayName: String
     let baseURL: String
     let oauthURL: String
-    let alertURL: String
     let accountURL: String
     let paymentURL: String
     let associatedDomain: String
@@ -132,7 +131,6 @@ struct InfoPlist: Codable {
         case displayName = "Build Display Name"
         case baseURL = "Base URL"
         case oauthURL = "OAuth URL"
-        case alertURL = "Alert URL"
         case accountURL = "Account URL"
         case paymentURL = "Payment URL"
         case associatedDomain = "Associated Domain"
@@ -143,10 +141,10 @@ struct InfoPlist: Codable {
     }
 }
 
-struct Environment {
-    static let shared = Environment()
+struct Configuration {
+    static let shared = Configuration()
     
-    let environmentName: EnvironmentName
+    let environmentName: ConfigurationName
     let opco: OpCo
     let myAccountUrl: String
     let gaTrackingId: String
@@ -155,11 +153,10 @@ struct Environment {
     let baseUrl: String
     let oAuthEndpoint: String
     let paymentusUrl: String
-    let sharepointBaseURL: String
     
     var clientSecret: String {
         var secret = ""
-        switch Environment.shared.environmentName {
+        switch Configuration.shared.environmentName {
         case .rc, .release:
             secret = "wQrbiqG3Ddefftp3"
         default:
@@ -177,7 +174,7 @@ struct Environment {
     
     var clientID: String {
         var id = ""
-        switch Environment.shared.environmentName {
+        switch Configuration.shared.environmentName {
         case .rc, .release:
             id = "jk8UMnMb2kSISwAgX0OFGhMEAfMEoGTd"
         default:
@@ -202,13 +199,12 @@ struct Environment {
             let data = try Data(contentsOf: plistURL)
             let infoPlist = try decoder.decode(InfoPlist.self, from: data)
             
-            let envName = EnvironmentName(rawValue: infoPlist.environmentTier)!
+            let envName = ConfigurationName(rawValue: infoPlist.environmentTier)!
             environmentName = envName
             
             let operatingCompany = OpCo(rawValue: infoPlist.buildFlavor)!
             opco = operatingCompany
             paymentusUrl = infoPlist.paymentURL
-            sharepointBaseURL = infoPlist.alertURL
             myAccountUrl = infoPlist.accountURL
             gaTrackingId = infoPlist.googleAnalyticID
             associatedDomain = infoPlist.associatedDomain

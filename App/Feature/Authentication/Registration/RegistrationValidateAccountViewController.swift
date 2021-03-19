@@ -41,7 +41,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         instructionLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        if Environment.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
             accountNumberTextField.textField.autocorrectionType = .no
             accountNumberTextField.setKeyboardType(.numberPad)
@@ -90,7 +90,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         }).disposed(by: disposeBag)
         
         var identifierString = "Last 4 Digits of primary account holder’s Social Security Number"
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             identifierString.append(", Business Tax ID, or BGE Pin")
         } else {
             identifierString.append(" or Business Tax ID.")
@@ -100,7 +100,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         let identifierPlaceholder: String
-        if Environment.shared.opco == .bge {
+        if Configuration.shared.opco == .bge {
             identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
         } else {
             identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
@@ -171,7 +171,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
     
     @IBAction func onAccountNumberTooltipPress() {
         let description: String
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             description = NSLocalizedString("Your Customer Account Number may be found in the top right portion on your bill in the bill summary section. Please enter 10-digits including leading zeros.", comment: "")
         case .comEd:

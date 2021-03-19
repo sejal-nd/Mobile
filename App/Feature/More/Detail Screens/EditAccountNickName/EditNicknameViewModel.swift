@@ -10,11 +10,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-
 final class EditNicknameViewModel {
-    
-    let disposeBag = DisposeBag()
-    
     
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
@@ -50,7 +46,7 @@ final class EditNicknameViewModel {
     
     private(set) lazy var saveNicknameEnabled: Driver<Bool> = self.accountNickName.asDriver().map { [weak self] text -> Bool in
         guard let self = self else { return false }
-        return !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !(text == self.storedAccountNickName)
+        return !(text == self.storedAccountNickName)
     }
     
     private lazy var fetchTrigger = Observable

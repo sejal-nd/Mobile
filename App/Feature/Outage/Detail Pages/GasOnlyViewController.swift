@@ -18,7 +18,7 @@ class GasOnlyViewController: UIViewController {
     var gasOnlyText: NSAttributedString {
         var localizedString: String
         let phoneNumbers: [String]
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"
             let phone2 = "1-877-778-7798"
@@ -83,7 +83,7 @@ class GasOnlyViewController: UIViewController {
         textView.textColor = .deepGray
         textView.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        let padding: CGFloat = Environment.shared.opco.isPHI ? 30.0 : 46.0
+        let padding: CGFloat = Configuration.shared.opco.isPHI ? 30.0 : 46.0
         textViewLeadingConstraint.constant = padding
         textViewTrailingConstraint.constant = padding
     }

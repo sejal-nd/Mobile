@@ -51,9 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
         }
         
-        dLog("Environment " + Environment.shared.environmentName.rawValue)
+        Log.info("Configuration " + Configuration.shared.environmentName.rawValue)
         
-        if let appCenterId = Environment.shared.appCenterId {
+        if let appCenterId = Configuration.shared.appCenterId {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        dLog("*-*-*-*-* APNS Device Token: \(token)")
+        Log.info("*-*-*-*-* APNS Device Token: \(token)")
         
         var firstLogin = false
         if let usernamesArray = UserDefaults.standard.array(forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications) as? [String],
@@ -126,25 +126,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AlertService.register(request: alertRegistrationRequest) { result in
                 switch result {
                 case .success:
-                    dLog("*-*-*-*-* Registered token with MCS")
+                    Log.info("*-*-*-*-* Registered token with MCS")
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
                         UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
                 case .failure(let error):
-                    dLog("*-*-*-*-* Failed to register token with MCS with error: \(error.localizedDescription)")
+                    Log.info("*-*-*-*-* Failed to register token with MCS with error: \(error.localizedDescription)")
                 }
             }
         }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        dLog("*-*-*-*-* \(error.localizedDescription)")
+        Log.info("*-*-*-*-* \(error.localizedDescription)")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        dLog("*-*-*-*-* \(userInfo)")
+        Log.info("*-*-*-*-* \(userInfo)")
         
         guard let aps = userInfo["aps"] as? [String: Any] else { return }
         guard let alert = aps["alert"] as? [String: Any] else { return }
@@ -170,7 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         } else {
             // App was in the foreground when notification received - do nothing
-            dLog("*-*-*-*-* App was in the foreground when notification received - do nothing")
+            Log.info("*-*-*-*-* App was in the foreground when notification received - do nothing")
         }
     }
     
@@ -327,7 +327,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupAnalytics() {
         let gai = GAI.sharedInstance()
-        _ = gai?.tracker(withTrackingId: Environment.shared.gaTrackingId)
+        _ = gai?.tracker(withTrackingId: Configuration.shared.gaTrackingId)
         
         FirebaseUtility.configure()
         
@@ -376,6 +376,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
                 let vc = maintenanceStoryboard.instantiateInitialViewController() as! MaintenanceModeViewController
                 vc.maintenance = maintenanceInfo
+                vc.modalPresentationStyle = .fullScreen
                 
                 topmostVC.present(vc, animated: true, completion: nil)
             }

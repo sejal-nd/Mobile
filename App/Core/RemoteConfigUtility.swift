@@ -16,6 +16,7 @@ final class RemoteConfigUtility {
         case billingVideoURL
         case hasNewRegistration
         case hasDefaultAccount
+        case hasForgotPasswordLink
     }
     
     static let shared = RemoteConfigUtility()
@@ -34,7 +35,8 @@ final class RemoteConfigUtility {
             RemoteConfigKey.streetlightMapURL.rawValue : "",
             RemoteConfigKey.billingVideoURL.rawValue : "",
             RemoteConfigKey.hasNewRegistration.rawValue : "false",
-            RemoteConfigKey.hasDefaultAccount.rawValue : "false"
+            RemoteConfigKey.hasDefaultAccount.rawValue : "false",
+            RemoteConfigKey.hasForgotPasswordLink.rawValue : "false"
         ]
         RemoteConfig.remoteConfig().setDefaults(appDefaults as? [String: NSObject])
     }
@@ -60,14 +62,14 @@ final class RemoteConfigUtility {
         RemoteConfig.remoteConfig().fetch(withExpirationDuration: fetchDuration) { [weak self] status, error in
             
             if let error = error {
-                dLog("Error fetching remote config values from firebase\(error)")
+                Log.info("Error fetching remote config values from firebase\(error)")
                 return
             }
             
             RemoteConfig.remoteConfig().activateFetched()
             self?.fetchComplete = true
             self?.loadingDoneCallback?()
-            dLog("Retrieved remote config values from firebase")
+            Log.info("Retrieved remote config values from firebase")
         }
     }
     

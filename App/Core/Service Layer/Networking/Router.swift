@@ -20,7 +20,7 @@ public enum Router {
         public var path: String {
             switch self {
             case .anon:
-                return "\(rawValue)/\(Environment.shared.opco.urlString)"
+                return "\(rawValue)/\(Configuration.shared.opco.urlString)"
             case .none:
                 return ""
             default:
@@ -94,6 +94,7 @@ public enum Router {
     case ssoData(accountNumber: String, premiseNumber: String)
     case ffssoData(accountNumber: String, premiseNumber: String)
     case iTronssoData(accountNumber: String, premiseNumber: String)
+
     case forecastBill(accountNumber: String, premiseNumber: String)
     case compareBill(accountNumber: String, premiseNumber: String, encodable: Encodable)
     case energyTips(accountNumber: String, premiseNumber: String)
@@ -116,7 +117,7 @@ public enum Router {
     case alertPreferencesUpdate(accountNumber: String, request: AlertPreferencesRequest)
     case fetchAlertLanguage(accountNumber: String)
     case setAlertLanguage(accountNumber: String, request: AlertLanguageRequest)
-    case alertBanner(additionalQueryItem: URLQueryItem)
+    case alertBanner
     
     // News & Updates
     case newsAndUpdates(additionalQueryItem: URLQueryItem)
@@ -156,20 +157,18 @@ public enum Router {
     public var host: String {
         switch self {
         case .fetchToken, .refreshToken:
-            return Environment.shared.oAuthEndpoint
+            return Configuration.shared.oAuthEndpoint
         case .weather:
             return "api.weather.gov"
-        case .alertBanner, .newsAndUpdates:
-            return Environment.shared.sharepointBaseURL
         default:
-            return Environment.shared.baseUrl
+            return Configuration.shared.baseUrl
         }
     }
     
     private var basePath: String {
         let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
         let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
-        return "/mobile/custom\(projectURLSuffix.projectPath)"
+        return "\(projectURLSuffix.projectPath)/mobile/custom"
     }
     
     public var apiAccess: ApiAccess {
@@ -232,10 +231,10 @@ public enum Router {
         case .payments(let accountNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments"
         case .alertBanner, .newsAndUpdates:
-            return "/_api/web/lists/GetByTitle('GlobalAlert')/items"
+            return "\(basePath)/\(apiAccess.path)/config/alerts"
         case .billPDF(let accountNumber, let date, let documentID):
             let dateString = DateFormatter.yyyyMMddFormatter.string(from: date)
-            return Environment.shared.opco.isPHI ? "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
+            return Configuration.shared.opco.isPHI ? "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/doc/\(documentID)/pdf" : "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/\(dateString)/pdf"
         case .scheduledPayment(let accountNumber, _):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/schedule"
         case .scheduledPaymentUpdate(let accountNumber, let paymentId, _):
@@ -375,8 +374,8 @@ public enum Router {
             headers["Authorization"] = "Bearer \(token)"
         }
                 
-        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            dLog("HTTP headers:\n\(headers)")
+        if ProcessInfo.processInfo.arguments.contains("-shoulLog.infoAPI") {
+            Log.info("HTTP headers:\n\(headers)")
         }
         
         return headers
@@ -384,10 +383,6 @@ public enum Router {
     
     public var parameters: [URLQueryItem]? {
         switch self {
-        case .alertBanner(let additionalQueryItem), .newsAndUpdates(let additionalQueryItem):
-            return [URLQueryItem(name: "$select", value: "Title,Message,Enable,CustomerType,Created,Modified"),
-                    URLQueryItem(name: "$orderby", value: "Modified desc"),
-                    additionalQueryItem]
         case .outageStatus(_, let summaryQueryItem):
             var queryItems = [URLQueryItem(name: "meterPing", value: "false")]
             if let summaryQueryItem = summaryQueryItem {
@@ -427,7 +422,7 @@ public enum Router {
         case .payments:
             return "PaymentsMock"
         case .alertBanner, .newsAndUpdates:
-            return "SharePointAlertMock"
+            return "AzureAlertsMock"
         case .billPDF:
             return "BillPDFMock"
         case .scheduledPayment, .scheduledPaymentUpdate, .scheduledPaymentDelete:

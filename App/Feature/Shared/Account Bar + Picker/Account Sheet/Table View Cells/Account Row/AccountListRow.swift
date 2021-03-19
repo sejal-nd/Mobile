@@ -158,7 +158,7 @@ class AccountListRow: UITableViewCell {
         if account.isDefault {
             accountNumberText = "\(account.displayName) (Default)"
         } else if account.isFinaled {
-            let status = Environment.shared.opco.isPHI ? "(Inactive)" : "(Finaled)"
+            let status = Configuration.shared.opco.isPHI ? "(Inactive)" : "(Finaled)"
             accountNumberText = "\(account.displayName) \(status)"
         } else if account.isLinked {
             accountNumberText = "\(account.displayName) (Linked)"

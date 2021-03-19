@@ -16,7 +16,7 @@ class PaperlessEBillCommercialViewController: DismissableFormSheetViewController
     @IBOutlet weak var buttonLabel: UILabel!
     
     private var url: URL? {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .comEd:
             return URL(string: "https://mydetail.getbills.com/BDComEd/index.jsp")
         case .peco:

@@ -124,7 +124,7 @@ class AppointmentDetailViewModel {
             regularText = NSLocalizedString("Your appointment is scheduled for ", comment: "")
         }
         
-        if Environment.shared.opco != .peco, let stopDate = appointment.stopDate {
+        if Configuration.shared.opco != .peco, let stopDate = appointment.stopDate {
             if appointment.date.isInToday(calendar: .opCo) {
                 boldText = String.localizedStringWithFormat("today between %@ - %@.",
                                                             appointment.date.hourAmPmString,
@@ -168,7 +168,7 @@ class AppointmentDetailViewModel {
     }
     
     var formattedEndHour: String {
-        if Environment.shared.opco != .peco, let stopDate = appointment.stopDate {
+        if Configuration.shared.opco != .peco, let stopDate = appointment.stopDate {
             return stopDate.hourAmPmString
         } else {
             return appointment.timeslot.formattedEndHour
@@ -177,7 +177,7 @@ class AppointmentDetailViewModel {
     
     var calendarEvent: EKEvent {
         let title = String.localizedStringWithFormat("My %@ appointment",
-                                                     Environment.shared.opco.displayString)
+                                                     Configuration.shared.opco.displayString)
         
         let event = EKEvent(eventStore: EventStore.shared)
         event.title = title

@@ -27,4 +27,5 @@ extension NSNotification.Name {
     static let gameSetFabHidden = NSNotification.Name("kGameSetFabHidden")
     
     static let didRecievePaymentConfirmation = NSNotification.Name("kdidRecievePaymentConfirmation")
+    static let didRecievePaymentCancelConfirmation = NSNotification.Name("kdidRecievePaymentCancelConfirmation")
 }

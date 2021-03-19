@@ -30,27 +30,25 @@ enum AlertService {
     }
     
     static func fetchAlertBanner(bannerOnly: Bool, stormOnly: Bool, completion: @escaping (Result<[Alert], NetworkingError>) -> ()) {
-        var filterString: String
-
-        if bannerOnly {
-            filterString = "(Enable eq 1) and (CustomerType eq 'Banner')"
-        } else if stormOnly {
-            filterString = "(Enable eq 1) and (CustomerType eq 'Storm')"
-        } else {
-            filterString = "(Enable eq 1) and ((CustomerType eq 'All')"
-            ["Banner", "PeakRewards", "Peak Time Savings", "Smart Energy Rewards", "Storm"]
-                .forEach {
-                    filterString += "or (CustomerType eq '\($0)')"
-            }
-            filterString += ")"
-        }
-        
-        let queryItem = URLQueryItem(name: "$filter", value: filterString)
-        
-        NetworkingLayer.request(router: .alertBanner(additionalQueryItem: queryItem)) { (result: Result<SharePointAlert, NetworkingError>) in
+        NetworkingLayer.request(router: .alertBanner) { (result: Result<AzureAlerts, NetworkingError>) in
             switch result {
             case .success(let data):
-                completion(.success(data.alerts))
+                let filteredAlerts: [Alert]
+                
+                if bannerOnly {
+                    filteredAlerts = data.alerts.filter {
+                        $0.type == "Global"
+                    }
+                } else if stormOnly {
+                    filteredAlerts = data.alerts.filter {
+                        $0.type == "Storm"
+                    }
+                } else {
+                    filteredAlerts = data.alerts.sorted(by: {
+                        $0.order < $1.order
+                    })
+                }
+                completion(.success(filteredAlerts))
             case .failure(let error):
                 completion(.failure(error))
             }

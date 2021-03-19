@@ -116,7 +116,7 @@ class RegistrationViewModel {
                     onSuccess()
                 } else { // Manually save to SWC if iOS 11
                     guard let `self` = self else { return }
-                    SharedWebCredentials.save(credential: (self.username.value, self.newPassword.value), domain: Environment.shared.associatedDomain) { [weak self] error in
+                    SharedWebCredentials.save(credential: (self.username.value, self.newPassword.value), domain: Configuration.shared.associatedDomain) { [weak self] error in
                         DispatchQueue.main.async {
                             if error != nil, self?.hasStrongPassword ?? false {
                                 onError(NSLocalizedString("Failed to Save Password", comment: ""), NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
@@ -202,9 +202,9 @@ class RegistrationViewModel {
     }()
     
     
-    private(set) lazy var shouldShowFirstAndLastName: Bool = Environment.shared.opco.isPHI
+    private(set) lazy var shouldShowFirstAndLastName: Bool = Configuration.shared.opco.isPHI
     
-    private(set) lazy var shouldShowAccountNickname: Bool = Environment.shared.opco.isPHI
+    private(set) lazy var shouldShowAccountNickname: Bool = Configuration.shared.opco.isPHI
 
     func checkForMaintenance() {
         AnonymousService.rx.getMaintenanceMode(shouldPostNotification: true)
@@ -248,7 +248,7 @@ class RegistrationViewModel {
         self.accountNumber.asDriver().map { [weak self] text -> Bool in
             guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return Environment.shared.opco.isPHI ? digitsOnlyString.count == 11 : digitsOnlyString.count == 10
+            return Configuration.shared.opco.isPHI ? digitsOnlyString.count == 11 : digitsOnlyString.count == 10
         }
     
     private func extractDigitsFrom(_ string: String) -> String {
@@ -449,7 +449,7 @@ class RegistrationViewModel {
     private(set) lazy var confirmPasswordMatches: Driver<Bool> =
         Driver.combineLatest(self.confirmPassword.asDriver(), self.newPassword.asDriver(), resultSelector: ==)
     
-    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Environment.shared.opco.isPHI ? Driver
+    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Configuration.shared.opco.isPHI ? Driver
         .combineLatest(firstNameHasText, lastNameHasText, everythingValid, confirmPasswordMatches, newPasswordHasText)
         { $0 && $1 && $2 && $3 && $4}
     : Driver
@@ -459,7 +459,7 @@ class RegistrationViewModel {
     private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
         let driverArray: [Driver<String>]
         let count: Int
-        if Environment.shared.opco == .bge || RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+        if Configuration.shared.opco == .bge || RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
             driverArray = [self.securityAnswer1.asDriver(),
                            self.securityAnswer2.asDriver()]
             count = 2

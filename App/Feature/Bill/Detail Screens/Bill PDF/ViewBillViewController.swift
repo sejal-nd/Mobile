@@ -33,7 +33,7 @@ class ViewBillViewController: UIViewController {
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
-        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.text = NSLocalizedString("We are currently experiencing technical issues with downloading the PDF of your bill. We apologize for the inconvenience and appreciate your patience as we work to resolve the issue.", comment: "")
         errorLabel.isHidden = true
         
         fetchBillPDFData()

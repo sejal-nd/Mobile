@@ -45,7 +45,7 @@ struct SplashViewModel{
     }
     
     var errorTitleText: String? {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at BGE.com.", comment: "")
         case .comEd:
@@ -66,7 +66,7 @@ struct SplashViewModel{
         var localizedString: String
         let phoneNumbers: [String]
         
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"
             let phone2 = "1-877-778-7798"
@@ -146,7 +146,7 @@ struct SplashViewModel{
         var localizedString: String = ""
         var phoneNumbers = [String]()
         
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .ace:
             let phone = "1-800-642-3780"
                        phoneNumbers = [phone]

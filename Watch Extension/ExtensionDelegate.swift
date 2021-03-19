@@ -11,7 +11,7 @@ import WatchKit
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     func applicationDidFinishLaunching() {
-        dLog("NOTICE: Apple Watch App Did Finish Launching.")
+        Log.info("NOTICE: Apple Watch App Did Finish Launching.")
         
         WatchSessionManager.shared.start()
 

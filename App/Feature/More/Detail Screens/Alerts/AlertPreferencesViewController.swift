@@ -302,7 +302,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             
             if viewModel.shouldShowHUABillThreshold {
                 var thresholdStr: String? = nil
-                if let thresholdValue = viewModel.billThreshold.value {
+                if let thresholdValue = viewModel.billThreshold.value,
+                   !thresholdValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                     thresholdStr = "$\(thresholdValue)"
                 }
                 textFieldOptions = AlertPreferencesViewModel.AlertPrefTextFieldOptions(text: thresholdStr, placeHolder: viewModel.billThresholdPlacheHolder.value, showToolTip: true, textFieldType: .currency)
@@ -319,6 +320,10 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             }
         case .peakTimeSavings:
             toggleVariable = viewModel.peakTimeSavings
+        case .peakSavingsDayAlert:
+            toggleVariable = viewModel.peakSavingsDayAlert
+        case .peakSavingsDayResults:
+            toggleVariable = viewModel.peakSavingsDayResults
         case .smartEnergyRewards:
             toggleVariable = viewModel.smartEnergyRewards
         case .energySavingsDayResults:
@@ -331,7 +336,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             toggleVariable = viewModel.severeWeather
         case .billIsReady:
             toggleVariable = viewModel.billReady
-            switch Environment.shared.opco {
+            switch Configuration.shared.opco {
             case .ace, .bge, .delmarva, .pepco:
                 break
             case .comEd, .peco:
@@ -349,7 +354,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                     guard let self = self else { return }
                     FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .days_before_due_press)])
                     GoogleAnalytics.log(event: .alertsPayRemind)
-                    let upperRange = Environment.shared.opco == .bge ? 14 : 7
+                    let upperRange = Configuration.shared.opco == .bge ? 14 : 7
                     PickerView.showStringPicker(withTitle: NSLocalizedString("Payment Due Reminder", comment: ""),
                                                 data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
                                                 selectedIndex: self.viewModel.paymentDueDaysBefore.value - 1,

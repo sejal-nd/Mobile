@@ -49,6 +49,6 @@ final class HomePrepaidCardViewModel {
     }
     
     var buttonUrl: URL {
-        return URL(string: Environment.shared.myAccountUrl)!
+        return URL(string: Configuration.shared.myAccountUrl)!
     }
 }

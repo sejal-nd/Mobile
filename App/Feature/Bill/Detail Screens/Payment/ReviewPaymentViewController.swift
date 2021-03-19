@@ -392,7 +392,8 @@ class ReviewPaymentViewController: UIViewController {
                         FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .alternateContact, value: contactType)])
                     }
                     
-                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                        let temp = self?.viewModel.selectedWalletItem.value?.isTemporary ?? false
                         switch bankOrCard {
                         case .bank:
                             GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
@@ -403,7 +404,8 @@ class ReviewPaymentViewController: UIViewController {
                     
                     self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
                 }, onError: { [weak self] error in
-                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                        let temp = self?.viewModel.selectedWalletItem.value?.isTemporary ?? false
                         switch bankOrCard {
                         case .bank:
                             GoogleAnalytics.log(event: .eCheckError, dimensions: [

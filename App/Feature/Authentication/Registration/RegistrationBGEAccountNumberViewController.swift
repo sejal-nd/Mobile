@@ -44,7 +44,7 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
             .drive(onNext: { [weak self] accountNumber, accountNumberHasValidLength in
                 guard let self = self else { return }
                 if !accountNumber.isEmpty && !accountNumberHasValidLength {
-                    let digitCount = Environment.shared.opco.isPHI ? 11 : 10
+                    let digitCount = Configuration.shared.opco.isPHI ? 11 : 10
                     self.accountNumberTextField.setError(NSLocalizedString("Account number must be \(digitCount) digits long", comment: ""))
                 }
                 self.accessibilityErrorLabel()
@@ -88,7 +88,7 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountSetup)
-            if Environment.shared.opco.isPHI {
+            if Configuration.shared.opco.isPHI {
                 self.performSegue(withIdentifier: "phiCreateCredentialsSegue", sender: self)
             } else {
                 self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
@@ -119,7 +119,7 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
     
     @IBAction func onAccountNumberTooltipPress() {
         let description: String
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             description = NSLocalizedString("Your Customer Account Number may be found in the top right portion on your bill in the bill summary section. Please enter 10-digits including leading zeros.", comment: "")
         case .comEd:
@@ -141,7 +141,7 @@ extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
         
         if textField ==  accountNumberTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Environment.shared.opco.isPHI ? 11 : 10)
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= (Configuration.shared.opco.isPHI ? 11 : 10)
         }
         
         return true

@@ -33,7 +33,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
             return session
         }
         
-        dLog("Invalid Watch Session.")
+        Log.info("Invalid Watch Session.")
         return nil
         #else
         return session
@@ -56,14 +56,14 @@ extension WatchSessionManager {
     // Sender
     func updateApplicationContext(applicationContext: [String : Any]) throws {
         guard let session = validSession else {
-            dLog("Failed to update application context, invalid session.")
+            Log.info("Failed to update application context, invalid session.")
             return
         }
         
         do {
             try session.updateApplicationContext(applicationContext)
         } catch let error {
-            dLog("Failed to update application context:\n\(error.localizedDescription)")
+            Log.info("Failed to update application context:\n\(error.localizedDescription)")
             throw error
         }
     }
@@ -123,12 +123,12 @@ extension WatchSessionManager {
 
             // Logging
             if let value = userInfo["console"] as? String {
-                dLog("WATCH CONSOLE: \(value)")
+                Log.info("WATCH CONSOLE: \(value)")
                 return
             }
             
             guard let screenName = userInfo["screenName"] as? String else {
-                dLog("Failed to parse user info dictionary with key: screenName")
+                Log.info("Failed to parse user info dictionary with key: screenName")
                 return
             }
             

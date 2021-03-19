@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     static var primaryColor: UIColor {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return UIColor(red: 61/255, green: 132/255, blue: 48/255, alpha: 1)
         case .comEd:
@@ -28,7 +28,7 @@ extension UIColor {
     
     // Specifically for float label text fields
     static var primaryColorDark: UIColor {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return UIColor(red: 26/255, green: 91/255, blue: 14/255, alpha: 1)
         case .comEd:
@@ -41,7 +41,7 @@ extension UIColor {
     }
     
     static var primaryColorAccountPicker: UIColor {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return UIColor(red: 54/255, green: 121/255, blue: 42/255, alpha: 1)
         case .comEd:
@@ -54,7 +54,7 @@ extension UIColor {
     }
     
     static var switchBackgroundColor: UIColor {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return UIColor(red: 24/255, green: 51/255, blue: 18/255, alpha: 1)
         case .comEd:
@@ -65,7 +65,7 @@ extension UIColor {
     }
     
     static var stormPrimaryColor: UIColor {
-        switch Environment.shared.opco {
+        switch Configuration.shared.opco {
         case .bge:
             return .bgeGreen
         case .comEd:
