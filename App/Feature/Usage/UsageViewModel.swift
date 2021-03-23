@@ -394,6 +394,19 @@ class UsageViewModel {
             }
         }
     
+    private(set) lazy var projectedUsageSoFar: Driver<Double?> =
+        Driver.combineLatest(accountDetail,
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
+            guard let this = self else { return nil }
+            if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
+                return billForecast?.gas?.toDateUsage
+            } else {
+                return billForecast?.electric?.toDateUsage
+            }
+        }
+    
     private(set) lazy var showProjectedBar: Driver<Bool> =
         Driver.combineLatest(lastYearPreviousBillSelectedSegmentIndex.asDriver(), projectedCost, projectedUsage, showProjectionNotAvailableBar) {
             // Projections are only for "Previous Bill" selection
@@ -401,25 +414,35 @@ class UsageViewModel {
         }
     
     private(set) lazy var projectedBarHeightConstraintValue: Driver<CGFloat> =
-        Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
-            guard let projectedCost = projectedCost else { return 3 }
+        Driver.combineLatest(billComparison, projectedCost, projectedUsage) { billComparison, projectedCost, projectedUsage in
+            guard let projectedCost = projectedCost,
+                  let projectedUsage = projectedUsage else { return 3 }
             let reference = billComparison.referenceBill?.charges ?? 0
             let compared = billComparison.comparedBill?.charges ?? 0
-            if max(projectedCost, reference, compared) == projectedCost {
+            let projectedValue = projectedCost == 0 ? projectedUsage : projectedCost
+            
+            if max(projectedValue, reference, compared) == projectedValue {
                 return 134
             } else if max(reference, compared) == reference {
-                let fraction = CGFloat(134.0 * (projectedCost / reference))
+                let fraction = CGFloat(134.0 * (projectedValue / reference))
                 return fraction > 3 ? fraction : 3
             } else {
-                let fraction = CGFloat(134.0 * (projectedCost / compared))
+                let fraction = CGFloat(134.0 * (projectedValue / compared))
                 return fraction > 3 ? fraction : 3
             }
         }
     
     private(set) lazy var projectedBarSoFarHeightConstraintValue: Driver<CGFloat> =
-        Driver.combineLatest(projectedBarHeightConstraintValue, projectedCost, projectedCostSoFar) { heightConstraint, projectedCost, projectedCostSoFar in
-            guard let projectedCost = projectedCost, projectedCost > 0, let projectedCostSoFar = projectedCostSoFar else { return 0 }  // 340398 fix for crash with constraint being set to infinite number when dividing by 0
-            let fraction = heightConstraint * CGFloat(projectedCostSoFar / projectedCost)
+        Driver.combineLatest(projectedBarHeightConstraintValue, projectedCost, projectedCostSoFar, projectedUsage, projectedUsageSoFar) { heightConstraint, projectedCost, projectedCostSoFar, projectedUsage, projectedUsageSoFar in
+            guard let projectedCost = projectedCost, let projectedUsage = projectedUsage, let projectedCostSoFar = projectedCostSoFar, let projectedUsageSoFar = projectedUsageSoFar else { return 0 }  // 340398 fix for crash with constraint being set to infinite number when dividing by 0
+            let fraction: CGFloat
+            if projectedCost > 0 {
+                fraction = heightConstraint * CGFloat(projectedCostSoFar / projectedCost)
+            } else if projectedUsage > 0 {
+                fraction = heightConstraint * CGFloat(projectedUsageSoFar / projectedUsage)
+            } else {
+                fraction = 0
+            }
             return fraction > 3 ? fraction : 0
         }
     
