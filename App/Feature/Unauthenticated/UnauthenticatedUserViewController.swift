@@ -46,7 +46,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     }
     
     let billingVideosUrl: URL? = {
-        return URL(string: RemoteConfigUtility.shared.string(forKey: .billingVideoURL))
+        return URL(string: FeatureFlagUtility.shared.string(forKey: .billingVideoURL))
     }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -54,9 +54,9 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     }
     
     // Remote Config Value
-    private var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+    private var outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
     
-    private var streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
+    private var streetlightOutageMapURLString = FeatureFlagUtility.shared.string(forKey: .streetlightMapURL)
     
     // MARK: - View Life Cycle
     
@@ -127,9 +127,9 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
         tableView.accessibilityLabel = "guestTableView"
         
-        RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
-            self?.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
-            self?.streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
+        FeatureFlagUtility.shared.loadingDoneCallback = { [weak self] in
+            self?.outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
+            self?.streetlightOutageMapURLString = FeatureFlagUtility.shared.string(forKey: .streetlightMapURL)
             self?.tableView.reloadRows(at: [IndexPath(row: 2, section: 0), IndexPath(row: 3, section: 0)], with: .automatic)
         }
     }

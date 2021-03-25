@@ -17,8 +17,8 @@ class OutageViewModel {
     var isUserAuthenticated = false
     
     // Remote Config Values
-    var streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
-    var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+    var streetlightOutageMapURLString = FeatureFlagUtility.shared.string(forKey: .streetlightMapURL)
+    var outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
     
     // Passed from unauthenticated experience
     var accountNumber: String?

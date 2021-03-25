@@ -482,8 +482,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     private func configureRemoteConfig() {
-        RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
-            self?.viewModel.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+        FeatureFlagUtility.shared.loadingDoneCallback = { [weak self] in
+            self?.viewModel.outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
             
             if self?.viewModel.outageMapURLString.isEmpty ?? true {
                 self?.outageMapButton.isHidden = true
@@ -526,7 +526,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             scrollView?.isHidden = false
             setRefreshControlEnabled(enabled: false)
         } else {
-            RemoteConfigUtility.shared.fetchCloudValues()
+            FeatureFlagUtility.shared.fetchCloudValues()
         }
         
         viewModel.fetchData(onSuccess: { [weak self] in

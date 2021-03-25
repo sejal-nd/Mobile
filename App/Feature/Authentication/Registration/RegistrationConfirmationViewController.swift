@@ -27,14 +27,14 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         
         titleLabel.textColor = .deepGray
         titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) {
             titleLabel.text = NSLocalizedString("You’re almost done! Please check your email.", comment: "")
         } else {
             titleLabel.text = NSLocalizedString("Thank you for your registration", comment: "")
         }
         bodyLabel.textColor = .deepGray
         bodyLabel.font = SystemFont.regular.of(textStyle: .body)
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) {
             iconImageView.image = #imageLiteral(resourceName: "ic_registration_confirmation")
             
             let fullString = NSLocalizedString("A verification email has been sent to \(registeredUsername ?? "").\n\nClick on the link in the email from \(Configuration.shared.opco.displayString) within 48 hours. Once the link expires, you’ll be required to start the registration process from the beginning.\n\n", comment: "")

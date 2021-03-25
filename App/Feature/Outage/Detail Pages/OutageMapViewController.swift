@@ -22,8 +22,8 @@ class OutageMapViewController: UIViewController {
     private var urlString: String?
     
     // Remote Config
-    private var streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
-    private var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+    private var streetlightOutageMapURLString = FeatureFlagUtility.shared.string(forKey: .streetlightMapURL)
+    private var outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default

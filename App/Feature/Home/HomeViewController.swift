@@ -821,7 +821,7 @@ class HomeViewController: AccountPickerViewController {
     
     @objc func onPullToRefresh() {
         viewModel.fetchData.onNext(())
-        RemoteConfigUtility.shared.fetchCloudValues()
+        FeatureFlagUtility.shared.fetchCloudValues()
         UIAccessibility.post(notification: .screenChanged, argument: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             self.refreshControl?.endRefreshing()
