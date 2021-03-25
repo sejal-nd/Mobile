@@ -9,17 +9,8 @@
 import Foundation
 
 enum UserSession {
-    #if os(iOS)
-    private static let tokenKeychain = A0SimpleKeychain()
-    #elseif os(watchOS)
-    private static let tokenKeychain = KeychainManager.shared
-    #endif
+    private static let keychain = KeychainController.default
     
-    static let tokenKeychainKey = "jwtToken"
-    static let tokenExpirationDateKeychainKey = "jwtTokenExpirationDate"
-    static let refreshTokenKeychainKey = "jwtRefreshToken"
-    static let refreshTokenExpirationDateKeychainKey = "jwtRefreshTokenExpirationDate"
-
     static var isTokenExpired: Bool {
         return tokenExpirationDate < Date()
     }
@@ -29,107 +20,78 @@ enum UserSession {
     }
     
     static var token: String {
-        var token = ""
-        #if os(iOS)
-        token = tokenKeychain.string(forKey: tokenKeychainKey) ?? ""
-        #elseif os(watchOS)
-        token = tokenKeychain[keychainKeys.authToken] ?? ""
-        #endif
-        return token
+        return keychain.string(forKey: .tokenKeychainKey) ?? ""
     }
     
     static var tokenExpirationDate: Date {
-        var tokenExpirationDateString = ""
-        #if os(iOS)
-        tokenExpirationDateString = tokenKeychain.string(forKey: tokenExpirationDateKeychainKey) ?? ""
-        #elseif os(watchOS)
-        tokenExpirationDateString = tokenKeychain[tokenExpirationDateKeychainKey] ?? ""
-        #endif
+        let tokenExpirationDateString = keychain.string(forKey: .tokenExpirationDateKeychainKey) ?? ""
         return Date(timeIntervalSince1970: (tokenExpirationDateString as NSString).doubleValue)
     }
     
     static var refreshToken: String {
-        var refreshToken = ""
-        #if os(iOS)
-        refreshToken = tokenKeychain.string(forKey: refreshTokenKeychainKey) ?? ""
-        #elseif os(watchOS)
-        refreshToken = tokenKeychain[refreshTokenKeychainKey] ?? ""
-        #endif
-        return refreshToken
+        keychain.string(forKey: .refreshTokenKeychainKey) ?? ""
     }
     
     static var refreshTokenExpirationDate: Date {
-        var refreshTokenExpirationDateString = ""
-        #if os(iOS)
-        refreshTokenExpirationDateString = tokenKeychain.string(forKey: refreshTokenExpirationDateKeychainKey) ?? ""
-        #elseif os(watchOS)
-        refreshTokenExpirationDateString = tokenKeychain[refreshTokenExpirationDateKeychainKey] ?? ""
-        #endif
+        let refreshTokenExpirationDateString = keychain.string(forKey: .refreshTokenExpirationDateKeychainKey) ?? ""
         return Date(timeIntervalSince1970: (refreshTokenExpirationDateString as NSString).doubleValue)
     }
 }
 
-// MARK: - Create / Delete User Session
+// MARK: - Create / Send / Delete User Session
 
 extension UserSession {
     static func createSession(tokenResponse: TokenResponse? = nil, mockUsername: String? = nil) throws {
         guard let tokenResponse = tokenResponse,
-            let token = tokenResponse.token,
-            let tokenExpiryTime = tokenResponse.expiresIn,
-            let refreshToken = tokenResponse.refreshToken,
-            let refreshTokenExpiryTime = tokenResponse.refreshTokenExpiresIn else {
-                if let mockUsername = mockUsername {
-                    // Mock
-                    #if os(iOS)
-                    // Save to keychain
-                    tokenKeychain.setString(mockUsername, forKey: tokenKeychainKey)
-                    #elseif os(watchOS)
-                    tokenKeychain[UserSession.tokenKeychainKey] = mockUsername
-                    #endif
-                    return
-                } else {
-                    throw NetworkingError.invalidToken
-                }
+              let newToken = tokenResponse.token,
+              let newTokenExpirationMiliseconds = tokenResponse.expiresIn,
+              let newTokenExpirationMilisecondsDouble = Double(newTokenExpirationMiliseconds),
+              let newRefreshToken = tokenResponse.refreshToken,
+              let newRefreshTokenExpirationMiliseconds = tokenResponse.refreshTokenExpiresIn,
+              let newRefreshTokenExpirationMilisecondsDouble = Double(newRefreshTokenExpirationMiliseconds) else {
+            if let mockUsername = mockUsername {
+                // Mock
+                keychain.set(mockUsername, forKey: .tokenKeychainKey)
+                return
+            } else {
+                throw NetworkingError.invalidToken
+            }
         }
         
-        #if os(iOS)
+        let tokenExpirationSeconds = newTokenExpirationMilisecondsDouble / 1000
+        let newTokenExpirationDate = Date(timeIntervalSinceNow: tokenExpirationSeconds)
+        let refreshTokenExpirationSeconds = newRefreshTokenExpirationMilisecondsDouble / 1000
+        let newRefreshTokenExpirationDate = Date(timeIntervalSinceNow: refreshTokenExpirationSeconds)
+        
         // Save to keychain
-        let tokenExpirationSeconds = (Double(tokenExpiryTime) ?? 0.0) / 1000
-        let tokenExpirationDate = Date(timeIntervalSinceNow: tokenExpirationSeconds)
+        keychain.set(newToken, forKey: .tokenKeychainKey)
+        keychain.set("\(newTokenExpirationDate.timeIntervalSince1970)", forKey: .tokenExpirationDateKeychainKey)
+        keychain.set(newRefreshToken, forKey: .refreshTokenKeychainKey)
+        keychain.set("\(newRefreshTokenExpirationDate.timeIntervalSince1970)", forKey: .refreshTokenExpirationDateKeychainKey)
         
-        let refreshTokenExpirationSeconds = (Double(refreshTokenExpiryTime) ?? 0.0) / 1000
-        let refreshTokenExpirationDate = Date(timeIntervalSinceNow: refreshTokenExpirationSeconds)
-        
-        tokenKeychain.setString(token, forKey: tokenKeychainKey)
-        tokenKeychain.setString("\(tokenExpirationDate.timeIntervalSince1970)", forKey: tokenExpirationDateKeychainKey)
-        tokenKeychain.setString(refreshToken, forKey: refreshTokenKeychainKey)
-        tokenKeychain.setString("\(refreshTokenExpirationDate.timeIntervalSince1970)", forKey: refreshTokenExpirationDateKeychainKey)
-        
-        // Login on Apple Watch
-        if let token = tokenResponse.token {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [tokenKeychainKey : token, refreshTokenKeychainKey: refreshToken, tokenExpirationDateKeychainKey: "\(tokenExpirationDate.timeIntervalSince1970)", refreshTokenExpirationDateKeychainKey: "\(refreshTokenExpirationDate.timeIntervalSince1970)"])
-        }
-        #elseif os(watchOS)
-        tokenKeychain[UserSession.tokenKeychainKey] = token
-        tokenKeychain[UserSession.tokenExpirationDateKeychainKey] = "\(tokenExpirationDate.timeIntervalSince1970)"
-        tokenKeychain[UserSession.refreshTokenKeychainKey] = refreshToken
-        tokenKeychain[UserSession.refreshTokenExpirationDateKeychainKey] = "\(refreshTokenExpirationDate.timeIntervalSince1970)"
-        #endif
-        // todo investigate how we save this to apple watch
+        // Login on Apple Watch / iPhone
+        try? WatchSessionController.shared.updateApplicationContext(applicationContext: [
+            WatchSessionController.Key.tokenKeychainKey: newToken,
+            WatchSessionController.Key.tokenExpirationDateKeychainKey: "\(newTokenExpirationDate.timeIntervalSince1970)",
+            WatchSessionController.Key.refreshTokenKeychainKey: newRefreshToken,
+            WatchSessionController.Key.refreshTokenExpirationDateKeychainKey: "\(newRefreshTokenExpirationDate.timeIntervalSince1970)"
+        ])
+    }
+    
+    static func sendSessionToDevice() {
+        try? WatchSessionController.shared.updateApplicationContext(applicationContext: [
+            WatchSessionController.Key.tokenKeychainKey: token,
+            WatchSessionController.Key.tokenExpirationDateKeychainKey:"\(tokenExpirationDate.timeIntervalSince1970)",
+            WatchSessionController.Key.refreshTokenKeychainKey: refreshToken,
+            WatchSessionController.Key.refreshTokenExpirationDateKeychainKey: "\(refreshTokenExpirationDate.timeIntervalSince1970)"
+        ])
     }
     
     static func deleteSession() {
-        #if os(iOS)
-        tokenKeychain.deleteEntry(forKey: UserSession.tokenKeychainKey)
-        tokenKeychain.deleteEntry(forKey: UserSession.tokenExpirationDateKeychainKey)
-        tokenKeychain.deleteEntry(forKey: UserSession.refreshTokenKeychainKey)
-        tokenKeychain.deleteEntry(forKey: UserSession.refreshTokenExpirationDateKeychainKey)
-        #elseif os(watchOS)
-        tokenKeychain[UserSession.tokenKeychainKey] = nil
-        tokenKeychain[UserSession.tokenExpirationDateKeychainKey] = nil
-        tokenKeychain[UserSession.refreshTokenKeychainKey] = nil
-        tokenKeychain[UserSession.refreshTokenExpirationDateKeychainKey] = nil
-        #endif
+        keychain.remove(forKey: .tokenKeychainKey)
+        keychain.remove(forKey: .tokenExpirationDateKeychainKey)
+        keychain.remove(forKey: .refreshTokenKeychainKey)
+        keychain.remove(forKey: .refreshTokenExpirationDateKeychainKey)
         UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameAccountNumber)
     }
 }

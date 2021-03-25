@@ -107,15 +107,11 @@ extension EditAccountNickNameViewController {
         resetNicknameButton.setTitleColor(.primaryColorDark, for: .normal)
         resetNicknameButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
         viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.resetNicknameEnabled.asDriver().drive(resetNicknameButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.resetNicknameEnabled
-            .asObservable()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] isEnabled in
-                self?.resetNicknameButton.setTitleColor(isEnabled ? .primaryColor : .deepGray, for: .normal)
-                self?.resetNicknameButton.alpha = isEnabled ? 1.0 : 0.4
-        }).disposed(by: disposeBag)
-        
+
+        if var text = nickNametextField.textField.text {
+            text = (text == viewModel.accountNumber ? "" : text)
+            enableResetNicknameButton(isEnabled: !(text.isEmpty))
+        }
     }
     
     /// This method performs operation of saving a nickname
@@ -125,7 +121,7 @@ extension EditAccountNickNameViewController {
         viewModel.setAccountNickname(onSuccess: { [weak self] in
             guard let self = self else { return }
             LoadingView.hide()
-            self.view.showToast(NSLocalizedString("Nickname saved", comment: ""))
+            self.view.showToast(NSLocalizedString("Changes Saved", comment: ""))
             
             if let text = self.nickNametextField.textField.text {
                 self.viewModel.storedAccountNickName = text
@@ -167,6 +163,11 @@ extension EditAccountNickNameViewController {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
+    
+    private func enableResetNicknameButton(isEnabled: Bool) {
+        resetNicknameButton.setTitleColor(isEnabled ? .primaryColor : .deepGray, for: .normal)
+        resetNicknameButton.alpha = isEnabled ? 1.0 : 0.4
+    }
 }
 
 // MARK: - UITextFieldDelegate Methods
@@ -176,6 +177,7 @@ extension EditAccountNickNameViewController: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         viewModel.accountNickName.accept(newString)
         viewModel.saveNicknameEnabled.asDriver().drive(saveNicknameButton.rx.isEnabled).disposed(by: disposeBag)
+        enableResetNicknameButton(isEnabled: !newString.isEmpty)
         // Restrict Username to be not more than 25 characters
         return !(newString.count > 25)
     }

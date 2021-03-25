@@ -309,6 +309,14 @@ extension DateFormatter {
         return dateFormatter
     }()
     
+    @nonobjc static let dayMonthDayYearFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "EEEE, MMMM d, yyyy"
+        return dateFormatter
+    }()
+    
     @nonobjc static let monthDayFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .opCo
