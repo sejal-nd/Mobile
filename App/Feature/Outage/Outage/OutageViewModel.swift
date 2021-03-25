@@ -16,7 +16,7 @@ class OutageViewModel {
     var hasJustReportedOutage = false
     var isUserAuthenticated = false
     
-    // Remote Config Values
+    // Feature Flag Values
     var streetlightOutageMapURLString = FeatureFlagUtility.shared.string(forKey: .streetlightMapURL)
     var outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
     

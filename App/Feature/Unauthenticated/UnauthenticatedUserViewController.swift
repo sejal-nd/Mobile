@@ -53,7 +53,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         return .lightContent
     }
     
-    // Remote Config Value
+    // Feature Flag Value
     private var outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
     
     private var streetlightOutageMapURLString = FeatureFlagUtility.shared.string(forKey: .streetlightMapURL)

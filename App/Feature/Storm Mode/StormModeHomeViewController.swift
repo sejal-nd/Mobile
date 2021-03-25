@@ -234,7 +234,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureRemoteConfig()
+        configureFeatureFlags()
         
         view.backgroundColor = .stormModeBlack
         
@@ -481,7 +481,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         configureContactText()
     }
     
-    private func configureRemoteConfig() {
+    private func configureFeatureFlags() {
         FeatureFlagUtility.shared.loadingDoneCallback = { [weak self] in
             self?.viewModel.outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
             

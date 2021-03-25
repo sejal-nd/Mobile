@@ -109,7 +109,7 @@ class OutageViewController: AccountPickerViewController {
                 if let noNetworkView = subview as? NoNetworkConnectionView {
                     noNetworkView.reload.subscribe(onNext: { [weak self] _ in
                         
-                        // Re-fetch remote config values
+                        // Re-fetch feature flag values
                         FeatureFlagUtility.shared.fetchCloudValues()
                         
                         self?.configureState(.loading)

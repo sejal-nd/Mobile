@@ -21,7 +21,7 @@ class OutageMapViewController: UIViewController {
     
     private var urlString: String?
     
-    // Remote Config
+    // Feature Flag
     private var streetlightOutageMapURLString = FeatureFlagUtility.shared.string(forKey: .streetlightMapURL)
     private var outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
     

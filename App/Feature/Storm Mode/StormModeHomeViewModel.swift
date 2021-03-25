@@ -20,7 +20,7 @@ class StormModeHomeViewModel {
     
     var stormModeEnded = false
     
-    // Remote Config Value
+    // Feature Flag Value
     var outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
 
     func startStormModePolling() -> Driver<Void> {
