@@ -379,7 +379,7 @@ public enum Router {
             headers["Authorization"] = "Bearer \(token)"
         }
                 
-        if ProcessInfo.processInfo.arguments.contains("-shoulLog.infoAPI") {
+        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
             Log.info("HTTP headers:\n\(headers)")
         }
         
