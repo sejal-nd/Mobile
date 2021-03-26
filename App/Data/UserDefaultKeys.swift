@@ -63,4 +63,11 @@ struct UserDefaultKeys {
     static let gameStreakDateTracker = "kGameStreakDateTracker"
     static let gameStreakCount = "kGameStreakCount"
     static let gameOnboardingCardVersion = "kGameOnboardingCardVersion"
+    
+    // Feature Flags
+    static let outageMapUrl = "kOutageMapUrl"
+    static let streetlightMapUrl = "kStreetlightMapUrl"
+    static let billingVideoUrl = "kBillingVideoUrl"
+    static let hasDefaultAccount = "kHasDefaultAccount"
+    static let hasForgotPasswordLink = "kHasForgotPasswordLink"
 }

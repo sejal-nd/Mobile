@@ -63,8 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAppearance()
         setupAnalytics()
         
-        // Fetch Remote Config Values
-        let _ = RemoteConfigUtility.shared
+        // Fetch Feature Flag Values
+        let _ = FeatureFlagUtility.shared
         //printFonts()
         
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
