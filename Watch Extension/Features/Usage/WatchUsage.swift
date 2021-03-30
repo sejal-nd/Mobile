@@ -36,168 +36,105 @@ struct WatchUsage: Identifiable {
     init(accountDetails: AccountDetail,
          daysToNextForecast: Int = 0,
          billForecastResult: BillForecastResult?) {
-       
-       var forecastTypes = [FuelType]()
-       if let billForecast = billForecastResult?.electric {
-           forecastTypes.append(.electric)
-           if Configuration.shared.opco.isPHI {
-               if let toDateCost = billForecast.toDateCost {
-                   self.electricUsageCost = toDateCost.currencyString
-               } else if let toDateUsage = billForecast.toDateUsage {
-                   self.electricUsageCost = "\(Int(toDateUsage)) \(billForecast.meterUnit)"
-               }
-               
-               if let projectedBillCost = billForecast.projectedCost {
-                   self.electricProjetedUsageCost = "\(projectedBillCost.currencyString)"
-               } else if let projectedUsage = billForecast.projectedUsage {
-                   self.electricProjetedUsageCost = "\(Int(projectedUsage)) \(billForecast.meterUnit)"
-               }
-               
-               if let billingStartDate = billForecast.billingStartDate,
-                  let billingEndDate = billForecast.billingEndDate {
-                   self.electricBillPeriod = "\(billingStartDate.shortMonthAndDayString) - \(billingEndDate.shortMonthAndDayString)"
-               }
-               
-               if let toDateCost = billForecast.toDateCost,
-                  let projectedCost = billForecast.projectedCost {
-                   
-                   // Set Image
-                   let value = toDateCost / projectedCost
-                   let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                   self.electricProgress = progress
-               } else if let toDateUsage = billForecast.toDateUsage,
-                         let projectedUsage = billForecast.projectedUsage {
-                   
-                   // Set Image
-                   let value = toDateUsage / projectedUsage
-                   let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                   self.electricProgress = progress
-               }
-           } else {
-               if accountDetails.isModeledForOpower,
-                  let toDateCost = billForecast.toDateCost {
-                   self.electricUsageCost = toDateCost.currencyString
-               } else if let toDateUsage = billForecast.toDateUsage {
-                   self.electricUsageCost = "\(Int(toDateUsage)) \(billForecast.meterUnit)"
-               }
-               
-               if accountDetails.isModeledForOpower,
-                  let projectedBillCost = billForecast.projectedCost {
-                   self.electricProjetedUsageCost = "\(projectedBillCost.currencyString)"
-               } else if let projectedUsage = billForecast.projectedUsage {
-                   self.electricProjetedUsageCost = "\(Int(projectedUsage)) \(billForecast.meterUnit)"
-               }
-               
-               if let billingStartDate = billForecast.billingStartDate,
-                  let billingEndDate = billForecast.billingEndDate {
-                   self.electricBillPeriod = "\(billingStartDate.shortMonthAndDayString) - \(billingEndDate.shortMonthAndDayString)"
-               }
-               
-               if accountDetails.isModeledForOpower,
-                  let toDateCost = billForecast.toDateCost,
-                  let projectedCost = billForecast.projectedCost {
-                   
-                   // Set Image
-                   let value = toDateCost / projectedCost
-                   let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                   self.electricProgress = progress
-               } else if let toDateUsage = billForecast.toDateUsage,
-                         let projectedUsage = billForecast.projectedUsage {
-                   
-                   // Set Image
-                   let value = toDateUsage / projectedUsage
-                   let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                   self.electricProgress = progress
-               }
-           }
-           if daysToNextForecast == 1 {
-               self.electricTimeToNextForecast = "\(daysToNextForecast) day"
-           } else {
-               self.electricTimeToNextForecast = "\(daysToNextForecast) days"
-           }
-       } else if let billForecast = billForecastResult?.gas {
-           forecastTypes.append(.gas)
-           if Configuration.shared.opco.isPHI {
-               if let toDateCost = billForecast.toDateCost {
-                   self.gasUsageCost = toDateCost.currencyString
-               } else if let toDateUsage = billForecast.toDateUsage {
-                   self.gasUsageCost = "\(Int(toDateUsage)) \(billForecast.meterUnit)"
-               }
-               
-               if let projectedBillCost = billForecast.projectedCost {
-                   self.gasProjetedUsageCost = "\(projectedBillCost.currencyString)"
-               } else if let projectedUsage = billForecast.projectedUsage {
-                   self.gasProjetedUsageCost = "\(Int(projectedUsage)) \(billForecast.meterUnit)"
-               }
-               
-               if let billingStartDate = billForecast.billingStartDate,
-                  let billingEndDate = billForecast.billingEndDate {
-                   self.gasBillPeriod = "\(billingStartDate.shortMonthAndDayString) - \(billingEndDate.shortMonthAndDayString)"
-               }
-               
-               if let toDateCost = billForecast.toDateCost,
-                  let projectedCost = billForecast.projectedCost {
-                   
-                   // Set Image
-                   let value = toDateCost / projectedCost
-                   let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                   self.gasProgress = progress
-               } else if let toDateUsage = billForecast.toDateUsage,
-                         let projectedUsage = billForecast.projectedUsage {
-                   
-                   // Set Image
-                   let value = toDateUsage / projectedUsage
-                   let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                   self.gasProgress = progress
-               }
-               
-           } else {
-               if accountDetails.isModeledForOpower,
-                  let toDateCost = billForecast.toDateCost {
-                   self.gasUsageCost = toDateCost.currencyString
-               } else if let toDateUsage = billForecast.toDateUsage {
-                   self.gasUsageCost = "\(Int(toDateUsage)) \(billForecast.meterUnit)"
-               }
-               
-               if accountDetails.isModeledForOpower,
-                  let projectedBillCost = billForecast.projectedCost {
-                   self.gasProjetedUsageCost = "\(projectedBillCost.currencyString)"
-               } else if let projectedUsage = billForecast.projectedUsage {
-                   self.gasProjetedUsageCost = "\(Int(projectedUsage)) \(billForecast.meterUnit)"
-               }
-               
-               if let billingStartDate = billForecast.billingStartDate,
-                  let billingEndDate = billForecast.billingEndDate {
-                   self.gasBillPeriod = "\(billingStartDate.shortMonthAndDayString) - \(billingEndDate.shortMonthAndDayString)"
-               }
-               
-               if accountDetails.isModeledForOpower,
-                  let toDateCost = billForecast.toDateCost,
-                  let projectedCost = billForecast.projectedCost {
-                   
-                   // Set Image
-                   let value = toDateCost / projectedCost
-                   let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                   self.gasProgress = progress
-               } else if let toDateUsage = billForecast.toDateUsage,
-                         let projectedUsage = billForecast.projectedUsage {
-                   
-                   // Set Image
-                   let value = toDateUsage / projectedUsage
-                   let progress = value.isNaN ? 0 : Int(floor(value * 100))
-                   self.gasProgress = progress
-               }
-           }
-           
-           if daysToNextForecast == 1 {
-               self.gasTimeToNextForecast = "\(daysToNextForecast) day"
-           } else {
-               self.gasTimeToNextForecast = "\(daysToNextForecast) days"
-           }
-       }
-       
-       self.fuelTypes = forecastTypes
-       self.billForecastResult = billForecastResult
+        
+        var forecastTypes = [FuelType]()
+        let isModeledForCurrency = accountDetails.isModeledForOpower || Configuration.shared.opco.isPHI
+        
+        if let billForecast = billForecastResult?.electric {
+            forecastTypes.append(.electric)
+            // Electric Usage Cost
+            if isModeledForCurrency,
+               let toDateCost = billForecast.toDateCost {
+                self.electricUsageCost = toDateCost.currencyString
+            } else if let toDateUsage = billForecast.toDateUsage {
+                self.electricUsageCost = "\(Int(toDateUsage)) \(billForecast.meterUnit)"
+            }
+            
+            // Projected Bill
+            if isModeledForCurrency,
+               let projectedBillCost = billForecast.projectedCost {
+                self.electricProjetedUsageCost = "\(projectedBillCost.currencyString)"
+            } else if let projectedUsage = billForecast.projectedUsage {
+                self.electricProjetedUsageCost = "\(Int(projectedUsage)) \(billForecast.meterUnit)"
+            }
+            
+            // Bill Period
+            if let billingStartDate = billForecast.billingStartDate,
+               let billingEndDate = billForecast.billingEndDate {
+                self.electricBillPeriod = "\(billingStartDate.shortMonthAndDayString) - \(billingEndDate.shortMonthAndDayString)"
+            }
+            
+            // Graph
+            if isModeledForCurrency,
+               let toDateCost = billForecast.toDateCost,
+               let projectedCost = billForecast.projectedCost {
+                
+                // Set Image
+                let value = toDateCost / projectedCost
+                let progress = value.isNaN ? 0 : Int(floor(value * 100))
+                self.electricProgress = progress
+            } else if let toDateUsage = billForecast.toDateUsage,
+                      let projectedUsage = billForecast.projectedUsage {
+                
+                // Set Image
+                let value = toDateUsage / projectedUsage
+                let progress = value.isNaN ? 0 : Int(floor(value * 100))
+                self.electricProgress = progress
+            }
+            
+            if daysToNextForecast == 1 {
+                self.electricTimeToNextForecast = "\(daysToNextForecast) day"
+            } else {
+                self.electricTimeToNextForecast = "\(daysToNextForecast) days"
+            }
+        } else if let billForecast = billForecastResult?.gas {
+            forecastTypes.append(.gas)
+            // todo PHI Logic
+            if isModeledForCurrency,
+               let toDateCost = billForecast.toDateCost {
+                self.gasUsageCost = toDateCost.currencyString
+            } else if let toDateUsage = billForecast.toDateUsage {
+                self.gasUsageCost = "\(Int(toDateUsage)) \(billForecast.meterUnit)"
+            }
+            
+            if isModeledForCurrency,
+               let projectedBillCost = billForecast.projectedCost {
+                self.gasProjetedUsageCost = "\(projectedBillCost.currencyString)"
+            } else if let projectedUsage = billForecast.projectedUsage {
+                self.gasProjetedUsageCost = "\(Int(projectedUsage)) \(billForecast.meterUnit)"
+            }
+            
+            if let billingStartDate = billForecast.billingStartDate,
+               let billingEndDate = billForecast.billingEndDate {
+                self.gasBillPeriod = "\(billingStartDate.shortMonthAndDayString) - \(billingEndDate.shortMonthAndDayString)"
+            }
+            
+            if isModeledForCurrency,
+               let toDateCost = billForecast.toDateCost,
+               let projectedCost = billForecast.projectedCost {
+                
+                // Set Image
+                let value = toDateCost / projectedCost
+                let progress = value.isNaN ? 0 : Int(floor(value * 100))
+                self.gasProgress = progress
+            } else if let toDateUsage = billForecast.toDateUsage,
+                      let projectedUsage = billForecast.projectedUsage {
+                
+                // Set Image
+                let value = toDateUsage / projectedUsage
+                let progress = value.isNaN ? 0 : Int(floor(value * 100))
+                self.gasProgress = progress
+            }
+            // end PHI logic
+            if daysToNextForecast == 1 {
+                self.gasTimeToNextForecast = "\(daysToNextForecast) day"
+            } else {
+                self.gasTimeToNextForecast = "\(daysToNextForecast) days"
+            }
+        }
+        
+        self.fuelTypes = forecastTypes
+        self.billForecastResult = billForecastResult
     }
     
     var id: UUID = UUID()
