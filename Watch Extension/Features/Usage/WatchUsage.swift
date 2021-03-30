@@ -89,7 +89,6 @@ struct WatchUsage: Identifiable {
             }
         } else if let billForecast = billForecastResult?.gas {
             forecastTypes.append(.gas)
-            // todo PHI Logic
             if isModeledForCurrency,
                let toDateCost = billForecast.toDateCost {
                 self.gasUsageCost = toDateCost.currencyString
@@ -125,7 +124,6 @@ struct WatchUsage: Identifiable {
                 let progress = value.isNaN ? 0 : Int(floor(value * 100))
                 self.gasProgress = progress
             }
-            // end PHI logic
             if daysToNextForecast == 1 {
                 self.gasTimeToNextForecast = "\(daysToNextForecast) day"
             } else {
