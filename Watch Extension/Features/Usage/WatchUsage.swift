@@ -38,29 +38,34 @@ struct WatchUsage: Identifiable {
          billForecastResult: BillForecastResult?) {
         
         var forecastTypes = [FuelType]()
+        let isModeledForCurrency = accountDetails.isModeledForOpower || Configuration.shared.opco.isPHI
+        
         if let billForecast = billForecastResult?.electric {
             forecastTypes.append(.electric)
-            
-            if accountDetails.isModeledForOpower,
+            // Electric Usage Cost
+            if isModeledForCurrency,
                let toDateCost = billForecast.toDateCost {
                 self.electricUsageCost = toDateCost.currencyString
             } else if let toDateUsage = billForecast.toDateUsage {
                 self.electricUsageCost = "\(Int(toDateUsage)) \(billForecast.meterUnit)"
             }
             
-            if accountDetails.isModeledForOpower,
+            // Projected Bill
+            if isModeledForCurrency,
                let projectedBillCost = billForecast.projectedCost {
                 self.electricProjetedUsageCost = "\(projectedBillCost.currencyString)"
             } else if let projectedUsage = billForecast.projectedUsage {
                 self.electricProjetedUsageCost = "\(Int(projectedUsage)) \(billForecast.meterUnit)"
             }
             
+            // Bill Period
             if let billingStartDate = billForecast.billingStartDate,
                let billingEndDate = billForecast.billingEndDate {
                 self.electricBillPeriod = "\(billingStartDate.shortMonthAndDayString) - \(billingEndDate.shortMonthAndDayString)"
             }
             
-            if accountDetails.isModeledForOpower,
+            // Graph
+            if isModeledForCurrency,
                let toDateCost = billForecast.toDateCost,
                let projectedCost = billForecast.projectedCost {
                 
@@ -84,15 +89,14 @@ struct WatchUsage: Identifiable {
             }
         } else if let billForecast = billForecastResult?.gas {
             forecastTypes.append(.gas)
-            
-            if accountDetails.isModeledForOpower,
+            if isModeledForCurrency,
                let toDateCost = billForecast.toDateCost {
                 self.gasUsageCost = toDateCost.currencyString
             } else if let toDateUsage = billForecast.toDateUsage {
                 self.gasUsageCost = "\(Int(toDateUsage)) \(billForecast.meterUnit)"
             }
             
-            if accountDetails.isModeledForOpower,
+            if isModeledForCurrency,
                let projectedBillCost = billForecast.projectedCost {
                 self.gasProjetedUsageCost = "\(projectedBillCost.currencyString)"
             } else if let projectedUsage = billForecast.projectedUsage {
@@ -104,7 +108,7 @@ struct WatchUsage: Identifiable {
                 self.gasBillPeriod = "\(billingStartDate.shortMonthAndDayString) - \(billingEndDate.shortMonthAndDayString)"
             }
             
-            if accountDetails.isModeledForOpower,
+            if isModeledForCurrency,
                let toDateCost = billForecast.toDateCost,
                let projectedCost = billForecast.projectedCost {
                 
@@ -120,7 +124,6 @@ struct WatchUsage: Identifiable {
                 let progress = value.isNaN ? 0 : Int(floor(value * 100))
                 self.gasProgress = progress
             }
-            
             if daysToNextForecast == 1 {
                 self.gasTimeToNextForecast = "\(daysToNextForecast) day"
             } else {
