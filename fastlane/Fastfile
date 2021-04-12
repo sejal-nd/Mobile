@@ -29,15 +29,19 @@ default_platform(:ios)
         target: "EUMobile"
       )
 
-      if !git_tag_exists(tag: version)
-        # Tags git release commit: ex: 5.10.0
-        add_git_tag(
-          tag: version,
-          includes_lane: false
-        )
+      begin
+        if !git_tag_exists(tag: version)
+          # Tags git release commit: ex: 5.10.0
+          add_git_tag(
+            tag: version,
+            includes_lane: false
+          )
 
-        push_git_tags
-      end
+          push_git_tags
+        end
+       rescue => ex
+         puts "Something went wrong: #{ex}"
+       end
     end
 
     desc "Package and build the app, resulting in an IPA file"
