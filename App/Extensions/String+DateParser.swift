@@ -41,6 +41,7 @@ extension String {
         if let date = DateFormatter.MMSlashyyyyFormatter.date(from: self) {
             return date
         }
+
         return nil
     }
 }
