@@ -65,7 +65,7 @@ default_platform(:ios)
         owner_type: "organization",
         app_name: options[:app_name],
         file: options[:file_path],
-        release_notes: "ReleaseNotes.txt",
+        release_notes: sh("cat ReleaseNotes.md"),
         destinations: options[:destinations],
         dsym: options[:dsym_path]
       )
