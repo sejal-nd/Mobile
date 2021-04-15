@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import Lottie
+import SafariServices
 
 class HomeBillCardView: UIView {
     
@@ -83,6 +84,13 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
     
+    @IBOutlet weak var assistanceView: UIView!
+    @IBOutlet weak var assistanceViewSeparator: UIView!
+    @IBOutlet weak var titleAssistanceProgram: UILabel!
+    @IBOutlet weak var descriptionAssistanceProgram: UILabel!
+    @IBOutlet weak var assistanceCTA: UIButton!
+    
+    
     let shouldPushWallet = PublishSubject<Void>()
     
     private var viewModel: HomeBillCardViewModel! {
@@ -122,6 +130,20 @@ class HomeBillCardView: UIView {
     }
     
     private func styleViews() {
+        assistanceViewSeparator.backgroundColor = UIColor.accentGray
+        titleAssistanceProgram.font = SystemFont.semibold.of(textStyle: .caption1)
+        titleAssistanceProgram.textColor = .deepGray
+        if assistanceCTA.titleLabel?.text == "Reinstate Payment Arrangement" {
+            self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+            
+        } else {
+
+        descriptionAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+        }
+        descriptionAssistanceProgram.textColor = .deepGray
+        assistanceCTA.setTitleColor(.actionBlue, for: .normal)
+        assistanceCTA.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 10
@@ -198,6 +220,9 @@ class HomeBillCardView: UIView {
         clippingView.backgroundColor = .stormModeGray
         loadingIndicator.isStormMode = true
         headerView.backgroundColor = .stormModeLightGray
+        assistanceView.backgroundColor = .stormModeGray
+        titleAssistanceProgram.textColor = .white
+        descriptionAssistanceProgram.textColor = .white
         headerLabel.textColor = .white
         paymentDescriptionLabel.textColor = .white
         amountLabel.textColor = .white
@@ -304,6 +329,18 @@ class HomeBillCardView: UIView {
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.slideToPayConfirmationDetailText.drive(slideToPayConfirmationDetailLabel.rx.text).disposed(by: bag)
         
+        viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
+            guard let self = self else { return }
+            if description == nil {
+                self.assistanceView.isHidden = true
+            }
+           
+            self.styleViews()
+            self.titleAssistanceProgram.text = description?.title
+            self.descriptionAssistanceProgram.text = description?.description
+            self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
+        }).disposed(by: bag)
+        
     }
     
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
@@ -398,7 +435,8 @@ class HomeBillCardView: UIView {
                oneTouchPayErrorAlert,
                bgeasyViewController,
                autoPayAlert,
-               makeAPaymentReviewViewController)
+               makeAPaymentReviewViewController,
+               mobileAssistanceSFViewController)
     
     private lazy var billingHistoryViewController: Driver<UIViewController> = thankYouForSchedulingButton.rx.touchUpInside
         .asObservable()
@@ -441,4 +479,11 @@ class HomeBillCardView: UIView {
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(
         billingHistoryViewController,
         autoPayViewController)
+    
+    private lazy var mobileAssistanceSFViewController: Driver<UIViewController> = assistanceCTA.rx.touchUpInside
+        .asObservable()
+        .map { [weak self] in
+            let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: self?.viewModel.mobileAssistanceURL.value ?? "")!)
+            return safariVc
+        }.asDriver(onErrorDriveWith: .empty())
 }

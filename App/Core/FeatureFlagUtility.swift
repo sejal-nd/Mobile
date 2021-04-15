@@ -16,6 +16,7 @@ final class FeatureFlagUtility {
         case hasDefaultAccount
         case hasForgotPasswordLink
         case hasNewRegistration
+        case paymentProgramAds
     }
     
     static let shared = FeatureFlagUtility()
@@ -35,7 +36,8 @@ final class FeatureFlagUtility {
             FeatureFlagKey.billingVideoURL.rawValue : "",
             FeatureFlagKey.hasDefaultAccount.rawValue : false,
             FeatureFlagKey.hasForgotPasswordLink.rawValue : false,
-            FeatureFlagKey.hasNewRegistration.rawValue : true
+            FeatureFlagKey.hasNewRegistration.rawValue : true,
+            FeatureFlagKey.paymentProgramAds.rawValue : false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -58,7 +60,8 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.billingVideoURL.rawValue : featureFlags.billingVideoUrl,
                     FeatureFlagKey.hasDefaultAccount.rawValue : featureFlags.hasDefaultAccount,
                     FeatureFlagKey.hasForgotPasswordLink.rawValue : featureFlags.hasForgotPasswordLink,
-                    FeatureFlagKey.hasNewRegistration.rawValue : featureFlags.hasNewRegistration
+                    FeatureFlagKey.hasNewRegistration.rawValue : featureFlags.hasNewRegistration,
+                    FeatureFlagKey.paymentProgramAds.rawValue : featureFlags.paymentProgramAds
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)

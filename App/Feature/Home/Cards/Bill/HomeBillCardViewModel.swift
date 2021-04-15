@@ -28,6 +28,7 @@ class HomeBillCardViewModel {
     
     let emailAddress = BehaviorRelay(value: "")
     let phoneNumber = BehaviorRelay(value: "")
+    let mobileAssistanceURL = BehaviorRelay(value: "")
     private let kMaxUsernameChars = 255
     
     let submitOneTouchPay = PublishSubject<Void>()
@@ -423,6 +424,85 @@ class HomeBillCardViewModel {
             default:
                 return nil
             }
+    }
+    
+    // MARK: - Assistance View States
+    private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
+        Driver.combineLatest(billState, accountDetailDriver)
+        { (billState, accountDetail) in
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            if accountDetail.isDueDateExtensionEligible &&
+                accountDetail.billingInfo.pastDueAmount > 0 &&
+                (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
+                FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
+                
+              
+                switch projectTier {
+                case .test:
+                    self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))/MyBillUsage/Pages/DueDateExtension.aspx")
+                default:
+                self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl)/MyBillUsage/Pages/DueDateExtension.aspx")
+                }
+                return (title: "You’re eligible for a Due Date Extension",
+                        description: "Having trouble keeping up with your \(Configuration.shared.opco) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension",
+                        ctaType: "Request Due Date Extension",
+                        ctaURL: "")
+            } else if !accountDetail.isDueDateExtensionEligible &&
+                        accountDetail.billingInfo.amtDpaReinst > 0 &&
+                        accountDetail.is_dpa_reinstate_eligible &&
+                        (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
+                        FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
+                
+                switch projectTier {
+                case .test:
+                    self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))/MyBillUsage/Pages/PaymentArrangement.aspx")
+                default:
+                self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl)/MyBillUsage/Pages/PaymentArrangement.aspx")
+                }
+               
+                var lowIncomeTitle = "You can reinstate your Payment Arrangement at no additional cost."
+                let reinstateFee = accountDetail.billingInfo.atReinstateFee > 0 ? accountDetail.billingInfo.atReinstateFee : 14.24
+                var nonLowIncomeTitle = "You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a $14.24 fee on your next bill."
+                var title =  Configuration.shared.opco == .comEd && accountDetail.isLowIncome ? lowIncomeTitle : nonLowIncomeTitle
+                return (title: title,
+                        description: "",
+                        ctaType: "Reinstate Payment Arrangement",
+                        ctaURL: "")
+            } else if !accountDetail.isDueDateExtensionEligible &&
+                        accountDetail.billingInfo.pastDueAmount > 0 &&
+                        accountDetail.is_dpa_eligible &&
+                        (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
+                        FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
+                switch projectTier {
+                case .test:
+                    self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))/MyBillUsage/Pages/PaymentArrangement.aspx")
+                default:
+                self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl)/MyBillUsage/Pages/PaymentArrangement.aspx")
+                }
+               
+                return (title: "You’re eligible for a Deferred Payment Arrangement.",
+                        description: "Having trouble keeping up with your \(Configuration.shared.opco) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                        ctaType: "Learn More",
+                        ctaURL: "")
+            } else if !accountDetail.isDueDateExtensionEligible &&
+                        accountDetail.billingInfo.pastDueAmount > 0 &&
+                        !accountDetail.is_dpa_eligible  &&
+                        !accountDetail.is_dpa_reinstate_eligible &&
+                        (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
+                        FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
+                switch projectTier {
+                case .test:
+                    self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))/MyBillUsage/Pages/PaymentOptions.aspx")
+                default:
+                self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl)/MyBillUsage/Pages/PaymentOptions.aspx")
+                }
+                return (title: "Having trouble keeping up with your \(Configuration.shared.opco) bill?",
+                        description: "Check out the many Assistance Programs \(Configuration.shared.opco) offers to find one that’s right for you.",
+                        ctaType: "Learn More",
+                        ctaURL: "")
+            }
+            return nil
     }
     
     private(set) lazy var showAlertAnimation: Driver<Bool> = billState.map {
