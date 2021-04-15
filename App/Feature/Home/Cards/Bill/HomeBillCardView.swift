@@ -325,7 +325,12 @@ class HomeBillCardView: UIView {
             if description == nil {
                 self.assistanceView.isHidden = true
             }
-           
+            DispatchQueue.main.async {
+                if description?.ctaType == "Reinstate Payment Arrangement" {
+                    self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+                }
+
+            }
             self.titleAssistanceProgram.text = description?.title
             self.descriptionAssistanceProgram.text = description?.description
             self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
