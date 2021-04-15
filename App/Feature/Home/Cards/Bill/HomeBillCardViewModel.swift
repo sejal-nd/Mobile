@@ -352,7 +352,6 @@ class HomeBillCardViewModel {
     
     let showDueDateTooltip = Configuration.shared.opco == .peco
     
-    private(set) lazy var showReinstatementFeeText: Driver<Bool> = reinstatementFeeText.isNil().not()
     
     private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver
         .combineLatest(
@@ -430,77 +429,48 @@ class HomeBillCardViewModel {
     private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
         Driver.combineLatest(billState, accountDetailDriver)
         { (billState, accountDetail) in
-            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
-            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
-            if accountDetail.isDueDateExtensionEligible &&
-                accountDetail.billingInfo.pastDueAmount > 0 &&
-                (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
+            if (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
-                
-              
-                switch projectTier {
-                case .test:
-                    self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))/MyBillUsage/Pages/DueDateExtension.aspx")
-                default:
-                self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl)/MyBillUsage/Pages/DueDateExtension.aspx")
+                if accountDetail.isDueDateExtensionEligible &&
+                    accountDetail.billingInfo.pastDueAmount > 0 {
+        
+                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
+                    return (title: "You’re eligible for a Due Date Extension",
+                            description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension",
+                            ctaType: "Request Due Date Extension",
+                            ctaURL: "")
+                } else if !accountDetail.isDueDateExtensionEligible &&
+                            accountDetail.billingInfo.amtDpaReinst > 0 &&
+                            accountDetail.is_dpa_reinstate_eligible {
+                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpaReintate))
+                    
+                    var lowIncomeTitle = "You can reinstate your Payment Arrangement at no additional cost."
+                    let reinstateFee = accountDetail.billingInfo.atReinstateFee > 0 ? accountDetail.billingInfo.atReinstateFee : 14.24
+                    var nonLowIncomeTitle = "You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a $14.24 fee on your next bill."
+                    var title =  Configuration.shared.opco == .comEd && accountDetail.isLowIncome ? lowIncomeTitle : nonLowIncomeTitle
+                    return (title: title,
+                            description: "",
+                            ctaType: "Reinstate Payment Arrangement",
+                            ctaURL: "")
+                } else if !accountDetail.isDueDateExtensionEligible &&
+                            accountDetail.billingInfo.pastDueAmount > 0 &&
+                            accountDetail.is_dpa_eligible {
+                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
+                    
+                    return (title: "You’re eligible for a Deferred Payment Arrangement.",
+                            description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                            ctaType: "Learn More",
+                            ctaURL: "")
+                } else if !accountDetail.isDueDateExtensionEligible &&
+                            accountDetail.billingInfo.pastDueAmount > 0 &&
+                            !accountDetail.is_dpa_eligible  &&
+                            !accountDetail.is_dpa_reinstate_eligible {
+                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none))
+                    return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
+                            description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
+                            ctaType: "Learn More",
+                            ctaURL: "")
                 }
-                return (title: "You’re eligible for a Due Date Extension",
-                        description: "Having trouble keeping up with your \(Configuration.shared.opco) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension",
-                        ctaType: "Request Due Date Extension",
-                        ctaURL: "")
-            } else if !accountDetail.isDueDateExtensionEligible &&
-                        accountDetail.billingInfo.amtDpaReinst > 0 &&
-                        accountDetail.is_dpa_reinstate_eligible &&
-                        (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
-                        FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
-                
-                switch projectTier {
-                case .test:
-                    self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))/MyBillUsage/Pages/PaymentArrangement.aspx")
-                default:
-                self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl)/MyBillUsage/Pages/PaymentArrangement.aspx")
-                }
-               
-                var lowIncomeTitle = "You can reinstate your Payment Arrangement at no additional cost."
-                let reinstateFee = accountDetail.billingInfo.atReinstateFee > 0 ? accountDetail.billingInfo.atReinstateFee : 14.24
-                var nonLowIncomeTitle = "You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a $14.24 fee on your next bill."
-                var title =  Configuration.shared.opco == .comEd && accountDetail.isLowIncome ? lowIncomeTitle : nonLowIncomeTitle
-                return (title: title,
-                        description: "",
-                        ctaType: "Reinstate Payment Arrangement",
-                        ctaURL: "")
-            } else if !accountDetail.isDueDateExtensionEligible &&
-                        accountDetail.billingInfo.pastDueAmount > 0 &&
-                        accountDetail.is_dpa_eligible &&
-                        (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
-                        FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
-                switch projectTier {
-                case .test:
-                    self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))/MyBillUsage/Pages/PaymentArrangement.aspx")
-                default:
-                self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl)/MyBillUsage/Pages/PaymentArrangement.aspx")
-                }
-               
-                return (title: "You’re eligible for a Deferred Payment Arrangement.",
-                        description: "Having trouble keeping up with your \(Configuration.shared.opco) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                        ctaType: "Learn More",
-                        ctaURL: "")
-            } else if !accountDetail.isDueDateExtensionEligible &&
-                        accountDetail.billingInfo.pastDueAmount > 0 &&
-                        !accountDetail.is_dpa_eligible  &&
-                        !accountDetail.is_dpa_reinstate_eligible &&
-                        (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
-                        FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
-                switch projectTier {
-                case .test:
-                    self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))/MyBillUsage/Pages/PaymentOptions.aspx")
-                default:
-                self.mobileAssistanceURL.accept("\(Configuration.shared.myAccountUrl)/MyBillUsage/Pages/PaymentOptions.aspx")
-                }
-                return (title: "Having trouble keeping up with your \(Configuration.shared.opco) bill?",
-                        description: "Check out the many Assistance Programs \(Configuration.shared.opco) offers to find one that’s right for you.",
-                        ctaType: "Learn More",
-                        ctaURL: "")
             }
             return nil
     }
@@ -698,19 +668,6 @@ class HomeBillCardViewModel {
             return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
                                       attributes: grayAttributes)
         }
-    }
-    
-    private(set) lazy var reinstatementFeeText: Driver<String?> = accountDetailDriver.map {
-        guard let reinstateString = $0.billingInfo.atReinstateFee?.currencyString,
-            Configuration.shared.opco == .comEd &&
-                $0.billingInfo.amtDpaReinst > 0 &&
-                $0.billingInfo.atReinstateFee > 0 &&
-                !$0.isLowIncome else {
-                    return nil
-        }
-        
-        let reinstatementText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
-        return String(format: reinstatementText, reinstateString)
     }
     
     private(set) lazy var bankCreditCardNumberText: Driver<String?> = walletItemDriver.map {
@@ -1039,4 +996,48 @@ class HomeBillCardViewModel {
         { !$0 && !$1 }
     private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
     { $0 && $1 }
+    
+    enum MobileAssistanceURL {
+        case dde
+        case dpa
+        case dpaReintate
+        case none
+        
+        private static func getBaseURLmobileAssistance() -> String {
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            
+            switch projectTier {
+            case .test:
+                return (Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))
+            default:
+                return (Configuration.shared.myAccountUrl)
+            }
+        }
+        
+        private static func getURLPath(assistanceType: MobileAssistanceURL) -> String {
+            
+            switch assistanceType {
+            case .dde:
+                return "/MyBillUsage/Pages/DueDateExtension.aspx"
+            case .dpa,.dpaReintate:
+                switch Configuration.shared.opco {
+                case .comEd:
+                    return "/MyBillUsage/Pages/PaymentArrangements.aspx"
+                case .peco:
+                    return "/MyBillUsage/Pages/PaymentArrangement.aspx"
+                default:
+                    return "/MyBillUsage/Pages/PaymentArrangement.aspx"
+                }
+            case .none:
+                return "/MyBillUsage/Pages/PaymentOptions.aspx"
+            }
+        }
+        
+        static func getMobileAssistnceURL(assistanceType: MobileAssistanceURL) -> String {
+            return getBaseURLmobileAssistance() + getURLPath(assistanceType: assistanceType)
+        }
+        
+    }
+
 }

@@ -29,7 +29,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="380" height="1745"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VyQ-uF-pu2" userLabel="Info Stack">
-                                            <rect key="frame" x="0.0" y="0.0" width="380" height="954.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="380" height="888"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="750" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="B0Z-Cn-oGM">
                                                     <rect key="frame" x="0.0" y="0.0" width="380" height="50"/>
@@ -137,26 +137,8 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h66-Bh-Kjm">
-                                                    <rect key="frame" x="33" y="287" width="314.5" height="66.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a $11.81 fee on your next bill." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIp-lU-S5u">
-                                                            <rect key="frame" x="0.0" y="17" width="314.5" height="49.5"/>
-                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
-                                                            <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="zIp-lU-S5u" secondAttribute="bottom" priority="999" id="9uw-Nr-uSr"/>
-                                                        <constraint firstItem="zIp-lU-S5u" firstAttribute="top" secondItem="h66-Bh-Kjm" secondAttribute="top" priority="999" constant="17" id="Lt7-Fd-dVN"/>
-                                                        <constraint firstItem="zIp-lU-S5u" firstAttribute="leading" secondItem="h66-Bh-Kjm" secondAttribute="leading" id="N74-TD-g4N"/>
-                                                        <constraint firstAttribute="trailing" secondItem="zIp-lU-S5u" secondAttribute="trailing" id="wsu-8D-S3r"/>
-                                                    </constraints>
-                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reR-f0-WTz">
-                                                    <rect key="frame" x="82" y="353.5" width="216" height="36.5"/>
+                                                    <rect key="frame" x="82" y="287" width="216" height="36.5"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" text="Your confirmation number is 123456" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="o7H-8G-37K">
                                                             <rect key="frame" x="0.0" y="6" width="216" height="30.5"/>
@@ -175,7 +157,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bze-LB-krX">
-                                                    <rect key="frame" x="0.0" y="390" width="380" height="94"/>
+                                                    <rect key="frame" x="0.0" y="323.5" width="380" height="94"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4t-Gt-nTe">
                                                             <rect key="frame" x="14" y="18" width="352" height="76"/>
@@ -215,7 +197,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEU-Px-oC1">
-                                                    <rect key="frame" x="0.0" y="484" width="380" height="109"/>
+                                                    <rect key="frame" x="0.0" y="417.5" width="380" height="109"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MtW-r9-UnL">
                                                             <rect key="frame" x="14" y="18" width="352" height="91"/>
@@ -267,7 +249,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3N-2i-LNu">
-                                                    <rect key="frame" x="35" y="593" width="310" height="55"/>
+                                                    <rect key="frame" x="35" y="526.5" width="310" height="55"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fz7-Jd-GZC" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                                             <rect key="frame" x="20" y="20" width="270" height="55"/>
@@ -287,14 +269,14 @@
                                                     </constraints>
                                                 </view>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9h-HI-p4C" customClass="ButtonControl" customModule="EUMobile" customModuleProvider="target">
-                                                    <rect key="frame" x="21" y="648" width="338" height="0.0"/>
+                                                    <rect key="frame" x="21" y="581.5" width="338" height="0.0"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NA8-a2-QcR">
-                                                    <rect key="frame" x="190" y="648" width="0.0" height="22"/>
+                                                    <rect key="frame" x="190" y="581.5" width="0.0" height="22"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" id="4DJ-ss-Tzb"/>
@@ -302,7 +284,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ieU-ce-nGc">
-                                                    <rect key="frame" x="190" y="670" width="0.0" height="20"/>
+                                                    <rect key="frame" x="190" y="603.5" width="0.0" height="20"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="BxN-2k-6vU"/>
@@ -310,7 +292,7 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZj-bs-eDE">
-                                                    <rect key="frame" x="135.5" y="690" width="109" height="50"/>
+                                                    <rect key="frame" x="135.5" y="623.5" width="109" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="hXn-rO-euY"/>
                                                     </constraints>
@@ -319,7 +301,7 @@
                                                     </state>
                                                 </button>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6G-sC-Xkq">
-                                                    <rect key="frame" x="0.0" y="740" width="380" height="214.5"/>
+                                                    <rect key="frame" x="0.0" y="673.5" width="380" height="214.5"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8R2-0x-eLh">
                                                             <rect key="frame" x="0.0" y="0.0" width="380" height="1"/>
@@ -329,13 +311,13 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="You are eligible for due date extension." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ps-30-R5j">
-                                                            <rect key="frame" x="64" y="22" width="301" height="19.5"/>
+                                                            <rect key="frame" x="54" y="22" width="306" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0f-hJ-ZJB">
-                                                            <rect key="frame" x="18" y="57" width="344" height="61"/>
+                                                            <rect key="frame" x="18" y="57" width="342" height="61"/>
                                                             <string key="text">Having trouble keeping up with your [OpCo] bill? We’re here to help. Extend your upcoming bill due date by ## calendar days with a Due Date Extension</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -362,19 +344,19 @@
                                                         <constraint firstAttribute="bottom" secondItem="eW0-Cr-67Y" secondAttribute="bottom" priority="750" constant="15" id="Agh-O8-IUn"/>
                                                         <constraint firstItem="8R2-0x-eLh" firstAttribute="leading" secondItem="g6G-sC-Xkq" secondAttribute="leading" id="CrH-kx-N5q"/>
                                                         <constraint firstItem="jTN-hX-D9m" firstAttribute="centerY" secondItem="6Ps-30-R5j" secondAttribute="centerY" id="H3o-Df-LTT"/>
-                                                        <constraint firstItem="6Ps-30-R5j" firstAttribute="leading" secondItem="jTN-hX-D9m" secondAttribute="trailing" constant="20" id="LO8-zH-T4x"/>
+                                                        <constraint firstItem="6Ps-30-R5j" firstAttribute="leading" secondItem="jTN-hX-D9m" secondAttribute="trailing" constant="10" id="LO8-zH-T4x"/>
                                                         <constraint firstAttribute="trailing" secondItem="8R2-0x-eLh" secondAttribute="trailing" id="LcG-Qq-woY"/>
                                                         <constraint firstItem="6Ps-30-R5j" firstAttribute="top" secondItem="8R2-0x-eLh" secondAttribute="bottom" constant="21" id="N9U-d6-kcn"/>
                                                         <constraint firstItem="eW0-Cr-67Y" firstAttribute="centerX" secondItem="g6G-sC-Xkq" secondAttribute="centerX" id="Nhe-DV-iDU"/>
                                                         <constraint firstItem="e0f-hJ-ZJB" firstAttribute="top" secondItem="6Ps-30-R5j" secondAttribute="bottom" constant="15.5" id="PNX-er-CSE"/>
-                                                        <constraint firstItem="eW0-Cr-67Y" firstAttribute="top" secondItem="e0f-hJ-ZJB" secondAttribute="bottom" priority="750" constant="17" id="Q7M-TJ-Vql"/>
-                                                        <constraint firstAttribute="trailing" secondItem="6Ps-30-R5j" secondAttribute="trailing" constant="15" id="QmP-1C-OMO"/>
+                                                        <constraint firstItem="eW0-Cr-67Y" firstAttribute="top" secondItem="e0f-hJ-ZJB" secondAttribute="bottom" priority="750" constant="25" id="Q7M-TJ-Vql"/>
+                                                        <constraint firstAttribute="trailing" secondItem="6Ps-30-R5j" secondAttribute="trailing" constant="20" id="QmP-1C-OMO"/>
                                                         <constraint firstItem="8R2-0x-eLh" firstAttribute="top" secondItem="g6G-sC-Xkq" secondAttribute="top" id="WWX-Xu-ixB"/>
                                                         <constraint firstItem="e0f-hJ-ZJB" firstAttribute="leading" secondItem="g6G-sC-Xkq" secondAttribute="leading" constant="18" id="cSK-ND-m0S"/>
                                                         <constraint firstItem="jTN-hX-D9m" firstAttribute="leading" secondItem="g6G-sC-Xkq" secondAttribute="leading" constant="20" id="gH3-rR-PVO"/>
                                                         <constraint firstItem="8R2-0x-eLh" firstAttribute="leading" secondItem="g6G-sC-Xkq" secondAttribute="leading" id="jMZ-ME-cfc"/>
                                                         <constraint firstAttribute="trailing" secondItem="8R2-0x-eLh" secondAttribute="trailing" id="kxf-5y-qJE"/>
-                                                        <constraint firstAttribute="trailing" secondItem="e0f-hJ-ZJB" secondAttribute="trailing" constant="18" id="thE-EO-NhI"/>
+                                                        <constraint firstAttribute="trailing" secondItem="e0f-hJ-ZJB" secondAttribute="trailing" constant="20" id="thE-EO-NhI"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -386,11 +368,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="qEU-Px-oC1" secondAttribute="trailing" id="B73-Eh-bck"/>
                                                 <constraint firstAttribute="trailing" secondItem="Bze-LB-krX" secondAttribute="trailing" id="BK8-1a-z05"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="k9h-HI-p4C" secondAttribute="trailing" constant="21" id="Hws-JW-z5K"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h66-Bh-Kjm" secondAttribute="trailing" constant="30" id="OTf-Yz-W4H"/>
                                                 <constraint firstItem="k9h-HI-p4C" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VyQ-uF-pu2" secondAttribute="leading" constant="21" id="UNw-LU-ZTM"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T3N-2i-LNu" secondAttribute="trailing" constant="14" id="XUF-qr-ilD"/>
                                                 <constraint firstItem="T3N-2i-LNu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VyQ-uF-pu2" secondAttribute="leading" constant="14" id="Xa5-kI-45t"/>
-                                                <constraint firstItem="h66-Bh-Kjm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VyQ-uF-pu2" secondAttribute="leading" constant="30" id="Zut-mq-ow3"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="reR-f0-WTz" secondAttribute="trailing" constant="16" id="bHe-mr-JaG"/>
                                                 <constraint firstItem="Bze-LB-krX" firstAttribute="leading" secondItem="VyQ-uF-pu2" secondAttribute="leading" id="cNG-aD-akD"/>
                                                 <constraint firstItem="B0Z-Cn-oGM" firstAttribute="leading" secondItem="VyQ-uF-pu2" secondAttribute="leading" id="hKq-dk-bGM"/>
@@ -399,7 +379,7 @@
                                             </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ah8-rf-Pem" userLabel="Not Ready Stack">
-                                            <rect key="frame" x="0.0" y="954.5" width="380" height="222"/>
+                                            <rect key="frame" x="0.0" y="888" width="380" height="222"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-kq-Kkp">
                                                     <rect key="frame" x="74.5" y="0.0" width="231" height="49"/>
@@ -438,7 +418,7 @@
                                             </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-ve-hSw" userLabel="Network Error Stack">
-                                            <rect key="frame" x="0.0" y="1176.5" width="380" height="354"/>
+                                            <rect key="frame" x="0.0" y="1110" width="380" height="420.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmn-39-3xN">
                                                     <rect key="frame" x="74.5" y="0.0" width="231" height="20"/>
@@ -448,7 +428,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Bill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvF-yP-WEe">
-                                                    <rect key="frame" x="179" y="20" width="22.5" height="203"/>
+                                                    <rect key="frame" x="179" y="20" width="22.5" height="269.5"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                     </accessibility>
@@ -457,30 +437,30 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E4g-HR-HHL">
-                                                    <rect key="frame" x="74.5" y="223" width="231" height="12"/>
+                                                    <rect key="frame" x="74.5" y="289.5" width="231" height="12"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="999" constant="12" id="wEa-Id-ka2"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" image="ic_home_bill_error" translatesAutoresizingMaskIntoConstraints="NO" id="yor-xy-dbb">
-                                                    <rect key="frame" x="166" y="235" width="48" height="36"/>
+                                                    <rect key="frame" x="166" y="301.5" width="48" height="36"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aZA-Mj-oju">
-                                                    <rect key="frame" x="74.5" y="271" width="231" height="12"/>
+                                                    <rect key="frame" x="74.5" y="337.5" width="231" height="12"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="999" constant="12" id="Dmx-0X-Ldm"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" ambiguous="YES" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jY-VN-6pr">
-                                                    <rect key="frame" x="47.5" y="283" width="285.5" height="43"/>
+                                                    <rect key="frame" x="47.5" y="349.5" width="285.5" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2da-LD-Rhq">
-                                                    <rect key="frame" x="74.5" y="326" width="231" height="28"/>
+                                                    <rect key="frame" x="74.5" y="392.5" width="231" height="28"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="999" constant="28" id="bCL-4j-PuL"/>
@@ -593,8 +573,6 @@
                 <outlet property="paymentDescriptionLabel" destination="9yr-2r-HzF" id="CZA-xY-1Pq"/>
                 <outlet property="paymentPendingContainer" destination="89L-lP-FW8" id="WyD-mK-XdM"/>
                 <outlet property="paymentPendingImageView" destination="fzD-Mm-dsN" id="PBT-WA-CDc"/>
-                <outlet property="reinstatementFeeContainer" destination="h66-Bh-Kjm" id="p8s-tZ-4Fi"/>
-                <outlet property="reinstatementFeeLabel" destination="zIp-lU-S5u" id="xNs-I1-j2O"/>
                 <outlet property="scheduledImageView" destination="Nzb-Wa-fMH" id="4Jg-oo-wCt"/>
                 <outlet property="scheduledPaymentBox" destination="T4t-Gt-nTe" id="nPv-hv-3Ne"/>
                 <outlet property="scheduledPaymentContainer" destination="Bze-LB-krX" id="lS4-8M-jHe"/>

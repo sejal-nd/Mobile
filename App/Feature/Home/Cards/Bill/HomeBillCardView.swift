@@ -49,9 +49,6 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var dueDateLabel: UILabel!
     @IBOutlet private weak var dueDateTooltip: UIButton!
     
-    @IBOutlet private weak var reinstatementFeeContainer: UIView!
-    @IBOutlet private weak var reinstatementFeeLabel: UILabel!
-    
     @IBOutlet private weak var slideToPayConfirmationDetailContainer: UIView!
     @IBOutlet private weak var slideToPayConfirmationDetailLabel: UITextView!
     
@@ -131,7 +128,7 @@ class HomeBillCardView: UIView {
     
     private func styleViews() {
         assistanceViewSeparator.backgroundColor = UIColor.accentGray
-        titleAssistanceProgram.font = SystemFont.semibold.of(textStyle: .caption1)
+        titleAssistanceProgram.font = SystemFont.bold.of(textStyle: .caption1)
         titleAssistanceProgram.textColor = .deepGray
         if assistanceCTA.titleLabel?.text == "Reinstate Payment Arrangement" {
             self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
@@ -153,9 +150,6 @@ class HomeBillCardView: UIView {
         headerView.layer.borderWidth = 1
         
         headerLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        
-        reinstatementFeeLabel.textColor = .deepGray
-        reinstatementFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         paymentDescriptionLabel.textColor = .deepGray
         paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
@@ -226,7 +220,6 @@ class HomeBillCardView: UIView {
         headerLabel.textColor = .white
         paymentDescriptionLabel.textColor = .white
         amountLabel.textColor = .white
-        reinstatementFeeLabel.textColor = .white
         slideToPayConfirmationDetailLabel.textColor = .white
         billNotReadyLabel.textColor = .white
         errorLabel.textColor = .white
@@ -300,7 +293,6 @@ class HomeBillCardView: UIView {
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
         dueDateTooltip.isHidden = !viewModel.showDueDateTooltip
-        viewModel.showReinstatementFeeText.not().drive(reinstatementFeeContainer.rx.isHidden).disposed(by: bag)
         
         viewModel.showScheduledPayment.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showAutoPay.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
@@ -318,7 +310,6 @@ class HomeBillCardView: UIView {
         // is set to regular instead of semibold while the view is still hidden.
         // This is not an ideal fix, hoping to find a better one later.
         viewModel.dueDateText.delay(.milliseconds(20)).drive(dueDateLabel.rx.attributedText).disposed(by: bag)
-        viewModel.reinstatementFeeText.drive(reinstatementFeeLabel.rx.text).disposed(by: bag)
         
         viewModel.showMakePaymentButton.not().drive(makePaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showMakePaymentButton.not().drive(makeAPaymentSpacerView.rx.isHidden).disposed(by: bag)
@@ -335,7 +326,6 @@ class HomeBillCardView: UIView {
                 self.assistanceView.isHidden = true
             }
            
-            self.styleViews()
             self.titleAssistanceProgram.text = description?.title
             self.descriptionAssistanceProgram.text = description?.description
             self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
