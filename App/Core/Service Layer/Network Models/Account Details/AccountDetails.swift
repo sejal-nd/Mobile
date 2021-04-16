@@ -25,6 +25,8 @@ public struct AccountDetail: Decodable {
     public var isDefaultProfile: Bool
     public var isDollarDonationsAccount: Bool
     public var isDueDateExtensionEligible: Bool
+    public var is_dpa_eligible: Bool
+    public var is_dpa_reinstate_eligible: Bool
     public var isGasOnly: Bool
     public var isLowIncome: Bool
     public var isNonService: Bool
@@ -51,6 +53,7 @@ public struct AccountDetail: Decodable {
     public var isSummaryBillingIneligible: Bool
     public var isEdiBilling: Bool
     public var isResidential: Bool
+    public var isSmallCommercialCustomer: Bool
     public var isFinaled: Bool
     public var isBGEasy: Bool
     public var isEBillEnrollment: Bool
@@ -131,6 +134,8 @@ public struct AccountDetail: Decodable {
         case isDefaultProfile
         case isDollarDonationsAccount
         case isDueDateExtensionEligible
+        case is_dpa_eligible
+        case is_dpa_reinstate_eligible
         case isGasOnly
         case isLowIncome
         case isNonService
@@ -157,6 +162,7 @@ public struct AccountDetail: Decodable {
         case isSummaryBillingIneligible
         case isEdiBilling
         case isResidential
+        case isSmallCommercialCustomer
         case isFinaled = "flagFinaled"
         case isBGEasy
         case isEBillEnrollment
@@ -238,6 +244,10 @@ public struct AccountDetail: Decodable {
                                                              forKey: .isDollarDonationsAccount)
         self.isDueDateExtensionEligible = try container.decode(Bool.self,
                                                                forKey: .isDueDateExtensionEligible)
+        self.is_dpa_eligible = try container.decode(Bool.self,
+                                                     forKey: .is_dpa_eligible)
+        self.is_dpa_reinstate_eligible = try container.decode(Bool.self,
+                                                              forKey: .is_dpa_reinstate_eligible)
         self.isGasOnly = try container.decode(Bool.self,
                                               forKey: .isGasOnly)
         self.isLowIncome = try container.decode(Bool.self,
@@ -290,6 +300,8 @@ public struct AccountDetail: Decodable {
                                                                forKey: .isEBillEnrollment) ?? false
         self.isResidential = try container.decodeIfPresent(Bool.self,
                                                            forKey: .isResidential) ?? false
+        self.isSmallCommercialCustomer = try container.decodeIfPresent(Bool.self,
+                                                           forKey: .isSmallCommercialCustomer) ?? false
         self.isFinaled = try container.decodeIfPresent(Bool.self,
                                                        forKey: .isFinaled) ?? false
         self.isBGEasy = try container.decodeIfPresent(Bool.self,

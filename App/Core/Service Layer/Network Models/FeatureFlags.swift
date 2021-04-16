@@ -28,6 +28,7 @@ public struct FeatureFlags: Decodable {
     public var hasDefaultAccount: Bool = false
     public var hasForgotPasswordLink: Bool = false
     public var hasNewRegistration: Bool = true
+    public var paymentProgramAds:Bool = false
     
     enum CodingKeys: String, CodingKey {
         case outageMapUrl = "outageMapURL"
@@ -36,6 +37,7 @@ public struct FeatureFlags: Decodable {
         case hasDefaultAccount
         case hasForgotPasswordLink
         case hasNewRegistration
+        case paymentProgramAds
     }
     
     public init() {
@@ -51,5 +53,6 @@ public struct FeatureFlags: Decodable {
         hasDefaultAccount = try container.decodeIfPresent(Bool.self, forKey: .hasDefaultAccount) ?? false
         hasForgotPasswordLink = try container.decodeIfPresent(Bool.self, forKey: .hasForgotPasswordLink) ?? false
         hasNewRegistration = try container.decodeIfPresent(Bool.self, forKey: .hasNewRegistration) ?? true
+        paymentProgramAds = try container.decodeIfPresent(Bool.self, forKey: .paymentProgramAds) ?? true
     }
 }
