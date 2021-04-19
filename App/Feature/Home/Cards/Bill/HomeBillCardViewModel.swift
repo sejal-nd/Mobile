@@ -1030,7 +1030,7 @@ class HomeBillCardViewModel {
                     return "/MyBillUsage/Pages/PaymentArrangement.aspx"
                 }
             case .none:
-                return "/MyBillUsage/Pages/PaymentOptions.aspx"
+                return "/CustomerSupport/Pages/AssistancePrograms.aspx"
             }
         }
         
