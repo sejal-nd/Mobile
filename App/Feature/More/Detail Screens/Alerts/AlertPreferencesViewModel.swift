@@ -672,14 +672,14 @@ class AlertPreferencesViewModel {
                 
             // Smart Energy Rewards
             case (.smartEnergyRewards, .bge):
-                return NSLocalizedString("BGE may notify you up to 6 times per summer of an upcoming Energy Savings Day. Earn $1.25 for every kilowatt-hour you reduce on an Energy Savings Day compared to your typical usage on days with similar weather.", comment: "")
+                return NSLocalizedString("Receive alerts before the start of upcoming Energy Savings Days. Earn $1.25 for every kilowatt - hour you reduce on an Energy Savings Day compared to your typical usage on days with similar weather.", comment: "")
             case (.smartEnergyRewards, .peco): fallthrough
             case (.smartEnergyRewards, .comEd):
                 return ""
                 
             // Smart Energy Rewards
             case (.energySavingsDayResults, .bge):
-                return NSLocalizedString("BGE may notify you following an Energy Savings Day to let you know how much you saved. Your credits will automatically appear on your next bill.", comment: "")
+                return NSLocalizedString("Receive alerts to learn how much you saved during an Energy Savings Day event. Your credits will automatically appear on your next bill. You can also view your savings online on BGE.com or the BGE mobile app under Smart Energy Rewards.", comment: "")
             case (.energySavingsDayResults, .peco): fallthrough
             case (.energySavingsDayResults, .comEd):
                 return ""
