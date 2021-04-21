@@ -244,10 +244,10 @@ public struct AccountDetail: Decodable {
                                                              forKey: .isDollarDonationsAccount)
         self.isDueDateExtensionEligible = try container.decode(Bool.self,
                                                                forKey: .isDueDateExtensionEligible)
-        self.is_dpa_eligible = try container.decode(Bool.self,
-                                                     forKey: .is_dpa_eligible)
-        self.is_dpa_reinstate_eligible = try container.decode(Bool.self,
-                                                              forKey: .is_dpa_reinstate_eligible)
+        self.is_dpa_eligible = try container.decodeIfPresent(Bool.self,
+                                                     forKey: .is_dpa_eligible) ?? false
+        self.is_dpa_reinstate_eligible = try container.decodeIfPresent(Bool.self,
+                                                              forKey: .is_dpa_reinstate_eligible) ?? false
         self.isGasOnly = try container.decode(Bool.self,
                                               forKey: .isGasOnly)
         self.isLowIncome = try container.decode(Bool.self,
