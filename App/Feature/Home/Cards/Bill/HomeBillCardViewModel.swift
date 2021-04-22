@@ -429,7 +429,7 @@ class HomeBillCardViewModel {
     private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
         Driver.combineLatest(billState, accountDetailDriver)
         { (billState, accountDetail) in
-            if (accountDetail.isResidential || accountDetail.isSmallCommercialCustomer) &&
+            if accountDetail.isResidential &&
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
                 if accountDetail.isDueDateExtensionEligible &&
                     accountDetail.billingInfo.pastDueAmount > 0 {
@@ -1003,15 +1003,22 @@ class HomeBillCardViewModel {
         case dpaReintate
         case none
         
-        private static func getBaseURLmobileAssistance() -> String {
+        private static func getBaseURLmobileAssistance(assistanceType: MobileAssistanceURL) -> String {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            var baseURL = ""
+            switch assistanceType {
+            case .dde,.dpa,.dpaReintate:
+                baseURL = "https://" + Configuration.shared.associatedDomain
+            case .none:
+                baseURL = Configuration.shared.myAccountUrl
+            }
             
             switch projectTier {
             case .test:
-                return (Configuration.shared.myAccountUrl.replacingOccurrences(of: "azstage", with: "aztest"))
+                return (baseURL.replacingOccurrences(of: "azstage", with: "aztest")).replacingOccurrences(of: "azstg", with: "aztst1")
             default:
-                return (Configuration.shared.myAccountUrl)
+                return (baseURL)
             }
         }
         
@@ -1019,15 +1026,15 @@ class HomeBillCardViewModel {
             
             switch assistanceType {
             case .dde:
-                return "/MyBillUsage/Pages/DueDateExtension.aspx"
+                return "/payments/duedateextension"
             case .dpa,.dpaReintate:
                 switch Configuration.shared.opco {
                 case .comEd:
-                    return "/MyBillUsage/Pages/PaymentArrangements.aspx"
+                    return "/payments/dpa"
                 case .peco:
-                    return "/MyBillUsage/Pages/PaymentArrangement.aspx"
+                    return "/payments/dpa"
                 default:
-                    return "/MyBillUsage/Pages/PaymentArrangement.aspx"
+                    return "/payments/dpa"
                 }
             case .none:
                 return "/CustomerSupport/Pages/AssistancePrograms.aspx"
@@ -1035,9 +1042,10 @@ class HomeBillCardViewModel {
         }
         
         static func getMobileAssistnceURL(assistanceType: MobileAssistanceURL) -> String {
-            return getBaseURLmobileAssistance() + getURLPath(assistanceType: assistanceType)
+            
+            return getBaseURLmobileAssistance(assistanceType: assistanceType) + getURLPath(assistanceType: assistanceType)
+            
         }
-        
-    }
 
+}
 }
