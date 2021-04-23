@@ -343,6 +343,11 @@ struct EventParameter {
         case switch_to_home_view
         case final_gift_unlocked
         case seven_day_streak
+        
+        case extension_cta
+        case dpa_cta
+        case reinstate_cta
+        case assistance_cta
     }
     
     let parameterName: Name
