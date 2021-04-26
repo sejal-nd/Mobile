@@ -15,7 +15,7 @@ def iOS_pods
   pod 'Charts', '3.3'
   pod 'XLPagerTabStrip', '9.0.0'
   pod 'GoogleAnalytics', '3.17.0'
-  pod 'Firebase/Core', '5.19.0'
+  pod 'Firebase/Core', '7.11.0'
   pod 'Firebase/RemoteConfig'
   pod 'AppCenter', '1.14'
   pod 'ForeSee/Core', '6.0.1'
