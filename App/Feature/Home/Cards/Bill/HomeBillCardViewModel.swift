@@ -29,6 +29,7 @@ class HomeBillCardViewModel {
     let emailAddress = BehaviorRelay(value: "")
     let phoneNumber = BehaviorRelay(value: "")
     let mobileAssistanceURL = BehaviorRelay(value: "")
+    var mobileAssistanceType = MobileAssistanceURL(rawValue: "none")
     private let kMaxUsernameChars = 255
     
     let submitOneTouchPay = PublishSubject<Void>()
@@ -435,6 +436,7 @@ class HomeBillCardViewModel {
                     accountDetail.billingInfo.pastDueAmount > 0 {
         
                     self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
+                    self.mobileAssistanceType = MobileAssistanceURL.dde
                     return (title: "You’re eligible for a Due Date Extension",
                             description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension",
                             ctaType: "Request Due Date Extension",
@@ -443,6 +445,7 @@ class HomeBillCardViewModel {
                             accountDetail.billingInfo.amtDpaReinst > 0 &&
                             accountDetail.is_dpa_reinstate_eligible {
                     self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpaReintate))
+                    self.mobileAssistanceType = MobileAssistanceURL.dpaReintate
                     
                     var lowIncomeTitle = "You can reinstate your Payment Arrangement at no additional cost."
                     let reinstateFee = accountDetail.billingInfo.atReinstateFee > 0 ? accountDetail.billingInfo.atReinstateFee : 14.24
@@ -456,6 +459,7 @@ class HomeBillCardViewModel {
                             accountDetail.billingInfo.pastDueAmount > 0 &&
                             accountDetail.is_dpa_eligible {
                     self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
+                    self.mobileAssistanceType = MobileAssistanceURL.dpa
                     
                     return (title: "You’re eligible for a Deferred Payment Arrangement.",
                             description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
@@ -466,6 +470,7 @@ class HomeBillCardViewModel {
                             !accountDetail.is_dpa_eligible  &&
                             !accountDetail.is_dpa_reinstate_eligible {
                     self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none))
+                    self.mobileAssistanceType = MobileAssistanceURL.none
                     return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
                             description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
                             ctaType: "Learn More",
@@ -997,7 +1002,7 @@ class HomeBillCardViewModel {
     private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
     { $0 && $1 }
     
-    enum MobileAssistanceURL {
+    enum MobileAssistanceURL: String {
         case dde
         case dpa
         case dpaReintate

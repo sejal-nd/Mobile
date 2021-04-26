@@ -478,6 +478,17 @@ class HomeBillCardView: UIView {
     private lazy var mobileAssistanceSFViewController: Driver<UIViewController> = assistanceCTA.rx.touchUpInside
         .asObservable()
         .map { [weak self] in
+            guard let assistanceType = self?.viewModel.mobileAssistanceType else { return UIViewController()}
+            switch assistanceType {
+            case .dde:
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .extension_cta)])
+            case .dpa:
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .dpa_cta)])
+            case .dpaReintate:
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .reinstate_cta)])
+            case .none:
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .assistance_cta)])
+            }
             let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: self?.viewModel.mobileAssistanceURL.value ?? "")!)
             return safariVc
         }.asDriver(onErrorDriveWith: .empty())
