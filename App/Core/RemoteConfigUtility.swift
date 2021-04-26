@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseRemoteConfig
 
 final class RemoteConfigUtility {
     enum RemoteConfigKey: String {
@@ -42,7 +43,8 @@ final class RemoteConfigUtility {
     }
     
     private func activateDebugMode() {
-        let debugSettings = RemoteConfigSettings(developerModeEnabled: true)
+        let debugSettings = RemoteConfigSettings()
+        debugSettings.minimumFetchInterval = 0
         RemoteConfig.remoteConfig().configSettings = debugSettings
     }
     
@@ -66,7 +68,7 @@ final class RemoteConfigUtility {
                 return
             }
             
-            RemoteConfig.remoteConfig().activateFetched()
+            RemoteConfig.remoteConfig().activate()
             self?.fetchComplete = true
             self?.loadingDoneCallback?()
             Log.info("Retrieved remote config values from firebase")
