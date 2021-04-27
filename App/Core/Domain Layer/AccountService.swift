@@ -50,9 +50,6 @@ enum AccountService {
         if alertPreferenceEligibilities {
             queryItems.append(URLQueryItem(name: "alertPreferenceEligibilities", value: "true"))
         }
-        
-        // include with every account details call to remove the MDM dependency
-        queryItems.append(URLQueryItem(name: "includeMDM", value: "false"))
     
         NetworkingLayer.request(router: .accountDetails(accountNumber: accountNumber, queryItems: queryItems), completion: completion)
     }
