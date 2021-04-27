@@ -375,6 +375,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
                 let vc = maintenanceStoryboard.instantiateInitialViewController() as! MaintenanceModeViewController
                 vc.maintenance = maintenanceInfo
+                vc.modalPresentationStyle = .fullScreen
                 
                 topmostVC.present(vc, animated: true, completion: nil)
             }
