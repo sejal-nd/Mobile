@@ -10,7 +10,271 @@ import FirebaseAnalytics
 import Firebase
 import Foundation
 
+protocol EventProtocol {
+    var name: String { get }
+    var parameters: [ParameterProtocol]? { get }
+}
+
+protocol ParameterProtocol {
+    var type: ParameterType { get }
+    var name: String { get }
+}
+
+extension ParameterProtocol {
+    var name: String {
+        return "\(self)"
+    }
+    
+    var type: ParameterType {
+        return .action
+    }
+}
+
+enum ParameterType: String {
+    var name: String {
+        return self.rawValue
+    }
+    
+    case action
+    case value
+    case error
+    case alternateContact = "alternate_contact"
+}
+
+protocol Parameter {
+    var type: ParameterType { get }
+    var name: String { get }
+}
+
 struct FirebaseUtility {
+    
+    enum EventV2: EventProtocol {
+        case autoPay(paramters: [AutoPayParameter]?)
+        case budgetBill(paramters: [BudgetBillParameter]?)
+        case eBill(paramters: [EBillParameter]?)
+        case forgotPassword
+        case forgotUsername
+        case register
+        case bill
+        case payment(paramters: [PaymentParameter]?)
+        case wallet
+        
+        case authOutage(paramters: [AuthOutageParameter]?)
+        case unauthOutage(paramters: [UnAuthOutageParameter]?)
+        
+        case watch
+        
+        case errorNonFatal
+        
+        case login
+        
+        case usage
+        case more
+        case biometricsToggle
+        case contactUs
+        case home(paramters: [HomeParameter]?)
+        case unauth
+        case accountPicker
+        case alerts
+        
+        case loginPageStart
+        case loginTokenNetworkComplete
+        case loginExchangeTokenNetworkComplete
+        case loginAccountNetworkComplete
+        case initialAuthenticatedScreenStart
+        
+        case changePasswordStart
+        case changePasswordSubmit
+        case changePasswordNetworkComplete
+        
+        case reportOutageStart
+        case reportOutageSubmit
+        case reportOutageNetworkComplete
+        case makePaymentStart
+        case makePaymentNext
+        case reviewPaymentSubmit
+        case paymentNetworkComplete
+        case autoPayStart
+        case autoPaySubmit
+        case autoPayNetworkComplete
+        case paperlessEBillStart
+        case paperlessEBillSubmit
+        case paperlessEBillNetworkComplete
+        case budgetBillingStart
+        case budgetBillingSubmit
+        case budgetBillingNetworkComplete
+        case homeProfileStart
+        case homeProfileSubmit
+        case homeProfileNetworkComplete
+        case releaseOfInfoStart
+        case releaseOfInfoSubmit
+        case releaseOfInfoNetworkComplete
+        case personalizeHomeStart
+        case personalizeHomeComplete
+        
+        // Gamification
+        case gamification
+        case gamificationOptOut
+        case gamificationExperienceAccessed
+        
+        var name: String {
+            switch self {
+            case .autoPay:
+                return "autoPay"
+            default:
+                return "\(self)"
+            }
+        }
+        
+        var parameters: [ParameterProtocol]? {
+            switch self {
+            case .autoPay(let paramters):
+                return paramters
+            default:
+                return nil
+            }
+        }
+    }
+    
+    enum AutoPayParameter: String, ParameterProtocol {
+        case enroll_start
+        case enroll_complete
+        case unenroll_start
+        case unenroll_complete
+        case modify_start
+        case modify_complete
+             
+        case network_submit_error
+        case settings_changed
+        case modify_bank
+        case learn_more
+        case terms
+        
+        case submitError = "submit"
+        
+        var name: String {
+            return self.rawValue
+        }
+        
+        var type: ParameterType {
+            switch self {
+            case .submitError:
+                return .error
+            default:
+                return .action
+            }
+        }
+    }
+    
+    enum BudgetBillParameter: String, ParameterProtocol {
+        case learn_more
+        case enroll_start
+        case enroll_complete
+        case unenroll_start
+        case unenroll_complete
+        case network_submit_error
+        
+        var type: ParameterType {
+            return .action
+        }
+    }
+    
+    enum EBillParameter: String, ParameterProtocol {
+        case learn_more
+        case enroll_start
+        case enroll_complete
+        case unenroll_start
+        case unenroll_complete
+        case network_submit_error
+    }
+    
+    enum ForgotPasswordParameter: String, ParameterProtocol {
+        case complete
+        case network_submit_error
+    }
+    
+    enum BillParameter: String, ParameterProtocol {
+        case view_pdf
+        case history_view_more_upcoming_header
+        case history_view_more_past_header
+        case history_view_more_past_row
+        case history_view_pdf
+        
+        // errors
+        case bill_not_available
+        case current_pdf_not_available
+        case past_pdf_not_available
+    }
+    
+    enum PaymentParameter: String, ParameterProtocol {
+        case switch_payment_method
+        case view_terms
+        case submit
+        case cancel
+        case card_complete
+        case bank_complete
+        case autopay
+    }
+    
+    enum AuthOutageParameter: String, ParameterProtocol {
+        case phone_number_main
+        case phone_number_emergency_gas
+        case phone_number_emergency_electric
+        case view_details
+        case report_outage
+        case report_complete
+        case map
+        case streetlight_ma
+    }
+    
+    enum UnAuthOutageParameter: String, ParameterProtocol {
+        case phone_number_main
+        case phone_number_emergency_gas
+        case phone_number_emergency_electric
+        case view_details
+        case report_outage
+        case report_complete
+        case map
+        case streetlight_ma
+        case account_number_help
+    }
+    
+    enum HomeParameter: String, ParameterProtocol {
+        case view_screen
+        case personalize_banner
+        case personalize_button
+        case personalize_complete
+        case personalize_restore
+        case bill_cta
+        case bill_slide_to_pay
+        case bill_choose_default_payment_method
+        case bill_terms
+        case bill_view_pdf
+        case usage_cta
+        case promo_cta
+        case outage_cta
+        case projected_bill_cta
+        case projected_bill_electric_press
+        case projected_bill_gas_press
+        case usage_electric_press
+        case usage_gas_press
+        case usage_previous_graph_press
+        case usage_next_graph_press
+        case urgent_message_press
+        case weather_tip
+        
+        case balance_not_available
+        
+        var type: ParameterType {
+            switch self {
+            case .balance_not_available:
+                return .error
+            default:
+                return .action
+            }
+        }
+    }
+    
     /// Name of analytic event -> Mapped directly to Firebase
     enum Event: String {
         case watch
@@ -109,6 +373,23 @@ struct FirebaseUtility {
         FirebaseApp.configure(options: fileopts)
     }
     
+    public static func logEventV2(_ event: EventV2) {
+        #if DEBUG
+        NSLog("📊🔥 Firebase Event: \(event.name)")
+        #endif
+        
+        // Convert Event Parameter into dict if it exists
+        let parametersDict = event.parameters?.reduce([String: Any]()) { (dict, eventParameter) -> [String: Any] in
+            var dict = dict
+            
+            dict[eventParameter.type.name] = eventParameter.name
+            
+            return dict
+        }
+
+        Analytics.logEvent(event.name, parameters: parametersDict)
+    }
+    
     /// Log an event to be sent to Firebase
     ///
     /// - Parameters:
@@ -124,9 +405,9 @@ struct FirebaseUtility {
             var dict = dict
             
             if let providedValue = eventParameter.providedValue {
-                dict[eventParameter.parameterName.rawValue] = providedValue
+                dict[eventParameter.parameterType.rawValue] = providedValue
             } else if let value = eventParameter.value {
-                dict[eventParameter.parameterName.rawValue] = value.rawValue
+                dict[eventParameter.parameterType.rawValue] = value.rawValue
             } else {
                 return [:]
             }
@@ -171,7 +452,7 @@ extension FirebaseUtility {
     public static func logWatchScreenView(_ screenName: String) {
         NSLog("📊🔥⌚️ Firebase Event: \(screenName)")
         
-        Analytics.logEvent(Event.watch.rawValue, parameters: [EventParameter.Name.action.rawValue: screenName])
+        Analytics.logEvent(Event.watch.rawValue, parameters: [EventParameter.ParameterType.action.rawValue: screenName])
     }
 }
 
@@ -180,9 +461,10 @@ extension FirebaseUtility {
 ///
 /// - Note: Only one parameter should have a value between `value` and `providedValue`.  If both have a value, `providedValue` takes precendence.
 struct EventParameter {
-    enum Name: String {
+    enum ParameterType: String {
         case action
         case value
+        case error
         case alternateContact = "alternate_contact"
     }
     
@@ -350,7 +632,7 @@ struct EventParameter {
         case assistance_cta
     }
     
-    let parameterName: Name
+    let parameterType: ParameterType
     
     // Should only be used with a name of `action`
     let value: Value?
@@ -358,8 +640,8 @@ struct EventParameter {
     // Should only be used with a name of `value`
     let providedValue: String?
     
-    init(parameterName: Name, value: Value?, providedValue: String? = nil) {
-        self.parameterName = parameterName
+    init(parameterName: ParameterType, value: Value?, providedValue: String? = nil) {
+        self.parameterType = parameterName
         self.value = value
         self.providedValue = providedValue
     }
