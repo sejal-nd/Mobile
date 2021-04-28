@@ -70,6 +70,9 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
     @IBAction func unenroll(_ sender: Any) {
         LoadingView.show()
         
+        // TODO add check for modified enrollment
+        FirebaseUtility.logEventV2(.autoPay(paramters: [.unenroll_start]))
+        
         FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enrolled_start)])
         
         FirebaseUtility.logEvent(.autoPaySubmit)

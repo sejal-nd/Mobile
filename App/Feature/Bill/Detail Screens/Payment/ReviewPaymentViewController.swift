@@ -425,7 +425,7 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     @IBAction func onTermsConditionsPress() {
-        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .view_terms)])
+        FirebaseUtility.logEventV2(.payment(paramters: [.view_terms]))
         
         let url = URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions-exln.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)

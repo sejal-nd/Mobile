@@ -121,6 +121,16 @@ struct FirebaseUtility {
             switch self {
             case .autoPay:
                 return "autoPay"
+            case .budgetBill:
+                return "budgetBill"
+            case .eBill:
+                return "eBill"
+            case .payment:
+                return "payment"
+            case .authOutage:
+                return "authOutage"
+            case .unauthOutage:
+                return "unauthOutage"
             default:
                 return "\(self)"
             }
@@ -128,8 +138,13 @@ struct FirebaseUtility {
         
         var parameters: [ParameterProtocol]? {
             switch self {
-            case .autoPay(let paramters):
-                return paramters
+            case .autoPay(let parameters as [ParameterProtocol]?),
+                 .budgetBill(let parameters as [ParameterProtocol]?),
+                 .eBill(let parameters as [ParameterProtocol]?),
+                 .payment(let parameters as [ParameterProtocol]?),
+                 .authOutage(let parameters as [ParameterProtocol]?),
+                 .unauthOutage(let parameters as [ParameterProtocol]?):
+                return parameters
             default:
                 return nil
             }
@@ -376,6 +391,9 @@ struct FirebaseUtility {
     public static func logEventV2(_ event: EventV2) {
         #if DEBUG
         NSLog("📊🔥 Firebase Event: \(event.name)")
+        if let parameters = event.parameters {
+            NSLog("📊🔥 Parameters: \(parameters)")
+        }
         #endif
         
         // Convert Event Parameter into dict if it exists
