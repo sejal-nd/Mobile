@@ -140,6 +140,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Log.info("*-*-*-*-* \(error.localizedDescription)")
     }
     
+    /*
+     This delegate method gets called when a notification is received and the app is in the foreground.
+     A push notification banner is not displayed to the user
+     */
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         Log.info("*-*-*-*-* \(userInfo)")
         
@@ -170,9 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Log.info("*-*-*-*-* App was in the foreground when notification received - do nothing")
         }
     }
-    
-    // MARK: - Local Notifications
-    
+        
     /* Gamification reminder notifications. When tapped, store the tip ID in memory (tipIdWaitingToBeShown).
      * If app already alive in background with user logged in, resets the root view controller to Home.
      * Then (plus in all other scenarios), when GameHomeViewController loads, tipIdWaitingToBeShown != nil
@@ -180,6 +182,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var tipIdWaitingToBeShown: String? = nil
     
+    /*
+     This delegate method gets called when a remote or local push notification is tapped with the app in the background or closed
+     */
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.notification.request.identifier == "game_weekly_reminder" {
             tipIdWaitingToBeShown = response.notification.request.identifier
