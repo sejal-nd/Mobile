@@ -12,7 +12,14 @@ import RxCocoa
 class AppointmentsViewModel {
     let pollInterval = 30
     
-    let contactNumber = "1-800-685-0123"
+    var contactNumber: String {
+        switch Configuration.shared.opco {
+        case .bge: return "1-800-685-0123"
+        case .peco: return "1-800-494-4000"
+        case .comEd: return "1-800-334-7661"
+        default: return ""
+        }
+    }
     
     var appointments: Observable<[Appointment]>!
     private (set) lazy var showLoadingState: Driver<Bool> = isLoading.asDriver()
