@@ -81,10 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(showIOSVersionWarning), name: .shouldShowIOSVersionWarning, object: nil)
         
-        // If app was cold-launched from a push notification
-        if let options = launchOptions, let userInfo = options[.remoteNotification] as? [AnyHashable : Any] {
-            self.application(application, didReceiveRemoteNotification: userInfo)
-        } else if let shortcutItem = launchOptions?[.shortcutItem] as? UIApplicationShortcutItem {
+        if let shortcutItem = launchOptions?[.shortcutItem] as? UIApplicationShortcutItem {
             handleShortcut(shortcutItem)
             return false
         }
