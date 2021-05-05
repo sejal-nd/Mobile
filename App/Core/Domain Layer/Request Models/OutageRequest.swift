@@ -14,6 +14,7 @@ public struct OutageRequest: Encodable {
     var locationId: String?
     var reportedTime: Date = .now
     let issue: OutageIssue
+    var auid: String?
     let phoneNumber: String //[0-9]{10}
     var phoneExtension: String? //ComEd and Peco
     var isUnusual: OutageTrivalent? //ComEd
@@ -30,6 +31,7 @@ public struct OutageRequest: Encodable {
         case isUnusual = "unusual"
         case unusualMessage = "unusual_specify"
         case isNeighbor = "neighbor"
+        case auid 
     }
 }
 

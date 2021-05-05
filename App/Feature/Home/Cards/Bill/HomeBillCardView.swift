@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import Lottie
+import SafariServices
 
 class HomeBillCardView: UIView {
     
@@ -48,9 +49,6 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var dueDateLabel: UILabel!
     @IBOutlet private weak var dueDateTooltip: UIButton!
     
-    @IBOutlet private weak var reinstatementFeeContainer: UIView!
-    @IBOutlet private weak var reinstatementFeeLabel: UILabel!
-    
     @IBOutlet private weak var slideToPayConfirmationDetailContainer: UIView!
     @IBOutlet private weak var slideToPayConfirmationDetailLabel: UITextView!
     
@@ -82,6 +80,13 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
+    
+    @IBOutlet weak var assistanceView: UIView!
+    @IBOutlet weak var assistanceViewSeparator: UIView!
+    @IBOutlet weak var titleAssistanceProgram: UILabel!
+    @IBOutlet weak var descriptionAssistanceProgram: UILabel!
+    @IBOutlet weak var assistanceCTA: UIButton!
+    
     
     let shouldPushWallet = PublishSubject<Void>()
     
@@ -122,6 +127,20 @@ class HomeBillCardView: UIView {
     }
     
     private func styleViews() {
+        assistanceViewSeparator.backgroundColor = UIColor.accentGray
+        titleAssistanceProgram.font = SystemFont.bold.of(textStyle: .caption1)
+        titleAssistanceProgram.textColor = .deepGray
+        if assistanceCTA.titleLabel?.text == "Reinstate Payment Arrangement" {
+            self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+            
+        } else {
+
+        descriptionAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+        }
+        descriptionAssistanceProgram.textColor = .deepGray
+        assistanceCTA.setTitleColor(.actionBlue, for: .normal)
+        assistanceCTA.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 10
@@ -131,9 +150,6 @@ class HomeBillCardView: UIView {
         headerView.layer.borderWidth = 1
         
         headerLabel.font = SystemFont.semibold.of(textStyle: .caption1)
-        
-        reinstatementFeeLabel.textColor = .deepGray
-        reinstatementFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         paymentDescriptionLabel.textColor = .deepGray
         paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
@@ -198,10 +214,12 @@ class HomeBillCardView: UIView {
         clippingView.backgroundColor = .stormModeGray
         loadingIndicator.isStormMode = true
         headerView.backgroundColor = .stormModeLightGray
+        assistanceView.backgroundColor = .stormModeGray
+        titleAssistanceProgram.textColor = .white
+        descriptionAssistanceProgram.textColor = .white
         headerLabel.textColor = .white
         paymentDescriptionLabel.textColor = .white
         amountLabel.textColor = .white
-        reinstatementFeeLabel.textColor = .white
         slideToPayConfirmationDetailLabel.textColor = .white
         billNotReadyLabel.textColor = .white
         errorLabel.textColor = .white
@@ -275,7 +293,6 @@ class HomeBillCardView: UIView {
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
         dueDateTooltip.isHidden = !viewModel.showDueDateTooltip
-        viewModel.showReinstatementFeeText.not().drive(reinstatementFeeContainer.rx.isHidden).disposed(by: bag)
         
         viewModel.showScheduledPayment.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showAutoPay.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
@@ -293,7 +310,6 @@ class HomeBillCardView: UIView {
         // is set to regular instead of semibold while the view is still hidden.
         // This is not an ideal fix, hoping to find a better one later.
         viewModel.dueDateText.delay(.milliseconds(20)).drive(dueDateLabel.rx.attributedText).disposed(by: bag)
-        viewModel.reinstatementFeeText.drive(reinstatementFeeLabel.rx.text).disposed(by: bag)
         
         viewModel.showMakePaymentButton.not().drive(makePaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showMakePaymentButton.not().drive(makeAPaymentSpacerView.rx.isHidden).disposed(by: bag)
@@ -303,6 +319,22 @@ class HomeBillCardView: UIView {
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.slideToPayConfirmationDetailText.drive(slideToPayConfirmationDetailLabel.rx.text).disposed(by: bag)
+        
+        viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
+            guard let self = self else { return }
+            if description == nil {
+                self.assistanceView.isHidden = true
+            }
+            DispatchQueue.main.async {
+                if description?.ctaType == "Reinstate Payment Arrangement" {
+                    self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+                }
+
+            }
+            self.titleAssistanceProgram.text = description?.title
+            self.descriptionAssistanceProgram.text = description?.description
+            self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
+        }).disposed(by: bag)
         
     }
     
@@ -398,7 +430,8 @@ class HomeBillCardView: UIView {
                oneTouchPayErrorAlert,
                bgeasyViewController,
                autoPayAlert,
-               makeAPaymentReviewViewController)
+               makeAPaymentReviewViewController,
+               mobileAssistanceSFViewController)
     
     private lazy var billingHistoryViewController: Driver<UIViewController> = thankYouForSchedulingButton.rx.touchUpInside
         .asObservable()
@@ -441,4 +474,22 @@ class HomeBillCardView: UIView {
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(
         billingHistoryViewController,
         autoPayViewController)
+    
+    private lazy var mobileAssistanceSFViewController: Driver<UIViewController> = assistanceCTA.rx.touchUpInside
+        .asObservable()
+        .map { [weak self] in
+            guard let assistanceType = self?.viewModel.mobileAssistanceType else { return UIViewController()}
+            switch assistanceType {
+            case .dde:
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .extension_cta)])
+            case .dpa:
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .dpa_cta)])
+            case .dpaReintate:
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .reinstate_cta)])
+            case .none:
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .assistance_cta)])
+            }
+            let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: self?.viewModel.mobileAssistanceURL.value ?? "")!)
+            return safariVc
+        }.asDriver(onErrorDriveWith: .empty())
 }

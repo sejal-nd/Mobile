@@ -42,6 +42,7 @@ class AlertPreferencesViewModel {
     let forYourInfo = BehaviorRelay(value: false)
     let energyBuddyUpdates = BehaviorRelay(value: false)
     let english = BehaviorRelay(value: true) // Language selection. False = Spanish
+    let grantStatus = BehaviorRelay(value: false)
     
     var hasPreferencesChanged = BehaviorRelay(value: false)
     
@@ -90,12 +91,18 @@ class AlertPreferencesViewModel {
                 switch Configuration.shared.opco {
                 case .bge:
                     var usageOptions: [AlertPreferencesOptions] = []
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
+                    
                     if self.isHUAEligible {
                         usageOptions.append(.highUsage)
                     }
                     
                     if self.isPTREligible {
                         usageOptions.append(contentsOf: [.smartEnergyRewards, .energySavingsDayResults])
+                    }
+                    
+                    if self.isOHEPEligible {
+                        paymentOptions.append(.grantStatus)
                     }
                     
                     self.sections = [
@@ -105,7 +112,7 @@ class AlertPreferencesViewModel {
                         (NSLocalizedString("Billing", comment: ""),
                          [.billIsReady(self.accountDetail)]),
                         (NSLocalizedString("Payment", comment: ""),
-                         [.paymentDueReminder, .paymentPosted, .paymentPastDue]),
+                         paymentOptions),
                         (NSLocalizedString("Customer Appointments", comment: ""),
                          [.appointmentTracking]),
                         (NSLocalizedString("News", comment: ""),
@@ -292,6 +299,7 @@ class AlertPreferencesViewModel {
                 self.appointmentTracking.accept(alertPrefs.appointmentTracking)
                 self.forYourInfo.accept(alertPrefs.forYourInfo)
                 self.energyBuddyUpdates.accept(UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference))
+                self.grantStatus.accept(alertPrefs.grantStatus)
             })
             .mapTo(())
     }
@@ -336,6 +344,62 @@ class AlertPreferencesViewModel {
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0 != $1.paymentDueDaysBefore }
     
+    private lazy var usagePrefs = Observable.combineLatest([highUsage.asObservable(),
+                                                            peakTimeSavings.asObservable(),
+                                                            smartEnergyRewards.asObservable(),
+                                                            energySavingsDayResults.asObservable(),
+                                                            peakSavingsDayAlert.asObservable(),
+                                                            peakSavingsDayResults.asObservable()])
+    
+    private lazy var outagePrefs = Observable.combineLatest([outage.asObservable(),
+                                                             scheduledMaint.asObservable(),
+                                                             severeWeather.asObservable()])
+    
+    private lazy var billingPrefs = Observable.combineLatest([billReady.asObservable(),
+                                                              budgetBilling.asObservable()])
+    
+    private lazy var paymentPrefs = Observable.combineLatest([paymentDue.asObservable(),
+                                                              paymentPosted.asObservable(),
+                                                              paymentPastDue.asObservable(),
+                                                              grantStatus.asObservable()])
+    
+    private lazy var appointmentPrefs = Observable.combineLatest([appointmentTracking.asObservable()])
+    
+    private lazy var newsPrefs = Observable.combineLatest([forYourInfo.asObservable()])
+    
+    private lazy var newPrefs = Observable
+        .combineLatest([usagePrefs, outagePrefs, billingPrefs, paymentPrefs, appointmentPrefs, newsPrefs])
+    
+    private lazy var booleanPrefsChanged =
+        newPrefs
+        .map { prefs -> AlertPreferences in
+            let usagePrefs = prefs[0]
+            let outagePrefs = prefs[1]
+            let billingPrefs = prefs[2]
+            let paymentPrefs = prefs[3]
+            let appointmentPrefs = prefs[4]
+            let newsPrefs = prefs[5]
+            
+            return AlertPreferences(highUsage: usagePrefs[0],
+                                    peakTimeSavings: usagePrefs[1],
+                                    smartEnergyRewards: usagePrefs[2],
+                                    energySavingsDayResults: usagePrefs[3],
+                                    outage: outagePrefs[0],
+                                    scheduledMaint: outagePrefs[1],
+                                    severeWeather: outagePrefs[2],
+                                    billReady: billingPrefs[0],
+                                    paymentDue: paymentPrefs[0],
+                                    paymentDueDaysBefore: 0,
+                                    paymentPosted: paymentPrefs[1],
+                                    paymentPastDue: paymentPrefs[2],
+                                    budgetBilling: billingPrefs[1],
+                                    appointmentTracking: appointmentPrefs[0],
+                                    forYourInfo: newsPrefs[0],
+                                    grantStatus: paymentPrefs[3])
+        }
+        .withLatestFrom(alertPrefs.asObservable().unwrap())
+            { $0.isDifferent(fromOriginal: $1) }
+    
     private lazy var peakSavingsDayAlertChanged = peakSavingsDayAlert.asObservable()
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0 != $1.peakTimeSavingsDayAlert }
@@ -343,41 +407,6 @@ class AlertPreferencesViewModel {
     private lazy var peakTimeSavingsDayResultsChanged = peakSavingsDayResults.asObservable()
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0 != $1.peakTimeSavingsDayResults }
-    
-    private lazy var booleanPrefsChanged = Observable<Bool>
-        .combineLatest([highUsage.asObservable(),
-                        peakTimeSavings.asObservable(),
-                        smartEnergyRewards.asObservable(),
-                        energySavingsDayResults.asObservable(),
-                        outage.asObservable(),
-                        scheduledMaint.asObservable(),
-                        severeWeather.asObservable(),
-                        billReady.asObservable(),
-                        paymentDue.asObservable(),
-                        paymentPosted.asObservable(),
-                        paymentPastDue.asObservable(),
-                        budgetBilling.asObservable(),
-                        appointmentTracking.asObservable(),
-                        forYourInfo.asObservable()])
-        .map { prefs in
-            AlertPreferences(highUsage: prefs[0],
-                             peakTimeSavings: prefs[1],
-                             smartEnergyRewards: prefs[2],
-                             energySavingsDayResults: prefs[3],
-                             outage: prefs[4],
-                             scheduledMaint: prefs[5],
-                             severeWeather: prefs[6],
-                             billReady: prefs[7],
-                             paymentDue: prefs[8],
-                             paymentDueDaysBefore: 0,
-                             paymentPosted: prefs[9],
-                             paymentPastDue: prefs[10],
-                             budgetBilling: prefs[11],
-                             appointmentTracking: prefs[12],
-                             forYourInfo: prefs[13])
-    }
-    .withLatestFrom(alertPrefs.asObservable().unwrap())
-    { $0.isDifferent(fromOriginal: $1) }
     
     private lazy var billThresholdPrefChanged = billThreshold.asObservable()
         .map { [weak self] in
@@ -437,7 +466,8 @@ class AlertPreferencesViewModel {
                                                 appointmentTracking: appointmentTracking.value,
                                                 forYourInfo: forYourInfo.value,
                                                 peakTimeSavingsDayAlert: peakSavingsDayAlert.value,
-                                                peakTimeSavingsDayResults: peakSavingsDayResults.value)
+                                                peakTimeSavingsDayResults: peakSavingsDayResults.value,
+                                                grantStatus: grantStatus.value)
         let alertPreferenceRequest = AlertPreferencesRequest(alertPreferences: alertPreferences)
         
         return nonLanguagePrefsChanged.flatMap {
@@ -509,6 +539,15 @@ class AlertPreferencesViewModel {
         }
     }
     
+    var isOHEPEligible: Bool {
+        switch Configuration.shared.opco {
+        case .bge:
+            return self.accountDetail.isOHEPEligible
+        default:
+            return false
+        }
+    }
+    
     var showAccountInfoBar: Bool {
         switch Configuration.shared.opco {
         case .ace, .bge, .comEd, .delmarva, .peco, .pepco:
@@ -554,7 +593,7 @@ class AlertPreferencesViewModel {
         // Billing
         case billIsReady(AccountDetail)
         // Payment
-        case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview
+        case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview, grantStatus
         // Customer Appointments
         case appointmentTracking
         // News
@@ -598,6 +637,8 @@ class AlertPreferencesViewModel {
                 return Configuration.shared.opco.isPHI ? NSLocalizedString("Updates & General News", comment: "") : NSLocalizedString("For Your Information", comment: "")
             case .energyBuddyUpdates:
                 return NSLocalizedString("LUMI℠ Updates", comment: "")
+            case .grantStatus:
+                return NSLocalizedString("Payment Assistance Grant Status", comment: "")
             }
         }
         
@@ -631,14 +672,14 @@ class AlertPreferencesViewModel {
                 
             // Smart Energy Rewards
             case (.smartEnergyRewards, .bge):
-                return NSLocalizedString("BGE may notify you up to 6 times per summer of an upcoming Energy Savings Day. Earn $1.25 for every kilowatt-hour you reduce on an Energy Savings Day compared to your typical usage on days with similar weather.", comment: "")
+                return NSLocalizedString("Receive alerts before the start of upcoming Energy Savings Days. Earn $1.25 for every kilowatt - hour you reduce on an Energy Savings Day compared to your typical usage on days with similar weather.", comment: "")
             case (.smartEnergyRewards, .peco): fallthrough
             case (.smartEnergyRewards, .comEd):
                 return ""
                 
             // Smart Energy Rewards
             case (.energySavingsDayResults, .bge):
-                return NSLocalizedString("BGE may notify you following an Energy Savings Day to let you know how much you saved. Your credits will automatically appear on your next bill.", comment: "")
+                return NSLocalizedString("Receive alerts to learn how much you saved during an Energy Savings Day event. Your credits will automatically appear on your next bill. You can also view your savings online on BGE.com or the BGE mobile app under Smart Energy Rewards.", comment: "")
             case (.energySavingsDayResults, .peco): fallthrough
             case (.energySavingsDayResults, .comEd):
                 return ""
@@ -747,8 +788,10 @@ class AlertPreferencesViewModel {
             
                 
             // Energy Buddy
-            case (.energyBuddyUpdates, _):
+            case (.energyBuddyUpdates, .bge):
                 return NSLocalizedString("Receive a notification when LUMI℠ has new data, tips, and insights to help you save energy and money.", comment: "")
+            case (.grantStatus, .bge):
+                return NSLocalizedString("Receive a notification when your payment assistance grant has been approved and a second notification when the grant funds have been applied to your BGE account.", comment: "")
             default:
                 return ""
             }

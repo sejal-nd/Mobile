@@ -37,7 +37,7 @@ public enum NetworkingLayer {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
 
-        if ProcessInfo.processInfo.arguments.contains("-shoulLog.infoAPI") {
+        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
             Log.info("\n\n\n📬 URL: \(url.absoluteString)")
         }
         
@@ -45,7 +45,7 @@ public enum NetworkingLayer {
         if let httpBody = router.httpBody {
             urlRequest.httpBody = httpBody
             
-            if ProcessInfo.processInfo.arguments.contains("-shoulLog.infoAPI") {
+            if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
                 Log.info("Request Body:\n\(String(decoding: httpBody, as: UTF8.self))")
             }
         }
@@ -79,8 +79,7 @@ public enum NetworkingLayer {
             // Log Out
             AuthenticationService.logout()
             completion(.failure(.invalidToken))
-        }
-        else if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Configuration.shared.environmentName != .aut {
+        } else if router.apiAccess == .auth && UserSession.isTokenExpired && retryCount != 0 && Configuration.shared.environmentName != .aut {
             // token expired
             // Decrease retry counter
             retryCount -= 1
@@ -210,7 +209,7 @@ public enum NetworkingLayer {
     }
 
     private static func decode<T: Decodable>(data: Data) throws -> T {
-        if ProcessInfo.processInfo.arguments.contains("-shoulLog.infoAPI") {
+        if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
             Log.info("📬 Data Response:\n\(String(decoding: data, as: UTF8.self))")
         }
 

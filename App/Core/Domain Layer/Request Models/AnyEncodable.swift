@@ -30,7 +30,7 @@ extension Encodable {
         do {
             let data = try JSONEncoder().encode(encodable)
             
-            if ProcessInfo.processInfo.arguments.contains("-shoulLog.infoAPI") {
+            if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
                 Log.info("Request Body:\n\(String(decoding: data, as: UTF8.self))")
             }
             return data

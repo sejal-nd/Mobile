@@ -56,11 +56,7 @@
 		3525887921FA5B5600C5492D /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
-		3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* BillUtility.swift */; };
-		352B19F8233BBE710090B442 /* Outage-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F7233BBE710090B442 /* Outage-FlavorBGE.storyboard */; };
-		352B19FA233BBEDD0090B442 /* Usage-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F9233BBEDD0090B442 /* Usage-FlavorBGE.storyboard */; };
 		352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
-		354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35489DD524A248BF0040BDE2 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35489DD224A20BF20040BDE2 /* RegistrationViewModelTests.swift */; };
 		35532445253D6B8E0080589F /* PaymentAmount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3595B25125328E6F006F7EBC /* PaymentAmount.storyboard */; };
 		35532447253D7BBB0080589F /* TapToPayConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35532446253D7BBB0080589F /* TapToPayConfirmationViewController.swift */; };
@@ -69,13 +65,7 @@
 		3559C8B12301D41400481A87 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3559C8B52301E4FF00481A87 /* AutoPay.storyboard */; };
 		3559C8BA23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */; };
-		355B10372369DB190038EAD3 /* WatchSessionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionMananger.swift */; };
-		355B103B2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionMananger.swift */; };
-		355B103C2369DD9C0038EAD3 /* WatchSessionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionMananger.swift */; };
-		355B10412369E4820038EAD3 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainManager.swift */; };
-		355B10442369E48D0038EAD3 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainManager.swift */; };
-		355B10462369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
-		355B104A2369E54E0038EAD3 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
+		355B10372369DB190038EAD3 /* WatchSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionController.swift */; };
 		356AC12C25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */; };
 		356AC13325064E5F000CF867 /* TapToPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 356AC13225064E5F000CF867 /* TapToPay.storyboard */; };
 		356D725924D2AF910058661F /* RegistrationChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */; };
@@ -116,7 +106,6 @@
 		35A2B88824A1E0E0004B38BC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */; };
 		35A2B88924A1E0E0004B38BC /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */; };
 		35A2B88E24A1E120004B38BC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */; };
-		35A2E1B5236B74FA0080CE96 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		35A5DCBC2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		35A5DCBF2305D35200A82AA8 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		35A5DCC32305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */; };
@@ -142,9 +131,6 @@
 		35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
 		35B9609D22B7BC79003BCC97 /* PremiseListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */; };
 		35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
-		35BAA17A2367454F0053E58A /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAA1782367454F0053E58A /* NetworkUtility.swift */; };
-		35BAA18F2368B5AA0053E58A /* Bill-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA18E2368B5AA0053E58A /* Bill-FlavorBGE.storyboard */; };
-		35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
 		35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */; };
 		35C9139B22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */; };
@@ -162,15 +148,7 @@
 		35F9DD682333C85C00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
-		35F9DD6E2333D14D00AAA2B2 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */; };
-		35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
-		35F9DD712333D14D00AAA2B2 /* AccountListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */; };
-		35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
-		35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */; };
-		35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */; };
-		35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35F9DD842333D2B800AAA2B2 /* EUMobile-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
@@ -184,15 +162,11 @@
 		35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */; };
-		35F9DDBE2333D91D00AAA2B2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainManager.swift */; };
 		35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
-		35F9DDC523340C9B00AAA2B2 /* Main-FlavorBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */; };
 		35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
-		35F9DE52233A583700AAA2B2 /* AnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */; };
-		35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
-		35FB5030234D091100C50162 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB502E234D091000C50162 /* UIColor.swift */; };
+		35F9DE52233A583700AAA2B2 /* AnalyticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticController.swift */; };
 		38067936D320131E8A71A633 /* Pods_EUMobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A3A4A7A4BBF2DD357F1C3F /* Pods_EUMobileUITests.framework */; };
 		389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4465DE881F1FD07C0014537F /* TemplateCardView.xib */; };
@@ -211,6 +185,43 @@
 		54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */; };
 		54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */; };
 		671448C224731680004D2AFF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Configuration.swift */; };
+		67247EF325D2D6750024467D /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247EF225D2D6750024467D /* WatchApp.swift */; };
+		67247F0825D2D7FB0024467D /* WatchFlowContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */; };
+		67247F1325D2D8EC0024467D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F1225D2D8EC0024467D /* SignInView.swift */; };
+		67247F1D25D2D9000024467D /* ReportOutageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F1C25D2D9000024467D /* ReportOutageView.swift */; };
+		67247F2325D2D90C0024467D /* AccountList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F2225D2D90C0024467D /* AccountList.swift */; };
+		67247F2925D2D9190024467D /* OutageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F2825D2D9190024467D /* OutageView.swift */; };
+		67247F2F25D2D9200024467D /* UsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F2E25D2D9200024467D /* UsageView.swift */; };
+		67247F3525D2D92B0024467D /* BillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F3425D2D92B0024467D /* BillView.swift */; };
+		67247F4725D2DDE20024467D /* ErrorContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F4625D2DDE20024467D /* ErrorContainerView.swift */; };
+		67247F4D25D2DF1B0024467D /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F4C25D2DF1B0024467D /* ErrorState.swift */; };
+		67247F5325D2DF7E0024467D /* ImageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F5225D2DF7E0024467D /* ImageTextView.swift */; };
+		67247F6125D2E33A0024467D /* AccountInfoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F6025D2E33A0024467D /* AccountInfoBar.swift */; };
+		67247F6825D2E4E00024467D /* OutageFlowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F6725D2E4E00024467D /* OutageFlowContainerView.swift */; };
+		67247F6E25D2E4EA0024467D /* OutageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F6D25D2E4EA0024467D /* OutageContainerView.swift */; };
+		67247F7825D2E5A50024467D /* OutageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F7725D2E5A50024467D /* OutageState.swift */; };
+		67247F8325D2FE3C0024467D /* UsageFlowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F8225D2FE3C0024467D /* UsageFlowContainerView.swift */; };
+		67247F8D25D2FE510024467D /* UsageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F8C25D2FE510024467D /* UsageContainerView.swift */; };
+		67247FA025D2FE6C0024467D /* BillFlowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247F9F25D2FE6C0024467D /* BillFlowContainerView.swift */; };
+		67247FA625D2FE750024467D /* BillContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FA525D2FE750024467D /* BillContainerView.swift */; };
+		67247FB425D3063F0024467D /* UsageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FB325D3063F0024467D /* UsageState.swift */; };
+		67247FBE25D314040024467D /* BillState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FBD25D314040024467D /* BillState.swift */; };
+		67247FCE25D33B400024467D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FCD25D33B400024467D /* CardView.swift */; };
+		67247FDE25D33D170024467D /* BillCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FDD25D33D170024467D /* BillCard.swift */; };
+		67247FE425D43AC60024467D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FE325D43AC60024467D /* Tab.swift */; };
+		67247FEF25D43DAD0024467D /* AccountListContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FEE25D43DAD0024467D /* AccountListContainerView.swift */; };
+		67247FFD25D43DD70024467D /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67247FFC25D43DD70024467D /* AccountRow.swift */; };
+		6724800325D441810024467D /* WatchAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724800225D441810024467D /* WatchAccount.swift */; };
+		6724801525D444B60024467D /* WatchOutage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724801425D444B60024467D /* WatchOutage.swift */; };
+		6724801F25D44A380024467D /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724801E25D44A380024467D /* PreviewData.swift */; };
+		6724803925D455320024467D /* WatchUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724803825D455320024467D /* WatchUsage.swift */; };
+		6724804325D4553F0024467D /* WatchBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724804225D4553F0024467D /* WatchBill.swift */; };
+		6724804925D457800024467D /* FuelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724804825D457800024467D /* FuelType.swift */; };
+		6724807A25D475F60024467D /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724807925D475F60024467D /* NetworkController.swift */; };
+		6724808025D47B560024467D /* AccountListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724807F25D47B560024467D /* AccountListState.swift */; };
+		6724808625D47BB00024467D /* AccountListFlowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6724808525D47BB00024467D /* AccountListFlowContainerView.swift */; };
+		672480E925D5A7D10024467D /* WatchSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10352369DB180038EAD3 /* WatchSessionController.swift */; };
+		6724812325D6F18E0024467D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		673FA0CA24C899CD00210BCD /* OutageStatusContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */; };
 		673FA0D724C899FE00210BCD /* ForgotMaskedUsernames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */; };
 		673FA0E424C89A1900210BCD /* AccountLookupResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FA0E324C89A1900210BCD /* AccountLookupResults.swift */; };
@@ -295,7 +306,6 @@
 		675F4CFC24AB828200A828F9 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3124AB828000A828F9 /* TokenResponse.swift */; };
 		675F4D0E24AB828200A828F9 /* AccountLookupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3424AB828000A828F9 /* AccountLookupResult.swift */; };
 		675F4D1424AB828200A828F9 /* UsageTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3524AB828000A828F9 /* UsageTip.swift */; };
-		675F4D1A24AB828200A828F9 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3624AB828000A828F9 /* Test.swift */; };
 		675F4D2024AB828200A828F9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3724AB828000A828F9 /* UserSession.swift */; };
 		675F4D2624AB828200A828F9 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F4B3924AB828000A828F9 /* NetworkingError.swift */; };
 		675F4D2C24AB828200A828F9 /* OutageStatusMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B3C24AB828000A828F9 /* OutageStatusMock.json */; };
@@ -342,6 +352,12 @@
 		676434D425AF6D7200DA6448 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434D325AF6D7200DA6448 /* Bundle+Version.swift */; };
 		676434DD25AF702800DA6448 /* ProjectURLSuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */; };
 		676434E425AF703C00DA6448 /* ProjectURLSuffix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */; };
+		677958B425E4394500A08CC2 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677958B325E4394500A08CC2 /* KeychainItemAccessibility.swift */; };
+		677958C125E4399A00A08CC2 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677958B325E4394500A08CC2 /* KeychainItemAccessibility.swift */; };
+		677958EA25E444FB00A08CC2 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677958E925E444FB00A08CC2 /* KeychainController.swift */; };
+		677958EB25E444FB00A08CC2 /* KeychainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677958E925E444FB00A08CC2 /* KeychainController.swift */; };
+		6779590125E44B9D00A08CC2 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6779590025E44B9D00A08CC2 /* KeychainKeys.swift */; };
+		6779590225E44B9D00A08CC2 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6779590025E44B9D00A08CC2 /* KeychainKeys.swift */; };
 		67893A9724DB1E26000143D6 /* GameService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893A9624DB1E26000143D6 /* GameService+Rx.swift */; };
 		67893AB024DB248C000143D6 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893AAF24DB248C000143D6 /* DailyUsage.swift */; };
 		67893ABD24DB2F9B000143D6 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67893ABC24DB2F9B000143D6 /* AlertService.swift */; };
@@ -360,6 +376,8 @@
 		678B621B24CF6AD3009F8A6B /* ValidateRegistrationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */; };
 		678B622D24D09A1B009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
 		678B622E24D09A1C009F8A6B /* RegistrationQuestionsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */; };
+		6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115325DD87E3008A0080 /* OutageAnimation.swift */; };
+		6797115B25DD901F008A0080 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797115A25DD901F008A0080 /* Arc.swift */; };
 		679C6EB124D1E84E00535DE7 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EB024D1E84E00535DE7 /* AppointmentService.swift */; };
 		679C6EBE24D1EBCA00535DE7 /* AppointmentService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */; };
 		679C6ED824D1F0A800535DE7 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679C6ED724D1F0A800535DE7 /* Appointment.swift */; };
@@ -410,9 +428,6 @@
 		67D08A9C2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08A9A2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets */; };
 		67D08AA22539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */; };
 		67D08AA32539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */; };
-		67D08AA92539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67D08AA82539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard */; };
-		67D08BB9253A224F0047E4C5 /* Usage-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5125391A6A002A2832 /* Usage-FlavorACE.storyboard */; };
-		67D08BBA253A225F0047E4C5 /* Outage-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5025391A6A002A2832 /* Outage-FlavorACE.storyboard */; };
 		67D5626324EADA7E00852551 /* GameTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626224EADA7E00852551 /* GameTip.swift */; };
 		67D5626724EADA9700852551 /* GameQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626624EADA9600852551 /* GameQuiz.swift */; };
 		67D5626924EADAA700852551 /* GameSurvery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D5626824EADAA700852551 /* GameSurvery.swift */; };
@@ -427,10 +442,6 @@
 		67D5632724EDC6F600852551 /* outage-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB27A214834A900FBAD83 /* outage-FlavorCOMED.json */; };
 		67D5632824EDC6F600852551 /* sm_outage_loading-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2802148518C00FBAD83 /* sm_outage_loading-FlavorCOMED.json */; };
 		67D5632924EDC6F600852551 /* sm_outage-FlavorCOMED.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2682146F06D00FBAD83 /* sm_outage-FlavorCOMED.json */; };
-		67D5633124EEFAA100852551 /* Main-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */; };
-		67D5633224EEFAA100852551 /* Outage-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1822368B20F0053E58A /* Outage-FlavorCOMED.storyboard */; };
-		67D5633324EEFAA100852551 /* Usage-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1842368B22C0053E58A /* Usage-FlavorCOMED.storyboard */; };
-		67D5633424EEFAA100852551 /* Bill-FlavorCOMED.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1902368B5C80053E58A /* Bill-FlavorCOMED.storyboard */; };
 		67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */; };
 		67D5633624EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */; };
 		67D73ADE246C460400450B63 /* OutageMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */; };
@@ -584,8 +595,6 @@
 		9C62446822C42B4200F14DA0 /* FloatLabelTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62446722C42B4200F14DA0 /* FloatLabelTextView.xib */; };
 		9C62447022C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62446C22C42B4900F14DA0 /* FloatLabelTextView.swift */; };
 		9C62447422C5617D00F14DA0 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControl.swift */; };
-		9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
-		9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
 		9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
 		9C7C902723B55F3100E40D1E /* GameSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */; };
@@ -932,15 +941,6 @@
 		C3087B0324BDEE8B005AE544 /* EnergyTipMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C3087B0124BDEE8B005AE544 /* EnergyTipMock.json */; };
 		C3087B0C24BDEFA3005AE544 /* AnyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087B0B24BDEFA3005AE544 /* AnyObserver.swift */; };
 		C3087B1624BDF0D5005AE544 /* UsageService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3087B1524BDF0D5005AE544 /* UsageService+Rx.swift */; };
-		C3118C5525391A70002A2832 /* Bill-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C4F25391A69002A2832 /* Bill-FlavorACE.storyboard */; };
-		C3118C5925391A8A002A2832 /* Main-FlavorACE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5625391A82002A2832 /* Main-FlavorACE.storyboard */; };
-		C3118C5D25391A9F002A2832 /* Outage-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5A25391A9E002A2832 /* Outage-FlavorDPL.storyboard */; };
-		C3118C5E25391A9F002A2832 /* Usage-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5B25391A9E002A2832 /* Usage-FlavorDPL.storyboard */; };
-		C3118C5F25391A9F002A2832 /* Bill-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C5C25391A9E002A2832 /* Bill-FlavorDPL.storyboard */; };
-		C3118C6225391AAA002A2832 /* Main-FlavorDPL.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6025391AA9002A2832 /* Main-FlavorDPL.storyboard */; };
-		C3118C6625391AB6002A2832 /* Usage-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6325391AB4002A2832 /* Usage-FlavorPEPCO.storyboard */; };
-		C3118C6725391AB6002A2832 /* Bill-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6425391AB4002A2832 /* Bill-FlavorPEPCO.storyboard */; };
-		C3118C6825391AB6002A2832 /* Outage-FlavorPEPCO.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3118C6525391AB5002A2832 /* Outage-FlavorPEPCO.storyboard */; };
 		C3118C6E25391BA3002A2832 /* AccountNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3118C6D25391B71002A2832 /* AccountNumberRequest.swift */; };
 		C3118C7325391BA8002A2832 /* AccountNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3118C6D25391B71002A2832 /* AccountNumberRequest.swift */; };
 		C320FDA124DC5ED40012E4ED /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C320FDA024DC5ED40012E4ED /* WalletService.swift */; };
@@ -983,6 +983,12 @@
 		C36C39B224ED95A800BA83B6 /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36C396924ED95A700BA83B6 /* BankAccount.swift */; };
 		C38F484F2537D02D00EC87B5 /* PECOReleaseOfInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */; };
 		C39F2B4D253920C60095A8F1 /* PaymentAmountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595B25025328E6E006F7EBC /* PaymentAmountSheetViewController.swift */; };
+		C3B5F38525E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
+		C3B5F38625E97EDA005D3740 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */; };
+		C3B5F38C25E98418005D3740 /* FeatureFlagUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */; };
+		C3B5F38D25E98418005D3740 /* FeatureFlagUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */; };
+		C3B5F39325E98441005D3740 /* FeatureFlagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F39225E98441005D3740 /* FeatureFlagService.swift */; };
+		C3B5F39425E98441005D3740 /* FeatureFlagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F39225E98441005D3740 /* FeatureFlagService.swift */; };
 		C3B6555024ABD9320048C64B /* SERInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6554F24ABD9310048C64B /* SERInfo.swift */; };
 		C3B6556024ABD9790048C64B /* SERResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6555F24ABD9790048C64B /* SERResult.swift */; };
 		C3B6557024ABE6780048C64B /* BillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B6556F24ABE6780048C64B /* BillingInfo.swift */; };
@@ -1339,9 +1345,6 @@
 		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
-		3527DB37234B86E000DA4553 /* BillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUtility.swift; sourceTree = "<group>"; };
-		352B19F7233BBE710090B442 /* Outage-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Outage-FlavorBGE.storyboard"; path = "Watch/Storyboards/BGE/Outage-FlavorBGE.storyboard"; sourceTree = SOURCE_ROOT; };
-		352B19F9233BBEDD0090B442 /* Usage-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorBGE.storyboard"; sourceTree = "<group>"; };
 		352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unauthenticated.storyboard; sourceTree = "<group>"; };
 		3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCreateCredentialsViewControllerNew.swift; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1349,11 +1352,9 @@
 		35532446253D7BBB0080589F /* TapToPayConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayConfirmationViewController.swift; sourceTree = "<group>"; };
 		3559C8B52301E4FF00481A87 /* AutoPay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPay.storyboard; sourceTree = "<group>"; };
 		3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayReasonsForStoppingViewController.swift; sourceTree = "<group>"; };
-		355B10352369DB180038EAD3 /* WatchSessionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionMananger.swift; sourceTree = "<group>"; };
-		355B10452369E54E0038EAD3 /* KeychainKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
+		355B10352369DB180038EAD3 /* WatchSessionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionController.swift; sourceTree = "<group>"; };
 		356AC12B25064DED000CF867 /* TapToPayReviewPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayReviewPaymentViewController.swift; sourceTree = "<group>"; };
 		356AC13225064E5F000CF867 /* TapToPay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TapToPay.storyboard; sourceTree = "<group>"; };
-		356C7F8021909997003E8A90 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		3575232C22C53A1B00A0AFAC /* AccountListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountListRow.xib; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
@@ -1418,15 +1419,6 @@
 		35B9609822B7BC61003BCC97 /* PremiseListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiseListRow.xib; sourceTree = "<group>"; };
 		35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiseListRow.swift; sourceTree = "<group>"; };
 		35B960BE22C2A15A003BCC97 /* AccountListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountListRow.swift; sourceTree = "<group>"; };
-		35BAA1782367454F0053E58A /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
-		35BAA1822368B20F0053E58A /* Outage-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
-		35BAA1842368B22C0053E58A /* Usage-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
-		35BAA1882368B29A0053E58A /* Outage-FlavorPECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorPECO.storyboard"; sourceTree = "<group>"; };
-		35BAA18A2368B2A50053E58A /* Usage-FlavorPECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorPECO.storyboard"; sourceTree = "<group>"; };
-		35BAA18C2368B2BB0053E58A /* Bill-FlavorPECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorPECO.storyboard"; sourceTree = "<group>"; };
-		35BAA18E2368B5AA0053E58A /* Bill-FlavorBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorBGE.storyboard"; sourceTree = "<group>"; };
-		35BAA1902368B5C80053E58A /* Bill-FlavorCOMED.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
-		35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigUtility.swift; sourceTree = "<group>"; };
 		35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniWalletSheet.storyboard; sourceTree = "<group>"; };
 		35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletSheetViewController.swift; sourceTree = "<group>"; };
 		35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletItemRow.swift; sourceTree = "<group>"; };
@@ -1447,30 +1439,17 @@
 		35E1F85724ADA49900574065 /* RegistrationSecurityQuestionsViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionsViewControllerNew.swift; sourceTree = "<group>"; };
 		35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35E7C7BE21907F2E00BA13C6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		35E7C7CA21907F2E00BA13C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-FlavorPECO.storyboard"; sourceTree = "<group>"; };
-		35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableRowController.swift; sourceTree = "<group>"; };
 		35E7C7DC2190802C00BA13C6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
-		35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnimateWithDuration+Completion.swift"; sourceTree = "<group>"; };
-		35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageInterfaceController.swift; sourceTree = "<group>"; };
-		35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInInterfaceController.swift; sourceTree = "<group>"; };
-		35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountListInterfaceController.swift; sourceTree = "<group>"; };
-		35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillInterfaceController.swift; sourceTree = "<group>"; };
-		35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageInterfaceController.swift; sourceTree = "<group>"; };
 		35F9DD232333C33F00AAA2B2 /* EUMobile-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EUMobile-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F9DD2F2333C34100AAA2B2 /* EUMobile-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "EUMobile-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F9DD5B2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorBGE.xcassets"; sourceTree = "<group>"; };
 		35F9DD5F2333C49600AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DD612333C74100AAA2B2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F9DD692333C87A00AAA2B2 /* Assets-FlavorPECO.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorPECO.xcassets"; sourceTree = "<group>"; };
-		35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-FlavorBGE.storyboard"; sourceTree = "<group>"; };
 		35F9DDF3233539B400AAA2B2 /* Assets-FlavorCOMED.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorCOMED.xcassets"; sourceTree = "<group>"; };
-		35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main-FlavorCOMED.storyboard"; sourceTree = "<group>"; };
-		35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticUtility.swift; sourceTree = "<group>"; };
-		35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageInterfaceController.swift; sourceTree = "<group>"; };
+		35F9DE50233A583700AAA2B2 /* AnalyticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticController.swift; sourceTree = "<group>"; };
 		35FB4814A68B1B65B3BE45C8 /* Pods-EUMobileUITests.test-dpl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.test-dpl.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.test-dpl.xcconfig"; sourceTree = "<group>"; };
-		35FB502E234D091000C50162 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		367B540DAE6087D02BBFDD5E /* Pods-EUMobileUnitTests.stage-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.stage-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.stage-comed.xcconfig"; sourceTree = "<group>"; };
 		36FC52FE80B75EABF453EA04 /* Pods-EUMobile.prodbeta-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prodbeta-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prodbeta-comed.xcconfig"; sourceTree = "<group>"; };
 		38210305D27493C485B997B4 /* Pods-EUMobile-Watch Extension.stage-pepco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.stage-pepco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.stage-pepco.xcconfig"; sourceTree = "<group>"; };
@@ -1566,6 +1545,41 @@
 		64859E458B5973DD77314B29 /* Pods-EUMobile.prodbeta-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prodbeta-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prodbeta-peco.xcconfig"; sourceTree = "<group>"; };
 		65A34083A174EA78549ACFDB /* Pods-EUMobile.production beta-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.production beta-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.production beta-bge.xcconfig"; sourceTree = "<group>"; };
 		667260BE8F673703710FBBA9 /* Pods-EUMobileUITests.production-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production-bge.xcconfig"; sourceTree = "<group>"; };
+		67247EF225D2D6750024467D /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
+		67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFlowContainer.swift; sourceTree = "<group>"; };
+		67247F1225D2D8EC0024467D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		67247F1C25D2D9000024467D /* ReportOutageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportOutageView.swift; sourceTree = "<group>"; };
+		67247F2225D2D90C0024467D /* AccountList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountList.swift; sourceTree = "<group>"; };
+		67247F2825D2D9190024467D /* OutageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageView.swift; sourceTree = "<group>"; };
+		67247F2E25D2D9200024467D /* UsageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageView.swift; sourceTree = "<group>"; };
+		67247F3425D2D92B0024467D /* BillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillView.swift; sourceTree = "<group>"; };
+		67247F4625D2DDE20024467D /* ErrorContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorContainerView.swift; sourceTree = "<group>"; };
+		67247F4C25D2DF1B0024467D /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
+		67247F5225D2DF7E0024467D /* ImageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextView.swift; sourceTree = "<group>"; };
+		67247F6025D2E33A0024467D /* AccountInfoBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoBar.swift; sourceTree = "<group>"; };
+		67247F6725D2E4E00024467D /* OutageFlowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageFlowContainerView.swift; sourceTree = "<group>"; };
+		67247F6D25D2E4EA0024467D /* OutageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageContainerView.swift; sourceTree = "<group>"; };
+		67247F7725D2E5A50024467D /* OutageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageState.swift; sourceTree = "<group>"; };
+		67247F8225D2FE3C0024467D /* UsageFlowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageFlowContainerView.swift; sourceTree = "<group>"; };
+		67247F8C25D2FE510024467D /* UsageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageContainerView.swift; sourceTree = "<group>"; };
+		67247F9F25D2FE6C0024467D /* BillFlowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillFlowContainerView.swift; sourceTree = "<group>"; };
+		67247FA525D2FE750024467D /* BillContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillContainerView.swift; sourceTree = "<group>"; };
+		67247FB325D3063F0024467D /* UsageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageState.swift; sourceTree = "<group>"; };
+		67247FBD25D314040024467D /* BillState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillState.swift; sourceTree = "<group>"; };
+		67247FCD25D33B400024467D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		67247FDD25D33D170024467D /* BillCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCard.swift; sourceTree = "<group>"; };
+		67247FE325D43AC60024467D /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		67247FEE25D43DAD0024467D /* AccountListContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListContainerView.swift; sourceTree = "<group>"; };
+		67247FFC25D43DD70024467D /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
+		6724800225D441810024467D /* WatchAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAccount.swift; sourceTree = "<group>"; };
+		6724801425D444B60024467D /* WatchOutage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOutage.swift; sourceTree = "<group>"; };
+		6724801E25D44A380024467D /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
+		6724803825D455320024467D /* WatchUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchUsage.swift; sourceTree = "<group>"; };
+		6724804225D4553F0024467D /* WatchBill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchBill.swift; sourceTree = "<group>"; };
+		6724804825D457800024467D /* FuelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelType.swift; sourceTree = "<group>"; };
+		6724807925D475F60024467D /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		6724807F25D47B560024467D /* AccountListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListState.swift; sourceTree = "<group>"; };
+		6724808525D47BB00024467D /* AccountListFlowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListFlowContainerView.swift; sourceTree = "<group>"; };
 		673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusContainer.swift; sourceTree = "<group>"; };
 		673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotMaskedUsernames.swift; sourceTree = "<group>"; };
 		673FA0E324C89A1900210BCD /* AccountLookupResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResults.swift; sourceTree = "<group>"; };
@@ -1643,7 +1657,6 @@
 		675F4B3124AB828000A828F9 /* TokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		675F4B3424AB828000A828F9 /* AccountLookupResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResult.swift; sourceTree = "<group>"; };
 		675F4B3524AB828000A828F9 /* UsageTip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageTip.swift; sourceTree = "<group>"; };
-		675F4B3624AB828000A828F9 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		675F4B3724AB828000A828F9 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		675F4B3924AB828000A828F9 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		675F4B3C24AB828000A828F9 /* OutageStatusMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OutageStatusMock.json; sourceTree = "<group>"; };
@@ -1689,6 +1702,9 @@
 		676434CA25AF692600DA6448 /* InfoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		676434D325AF6D7200DA6448 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
 		676434DC25AF702800DA6448 /* ProjectURLSuffix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectURLSuffix.swift; sourceTree = "<group>"; };
+		677958B325E4394500A08CC2 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		677958E925E444FB00A08CC2 /* KeychainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainController.swift; sourceTree = "<group>"; };
+		6779590025E44B9D00A08CC2 /* KeychainKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKeys.swift; sourceTree = "<group>"; };
 		67893A9624DB1E26000143D6 /* GameService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameService+Rx.swift"; sourceTree = "<group>"; };
 		67893AAF24DB248C000143D6 /* DailyUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
 		67893ABC24DB2F9B000143D6 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
@@ -1705,6 +1721,8 @@
 		67893BC624E318D1000143D6 /* String+DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateParser.swift"; sourceTree = "<group>"; };
 		678B621424CF6AC8009F8A6B /* ValidateRegistrationMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidateRegistrationMock.json; sourceTree = "<group>"; };
 		678B622C24D09A0D009F8A6B /* RegistrationQuestionsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RegistrationQuestionsMock.json; sourceTree = "<group>"; };
+		6797115325DD87E3008A0080 /* OutageAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageAnimation.swift; sourceTree = "<group>"; };
+		6797115A25DD901F008A0080 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		679C6EB024D1E84E00535DE7 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
 		679C6EBD24D1EBCA00535DE7 /* AppointmentService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppointmentService+Rx.swift"; sourceTree = "<group>"; };
 		679C6ED724D1F0A800535DE7 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
@@ -1721,7 +1739,6 @@
 		67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
 		67D08A9A2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorDPL.xcassets"; sourceTree = "<group>"; };
 		67D08AA12539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorPEPCO.xcassets"; sourceTree = "<group>"; };
-		67D08AA82539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
 		67D5626224EADA7E00852551 /* GameTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTip.swift; sourceTree = "<group>"; };
 		67D5626624EADA9600852551 /* GameQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuiz.swift; sourceTree = "<group>"; };
 		67D5626824EADAA700852551 /* GameSurvery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurvery.swift; sourceTree = "<group>"; };
@@ -1954,8 +1971,6 @@
 		9C62446722C42B4200F14DA0 /* FloatLabelTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextView.xib; sourceTree = "<group>"; };
 		9C62446C22C42B4900F14DA0 /* FloatLabelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextView.swift; sourceTree = "<group>"; };
 		9C62447322C5617D00F14DA0 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
-		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
-		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7774802368C630009AF0F0 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
 		9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeViewController.swift; sourceTree = "<group>"; };
 		9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyViewController.swift; sourceTree = "<group>"; };
@@ -2201,17 +2216,6 @@
 		C3087B0124BDEE8B005AE544 /* EnergyTipMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EnergyTipMock.json; sourceTree = "<group>"; };
 		C3087B0B24BDEFA3005AE544 /* AnyObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObserver.swift; sourceTree = "<group>"; };
 		C3087B1524BDF0D5005AE544 /* UsageService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsageService+Rx.swift"; sourceTree = "<group>"; };
-		C3118C4F25391A69002A2832 /* Bill-FlavorACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorACE.storyboard"; sourceTree = "<group>"; };
-		C3118C5025391A6A002A2832 /* Outage-FlavorACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorACE.storyboard"; sourceTree = "<group>"; };
-		C3118C5125391A6A002A2832 /* Usage-FlavorACE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorACE.storyboard"; sourceTree = "<group>"; };
-		C3118C5725391A82002A2832 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-FlavorACE.storyboard"; sourceTree = "<group>"; };
-		C3118C5A25391A9E002A2832 /* Outage-FlavorDPL.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorDPL.storyboard"; sourceTree = "<group>"; };
-		C3118C5B25391A9E002A2832 /* Usage-FlavorDPL.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorDPL.storyboard"; sourceTree = "<group>"; };
-		C3118C5C25391A9E002A2832 /* Bill-FlavorDPL.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorDPL.storyboard"; sourceTree = "<group>"; };
-		C3118C6125391AA9002A2832 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-FlavorDPL.storyboard"; sourceTree = "<group>"; };
-		C3118C6325391AB4002A2832 /* Usage-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Usage-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
-		C3118C6425391AB4002A2832 /* Bill-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Bill-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
-		C3118C6525391AB5002A2832 /* Outage-FlavorPEPCO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Outage-FlavorPEPCO.storyboard"; sourceTree = "<group>"; };
 		C3118C6D25391B71002A2832 /* AccountNumberRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNumberRequest.swift; sourceTree = "<group>"; };
 		C320FDA024DC5ED40012E4ED /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		C320FDA224DC62DE0012E4ED /* WalletRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRequest.swift; sourceTree = "<group>"; };
@@ -2248,6 +2252,9 @@
 		C36C396724ED95A700BA83B6 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		C36C396824ED95A700BA83B6 /* ProfileStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStatus.swift; sourceTree = "<group>"; };
 		C36C396924ED95A700BA83B6 /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
+		C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
+		C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagUtility.swift; sourceTree = "<group>"; };
+		C3B5F39225E98441005D3740 /* FeatureFlagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagService.swift; sourceTree = "<group>"; };
 		C3B6554F24ABD9310048C64B /* SERInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERInfo.swift; sourceTree = "<group>"; };
 		C3B6555F24ABD9790048C64B /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		C3B6556F24ABE6780048C64B /* BillingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingInfo.swift; sourceTree = "<group>"; };
@@ -3945,7 +3952,6 @@
 			children = (
 				35F9DD5E2333C47500AAA2B2 /* Configuration */,
 				35E7C7BC21907F2E00BA13C6 /* Resources */,
-				35E7C7C521907F2E00BA13C6 /* Storyboards */,
 			);
 			path = Watch;
 			sourceTree = "<group>";
@@ -3953,12 +3959,10 @@
 		35E7C79F21907EA400BA13C6 /* Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */,
-				35E7C7FB2190805C00BA13C6 /* Controllers */,
-				35E7C7D82190802400BA13C6 /* Views */,
-				35E7C7E22190803900BA13C6 /* Services */,
+				67247FC825D315410024467D /* Components */,
+				67247F1125D2D8DA0024467D /* Features */,
+				67247F0025D2D71E0024467D /* Controllers */,
 				35F9DE4C2339106800AAA2B2 /* Data */,
-				35E7C7DB2190802C00BA13C6 /* Utility */,
 				35E7C7EA2190804E00BA13C6 /* Extensions */,
 				35E7C8082190806700BA13C6 /* Configurations */,
 			);
@@ -3980,67 +3984,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		35E7C7C521907F2E00BA13C6 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DDF6233539CA00AAA2B2 /* ComEd */,
-				35F9DDC323340C5900AAA2B2 /* BGE */,
-				35F9DDC223340C5300AAA2B2 /* PECO */,
-				67EDC30724C1EA17001A8494 /* Pepco */,
-				67EDC31B24C1EB6E001A8494 /* ACE */,
-				67EDC31524C1EB6D001A8494 /* Delmarva */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		35E7C7D82190802400BA13C6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		35E7C7DB2190802C00BA13C6 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */,
-				3527DB37234B86E000DA4553 /* BillUtility.swift */,
-				35BAA1782367454F0053E58A /* NetworkUtility.swift */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		35E7C7E22190803900BA13C6 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				356C7F8021909997003E8A90 /* KeychainManager.swift */,
-				355B10352369DB180038EAD3 /* WatchSessionMananger.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		35E7C7EA2190804E00BA13C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				35FB502E234D091000C50162 /* UIColor.swift */,
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
-				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		35E7C7FB2190805C00BA13C6 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */,
-				35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */,
-				35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */,
-				35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */,
-				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
-				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		35E7C8082190806700BA13C6 /* Configurations */ = {
@@ -4059,46 +4008,110 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
-		35F9DDC223340C5300AAA2B2 /* PECO */ = {
-			isa = PBXGroup;
-			children = (
-				35E7C7C921907F2E00BA13C6 /* Main-FlavorPECO.storyboard */,
-				35BAA1882368B29A0053E58A /* Outage-FlavorPECO.storyboard */,
-				35BAA18A2368B2A50053E58A /* Usage-FlavorPECO.storyboard */,
-				35BAA18C2368B2BB0053E58A /* Bill-FlavorPECO.storyboard */,
-			);
-			path = PECO;
-			sourceTree = "<group>";
-		};
-		35F9DDC323340C5900AAA2B2 /* BGE */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DDC423340C8600AAA2B2 /* Main-FlavorBGE.storyboard */,
-				352B19F7233BBE710090B442 /* Outage-FlavorBGE.storyboard */,
-				352B19F9233BBEDD0090B442 /* Usage-FlavorBGE.storyboard */,
-				35BAA18E2368B5AA0053E58A /* Bill-FlavorBGE.storyboard */,
-			);
-			path = BGE;
-			sourceTree = "<group>";
-		};
-		35F9DDF6233539CA00AAA2B2 /* ComEd */ = {
-			isa = PBXGroup;
-			children = (
-				35F9DDF7233539E100AAA2B2 /* Main-FlavorCOMED.storyboard */,
-				35BAA1822368B20F0053E58A /* Outage-FlavorCOMED.storyboard */,
-				35BAA1842368B22C0053E58A /* Usage-FlavorCOMED.storyboard */,
-				35BAA1902368B5C80053E58A /* Bill-FlavorCOMED.storyboard */,
-			);
-			path = ComEd;
-			sourceTree = "<group>";
-		};
 		35F9DE4C2339106800AAA2B2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				35E7C7DC2190802C00BA13C6 /* Constants.swift */,
-				355B10452369E54E0038EAD3 /* KeychainKeys.swift */,
+				6724801E25D44A380024467D /* PreviewData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		67247F0025D2D71E0024467D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				35F9DE50233A583700AAA2B2 /* AnalyticController.swift */,
+				6724807925D475F60024467D /* NetworkController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		67247F1125D2D8DA0024467D /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				67247FE325D43AC60024467D /* Tab.swift */,
+				67247EF225D2D6750024467D /* WatchApp.swift */,
+				67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */,
+				67247F1225D2D8EC0024467D /* SignInView.swift */,
+				67247FED25D43D8D0024467D /* Account List */,
+				67247F6625D2E4CD0024467D /* Outage */,
+				67247F8125D2FE1C0024467D /* Usage */,
+				67247F9625D2FE5A0024467D /* Bill */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		67247F6625D2E4CD0024467D /* Outage */ = {
+			isa = PBXGroup;
+			children = (
+				6724801425D444B60024467D /* WatchOutage.swift */,
+				67247F7725D2E5A50024467D /* OutageState.swift */,
+				67247F6725D2E4E00024467D /* OutageFlowContainerView.swift */,
+				67247F6D25D2E4EA0024467D /* OutageContainerView.swift */,
+				67247F2825D2D9190024467D /* OutageView.swift */,
+				67247F1C25D2D9000024467D /* ReportOutageView.swift */,
+			);
+			path = Outage;
+			sourceTree = "<group>";
+		};
+		67247F8125D2FE1C0024467D /* Usage */ = {
+			isa = PBXGroup;
+			children = (
+				6724804825D457800024467D /* FuelType.swift */,
+				6724803825D455320024467D /* WatchUsage.swift */,
+				67247FB325D3063F0024467D /* UsageState.swift */,
+				67247F8225D2FE3C0024467D /* UsageFlowContainerView.swift */,
+				67247F8C25D2FE510024467D /* UsageContainerView.swift */,
+				67247F2E25D2D9200024467D /* UsageView.swift */,
+			);
+			path = Usage;
+			sourceTree = "<group>";
+		};
+		67247F9625D2FE5A0024467D /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				6724804225D4553F0024467D /* WatchBill.swift */,
+				67247FBD25D314040024467D /* BillState.swift */,
+				67247F9F25D2FE6C0024467D /* BillFlowContainerView.swift */,
+				67247FA525D2FE750024467D /* BillContainerView.swift */,
+				67247F3425D2D92B0024467D /* BillView.swift */,
+				67247FDD25D33D170024467D /* BillCard.swift */,
+			);
+			path = Bill;
+			sourceTree = "<group>";
+		};
+		67247FC725D315260024467D /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				67247F4C25D2DF1B0024467D /* ErrorState.swift */,
+				67247F4625D2DDE20024467D /* ErrorContainerView.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		67247FC825D315410024467D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				67247FC725D315260024467D /* Error */,
+				6797115925DD9008008A0080 /* Outage Animation */,
+				67247F6025D2E33A0024467D /* AccountInfoBar.swift */,
+				67247F5225D2DF7E0024467D /* ImageTextView.swift */,
+				67247FCD25D33B400024467D /* CardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		67247FED25D43D8D0024467D /* Account List */ = {
+			isa = PBXGroup;
+			children = (
+				6724800225D441810024467D /* WatchAccount.swift */,
+				6724807F25D47B560024467D /* AccountListState.swift */,
+				6724808525D47BB00024467D /* AccountListFlowContainerView.swift */,
+				67247FEE25D43DAD0024467D /* AccountListContainerView.swift */,
+				67247F2225D2D90C0024467D /* AccountList.swift */,
+				67247FFC25D43DD70024467D /* AccountRow.swift */,
+			);
+			path = "Account List";
 			sourceTree = "<group>";
 		};
 		674A11F82523889C00AF0D38 /* Energy Wise Rewards */ = {
@@ -4141,6 +4154,7 @@
 				C33827F924E18F8800F133C5 /* PeakRewardsService.swift */,
 				C320FDA024DC5ED40012E4ED /* WalletService.swift */,
 				675F4AEC24AB828000A828F9 /* Request Models */,
+				C3B5F39225E98441005D3740 /* FeatureFlagService.swift */,
 			);
 			path = "Domain Layer";
 			sourceTree = "<group>";
@@ -4193,7 +4207,6 @@
 		675F4B0B24AB828000A828F9 /* Service Layer */ = {
 			isa = PBXGroup;
 			children = (
-				675F4B3624AB828000A828F9 /* Test.swift */,
 				675F4B3724AB828000A828F9 /* UserSession.swift */,
 				675F4B0C24AB828000A828F9 /* Network Models */,
 				675F4B3824AB828000A828F9 /* Networking */,
@@ -4258,6 +4271,7 @@
 				675F4B2224AB828000A828F9 /* Wallet.swift */,
 				C338281924E2FDE000F133C5 /* WalletItem.swift */,
 				67893B8E24E314AC000143D6 /* Weather.swift */,
+				C3B5F38425E97EDA005D3740 /* FeatureFlags.swift */,
 			);
 			path = "Network Models";
 			sourceTree = "<group>";
@@ -4349,6 +4363,42 @@
 				676434CA25AF692600DA6448 /* InfoLabel.swift */,
 			);
 			path = "Debug Menu";
+			sourceTree = "<group>";
+		};
+		677958A825E438E900A08CC2 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				677958E925E444FB00A08CC2 /* KeychainController.swift */,
+				677958B325E4394500A08CC2 /* KeychainItemAccessibility.swift */,
+				6779590025E44B9D00A08CC2 /* KeychainKeys.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		677958E325E43B4A00A08CC2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				677958E425E43B5300A08CC2 /* Controllers */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		677958E425E43B5300A08CC2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				355B10352369DB180038EAD3 /* WatchSessionController.swift */,
+				677958A825E438E900A08CC2 /* Keychain */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6797115925DD9008008A0080 /* Outage Animation */ = {
+			isa = PBXGroup;
+			children = (
+				6797115A25DD901F008A0080 /* Arc.swift */,
+				6797115325DD87E3008A0080 /* OutageAnimation.swift */,
+			);
+			path = "Outage Animation";
 			sourceTree = "<group>";
 		};
 		67A9869424F9683C00BD46E7 /* PECO */ = {
@@ -4598,39 +4648,6 @@
 				E89496351EE9E04000B76F8C /* NotificationNames.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		67EDC30724C1EA17001A8494 /* Pepco */ = {
-			isa = PBXGroup;
-			children = (
-				67D08AA82539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard */,
-				C3118C6425391AB4002A2832 /* Bill-FlavorPEPCO.storyboard */,
-				C3118C6525391AB5002A2832 /* Outage-FlavorPEPCO.storyboard */,
-				C3118C6325391AB4002A2832 /* Usage-FlavorPEPCO.storyboard */,
-			);
-			path = Pepco;
-			sourceTree = "<group>";
-		};
-		67EDC31524C1EB6D001A8494 /* Delmarva */ = {
-			isa = PBXGroup;
-			children = (
-				C3118C6025391AA9002A2832 /* Main-FlavorDPL.storyboard */,
-				C3118C5C25391A9E002A2832 /* Bill-FlavorDPL.storyboard */,
-				C3118C5A25391A9E002A2832 /* Outage-FlavorDPL.storyboard */,
-				C3118C5B25391A9E002A2832 /* Usage-FlavorDPL.storyboard */,
-			);
-			path = Delmarva;
-			sourceTree = "<group>";
-		};
-		67EDC31B24C1EB6E001A8494 /* ACE */ = {
-			isa = PBXGroup;
-			children = (
-				C3118C5625391A82002A2832 /* Main-FlavorACE.storyboard */,
-				C3118C4F25391A69002A2832 /* Bill-FlavorACE.storyboard */,
-				C3118C5025391A6A002A2832 /* Outage-FlavorACE.storyboard */,
-				C3118C5125391A6A002A2832 /* Usage-FlavorACE.storyboard */,
-			);
-			path = ACE;
 			sourceTree = "<group>";
 		};
 		829D3975203F1E7F008D7BAE /* Usage */ = {
@@ -4921,15 +4938,6 @@
 			path = FloatLabelTextView;
 			sourceTree = "<group>";
 		};
-		9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */ = {
-			isa = PBXGroup;
-			children = (
-				9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */,
-				9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */,
-			);
-			path = A0SimpleKeychain;
-			sourceTree = "<group>";
-		};
 		9CA411D823847FDC00C0B602 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -5153,6 +5161,7 @@
 			isa = PBXGroup;
 			children = (
 				674A114F2522502200AF0D38 /* README.md */,
+				677958E325E43B4A00A08CC2 /* Shared */,
 				B58B5AC31E4E28740051FD5F /* App */,
 				B5AC06D61E52238900BBA4ED /* UnitTests */,
 				087630DF1E72F5D000FA7020 /* UITests */,
@@ -5265,7 +5274,7 @@
 				B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */,
 				B0336FE921762FB400751430 /* EventStore.swift */,
 				B0D7860C2285C3F4007C551F /* CommercialUsageAlertStore.swift */,
-				35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */,
+				C3B5F38B25E98418005D3740 /* FeatureFlagUtility.swift */,
 				9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */,
 				9CDB5E772399AE1300976BB2 /* GiftInventory.swift */,
 			);
@@ -5400,7 +5409,6 @@
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */,
 				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
 			);
 			path = Vendor;
@@ -5641,35 +5649,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67D08AA92539E5B40047E4C5 /* Main-FlavorPEPCO.storyboard in Resources */,
-				C3118C5E25391A9F002A2832 /* Usage-FlavorDPL.storyboard in Resources */,
-				C3118C5925391A8A002A2832 /* Main-FlavorACE.storyboard in Resources */,
-				67D5633224EEFAA100852551 /* Outage-FlavorCOMED.storyboard in Resources */,
-				352B19F8233BBE710090B442 /* Outage-FlavorBGE.storyboard in Resources */,
-				35F9DDC523340C9B00AAA2B2 /* Main-FlavorBGE.storyboard in Resources */,
-				67D08BB9253A224F0047E4C5 /* Usage-FlavorACE.storyboard in Resources */,
-				67D5633124EEFAA100852551 /* Main-FlavorCOMED.storyboard in Resources */,
-				C3118C6625391AB6002A2832 /* Usage-FlavorPEPCO.storyboard in Resources */,
-				352B19FA233BBEDD0090B442 /* Usage-FlavorBGE.storyboard in Resources */,
 				67D5633524EEFAA600852551 /* Assets-FlavorCOMED.xcassets in Resources */,
 				67A986AD24F96CF600BD46E7 /* Assets-FlavorPECO.xcassets in Resources */,
 				67D08A9B2539E4C30047E4C5 /* Assets-FlavorDPL.xcassets in Resources */,
 				67A9873324FD4C5F00BD46E7 /* BuildFile in Resources */,
 				67D08A962539E41D0047E4C5 /* Assets-FlavorACE.xcassets in Resources */,
-				C3118C5525391A70002A2832 /* Bill-FlavorACE.storyboard in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* Assets-FlavorBGE.xcassets in Resources */,
-				67D08BBA253A225F0047E4C5 /* Outage-FlavorACE.storyboard in Resources */,
-				C3118C6725391AB6002A2832 /* Bill-FlavorPEPCO.storyboard in Resources */,
-				C3118C6225391AAA002A2832 /* Main-FlavorDPL.storyboard in Resources */,
-				67D5633424EEFAA100852551 /* Bill-FlavorCOMED.storyboard in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
-				67D5633324EEFAA100852551 /* Usage-FlavorCOMED.storyboard in Resources */,
 				67D08AA22539E4D10047E4C5 /* Assets-FlavorPEPCO.xcassets in Resources */,
-				35BAA18F2368B5AA0053E58A /* Bill-FlavorBGE.storyboard in Resources */,
-				C3118C5D25391A9F002A2832 /* Outage-FlavorDPL.storyboard in Resources */,
-				C3118C5F25391A9F002A2832 /* Bill-FlavorDPL.storyboard in Resources */,
-				C3118C6825391AB6002A2832 /* Outage-FlavorPEPCO.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6015,11 +6003,9 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
 				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
 				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
 				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
@@ -6042,11 +6028,9 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
@@ -6079,11 +6063,9 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
 				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
 				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
 				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
@@ -6107,11 +6089,9 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
@@ -6333,11 +6313,9 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EUMobile/Pods-EUMobile-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
 				"${PODS_ROOT}/ForeSee/lib/ForeSeeLegacy.framework",
 				"${PODS_ROOT}/ForeSee/lib/ForeSee.framework",
 				"${PODS_ROOT}/ForeSee/lib/ForeSeeUtilities.framework",
@@ -6360,11 +6338,9 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeLegacy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSee.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ForeSeeUtilities.framework",
@@ -6423,10 +6399,14 @@
 				35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */,
 				C3055C0E2538FBEF000DB89C /* AnonymousService.swift in Sources */,
 				C3055C072538FB38000DB89C /* CreditCard.swift in Sources */,
+				67247F6125D2E33A0024467D /* AccountInfoBar.swift in Sources */,
 				C3055B5C2538F81B000DB89C /* BillPDF.swift in Sources */,
+				C3B5F38625E97EDA005D3740 /* FeatureFlags.swift in Sources */,
+				6724804925D457800024467D /* FuelType.swift in Sources */,
 				C3055B532538F81B000DB89C /* DailyUsageData.swift in Sources */,
+				6724804325D4553F0024467D /* WatchBill.swift in Sources */,
 				C3055B6F2538F81B000DB89C /* AlertPreferences.swift in Sources */,
-				35F9DE52233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
+				35F9DE52233A583700AAA2B2 /* AnalyticController.swift in Sources */,
 				C3055B682538F81B000DB89C /* Wallet.swift in Sources */,
 				C3055C062538FB38000DB89C /* SubOpCo.swift in Sources */,
 				C3055B642538F81B000DB89C /* OutageStatusContainer.swift in Sources */,
@@ -6434,6 +6414,7 @@
 				C3055BE22538FB11000DB89C /* ReleaseOfInfoRequest.swift in Sources */,
 				C3055B672538F81B000DB89C /* BillingHistoryItem.swift in Sources */,
 				C3055C082538FB38000DB89C /* ShortcutItem.swift in Sources */,
+				6724803925D455320024467D /* WatchUsage.swift in Sources */,
 				C3055C332538FC91000DB89C /* AuthenticationService.swift in Sources */,
 				35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */,
 				C3055B592538F81B000DB89C /* BGEAutoPayInfo.swift in Sources */,
@@ -6441,14 +6422,19 @@
 				30DD882F25495243007C320D /* AnonMeterPingRequest.swift in Sources */,
 				C3055C152538FBEF000DB89C /* UsageService.swift in Sources */,
 				C3055B542538F81B000DB89C /* UsageTip.swift in Sources */,
+				67247EF325D2D6750024467D /* WatchApp.swift in Sources */,
 				C3055C422538FCEE000DB89C /* AzureError.swift in Sources */,
+				67247F8325D2FE3C0024467D /* UsageFlowContainerView.swift in Sources */,
 				C3055C502538FD7C000DB89C /* URLSessionConfiguration.swift in Sources */,
+				67247F5325D2DF7E0024467D /* ImageTextView.swift in Sources */,
 				C3055C382538FC99000DB89C /* RxNotifications.swift in Sources */,
 				C3055C1B2538FBEF000DB89C /* RegistrationService.swift in Sources */,
-				35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */,
+				6724801F25D44A380024467D /* PreviewData.swift in Sources */,
 				C3055BFB2538FB11000DB89C /* GameUserRequest.swift in Sources */,
 				C3055B5B2538F81B000DB89C /* ForecastBill.swift in Sources */,
 				C3055B612538F81B000DB89C /* DateRequest.swift in Sources */,
+				67247F7825D2E5A50024467D /* OutageState.swift in Sources */,
+				67247FDE25D33D170024467D /* BillCard.swift in Sources */,
 				C3055B692538F81B000DB89C /* SERResult.swift in Sources */,
 				C3055B3D2538F6EB000DB89C /* OutageStatus.swift in Sources */,
 				C3055BEE2538FB11000DB89C /* SchedulePaymentCancelRequest.swift in Sources */,
@@ -6458,9 +6444,10 @@
 				C3055B832538F81B000DB89C /* PeakRewardsSummary.swift in Sources */,
 				35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */,
 				C3055B712538F81B000DB89C /* PaymentItem.swift in Sources */,
+				6724800325D441810024467D /* WatchAccount.swift in Sources */,
 				C3055C182538FBEF000DB89C /* WalletService.swift in Sources */,
 				C3055C4B2538FD6E000DB89C /* NewMockDataKey.swift in Sources */,
-				355B10372369DB190038EAD3 /* WatchSessionMananger.swift in Sources */,
+				355B10372369DB190038EAD3 /* WatchSessionController.swift in Sources */,
 				C3055BF92538FB11000DB89C /* WalletRequest.swift in Sources */,
 				C3055B5D2538F81B000DB89C /* ScheduledPayment.swift in Sources */,
 				35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */,
@@ -6468,43 +6455,57 @@
 				35F9DD932333D83F00AAA2B2 /* BuildFile in Sources */,
 				C3055BFD2538FB11000DB89C /* ValidateAccountRequest.swift in Sources */,
 				C3055B822538F81B000DB89C /* AccountLookupResults.swift in Sources */,
+				67247F1325D2D8EC0024467D /* SignInView.swift in Sources */,
 				35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */,
 				C3055B752538F81B000DB89C /* HomeProfile.swift in Sources */,
 				C3055BF82538FB11000DB89C /* UsernameRequest.swift in Sources */,
 				C3055B632538F81B000DB89C /* GenericResponse.swift in Sources */,
 				C3055BF62538FB11000DB89C /* BillingHistoryRequest.swift in Sources */,
 				C3055B5F2538F81B000DB89C /* PaymentResult.swift in Sources */,
+				67247FCE25D33B400024467D /* CardView.swift in Sources */,
 				C3055BD52538FB04000DB89C /* NetworkingError.swift in Sources */,
+				C3B5F39425E98441005D3740 /* FeatureFlagService.swift in Sources */,
 				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
-				3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */,
+				6797115B25DD901F008A0080 /* Arc.swift in Sources */,
 				C3055B6A2538F81B000DB89C /* ForgotMaskedUsername.swift in Sources */,
+				67247F1D25D2D9000024467D /* ReportOutageView.swift in Sources */,
 				C3055BE12538FB11000DB89C /* HomeProfileUpdateRequest.swift in Sources */,
 				C3055C162538FBEF000DB89C /* AppointmentService.swift in Sources */,
 				35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */,
 				C3055C102538FBEF000DB89C /* AccountService.swift in Sources */,
+				6724807A25D475F60024467D /* NetworkController.swift in Sources */,
 				C3118C7325391BA8002A2832 /* AccountNumberRequest.swift in Sources */,
 				35F9DDA52333D88B00AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				C3055B5E2538F81B000DB89C /* AutoPayResult.swift in Sources */,
+				67247F4725D2DDE20024467D /* ErrorContainerView.swift in Sources */,
+				67247F2325D2D90C0024467D /* AccountList.swift in Sources */,
 				C3055BF02538FB11000DB89C /* AlertPreferencesRequest.swift in Sources */,
 				C3055B552538F81B000DB89C /* Payments.swift in Sources */,
 				C3055C022538FB38000DB89C /* Weekday.swift in Sources */,
 				C3055B582538F81B000DB89C /* VoidDecodable.swift in Sources */,
 				C3055C192538FBEF000DB89C /* PaymentService.swift in Sources */,
+				67247F3525D2D92B0024467D /* BillView.swift in Sources */,
+				67247F6825D2E4E00024467D /* OutageFlowContainerView.swift in Sources */,
 				C3055C3D2538FCA6000DB89C /* Router.swift in Sources */,
 				C3055B742538F81B000DB89C /* ValidatedAccountResponse.swift in Sources */,
 				C3055BF12538FB11000DB89C /* AccountLookupRequest.swift in Sources */,
+				67247FE425D43AC60024467D /* Tab.swift in Sources */,
+				67247FA025D2FE6C0024467D /* BillFlowContainerView.swift in Sources */,
 				C3055C202538FC0A000DB89C /* String+DateParser.swift in Sources */,
-				35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */,
-				35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				C3055B722538F81B000DB89C /* AccountLookupResult.swift in Sources */,
+				67247FEF25D43DAD0024467D /* AccountListContainerView.swift in Sources */,
 				C3055B562538F81B000DB89C /* ForgotMaskedUsernames.swift in Sources */,
+				67247FFD25D43DD70024467D /* AccountRow.swift in Sources */,
+				677958EB25E444FB00A08CC2 /* KeychainController.swift in Sources */,
+				C3055B6B2538F81B000DB89C /* AzureAlerts.swift in Sources */,
+				67247F6E25D2E4EA0024467D /* OutageContainerView.swift in Sources */,
 				C3055B6B2538F81B000DB89C /* AzureAlerts.swift in Sources */,
 				C3055C4A2538FD6E000DB89C /* URLProtocolMock.swift in Sources */,
-				35F9DD712333D14D00AAA2B2 /* AccountListInterfaceController.swift in Sources */,
 				C3055BFC2538FB11000DB89C /* AnonOutageRequest.swift in Sources */,
 				C3055BE92538FB11000DB89C /* AnyEncodable.swift in Sources */,
 				C3055BDA2538FB11000DB89C /* AccountNicknameRequest.swift in Sources */,
 				C3055BE62538FB11000DB89C /* DailyUsageRequest.swift in Sources */,
+				67247FA625D2FE750024467D /* BillContainerView.swift in Sources */,
 				C3055B662538F81B000DB89C /* TokenResponse.swift in Sources */,
 				C3055BF22538FB11000DB89C /* AutoPayEnrollBGERequest.swift in Sources */,
 				C3055BEA2538FB11000DB89C /* RecoverUsernameRequest.swift in Sources */,
@@ -6512,7 +6513,6 @@
 				C3055B5A2538F81B000DB89C /* BillingHistoryResult.swift in Sources */,
 				C3055BE52538FB11000DB89C /* ChangePasswordRequest.swift in Sources */,
 				C3055BE32538FB11000DB89C /* ScheduledPaymentUpdateRequest.swift in Sources */,
-				35F9DD6E2333D14D00AAA2B2 /* ExtensionDelegate.swift in Sources */,
 				C3055BED2538FB11000DB89C /* AutoPayEnrollRequest.swift in Sources */,
 				C3055C112538FBEF000DB89C /* WeatherService.swift in Sources */,
 				C3055BE02538FB11000DB89C /* AutoPayUnenrollRequest.swift in Sources */,
@@ -6520,27 +6520,31 @@
 				C3055BDF2538FB11000DB89C /* AlertLanguageRequest.swift in Sources */,
 				35F9DDA62333D88F00AAA2B2 /* Date+Now.swift in Sources */,
 				C3055C1A2538FBEF000DB89C /* PeakRewardsService.swift in Sources */,
-				35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */,
 				C3055B792538F81B000DB89C /* MinimumVersion.swift in Sources */,
-				35F9DDBE2333D91D00AAA2B2 /* KeychainManager.swift in Sources */,
+				677958C125E4399A00A08CC2 /* KeychainItemAccessibility.swift in Sources */,
 				C3055B6E2538F81B000DB89C /* Alert.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				C3055BEF2538FB11000DB89C /* WalletItemDeleteRequest.swift in Sources */,
-				355B104A2369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
+				67247F8D25D2FE510024467D /* UsageContainerView.swift in Sources */,
 				35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */,
 				C3055C142538FBEF000DB89C /* BillService.swift in Sources */,
 				C3055BE42538FB11000DB89C /* WalletItemRequest.swift in Sources */,
 				C3055B422538F703000DB89C /* Configuration.swift in Sources */,
 				C3055B7F2538F81B000DB89C /* MaintenanceMode.swift in Sources */,
+				C3B5F38D25E98418005D3740 /* FeatureFlagUtility.swift in Sources */,
 				C3055BDE2538FB11000DB89C /* EmailRequest.swift in Sources */,
 				C3055BFA2538FB11000DB89C /* RefreshTokenRequest.swift in Sources */,
 				C3055BDD2538FB11000DB89C /* WalletEncryptionKeyRequest.swift in Sources */,
-				35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */,
+				67247FBE25D314040024467D /* BillState.swift in Sources */,
+				67247FB425D3063F0024467D /* UsageState.swift in Sources */,
+				6797115425DD87E3008A0080 /* OutageAnimation.swift in Sources */,
 				C3055B4E2538F812000DB89C /* CustomerInfo.swift in Sources */,
 				C3055C032538FB38000DB89C /* PushNotification.swift in Sources */,
+				67247F4D25D2DF1B0024467D /* ErrorState.swift in Sources */,
 				C3055BE72538FB11000DB89C /* AlertRegistrationRequest.swift in Sources */,
 				C3055C452538FCEE000DB89C /* ApigeeError.swift in Sources */,
 				35F9DDB72333D8F100AAA2B2 /* Date.swift in Sources */,
+				67247F0825D2D7FB0024467D /* WatchFlowContainer.swift in Sources */,
 				C3055B842538F81B000DB89C /* Weather.swift in Sources */,
 				35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */,
 				C3055BF42538FB11000DB89C /* TokenRequest.swift in Sources */,
@@ -6548,7 +6552,6 @@
 				C3055B4C2538F812000DB89C /* AccountDetails.swift in Sources */,
 				C3055B6D2538F81B000DB89C /* ReportedOutageResult.swift in Sources */,
 				35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */,
-				35FB5030234D091100C50162 /* UIColor.swift in Sources */,
 				C3055C132538FBEF000DB89C /* GameService.swift in Sources */,
 				C3055BDB2538FB11000DB89C /* BudgetBillingUnenrollRequest.swift in Sources */,
 				C3055C042538FB38000DB89C /* ProfileStatus.swift in Sources */,
@@ -6563,26 +6566,29 @@
 				C3055B602538F81B000DB89C /* BillForecast.swift in Sources */,
 				C3055B7E2538F81B000DB89C /* AnonOutageStatus.swift in Sources */,
 				C3055B782538F81B000DB89C /* EnergyTip.swift in Sources */,
+				6779590225E44B9D00A08CC2 /* KeychainKeys.swift in Sources */,
 				C3055B7A2538F81B000DB89C /* SERInfo.swift in Sources */,
 				C3055B702538F81B000DB89C /* BudgetBilling.swift in Sources */,
 				C3055B812538F81B000DB89C /* AccountResult.swift in Sources */,
 				C3055BF52538FB11000DB89C /* BillComparisonRequest.swift in Sources */,
 				C3055C0F2538FBEF000DB89C /* OutageService.swift in Sources */,
-				35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */,
 				C33C3386254C9C5400E59CF8 /* LanguageResult.swift in Sources */,
-				35BAA17A2367454F0053E58A /* NetworkUtility.swift in Sources */,
 				C3055C432538FCEE000DB89C /* GovWeatherErrorTodo.swift in Sources */,
 				67AE888B25BF5C8D008519B4 /* ProjectTier.swift in Sources */,
 				C3055B7C2538F81B000DB89C /* GameUser.swift in Sources */,
+				6724808025D47B560024467D /* AccountListState.swift in Sources */,
 				C3055BF72538FB11000DB89C /* RecoverMaskedUsernameRequest.swift in Sources */,
 				C3055C2A2538FC74000DB89C /* UserSession.swift in Sources */,
+				67247F2F25D2D9200024467D /* UsageView.swift in Sources */,
 				C3055B7B2538F81B000DB89C /* CompareBillResult.swift in Sources */,
 				35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */,
 				C3055B852538F81B000DB89C /* WalletItem.swift in Sources */,
-				35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */,
+				6724808625D47BB00024467D /* AccountListFlowContainerView.swift in Sources */,
+				6724801525D444B60024467D /* WatchOutage.swift in Sources */,
 				C3055B622538F81B000DB89C /* DailyUsage.swift in Sources */,
 				C3055C052538FB38000DB89C /* BankAccount.swift in Sources */,
 				35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */,
+				67247F2925D2D9190024467D /* OutageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6634,14 +6640,15 @@
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				C364A87D2375DC9100C7D51B /* EmptyChildViewController.swift in Sources */,
-				355B10412369E4820038EAD3 /* KeychainManager.swift in Sources */,
 				0EF60FD320EE8104006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
 				674A11F3252387A100AF0D38 /* SubOpCo.swift in Sources */,
 				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				C36C394324ED7D4800BA83B6 /* RegistrationService+Rx.swift in Sources */,
 				C33827ED24DDDB9900F133C5 /* StringResult.swift in Sources */,
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
+				677958EA25E444FB00A08CC2 /* KeychainController.swift in Sources */,
 				675F4B8E24AB828100A828F9 /* BillingHistoryRequest.swift in Sources */,
+				672480E925D5A7D10024467D /* WatchSessionController.swift in Sources */,
 				C3087A9924B65B0A005AE544 /* AccountService.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				B0E9EFFB21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
@@ -6672,6 +6679,7 @@
 				675F4CF624AB828200A828F9 /* GenericResponse.swift in Sources */,
 				67893AE424DB3743000143D6 /* AlertLanguageRequest.swift in Sources */,
 				B094A35820D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
+				C3B5F39325E98441005D3740 /* FeatureFlagService.swift in Sources */,
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
 				35A6C6DB211CC09C00C2A58F /* UpdatesViewModel.swift in Sources */,
 				35C913AD22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
@@ -6682,12 +6690,12 @@
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				67893B2024DC7A16000143D6 /* BiometricService.swift in Sources */,
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
-				355B103B2369DD9A0038EAD3 /* WatchSessionMananger.swift in Sources */,
 				9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				675F4CCC24AB828200A828F9 /* CompareBillResult.swift in Sources */,
 				675F4BE224AB828100A828F9 /* BillComparisonRequest.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				C33827FA24E18F8800F133C5 /* PeakRewardsService.swift in Sources */,
+				6724812325D6F18E0024467D /* Constants.swift in Sources */,
 				675F4E0024B3A00800A828F9 /* AnonOutageStatus.swift in Sources */,
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				B0DB2760215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
@@ -6758,7 +6766,6 @@
 				675F4CE424AB828200A828F9 /* MinimumVersion.swift in Sources */,
 				30636F0824C82F2F00CCBFAE /* OpcoIdentityCardView.swift in Sources */,
 				E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
-				675F4D1A24AB828200A828F9 /* Test.swift in Sources */,
 				9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
@@ -6800,7 +6807,6 @@
 				675F4E3C24B4DC1900A828F9 /* NewMockDataKey.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */,
-				355B10462369E54E0038EAD3 /* KeychainKeys.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				9CC99793237B6A9300C68300 /* GameOnboardingIntroViewController.swift in Sources */,
 				675F4CD224AB828200A828F9 /* BillingHistoryResult.swift in Sources */,
@@ -6832,6 +6838,7 @@
 				30DFE8612492641900FEFDE4 /* EditNicknameViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
+				677958B425E4394500A08CC2 /* KeychainItemAccessibility.swift in Sources */,
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				67893A9724DB1E26000143D6 /* GameService+Rx.swift in Sources */,
 				9CA4FA602385A2B900E33E7C /* GameProgressBar.swift in Sources */,
@@ -6898,7 +6905,6 @@
 				675F4CDE24AB828200A828F9 /* ForgotMaskedUsername.swift in Sources */,
 				C338281A24E2FDE000F133C5 /* WalletItem.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
-				35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				9C0EA5A8237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
 				9C5F096B23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
@@ -6911,6 +6917,7 @@
 				675F4B7C24AB828100A828F9 /* RecoverMaskedUsernameRequest.swift in Sources */,
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				35AFB42B20C82DA0000312B9 /* SheetView.swift in Sources */,
+				C3B5F38C25E98418005D3740 /* FeatureFlagUtility.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				35532447253D7BBB0080589F /* TapToPayConfirmationViewController.swift in Sources */,
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
@@ -6974,7 +6981,6 @@
 				B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */,
-				9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				675F4C4824AB828100A828F9 /* GameUser.swift in Sources */,
@@ -7034,6 +7040,7 @@
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
 				8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				9C7FFD1A22C1251800092987 /* PrimaryButton.swift in Sources */,
+				C3B5F38525E97EDA005D3740 /* FeatureFlags.swift in Sources */,
 				9CE83BAB22D9201C0094C34C /* SetDefaultAccountTableViewCell.swift in Sources */,
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
@@ -7050,6 +7057,7 @@
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
+				6779590125E44B9D00A08CC2 /* KeychainKeys.swift in Sources */,
 				675F4CB424AB828200A828F9 /* BillPDF.swift in Sources */,
 				357757552114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				35B9609D22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
@@ -7129,7 +7137,6 @@
 				E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */,
 				357757512113611000E73542 /* DateParserTests.swift in Sources */,
 				3559C8B12301D41400481A87 /* WalletViewModel.swift in Sources */,
-				9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				224EFF23216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
@@ -7148,9 +7155,7 @@
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
-				355B10442369E48D0038EAD3 /* KeychainManager.swift in Sources */,
 				9CE700AF231865AA00191C05 /* SERPTSViewModel.swift in Sources */,
-				354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */,
 				9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				82B20A35203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
 				824004CD1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
@@ -7182,7 +7187,6 @@
 				9C119F6721FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
 				35489DD524A248BF0040BDE2 /* RegistrationViewModelTests.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
-				35A2E1B5236B74FA0080CE96 /* KeychainKeys.swift in Sources */,
 				E840CB381F82D13A00357780 /* AutoPayViewModelTests.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
 				B011C0BB20F5063A00C900BE /* RecentPaymentsStore.swift in Sources */,
@@ -7193,7 +7197,6 @@
 				35CEB038230D981F00366440 /* PaperlessEBillViewModel.swift in Sources */,
 				B52CA0B21F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */,
-				355B103C2369DD9C0038EAD3 /* WatchSessionMananger.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				9C10B4E322E23ABB00B0851B /* BGEChoiceIDViewModel.swift in Sources */,
 				82E22B6A1F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
@@ -7252,36 +7255,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		35E7C7C921907F2E00BA13C6 /* Main-FlavorPECO.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				35E7C7CA21907F2E00BA13C6 /* Base */,
-			);
-			name = "Main-FlavorPECO.storyboard";
-			sourceTree = "<group>";
-		};
 		C300793A2436637600A9BEB0 /* BGEStrings.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C30079392436637600A9BEB0 /* en */,
 			);
 			name = BGEStrings.strings;
-			sourceTree = "<group>";
-		};
-		C3118C5625391A82002A2832 /* Main-FlavorACE.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3118C5725391A82002A2832 /* Base */,
-			);
-			name = "Main-FlavorACE.storyboard";
-			sourceTree = "<group>";
-		};
-		C3118C6025391AA9002A2832 /* Main-FlavorDPL.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3118C6125391AA9002A2832 /* Base */,
-			);
-			name = "Main-FlavorDPL.storyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -7420,7 +7399,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -7464,7 +7443,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -7477,7 +7456,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Release";
 		};
@@ -7611,7 +7590,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -7627,7 +7606,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-AUT";
 		};
@@ -7648,11 +7627,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7660,11 +7640,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Beta";
 		};
@@ -7686,11 +7667,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7699,11 +7681,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-RC";
 		};
@@ -7726,11 +7709,12 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -7739,11 +7723,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Release";
 		};
@@ -7753,6 +7738,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7811,7 +7797,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -7827,7 +7813,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-AUT";
 		};
@@ -7836,6 +7822,7 @@
 			baseConfigurationReference = FE60CB34CA163B81BF311DAF /* Pods-EUMobile-Watch.bge-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7848,12 +7835,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -7861,11 +7849,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Beta";
 		};
@@ -7875,6 +7864,7 @@
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7887,12 +7877,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -7901,11 +7892,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-RC";
 		};
@@ -7915,6 +7907,7 @@
 			buildSettings = {
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7928,12 +7921,13 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -7942,11 +7936,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Release";
 		};
@@ -8021,7 +8016,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -8061,7 +8056,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/peco";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -8074,7 +8069,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-AUT";
 		};
@@ -8190,6 +8185,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8248,7 +8244,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8264,7 +8260,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-AUT";
 		};
@@ -8331,7 +8327,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8347,7 +8343,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-AUT";
 		};
@@ -8422,7 +8418,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -8466,7 +8462,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -8479,7 +8475,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Beta";
 		};
@@ -8555,6 +8551,7 @@
 			baseConfigurationReference = 94D56EE8642BE663AD7AA9EC /* Pods-EUMobile-Watch.peco-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8567,12 +8564,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -8580,11 +8578,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Beta";
 		};
@@ -8605,11 +8604,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -8617,11 +8617,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Beta";
 		};
@@ -8690,7 +8691,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -8735,7 +8736,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -8748,7 +8749,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-RC";
 		};
@@ -8825,6 +8826,7 @@
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8837,12 +8839,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -8851,11 +8854,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-RC";
 		};
@@ -8877,11 +8881,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -8890,11 +8895,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-RC";
 		};
@@ -8963,7 +8969,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -9007,7 +9013,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -9020,7 +9026,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Release";
 		};
@@ -9097,6 +9103,7 @@
 			buildSettings = {
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9110,12 +9117,13 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -9124,11 +9132,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Release";
 		};
@@ -9151,11 +9160,12 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -9164,11 +9174,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "PECO-Release";
 		};
@@ -9243,7 +9254,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -9284,7 +9295,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -9296,7 +9307,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-AUT";
 		};
@@ -9412,6 +9423,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9470,7 +9482,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -9486,7 +9498,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-AUT";
 		};
@@ -9553,7 +9565,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -9569,7 +9581,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-AUT";
 		};
@@ -9644,7 +9656,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -9689,7 +9701,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -9702,7 +9714,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Beta";
 		};
@@ -9778,6 +9790,7 @@
 			baseConfigurationReference = 2970025E51E4A6B5E1D1ED99 /* Pods-EUMobile-Watch.ace-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9790,12 +9803,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -9803,11 +9817,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Beta";
 		};
@@ -9828,11 +9843,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -9840,11 +9856,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Beta";
 		};
@@ -9913,7 +9930,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -9959,7 +9976,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -9972,7 +9989,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-RC";
 		};
@@ -10049,6 +10066,7 @@
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10061,12 +10079,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -10075,11 +10094,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-RC";
 		};
@@ -10101,11 +10121,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -10114,11 +10135,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-RC";
 		};
@@ -10187,7 +10209,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -10232,7 +10254,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -10245,7 +10267,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Release";
 		};
@@ -10322,6 +10344,7 @@
 			buildSettings = {
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10335,12 +10358,13 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -10349,11 +10373,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Release";
 		};
@@ -10376,11 +10401,12 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -10389,11 +10415,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ACE-Release";
 		};
@@ -10468,7 +10495,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -10509,7 +10536,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -10521,7 +10548,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-AUT";
 		};
@@ -10637,6 +10664,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10695,7 +10723,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -10711,7 +10739,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-AUT";
 		};
@@ -10778,7 +10806,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -10794,7 +10822,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-AUT";
 		};
@@ -10869,7 +10897,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -10914,7 +10942,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -10927,7 +10955,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Beta";
 		};
@@ -11003,6 +11031,7 @@
 			baseConfigurationReference = 34D5D8773E8D72600EFCF9F9 /* Pods-EUMobile-Watch.delmarva-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11015,12 +11044,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -11028,11 +11058,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Beta";
 		};
@@ -11053,11 +11084,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -11065,11 +11097,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Beta";
 		};
@@ -11138,7 +11171,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -11184,7 +11217,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -11197,7 +11230,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-RC";
 		};
@@ -11274,6 +11307,7 @@
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11286,12 +11320,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -11300,11 +11335,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-RC";
 		};
@@ -11326,11 +11362,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -11339,11 +11376,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-RC";
 		};
@@ -11412,7 +11450,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -11457,7 +11495,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -11470,7 +11508,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Release";
 		};
@@ -11547,6 +11585,7 @@
 			buildSettings = {
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11560,12 +11599,13 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -11574,11 +11614,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Release";
 		};
@@ -11601,11 +11642,12 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -11614,11 +11656,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Delmarva-Release";
 		};
@@ -11693,7 +11736,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -11734,7 +11777,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -11746,7 +11789,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-AUT";
 		};
@@ -11862,6 +11905,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -11920,7 +11964,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -11936,7 +11980,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-AUT";
 		};
@@ -12003,7 +12047,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -12019,7 +12063,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-AUT";
 		};
@@ -12094,7 +12138,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -12139,7 +12183,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12152,7 +12196,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Beta";
 		};
@@ -12228,6 +12272,7 @@
 			baseConfigurationReference = BB7CA6327A54535477F5B485 /* Pods-EUMobile-Watch.pepco-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12240,12 +12285,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -12253,11 +12299,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Beta";
 		};
@@ -12278,11 +12325,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -12290,11 +12338,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Beta";
 		};
@@ -12363,7 +12412,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -12409,7 +12458,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -12422,7 +12471,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-RC";
 		};
@@ -12499,6 +12548,7 @@
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12511,12 +12561,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -12525,11 +12576,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-RC";
 		};
@@ -12551,11 +12603,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -12564,11 +12617,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-RC";
 		};
@@ -12637,7 +12691,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -12682,7 +12736,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -12695,7 +12749,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Release";
 		};
@@ -12772,6 +12826,7 @@
 			buildSettings = {
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12785,12 +12840,13 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -12799,11 +12855,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Release";
 		};
@@ -12826,11 +12883,12 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 5.11.2;
+				MARKETING_VERSION = 5.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -12839,11 +12897,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "Pepco-Release";
 		};
@@ -12918,7 +12977,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -12958,7 +13017,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/comd";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -12971,7 +13030,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-AUT";
 		};
@@ -13087,6 +13146,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13145,7 +13205,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -13161,7 +13221,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-AUT";
 		};
@@ -13228,7 +13288,7 @@
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -13244,7 +13304,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-AUT";
 		};
@@ -13319,7 +13379,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -13363,7 +13423,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -13376,7 +13436,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Beta";
 		};
@@ -13452,6 +13512,7 @@
 			baseConfigurationReference = 431E8E7552EFD5BBEC6673DC /* Pods-EUMobile-Watch.comed-beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13464,12 +13525,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -13477,11 +13539,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Beta";
 		};
@@ -13502,11 +13565,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = BETA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -13514,11 +13578,12 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Beta";
 		};
@@ -13587,7 +13652,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -13632,7 +13697,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -13645,7 +13710,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-RC";
 		};
@@ -13722,6 +13787,7 @@
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13734,12 +13800,13 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -13748,11 +13815,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-RC";
 		};
@@ -13774,11 +13842,12 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENVIRONMENT_TIER = RC;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -13787,11 +13856,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-RC";
 		};
@@ -13860,7 +13930,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -13904,7 +13974,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -13917,7 +13987,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Release";
 		};
@@ -13994,6 +14064,7 @@
 			buildSettings = {
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -14007,12 +14078,13 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = "EUMobile-Watch";
@@ -14021,11 +14093,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Release";
 		};
@@ -14048,11 +14121,12 @@
 				ENABLE_BITCODE = YES;
 				ENVIRONMENT_TIER = RELEASE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 10.11.2;
+				MARKETING_VERSION = 10.12.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkitextension";
 				PRODUCT_NAME = "EUMobile-Watch Extension";
@@ -14061,11 +14135,12 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/App/Vendor/GoogleAnalytics";
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "ComEd-Release";
 		};
@@ -14140,7 +14215,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-development.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -14180,7 +14255,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PAYMENT_URL = "https://secure2.paymentus.com/xotp/pm/bge";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14193,7 +14268,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-AUT";
 		};
@@ -14368,7 +14443,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OAUTH_URL = api.exeloncorp.com;
 				ONLY_ACTIVE_ARCH = YES;
@@ -14413,7 +14488,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = EUMobile;
@@ -14426,7 +14501,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-RC";
 		};
@@ -14501,7 +14576,7 @@
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OAUTH_URL = "api-stage.exeloncorp.com";
 				ONLY_ACTIVE_ARCH = YES;
@@ -14545,7 +14620,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 2.11.2;
+				MARKETING_VERSION = 2.12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
@@ -14558,7 +14633,7 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = "BGE-Beta";
 		};

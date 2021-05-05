@@ -13,12 +13,7 @@ enum BiometricService {
     
     private static let keychainKey = "kExelon_PW"
     
-    private static var keychain: A0SimpleKeychain {
-        let keychain = A0SimpleKeychain()
-        keychain.useAccessControl = true
-        keychain.defaultAccessiblity = A0SimpleKeychainItemAccessible.whenPasscodeSetThisDeviceOnly
-        return keychain
-    }
+    private static let keychain = KeychainController.default
     
     static func disableBiometricsOnFreshInstall() {
         let manager = FileManager.default
@@ -66,20 +61,16 @@ enum BiometricService {
     }
     
     static func getStoredPassword() -> String? {
-        var promptString = ""
-        if let username = getStoredUsername() {
-            promptString = String(format: NSLocalizedString("Sign in as %@", comment: ""), username)
-        }
-        return keychain.string(forKey: keychainKey, promptMessage: promptString)
+        return keychain.string(forKey: .keychainKey, withAccessibility: .whenPasscodeSetThisDeviceOnly)
     }
     
     static func setStoredPassword(password: String) {
-        keychain.setString(password, forKey: keychainKey)
+        keychain.set(password, forKey: .keychainKey)
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.isBiometricsEnabled)
     }
     
     static func disableBiometrics() {
-        keychain.deleteEntry(forKey: keychainKey)
+        keychain.remove(forKey: .keychainKey)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isBiometricsEnabled)
     }
     

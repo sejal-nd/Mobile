@@ -131,7 +131,7 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction func onRegistrationInPress() {
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) {
             performSegue(withIdentifier: "registrationSegueNew", sender: self)
         } else {
             performSegue(withIdentifier: "registrationSegue", sender: self)
