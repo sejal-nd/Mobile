@@ -184,6 +184,10 @@ class ReportOutageViewModel {
         if let locationId = self.outageStatus?.locationId {
             outageRequest.locationId = locationId
         }
+        
+        if let auid = self.outageStatus?.auid {
+            outageRequest.auid = auid
+        }
                 
         OutageService.reportOutageAnon(outageRequest: outageRequest) { result in
             switch result {

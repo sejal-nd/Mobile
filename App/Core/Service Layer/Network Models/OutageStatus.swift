@@ -29,6 +29,7 @@ struct OutageStatus: Decodable {
     let unitNumber: String?
     var multipremiseAccount = false
     var isInactive = false // what is this?
+    let auid: String?
     
     enum CodingKeys: String, CodingKey {
         case isGasOnly = "flagGasOnly"
@@ -48,6 +49,7 @@ struct OutageStatus: Decodable {
         case addressNumber = "addressNumber"
         case unitNumber = "unitNumber"
         case multipremiseAccount = "multipremiseAccount"
+        case auid = "auid"
     }
     
     public init(from decoder: Decoder) throws {
@@ -87,6 +89,8 @@ struct OutageStatus: Decodable {
                                                         forKey: .unitNumber)
         self.multipremiseAccount = try container.decodeIfPresent(Bool.self,
                                                                  forKey: .multipremiseAccount) ?? false
+        self.auid = try container.decodeIfPresent(String.self,
+                                                  forKey: .auid)
     }
     
     public init(finaled: Bool = false, noPay: Bool = false, noService: Bool = false, inactive: Bool = false) {
@@ -107,5 +111,6 @@ struct OutageStatus: Decodable {
         self.maskedAddress = nil
         self.addressNumber = nil
         self.unitNumber = nil
+        self.auid = nil
     }
 }
