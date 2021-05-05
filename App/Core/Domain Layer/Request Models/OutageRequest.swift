@@ -31,7 +31,7 @@ public struct OutageRequest: Encodable {
         case isUnusual = "unusual"
         case unusualMessage = "unusual_specify"
         case isNeighbor = "neighbor"
-        case auid = "auid"
+        case auid 
     }
 }
 
