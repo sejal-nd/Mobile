@@ -55,7 +55,7 @@ struct FirebaseUtility {
         case forgotPassword
         case forgotUsername
         case register
-        case bill
+        case bill(parameters: [BillParameter]?)
         case payment(paramters: [PaymentParameter]?)
         case wallet
         
@@ -100,9 +100,6 @@ struct FirebaseUtility {
         case paperlessEBillStart
         case paperlessEBillSubmit
         case paperlessEBillNetworkComplete
-        case budgetBillingStart
-        case budgetBillingSubmit
-        case budgetBillingNetworkComplete
         case homeProfileStart
         case homeProfileSubmit
         case homeProfileNetworkComplete
