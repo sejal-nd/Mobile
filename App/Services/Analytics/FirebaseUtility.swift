@@ -218,7 +218,7 @@ struct FirebaseUtility {
         case past_pdf_not_available
     }
     
-    enum PaymentParameter: String, ParameterProtocol {
+    enum PaymentParameter: ParameterProtocol {
         case switch_payment_method
         case view_terms
         case submit
@@ -226,6 +226,23 @@ struct FirebaseUtility {
         case card_complete
         case bank_complete
         case autopay
+        case alternateContact(_ alternateContact: AlternateContact)
+        
+        enum AlternateContact: String, ParameterProtocol {
+            case email
+            case text
+            case both
+            case none
+        }
+        
+        var name: String {
+            switch self {
+            case .alternateContact(let alternateContact):
+                return alternateContact.name
+            default:
+                return "\(self)"
+            }
+        }
     }
     
     enum AuthOutageParameter: String, ParameterProtocol {

@@ -336,6 +336,13 @@ class HomeBillCardView: UIView {
             self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
         }).disposed(by: bag)
         
+        viewModel.accountDetailEvents
+            .subscribe(onError: {
+                if let error = $0 as? NetworkingError,
+                   error != .blockAccount && error != .passwordProtected {
+                    FirebaseUtility.logEventV2(.bill(parameters: [.bill_not_available]))
+                }
+            }).disposed(by: bag)
     }
     
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()

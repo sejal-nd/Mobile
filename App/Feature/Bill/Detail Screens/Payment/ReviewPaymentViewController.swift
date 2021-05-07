@@ -324,6 +324,7 @@ class ReviewPaymentViewController: UIViewController {
         }
         
         FirebaseUtility.logEvent(.reviewPaymentSubmit)
+        FirebaseUtility.logEventV2(.payment(paramters: [.submit]))
         
         let handleError = { [weak self] (error: NetworkingError) in
             guard let self = self else { return }
@@ -356,7 +357,14 @@ class ReviewPaymentViewController: UIViewController {
                 
                 FirebaseUtility.logEvent(.paymentNetworkComplete)
                 
-                FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
+                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                    switch bankOrCard {
+                    case .bank:
+                        FirebaseUtility.logEventV2(.payment(paramters: [.bank_complete]))
+                    case .card:
+                        FirebaseUtility.logEventV2(.payment(paramters: [.card_complete]))
+                    }
+                }
                 
                 self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
             }, onError: { error in
@@ -372,12 +380,10 @@ class ReviewPaymentViewController: UIViewController {
                     LoadingView.hide()
                     
                     FirebaseUtility.logEvent(.paymentNetworkComplete)
-                    
-                    FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
-                    
+                                        
                     if let viewModel = self?.viewModel,
                         viewModel.billingHistoryItem == nil {
-                        var contactType = EventParameter.Value.none
+                        var contactType = FirebaseUtility.PaymentParameter.AlternateContact.none
                         if !viewModel.emailAddress.value.isEmpty &&
                             !viewModel.phoneNumber.value.isEmpty {
                             contactType = .both
@@ -388,8 +394,8 @@ class ReviewPaymentViewController: UIViewController {
                         } else {
                             contactType = .none
                         }
-                        
-                        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .alternateContact, value: contactType)])
+                                                
+                        FirebaseUtility.logEventV2(.payment(paramters: [.alternateContact(contactType)]))
                     }
                     
                     if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
@@ -397,8 +403,10 @@ class ReviewPaymentViewController: UIViewController {
                         switch bankOrCard {
                         case .bank:
                             GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                            FirebaseUtility.logEventV2(.payment(paramters: [.bank_complete]))
                         case .card:
                             GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                            FirebaseUtility.logEventV2(.payment(paramters: [.card_complete]))
                         }
                     }
                     

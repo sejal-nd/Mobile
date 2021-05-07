@@ -126,6 +126,12 @@ class OutageViewController: AccountPickerViewController {
                     }).disposed(by: disposeBag)
                 }
             }
+        } else if segue.identifier == "reportOutageSegue" {
+            if userState == .authenticated {
+                FirebaseUtility.logEventV2(.authOutage(paramters: [.report_outage]))
+            } else {
+                FirebaseUtility.logEventV2(.unauthOutage(paramters: [.report_outage]))
+            }
         }
     }
     
