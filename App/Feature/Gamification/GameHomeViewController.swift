@@ -65,7 +65,7 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FirebaseUtility.trackScreenWithName(self.className, className: self.className)
+        FirebaseUtility.trackScreenWithName("HomeView", className: self.className)
                                 
         accountPicker.delegate = self
         accountPicker.parentViewController = self

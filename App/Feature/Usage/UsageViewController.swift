@@ -207,6 +207,8 @@ class UsageViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        FirebaseUtility.logScreenView(.UsageView(className: self.className))
 
         navigationController?.setNavigationBarHidden(true, animated: true)
     }

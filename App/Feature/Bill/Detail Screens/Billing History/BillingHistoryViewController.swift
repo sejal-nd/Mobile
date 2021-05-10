@@ -72,6 +72,8 @@ class BillingHistoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        FirebaseUtility.logScreenView(.BillActivityView(className: self.className))
 
         navigationController?.setNavigationBarHidden(false, animated: true)
         

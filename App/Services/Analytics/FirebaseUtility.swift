@@ -392,6 +392,48 @@ struct FirebaseUtility {
         case gamificationIsOnboarded
     }
     
+    enum ScreenView {
+        case HomeView(className: String)
+        case BillView(className: String)
+        case OutageView(className: String)
+        case UsageView(className: String)
+        case MoreView(className: String)
+        
+        case BillActivityView(className: String)
+        case AutopayEnrolledView(className: String)
+        case AutopayUnenrolledView(className: String)
+        case ChangePasswordView(className: String)
+        case ReleaseOfInfoView(className: String)
+        case UnauthenticatedOutageView(className: String)
+        case PaymentView(className: String)
+        
+        var screenName: String {
+            switch self {
+            default:
+                return "\(self)"
+            }
+        }
+        
+        var className: String {
+            switch self {
+            case .HomeView(let className):
+                return className
+            case .BillView(let className):
+                return className
+            case .BillActivityView(let className):
+                return className
+            case .OutageView(let className):
+                return className
+            case .AutopayEnrolledView(let className):
+                return className
+            case .AutopayUnenrolledView(let className):
+                return className
+            default:
+                return "\(self)"
+            }
+        }
+    }
+    
     /// This method should only be called once from App Delegate: Configures Firebase
     public static func configure() {
         guard let filePath = Bundle.main.path(forResource: "GoogleService-Info-\(Configuration.shared.environmentName.rawValue)-Flavor\(Configuration.shared.opco.rawValue)", ofType: "plist"),
@@ -475,6 +517,12 @@ struct FirebaseUtility {
         Analytics.setScreenName(name, screenClass: className)
     }
     
+    public static func logScreenView(_ screenView: ScreenView) {
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+            AnalyticsParameterScreenName: screenView.screenName,
+            AnalyticsParameterScreenClass: screenView.className,
+        ])
+    }
 }
 
 

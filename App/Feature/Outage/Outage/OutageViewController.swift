@@ -74,6 +74,12 @@ class OutageViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if userState == .authenticated {
+            FirebaseUtility.logScreenView(.OutageView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.UnauthenticatedOutageView(className: self.className))
+        }
+        
         let shouldHideNavigationBar = userState == .authenticated ? true : false
         navigationController?.setNavigationBarHidden(shouldHideNavigationBar, animated: true)
         clearTimestampForReportedOutage()

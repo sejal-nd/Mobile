@@ -80,7 +80,8 @@ class ViewBillViewController: UIViewController {
             guard let self = self else { return }
             self.setupWKWebView()
         }, onError: { [weak self] errMessage in
-            FirebaseUtility.logEventV2(.bill(parameters: [.past_pdf_not_available]))
+//            TODO need to differentiate between .current_pdf_not_available and .past_pdf_not_available webview delegate if url fails
+//            FirebaseUtility.logEventV2(.bill(parameters: [.past_pdf_not_available]))
             guard let self = self else { return }
             self.loadingIndicator.isHidden = true
             self.errorLabel.isHidden = false
