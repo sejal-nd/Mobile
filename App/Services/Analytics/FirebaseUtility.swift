@@ -512,10 +512,6 @@ struct FirebaseUtility {
         
         Analytics.setUserProperty(value, forName: userProperty.rawValue)
     }
-
-    public static func trackScreenWithName(_ name: String?, className: String?) {
-        Analytics.setScreenName(name, screenClass: className)
-    }
     
     public static func logScreenView(_ screenView: ScreenView) {
         Analytics.logEvent(AnalyticsEventScreenView, parameters: [

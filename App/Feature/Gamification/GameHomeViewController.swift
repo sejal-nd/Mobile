@@ -64,9 +64,7 @@ class GameHomeViewController: AccountPickerViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        FirebaseUtility.trackScreenWithName("HomeView", className: self.className)
-                                
+                                        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -157,6 +155,8 @@ class GameHomeViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        FirebaseUtility.logScreenView(.HomeView(className: self.className))
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         
