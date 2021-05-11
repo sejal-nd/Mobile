@@ -136,8 +136,6 @@ struct FirebaseUtility {
                 return "home"
             case .forgotPassword:
                 return "forgotPassword"
-            default:
-                return "\(self)"
             }
         }
         
@@ -146,9 +144,12 @@ struct FirebaseUtility {
             case .autoPay(let parameters as [ParameterProtocol]?),
                  .budgetBill(let parameters as [ParameterProtocol]?),
                  .eBill(let parameters as [ParameterProtocol]?),
+                 .bill(let parameters as [ParameterProtocol]?),
                  .payment(let parameters as [ParameterProtocol]?),
                  .authOutage(let parameters as [ParameterProtocol]?),
-                 .unauthOutage(let parameters as [ParameterProtocol]?):
+                 .unauthOutage(let parameters as [ParameterProtocol]?),
+                 .home(let parameters as [ParameterProtocol]?),
+                 .register(let parameters as [ParameterProtocol]?):
                 return parameters
             default:
                 return nil
