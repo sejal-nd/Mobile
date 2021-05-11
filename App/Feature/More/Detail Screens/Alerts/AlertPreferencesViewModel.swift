@@ -612,7 +612,7 @@ class AlertPreferencesViewModel {
             case .peakSavingsDayResults:
                 return NSLocalizedString("Peak Savings Day Results", comment: "")
             case .smartEnergyRewards:
-                return NSLocalizedString("Smart Energy Rewards", comment: "")
+                return NSLocalizedString("Energy Savings Day Alert", comment: "")
             case .energySavingsDayResults:
                 return NSLocalizedString("Energy Savings Day Results", comment: "")
             case .outage:
