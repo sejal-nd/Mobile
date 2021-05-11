@@ -54,7 +54,7 @@ struct FirebaseUtility {
         case eBill(parameters: [EBillParameter]?)
         case forgotPassword
         case forgotUsername
-        case register
+        case register(parameters: [RegisterParameter]?)
         case bill(parameters: [BillParameter]?)
         case payment(parameters: [PaymentParameter]?)
         case wallet
@@ -122,12 +122,20 @@ struct FirebaseUtility {
                 return "budgetBill"
             case .eBill:
                 return "eBill"
+            case .bill:
+                return "bill"
             case .payment:
                 return "payment"
             case .authOutage:
                 return "authOutage"
             case .unauthOutage:
                 return "unauthOutage"
+            case .register:
+                return "register"
+            case .home:
+                return "home"
+            case .forgotPassword:
+                return "forgotPassword"
             default:
                 return "\(self)"
             }
@@ -302,6 +310,12 @@ struct FirebaseUtility {
                 return .action
             }
         }
+    }
+    
+    enum RegisterParameter: String, ParameterProtocol {
+        case resend_email
+        case ebill_enroll
+        case account_verify
     }
     
     /// Name of analytic event -> Mapped directly to Firebase
