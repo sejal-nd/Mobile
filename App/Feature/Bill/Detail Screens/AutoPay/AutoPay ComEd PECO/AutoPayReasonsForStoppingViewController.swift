@@ -70,7 +70,7 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
     @IBAction func unenroll(_ sender: Any) {
         LoadingView.show()
         
-        FirebaseUtility.logEventV2(.autoPay(paramters: [.unenroll_start]))
+        FirebaseUtility.logEventV2(.autoPay(parameters: [.unenroll_start]))
                 
         FirebaseUtility.logEvent(.autoPaySubmit)
         
@@ -80,7 +80,7 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
                 LoadingView.hide()
                 guard let self = self else { return }
                 
-                FirebaseUtility.logEventV2(.autoPay(paramters: [.unenroll_complete]))
+                FirebaseUtility.logEventV2(.autoPay(parameters: [.unenroll_complete]))
                 
                 FirebaseUtility.logEvent(.autoPayNetworkComplete)
                 

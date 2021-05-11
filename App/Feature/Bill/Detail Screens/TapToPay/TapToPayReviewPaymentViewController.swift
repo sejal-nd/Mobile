@@ -290,7 +290,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     }
     
     @objc override func dismissModal() {
-        FirebaseUtility.logEventV2(.payment(paramters: [.cancel]))
+        FirebaseUtility.logEventV2(.payment(parameters: [.cancel]))
         dismiss(animated: true, completion: nil)
     }
     
@@ -561,7 +561,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
     }
     
     @IBAction func termsConditionPress(_ sender: Any) {
-        FirebaseUtility.logEventV2(.payment(paramters: [.view_terms]))
+        FirebaseUtility.logEventV2(.payment(parameters: [.view_terms]))
         
         let url = URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions-exln.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
@@ -608,7 +608,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
         })
         
         FirebaseUtility.logEvent(.reviewPaymentSubmit)
-        FirebaseUtility.logEventV2(.payment(paramters: [.submit]))
+        FirebaseUtility.logEventV2(.payment(parameters: [.submit]))
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
             let temp = viewModel.selectedWalletItem.value?.isTemporary ?? false
@@ -662,9 +662,9 @@ class TapToPayReviewPaymentViewController: UIViewController {
                 if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
                     switch bankOrCard {
                     case .bank:
-                        FirebaseUtility.logEventV2(.payment(paramters: [.bank_complete]))
+                        FirebaseUtility.logEventV2(.payment(parameters: [.bank_complete]))
                     case .card:
-                        FirebaseUtility.logEventV2(.payment(paramters: [.card_complete]))
+                        FirebaseUtility.logEventV2(.payment(parameters: [.card_complete]))
                     }
                 }
                 
@@ -719,17 +719,17 @@ class TapToPayReviewPaymentViewController: UIViewController {
                                 contactType = .none
                             }
                                                         
-                            FirebaseUtility.logEventV2(.payment(paramters: [.alternateContact(contactType)]))
+                            FirebaseUtility.logEventV2(.payment(parameters: [.alternateContact(contactType)]))
                         }
                         if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
                             let temp = self?.viewModel.selectedWalletItem.value?.isTemporary ?? false
                             switch bankOrCard {
                             case .bank:
                                 GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
-                                FirebaseUtility.logEventV2(.payment(paramters: [.bank_complete]))
+                                FirebaseUtility.logEventV2(.payment(parameters: [.bank_complete]))
                             case .card:
                                 GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
-                                FirebaseUtility.logEventV2(.payment(paramters: [.card_complete]))
+                                FirebaseUtility.logEventV2(.payment(parameters: [.card_complete]))
                             }
                         }
                         

@@ -270,7 +270,7 @@ class HomeBillCardView: UIView {
             .filter { $0 }
             .drive(onNext: { _ in
                 GoogleAnalytics.log(event: .checkBalanceError)
-                FirebaseUtility.logEventV2(.home(paramters: [.balance_not_available]))
+                FirebaseUtility.logEventV2(.home(parameters: [.balance_not_available]))
             })
             .disposed(by: bag)
         

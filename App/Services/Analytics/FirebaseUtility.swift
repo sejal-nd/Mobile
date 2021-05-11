@@ -49,18 +49,18 @@ protocol Parameter {
 struct FirebaseUtility {
     
     enum EventV2: EventProtocol {
-        case autoPay(paramters: [AutoPayParameter]?)
-        case budgetBill(paramters: [BudgetBillParameter]?)
-        case eBill(paramters: [EBillParameter]?)
+        case autoPay(parameters: [AutoPayParameter]?)
+        case budgetBill(parameters: [BudgetBillParameter]?)
+        case eBill(parameters: [EBillParameter]?)
         case forgotPassword
         case forgotUsername
         case register
         case bill(parameters: [BillParameter]?)
-        case payment(paramters: [PaymentParameter]?)
+        case payment(parameters: [PaymentParameter]?)
         case wallet
         
-        case authOutage(paramters: [AuthOutageParameter]?)
-        case unauthOutage(paramters: [UnAuthOutageParameter]?)
+        case authOutage(parameters: [AuthOutageParameter]?)
+        case unauthOutage(parameters: [UnAuthOutageParameter]?)
         
         case watch
         
@@ -72,7 +72,7 @@ struct FirebaseUtility {
         case more
         case biometricsToggle
         case contactUs
-        case home(paramters: [HomeParameter]?)
+        case home(parameters: [HomeParameter]?)
         case unauth
         case accountPicker
         case alerts

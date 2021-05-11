@@ -118,9 +118,9 @@ class PaperlessEBillViewModel {
                                                email: initialAccountDetail.value.customerInfo.emailAddress)
                 .do(onCompleted: {
                     GoogleAnalytics.log(event: .eBillEnrollComplete)
-                    FirebaseUtility.logEventV2(.eBill(paramters: [.enroll_complete]))
+                    FirebaseUtility.logEventV2(.eBill(parameters: [.enroll_complete]))
                 }, onSubscribe: {
-                    FirebaseUtility.logEventV2(.eBill(paramters: [.enroll_start]))
+                    FirebaseUtility.logEventV2(.eBill(parameters: [.enroll_start]))
                 })
             }
             .doEach { _ in
@@ -130,9 +130,9 @@ class PaperlessEBillViewModel {
             BillService.rx.unenrollPaperlessBilling(accountNumber: $0)
                 .do(onCompleted: {
                     GoogleAnalytics.log(event: .eBillUnEnrollComplete)
-                    FirebaseUtility.logEventV2(.eBill(paramters: [.unenroll_complete]))
+                    FirebaseUtility.logEventV2(.eBill(parameters: [.unenroll_complete]))
                 }, onSubscribe: {
-                    FirebaseUtility.logEventV2(.eBill(paramters: [.unenroll_start]))
+                    FirebaseUtility.logEventV2(.eBill(parameters: [.unenroll_start]))
                 })
         }
         .doEach { _ in
