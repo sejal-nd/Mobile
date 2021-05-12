@@ -41,11 +41,6 @@ enum ParameterType: String {
     case alternateContact = "alternate_contact"
 }
 
-protocol Parameter {
-    var type: ParameterType { get }
-    var name: String { get }
-}
-
 struct FirebaseUtility {
     
     enum EventV2: EventProtocol {
@@ -136,6 +131,8 @@ struct FirebaseUtility {
                 return "home"
             case .forgotPassword:
                 return "forgotPassword"
+            default:
+                return "\(self)"
             }
         }
         
@@ -225,6 +222,17 @@ struct FirebaseUtility {
         case bill_not_available
         case current_pdf_not_available
         case past_pdf_not_available
+        
+        var type: ParameterType {
+            switch self {
+            case .bill_not_available,
+                 .current_pdf_not_available,
+                 .past_pdf_not_available:
+                return .error
+            default:
+                return .action
+            }
+        }
     }
     
     enum PaymentParameter: ParameterProtocol {
@@ -250,6 +258,15 @@ struct FirebaseUtility {
                 return alternateContact.name
             default:
                 return "\(self)"
+            }
+        }
+        
+        var type: ParameterType {
+            switch self {
+            case .alternateContact:
+                return .alternateContact
+            default:
+                return .action
             }
         }
     }
@@ -424,27 +441,48 @@ struct FirebaseUtility {
         
         var screenName: String {
             switch self {
-            default:
-                return "\(self)"
+            case .HomeView:
+                return "HomeView"
+            case .BillView:
+                return "BillView"
+            case .BillActivityView:
+                return "BillActivityView"
+            case .OutageView:
+                return "OutageView"
+            case .AutopayEnrolledView:
+                return "AutopayEnrolledView"
+            case .AutopayUnenrolledView:
+                return "AutopayUnenrolledView"
+            case .UsageView:
+                return "UsageView"
+            case .MoreView:
+                return "MoreView"
+            case .ChangePasswordView:
+                return "ChangePasswordView"
+            case .ReleaseOfInfoView:
+                return "ReleaseOfInfoView"
+            case .UnauthenticatedOutageView:
+                return "UnauthenticatedOutageView"
+            case .PaymentView:
+                return "PaymentView"
             }
         }
         
         var className: String {
             switch self {
-            case .HomeView(let className):
+            case .HomeView(let className),
+                 .BillView(let className),
+                 .BillActivityView(let className),
+                 .OutageView(let className),
+                 .AutopayEnrolledView(let className),
+                 .AutopayUnenrolledView(let className),
+                 .UsageView(let className),
+                 .MoreView(let className),
+                 .ChangePasswordView(let className),
+                 .ReleaseOfInfoView(let className),
+                 .UnauthenticatedOutageView(let className),
+                 .PaymentView(let className):
                 return className
-            case .BillView(let className):
-                return className
-            case .BillActivityView(let className):
-                return className
-            case .OutageView(let className):
-                return className
-            case .AutopayEnrolledView(let className):
-                return className
-            case .AutopayUnenrolledView(let className):
-                return className
-            default:
-                return "\(self)"
             }
         }
     }
@@ -461,9 +499,10 @@ struct FirebaseUtility {
     
     public static func logEventV2(_ event: EventV2) {
         #if DEBUG
-        NSLog("📊🔥 Firebase Event: \(event.name)")
         if let parameters = event.parameters {
-            NSLog("📊🔥 Parameters: \(parameters)")
+            parameters.forEach { parameter in
+                print("\(parameter.type.name): \(parameter.name)")
+            }
         }
         #endif
         
