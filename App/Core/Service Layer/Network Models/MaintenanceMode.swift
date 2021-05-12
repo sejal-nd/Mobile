@@ -35,6 +35,15 @@ public struct MaintenanceMode: Decodable {
         
         // Prodbeta builds should ignore any maintenance response
         if Configuration.shared.environmentName == .rc {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let iosContainer = try container.nestedContainer(keyedBy: CodingKeys.self,
+                                                             forKey: .iOS)
+            
+            let iosStorm = try iosContainer.decodeIfPresent(Bool.self, forKey: .storm) ?? false
+            let rootStorm = try container.decode(Bool.self, forKey: .storm)
+            
+            self.storm = iosStorm || rootStorm
+            
             return
         }
         
