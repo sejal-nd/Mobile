@@ -273,7 +273,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             onEyeballPress(eyeballButton)
         }
 
-        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in
+        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool, maintenanceMode: MaintenanceMode?) in
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
             guard let self = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
@@ -299,11 +299,11 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                                                                     preferredStyle: .alert)
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
                                 FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: false.description)])
-                                self?.launchMainApp(isStormMode: isStormMode)
+                                self?.launchMainApp(maintenanceMode: maintenanceMode)
                             }))
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp(isStormMode: isStormMode, isBiometricAuthenticationAllowed: true)
+                                self?.launchMainApp(maintenanceMode: maintenanceMode, isBiometricAuthenticationAllowed: true)
                                 FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: true.description)])
                                 GoogleAnalytics.log(event: .touchIDEnable)
                             }))
@@ -315,19 +315,19 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                             let differentAccountAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString), message: message, preferredStyle: .alert)
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.disableBiometrics()
-                                self?.launchMainApp(isStormMode: isStormMode)
+                                self?.launchMainApp(maintenanceMode: maintenanceMode)
                             }))
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp(isStormMode: isStormMode)
+                                self?.launchMainApp(maintenanceMode: maintenanceMode)
                                 GoogleAnalytics.log(event: .touchIDEnable)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
                         } else {
-                            self.launchMainApp(isStormMode: isStormMode)
+                            self.launchMainApp(maintenanceMode: maintenanceMode)
                         }
                     } else {
-                        self.launchMainApp(isStormMode: isStormMode)
+                        self.launchMainApp(maintenanceMode: maintenanceMode)
                     }
                 }
             })
@@ -425,14 +425,17 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             self.presentBiometricsPrompt()
         })
     }
-
-    func launchMainApp(isStormMode: Bool, isBiometricAuthenticationAllowed: Bool = false) {
+    
+    func launchMainApp(maintenanceMode: MaintenanceMode?, isBiometricAuthenticationAllowed: Bool = false) {
         FirebaseUtility.setUserProperty(.isBiometricsEnabled, value: viewModel.biometricsEnabled.value.description)
 
         FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
         GoogleAnalytics.log(event: .loginComplete)
 
-        if isStormMode {
+        // first check for maintenance mode all status, then check storm mode
+        if maintenanceMode?.all ?? false {
+            (UIApplication.shared.delegate as? AppDelegate)?.showMaintenanceMode(maintenanceMode)
+        } else if maintenanceMode?.storm ?? false {
             (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
         } else {
             guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
@@ -484,12 +487,12 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         }, onDidNotLoad:  { [weak self] in
             self?.biometricButton.isEnabled = true
             self?.navigationController?.view.isUserInteractionEnabled = true
-        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in // Face/Touch ID and subsequent login successful
+        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, maintenanceMode: MaintenanceMode?) in // Face/Touch ID and subsequent login successful
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
             guard let self = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
-                self?.launchMainApp(isStormMode: isStormMode)
+                self?.launchMainApp(maintenanceMode: maintenanceMode)
             })
         }, onError: { [weak self] (title, message) in // Face/Touch ID successful but login failed
             guard let self = self else { return }
