@@ -138,11 +138,14 @@ class SplashViewController: UIViewController{
         readyForLogin = true
         
         if AuthenticationService.isLoggedIn() {
-            viewModel.checkStormMode { [weak self] isStormMode in
+            viewModel.getMaintenanceMode { [weak self] maintenanceMode in
                 guard let this = self else { return }
                 this.loadingTimer.invalidate()
                 
-                if isStormMode {
+                // first check for maintenance mode all status, then check storm mode
+                if maintenanceMode?.all ?? false {
+                    (UIApplication.shared.delegate as? AppDelegate)?.showMaintenanceMode(maintenanceMode)
+                } else if maintenanceMode?.storm ?? false {
                     (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
                 } else {
                     guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
