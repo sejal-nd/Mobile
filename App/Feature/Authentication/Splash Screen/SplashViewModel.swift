@@ -31,14 +31,14 @@ struct SplashViewModel{
         return minVersion.compare(currentVersion, options: .numeric) == .orderedDescending
     }
     
-    func checkStormMode(completion: @escaping (Bool) -> ()) {
+    func getMaintenanceMode(completion: @escaping (MaintenanceMode?) -> ()) {
         AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let maintenanceMode):
-                    completion(maintenanceMode.storm)
+                    completion(maintenanceMode)
                 case .failure(_):
-                    completion(false)
+                    completion(nil)
                 }
             }
         }
