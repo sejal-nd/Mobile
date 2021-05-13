@@ -33,37 +33,37 @@ public struct MaintenanceMode: Decodable {
     
     public init(from decoder: Decoder) throws {
         
-        // Prodbeta builds should ignore any maintenance response
-        if Configuration.shared.environmentName == .rc {
-            return
-        }
-        
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let iosContainer = try container.nestedContainer(keyedBy: CodingKeys.self,
                                                          forKey: .iOS)
         
-        let iosAll = try iosContainer.decode(Bool.self, forKey: .all)
-        let iosBill = try iosContainer.decode(Bool.self, forKey: .bill)
-        let iosOutage = try iosContainer.decode(Bool.self, forKey: .outage)
-        let iosUsage = try iosContainer.decode(Bool.self, forKey: .usage)
-        let iosHome = try iosContainer.decode(Bool.self, forKey: .home)
         let iosStorm = try iosContainer.decodeIfPresent(Bool.self, forKey: .storm) ?? false
-        
-        let rootAll = try container.decode(Bool.self, forKey: .all)
-        let rootBill = try container.decode(Bool.self, forKey: .bill)
-        let rootOutage = try container.decode(Bool.self, forKey: .outage)
-        let rootUsage = try container.decodeIfPresent(Bool.self, forKey: .usage) ?? false
-        let rootHome = try container.decode(Bool.self, forKey: .home)
         let rootStorm = try container.decode(Bool.self, forKey: .storm)
-        self.alerts = try container.decode(Bool.self, forKey: .alerts)
         
-        self.all = iosAll || rootAll
-        self.bill = iosBill || rootBill
-        self.outage = iosOutage || rootOutage
-        self.usage = iosUsage || rootUsage
-        self.home = iosHome || rootHome
         self.storm = iosStorm || rootStorm
-        self.message = try iosContainer.decode(String.self, forKey: .message)
+        
+        // RC builds should ignore all maintenance flags except storm
+        if Configuration.shared.environmentName != .rc {
+            let iosAll = try iosContainer.decode(Bool.self, forKey: .all)
+            let iosBill = try iosContainer.decode(Bool.self, forKey: .bill)
+            let iosOutage = try iosContainer.decode(Bool.self, forKey: .outage)
+            let iosUsage = try iosContainer.decode(Bool.self, forKey: .usage)
+            let iosHome = try iosContainer.decode(Bool.self, forKey: .home)
+            
+            let rootAll = try container.decode(Bool.self, forKey: .all)
+            let rootBill = try container.decode(Bool.self, forKey: .bill)
+            let rootOutage = try container.decode(Bool.self, forKey: .outage)
+            let rootUsage = try container.decodeIfPresent(Bool.self, forKey: .usage) ?? false
+            let rootHome = try container.decode(Bool.self, forKey: .home)
+            self.alerts = try container.decode(Bool.self, forKey: .alerts)
+            
+            self.all = iosAll || rootAll
+            self.bill = iosBill || rootBill
+            self.outage = iosOutage || rootOutage
+            self.usage = iosUsage || rootUsage
+            self.home = iosHome || rootHome
+            self.message = try iosContainer.decode(String.self, forKey: .message)
+        }
     }
     
     public init() {

@@ -1046,9 +1046,23 @@ class HomeBillCardViewModel {
             }
         }
         
+        private static func getUTMParams(assistanceType: MobileAssistanceURL) -> String {
+            
+            switch assistanceType {
+            case .dde:
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web&utm_campaign=DDE_CTA"
+            case .dpa:
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web&utm_campaign=DPA_CTA"
+            case .dpaReintate:
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web&utm_campaign=DPAReinstate_CTA"
+            case .none:
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web&utm_campaign=AssistanceProgram_CTA"
+            }
+        }
+        
         static func getMobileAssistnceURL(assistanceType: MobileAssistanceURL) -> String {
             
-            return getBaseURLmobileAssistance(assistanceType: assistanceType) + getURLPath(assistanceType: assistanceType)
+            return (getBaseURLmobileAssistance(assistanceType: assistanceType) + getURLPath(assistanceType: assistanceType)) + getUTMParams(assistanceType: assistanceType)
             
         }
 
