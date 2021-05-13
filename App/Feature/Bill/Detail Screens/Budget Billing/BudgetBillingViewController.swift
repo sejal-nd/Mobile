@@ -232,12 +232,13 @@ class BudgetBillingViewController: UIViewController {
         GoogleAnalytics.log(event: .budgetBillEnrollOffer)
         
         FirebaseUtility.logEvent(.budgetBillingSubmit)
+        FirebaseUtility.logEventV2(.budgetBill(parameters: [.enroll_start]))
         
         viewModel.enroll(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
             
-            FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
+            FirebaseUtility.logEventV2(.budgetBill(parameters: [.enroll_complete]))
             
             FirebaseUtility.logEvent(.budgetBillingNetworkComplete)
             
@@ -268,12 +269,13 @@ class BudgetBillingViewController: UIViewController {
                 LoadingView.show()
                 GoogleAnalytics.log(event: .budgetBillUnEnrollOK)
                 
+                FirebaseUtility.logEventV2(.budgetBill(parameters: [.unenroll_start]))
                 guard let self = self else { return }
                 self.viewModel.unenroll(onSuccess: { [weak self] in
                     LoadingView.hide()
                     guard let self = self else { return }
                     
-                    FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
+                    FirebaseUtility.logEventV2(.budgetBill(parameters: [.unenroll_complete]))
                     
                     FirebaseUtility.logEvent(.budgetBillingNetworkComplete)
                     
@@ -283,7 +285,7 @@ class BudgetBillingViewController: UIViewController {
                     LoadingView.hide()
                     guard let self = self else { return }
                     
-                    FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                    FirebaseUtility.logEventV2(.budgetBill(parameters: [.network_submit_error]))
                     
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))

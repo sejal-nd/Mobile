@@ -116,22 +116,27 @@ class PaperlessEBillViewModel {
         let enrollObservables = accountsToEnroll.value.map {
             BillService.rx.enrollPaperlessBilling(accountNumber: $0,
                                                email: initialAccountDetail.value.customerInfo.emailAddress)
-                .do(onNext: {GoogleAnalytics.log(event: .eBillEnrollComplete)})
+                .do(onCompleted: {
+                    GoogleAnalytics.log(event: .eBillEnrollComplete)
+                    FirebaseUtility.logEventV2(.eBill(parameters: [.enroll_complete]))
+                }, onSubscribe: {
+                    FirebaseUtility.logEventV2(.eBill(parameters: [.enroll_start]))
+                })
             }
             .doEach { _ in
-                
-                FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
                 GoogleAnalytics.log(event: .eBillEnrollOffer) }
         
         let unenrollObservables = accountsToUnenroll.value.map {
             BillService.rx.unenrollPaperlessBilling(accountNumber: $0)
-                .do(onNext: {GoogleAnalytics.log(event: .eBillUnEnrollComplete)})
-            }
-            .doEach { _ in
-                
-                FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
-                
-                GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
+                .do(onCompleted: {
+                    GoogleAnalytics.log(event: .eBillUnEnrollComplete)
+                    FirebaseUtility.logEventV2(.eBill(parameters: [.unenroll_complete]))
+                }, onSubscribe: {
+                    FirebaseUtility.logEventV2(.eBill(parameters: [.unenroll_start]))
+                })
+        }
+        .doEach { _ in
+            GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
         
         var changedStatus: PaperlessEBillChangedStatus
         if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
