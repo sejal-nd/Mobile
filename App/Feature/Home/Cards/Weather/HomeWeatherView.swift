@@ -45,7 +45,7 @@ class HomeWeatherView: UIView {
     
     func bindViewModel() {
         temperatureTipButton.rx.touchUpInside.asDriver().drive(onNext: {
-            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .weather_tip)])
+            FirebaseUtility.logEventV2(.home(parameters: [.weather_tip]))
         })
         .disposed(by: bag)
         

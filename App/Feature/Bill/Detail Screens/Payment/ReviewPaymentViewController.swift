@@ -323,7 +323,7 @@ class ReviewPaymentViewController: UIViewController {
             }
         }
         
-        FirebaseUtility.logEvent(.reviewPaymentSubmit)
+        FirebaseUtility.logEventV2(.reviewPaymentSubmit)
         FirebaseUtility.logEventV2(.payment(parameters: [.submit]))
         
         let handleError = { [weak self] (error: NetworkingError) in
@@ -355,7 +355,7 @@ class ReviewPaymentViewController: UIViewController {
             viewModel.modifyPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
                 
-                FirebaseUtility.logEvent(.paymentNetworkComplete)
+                FirebaseUtility.logEventV2(.paymentNetworkComplete)
                 
                 if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
                     switch bankOrCard {
@@ -379,7 +379,7 @@ class ReviewPaymentViewController: UIViewController {
                 }, onSuccess: { [weak self] in
                     LoadingView.hide()
                     
-                    FirebaseUtility.logEvent(.paymentNetworkComplete)
+                    FirebaseUtility.logEventV2(.paymentNetworkComplete)
                                         
                     if let viewModel = self?.viewModel,
                         viewModel.billingHistoryItem == nil {

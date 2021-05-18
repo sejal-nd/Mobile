@@ -77,7 +77,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FirebaseUtility.logEvent(.reportOutageStart)
+        FirebaseUtility.logEventV2(.reportOutageStart)
         
         title = NSLocalizedString("Report Outage", comment: "")
         
@@ -397,10 +397,10 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
-        FirebaseUtility.logEvent(.reportOutageSubmit)
+        FirebaseUtility.logEventV2(.reportOutageSubmit)
         
         if !unauthenticatedExperience {
-            FirebaseUtility.logEventV2(.authOutage(parameters: [.report_outage]))
+            FirebaseUtility.logEventV2(.authOutage(parameters: [.report_complete]))
         } else {
             FirebaseUtility.logEventV2(.unauthOutage(parameters: [.report_outage]))
         }
@@ -417,7 +417,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         LoadingView.show()
         if unauthenticatedExperience {
             viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
-                FirebaseUtility.logEvent(.reportOutageNetworkComplete)
+                FirebaseUtility.logEventV2(.reportOutageNetworkComplete)
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
@@ -427,7 +427,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
-                FirebaseUtility.logEvent(.reportOutageNetworkComplete)
+                FirebaseUtility.logEventV2(.reportOutageNetworkComplete)
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())

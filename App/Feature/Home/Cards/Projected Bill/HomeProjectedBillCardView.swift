@@ -180,16 +180,16 @@ class HomeProjectedBillCardView: UIView {
     }
     
     @IBAction func ctaPress(_ sender: Any) {
-        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .projected_bill_cta)])
+        FirebaseUtility.logEventV2(.home(parameters: [.projected_bill_cta]))
     }
     
     @IBAction func segmentValueChange(_ sender: SegmentedControl) {
         guard ((viewModel?.shouldShowElectricGasSegmentedControl) != nil) else { return }
         if sender.selectedIndex.value == 0 {
-            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .projected_bill_electric_press)])
+            FirebaseUtility.logEventV2(.home(parameters: [.projected_bill_electric_press]))
 
         } else {
-            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .projected_bill_gas_press)])
+            FirebaseUtility.logEventV2(.home(parameters: [.projected_bill_gas_press]))
         }
     }
     

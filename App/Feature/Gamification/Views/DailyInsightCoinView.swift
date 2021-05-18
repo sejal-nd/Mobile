@@ -94,7 +94,7 @@ class DailyInsightCoinView: UIControl {
     
     @objc func onTap() {
         if canCollect {
-            FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .coin_tapped)])
+            FirebaseUtility.logEventV2(.gamification(parameters: [.coin_tapped]))
             
             canCollect = false
             imageView.image = lastWeekComparisionImage

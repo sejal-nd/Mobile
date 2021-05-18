@@ -102,7 +102,7 @@ class ForgotUsernameResultViewController: UIViewController {
     }
     
     @IBAction func onSignInPress() {
-        FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .return_to_signin)])
+        FirebaseUtility.logEventV2(.forgotUsername(parameters: [.return_to_signin]))
         
         dismissModal()
     }

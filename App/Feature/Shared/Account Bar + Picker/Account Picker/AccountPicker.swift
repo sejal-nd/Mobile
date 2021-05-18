@@ -186,7 +186,7 @@ class AccountPicker: UIControl {
     
     /// Present Bottom Sheet
     @objc private func onAccountPickerPress() {
-        FirebaseUtility.logEvent(.accountPicker, parameters: [EventParameter(parameterName: .action, value: .press)])
+        FirebaseUtility.logEventV2(.accountPicker(parameters: [.press]))
         
         guard accounts.count > 1 || isMultiPremise,
         let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() as? AccountSheetViewController else { return }

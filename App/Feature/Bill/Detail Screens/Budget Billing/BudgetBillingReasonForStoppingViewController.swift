@@ -41,7 +41,7 @@ class BudgetBillingReasonForStoppingViewController: UIViewController {
     @IBAction func onUnenrollPress() {
         GoogleAnalytics.log(event: .budgetBillUnEnrollOffer)
         
-    FirebaseUtility.logEvent(.budgetBillingSubmit)
+    FirebaseUtility.logEventV2(.budgetBillingSubmit)
         
         let message = NSLocalizedString("You will see your regular bill amount on your next billing cycle. Any credit balance remaining in your account will be applied to your bill until used, and any negative account balance will become due with your next bill.", comment: "")
         let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
@@ -57,9 +57,9 @@ class BudgetBillingReasonForStoppingViewController: UIViewController {
                 guard let self = self else { return }
                 self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                
-                FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
+                FirebaseUtility.logEventV2(.budgetBill(parameters: [.unenroll_complete]))
                 
-                FirebaseUtility.logEvent(.budgetBillingNetworkComplete)
+                FirebaseUtility.logEventV2(.budgetBillingNetworkComplete)
                 self.budgetBillingViewController.navigationController?.popViewController(animated: false)
                 self.dismiss(animated: true, completion: nil)
             }, onError: { [weak self] errMessage in

@@ -57,7 +57,7 @@ class GiftsViewController: ButtonBarPagerTabStripViewController {
         super.viewWillDisappear(animated)
         
         if giftSelectionsChanged {
-            FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .gifts_changed)])
+            FirebaseUtility.logEventV2(.gamification(parameters: [.gifts_changed]))
             GameService.updateGameUserGiftSelections(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         }
     }

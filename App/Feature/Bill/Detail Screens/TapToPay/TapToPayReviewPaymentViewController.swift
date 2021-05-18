@@ -414,7 +414,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
-                FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .switch_payment_method)])
+                FirebaseUtility.logEventV2(.payment(parameters: [.switch_payment_method]))
                 
                 guard let miniWalletVC = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
                 miniWalletVC.modalPresentationStyle = .overCurrentContext
@@ -607,7 +607,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
         })
         
-        FirebaseUtility.logEvent(.reviewPaymentSubmit)
+        FirebaseUtility.logEventV2(.reviewPaymentSubmit)
         FirebaseUtility.logEventV2(.payment(parameters: [.submit]))
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
@@ -671,7 +671,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
                // LoadingView.hide()
                 self?.submitButton.reset()
                 self?.view.isUserInteractionEnabled = true
-                FirebaseUtility.logEvent(.paymentNetworkComplete)
+                FirebaseUtility.logEventV2(.paymentNetworkComplete)
                                 
                 UIView.animate(withDuration: 0.4, animations: {  [weak self]  in
                     guard let self = self else {return}
@@ -703,7 +703,7 @@ class TapToPayReviewPaymentViewController: UIViewController {
                         self?.view.isUserInteractionEnabled = true
                         UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
                         
-                        FirebaseUtility.logEvent(.paymentNetworkComplete)
+                        FirebaseUtility.logEventV2(.paymentNetworkComplete)
                                                 
                         if let viewModel = self?.viewModel,
                             viewModel.billingHistoryItem == nil {

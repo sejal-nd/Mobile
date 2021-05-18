@@ -73,7 +73,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logEvent(.autoPayStart)
+        FirebaseUtility.logEventV2(.autoPayStart)
         
         if viewModel.enrollmentStatus.value == .enrolled {
             FirebaseUtility.logScreenView(.AutopayEnrolledView(className: self.className))
@@ -304,7 +304,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         view.endEditing(true)
         
         FirebaseUtility.logEventV2(.autoPay(parameters: [.enroll_start]))
-        FirebaseUtility.logEvent(.autoPaySubmit)
+        FirebaseUtility.logEventV2(.autoPaySubmit)
         
         LoadingView.show()
         viewModel.enroll()
@@ -314,7 +314,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
                 guard let self = self else { return }
                 
                 FirebaseUtility.logEventV2(.autoPay(parameters: [.enroll_complete]))
-                FirebaseUtility.logEvent(.autoPayNetworkComplete)
+                FirebaseUtility.logEventV2(.autoPayNetworkComplete)
                 
                 self.delegate?.autoPayViewController(self, enrolled: true)
                 self.navigationController?.popViewController(animated: true)

@@ -148,7 +148,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         enrollAllAccountsCheckbox.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
         
         addCustomBackButton()
-        FirebaseUtility.logEvent(.paperlessEBillStart)
+        FirebaseUtility.logEventV2(.paperlessEBillStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -207,7 +207,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     }
     
     @IBAction func onTooltipPress() {
-        FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .learn_more)])
+        FirebaseUtility.logEventV2(.eBill(parameters: [.learn_more]))
         
         let description: String
         if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
@@ -235,20 +235,20 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     
     @IBAction func onEnrollmentButtonPress() {
         
-        FirebaseUtility.logEvent(.paperlessEBillSubmit)
+        FirebaseUtility.logEventV2(.paperlessEBillSubmit)
         
         LoadingView.show()
         viewModel.submitChanges(onSuccess: { [weak self] changedStatus in
             LoadingView.hide()
             guard let self = self else { return }
             
-            FirebaseUtility.logEvent(.paperlessEBillNetworkComplete)
+            FirebaseUtility.logEventV2(.paperlessEBillNetworkComplete)
             
             self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
             self.navigationController?.popViewController(animated: true)
             }, onError: { [weak self] errMessage in
                 
-                FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                FirebaseUtility.logEventV2(.eBill(parameters: [.network_submit_error]))
                 
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)

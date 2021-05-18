@@ -96,7 +96,7 @@ class GameOnboardingStep2ViewController: UIViewController {
                 case .success:
                     LoadingView.hide()
                     NotificationCenter.default.post(name: .gameOnboardingComplete, object: nil)
-                    FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .onboard_step2_complete)])
+                    FirebaseUtility.logEventV2(.gamification(parameters: [.onboard_step2_complete]))
                     self?.dismissModal()
                 case .failure(let error):
                     LoadingView.hide()

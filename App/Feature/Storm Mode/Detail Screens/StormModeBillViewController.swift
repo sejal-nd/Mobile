@@ -135,7 +135,7 @@ class StormModeBillViewController: AccountPickerViewController {
                     tapToPayViewController.accountDetail = accountDetail
                     let newNavController = LargeTitleNavigationController(rootViewController: tapToPayViewController)
                     newNavController.modalPresentationStyle = .fullScreen
-                    FirebaseUtility.logEvent(.makePaymentStart)
+                    FirebaseUtility.logEventV2(.makePaymentStart)
                     this.present(newNavController, animated: true, completion: nil)
                 }
                 
@@ -178,7 +178,7 @@ class StormModeBillViewController: AccountPickerViewController {
                 if viewController is TapToPayReviewPaymentViewController {
                     let newNavController = LargeTitleNavigationController(rootViewController: viewController)
                     newNavController.modalPresentationStyle = .fullScreen
-                    FirebaseUtility.logEvent(.makePaymentStart)
+                    FirebaseUtility.logEventV2(.makePaymentStart)
                     self?.present(newNavController, animated: true, completion: nil)
                 } else {
                     self?.present(viewController, animated: true, completion: nil)

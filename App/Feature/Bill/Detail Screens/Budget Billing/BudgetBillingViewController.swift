@@ -212,7 +212,7 @@ class BudgetBillingViewController: UIViewController {
             self.errorLabel.isHidden = false
         })
         
-        FirebaseUtility.logEvent(.budgetBillingStart)
+        FirebaseUtility.logEventV2(.budgetBillingStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -222,7 +222,7 @@ class BudgetBillingViewController: UIViewController {
     }
     
     @objc func onTooltipPress() {
-        FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .learn_more)])
+        FirebaseUtility.logEventV2(.budgetBill(parameters: [.learn_more]))
         
         performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
     }
@@ -231,7 +231,7 @@ class BudgetBillingViewController: UIViewController {
         LoadingView.show()
         GoogleAnalytics.log(event: .budgetBillEnrollOffer)
         
-        FirebaseUtility.logEvent(.budgetBillingSubmit)
+        FirebaseUtility.logEventV2(.budgetBillingSubmit)
         FirebaseUtility.logEventV2(.budgetBill(parameters: [.enroll_start]))
         
         viewModel.enroll(onSuccess: { [weak self] in
@@ -240,14 +240,14 @@ class BudgetBillingViewController: UIViewController {
             
             FirebaseUtility.logEventV2(.budgetBill(parameters: [.enroll_complete]))
             
-            FirebaseUtility.logEvent(.budgetBillingNetworkComplete)
+            FirebaseUtility.logEventV2(.budgetBillingNetworkComplete)
             
             self.delegate?.budgetBillingViewControllerDidEnroll(self, averageMonthlyBill: self.viewModel.averageMonthlyBill)
             self.navigationController?.popViewController(animated: true)
         }, onError: { [weak self] errMessage in
             LoadingView.hide()
             
-            FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+            FirebaseUtility.logEventV2(.budgetBill(parameters: [.network_submit_error]))
             
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -259,7 +259,7 @@ class BudgetBillingViewController: UIViewController {
         if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
             GoogleAnalytics.log(event: .budgetBillUnEnrollOffer)
             
-            FirebaseUtility.logEvent(.budgetBillingSubmit)
+            FirebaseUtility.logEventV2(.budgetBillingSubmit)
             
             let message = Configuration.shared.opco.isPHI ? "You are responsible for the full budget bill amount shown on your current bill. Your new billing amount will reflect your actual usage." : bgeDynamicUnenrollMessage ?? ""
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
@@ -277,7 +277,7 @@ class BudgetBillingViewController: UIViewController {
                     
                     FirebaseUtility.logEventV2(.budgetBill(parameters: [.unenroll_complete]))
                     
-                    FirebaseUtility.logEvent(.budgetBillingNetworkComplete)
+                    FirebaseUtility.logEventV2(.budgetBillingNetworkComplete)
                     
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)

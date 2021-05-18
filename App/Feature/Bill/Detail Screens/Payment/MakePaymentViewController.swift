@@ -245,7 +245,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
 
         fetchData(initialFetch: true)
         
-        FirebaseUtility.logEvent(.makePaymentStart)
+        FirebaseUtility.logEventV2(.makePaymentStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -538,7 +538,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             }
         }
         
-        FirebaseUtility.logEvent(.makePaymentNext)
+        FirebaseUtility.logEventV2(.makePaymentNext)
         
         performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
     }

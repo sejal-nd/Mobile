@@ -171,13 +171,7 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        FirebaseUtility.logEvent(.gamificationExperienceAccessed, customParameters: [
-            "current_point_total": viewModel.points,
-            "curr_streak": UserDefaults.standard.integer(forKey: UserDefaultKeys.gameStreakCount),
-            "selected_bg": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none",
-            "selected_hat": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none",
-            "selected_acc": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
-        ])
+        FirebaseUtility.logEventV2(.gamificationExperienceAccessed(parameters: [.current_point_total(viewModel.points), .curr_streak(UserDefaults.standard.integer(forKey: UserDefaultKeys.gameStreakCount)), .selected_bg(UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none"), .selected_hat(UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none"), .selected_acc(UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none")]))
 
         if didAppear { // Only do this on the 2nd `viewDidAppear` and beyond. The initial play is done in `viewDidLayoutSubviews`
             energyBuddyView.playDefaultAnimations()
@@ -276,7 +270,7 @@ class GameHomeViewController: AccountPickerViewController {
         
         viewModel.streakCount.asDriver().drive(onNext: { [weak self] count in
             if count == 7 { // Award 3 points, show the modal, and reset streak back to 1
-                FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .seven_day_streak)])
+                FirebaseUtility.logEventV2(.gamification(parameters: [.seven_day_streak]))
                 self?.awardPoints(3, advanceTaskIndex: false, advanceTaskTimer: false)
                 self?.viewModel.streakCount.accept(1)
                 UserDefaults.standard.set(1, forKey: UserDefaultKeys.gameStreakCount)
@@ -420,7 +414,7 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     @IBAction func segmentValueChanged(_ sender: SegmentedControl) {
-        FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .toggled_gas_elec)])
+        FirebaseUtility.logEventV2(.gamification(parameters: [.toggled_gas_elec]))
         viewModel.selectedSegmentIndex = sender.selectedIndex.value
         viewModel.fetchDailyUsage()
     }
@@ -436,7 +430,7 @@ class GameHomeViewController: AccountPickerViewController {
     // MARK:-
     
     private func showEnergyBuddyTooltip() {
-        FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .viewed_task_empty_state)])
+        FirebaseUtility.logEventV2(.gamification(parameters: [.viewed_task_empty_state]))
         
         let message = NSMutableAttributedString(string: NSLocalizedString("I’m LUMI℠!\n\n I’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nAlong the way, you’ll be awarded with points for checking your daily and weekly insights as well as any tips, quizzes, or other challenges I might have for you! With those points, you can unlock backgrounds, hats, and accessories.", comment: ""))
         if let taskTimeStr = viewModel.nextAvaiableTaskTimeString {
@@ -454,7 +448,7 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func showGameCompletionPopup() {
-        FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .final_gift_unlocked)])
+        FirebaseUtility.logEventV2(.gamification(parameters: [.final_gift_unlocked]))
         let alert = InfoAlertController(title: NSLocalizedString("You did it!", comment: ""),
                                         message: NSLocalizedString("Congratulations! You’ve unlocked all the gifts! Although you’ve reached the end for now, you can still earn points and complete any remaining tasks.", comment: ""),
                                         icon: #imageLiteral(resourceName: "ic_energybuddy.pdf"))

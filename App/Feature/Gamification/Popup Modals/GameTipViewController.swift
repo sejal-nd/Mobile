@@ -157,7 +157,7 @@ class GameTipViewController: UIViewController {
             let setReminderAction = UIAlertAction(title: "Set Reminder", style: .default, handler: { [weak self] action in
                 guard let self = self else { return }
                 
-                FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .reminder_set)])
+                FirebaseUtility.logEventV2(.gamification(parameters: [.reminder_set]))
                 
                 let content = UNMutableNotificationContent()
                 content.title = self.reminderPushNotificationTitles[Int.random(in: 0..<self.reminderPushNotificationTitles.count)]
@@ -196,7 +196,7 @@ class GameTipViewController: UIViewController {
         
         isFavorite = !isFavorite
         if isFavorite {
-            FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .tip_favorited)])
+            FirebaseUtility.logEventV2(.gamification(parameters: [.tip_favorited]))
         }
         
         updateFavoriteButton()

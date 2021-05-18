@@ -350,21 +350,21 @@ class HomeBillCardView: UIView {
     
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: {
-            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bill_cta)])
+            FirebaseUtility.logEventV2(.home(parameters: [.bill_cta]))
             GoogleAnalytics.log(event: .viewBillBillCard)
         })
     
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
-            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bill_slide_to_pay)])
+            FirebaseUtility.logEventV2(.home(parameters: [.bill_slide_to_pay]))
         })
         .mapTo(())
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
         .do(onNext: {
-            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bill_terms)])
+            FirebaseUtility.logEventV2(.home(parameters: [.bill_terms]))
             GoogleAnalytics.log(event: .oneTouchTermsView)
         })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
@@ -491,13 +491,13 @@ class HomeBillCardView: UIView {
             guard let assistanceType = self?.viewModel.mobileAssistanceType else { return UIViewController()}
             switch assistanceType {
             case .dde:
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .extension_cta)])
+                FirebaseUtility.logEventV2(.home(parameters: [.extension_cta]))
             case .dpa:
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .dpa_cta)])
+                FirebaseUtility.logEventV2(.home(parameters: [.dpa_cta]))
             case .dpaReintate:
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .reinstate_cta)])
+                FirebaseUtility.logEventV2(.home(parameters: [.reinstate_cta]))
             case .none:
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .assistance_cta)])
+                FirebaseUtility.logEventV2(.home(parameters: [.assistance_cta]))
             }
             let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: self?.viewModel.mobileAssistanceURL.value ?? "")!)
             return safariVc
