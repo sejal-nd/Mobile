@@ -84,7 +84,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         viewModel.signInButtonEnabled.drive(signInButton.rx.isEnabled).disposed(by: disposeBag)
 
         let placeholderText: String
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
             placeholderText = Configuration.shared.opco.isPHI ? "Username (Email Address)" : "Email"
         } else {
             placeholderText = "Username / Email Address"
@@ -141,7 +141,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
         
         let forgotUsernamePasswordButtonTitle: String
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
             forgotUsernamePasswordButtonTitle = Configuration.shared.opco.isPHI ? "Forgot your username or password?" : "Forgot your email or password?"
         } else {
             forgotUsernamePasswordButtonTitle = "Forgot your username or password?"
@@ -220,7 +220,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             if (Configuration.shared.opco != .bge && Configuration.shared.opco != .delmarva && Configuration.shared.opco != .pepco && Configuration.shared.opco != .ace) && !viewModel.usernameIsValidEmailAddress {
                 // ComEd/PECO only email validation. If not valid email then fail before making the call
                 var message = ""
-                if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+                if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
                     message = NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
                 } else {
                     message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
@@ -273,7 +273,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             onEyeballPress(eyeballButton)
         }
 
-        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in
+        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool, maintenanceMode: MaintenanceMode?) in
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
             guard let self = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
@@ -299,11 +299,11 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                                                                     preferredStyle: .alert)
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
                                 FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: false.description)])
-                                self?.launchMainApp(isStormMode: isStormMode)
+                                self?.launchMainApp(maintenanceMode: maintenanceMode)
                             }))
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp(isStormMode: isStormMode, isBiometricAuthenticationAllowed: true)
+                                self?.launchMainApp(maintenanceMode: maintenanceMode, isBiometricAuthenticationAllowed: true)
                                 FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: true.description)])
                                 GoogleAnalytics.log(event: .touchIDEnable)
                             }))
@@ -315,19 +315,19 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                             let differentAccountAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString), message: message, preferredStyle: .alert)
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.disableBiometrics()
-                                self?.launchMainApp(isStormMode: isStormMode)
+                                self?.launchMainApp(maintenanceMode: maintenanceMode)
                             }))
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp(isStormMode: isStormMode)
+                                self?.launchMainApp(maintenanceMode: maintenanceMode)
                                 GoogleAnalytics.log(event: .touchIDEnable)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
                         } else {
-                            self.launchMainApp(isStormMode: isStormMode)
+                            self.launchMainApp(maintenanceMode: maintenanceMode)
                         }
                     } else {
-                        self.launchMainApp(isStormMode: isStormMode)
+                        self.launchMainApp(maintenanceMode: maintenanceMode)
                     }
                 }
             })
@@ -365,7 +365,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let forgotUsername: String
-        if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
             forgotUsername = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
         } else {
             forgotUsername = "Forgot Username"
@@ -425,14 +425,17 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             self.presentBiometricsPrompt()
         })
     }
-
-    func launchMainApp(isStormMode: Bool, isBiometricAuthenticationAllowed: Bool = false) {
+    
+    func launchMainApp(maintenanceMode: MaintenanceMode?, isBiometricAuthenticationAllowed: Bool = false) {
         FirebaseUtility.setUserProperty(.isBiometricsEnabled, value: viewModel.biometricsEnabled.value.description)
 
         FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
         GoogleAnalytics.log(event: .loginComplete)
 
-        if isStormMode {
+        // first check for maintenance mode all status, then check storm mode
+        if maintenanceMode?.all ?? false {
+            (UIApplication.shared.delegate as? AppDelegate)?.showMaintenanceMode(maintenanceMode)
+        } else if maintenanceMode?.storm ?? false {
             (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
         } else {
             guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
@@ -484,12 +487,12 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         }, onDidNotLoad:  { [weak self] in
             self?.biometricButton.isEnabled = true
             self?.navigationController?.view.isUserInteractionEnabled = true
-        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in // Face/Touch ID and subsequent login successful
+        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, maintenanceMode: MaintenanceMode?) in // Face/Touch ID and subsequent login successful
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
             guard let self = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
-                self?.launchMainApp(isStormMode: isStormMode)
+                self?.launchMainApp(maintenanceMode: maintenanceMode)
             })
         }, onError: { [weak self] (title, message) in // Face/Touch ID successful but login failed
             guard let self = self else { return }
@@ -541,7 +544,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
 
     func forgotPasswordViewControllerDidSubmit(_ viewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            if RemoteConfigUtility.shared.bool(forKey: .hasForgotPasswordLink) {
+            if FeatureFlagUtility.shared.bool(forKey: .hasForgotPasswordLink) {
                 self.view.showToast(NSLocalizedString("Password reset link sent to your email", comment: ""))
             } else {
                 self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))

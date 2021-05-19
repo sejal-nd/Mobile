@@ -80,6 +80,8 @@ class MoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        FirebaseUtility.logScreenView(.MoreView(className: self.className))
+        
         navigationController?.setNavigationBarHidden(!StormModeStatus.shared.isOn, animated: true)
 
         if AccountsStore.shared.accounts == nil {
@@ -235,7 +237,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 return viewModel.isDeviceBiometricCompatible() ? 60 : 0
             case 2:
                 guard AccountsStore.shared.accounts != nil else { return 0 }
-                return (RemoteConfigUtility.shared.bool(forKey: .hasDefaultAccount) && AccountsStore.shared.accounts.count > 1) ? 60 : 0
+                return (FeatureFlagUtility.shared.bool(forKey: .hasDefaultAccount) && AccountsStore.shared.accounts.count > 1) ? 60 : 0
             case 3:
                 return Configuration.shared.opco == .peco ? 60 : 0
             case 4:

@@ -63,9 +63,7 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        FirebaseUtility.trackScreenWithName(self.className, className: self.className)
-        
+                
         colorBackgroundHeightConstraint.constant = colorBackgroundViewHeight
         
         accountPicker.delegate = self
@@ -441,6 +439,7 @@ class HomeViewController: AccountPickerViewController {
         
         // Artificial screen event due to automatic screen tracking not counting the initial load of this screen...
         FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .view_screen)])
+        FirebaseUtility.logScreenView(.HomeView(className: self.className))
 
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -675,7 +674,10 @@ class HomeViewController: AccountPickerViewController {
                             }
                         }).disposed(by: billCardView.bag)
                     
-                } else {
+                } else if viewController is SFSafariViewController {
+                    self?.present(viewController, animated: true, completion: nil)
+                    
+                }else {
                     self?.present(viewController, animated: true, completion: nil)
                 }
             })
@@ -821,7 +823,7 @@ class HomeViewController: AccountPickerViewController {
     
     @objc func onPullToRefresh() {
         viewModel.fetchData.onNext(())
-        RemoteConfigUtility.shared.fetchCloudValues()
+        FeatureFlagUtility.shared.fetchCloudValues()
         UIAccessibility.post(notification: .screenChanged, argument: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             self.refreshControl?.endRefreshing()

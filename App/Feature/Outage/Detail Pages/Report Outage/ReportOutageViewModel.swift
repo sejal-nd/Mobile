@@ -143,7 +143,7 @@ class ReportOutageViewModel {
             switch result {
             case .success:
                 onSuccess()
-                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.outageReported : true])
+                try? WatchSessionController.shared.updateApplicationContext(applicationContext: [WatchSessionController.Key.outageReported : true])
             case .failure(let error):
                 onError(error.description)
             }
@@ -183,6 +183,10 @@ class ReportOutageViewModel {
         }
         if let locationId = self.outageStatus?.locationId {
             outageRequest.locationId = locationId
+        }
+        
+        if let auid = self.outageStatus?.auid {
+            outageRequest.auid = auid
         }
                 
         OutageService.reportOutageAnon(outageRequest: outageRequest) { result in

@@ -328,4 +328,17 @@ class AlertPreferencesViewModelTests: XCTestCase {
                        expectedString)
     }
     
+    func testGrantTrackerDetailLabelText() {
+        viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
+                                              accountService: MockAccountService())
+        let expectedString: String
+        switch Environment.shared.opco {
+        case .bge:
+            expectedString = NSLocalizedString("Receive a notification when your payment assistance grant has been approved and a second notification when the grant funds have been applied to your BGE account.", comment: "")
+        default:
+            expectedString = ""
+        }
+        XCTAssertEqual(AlertPreferencesViewModel.AlertPreferencesOptions.grantStatus.detailText,
+                       expectedString)
+    }
 }

@@ -44,7 +44,7 @@ class LoginViewModel {
         UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
     
-    func performLogin(onSuccess: @escaping (Bool, Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
+    func performLogin(onSuccess: @escaping (Bool, MaintenanceMode?) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
             return
@@ -62,17 +62,17 @@ class LoginViewModel {
                                         
                                         if hasTempPassword {
                                             AuthenticationService.logout(resetNavigation: false)
-                                            onSuccess(hasTempPassword, false)
+                                            onSuccess(hasTempPassword, nil)
                                         } else {
-                                            self.checkStormMode { isStormMode in
-                                                onSuccess(hasTempPassword, isStormMode)
+                                            self.getMaintenanceMode { maintenanceMode in
+                                                onSuccess(hasTempPassword, maintenanceMode)
                                             }
                                         }
                                     case .failure(let error):
                                         
                                         self?.isLoggingIn = false
                                         if error == .failedLogin {
-                                            if RemoteConfigUtility.shared.bool(forKey: .hasNewRegistration) {
+                                            if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) {
                                                 if Configuration.shared.opco == .bge {
                                                     onError(nil, NSLocalizedString("We're sorry, this combination of username and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: ""))
                                                 } else {
@@ -90,13 +90,15 @@ class LoginViewModel {
         }
     }
     
-    func checkStormMode(completion: @escaping (Bool) -> ()) {
+    func getMaintenanceMode(completion: @escaping (MaintenanceMode?) -> ()) {
         AnonymousService.maintenanceMode { (result: Result<MaintenanceMode, Error>) in
-            switch result {
-            case .success(let maintenanceMode):
-                completion(maintenanceMode.storm)
-            case .failure(_):
-                completion(false)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let maintenanceMode):
+                    completion(maintenanceMode)
+                case .failure(_):
+                    completion(nil)
+                }
             }
         }
     }
@@ -113,7 +115,7 @@ class LoginViewModel {
         BiometricService.setStoredPassword(password: password.value)
     }
     
-    func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool, Bool) -> Void, onError: @escaping (String?, String) -> Void) {
+    func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool, MaintenanceMode?) -> Void, onError: @escaping (String?, String) -> Void) {
         if let username = BiometricService.getStoredUsername(), let password = BiometricService.getStoredPassword() {
             self.username.accept(username)
             biometricsAutofilledPassword = password

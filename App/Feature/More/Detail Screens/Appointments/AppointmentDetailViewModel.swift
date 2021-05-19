@@ -11,7 +11,14 @@ import EventKit
 
 class AppointmentDetailViewModel {
     
-    let contactNumber = "1-800-685-0123"
+    var contactNumber: String {
+        switch Configuration.shared.opco {
+        case .bge: return "1-800-685-0123"
+        case .peco: return "1-800-494-4000"
+        case .comEd: return "1-800-334-7661"
+        default: return ""
+        }
+    }
     
     var appointment: Appointment
     

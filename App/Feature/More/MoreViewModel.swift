@@ -64,7 +64,7 @@ class MoreViewModel {
     }
     
     let billingVideosUrl: URL? = {
-        return URL(string: RemoteConfigUtility.shared.string(forKey: .billingVideoURL))
+        return URL(string: FeatureFlagUtility.shared.string(forKey: .billingVideoURL))
     }()
     
 }

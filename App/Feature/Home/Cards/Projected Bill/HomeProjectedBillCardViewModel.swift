@@ -147,11 +147,18 @@ class HomeProjectedBillCardViewModel {
                     let elecForecast = billForecast.electric,
                     let elecUsage = elecForecast.projectedUsage {
                     return String(format: "%d %@", Int(elecUsage), elecForecast.meterUnit)
-                } else if Configuration.shared.opco.isPHI,
-                    elecCost > 0,
-                    let toDateCost = billForecast.electric?.toDateCost,
-                    toDateCost > 0 {
-                    return elecCost.currencyString
+                } else {
+                    if Configuration.shared.opco.isPHI,
+                        elecCost > 0,
+                        let toDateCost = billForecast.electric?.toDateCost,
+                        toDateCost > 0 {
+                        return elecCost.currencyString
+                    } else {
+                        if let electricForecast = billForecast.electric,
+                           let projectedUsage = electricForecast.projectedUsage {
+                            return String(format: "%d %@", Int(projectedUsage), electricForecast.meterUnit)
+                        }
+                    }
                 }
                 return elecCost.currencyString
             } else if isGas, let gasCost = billForecast.gas?.projectedCost, let startDate = billForecast.gas?.billingStartDate {
@@ -169,11 +176,18 @@ class HomeProjectedBillCardViewModel {
                     let gasForecast = billForecast.gas,
                     let gasUsage = gasForecast.projectedUsage {
                     return String(format: "%d %@", Int(gasUsage), gasForecast.meterUnit)
-                } else if Configuration.shared.opco.isPHI,
-                    gasCost > 0,
-                    let toDateCost = billForecast.gas?.toDateCost,
-                    toDateCost > 0 {
-                    return gasCost.currencyString
+                } else {
+                    if Configuration.shared.opco.isPHI,
+                       gasCost > 0,
+                       let toDateCost = billForecast.gas?.toDateCost,
+                       toDateCost > 0 {
+                        return gasCost.currencyString
+                    } else {
+                        if let gasForecast = billForecast.gas,
+                           let gasUsage = gasForecast.projectedUsage {
+                            return String(format: "%d %@", Int(gasUsage), gasForecast.meterUnit)
+                        }
+                    }
                 }
                 return gasCost.currencyString
             }
@@ -228,32 +242,43 @@ class HomeProjectedBillCardViewModel {
                 var toDateString: String? = nil
 
                 if Configuration.shared.opco.isPHI {
-                    if !isGas,
-                        let toDateCost = billForecast.electric?.toDateCost,
-                        toDateCost > 0,
-                        let projectedCost = billForecast.electric?.projectedCost,
-                        projectedCost > 0 {
-                        toDateString = toDateCost.currencyString
-                    }
-                    else if isGas,
-                        let toDateCost = billForecast.gas?.toDateCost,
-                        toDateCost > 0,
-                        let projectedCost = billForecast.gas?.projectedCost,
-                        projectedCost > 0 {
-                        toDateString = toDateCost.currencyString
+                    if isGas {
+                        if let toDateCost = billForecast.gas?.toDateCost,
+                           toDateCost > .zero,
+                           let projectedCost = billForecast.gas?.projectedCost,
+                           projectedCost > .zero {
+                            toDateString = toDateCost.currencyString
+                        } else {
+                            if let gasForecast = billForecast.gas,
+                               let toDateUsage = gasForecast.toDateUsage {
+                                toDateString = String(format: "%d %@", Int(toDateUsage), gasForecast.meterUnit)
+                            }
+                        }
+                    } else {
+                        if let toDateCost = billForecast.electric?.toDateCost,
+                           toDateCost > .zero,
+                           let projectedCost = billForecast.electric?.projectedCost,
+                           projectedCost > .zero {
+                            toDateString = toDateCost.currencyString
+                        } else {
+                            if let elecForecast = billForecast.electric,
+                               let toDateUsage = elecForecast.toDateUsage {
+                                toDateString = String(format: "%d %@", Int(toDateUsage), elecForecast.meterUnit)
+                            }
+                        }
                     }
                 } else {
-                    if !isGas, let toDateCost = billForecast.electric?.toDateCost {
-                        toDateString = toDateCost.currencyString
-                    } else if isGas, let toDateCost = billForecast.gas?.toDateCost {
-                        toDateString = toDateCost.currencyString
+                        if !isGas, let toDateCost = billForecast.electric?.toDateCost {
+                            toDateString = toDateCost.currencyString
+                        } else if isGas, let toDateCost = billForecast.gas?.toDateCost {
+                            toDateString = toDateCost.currencyString
+                        }
+                    }
+                    
+                    if let str = toDateString {
+                        return String(format: NSLocalizedString("You've spent about %@ so far this bill period.", comment: ""), str)
                     }
                 }
-                
-                if let str = toDateString {
-                    return String(format: NSLocalizedString("You've spent about %@ so far this bill period.", comment: ""), str)
-                }
-            }
             return nil
         }
 }

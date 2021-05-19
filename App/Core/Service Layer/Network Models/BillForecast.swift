@@ -62,5 +62,6 @@ struct BillForecast: Decodable {
         let utilityAccount = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .utilityAccount)
         meterType = try utilityAccount.decode(String.self, forKey: .meterType)
         meterUnit = try utilityAccount.decode(String.self, forKey: .meterUnit)
+        meterUnit = meterUnit == "KWH" ? "kWh" : meterUnit
     }
 }

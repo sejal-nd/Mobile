@@ -251,6 +251,8 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        FirebaseUtility.logScreenView(.PaymentView(className: self.className))
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -441,7 +443,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
-                FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .switch_payment_method)])
+                FirebaseUtility.logEventV2(.payment(parameters: [.switch_payment_method]))
                 
                 guard let miniWalletVC = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
                 miniWalletVC.modalPresentationStyle = .overCurrentContext

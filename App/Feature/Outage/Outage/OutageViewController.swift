@@ -74,6 +74,12 @@ class OutageViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if userState == .authenticated {
+            FirebaseUtility.logScreenView(.OutageView(className: self.className))
+        } else {
+            FirebaseUtility.logScreenView(.UnauthenticatedOutageView(className: self.className))
+        }
+        
         let shouldHideNavigationBar = userState == .authenticated ? true : false
         navigationController?.setNavigationBarHidden(shouldHideNavigationBar, animated: true)
         clearTimestampForReportedOutage()
@@ -109,8 +115,8 @@ class OutageViewController: AccountPickerViewController {
                 if let noNetworkView = subview as? NoNetworkConnectionView {
                     noNetworkView.reload.subscribe(onNext: { [weak self] _ in
                         
-                        // Re-fetch remote config values
-                        RemoteConfigUtility.shared.fetchCloudValues()
+                        // Re-fetch feature flag values
+                        FeatureFlagUtility.shared.fetchCloudValues()
                         
                         self?.configureState(.loading)
                         self?.loadOutageStatus()
@@ -143,9 +149,9 @@ class OutageViewController: AccountPickerViewController {
         tableView.accessibilityLabel = "outageTableView"
         tableView.reloadData()
         
-        RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
-            self?.viewModel.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
-            self?.viewModel.streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
+        FeatureFlagUtility.shared.loadingDoneCallback = { [weak self] in
+            self?.viewModel.outageMapURLString = FeatureFlagUtility.shared.string(forKey: .outageMapURL)
+            self?.viewModel.streetlightOutageMapURLString = FeatureFlagUtility.shared.string(forKey: .streetlightMapURL)
             self?.tableView.reloadData()
         }
     }
@@ -189,7 +195,7 @@ class OutageViewController: AccountPickerViewController {
             if sender != nil {
                 sender?.endRefreshing()
                 self?.viewModel.hasJustReportedOutage = false
-                RemoteConfigUtility.shared.fetchCloudValues()
+                FeatureFlagUtility.shared.fetchCloudValues()
             }
             else {
                 self?.tableView.reloadData()

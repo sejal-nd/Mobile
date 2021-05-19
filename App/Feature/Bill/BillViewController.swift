@@ -148,6 +148,7 @@ class BillViewController: AccountPickerViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -183,6 +184,8 @@ class BillViewController: AccountPickerViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        FirebaseUtility.logScreenView(.BillView(className: self.className))
         
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
