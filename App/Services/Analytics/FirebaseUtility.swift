@@ -167,8 +167,8 @@ enum FirebaseEvent: Trackable {
             return "gamificationOptOut"
         case .gamificationExperienceAccessed:
             return "gamificationExperienceAccessed"
-        case .screenView:
-            return AnalyticsEventScreenView
+        case .screenView(let screenView):
+            return screenView.name
         default:
             return "\(self)"
         }
@@ -214,40 +214,7 @@ enum FirebaseEvent: Trackable {
         case .screenView(let screenView):
             return screenView.parameters
 
-        case .watch,
-             .errorNonFatal,
-             .loginPageStart,
-             .loginTokenNetworkComplete,
-             .loginExchangeTokenNetworkComplete,
-             .loginAccountNetworkComplete,
-             .initialAuthenticatedScreenStart,
-             .changePasswordStart,
-             .changePasswordSubmit,
-             .changePasswordNetworkComplete,
-             .reportOutageStart,
-             .reportOutageSubmit,
-             .reportOutageNetworkComplete,
-             .makePaymentStart,
-             .makePaymentNext,
-             .reviewPaymentSubmit,
-             .paymentNetworkComplete,
-             .autoPayStart,
-             .autoPaySubmit,
-             .autoPayNetworkComplete,
-             .paperlessEBillStart,
-             .paperlessEBillSubmit,
-             .paperlessEBillNetworkComplete,
-             .budgetBillingStart,
-             .budgetBillingSubmit,
-             .budgetBillingNetworkComplete,
-             .homeProfileStart,
-             .homeProfileSubmit,
-             .homeProfileNetworkComplete,
-             .releaseOfInfoStart,
-             .releaseOfInfoSubmit,
-             .releaseOfInfoNetworkComplete,
-             .personalizeHomeStart,
-             .personalizeHomeComplete:
+        default:
             return nil
         }
     }
