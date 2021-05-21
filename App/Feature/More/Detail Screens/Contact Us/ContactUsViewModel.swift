@@ -295,7 +295,7 @@ class ContactUsViewModel {
         }
     }
     
-    var buttonInfoList: [(urlString: String?, image: UIImage, accessibilityLabel: String, analyticParam: FirebaseUtility.ContactUsParameter)] {
+    var buttonInfoList: [(urlString: String?, image: UIImage, accessibilityLabel: String, analyticParam: ContactUsParameter)] {
         switch opco {
         case .comEd:
             return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook", .facebook),

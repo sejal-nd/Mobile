@@ -505,7 +505,7 @@ extension OutageViewController: ReportOutageDelegate {
                                          hasJustReported: viewModel.hasJustReportedOutage)
         
         // Analytics
-        let event: FirebaseUtility.EventV2
+        let event: FirebaseEvent
         if userState == .authenticated {
             event = .authOutage(parameters: [.report_complete])
         } else {

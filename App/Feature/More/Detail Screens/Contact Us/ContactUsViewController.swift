@@ -263,7 +263,7 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
             GoogleAnalytics.log(event: screenName, dimensions: [.link: value])
         }
         
-        let paramValue: FirebaseUtility.ContactUsParameter?
+        let paramValue: ContactUsParameter?
         switch textView {
         case emergencyNumberTextView:
             paramValue = .emergency_number

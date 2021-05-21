@@ -383,7 +383,7 @@ class ReviewPaymentViewController: UIViewController {
                                         
                     if let viewModel = self?.viewModel,
                         viewModel.billingHistoryItem == nil {
-                        var contactType = FirebaseUtility.PaymentParameter.AlternateContact.none
+                        var contactType = PaymentParameter.AlternateContact.none
                         if !viewModel.emailAddress.value.isEmpty &&
                             !viewModel.phoneNumber.value.isEmpty {
                             contactType = .both
