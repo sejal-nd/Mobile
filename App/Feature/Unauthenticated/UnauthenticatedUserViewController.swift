@@ -86,7 +86,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     }
 
     @IBAction private func loginRegisterPress(_ sender: ButtonControl) {
-        FirebaseUtility.logEventV2(.unauth(parameters: [.sign_in_register_press]))
+        FirebaseUtility.logEvent(.unauth(parameters: [.sign_in_register_press]))
 
         navigationController?.popViewController(animated: true)
     }
@@ -206,10 +206,10 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         case 0:
             switch indexPath.row {
             case 0:
-                FirebaseUtility.logEventV2(.unauth(parameters: [.report_outage_press]))
+                FirebaseUtility.logEvent(.unauth(parameters: [.report_outage_press]))
                 performSegue(withIdentifier: "reportOutageValidateAccount", sender: nil)
             case 1:
-                FirebaseUtility.logEventV2(.unauth(parameters: [.view_outage_press]))
+                FirebaseUtility.logEvent(.unauth(parameters: [.view_outage_press]))
                 performSegue(withIdentifier: "checkOutageValidateAccount", sender: nil)
             case 2:
                 performSegue(withIdentifier: "outageMapSegue", sender: nil)
@@ -225,7 +225,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 1:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 2:
-                FirebaseUtility.logEventV2(.unauth(parameters: [.billing_videos]))
+                FirebaseUtility.logEvent(.unauth(parameters: [.billing_videos]))
                 
                 UIApplication.shared.openUrlIfCan(billingVideosUrl)
             case 3:

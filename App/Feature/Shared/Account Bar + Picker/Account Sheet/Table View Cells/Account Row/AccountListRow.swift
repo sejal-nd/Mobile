@@ -65,7 +65,7 @@ class AccountListRow: UITableViewCell {
     func didSelect() {
         guard account.isMultipremise else { return }
         
-        FirebaseUtility.logEventV2(.accountPicker(parameters: [.expand_premise]))
+        FirebaseUtility.logEvent(.accountPicker(parameters: [.expand_premise]))
         
         // Toggle cellState & change constraints
         switch cellState {

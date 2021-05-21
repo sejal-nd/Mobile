@@ -58,7 +58,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
         bindTextField()
         bindSaveResults()
         
-        FirebaseUtility.logEventV2(.homeProfileStart)
+        FirebaseUtility.logEvent(.homeProfileStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -240,7 +240,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     @IBAction func saveButtonPress(_ sender: Any) {
-        FirebaseUtility.logEventV2(.homeProfileSubmit)
+        FirebaseUtility.logEvent(.homeProfileSubmit)
     }
     
     func bindTextField() {
@@ -269,7 +269,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
         
         viewModel.saveSuccess
             .drive(onNext: { [weak self] in
-                FirebaseUtility.logEventV2(.homeProfileNetworkComplete)
+                FirebaseUtility.logEvent(.homeProfileNetworkComplete)
                 self?.didSaveHomeProfileSubject.onNext(())
                 self?.navigationController?.popViewController(animated: true)
             })

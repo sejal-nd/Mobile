@@ -53,7 +53,7 @@ class HomeContentViewController: UIViewController {
                 self?.inGame = false
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
                 self?.switchViews(animated: false, onCompletion: nil)
-                FirebaseUtility.logEventV2(.gamification(parameters: [.switch_to_game_view]))
+                FirebaseUtility.logEvent(.gamification(parameters: [.switch_to_game_view]))
             })
             .disposed(by: bag)
         
@@ -64,7 +64,7 @@ class HomeContentViewController: UIViewController {
                 self?.inGame = true
                 UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
                 self?.switchViews(animated: false, onCompletion: nil)
-                FirebaseUtility.logEventV2(.gamification(parameters: [.switch_to_home_view]))
+                FirebaseUtility.logEvent(.gamification(parameters: [.switch_to_home_view]))
             })
             .disposed(by: bag)
     }

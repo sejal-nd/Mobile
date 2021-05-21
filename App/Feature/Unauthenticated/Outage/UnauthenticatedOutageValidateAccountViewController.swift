@@ -234,7 +234,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     }
     
     @IBAction func onAccountNumberTooltipPress() {
-        FirebaseUtility.logEventV2(.unauthOutage(parameters: [.account_number_help]))
+        FirebaseUtility.logEvent(.unauthOutage(parameters: [.account_number_help]))
         
         let description: String
         switch Configuration.shared.opco {

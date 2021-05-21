@@ -245,7 +245,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
 
         fetchData(initialFetch: true)
         
-        FirebaseUtility.logEventV2(.makePaymentStart)
+        FirebaseUtility.logEvent(.makePaymentStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -443,7 +443,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
-                FirebaseUtility.logEventV2(.payment(parameters: [.switch_payment_method]))
+                FirebaseUtility.logEvent(.payment(parameters: [.switch_payment_method]))
                 
                 guard let miniWalletVC = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
                 miniWalletVC.modalPresentationStyle = .overCurrentContext
@@ -538,7 +538,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             }
         }
         
-        FirebaseUtility.logEventV2(.makePaymentNext)
+        FirebaseUtility.logEvent(.makePaymentNext)
         
         performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
     }

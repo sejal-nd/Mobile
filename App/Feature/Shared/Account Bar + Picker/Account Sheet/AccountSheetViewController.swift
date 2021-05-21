@@ -334,7 +334,7 @@ extension AccountSheetViewController: UITableViewDelegate {
         
         selectedIndexPath = accountIndexPath
                 
-        FirebaseUtility.logEventV2(.accountPicker(parameters: [.account_change]))
+        FirebaseUtility.logEvent(.accountPicker(parameters: [.account_change]))
         
         // Selection Action
         delegate?.didSelectAccount(accounts[accountIndexPath.row], premiseIndexPath: premiseIndexPath)

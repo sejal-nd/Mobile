@@ -406,17 +406,17 @@ extension OutageViewController: UITableViewDelegate {
         case 1:
             GoogleAnalytics.log(event: .viewStreetlightMapOfferComplete)
             if userState == .authenticated {
-                FirebaseUtility.logEventV2(.authOutage(parameters: [.streetlight_map]))
+                FirebaseUtility.logEvent(.authOutage(parameters: [.streetlight_map]))
             } else {
-                FirebaseUtility.logEventV2(.unauthOutage(parameters: [.streetlight_map]))
+                FirebaseUtility.logEvent(.unauthOutage(parameters: [.streetlight_map]))
             }
             performSegue(withIdentifier: "outageMapSegue", sender: true)
         case 2:
             GoogleAnalytics.log(event: .viewMapOfferComplete)
             if userState == .authenticated {
-                FirebaseUtility.logEventV2(.authOutage(parameters: [.map]))
+                FirebaseUtility.logEvent(.authOutage(parameters: [.map]))
             } else {
-                FirebaseUtility.logEventV2(.unauthOutage(parameters: [.map]))
+                FirebaseUtility.logEvent(.unauthOutage(parameters: [.map]))
             }
             performSegue(withIdentifier: "outageMapSegue", sender: false)
         default:
@@ -444,9 +444,9 @@ extension OutageViewController: AccountPickerDelegate {
 extension OutageViewController: OutageStatusDelegate {
     func didPressButton(button: UIButton, outageState: OutageState) {
         if userState == .authenticated {
-            FirebaseUtility.logEventV2(.authOutage(parameters: [.view_details]))
+            FirebaseUtility.logEvent(.authOutage(parameters: [.view_details]))
         } else {
-            FirebaseUtility.logEventV2(.unauthOutage(parameters: [.view_details]))
+            FirebaseUtility.logEvent(.unauthOutage(parameters: [.view_details]))
         }
         
         switch outageState {
@@ -476,9 +476,9 @@ extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
         // Analytics
         GoogleAnalytics.log(event: .outageAuthEmergencyCall)
         if userState == .authenticated {
-            FirebaseUtility.logEventV2(.authOutage(parameters: [.emergency_number]))
+            FirebaseUtility.logEvent(.authOutage(parameters: [.emergency_number]))
         } else {
-            FirebaseUtility.logEventV2(.unauthOutage(parameters: [.emergency_number]))
+            FirebaseUtility.logEvent(.unauthOutage(parameters: [.emergency_number]))
         }
         viewModel.trackPhoneNumberAnalytics(isAuthenticated: userState == .authenticated, for: URL)
     }
@@ -511,6 +511,6 @@ extension OutageViewController: ReportOutageDelegate {
         } else {
             event = .unauthOutage(parameters: [.report_complete])
         }
-        FirebaseUtility.logEventV2(event)
+        FirebaseUtility.logEvent(event)
     }
 }

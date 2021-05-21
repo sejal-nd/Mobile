@@ -77,7 +77,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FirebaseUtility.logEventV2(.reportOutageStart)
+        FirebaseUtility.logEvent(.reportOutageStart)
         
         title = NSLocalizedString("Report Outage", comment: "")
         
@@ -397,12 +397,12 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
-        FirebaseUtility.logEventV2(.reportOutageSubmit)
+        FirebaseUtility.logEvent(.reportOutageSubmit)
         
         if !unauthenticatedExperience {
-            FirebaseUtility.logEventV2(.authOutage(parameters: [.report_complete]))
+            FirebaseUtility.logEvent(.authOutage(parameters: [.report_complete]))
         } else {
-            FirebaseUtility.logEventV2(.unauthOutage(parameters: [.report_outage]))
+            FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_outage]))
         }
         
         view.endEditing(true)
@@ -417,7 +417,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         LoadingView.show()
         if unauthenticatedExperience {
             viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
-                FirebaseUtility.logEventV2(.reportOutageNetworkComplete)
+                FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
@@ -427,7 +427,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
-                FirebaseUtility.logEventV2(.reportOutageNetworkComplete)
+                FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())

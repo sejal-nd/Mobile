@@ -162,7 +162,7 @@ class ChangePasswordViewModel {
                         }
                     }
                     
-                    FirebaseUtility.logEventV2(.changePasswordNetworkComplete)
+                    FirebaseUtility.logEvent(.changePasswordNetworkComplete)
                     
                     onSuccess()
                 case .failure(let error):
@@ -192,7 +192,7 @@ class ChangePasswordViewModel {
                         }
                     }
                     
-                    FirebaseUtility.logEventV2(.changePasswordNetworkComplete)
+                    FirebaseUtility.logEvent(.changePasswordNetworkComplete)
                     
                     onSuccess()
                 case .failure(let error):

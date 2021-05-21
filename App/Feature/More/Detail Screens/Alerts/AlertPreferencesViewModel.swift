@@ -326,7 +326,7 @@ class AlertPreferencesViewModel {
         
         UserDefaults.standard.set(energyBuddyUpdates.value, forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference)
         if !energyBuddyUpdates.value {
-            FirebaseUtility.logEventV2(.gamification(parameters: [.push_opt_out]))
+            FirebaseUtility.logEvent(.gamification(parameters: [.push_opt_out]))
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
         }
         

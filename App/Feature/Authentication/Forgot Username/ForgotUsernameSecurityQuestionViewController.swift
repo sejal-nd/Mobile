@@ -90,7 +90,7 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
                 }
                 self.delegate = dest
 
-                FirebaseUtility.logEventV2(.forgotUsername(parameters: [.answer_question_complete]))
+                FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
 
                 self.delegate?.forgotUsernameSecurityQuestionViewController(self, didUnmaskUsername: unmaskedUsername)
                 self.dismissModal()
@@ -103,7 +103,7 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
         }, onError: { [weak self] errorMessage in
             LoadingView.hide()
 
-            FirebaseUtility.logEventV2(.forgotUsername(parameters: [.network_submit_error]))
+            FirebaseUtility.logEvent(.forgotUsername(parameters: [.network_submit_error]))
 
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))

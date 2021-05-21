@@ -136,7 +136,7 @@ class AlertPreferencesViewController: UIViewController {
             LoadingView.hide()
             guard let self = self else { return }
             
-            FirebaseUtility.logEventV2(.more(parameters: [.alert_preferences_complete]))
+            FirebaseUtility.logEvent(.more(parameters: [.alert_preferences_complete]))
             
             self.delegate?.alertPreferencesViewControllerDidSavePreferences()
             self.dismiss(animated: true, completion: nil)
@@ -175,14 +175,14 @@ class AlertPreferencesViewController: UIViewController {
                 let alertVc = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
                 
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] _ in
-                    FirebaseUtility.logEventV2(.alerts(parameters: [.bill_enroll_push_cancel]))
+                    FirebaseUtility.logEvent(.alerts(parameters: [.bill_enroll_push_cancel]))
                     GoogleAnalytics.log(event: .alertseBillEnrollPushCancel)
                     
                     self?.viewModel.billReady.accept(!isOn) // Need to manually set this because .setOn does not trigger rx binding
                 }))
                 
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self] _ in
-                    FirebaseUtility.logEventV2(.alerts(parameters: [.bill_enroll_push_continue]))
+                    FirebaseUtility.logEvent(.alerts(parameters: [.bill_enroll_push_continue]))
                     GoogleAnalytics.log(event: .alertseBillEnrollPushContinue)
                     
                     self?.viewModel.billReady.accept(true)
@@ -200,7 +200,7 @@ class AlertPreferencesViewController: UIViewController {
             
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
                 
-                FirebaseUtility.logEventV2(.alerts(parameters: [.bill_unenroll_push_continue]))
+                FirebaseUtility.logEvent(.alerts(parameters: [.bill_unenroll_push_continue]))
 
                 GoogleAnalytics.log(event: .alertseBillUnenrollPushContinue)
 
@@ -266,12 +266,12 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         cell.spanishRadioSelectControl.rx.touchUpInside.mapTo(false).bind(to: viewModel.english).disposed(by: cell.disposeBag)
 
         cell.spanishRadioSelectControl.rx.touchUpInside.asDriver().drive(onNext: {
-            FirebaseUtility.logEventV2(.alerts(parameters: [.english]))
+            FirebaseUtility.logEvent(.alerts(parameters: [.english]))
         })
         .disposed(by: cell.disposeBag)
         
         cell.spanishRadioSelectControl.rx.touchUpInside.asDriver().drive(onNext: {
-            FirebaseUtility.logEventV2(.alerts(parameters: [.spanish]))
+            FirebaseUtility.logEvent(.alerts(parameters: [.spanish]))
         })
         .disposed(by: cell.disposeBag)
 
@@ -352,7 +352,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             cell.pickerButton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
                     guard let self = self else { return }
-                    FirebaseUtility.logEventV2(.alerts(parameters: [.days_before_due_press]))
+                    FirebaseUtility.logEvent(.alerts(parameters: [.days_before_due_press]))
                     GoogleAnalytics.log(event: .alertsPayRemind)
                     let upperRange = Configuration.shared.opco == .bge ? 14 : 7
                     PickerView.showStringPicker(withTitle: NSLocalizedString("Payment Due Reminder", comment: ""),

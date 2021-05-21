@@ -690,7 +690,7 @@ class BillViewController: AccountPickerViewController {
                         return
                     }
                     
-                    FirebaseUtility.logEventV2(.bill(parameters: [.bill_view_pdf]))
+                    FirebaseUtility.logEvent(.bill(parameters: [.bill_view_pdf]))
                     
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
@@ -787,7 +787,7 @@ class BillViewController: AccountPickerViewController {
                     vc.accountDetail = accountDetail
                     let newNavController = LargeTitleNavigationController(rootViewController: vc)
                     newNavController.modalPresentationStyle = .fullScreen
-                    FirebaseUtility.logEventV2(.makePaymentStart)
+                    FirebaseUtility.logEvent(.makePaymentStart)
                     self.present(newNavController, animated: true, completion: nil)
                 }
                 

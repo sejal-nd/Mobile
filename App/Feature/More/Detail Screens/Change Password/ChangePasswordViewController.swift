@@ -165,7 +165,7 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logEventV2(.changePasswordStart)
+        FirebaseUtility.logEvent(.changePasswordStart)
         FirebaseUtility.logScreenView(.ChangePasswordView(className: self.className))
         
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -180,7 +180,7 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
         
-        FirebaseUtility.logEventV2(.changePasswordSubmit)
+        FirebaseUtility.logEvent(.changePasswordSubmit)
         
         view.endEditing(true)
         
@@ -202,14 +202,14 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
             if self.viewModel.hasStrongPassword {
                 GoogleAnalytics.log(event: .strongPasswordComplete)
                 
-                FirebaseUtility.logEventV2(.more(parameters: [.strong_password_complete]))
+                FirebaseUtility.logEvent(.more(parameters: [.strong_password_complete]))
             }
             
-            FirebaseUtility.logEventV2(.changePasswordNetworkComplete)
+            FirebaseUtility.logEvent(.changePasswordNetworkComplete)
             
             GoogleAnalytics.log(event: .changePasswordDone)
                                                                         
-            FirebaseUtility.logEventV2(.more(parameters: [.change_password_complete]))
+            FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
 
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()

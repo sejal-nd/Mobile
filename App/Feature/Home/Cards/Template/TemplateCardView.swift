@@ -186,6 +186,6 @@ class TemplateCardView: UIView {
                                                                                          self.itronSmartThermostatViewController)
     
     @IBAction func ctaPress(_ sender: Any) {
-        FirebaseUtility.logEventV2(.home(parameters: [.promo_cta]))
+        FirebaseUtility.logEvent(.home(parameters: [.promo_cta]))
     }
 }

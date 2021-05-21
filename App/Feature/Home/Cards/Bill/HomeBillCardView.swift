@@ -270,7 +270,7 @@ class HomeBillCardView: UIView {
             .filter { $0 }
             .drive(onNext: { _ in
                 GoogleAnalytics.log(event: .checkBalanceError)
-                FirebaseUtility.logEventV2(.home(parameters: [.balance_not_available]))
+                FirebaseUtility.logEvent(.home(parameters: [.balance_not_available]))
             })
             .disposed(by: bag)
         
@@ -343,28 +343,28 @@ class HomeBillCardView: UIView {
             .subscribe(onError: {
                 if let error = $0 as? NetworkingError,
                    error != .blockAccount && error != .passwordProtected {
-                    FirebaseUtility.logEventV2(.bill(parameters: [.bill_not_available]))
+                    FirebaseUtility.logEvent(.bill(parameters: [.bill_not_available]))
                 }
             }).disposed(by: bag)
     }
     
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: {
-            FirebaseUtility.logEventV2(.home(parameters: [.bill_cta]))
+            FirebaseUtility.logEvent(.home(parameters: [.bill_cta]))
             GoogleAnalytics.log(event: .viewBillBillCard)
         })
     
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
-            FirebaseUtility.logEventV2(.home(parameters: [.bill_slide_to_pay]))
+            FirebaseUtility.logEvent(.home(parameters: [.bill_slide_to_pay]))
         })
         .mapTo(())
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
         .do(onNext: {
-            FirebaseUtility.logEventV2(.home(parameters: [.bill_terms]))
+            FirebaseUtility.logEvent(.home(parameters: [.bill_terms]))
             GoogleAnalytics.log(event: .oneTouchTermsView)
         })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
@@ -491,13 +491,13 @@ class HomeBillCardView: UIView {
             guard let assistanceType = self?.viewModel.mobileAssistanceType else { return UIViewController()}
             switch assistanceType {
             case .dde:
-                FirebaseUtility.logEventV2(.home(parameters: [.extension_cta]))
+                FirebaseUtility.logEvent(.home(parameters: [.extension_cta]))
             case .dpa:
-                FirebaseUtility.logEventV2(.home(parameters: [.dpa_cta]))
+                FirebaseUtility.logEvent(.home(parameters: [.dpa_cta]))
             case .dpaReintate:
-                FirebaseUtility.logEventV2(.home(parameters: [.reinstate_cta]))
+                FirebaseUtility.logEvent(.home(parameters: [.reinstate_cta]))
             case .none:
-                FirebaseUtility.logEventV2(.home(parameters: [.assistance_cta]))
+                FirebaseUtility.logEvent(.home(parameters: [.assistance_cta]))
             }
             let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: self?.viewModel.mobileAssistanceURL.value ?? "")!)
             return safariVc

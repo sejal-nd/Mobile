@@ -323,8 +323,8 @@ class ReviewPaymentViewController: UIViewController {
             }
         }
         
-        FirebaseUtility.logEventV2(.reviewPaymentSubmit)
-        FirebaseUtility.logEventV2(.payment(parameters: [.submit]))
+        FirebaseUtility.logEvent(.reviewPaymentSubmit)
+        FirebaseUtility.logEvent(.payment(parameters: [.submit]))
         
         let handleError = { [weak self] (error: NetworkingError) in
             guard let self = self else { return }
@@ -355,14 +355,14 @@ class ReviewPaymentViewController: UIViewController {
             viewModel.modifyPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
                 
-                FirebaseUtility.logEventV2(.paymentNetworkComplete)
+                FirebaseUtility.logEvent(.paymentNetworkComplete)
                 
                 if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
                     switch bankOrCard {
                     case .bank:
-                        FirebaseUtility.logEventV2(.payment(parameters: [.bank_complete]))
+                        FirebaseUtility.logEvent(.payment(parameters: [.bank_complete]))
                     case .card:
-                        FirebaseUtility.logEventV2(.payment(parameters: [.card_complete]))
+                        FirebaseUtility.logEvent(.payment(parameters: [.card_complete]))
                     }
                 }
                 
@@ -379,7 +379,7 @@ class ReviewPaymentViewController: UIViewController {
                 }, onSuccess: { [weak self] in
                     LoadingView.hide()
                     
-                    FirebaseUtility.logEventV2(.paymentNetworkComplete)
+                    FirebaseUtility.logEvent(.paymentNetworkComplete)
                                         
                     if let viewModel = self?.viewModel,
                         viewModel.billingHistoryItem == nil {
@@ -395,7 +395,7 @@ class ReviewPaymentViewController: UIViewController {
                             contactType = .none
                         }
                                                 
-                        FirebaseUtility.logEventV2(.payment(parameters: [.alternateContact(contactType)]))
+                        FirebaseUtility.logEvent(.payment(parameters: [.alternateContact(contactType)]))
                     }
                     
                     if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
@@ -403,10 +403,10 @@ class ReviewPaymentViewController: UIViewController {
                         switch bankOrCard {
                         case .bank:
                             GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
-                            FirebaseUtility.logEventV2(.payment(parameters: [.bank_complete]))
+                            FirebaseUtility.logEvent(.payment(parameters: [.bank_complete]))
                         case .card:
                             GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
-                            FirebaseUtility.logEventV2(.payment(parameters: [.card_complete]))
+                            FirebaseUtility.logEvent(.payment(parameters: [.card_complete]))
                         }
                     }
                     
@@ -433,7 +433,7 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     @IBAction func onTermsConditionsPress() {
-        FirebaseUtility.logEventV2(.payment(parameters: [.view_terms]))
+        FirebaseUtility.logEvent(.payment(parameters: [.view_terms]))
         
         let url = URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions-exln.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)

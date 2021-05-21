@@ -46,7 +46,7 @@ class HomeEditViewController: UIViewController {
         
         observerActions()
         
-        FirebaseUtility.logEventV2(.personalizeHomeStart)
+        FirebaseUtility.logEvent(.personalizeHomeStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,9 +76,9 @@ class HomeEditViewController: UIViewController {
                 guard let this = self, !this.isReordering.value else { return }
                 HomeCardPrefsStore.shared.list = this.cards.value[0]
                 
-                FirebaseUtility.logEventV2(.personalizeHomeComplete)
+                FirebaseUtility.logEvent(.personalizeHomeComplete)
                 
-                FirebaseUtility.logEventV2(.home(parameters: [.personalize_complete]))
+                FirebaseUtility.logEvent(.home(parameters: [.personalize_complete]))
                 
                 this.navigationController?.popViewController(animated: true)
             })
@@ -191,7 +191,7 @@ extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewData
                        onTap: { [weak self] in
                         guard let this = self, !this.isReordering.value else { return }
                         
-                        FirebaseUtility.logEventV2(.home(parameters: [.personalize_restore]))
+                        FirebaseUtility.logEvent(.home(parameters: [.personalize_restore]))
                         
                         let selectedCards = HomeCardPrefsStore.defaultList
                         

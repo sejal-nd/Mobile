@@ -148,7 +148,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         enrollAllAccountsCheckbox.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
         
         addCustomBackButton()
-        FirebaseUtility.logEventV2(.paperlessEBillStart)
+        FirebaseUtility.logEvent(.paperlessEBillStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -207,7 +207,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     }
     
     @IBAction func onTooltipPress() {
-        FirebaseUtility.logEventV2(.eBill(parameters: [.learn_more]))
+        FirebaseUtility.logEvent(.eBill(parameters: [.learn_more]))
         
         let description: String
         if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
@@ -235,20 +235,20 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     
     @IBAction func onEnrollmentButtonPress() {
         
-        FirebaseUtility.logEventV2(.paperlessEBillSubmit)
+        FirebaseUtility.logEvent(.paperlessEBillSubmit)
         
         LoadingView.show()
         viewModel.submitChanges(onSuccess: { [weak self] changedStatus in
             LoadingView.hide()
             guard let self = self else { return }
             
-            FirebaseUtility.logEventV2(.paperlessEBillNetworkComplete)
+            FirebaseUtility.logEvent(.paperlessEBillNetworkComplete)
             
             self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
             self.navigationController?.popViewController(animated: true)
             }, onError: { [weak self] errMessage in
                 
-                FirebaseUtility.logEventV2(.eBill(parameters: [.network_submit_error]))
+                FirebaseUtility.logEvent(.eBill(parameters: [.network_submit_error]))
                 
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)

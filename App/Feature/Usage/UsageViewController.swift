@@ -251,11 +251,11 @@ class UsageViewController: AccountPickerViewController {
     @IBAction private func barGraphPress(_ sender: ButtonControl) {
         switch sender.tag {
         case 1:
-            FirebaseUtility.logEventV2(.usage(parameters: [.previous_bar_press]))
+            FirebaseUtility.logEvent(.usage(parameters: [.previous_bar_press]))
         case 2:
-            FirebaseUtility.logEventV2(.usage(parameters: [.current_bar_press]))
+            FirebaseUtility.logEvent(.usage(parameters: [.current_bar_press]))
         case 3:
-            FirebaseUtility.logEventV2(.usage(parameters: [.projected_bar_press]))
+            FirebaseUtility.logEvent(.usage(parameters: [.projected_bar_press]))
         default:
             break
         }
@@ -266,9 +266,9 @@ class UsageViewController: AccountPickerViewController {
     func selectBar(_ selectedBar: UsageViewModel.BarGraphSelection, gas: Bool) {
         
         if gas {
-            FirebaseUtility.logEventV2(.usage(parameters: [.gas_segment_press]))
+            FirebaseUtility.logEvent(.usage(parameters: [.gas_segment_press]))
         } else {
-            FirebaseUtility.logEventV2(.usage(parameters: [.electric_segment_press]))
+            FirebaseUtility.logEvent(.usage(parameters: [.electric_segment_press]))
         }
         
         viewModel.electricGasSelectedSegmentIndex.accept(gas ? 1 : 0)
@@ -353,9 +353,9 @@ class UsageViewController: AccountPickerViewController {
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
                 
                 if isPreviousBill {
-                    FirebaseUtility.logEventV2(.usage(parameters: [.last_year_graph_press]))
+                    FirebaseUtility.logEvent(.usage(parameters: [.last_year_graph_press]))
                 } else {
-                    FirebaseUtility.logEventV2(.usage(parameters: [.last_bill_graph_press]))
+                    FirebaseUtility.logEvent(.usage(parameters: [.last_bill_graph_press]))
                 }
                 
                 GoogleAnalytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)

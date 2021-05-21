@@ -85,24 +85,24 @@ class OutageViewModel {
         case .bge:
             switch urlString {
             case "tel:1-800-685-0123":
-                FirebaseUtility.logEventV2(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
+                FirebaseUtility.logEvent(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
             case "tel:1-877-778-7798":
-                FirebaseUtility.logEventV2(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_emergency_gas]))
+                FirebaseUtility.logEvent(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_emergency_gas]))
             case "tel:1-877-778-2222":
-                FirebaseUtility.logEventV2(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_emergency_electric]))
+                FirebaseUtility.logEvent(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_emergency_electric]))
             default:
                 break
             }
         case .comEd:
-            FirebaseUtility.logEventV2(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
+            FirebaseUtility.logEvent(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
         case .peco:
-            FirebaseUtility.logEventV2(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
+            FirebaseUtility.logEvent(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
         case .pepco:
-            FirebaseUtility.logEventV2(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
+            FirebaseUtility.logEvent(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
         case .ace:
-            FirebaseUtility.logEventV2(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
+            FirebaseUtility.logEvent(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
         case .delmarva:
-            FirebaseUtility.logEventV2(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
+            FirebaseUtility.logEvent(isAuthenticated ? .authOutage(parameters: [.phone_number_main]) : .unauthOutage(parameters: [.phone_number_main]))
         }
     }
     

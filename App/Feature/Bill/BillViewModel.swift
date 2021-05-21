@@ -59,7 +59,7 @@ class BillViewModel {
             let accountDetail = AccountService.rx.fetchAccountDetails(accountNumber: account.accountNumber, budgetBilling: true)
             let scheduledPayment = AccountService.rx.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
                 .do(onError: { _ in
-                    FirebaseUtility.logEventV2(.bill(parameters: [.bill_not_available]))
+                    FirebaseUtility.logEvent(.bill(parameters: [.bill_not_available]))
                 })
             return Observable.zip(accountDetail, scheduledPayment)
         })

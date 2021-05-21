@@ -252,7 +252,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let guid = getQueryStringParameter(url: url, param: "guid") {
             UserDefaults.standard.set(guid, forKey: UserDefaultKeys.accountVerificationDeepLinkGuid)            
-            FirebaseUtility.logEventV2(.register(parameters: [.account_verify]))
+            FirebaseUtility.logEvent(.register(parameters: [.account_verify]))
         }
         
         if let topMostVC = rootNav.viewControllers.last as? SplashViewController {

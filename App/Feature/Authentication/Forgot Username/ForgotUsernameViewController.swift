@@ -182,7 +182,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
             LoadingView.hide()
             self?.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
             
-            FirebaseUtility.logEventV2(.forgotUsername(parameters: [.verification_complete]))
+            FirebaseUtility.logEvent(.forgotUsername(parameters: [.verification_complete]))
             
             GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
         }, onNeedAccountNumber: { [weak self] in

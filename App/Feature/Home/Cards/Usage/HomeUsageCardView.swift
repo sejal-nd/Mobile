@@ -500,15 +500,15 @@ class HomeUsageCardView: UIView {
     
     
     @IBAction func ctaButtonPress(_ sender: Any) {
-        FirebaseUtility.logEventV2(.home(parameters: [.usage_cta]))
+        FirebaseUtility.logEvent(.home(parameters: [.usage_cta]))
     }
     
     @IBAction func segmentValueChanged(_ sender: SegmentedControl) {
         guard !isInitialSegmentValuePress else { return }
         if sender.selectedIndex.value == 0 {
-            FirebaseUtility.logEventV2(.home(parameters: [.usage_electric_press]))
+            FirebaseUtility.logEvent(.home(parameters: [.usage_electric_press]))
         } else {
-            FirebaseUtility.logEventV2(.home(parameters: [.usage_gas_press]))
+            FirebaseUtility.logEvent(.home(parameters: [.usage_gas_press]))
         }
         isInitialSegmentValuePress = false
     }

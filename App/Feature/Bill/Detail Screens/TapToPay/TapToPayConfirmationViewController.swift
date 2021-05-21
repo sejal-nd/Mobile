@@ -174,7 +174,7 @@ class TapToPayConfirmationViewController: UIViewController {
         NotificationCenter.default.post(name: .didSelectEnrollInAutoPay, object: self.viewModel.accountDetail.value)
         NotificationCenter.default.post(name: .didRecievePaymentConfirmation, object: nil)
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        FirebaseUtility.logEventV2(.payment(parameters: [.autopay]))
+        FirebaseUtility.logEvent(.payment(parameters: [.autopay]))
         for vc in presentingNavController.viewControllers {
             if let dest = vc as? TapToPayReviewPaymentViewController {
                 presentingNavController.popToViewController(dest, animated: false)

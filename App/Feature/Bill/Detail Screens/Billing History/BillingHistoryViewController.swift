@@ -203,7 +203,7 @@ class BillingHistoryViewController: UIViewController {
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     return alertVc
                 } else {
-                    FirebaseUtility.logEventV2(.bill(parameters: [.history_view_pdf]))
+                    FirebaseUtility.logEvent(.bill(parameters: [.history_view_pdf]))
                     
                     let vc = billStoryboard.instantiateViewController(withIdentifier: "viewBill") as! ViewBillViewController
                     vc.viewModel.billDate = billingHistoryItem.date
@@ -218,7 +218,7 @@ class BillingHistoryViewController: UIViewController {
     }
     
     @objc func viewAllUpcoming() {
-        FirebaseUtility.logEventV2(.bill(parameters: [.history_view_more_upcoming_header]))
+        FirebaseUtility.logEvent(.bill(parameters: [.history_view_more_upcoming_header]))
         
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
@@ -230,9 +230,9 @@ class BillingHistoryViewController: UIViewController {
     
     @objc func viewMorePast(_ sender: UIButton) {
         if sender.tag == 1 {
-            FirebaseUtility.logEventV2(.bill(parameters: [.history_view_more_past_row]))
+            FirebaseUtility.logEvent(.bill(parameters: [.history_view_more_past_row]))
         } else {
-            FirebaseUtility.logEventV2(.bill(parameters: [.history_view_more_past_header]))
+            FirebaseUtility.logEvent(.bill(parameters: [.history_view_more_past_header]))
         }
         
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)

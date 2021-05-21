@@ -103,7 +103,7 @@ class MoreViewController: UIViewController {
     // MARK: - Actions
     
     @objc func toggleBiometrics(_ sender: UISwitch) {
-        FirebaseUtility.logEventV2(.biometricsToggle(parameters: [sender.isOn ? .true : .false]))
+        FirebaseUtility.logEvent(.biometricsToggle(parameters: [sender.isOn ? .true : .false]))
         
         FirebaseUtility.setUserProperty(.isBiometricsEnabled, value: sender.isOn.description)
         
@@ -173,7 +173,7 @@ class MoreViewController: UIViewController {
     }
     
     private func logout(action: UIAlertAction) {
-        FirebaseUtility.logEventV2(.more(parameters: [.sign_out]))
+        FirebaseUtility.logEvent(.more(parameters: [.sign_out]))
             
         AuthenticationService.logout(sendToLogin: false)
     }
@@ -361,7 +361,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 1:
-                FirebaseUtility.logEventV2(.more(parameters: [.billing_videos]))
+                FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                 
                 UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
             case 2:
@@ -439,7 +439,7 @@ extension MoreViewController: SetDefaultAccountViewControllerDelegate {
     func setDefaultAccountViewControllerDidFinish(_ setDefaultAccountViewController: SetDefaultAccountViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Default account changed", comment: ""))
-            FirebaseUtility.logEventV2(.more(parameters: [.set_default_account_complete]))
+            FirebaseUtility.logEvent(.more(parameters: [.set_default_account_complete]))
         })
     }
 }

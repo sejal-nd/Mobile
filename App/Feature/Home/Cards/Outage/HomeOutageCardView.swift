@@ -262,6 +262,6 @@ class HomeOutageCardView: UIView {
     }
     
     @IBAction func ctaPress(_ sender: Any) {        
-        FirebaseUtility.logEventV2(.home(parameters: [.outage_cta]))
+        FirebaseUtility.logEvent(.home(parameters: [.outage_cta]))
     }
 }

@@ -673,7 +673,7 @@ struct FirebaseUtility {
         FirebaseApp.configure(options: fileopts)
     }
     
-    public static func logEventV2(_ event: FirebaseEvent) {
+    public static func logEvent(_ event: FirebaseEvent) {
         #if DEBUG
         if let parameters = event.parameters {
             parameters.forEach { parameter in
@@ -700,7 +700,7 @@ struct FirebaseUtility {
     }
     
     public static func logScreenView(_ screenView: ScreenView) {
-        FirebaseUtility.logEventV2(.screenView(screenView))
+        FirebaseUtility.logEvent(.screenView(screenView))
     }
 }
 

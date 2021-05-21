@@ -88,7 +88,7 @@ class BGEAutoPayViewController: UIViewController {
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
         
-        FirebaseUtility.logEventV2(.autoPayStart)
+        FirebaseUtility.logEvent(.autoPayStart)
         
         if accountDetail.isAutoPay {
             submitButton.isHidden = true
@@ -261,17 +261,17 @@ class BGEAutoPayViewController: UIViewController {
             LoadingView.show()
             GoogleAnalytics.log(event: .autoPayUnenrollOffer)
             
-            FirebaseUtility.logEventV2(.autoPay(parameters: [.unenroll_start]))
+            FirebaseUtility.logEvent(.autoPay(parameters: [.unenroll_start]))
             
-            FirebaseUtility.logEventV2(.autoPaySubmit)
+            FirebaseUtility.logEvent(.autoPaySubmit)
             
             self.viewModel.unenroll(onSuccess: { [weak self] in
                 LoadingView.hide()
                 GoogleAnalytics.log(event: .autoPayUnenrollComplete)
                 
-                FirebaseUtility.logEventV2(.autoPay(parameters: [.unenroll_complete]))
+                FirebaseUtility.logEvent(.autoPay(parameters: [.unenroll_complete]))
                 
-                FirebaseUtility.logEventV2(.autoPayNetworkComplete)
+                FirebaseUtility.logEvent(.autoPayNetworkComplete)
                 
                 guard let self = self else { return }
                 let title = NSLocalizedString("Unenrolled from AutoPay", comment: "")
@@ -285,7 +285,7 @@ class BGEAutoPayViewController: UIViewController {
                 
                 self.navigationController?.present(infoModal, animated: true)
                 }, onError: { [weak self] errMessage in
-                    FirebaseUtility.logEventV2(.autoPay(parameters: [.network_submit_error]))
+                    FirebaseUtility.logEvent(.autoPay(parameters: [.network_submit_error]))
                     
                     LoadingView.hide()
                     self?.showErrorAlert(message: errMessage)
@@ -297,8 +297,8 @@ class BGEAutoPayViewController: UIViewController {
     
     private func enroll() {
         GoogleAnalytics.log(event: .autoPayEnrollSubmit)
-        FirebaseUtility.logEventV2(.autoPay(parameters: [.enroll_start]))
-        FirebaseUtility.logEventV2(.autoPaySubmit)
+        FirebaseUtility.logEvent(.autoPay(parameters: [.enroll_start]))
+        FirebaseUtility.logEvent(.autoPaySubmit)
         
         viewModel.enroll(onSuccess: { [weak self] in
             LoadingView.hide()
@@ -306,9 +306,9 @@ class BGEAutoPayViewController: UIViewController {
             
             GoogleAnalytics.log(event: .autoPayEnrollComplete)
             
-            FirebaseUtility.logEventV2(.autoPay(parameters: [.enroll_complete]))
+            FirebaseUtility.logEvent(.autoPay(parameters: [.enroll_complete]))
             
-            FirebaseUtility.logEventV2(.autoPayNetworkComplete)
+            FirebaseUtility.logEvent(.autoPayNetworkComplete)
             
             if self.viewModel.userDidChangeSettings.value {
                 GoogleAnalytics.log(event: .autoPayModifySettingCompleteNew)
@@ -331,7 +331,7 @@ class BGEAutoPayViewController: UIViewController {
             
             self.navigationController?.present(infoModal, animated: true)
             }, onError: { [weak self] errMessage in
-                FirebaseUtility.logEventV2(.autoPay(parameters: [.network_submit_error]))
+                FirebaseUtility.logEvent(.autoPay(parameters: [.network_submit_error]))
                 
                 LoadingView.hide()
                 self?.showErrorAlert(message: errMessage)
@@ -340,23 +340,23 @@ class BGEAutoPayViewController: UIViewController {
     
     private func updateSettings() {
         GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
-        FirebaseUtility.logEventV2(.autoPaySubmit)
-        FirebaseUtility.logEventV2(.autoPay(parameters: [.modify_start]))
+        FirebaseUtility.logEvent(.autoPaySubmit)
+        FirebaseUtility.logEvent(.autoPay(parameters: [.modify_start]))
         
         viewModel.update(onSuccess: { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .autoPayModifySettingComplete)
             
-            FirebaseUtility.logEventV2(.autoPay(parameters: [.settings_changed]))
-            FirebaseUtility.logEventV2(.autoPay(parameters: [.modify_complete]))
+            FirebaseUtility.logEvent(.autoPay(parameters: [.settings_changed]))
+            FirebaseUtility.logEvent(.autoPay(parameters: [.modify_complete]))
             
-            FirebaseUtility.logEventV2(.autoPayNetworkComplete)
+            FirebaseUtility.logEvent(.autoPayNetworkComplete)
             
             guard let self = self else { return }
             self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
             self.navigationController?.popViewController(animated: true)
             }, onError: { [weak self] errMessage in
-                FirebaseUtility.logEventV2(.autoPay(parameters: [.network_submit_error]))
+                FirebaseUtility.logEvent(.autoPay(parameters: [.network_submit_error]))
                 
                 LoadingView.hide()
                 self?.showErrorAlert(message: errMessage)
@@ -371,7 +371,7 @@ class BGEAutoPayViewController: UIViewController {
     
     @objc
     func onLearnMorePress() {
-        FirebaseUtility.logEventV2(.autoPay(parameters: [.learn_more]))
+        FirebaseUtility.logEvent(.autoPay(parameters: [.learn_more]))
         
         let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: viewModel.learnMoreDescriptionText)
         navigationController?.present(infoModal, animated: true, completion: nil)
@@ -413,7 +413,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @IBAction func onTermsConditionsPress() {
-        FirebaseUtility.logEventV2(.autoPay(parameters: [.terms]))
+        FirebaseUtility.logEvent(.autoPay(parameters: [.terms]))
         
         let url = URL(string: "https://ipn2.paymentus.com/biller/stde/terms-conditions-autopay-exln.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
@@ -455,7 +455,7 @@ extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
         
         showUpdateButton()
         
-        FirebaseUtility.logEventV2(.autoPay(parameters: [.modify_bank]))
+        FirebaseUtility.logEvent(.autoPay(parameters: [.modify_bank]))
     }
     
     func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
@@ -474,7 +474,7 @@ extension BGEAutoPayViewController: PaymentusFormViewControllerDelegate {
         
         showUpdateButton()
         
-        FirebaseUtility.logEventV2(.autoPay(parameters: [.modify_bank]))
+        FirebaseUtility.logEvent(.autoPay(parameters: [.modify_bank]))
     }
 }
 

@@ -233,7 +233,7 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
 	@objc
 	func onTermsAndConditionsPress() {
         
-        FirebaseUtility.logEventV2(.autoPay(parameters: [.terms]))
+        FirebaseUtility.logEvent(.autoPay(parameters: [.terms]))
         
 		let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
 		                                 url: URL(string: "https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
@@ -256,8 +256,8 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
         LoadingView.show()
         GoogleAnalytics.log(event: .autoPayModifyBankSave)
         
-        FirebaseUtility.logEventV2(.autoPaySubmit)
-        FirebaseUtility.logEventV2(.autoPay(parameters: [.modify_start]))
+        FirebaseUtility.logEvent(.autoPaySubmit)
+        FirebaseUtility.logEvent(.autoPay(parameters: [.modify_start]))
         
         viewModel.changeBank()
             .observeOn(MainScheduler.instance)
@@ -265,8 +265,8 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
                 LoadingView.hide()
                 guard let self = self else { return }
                 
-                FirebaseUtility.logEventV2(.autoPayNetworkComplete)
-                FirebaseUtility.logEventV2(.autoPay(parameters: [.modify_complete]))
+                FirebaseUtility.logEvent(.autoPayNetworkComplete)
+                FirebaseUtility.logEvent(.autoPay(parameters: [.modify_complete]))
                 
                 self.delegate?.changedBank()
                 self.dismissModal()
