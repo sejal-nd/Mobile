@@ -10,12 +10,12 @@ import FirebaseAnalytics
 import Firebase
 import Foundation
 
-protocol Trackable {
+private protocol Event {
     var name: String { get }
     var parameters: [String: Any]? { get }
 }
 
-protocol EventParameter {
+private protocol EventParameter {
     var key: String { get }
     var value: Any { get }
     var type: ParameterType { get }
@@ -46,7 +46,7 @@ enum ParameterType: String {
     case alternateContact = "alternate_contact"
 }
 
-enum FirebaseEvent: Trackable {
+enum FirebaseEvent: Event {
     case autoPay(parameters: [AutoPayParameter]?)
     case budgetBill(parameters: [BudgetBillParameter]?)
     case eBill(parameters: [EBillParameter]?)
@@ -220,7 +220,7 @@ enum FirebaseEvent: Trackable {
     }
 }
 
-enum BiometricsParameter: String, EventParameter, CaseIterable {
+enum BiometricsParameter: String, EventParameter {
     case `true`
     case `false`
     
@@ -229,7 +229,7 @@ enum BiometricsParameter: String, EventParameter, CaseIterable {
     }
 }
 
-enum AutoPayParameter: String, EventParameter, CaseIterable {
+enum AutoPayParameter: String, EventParameter {
     case enroll_start
     case enroll_complete
     case unenroll_start
@@ -255,7 +255,7 @@ enum AutoPayParameter: String, EventParameter, CaseIterable {
     }
 }
 
-enum BudgetBillParameter: String, EventParameter, CaseIterable {
+enum BudgetBillParameter: String, EventParameter {
     case learn_more
     case enroll_start
     case enroll_complete
@@ -587,7 +587,7 @@ enum UserProperty: String {
     case gamificationIsOnboarded
 }
 
-enum ScreenView: Trackable {
+enum ScreenView: Event {
     case HomeView(className: String)
     case BillView(className: String)
     case OutageView(className: String)
