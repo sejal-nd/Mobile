@@ -23,14 +23,16 @@ class UnauthenticatedOutageViewModel {
         return OutageService.getReportedOutageResult(accountNumber: accountNumber.value)
     }
     
-    func fetchOutageStatus(overrideAccountNumber: String? = nil, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+    func fetchOutageStatus(overrideOutageStatus: OutageStatus? = nil, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         let requestPhoneNumber: String? = phoneNumber.value.isEmpty ? nil : phoneNumber.value
-        let requestAccountNumber: String? = overrideAccountNumber ?? (accountNumber.value.isEmpty ? nil : accountNumber.value)
+        let requestAccountNumber: String? = overrideOutageStatus?.accountNumber ?? (accountNumber.value.isEmpty ? nil : accountNumber.value)
+        let auid = overrideOutageStatus?.auid ?? (selectedOutageStatus.value?.auid != nil ? selectedOutageStatus.value?.auid : nil)
         
         selectedOutageStatus.accept(nil)
         
         OutageService.fetchAnonOutageStatus(phoneNumber: requestPhoneNumber,
-                                               accountNumber: requestAccountNumber) { result in
+                                               accountNumber: requestAccountNumber,
+                                               auid: auid) { result in
                                                 switch result {
                                                 case .success(let anonOutageStatusContainer):
                                                     let outageStatuses = anonOutageStatusContainer.statuses
@@ -54,7 +56,7 @@ class UnauthenticatedOutageViewModel {
                                                             }
                                                         }
                                                     } else {
-                                                        if overrideAccountNumber == nil {
+                                                        if overrideOutageStatus?.accountNumber == nil {
                                                             self.outageStatusArray = outageStatuses
                                                         } else {
                                                             self.selectedOutageStatus.accept(outageStatuses[0])
