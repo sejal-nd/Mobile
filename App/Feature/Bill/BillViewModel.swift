@@ -917,14 +917,7 @@ class BillViewModel {
             case .dde:
                 return "/payments/duedateextension"
             case .dpa,.dpaReintate:
-                switch Configuration.shared.opco {
-                case .comEd:
-                    return "/payments/dpa"
-                case .peco:
-                    return "/payments/dpa"
-                default:
-                    return "/payments/dpa"
-                }
+                return "/payments/dpa"
             case .none:
                 return "/CustomerSupport/Pages/AssistancePrograms.aspx"
             }
