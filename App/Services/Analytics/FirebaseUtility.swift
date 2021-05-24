@@ -10,11 +10,13 @@ import FirebaseAnalytics
 import Firebase
 import Foundation
 
+/// A type that represents a trackable event
 private protocol Event {
     var name: String { get }
     var parameters: [String: Any]? { get }
 }
 
+/// A type that represents a trackable event parameter
 private protocol EventParameter {
     var key: String { get }
     var value: Any { get }
@@ -676,6 +678,7 @@ struct FirebaseUtility {
     public static func logEvent(_ event: FirebaseEvent) {
         #if DEBUG
         if let parameters = event.parameters {
+            NSLog("Event: \(event.name)")
             parameters.forEach { parameter in
                 print("\(parameter.key): \(parameter.value)")
             }
