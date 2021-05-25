@@ -469,11 +469,18 @@ class HomeBillCardViewModel {
                             accountDetail.is_dpa_eligible {
                     self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
                     self.mobileAssistanceType = MobileAssistanceURL.dpa
+                    if Configuration.shared.opco.isPHI {
+                        return (title: "You’re eligible for a Payment Arrangement.",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                                ctaType: "Learn More",
+                                ctaURL: "")
+                    } else {
+                        return (title: "You’re eligible for a Deferred Payment Arrangement.",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                                ctaType: "Learn More",
+                                ctaURL: "")
+                    }
                     
-                    return (title: "You’re eligible for a Deferred Payment Arrangement.",
-                            description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                            ctaType: "Learn More",
-                            ctaURL: "")
                 } else if !accountDetail.isDueDateExtensionEligible &&
                             accountDetail.billingInfo.pastDueAmount > 0 &&
                             !accountDetail.is_dpa_eligible  &&
