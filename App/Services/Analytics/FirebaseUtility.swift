@@ -119,7 +119,7 @@ enum FirebaseEvent: Event {
     case personalizeHomeStart
     case personalizeHomeComplete
     
-    case screenView(_ screenView: ScreenView)
+    case screenView(_ screen: Screen)
     
     var name: String {
         switch self {
@@ -169,8 +169,8 @@ enum FirebaseEvent: Event {
             return "gamificationOptOut"
         case .gamificationExperienceAccessed:
             return "gamificationExperienceAccessed"
-        case .screenView(let screenView):
-            return screenView.name
+        case .screenView:
+            return AnalyticsEventScreenView
         default:
             return "\(self)"
         }
@@ -213,8 +213,11 @@ enum FirebaseEvent: Event {
             
             return parametersDict
             
-        case .screenView(let screenView):
-            return screenView.parameters
+        case .screenView(let screen):
+            return [
+                AnalyticsParameterScreenName: screen.screenName,
+                    AnalyticsParameterScreenClass: screen.className
+            ]
 
         default:
             return nil
@@ -589,7 +592,7 @@ enum UserProperty: String {
     case gamificationIsOnboarded
 }
 
-enum ScreenView: Event {
+enum Screen {
     case HomeView(className: String)
     case BillView(className: String)
     case OutageView(className: String)
@@ -650,17 +653,6 @@ enum ScreenView: Event {
             return className
         }
     }
-    
-    var name: String {
-        return AnalyticsEventScreenView
-    }
-    
-    var parameters: [String : Any]? {
-        return [
-            AnalyticsParameterScreenName: self.screenName,
-                AnalyticsParameterScreenClass: self.className
-        ]
-    }
 }
 
 struct FirebaseUtility {
@@ -702,8 +694,8 @@ struct FirebaseUtility {
         Analytics.setUserProperty(value, forName: userProperty.rawValue)
     }
     
-    public static func logScreenView(_ screenView: ScreenView) {
-        FirebaseUtility.logEvent(.screenView(screenView))
+    public static func logScreenView(_ screen: Screen) {
+        FirebaseUtility.logEvent(.screenView(screen))
     }
 }
 
