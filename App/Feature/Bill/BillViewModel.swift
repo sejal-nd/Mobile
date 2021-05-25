@@ -841,6 +841,7 @@ class BillViewModel {
         Driver.combineLatest(currentAccountDetail , currentAccountDetail)
         { (currentBillComparisonO, accountDetail) in
             if accountDetail.isResidential &&
+                !Configuration.shared.opco.isPHI && // Remove this condition once bill tab change is done
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
                 if accountDetail.isDueDateExtensionEligible &&
                     accountDetail.billingInfo.pastDueAmount > 0 {
