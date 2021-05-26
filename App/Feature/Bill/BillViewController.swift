@@ -787,6 +787,7 @@ class BillViewController: AccountPickerViewController {
                     vc.accountDetail = accountDetail
                     let newNavController = LargeTitleNavigationController(rootViewController: vc)
                     newNavController.modalPresentationStyle = .fullScreen
+                    
                     FirebaseUtility.logEvent(.makePaymentStart)
                     self.present(newNavController, animated: true, completion: nil)
                 }
