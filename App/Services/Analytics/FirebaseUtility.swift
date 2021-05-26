@@ -661,7 +661,7 @@ struct FirebaseUtility {
     public static func configure() {
         guard let filePath = Bundle.main.path(forResource: "GoogleService-Info-\(Configuration.shared.environmentName.rawValue)-Flavor\(Configuration.shared.opco.rawValue)", ofType: "plist"),
             let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
-                return Log.info("Failed to load Firebase Analytics")
+                return Log.error("Failed to load Firebase Analytics")
         }
 
         FirebaseApp.configure(options: fileopts)
@@ -670,13 +670,12 @@ struct FirebaseUtility {
     public static func logEvent(_ event: FirebaseEvent) {
         #if DEBUG
         if let parameters = event.parameters {
-            NSLog("Event: \(event.name)")
+            NSLog("📊🔥 Firebase Event: \(event.name)")
             parameters.forEach { parameter in
                 print("\(parameter.key): \(parameter.value)")
             }
         }
         #endif
-
 
         Analytics.logEvent(event.name, parameters: event.parameters)
     }
