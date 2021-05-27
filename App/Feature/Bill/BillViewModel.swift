@@ -31,6 +31,9 @@ class BillViewModel {
     let electricGasSelectedSegmentIndex = BehaviorRelay(value: 0)
     let compareToLastYear = BehaviorRelay(value: false)
     
+    let mobileAssistanceURL = BehaviorRelay(value: "")
+    var mobileAssistanceType = MobileAssistanceURL(rawValue: "none")
+    
     private func tracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
         case .refresh: return refreshTracker
@@ -833,6 +836,104 @@ class BillViewModel {
         return mutableText
     }
     
+    // MARK: - Assistance View States
+    private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
+        Driver.combineLatest(currentAccountDetail , currentAccountDetail)
+        { (currentBillComparisonO, accountDetail) in
+            if accountDetail.isResidential &&
+                !Configuration.shared.opco.isPHI && // Remove this condition once bill tab change is done
+                FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
+                if accountDetail.isDueDateExtensionEligible &&
+                    accountDetail.billingInfo.pastDueAmount > 0 {
+        
+                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
+                    self.mobileAssistanceType = MobileAssistanceURL.dde
+                    return (title: "You’re eligible for a Due Date Extension",
+                            description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension",
+                            ctaType: "Request Due Date Extension",
+                            ctaURL: "")
+                } else if !accountDetail.isDueDateExtensionEligible &&
+                            accountDetail.billingInfo.amtDpaReinst > 0 &&
+                            accountDetail.is_dpa_reinstate_eligible {
+                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpaReintate))
+                    self.mobileAssistanceType = MobileAssistanceURL.dpaReintate
+                    
+                    var lowIncomeTitle = "You can reinstate your Payment Arrangement at no additional cost."
+                    let reinstateFee = accountDetail.billingInfo.atReinstateFee > 0 ? accountDetail.billingInfo.atReinstateFee : 14.24
+                    var nonLowIncomeTitle = "You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a $14.24 fee on your next bill."
+                    var title =  Configuration.shared.opco == .comEd && accountDetail.isLowIncome ? lowIncomeTitle : nonLowIncomeTitle
+                    return (title: title,
+                            description: "",
+                            ctaType: "Reinstate Payment Arrangement",
+                            ctaURL: "")
+                } else if !accountDetail.isDueDateExtensionEligible &&
+                            accountDetail.billingInfo.pastDueAmount > 0 &&
+                            accountDetail.is_dpa_eligible {
+                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
+                    self.mobileAssistanceType = MobileAssistanceURL.dpa
+                    
+                    return (title: "You’re eligible for a Deferred Payment Arrangement.",
+                            description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                            ctaType: "Learn More",
+                            ctaURL: "")
+                } else if !accountDetail.isDueDateExtensionEligible &&
+                            accountDetail.billingInfo.pastDueAmount > 0 &&
+                            !accountDetail.is_dpa_eligible  &&
+                            !accountDetail.is_dpa_reinstate_eligible {
+                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none))
+                    self.mobileAssistanceType = MobileAssistanceURL.none
+                    return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
+                            description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
+                            ctaType: "Learn More",
+                            ctaURL: "")
+                }
+            }
+            return nil
+    }
+    enum MobileAssistanceURL: String {
+        case dde
+        case dpa
+        case dpaReintate
+        case none
+        
+        private static func getBaseURLmobileAssistance(assistanceType: MobileAssistanceURL) -> String {
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            var baseURL = ""
+            switch assistanceType {
+            case .dde,.dpa,.dpaReintate:
+                baseURL = "https://" + Configuration.shared.associatedDomain
+            case .none:
+                baseURL = Configuration.shared.myAccountUrl
+            }
+            
+            switch projectTier {
+            case .test:
+                return (baseURL.replacingOccurrences(of: "azstage", with: "aztest")).replacingOccurrences(of: "azstg", with: "aztst1")
+            default:
+                return (baseURL)
+            }
+        }
+        
+        private static func getURLPath(assistanceType: MobileAssistanceURL) -> String {
+            
+            switch assistanceType {
+            case .dde:
+                return "/payments/duedateextension"
+            case .dpa,.dpaReintate:
+                return "/payments/dpa"
+            case .none:
+                return "/CustomerSupport/Pages/AssistancePrograms.aspx"
+            }
+        }
+        
+        static func getMobileAssistnceURL(assistanceType: MobileAssistanceURL) -> String {
+            
+            return getBaseURLmobileAssistance(assistanceType: assistanceType) + getURLPath(assistanceType: assistanceType)
+            
+        }
+
+}
 }
 
 
