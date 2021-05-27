@@ -301,6 +301,11 @@ enum BillParameter: String, EventParameter {
     case history_view_more_past_row
     case history_view_pdf
     
+    case extension_cta
+    case dpa_cta
+    case reinstate_cta
+    case assistance_cta
+    
     case bill_view_pdf // TODO is this still needed?
     
     // errors

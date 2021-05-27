@@ -859,13 +859,13 @@ class BillViewController: AccountPickerViewController {
                 guard let assistanceType = self?.viewModel.mobileAssistanceType else { return }
                 switch assistanceType {
                 case .dde:
-                    FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .extension_cta)])
+                    FirebaseUtility.logEvent(.bill(parameters: [.extension_cta]))
                 case .dpa:
-                    FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .dpa_cta)])
+                    FirebaseUtility.logEvent(.bill(parameters: [.dpa_cta]))
                 case .dpaReintate:
-                    FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .reinstate_cta)])
+                    FirebaseUtility.logEvent(.bill(parameters: [.reinstate_cta]))
                 case .none:
-                    FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .assistance_cta)])
+                    FirebaseUtility.logEvent(.bill(parameters: [.assistance_cta]))
                 }
                 let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: self?.viewModel.mobileAssistanceURL.value ?? "")!)
                 self?.present(safariVc, animated: true, completion: nil)
