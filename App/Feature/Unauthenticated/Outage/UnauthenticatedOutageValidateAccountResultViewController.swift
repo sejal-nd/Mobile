@@ -115,9 +115,9 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
             } else {
                 self.performSegue(withIdentifier: "presentOutage", sender: self)
             }
-        } else if let accountNumber = selectedOutageStatus.accountNumber {
+        } else if selectedOutageStatus.accountNumber != nil {
             LoadingView.show()
-            viewModel.fetchOutageStatus(overrideAccountNumber: accountNumber, onSuccess: { [weak self] in
+            viewModel.fetchOutageStatus(overrideOutageStatus: selectedOutageStatus, onSuccess: { [weak self] in
                 guard let self = self else { return }
                 LoadingView.hide()
                 self.performSegue(withIdentifier: "presentOutage", sender: self)

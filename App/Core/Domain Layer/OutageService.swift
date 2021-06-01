@@ -58,8 +58,8 @@ enum OutageService {
     
     // MARK: Anon
     
-    static func fetchAnonOutageStatus(phoneNumber: String?, accountNumber: String?, completion: @escaping (Result<AnonOutageStatusContainer, NetworkingError>) -> ()) {
-        let anonOutageRequest = AnonOutageRequest(phoneNumber: phoneNumber, accountNumber: accountNumber)
+    static func fetchAnonOutageStatus(phoneNumber: String?, accountNumber: String?, auid: String?, completion: @escaping (Result<AnonOutageStatusContainer, NetworkingError>) -> ()) {
+        let anonOutageRequest = AnonOutageRequest(phoneNumber: phoneNumber, accountNumber: accountNumber, auid: auid)
         NetworkingLayer.request(router: .outageStatusAnon(request: anonOutageRequest), completion: completion)
     }
     
