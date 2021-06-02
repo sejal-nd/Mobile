@@ -250,7 +250,7 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
         
         LoadingView.show()
         
-        FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .ebill_enroll)])
+        FirebaseUtility.logEvent(.register(parameters: [.ebill_enroll]))
         
         viewModel.registerUser(onSuccess: { [weak self] in
             guard let self = self else { return }

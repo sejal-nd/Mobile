@@ -78,7 +78,7 @@ class HomeEditViewController: UIViewController {
                 
                 FirebaseUtility.logEvent(.personalizeHomeComplete)
                 
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .personalize_complete)])
+                FirebaseUtility.logEvent(.home(parameters: [.personalize_complete]))
                 
                 this.navigationController?.popViewController(animated: true)
             })
@@ -191,7 +191,7 @@ extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewData
                        onTap: { [weak self] in
                         guard let this = self, !this.isReordering.value else { return }
                         
-                        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .personalize_restore)])
+                        FirebaseUtility.logEvent(.home(parameters: [.personalize_restore]))
                         
                         let selectedCards = HomeCardPrefsStore.defaultList
                         

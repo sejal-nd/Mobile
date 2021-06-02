@@ -70,7 +70,7 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
     @IBAction func unenroll(_ sender: Any) {
         LoadingView.show()
         
-        FirebaseUtility.logEventV2(.autoPay(parameters: [.unenroll_start]))
+        FirebaseUtility.logEvent(.autoPay(parameters: [.unenroll_start]))
                 
         FirebaseUtility.logEvent(.autoPaySubmit)
         
@@ -80,7 +80,7 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
                 LoadingView.hide()
                 guard let self = self else { return }
                 
-                FirebaseUtility.logEventV2(.autoPay(parameters: [.unenroll_complete]))
+                FirebaseUtility.logEvent(.autoPay(parameters: [.unenroll_complete]))
                 
                 FirebaseUtility.logEvent(.autoPayNetworkComplete)
                 
@@ -92,7 +92,7 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
                 guard let self = self,
                       let networkingError = error as? NetworkingError else { return }
                 
-                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                FirebaseUtility.logEvent(.autoPay(parameters: [.network_submit_error]))
                 
                 let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
                                                         message: networkingError.description, preferredStyle: .alert)

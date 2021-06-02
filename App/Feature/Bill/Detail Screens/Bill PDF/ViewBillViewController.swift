@@ -82,9 +82,9 @@ class ViewBillViewController: UIViewController {
         }, onError: { [weak self] errMessage in
             
             if self?.viewModel.isCurrent == true {
-                FirebaseUtility.logEventV2(.bill(parameters: [.current_pdf_not_available]))
+                FirebaseUtility.logEvent(.bill(parameters: [.current_pdf_not_available]))
             } else {
-                FirebaseUtility.logEventV2(.bill(parameters: [.past_pdf_not_available]))
+                FirebaseUtility.logEvent(.bill(parameters: [.past_pdf_not_available]))
             }
 
             guard let self = self else { return }

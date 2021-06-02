@@ -57,7 +57,7 @@ class BudgetBillingReasonForStoppingViewController: UIViewController {
                 guard let self = self else { return }
                 self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                
-                FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
+                FirebaseUtility.logEvent(.budgetBill(parameters: [.unenroll_complete]))
                 
                 FirebaseUtility.logEvent(.budgetBillingNetworkComplete)
                 self.budgetBillingViewController.navigationController?.popViewController(animated: false)

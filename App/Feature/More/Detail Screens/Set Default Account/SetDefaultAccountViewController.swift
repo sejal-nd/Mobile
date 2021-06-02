@@ -55,7 +55,7 @@ class SetDefaultAccountViewController: UIViewController {
                                                 image: #imageLiteral(resourceName: "bge_account_picker"),
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
-        FirebaseUtility.logEvent(.more, parameters: [.init(parameterName: .action, value: .default_account_help)])
+        FirebaseUtility.logEvent(.more(parameters: [.default_account_help]))
     }
     
     @IBAction func onSavePress() {
@@ -63,7 +63,7 @@ class SetDefaultAccountViewController: UIViewController {
         viewModel.setDefaultAccount(onSuccess: { [weak self] in
             guard let self = self else { return }
             
-            FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .set_default_account_complete)])
+            FirebaseUtility.logEvent(.more(parameters: [.set_default_account_complete]))
             
             LoadingView.hide()
             self.delegate?.setDefaultAccountViewControllerDidFinish(self)

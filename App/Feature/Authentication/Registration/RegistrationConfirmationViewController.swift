@@ -119,7 +119,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         RegistrationService.sendConfirmationEmail(request: usernameRequest) { [weak self] result in
             switch result {
             case .success:
-                FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .resend_email)])
+                FirebaseUtility.logEvent(.register(parameters: [.resend_email]))
                 self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
                 GoogleAnalytics.log(event: .registerResendEmail)
             case .failure(let error):
