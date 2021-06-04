@@ -86,7 +86,6 @@ enum FirebaseEvent: Event {
     
     case loginPageStart
     case loginTokenNetworkComplete
-    case loginExchangeTokenNetworkComplete
     case loginAccountNetworkComplete
     case initialAuthenticatedScreenStart
     

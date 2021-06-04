@@ -83,7 +83,8 @@ extension AuthenticationService {
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
             case .success(let tokenResponse):
-                
+                FirebaseUtility.logEvent(.loginTokenNetworkComplete)
+
                 // Handle Temp Password
                 if tokenResponse.profileStatus?.tempPassword ?? false {
                     completion(.success(true))
@@ -98,6 +99,8 @@ extension AuthenticationService {
                 AccountService.fetchAccounts { (result: Result<[Account], NetworkingError>) in
                     switch result {
                     case .success(let accounts):
+                        FirebaseUtility.logEvent(.loginAccountNetworkComple)
+                        
                         guard let accNumber = accounts.first?.accountNumber else {
                             completion(.failure(.invalidResponse))
                             return
