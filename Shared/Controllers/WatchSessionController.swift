@@ -134,17 +134,17 @@ extension WatchSessionController {
             let screen: Screen
             switch screenName {
             case "sign_in_screen_view":
-                screen = .watchSignIn(className: screenName)
+                screen = .watchSignInView(className: screenName)
             case "account_list_screen_view":
-                screen = .watchAccountList(className: screenName)
+                screen = .watchAccountListView(className: screenName)
             case "outage_screen_view":
-                screen = .watchOutage(className: screenName)
+                screen = .watchOutageView(className: screenName)
             case "report_outage_screen_view":
-                screen = .watchReportOutage(className: screenName)
+                screen = .watchReportOutageView(className: screenName)
             case "usage_screen_view":
-                screen = .watchUsage(className: screenName)
+                screen = .watchUsageView(className: screenName)
             case "bill_screen_view":
-                screen = .watchBill(className: screenName)
+                screen = .watchBillView(className: screenName)
             default:
                 return
             }

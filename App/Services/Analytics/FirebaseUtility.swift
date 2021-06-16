@@ -614,15 +614,15 @@ enum Screen {
     case unauthenticatedOutageSelectView(className: String)
     case unauthenticatedOutageView(className: String)
     case paymentView(className: String)
-    case alertPreferences(className: String)
+    case alertPreferencesView(className: String)
     
     // Apple Watch
-    case watchSignIn(className: String)
-    case watchAccountList(className: String)
-    case watchOutage(className: String)
-    case watchReportOutage(className: String)
-    case watchUsage(className: String)
-    case watchBill(className: String)
+    case watchSignInView(className: String)
+    case watchAccountListView(className: String)
+    case watchOutageView(className: String)
+    case watchReportOutageView(className: String)
+    case watchUsageView(className: String)
+    case watchBillView(className: String)
     
     var screenName: String {
         switch self {
@@ -654,20 +654,20 @@ enum Screen {
             return "UnauthenticatedOutageView"
         case .paymentView:
             return "PaymentView"
-        case .alertPreferences:
+        case .alertPreferencesView:
             return "AlertPreferencesView"
             
-        case .watchSignIn:
+        case .watchSignInView:
             return "sign_in_screen_view"
-        case .watchAccountList:
+        case .watchAccountListView:
             return "account_list_screen_view"
-        case .watchOutage:
+        case .watchOutageView:
             return "outage_screen_view"
-        case .watchReportOutage:
+        case .watchReportOutageView:
             return "report_outage_screen_view"
-        case .watchUsage:
+        case .watchUsageView:
             return "usage_screen_view"
-        case .watchBill:
+        case .watchBillView:
             return "bill_screen_view"
         }
     }
@@ -688,14 +688,14 @@ enum Screen {
              .unauthenticatedOutageSelectView(let className),
              .unauthenticatedOutageView(let className),
              .paymentView(let className),
-             .alertPreferences(let className),
+             .alertPreferencesView(let className),
              
-             .watchSignIn(let className),
-             .watchAccountList(let className),
-             .watchOutage(let className),
-             .watchReportOutage(let className),
-             .watchUsage(let className),
-             .watchBill(let className):
+             .watchSignInView(let className),
+             .watchAccountListView(let className),
+             .watchOutageView(let className),
+             .watchReportOutageView(let className),
+             .watchUsageView(let className),
+             .watchBillView(let className):
             return className
         }
     }

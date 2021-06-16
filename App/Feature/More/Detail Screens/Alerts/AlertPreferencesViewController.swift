@@ -79,7 +79,7 @@ class AlertPreferencesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.alertPreferences(className: self.className))
+        FirebaseUtility.logScreenView(.alertPreferencesView(className: self.className))
     }
     
     private func checkForNotificationsPermissions() {
