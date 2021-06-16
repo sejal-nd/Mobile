@@ -251,7 +251,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.PaymentView(className: self.className))
+        FirebaseUtility.logScreenView(.paymentView(className: self.className))
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }

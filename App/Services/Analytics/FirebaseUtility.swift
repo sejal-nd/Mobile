@@ -305,7 +305,7 @@ enum BillParameter: String, EventParameter {
     case reinstate_cta
     case assistance_cta
     
-    case bill_view_pdf // TODO is this still needed?
+    case bill_view_pdf
     
     // errors
     case bill_not_available
@@ -573,6 +573,7 @@ enum MoreParameter: String, EventParameter {
     case set_default_account_complete
     case billing_videos
     case release_of_info_complete
+    case alert_preferences_start
     case alert_preferences_complete
     case sign_out
 }
@@ -597,63 +598,104 @@ enum UserProperty: String {
 }
 
 enum Screen {
-    case HomeView(className: String)
-    case BillView(className: String)
-    case OutageView(className: String)
-    case UsageView(className: String)
-    case MoreView(className: String)
+    // iOS
+    case homeView(className: String)
+    case billView(className: String)
+    case outageView(className: String)
+    case usageView(className: String)
+    case moreView(className: String)
     
-    case BillActivityView(className: String)
-    case AutopayEnrolledView(className: String)
-    case AutopayUnenrolledView(className: String)
-    case ChangePasswordView(className: String)
-    case ReleaseOfInfoView(className: String)
-    case UnauthenticatedOutageView(className: String)
-    case PaymentView(className: String)
+    case billActivityView(className: String)
+    case autopayEnrolledView(className: String)
+    case autopayUnenrolledView(className: String)
+    case changePasswordView(className: String)
+    case releaseOfInfoView(className: String)
+    case unauthenticatedOutageValidationView(className: String)
+    case unauthenticatedOutageSelectView(className: String)
+    case unauthenticatedOutageView(className: String)
+    case paymentView(className: String)
+    case alertPreferencesView(className: String)
+    
+    // Apple Watch
+    case watchSignInView(className: String)
+    case watchAccountListView(className: String)
+    case watchOutageView(className: String)
+    case watchReportOutageView(className: String)
+    case watchUsageView(className: String)
+    case watchBillView(className: String)
     
     var screenName: String {
         switch self {
-        case .HomeView:
+        case .homeView:
             return "HomeView"
-        case .BillView:
+        case .billView:
             return "BillView"
-        case .BillActivityView:
+        case .billActivityView:
             return "BillActivityView"
-        case .OutageView:
+        case .outageView:
             return "OutageView"
-        case .AutopayEnrolledView:
+        case .autopayEnrolledView:
             return "AutopayEnrolledView"
-        case .AutopayUnenrolledView:
+        case .autopayUnenrolledView:
             return "AutopayUnenrolledView"
-        case .UsageView:
+        case .usageView:
             return "UsageView"
-        case .MoreView:
+        case .moreView:
             return "MoreView"
-        case .ChangePasswordView:
+        case .changePasswordView:
             return "ChangePasswordView"
-        case .ReleaseOfInfoView:
+        case .releaseOfInfoView:
             return "ReleaseOfInfoView"
-        case .UnauthenticatedOutageView:
+        case .unauthenticatedOutageValidationView:
+            return "UnauthenticatedOutageValidationView"
+        case .unauthenticatedOutageSelectView:
+            return "UnauthenticatedOutageSelectView"
+        case .unauthenticatedOutageView:
             return "UnauthenticatedOutageView"
-        case .PaymentView:
+        case .paymentView:
             return "PaymentView"
+        case .alertPreferencesView:
+            return "AlertPreferencesView"
+            
+        case .watchSignInView:
+            return "sign_in_screen_view"
+        case .watchAccountListView:
+            return "account_list_screen_view"
+        case .watchOutageView:
+            return "outage_screen_view"
+        case .watchReportOutageView:
+            return "report_outage_screen_view"
+        case .watchUsageView:
+            return "usage_screen_view"
+        case .watchBillView:
+            return "bill_screen_view"
         }
     }
-    
+        
     var className: String {
         switch self {
-        case .HomeView(let className),
-             .BillView(let className),
-             .BillActivityView(let className),
-             .OutageView(let className),
-             .AutopayEnrolledView(let className),
-             .AutopayUnenrolledView(let className),
-             .UsageView(let className),
-             .MoreView(let className),
-             .ChangePasswordView(let className),
-             .ReleaseOfInfoView(let className),
-             .UnauthenticatedOutageView(let className),
-             .PaymentView(let className):
+        case .homeView(let className),
+             .billView(let className),
+             .billActivityView(let className),
+             .outageView(let className),
+             .autopayEnrolledView(let className),
+             .autopayUnenrolledView(let className),
+             .usageView(let className),
+             .moreView(let className),
+             .changePasswordView(let className),
+             .releaseOfInfoView(let className),
+             .unauthenticatedOutageValidationView(let className),
+             .unauthenticatedOutageSelectView(let className),
+             .unauthenticatedOutageView(let className),
+             .paymentView(let className),
+             .alertPreferencesView(let className),
+             
+             .watchSignInView(let className),
+             .watchAccountListView(let className),
+             .watchOutageView(let className),
+             .watchReportOutageView(let className),
+             .watchUsageView(let className),
+             .watchBillView(let className):
             return className
         }
     }
@@ -672,14 +714,12 @@ struct FirebaseUtility {
     }
     
     public static func logEvent(_ event: FirebaseEvent) {
-        #if DEBUG
         if let parameters = event.parameters {
-            NSLog("📊🔥 Firebase Event: \(event.name)")
+            Log.info("📊🔥 Firebase Event: \(event.name)")
             parameters.forEach { parameter in
-                print("\(parameter.key): \(parameter.value)")
+                Log.info("\(parameter.key): \(parameter.value)")
             }
         }
-        #endif
 
         Analytics.logEvent(event.name, parameters: event.parameters)
     }
@@ -690,9 +730,7 @@ struct FirebaseUtility {
     ///   - userProperty: Name of the user property
     ///   - value: `String` value of property
     public static func setUserProperty(_ userProperty: UserProperty, value: String? = nil) {
-        #if DEBUG
-        NSLog("👤 Set User Property: \(userProperty.rawValue)")
-        #endif
+        Log.info("👤 Set User Property: \(userProperty.rawValue)")
         
         Analytics.setUserProperty(value, forName: userProperty.rawValue)
     }
@@ -705,7 +743,8 @@ struct FirebaseUtility {
 // MARK: - Watch Analytics
 
 extension FirebaseUtility {
-    public static func logWatchScreenView(_ screenName: String) {
-        NSLog("📊🔥⌚️ Firebase Event: \(screenName)")
+    public static func logWatchScreenView(_ screen: Screen) {
+        Log.info("📊🔥⌚️ Firebase Event: \(screen.className)")
+        FirebaseUtility.logScreenView(screen)
     }
 }

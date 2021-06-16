@@ -65,6 +65,8 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        FirebaseUtility.logScreenView(.unauthenticatedOutageSelectView(className: self.className))
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

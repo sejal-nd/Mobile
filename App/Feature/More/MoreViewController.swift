@@ -80,7 +80,7 @@ class MoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.MoreView(className: self.className))
+        FirebaseUtility.logScreenView(.moreView(className: self.className))
         
         navigationController?.setNavigationBarHidden(!StormModeStatus.shared.isOn, animated: true)
 

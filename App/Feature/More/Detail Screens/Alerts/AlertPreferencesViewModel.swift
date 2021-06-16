@@ -721,9 +721,9 @@ class AlertPreferencesViewModel {
             case (.billIsReady, .comEd): fallthrough
             case (.billIsReady, .peco):
                 return NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
-            case (.billIsReady(let accountDetail), .ace): fallthrough
-            case (.billIsReady(let accountDetail), .delmarva): fallthrough
-            case (.billIsReady(let accountDetail), .pepco):
+            case (.billIsReady(_), .ace): fallthrough
+            case (.billIsReady(_), .delmarva): fallthrough
+            case (.billIsReady(_), .pepco):
                 return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. If you are signed up for AutoPay or Direct Debit, this alert will notify you when a payment will be deducted from your bank account.\n\nPlease note that this notification is required for customers enrolled in Paperless eBill or AutoPay.", comment: "")
                
             // Payment Due Reminder

@@ -432,7 +432,7 @@ class HomeViewController: AccountPickerViewController {
         
         // Artificial screen event due to automatic screen tracking not counting the initial load of this screen...
         FirebaseUtility.logEvent(.home(parameters: [.view_screen]))
-        FirebaseUtility.logScreenView(.HomeView(className: self.className))
+        FirebaseUtility.logScreenView(.homeView(className: self.className))
 
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
