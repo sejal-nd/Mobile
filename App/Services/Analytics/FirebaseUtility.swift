@@ -305,7 +305,7 @@ enum BillParameter: String, EventParameter {
     case reinstate_cta
     case assistance_cta
     
-    case bill_view_pdf // TODO is this still needed?
+    case bill_view_pdf
     
     // errors
     case bill_not_available
@@ -597,6 +597,7 @@ enum UserProperty: String {
 }
 
 enum Screen {
+    // iOS
     case homeView(className: String)
     case billView(className: String)
     case outageView(className: String)
@@ -610,6 +611,14 @@ enum Screen {
     case releaseOfInfoView(className: String)
     case unauthenticatedOutageView(className: String)
     case paymentView(className: String)
+    
+    // Apple Watch
+    case watchSignIn(className: String)
+    case watchAccountList(className: String)
+    case watchOutage(className: String)
+    case watchReportOutage(className: String)
+    case watchUsage(className: String)
+    case watchBill(className: String)
     
     var screenName: String {
         switch self {
@@ -637,9 +646,22 @@ enum Screen {
             return "UnauthenticatedOutageView"
         case .paymentView:
             return "PaymentView"
+            
+        case .watchSignIn:
+            return "sign_in_screen_view"
+        case .watchAccountList:
+            return "account_list_screen_view"
+        case .watchOutage:
+            return "outage_screen_view"
+        case .watchReportOutage:
+            return "report_outage_screen_view"
+        case .watchUsage:
+            return "usage_screen_view"
+        case .watchBill:
+            return "bill_screen_view"
         }
     }
-    
+        
     var className: String {
         switch self {
         case .homeView(let className),
@@ -653,7 +675,14 @@ enum Screen {
              .changePasswordView(let className),
              .releaseOfInfoView(let className),
              .unauthenticatedOutageView(let className),
-             .paymentView(let className):
+             .paymentView(let className),
+             
+             .watchSignIn(let className),
+             .watchAccountList(let className),
+             .watchOutage(let className),
+             .watchReportOutage(let className),
+             .watchUsage(let className),
+             .watchBill(let className):
             return className
         }
     }
@@ -672,14 +701,12 @@ struct FirebaseUtility {
     }
     
     public static func logEvent(_ event: FirebaseEvent) {
-        #if DEBUG
         if let parameters = event.parameters {
-            NSLog("📊🔥 Firebase Event: \(event.name)")
+            Log.info("📊🔥 Firebase Event: \(event.name)")
             parameters.forEach { parameter in
-                print("\(parameter.key): \(parameter.value)")
+                Log.info("\(parameter.key): \(parameter.value)")
             }
         }
-        #endif
 
         Analytics.logEvent(event.name, parameters: event.parameters)
     }
@@ -690,9 +717,7 @@ struct FirebaseUtility {
     ///   - userProperty: Name of the user property
     ///   - value: `String` value of property
     public static func setUserProperty(_ userProperty: UserProperty, value: String? = nil) {
-        #if DEBUG
-        NSLog("👤 Set User Property: \(userProperty.rawValue)")
-        #endif
+        Log.info("👤 Set User Property: \(userProperty.rawValue)")
         
         Analytics.setUserProperty(value, forName: userProperty.rawValue)
     }
@@ -705,7 +730,8 @@ struct FirebaseUtility {
 // MARK: - Watch Analytics
 
 extension FirebaseUtility {
-    public static func logWatchScreenView(_ screenName: String) {
-        NSLog("📊🔥⌚️ Firebase Event: \(screenName)")
+    public static func logWatchScreenView(_ screen: Screen) {
+        Log.info("📊🔥⌚️ Firebase Event: \(screen.className)")
+        FirebaseUtility.logScreenView(screen)
     }
 }
