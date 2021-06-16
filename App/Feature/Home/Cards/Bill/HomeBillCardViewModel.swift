@@ -384,12 +384,7 @@ class HomeBillCardViewModel {
                 minMaxPaymentAllowedText != nil
     }
     .distinctUntilChanged()
-    
-    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
-                                                                                     accountDetailDriver,
-                                                                                     walletItemDriver)
-        { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
-        .distinctUntilChanged()
+
     
     private(set) lazy var showMakePaymentButton: Driver<Bool> = accountDetailDriver.map {
         return ($0.billingInfo.netDueAmount > 0 || Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI ) ? true : false
@@ -744,27 +739,7 @@ class HomeBillCardViewModel {
                 return String.localizedStringWithFormat("A %@ convenience fee will be applied by Paymentus, our payment partner.", accountDetail.billingInfo.convenienceFee.currencyString)
             }
     }
-    
-    private(set) lazy var enableOneTouchSlider: Driver<Bool> =
-        Driver.combineLatest(accountDetailDriver, walletItemDriver, showMinMaxPaymentAllowed)
-        { accountDetail, walletItem, showMinMaxPaymentAllowed in
-            guard let walletItem = walletItem, !walletItem.isExpired else { return false }
-            if showMinMaxPaymentAllowed {
-                return false
-            }
-            
-            let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount
-            if accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Configuration.shared.opco != .bge {
-                return false
-            }
-            
-            if accountDetail.billingInfo.netDueAmount < 0 && Configuration.shared.opco == .bge {
-                return false
-            }
-            
-            return true
-        }
-        .distinctUntilChanged()
+
     
     private(set) lazy var titleFont: Driver<UIFont> = billState
         .map {
