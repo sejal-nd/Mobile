@@ -610,6 +610,8 @@ enum Screen {
     case autopayUnenrolledView(className: String)
     case changePasswordView(className: String)
     case releaseOfInfoView(className: String)
+    case unauthenticatedOutageValidationView(className: String)
+    case unauthenticatedOutageSelectView(className: String)
     case unauthenticatedOutageView(className: String)
     case paymentView(className: String)
     case alertPreferences(className: String)
@@ -644,6 +646,10 @@ enum Screen {
             return "ChangePasswordView"
         case .releaseOfInfoView:
             return "ReleaseOfInfoView"
+        case .unauthenticatedOutageValidationView:
+            return "UnauthenticatedOutageValidationView"
+        case .unauthenticatedOutageSelectView:
+            return "UnauthenticatedOutageSelectView"
         case .unauthenticatedOutageView:
             return "UnauthenticatedOutageView"
         case .paymentView:
@@ -678,6 +684,8 @@ enum Screen {
              .moreView(let className),
              .changePasswordView(let className),
              .releaseOfInfoView(let className),
+             .unauthenticatedOutageValidationView(let className),
+             .unauthenticatedOutageSelectView(let className),
              .unauthenticatedOutageView(let className),
              .paymentView(let className),
              .alertPreferences(let className),
