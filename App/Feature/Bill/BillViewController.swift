@@ -193,7 +193,7 @@ class BillViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.BillView(className: self.className))
+        FirebaseUtility.logScreenView(.billView(className: self.className))
         
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -235,7 +235,7 @@ class BillViewController: AccountPickerViewController {
         
     func styleViews() {
         view.backgroundColor = .softGray
-        assistanceViewSepartors.map{($0.backgroundColor = UIColor.accentGray)}
+        assistanceViewSepartors.forEach{($0.backgroundColor = UIColor.accentGray)}
         titleAssistanceProgram.font = SystemFont.bold.of(textStyle: .caption1)
         titleAssistanceProgram.textColor = .deepGray
         if assistanceCTA.titleLabel?.text == "Reinstate Payment Arrangement" {

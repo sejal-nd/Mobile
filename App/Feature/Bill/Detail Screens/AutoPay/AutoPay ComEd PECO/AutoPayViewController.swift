@@ -76,9 +76,9 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         FirebaseUtility.logEvent(.autoPayStart)
         
         if viewModel.enrollmentStatus.value == .enrolled {
-            FirebaseUtility.logScreenView(.AutopayEnrolledView(className: self.className))
+            FirebaseUtility.logScreenView(.autopayEnrolledView(className: self.className))
         } else {
-            FirebaseUtility.logScreenView(.AutopayUnenrolledView(className: self.className))
+            FirebaseUtility.logScreenView(.autopayUnenrolledView(className: self.className))
         }
         
         navigationController?.setNavigationBarHidden(false, animated: true)

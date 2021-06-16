@@ -75,9 +75,9 @@ class OutageViewController: AccountPickerViewController {
         super.viewWillAppear(animated)
         
         if userState == .authenticated {
-            FirebaseUtility.logScreenView(.OutageView(className: self.className))
+            FirebaseUtility.logScreenView(.outageView(className: self.className))
         } else {
-            FirebaseUtility.logScreenView(.UnauthenticatedOutageView(className: self.className))
+            FirebaseUtility.logScreenView(.unauthenticatedOutageView(className: self.className))
         }
         
         let shouldHideNavigationBar = userState == .authenticated ? true : false

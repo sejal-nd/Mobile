@@ -60,7 +60,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.ReleaseOfInfoView(className: self.className))
+        FirebaseUtility.logScreenView(.releaseOfInfoView(className: self.className))
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         

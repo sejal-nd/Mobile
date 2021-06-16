@@ -597,63 +597,63 @@ enum UserProperty: String {
 }
 
 enum Screen {
-    case HomeView(className: String)
-    case BillView(className: String)
-    case OutageView(className: String)
-    case UsageView(className: String)
-    case MoreView(className: String)
+    case homeView(className: String)
+    case billView(className: String)
+    case outageView(className: String)
+    case usageView(className: String)
+    case moreView(className: String)
     
-    case BillActivityView(className: String)
-    case AutopayEnrolledView(className: String)
-    case AutopayUnenrolledView(className: String)
-    case ChangePasswordView(className: String)
-    case ReleaseOfInfoView(className: String)
-    case UnauthenticatedOutageView(className: String)
-    case PaymentView(className: String)
+    case billActivityView(className: String)
+    case autopayEnrolledView(className: String)
+    case autopayUnenrolledView(className: String)
+    case changePasswordView(className: String)
+    case releaseOfInfoView(className: String)
+    case unauthenticatedOutageView(className: String)
+    case paymentView(className: String)
     
     var screenName: String {
         switch self {
-        case .HomeView:
+        case .homeView:
             return "HomeView"
-        case .BillView:
+        case .billView:
             return "BillView"
-        case .BillActivityView:
+        case .billActivityView:
             return "BillActivityView"
-        case .OutageView:
+        case .outageView:
             return "OutageView"
-        case .AutopayEnrolledView:
+        case .autopayEnrolledView:
             return "AutopayEnrolledView"
-        case .AutopayUnenrolledView:
+        case .autopayUnenrolledView:
             return "AutopayUnenrolledView"
-        case .UsageView:
+        case .usageView:
             return "UsageView"
-        case .MoreView:
+        case .moreView:
             return "MoreView"
-        case .ChangePasswordView:
+        case .changePasswordView:
             return "ChangePasswordView"
-        case .ReleaseOfInfoView:
+        case .releaseOfInfoView:
             return "ReleaseOfInfoView"
-        case .UnauthenticatedOutageView:
+        case .unauthenticatedOutageView:
             return "UnauthenticatedOutageView"
-        case .PaymentView:
+        case .paymentView:
             return "PaymentView"
         }
     }
     
     var className: String {
         switch self {
-        case .HomeView(let className),
-             .BillView(let className),
-             .BillActivityView(let className),
-             .OutageView(let className),
-             .AutopayEnrolledView(let className),
-             .AutopayUnenrolledView(let className),
-             .UsageView(let className),
-             .MoreView(let className),
-             .ChangePasswordView(let className),
-             .ReleaseOfInfoView(let className),
-             .UnauthenticatedOutageView(let className),
-             .PaymentView(let className):
+        case .homeView(let className),
+             .billView(let className),
+             .billActivityView(let className),
+             .outageView(let className),
+             .autopayEnrolledView(let className),
+             .autopayUnenrolledView(let className),
+             .usageView(let className),
+             .moreView(let className),
+             .changePasswordView(let className),
+             .releaseOfInfoView(let className),
+             .unauthenticatedOutageView(let className),
+             .paymentView(let className):
             return className
         }
     }

@@ -156,7 +156,7 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.HomeView(className: self.className))
+        FirebaseUtility.logScreenView(.homeView(className: self.className))
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         

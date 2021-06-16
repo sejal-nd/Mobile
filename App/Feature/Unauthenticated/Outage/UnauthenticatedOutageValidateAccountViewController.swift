@@ -95,7 +95,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.UnauthenticatedOutageView(className: self.className))
+        FirebaseUtility.logScreenView(.unauthenticatedOutageView(className: self.className))
 
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
