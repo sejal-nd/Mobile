@@ -573,6 +573,7 @@ enum MoreParameter: String, EventParameter {
     case set_default_account_complete
     case billing_videos
     case release_of_info_complete
+    case alert_preferences_start
     case alert_preferences_complete
     case sign_out
 }
@@ -611,6 +612,7 @@ enum Screen {
     case releaseOfInfoView(className: String)
     case unauthenticatedOutageView(className: String)
     case paymentView(className: String)
+    case alertPreferences(className: String)
     
     // Apple Watch
     case watchSignIn(className: String)
@@ -646,6 +648,8 @@ enum Screen {
             return "UnauthenticatedOutageView"
         case .paymentView:
             return "PaymentView"
+        case .alertPreferences:
+            return "AlertPreferencesView"
             
         case .watchSignIn:
             return "sign_in_screen_view"
@@ -676,6 +680,7 @@ enum Screen {
              .releaseOfInfoView(let className),
              .unauthenticatedOutageView(let className),
              .paymentView(let className),
+             .alertPreferences(let className),
              
              .watchSignIn(let className),
              .watchAccountList(let className),

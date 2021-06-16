@@ -76,6 +76,12 @@ class AlertPreferencesViewController: UIViewController {
         })
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        FirebaseUtility.logScreenView(.alertPreferences(className: self.className))
+    }
+    
     private func checkForNotificationsPermissions() {
         UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
             guard let self = self else { return }
@@ -130,6 +136,8 @@ class AlertPreferencesViewController: UIViewController {
     @objc func onSavePress() {
         guard saveButton.isEnabled else { return }
         GoogleAnalytics.log(event: .alertsPrefCenterSave)
+        
+        FirebaseUtility.logEvent(.more(parameters: [.alert_preferences_start]))
         
         LoadingView.show()
         viewModel.saveChanges(onSuccess: { [weak self] in
