@@ -281,6 +281,12 @@ class TapToPayReviewPaymentViewController: UIViewController {
         bindButtonTaps()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        FirebaseUtility.logScreenView(.paymentView(className: self.className))
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? TapToPayConfirmationViewController {
             vc.presentingNavController = navigationController
