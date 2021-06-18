@@ -74,15 +74,19 @@ class OutageViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let shouldHideNavigationBar = userState == .authenticated ? true : false
+        navigationController?.setNavigationBarHidden(shouldHideNavigationBar, animated: true)
+        clearTimestampForReportedOutage()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if userState == .authenticated {
             FirebaseUtility.logScreenView(.outageView(className: self.className))
         } else {
             FirebaseUtility.logScreenView(.unauthenticatedOutageView(className: self.className))
         }
-        
-        let shouldHideNavigationBar = userState == .authenticated ? true : false
-        navigationController?.setNavigationBarHidden(shouldHideNavigationBar, animated: true)
-        clearTimestampForReportedOutage()
     }
     
     override func viewDidLayoutSubviews() {
