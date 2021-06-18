@@ -193,12 +193,6 @@ class ReviewPaymentViewController: UIViewController {
         bindViewContent()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        FirebaseUtility.logScreenView(.paymentView(className: self.className))
-    }
-    
     func configureAdditionalRecipientsView() {
         stackView.setCustomSpacing(20, after: receiptView)
         stackView.setCustomSpacing(20, after: addAdditionalRecipients)
