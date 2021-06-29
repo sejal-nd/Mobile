@@ -456,6 +456,7 @@ extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
         showUpdateButton()
         
         FirebaseUtility.logEvent(.autoPay(parameters: [.modify_bank]))
+        GoogleAnalytics.log(event: .autoPayModifyBankComplete)
     }
     
     func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController) {

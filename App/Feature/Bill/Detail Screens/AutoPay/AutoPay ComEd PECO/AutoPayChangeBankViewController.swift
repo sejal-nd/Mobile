@@ -267,6 +267,7 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
                 
                 FirebaseUtility.logEvent(.autoPayNetworkComplete)
                 FirebaseUtility.logEvent(.autoPay(parameters: [.modify_complete]))
+                GoogleAnalytics.log(event: .autoPayModifyBankComplete)
                 
                 self.delegate?.changedBank()
                 self.dismissModal()
