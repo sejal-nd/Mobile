@@ -271,11 +271,7 @@ class HomeViewController: AccountPickerViewController {
                     .drive(onNext: { [weak self] in
                         guard let self = self else { return }
                         self.navigateToGameOnboarding(accountDetail: $0)
-                        
-                        FirebaseUtility.logEvent(.gamification, customParameters: [
-                            "action": EventParameter.Value.onboard_start.rawValue,
-                            "onboarding_card_version": "\(gameOnboardingCardView.version.rawValue)"
-                        ])
+                        FirebaseUtility.logEvent(.gamification(parameters: [.onboard_start, .onboarding_card_version(gameOnboardingCardView.version.rawValue)]))
                     }).disposed(by: self.bag)
                 
                 gameOnboardingCardView.imageButton.rx.touchUpInside.asDriver()
@@ -283,10 +279,7 @@ class HomeViewController: AccountPickerViewController {
                     .drive(onNext: { [weak self] in
                         guard let self = self else { return }
                         self.navigateToGameOnboarding(accountDetail: $0)
-                        FirebaseUtility.logEvent(.gamification, customParameters: [
-                            "action": EventParameter.Value.onboard_start.rawValue,
-                            "onboarding_card_version": "\(gameOnboardingCardView.version.rawValue)"
-                        ])
+                        FirebaseUtility.logEvent(.gamification(parameters: [.onboard_start, .onboarding_card_version(gameOnboardingCardView.version.rawValue)]))
                     }).disposed(by: self.bag)
                 
                 let index = self.topPersonalizeButton != nil ? 1 : 0
@@ -346,7 +339,7 @@ class HomeViewController: AccountPickerViewController {
                 UserDefaults.standard.set(Version.current.string, forKey: UserDefaultKeys.homeCardCustomizeTappedVersion)
                 this.performSegue(withIdentifier: editHomeSegueId, sender: nil)
                 
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .personalize_button)])
+                FirebaseUtility.logEvent(.home(parameters: [.personalize_button]))
                 
                 guard let button = this.topPersonalizeButton else { return }
                 UIView.animate(withDuration: 0.15, animations: {
@@ -419,7 +412,7 @@ class HomeViewController: AccountPickerViewController {
                 UserDefaults.standard.set(Version.current.string, forKey: UserDefaultKeys.homeCardCustomizeTappedVersion)
                 this.performSegue(withIdentifier: editHomeSegueId, sender: nil)
                 
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .personalize_banner)])
+                FirebaseUtility.logEvent(.home(parameters: [.personalize_banner]))
                 
                 UIView.animate(withDuration: 0.15, animations: {
                     button.isHidden = true
@@ -438,8 +431,8 @@ class HomeViewController: AccountPickerViewController {
         super.viewWillAppear(animated)
         
         // Artificial screen event due to automatic screen tracking not counting the initial load of this screen...
-        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .view_screen)])
-        FirebaseUtility.logScreenView(.HomeView(className: self.className))
+        FirebaseUtility.logEvent(.home(parameters: [.view_screen]))
+        FirebaseUtility.logScreenView(.homeView(className: self.className))
 
         navigationController?.setNavigationBarHidden(true, animated: true)
     }

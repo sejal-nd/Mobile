@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import Lottie
+import SafariServices
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
@@ -136,6 +137,13 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var genericErrorLabel: UILabel!
     @IBOutlet weak var accountDisallowView: UIView!
     
+    @IBOutlet weak var assistanceView: UIView!
+    @IBOutlet weak var assistanceViewSeparator: UIView!
+    @IBOutlet weak var titleAssistanceProgram: UILabel!
+    @IBOutlet weak var descriptionAssistanceProgram: UILabel!
+    @IBOutlet weak var assistanceCTA: UIButton!
+    
+    @IBOutlet var assistanceViewSepartors: [UIView]!
     private let cornerRadius: CGFloat = 4.0
     
     var refreshControl: UIRefreshControl?
@@ -185,7 +193,7 @@ class BillViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.BillView(className: self.className))
+        FirebaseUtility.logScreenView(.billView(className: self.className))
         
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -227,6 +235,19 @@ class BillViewController: AccountPickerViewController {
         
     func styleViews() {
         view.backgroundColor = .softGray
+        assistanceViewSepartors.forEach{($0.backgroundColor = UIColor.accentGray)}
+        titleAssistanceProgram.font = SystemFont.bold.of(textStyle: .caption1)
+        titleAssistanceProgram.textColor = .deepGray
+        if assistanceCTA.titleLabel?.text == "Reinstate Payment Arrangement" {
+            self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+            
+        } else {
+
+        descriptionAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+        }
+        descriptionAssistanceProgram.textColor = .deepGray
+        assistanceCTA.setTitleColor(.actionBlue, for: .normal)
+        assistanceCTA.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         prepaidHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
         prepaidDetailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
@@ -624,6 +645,22 @@ class BillViewController: AccountPickerViewController {
         viewModel.showAutoPayEnrolledView.not().drive(autoPayEnrolledView.rx.isHidden).disposed(by: bag)
         viewModel.autoPayDetailLabelText.drive(autoPayDetailLabel.rx.attributedText).disposed(by: bag)
         viewModel.showBudgetEnrolledView.not().drive(budgetEnrolledView.rx.isHidden).disposed(by: bag)
+        
+        viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
+            guard let self = self else { return }
+            if description == nil {
+                self.assistanceView.isHidden = true
+            }
+            DispatchQueue.main.async {
+                if description?.ctaType == "Reinstate Payment Arrangement" {
+                    self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
+                }
+
+            }
+            self.titleAssistanceProgram.text = description?.title
+            self.descriptionAssistanceProgram.text = description?.description
+            self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
+        }).disposed(by: bag)
 	}
 
     func bindButtonTaps() {
@@ -690,7 +727,7 @@ class BillViewController: AccountPickerViewController {
                         return
                     }
                     
-                    FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .bill_view_pdf)])
+                    FirebaseUtility.logEvent(.bill(parameters: [.bill_view_pdf]))
                     
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
@@ -787,6 +824,7 @@ class BillViewController: AccountPickerViewController {
                     vc.accountDetail = accountDetail
                     let newNavController = LargeTitleNavigationController(rootViewController: vc)
                     newNavController.modalPresentationStyle = .fullScreen
+                    
                     FirebaseUtility.logEvent(.makePaymentStart)
                     self.present(newNavController, animated: true, completion: nil)
                 }
@@ -815,6 +853,24 @@ class BillViewController: AccountPickerViewController {
                 }
             })
             .disposed(by: bag)
+        
+        assistanceCTA.rx.touchUpInside.asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let assistanceType = self?.viewModel.mobileAssistanceType else { return }
+                switch assistanceType {
+                case .dde:
+                    FirebaseUtility.logEvent(.bill(parameters: [.extension_cta]))
+                case .dpa:
+                    FirebaseUtility.logEvent(.bill(parameters: [.dpa_cta]))
+                case .dpaReintate:
+                    FirebaseUtility.logEvent(.bill(parameters: [.reinstate_cta]))
+                case .none:
+                    FirebaseUtility.logEvent(.bill(parameters: [.assistance_cta]))
+                }
+                let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: self?.viewModel.mobileAssistanceURL.value ?? "")!)
+                self?.present(safariVc, animated: true, completion: nil)
+                
+            }).disposed(by: bag)
     }
     
     func navigateToAutoPay(accountDetail: AccountDetail) {

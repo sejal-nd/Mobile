@@ -60,7 +60,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.ReleaseOfInfoView(className: self.className))
+        FirebaseUtility.logScreenView(.releaseOfInfoView(className: self.className))
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         
@@ -91,7 +91,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 guard let self = self else { return }
                 FirebaseUtility.logEvent(.releaseOfInfoNetworkComplete)
                 
-                FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .release_of_info_complete)])
+                FirebaseUtility.logEvent(.more(parameters: [.release_of_info_complete]))
                 
                 self.delegate?.pecoReleaseOfInfoViewControllerDidUpdate(self)
                 self.navigationController?.popViewController(animated: true)

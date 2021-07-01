@@ -95,7 +95,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.UnauthenticatedOutageView(className: self.className))
+        FirebaseUtility.logScreenView(.unauthenticatedOutageValidationView(className: self.className))
 
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -234,7 +234,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     }
     
     @IBAction func onAccountNumberTooltipPress() {
-        FirebaseUtility.logEvent(.unauthOutage, parameters: [EventParameter(parameterName: .action, value: .account_number_help)])
+        FirebaseUtility.logEvent(.unauthOutage(parameters: [.account_number_help]))
         
         let description: String
         switch Configuration.shared.opco {
