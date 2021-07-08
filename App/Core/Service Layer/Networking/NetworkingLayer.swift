@@ -50,6 +50,7 @@ public enum NetworkingLayer {
             }
         }
         
+        
         // Add Headers
         NetworkingLayer.addHTTPHeaders(router.httpHeaders, request: &urlRequest)
         
@@ -91,6 +92,28 @@ public enum NetworkingLayer {
                                      urlRequest: urlRequest,
                                      completion: completion)
         }
+    }
+    
+    private static func getPostString(params:[String:Any]) -> String
+    {
+        var data = [String]()
+        for(key, value) in params
+        {
+            data.append(key + "=\(value)")
+        }
+        return data.map { String($0) }.joined(separator: "&")
+    }
+    
+    private static func convertStringToDictionary(text: String) -> [String:String]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:String]
+                return json
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        return nil
     }
     
     private static func refreshToken<T: Decodable>(router: Router, completion: @escaping (Result<T, NetworkingError>) -> ()) {
@@ -295,3 +318,4 @@ private extension DateFormatter {
         return formatter
     }()
 }
+
