@@ -400,9 +400,9 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         FirebaseUtility.logEvent(.reportOutageSubmit)
         
         if !unauthenticatedExperience {
-            FirebaseUtility.logEventV2(.authOutage(parameters: [.report_outage]))
+            FirebaseUtility.logEvent(.authOutage(parameters: [.report_complete]))
         } else {
-            FirebaseUtility.logEventV2(.unauthOutage(parameters: [.report_outage]))
+            FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_outage]))
         }
         
         view.endEditing(true)

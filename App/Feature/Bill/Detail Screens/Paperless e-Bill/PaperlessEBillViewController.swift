@@ -207,7 +207,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     }
     
     @IBAction func onTooltipPress() {
-        FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .learn_more)])
+        FirebaseUtility.logEvent(.eBill(parameters: [.learn_more]))
         
         let description: String
         if Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI {
@@ -248,7 +248,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
             self.navigationController?.popViewController(animated: true)
             }, onError: { [weak self] errMessage in
                 
-                FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                FirebaseUtility.logEvent(.eBill(parameters: [.network_submit_error]))
                 
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)

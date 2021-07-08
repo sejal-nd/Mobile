@@ -298,13 +298,13 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                                                                     message: String(format: NSLocalizedString("Would you like to use %@ to sign in from now on?", comment: ""), biometricsString),
                                                                     preferredStyle: .alert)
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
-                                FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: false.description)])
+                                FirebaseUtility.logEvent(.biometricsToggle(parameters: [.false]))
                                 self?.launchMainApp(maintenanceMode: maintenanceMode)
                             }))
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp(maintenanceMode: maintenanceMode, isBiometricAuthenticationAllowed: true)
-                                FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: true.description)])
+                                FirebaseUtility.logEvent(.biometricsToggle(parameters: [.true]))
                                 GoogleAnalytics.log(event: .touchIDEnable)
                             }))
                             self.present(biometricsAlert, animated: true, completion: nil)
@@ -390,19 +390,19 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     func forgotUsername() {
-        FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .forgot_username_press)])
+        FirebaseUtility.logEvent(.login(parameters: [.forgot_username_press]))
         GoogleAnalytics.log(event: .forgotUsernameOffer)
         performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
     }
 
     func forgotPassword() {
-        FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .forgot_password_press)])
+        FirebaseUtility.logEvent(.login(parameters: [.forgot_password_press]))
         GoogleAnalytics.log(event: .forgotPasswordOffer)
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
     }
 
     @IBAction func onEyeballPress(_ sender: UIButton) {
-        FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .show_password)])
+        FirebaseUtility.logEvent(.login(parameters: [.show_password]))
         
         if passwordTextField.textField.isSecureTextEntry {
             passwordTextField.textField.isSecureTextEntry = false
@@ -416,7 +416,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @IBAction func onBiometricsButtonPress() {
-        FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .biometrics_press)])
+        FirebaseUtility.logEvent(.login(parameters: [.biometrics_press]))
         
         navigationController?.view.isUserInteractionEnabled = false
 

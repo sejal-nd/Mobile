@@ -233,7 +233,7 @@ class WalletViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .add_bank_start)])
+                FirebaseUtility.logEvent(.wallet(parameters: [.add_bank_start]))
                 
                 let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                 paymentusVC.delegate = self
@@ -248,7 +248,7 @@ class WalletViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .add_card_start)])
+                FirebaseUtility.logEvent(.wallet(parameters: [.add_card_start]))
                 
                 let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                 paymentusVC.delegate = self
@@ -328,7 +328,7 @@ class WalletViewController: UIViewController {
                 
                 guard let self = self else { return }
                 
-                FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .delete_payment_method)])
+                FirebaseUtility.logEvent(.wallet(parameters: [.delete_payment_method]))
                 
                 self.viewModel.fetchWalletItems.onNext(())
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
@@ -402,7 +402,7 @@ extension WalletViewController: UITableViewDataSource {
 
 extension WalletViewController: PaymentusFormViewControllerDelegate {
     func didEditWalletItem() {
-        FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .edit_payment_method)])
+        FirebaseUtility.logEvent(.wallet(parameters: [.edit_payment_method]))
         
         didChangeAccount(toastMessage: NSLocalizedString("Changes saved", comment: ""))
     }
@@ -411,9 +411,9 @@ extension WalletViewController: PaymentusFormViewControllerDelegate {
         GoogleAnalytics.log(event: .addWalletComplete)
 
         if walletItem.bankOrCard == .bank {
-            FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .add_bank_complete)])
+            FirebaseUtility.logEvent(.wallet(parameters: [.add_bank_complete]))
         } else {
-            FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .add_card_complete)])
+            FirebaseUtility.logEvent(.wallet(parameters: [.add_card_complete]))
         }
         
         let toastMessage = walletItem.bankOrCard == .bank ?

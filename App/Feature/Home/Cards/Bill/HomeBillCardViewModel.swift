@@ -384,12 +384,7 @@ class HomeBillCardViewModel {
                 minMaxPaymentAllowedText != nil
     }
     .distinctUntilChanged()
-    
-    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
-                                                                                     accountDetailDriver,
-                                                                                     walletItemDriver)
-        { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
-        .distinctUntilChanged()
+
     
     private(set) lazy var showMakePaymentButton: Driver<Bool> = accountDetailDriver.map {
         return ($0.billingInfo.netDueAmount > 0 || Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI ) ? true : false
@@ -430,17 +425,26 @@ class HomeBillCardViewModel {
     private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
         Driver.combineLatest(billState, accountDetailDriver)
         { (billState, accountDetail) in
-            if accountDetail.isResidential &&
+            let isAccountTypeEligible = Configuration.shared.opco.isPHI ? accountDetail.isResidential || accountDetail.isSmallCommercialCustomer : accountDetail.isResidential
+            if isAccountTypeEligible &&
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
                 if accountDetail.isDueDateExtensionEligible &&
                     accountDetail.billingInfo.pastDueAmount > 0 {
-        
+                    
                     self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
                     self.mobileAssistanceType = MobileAssistanceURL.dde
-                    return (title: "You’re eligible for a Due Date Extension",
-                            description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension",
-                            ctaType: "Request Due Date Extension",
-                            ctaURL: "")
+                    if Configuration.shared.opco.isPHI {
+                        return (title: "You’re eligible for a One-Time Payment Delay",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a One-Time Payment Delay",
+                                ctaType: "Request One-Time Payment Delay",
+                                ctaURL: "")
+                    } else {
+                        return (title: "You’re eligible for a Due Date Extension",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension",
+                                ctaType: "Request Due Date Extension",
+                                ctaURL: "")
+                    }
+                    
                 } else if !accountDetail.isDueDateExtensionEligible &&
                             accountDetail.billingInfo.amtDpaReinst > 0 &&
                             accountDetail.is_dpa_reinstate_eligible {
@@ -460,16 +464,23 @@ class HomeBillCardViewModel {
                             accountDetail.is_dpa_eligible {
                     self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
                     self.mobileAssistanceType = MobileAssistanceURL.dpa
+                    if Configuration.shared.opco.isPHI {
+                        return (title: "You’re eligible for a Payment Arrangement.",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                                ctaType: "Learn More",
+                                ctaURL: "")
+                    } else {
+                        return (title: "You’re eligible for a Deferred Payment Arrangement.",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                                ctaType: "Learn More",
+                                ctaURL: "")
+                    }
                     
-                    return (title: "You’re eligible for a Deferred Payment Arrangement.",
-                            description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                            ctaType: "Learn More",
-                            ctaURL: "")
                 } else if !accountDetail.isDueDateExtensionEligible &&
                             accountDetail.billingInfo.pastDueAmount > 0 &&
                             !accountDetail.is_dpa_eligible  &&
                             !accountDetail.is_dpa_reinstate_eligible {
-                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none))
+                    self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none, stateJurisdiction: accountDetail.state))
                     self.mobileAssistanceType = MobileAssistanceURL.none
                     return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
                             description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
@@ -728,27 +739,7 @@ class HomeBillCardViewModel {
                 return String.localizedStringWithFormat("A %@ convenience fee will be applied by Paymentus, our payment partner.", accountDetail.billingInfo.convenienceFee.currencyString)
             }
     }
-    
-    private(set) lazy var enableOneTouchSlider: Driver<Bool> =
-        Driver.combineLatest(accountDetailDriver, walletItemDriver, showMinMaxPaymentAllowed)
-        { accountDetail, walletItem, showMinMaxPaymentAllowed in
-            guard let walletItem = walletItem, !walletItem.isExpired else { return false }
-            if showMinMaxPaymentAllowed {
-                return false
-            }
-            
-            let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount
-            if accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Configuration.shared.opco != .bge {
-                return false
-            }
-            
-            if accountDetail.billingInfo.netDueAmount < 0 && Configuration.shared.opco == .bge {
-                return false
-            }
-            
-            return true
-        }
-        .distinctUntilChanged()
+
     
     private(set) lazy var titleFont: Driver<UIFont> = billState
         .map {
@@ -1027,22 +1018,24 @@ class HomeBillCardViewModel {
             }
         }
         
-        private static func getURLPath(assistanceType: MobileAssistanceURL) -> String {
+        private static func getURLPath(assistanceType: MobileAssistanceURL, stateJurisdiction: String? = "") -> String {
             
             switch assistanceType {
             case .dde:
                 return "/payments/duedateextension"
             case .dpa,.dpaReintate:
-                switch Configuration.shared.opco {
-                case .comEd:
-                    return "/payments/dpa"
-                case .peco:
-                    return "/payments/dpa"
-                default:
-                    return "/payments/dpa"
-                }
+                return "/payments/dpa"
             case .none:
-                return "/CustomerSupport/Pages/AssistancePrograms.aspx"
+                switch Configuration.shared.opco {
+                case .pepco:
+                    return stateJurisdiction == "DC" ? "/CustomerSupport/Pages/DC/AssistancePrograms(DC).aspx" : "/CustomerSupport/Pages/MD/AssistancePrograms(MD).aspx"
+                case .delmarva:
+                    return stateJurisdiction == "DE" ? "/CustomerSupport/Pages/DE/AssistancePrograms%20(DE).aspx" :
+                        "/CustomerSupport/Pages/MD/AssistancePrograms%20(MD).aspx"
+                default:
+                    return "/CustomerSupport/Pages/AssistancePrograms.aspx"
+                }
+                
             }
         }
         
@@ -1060,9 +1053,9 @@ class HomeBillCardViewModel {
             }
         }
         
-        static func getMobileAssistnceURL(assistanceType: MobileAssistanceURL) -> String {
+        static func getMobileAssistnceURL(assistanceType: MobileAssistanceURL, stateJurisdiction: String? = "") -> String {
             
-            return (getBaseURLmobileAssistance(assistanceType: assistanceType) + getURLPath(assistanceType: assistanceType)) + getUTMParams(assistanceType: assistanceType)
+            return (getBaseURLmobileAssistance(assistanceType: assistanceType) + getURLPath(assistanceType: assistanceType, stateJurisdiction: stateJurisdiction)) + getUTMParams(assistanceType: assistanceType)
             
         }
 

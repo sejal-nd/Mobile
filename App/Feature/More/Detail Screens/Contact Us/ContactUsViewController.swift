@@ -134,7 +134,7 @@ class ContactUsViewController: UIViewController {
                 guard let self = self else { return }
                 
                 GoogleAnalytics.log(event: self.unauthenticatedExperience ? .unAuthContactUsForm : .contactUsForm)
-                FirebaseUtility.logEvent(.contactUs, parameters:[EventParameter(parameterName: .action, value: .online_form)])
+                FirebaseUtility.logEvent(.contactUs(parameters: [.online_form]))
                 
                 let safariVC = SFSafariViewController.createWithCustomStyle(url: self.viewModel.onlineFormUrl)
                 self.present(safariVC, animated: true, completion: nil)
@@ -184,7 +184,7 @@ class ContactUsViewController: UIViewController {
                 button.setImage(image, for: .normal)
                 button.rx.tap.asDriver()
                     .drive(onNext: {
-                        FirebaseUtility.logEvent(.contactUs, parameters:[EventParameter(parameterName: .action, value: analyticParam)])
+                        FirebaseUtility.logEvent(.contactUs(parameters: [analyticParam]))
                         guard let urlString = urlString else { return }
                         UIApplication.shared.openUrlIfCan(string: urlString)
                     })
@@ -263,7 +263,7 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
             GoogleAnalytics.log(event: screenName, dimensions: [.link: value])
         }
         
-        let paramValue: EventParameter.Value?
+        let paramValue: ContactUsParameter?
         switch textView {
         case emergencyNumberTextView:
             paramValue = .emergency_number
@@ -286,7 +286,7 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
         }
         
         if let paramVal = paramValue {
-            FirebaseUtility.logEvent(.contactUs, parameters:[EventParameter(parameterName: .action, value: paramVal)])
+            FirebaseUtility.logEvent(.contactUs(parameters: [paramVal]))
         }
     }
 }

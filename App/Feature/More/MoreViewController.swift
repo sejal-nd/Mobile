@@ -80,7 +80,7 @@ class MoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        FirebaseUtility.logScreenView(.MoreView(className: self.className))
+        FirebaseUtility.logScreenView(.moreView(className: self.className))
         
         navigationController?.setNavigationBarHidden(!StormModeStatus.shared.isOn, animated: true)
 
@@ -103,7 +103,7 @@ class MoreViewController: UIViewController {
     // MARK: - Actions
     
     @objc func toggleBiometrics(_ sender: UISwitch) {
-        FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: sender.isOn.description)])
+        FirebaseUtility.logEvent(.biometricsToggle(parameters: [sender.isOn ? .true : .false]))
         
         FirebaseUtility.setUserProperty(.isBiometricsEnabled, value: sender.isOn.description)
         
@@ -173,7 +173,7 @@ class MoreViewController: UIViewController {
     }
     
     private func logout(action: UIAlertAction) {
-        FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .sign_out)])
+        FirebaseUtility.logEvent(.more(parameters: [.sign_out]))
             
         AuthenticationService.logout(sendToLogin: false)
     }
@@ -361,7 +361,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 1:
-                FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .billing_videos)])
+                FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                 
                 UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
             case 2:
@@ -439,7 +439,7 @@ extension MoreViewController: SetDefaultAccountViewControllerDelegate {
     func setDefaultAccountViewControllerDidFinish(_ setDefaultAccountViewController: SetDefaultAccountViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Default account changed", comment: ""))
-            FirebaseUtility.logEvent(.more, parameters: [.init(parameterName: .action, value: .set_default_account_complete)])
+            FirebaseUtility.logEvent(.more(parameters: [.set_default_account_complete]))
         })
     }
 }

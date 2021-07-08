@@ -129,8 +129,27 @@ extension WatchSessionController {
                 Log.error("Failed to parse user info dictionary with key: screenName")
                 return
             }
-            
-            FirebaseUtility.logWatchScreenView(screenName)
+
+            // todo, this could be cleaned up
+            let screen: Screen
+            switch screenName {
+            case "sign_in_screen_view":
+                screen = .watchSignInView(className: screenName)
+            case "account_list_screen_view":
+                screen = .watchAccountListView(className: screenName)
+            case "outage_screen_view":
+                screen = .watchOutageView(className: screenName)
+            case "report_outage_screen_view":
+                screen = .watchReportOutageView(className: screenName)
+            case "usage_screen_view":
+                screen = .watchUsageView(className: screenName)
+            case "bill_screen_view":
+                screen = .watchBillView(className: screenName)
+            default:
+                return
+            }
+
+            FirebaseUtility.logWatchScreenView(screen)
             #endif
         }
     }
