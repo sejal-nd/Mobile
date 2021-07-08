@@ -17,7 +17,7 @@ public struct TokenResponse: Decodable {
     public var refreshTokenIssuedAt: String?
     
     enum CodingKeys: String, CodingKey {
-        case token
+        case token = "access_token"
         case expiresIn = "expires_in"
         case refreshToken = "refresh_token"
         case refreshTokenExpiresIn = "refresh_token_expires_in"

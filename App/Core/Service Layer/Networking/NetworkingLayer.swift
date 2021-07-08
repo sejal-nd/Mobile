@@ -108,10 +108,13 @@ public enum NetworkingLayer {
             isRefreshingToken = true
             refreshTokenDispatchGroup.enter()
             // Refresh Token
+            /*
+             Old method
             let refreshTokenRequest = RefreshTokenRequest(clientId: Configuration.shared.clientID,
                                                           clientSecret: Configuration.shared.clientSecret,
                                                           refreshToken: UserSession.refreshToken)
-            
+            */
+            let refreshTokenRequest = RefreshTokenRequest(client_id: Configuration.shared.client_id, refreshToken: UserSession.refreshToken)
             NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
                 switch result {
                 case .success(let tokenResponse):

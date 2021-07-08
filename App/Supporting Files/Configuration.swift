@@ -154,6 +154,42 @@ struct Configuration {
     let oAuthEndpoint: String
     let paymentusUrl: String
     
+    var client_id: String {
+        var client_id = ""
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            client_id = "80720fb5-623b-4754-9c2c-6ba2646acaa6"
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .test:
+                client_id = "80720fb5-623b-4754-9c2c-6ba2646acaa6"
+            case .stage:
+                client_id = "80720fb5-623b-4754-9c2c-6ba2646acaa6"
+            }
+        }
+        return client_id
+    }
+    
+    var scope: String {
+        var scope = ""
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            scope = "openid offline_access 80720fb5-623b-4754-9c2c-6ba2646acaa6"
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .test:
+                scope = "openid offline_access 80720fb5-623b-4754-9c2c-6ba2646acaa6"
+            case .stage:
+                scope = "openid offline_access 80720fb5-623b-4754-9c2c-6ba2646acaa6"
+            }
+        }
+        return scope
+    }
+    
     var clientSecret: String {
         var secret = ""
         switch Configuration.shared.environmentName {
@@ -216,10 +252,10 @@ struct Configuration {
                 switch projectTier {
                 case .test:
                     baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
-                    oAuthEndpoint = "api-development.exeloncorp.com"
+                    oAuthEndpoint = "euazurephitest.b2clogin.com"
                 case .stage:
                     baseUrl = "mcsstg.mobileenv.\(operatingCompany.urlDisplayString).com"
-                    oAuthEndpoint = "api-stage.exeloncorp.com"
+                    oAuthEndpoint = "euazurephitest.b2clogin.com"
                 }
             } else {
                 baseUrl = infoPlist.baseURL

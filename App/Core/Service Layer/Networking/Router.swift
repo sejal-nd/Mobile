@@ -206,9 +206,9 @@ public enum Router {
         case .minVersion:
             return "\(basePath)/\(apiAccess.path)/config/versions"
         case .fetchToken:
-            return "/eu/digital/v1/oauth/token"
+            return "/euazurephitest.onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
         case .refreshToken:
-            return "/eu/digital/v1/oauth/refresh"
+            return "/euazurephitest.onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
         case .registration:
             return "\(basePath)/\(apiAccess.path)/registration"
         case .checkDuplicateRegistration:
@@ -371,6 +371,8 @@ public enum Router {
         switch self {
         case .alertBanner, .newsAndUpdates:
             headers["Accept"] = "application/json;odata=verbose"
+        case .fetchToken, .refreshToken:
+            headers["Content-Type"] = "application/json"
         default:
             headers["Content-Type"] = "application/json"
         }

@@ -27,10 +27,15 @@ public enum AuthenticationService {
     static func validateLogin(username: String,
                               password: String,
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
+        /*
+         Old method
         let tokenRequest = TokenRequest(clientId: Configuration.shared.clientID,
                                         clientSecret: Configuration.shared.clientSecret,
                                         username: "\(Configuration.shared.opco.urlString)\\\(username)",
                                         password: password)
+        */
+        //New Method
+        let tokenRequest = TokenRequest(client_id: Configuration.shared.client_id, scope: Configuration.shared.scope, username: username, password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
             switch result {
             case .success:
@@ -76,10 +81,15 @@ extension AuthenticationService {
     private static func performLogin(username: String,
                                      password: String,
                                      completion: @escaping (Result<Bool, NetworkingError>) -> ()) {
+        /*
+         Old method
         let tokenRequest = TokenRequest(clientId: Configuration.shared.clientID,
                                         clientSecret: Configuration.shared.clientSecret,
                                         username: "\(Configuration.shared.opco.urlString)\\\(username)",
                                         password: password)
+        */
+        //New Method
+        let tokenRequest = TokenRequest(client_id: Configuration.shared.client_id, scope: Configuration.shared.scope, username: username, password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
             case .success(let tokenResponse):
