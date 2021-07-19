@@ -413,7 +413,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                  preferredStyle: .alert)
             versionAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             versionAlert.addAction(UIAlertAction(title: NSLocalizedString("Don't warn me again", comment: ""), style: .cancel, handler: { _ in
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.doNotShowIOS11VersionWarningAgain)
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.doNotShowIOS13VersionWarningAgain)
             }))
             if let rootVC = self.window?.rootViewController {
                 var topmostVC = rootVC
