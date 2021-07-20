@@ -17,6 +17,7 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     case payments = "Payment Enhancements"
     case comet = "COMET"
     case hotfix = "Hotfix"
+    case auth = "Auth"
 }
 
 // MARK: Convenience
@@ -36,6 +37,8 @@ extension ProjectURLSuffix {
             return "/comets4hana"
         case .hotfix:
             return "/hotfix"
+        case .auth:
+            return "/euauth"
         }
     }
 }
