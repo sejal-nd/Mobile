@@ -139,8 +139,8 @@ public enum NetworkingLayer {
                                                           clientSecret: Configuration.shared.clientSecret,
                                                           refreshToken: UserSession.refreshToken)
             */
-            let refreshTokenRequest = RefreshTokenRequest(client_id: Configuration.shared.client_id, refreshToken: UserSession.refreshToken)
-            NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+            let refreshTokenRequest = B2CRefreshTokenRequest(client_id: Configuration.shared.client_id, refreshToken: UserSession.refreshToken)
+            NetworkingLayer.request(router: .refreshB2CToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
                 switch result {
                 case .success(let tokenResponse):
                     do {

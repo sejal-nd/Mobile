@@ -36,6 +36,10 @@ public enum Router {
     case fetchToken(request: TokenRequest)
     case refreshToken(request: RefreshTokenRequest)
     
+    //B2C
+    case fetchB2CToken(request: B2CTokenRequest)
+    case refreshB2CToken(request: B2CRefreshTokenRequest)
+    
     // Registration
     case validateRegistration(request: ValidateAccountRequest)
     case checkDuplicateRegistration(request: UsernameRequest)
@@ -159,6 +163,8 @@ public enum Router {
     
     public var host: String {
         switch self {
+        case .fetchB2CToken, .refreshB2CToken:
+            return "euazurephitest.b2clogin.com"
         case .fetchToken, .refreshToken:
             return Configuration.shared.oAuthEndpoint
         case .weather:
@@ -178,7 +184,7 @@ public enum Router {
         switch self {
         case .weather:
             return .none
-        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags:
+        case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags, .fetchB2CToken, .refreshB2CToken :
             return .anon
         default:
             return .auth
@@ -206,8 +212,12 @@ public enum Router {
         case .minVersion:
             return "\(basePath)/\(apiAccess.path)/config/versions"
         case .fetchToken:
-            return "/euazurephitest.onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
+            return "/eu/digital/v1/oauth/token"
         case .refreshToken:
+            return "/eu/digital/v1/oauth/refresh"
+        case .fetchB2CToken:
+            return "/euazurephitest.onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
+        case .refreshB2CToken:
             return "/euazurephitest.onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
         case .registration:
             return "\(basePath)/\(apiAccess.path)/registration"
@@ -358,6 +368,8 @@ public enum Router {
             return "PUT"
         case .paperlessUnenroll, .deleteOverride:
             return "DELETE"
+        case .fetchB2CToken, .refreshB2CToken:
+            return "POST"
         }
     }
     
@@ -371,7 +383,7 @@ public enum Router {
         switch self {
         case .alertBanner, .newsAndUpdates:
             headers["Accept"] = "application/json;odata=verbose"
-        case .fetchToken, .refreshToken:
+        case .fetchB2CToken, .refreshB2CToken:
             headers["Auth"] = "oauth"
         //just to avoid sending in any other header, since sending in content-type = application/json seems to be breaking the api acceptance
         default:
@@ -406,9 +418,9 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChangeAnon(let request as Encodable), .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .autoPayEnrollBGE(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutage(_, let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .registration(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable), .scheduleOverride(_, _, _, let request as Encodable), .updateDeviceSettings(_, _, _, let request as Encodable), .updateThermostatSchedule(_, _, _, let request as Encodable), .meterPingAnon(let request as Encodable), .updateReleaseOfInfo(_, let request as Encodable), .scheduledPaymentDelete(_, _, let request as Encodable):
+        case .passwordChangeAnon(let request as Encodable), .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .autoPayEnrollBGE(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutage(_, let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .registration(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable), .scheduleOverride(_, _, _, let request as Encodable), .updateDeviceSettings(_, _, _, let request as Encodable), .updateThermostatSchedule(_, _, _, let request as Encodable), .fetchToken(let request as Encodable), .refreshToken(let request as Encodable), .meterPingAnon(let request as Encodable), .updateReleaseOfInfo(_, let request as Encodable), .scheduledPaymentDelete(_, _, let request as Encodable):
             return request.data()
-        case .fetchToken(let request as Encodable), .refreshToken(let request as Encodable):
+        case .fetchB2CToken(let request as Encodable), .refreshB2CToken(let request as Encodable):
             return request.dataProcessed() //creating body in a different way just for token generation and refresh.
         default:
             return nil

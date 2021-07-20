@@ -27,15 +27,12 @@ public enum AuthenticationService {
     static func validateLogin(username: String,
                               password: String,
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
-        /*
-         Old method
+        
+        //Old method
         let tokenRequest = TokenRequest(clientId: Configuration.shared.clientID,
                                         clientSecret: Configuration.shared.clientSecret,
                                         username: "\(Configuration.shared.opco.urlString)\\\(username)",
                                         password: password)
-        */
-        //New Method
-        let tokenRequest = TokenRequest(client_id: Configuration.shared.client_id, scope: Configuration.shared.scope, username: username, password: password)
         NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
             switch result {
             case .success:
@@ -44,6 +41,18 @@ public enum AuthenticationService {
                 completion(.failure(error))
             }
         }
+        //New Method
+        /*
+        let tokenRequest = B2CTokenRequest(client_id: Configuration.shared.client_id, scope: Configuration.shared.scope, username: username, password: password)
+        NetworkingLayer.request(router: .fetchB2CToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        */
     }
     
     static func changePassword(request: ChangePasswordRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
@@ -89,8 +98,8 @@ extension AuthenticationService {
                                         password: password)
         */
         //New Method
-        let tokenRequest = TokenRequest(client_id: Configuration.shared.client_id, scope: Configuration.shared.scope, username: username, password: password)
-        NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+        let tokenRequest = B2CTokenRequest(client_id: Configuration.shared.client_id, scope: Configuration.shared.scope, username: username, password: password)
+        NetworkingLayer.request(router: .fetchB2CToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
             switch result {
             case .success(let tokenResponse):
                 #if os(iOS)

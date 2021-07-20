@@ -252,10 +252,10 @@ struct Configuration {
                 switch projectTier {
                 case .test:
                     baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
-                    oAuthEndpoint = "euazurephitest.b2clogin.com"
+                    oAuthEndpoint = "api-development.exeloncorp.com"
                 case .stage:
                     baseUrl = "mcsstg.mobileenv.\(operatingCompany.urlDisplayString).com"
-                    oAuthEndpoint = "euazurephitest.b2clogin.com"
+                    oAuthEndpoint = "api-stage.exeloncorp.com"
                 }
             } else {
                 baseUrl = infoPlist.baseURL
