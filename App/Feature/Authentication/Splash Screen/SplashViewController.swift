@@ -266,9 +266,9 @@ class SplashViewController: UIViewController{
     }
     
     func checkIOSVersion() {
-        // Warn iOS 11 users that we will soon not support their iOS version
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.doNotShowIOS11VersionWarningAgain) == false &&
-            UIDevice.current.systemVersion.compare("12.0", options: NSString.CompareOptions.numeric) == .orderedAscending {
+        // Warn iOS 13 users that we will soon not support their iOS version
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.doNotShowIOS13VersionWarningAgain) == false &&
+            UIDevice.current.systemVersion.compare("14.0", options: NSString.CompareOptions.numeric) == .orderedAscending {
             NotificationCenter.default.post(name: .shouldShowIOSVersionWarning, object: nil)
         }
     }
