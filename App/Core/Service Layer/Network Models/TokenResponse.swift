@@ -34,7 +34,7 @@ public struct TokenResponse: Decodable {
         self.refreshToken = try container.decodeIfPresent(String.self,
                                                           forKey: .refreshToken)
         self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
-                                                                   forKey: .refreshTokenExpiresIn)
+                                                                   forKey: .expiresIn)
         self.refreshTokenIssuedAt = try container.decodeIfPresent(String.self,
                                                                   forKey: .refreshTokenIssuedAt)
         // Profile Status
@@ -53,9 +53,39 @@ public struct TokenResponse: Decodable {
                                           tempPassword: hasTempPassword,
                                           expiredTempPassword: hasTempPasswordExpired)
         }
+        
+        if let token = token, let base64Data = decode(token: token) {
+            let identity = try? JSONDecoder().decode(IdToken.self, from: base64Data)
+            self.refreshTokenIssuedAt = identity?.issuedAt
+        }
+        
     }
     
     // MARK: JWT Data
+    
+    struct IdToken: Decodable {
+        let name: String?
+        let issuedAt: String?
+        let expiry: String?
+        let issuer: String?
+        let user: String?
+        let givenName: String?
+        let familyName: String?
+        let opco: String?
+        let identityProvider: String?
+        
+        enum CodingKeys: String, CodingKey {
+            case name
+            case issuedAt = "iat"
+            case expiry = "exp"
+            case issuer = "iss"
+            case user = "user"
+            case givenName = "given_name"
+            case familyName = "family_name"
+            case opco = "opco"
+            case identityProvider = "idp"
+        }
+    }
     
     struct StatusContainer: Decodable {
         var status = [TokenProfileStatus]()

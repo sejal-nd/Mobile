@@ -94,6 +94,7 @@ public enum NetworkingLayer {
         }
     }
     
+    //Methods for B2C MSAuth
     private static func getPostString(params:[String:Any]) -> String
     {
         var data = [String]()
@@ -115,6 +116,7 @@ public enum NetworkingLayer {
         }
         return nil
     }
+    //END
     
     private static func refreshToken<T: Decodable>(router: Router, completion: @escaping (Result<T, NetworkingError>) -> ()) {
         DispatchQueue.global(qos: .default).async {
