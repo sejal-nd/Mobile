@@ -59,6 +59,6 @@ public struct FeatureFlags: Decodable {
         hasNewRegistration = try container.decodeIfPresent(Bool.self, forKey: .hasNewRegistration) ?? true
         paymentProgramAds = try container.decodeIfPresent(Bool.self, forKey: .paymentProgramAds) ?? true
         agentisWidgets = try container.decodeIfPresent(Bool.self, forKey: .agentisWidgets) ?? true
-        paymentProgramAds = try container.decodeIfPresent(Bool.self, forKey: .isAzureAuthentication) ?? true
+        isAzureAuthentication = try container.decodeIfPresent(Bool.self, forKey: .isAzureAuthentication) ?? true
     }
 }

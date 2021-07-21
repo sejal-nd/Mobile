@@ -40,7 +40,7 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasForgotPasswordLink.rawValue : false,
             FeatureFlagKey.hasNewRegistration.rawValue : true,
             FeatureFlagKey.paymentProgramAds.rawValue : false,
-            FeatureFlagKey.agentisWidgets.rawValue : false
+            FeatureFlagKey.agentisWidgets.rawValue : false,
             FeatureFlagKey.isAzureAuthentication.rawValue : false
         ]
         
@@ -66,7 +66,7 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasForgotPasswordLink.rawValue : featureFlags.hasForgotPasswordLink,
                     FeatureFlagKey.hasNewRegistration.rawValue : featureFlags.hasNewRegistration,
                     FeatureFlagKey.paymentProgramAds.rawValue : featureFlags.paymentProgramAds,
-                    FeatureFlagKey.agentisWidgets.rawValue : featureFlags.agentisWidgets                    
+                    FeatureFlagKey.agentisWidgets.rawValue : featureFlags.agentisWidgets,
                     FeatureFlagKey.isAzureAuthentication.rawValue : featureFlags.isAzureAuthentication
                 ]
                 
