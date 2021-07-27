@@ -58,9 +58,9 @@ extension UserSession {
             }
         }
         
-        let tokenExpirationSeconds = newTokenExpirationMilisecondsDouble / 1000
+        let tokenExpirationSeconds = newTokenExpirationMilisecondsDouble
         let newTokenExpirationDate = Date(timeIntervalSinceNow: tokenExpirationSeconds)
-        let refreshTokenExpirationSeconds = newRefreshTokenExpirationMilisecondsDouble / 1000
+        let refreshTokenExpirationSeconds = newRefreshTokenExpirationMilisecondsDouble
         let newRefreshTokenExpirationDate = Date(timeIntervalSinceNow: refreshTokenExpirationSeconds)
         
         // Save to keychain
