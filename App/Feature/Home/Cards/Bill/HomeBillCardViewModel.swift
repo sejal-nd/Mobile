@@ -309,12 +309,23 @@ class HomeBillCardViewModel {
                 return .catchUp
             }
             
-            if billingInfo.pastDueAmount > 0 {
-                return .pastDue
-            }
-            
-            if billingInfo.pendingPaymentsTotal > 0 {
-                return .paymentPending
+            // BGE - checking pending payments before past due amount
+            if Configuration.shared.opco == .bge {
+                if billingInfo.pendingPaymentsTotal > 0 {
+                    return .paymentPending
+                }
+                
+                if billingInfo.pastDueAmount > 0 {
+                    return .pastDue
+                }
+            } else {
+                if billingInfo.pastDueAmount > 0 {
+                    return .pastDue
+                }
+                
+                if billingInfo.pendingPaymentsTotal > 0 {
+                    return .paymentPending
+                }
             }
             
             if scheduledPayment?.amount > 0 {
