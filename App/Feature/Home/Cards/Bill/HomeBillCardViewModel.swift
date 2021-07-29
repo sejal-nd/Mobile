@@ -740,7 +740,7 @@ class HomeBillCardViewModel {
             case .billPaid:
                 return accountDetail.billingInfo.lastPaymentAmount?.currencyString
             case .paymentPending:
-                return accountDetail.billingInfo.pendingPayments.last?.amount.currencyString
+                return accountDetail.billingInfo.pendingPaymentsTotal.currencyString
             default:
                 guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
                 return abs(netDue).currencyString
