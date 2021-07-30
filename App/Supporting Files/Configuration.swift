@@ -116,7 +116,7 @@ struct InfoPlist: Codable {
     let displayName: String
     let baseURL: String
     let oauthURL: String
-    let b2cauthURL: String
+    let b2cTenant: String
     let accountURL: String
     let paymentURL: String
     let associatedDomain: String
@@ -132,7 +132,7 @@ struct InfoPlist: Codable {
         case displayName = "Build Display Name"
         case baseURL = "Base URL"
         case oauthURL = "OAuth URL"
-        case b2cauthURL = "B2CAuth URL"
+        case b2cTenant = "B2CAuth Tenant"
         case accountURL = "Account URL"
         case paymentURL = "Payment URL"
         case associatedDomain = "Associated Domain"
@@ -155,6 +155,7 @@ struct Configuration {
     let baseUrl: String
     let oAuthEndpoint: String
     let b2cAuthEndpoint: String
+    let b2cTenant: String
     let paymentusUrl: String
     
     var client_id: String {
@@ -267,20 +268,27 @@ struct Configuration {
                     baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
                     // Unsure what oAuth would be here...
                     oAuthEndpoint = "api-development.exeloncorp.com"
-                    b2cAuthEndpoint = "euazurephitest.b2clogin.com"
+                    //b2cAuthEndpoint = "euazurephitest.b2clogin.com"
+                    b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
+                    b2cTenant = infoPlist.b2cTenant
                 case .test:
                     baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
                     oAuthEndpoint = "api-development.exeloncorp.com"
-                    b2cAuthEndpoint = "euazurephitest.b2clogin.com"
+                    //b2cAuthEndpoint = "euazurephitest.b2clogin.com"
+                    b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
+                    b2cTenant = infoPlist.b2cTenant
                 case .stage:
                     baseUrl = "mcsstg.mobileenv.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-stage.exeloncorp.com"
-                    b2cAuthEndpoint = "euazurephitest.b2clogin.com"
+                    //b2cAuthEndpoint = "euazurephitest.b2clogin.com"
+                    b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
+                    b2cTenant = infoPlist.b2cTenant
                 }
             } else {
                 baseUrl = infoPlist.baseURL
                 oAuthEndpoint = infoPlist.oauthURL
-                b2cAuthEndpoint = infoPlist.b2cauthURL
+                b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
+                b2cTenant = infoPlist.b2cTenant
             }
         } catch {
             fatalError("Could not get data from plist: \(error)")

@@ -220,9 +220,9 @@ public enum Router {
         case .refreshToken:
             return "/eu/digital/v1/oauth/refresh"
         case .fetchB2CToken:
-            return "/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
+            return "/\(Configuration.shared.b2cTenant).onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
         case .refreshB2CToken:
-            return "/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
+            return "/\(Configuration.shared.b2cTenant).onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
         case .registration:
             return "\(basePath)/\(apiAccess.path)/registration"
         case .checkDuplicateRegistration:
