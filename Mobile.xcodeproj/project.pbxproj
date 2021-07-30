@@ -7457,7 +7457,7 @@
 				ALERT_URL = www.bge.com;
 				APP_CENTER_ID = "b04a00b3-2d34-4f42-b02c-adff70038646";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -8073,7 +8073,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -8478,7 +8478,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "263b80d6-242b-4962-9a64-01731f98056b";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -8753,7 +8753,7 @@
 				ALERT_URL = www.peco.com;
 				APP_CENTER_ID = "bc1003d8-3723-489a-a3e4-2572fdb9855a";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -9031,7 +9031,7 @@
 				ALERT_URL = www.peco.com;
 				APP_CENTER_ID = "6c8fc049-b612-4605-add7-28f214eb7b25";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -9315,7 +9315,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -9720,7 +9720,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "236e33d9-c10a-4dae-92d8-75c3f0b41450";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -9996,7 +9996,7 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				APP_CENTER_ID = "e5857243-5111-4157-b065-e5f37b038882";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -10275,7 +10275,7 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				APP_CENTER_ID = "00c0fa1f-9044-498c-89d2-757cb59ea2e1";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -10560,7 +10560,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -10965,7 +10965,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "ee9f1ca8-fe59-4c5f-80d3-ebcef6ae7168";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -11241,7 +11241,7 @@
 				ALERT_URL = www.delmarva.com;
 				APP_CENTER_ID = "f7e3323c-b32b-4986-b23f-d19488de011b";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -11520,7 +11520,7 @@
 				ALERT_URL = www.delmarva.com;
 				APP_CENTER_ID = "01d29f65-ea73-4353-a9e4-3de7f4e0b56f";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -11805,7 +11805,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -12210,7 +12210,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "7f015d81-de56-4f18-a90d-d17a93ee65d4";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -12486,7 +12486,7 @@
 				ALERT_URL = www.pepco.com;
 				APP_CENTER_ID = "6601aeb6-77db-4d4a-b031-1604b3e8c4e7";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -12765,7 +12765,7 @@
 				ALERT_URL = www.pepco.com;
 				APP_CENTER_ID = "9cc9a98f-3a76-4b61-870c-c35b2b9a8a04";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -13050,7 +13050,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -13455,7 +13455,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "3c531e04-e7cc-44c0-96e3-5a67f815484a";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -13730,7 +13730,7 @@
 				ALERT_URL = www.comed.com;
 				APP_CENTER_ID = "5186b477-0f34-40ae-99bd-814fdef24a60";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -14008,7 +14008,7 @@
 				ALERT_URL = www.comed.com;
 				APP_CENTER_ID = "5dbfd30c-4ed4-4d1e-ab4f-225796ef9a4e";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -14292,7 +14292,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -14524,7 +14524,7 @@
 				ALERT_URL = www.bge.com;
 				APP_CENTER_ID = "addf3952-2a38-47e1-a361-b0680bb17c82";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -14657,7 +14657,7 @@
 			buildSettings = {
 				APP_CENTER_ID = "d63492ab-45ec-4d90-9e5a-963fa127e697";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_URL = euazurephitest.b2clogin.com;
+				B2CAUTH_URL = euazurephitest.b2clogin.com/euazurephitest.onmicrosoft.com;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
