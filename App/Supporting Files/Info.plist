@@ -70,6 +70,8 @@
 	<string>Allow photo access to provide screenshots with feedback</string>
 	<key>OAuth URL</key>
 	<string>$(OAUTH_URL)</string>
+	<key>B2CAuth URL</key>
+	<string>$(B2CAUTH_URL)</string>
 	<key>Payment URL</key>
 	<string>$(PAYMENT_URL)</string>
 	<key>UIAppFonts</key>

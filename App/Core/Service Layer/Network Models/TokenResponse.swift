@@ -43,7 +43,7 @@ public struct TokenResponse: Decodable {
         self.refreshToken = try container.decodeIfPresent(String.self,
                                                           forKey: .refreshToken)
         self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
-                                                                   forKey: .expiresIn)
+                                                                   forKey: .refreshTokenExpiresIn)
         self.refreshTokenIssuedAt = try container.decodeIfPresent(String.self,
                                                                   forKey: .refreshTokenIssuedAt)
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
