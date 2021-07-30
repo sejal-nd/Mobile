@@ -199,6 +199,9 @@ struct Configuration {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
+            case .dev:
+                // N/A
+                secret = "WbCpJpfgV64WTTDg"
             case .test:
                 secret = "WbCpJpfgV64WTTDg"
             case .stage:
@@ -217,6 +220,9 @@ struct Configuration {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
+            case .dev:
+                // N/A
+                id = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
             case .test:
                 id = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
             case .stage:
@@ -250,6 +256,10 @@ struct Configuration {
                 let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
                 let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
                 switch projectTier {
+                case .dev:
+                    baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
+                    // Unsure what oAuth would be here...
+                    oAuthEndpoint = "api-development.exeloncorp.com"
                 case .test:
                     baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
                     oAuthEndpoint = "api-development.exeloncorp.com"
