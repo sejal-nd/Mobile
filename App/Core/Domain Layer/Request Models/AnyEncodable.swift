@@ -38,6 +38,44 @@ extension Encodable {
             fatalError("Error encoding object: \(error)")
         }
     }
+    //Methods added to generate custom httpBody for token generation and refresh. Can be optimised further.
+    func dictData() -> Data {
+        let encodable = AnyEncodable(value: self)
+            
+        do {
+            let data = try JSONEncoder().encode(encodable)
+            if let postDict = convertStringToDictionary(text: String(decoding: data, as: UTF8.self)){
+                let postString = getPostString(params: postDict)
+                return postString.data(using: .utf8)!
+            }
+            if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+                Log.info("Request Body:\n\(String(decoding: data, as: UTF8.self))")
+            }
+            return data
+        } catch {
+            fatalError("Error encoding object: \(error)")
+        }
+    }
+    
+    private func getPostString(params:[String:Any]) -> String {
+        var data = [String]()
+        for(key, value) in params {
+            data.append(key + "=\(value)")
+        }
+        return data.map { String($0) }.joined(separator: "&")
+    }
+    
+    private func convertStringToDictionary(text: String) -> [String:String]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:String]
+                return json
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        return nil
+    }
 }
 
 // Codable protocol with a default value used with enums

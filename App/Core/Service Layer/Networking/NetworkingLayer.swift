@@ -50,6 +50,7 @@ public enum NetworkingLayer {
             }
         }
         
+        
         // Add Headers
         NetworkingLayer.addHTTPHeaders(router.httpHeaders, request: &urlRequest)
         
@@ -93,6 +94,30 @@ public enum NetworkingLayer {
         }
     }
     
+    //Methods for B2C MSAuth
+    private static func getPostString(params:[String:Any]) -> String
+    {
+        var data = [String]()
+        for(key, value) in params
+        {
+            data.append(key + "=\(value)")
+        }
+        return data.map { String($0) }.joined(separator: "&")
+    }
+    
+    private static func convertStringToDictionary(text: String) -> [String:String]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:String]
+                return json
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        return nil
+    }
+    //END
+    
     private static func refreshToken<T: Decodable>(router: Router, completion: @escaping (Result<T, NetworkingError>) -> ()) {
         DispatchQueue.global(qos: .default).async {
             if isRefreshingToken {
@@ -108,41 +133,77 @@ public enum NetworkingLayer {
             isRefreshingToken = true
             refreshTokenDispatchGroup.enter()
             // Refresh Token
-            let refreshTokenRequest = RefreshTokenRequest(clientId: Configuration.shared.clientID,
-                                                          clientSecret: Configuration.shared.clientSecret,
-                                                          refreshToken: UserSession.refreshToken)
-            
-            NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
-                switch result {
-                case .success(let tokenResponse):
-                    do {
-                        // Create new user session
-                        try UserSession.createSession(tokenResponse: tokenResponse)
-                        
-                        // Perform initial request
-                        DispatchQueue.main.async {
-                            NetworkingLayer.request(router: router, completion: completion)
+            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+                //isAzure authentication
+                let refreshTokenRequest = B2CRefreshTokenRequest(client_id: Configuration.shared.client_id, refreshToken: UserSession.refreshToken)
+                NetworkingLayer.request(router: .refreshB2CToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+                    switch result {
+                    case .success(let tokenResponse):
+                        do {
+                            // Create new user session
+                            try UserSession.createSession(tokenResponse: tokenResponse)
+                            
+                            // Perform initial request
+                            DispatchQueue.main.async {
+                                NetworkingLayer.request(router: router, completion: completion)
+                            }
+                        } catch {
+                            DispatchQueue.main.async {
+                                // Delete user session
+                                AuthenticationService.logout()
+                                completion(.failure(.invalidToken))
+                            }
                         }
-                    } catch {
+                        
+                        isRefreshingToken = false
+                        refreshTokenDispatchGroup.leave()
+                        
+                    case .failure(let error):
                         DispatchQueue.main.async {
                             // Delete user session
                             AuthenticationService.logout()
-                            completion(.failure(.invalidToken))
+                            completion(.failure(error))
                         }
+                        
+                        isRefreshingToken = false
+                        refreshTokenDispatchGroup.leave()
                     }
-                    
-                    isRefreshingToken = false
-                    refreshTokenDispatchGroup.leave()
-                    
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        // Delete user session
-                        AuthenticationService.logout()
-                        completion(.failure(error))
+                }
+            }else{
+                //default authentication
+                let refreshTokenRequest = RefreshTokenRequest(clientId: Configuration.shared.clientID,clientSecret: Configuration.shared.clientSecret,refreshToken: UserSession.refreshToken)
+                NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+                    switch result {
+                    case .success(let tokenResponse):
+                        do {
+                            // Create new user session
+                            try UserSession.createSession(tokenResponse: tokenResponse)
+                            
+                            // Perform initial request
+                            DispatchQueue.main.async {
+                                NetworkingLayer.request(router: router, completion: completion)
+                            }
+                        } catch {
+                            DispatchQueue.main.async {
+                                // Delete user session
+                                AuthenticationService.logout()
+                                completion(.failure(.invalidToken))
+                            }
+                        }
+                        
+                        isRefreshingToken = false
+                        refreshTokenDispatchGroup.leave()
+                        
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            // Delete user session
+                            AuthenticationService.logout()
+                            completion(.failure(error))
+                        }
+                        
+                        isRefreshingToken = false
+                        refreshTokenDispatchGroup.leave()
                     }
-                    
-                    isRefreshingToken = false
-                    refreshTokenDispatchGroup.leave()
                 }
             }
         }
@@ -292,3 +353,4 @@ private extension DateFormatter {
         return formatter
     }()
 }
+
