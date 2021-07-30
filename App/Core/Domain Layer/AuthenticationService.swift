@@ -28,31 +28,30 @@ public enum AuthenticationService {
                               password: String,
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
         
-        //Old method
-        let tokenRequest = TokenRequest(clientId: Configuration.shared.clientID,
-                                        clientSecret: Configuration.shared.clientSecret,
-                                        username: "\(Configuration.shared.opco.urlString)\\\(username)",
-                                        password: password)
-        NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
-            switch result {
-            case .success:
-                completion(.success(()))
-            case .failure(let error):
-                completion(.failure(error))
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+            let tokenRequest = B2CTokenRequest(client_id: Configuration.shared.client_id, scope: Configuration.shared.scope,username: username,password: password)
+            NetworkingLayer.request(router: .fetchB2CToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
+                switch result {
+                case .success:
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }else{
+            let tokenRequest = TokenRequest(clientId: Configuration.shared.clientID,
+                                            clientSecret: Configuration.shared.clientSecret,
+                                            username: "\(Configuration.shared.opco.urlString)\\\(username)",
+                                            password: password)
+            NetworkingLayer.request(router: .fetchToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
+                switch result {
+                case .success:
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
-        //New Method
-        /*
-        let tokenRequest = B2CTokenRequest(client_id: Configuration.shared.client_id, scope: Configuration.shared.scope, username: username, password: password)
-        NetworkingLayer.request(router: .fetchB2CToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
-            switch result {
-            case .success:
-                completion(.success(()))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-        */
     }
     
     static func changePassword(request: ChangePasswordRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
