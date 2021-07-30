@@ -39,7 +39,7 @@ extension Encodable {
         }
     }
     //Methods added to generate custom httpBody for token generation and refresh. Can be optimised further.
-    func dataProcessed() -> Data {
+    func dictData() -> Data {
         let encodable = AnyEncodable(value: self)
             
         do {
@@ -57,11 +57,9 @@ extension Encodable {
         }
     }
     
-    private func getPostString(params:[String:Any]) -> String
-    {
+    private func getPostString(params:[String:Any]) -> String {
         var data = [String]()
-        for(key, value) in params
-        {
+        for(key, value) in params {
             data.append(key + "=\(value)")
         }
         return data.map { String($0) }.joined(separator: "&")

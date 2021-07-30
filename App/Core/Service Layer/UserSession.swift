@@ -58,9 +58,18 @@ extension UserSession {
             }
         }
         
-        let tokenExpirationSeconds = newTokenExpirationMilisecondsDouble
+        let tokenExpirationSeconds : Double
+        let refreshTokenExpirationSeconds : Double
+        
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+            tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble // B2C returns value in seconds
+            refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble // B2C returns value in seconds
+        }else{
+            tokenExpirationSeconds  = newTokenExpirationMilisecondsDouble / 1000
+            refreshTokenExpirationSeconds  = newRefreshTokenExpirationMilisecondsDouble / 1000
+        }
+        
         let newTokenExpirationDate = Date(timeIntervalSinceNow: tokenExpirationSeconds)
-        let refreshTokenExpirationSeconds = newRefreshTokenExpirationMilisecondsDouble
         let newRefreshTokenExpirationDate = Date(timeIntervalSinceNow: refreshTokenExpirationSeconds)
         
         // Save to keychain

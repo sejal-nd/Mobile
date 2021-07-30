@@ -11,13 +11,15 @@ import Foundation
 public struct TokenResponse: Decodable {
     public var token: String?
     public var profileStatus: ProfileStatus?
+    public var userType: String?
     public var expiresIn: String?
     public var refreshToken: String?
     public var refreshTokenExpiresIn: String?
     public var refreshTokenIssuedAt: String?
     
     enum CodingKeys: String, CodingKey {
-        case token = "access_token"
+        case token
+        case access_token = "access_token"
         case expiresIn = "expires_in"
         case refreshToken = "refresh_token"
         case refreshTokenExpiresIn = "refresh_token_expires_in"
@@ -27,8 +29,15 @@ public struct TokenResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.token = try container.decodeIfPresent(String.self,
-                                                   forKey: .token)
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+            //in b2c the response json has a key access_token instead of token, so we use that instead and map it to token parameter instead
+            self.token = try container.decodeIfPresent(String.self,
+                                                           forKey: .access_token)
+        }else{
+            self.token = try container.decodeIfPresent(String.self,
+                                                           forKey: .token)
+        }
+        
         self.expiresIn = try container.decodeIfPresent(String.self,
                                                        forKey: .expiresIn)
         self.refreshToken = try container.decodeIfPresent(String.self,
@@ -37,22 +46,37 @@ public struct TokenResponse: Decodable {
                                                                    forKey: .expiresIn)
         self.refreshTokenIssuedAt = try container.decodeIfPresent(String.self,
                                                                   forKey: .refreshTokenIssuedAt)
-        // Profile Status
-        if let token = token, let base64Data = decode(token: token) {
-            let statuses = try? JSONDecoder().decode(StatusContainer.self, from: base64Data)
-            
-            let hasTempPassword = statuses?.status.contains(where: { $0.name == "tempPassword" }) ?? false
-            let hasTempPasswordExpired = statuses?.status.contains(where: { $0.tempPasswordFailReason != nil }) ?? false
-            let isPrimaryAccount = statuses?.status.contains(where: { $0.name == "primary" }) ?? false
-            let isInactive = statuses?.status.contains(where: { $0.name == "inactive" }) ?? false
-            let isLockedPassword = statuses?.status.contains(where: { $0.name == "isLockedPassword" }) ?? false
-            
-            profileStatus = ProfileStatus(inactive: isInactive,
-                                          primary: isPrimaryAccount,
-                                          passwordLocked: isLockedPassword,
-                                          tempPassword: hasTempPassword,
-                                          expiredTempPassword: hasTempPasswordExpired)
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
+            //Map additional data from b2c token if any
+            if let token = self.token, let base64Data = decode(token: token){
+                do{
+                    let json = try JSONSerialization.jsonObject(with: base64Data, options: .mutableContainers) as? [String:AnyObject]
+                    if let json = json, let code = json["type"] as? String{
+                        self.userType = code
+                    }
+                }catch{
+                    //there is an issue with the token structutre
+                }
+            }
+        }else{
+            // Profile Status
+            if let token = token, let base64Data = decode(token: token) {
+                let statuses = try? JSONDecoder().decode(StatusContainer.self, from: base64Data)
+                
+                let hasTempPassword = statuses?.status.contains(where: { $0.name == "tempPassword" }) ?? false
+                let hasTempPasswordExpired = statuses?.status.contains(where: { $0.tempPasswordFailReason != nil }) ?? false
+                let isPrimaryAccount = statuses?.status.contains(where: { $0.name == "primary" }) ?? false
+                let isInactive = statuses?.status.contains(where: { $0.name == "inactive" }) ?? false
+                let isLockedPassword = statuses?.status.contains(where: { $0.name == "isLockedPassword" }) ?? false
+                
+                profileStatus = ProfileStatus(inactive: isInactive,
+                                              primary: isPrimaryAccount,
+                                              passwordLocked: isLockedPassword,
+                                              tempPassword: hasTempPassword,
+                                              expiredTempPassword: hasTempPasswordExpired)
+            }
         }
+        
         
         if let token = token, let base64Data = decode(token: token) {
             let identity = try? JSONDecoder().decode(IdToken.self, from: base64Data)

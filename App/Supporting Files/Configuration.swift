@@ -163,6 +163,8 @@ struct Configuration {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
+            case .dev:
+                client_id = "80720fb5-623b-4754-9c2c-6ba2646acaa6"
             case .test:
                 client_id = "80720fb5-623b-4754-9c2c-6ba2646acaa6"
             case .stage:
@@ -181,6 +183,8 @@ struct Configuration {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
+            case .dev:
+                scope = "openid offline_access 80720fb5-623b-4754-9c2c-6ba2646acaa6"
             case .test:
                 scope = "openid offline_access 80720fb5-623b-4754-9c2c-6ba2646acaa6"
             case .stage:
