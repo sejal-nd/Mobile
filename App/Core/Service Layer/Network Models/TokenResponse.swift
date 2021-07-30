@@ -43,9 +43,10 @@ public struct TokenResponse: Decodable {
         self.refreshToken = try container.decodeIfPresent(String.self,
                                                           forKey: .refreshToken)
         self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
-                                                                   forKey: .refreshTokenExpiresIn)
+                                                                   forKey: .refreshTokenExpiresIn) ?? "3600"
         self.refreshTokenIssuedAt = try container.decodeIfPresent(String.self,
                                                                   forKey: .refreshTokenIssuedAt)
+        
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
             //Map additional data from b2c token if any
             if let token = self.token, let base64Data = decode(token: token){
