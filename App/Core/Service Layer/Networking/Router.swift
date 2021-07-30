@@ -168,7 +168,7 @@ public enum Router {
     public var host: String {
         switch self {
         case .fetchB2CToken, .refreshB2CToken:
-            return "euazurephitest.b2clogin.com"
+            return Configuration.shared.b2cAuthEndpoint
         case .fetchToken, .refreshToken:
             return Configuration.shared.oAuthEndpoint
         case .weather:
