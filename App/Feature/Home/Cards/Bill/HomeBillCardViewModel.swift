@@ -313,12 +313,12 @@ class HomeBillCardViewModel {
                 return .pastDue
             }
             
-            if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {
-                return .credit
-            }
-            
             if billingInfo.pendingPaymentsTotal > 0 {
                 return .paymentPending
+            }
+            
+            if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {
+                return .credit
             }
             
             if scheduledPayment?.amount > 0 {
@@ -849,7 +849,8 @@ class HomeBillCardViewModel {
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
         Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
             .map { accountDetail, scheduledPayment in
-                if let paymentAmountText = scheduledPayment?.amount.currencyString,
+                if !Configuration.shared.opco.isPHI,
+                   let paymentAmountText = scheduledPayment?.amount.currencyString,
                     let paymentDateText = scheduledPayment?.date?.mmDdYyyyString {
                     return String.localizedStringWithFormat("You have an automatic payment of %@ for %@.",
                                                             paymentAmountText,
