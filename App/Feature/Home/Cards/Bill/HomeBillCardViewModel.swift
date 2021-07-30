@@ -313,6 +313,10 @@ class HomeBillCardViewModel {
                 return .pastDue
             }
             
+            if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {
+                return .credit
+            }
+            
             if billingInfo.pendingPaymentsTotal > 0 {
                 return .paymentPending
             }
@@ -323,10 +327,6 @@ class HomeBillCardViewModel {
             
             if billingInfo.netDueAmount > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
                 return .billReadyAutoPay
-            }
-            
-            if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {
-                return .credit
             }
             
             if billingInfo.netDueAmount > 0 {
@@ -428,10 +428,18 @@ class HomeBillCardViewModel {
         return ($0.billingInfo.netDueAmount > 0 || Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI ) ? true : false
     }
     
-    private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
+    /**
+     Show scheduled payment for paymentScheduled state or if there is a bill credit and a scheduled payment when auto pay is not enabled.
+     */
+    private(set) lazy var showScheduledPayment: Driver<Bool> = Driver.combineLatest(billState, showAutoPay, scheduledPaymentDriver) { (billState, showAutoPay, scheduledPayment) in
+        return billState == .paymentScheduled || (billState == .credit && scheduledPayment != nil && !showAutoPay)
+    }
     
-    private(set) lazy var showAutoPay: Driver<Bool> = billState.map {
-        $0 == .billReadyAutoPay
+    /**
+     Show auto pay for auto pay state or if there is a bill credit and the user is also enrolled in auto pay.
+     */
+    private(set) lazy var showAutoPay: Driver<Bool> = Driver.combineLatest(billState, accountDetailDriver) { (billState, accountDetail) in
+        return billState == .billReadyAutoPay || (billState == .credit && (accountDetail.isAutoPay || accountDetail.isBGEasy))
     }
     
     // MARK: - View States
