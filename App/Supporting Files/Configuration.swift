@@ -268,19 +268,16 @@ struct Configuration {
                     baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
                     // Unsure what oAuth would be here...
                     oAuthEndpoint = "api-development.exeloncorp.com"
-                    //b2cAuthEndpoint = "euazurephitest.b2clogin.com"
                     b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
                     b2cTenant = infoPlist.b2cTenant
                 case .test:
                     baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
                     oAuthEndpoint = "api-development.exeloncorp.com"
-                    //b2cAuthEndpoint = "euazurephitest.b2clogin.com"
                     b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
                     b2cTenant = infoPlist.b2cTenant
                 case .stage:
                     baseUrl = "mcsstg.mobileenv.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-stage.exeloncorp.com"
-                    //b2cAuthEndpoint = "euazurephitest.b2clogin.com"
                     b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
                     b2cTenant = infoPlist.b2cTenant
                 }
