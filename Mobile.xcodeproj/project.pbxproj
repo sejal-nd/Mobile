@@ -396,6 +396,7 @@
 		679CC72E2500041F00A46BBE /* landing_video-FlavorDPL.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */; };
 		67A18B7324CA0EA100F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
+		67A482BE26BA09FE00FBB0BB /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */; };
 		67A732AA24D35E0F00D0BF32 /* GovWeatherErrorTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */; };
 		67A9869624F968F200BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* Assets-FlavorPECO.xcassets */; };
 		67A9869924F9691300BD46E7 /* GoogleService-Info-BETA-FlavorCOMED.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info-BETA-FlavorCOMED.plist */; };
@@ -1748,6 +1749,7 @@
 		679CC72B2500041E00A46BBE /* landing_video-FlavorDPL.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "landing_video-FlavorDPL.mp4"; sourceTree = "<group>"; };
 		67A18B7224CA0EA100F7A77B /* ApigeeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApigeeError.swift; sourceTree = "<group>"; };
 		67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequest.swift; sourceTree = "<group>"; };
+		67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
 		67AE888125BF5274008519B4 /* ProjectTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTier.swift; sourceTree = "<group>"; };
 		67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
@@ -4047,6 +4049,7 @@
 			children = (
 				67247FE325D43AC60024467D /* Tab.swift */,
 				67247EF225D2D6750024467D /* WatchApp.swift */,
+				67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */,
 				67247F0725D2D7FB0024467D /* WatchFlowContainer.swift */,
 				67247F1225D2D8EC0024467D /* SignInView.swift */,
 				67247FED25D43D8D0024467D /* Account List */,
@@ -6511,6 +6514,7 @@
 				67247F6825D2E4E00024467D /* OutageFlowContainerView.swift in Sources */,
 				C3055C3D2538FCA6000DB89C /* Router.swift in Sources */,
 				C3055B742538F81B000DB89C /* ValidatedAccountResponse.swift in Sources */,
+				67A482BE26BA09FE00FBB0BB /* WatchAppDelegate.swift in Sources */,
 				C3055BF12538FB11000DB89C /* AccountLookupRequest.swift in Sources */,
 				67247FE425D43AC60024467D /* Tab.swift in Sources */,
 				67247FA025D2FE6C0024467D /* BillFlowContainerView.swift in Sources */,
@@ -7373,6 +7377,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "8bfce822-abdf-4e5c-8425-0897f447692a";
 				ASSOCIATED_DOMAIN = secure.bge.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
@@ -7567,6 +7572,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7649,6 +7655,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -7689,6 +7696,7 @@
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -7730,6 +7738,7 @@
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -7772,6 +7781,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7856,6 +7866,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7898,6 +7909,7 @@
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7941,6 +7953,7 @@
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7985,6 +7998,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-peco-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -8220,6 +8234,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8305,6 +8320,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8388,6 +8404,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -8587,6 +8604,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8628,6 +8646,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -8668,6 +8687,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "fbc9f960-869c-47c4-a765-a650369ffca1";
 				ASSOCIATED_DOMAIN = secure.peco.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -8863,6 +8883,7 @@
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8906,6 +8927,7 @@
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -8947,6 +8969,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "0a416441-1ad6-4be2-b009-79f8b15f8b58";
 				ASSOCIATED_DOMAIN = secure.peco.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -9141,6 +9164,7 @@
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9185,6 +9209,7 @@
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9227,6 +9252,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -9462,6 +9488,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9547,6 +9574,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.ace.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9630,6 +9658,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -9830,6 +9859,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9871,6 +9901,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.ace.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9911,6 +9942,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "e9a6ea32-b142-4414-9e6d-d686f7364d95";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -10107,6 +10139,7 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10150,6 +10183,7 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.ace.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -10191,6 +10225,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "e717a9ba-bed1-443f-8311-9653b4bd058b";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -10386,6 +10421,7 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10430,6 +10466,7 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.ifactorconsulting.ace.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -10472,6 +10509,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-dpl-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -10707,6 +10745,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10792,6 +10831,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10875,6 +10915,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -11075,6 +11116,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11116,6 +11158,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -11156,6 +11199,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "d3ecc389-d8ad-4806-a5d3-e067b7adb02d";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -11352,6 +11396,7 @@
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11395,6 +11440,7 @@
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.delmarva.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -11436,6 +11482,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "9f85e63c-c1a6-40de-811b-df4074860f14";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -11631,6 +11678,7 @@
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11675,6 +11723,7 @@
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.ifactorconsulting.delmarva.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -11717,6 +11766,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-pepco-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -11952,6 +12002,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -12037,6 +12088,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -12120,6 +12172,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -12320,6 +12373,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12361,6 +12415,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -12401,6 +12456,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "689f516c-90e8-48e5-b8a4-a9b51b0f0298";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -12597,6 +12653,7 @@
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12640,6 +12697,7 @@
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.pepco.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -12681,6 +12739,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5e8d65a7-7ffb-46b9-99f1-34d4080f52dd";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -12876,6 +12935,7 @@
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12920,6 +12980,7 @@
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.ifactorconsulting.pepco.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -12962,6 +13023,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-comed-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -13197,6 +13259,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13282,6 +13345,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.comed.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13365,6 +13429,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -13564,6 +13629,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13605,6 +13671,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.comed.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -13645,6 +13712,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "c98a5583-5894-4b00-bf91-c0a7822376a9";
 				ASSOCIATED_DOMAIN = secure.comed.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -13840,6 +13908,7 @@
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13883,6 +13952,7 @@
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.comed.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -13924,6 +13994,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "9f56e08c-6fa5-4209-93a2-d773601a1e45";
 				ASSOCIATED_DOMAIN = secure.comed.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -14118,6 +14189,7 @@
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -14162,6 +14234,7 @@
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.iphoneproduction.exelon.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -14204,6 +14277,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-bge-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
@@ -14439,6 +14513,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "bddc73d9-4dfb-421f-a59f-71c08c3647e5";
 				ASSOCIATED_DOMAIN = secure.bge.com;
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
@@ -14567,6 +14642,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
+				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
