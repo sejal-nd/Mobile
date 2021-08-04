@@ -135,7 +135,8 @@ public enum NetworkingLayer {
             // Refresh Token
             if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
                 //isAzure authentication
-                let refreshTokenRequest = B2CRefreshTokenRequest(client_id: Configuration.shared.client_id, refreshToken: UserSession.refreshToken)
+                let refreshTokenRequest = B2CRefreshTokenRequest(client_id: Configuration.shared.b2cClientID,
+                                                                 refreshToken: UserSession.refreshToken)
                 NetworkingLayer.request(router: .refreshB2CToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
                     switch result {
                     case .success(let tokenResponse):

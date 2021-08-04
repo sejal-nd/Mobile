@@ -16,12 +16,8 @@
 	<string>$(BUILD_FLAVOR)</string>
 	<key>OAuth URL</key>
 	<string>$(OAUTH_URL)</string>
-	<key>B2CAuth URL</key>
-	<string>$(B2CAUTH_URL)</string>
 	<key>Payment URL</key>
 	<string>$(PAYMENT_URL)</string>
-	<key>B2CAuth Tenant</key>
-	<string>$(B2CAUTH_TENANT)</string>
 	<key>Environment Tier</key>
 	<string>$(ENVIRONMENT_TIER)</string>
 	<key>Google Analytics ID</key>

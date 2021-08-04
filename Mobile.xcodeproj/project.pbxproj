@@ -7377,7 +7377,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "8bfce822-abdf-4e5c-8425-0897f447692a";
 				ASSOCIATED_DOMAIN = secure.bge.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
@@ -7462,7 +7461,6 @@
 				ALERT_URL = www.bge.com;
 				APP_CENTER_ID = "b04a00b3-2d34-4f42-b02c-adff70038646";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -7572,7 +7570,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7655,7 +7652,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -7696,7 +7692,6 @@
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -7738,7 +7733,6 @@
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -7781,7 +7775,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7866,7 +7859,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7909,7 +7901,6 @@
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7953,7 +7944,6 @@
 				ALERT_URL = www.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -7998,7 +7988,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-peco-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -8087,7 +8076,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -8234,7 +8222,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8320,7 +8307,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8404,7 +8390,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -8495,7 +8480,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "263b80d6-242b-4962-9a64-01731f98056b";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -8604,7 +8588,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8646,7 +8629,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -8687,7 +8669,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "fbc9f960-869c-47c4-a765-a650369ffca1";
 				ASSOCIATED_DOMAIN = secure.peco.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -8773,7 +8754,6 @@
 				ALERT_URL = www.peco.com;
 				APP_CENTER_ID = "bc1003d8-3723-489a-a3e4-2572fdb9855a";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -8883,7 +8863,6 @@
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -8927,7 +8906,6 @@
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -8969,7 +8947,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "0a416441-1ad6-4be2-b009-79f8b15f8b58";
 				ASSOCIATED_DOMAIN = secure.peco.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.peco.com;
 				BUILD_DISPLAY_NAME = PECO;
 				BUILD_FLAVOR = PECO;
@@ -9054,7 +9031,6 @@
 				ALERT_URL = www.peco.com;
 				APP_CENTER_ID = "6c8fc049-b612-4605-add7-28f214eb7b25";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -9164,7 +9140,6 @@
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9209,7 +9184,6 @@
 				ALERT_URL = www.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.peco.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9252,7 +9226,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -9341,7 +9314,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -9488,7 +9460,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9574,7 +9545,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.ace.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9658,7 +9628,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -9749,7 +9718,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "236e33d9-c10a-4dae-92d8-75c3f0b41450";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -9859,7 +9827,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -9901,7 +9868,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.ace.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9942,7 +9908,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "e9a6ea32-b142-4414-9e6d-d686f7364d95";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -10028,7 +9993,6 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				APP_CENTER_ID = "e5857243-5111-4157-b065-e5f37b038882";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -10139,7 +10103,6 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10183,7 +10146,6 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.ace.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -10225,7 +10187,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "e717a9ba-bed1-443f-8311-9653b4bd058b";
 				ASSOCIATED_DOMAIN = secure.atlanticcityelectric.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.atlanticcityelectric.com;
 				BUILD_DISPLAY_NAME = "AC Electric";
 				BUILD_FLAVOR = ACE;
@@ -10310,7 +10271,6 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				APP_CENTER_ID = "00c0fa1f-9044-498c-89d2-757cb59ea2e1";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -10421,7 +10381,6 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -10466,7 +10425,6 @@
 				ALERT_URL = www.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.ifactorconsulting.ace.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -10509,7 +10467,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-dpl-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -10598,7 +10555,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -10745,7 +10701,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10831,7 +10786,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10915,7 +10869,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -11006,7 +10959,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "ee9f1ca8-fe59-4c5f-80d3-ebcef6ae7168";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -11116,7 +11068,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11158,7 +11109,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -11199,7 +11149,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "d3ecc389-d8ad-4806-a5d3-e067b7adb02d";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -11285,7 +11234,6 @@
 				ALERT_URL = www.delmarva.com;
 				APP_CENTER_ID = "f7e3323c-b32b-4986-b23f-d19488de011b";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -11396,7 +11344,6 @@
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11440,7 +11387,6 @@
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.delmarva.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -11482,7 +11428,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "9f85e63c-c1a6-40de-811b-df4074860f14";
 				ASSOCIATED_DOMAIN = secure.delmarva.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.delmarva.com;
 				BUILD_DISPLAY_NAME = Delmarva;
 				BUILD_FLAVOR = DPL;
@@ -11567,7 +11512,6 @@
 				ALERT_URL = www.delmarva.com;
 				APP_CENTER_ID = "01d29f65-ea73-4353-a9e4-3de7f4e0b56f";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -11678,7 +11622,6 @@
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -11723,7 +11666,6 @@
 				ALERT_URL = www.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.ifactorconsulting.delmarva.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -11766,7 +11708,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-pepco-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -11855,7 +11796,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -12002,7 +11942,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -12088,7 +12027,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -12172,7 +12110,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -12263,7 +12200,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "7f015d81-de56-4f18-a90d-d17a93ee65d4";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -12373,7 +12309,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12415,7 +12350,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -12456,7 +12390,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "689f516c-90e8-48e5-b8a4-a9b51b0f0298";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -12542,7 +12475,6 @@
 				ALERT_URL = www.pepco.com;
 				APP_CENTER_ID = "6601aeb6-77db-4d4a-b031-1604b3e8c4e7";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -12653,7 +12585,6 @@
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12697,7 +12628,6 @@
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.pepco.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -12739,7 +12669,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5e8d65a7-7ffb-46b9-99f1-34d4080f52dd";
 				ASSOCIATED_DOMAIN = secure.pepco.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.pepco.com;
 				BUILD_DISPLAY_NAME = Pepco;
 				BUILD_FLAVOR = PEPCO;
@@ -12824,7 +12753,6 @@
 				ALERT_URL = www.pepco.com;
 				APP_CENTER_ID = "9cc9a98f-3a76-4b61-870c-c35b2b9a8a04";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -12935,7 +12863,6 @@
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -12980,7 +12907,6 @@
 				ALERT_URL = www.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.ifactorconsulting.pepco.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -13023,7 +12949,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-comed-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -13112,7 +13037,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -13259,7 +13183,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13345,7 +13268,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.comed.testing.watchkitapp;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13429,7 +13351,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -13520,7 +13441,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "3c531e04-e7cc-44c0-96e3-5a67f815484a";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -13629,7 +13549,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13671,7 +13590,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.comed.staging.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -13712,7 +13630,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "c98a5583-5894-4b00-bf91-c0a7822376a9";
 				ASSOCIATED_DOMAIN = secure.comed.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -13798,7 +13715,6 @@
 				ALERT_URL = www.comed.com;
 				APP_CENTER_ID = "5186b477-0f34-40ae-99bd-814fdef24a60";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -13908,7 +13824,6 @@
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -13952,7 +13867,6 @@
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.exelon.mobile.comed.prodbeta.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -13994,7 +13908,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "9f56e08c-6fa5-4209-93a2-d773601a1e45";
 				ASSOCIATED_DOMAIN = secure.comed.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.comed.com;
 				BUILD_DISPLAY_NAME = ComEd;
 				BUILD_FLAVOR = COMED;
@@ -14079,7 +13992,6 @@
 				ALERT_URL = www.comed.com;
 				APP_CENTER_ID = "5dbfd30c-4ed4-4d1e-ab4f-225796ef9a4e";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
@@ -14189,7 +14101,6 @@
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -14234,7 +14145,6 @@
 				ALERT_URL = www.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				B2CAUTH_TENANT = euazurephitest;
 				BUNDLE_ID = com.iphoneproduction.exelon.watchkitapp;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -14277,7 +14187,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = "xze-e-n-eudapi-bge-t-ams-01.azure-api.net";
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
@@ -14366,7 +14275,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-AUT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Joseph Erlandson (3FBV9PSP2W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -14513,7 +14421,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "bddc73d9-4dfb-421f-a59f-71c08c3647e5";
 				ASSOCIATED_DOMAIN = secure.bge.com;
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcs.mobileenv.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
@@ -14599,7 +14506,6 @@
 				ALERT_URL = www.bge.com;
 				APP_CENTER_ID = "addf3952-2a38-47e1-a361-b0680bb17c82";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-RELEASE.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
@@ -14642,7 +14548,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
-				B2CAUTH_TENANT = euazurephitest;
 				BASE_URL = mcsstg.mobileenv.bge.com;
 				BUILD_DISPLAY_NAME = BGE;
 				BUILD_FLAVOR = BGE;
@@ -14733,7 +14638,6 @@
 			buildSettings = {
 				APP_CENTER_ID = "d63492ab-45ec-4d90-9e5a-963fa127e697";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
-				B2CAUTH_TENANT = euazurephitest;
 				CODE_SIGN_ENTITLEMENTS = "Entitlements/$(BUILD_DISPLAY_NAME)-$(ENVIRONMENT_TIER).entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
