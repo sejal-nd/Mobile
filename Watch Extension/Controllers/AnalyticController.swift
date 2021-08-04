@@ -11,7 +11,7 @@ import Foundation
 enum AnalyticController {
     enum ScreenName: String {
         case signIn = "sign_in_screen_view"
-        case reportOuage = "report_outage_screen_view"
+        case reportOutage = "report_outage_screen_view"
         case bill = "bill_screen_view"
         case outage = "outage_screen_view"
         case usage = "usage_screen_view"

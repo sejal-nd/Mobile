@@ -10,6 +10,8 @@ import SwiftUI
 
 @main
 struct WatchApp: App {
+    @StateObject private var appDelegate = WachAppDelegate()
+    
     @StateObject private var networkController = NetworkController()
     
     var body: some Scene {
@@ -18,15 +20,6 @@ struct WatchApp: App {
                 WatchFlowContainer()
                     .environmentObject(networkController)
             }
-            .onAppear(perform: appStartup)
         }
-    }
-    
-    private func appStartup() {
-        WatchSessionController.shared.start()
-        
-        // Send jwt to phone if available
-        guard AuthenticationService.isLoggedIn() else { return }
-        UserSession.sendSessionToDevice()
     }
 }
