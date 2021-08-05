@@ -397,6 +397,7 @@
 		67A18B7324CA0EA100F7A77B /* ApigeeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B7224CA0EA100F7A77B /* ApigeeError.swift */; };
 		67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
 		67A482BE26BA09FE00FBB0BB /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */; };
+		67A482E826BC348000FBB0BB /* B2CForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482E726BC347F00FBB0BB /* B2CForgotPasswordViewController.swift */; };
 		67A732AA24D35E0F00D0BF32 /* GovWeatherErrorTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */; };
 		67A9869624F968F200BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* Assets-FlavorPECO.xcassets */; };
 		67A9869924F9691300BD46E7 /* GoogleService-Info-BETA-FlavorCOMED.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info-BETA-FlavorCOMED.plist */; };
@@ -1750,6 +1751,7 @@
 		67A18B7224CA0EA100F7A77B /* ApigeeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApigeeError.swift; sourceTree = "<group>"; };
 		67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequest.swift; sourceTree = "<group>"; };
 		67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
+		67A482E726BC347F00FBB0BB /* B2CForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
 		67AE888125BF5274008519B4 /* ProjectTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTier.swift; sourceTree = "<group>"; };
 		67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
@@ -4883,6 +4885,7 @@
 			children = (
 				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
 				82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */,
+				67A482E726BC347F00FBB0BB /* B2CForgotPasswordViewController.swift */,
 			);
 			path = "Forgot Password";
 			sourceTree = "<group>";
@@ -6657,6 +6660,7 @@
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				359BDBA822E09D80007002B0 /* AccountInfoBar.swift in Sources */,
 				E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
+				67A482E826BC348000FBB0BB /* B2CForgotPasswordViewController.swift in Sources */,
 				67AE888225BF5274008519B4 /* ProjectTier.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */,
 				9CD3532122CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,

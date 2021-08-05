@@ -802,6 +802,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="usernameTextField" destination="vZj-Ib-Qvv" id="g3Q-tv-LO3"/>
                         <segue destination="sVW-aP-hfQ" kind="presentation" identifier="forgotUsernameSegue" id="esq-dL-Qqb"/>
                         <segue destination="Hin-7X-RJL" kind="presentation" identifier="forgotPasswordSegue" id="xFV-rS-Z7t"/>
+                        <segue destination="ueX-5I-IdW" kind="presentation" identifier="forgotPasswordB2cSegue" id="XfG-vZ-MWr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YmP-vJ-xfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4342,6 +4343,79 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzH-ab-mhW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-736" y="2910"/>
+        </scene>
+        <!--Large Title Navigation Controller-->
+        <scene sceneID="R9i-9h-mco">
+            <objects>
+                <navigationController id="ueX-5I-IdW" customClass="LargeTitleNavigationController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vdE-dT-qrs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="nId-Zy-tu9" kind="relationship" relationship="rootViewController" id="Tdp-tX-eOX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V9M-jC-Hbg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4901" y="850"/>
+        </scene>
+        <!--Usage Web View-->
+        <scene sceneID="y6d-XW-uUF">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="nId-Zy-tu9" userLabel="Usage Web View" customClass="B2CForgotPasswordViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zwu-tv-p0S">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXo-ee-ekH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="bGD-3A-79r" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="415" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvd-B1-4LO">
+                                <rect key="frame" x="29" y="411" width="356" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="u3c-e5-kCz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KUb-xe-cWG"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dvd-B1-4LO" firstAttribute="centerY" secondItem="Zwu-tv-p0S" secondAttribute="centerY" id="0R6-qw-HXu"/>
+                            <constraint firstItem="KUb-xe-cWG" firstAttribute="trailing" secondItem="pXo-ee-ekH" secondAttribute="trailing" id="2IP-8w-yVy"/>
+                            <constraint firstItem="pXo-ee-ekH" firstAttribute="top" secondItem="Zwu-tv-p0S" secondAttribute="top" id="6Np-3w-6s7"/>
+                            <constraint firstItem="KUb-xe-cWG" firstAttribute="trailing" secondItem="dvd-B1-4LO" secondAttribute="trailing" priority="999" constant="29" id="F7R-Ip-18y"/>
+                            <constraint firstItem="dvd-B1-4LO" firstAttribute="leading" secondItem="KUb-xe-cWG" secondAttribute="leading" priority="999" constant="29" id="PR7-dG-cnY"/>
+                            <constraint firstItem="bGD-3A-79r" firstAttribute="centerX" secondItem="KUb-xe-cWG" secondAttribute="centerX" id="PUR-Wl-hLN"/>
+                            <constraint firstItem="bGD-3A-79r" firstAttribute="centerY" secondItem="Zwu-tv-p0S" secondAttribute="centerY" id="XFJ-L3-z1R"/>
+                            <constraint firstAttribute="bottom" secondItem="pXo-ee-ekH" secondAttribute="bottom" id="b0p-v2-zAj"/>
+                            <constraint firstItem="pXo-ee-ekH" firstAttribute="leading" secondItem="KUb-xe-cWG" secondAttribute="leading" id="dsi-vg-mKH"/>
+                            <constraint firstItem="dvd-B1-4LO" firstAttribute="centerX" secondItem="KUb-xe-cWG" secondAttribute="centerX" id="oAr-k6-0DB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reset Password" id="Cdi-aQ-PEj"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="dvd-B1-4LO" id="gJt-c6-pBC"/>
+                        <outlet property="loadingIndicator" destination="bGD-3A-79r" id="EgQ-ZC-RFW"/>
+                        <outlet property="webView" destination="pXo-ee-ekH" id="euC-Rv-JDA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0aG-Wh-Jmr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5787" y="850"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
