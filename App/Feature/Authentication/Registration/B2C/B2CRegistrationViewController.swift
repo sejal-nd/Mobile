@@ -1,5 +1,5 @@
 //
-//  B2CForgotPasswordViewController.swift
+//  B2CRegistrationViewController.swift
 //  EUMobile
 //
 //  Created by Joseph Erlandson on 8/5/21.
@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class B2CForgotPasswordViewController: UIViewController {
+class B2CRegistrationViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
@@ -18,7 +18,7 @@ class B2CForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        title = NSLocalizedString("Reset Password", comment: "")
+        title = NSLocalizedString("Register", comment: "")
         addCloseButton()
 
         webView.navigationDelegate = self
@@ -35,7 +35,7 @@ class B2CForgotPasswordViewController: UIViewController {
     }
 }
 
-extension B2CForgotPasswordViewController: WKNavigationDelegate {
+extension B2CRegistrationViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.loadingIndicator.isHidden = true
         webView.isHidden = false

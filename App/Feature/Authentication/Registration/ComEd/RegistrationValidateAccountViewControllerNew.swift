@@ -43,7 +43,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
         super.viewDidLoad()
         
         title = NSLocalizedString("Register", comment: "")
-        
+        addCloseButton()
+
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .deepGray
@@ -84,7 +85,6 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     }
     
     private func configureTextFields() {
-        
         accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
         accountNumberTextField.setKeyboardType(.numberPad)
@@ -271,7 +271,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             if self?.viewModel.hasMultipleAccount ?? false {
                 self?.performSegue(withIdentifier: "chooseAccountSegue", sender: self)
             } else {
-                self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+                let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "createCredentialsB2cSegue" : "createCredentialsSegue"
+                self?.performSegue(withIdentifier: segueIdentifier, sender: self)
             }
            
         }, onMultipleAccounts:  { [weak self] in

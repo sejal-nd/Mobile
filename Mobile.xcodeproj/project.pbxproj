@@ -398,6 +398,7 @@
 		67A18B9024CB354100F7A77B /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */; };
 		67A482BE26BA09FE00FBB0BB /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */; };
 		67A482E826BC348000FBB0BB /* B2CForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482E726BC347F00FBB0BB /* B2CForgotPasswordViewController.swift */; };
+		67A482EF26BC417800FBB0BB /* B2CRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482EE26BC417800FBB0BB /* B2CRegistrationViewController.swift */; };
 		67A732AA24D35E0F00D0BF32 /* GovWeatherErrorTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */; };
 		67A9869624F968F200BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* Assets-FlavorPECO.xcassets */; };
 		67A9869924F9691300BD46E7 /* GoogleService-Info-BETA-FlavorCOMED.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info-BETA-FlavorCOMED.plist */; };
@@ -1752,6 +1753,7 @@
 		67A18B8F24CB354100F7A77B /* RefreshTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequest.swift; sourceTree = "<group>"; };
 		67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
 		67A482E726BC347F00FBB0BB /* B2CForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		67A482EE26BC417800FBB0BB /* B2CRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CRegistrationViewController.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
 		67AE888125BF5274008519B4 /* ProjectTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTier.swift; sourceTree = "<group>"; };
 		67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
@@ -4427,6 +4429,14 @@
 			path = "Outage Animation";
 			sourceTree = "<group>";
 		};
+		67A482ED26BC416300FBB0BB /* B2C */ = {
+			isa = PBXGroup;
+			children = (
+				67A482EE26BC417800FBB0BB /* B2CRegistrationViewController.swift */,
+			);
+			path = B2C;
+			sourceTree = "<group>";
+		};
 		67A9869424F9683C00BD46E7 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
@@ -4922,6 +4932,7 @@
 		9C153DB522E8F410002DA062 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				67A482ED26BC416300FBB0BB /* B2C */,
 				675F47C124AB6CD200A828F9 /* ComEd */,
 				35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */,
 				35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */,
@@ -6896,6 +6907,7 @@
 				356D725924D2AF910058661F /* RegistrationChooseAccountViewController.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */,
+				67A482EF26BC417800FBB0BB /* B2CRegistrationViewController.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				C34A7ED42519524200438B7B /* BGEAutoPayInfo.swift in Sources */,
 				67424D3B267A5B040078EEA0 /* AnalyticController.swift in Sources */,
