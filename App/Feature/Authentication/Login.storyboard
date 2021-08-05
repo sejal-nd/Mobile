@@ -2069,7 +2069,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                         </constraints>
                                         <state key="normal" title="Answer Security Question"/>
                                         <connections>
-                                            <segue destination="NE7-qa-4w2" kind="show" id="uqJ-Ec-1bG"/>
+                                            <action selector="onAnswerSecurityQuestionsPress:" destination="F1v-ea-6RO" eventType="touchUpInside" id="gqE-eD-8IS"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2110,6 +2110,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="topLabel2" destination="Yc3-1e-jHb" id="M0P-wf-rCH"/>
                         <outlet property="topLabel3" destination="032-P8-OVf" id="HyU-vh-lEZ"/>
                         <outlet property="usernameEmailLabel" destination="Oc5-Qw-33H" id="NvL-66-pfW"/>
+                        <segue destination="NE7-qa-4w2" kind="show" identifier="securityQuestionSegue" id="aKn-Ur-QyI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lV-XJ-BCD" userLabel="First Responder" sceneMemberID="firstResponder"/>

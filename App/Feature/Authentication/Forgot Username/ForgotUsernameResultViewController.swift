@@ -9,6 +9,10 @@
 import RxSwift
 import RxCocoa
 
+protocol ForgotUsernameResultViewControllerDelegate: class {
+    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: ForgotUsernameResultViewController, didUnmaskUsername username: String)
+}
+
 class ForgotUsernameResultViewController: UIViewController {
     
     @IBOutlet weak var topLabel1: UILabel!
@@ -24,6 +28,8 @@ class ForgotUsernameResultViewController: UIViewController {
     @IBOutlet weak var tableView: IntrinsicHeightTableView!
     
     @IBOutlet weak var answerSecurityQuestionButton: PrimaryButton!
+    
+    weak var delegate: ForgotUsernameResultViewControllerDelegate?
     
     var viewModel: ForgotUsernameViewModel!
     
@@ -76,6 +82,8 @@ class ForgotUsernameResultViewController: UIViewController {
         if viewModel.maskedUsernames.count > 1 {
             answerSecurityQuestionButton.isEnabled = false
         }
+        
+        answerSecurityQuestionButton.setTitle(FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "Done" : "Answer Security Question", for: .normal)
     }
     
     func styleTopLabels() {
@@ -105,6 +113,27 @@ class ForgotUsernameResultViewController: UIViewController {
         FirebaseUtility.logEvent(.forgotUsername(parameters: [.return_to_signin]))
         
         dismissModal()
+    }
+    
+    @IBAction func onAnswerSecurityQuestionsPress(_ sender: Any) {
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
+            for vc in rootNavVc.viewControllers {
+                guard let dest = vc as? LoginViewController else {
+                    continue
+                }
+
+                self.delegate = dest
+
+                FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
+
+                self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: viewModel.maskedUsernames[viewModel.selectedUsernameIndex].email ?? "")
+                self.dismissModal()
+                break
+            }
+        } else {
+            performSegue(withIdentifier: "securityQuestionSegue", sender: nil)
+        }
     }
     
     // MARK: - Navigation

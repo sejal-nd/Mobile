@@ -24,7 +24,7 @@ enum OpCo: String {
             return true
         }
     }
-
+    
     var urlDisplayString: String {
         switch self {
         case .ace:
@@ -116,7 +116,6 @@ struct InfoPlist: Codable {
     let displayName: String
     let baseURL: String
     let oauthURL: String
-    let b2cTenant: String
     let accountURL: String
     let paymentURL: String
     let associatedDomain: String
@@ -132,7 +131,6 @@ struct InfoPlist: Codable {
         case displayName = "Build Display Name"
         case baseURL = "Base URL"
         case oauthURL = "OAuth URL"
-        case b2cTenant = "B2CAuth Tenant"
         case accountURL = "Account URL"
         case paymentURL = "Payment URL"
         case associatedDomain = "Associated Domain"
@@ -154,49 +152,7 @@ struct Configuration {
     let appCenterId: String?
     let baseUrl: String
     let oAuthEndpoint: String
-    let b2cAuthEndpoint: String
-    let b2cTenant: String
     let paymentusUrl: String
-    
-    var client_id: String {
-        var client_id = ""
-        switch Configuration.shared.environmentName {
-        case .rc, .release:
-            client_id = "80720fb5-623b-4754-9c2c-6ba2646acaa6"
-        default:
-            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
-            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
-            switch projectTier {
-            case .dev:
-                client_id = "80720fb5-623b-4754-9c2c-6ba2646acaa6"
-            case .test:
-                client_id = "80720fb5-623b-4754-9c2c-6ba2646acaa6"
-            case .stage:
-                client_id = "80720fb5-623b-4754-9c2c-6ba2646acaa6"
-            }
-        }
-        return client_id
-    }
-    
-    var scope: String {
-        var scope = ""
-        switch Configuration.shared.environmentName {
-        case .rc, .release:
-            scope = "openid offline_access 80720fb5-623b-4754-9c2c-6ba2646acaa6"
-        default:
-            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
-            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
-            switch projectTier {
-            case .dev:
-                scope = "openid offline_access 80720fb5-623b-4754-9c2c-6ba2646acaa6"
-            case .test:
-                scope = "openid offline_access 80720fb5-623b-4754-9c2c-6ba2646acaa6"
-            case .stage:
-                scope = "openid offline_access 80720fb5-623b-4754-9c2c-6ba2646acaa6"
-            }
-        }
-        return scope
-    }
     
     var clientSecret: String {
         var secret = ""
@@ -207,10 +163,7 @@ struct Configuration {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
-            case .dev:
-                // N/A
-                secret = "WbCpJpfgV64WTTDg"
-            case .test:
+            case .dev, .test:
                 secret = "WbCpJpfgV64WTTDg"
             case .stage:
                 secret = "61MnQzuXNLdlsBOu"
@@ -228,16 +181,86 @@ struct Configuration {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
-            case .dev:
-                // N/A
-                id = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
-            case .test:
+            case .dev, .test:
                 id = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
             case .stage:
                 id = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"
             }
         }
         return id
+    }
+    
+    var b2cTenant: String {
+        let tenant: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            #warning("todo: Waiting for other environments to be set up")
+            tenant = "TODO"
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev, .test:
+                tenant = "euazurephitest"
+            case .stage:
+                tenant = "euazurephistage"
+            }
+        }
+        return tenant
+    }
+    
+    var b2cAuthEndpoint: String {
+        "\(b2cTenant).b2clogin.com"
+    }
+    
+    var b2cClientID: String {
+        var clientId: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            switch opco {
+            #warning("Todo: Waiting for other environments to be set up")
+            case .ace:
+                clientId = "" //TODO("Waiting for other environments to be set up")
+            case .delmarva:
+                clientId = "" //TODO("Waiting for other environments to be set up")
+            case .pepco:
+                clientId = "" //TODO("Waiting for other environments to be set up")
+            case .bge, .comEd, .peco:
+                clientId = "" //TODO("Waiting for other environments to be set up")
+            }
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev, .test:
+                switch opco {
+                case .ace:
+                    clientId = "4facf595-5fc3-44c1-a908-391e98ddc687"
+                case .delmarva:
+                    clientId = "f900262f-eeb9-4ada-82a2-ade9e10e2c1b"
+                case .pepco:
+                    clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
+                case .bge, .comEd, .peco:
+                    clientId = "" //TODO("Waiting for other environments to be set up")
+                }
+            case .stage:
+                switch opco {
+                case .ace:
+                    clientId = "67368fd4-d3d0-4f38-b443-94742e6af8c3"
+                case .delmarva:
+                    clientId = "548fe95f-b6c8-4791-b02b-b95ca3b3e31c"
+                case .pepco:
+                    clientId = "37abcf6f-b74d-4756-8ff7-05a6817575c5"
+                case .bge, .comEd, .peco:
+                    clientId = "" //TODO("Waiting for other environments to be set up")
+                }
+            }
+        }
+        return clientId
+    }
+    
+    var b2cScope: String {
+        "openid offline_access \(b2cClientID)"
     }
     
     private init() {
@@ -268,24 +291,16 @@ struct Configuration {
                     baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
                     // Unsure what oAuth would be here...
                     oAuthEndpoint = "api-development.exeloncorp.com"
-                    b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
-                    b2cTenant = infoPlist.b2cTenant
                 case .test:
                     baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
                     oAuthEndpoint = "api-development.exeloncorp.com"
-                    b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
-                    b2cTenant = infoPlist.b2cTenant
                 case .stage:
                     baseUrl = "mcsstg.mobileenv.\(operatingCompany.urlDisplayString).com"
                     oAuthEndpoint = "api-stage.exeloncorp.com"
-                    b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
-                    b2cTenant = infoPlist.b2cTenant
                 }
             } else {
                 baseUrl = infoPlist.baseURL
                 oAuthEndpoint = infoPlist.oauthURL
-                b2cAuthEndpoint = "\(infoPlist.b2cTenant).b2clogin.com"
-                b2cTenant = infoPlist.b2cTenant
             }
         } catch {
             fatalError("Could not get data from plist: \(error)")
