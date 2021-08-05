@@ -563,6 +563,14 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
     }
 }
 
+extension LoginViewController: ForgotUsernameResultViewControllerDelegate {
+    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: ForgotUsernameResultViewController, didUnmaskUsername username: String) {
+        viewModel.username.accept(username)
+        GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
+        forgotUsernamePopulated = true
+    }
+}
+
 extension LoginViewController: ChangePasswordViewControllerDelegate {
 
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
