@@ -519,8 +519,8 @@ class BillViewModel {
     }
     
     //MARK: - Catch Up
-    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {
-        !$0.isLowIncome && $0.billingInfo.amtDpaReinst > 0 && Configuration.shared.opco == .comEd
+    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {_ in 
+        return false
     }
     
     private(set) lazy var catchUpDisclaimerText: Driver<String> = currentAccountDetail.map {
