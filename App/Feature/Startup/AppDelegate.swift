@@ -425,6 +425,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func checkIOSVersion() {
+        // Warn iOS 13 users that we will soon not support their iOS version
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.doNotShowIOS13VersionWarningAgain) == false &&
+            UIDevice.current.systemVersion.compare("14.0", options: NSString.CompareOptions.numeric) == .orderedAscending {
+            NotificationCenter.default.post(name: .shouldShowIOSVersionWarning, object: nil)
+        }
+    }
+    
     func resetNavigation(sendToLogin: Bool = false) {
         DispatchQueue.main.async {
             LoadingView.hide() // Just in case we left one stranded

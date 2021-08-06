@@ -81,6 +81,8 @@ class LandingViewController: UIViewController {
         logoImageView.accessibilityLabel = String(format: a11yText, Configuration.shared.opco.displayString)
         
         backgroundVideoSetup()
+        
+        (UIApplication.shared.delegate as? AppDelegate)?.checkIOSVersion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
