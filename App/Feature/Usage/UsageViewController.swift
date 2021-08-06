@@ -871,7 +871,8 @@ class UsageViewController: AccountPickerViewController {
     func usageToolCardTapped(_ usageTool: UsageTool, accountDetail: AccountDetail) {
         switch usageTool {
         case .usageData:
-            performSegue(withIdentifier: "usageWebViewSegue", sender: accountDetail)
+            let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "usageWebViewB2cSegue" : "usageWebViewSegue"
+            performSegue(withIdentifier: segueIdentifier, sender: accountDetail)
         case .energyTips:
             performSegue(withIdentifier: "top5EnergyTipsSegue", sender: accountDetail)
         case .homeProfile:
@@ -921,6 +922,8 @@ class UsageViewController: AccountPickerViewController {
         case let vc as SERPTSViewController:
             vc.accountDetail = accountDetail
         case let vc as UsageWebViewController:
+            vc.accountDetail = accountDetail
+        case let vc as B2CUsageWebViewController:
             vc.accountDetail = accountDetail
         case let vc as Top5EnergyTipsViewController:
             vc.accountDetail = accountDetail

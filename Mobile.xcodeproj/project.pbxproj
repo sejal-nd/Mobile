@@ -399,6 +399,7 @@
 		67A482BE26BA09FE00FBB0BB /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */; };
 		67A482E826BC348000FBB0BB /* B2CForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482E726BC347F00FBB0BB /* B2CForgotPasswordViewController.swift */; };
 		67A482EF26BC417800FBB0BB /* B2CRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482EE26BC417800FBB0BB /* B2CRegistrationViewController.swift */; };
+		67A482F526BD815200FBB0BB /* B2CUsageWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482F426BD815200FBB0BB /* B2CUsageWebViewController.swift */; };
 		67A732AA24D35E0F00D0BF32 /* GovWeatherErrorTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */; };
 		67A9869624F968F200BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* Assets-FlavorPECO.xcassets */; };
 		67A9869924F9691300BD46E7 /* GoogleService-Info-BETA-FlavorCOMED.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info-BETA-FlavorCOMED.plist */; };
@@ -1754,6 +1755,7 @@
 		67A482BD26BA09FE00FBB0BB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
 		67A482E726BC347F00FBB0BB /* B2CForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		67A482EE26BC417800FBB0BB /* B2CRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CRegistrationViewController.swift; sourceTree = "<group>"; };
+		67A482F426BD815200FBB0BB /* B2CUsageWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CUsageWebViewController.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
 		67AE888125BF5274008519B4 /* ProjectTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTier.swift; sourceTree = "<group>"; };
 		67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
@@ -3146,6 +3148,7 @@
 				674A11F82523889C00AF0D38 /* Energy Wise Rewards */,
 				30F8027E251DD986009878D3 /* PeakEnergySavings */,
 				82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */,
+				67A482F426BD815200FBB0BB /* B2CUsageWebViewController.swift */,
 				82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */,
 				352B8D79230D71AE007F8CEE /* Top 5 Tips */,
 				352B8D78230D71A5007F8CEE /* Home Profile */,
@@ -6755,6 +6758,7 @@
 				35277AFD210266BF00411297 /* UsageTool.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				675F4BD624AB828100A828F9 /* GuidRequest.swift in Sources */,
+				67A482F526BD815200FBB0BB /* B2CUsageWebViewController.swift in Sources */,
 				674A120625238CE900AF0D38 /* PeakEnergySavingsViewController.swift in Sources */,
 				356AC12C25064DED000CF867 /* TapToPayReviewPaymentViewController.swift in Sources */,
 				9CABF6B52397032B00B07B01 /* GameQuizViewController.swift in Sources */,

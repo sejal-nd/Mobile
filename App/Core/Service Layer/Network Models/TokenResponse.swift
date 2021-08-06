@@ -29,11 +29,11 @@ public struct TokenResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
-            //in b2c the response json has a key access_token instead of token, so we use that instead and map it to token parameter instead
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            // B2C JSON has a key access_token instead of token
             self.token = try container.decodeIfPresent(String.self,
                                                            forKey: .access_token)
-        }else{
+        } else {
             self.token = try container.decodeIfPresent(String.self,
                                                            forKey: .token)
         }
@@ -42,24 +42,31 @@ public struct TokenResponse: Decodable {
                                                        forKey: .expiresIn)
         self.refreshToken = try container.decodeIfPresent(String.self,
                                                           forKey: .refreshToken)
-        self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
-                                                                   forKey: .refreshTokenExpiresIn) ?? "3600"
+        
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
+                                                                       forKey: .refreshTokenExpiresIn) ?? "3600"
+        } else {
+            self.refreshTokenExpiresIn = try container.decodeIfPresent(String.self,
+                                                                       forKey: .refreshTokenExpiresIn)
+        }
+        
         self.refreshTokenIssuedAt = try container.decodeIfPresent(String.self,
                                                                   forKey: .refreshTokenIssuedAt)
         
-        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
-            //Map additional data from b2c token if any
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            // Map additional data from b2c token if any
             if let token = self.token, let base64Data = decode(token: token){
-                do{
+                do {
                     let json = try JSONSerialization.jsonObject(with: base64Data, options: .mutableContainers) as? [String:AnyObject]
-                    if let json = json, let code = json["type"] as? String{
+                    if let json = json, let code = json["type"] as? String {
                         self.userType = code
                     }
-                }catch{
-                    //there is an issue with the token structutre
+                } catch {
+                    Log.error("Error with B2C token structure")
                 }
             }
-        }else{
+        } else {
             // Profile Status
             if let token = token, let base64Data = decode(token: token) {
                 let statuses = try? JSONDecoder().decode(StatusContainer.self, from: base64Data)
