@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import Toast_Swift
 
 class B2CForgotPasswordViewController: UIViewController {
     
@@ -15,14 +16,8 @@ class B2CForgotPasswordViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
     
-    lazy var webViewConfiguration: WKWebViewConfiguration = {
-        let configuration = WKWebViewConfiguration()
-        configuration.userContentController = WKUserContentController()
-        #warning("Todo, replace todo below with the javascript PSOT message that web view will send.")
-        configuration.userContentController.add(self, name: "todo")
-        return configuration
-    }()
-    
+    weak var delegate: ChangePasswordViewControllerDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -38,29 +33,27 @@ class B2CForgotPasswordViewController: UIViewController {
         
         let resetPasswordURLString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_RESETPASSWORD_MOBILE&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login"
         if let url = URL(string: resetPasswordURLString) {
-            webView.uiDelegate = self
             webView.load(NSURLRequest(url: url) as URLRequest)
         }
     }
+    
+    private func success() {
+        delegate?.changePasswordViewControllerDidChangePassword(self)
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension B2CForgotPasswordViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        if let urlString = webView.url?.absoluteString,
+           urlString.contains("credentialretrieval-passwordentry-mobile"){
+            success()
+        }
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.loadingIndicator.isHidden = true
         webView.isHidden = false
-    }
-}
-
-extension B2CForgotPasswordViewController: WKUIDelegate {
-    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        return WKWebView(frame: webView.frame,
-                         configuration: webViewConfiguration)
-    }
-}
-
-extension B2CForgotPasswordViewController: WKScriptMessageHandler {
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        #warning("Todo, need to intercept a javascript function here from webview")
-        print("javascript sending \(message.name), body: \(message.body)")
     }
 }

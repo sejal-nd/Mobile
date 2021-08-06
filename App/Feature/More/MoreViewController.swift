@@ -409,7 +409,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension MoreViewController: ChangePasswordViewControllerDelegate {
     
-    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
+    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
             GoogleAnalytics.log(event: .changePasswordComplete)

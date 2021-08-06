@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol ChangePasswordViewControllerDelegate: class {
-    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController)
+    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: UIViewController)
 }
 
 class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
