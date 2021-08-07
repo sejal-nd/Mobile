@@ -653,7 +653,9 @@ class BillViewController: AccountPickerViewController {
         viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
             guard let self = self else { return }
             if description == nil {
-                self.assistanceView.isHidden = true
+                DispatchQueue.main.async {
+                    self.assistanceView.isHidden = true
+                }
             }
             if (description?.title == "") &&
                 (description?.description == "") {
