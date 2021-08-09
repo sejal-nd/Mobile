@@ -38,7 +38,7 @@ public enum NetworkingLayer {
         urlRequest.httpMethod = router.method
 
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            Log.info("\n\n\n📬 URL: \(url.absoluteString)")
+            Log.custom("📬", url.absoluteString)
         }
         
         // Set HTTP BODY
@@ -46,7 +46,7 @@ public enum NetworkingLayer {
             urlRequest.httpBody = httpBody
             
             if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-                Log.info("Request Body:\n\(String(decoding: httpBody, as: UTF8.self))")
+                Log.custom("✉️", "Request Body:\n\(String(decoding: httpBody, as: UTF8.self))")
             }
         }
         
@@ -111,7 +111,7 @@ public enum NetworkingLayer {
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:String]
                 return json
             } catch {
-                print("Something went wrong")
+                Log.error("Something went wrong")
             }
         }
         return nil
@@ -127,8 +127,7 @@ public enum NetworkingLayer {
                 }
                 return
             }
-            Log.custom("📬",
-                       "Token expired... Refreshing...")
+            Log.custom("📬", "Token expired... Refreshing...")
             
             isRefreshingToken = true
             refreshTokenDispatchGroup.enter()
@@ -216,7 +215,7 @@ public enum NetworkingLayer {
         // Perform Data Task
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error as NSError? {
-                Log.error("Data task error: \(error)\n\n\(error.localizedDescription)")
+                Log.error("Data task error: \(error)\n\(error.localizedDescription)")
                 if error.domain == NSURLErrorDomain,
                     error.code == NSURLErrorNotConnectedToInternet {
                     DispatchQueue.main.async {
@@ -249,7 +248,9 @@ public enum NetworkingLayer {
             }
 
             do {
-                Log.info("\n\n\n RAW RESPONSE: \n\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
+                if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+                    Log.custom("✉️", "RAW RESPONSE:\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
+                }
                 
                 let responseObject: T = try decode(data: data)
                 
@@ -272,7 +273,7 @@ public enum NetworkingLayer {
 
     private static func decode<T: Decodable>(data: Data) throws -> T {
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            Log.info("📬 Data Response:\n\(String(decoding: data, as: UTF8.self))")
+            Log.custom("✉️", "📬 Data Response:\n\(String(decoding: data, as: UTF8.self))")
         }
 
         let jsonDecoder = JSONDecoder()
@@ -305,8 +306,7 @@ public enum NetworkingLayer {
                 // Default decode
                 return response
             } else {
-                Log.error("Failed to decode network response: \(error)")
-                Log.info(error.localizedDescription)
+                Log.error("Failed to decode network response: \nError:\(error)\nLocalized Error:\(error.localizedDescription)")
                 throw error
             }
         }
@@ -334,8 +334,7 @@ public enum NetworkingLayer {
         URLSession.default.getAllTasks { tasks in
             tasks.forEach { $0.cancel() }
         }
-        Log.custom("🛑",
-                   "Cancelled all URL Session requests.")
+        Log.custom("🛑", "Cancelled all URL Session requests.")
     }
     
     private static func addHTTPHeaders(_ httpHeaders: HTTPHeaders,
