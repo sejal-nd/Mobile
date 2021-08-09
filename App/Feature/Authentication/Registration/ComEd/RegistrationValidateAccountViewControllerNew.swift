@@ -11,6 +11,10 @@ import RxSwift
 import RxCocoa
 import PDTSimpleCalendar
 
+protocol RegistrationViewControllerDelegate: class {
+    func registrationViewControllerDidRegister(_ registrationViewController: UIViewController)
+}
+
 class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooterViewController {
 
     let disposeBag = DisposeBag()
@@ -301,6 +305,9 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             vc.viewModel = viewModel
         } else if let vc = segue.destination as? RegistrationChooseAccountViewController {
             vc.viewModel = viewModel
+        } else if let vc = segue.destination as? B2CRegistrationViewController {
+            vc.validatedAccount = viewModel.validatedAccountResponse
+            vc.delegate = self
         }
     }
     
@@ -389,5 +396,13 @@ extension RegistrationValidateAccountViewControllerNew: PDTSimpleCalendarViewDel
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
         dueDateButton.valueLabel.textColor = .deepGray
         viewModel.dueDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
+    }
+}
+
+extension RegistrationValidateAccountViewControllerNew: RegistrationViewControllerDelegate {
+    func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Account registered", comment: ""))
+        })
     }
 }

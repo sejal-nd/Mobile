@@ -41,13 +41,12 @@ class B2CForgotPasswordViewController: UIViewController {
         delegate?.changePasswordViewControllerDidChangePassword(self)
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension B2CForgotPasswordViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         if let urlString = webView.url?.absoluteString,
-           urlString.contains("credentialretrieval-passwordentry-mobile"){
+           urlString.contains("credentialretrieval-passwordentry-mobile") {
             success()
         }
     }

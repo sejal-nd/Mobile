@@ -400,6 +400,8 @@
 		67A482E826BC348000FBB0BB /* B2CForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482E726BC347F00FBB0BB /* B2CForgotPasswordViewController.swift */; };
 		67A482EF26BC417800FBB0BB /* B2CRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482EE26BC417800FBB0BB /* B2CRegistrationViewController.swift */; };
 		67A482F526BD815200FBB0BB /* B2CUsageWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482F426BD815200FBB0BB /* B2CUsageWebViewController.swift */; };
+		67A482FF26C1800A00FBB0BB /* B2CJWTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482FE26C1800A00FBB0BB /* B2CJWTRequest.swift */; };
+		67A4830426C1801100FBB0BB /* B2CJWTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482FE26C1800A00FBB0BB /* B2CJWTRequest.swift */; };
 		67A732AA24D35E0F00D0BF32 /* GovWeatherErrorTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */; };
 		67A9869624F968F200BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* Assets-FlavorPECO.xcassets */; };
 		67A9869924F9691300BD46E7 /* GoogleService-Info-BETA-FlavorCOMED.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info-BETA-FlavorCOMED.plist */; };
@@ -1756,6 +1758,7 @@
 		67A482E726BC347F00FBB0BB /* B2CForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		67A482EE26BC417800FBB0BB /* B2CRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CRegistrationViewController.swift; sourceTree = "<group>"; };
 		67A482F426BD815200FBB0BB /* B2CUsageWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CUsageWebViewController.swift; sourceTree = "<group>"; };
+		67A482FE26C1800A00FBB0BB /* B2CJWTRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CJWTRequest.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
 		67AE888125BF5274008519B4 /* ProjectTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTier.swift; sourceTree = "<group>"; };
 		67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
@@ -4229,6 +4232,7 @@
 				67893AE324DB3743000143D6 /* AlertLanguageRequest.swift */,
 				30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */,
 				357E2E9F26A839D800C0DEDF /* DPARequest.swift */,
+				67A482FE26C1800A00FBB0BB /* B2CJWTRequest.swift */,
 			);
 			path = "Request Models";
 			sourceTree = "<group>";
@@ -6562,6 +6566,7 @@
 				C3055BED2538FB11000DB89C /* AutoPayEnrollRequest.swift in Sources */,
 				C3055C112538FBEF000DB89C /* WeatherService.swift in Sources */,
 				C3055BE02538FB11000DB89C /* AutoPayUnenrollRequest.swift in Sources */,
+				67A4830426C1801100FBB0BB /* B2CJWTRequest.swift in Sources */,
 				C3055BE82538FB11000DB89C /* GuidRequest.swift in Sources */,
 				C3055BDF2538FB11000DB89C /* AlertLanguageRequest.swift in Sources */,
 				35F9DDA62333D88F00AAA2B2 /* Date+Now.swift in Sources */,
@@ -6674,6 +6679,7 @@
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				359BDBA822E09D80007002B0 /* AccountInfoBar.swift in Sources */,
 				E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
+				67A482FF26C1800A00FBB0BB /* B2CJWTRequest.swift in Sources */,
 				67A482E826BC348000FBB0BB /* B2CForgotPasswordViewController.swift in Sources */,
 				67AE888225BF5274008519B4 /* ProjectTier.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */,

@@ -9,6 +9,10 @@
 import Foundation
 
 enum RegistrationService {
+    static func fetchB2CJWT(request: B2CJWTRequest, completion: @escaping (Result<String, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .fetchB2CJWT(request: request), completion: completion)
+    }
+    
     static func createAccount(request: AccountRequest, completion: @escaping (Result<VoidDecodable, NetworkingError>) -> ()) {
         NetworkingLayer.request(router: .registration(request: request), completion: completion)
     }
