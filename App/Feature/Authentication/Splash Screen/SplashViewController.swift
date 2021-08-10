@@ -161,7 +161,7 @@ class SplashViewController: UIViewController{
                     }
                 }
                 
-                this.checkIOSVersion()
+                (UIApplication.shared.delegate as? AppDelegate)?.checkIOSVersion()
             }
         } else {
             loadingTimer.invalidate()
@@ -246,7 +246,6 @@ class SplashViewController: UIViewController{
         } else {
             performSegue(withIdentifier: "landingSegue", sender: self)
         }
-        checkIOSVersion()
     }
         
     func checkAppVersion(callback: @escaping() -> Void) {
@@ -263,14 +262,6 @@ class SplashViewController: UIViewController{
             self?.loadingContainerView.isHidden = true
             self?.errorView.isHidden = false
         })
-    }
-    
-    func checkIOSVersion() {
-        // Warn iOS 13 users that we will soon not support their iOS version
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.doNotShowIOS13VersionWarningAgain) == false &&
-            UIDevice.current.systemVersion.compare("14.0", options: NSString.CompareOptions.numeric) == .orderedAscending {
-            NotificationCenter.default.post(name: .shouldShowIOSVersionWarning, object: nil)
-        }
     }
     
     func handleOutOfDate() {
