@@ -273,7 +273,9 @@ struct Configuration {
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
             case .dev, .test:
-                oPowerURLString = "https://d-c-euauth-\(Configuration.shared.opco.rawValue.lowercased())-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
+                let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
+                oPowerURLString = "https://d-c-\(projectURLSuffix.rawValue.lowercased())-\(Configuration.shared.opco.rawValue.lowercased())-ui-01.azurewebsites.net/pages/mobileopower.aspx"
             case .stage:
                 oPowerURLString = "https://azstg-secure.\(Configuration.shared.opco.urlDisplayString).com/pages/mobileopower.aspx"
             }

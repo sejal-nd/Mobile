@@ -773,6 +773,7 @@
                         <segue destination="QHh-G5-cax" kind="show" identifier="energyWiseRewardsSegue" id="Eom-xj-0OR"/>
                         <segue destination="UrX-YA-Gfp" kind="show" identifier="peakEnergySavingsSegue" id="ntb-D7-jW7"/>
                         <segue destination="zWe-4d-5KU" kind="show" identifier="usageWebViewB2cSegue" id="gyD-fz-JNr"/>
+                        <segue destination="zWe-4d-5KU" kind="show" identifier="serWebViewB2cSegue" id="lvG-hR-5eC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0l-ak-tzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1869,7 +1870,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNC-5L-Qu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2429" y="-403"/>
+            <point key="canvasLocation" x="2429" y="-443"/>
         </scene>
         <!--Peak Energy Savings-->
         <scene sceneID="iXm-8A-7pe">
@@ -1935,7 +1936,7 @@
                                         </constraints>
                                         <state key="normal" title="Peak Energy Savings History"/>
                                         <connections>
-                                            <segue destination="1rr-Zq-1hI" kind="show" identifier="peakSavingsHistorySegue" id="2pp-wb-CoB"/>
+                                            <action selector="peakEnergySavingsHistoryButtonPress:" destination="UrX-YA-Gfp" eventType="touchUpInside" id="gOY-6l-yZq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1970,6 +1971,8 @@
                         <outlet property="loadingIndicator" destination="BgY-dl-05v" id="Ur5-fK-GJf"/>
                         <outlet property="programDetailsLabel" destination="kvd-YF-Hs6" id="uxj-ci-PWr"/>
                         <outlet property="view" destination="cLc-cC-uNd" id="3Wi-Wk-gPD"/>
+                        <segue destination="zWe-4d-5KU" kind="show" identifier="peakSavingsHistoryB2cSegue" id="XWK-lp-BOQ"/>
+                        <segue destination="1rr-Zq-1hI" kind="show" identifier="peakSavingsHistorySegue" id="Zmi-Qt-Ktl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgC-at-18y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2092,6 +2095,9 @@
             <point key="canvasLocation" x="1807" y="-1177"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="XWK-lp-BOQ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="bill_analysis_shadow_triangle" width="50" height="61"/>
         <image name="ic_caret" width="8" height="13"/>

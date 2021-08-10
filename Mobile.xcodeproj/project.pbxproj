@@ -402,6 +402,8 @@
 		67A482F526BD815200FBB0BB /* B2CUsageWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482F426BD815200FBB0BB /* B2CUsageWebViewController.swift */; };
 		67A482FF26C1800A00FBB0BB /* B2CJWTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482FE26C1800A00FBB0BB /* B2CJWTRequest.swift */; };
 		67A4830426C1801100FBB0BB /* B2CJWTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A482FE26C1800A00FBB0BB /* B2CJWTRequest.swift */; };
+		67A4830A26C1CB0100FBB0BB /* B2CoPowerJWTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4830926C1CB0100FBB0BB /* B2CoPowerJWTRequest.swift */; };
+		67A4831C26C1CE2400FBB0BB /* B2CoPowerJWTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4830926C1CB0100FBB0BB /* B2CoPowerJWTRequest.swift */; };
 		67A732AA24D35E0F00D0BF32 /* GovWeatherErrorTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */; };
 		67A9869624F968F200BD46E7 /* Assets-FlavorPECO.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* Assets-FlavorPECO.xcassets */; };
 		67A9869924F9691300BD46E7 /* GoogleService-Info-BETA-FlavorCOMED.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info-BETA-FlavorCOMED.plist */; };
@@ -1759,6 +1761,7 @@
 		67A482EE26BC417800FBB0BB /* B2CRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CRegistrationViewController.swift; sourceTree = "<group>"; };
 		67A482F426BD815200FBB0BB /* B2CUsageWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CUsageWebViewController.swift; sourceTree = "<group>"; };
 		67A482FE26C1800A00FBB0BB /* B2CJWTRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CJWTRequest.swift; sourceTree = "<group>"; };
+		67A4830926C1CB0100FBB0BB /* B2CoPowerJWTRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B2CoPowerJWTRequest.swift; sourceTree = "<group>"; };
 		67A732A924D35E0F00D0BF32 /* GovWeatherErrorTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GovWeatherErrorTodo.swift; sourceTree = "<group>"; };
 		67AE888125BF5274008519B4 /* ProjectTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTier.swift; sourceTree = "<group>"; };
 		67D08A922539E4170047E4C5 /* Assets-FlavorACE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-FlavorACE.xcassets"; sourceTree = "<group>"; };
@@ -4233,6 +4236,7 @@
 				30DD882D254951C4007C320D /* AnonMeterPingRequest.swift */,
 				357E2E9F26A839D800C0DEDF /* DPARequest.swift */,
 				67A482FE26C1800A00FBB0BB /* B2CJWTRequest.swift */,
+				67A4830926C1CB0100FBB0BB /* B2CoPowerJWTRequest.swift */,
 			);
 			path = "Request Models";
 			sourceTree = "<group>";
@@ -6554,6 +6558,7 @@
 				C3055BE92538FB11000DB89C /* AnyEncodable.swift in Sources */,
 				C3055BDA2538FB11000DB89C /* AccountNicknameRequest.swift in Sources */,
 				C3055BE62538FB11000DB89C /* DailyUsageRequest.swift in Sources */,
+				67A4831C26C1CE2400FBB0BB /* B2CoPowerJWTRequest.swift in Sources */,
 				67247FA625D2FE750024467D /* BillContainerView.swift in Sources */,
 				C3055B662538F81B000DB89C /* TokenResponse.swift in Sources */,
 				357E2E9626A8391300C0DEDF /* PaymentArrangement.swift in Sources */,
@@ -7045,6 +7050,7 @@
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				675F4C4824AB828100A828F9 /* GameUser.swift in Sources */,
+				67A4830A26C1CB0100FBB0BB /* B2CoPowerJWTRequest.swift in Sources */,
 				675F4C4224AB828100A828F9 /* ReportedOutageResult.swift in Sources */,
 				C300793C2436669F00A9BEB0 /* LocalizedString.swift in Sources */,
 				675F4BDC24AB828100A828F9 /* DailyUsageRequest.swift in Sources */,

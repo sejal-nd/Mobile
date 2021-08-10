@@ -882,7 +882,8 @@ class UsageViewController: AccountPickerViewController {
             performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
         case .smartEnergyRewards:
             GoogleAnalytics.log(event: .viewSmartEnergyRewards)
-            performSegue(withIdentifier: "serWebViewSegue", sender: accountDetail)
+            let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "serWebViewB2cSegue" : "serWebViewSegue"
+            performSegue(withIdentifier: segueIdentifier, sender: accountDetail)
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
                 GoogleAnalytics.log(event: .hourlyPricing,
@@ -925,6 +926,11 @@ class UsageViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         case let vc as B2CUsageWebViewController:
             vc.accountDetail = accountDetail
+            if segue.identifier == "serWebViewB2cSegue" {
+                vc.widget = .ser
+            } else {
+                vc.widget = .usage
+            }
         case let vc as Top5EnergyTipsViewController:
             vc.accountDetail = accountDetail
         case let vc as MyHomeProfileViewController:

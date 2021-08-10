@@ -83,5 +83,7 @@ extension B2CRegistrationViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         errorLabel.isHidden = false
+        loadingIndicator.isHidden = true
+        webView.isHidden = true
     }
 }
