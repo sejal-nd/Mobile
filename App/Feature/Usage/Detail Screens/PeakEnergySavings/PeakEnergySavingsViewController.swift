@@ -49,12 +49,20 @@ final class PeakEnergySavingsViewController: DismissableFormSheetViewController 
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
+    @IBAction func peakEnergySavingsHistoryButtonPress(_ sender: Any) {
+        let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "peakSavingsHistoryB2cSegue" : "peakSavingsHistorySegue"
+        performSegue(withIdentifier: segueIdentifier, sender: accountDetail)
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.destination {
         case let vc as PeakEnergySavingsHistoryViewController:
             vc.accountDetail = accountDetail
+        case let vc as B2CUsageWebViewController:
+            vc.accountDetail = accountDetail
+            vc.widget = .pesc
         default:
             break
         }

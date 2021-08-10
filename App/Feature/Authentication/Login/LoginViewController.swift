@@ -398,7 +398,9 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     func forgotPassword() {
         FirebaseUtility.logEvent(.login(parameters: [.forgot_password_press]))
         GoogleAnalytics.log(event: .forgotPasswordOffer)
-        performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
+        
+        let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "forgotPasswordB2cSegue" : "forgotPasswordSegue"
+        performSegue(withIdentifier: segueIdentifier, sender: self)
     }
 
     @IBAction func onEyeballPress(_ sender: UIButton) {
@@ -536,6 +538,11 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             let vc = navController.viewControllers.first as? ForgotPasswordViewController {
             vc.delegate = self
         }
+        
+        if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? B2CForgotPasswordViewController {
+            vc.delegate = self
+        }
     }
 
 }
@@ -572,8 +579,7 @@ extension LoginViewController: ForgotUsernameResultViewControllerDelegate {
 }
 
 extension LoginViewController: ChangePasswordViewControllerDelegate {
-
-    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
+    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
         })

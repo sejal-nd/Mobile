@@ -58,6 +58,8 @@ class RegistrationViewModel {
         
     var hasStrongPassword = false // Keeps track of strong password for Analytics
     
+    var validatedAccountResponse: ValidatedAccountResponse?
+    
     func validateAccount(onSuccess: @escaping () -> Void,
                          onMultipleAccounts: @escaping() -> Void,
                          onError: @escaping (String, String) -> Void) {
@@ -87,6 +89,8 @@ class RegistrationViewModel {
             switch result {
             case .success(let validatedAccount):
                 guard let self = self else { return }
+                
+                self.validatedAccountResponse = validatedAccount
                 
                 self.accountType.accept(validatedAccount.type?.first ?? "")
                 self.isPaperlessEbillEligible = validatedAccount.isEbill ?? false

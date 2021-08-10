@@ -41,11 +41,11 @@ enum Log {
     ///   - message:      A closure returning the message to log.
     ///   - withLogLevel: The log level associated with the message closure.
     private static func logMessage(_ message: @escaping () -> String,
-                                   with logLevel: LogLevel,
-                                   filename: String = #file,
-                                   column: Int = #column,
-                                   function: String = #function,
-                                   line: Int = #line) {
+                                   _ function: String,
+                                   _ filename: String,
+                                   _ column: Int,
+                                   _ line: Int,
+                                   with logLevel: LogLevel) {
         #if DEBUG
         let dateString = Log.dateFormatter.string(from: Date())
         let message = message()
@@ -53,15 +53,14 @@ enum Log {
         
         if message.count > chunkSize {
             let messageChunks = message.split(byChunkSize: chunkSize)
-            print("\(dateString) [\(logLevel.emoji)] [\(messageChunks.count) Parts] [\(filename))]:\(line) \(column) \(function)")
+            print("\(dateString)\n[\(logLevel.emoji)] [\(messageChunks.count) Parts] [\(filename))]:\(line) \(column) \(function)")
             
             for (offset, messageChunk) in messageChunks.enumerated() {
-                print("\(dateString) [\(logLevel.emoji)] [Part \(offset + 1)] [\(filename))]:\(line) \(column) \(function) \n\(messageChunk)")
+                print("\(dateString)\n[\(logLevel.emoji)] [Part \(offset + 1)] [\(filename))]:\(line) \(column) \(function) \n\(messageChunk)")
             }
         } else {
-            print("\(dateString) [\(logLevel.emoji)] [\(filename))]:\(line) \(column) \(function) \n\(message)")
+            print("\(dateString)\n[\(logLevel.emoji)] [\(filename))]:\(line) \(column) \(function) \n\(message)")
         }
-        
         
             #if os(watchOS)
                 // Show log messages for watch in iOS console
@@ -71,28 +70,52 @@ enum Log {
     }
     
     static func custom(_ emoji: @autoclosure @escaping () -> String,
-                       _ message: @autoclosure @escaping () -> String) {
-        logMessage(message, with: .custom(emoji: emoji()))
+                       _ message: @autoclosure @escaping () -> String,
+                       _ function: String = #function,
+                       _ filename: String = #file,
+                       _ column: Int = #column,
+                       _ line: Int = #line) {
+        logMessage(message, function, filename, column, line, with: .custom(emoji: emoji()))
     }
     
-    static func error(_ message: @autoclosure @escaping () -> String) {
-        logMessage(message, with: .error)
+    static func error(_ message: @autoclosure @escaping () -> String,
+                      _ function: String = #function,
+                      _ filename: String = #file,
+                      _ column: Int = #column,
+                      _ line: Int = #line) {
+        logMessage(message, function, filename, column, line, with: .error)
     }
     
-    static func info(_ message: @autoclosure @escaping () -> String) {
-        logMessage(message, with: .info)
+    static func info(_ message: @autoclosure @escaping () -> String,
+                     _ function: String = #function,
+                     _ filename: String = #file,
+                     _ column: Int = #column,
+                     _ line: Int = #line) {
+        logMessage(message, function, filename, column, line, with: .info)
     }
     
-    static func verbose(_ message: @autoclosure @escaping () -> String) {
-        logMessage(message, with: .verbose)
+    static func verbose(_ message: @autoclosure @escaping () -> String,
+                        _ function: String = #function,
+                        _ filename: String = #file,
+                        _ column: Int = #column,
+                        _ line: Int = #line) {
+        logMessage(message, function, filename, column, line, with: .verbose)
     }
     
-    static func warning(_ message: @autoclosure @escaping () -> String) {
-        logMessage(message, with: .warning)
+    static func warning(_ message: @autoclosure @escaping () -> String,
+                        _ function: String = #function,
+                        _ filename: String = #file,
+                        _ column: Int = #column,
+                        _ line: Int = #line) {
+        logMessage(message, function, filename, column, line, with: .warning)
     }
     
-    static func fatal(_ message: @autoclosure @escaping () -> String) {
-        logMessage(message, with: .fatal)
+    static func fatal(_ message: @autoclosure @escaping () -> String,
+                      _ function: String = #function,
+                      _ filename: String = #file,
+                      _ column: Int = #column,
+                      _ line: Int = #line) {
+        logMessage(message, function, filename, column, line, with: .fatal)
     }
     
     static var dateFormat = "yyyy-MM-dd hh:mm:ssSSS"

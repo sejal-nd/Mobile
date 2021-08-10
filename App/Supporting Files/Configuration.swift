@@ -263,6 +263,26 @@ struct Configuration {
         "openid offline_access \(b2cClientID)"
     }
     
+    var b2cOpowerWidgetURLString: String {
+        var oPowerURLString: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            oPowerURLString = "" //TODO("Waiting for other environments to be set up")
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev, .test:
+                let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
+                let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
+                oPowerURLString = "https://d-c-\(projectURLSuffix.rawValue.lowercased())-\(Configuration.shared.opco.rawValue.lowercased())-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+            case .stage:
+                oPowerURLString = "https://azstg-secure.\(Configuration.shared.opco.urlDisplayString).com/pages/mobileopower.aspx"
+            }
+        }
+        return oPowerURLString
+    }
+    
     private init() {
         let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist")
         let plistURL = URL(fileURLWithPath: plistPath!)
