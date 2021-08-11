@@ -18,6 +18,7 @@ class B2CRegistrationViewController: UIViewController {
     weak var delegate: RegistrationViewControllerDelegate?
     
     var validatedAccount: ValidatedAccountResponse?
+    var selectedAccount: AccountResult?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +37,12 @@ class B2CRegistrationViewController: UIViewController {
     }
     
     private func fetchJWT() {
-        let request = B2CJWTRequest(customerID: validatedAccount?.accounts.first?.accountNumber ?? "",
-                                    ebillEligible: validatedAccount?.isEbill ?? true,
-                                    type: validatedAccount?.type?.first ?? "residential")
+        var index = 0
+        if let selectedAccount = selectedAccount {
+            index = validatedAccount?.accounts.firstIndex { $0.accountNumber == selectedAccount.accountNumber } ?? 0
+        }
+        
+        let request = B2CJWTRequest(customerID: validatedAccount?.accounts[index].customerID ?? "")
         RegistrationService.fetchB2CJWT(request: request) { [weak self] result in
             switch result {
             case .success(let token):

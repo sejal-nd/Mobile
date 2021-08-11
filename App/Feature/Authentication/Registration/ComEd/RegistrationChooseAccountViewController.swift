@@ -118,6 +118,10 @@ class RegistrationChooseAccountViewController: UIViewController {
         view.endEditing(true)
         if let vc = segue.destination as? RegistrationCreateCredentialsViewControllerNew {
             vc.viewModel = viewModel
+        } else if let vc = segue.destination as? B2CRegistrationViewController {
+            vc.validatedAccount = viewModel.validatedAccountResponse
+            vc.selectedAccount = viewModel.selectedAccount.value
+            vc.delegate = self
         }
     }
 }
@@ -166,3 +170,10 @@ extension RegistrationChooseAccountViewController: UITableViewDataSource {
     }
 }
 
+extension RegistrationChooseAccountViewController: RegistrationViewControllerDelegate {
+    func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Account registered", comment: ""))
+        })
+    }
+}

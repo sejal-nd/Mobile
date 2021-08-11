@@ -10,11 +10,13 @@ import Foundation
 
 struct AccountResult: Decodable {
     let accountNumber: String?
+    let customerID: String?
     let streetNumber: String?
     let unitNumber: String?
     
     enum CodingKeys: String, CodingKey {
         case accountNumber = "fullAccountNumber"
+        case customerID = "customerID"
         case streetNumber = "street"
         case unitNumber = "unit"
     }

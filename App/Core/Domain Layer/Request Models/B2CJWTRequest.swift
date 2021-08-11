@@ -10,6 +10,6 @@ import Foundation
 
 public struct B2CJWTRequest: Encodable {
     let customerID: String
-    let ebillEligible: Bool
-    let type: String
+    let ebillEligible: Bool = true
+    let type: String = "residential"
 }
