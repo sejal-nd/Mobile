@@ -1713,7 +1713,7 @@
 		675F4B5924AB828000A828F9 /* AutoPayEnrollMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AutoPayEnrollMock.json; sourceTree = "<group>"; };
 		675F4B5A24AB828100A828F9 /* EnergyTipsMock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EnergyTipsMock.json; sourceTree = "<group>"; };
 		675F4B5B24AB828100A828F9 /* URLProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
-		675F4B5C24AB828100A828F9 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		675F4B5C24AB828100A828F9 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		675F4B5D24AB828100A828F9 /* NetworkingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingLayer.swift; sourceTree = "<group>"; };
 		675F4DF824B378FD00A828F9 /* AnonOutageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonOutageRequest.swift; sourceTree = "<group>"; };
 		675F4DFF24B3A00800A828F9 /* AnonOutageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonOutageStatus.swift; sourceTree = "<group>"; };

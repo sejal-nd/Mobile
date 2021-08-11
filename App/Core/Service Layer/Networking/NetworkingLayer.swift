@@ -273,7 +273,7 @@ public enum NetworkingLayer {
 
     private static func decode<T: Decodable>(data: Data) throws -> T {
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            Log.custom("✉️", "📬 Data Response:\n\(String(decoding: data, as: UTF8.self))")
+            Log.custom("✉️", "Data Response:\n\(String(decoding: data, as: UTF8.self))")
         }
 
         let jsonDecoder = JSONDecoder()
@@ -306,8 +306,12 @@ public enum NetworkingLayer {
                 // Default decode
                 return response
             } else {
-                Log.error("Failed to decode network response: \nError:\(error)\nLocalized Error:\(error.localizedDescription)")
-                throw error
+                if let rawString = String(data: data, encoding: .utf8) as? T {
+                    return rawString
+                } else {
+                    Log.error("Failed to decode network response: \nError:\(error)\nLocalized Error:\(error.localizedDescription)")
+                    throw error
+                }
             }
         }
         

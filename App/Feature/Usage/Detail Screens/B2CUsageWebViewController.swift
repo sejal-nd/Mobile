@@ -61,11 +61,11 @@ class B2CUsageWebViewController: UIViewController {
                                           nonce: accountDetail?.accountNumber ?? "")
         UsageService.fetchOpowerToken(request: request) { [weak self] result in
             switch result {
-            case .success(let token):
+            case .success(let tokenResponse):
                 guard let self = self else { return }
                 self.errorLabel.isHidden = true
                 
-                self.loadWebView(token: token)
+                self.loadWebView(token: tokenResponse.token ?? "")
             case .failure:
                 guard let self = self else { return }
                 self.errorLabel.isHidden = false
@@ -75,9 +75,12 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     private func loadWebView(token: String) {
-        let oPowerWidgetURL = "\(Configuration.shared.b2cOpowerWidgetURLString)?opowerWidgetId=\(widget.rawValue)?accessToken=\(token)"
+        let oPowerWidgetURL = Configuration.shared.b2cOpowerWidgetURLString
         if let url = URL(string: oPowerWidgetURL) {
-            webView.load(NSURLRequest(url: url) as URLRequest)
+            var request = NSURLRequest(url: url) as URLRequest
+            request.addValue(token, forHTTPHeaderField: "accessToken")
+            request.addValue(widget.rawValue, forHTTPHeaderField: "opowerWidgetId")
+            webView.load(request)
         }
     }
 }
