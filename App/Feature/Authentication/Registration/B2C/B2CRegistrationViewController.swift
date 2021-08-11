@@ -36,7 +36,7 @@ class B2CRegistrationViewController: UIViewController {
     }
     
     private func fetchJWT() {
-        let request = B2CJWTRequest(customerID: validatedAccount?.accountNumbers.first ?? "",
+        let request = B2CJWTRequest(customerID: validatedAccount?.accounts.first?.accountNumber ?? "",
                                     ebillEligible: validatedAccount?.isEbill ?? true,
                                     type: validatedAccount?.type?.first ?? "residential")
         RegistrationService.fetchB2CJWT(request: request) { [weak self] result in
@@ -55,8 +55,8 @@ class B2CRegistrationViewController: UIViewController {
     }
     
     private func loadWebView(token: String) {
-        let resetPasswordURLString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_REGISTER_MOBILE&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login&id_token_hint=\(token)"
-        if let url = URL(string: resetPasswordURLString) {
+        let registrationURLString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_REGISTER_MOBILE&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login&id_token_hint=\(token)"
+        if let url = URL(string: registrationURLString) {
             webView.load(NSURLRequest(url: url) as URLRequest)
         }
     }

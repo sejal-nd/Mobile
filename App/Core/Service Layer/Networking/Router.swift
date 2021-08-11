@@ -171,9 +171,6 @@ public enum Router {
         switch self {
         case .fetchB2CToken, .refreshB2CToken, .fetchB2CoPowerJWT:
             return Configuration.shared.b2cAuthEndpoint
-        case .fetchB2CJWT:
-            #warning("todo, this will change to the default.")
-            return "xzc-e-n-b2ctricklemigration-t-01.trafficmanager.net"
         case .fetchToken, .refreshToken:
             return Configuration.shared.oAuthEndpoint
         case .weather:
@@ -229,9 +226,7 @@ public enum Router {
         case .refreshB2CToken:
             return "/\(Configuration.shared.b2cTenant).onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
         case .fetchB2CJWT:
-            #warning("may change to /mobile/custom/registration_token.....")
-            // \(basePath)/\(apiAccess.path)/registration_token
-            return "\(basePath)/api/GenerateRegistrationJWT?code=jkjNGWXREnFzxyaPopBYDQsSHzjoUquFsgyXAUiF4fOvGK5wtDJPXQ==&clientId=TrafficMangerKey"
+            return "/mobile/b2c/GenerateRegistrationJWT"
         case .fetchB2CoPowerJWT:
             return "/\(Configuration.shared.b2cTenant).onmicrosoft.com/opower/opower_connect"
         case .registration:

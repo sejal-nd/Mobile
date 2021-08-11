@@ -306,8 +306,12 @@ public enum NetworkingLayer {
                 // Default decode
                 return response
             } else {
-                Log.error("Failed to decode network response: \nError:\(error)\nLocalized Error:\(error.localizedDescription)")
-                throw error
+                if let rawString = String(data: data, encoding: .utf8) as? T {
+                    return rawString
+                } else {
+                    Log.error("Failed to decode network response: \nError:\(error)\nLocalized Error:\(error.localizedDescription)")
+                    throw error
+                }
             }
         }
         
