@@ -272,10 +272,17 @@ struct Configuration {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
-            case .dev, .test:
+            case .dev:
                 let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
                 let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
-                oPowerURLString = "https://d-c-\(projectURLSuffix.rawValue.lowercased())-\(Configuration.shared.opco.rawValue.lowercased())-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                switch opco {
+                case .pepco:
+                    oPowerURLString = "https://d-c-\(projectURLSuffix.projectURLString)-pepco-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                default:
+                    oPowerURLString = "https://d-c-\(projectURLSuffix.projectURLString)-\(Configuration.shared.opco.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                }
+            case .test:
+                oPowerURLString = "https://azst1-secure.\(Configuration.shared.opco.urlDisplayString).com/pages/mobileopower.aspx"
             case .stage:
                 oPowerURLString = "https://azstg-secure.\(Configuration.shared.opco.urlDisplayString).com/pages/mobileopower.aspx"
             }

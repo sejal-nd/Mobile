@@ -129,7 +129,6 @@ class ForgotUsernameResultViewController: UIViewController {
 
                 self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: viewModel.maskedUsernames[viewModel.selectedUsernameIndex].email ?? "")
                 self.dismissModal()
-                break
             }
         } else {
             performSegue(withIdentifier: "securityQuestionSegue", sender: nil)

@@ -29,7 +29,6 @@ final class FeatureFlagUtility {
     }
     
     var loadingDoneCallback: (() -> ())?
-    var fetchComplete = false
     
     private func loadDefaultValues() {
         let appDefaults: [String: Any] = [
@@ -72,7 +71,6 @@ final class FeatureFlagUtility {
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)
                 
-                self.fetchComplete = true
                 self.loadingDoneCallback?()
             case .failure(let error):
                 Log.info("Error fetching feature flag values from Azure\(error)")

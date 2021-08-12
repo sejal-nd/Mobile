@@ -9,48 +9,44 @@
 import Foundation
 
 public struct B2CTokenRequest: Encodable {
-    public init(clientId: String,
-                clientSecret: String,
-                username: String,
-                password: String) {
-        self.clientId = clientId
-        self.clientSecret = clientSecret
-        self.grantType = "password"
+    public init(scope: String? = nil,
+                nonce: String = "",
+                grantType: String = "password",
+                responseType: String = "token id_token",
+                username: String = "",
+                password: String = "",
+                refreshToken: String = "") {
+        if let scope = scope {
+            self.scope = scope
+        }
+        self.nonce = nonce
+        self.grantType = grantType
+        self.responseType = responseType
         self.username = username
         self.password = password
-        self.scope = ""
-        self.client_id = ""
+        self.refreshToken = refreshToken
     }
     
-    public init(client_id: String,
-                scope: String,
-                username: String,
-                password: String) {
-        self.client_id = client_id
-        self.scope = scope
-        self.grantType = "password"
-        self.response_type = "token id_token"
-        self.username = username
-        self.password = password
-        self.clientId = ""
-        self.clientSecret = ""
-    }
-    
-    var clientId: String
-    var clientSecret: String
-    var grantType = "password"
-    var response_type = "token id_token"
-    var client_id : String
-    var scope : String
-    let username: String
-    let password: String
+    var clientID = Configuration.shared.b2cClientID
+    var clientSecret = Configuration.shared.clientSecret
+    var scope = Configuration.shared.b2cScope
+    var grantType = ""
+    var responseType = ""
+    var username = ""
+    var password = ""
+    var refreshToken = ""
+    var resource = ""
+    var nonce = ""
     
     enum CodingKeys: String, CodingKey {
-        case client_id = "client_id"
-        case scope = "scope"
+        case clientID = "client_id"
+        case scope
+        case nonce
         case grantType = "grant_type"
-        case response_type = "response_type"
+        case responseType = "response_type"
         case username
         case password
+        case refreshToken = "refresh_token"
+        case resource = "resource"
     }
 }

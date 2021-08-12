@@ -38,8 +38,12 @@ public struct TokenResponse: Decodable {
                                                            forKey: .token)
         }
         
-        self.expiresIn = try container.decodeIfPresent(String.self,
-                                                       forKey: .expiresIn)
+        do {
+            expiresIn = try String(container.decodeIfPresent(Int.self, forKey: .expiresIn) ?? 0)
+        } catch DecodingError.typeMismatch {
+            expiresIn = try container.decodeIfPresent(String.self, forKey: .expiresIn)
+        }
+        
         self.refreshToken = try container.decodeIfPresent(String.self,
                                                           forKey: .refreshToken)
         
@@ -56,7 +60,7 @@ public struct TokenResponse: Decodable {
         
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
             // Map additional data from b2c token if any
-            if let token = self.token, let base64Data = decode(token: token){
+            if let token = self.token, let base64Data = decode(token: token) {
                 do {
                     let json = try JSONSerialization.jsonObject(with: base64Data, options: .mutableContainers) as? [String:AnyObject]
                     if let json = json, let code = json["type"] as? String {

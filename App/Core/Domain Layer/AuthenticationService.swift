@@ -29,11 +29,9 @@ public enum AuthenticationService {
                               completion: @escaping (Result<Void, NetworkingError>) -> ()) {
         
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
-            let tokenRequest = B2CTokenRequest(client_id: Configuration.shared.b2cClientID,
-                                               scope: Configuration.shared.b2cScope,
-                                               username: username,
+            let tokenRequest = B2CTokenRequest(username: username,
                                                password: password)
-            NetworkingLayer.request(router: .fetchB2CToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
+            NetworkingLayer.request(router: .getAzureToken(request: tokenRequest)) { (result: Result<VoidDecodable, NetworkingError>) in
                 switch result {
                 case .success:
                     completion(.success(()))
@@ -94,11 +92,9 @@ extension AuthenticationService {
                              completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
         if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
             // B2C Authentication
-            let tokenRequest = B2CTokenRequest(client_id: Configuration.shared.b2cClientID,
-                                               scope: Configuration.shared.b2cScope,
-                                               username: username,
+            let tokenRequest = B2CTokenRequest(username: username,
                                                password: password)
-            NetworkingLayer.request(router: .fetchB2CToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+            NetworkingLayer.request(router: .getAzureToken(request: tokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
                 switch result {
                 case .success(let tokenResponse):
                     completion(.success(tokenResponse))
