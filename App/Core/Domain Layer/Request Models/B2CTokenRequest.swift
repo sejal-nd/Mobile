@@ -10,12 +10,12 @@ import Foundation
 
 public struct B2CTokenRequest: Encodable {
     public init(scope: String? = nil,
-                nonce: String = "",
+                nonce: String? = nil,
                 grantType: String = "password",
-                responseType: String = "token id_token",
-                username: String = "",
-                password: String = "",
-                refreshToken: String = "") {
+                responseType: String = "token",
+                username: String? = nil,
+                password: String? = nil,
+                refreshToken: String? = nil) {
         if let scope = scope {
             self.scope = scope
         }
@@ -30,13 +30,13 @@ public struct B2CTokenRequest: Encodable {
     var clientID = Configuration.shared.b2cClientID
     var clientSecret = Configuration.shared.clientSecret
     var scope = Configuration.shared.b2cScope
-    var grantType = ""
-    var responseType = ""
-    var username = ""
-    var password = ""
-    var refreshToken = ""
-    var resource = ""
-    var nonce = ""
+    var grantType: String?
+    var responseType: String?
+    var username: String?
+    var password: String?
+    var refreshToken: String?
+    var resource: String?
+    var nonce: String?
     
     enum CodingKeys: String, CodingKey {
         case clientID = "client_id"
