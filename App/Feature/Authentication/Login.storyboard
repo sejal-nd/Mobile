@@ -449,7 +449,6 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="videoView" destination="NyF-Jg-tI8" id="N5K-SN-EH7"/>
                         <segue destination="Sli-Tt-vCb" kind="presentation" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
                         <segue destination="Pib-RC-igc" kind="show" identifier="loginSegue" id="l5Z-IJ-Ywz"/>
-                        <segue destination="7qO-w4-Syv" kind="show" identifier="registrationSegue" id="q7J-Gf-rEi"/>
                         <segue destination="Gdt-5a-5uk" kind="presentation" identifier="registrationSegueNew" id="sSZ-cR-C8G"/>
                     </connections>
                 </viewController>
@@ -926,189 +925,6 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpu-w7-s7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="198" y="861"/>
-        </scene>
-        <!--Registration Validate Account View Controller-->
-        <scene sceneID="pxW-i5-QKT">
-            <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="7qO-w4-Syv" customClass="RegistrationValidateAccountViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HW6-hU-nOi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5U-SA-SJ5">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giY-o0-uA7" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="344"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Tq-cp-max" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="344"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="tBo-sa-Xpr">
-                                                        <rect key="frame" x="0.0" y="20" width="374" height="304"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please help us validate your account." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXD-mb-iOS">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="19.5"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSl-pN-s9X">
-                                                                <rect key="frame" x="0.0" y="49.5" width="374" height="60"/>
-                                                                <subviews>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="u3K-xy-VDi" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    </view>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5s-TV-k14">
-                                                                        <rect key="frame" x="323" y="4.5" width="51" height="51"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="51" id="9vQ-e0-5xn"/>
-                                                                            <constraint firstAttribute="height" constant="51" id="SSV-Zy-6KN"/>
-                                                                        </constraints>
-                                                                        <state key="normal" image="ic_tooltip"/>
-                                                                        <connections>
-                                                                            <action selector="onAccountNumberTooltipPress" destination="7qO-w4-Syv" eventType="touchUpInside" id="xdc-A4-5an"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="u3K-xy-VDi" firstAttribute="top" secondItem="CSl-pN-s9X" secondAttribute="top" id="G3d-26-GjH"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="u3K-xy-VDi" secondAttribute="trailing" id="LPg-Zr-eYH"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="R5s-TV-k14" secondAttribute="trailing" id="XDq-vd-byL"/>
-                                                                    <constraint firstItem="u3K-xy-VDi" firstAttribute="leading" secondItem="CSl-pN-s9X" secondAttribute="leading" id="oyY-zL-L8D"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="u3K-xy-VDi" secondAttribute="bottom" id="uk0-Yw-PnZ"/>
-                                                                    <constraint firstItem="R5s-TV-k14" firstAttribute="centerY" secondItem="u3K-xy-VDi" secondAttribute="centerY" id="z5U-uB-kCa"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="mkI-kI-4kO" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="139.5" width="374" height="55"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwA-oc-H4s">
-                                                                <rect key="frame" x="0.0" y="224.5" width="374" height="79.5"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 4 Digits of blah blah blah" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MT2-Gf-xID">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="14.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="p0U-80-j0E" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="374" height="55"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    </view>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="p0U-80-j0E" secondAttribute="trailing" id="3dC-aK-wwZ"/>
-                                                                    <constraint firstItem="p0U-80-j0E" firstAttribute="leading" secondItem="MT2-Gf-xID" secondAttribute="leading" id="7xX-3m-P3e"/>
-                                                                    <constraint firstItem="p0U-80-j0E" firstAttribute="trailing" secondItem="MT2-Gf-xID" secondAttribute="trailing" id="GcI-2F-pnz"/>
-                                                                    <constraint firstItem="p0U-80-j0E" firstAttribute="top" secondItem="MT2-Gf-xID" secondAttribute="bottom" constant="10" id="K6V-Yf-Iij"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="p0U-80-j0E" secondAttribute="bottom" id="KIO-J1-AGa"/>
-                                                                    <constraint firstItem="MT2-Gf-xID" firstAttribute="top" secondItem="RwA-oc-H4s" secondAttribute="top" id="aOK-dB-fw2"/>
-                                                                    <constraint firstItem="p0U-80-j0E" firstAttribute="leading" secondItem="RwA-oc-H4s" secondAttribute="leading" id="nD9-O0-cD8"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="mkI-kI-4kO" firstAttribute="leading" secondItem="tBo-sa-Xpr" secondAttribute="leading" id="59h-a1-Hg8"/>
-                                                            <constraint firstItem="GXD-mb-iOS" firstAttribute="leading" secondItem="tBo-sa-Xpr" secondAttribute="leading" id="xa7-8K-HYt"/>
-                                                        </constraints>
-                                                    </stackView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="tBo-sa-Xpr" secondAttribute="trailing" id="848-TB-mkZ"/>
-                                                    <constraint firstItem="tBo-sa-Xpr" firstAttribute="top" secondItem="2Tq-cp-max" secondAttribute="top" constant="20" id="Eu1-iE-zyK"/>
-                                                    <constraint firstItem="tBo-sa-Xpr" firstAttribute="leading" secondItem="2Tq-cp-max" secondAttribute="leading" id="HGU-ED-bca"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="QNV-B4-MJF"/>
-                                                    <constraint firstAttribute="bottom" secondItem="tBo-sa-Xpr" secondAttribute="bottom" constant="20" id="phg-XN-HAn"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="2Tq-cp-max" secondAttribute="trailing" priority="999" constant="20" id="Fgk-Sh-tan"/>
-                                            <constraint firstItem="2Tq-cp-max" firstAttribute="leading" secondItem="giY-o0-uA7" secondAttribute="leading" priority="999" constant="20" id="HIQ-Vs-UhK"/>
-                                            <constraint firstAttribute="bottom" secondItem="2Tq-cp-max" secondAttribute="bottom" id="Kyt-gY-xiq"/>
-                                            <constraint firstItem="2Tq-cp-max" firstAttribute="top" secondItem="giY-o0-uA7" secondAttribute="top" id="ZmQ-vj-2zj"/>
-                                            <constraint firstItem="2Tq-cp-max" firstAttribute="centerX" secondItem="giY-o0-uA7" secondAttribute="centerX" id="pQu-Kn-boZ"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="giY-o0-uA7" firstAttribute="top" secondItem="A5U-SA-SJ5" secondAttribute="top" id="11Y-3s-BUQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="giY-o0-uA7" secondAttribute="bottom" id="C7x-7T-nsD"/>
-                                    <constraint firstItem="giY-o0-uA7" firstAttribute="leading" secondItem="A5U-SA-SJ5" secondAttribute="leading" id="SrD-sC-tX9"/>
-                                    <constraint firstItem="giY-o0-uA7" firstAttribute="centerX" secondItem="A5U-SA-SJ5" secondAttribute="centerX" id="ZmP-Lr-FR0"/>
-                                    <constraint firstAttribute="trailing" secondItem="giY-o0-uA7" secondAttribute="trailing" id="qy4-8b-Tc7"/>
-                                </constraints>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBu-ML-fQI" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="777" width="414" height="119"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-B5-4KV" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="15" width="374" height="55"/>
-                                        <accessibility key="accessibilityConfiguration" label="Continue"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="CA6-wa-NhA"/>
-                                            <constraint firstAttribute="height" constant="55" id="rXM-0b-2Br"/>
-                                        </constraints>
-                                        <state key="normal" title="Continue"/>
-                                        <connections>
-                                            <action selector="onContinuePress" destination="7qO-w4-Syv" eventType="touchUpInside" id="Kro-Ex-swV"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <viewLayoutGuide key="safeArea" id="4mo-QF-XUv"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="4mo-QF-XUv" firstAttribute="trailing" secondItem="o4m-B5-4KV" secondAttribute="trailing" priority="999" constant="20" id="4RC-Fx-dec"/>
-                                    <constraint firstItem="4mo-QF-XUv" firstAttribute="bottom" secondItem="o4m-B5-4KV" secondAttribute="bottom" constant="15" id="Et3-hf-Zdk"/>
-                                    <constraint firstItem="o4m-B5-4KV" firstAttribute="leading" secondItem="4mo-QF-XUv" secondAttribute="leading" priority="999" constant="20" id="RF1-pH-Wz3"/>
-                                    <constraint firstItem="o4m-B5-4KV" firstAttribute="top" secondItem="bBu-ML-fQI" secondAttribute="top" constant="15" id="keb-w7-cLU"/>
-                                    <constraint firstItem="o4m-B5-4KV" firstAttribute="centerX" secondItem="4mo-QF-XUv" secondAttribute="centerX" id="stp-bK-apg"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="iRf-e6-u88"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="bBu-ML-fQI" secondAttribute="bottom" id="2cM-Ut-12F"/>
-                            <constraint firstItem="iRf-e6-u88" firstAttribute="trailing" secondItem="A5U-SA-SJ5" secondAttribute="trailing" id="HLS-yu-WSa"/>
-                            <constraint firstItem="iRf-e6-u88" firstAttribute="trailing" secondItem="bBu-ML-fQI" secondAttribute="trailing" id="Hqv-uv-FLM"/>
-                            <constraint firstItem="bBu-ML-fQI" firstAttribute="leading" secondItem="iRf-e6-u88" secondAttribute="leading" id="TJ6-Ol-rmi"/>
-                            <constraint firstItem="A5U-SA-SJ5" firstAttribute="top" secondItem="HW6-hU-nOi" secondAttribute="top" id="U0b-eM-ZX6"/>
-                            <constraint firstItem="A5U-SA-SJ5" firstAttribute="leading" secondItem="iRf-e6-u88" secondAttribute="leading" id="Yyn-Bh-Ouy"/>
-                            <constraint firstItem="bBu-ML-fQI" firstAttribute="top" secondItem="A5U-SA-SJ5" secondAttribute="bottom" id="jtA-UM-9Xb"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="JEo-Uu-l4o">
-                        <barButtonItem key="backBarButtonItem" title=" " id="hdX-cO-Xhm"/>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="accountNumberTextField" destination="u3K-xy-VDi" id="Bh1-dR-cVf"/>
-                        <outlet property="accountNumberView" destination="CSl-pN-s9X" id="GiY-83-m2u"/>
-                        <outlet property="continueButton" destination="o4m-B5-4KV" id="ZkR-H9-tII"/>
-                        <outlet property="identifierDescriptionLabel" destination="MT2-Gf-xID" id="QdC-Tl-xCQ"/>
-                        <outlet property="identifierTextField" destination="p0U-80-j0E" id="J2o-gD-qGj"/>
-                        <outlet property="instructionLabel" destination="GXD-mb-iOS" id="5Dh-m5-ihG"/>
-                        <outlet property="phoneNumberTextField" destination="mkI-kI-4kO" id="V5Q-lE-33y"/>
-                        <outlet property="questionMarkButton" destination="R5s-TV-k14" id="NyY-63-N8k"/>
-                        <outlet property="registrationFormView" destination="giY-o0-uA7" id="PMX-5J-phF"/>
-                        <outlet property="scrollView" destination="A5U-SA-SJ5" id="QTX-jK-xcr"/>
-                        <outlet property="stickyFooterBottomConstraint" destination="2cM-Ut-12F" id="xKC-mm-DZX"/>
-                        <segue destination="Y17-A0-L8c" kind="show" identifier="bgeAccountNumberSegue" id="i6k-qg-f70"/>
-                        <segue destination="OB4-E6-Bvv" kind="show" identifier="createCredentialsSegue" id="He9-IH-khb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4bQ-Ac-bos" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1257" y="860"/>
         </scene>
         <!--RegistrationBGE Account Number View Controller-->
         <scene sceneID="Ebq-A6-6CT">
@@ -4413,6 +4229,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="errorLabel" destination="dvd-B1-4LO" id="gJt-c6-pBC"/>
                         <outlet property="loadingIndicator" destination="bGD-3A-79r" id="EgQ-ZC-RFW"/>
                         <outlet property="webView" destination="pXo-ee-ekH" id="euC-Rv-JDA"/>
+                        <segue destination="sVW-aP-hfQ" kind="presentation" identifier="forgotUsernameB2cSegue" id="k3X-XL-dO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0aG-Wh-Jmr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4494,13 +4311,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dxD-VZ-tF3"/>
-        <segue reference="rDh-g1-gVE"/>
-        <segue reference="yZt-0Y-CGp"/>
-        <segue reference="rc5-B5-rKb"/>
-        <segue reference="GYT-tJ-2IP"/>
+        <segue reference="WBK-86-Sbl"/>
+        <segue reference="PqP-gN-czM"/>
+        <segue reference="BgF-Jk-rXb"/>
+        <segue reference="9by-S4-ujE"/>
         <segue reference="m8m-Zs-f6g"/>
-        <segue reference="35a-iJ-7qY"/>
+        <segue reference="k3X-XL-dO6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ic_check" width="13" height="10"/>

@@ -36,7 +36,7 @@ public enum NetworkingLayer {
         }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
-
+        
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
             Log.custom("📬", url.absoluteString)
         }
@@ -131,12 +131,13 @@ public enum NetworkingLayer {
             
             isRefreshingToken = true
             refreshTokenDispatchGroup.enter()
+            
             // Refresh Token
-            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication){
-                //isAzure authentication
-                let refreshTokenRequest = B2CRefreshTokenRequest(client_id: Configuration.shared.b2cClientID,
-                                                                 refreshToken: UserSession.refreshToken)
-                NetworkingLayer.request(router: .refreshB2CToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+                let refreshTokenRequest = B2CTokenRequest(grantType: "refresh_token",
+                                                          responseType: "id_token",
+                                                          refreshToken: UserSession.refreshToken)
+                NetworkingLayer.request(router: .getAzureToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
                     switch result {
                     case .success(let tokenResponse):
                         do {
@@ -169,7 +170,7 @@ public enum NetworkingLayer {
                         refreshTokenDispatchGroup.leave()
                     }
                 }
-            }else{
+            } else {
                 //default authentication
                 let refreshTokenRequest = RefreshTokenRequest(clientId: Configuration.shared.clientID,clientSecret: Configuration.shared.clientSecret,refreshToken: UserSession.refreshToken)
                 NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
@@ -217,7 +218,7 @@ public enum NetworkingLayer {
             if let error = error as NSError? {
                 Log.error("Data task error: \(error)\n\(error.localizedDescription)")
                 if error.domain == NSURLErrorDomain,
-                    error.code == NSURLErrorNotConnectedToInternet {
+                   error.code == NSURLErrorNotConnectedToInternet {
                     DispatchQueue.main.async {
                         completion(.failure(.noNetwork))
                     }
@@ -246,7 +247,7 @@ public enum NetworkingLayer {
                 }
                 return
             }
-
+            
             do {
                 if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
                     Log.custom("✉️", "RAW RESPONSE:\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
@@ -270,12 +271,12 @@ public enum NetworkingLayer {
         }
         dataTask.resume()
     }
-
+    
     private static func decode<T: Decodable>(data: Data) throws -> T {
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
             Log.custom("✉️", "Data Response:\n\(String(decoding: data, as: UTF8.self))")
         }
-
+        
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .custom() { decoder throws -> Date in
             let container = try decoder.singleValueContainer()
@@ -292,6 +293,20 @@ public enum NetworkingLayer {
         do {
             responseWrapper = try jsonDecoder.decode(AzureResponseContainer<T>.self, from: data)
         } catch {
+            do {
+                let response = try jsonDecoder.decode(T.self, from: data)
+                return response
+            } catch {
+                Log.error("Failed to decode using default generic model: \(error)\nLocalized Error:\(error.localizedDescription)")
+            }
+            
+            if let b2cError = try? jsonDecoder.decode(AzureB2CError.self, from: data) {
+                // B2C decode
+                Log.error("Azure B2C Error: \(b2cError) \n\n\(String(describing: b2cError.errorDescription))")
+                
+                throw NetworkingError.generic
+            }
+            
             if let apigeeError = try? jsonDecoder.decode(ApigeeError.self, from: data) {
                 // Apigee decode
                 Log.error("Apigee Error: \(apigeeError) \n\n\(apigeeError.errorDescription)")
@@ -330,7 +345,7 @@ public enum NetworkingLayer {
             Log.error("Failed to decode network response data")
             throw NetworkingError.decoding
         }
-                
+        
         return responseData
     }
     
@@ -342,7 +357,7 @@ public enum NetworkingLayer {
     }
     
     private static func addHTTPHeaders(_ httpHeaders: HTTPHeaders,
-                                             request: inout URLRequest) {
+                                       request: inout URLRequest) {
         guard !httpHeaders.isEmpty else { return }
         for (key, value) in httpHeaders {
             request.setValue(value, forHTTPHeaderField: key)

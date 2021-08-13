@@ -92,8 +92,8 @@ struct UsageService {
         NetworkingLayer.request(router: .energyTip(accountNumber: accountNumber, premiseNumber: premiseNumber, tipName: tipName), completion: completion)
     }
     
-    static func fetchOpowerToken(request: B2CoPowerJWTRequest, completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .fetchB2CoPowerJWT(request: request), completion: completion)
+    static func fetchOpowerToken(request: B2CTokenRequest, completion: @escaping (Result<TokenResponse, NetworkingError>) -> ()) {
+        NetworkingLayer.request(router: .getAzureToken(request: request), completion: completion)
     }
     
     static func clearCache() {

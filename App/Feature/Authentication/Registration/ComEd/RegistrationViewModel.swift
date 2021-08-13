@@ -463,7 +463,7 @@ class RegistrationViewModel {
     private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
         let driverArray: [Driver<String>]
         let count: Int
-        if Configuration.shared.opco == .bge || FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) {
+        if Configuration.shared.opco == .bge {
             driverArray = [self.securityAnswer1.asDriver(),
                            self.securityAnswer2.asDriver()]
             count = 2

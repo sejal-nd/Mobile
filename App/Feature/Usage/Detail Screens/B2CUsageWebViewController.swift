@@ -56,15 +56,17 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     private func fetchJWT() {
-        let request = B2CoPowerJWTRequest(clientID: Configuration.shared.b2cClientID,
-                                          refreshToken: UserSession.refreshToken,
-                                          nonce: accountDetail?.accountNumber ?? "")
+        let request = B2CTokenRequest(scope: "https://\(Configuration.shared.b2cTenant).onmicrosoft.com/opower/opower_connect",
+                                   nonce: accountDetail?.accountNumber ?? "",
+                                   grantType: "refresh_token",
+                                   responseType: "token",
+                                   refreshToken: UserSession.refreshToken)
         UsageService.fetchOpowerToken(request: request) { [weak self] result in
             switch result {
             case .success(let tokenResponse):
                 guard let self = self else { return }
                 self.errorLabel.isHidden = true
-                
+
                 self.loadWebView(token: tokenResponse.token ?? "")
             case .failure:
                 guard let self = self else { return }
@@ -90,10 +92,11 @@ extension B2CUsageWebViewController: WKNavigationDelegate {
         loadingIndicator.isHidden = true
         webView.isHidden = false
     }
-    
+
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         errorLabel.isHidden = false
         loadingIndicator.isHidden = true
         webView.isHidden = true
+        Log.error("Error loading usage web view: \(error)\n\(error.localizedDescription)")
     }
 }

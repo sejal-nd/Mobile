@@ -38,7 +38,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         
         addCloseButton()
         let navigationTitle: String
-              if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+              if Configuration.shared.opco != .bge {
                   navigationTitle = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
               } else {
                   navigationTitle = "Forgot Username"
