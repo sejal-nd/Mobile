@@ -17,7 +17,7 @@ class B2CForgotPasswordViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     weak var delegate: ChangePasswordViewControllerDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -31,6 +31,10 @@ class B2CForgotPasswordViewController: UIViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
+        loadWebView()
+    }
+    
+    private func loadWebView() {
         let resetPasswordURLString = "https://\(Configuration.shared.b2cAuthEndpoint)/\(Configuration.shared.b2cTenant).onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_RESETPASSWORD_MOBILE&client_id=\(Configuration.shared.b2cClientID)&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login"
         if let url = URL(string: resetPasswordURLString) {
             webView.load(NSURLRequest(url: url) as URLRequest)
@@ -48,6 +52,13 @@ extension B2CForgotPasswordViewController: WKNavigationDelegate {
         if let urlString = webView.url?.absoluteString,
            urlString.contains("credentialretrieval-passwordentry-mobile") {
             success()
+        } else if let urlString = webView.url?.absoluteString,
+                  urlString.contains("credential-retrieval/find-account") {
+            // Reset web view
+            webView.stopLoading()
+            
+            // trigger native UI
+            performSegue(withIdentifier: "forgotUsernameB2cSegue", sender: self)
         }
     }
     
