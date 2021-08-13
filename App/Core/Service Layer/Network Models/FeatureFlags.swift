@@ -27,7 +27,6 @@ public struct FeatureFlags: Decodable {
     public var billingVideoUrl: String = ""
     public var hasDefaultAccount: Bool = false
     public var hasForgotPasswordLink: Bool = false
-    public var hasNewRegistration: Bool = true
     public var paymentProgramAds: Bool = false
     public var agentisWidgets: Bool = false
     public var isAzureAuthentication:Bool = false
@@ -38,7 +37,6 @@ public struct FeatureFlags: Decodable {
         case billingVideoUrl = "billingVideoURL"
         case hasDefaultAccount
         case hasForgotPasswordLink
-        case hasNewRegistration
         case paymentProgramAds
         case agentisWidgets
         case isAzureAuthentication
@@ -56,7 +54,6 @@ public struct FeatureFlags: Decodable {
         billingVideoUrl = try container.decodeIfPresent(String.self, forKey: .billingVideoUrl) ?? ""
         hasDefaultAccount = try container.decodeIfPresent(Bool.self, forKey: .hasDefaultAccount) ?? false
         hasForgotPasswordLink = try container.decodeIfPresent(Bool.self, forKey: .hasForgotPasswordLink) ?? false
-        hasNewRegistration = try container.decodeIfPresent(Bool.self, forKey: .hasNewRegistration) ?? true
         paymentProgramAds = try container.decodeIfPresent(Bool.self, forKey: .paymentProgramAds) ?? true
         agentisWidgets = try container.decodeIfPresent(Bool.self, forKey: .agentisWidgets) ?? true
         isAzureAuthentication = try container.decodeIfPresent(Bool.self, forKey: .isAzureAuthentication) ?? true

@@ -84,7 +84,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         viewModel.signInButtonEnabled.drive(signInButton.rx.isEnabled).disposed(by: disposeBag)
 
         let placeholderText: String
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             placeholderText = Configuration.shared.opco.isPHI ? "Username (Email Address)" : "Email"
         } else {
             placeholderText = "Username / Email Address"
@@ -141,7 +141,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
         
         let forgotUsernamePasswordButtonTitle: String
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             forgotUsernamePasswordButtonTitle = Configuration.shared.opco.isPHI ? "Forgot your username or password?" : "Forgot your email or password?"
         } else {
             forgotUsernamePasswordButtonTitle = "Forgot your username or password?"
@@ -220,7 +220,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             if (Configuration.shared.opco != .bge && Configuration.shared.opco != .delmarva && Configuration.shared.opco != .pepco && Configuration.shared.opco != .ace) && !viewModel.usernameIsValidEmailAddress {
                 // ComEd/PECO only email validation. If not valid email then fail before making the call
                 var message = ""
-                if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+                if Configuration.shared.opco != .bge {
                     message = NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
                 } else {
                     message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
@@ -365,7 +365,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let forgotUsername: String
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             forgotUsername = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
         } else {
             forgotUsername = "Forgot Username"

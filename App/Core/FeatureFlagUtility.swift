@@ -15,7 +15,6 @@ final class FeatureFlagUtility {
         case billingVideoURL
         case hasDefaultAccount
         case hasForgotPasswordLink
-        case hasNewRegistration
         case paymentProgramAds
         case agentisWidgets
         case isAzureAuthentication
@@ -37,7 +36,6 @@ final class FeatureFlagUtility {
             FeatureFlagKey.billingVideoURL.rawValue : "",
             FeatureFlagKey.hasDefaultAccount.rawValue : false,
             FeatureFlagKey.hasForgotPasswordLink.rawValue : false,
-            FeatureFlagKey.hasNewRegistration.rawValue : true,
             FeatureFlagKey.paymentProgramAds.rawValue : false,
             FeatureFlagKey.agentisWidgets.rawValue : false,
             FeatureFlagKey.isAzureAuthentication.rawValue : false
@@ -63,7 +61,6 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.billingVideoURL.rawValue : featureFlags.billingVideoUrl,
                     FeatureFlagKey.hasDefaultAccount.rawValue : featureFlags.hasDefaultAccount,
                     FeatureFlagKey.hasForgotPasswordLink.rawValue : featureFlags.hasForgotPasswordLink,
-                    FeatureFlagKey.hasNewRegistration.rawValue : featureFlags.hasNewRegistration,
                     FeatureFlagKey.paymentProgramAds.rawValue : featureFlags.paymentProgramAds,
                     FeatureFlagKey.agentisWidgets.rawValue : featureFlags.agentisWidgets,
                     FeatureFlagKey.isAzureAuthentication.rawValue : featureFlags.isAzureAuthentication

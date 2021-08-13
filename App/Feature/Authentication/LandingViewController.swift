@@ -131,11 +131,7 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction func onRegistrationInPress() {
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) {
-            performSegue(withIdentifier: "registrationSegueNew", sender: self)
-        } else {
-            performSegue(withIdentifier: "registrationSegue", sender: self)
-        }
+        performSegue(withIdentifier: "registrationSegueNew", sender: self)
     }
     
     @IBAction func onDebugMenuPress(_ sender: Any) {

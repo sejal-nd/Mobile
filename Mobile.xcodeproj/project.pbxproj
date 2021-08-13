@@ -110,8 +110,6 @@
 		359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */; };
 		359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		35A2B88824A1E0E0004B38BC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */; };
-		35A2B88924A1E0E0004B38BC /* RegistrationValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */; };
-		35A2B88E24A1E120004B38BC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */; };
 		35A5DCBC2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		35A5DCBF2305D35200A82AA8 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		35A5DCC32305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */; };
@@ -1416,7 +1414,6 @@
 		359BDBB422E0E6EA007002B0 /* checkmark_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark_blue.json; sourceTree = "<group>"; };
 		35A2B88324A1E092004B38BC /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
-		35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationValidateAccountViewController.swift; sourceTree = "<group>"; };
 		35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPayBGE.storyboard; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
@@ -4157,10 +4154,13 @@
 		675F47C124AB6CD200A828F9 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
+				35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */,
 				675F47C224AB6CD200A828F9 /* RegistrationValidateAccountViewControllerNew.swift */,
 				350B980D24CE898D00BB0CA7 /* RegistrationChooseAccountViewController.swift */,
+				54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */,
 				3535363724AC9A3000B428D6 /* RegistrationCreateCredentialsViewControllerNew.swift */,
 				35E1F85724ADA49900574065 /* RegistrationSecurityQuestionsViewControllerNew.swift */,
+				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -4941,13 +4941,9 @@
 			children = (
 				67A482ED26BC416300FBB0BB /* B2C */,
 				675F47C124AB6CD200A828F9 /* ComEd */,
-				35A2B88724A1E0DF004B38BC /* RegistrationValidateAccountViewController.swift */,
-				35A2B88624A1E0DE004B38BC /* RegistrationViewModel.swift */,
 				54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */,
-				54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */,
 				54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */,
 				54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */,
-				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
 				35CEB030230D8F1700366440 /* Account Details View */,
 			);
 			path = Registration;
@@ -7083,7 +7079,6 @@
 				675F4C1224AB828100A828F9 /* AuthenticationService.swift in Sources */,
 				675F4C6024AB828100A828F9 /* BillForecast.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
-				35A2B88924A1E0E0004B38BC /* RegistrationValidateAccountViewController.swift in Sources */,
 				673FA0F124C8A52700210BCD /* AnonymousService+Rx.swift in Sources */,
 				675F4C5A24AB828100A828F9 /* AutoPayResult.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
@@ -7181,7 +7176,6 @@
 				671448C224731680004D2AFF /* Configuration.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
 				3559C8A922F9F69700481A87 /* HomeBillCardViewModel.swift in Sources */,
-				35A2B88E24A1E120004B38BC /* RegistrationViewModel.swift in Sources */,
 				359BDB5722D8C4CD007002B0 /* FirebaseUtility.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				35A5DCBC2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */,
