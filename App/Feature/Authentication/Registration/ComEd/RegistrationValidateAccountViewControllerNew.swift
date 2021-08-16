@@ -186,7 +186,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        var identifierString = "Last 4 digits of your Social Security number"
+        var identifierString = "Last 4 digits of your Social Security Number"
         identifierString.append(" or Business Tax ID")
 
         identifierDescriptionLabel.textColor = .deepGray
