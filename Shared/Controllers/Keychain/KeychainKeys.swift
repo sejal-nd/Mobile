@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension KeychainController {
+public extension KeychainController {
     enum Key: String {
         // iPhone biometric login
         case keychainKey = "kExelon_PW"

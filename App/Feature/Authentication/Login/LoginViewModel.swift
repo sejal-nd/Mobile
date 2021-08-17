@@ -112,13 +112,27 @@ class LoginViewModel {
     }
     
     func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool, MaintenanceMode?) -> Void, onError: @escaping (String?, String) -> Void) {
-        if let username = BiometricService.getStoredUsername(), let password = BiometricService.getStoredPassword() {
-            self.username.accept(username)
-            biometricsAutofilledPassword = password
-            self.password.accept(password)
-            onLoad()
-            isLoggingIn = true
-            performLogin(onSuccess: onSuccess, onRegistrationNotComplete: {}, onError: onError)
+        if let username = BiometricService.getStoredUsername() {
+            BiometricService.getStoredPassword { [weak self] result in
+                switch result {
+                case .success(let password):
+                    guard let self = self,
+                          let password = password else {
+                        let error = BiometricService.BiometricError.failedToAuthenticate
+                        onError(error.title, error.description)
+                        return
+                    }
+
+                    self.username.accept(username)
+                    self.biometricsAutofilledPassword = password
+                    self.password.accept(password)
+                    onLoad()
+                    self.isLoggingIn = true
+                    self.performLogin(onSuccess: onSuccess, onRegistrationNotComplete: {}, onError: onError)
+                case .failure(let error):
+                    onError(error.title, error.description)
+                }
+            }
         } else {
             onDidNotLoad()
         }

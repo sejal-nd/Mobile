@@ -20,20 +20,20 @@ enum UserSession {
     }
     
     static var token: String {
-        return keychain.string(forKey: .tokenKeychainKey) ?? ""
+        return keychain.get(.tokenKeychainKey) ?? ""
     }
     
     static var tokenExpirationDate: Date {
-        let tokenExpirationDateString = keychain.string(forKey: .tokenExpirationDateKeychainKey) ?? ""
+        let tokenExpirationDateString = keychain.get(.tokenExpirationDateKeychainKey) ?? ""
         return Date(timeIntervalSince1970: (tokenExpirationDateString as NSString).doubleValue)
     }
     
     static var refreshToken: String {
-        keychain.string(forKey: .refreshTokenKeychainKey) ?? ""
+        keychain.get(.refreshTokenKeychainKey) ?? ""
     }
     
     static var refreshTokenExpirationDate: Date {
-        let refreshTokenExpirationDateString = keychain.string(forKey: .refreshTokenExpirationDateKeychainKey) ?? ""
+        let refreshTokenExpirationDateString = keychain.get(.refreshTokenExpirationDateKeychainKey) ?? ""
         return Date(timeIntervalSince1970: (refreshTokenExpirationDateString as NSString).doubleValue)
     }
 }
@@ -97,10 +97,10 @@ extension UserSession {
     }
     
     static func deleteSession() {
-        keychain.remove(forKey: .tokenKeychainKey)
-        keychain.remove(forKey: .tokenExpirationDateKeychainKey)
-        keychain.remove(forKey: .refreshTokenKeychainKey)
-        keychain.remove(forKey: .refreshTokenExpirationDateKeychainKey)
+        keychain.delete(.tokenKeychainKey)
+        keychain.delete(.tokenExpirationDateKeychainKey)
+        keychain.delete(.refreshTokenKeychainKey)
+        keychain.delete(.refreshTokenExpirationDateKeychainKey)
         UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameAccountNumber)
     }
 }

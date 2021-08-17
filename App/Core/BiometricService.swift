@@ -15,6 +15,31 @@ enum BiometricService {
     
     private static let keychain = KeychainController.default
     
+    enum BiometricError: Error{
+        case noBiometrics
+        case failedToAuthenticate
+        
+        var title: String {
+            switch self {
+            case .noBiometrics:
+                return "Biometrics Are Not Enabled"
+            case .failedToAuthenticate:
+                return "Failed to Authenticate"
+            }
+        }
+        
+        var description: String {
+            switch self {
+            case .noBiometrics:
+                return "Please enable biometrics on your device to use this feature"
+            case .failedToAuthenticate:
+                return "Please make sure you are using the biometrics set up with this device"
+            }
+        }
+    }
+    
+
+    
     static func disableBiometricsOnFreshInstall() {
         let manager = FileManager.default
         if var fileUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("FirstLaunchOnNewDevice"),
@@ -60,8 +85,28 @@ enum BiometricService {
         UserDefaults.standard.set(username, forKey: UserDefaultKeys.loggedInUsername)
     }
     
-    static func getStoredPassword() -> String? {
-        return keychain.string(forKey: .keychainKey, withAccessibility: .whenPasscodeSetThisDeviceOnly)
+    static func getStoredPassword(completion: @escaping (Result<String?, BiometricError>) -> Void) {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Autofill Password"
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                DispatchQueue.main.async {
+                    if success {
+                        let password = keychain.get(.keychainKey)
+                        completion(.success(password))
+                    } else {
+                        Log.error("Authentication error: \(String(describing: authenticationError))/n\(String(describing: authenticationError?.localizedDescription))")
+                        completion(.failure(.failedToAuthenticate))
+                    }
+                }
+            }
+        } else {
+            Log.info("Biometrics not enabled")
+            completion(.failure(.noBiometrics))
+        }
     }
     
     static func setStoredPassword(password: String) {
@@ -70,7 +115,7 @@ enum BiometricService {
     }
     
     static func disableBiometrics() {
-        keychain.remove(forKey: .keychainKey)
+        keychain.delete(.keychainKey)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isBiometricsEnabled)
     }
     
