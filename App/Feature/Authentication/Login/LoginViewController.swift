@@ -201,10 +201,13 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         if !viewAlreadyAppeared {
             viewAlreadyAppeared = true
-            navigationController?.view.isUserInteractionEnabled = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+            let isBiometricsEnabled = UserDefaults.standard.bool(forKey: UserDefaultKeys.isBiometricsEnabled)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: { [weak self] in
                 // This delay is necessary to prevent deep link complications -- do not remove
-                self.presentBiometricsPrompt()
+                
+                if isBiometricsEnabled {
+                    self?.presentBiometricsPrompt()
+                }
             })
         }
     }
@@ -468,10 +471,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     func presentBiometricsPrompt() {
         viewModel.attemptLoginWithBiometrics(onLoad: { [weak self] in // Face/Touch ID was successful
             guard let self = self else { return }
-
+            
             GoogleAnalytics.log(event: .loginOffer,
-                                 dimensions: [.fingerprintUsed: "enabled"])
-
+                                dimensions: [.fingerprintUsed: "enabled"])
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
             })
@@ -481,7 +484,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             self.signInButton.accessibilityViewIsModal = true
             self.biometricButton.isEnabled = true
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-
+            
             // Hide password while loading
             if !self.passwordTextField.textField.isSecureTextEntry {
                 self.onEyeballPress(self.eyeballButton)
