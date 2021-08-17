@@ -1041,13 +1041,13 @@ class BillViewModel {
             
             switch assistanceType {
             case .dde:
-                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web&utm_campaign=DDE_CTA"
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web%20Bill%20Tab&utm_campaign=DDE_CTA"
             case .dpa:
-                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web&utm_campaign=DPA_CTA"
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web%20Bill%20Tab&utm_campaign=DPA_CTA"
             case .dpaReintate:
-                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web&utm_campaign=DPAReinstate_CTA"
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web%20Bill%20Tab&utm_campaign=DPAReinstate_CTA"
             case .none:
-                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web&utm_campaign=AssistanceProgram_CTA"
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web%20Bill%20Tab&utm_campaign=AssistanceProgram_CTA"
             }
         }
         
