@@ -202,4 +202,20 @@ class UnauthenticatedOutageViewModel {
             }
         }
     }
+    
+    /**
+     Check if the outage status is multipremise.
+     Account number are both the same, but with a different location id
+     */
+    var isStatusMultiPremise: Bool {
+        guard let selectedOutageStatus = selectedOutageStatus.value else { return false }
+        
+        for outageStatus in outageStatusArray {
+            if outageStatus.accountNumber?.lowercased() == selectedOutageStatus.accountNumber?.lowercased() && outageStatus.locationId?.lowercased() != selectedOutageStatus.locationId?.lowercased() {
+                return true
+            }
+        }
+        
+        return false
+    }
 }

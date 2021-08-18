@@ -105,8 +105,8 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     
     @IBAction func onSelectAccountPress() {
         guard let selectedOutageStatus = viewModel.selectedOutageStatus.value else { return }
-        if selectedOutageStatus.multipremiseAccount {
-            // No need to query again for a multipremise account because it would just return us an array of the status info we already have
+        if Configuration.shared.opco == .bge && viewModel.isStatusMultiPremise {
+            // No need to query again for a BGE & multipremise account because it would just return us an array of the status info we already have
             if selectedOutageStatus.isGasOnly {
                 let alertVc = UIAlertController(title: NSLocalizedString("Outage status unavailable", comment: ""), message: NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""), preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
