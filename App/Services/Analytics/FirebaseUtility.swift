@@ -295,6 +295,7 @@ enum ForgotUsernameParameter: String, EventParameter {
 
 enum BillParameter: String, EventParameter {
     case view_pdf
+    case bill_view_pdf
     case history_view_more_upcoming_header
     case history_view_more_past_header
     case history_view_more_past_row

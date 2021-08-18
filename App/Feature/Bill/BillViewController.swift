@@ -743,6 +743,7 @@ class BillViewController: AccountPickerViewController {
                     }
                     
                     FirebaseUtility.logEvent(.bill(parameters: [.view_pdf]))
+                    FirebaseUtility.logEvent(.bill(parameters: [.bill_view_pdf]))
                     
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
