@@ -47,7 +47,7 @@ struct OutageStatus: Decodable {
         case maskedAccountNumber = "maskedAccountNumber"
         case maskedAddress = "maskedAddress"
         case addressNumber = "addressNumber"
-        case unitNumber = "unitNumber"
+        case unitNumber = "apartmentUnitNumber"
         case multipremiseAccount = "multipremiseAccount"
         case auid = "auid"
     }
