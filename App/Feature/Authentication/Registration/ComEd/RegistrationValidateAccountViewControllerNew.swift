@@ -42,7 +42,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     @IBOutlet weak var continueButton: PrimaryButton!
 
     let viewModel = RegistrationViewModel()
-
+    weak var delegate: RegistrationViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -307,7 +308,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             vc.viewModel = viewModel
         } else if let vc = segue.destination as? B2CRegistrationViewController {
             vc.validatedAccount = viewModel.validatedAccountResponse
-            vc.delegate = self
+            vc.delegate = delegate
         }
     }
     
@@ -396,13 +397,5 @@ extension RegistrationValidateAccountViewControllerNew: PDTSimpleCalendarViewDel
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
         dueDateButton.valueLabel.textColor = .deepGray
         viewModel.dueDate.accept(opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate)
-    }
-}
-
-extension RegistrationValidateAccountViewControllerNew: RegistrationViewControllerDelegate {
-    func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Account registered", comment: ""))
-        })
     }
 }

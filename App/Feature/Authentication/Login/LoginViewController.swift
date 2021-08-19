@@ -502,7 +502,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         }, onError: { [weak self] (title, message) in // Face/Touch ID successful but login failed
             guard let self = self else { return }
             self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWith(title: title, message: message + "\n\n" + String(format: NSLocalizedString("If you have changed your password recently, enter it manually and re-enable %@", comment: ""), self.viewModel.biometricsString()!))
+            self.showErrorAlertWith(title: title, message: message + "\n\n" + String(format: NSLocalizedString("If you have changed your password recently, enter it manually and re-enable %@", comment: ""), self.viewModel.biometricsString() ?? ""))
         })
     }
 
