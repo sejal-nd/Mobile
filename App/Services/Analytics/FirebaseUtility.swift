@@ -295,6 +295,7 @@ enum ForgotUsernameParameter: String, EventParameter {
 
 enum BillParameter: String, EventParameter {
     case view_pdf
+    case bill_view_pdf
     case history_view_more_upcoming_header
     case history_view_more_past_header
     case history_view_more_past_row
@@ -304,9 +305,7 @@ enum BillParameter: String, EventParameter {
     case dpa_cta
     case reinstate_cta
     case assistance_cta
-    
-    case bill_view_pdf
-    
+        
     // errors
     case bill_not_available
     case current_pdf_not_available
@@ -387,7 +386,6 @@ enum HomeParameter: String, EventParameter {
     case bill_slide_to_pay
     case bill_choose_default_payment_method
     case bill_terms
-    case bill_view_pdf
     case usage_cta
     case promo_cta
     case outage_cta
