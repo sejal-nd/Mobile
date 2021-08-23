@@ -227,7 +227,7 @@ extension LandingViewController: RegistrationViewControllerDelegate {
     func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
         performSegue(withIdentifier: "loginSegue", sender: self)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Account registered", comment: ""))
+            UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
         })
     }
 }

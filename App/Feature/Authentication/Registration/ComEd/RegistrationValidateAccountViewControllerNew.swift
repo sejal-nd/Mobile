@@ -306,6 +306,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             vc.viewModel = viewModel
         } else if let vc = segue.destination as? RegistrationChooseAccountViewController {
             vc.viewModel = viewModel
+            vc.delegate = delegate
         } else if let vc = segue.destination as? B2CRegistrationViewController {
             vc.validatedAccount = viewModel.validatedAccountResponse
             vc.delegate = delegate

@@ -73,8 +73,6 @@ class B2CRegistrationViewController: UIViewController {
 
 extension B2CRegistrationViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        let temp = webView.url?.absoluteString ?? ""
-        print("!!@@@@@@\n\n\(temp)")
         if let urlString = webView.url?.absoluteString,
            urlString.contains("selfAsserted-registration-main-ebill-mobile") {
             success()

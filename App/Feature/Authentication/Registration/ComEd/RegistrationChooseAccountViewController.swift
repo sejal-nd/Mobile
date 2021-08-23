@@ -19,7 +19,8 @@ class RegistrationChooseAccountViewController: UIViewController {
     @IBOutlet weak var selectAccountButton: PrimaryButton!
     
     var viewModel: RegistrationViewModel!
-    
+    weak var delegate: RegistrationViewControllerDelegate?
+
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -121,7 +122,7 @@ class RegistrationChooseAccountViewController: UIViewController {
         } else if let vc = segue.destination as? B2CRegistrationViewController {
             vc.validatedAccount = viewModel.validatedAccountResponse
             vc.selectedAccount = viewModel.selectedAccount.value
-            vc.delegate = self
+            vc.delegate = delegate
         }
     }
 }
@@ -167,13 +168,5 @@ extension RegistrationChooseAccountViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectedAccount.accept(viewModel.multipleAccounts[indexPath.row])
-    }
-}
-
-extension RegistrationChooseAccountViewController: RegistrationViewControllerDelegate {
-    func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Account registered", comment: ""))
-        })
     }
 }
