@@ -11,8 +11,8 @@ import Foundation
 public struct ForgotMaskedUsername: Decodable {
     let email: String?
     let question: String?
-    let questionId: Int
-    let cipher: String
+    let questionId: Int?
+    let cipher: String?
     
     enum CodingKeys: String, CodingKey {
         case email
