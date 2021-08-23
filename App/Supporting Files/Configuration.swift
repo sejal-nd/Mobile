@@ -194,8 +194,7 @@ struct Configuration {
         let tenant: String
         switch Configuration.shared.environmentName {
         case .rc, .release:
-            #warning("todo: Waiting for other environments to be set up")
-            tenant = "TODO"
+            tenant = "euazurephi"
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
@@ -209,8 +208,26 @@ struct Configuration {
         return tenant
     }
     
+    var b2cHost: String {
+        let host: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            host = "secure"
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev, .test:
+                host = "test-secure"
+            case .stage:
+                host = "stage-secure"
+            }
+        }
+        return host
+    }
+    
     var b2cAuthEndpoint: String {
-        "\(b2cTenant).b2clogin.com"
+        "\(b2cHost).exeloncorp.com"
     }
     
     var b2cClientID: String {
@@ -218,13 +235,12 @@ struct Configuration {
         switch Configuration.shared.environmentName {
         case .rc, .release:
             switch opco {
-            #warning("Todo: Waiting for other environments to be set up")
             case .ace:
-                clientId = "" //TODO("Waiting for other environments to be set up")
+                clientId = "64930d53-e888-45f9-9b02-aeed39ba48ca"
             case .delmarva:
-                clientId = "" //TODO("Waiting for other environments to be set up")
+                clientId = "571ee0e4-c2cc-4d39-b784-6395571cb077"
             case .pepco:
-                clientId = "" //TODO("Waiting for other environments to be set up")
+                clientId = "bb13a5b0-c61c-4194-960b-c44cebe992c2"
             case .bge, .comEd, .peco:
                 clientId = "" //TODO("Waiting for other environments to be set up")
             }
@@ -263,11 +279,12 @@ struct Configuration {
         "openid offline_access \(b2cClientID)"
     }
     
-    var b2cOpowerWidgetURLString: String {
+    // opcoString: account opco (in the case that the account opco is different than the app opco)
+    func getSecureOpCoOpowerURLString(_ accountOpCo: OpCo) -> String {
         var oPowerURLString: String
         switch Configuration.shared.environmentName {
         case .rc, .release:
-            oPowerURLString = "" //TODO("Waiting for other environments to be set up")
+            oPowerURLString = "https://\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
@@ -275,16 +292,16 @@ struct Configuration {
             case .dev:
                 let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
                 let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
-                switch opco {
+                switch accountOpCo {
                 case .pepco:
                     oPowerURLString = "https://d-c-\(projectURLSuffix.projectURLString)-pepco-ui-01.azurewebsites.net/pages/mobileopower.aspx"
                 default:
-                    oPowerURLString = "https://d-c-\(projectURLSuffix.projectURLString)-\(Configuration.shared.opco.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                    oPowerURLString = "https://d-c-\(projectURLSuffix.projectURLString)-\(accountOpCo.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
                 }
             case .test:
-                oPowerURLString = "https://azst1-secure.\(Configuration.shared.opco.urlDisplayString).com/pages/mobileopower.aspx"
+                oPowerURLString = "https://azst1-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
             case .stage:
-                oPowerURLString = "https://azstg-secure.\(Configuration.shared.opco.urlDisplayString).com/pages/mobileopower.aspx"
+                oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
             }
         }
         return oPowerURLString

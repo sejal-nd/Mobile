@@ -74,9 +74,13 @@ class B2CRegistrationViewController: UIViewController {
 extension B2CRegistrationViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         if let urlString = webView.url?.absoluteString,
-           urlString.contains("todo") {
-            #warning("TODO, URL contains todo above")
+           urlString.contains("selfAsserted-registration-main-ebill-mobile") {
             success()
+        } else if let urlString = webView.url?.absoluteString,
+                  urlString.contains("SelfAsserted/error") {
+            self.errorLabel.isHidden = false
+            self.loadingIndicator.isHidden = true
+            self.webView.isHidden = true
         }
     }
     

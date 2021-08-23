@@ -212,4 +212,24 @@ class LandingViewController: UIViewController {
         playerLayer.player = avPlayer
     }
     
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        view.endEditing(true)
+        
+        if let navController = segue.destination as? LargeTitleNavigationController,
+           let vc = navController.viewControllers.first as? RegistrationValidateAccountViewControllerNew {
+            vc.delegate = self
+        }
+    }
+}
+
+
+extension LandingViewController: RegistrationViewControllerDelegate {
+    func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
+        performSegue(withIdentifier: "loginSegue", sender: self)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
+        })
+    }
 }

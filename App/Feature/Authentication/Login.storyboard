@@ -2807,28 +2807,28 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="798"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uca-EY-U9e" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="303.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="310.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSL-w0-3zh" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="303.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="374" height="310.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="img_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="cIh-fu-Toz">
                                                         <rect key="frame" x="139" y="10" width="96" height="96"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your registration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4Q-I4-MJm">
-                                                        <rect key="frame" x="0.0" y="126" width="374" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="126" width="374" height="27.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGO-py-Dmb">
-                                                        <rect key="frame" x="0.0" y="169.5" width="374" height="19"/>
+                                                        <rect key="frame" x="0.0" y="173.5" width="374" height="22"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-HE-SDA" customClass="SecondaryButton" customModule="EUMobile" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="218.5" width="374" height="55"/>
+                                                        <rect key="frame" x="0.0" y="225.5" width="374" height="55"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="s0P-Xe-fHy"/>
                                                         </constraints>

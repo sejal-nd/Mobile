@@ -77,11 +77,14 @@ class B2CUsageWebViewController: UIViewController {
     }
     
     private func loadWebView(token: String) {
-        let oPowerWidgetURL = Configuration.shared.b2cOpowerWidgetURLString
+        let oPowerWidgetURL = Configuration.shared.getSecureOpCoOpowerURLString(accountDetail?.opcoType ?? Configuration.shared.opco)
+        
         if let url = URL(string: oPowerWidgetURL) {
             var request = NSURLRequest(url: url) as URLRequest
             request.addValue(token, forHTTPHeaderField: "accessToken")
             request.addValue(widget.rawValue, forHTTPHeaderField: "opowerWidgetId")
+            request.addValue(accountDetail?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
+            request.addValue(accountDetail?.premiseInfo.first?.townDetail.stateOrProvince ?? "MD", forHTTPHeaderField: "state")
             webView.load(request)
         }
     }

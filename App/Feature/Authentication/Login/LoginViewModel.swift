@@ -130,7 +130,9 @@ class LoginViewModel {
                     self.isLoggingIn = true
                     self.performLogin(onSuccess: onSuccess, onRegistrationNotComplete: {}, onError: onError)
                 case .failure(let error):
-                    onError(error.title, error.description)
+                    if error != .noBiometrics {
+                        onError(error.title, error.description)
+                    }
                 }
             }
         } else {
