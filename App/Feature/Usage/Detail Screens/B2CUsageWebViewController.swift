@@ -82,6 +82,8 @@ class B2CUsageWebViewController: UIViewController {
             var request = NSURLRequest(url: url) as URLRequest
             request.addValue(token, forHTTPHeaderField: "accessToken")
             request.addValue(widget.rawValue, forHTTPHeaderField: "opowerWidgetId")
+            request.addValue(accountDetail?.utilityCode ?? Configuration.shared.opco.rawValue, forHTTPHeaderField: "opco")
+            request.addValue(accountDetail?.premiseInfo.first?.townDetail.stateOrProvince ?? "MD", forHTTPHeaderField: "state")
             webView.load(request)
         }
     }

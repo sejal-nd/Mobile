@@ -194,23 +194,22 @@ struct Configuration {
         let tenant: String
         switch Configuration.shared.environmentName {
         case .rc, .release:
-            #warning("todo: Waiting for other environments to be set up")
-            tenant = "TODO"
+            tenant = "secure"
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
             case .dev, .test:
-                tenant = "euazurephitest"
+                tenant = "test-secure"
             case .stage:
-                tenant = "euazurephistage"
+                tenant = "stage-secure"
             }
         }
         return tenant
     }
     
     var b2cAuthEndpoint: String {
-        "\(b2cTenant).b2clogin.com"
+        "\(b2cTenant).exeloncorp.com"
     }
     
     var b2cClientID: String {
@@ -218,13 +217,12 @@ struct Configuration {
         switch Configuration.shared.environmentName {
         case .rc, .release:
             switch opco {
-            #warning("Todo: Waiting for other environments to be set up")
             case .ace:
-                clientId = "" //TODO("Waiting for other environments to be set up")
+                clientId = "64930d53-e888-45f9-9b02-aeed39ba48ca"
             case .delmarva:
-                clientId = "" //TODO("Waiting for other environments to be set up")
+                clientId = "571ee0e4-c2cc-4d39-b784-6395571cb077"
             case .pepco:
-                clientId = "" //TODO("Waiting for other environments to be set up")
+                clientId = "bb13a5b0-c61c-4194-960b-c44cebe992c2"
             case .bge, .comEd, .peco:
                 clientId = "" //TODO("Waiting for other environments to be set up")
             }
