@@ -43,7 +43,7 @@ struct UserDefaultKeys {
     
     static let accountVerificationDeepLinkGuid = "kAccountVerificationDeepLinkGuid"
     
-    static let doNotShowIOS11VersionWarningAgain = "kdoNotShowIOS11VersionWarningAgain" // True if iOS 11 user selects "Don't warn me again" on alert
+    static let doNotShowIOS13VersionWarningAgain = "kdoNotShowIOS13VersionWarningAgain" // True if iOS 13 user selects "Don't warn me again" on alert
     
     static let updatePhoneNumberReminderTimestamp = "kUpdatePhoneNumberReminderTimestamp" // track the last time the phone number reminder was shown
     

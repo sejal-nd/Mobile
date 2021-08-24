@@ -81,6 +81,8 @@ class LandingViewController: UIViewController {
         logoImageView.accessibilityLabel = String(format: a11yText, Configuration.shared.opco.displayString)
         
         backgroundVideoSetup()
+        
+        (UIApplication.shared.delegate as? AppDelegate)?.checkIOSVersion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,11 +133,7 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction func onRegistrationInPress() {
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) {
-            performSegue(withIdentifier: "registrationSegueNew", sender: self)
-        } else {
-            performSegue(withIdentifier: "registrationSegue", sender: self)
-        }
+        performSegue(withIdentifier: "registrationSegueNew", sender: self)
     }
     
     @IBAction func onDebugMenuPress(_ sender: Any) {
@@ -214,4 +212,24 @@ class LandingViewController: UIViewController {
         playerLayer.player = avPlayer
     }
     
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        view.endEditing(true)
+        
+        if let navController = segue.destination as? LargeTitleNavigationController,
+           let vc = navController.viewControllers.first as? RegistrationValidateAccountViewControllerNew {
+            vc.delegate = self
+        }
+    }
+}
+
+
+extension LandingViewController: RegistrationViewControllerDelegate {
+    func registrationViewControllerDidRegister(_ registrationViewController: UIViewController) {
+        performSegue(withIdentifier: "loginSegue", sender: self)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            UIApplication.shared.keyWindow?.rootViewController?.view.showToast(NSLocalizedString("Account registered", comment: ""))
+        })
+    }
 }

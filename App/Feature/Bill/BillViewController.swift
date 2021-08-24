@@ -188,6 +188,10 @@ class BillViewController: AccountPickerViewController {
             }).disposed(by: bag)
         
         usageBillImpactContentView.configure(withViewModel: viewModel)
+        
+        if Configuration.shared.opco == .bge {
+            self.assistanceView.isHidden = true
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -649,8 +653,17 @@ class BillViewController: AccountPickerViewController {
         viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
             guard let self = self else { return }
             if description == nil {
-                self.assistanceView.isHidden = true
+                DispatchQueue.main.async {
+                    self.assistanceView.isHidden = true
+                }
             }
+            if (description?.title == "") &&
+                (description?.description == "") {
+                self.assistanceView.isHidden = true
+            } else {
+                self.assistanceView.isHidden = false
+            }
+            
             DispatchQueue.main.async {
                 if description?.ctaType == "Reinstate Payment Arrangement" {
                     self.titleAssistanceProgram.font = SystemFont.regular.of(textStyle: .caption1)
@@ -661,6 +674,8 @@ class BillViewController: AccountPickerViewController {
             self.descriptionAssistanceProgram.text = description?.description
             self.assistanceCTA.setTitle(description?.ctaType, for: .normal)
         }).disposed(by: bag)
+        
+        viewModel.fetchBGEDdeDpaEligibility.asDriver().drive().disposed(by: bag)
 	}
 
     func bindButtonTaps() {
@@ -727,6 +742,7 @@ class BillViewController: AccountPickerViewController {
                         return
                     }
                     
+                    FirebaseUtility.logEvent(.bill(parameters: [.view_pdf]))
                     FirebaseUtility.logEvent(.bill(parameters: [.bill_view_pdf]))
                     
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)

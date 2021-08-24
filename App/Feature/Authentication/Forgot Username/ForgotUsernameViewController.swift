@@ -30,6 +30,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     let accountNumberLength = (Configuration.shared.opco == .bge || Configuration.shared.opco == .peco || Configuration.shared.opco == .comEd) ? 10 : 11
    
     let viewModel = ForgotUsernameViewModel()
+    weak var delegate: ForgotUsernameResultViewControllerDelegate?
     
     let disposeBag = DisposeBag()
 
@@ -38,7 +39,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         
         addCloseButton()
         let navigationTitle: String
-              if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+              if Configuration.shared.opco != .bge {
                   navigationTitle = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
               } else {
                   navigationTitle = "Forgot Username"
@@ -170,7 +171,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -180,11 +181,34 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         LoadingView.show()
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
-            self?.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
             
-            FirebaseUtility.logEvent(.forgotUsername(parameters: [.verification_complete]))
-            
-            GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
+            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+                guard let self = self else { return }
+                guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
+                for vc in rootNavVc.viewControllers {
+                    guard let dest = vc as? LoginViewController else {
+                        continue
+                    }
+                    
+                    self.delegate = dest
+                    
+                    FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
+                    
+                    self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: self.viewModel.maskedUsernames[self.viewModel.selectedUsernameIndex].email ?? "")
+                    
+                    FirebaseUtility.logEvent(.forgotUsername(parameters: [.verification_complete]))
+                    
+                    GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
+                    
+                    self.dismissModal()
+                }
+            } else {
+                self?.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
+                
+                FirebaseUtility.logEvent(.forgotUsername(parameters: [.verification_complete]))
+                
+                GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
+            }
         }, onNeedAccountNumber: { [weak self] in
             LoadingView.hide()
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)

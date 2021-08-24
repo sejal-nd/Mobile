@@ -11,6 +11,7 @@ import Foundation
 enum ProjectTier: String, Identifiable, Equatable, CaseIterable {
     var id: String { rawValue }
     
+    case dev = "Dev"
     case test = "Test"
     case stage = "Stage"
 }

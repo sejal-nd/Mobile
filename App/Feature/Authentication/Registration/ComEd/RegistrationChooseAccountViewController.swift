@@ -19,7 +19,8 @@ class RegistrationChooseAccountViewController: UIViewController {
     @IBOutlet weak var selectAccountButton: PrimaryButton!
     
     var viewModel: RegistrationViewModel!
-    
+    weak var delegate: RegistrationViewControllerDelegate?
+
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -93,11 +94,15 @@ class RegistrationChooseAccountViewController: UIViewController {
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountValidation)
-            self?.performSegue(withIdentifier: "createCredentialsMultipleAccountSegue", sender: self)
+
+            let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "createCredentialsB2cSegue" : "createCredentialsMultipleAccountSegue"
+            self?.performSegue(withIdentifier: segueIdentifier, sender: self)
             }, onMultipleAccounts:  { [weak self] in
                 LoadingView.hide()
                 GoogleAnalytics.log(event: .registerAccountValidation)
-                self?.performSegue(withIdentifier: "createCredentialsMultipleAccountSegue", sender: self)
+               
+                let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "createCredentialsB2cSegue" : "createCredentialsMultipleAccountSegue"
+                self?.performSegue(withIdentifier: segueIdentifier, sender: self)
             }, onError: { [weak self] (title, message) in
                 LoadingView.hide()
                 
@@ -114,6 +119,10 @@ class RegistrationChooseAccountViewController: UIViewController {
         view.endEditing(true)
         if let vc = segue.destination as? RegistrationCreateCredentialsViewControllerNew {
             vc.viewModel = viewModel
+        } else if let vc = segue.destination as? B2CRegistrationViewController {
+            vc.validatedAccount = viewModel.validatedAccountResponse
+            vc.selectedAccount = viewModel.selectedAccount.value
+            vc.delegate = delegate
         }
     }
 }
@@ -161,4 +170,3 @@ extension RegistrationChooseAccountViewController: UITableViewDataSource {
         viewModel.selectedAccount.accept(viewModel.multipleAccounts[indexPath.row])
     }
 }
-

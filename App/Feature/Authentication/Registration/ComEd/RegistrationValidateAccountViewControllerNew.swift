@@ -11,6 +11,10 @@ import RxSwift
 import RxCocoa
 import PDTSimpleCalendar
 
+protocol RegistrationViewControllerDelegate: class {
+    func registrationViewControllerDidRegister(_ registrationViewController: UIViewController)
+}
+
 class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooterViewController {
 
     let disposeBag = DisposeBag()
@@ -38,12 +42,14 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     @IBOutlet weak var continueButton: PrimaryButton!
 
     let viewModel = RegistrationViewModel()
-
+    weak var delegate: RegistrationViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = NSLocalizedString("Register", comment: "")
-        
+        addCloseButton()
+
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .deepGray
@@ -84,7 +90,6 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
     }
     
     private func configureTextFields() {
-        
         accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
         accountNumberTextField.setKeyboardType(.numberPad)
@@ -182,7 +187,7 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        var identifierString = "Last 4 digits of your Social Security number"
+        var identifierString = "Last 4 digits of your Social Security Number"
         identifierString.append(" or Business Tax ID")
 
         identifierDescriptionLabel.textColor = .deepGray
@@ -271,7 +276,8 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             if self?.viewModel.hasMultipleAccount ?? false {
                 self?.performSegue(withIdentifier: "chooseAccountSegue", sender: self)
             } else {
-                self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
+                let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "createCredentialsB2cSegue" : "createCredentialsSegue"
+                self?.performSegue(withIdentifier: segueIdentifier, sender: self)
             }
            
         }, onMultipleAccounts:  { [weak self] in
@@ -300,6 +306,10 @@ class RegistrationValidateAccountViewControllerNew: KeyboardAvoidingStickyFooter
             vc.viewModel = viewModel
         } else if let vc = segue.destination as? RegistrationChooseAccountViewController {
             vc.viewModel = viewModel
+            vc.delegate = delegate
+        } else if let vc = segue.destination as? B2CRegistrationViewController {
+            vc.validatedAccount = viewModel.validatedAccountResponse
+            vc.delegate = delegate
         }
     }
     

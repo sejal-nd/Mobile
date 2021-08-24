@@ -19,7 +19,7 @@ struct ReportOutageView: View {
     }
     
     private func logAnalytics() {
-        AnalyticController.logScreenView(.reportOuage)
+        AnalyticController.logScreenView(.reportOutage)
     }
 }
 

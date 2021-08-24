@@ -9,6 +9,10 @@
 import RxSwift
 import RxCocoa
 
+protocol ForgotUsernameResultViewControllerDelegate: class {
+    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: UIViewController, didUnmaskUsername username: String)
+}
+
 class ForgotUsernameResultViewController: UIViewController {
     
     @IBOutlet weak var topLabel1: UILabel!
@@ -25,6 +29,8 @@ class ForgotUsernameResultViewController: UIViewController {
     
     @IBOutlet weak var answerSecurityQuestionButton: PrimaryButton!
     
+    weak var delegate: ForgotUsernameResultViewControllerDelegate?
+    
     var viewModel: ForgotUsernameViewModel!
     
     let disposeBag = DisposeBag()
@@ -33,7 +39,7 @@ class ForgotUsernameResultViewController: UIViewController {
         super.viewDidLoad()
         
         let navigationTitle: String
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             navigationTitle = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
         } else {
             navigationTitle = "Forgot Username"
@@ -60,7 +66,7 @@ class ForgotUsernameResultViewController: UIViewController {
         singleAccountValueLabel.textColor = .deepGray
         
         let usernameEmailLabelText: String
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             usernameEmailLabelText = Configuration.shared.opco.isPHI ? "Username / Email Address" : "Email"
         } else {
             usernameEmailLabelText = "Username / Email Address"
@@ -76,6 +82,8 @@ class ForgotUsernameResultViewController: UIViewController {
         if viewModel.maskedUsernames.count > 1 {
             answerSecurityQuestionButton.isEnabled = false
         }
+        
+        answerSecurityQuestionButton.setTitle(FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "Done" : "Answer Security Question", for: .normal)
     }
     
     func styleTopLabels() {
@@ -94,10 +102,9 @@ class ForgotUsernameResultViewController: UIViewController {
         if UIScreen.main.bounds.width <= 375 {
             // Prevent text from getting cut off on iPhone 5/SE with dynamic font all the way up
             topLabel2.text = NSLocalizedString("if you remember", comment: "")
-            let topLabelText = FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge
+            topLabel3.text = Configuration.shared.opco != .bge
                 ? NSLocalizedString("your email or you can answer a security question to view your full email", comment: "")
                 : NSLocalizedString("your username or you can answer a security question to view your full username", comment: "")
-            topLabel3.text = topLabelText
         }
     }
     
@@ -105,6 +112,26 @@ class ForgotUsernameResultViewController: UIViewController {
         FirebaseUtility.logEvent(.forgotUsername(parameters: [.return_to_signin]))
         
         dismissModal()
+    }
+    
+    @IBAction func onAnswerSecurityQuestionsPress(_ sender: Any) {
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            guard let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
+            for vc in rootNavVc.viewControllers {
+                guard let dest = vc as? LoginViewController else {
+                    continue
+                }
+
+                self.delegate = dest
+
+                FirebaseUtility.logEvent(.forgotUsername(parameters: [.answer_question_complete]))
+
+                self.delegate?.forgotUsernameResultViewController(self, didUnmaskUsername: viewModel.maskedUsernames[viewModel.selectedUsernameIndex].email ?? "")
+                self.dismissModal()
+            }
+        } else {
+            performSegue(withIdentifier: "securityQuestionSegue", sender: nil)
+        }
     }
     
     // MARK: - Navigation

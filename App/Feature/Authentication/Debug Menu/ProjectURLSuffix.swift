@@ -17,6 +17,14 @@ enum ProjectURLSuffix: String, Identifiable, Equatable, CaseIterable {
     case payments = "Payment Enhancements"
     case comet = "COMET"
     case hotfix = "Hotfix"
+    case auth = "Auth"
+    
+    case datares = "Data Resiliency"
+    case landlord = "Landlord"
+    case outagejourney = "Outage Journey"
+    case sam = "Smart Assistance Manager"
+    case signupmove = "ISUM"
+    case maintenance = "Maintenance"
 }
 
 // MARK: Convenience
@@ -36,6 +44,26 @@ extension ProjectURLSuffix {
             return "/comets4hana"
         case .hotfix:
             return "/hotfix"
+        case .auth:
+            return "/euauth"
+        case .datares:
+            return "/datares"
+        case .landlord:
+            return "/landlord"
+        case .outagejourney:
+            return "/outagejourney"
+        case .sam:
+            return "/sam"
+        case .signupmove:
+            return "/signupmove"
+        case .maintenance:
+            return "/maintenance"
         }
+    }
+    
+    var projectURLString: String {
+        var urlString = self.projectPath
+        urlString.remove(at: urlString.startIndex)
+        return urlString
     }
 }

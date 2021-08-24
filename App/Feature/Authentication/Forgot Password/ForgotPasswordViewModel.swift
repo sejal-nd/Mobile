@@ -15,7 +15,7 @@ class ForgotPasswordViewModel {
     let username = BehaviorRelay(value: "")
     
     func getInstructionLabelText() -> String {
-        let userName = FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge
+        let userName = Configuration.shared.opco != .bge
             ? NSLocalizedString("email", comment: "")
             : NSLocalizedString("username/email address", comment: "")
         if FeatureFlagUtility.shared.bool(forKey: .hasForgotPasswordLink) {

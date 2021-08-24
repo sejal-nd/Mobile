@@ -34,6 +34,9 @@ class BillViewModel {
     let mobileAssistanceURL = BehaviorRelay(value: "")
     var mobileAssistanceType = MobileAssistanceURL(rawValue: "none")
     
+    let isBgeDdeEligible = BehaviorRelay<Bool?>(value: nil)
+    let isBgeDpaEligible = BehaviorRelay<Bool?>(value: nil)
+    
     private func tracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
         case .refresh: return refreshTracker
@@ -84,6 +87,41 @@ class BillViewModel {
                                                          gas: isGas,
                                                          useCache: false)
         }
+    
+    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.currentAccountDetail.map {
+        if Configuration.shared.opco == .bge {
+            // Fetch BGE DDE
+            AccountService.fetchDDE  { [weak self] result in
+                switch result {
+                case .success(let resultObject):
+                    self?.isBgeDdeEligible.accept( resultObject.isPaymentExtensionEligible ?? false)
+                    
+                case .failure:
+                    self?.isBgeDdeEligible.accept(false)
+                }
+            }
+            
+            // Fetch BGE DPA
+            let customerNumber = $0.customerNumber
+            let premiseNumber = $0.premiseNumber ?? ""
+            let paymentAmount = (String(describing: $0.billingInfo.netDueAmount ?? 0.0))
+            AccountService.fetchDPA(customerNumber: customerNumber,
+                                    premiseNumber: premiseNumber,
+                                    paymentAmount: paymentAmount)         { [weak self] result in
+                switch result {
+                case .success(let paymentEnhancement):
+                    self?.isBgeDpaEligible.accept(paymentEnhancement.customerInfo?.paEligibility == "true" ? true : false)
+                    
+                case .failure:
+                    self?.isBgeDpaEligible.accept(false)
+                }
+            }
+        } else {
+            self.isBgeDpaEligible.accept(false)
+            self.isBgeDdeEligible.accept(false)
+        }
+        return false
+    }
     
     private(set) lazy var accountDetailError: Driver<NetworkingError?> = dataEvents.errors()
         .map { $0 as? NetworkingError }
@@ -481,8 +519,8 @@ class BillViewModel {
     }
     
     //MARK: - Catch Up
-    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {
-        !$0.isLowIncome && $0.billingInfo.amtDpaReinst > 0 && Configuration.shared.opco == .comEd
+    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {_ in 
+        return false
     }
     
     private(set) lazy var catchUpDisclaimerText: Driver<String> = currentAccountDetail.map {
@@ -836,13 +874,32 @@ class BillViewModel {
         return mutableText
     }
     
+    private(set) lazy var showBgeDdeDpaEligibility: Driver<Bool> =
+        Driver.combineLatest(self.isBgeDdeEligible.asDriver(),
+                             self.isBgeDpaEligible.asDriver())
+            {
+            ($0 != nil) && ($1 != nil)
+            
+        }
+    
     // MARK: - Assistance View States
     private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
-        Driver.combineLatest(currentAccountDetail , currentAccountDetail)
-        { (currentBillComparisonO, accountDetail) in
+        Driver.combineLatest(currentAccountDetail , currentAccountDetail, showBgeDdeDpaEligibility.asDriver())
+        { (currentBillComparisonO, accountDetail, bgeDdeDpaEligibilityChecked) in
             let isAccountTypeEligible = Configuration.shared.opco.isPHI ? accountDetail.isResidential || accountDetail.isSmallCommercialCustomer : accountDetail.isResidential
             if isAccountTypeEligible &&
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
+                // BGE has different conditions for DDE, DPA and CTA3
+                if Configuration.shared.opco == .bge {
+                    if bgeDdeDpaEligibilityChecked {
+                        let bgeCTADetails =  self.showBGEAssitanceCTA(accountDetail: accountDetail)
+                        return bgeCTADetails
+                    } else {
+                        return ("","","","")
+                        
+                    }
+                }
+                
                 if accountDetail.isDueDateExtensionEligible &&
                     accountDetail.billingInfo.pastDueAmount > 0 {
         
@@ -898,6 +955,43 @@ class BillViewModel {
             }
             return nil
     }
+    
+    
+    private func showBGEAssitanceCTA(accountDetail: AccountDetail) -> (title: String, description: String, ctaType: String, ctaURL: String) {
+        guard let dueDate = accountDetail.billingInfo.dueByDate else {
+            return ("","","","")
+        }
+        
+        if accountDetail.billingInfo.currentDueAmount >= 0 &&
+            isBgeDdeEligible.value ?? false &&
+            accountDetail.isAutoPay == false &&
+            Date() >= Calendar.current.date(byAdding: .day, value: -4, to: dueDate) {
+            self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
+            self.mobileAssistanceType = MobileAssistanceURL.dde
+            return (title: "You’re eligible for a Due Date Extension",
+                    description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a Due Date Extension",
+                    ctaType: "Request Due Date Extension",
+                    ctaURL: "")
+        } else if accountDetail.billingInfo.pastDueAmount > 0 &&
+                    isBgeDpaEligible.value ?? false {
+            self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
+            self.mobileAssistanceType = MobileAssistanceURL.dpa
+            return (title: "You’re eligible for a Deferred Payment Arrangement.",
+                    description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                    ctaType: "Learn More",
+                    ctaURL: "")
+            
+        } else if accountDetail.billingInfo.pastDueAmount > 0  {
+            self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none, stateJurisdiction: accountDetail.state))
+            self.mobileAssistanceType = MobileAssistanceURL.none
+            return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
+                    description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
+                    ctaType: "Learn More",
+                    ctaURL: "")
+        }
+        return ("","","","")
+    }
+    
     enum MobileAssistanceURL: String {
         case dde
         case dpa
@@ -943,8 +1037,22 @@ class BillViewModel {
             }
         }
         
+        private static func getUTMParams(assistanceType: MobileAssistanceURL) -> String {
+            
+            switch assistanceType {
+            case .dde:
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web%20Bill%20Tab&utm_campaign=DDE_CTA"
+            case .dpa:
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web%20Bill%20Tab&utm_campaign=DPA_CTA"
+            case .dpaReintate:
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web%20Bill%20Tab&utm_campaign=DPAReinstate_CTA"
+            case .none:
+                return "?utm_source=Mobile%20App%20CTA&utm_medium=Mobile%20Web%20Bill%20Tab&utm_campaign=AssistanceProgram_CTA"
+            }
+        }
+        
         static func getMobileAssistnceURL(assistanceType: MobileAssistanceURL, stateJurisdiction: String? = "") -> String {
-            return (getBaseURLmobileAssistance(assistanceType: assistanceType) + getURLPath(assistanceType: assistanceType, stateJurisdiction: stateJurisdiction))
+            return (getBaseURLmobileAssistance(assistanceType: assistanceType) + getURLPath(assistanceType: assistanceType, stateJurisdiction: stateJurisdiction)) + getUTMParams(assistanceType: assistanceType)
             
         }
 }

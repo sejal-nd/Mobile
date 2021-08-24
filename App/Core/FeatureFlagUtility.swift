@@ -15,8 +15,9 @@ final class FeatureFlagUtility {
         case billingVideoURL
         case hasDefaultAccount
         case hasForgotPasswordLink
-        case hasNewRegistration
         case paymentProgramAds
+        case agentisWidgets
+        case isAzureAuthentication
     }
     
     static let shared = FeatureFlagUtility()
@@ -27,7 +28,6 @@ final class FeatureFlagUtility {
     }
     
     var loadingDoneCallback: (() -> ())?
-    var fetchComplete = false
     
     private func loadDefaultValues() {
         let appDefaults: [String: Any] = [
@@ -36,8 +36,9 @@ final class FeatureFlagUtility {
             FeatureFlagKey.billingVideoURL.rawValue : "",
             FeatureFlagKey.hasDefaultAccount.rawValue : false,
             FeatureFlagKey.hasForgotPasswordLink.rawValue : false,
-            FeatureFlagKey.hasNewRegistration.rawValue : true,
-            FeatureFlagKey.paymentProgramAds.rawValue : false
+            FeatureFlagKey.paymentProgramAds.rawValue : false,
+            FeatureFlagKey.agentisWidgets.rawValue : false,
+            FeatureFlagKey.isAzureAuthentication.rawValue : false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -60,13 +61,13 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.billingVideoURL.rawValue : featureFlags.billingVideoUrl,
                     FeatureFlagKey.hasDefaultAccount.rawValue : featureFlags.hasDefaultAccount,
                     FeatureFlagKey.hasForgotPasswordLink.rawValue : featureFlags.hasForgotPasswordLink,
-                    FeatureFlagKey.hasNewRegistration.rawValue : featureFlags.hasNewRegistration,
-                    FeatureFlagKey.paymentProgramAds.rawValue : featureFlags.paymentProgramAds
+                    FeatureFlagKey.paymentProgramAds.rawValue : featureFlags.paymentProgramAds,
+                    FeatureFlagKey.agentisWidgets.rawValue : featureFlags.agentisWidgets,
+                    FeatureFlagKey.isAzureAuthentication.rawValue : featureFlags.isAzureAuthentication
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)
                 
-                self.fetchComplete = true
                 self.loadingDoneCallback?()
             case .failure(let error):
                 Log.info("Error fetching feature flag values from Azure\(error)")

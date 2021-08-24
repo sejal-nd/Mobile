@@ -413,7 +413,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                  preferredStyle: .alert)
             versionAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             versionAlert.addAction(UIAlertAction(title: NSLocalizedString("Don't warn me again", comment: ""), style: .cancel, handler: { _ in
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.doNotShowIOS11VersionWarningAgain)
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.doNotShowIOS13VersionWarningAgain)
             }))
             if let rootVC = self.window?.rootViewController {
                 var topmostVC = rootVC
@@ -422,6 +422,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 topmostVC.present(versionAlert, animated: true, completion: nil)
             }
+        }
+    }
+    
+    func checkIOSVersion() {
+        // Warn iOS 13 users that we will soon not support their iOS version
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.doNotShowIOS13VersionWarningAgain) == false &&
+            UIDevice.current.systemVersion.compare("14.0", options: NSString.CompareOptions.numeric) == .orderedAscending {
+            NotificationCenter.default.post(name: .shouldShowIOSVersionWarning, object: nil)
         }
     }
     
