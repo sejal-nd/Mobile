@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol ForgotUsernameResultViewControllerDelegate: class {
-    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: ForgotUsernameResultViewController, didUnmaskUsername username: String)
+    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: UIViewController, didUnmaskUsername username: String)
 }
 
 class ForgotUsernameResultViewController: UIViewController {

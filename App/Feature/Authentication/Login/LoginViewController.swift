@@ -574,7 +574,7 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
 }
 
 extension LoginViewController: ForgotUsernameResultViewControllerDelegate {
-    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: ForgotUsernameResultViewController, didUnmaskUsername username: String) {
+    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: UIViewController, didUnmaskUsername username: String) {
         viewModel.username.accept(username)
         GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
         forgotUsernamePopulated = true
