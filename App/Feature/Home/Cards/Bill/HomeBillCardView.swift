@@ -242,6 +242,9 @@ class HomeBillCardView: UIView {
     
     private func bindViewModel() {
         viewBillButton.isHidden = !viewModel.showViewBillButton
+        if Configuration.shared.opco == .bge {
+            self.assistanceView.isHidden = true
+        }
         
         viewModel.paymentTracker.asDriver().drive(onNext: {
             if $0 {
@@ -251,6 +254,8 @@ class HomeBillCardView: UIView {
             }
         })
             .disposed(by: bag)
+        
+        viewModel.fetchBGEDdeDpaEligibility.asDriver().drive().disposed(by: bag)
         
         viewModel.showLoadingState
             .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
@@ -326,7 +331,15 @@ class HomeBillCardView: UIView {
         viewModel.paymentAssistanceValues.drive(onNext: { [weak self] description in
             guard let self = self else { return }
             if description == nil {
+                DispatchQueue.main.async {
+                    self.assistanceView.isHidden = true
+                }
+            }
+            if (description?.title == "") &&
+                (description?.description == "") {
                 self.assistanceView.isHidden = true
+            } else {
+                self.assistanceView.isHidden = false
             }
             DispatchQueue.main.async {
                 if description?.ctaType == "Reinstate Payment Arrangement" {

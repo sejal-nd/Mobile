@@ -36,9 +36,9 @@ public enum NetworkingLayer {
         }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = router.method
-
+        
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            Log.info("\n\n\n📬 URL: \(url.absoluteString)")
+            Log.custom("📬", url.absoluteString)
         }
         
         // Set HTTP BODY
@@ -46,9 +46,10 @@ public enum NetworkingLayer {
             urlRequest.httpBody = httpBody
             
             if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-                Log.info("Request Body:\n\(String(decoding: httpBody, as: UTF8.self))")
+                Log.custom("✉️", "Request Body:\n\(String(decoding: httpBody, as: UTF8.self))")
             }
         }
+        
         
         // Add Headers
         NetworkingLayer.addHTTPHeaders(router.httpHeaders, request: &urlRequest)
@@ -93,6 +94,30 @@ public enum NetworkingLayer {
         }
     }
     
+    //Methods for B2C MSAuth
+    private static func getPostString(params:[String:Any]) -> String
+    {
+        var data = [String]()
+        for(key, value) in params
+        {
+            data.append(key + "=\(value)")
+        }
+        return data.map { String($0) }.joined(separator: "&")
+    }
+    
+    private static func convertStringToDictionary(text: String) -> [String:String]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:String]
+                return json
+            } catch {
+                Log.error("Something went wrong")
+            }
+        }
+        return nil
+    }
+    //END
+    
     private static func refreshToken<T: Decodable>(router: Router, completion: @escaping (Result<T, NetworkingError>) -> ()) {
         DispatchQueue.global(qos: .default).async {
             if isRefreshingToken {
@@ -102,47 +127,84 @@ public enum NetworkingLayer {
                 }
                 return
             }
-            Log.custom("📬",
-                       "Token expired... Refreshing...")
+            Log.custom("📬", "Token expired... Refreshing...")
             
             isRefreshingToken = true
             refreshTokenDispatchGroup.enter()
-            // Refresh Token
-            let refreshTokenRequest = RefreshTokenRequest(clientId: Configuration.shared.clientID,
-                                                          clientSecret: Configuration.shared.clientSecret,
-                                                          refreshToken: UserSession.refreshToken)
             
-            NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
-                switch result {
-                case .success(let tokenResponse):
-                    do {
-                        // Create new user session
-                        try UserSession.createSession(tokenResponse: tokenResponse)
-                        
-                        // Perform initial request
-                        DispatchQueue.main.async {
-                            NetworkingLayer.request(router: router, completion: completion)
+            // Refresh Token
+            if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+                let refreshTokenRequest = B2CTokenRequest(grantType: "refresh_token",
+                                                          responseType: "id_token",
+                                                          refreshToken: UserSession.refreshToken)
+                NetworkingLayer.request(router: .getAzureToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+                    switch result {
+                    case .success(let tokenResponse):
+                        do {
+                            // Create new user session
+                            try UserSession.createSession(tokenResponse: tokenResponse)
+                            
+                            // Perform initial request
+                            DispatchQueue.main.async {
+                                NetworkingLayer.request(router: router, completion: completion)
+                            }
+                        } catch {
+                            DispatchQueue.main.async {
+                                // Delete user session
+                                AuthenticationService.logout()
+                                completion(.failure(.invalidToken))
+                            }
                         }
-                    } catch {
+                        
+                        isRefreshingToken = false
+                        refreshTokenDispatchGroup.leave()
+                        
+                    case .failure(let error):
                         DispatchQueue.main.async {
                             // Delete user session
                             AuthenticationService.logout()
-                            completion(.failure(.invalidToken))
+                            completion(.failure(error))
                         }
+                        
+                        isRefreshingToken = false
+                        refreshTokenDispatchGroup.leave()
                     }
-                    
-                    isRefreshingToken = false
-                    refreshTokenDispatchGroup.leave()
-                    
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        // Delete user session
-                        AuthenticationService.logout()
-                        completion(.failure(error))
+                }
+            } else {
+                //default authentication
+                let refreshTokenRequest = RefreshTokenRequest(clientId: Configuration.shared.clientID,clientSecret: Configuration.shared.clientSecret,refreshToken: UserSession.refreshToken)
+                NetworkingLayer.request(router: .refreshToken(request: refreshTokenRequest)) { (result: Result<TokenResponse, NetworkingError>) in
+                    switch result {
+                    case .success(let tokenResponse):
+                        do {
+                            // Create new user session
+                            try UserSession.createSession(tokenResponse: tokenResponse)
+                            
+                            // Perform initial request
+                            DispatchQueue.main.async {
+                                NetworkingLayer.request(router: router, completion: completion)
+                            }
+                        } catch {
+                            DispatchQueue.main.async {
+                                // Delete user session
+                                AuthenticationService.logout()
+                                completion(.failure(.invalidToken))
+                            }
+                        }
+                        
+                        isRefreshingToken = false
+                        refreshTokenDispatchGroup.leave()
+                        
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            // Delete user session
+                            AuthenticationService.logout()
+                            completion(.failure(error))
+                        }
+                        
+                        isRefreshingToken = false
+                        refreshTokenDispatchGroup.leave()
                     }
-                    
-                    isRefreshingToken = false
-                    refreshTokenDispatchGroup.leave()
                 }
             }
         }
@@ -154,9 +216,9 @@ public enum NetworkingLayer {
         // Perform Data Task
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error as NSError? {
-                Log.error("Data task error: \(error)\n\n\(error.localizedDescription)")
+                Log.error("Data task error: \(error)\n\(error.localizedDescription)")
                 if error.domain == NSURLErrorDomain,
-                    error.code == NSURLErrorNotConnectedToInternet {
+                   error.code == NSURLErrorNotConnectedToInternet {
                     DispatchQueue.main.async {
                         completion(.failure(.noNetwork))
                     }
@@ -185,9 +247,11 @@ public enum NetworkingLayer {
                 }
                 return
             }
-
+            
             do {
-                Log.info("\n\n\n RAW RESPONSE: \n\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
+                if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
+                    Log.custom("✉️", "RAW RESPONSE:\n\(String(data: data, encoding: .utf8) ?? "******* ERROR CONVERTING DATA TO STRING CHECK ENCODING ********")")
+                }
                 
                 let responseObject: T = try decode(data: data)
                 
@@ -207,12 +271,12 @@ public enum NetworkingLayer {
         }
         dataTask.resume()
     }
-
+    
     private static func decode<T: Decodable>(data: Data) throws -> T {
         if ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") {
-            Log.info("📬 Data Response:\n\(String(decoding: data, as: UTF8.self))")
+            Log.custom("✉️", "Data Response:\n\(String(decoding: data, as: UTF8.self))")
         }
-
+        
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .custom() { decoder throws -> Date in
             let container = try decoder.singleValueContainer()
@@ -229,6 +293,20 @@ public enum NetworkingLayer {
         do {
             responseWrapper = try jsonDecoder.decode(AzureResponseContainer<T>.self, from: data)
         } catch {
+            do {
+                let response = try jsonDecoder.decode(T.self, from: data)
+                return response
+            } catch {
+                Log.error("Failed to decode using default generic model: \(error)\nLocalized Error:\(error.localizedDescription)")
+            }
+            
+            if let b2cError = try? jsonDecoder.decode(AzureB2CError.self, from: data) {
+                // B2C decode
+                Log.error("Azure B2C Error: \(b2cError) \n\n\(String(describing: b2cError.errorDescription))")
+                
+                throw NetworkingError.generic
+            }
+            
             if let apigeeError = try? jsonDecoder.decode(ApigeeError.self, from: data) {
                 // Apigee decode
                 Log.error("Apigee Error: \(apigeeError) \n\n\(apigeeError.errorDescription)")
@@ -243,9 +321,12 @@ public enum NetworkingLayer {
                 // Default decode
                 return response
             } else {
-                Log.error("Failed to decode network response: \(error)")
-                Log.info(error.localizedDescription)
-                throw error
+                if let rawString = String(data: data, encoding: .utf8) as? T {
+                    return rawString
+                } else {
+                    Log.error("Failed to decode network response: \nError:\(error)\nLocalized Error:\(error.localizedDescription)")
+                    throw error
+                }
             }
         }
         
@@ -264,7 +345,7 @@ public enum NetworkingLayer {
             Log.error("Failed to decode network response data")
             throw NetworkingError.decoding
         }
-                
+        
         return responseData
     }
     
@@ -272,12 +353,11 @@ public enum NetworkingLayer {
         URLSession.default.getAllTasks { tasks in
             tasks.forEach { $0.cancel() }
         }
-        Log.custom("🛑",
-                   "Cancelled all URL Session requests.")
+        Log.custom("🛑", "Cancelled all URL Session requests.")
     }
     
     private static func addHTTPHeaders(_ httpHeaders: HTTPHeaders,
-                                             request: inout URLRequest) {
+                                       request: inout URLRequest) {
         guard !httpHeaders.isEmpty else { return }
         for (key, value) in httpHeaders {
             request.setValue(value, forHTTPHeaderField: key)
@@ -292,3 +372,4 @@ private extension DateFormatter {
         return formatter
     }()
 }
+

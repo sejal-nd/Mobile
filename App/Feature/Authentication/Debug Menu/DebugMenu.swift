@@ -48,18 +48,18 @@ struct DebugMenu: View {
                                 .font(.system(.body, design: .monospaced))
                         }
                     }
-                    Picker(selection: $selectedProjectURL, label: Text("Project URL Suffix").fontWeight(.medium)) {
+                    Picker(selection: $selectedProjectURL, label: Text("Project Environment").fontWeight(.medium)) {
                         ForEach(ProjectURLSuffix.allCases, id: \.self) { value in
                             Text(value.rawValue).tag(value.rawValue)
                                 .font(.system(.body, design: .monospaced))
                         }
                     }
-                    Button("Restart App", action: restartApp)
+                    Button("Save & Restart App", action: restartApp)
                 }
                 
                 Section(header: Text("Other URLs"),
                         footer: Text("Note: This menu is only available at the BETA tier.").padding(.bottom)) {
-                    InfoLabel(title: "Associated Domaine",
+                    InfoLabel(title: "Associated Domain",
                               value: Configuration.shared.associatedDomain)
                     InfoLabel(title: "Account URL",
                               value: Configuration.shared.myAccountUrl)

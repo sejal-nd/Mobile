@@ -54,9 +54,9 @@ class ForgotUsernameViewModel {
         let recoverUsernameRequest = RecoverUsernameRequest(phone: extractDigitsFrom(phoneNumber.value),
                                                             identifier: identifier,
                                                             accountNumber: acctNum,
-                                                            questionId: String(maskedUsername.questionId),
+                                                            questionId: String(maskedUsername.questionId ?? 0),
                                                             securityAnswer: securityQuestionAnswer.value,
-                                                            cipherString: maskedUsername.cipher)
+                                                            cipherString: maskedUsername.cipher ?? "")
         
         AnonymousService.recoverUsername(request: recoverUsernameRequest, completion: { result in
             switch result {

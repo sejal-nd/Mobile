@@ -36,6 +36,10 @@ public enum Router {
     case fetchToken(request: TokenRequest)
     case refreshToken(request: RefreshTokenRequest)
     
+    // B2C
+    case getAzureToken(request: B2CTokenRequest)
+    case fetchB2CJWT(request: B2CJWTRequest) // For Web Views
+    
     // Registration
     case validateRegistration(request: ValidateAccountRequest)
     case checkDuplicateRegistration(request: UsernameRequest)
@@ -50,6 +54,10 @@ public enum Router {
     case setDefaultAccount(accountNumber: String)
     case setAccountNickname(request: AccountNicknameRequest)
     case passwordChange(request: ChangePasswordRequest)
+    
+    // DDE
+    case fetchDueDate(accountNumber: String)
+    case fetchDPA(accountNumber: String, encodable: Encodable)
     
     // Feature Flags
     case getFeatureFlags
@@ -159,6 +167,8 @@ public enum Router {
     
     public var host: String {
         switch self {
+        case .getAzureToken:
+            return Configuration.shared.b2cAuthEndpoint
         case .fetchToken, .refreshToken:
             return Configuration.shared.oAuthEndpoint
         case .weather:
@@ -168,7 +178,7 @@ public enum Router {
         }
     }
     
-    private var basePath: String {
+    public var basePath: String {
         let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
         let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
         return "\(projectURLSuffix.projectPath)/mobile/custom"
@@ -176,7 +186,7 @@ public enum Router {
     
     public var apiAccess: ApiAccess {
         switch self {
-        case .weather:
+        case .weather, .getAzureToken, .fetchB2CJWT:
             return .none
         case .minVersion, .maintenanceMode, .fetchToken, .refreshToken, .outageStatusAnon, .reportOutageAnon, .recoverUsername, .recoverMaskedUsername, .accountLookup, .validateRegistration, .checkDuplicateRegistration, .registrationQuestions, .registration, .sendConfirmationEmail, .recoverPassword, .bankName, .newsAndUpdates, .alertBanner, .meterPingAnon, .validateConfirmationEmail, .passwordChangeAnon, .getFeatureFlags:
             return .anon
@@ -209,6 +219,10 @@ public enum Router {
             return "/eu/digital/v1/oauth/token"
         case .refreshToken:
             return "/eu/digital/v1/oauth/refresh"
+        case .getAzureToken:
+            return "/\(Configuration.shared.b2cTenant).onmicrosoft.com/B2C_1A_Signin_ROPC/oauth2/v2.0/token"
+        case .fetchB2CJWT:
+            return "/mobile/b2c/GenerateRegistrationJWT"
         case .registration:
             return "\(basePath)/\(apiAccess.path)/registration"
         case .checkDuplicateRegistration:
@@ -326,8 +340,6 @@ public enum Router {
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/query"
         case .reportOutageAnon:
             return "\(basePath)/\(apiAccess.path)/outage"
-            
-            
         case .peakRewardsSummary(let accountNumber, let premiseNumber):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak"
         case .peakRewardsOverrides(let accountNumber, let premiseNumber):
@@ -344,14 +356,18 @@ public enum Router {
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak/devices/\(deviceSerialNumber)/schedule"
         case .updateThermostatSchedule(let accountNumber, let premiseNumber, let deviceSerialNumber, _):
             return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/premises/\(premiseNumber)/peak/devices/\(deviceSerialNumber)/schedule"
+        case .fetchDueDate(let accountNumber):
+           return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/billing/duedate"
+        case .fetchDPA(accountNumber: let accountNumber, _):
+           return "\(basePath)/\(apiAccess.path)/accounts/\(accountNumber)/payments/arrangement"
         }
     }
     
     public var method: String {
         switch self {
-        case .outageStatusAnon, .fetchToken, .refreshToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .meterPingAnon, .setAccountNickname:
+        case .outageStatusAnon, .fetchToken, .refreshToken, .wallet, .scheduledPayment, .billingHistory, .compareBill, .autoPayEnroll, .autoPayEnrollBGE, .scheduledPaymentDelete, .autoPayUnenroll, .budgetBillingUnenroll, .accountLookup, .recoverPassword, .recoverUsername, .recoverMaskedUsername, .reportOutage, .registration, .checkDuplicateRegistration, .validateRegistration, .sendConfirmationEmail, .fetchDailyUsage, .reportOutageAnon, .registerForAlerts, .addWalletItem, .deleteWalletItem, .walletEncryptionKey, .scheduleOverride, .updateDeviceSettings, .updateThermostatSchedule, .meterPingAnon, .setAccountNickname, .fetchDPA, .getAzureToken, .fetchB2CJWT:
             return "POST"
-        case .maintenanceMode, .accountDetails, .accounts, .getFeatureFlags, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .iTronssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule:
+        case .maintenanceMode, .accountDetails, .accounts, .getFeatureFlags, .minVersion, .weather, .payments, .alertBanner, .newsAndUpdates, .billPDF, .autoPayInfo, .budgetBillingInfo, .forecastBill, .ssoData, .ffssoData, .iTronssoData, .energyTips, .energyTip, .homeProfileLoad, .energyRewardsLoad, .alertPreferencesLoad, .appointments, .outageStatus, .meterPing, .fetchGameUser, .registrationQuestions, .fetchAlertLanguage, .bankName, .peakRewardsSummary, .peakRewardsOverrides, .deviceSettings, .thermostatSchedule, .fetchDueDate:
             return "GET"
         case .paperlessEnroll, .scheduledPaymentUpdate, .passwordChangeAnon, .passwordChange, .homeProfileUpdate, .alertPreferencesUpdate, .updateGameUser,
              .updateReleaseOfInfo, .validateConfirmationEmail, .setDefaultAccount, .updateAutoPay, .updateAutoPayBGE, .setAlertLanguage, .updateWalletItem, .budgetBillingEnroll:
@@ -371,6 +387,9 @@ public enum Router {
         switch self {
         case .alertBanner, .newsAndUpdates:
             headers["Accept"] = "application/json;odata=verbose"
+        case .getAzureToken:
+            headers["content-type"] = "application/x-www-form-urlencoded"
+        // Content-type = application/json breaks MSFT API
         default:
             headers["Content-Type"] = "application/json"
         }
@@ -403,8 +422,10 @@ public enum Router {
     
     public var httpBody: HTTPBody? {
         switch self {
-        case .passwordChangeAnon(let request as Encodable), .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .autoPayEnrollBGE(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutage(_, let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .registration(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable), .scheduleOverride(_, _, _, let request as Encodable), .updateDeviceSettings(_, _, _, let request as Encodable), .updateThermostatSchedule(_, _, _, let request as Encodable), .fetchToken(let request as Encodable), .refreshToken(let request as Encodable), .meterPingAnon(let request as Encodable), .updateReleaseOfInfo(_, let request as Encodable), .scheduledPaymentDelete(_, _, let request as Encodable):
+        case .passwordChangeAnon(let request as Encodable), .passwordChange(let request as Encodable), .accountLookup(let request as Encodable), .recoverPassword(let request as Encodable), .budgetBillingUnenroll(_, let request as Encodable), .autoPayEnroll(_, let request as Encodable), .updateAutoPay(_, let request as Encodable), .autoPayEnrollBGE(_, let request as Encodable), .updateAutoPayBGE(accountNumber: _, let request as Encodable), .outageStatusAnon(let request as Encodable), .scheduledPayment(_, let request as Encodable), .billingHistory(_, let request as Encodable), .compareBill(_, _, let request as Encodable), .autoPayUnenroll(_, let request as Encodable), .scheduledPaymentUpdate(_, _, let request as Encodable), .homeProfileUpdate(_, _, let request as Encodable), .alertPreferencesUpdate(_, let request as Encodable), .updateGameUser(_, let request as Encodable), .setAccountNickname(let request as Encodable), .reportOutage(_, let request as Encodable), .reportOutageAnon(let request as Encodable), .recoverMaskedUsername(let request as Encodable), .recoverUsername(let request as Encodable), .validateRegistration(let request as Encodable), .checkDuplicateRegistration(let request as Encodable), .registration(let request as Encodable), .sendConfirmationEmail(let request as Encodable), .validateConfirmationEmail(let request as Encodable), .paperlessEnroll(_, let request as Encodable), .fetchDailyUsage(_, _, let request as Encodable), .registerForAlerts(let request as Encodable), .setAlertLanguage(_, let request as Encodable), .walletEncryptionKey(let request as Encodable), .wallet(let request as Encodable), .addWalletItem(let request as Encodable), .updateWalletItem(let request as Encodable), .deleteWalletItem(let request as Encodable), .scheduleOverride(_, _, _, let request as Encodable), .updateDeviceSettings(_, _, _, let request as Encodable), .updateThermostatSchedule(_, _, _, let request as Encodable), .fetchToken(let request as Encodable), .refreshToken(let request as Encodable), .meterPingAnon(let request as Encodable), .updateReleaseOfInfo(_, let request as Encodable), .scheduledPaymentDelete(_, _, let request as Encodable), .fetchDPA(_ , let request as Encodable), .fetchB2CJWT(let request as Encodable):
             return request.data()
+        case .getAzureToken(let request as Encodable):
+            return request.dictData() // Creating body in a different way just for token generation and refresh.
         default:
             return nil
         }

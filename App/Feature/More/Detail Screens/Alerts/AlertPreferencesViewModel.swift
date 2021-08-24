@@ -332,10 +332,10 @@ class AlertPreferencesViewModel {
         
         Observable.zip(observables)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                onSuccess()
-            }, onError: { err in
+            .subscribe(onError: { err in
                 onError(NSLocalizedString("We’re sorry, we could not update all of your preferences at this time. Please try again later or contact our Customer Care Center for assistance.", comment: ""))
+            }, onCompleted: {
+                onSuccess()
             })
             .disposed(by: disposeBag)
     }

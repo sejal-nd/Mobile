@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -772,6 +772,8 @@
                         <segue destination="E5f-p1-rHh" kind="show" identifier="serWebViewSegue" id="fa2-w2-wTd"/>
                         <segue destination="QHh-G5-cax" kind="show" identifier="energyWiseRewardsSegue" id="Eom-xj-0OR"/>
                         <segue destination="UrX-YA-Gfp" kind="show" identifier="peakEnergySavingsSegue" id="ntb-D7-jW7"/>
+                        <segue destination="zWe-4d-5KU" kind="show" identifier="usageWebViewB2cSegue" id="gyD-fz-JNr"/>
+                        <segue destination="zWe-4d-5KU" kind="show" identifier="serWebViewB2cSegue" id="lvG-hR-5eC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0l-ak-tzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1868,7 +1870,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNC-5L-Qu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2429" y="-403"/>
+            <point key="canvasLocation" x="2429" y="-443"/>
         </scene>
         <!--Peak Energy Savings-->
         <scene sceneID="iXm-8A-7pe">
@@ -1934,7 +1936,7 @@
                                         </constraints>
                                         <state key="normal" title="Peak Energy Savings History"/>
                                         <connections>
-                                            <segue destination="1rr-Zq-1hI" kind="show" identifier="peakSavingsHistorySegue" id="2pp-wb-CoB"/>
+                                            <action selector="peakEnergySavingsHistoryButtonPress:" destination="UrX-YA-Gfp" eventType="touchUpInside" id="gOY-6l-yZq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1969,6 +1971,8 @@
                         <outlet property="loadingIndicator" destination="BgY-dl-05v" id="Ur5-fK-GJf"/>
                         <outlet property="programDetailsLabel" destination="kvd-YF-Hs6" id="uxj-ci-PWr"/>
                         <outlet property="view" destination="cLc-cC-uNd" id="3Wi-Wk-gPD"/>
+                        <segue destination="zWe-4d-5KU" kind="show" identifier="peakSavingsHistoryB2cSegue" id="XWK-lp-BOQ"/>
+                        <segue destination="1rr-Zq-1hI" kind="show" identifier="peakSavingsHistorySegue" id="Zmi-Qt-Ktl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgC-at-18y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2033,7 +2037,67 @@
             </objects>
             <point key="canvasLocation" x="2545" y="1668"/>
         </scene>
+        <!--Usage Web View-->
+        <scene sceneID="LkU-zB-0PR">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="zWe-4d-5KU" userLabel="Usage Web View" customClass="B2CUsageWebViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bhJ-K0-Kys">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xjp-gB-FxJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="RLQ-Uy-SBC" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="415" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcc-PY-1Q9">
+                                <rect key="frame" x="29" y="411" width="356" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Wmk-WE-ax0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Kw2-sk-KM2"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mcc-PY-1Q9" firstAttribute="leading" secondItem="Kw2-sk-KM2" secondAttribute="leading" priority="999" constant="29" id="13O-c6-xUo"/>
+                            <constraint firstItem="Xjp-gB-FxJ" firstAttribute="top" secondItem="bhJ-K0-Kys" secondAttribute="top" id="OpQ-j2-Pii"/>
+                            <constraint firstItem="RLQ-Uy-SBC" firstAttribute="centerX" secondItem="Kw2-sk-KM2" secondAttribute="centerX" id="ZEL-Pi-i2g"/>
+                            <constraint firstAttribute="bottom" secondItem="Xjp-gB-FxJ" secondAttribute="bottom" id="ZNN-IF-Blo"/>
+                            <constraint firstItem="Kw2-sk-KM2" firstAttribute="trailing" secondItem="Xjp-gB-FxJ" secondAttribute="trailing" id="cRy-8w-dhm"/>
+                            <constraint firstItem="Xjp-gB-FxJ" firstAttribute="leading" secondItem="Kw2-sk-KM2" secondAttribute="leading" id="dkk-74-Mr6"/>
+                            <constraint firstItem="RLQ-Uy-SBC" firstAttribute="centerY" secondItem="bhJ-K0-Kys" secondAttribute="centerY" id="gcf-4v-hrk"/>
+                            <constraint firstItem="Kw2-sk-KM2" firstAttribute="trailing" secondItem="mcc-PY-1Q9" secondAttribute="trailing" priority="999" constant="29" id="guK-Wa-NZB"/>
+                            <constraint firstItem="mcc-PY-1Q9" firstAttribute="centerX" secondItem="Kw2-sk-KM2" secondAttribute="centerX" id="lL2-xM-VjW"/>
+                            <constraint firstItem="mcc-PY-1Q9" firstAttribute="centerY" secondItem="bhJ-K0-Kys" secondAttribute="centerY" id="urs-Ak-39f"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Usage" id="zx9-ul-EWD"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="mcc-PY-1Q9" id="g2y-FQ-phb"/>
+                        <outlet property="loadingIndicator" destination="RLQ-Uy-SBC" id="U0Q-4w-alU"/>
+                        <outlet property="webView" destination="Xjp-gB-FxJ" id="7cH-Pq-Ubo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZJC-Gh-13a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1807" y="-1177"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="XWK-lp-BOQ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="bill_analysis_shadow_triangle" width="50" height="61"/>
         <image name="ic_caret" width="8" height="13"/>

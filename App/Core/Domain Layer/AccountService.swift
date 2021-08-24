@@ -102,4 +102,19 @@ enum AccountService {
             
         }
     }
+    
+    static func fetchDDE(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber,
+                         completion: @escaping (Result<DueDateElibility, NetworkingError>) ->()) {
+        NetworkingLayer.request(router: .fetchDueDate(accountNumber: accountNumber), completion: completion)
+    }
+    
+    static func fetchDPA(accountNumber: String = AccountsStore.shared.currentAccount.accountNumber,
+                         customerNumber: String,
+                         premiseNumber: String,
+                         paymentAmount: String,
+                         completion: @escaping (Result<PaymentArrangement, NetworkingError>) ->()) {
+        NetworkingLayer.request(router: .fetchDPA(accountNumber: accountNumber, encodable: DPARequest(customerNumber: customerNumber,
+                                                                                                      premiseNumber: premiseNumber, paymentAmount: paymentAmount,
+                                                                                                      months: "1")), completion: completion)
+    }
 }

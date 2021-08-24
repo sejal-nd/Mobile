@@ -399,8 +399,8 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
         FirebaseUtility.logEvent(.reportOutageSubmit)
         
-        if !unauthenticatedExperience {
-            FirebaseUtility.logEvent(.authOutage(parameters: [.report_complete]))
+        if unauthenticatedExperience {
+            FirebaseUtility.logEvent(.authOutage(parameters: [.report_outage]))
         } else {
             FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_outage]))
         }
@@ -418,6 +418,8 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         if unauthenticatedExperience {
             viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
                 FirebaseUtility.logEvent(.reportOutageNetworkComplete)
+                FirebaseUtility.logEvent(.unauthOutage(parameters: [.report_complete]))
+                
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
@@ -428,6 +430,8 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 FirebaseUtility.logEvent(.reportOutageNetworkComplete)
+                FirebaseUtility.logEvent(.authOutage(parameters: [.report_complete]))
+                
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())

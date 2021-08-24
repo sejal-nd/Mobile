@@ -24,7 +24,7 @@ enum OpCo: String {
             return true
         }
     }
-
+    
     var urlDisplayString: String {
         switch self {
         case .ace:
@@ -163,7 +163,7 @@ struct Configuration {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
-            case .test:
+            case .dev, .test:
                 secret = "WbCpJpfgV64WTTDg"
             case .stage:
                 secret = "61MnQzuXNLdlsBOu"
@@ -181,13 +181,130 @@ struct Configuration {
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
             switch projectTier {
-            case .test:
+            case .dev, .test:
                 id = "zWkH8cTa1KphCB4iElbYSBGkL6Fl66KL"
             case .stage:
                 id = "GG1B2b3oi9Lxv1GsGQi0AhdflCPgpf5R"
             }
         }
         return id
+    }
+    
+    var b2cTenant: String {
+        let tenant: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            tenant = "euazurephi"
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev, .test:
+                tenant = "euazurephitest"
+            case .stage:
+                tenant = "euazurephistage"
+            }
+        }
+        return tenant
+    }
+    
+    var b2cHost: String {
+        let host: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            host = "secure"
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev, .test:
+                host = "test-secure"
+            case .stage:
+                host = "stage-secure"
+            }
+        }
+        return host
+    }
+    
+    var b2cAuthEndpoint: String {
+        "\(b2cHost).exeloncorp.com"
+    }
+    
+    var b2cClientID: String {
+        var clientId: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            switch opco {
+            case .ace:
+                clientId = "64930d53-e888-45f9-9b02-aeed39ba48ca"
+            case .delmarva:
+                clientId = "571ee0e4-c2cc-4d39-b784-6395571cb077"
+            case .pepco:
+                clientId = "bb13a5b0-c61c-4194-960b-c44cebe992c2"
+            case .bge, .comEd, .peco:
+                clientId = "" //TODO("Waiting for other environments to be set up")
+            }
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev, .test:
+                switch opco {
+                case .ace:
+                    clientId = "4facf595-5fc3-44c1-a908-391e98ddc687"
+                case .delmarva:
+                    clientId = "f900262f-eeb9-4ada-82a2-ade9e10e2c1b"
+                case .pepco:
+                    clientId = "733a9d3b-9769-4ef3-8444-34128c5d0d63"
+                case .bge, .comEd, .peco:
+                    clientId = "" //TODO("Waiting for other environments to be set up")
+                }
+            case .stage:
+                switch opco {
+                case .ace:
+                    clientId = "67368fd4-d3d0-4f38-b443-94742e6af8c3"
+                case .delmarva:
+                    clientId = "548fe95f-b6c8-4791-b02b-b95ca3b3e31c"
+                case .pepco:
+                    clientId = "37abcf6f-b74d-4756-8ff7-05a6817575c5"
+                case .bge, .comEd, .peco:
+                    clientId = "" //TODO("Waiting for other environments to be set up")
+                }
+            }
+        }
+        return clientId
+    }
+    
+    var b2cScope: String {
+        "openid offline_access \(b2cClientID)"
+    }
+    
+    // opcoString: account opco (in the case that the account opco is different than the app opco)
+    func getSecureOpCoOpowerURLString(_ accountOpCo: OpCo) -> String {
+        var oPowerURLString: String
+        switch Configuration.shared.environmentName {
+        case .rc, .release:
+            oPowerURLString = "https://\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+        default:
+            let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
+            let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
+            switch projectTier {
+            case .dev:
+                let projectURLRawValue = UserDefaults.standard.string(forKey: "selectedProjectURL") ?? ""
+                let projectURLSuffix = ProjectURLSuffix(rawValue: projectURLRawValue) ?? .none
+                switch accountOpCo {
+                case .pepco:
+                    oPowerURLString = "https://d-c-\(projectURLSuffix.projectURLString)-pepco-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                default:
+                    oPowerURLString = "https://d-c-\(projectURLSuffix.projectURLString)-\(accountOpCo.urlString)-ui-01.azurewebsites.net/pages/mobileopower.aspx"
+                }
+            case .test:
+                oPowerURLString = "https://azst1-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+            case .stage:
+                oPowerURLString = "https://azstg-secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+            }
+        }
+        return oPowerURLString
     }
     
     private init() {
@@ -214,6 +331,10 @@ struct Configuration {
                 let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
                 let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
                 switch projectTier {
+                case .dev:
+                    baseUrl = "xzc-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-d-ams-01.azure-api.net"
+                    // Unsure what oAuth would be here...
+                    oAuthEndpoint = "api-development.exeloncorp.com"
                 case .test:
                     baseUrl = "xze-e-n-eudapi-\(operatingCompany.rawValue.lowercased())-t-ams-01.azure-api.net"
                     oAuthEndpoint = "api-development.exeloncorp.com"

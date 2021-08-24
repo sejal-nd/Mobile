@@ -26,6 +26,9 @@ class HomeBillCardViewModel {
     let isFetching = BehaviorRelay(value: false)
     let isError = BehaviorRelay(value: false)
     
+    let isBgeDdeEligible = BehaviorRelay<Bool?>(value: nil)
+    let isBgeDpaEligible = BehaviorRelay<Bool?>(value: nil)
+    
     let emailAddress = BehaviorRelay(value: "")
     let phoneNumber = BehaviorRelay(value: "")
     let mobileAssistanceURL = BehaviorRelay(value: "")
@@ -112,6 +115,41 @@ class HomeBillCardViewModel {
                 onError?()
             }
         }
+    }
+    
+    private(set) lazy var fetchBGEDdeDpaEligibility: Driver<Bool> = self.accountDetailDriver.map {
+        if Configuration.shared.opco == .bge {
+            // Fetch BGE DDE
+            AccountService.fetchDDE  { [weak self] result in
+                switch result {
+                case .success(let resultObject):
+                    self?.isBgeDdeEligible.accept( resultObject.isPaymentExtensionEligible ?? false)
+                    
+                case .failure:
+                    self?.isBgeDdeEligible.accept(false)
+                }
+            }
+            
+            // Fetch BGE DPA
+            let customerNumber = $0.customerNumber
+            let premiseNumber = $0.premiseNumber ?? ""
+            let paymentAmount = (String(describing: $0.billingInfo.netDueAmount ?? 0.0))
+            AccountService.fetchDPA(customerNumber: customerNumber,
+                                    premiseNumber: premiseNumber,
+                                    paymentAmount: paymentAmount)         { [weak self] result in
+                switch result {
+                case .success(let paymentEnhancement):
+                    self?.isBgeDpaEligible.accept(paymentEnhancement.customerInfo?.paEligibility == "true" ? true : false)
+                    
+                case .failure:
+                    self?.isBgeDpaEligible.accept(false)
+                }
+            }
+        } else {
+            self.isBgeDpaEligible.accept(false)
+            self.isBgeDdeEligible.accept(false)
+        }
+        return false
     }
     
     private lazy var fetchTrigger = Observable
@@ -271,12 +309,27 @@ class HomeBillCardViewModel {
                 return .catchUp
             }
             
-            if billingInfo.pastDueAmount > 0 {
-                return .pastDue
+            // BGE - checking pending payments before past due amount
+            if Configuration.shared.opco == .bge {
+                if billingInfo.pendingPaymentsTotal > 0 {
+                    return .paymentPending
+                }
+                
+                if billingInfo.pastDueAmount > 0 {
+                    return .pastDue
+                }
+            } else {
+                if billingInfo.pastDueAmount > 0 {
+                    return .pastDue
+                }
+                
+                if billingInfo.pendingPaymentsTotal > 0 {
+                    return .paymentPending
+                }
             }
             
-            if billingInfo.pendingPaymentsTotal > 0 {
-                return .paymentPending
+            if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {
+                return .credit
             }
             
             if scheduledPayment?.amount > 0 {
@@ -285,10 +338,6 @@ class HomeBillCardViewModel {
             
             if billingInfo.netDueAmount > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
                 return .billReadyAutoPay
-            }
-            
-            if (opco == .bge || opco.isPHI) && billingInfo.netDueAmount < 0 {
-                return .credit
             }
             
             if billingInfo.netDueAmount > 0 {
@@ -390,10 +439,18 @@ class HomeBillCardViewModel {
         return ($0.billingInfo.netDueAmount > 0 || Configuration.shared.opco == .bge || Configuration.shared.opco.isPHI ) ? true : false
     }
     
-    private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
+    /**
+     Show scheduled payment for paymentScheduled state or if there is a bill credit and a scheduled payment when auto pay is not enabled.
+     */
+    private(set) lazy var showScheduledPayment: Driver<Bool> = Driver.combineLatest(billState, showAutoPay, scheduledPaymentDriver) { (billState, showAutoPay, scheduledPayment) in
+        return billState == .paymentScheduled || (billState == .credit && scheduledPayment != nil && !showAutoPay)
+    }
     
-    private(set) lazy var showAutoPay: Driver<Bool> = billState.map {
-        $0 == .billReadyAutoPay
+    /**
+     Show auto pay for auto pay state or if there is a bill credit and the user is also enrolled in auto pay.
+     */
+    private(set) lazy var showAutoPay: Driver<Bool> = Driver.combineLatest(billState, accountDetailDriver) { (billState, accountDetail) in
+        return billState == .billReadyAutoPay || (billState == .credit && (accountDetail.isAutoPay || accountDetail.isBGEasy))
     }
     
     // MARK: - View States
@@ -423,11 +480,17 @@ class HomeBillCardViewModel {
     
     // MARK: - Assistance View States
     private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
-        Driver.combineLatest(billState, accountDetailDriver)
-        { (billState, accountDetail) in
+        Driver.combineLatest(billState, accountDetailDriver, showBgeDdeDpaEligibility.asDriver())
+        { (billState, accountDetail, bgeDdeDpaEligibilityChecked) in
             let isAccountTypeEligible = Configuration.shared.opco.isPHI ? accountDetail.isResidential || accountDetail.isSmallCommercialCustomer : accountDetail.isResidential
             if isAccountTypeEligible &&
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
+                // BGE has different conditions for DDE, DPA and CTA3
+                if Configuration.shared.opco == .bge && bgeDdeDpaEligibilityChecked {
+                  let bgeCTADetails =  self.showBGEAssitanceCTA(accountDetail: accountDetail)
+                    return bgeCTADetails
+                }
+                
                 if accountDetail.isDueDateExtensionEligible &&
                     accountDetail.billingInfo.pastDueAmount > 0 {
                     
@@ -491,6 +554,41 @@ class HomeBillCardViewModel {
             return nil
     }
     
+    private func showBGEAssitanceCTA(accountDetail: AccountDetail) -> (title: String, description: String, ctaType: String, ctaURL: String) {
+        guard let dueDate = accountDetail.billingInfo.dueByDate else {
+            return ("","","","")
+        }
+               
+        if accountDetail.billingInfo.currentDueAmount >= 0 &&
+            isBgeDdeEligible.value ?? false &&
+            accountDetail.isAutoPay == false &&
+            Date() >= Calendar.current.date(byAdding: .day, value: -4, to: dueDate) {
+            self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
+            self.mobileAssistanceType = MobileAssistanceURL.dde
+            return (title: "You’re eligible for a Due Date Extension",
+                    description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a Due Date Extension",
+                    ctaType: "Request Due Date Extension",
+                    ctaURL: "")
+        } else if accountDetail.billingInfo.pastDueAmount > 0 &&
+                    isBgeDpaEligible.value ?? false {
+            self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
+            self.mobileAssistanceType = MobileAssistanceURL.dpa
+            return (title: "You’re eligible for a Deferred Payment Arrangement.",
+                    description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                    ctaType: "Learn More",
+                    ctaURL: "")
+            
+        } else if accountDetail.billingInfo.pastDueAmount > 0  {
+            self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .none, stateJurisdiction: accountDetail.state))
+            self.mobileAssistanceType = MobileAssistanceURL.none
+            return (title: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill?",
+                    description: "Check out the many Assistance Programs \(Configuration.shared.opco.displayString) offers to find one that’s right for you.",
+                    ctaType: "Learn More",
+                    ctaURL: "")
+        }
+        return ("","","","")
+    }
+
     private(set) lazy var showAlertAnimation: Driver<Bool> = billState.map {
         return $0.isPrecariousBillSituation
     }
@@ -650,7 +748,7 @@ class HomeBillCardViewModel {
             case .billPaid:
                 return accountDetail.billingInfo.lastPaymentAmount?.currencyString
             case .paymentPending:
-                return accountDetail.billingInfo.pendingPayments.last?.amount.currencyString
+                return accountDetail.billingInfo.pendingPaymentsTotal.currencyString
             default:
                 guard let netDue = accountDetail.billingInfo.netDueAmount else { return nil }
                 return abs(netDue).currencyString
@@ -762,7 +860,8 @@ class HomeBillCardViewModel {
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
         Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
             .map { accountDetail, scheduledPayment in
-                if let paymentAmountText = scheduledPayment?.amount.currencyString,
+                if !Configuration.shared.opco.isPHI,
+                   let paymentAmountText = scheduledPayment?.amount.currencyString,
                     let paymentDateText = scheduledPayment?.date?.mmDdYyyyString {
                     return String.localizedStringWithFormat("You have an automatic payment of %@ for %@.",
                                                             paymentAmountText,
@@ -990,6 +1089,14 @@ class HomeBillCardViewModel {
         Driver.combineLatest(self.isFetching.asDriver(),
                              self.isError.asDriver())
         { !$0 && !$1 }
+    
+    private(set) lazy var showBgeDdeDpaEligibility: Driver<Bool> =
+        Driver.combineLatest(self.isBgeDdeEligible.asDriver(),
+                             self.isBgeDpaEligible.asDriver())
+            {
+            ($0 != nil) && ($1 != nil)
+            
+        }
     private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
     { $0 && $1 }
     

@@ -84,7 +84,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         viewModel.signInButtonEnabled.drive(signInButton.rx.isEnabled).disposed(by: disposeBag)
 
         let placeholderText: String
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             placeholderText = Configuration.shared.opco.isPHI ? "Username (Email Address)" : "Email"
         } else {
             placeholderText = "Username / Email Address"
@@ -141,7 +141,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
         
         let forgotUsernamePasswordButtonTitle: String
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             forgotUsernamePasswordButtonTitle = Configuration.shared.opco.isPHI ? "Forgot your username or password?" : "Forgot your email or password?"
         } else {
             forgotUsernamePasswordButtonTitle = "Forgot your username or password?"
@@ -201,10 +201,13 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         if !viewAlreadyAppeared {
             viewAlreadyAppeared = true
-            navigationController?.view.isUserInteractionEnabled = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+            let isBiometricsEnabled = UserDefaults.standard.bool(forKey: UserDefaultKeys.isBiometricsEnabled)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: { [weak self] in
                 // This delay is necessary to prevent deep link complications -- do not remove
-                self.presentBiometricsPrompt()
+                
+                if isBiometricsEnabled {
+                    self?.presentBiometricsPrompt()
+                }
             })
         }
     }
@@ -220,7 +223,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             if (Configuration.shared.opco != .bge && Configuration.shared.opco != .delmarva && Configuration.shared.opco != .pepco && Configuration.shared.opco != .ace) && !viewModel.usernameIsValidEmailAddress {
                 // ComEd/PECO only email validation. If not valid email then fail before making the call
                 var message = ""
-                if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+                if Configuration.shared.opco != .bge {
                     message = NSLocalizedString("We're sorry, this combination of email and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.", tableName: "ErrorMessages", comment: "")
                 } else {
                     message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
@@ -365,7 +368,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let forgotUsername: String
-        if FeatureFlagUtility.shared.bool(forKey: .hasNewRegistration) && Configuration.shared.opco != .bge {
+        if Configuration.shared.opco != .bge {
             forgotUsername = Configuration.shared.opco.isPHI ? "Forgot Username" : "Forgot Email"
         } else {
             forgotUsername = "Forgot Username"
@@ -398,7 +401,9 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     func forgotPassword() {
         FirebaseUtility.logEvent(.login(parameters: [.forgot_password_press]))
         GoogleAnalytics.log(event: .forgotPasswordOffer)
-        performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
+        
+        let segueIdentifier = FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "forgotPasswordB2cSegue" : "forgotPasswordSegue"
+        performSegue(withIdentifier: segueIdentifier, sender: self)
     }
 
     @IBAction func onEyeballPress(_ sender: UIButton) {
@@ -466,10 +471,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     func presentBiometricsPrompt() {
         viewModel.attemptLoginWithBiometrics(onLoad: { [weak self] in // Face/Touch ID was successful
             guard let self = self else { return }
-
+            
             GoogleAnalytics.log(event: .loginOffer,
-                                 dimensions: [.fingerprintUsed: "enabled"])
-
+                                dimensions: [.fingerprintUsed: "enabled"])
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
             })
@@ -479,7 +484,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             self.signInButton.accessibilityViewIsModal = true
             self.biometricButton.isEnabled = true
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-
+            
             // Hide password while loading
             if !self.passwordTextField.textField.isSecureTextEntry {
                 self.onEyeballPress(self.eyeballButton)
@@ -497,7 +502,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         }, onError: { [weak self] (title, message) in // Face/Touch ID successful but login failed
             guard let self = self else { return }
             self.navigationController?.view.isUserInteractionEnabled = true
-            self.showErrorAlertWith(title: title, message: message + "\n\n" + String(format: NSLocalizedString("If you have changed your password recently, enter it manually and re-enable %@", comment: ""), self.viewModel.biometricsString()!))
+            self.showErrorAlertWith(title: title, message: message + "\n\n" + String(format: NSLocalizedString("If you have changed your password recently, enter it manually and re-enable %@", comment: ""), self.viewModel.biometricsString() ?? ""))
         })
     }
 
@@ -536,6 +541,11 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             let vc = navController.viewControllers.first as? ForgotPasswordViewController {
             vc.delegate = self
         }
+        
+        if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? B2CForgotPasswordViewController {
+            vc.delegate = self
+        }
     }
 
 }
@@ -563,9 +573,16 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
     }
 }
 
-extension LoginViewController: ChangePasswordViewControllerDelegate {
+extension LoginViewController: ForgotUsernameResultViewControllerDelegate {
+    func forgotUsernameResultViewController(_ forgotUsernameResultViewController: ForgotUsernameResultViewController, didUnmaskUsername username: String) {
+        viewModel.username.accept(username)
+        GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
+        forgotUsernamePopulated = true
+    }
+}
 
-    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
+extension LoginViewController: ChangePasswordViewControllerDelegate {
+    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
         })

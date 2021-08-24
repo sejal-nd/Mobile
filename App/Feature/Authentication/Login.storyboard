@@ -449,8 +449,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="videoView" destination="NyF-Jg-tI8" id="N5K-SN-EH7"/>
                         <segue destination="Sli-Tt-vCb" kind="presentation" identifier="termsPoliciesModalSegue" id="CiC-oU-f3I"/>
                         <segue destination="Pib-RC-igc" kind="show" identifier="loginSegue" id="l5Z-IJ-Ywz"/>
-                        <segue destination="a8J-Cj-dP9" kind="show" identifier="registrationSegueNew" id="f1k-ea-Kbc"/>
-                        <segue destination="7qO-w4-Syv" kind="show" identifier="registrationSegue" id="q7J-Gf-rEi"/>
+                        <segue destination="Gdt-5a-5uk" kind="presentation" identifier="registrationSegueNew" id="sSZ-cR-C8G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upp-SQ-sws" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -802,6 +801,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="usernameTextField" destination="vZj-Ib-Qvv" id="g3Q-tv-LO3"/>
                         <segue destination="sVW-aP-hfQ" kind="presentation" identifier="forgotUsernameSegue" id="esq-dL-Qqb"/>
                         <segue destination="Hin-7X-RJL" kind="presentation" identifier="forgotPasswordSegue" id="xFV-rS-Z7t"/>
+                        <segue destination="ueX-5I-IdW" kind="presentation" identifier="forgotPasswordB2cSegue" id="XfG-vZ-MWr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YmP-vJ-xfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -926,199 +926,16 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             </objects>
             <point key="canvasLocation" x="198" y="861"/>
         </scene>
-        <!--Registration Validate Account View Controller-->
-        <scene sceneID="pxW-i5-QKT">
-            <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="7qO-w4-Syv" customClass="RegistrationValidateAccountViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HW6-hU-nOi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5U-SA-SJ5">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giY-o0-uA7" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="344"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Tq-cp-max" userLabel="Tablet View">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="344"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="tBo-sa-Xpr">
-                                                        <rect key="frame" x="0.0" y="20" width="374" height="304"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please help us validate your account." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXD-mb-iOS">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="19.5"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSl-pN-s9X">
-                                                                <rect key="frame" x="0.0" y="49.5" width="374" height="60"/>
-                                                                <subviews>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="u3K-xy-VDi" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    </view>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5s-TV-k14">
-                                                                        <rect key="frame" x="323" y="4.5" width="51" height="51"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="51" id="9vQ-e0-5xn"/>
-                                                                            <constraint firstAttribute="height" constant="51" id="SSV-Zy-6KN"/>
-                                                                        </constraints>
-                                                                        <state key="normal" image="ic_tooltip"/>
-                                                                        <connections>
-                                                                            <action selector="onAccountNumberTooltipPress" destination="7qO-w4-Syv" eventType="touchUpInside" id="xdc-A4-5an"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="u3K-xy-VDi" firstAttribute="top" secondItem="CSl-pN-s9X" secondAttribute="top" id="G3d-26-GjH"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="u3K-xy-VDi" secondAttribute="trailing" id="LPg-Zr-eYH"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="R5s-TV-k14" secondAttribute="trailing" id="XDq-vd-byL"/>
-                                                                    <constraint firstItem="u3K-xy-VDi" firstAttribute="leading" secondItem="CSl-pN-s9X" secondAttribute="leading" id="oyY-zL-L8D"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="u3K-xy-VDi" secondAttribute="bottom" id="uk0-Yw-PnZ"/>
-                                                                    <constraint firstItem="R5s-TV-k14" firstAttribute="centerY" secondItem="u3K-xy-VDi" secondAttribute="centerY" id="z5U-uB-kCa"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="mkI-kI-4kO" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="139.5" width="374" height="55"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwA-oc-H4s">
-                                                                <rect key="frame" x="0.0" y="224.5" width="374" height="79.5"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 4 Digits of blah blah blah" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MT2-Gf-xID">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="14.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="p0U-80-j0E" customClass="FloatLabelTextField" customModule="EUMobile" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="374" height="55"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    </view>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="p0U-80-j0E" secondAttribute="trailing" id="3dC-aK-wwZ"/>
-                                                                    <constraint firstItem="p0U-80-j0E" firstAttribute="leading" secondItem="MT2-Gf-xID" secondAttribute="leading" id="7xX-3m-P3e"/>
-                                                                    <constraint firstItem="p0U-80-j0E" firstAttribute="trailing" secondItem="MT2-Gf-xID" secondAttribute="trailing" id="GcI-2F-pnz"/>
-                                                                    <constraint firstItem="p0U-80-j0E" firstAttribute="top" secondItem="MT2-Gf-xID" secondAttribute="bottom" constant="10" id="K6V-Yf-Iij"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="p0U-80-j0E" secondAttribute="bottom" id="KIO-J1-AGa"/>
-                                                                    <constraint firstItem="MT2-Gf-xID" firstAttribute="top" secondItem="RwA-oc-H4s" secondAttribute="top" id="aOK-dB-fw2"/>
-                                                                    <constraint firstItem="p0U-80-j0E" firstAttribute="leading" secondItem="RwA-oc-H4s" secondAttribute="leading" id="nD9-O0-cD8"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="mkI-kI-4kO" firstAttribute="leading" secondItem="tBo-sa-Xpr" secondAttribute="leading" id="59h-a1-Hg8"/>
-                                                            <constraint firstItem="GXD-mb-iOS" firstAttribute="leading" secondItem="tBo-sa-Xpr" secondAttribute="leading" id="xa7-8K-HYt"/>
-                                                        </constraints>
-                                                    </stackView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="tBo-sa-Xpr" secondAttribute="trailing" id="848-TB-mkZ"/>
-                                                    <constraint firstItem="tBo-sa-Xpr" firstAttribute="top" secondItem="2Tq-cp-max" secondAttribute="top" constant="20" id="Eu1-iE-zyK"/>
-                                                    <constraint firstItem="tBo-sa-Xpr" firstAttribute="leading" secondItem="2Tq-cp-max" secondAttribute="leading" id="HGU-ED-bca"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="QNV-B4-MJF"/>
-                                                    <constraint firstAttribute="bottom" secondItem="tBo-sa-Xpr" secondAttribute="bottom" constant="20" id="phg-XN-HAn"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="2Tq-cp-max" secondAttribute="trailing" priority="999" constant="20" id="Fgk-Sh-tan"/>
-                                            <constraint firstItem="2Tq-cp-max" firstAttribute="leading" secondItem="giY-o0-uA7" secondAttribute="leading" priority="999" constant="20" id="HIQ-Vs-UhK"/>
-                                            <constraint firstAttribute="bottom" secondItem="2Tq-cp-max" secondAttribute="bottom" id="Kyt-gY-xiq"/>
-                                            <constraint firstItem="2Tq-cp-max" firstAttribute="top" secondItem="giY-o0-uA7" secondAttribute="top" id="ZmQ-vj-2zj"/>
-                                            <constraint firstItem="2Tq-cp-max" firstAttribute="centerX" secondItem="giY-o0-uA7" secondAttribute="centerX" id="pQu-Kn-boZ"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="giY-o0-uA7" firstAttribute="top" secondItem="A5U-SA-SJ5" secondAttribute="top" id="11Y-3s-BUQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="giY-o0-uA7" secondAttribute="bottom" id="C7x-7T-nsD"/>
-                                    <constraint firstItem="giY-o0-uA7" firstAttribute="leading" secondItem="A5U-SA-SJ5" secondAttribute="leading" id="SrD-sC-tX9"/>
-                                    <constraint firstItem="giY-o0-uA7" firstAttribute="centerX" secondItem="A5U-SA-SJ5" secondAttribute="centerX" id="ZmP-Lr-FR0"/>
-                                    <constraint firstAttribute="trailing" secondItem="giY-o0-uA7" secondAttribute="trailing" id="qy4-8b-Tc7"/>
-                                </constraints>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBu-ML-fQI" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="777" width="414" height="119"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-B5-4KV" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="15" width="374" height="55"/>
-                                        <accessibility key="accessibilityConfiguration" label="Continue"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="CA6-wa-NhA"/>
-                                            <constraint firstAttribute="height" constant="55" id="rXM-0b-2Br"/>
-                                        </constraints>
-                                        <state key="normal" title="Continue"/>
-                                        <connections>
-                                            <action selector="onContinuePress" destination="7qO-w4-Syv" eventType="touchUpInside" id="Kro-Ex-swV"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <viewLayoutGuide key="safeArea" id="4mo-QF-XUv"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="4mo-QF-XUv" firstAttribute="trailing" secondItem="o4m-B5-4KV" secondAttribute="trailing" priority="999" constant="20" id="4RC-Fx-dec"/>
-                                    <constraint firstItem="4mo-QF-XUv" firstAttribute="bottom" secondItem="o4m-B5-4KV" secondAttribute="bottom" constant="15" id="Et3-hf-Zdk"/>
-                                    <constraint firstItem="o4m-B5-4KV" firstAttribute="leading" secondItem="4mo-QF-XUv" secondAttribute="leading" priority="999" constant="20" id="RF1-pH-Wz3"/>
-                                    <constraint firstItem="o4m-B5-4KV" firstAttribute="top" secondItem="bBu-ML-fQI" secondAttribute="top" constant="15" id="keb-w7-cLU"/>
-                                    <constraint firstItem="o4m-B5-4KV" firstAttribute="centerX" secondItem="4mo-QF-XUv" secondAttribute="centerX" id="stp-bK-apg"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="iRf-e6-u88"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="bBu-ML-fQI" secondAttribute="bottom" id="2cM-Ut-12F"/>
-                            <constraint firstItem="iRf-e6-u88" firstAttribute="trailing" secondItem="A5U-SA-SJ5" secondAttribute="trailing" id="HLS-yu-WSa"/>
-                            <constraint firstItem="iRf-e6-u88" firstAttribute="trailing" secondItem="bBu-ML-fQI" secondAttribute="trailing" id="Hqv-uv-FLM"/>
-                            <constraint firstItem="bBu-ML-fQI" firstAttribute="leading" secondItem="iRf-e6-u88" secondAttribute="leading" id="TJ6-Ol-rmi"/>
-                            <constraint firstItem="A5U-SA-SJ5" firstAttribute="top" secondItem="HW6-hU-nOi" secondAttribute="top" id="U0b-eM-ZX6"/>
-                            <constraint firstItem="A5U-SA-SJ5" firstAttribute="leading" secondItem="iRf-e6-u88" secondAttribute="leading" id="Yyn-Bh-Ouy"/>
-                            <constraint firstItem="bBu-ML-fQI" firstAttribute="top" secondItem="A5U-SA-SJ5" secondAttribute="bottom" id="jtA-UM-9Xb"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="JEo-Uu-l4o">
-                        <barButtonItem key="backBarButtonItem" title=" " id="hdX-cO-Xhm"/>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="accountNumberTextField" destination="u3K-xy-VDi" id="Bh1-dR-cVf"/>
-                        <outlet property="accountNumberView" destination="CSl-pN-s9X" id="GiY-83-m2u"/>
-                        <outlet property="continueButton" destination="o4m-B5-4KV" id="ZkR-H9-tII"/>
-                        <outlet property="identifierDescriptionLabel" destination="MT2-Gf-xID" id="QdC-Tl-xCQ"/>
-                        <outlet property="identifierTextField" destination="p0U-80-j0E" id="J2o-gD-qGj"/>
-                        <outlet property="instructionLabel" destination="GXD-mb-iOS" id="5Dh-m5-ihG"/>
-                        <outlet property="phoneNumberTextField" destination="mkI-kI-4kO" id="V5Q-lE-33y"/>
-                        <outlet property="questionMarkButton" destination="R5s-TV-k14" id="NyY-63-N8k"/>
-                        <outlet property="registrationFormView" destination="giY-o0-uA7" id="PMX-5J-phF"/>
-                        <outlet property="scrollView" destination="A5U-SA-SJ5" id="QTX-jK-xcr"/>
-                        <outlet property="stickyFooterBottomConstraint" destination="2cM-Ut-12F" id="xKC-mm-DZX"/>
-                        <segue destination="Y17-A0-L8c" kind="show" identifier="bgeAccountNumberSegue" id="i6k-qg-f70"/>
-                        <segue destination="OB4-E6-Bvv" kind="show" identifier="createCredentialsSegue" id="He9-IH-khb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4bQ-Ac-bos" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1257" y="860"/>
-        </scene>
         <!--RegistrationBGE Account Number View Controller-->
         <scene sceneID="Ebq-A6-6CT">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="Y17-A0-L8c" customClass="RegistrationBGEAccountNumberViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xW1-YR-KGz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyT-bb-GYJ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="723"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LW0-3l-qiA">
                                         <rect key="frame" x="20" y="0.0" width="374" height="139.5"/>
@@ -1181,7 +998,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AHF-Th-f75" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="777" width="414" height="119"/>
+                                <rect key="frame" x="0.0" y="723" width="414" height="119"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tay-63-69A" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
@@ -2069,7 +1886,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                         </constraints>
                                         <state key="normal" title="Answer Security Question"/>
                                         <connections>
-                                            <segue destination="NE7-qa-4w2" kind="show" id="uqJ-Ec-1bG"/>
+                                            <action selector="onAnswerSecurityQuestionsPress:" destination="F1v-ea-6RO" eventType="touchUpInside" id="gqE-eD-8IS"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2110,6 +1927,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="topLabel2" destination="Yc3-1e-jHb" id="M0P-wf-rCH"/>
                         <outlet property="topLabel3" destination="032-P8-OVf" id="HyU-vh-lEZ"/>
                         <outlet property="usernameEmailLabel" destination="Oc5-Qw-33H" id="NvL-66-pfW"/>
+                        <segue destination="NE7-qa-4w2" kind="show" identifier="securityQuestionSegue" id="aKn-Ur-QyI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lV-XJ-BCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2228,11 +2046,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="OB4-E6-Bvv" customClass="RegistrationCreateCredentialsViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SNS-YC-TK4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="696"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RVx-hH-Cos">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="611"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rW4-cP-ELi" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="676.5"/>
@@ -2503,7 +2321,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odh-ea-gus" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="665" width="375" height="85"/>
+                                <rect key="frame" x="0.0" y="611" width="375" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcD-SE-55f" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="335" height="55"/>
@@ -2584,11 +2402,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="Hic-7z-hAf" customClass="RegistrationSecurityQuestionsViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZRx-gb-TYy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="906"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6x-Zw-vOd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="841"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="787"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgk-TP-ego" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1203"/>
@@ -2822,11 +2640,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vrb-vV-DRS" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="474" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="447" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsU-cz-mzq" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="841" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="787" width="375" height="119"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SoJ-ag-aws" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="335" height="55"/>
@@ -3111,11 +2929,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="a8J-Cj-dP9" customClass="RegistrationValidateAccountViewControllerNew" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SC8-Lc-OLE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhH-EV-jAu">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="723"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmG-DT-7Ta" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="822.5"/>
@@ -3279,7 +3097,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ynQ-fJ-J0B" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="777" width="414" height="119"/>
+                                <rect key="frame" x="0.0" y="723" width="414" height="119"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRQ-m1-4RR" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
@@ -3343,6 +3161,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <segue destination="ueA-xd-0Gb" kind="show" identifier="createCredentialsSegue" id="PqP-gN-czM"/>
                         <segue destination="mUI-y0-ZYJ" kind="show" identifier="chooseAccountSegue" id="tNW-C1-9Bi"/>
                         <segue destination="Y17-A0-L8c" kind="show" identifier="bgeAccountNumberSegue" id="35a-iJ-7qY"/>
+                        <segue destination="SWz-yn-wyT" kind="show" identifier="createCredentialsB2cSegue" id="WBK-86-Sbl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7pU-HB-qop" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3354,11 +3173,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="ueA-xd-0Gb" customClass="RegistrationCreateCredentialsViewControllerNew" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z6R-TL-0GV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="696"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Z6-XR-RDP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="611"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJs-ar-SZ1" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1399.5"/>
@@ -3738,7 +3557,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FS1-eu-39B" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="665" width="375" height="85"/>
+                                <rect key="frame" x="0.0" y="611" width="375" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5w-In-3VZ" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="335" height="55"/>
@@ -3828,11 +3647,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="nz1-pl-88x" customClass="RegistrationSecurityQuestionsViewControllerNew" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bfp-sm-3UM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="906"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oRi-wR-EWb">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="841"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="787"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYh-jU-xgT" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1123"/>
@@ -4040,11 +3859,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="deA-HH-Qqb" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="474" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="447" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jc4-GJ-MYI" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="841" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="787" width="375" height="119"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SC0-qr-cy2" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="335" height="55"/>
@@ -4125,11 +3944,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="mUI-y0-ZYJ" customClass="RegistrationChooseAccountViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UOE-ce-1eL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z7k-iB-LaA">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="723"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ZYx-lr-ByN"/>
@@ -4288,7 +4107,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfI-X7-KSk" customClass="StickyFooterView" customModule="EUMobile" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="777" width="414" height="119"/>
+                                <rect key="frame" x="0.0" y="723" width="414" height="119"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWy-v8-5ji" customClass="PrimaryButton" customModule="EUMobile" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
@@ -4336,20 +4155,168 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="tableView" destination="z7k-iB-LaA" id="CdC-GA-B3k"/>
                         <outlet property="unitNumberHeaderLabel" destination="TqJ-dO-ZbH" id="JgY-xp-ega"/>
                         <segue destination="ueA-xd-0Gb" kind="show" identifier="createCredentialsMultipleAccountSegue" id="rDh-g1-gVE"/>
+                        <segue destination="SWz-yn-wyT" kind="show" identifier="createCredentialsB2cSegue" id="dxD-VZ-tF3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzH-ab-mhW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-736" y="2910"/>
         </scene>
+        <!--Large Title Navigation Controller-->
+        <scene sceneID="R9i-9h-mco">
+            <objects>
+                <navigationController id="ueX-5I-IdW" customClass="LargeTitleNavigationController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vdE-dT-qrs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="nId-Zy-tu9" kind="relationship" relationship="rootViewController" id="Tdp-tX-eOX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V9M-jC-Hbg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4901" y="850"/>
+        </scene>
+        <!--Usage Web View-->
+        <scene sceneID="y6d-XW-uUF">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="nId-Zy-tu9" userLabel="Usage Web View" customClass="B2CForgotPasswordViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zwu-tv-p0S">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXo-ee-ekH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="bGD-3A-79r" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="415" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvd-B1-4LO">
+                                <rect key="frame" x="29" y="411" width="356" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="u3c-e5-kCz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KUb-xe-cWG"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dvd-B1-4LO" firstAttribute="centerY" secondItem="Zwu-tv-p0S" secondAttribute="centerY" id="0R6-qw-HXu"/>
+                            <constraint firstItem="KUb-xe-cWG" firstAttribute="trailing" secondItem="pXo-ee-ekH" secondAttribute="trailing" id="2IP-8w-yVy"/>
+                            <constraint firstItem="pXo-ee-ekH" firstAttribute="top" secondItem="Zwu-tv-p0S" secondAttribute="top" id="6Np-3w-6s7"/>
+                            <constraint firstItem="KUb-xe-cWG" firstAttribute="trailing" secondItem="dvd-B1-4LO" secondAttribute="trailing" priority="999" constant="29" id="F7R-Ip-18y"/>
+                            <constraint firstItem="dvd-B1-4LO" firstAttribute="leading" secondItem="KUb-xe-cWG" secondAttribute="leading" priority="999" constant="29" id="PR7-dG-cnY"/>
+                            <constraint firstItem="bGD-3A-79r" firstAttribute="centerX" secondItem="KUb-xe-cWG" secondAttribute="centerX" id="PUR-Wl-hLN"/>
+                            <constraint firstItem="bGD-3A-79r" firstAttribute="centerY" secondItem="Zwu-tv-p0S" secondAttribute="centerY" id="XFJ-L3-z1R"/>
+                            <constraint firstAttribute="bottom" secondItem="pXo-ee-ekH" secondAttribute="bottom" id="b0p-v2-zAj"/>
+                            <constraint firstItem="pXo-ee-ekH" firstAttribute="leading" secondItem="KUb-xe-cWG" secondAttribute="leading" id="dsi-vg-mKH"/>
+                            <constraint firstItem="dvd-B1-4LO" firstAttribute="centerX" secondItem="KUb-xe-cWG" secondAttribute="centerX" id="oAr-k6-0DB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reset Password" id="Cdi-aQ-PEj"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="dvd-B1-4LO" id="gJt-c6-pBC"/>
+                        <outlet property="loadingIndicator" destination="bGD-3A-79r" id="EgQ-ZC-RFW"/>
+                        <outlet property="webView" destination="pXo-ee-ekH" id="euC-Rv-JDA"/>
+                        <segue destination="sVW-aP-hfQ" kind="presentation" identifier="forgotUsernameB2cSegue" id="k3X-XL-dO6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0aG-Wh-Jmr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5787" y="850"/>
+        </scene>
+        <!--Registration-->
+        <scene sceneID="0B3-kH-YJk">
+            <objects>
+                <navigationController title="Registration" id="Gdt-5a-5uk" customClass="LargeTitleNavigationController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vFG-b2-pv0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="a8J-Cj-dP9" kind="relationship" relationship="rootViewController" id="NYx-Yb-T24"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ghR-Uq-oma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="514" y="2250"/>
+        </scene>
+        <!--Usage Web View-->
+        <scene sceneID="mkE-2G-lwm">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="SWz-yn-wyT" userLabel="Usage Web View" customClass="B2CRegistrationViewController" customModule="EUMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ygF-Qj-roA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOV-l8-X3C">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="4DK-dK-INJ" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="415" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJQ-y4-8vS">
+                                <rect key="frame" x="29" y="411" width="356" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="GRs-xt-94J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Nw8-IA-2Y0"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="HOV-l8-X3C" secondAttribute="bottom" id="4kG-ZO-yhh"/>
+                            <constraint firstItem="4DK-dK-INJ" firstAttribute="centerX" secondItem="Nw8-IA-2Y0" secondAttribute="centerX" id="C8G-4e-yN4"/>
+                            <constraint firstItem="Nw8-IA-2Y0" firstAttribute="trailing" secondItem="HOV-l8-X3C" secondAttribute="trailing" id="Fve-ux-m0l"/>
+                            <constraint firstItem="4DK-dK-INJ" firstAttribute="centerY" secondItem="ygF-Qj-roA" secondAttribute="centerY" id="Gz3-oK-i5w"/>
+                            <constraint firstItem="UJQ-y4-8vS" firstAttribute="leading" secondItem="Nw8-IA-2Y0" secondAttribute="leading" priority="999" constant="29" id="PmO-cm-Dxn"/>
+                            <constraint firstItem="HOV-l8-X3C" firstAttribute="top" secondItem="ygF-Qj-roA" secondAttribute="top" id="bms-zc-khq"/>
+                            <constraint firstItem="UJQ-y4-8vS" firstAttribute="centerY" secondItem="ygF-Qj-roA" secondAttribute="centerY" id="i8G-Iy-x5V"/>
+                            <constraint firstItem="UJQ-y4-8vS" firstAttribute="centerX" secondItem="Nw8-IA-2Y0" secondAttribute="centerX" id="j3e-tS-3nR"/>
+                            <constraint firstItem="HOV-l8-X3C" firstAttribute="leading" secondItem="Nw8-IA-2Y0" secondAttribute="leading" id="jIG-ZQ-1d0"/>
+                            <constraint firstItem="Nw8-IA-2Y0" firstAttribute="trailing" secondItem="UJQ-y4-8vS" secondAttribute="trailing" priority="999" constant="29" id="tyL-KB-XOM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Register" id="A5B-BA-wz8"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="UJQ-y4-8vS" id="jyY-vi-JAl"/>
+                        <outlet property="loadingIndicator" destination="4DK-dK-INJ" id="QCg-Nj-hQg"/>
+                        <outlet property="webView" destination="HOV-l8-X3C" id="7mD-Es-8Ty"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x6F-fa-lzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2736" y="2458"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Zyh-TF-Cmy"/>
-        <segue reference="yZt-0Y-CGp"/>
-        <segue reference="rc5-B5-rKb"/>
-        <segue reference="GYT-tJ-2IP"/>
+        <segue reference="WBK-86-Sbl"/>
+        <segue reference="PqP-gN-czM"/>
+        <segue reference="BgF-Jk-rXb"/>
+        <segue reference="9by-S4-ujE"/>
         <segue reference="m8m-Zs-f6g"/>
-        <segue reference="35a-iJ-7qY"/>
+        <segue reference="k3X-XL-dO6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ic_check" width="13" height="10"/>
