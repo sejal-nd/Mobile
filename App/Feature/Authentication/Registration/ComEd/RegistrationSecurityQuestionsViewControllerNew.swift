@@ -67,11 +67,9 @@ class RegistrationSecurityQuestionsViewControllerNew: KeyboardAvoidingStickyFoot
         
         bindViewModel()
         
-        if Configuration.shared.opco == .bge {
-            // BGE users only need to answer 2 questions
-            question3QuestionButton.isHidden = true
-            question3AnswerTextField.isHidden = true
-        }
+        #warning("ALL OPCOS hide 3rd question, we should remove logic altogether when we have time.")
+        question3QuestionButton.isHidden = true
+        question3AnswerTextField.isHidden = true
         
         question1AnswerTextField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
         question1AnswerTextField.textField.autocorrectionType = .no
