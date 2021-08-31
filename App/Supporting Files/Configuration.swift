@@ -279,7 +279,7 @@ struct Configuration {
         "openid offline_access \(b2cClientID)"
     }
     
-    // opcoString: account opco (in the case that the account opco is different than the app opco)
+    // accountOpCo: account opco (in the case that the account opco is different than the app opco)
     func getSecureOpCoOpowerURLString(_ accountOpCo: OpCo) -> String {
         var oPowerURLString: String
         switch Configuration.shared.environmentName {
