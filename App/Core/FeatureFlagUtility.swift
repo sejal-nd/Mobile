@@ -18,6 +18,8 @@ final class FeatureFlagUtility {
         case paymentProgramAds
         case agentisWidgets
         case isAzureAuthentication
+        case hasAuthenticatedISUM
+        case hasUnauthenticatedISUM
     }
     
     static let shared = FeatureFlagUtility()
@@ -38,7 +40,9 @@ final class FeatureFlagUtility {
             FeatureFlagKey.hasForgotPasswordLink.rawValue : false,
             FeatureFlagKey.paymentProgramAds.rawValue : false,
             FeatureFlagKey.agentisWidgets.rawValue : false,
-            FeatureFlagKey.isAzureAuthentication.rawValue : false
+            FeatureFlagKey.isAzureAuthentication.rawValue : false,
+            FeatureFlagKey.hasAuthenticatedISUM.rawValue : false,
+            FeatureFlagKey.hasUnauthenticatedISUM.rawValue : false
         ]
         
         UserDefaults.standard.setValuesForKeys(appDefaults)
@@ -63,7 +67,9 @@ final class FeatureFlagUtility {
                     FeatureFlagKey.hasForgotPasswordLink.rawValue : featureFlags.hasForgotPasswordLink,
                     FeatureFlagKey.paymentProgramAds.rawValue : featureFlags.paymentProgramAds,
                     FeatureFlagKey.agentisWidgets.rawValue : featureFlags.agentisWidgets,
-                    FeatureFlagKey.isAzureAuthentication.rawValue : featureFlags.isAzureAuthentication
+                    FeatureFlagKey.isAzureAuthentication.rawValue : featureFlags.isAzureAuthentication,
+                    FeatureFlagKey.hasAuthenticatedISUM.rawValue : featureFlags.hasAuthenticatedISUM,
+                    FeatureFlagKey.hasUnauthenticatedISUM.rawValue : featureFlags.hasUnauthenticatedISUM
                 ]
                 
                 UserDefaults.standard.setValuesForKeys(keyedValues)
