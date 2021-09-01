@@ -34,7 +34,9 @@ public struct FeatureFlags: Decodable {
     public var hasForgotPasswordLink: Bool = false
     public var paymentProgramAds: Bool = false
     public var agentisWidgets: Bool = false
-    public var isAzureAuthentication:Bool = false
+    public var isAzureAuthentication: Bool = false
+    public var hasAuthenticatedISUM: Bool = false
+    public var hasUnauthenticatedISUM: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case outageMapUrl = "outageMapURL"
@@ -45,6 +47,8 @@ public struct FeatureFlags: Decodable {
         case paymentProgramAds
         case agentisWidgets
         case isAzureAuthentication
+        case hasAuthenticatedISUM
+        case hasUnauthenticatedISUM
     }
     
     public init() {
@@ -62,5 +66,7 @@ public struct FeatureFlags: Decodable {
         paymentProgramAds = try container.decodeIfPresent(Bool.self, forKey: .paymentProgramAds) ?? true
         agentisWidgets = try container.decodeIfPresent(Bool.self, forKey: .agentisWidgets) ?? true
         isAzureAuthentication = try container.decodeIfPresent(Bool.self, forKey: .isAzureAuthentication) ?? true
+        hasAuthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasAuthenticatedISUM) ?? false
+        hasUnauthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasUnauthenticatedISUM) ?? false
     }
 }
