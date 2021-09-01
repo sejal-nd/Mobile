@@ -63,9 +63,9 @@ public struct FeatureFlags: Decodable {
         billingVideoUrl = try container.decodeIfPresent(String.self, forKey: .billingVideoUrl) ?? ""
         hasDefaultAccount = try container.decodeIfPresent(Bool.self, forKey: .hasDefaultAccount) ?? false
         hasForgotPasswordLink = try container.decodeIfPresent(Bool.self, forKey: .hasForgotPasswordLink) ?? false
-        paymentProgramAds = try container.decodeIfPresent(Bool.self, forKey: .paymentProgramAds) ?? true
-        agentisWidgets = try container.decodeIfPresent(Bool.self, forKey: .agentisWidgets) ?? true
-        isAzureAuthentication = try container.decodeIfPresent(Bool.self, forKey: .isAzureAuthentication) ?? true
+        paymentProgramAds = try container.decodeIfPresent(Bool.self, forKey: .paymentProgramAds) ?? false
+        agentisWidgets = try container.decodeIfPresent(Bool.self, forKey: .agentisWidgets) ?? false
+        isAzureAuthentication = try container.decodeIfPresent(Bool.self, forKey: .isAzureAuthentication) ?? false
         hasAuthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasAuthenticatedISUM) ?? false
         hasUnauthenticatedISUM = try container.decodeIfPresent(Bool.self, forKey: .hasUnauthenticatedISUM) ?? false
     }
