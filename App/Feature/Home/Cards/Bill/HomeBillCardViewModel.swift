@@ -482,7 +482,7 @@ class HomeBillCardViewModel {
     private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
         Driver.combineLatest(billState, accountDetailDriver, showBgeDdeDpaEligibility.asDriver())
         { (billState, accountDetail, bgeDdeDpaEligibilityChecked) in
-            let isAccountTypeEligible = Configuration.shared.opco.isPHI ? accountDetail.isResidential || accountDetail.isSmallCommercialCustomer : accountDetail.isResidential
+            let isAccountTypeEligible = accountDetail.isResidential || accountDetail.isSmallCommercialCustomer
             if isAccountTypeEligible &&
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
                 // BGE has different conditions for DDE, DPA and CTA3
