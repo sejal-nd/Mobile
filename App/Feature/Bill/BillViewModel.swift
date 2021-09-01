@@ -961,7 +961,7 @@ class BillViewModel {
         guard let dueDate = accountDetail.billingInfo.dueByDate else {
             return ("","","","")
         }
-        
+        let netDueAmount = accountDetail.billingInfo.netDueAmount
         if accountDetail.billingInfo.currentDueAmount >= 0 &&
             isBgeDdeEligible.value ?? false &&
             accountDetail.isAutoPay == false &&
@@ -973,6 +973,7 @@ class BillViewModel {
                     ctaType: "Request Due Date Extension",
                     ctaURL: "")
         } else if accountDetail.billingInfo.pastDueAmount > 0 &&
+                    netDueAmount >= 80 && netDueAmount <= 5000 &&
                     isBgeDpaEligible.value ?? false {
             self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
             self.mobileAssistanceType = MobileAssistanceURL.dpa
