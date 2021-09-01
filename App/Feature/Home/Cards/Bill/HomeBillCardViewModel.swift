@@ -1120,7 +1120,7 @@ class HomeBillCardViewModel {
             
             switch projectTier {
             case .test:
-                return (baseURL.replacingOccurrences(of: "azstage", with: "aztest")).replacingOccurrences(of: "azstg", with: "aztst1")
+                return "https://t-e-euweb-paymentenhancements-bge-ui-01.azurewebsites.net"
             default:
                 return (baseURL)
             }
