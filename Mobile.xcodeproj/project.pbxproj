@@ -7347,7 +7347,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -7381,7 +7381,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -7457,7 +7457,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -7502,7 +7502,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.14.0;
@@ -7541,7 +7541,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -7574,7 +7574,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -7650,7 +7650,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -7692,7 +7692,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -7732,7 +7732,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -7774,7 +7774,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -7857,7 +7857,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -7901,7 +7901,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -7943,7 +7943,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -7987,7 +7987,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -8074,7 +8074,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -8115,7 +8115,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.14.0;
@@ -8172,7 +8172,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -8224,7 +8224,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -8304,7 +8304,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -8387,7 +8387,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -8476,7 +8476,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -8521,7 +8521,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.14.0;
@@ -8560,7 +8560,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -8593,7 +8593,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -8630,7 +8630,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -8669,7 +8669,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -8749,7 +8749,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -8795,7 +8795,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.14.0;
@@ -8834,7 +8834,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -8867,7 +8867,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -8905,7 +8905,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -8946,7 +8946,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -9027,7 +9027,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -9072,7 +9072,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.14.0;
@@ -9111,7 +9111,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -9144,7 +9144,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -9183,7 +9183,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -9225,7 +9225,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.14.0;
 				MTL_FAST_MATH = YES;
@@ -9312,7 +9312,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -9354,7 +9354,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -9410,7 +9410,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -9462,7 +9462,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -9542,7 +9542,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -9625,7 +9625,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -9714,7 +9714,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -9760,7 +9760,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -9799,7 +9799,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -9832,7 +9832,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -9869,7 +9869,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -9908,7 +9908,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -9988,7 +9988,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -10035,7 +10035,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -10074,7 +10074,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -10107,7 +10107,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -10145,7 +10145,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -10186,7 +10186,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -10267,7 +10267,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -10313,7 +10313,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-14";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -10352,7 +10352,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -10385,7 +10385,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -10424,7 +10424,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -10466,7 +10466,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -10553,7 +10553,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -10595,7 +10595,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -10651,7 +10651,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -10703,7 +10703,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -10783,7 +10783,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -10866,7 +10866,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -10955,7 +10955,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -11001,7 +11001,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -11040,7 +11040,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -11073,7 +11073,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -11110,7 +11110,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -11149,7 +11149,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -11229,7 +11229,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -11276,7 +11276,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -11315,7 +11315,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -11348,7 +11348,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -11386,7 +11386,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -11427,7 +11427,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -11508,7 +11508,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -11554,7 +11554,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-15";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -11593,7 +11593,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -11626,7 +11626,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -11665,7 +11665,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -11707,7 +11707,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -11794,7 +11794,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -11836,7 +11836,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -11892,7 +11892,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -11944,7 +11944,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -12024,7 +12024,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -12107,7 +12107,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -12196,7 +12196,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -12242,7 +12242,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -12281,7 +12281,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -12314,7 +12314,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -12351,7 +12351,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -12390,7 +12390,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -12470,7 +12470,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -12517,7 +12517,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -12556,7 +12556,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -12589,7 +12589,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -12627,7 +12627,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -12668,7 +12668,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -12749,7 +12749,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -12795,7 +12795,7 @@
 				GOOGLE_ANALYTICS_ID = "UA-76742208-13";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 5.14.0;
@@ -12834,7 +12834,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -12867,7 +12867,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -12906,7 +12906,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -12948,7 +12948,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 5.14.0;
 				MTL_FAST_MATH = YES;
@@ -13035,7 +13035,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -13076,7 +13076,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.14.0;
@@ -13133,7 +13133,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -13185,7 +13185,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -13265,7 +13265,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 10.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -13348,7 +13348,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 10.14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -13437,7 +13437,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -13482,7 +13482,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.14.0;
@@ -13521,7 +13521,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -13554,7 +13554,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -13591,7 +13591,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 10.14.0;
 				MTL_FAST_MATH = YES;
@@ -13630,7 +13630,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 10.14.0;
 				MTL_FAST_MATH = YES;
@@ -13710,7 +13710,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -13756,7 +13756,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.14.0;
@@ -13795,7 +13795,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -13828,7 +13828,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -13866,7 +13866,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 10.14.0;
 				MTL_FAST_MATH = YES;
@@ -13907,7 +13907,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 10.14.0;
 				MTL_FAST_MATH = YES;
@@ -13988,7 +13988,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -14033,7 +14033,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 10.14.0;
@@ -14072,7 +14072,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -14105,7 +14105,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -14144,7 +14144,7 @@
 				IBSC_MODULE = "EUMobile-Watch Extension";
 				INFOPLIST_FILE = Watch/Configuration/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 10.14.0;
 				MTL_FAST_MATH = YES;
@@ -14186,7 +14186,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 10.14.0;
 				MTL_FAST_MATH = YES;
@@ -14273,7 +14273,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -14314,7 +14314,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.14.0;
@@ -14371,7 +14371,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -14423,7 +14423,7 @@
 				);
 				INFOPLIST_FILE = UITests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -14501,7 +14501,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -14547,7 +14547,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.14.0;
@@ -14634,7 +14634,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LAUNCH_SCREEN_FILE_NAME = "LaunchScreen-Flavor$(BUILD_FLAVOR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -14679,7 +14679,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Supporting Files/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 2.14.0;
@@ -14718,7 +14718,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
@@ -14751,7 +14751,7 @@
 				);
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
