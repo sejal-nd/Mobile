@@ -67,4 +67,8 @@ class MoreViewModel {
         return URL(string: FeatureFlagUtility.shared.string(forKey: .billingVideoURL))
     }()
     
+    let startServiceWebURL: URL? = {
+        return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start")
+    }()
+    
 }

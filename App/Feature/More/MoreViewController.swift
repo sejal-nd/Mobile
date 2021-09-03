@@ -329,21 +329,21 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
                 {
-                    cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Start Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_morestartservice"), text: NSLocalizedString("Start Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
                 }
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
                 {
-                    cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Stop Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_morestopservice"), text: NSLocalizedString("Stop Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
                 }
             case 2:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
                 {
-                    cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Move Service", comment: ""))
+                    cell.configure(image: #imageLiteral (resourceName: "ic_isummoveservice"), text: NSLocalizedString("Move Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
                 }
@@ -406,8 +406,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
-                {
-                    //perform segue to start storyboard
+                {   /// Redirect to Start Service web experince for this Nov-21 release.
+                    UIApplication.shared.openUrlIfCan(viewModel.startServiceWebURL)
                 } else {
                     performSegue(withIdentifier: "contactUsSegue", sender: nil)
                 }
