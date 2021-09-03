@@ -175,6 +175,8 @@
 		389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4465DE881F1FD07C0014537F /* TemplateCardView.xib */; };
 		44A373431F211521005E227B /* TemplateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4465DE861F1FD0090014537F /* TemplateCardView.swift */; };
+		4A631A8526E11A84006C3ACA /* StopServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */; };
+		4A631A8726E11AA0006C3ACA /* StopServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */; };
 		545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */; };
 		5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */; };
 		54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */; };
@@ -1506,6 +1508,8 @@
 		48436D9E2AA6C236DDA2B13A /* Pods-EUMobile-Watch Extension.production beta-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.production beta-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.production beta-peco.xcconfig"; sourceTree = "<group>"; };
 		48CAD1C641D85E5D906EF408 /* Pods-EUMobile.pepco-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.pepco-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.pepco-release.xcconfig"; sourceTree = "<group>"; };
 		49F8B3864DEA8DC2079BD2FD /* Pods-EUMobileUITests.staging-bge.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.staging-bge.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.staging-bge.xcconfig"; sourceTree = "<group>"; };
+		4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewController.swift; sourceTree = "<group>"; };
+		4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopServiceViewModel.swift; sourceTree = "<group>"; };
 		4ADF4FF916DE3B2844982F78 /* Pods_EUMobile_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BCA694A47AAACFEC0AA5C2C /* Pods-EUMobileUnitTests.comed-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUnitTests.comed-release.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUnitTests/Pods-EUMobileUnitTests.comed-release.xcconfig"; sourceTree = "<group>"; };
 		4C53A42494BE03F3DBD6C835 /* Pods-EUMobile-Watch Extension.staging-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch Extension.staging-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch Extension/Pods-EUMobile-Watch Extension.staging-peco.xcconfig"; sourceTree = "<group>"; };
@@ -3112,6 +3116,7 @@
 		352B8D72230D70BD007F8CEE /* Detail Screens */ = {
 			isa = PBXGroup;
 			children = (
+				4A631A8326E11A5B006C3ACA /* Stop Service */,
 				3090A63D247F8EAF00815EA1 /* EditAccountNickName */,
 				3559C89A22F9C54000481A87 /* Appointments */,
 				352B8D71230D70B5007F8CEE /* Alerts */,
@@ -4043,6 +4048,15 @@
 				6724801E25D44A380024467D /* PreviewData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		4A631A8326E11A5B006C3ACA /* Stop Service */ = {
+			isa = PBXGroup;
+			children = (
+				4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */,
+				4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */,
+			);
+			path = "Stop Service";
 			sourceTree = "<group>";
 		};
 		67247F0025D2D71E0024467D /* Controllers */ = {
@@ -6915,11 +6929,13 @@
 				E71EBE9C26A6EDFB005AE781 /* B2CTokenRequest.swift in Sources */,
 				674A11FC2523889C00AF0D38 /* EnergyWiseRewardsViewController.swift in Sources */,
 				675F4CA224AB828100A828F9 /* Wallet.swift in Sources */,
+				4A631A8526E11A84006C3ACA /* StopServiceViewController.swift in Sources */,
 				356D725924D2AF910058661F /* RegistrationChooseAccountViewController.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9CB7E8DD23980BA4001FBAB9 /* GameTask.swift in Sources */,
 				67A482EF26BC417800FBB0BB /* B2CRegistrationViewController.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
+				4A631A8726E11AA0006C3ACA /* StopServiceViewModel.swift in Sources */,
 				C34A7ED42519524200438B7B /* BGEAutoPayInfo.swift in Sources */,
 				67424D3B267A5B040078EEA0 /* AnalyticController.swift in Sources */,
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
