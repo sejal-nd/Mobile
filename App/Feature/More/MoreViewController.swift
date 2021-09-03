@@ -198,8 +198,9 @@ class MoreViewController: UIViewController {
 
 extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     
+    /// We need to insert a section on Moving for BGE before Help Section, hence the last 2 sections and their respective rows would need to be conditional.
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) ? 4 : 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -210,6 +211,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             return 7
         case 2:
             return 3
+        case 3:
+            return FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) ? 3 : 0
         default:
             return 0
         }
@@ -251,6 +254,22 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 return 60
             }
         case 2:
+            switch indexPath.row {
+            case 0:
+                return 60
+            case 1:
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
+                {
+                    return 60
+                } else {
+                    return Configuration.shared.opco.isPHI && viewModel.billingVideosUrl == nil ? .zero : 60
+                }
+            case 2:
+                return 60
+            default:
+                return 60
+            }
+        case 3:
             switch indexPath.row {
             case 0:
                 return 60
@@ -308,6 +327,33 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 2:
             switch indexPath.row {
             case 0:
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
+                {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Start Service", comment: ""))
+                } else {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
+                }
+            case 1:
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
+                {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Stop Service", comment: ""))
+                } else {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
+                }
+            case 2:
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
+                {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Move Service", comment: ""))
+                } else {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
+                }
+            default:
+                return UITableViewCell()
+            }
+            
+        case 3:
+            switch indexPath.row {
+            case 0:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
             case 1:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
@@ -359,6 +405,34 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 2:
             switch indexPath.row {
             case 0:
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
+                {
+                    //perform segue to start storyboard
+                } else {
+                    performSegue(withIdentifier: "contactUsSegue", sender: nil)
+                }
+            case 1:
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
+                {
+                    //perform segue to stop storyboard
+                } else {
+                    FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
+                    UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
+                }
+            case 2:
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
+                {
+                    //perform segue to move storyboard
+                } else {
+                    performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)
+                }
+            default:
+                break
+            }
+            
+        case 3:
+            switch indexPath.row {
+            case 0:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 1:
                 FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
@@ -387,7 +461,19 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             headerView.configure(text: NSLocalizedString("Account & Settings", comment: ""))
         case 2:
-            headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
+            if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
+            {
+                headerView.configure(text: NSLocalizedString("Moving", comment: ""))
+            } else {
+                headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
+            }
+        case 3:
+            if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
+            {
+                headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
+            } else {
+                break
+            }
         default:
             break
         }
