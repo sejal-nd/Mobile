@@ -68,7 +68,12 @@ class MoreViewModel {
     }()
     
     let startServiceWebURL: URL? = {
-        return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start")
+        switch Configuration.shared.opco {
+        case .bge:
+            return URL(string: "https://\(Configuration.shared.associatedDomain)/CustomerServices/service/start")
+        default:
+            return nil
+        }
     }()
     
 }
