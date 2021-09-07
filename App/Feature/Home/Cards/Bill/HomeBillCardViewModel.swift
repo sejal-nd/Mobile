@@ -498,12 +498,12 @@ class HomeBillCardViewModel {
                     self.mobileAssistanceType = MobileAssistanceURL.dde
                     if Configuration.shared.opco.isPHI {
                         return (title: "You’re eligible for a One-Time Payment Delay",
-                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a One-Time Payment Delay",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a One-Time Payment Delay.",
                                 ctaType: "Request One-Time Payment Delay",
                                 ctaURL: "")
                     } else {
                         return (title: "You’re eligible for a Due Date Extension",
-                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension.",
                                 ctaType: "Request Due Date Extension",
                                 ctaURL: "")
                     }
@@ -566,7 +566,7 @@ class HomeBillCardViewModel {
             self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
             self.mobileAssistanceType = MobileAssistanceURL.dde
             return (title: "You’re eligible for a Due Date Extension",
-                    description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a Due Date Extension",
+                    description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a Due Date Extension.",
                     ctaType: "Request Due Date Extension",
                     ctaURL: "")
         } else if accountDetail.billingInfo.pastDueAmount > 0 &&
