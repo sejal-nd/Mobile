@@ -160,6 +160,15 @@ class AccountListRow: UITableViewCell {
         } else if account.isFinaled {
             let status = Configuration.shared.opco.isPHI ? "(Inactive)" : "(Finaled)"
             accountNumberText = "\(account.displayName) \(status)"
+            if Configuration.shared.opco.rawValue == "BGE" {
+                addressLabel.text = ""
+                accountNumber.textColor = UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5)
+                accountImageView.image = UIImage(named: "ic_residential_mini_1")
+                self.isUserInteractionEnabled = false;
+            } else {
+                accountNumber.textColor = .middleGray
+                self.isUserInteractionEnabled = true;
+            }
         } else if account.isLinked {
             accountNumberText = "\(account.displayName) (Linked)"
         } else {

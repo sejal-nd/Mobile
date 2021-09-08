@@ -104,11 +104,12 @@
                         <segue destination="Z3X-lP-vFg" kind="show" identifier="appointmentsSegue" id="0RI-Jn-6zB"/>
                         <segue destination="UIb-7z-3ok" kind="show" identifier="energyBuddySegue" id="Vcb-HZ-KXB"/>
                         <segue destination="eT5-Kx-SqK" kind="show" identifier="editAccountNicknameSegue" id="mIW-jA-D3y"/>
+                        <segue destination="Fro-bO-C76" kind="show" identifier="stopServiceSeque" id="VXu-z0-lPk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-a1-RXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2271" y="1418"/>
+            <point key="canvasLocation" x="1957" y="1488"/>
         </scene>
         <!--Contact Us-->
         <scene sceneID="yYj-Mn-8mS">
@@ -2162,7 +2163,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPG-Mp-x4T">
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPG-Mp-x4T">
                                         <rect key="frame" x="20" y="15" width="374" height="55"/>
                                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -2207,9 +2208,13 @@
                         <outlet property="changeAccountButton" destination="rvD-O8-7m7" id="nz8-0e-6Yh"/>
                         <outlet property="continueButton" destination="RPG-Mp-x4T" id="L6Q-4A-uDs"/>
                         <outlet property="currentServiceAddressLabel" destination="4gx-ac-CL4" id="1ld-Ag-rgo"/>
+                        <outlet property="electricStackView" destination="J0b-n4-hJo" id="wce-Av-zyG"/>
+                        <outlet property="finalBillStackView" destination="wSO-41-Af6" id="wnE-NC-8XZ"/>
+                        <outlet property="gasStackView" destination="HBc-M0-ZOG" id="sHX-rB-5xg"/>
                         <outlet property="serviceProviderStackView" destination="hsm-ux-UN8" id="hvw-gJ-hbP"/>
                         <outlet property="stopDateButton" destination="ccI-bY-sr6" id="KRP-ej-IIw"/>
                         <outlet property="stopDateSelectionView" destination="EuJ-2R-fnr" id="7kC-me-3nX"/>
+                        <outlet property="stopDateToolTipButton" destination="zRm-gj-Nml" id="UMd-eD-wzb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjE-2V-Q5i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
