@@ -414,7 +414,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 1:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
                 {
-                    performSegue(withIdentifier: "stopServiceSegue", sender: nil)
+                    //perform segue to stop storyboard
                 } else {
                     FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                     UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
@@ -422,7 +422,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 2:
                 if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
                 {
-                    performSegue(withIdentifier: "moveServiceSegue", sender: nil)
+                    //perform segue to move storyboard
                 } else {
                     performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)
                 }
