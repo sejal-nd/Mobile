@@ -12,6 +12,8 @@ import PDTSimpleCalendar
 
 class StopServiceViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var currentServiceAddressLabel: UILabel!
     @IBOutlet weak var changeAccountButton: UIButton!
     @IBOutlet weak var serviceProviderStackView: UIStackView!
@@ -54,7 +56,17 @@ class StopServiceViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(StopServiceViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
+        self.scrollView.isHidden = true
         
+        
+        viewModel.showLoadingState
+            .subscribe (onNext: { [weak self] status in
+                self?.loadingIndicator.isHidden = !status
+                self?.scrollView.isHidden = status
+            }).disposed(by: disposeBag)
+
+        
+
         billAddressSegmentControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("No", comment: "")]
         stopDateSelectionView.roundCorners(.allCorners, radius: 10.0, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)
         continueButton.roundCorners(.allCorners, radius: 27.5, borderColor: UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0), borderWidth: 1.0)

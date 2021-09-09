@@ -20,22 +20,29 @@ class StopServiceViewModel {
     private var currentAccountDetails = BehaviorRelay<AccountDetail?>(value: nil)
     var disposeBag = DisposeBag()
     var invalidDateAMI = [String]()
+    private (set) lazy var showLoadingState: Observable<Bool> = isLoading.asObservable()
+    private let isLoading = BehaviorRelay(value: true)
 
     init() {
         
         getAccountListSubject
-            .startWith(LoadingView.show())
             .toAsyncRequest { AccountService.rx.fetchAccounts() } .subscribe(onNext: { [weak self]_ in
                 self?.getAccountDetailSubject.onNext(())
             }).disposed(by: disposeBag)
 
             
         getAccountDetailSubject
-            .toAsyncRequest {
-                AccountService.rx.fetchAccountDetails()
+            .toAsyncRequest { [weak self] _ -> Observable<AccountDetail> in
+                
+                guard let `self` = self else { return Observable.empty() }
+                if !self.isLoading.value {
+                    self.isLoading.accept(true)
+                }
+                return AccountService.rx.fetchAccountDetails()
             }.subscribe(onNext: { [weak self] result in
                 guard let `self` = self, let accountDetails = result.element else {return }
                 self.currentAccountDetails.accept(accountDetails)
+                self.isLoading.accept(false)
             }).disposed(by: disposeBag)
 
         

@@ -1918,7 +1918,7 @@
                                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 Anywhere Street, Apt. 123 – B Baltimore, MD 21215" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gx-ac-CL4">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 Anywhere Street, Apt. 123 – B Baltimore, MD 21215" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gx-ac-CL4">
                                                                         <rect key="frame" x="19" y="51" width="173" height="54"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="173" id="nD9-A7-tHF"/>
@@ -2169,6 +2169,14 @@
                                     <constraint firstItem="VdW-r9-MTd" firstAttribute="centerX" secondItem="fld-ic-rZb" secondAttribute="centerX" id="vwH-T7-Upc"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIW-xi-9hF" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
+                                <rect key="frame" x="177" y="469" width="60" height="12"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Ndv-0S-yKV"/>
+                                    <constraint firstAttribute="height" constant="12" id="aKl-5O-FXH"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bP1-RE-tlZ">
                                 <rect key="frame" x="0.0" y="777" width="414" height="85"/>
                                 <subviews>
@@ -2217,6 +2225,8 @@
                             <constraint firstItem="bP1-RE-tlZ" firstAttribute="top" secondItem="fld-ic-rZb" secondAttribute="bottom" id="cGa-B8-KXZ"/>
                             <constraint firstItem="bP1-RE-tlZ" firstAttribute="leading" secondItem="Xik-r4-6ZK" secondAttribute="leading" id="g74-3d-4Pm"/>
                             <constraint firstItem="fld-ic-rZb" firstAttribute="top" secondItem="Xik-r4-6ZK" secondAttribute="top" id="jBM-IJ-TJo"/>
+                            <constraint firstItem="nIW-xi-9hF" firstAttribute="centerY" secondItem="Xik-r4-6ZK" secondAttribute="centerY" id="nMZ-C4-siu"/>
+                            <constraint firstItem="nIW-xi-9hF" firstAttribute="centerX" secondItem="Xik-r4-6ZK" secondAttribute="centerX" id="p0I-Er-KjY"/>
                             <constraint firstItem="Xik-r4-6ZK" firstAttribute="bottom" secondItem="bP1-RE-tlZ" secondAttribute="bottom" id="uHb-pc-ODu"/>
                         </constraints>
                     </view>
@@ -2233,6 +2243,8 @@
                         <outlet property="electricStackView" destination="J0b-n4-hJo" id="wce-Av-zyG"/>
                         <outlet property="finalBillStackView" destination="wSO-41-Af6" id="wnE-NC-8XZ"/>
                         <outlet property="gasStackView" destination="HBc-M0-ZOG" id="sHX-rB-5xg"/>
+                        <outlet property="loadingIndicator" destination="nIW-xi-9hF" id="c7t-l6-R2Z"/>
+                        <outlet property="scrollView" destination="fld-ic-rZb" id="E3s-S4-moo"/>
                         <outlet property="selectedDateLabel" destination="0M9-7x-Smy" id="A7T-A8-Drr"/>
                         <outlet property="serviceProviderStackView" destination="hsm-ux-UN8" id="hvw-gJ-hbP"/>
                         <outlet property="stopDateButton" destination="ccI-bY-sr6" id="KRP-ej-IIw"/>
