@@ -23,7 +23,10 @@ class StopServiceViewController: UIViewController {
     @IBOutlet weak var gasStackView: UIStackView!
     @IBOutlet weak var stopDateToolTipButton: UIButton!
     @IBOutlet weak var finalBillStackView: UIStackView!
-
+    @IBOutlet weak var dateStackView: UIStackView!
+    @IBOutlet weak var selectedDateLabel: UILabel!
+    @IBOutlet weak var stopDateLabel: UILabel!
+    
     var accounts: [Account] {
         get { return AccountsStore.shared.accounts ?? [] }
     }
@@ -33,6 +36,7 @@ class StopServiceViewController: UIViewController {
     var currentAccount: Account?
     var disposeBag = DisposeBag()
     let viewModel = StopServiceViewModel()
+    var hasChangedData = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +45,7 @@ class StopServiceViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        viewModel.getAccountDetailSubject.onNext(())
+        viewModel.getAccountListSubject.onNext(())
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -75,13 +79,17 @@ class StopServiceViewController: UIViewController {
                 calendarVC.extendedLayoutIncludesOpaqueBars = true
                 calendarVC.calendar = .opCo
                 calendarVC.delegate = self
-                calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
-                calendarVC.firstDate = Calendar.current.date(byAdding: .year, value: -10, to: Calendar.current.startOfDay(for: .now))
-                calendarVC.lastDate = Calendar.current.date(byAdding: .year, value: 10, to: Calendar.current.startOfDay(for: .now))
-                calendarVC.selectedDate = Calendar.opCo.startOfDay(for: .now)
+                calendarVC.firstDate = Calendar.current.date(byAdding: .month, value: 0, to: Calendar.current.startOfDay(for: .now))
+                calendarVC.lastDate = Calendar.current.date(byAdding: .month, value: 1, to: Calendar.current.startOfDay(for: .now))
                 calendarVC.scroll(toSelectedDate: true)
                 
-                self.present(calendarVC, animated: true, completion: nil)
+                let navigationController = LargeTitleNavigationController(rootViewController: calendarVC)
+                navigationController.setNavigationBarHidden(false, animated: false)
+                calendarVC.navigationItem.title = "Select Stop Date"
+                calendarVC.addCloseButton()
+                calendarVC.navigationItem.largeTitleDisplayMode = .automatic
+                navigationController.modalPresentationStyle = .fullScreen
+                self.navigationController?.present(navigationController, animated: true, completion: nil)
         }).disposed(by: disposeBag)
         
         changeAccountButton.rx.tap
@@ -94,10 +102,25 @@ class StopServiceViewController: UIViewController {
                 self.present(vc, animated: false, completion: nil)
             }).disposed(by: disposeBag)
         
+        continueButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                if self.billAddressSegmentControl.selectedIndex.value == 0 {
+                    let storyboard = UIStoryboard(name: "More", bundle: nil)
+                    let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewStopServiceViewController") as! ReviewStopServiceViewController
+                    self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
+                } else {
+                    let storyboard = UIStoryboard(name: "More", bundle: nil)
+                    let finalMailingAddressViewController = storyboard.instantiateViewController(withIdentifier: "FinalMailingAddressViewController") as! FinalMailingAddressViewController
+                    self.navigationController?.pushViewController(finalMailingAddressViewController, animated: true)
+
+                }
+            }).disposed(by: disposeBag)
+        
         // provides selected account details
         viewModel.accountDetailEvents
-            .subscribe(onNext: { [weak self] result in
-                guard let accountDetails = result.element else { return }
+            .compactMap { $0 }
+            .subscribe(onNext: { [weak self] accountDetails in
                 LoadingView.hide()
                 self?.currentServiceAddressLabel.text = accountDetails.address
                 self?.electricStackView.isHidden = !(accountDetails.serviceType?.contains("ELECTRIC") ?? false)
@@ -106,8 +129,14 @@ class StopServiceViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.didSelectDate
-            .subscribe(onNext: { [weak self] result in
+        viewModel.selectedDate
+            .filter { $0 != nil }
+            .compactMap { $0 }
+            .subscribe(onNext: { [weak self] date in
+                self?.selectedDateLabel.text = DateFormatter.MMddyyyyFormatter.string(from: date)
+                self?.dateStackView.isHidden = false
+                self?.stopDateLabel.isHidden = true
+                
                 self?.continueButton.isUserInteractionEnabled = true
                 self?.continueButton.backgroundColor = UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0)
                 self?.continueButton.setTitleColor(UIColor.white, for: .normal)
@@ -117,13 +146,32 @@ class StopServiceViewController: UIViewController {
     
     @objc func back(sender: UIBarButtonItem) {
         // TODO: conditions to check for any change in the screen
-        self.navigationController?.popViewController(animated: true)
+        if hasChangedData {
+            let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
+            { [weak self] _ in
+                guard let `self` = self else { return }
+                for controller in self.navigationController!.viewControllers as Array {
+                    if controller.isKind(of: MoreViewController.self) {
+                        self.navigationController!.popToViewController(controller, animated: true)
+                        break
+                    }
+                }
+            }
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+            presentAlert(title: NSLocalizedString("Do you want to exit?", comment: ""),
+                         message: NSLocalizedString("The information you’ve entered will not be saved.", comment: ""),
+                         style: .alert,
+                         actions: [cancelAction, exitAction])
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
 extension StopServiceViewController: AccountSelectDelegate {
     
     internal func didSelectAccount(_ account: Account, premiseIndexPath: IndexPath?) {
+        hasChangedData = true
         let selectedAccountIndex = accounts.firstIndex(of: account)
         
         // Set Selected Account
@@ -142,11 +190,12 @@ extension StopServiceViewController: AccountSelectDelegate {
 
 extension StopServiceViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        return true
+        return self.viewModel.isValidDate(date)
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
-        self.viewModel.didSelectDate.onNext(())
+        hasChangedData = true
+        self.viewModel.selectedDate.accept(date)
         controller.dismiss(animated: true, completion: nil)
     }
 }
