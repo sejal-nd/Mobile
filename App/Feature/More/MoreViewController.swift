@@ -327,22 +327,19 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 2:
             switch indexPath.row {
             case 0:
-                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
-                {
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
                     cell.configure(image: #imageLiteral (resourceName: "ic_morestartservice"), text: NSLocalizedString("Start Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
                 }
             case 1:
-                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
-                {
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
                     cell.configure(image: #imageLiteral (resourceName: "ic_morestopservice"), text: NSLocalizedString("Stop Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
                 }
             case 2:
-                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
-                {
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
                     cell.configure(image: #imageLiteral (resourceName: "ic_isummoveservice"), text: NSLocalizedString("Move Service", comment: ""))
                 } else {
                     cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
@@ -405,23 +402,21 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 2:
             switch indexPath.row {
             case 0:
-                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
-                {   /// Redirect to Start Service web experince for this Nov-21 release.
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
+                    /// Redirect to Start Service web experience for this Nov-21 release.
                     UIApplication.shared.openUrlIfCan(viewModel.startServiceWebURL)
                 } else {
                     performSegue(withIdentifier: "contactUsSegue", sender: nil)
                 }
             case 1:
-                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
-                {
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
                     performSegue(withIdentifier: "stopServiceSegue", sender: nil)
                 } else {
                     FirebaseUtility.logEvent(.more(parameters: [.billing_videos]))
                     UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
                 }
             case 2:
-                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
-                {
+                if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
                     performSegue(withIdentifier: "moveServiceSegue", sender: nil)
                 } else {
                     performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)
@@ -461,18 +456,14 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             headerView.configure(text: NSLocalizedString("Account & Settings", comment: ""))
         case 2:
-            if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
-            {
+            if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
                 headerView.configure(text: NSLocalizedString("Moving", comment: ""))
             } else {
                 headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
             }
         case 3:
-            if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM)
-            {
+            if FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) {
                 headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
-            } else {
-                break
             }
         default:
             break
