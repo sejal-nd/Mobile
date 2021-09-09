@@ -463,16 +463,10 @@ class RegistrationViewModel {
     private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
         let driverArray: [Driver<String>]
         let count: Int
-        if Configuration.shared.opco == .bge {
-            driverArray = [self.securityAnswer1.asDriver(),
-                           self.securityAnswer2.asDriver()]
-            count = 2
-        } else {
-            driverArray = [self.securityAnswer1.asDriver(),
-                           self.securityAnswer2.asDriver(),
-                           self.securityAnswer3.asDriver()]
-            count = 3
-        }
+        
+        driverArray = [self.securityAnswer1.asDriver(),
+                       self.securityAnswer2.asDriver()]
+        count = 2
         
         return Driver.combineLatest(driverArray) { outArray in
             let emptiesRemoved = outArray.filter { !$0.isEmpty }
