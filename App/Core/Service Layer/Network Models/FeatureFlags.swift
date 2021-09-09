@@ -13,11 +13,16 @@ public struct FeatureFlagsContainer: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case iOS = "ios"
+        case iOSrc = "ios_rc"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        iOS = try container.decodeIfPresent(FeatureFlags.self, forKey: .iOS) ?? FeatureFlags()
+        if Configuration.shared.environmentName == .rc {
+            iOS = try container.decodeIfPresent(FeatureFlags.self, forKey: .iOSrc) ?? FeatureFlags()
+        } else {
+            iOS = try container.decodeIfPresent(FeatureFlags.self, forKey: .iOS) ?? FeatureFlags()
+        }
     }
 }
 

@@ -279,12 +279,12 @@ struct Configuration {
         "openid offline_access \(b2cClientID)"
     }
     
-    // opcoString: account opco (in the case that the account opco is different than the app opco)
+    // accountOpCo: account opco (in the case that the account opco is different than the app opco)
     func getSecureOpCoOpowerURLString(_ accountOpCo: OpCo) -> String {
         var oPowerURLString: String
         switch Configuration.shared.environmentName {
         case .rc, .release:
-            oPowerURLString = "https://\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
+            oPowerURLString = "https://secure.\(accountOpCo.urlDisplayString).com/pages/mobileopower.aspx"
         default:
             let projectTierRawValue = UserDefaults.standard.string(forKey: "selectedProjectTier") ?? "Stage"
             let projectTier = ProjectTier(rawValue: projectTierRawValue) ?? .stage
