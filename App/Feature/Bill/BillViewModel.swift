@@ -886,7 +886,7 @@ class BillViewModel {
     private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
         Driver.combineLatest(currentAccountDetail , currentAccountDetail, showBgeDdeDpaEligibility.asDriver())
         { (currentBillComparisonO, accountDetail, bgeDdeDpaEligibilityChecked) in
-            let isAccountTypeEligible = Configuration.shared.opco.isPHI ? accountDetail.isResidential || accountDetail.isSmallCommercialCustomer : accountDetail.isResidential
+            let isAccountTypeEligible =  accountDetail.isResidential || accountDetail.isSmallCommercialCustomer
             if isAccountTypeEligible &&
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {
                 // BGE has different conditions for DDE, DPA and CTA3
@@ -907,12 +907,12 @@ class BillViewModel {
                     self.mobileAssistanceType = MobileAssistanceURL.dde
                     if Configuration.shared.opco.isPHI {
                         return (title: "You’re eligible for a One-Time Payment Delay",
-                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a One-Time Payment Delay",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a One-Time Payment Delay.",
                                 ctaType: "Request One-Time Payment Delay",
                                 ctaURL: "")
                     } else {
                         return (title: "You’re eligible for a Due Date Extension",
-                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 21 calendar days with a Due Date Extension.",
                                 ctaType: "Request Due Date Extension",
                                 ctaURL: "")
                     }
@@ -936,11 +936,17 @@ class BillViewModel {
                             accountDetail.is_dpa_eligible {
                     self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
                     self.mobileAssistanceType = MobileAssistanceURL.dpa
-                    
-                    return (title: "You’re eligible for a Deferred Payment Arrangement.",
-                            description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
-                            ctaType: "Learn More",
-                            ctaURL: "")
+                    if Configuration.shared.opco.isPHI {
+                        return (title: "You’re eligible for a Payment Arrangement.",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                                ctaType: "Learn More",
+                                ctaURL: "")
+                    } else {
+                        return (title: "You’re eligible for a Deferred Payment Arrangement.",
+                                description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. You can make monthly installments to bring your account up to date.",
+                                ctaType: "Learn More",
+                                ctaURL: "")
+                    }
                 } else if !accountDetail.isDueDateExtensionEligible &&
                             accountDetail.billingInfo.pastDueAmount > 0 &&
                             !accountDetail.is_dpa_eligible  &&
@@ -961,7 +967,7 @@ class BillViewModel {
         guard let dueDate = accountDetail.billingInfo.dueByDate else {
             return ("","","","")
         }
-        
+        let netDueAmount = accountDetail.billingInfo.netDueAmount
         if accountDetail.billingInfo.currentDueAmount >= 0 &&
             isBgeDdeEligible.value ?? false &&
             accountDetail.isAutoPay == false &&
@@ -969,10 +975,11 @@ class BillViewModel {
             self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dde))
             self.mobileAssistanceType = MobileAssistanceURL.dde
             return (title: "You’re eligible for a Due Date Extension",
-                    description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a Due Date Extension",
+                    description: "Having trouble keeping up with your \(Configuration.shared.opco.displayString) bill? We’re here to help. Extend your upcoming bill due date by up to 30 calendar days with a Due Date Extension.",
                     ctaType: "Request Due Date Extension",
                     ctaURL: "")
         } else if accountDetail.billingInfo.pastDueAmount > 0 &&
+                    netDueAmount >= 80 && netDueAmount <= 5000 &&
                     isBgeDpaEligible.value ?? false {
             self.mobileAssistanceURL.accept(MobileAssistanceURL.getMobileAssistnceURL(assistanceType: .dpa))
             self.mobileAssistanceType = MobileAssistanceURL.dpa
@@ -1011,7 +1018,7 @@ class BillViewModel {
             
             switch projectTier {
             case .test:
-                return (baseURL.replacingOccurrences(of: "azstage", with: "aztest")).replacingOccurrences(of: "azstg", with: "aztst1")
+                return "https://t-e-euweb-paymentenhancements-bge-ui-01.azurewebsites.net"
             default:
                 return (baseURL)
             }
