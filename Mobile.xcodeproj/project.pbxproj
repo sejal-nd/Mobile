@@ -1585,7 +1585,7 @@
 		6724807F25D47B560024467D /* AccountListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListState.swift; sourceTree = "<group>"; };
 		6724808525D47BB00024467D /* AccountListFlowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListFlowContainerView.swift; sourceTree = "<group>"; };
 		673BA67226EBAC7600EACE5F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		673BA74F26EBB20400EACE5F /* entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = entitlements.entitlements; path = Entitlements/entitlements.entitlements; sourceTree = SOURCE_ROOT; };
+		673BA75C26EBB4DA00EACE5F /* entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = entitlements.entitlements; sourceTree = "<group>"; };
 		673FA0C924C899CD00210BCD /* OutageStatusContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusContainer.swift; sourceTree = "<group>"; };
 		673FA0D624C899FE00210BCD /* ForgotMaskedUsernames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotMaskedUsernames.swift; sourceTree = "<group>"; };
 		673FA0E324C89A1900210BCD /* AccountLookupResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupResults.swift; sourceTree = "<group>"; };
@@ -4591,7 +4591,7 @@
 		67D73B0D246C743500450B63 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				673BA74F26EBB20400EACE5F /* entitlements.entitlements */,
+				673BA75C26EBB4DA00EACE5F /* entitlements.entitlements */,
 				8FD3C26C1E52576F005FB1BB /* Info.plist */,
 				B5AC06781E51763200BBA4ED /* Configuration.swift */,
 				3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */,
