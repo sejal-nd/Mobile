@@ -27,6 +27,9 @@
                                             <constraint firstAttribute="height" constant="55" id="s6B-Sj-opg"/>
                                         </constraints>
                                         <state key="normal" title="Begin"/>
+                                        <connections>
+                                            <action selector="BeginTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cyn-g4-toJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="aKH-sv-uXn"/>
@@ -48,12 +51,69 @@
                                             <constraint firstAttribute="height" constant="126" id="e8Y-fQ-yui"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yH-j1-3N8">
+                                        <rect key="frame" x="10" y="156" width="354" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIw-fd-XbU">
+                                        <rect key="frame" x="10" y="196.5" width="354" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQY-ub-FDg">
+                                        <rect key="frame" x="0.0" y="232" width="374" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="ego-HY-nFi"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBp-Kv-10K">
+                                        <rect key="frame" x="0.0" y="253" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Uj-jf-HN2">
+                                        <rect key="frame" x="0.0" y="288.5" width="374" height="36"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_isum_list_date" translatesAutoresizingMaskIntoConstraints="NO" id="t6v-Wa-OW0">
+                                                <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="36" id="4r7-64-ePW"/>
+                                                    <constraint firstAttribute="width" constant="36" id="Fcq-1d-ooS"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bos-z5-vz8">
+                                                <rect key="frame" x="46" y="0.0" width="328" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="RBp-Kv-10K" firstAttribute="top" secondItem="nQY-ub-FDg" secondAttribute="bottom" constant="20" id="3Vg-Sm-TG6"/>
+                                    <constraint firstItem="4yH-j1-3N8" firstAttribute="leading" secondItem="C8O-zO-Afi" secondAttribute="leading" constant="10" id="6Lk-mA-5H5"/>
+                                    <constraint firstItem="4yH-j1-3N8" firstAttribute="top" secondItem="Vwc-9Y-y3b" secondAttribute="bottom" id="9xR-gF-hYU"/>
+                                    <constraint firstItem="6Uj-jf-HN2" firstAttribute="top" secondItem="RBp-Kv-10K" secondAttribute="bottom" constant="15" id="9xV-fk-fxU"/>
                                     <constraint firstItem="Vwc-9Y-y3b" firstAttribute="top" secondItem="C8O-zO-Afi" secondAttribute="top" constant="30" id="D7Z-Oe-z6f"/>
+                                    <constraint firstAttribute="trailing" secondItem="UIw-fd-XbU" secondAttribute="trailing" constant="10" id="DpK-jq-Oeg"/>
+                                    <constraint firstItem="nQY-ub-FDg" firstAttribute="top" secondItem="UIw-fd-XbU" secondAttribute="bottom" constant="15" id="H45-JZ-v0b"/>
+                                    <constraint firstAttribute="trailing" secondItem="nQY-ub-FDg" secondAttribute="trailing" id="MHA-gc-XVJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Uj-jf-HN2" secondAttribute="trailing" id="NPx-m1-e66"/>
+                                    <constraint firstItem="nQY-ub-FDg" firstAttribute="leading" secondItem="C8O-zO-Afi" secondAttribute="leading" id="No9-Y3-llN"/>
+                                    <constraint firstItem="6Uj-jf-HN2" firstAttribute="leading" secondItem="C8O-zO-Afi" secondAttribute="leading" id="U1O-KN-15f"/>
                                     <constraint firstItem="Vwc-9Y-y3b" firstAttribute="centerX" secondItem="C8O-zO-Afi" secondAttribute="centerX" id="ack-kP-i69"/>
+                                    <constraint firstItem="RBp-Kv-10K" firstAttribute="leading" secondItem="C8O-zO-Afi" secondAttribute="leading" id="cQR-ZQ-Rbc"/>
+                                    <constraint firstAttribute="trailing" secondItem="4yH-j1-3N8" secondAttribute="trailing" constant="10" id="eFF-bL-IpF"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="g3S-ac-Z8Q"/>
+                                    <constraint firstItem="UIw-fd-XbU" firstAttribute="leading" secondItem="C8O-zO-Afi" secondAttribute="leading" constant="10" id="uaM-1d-FPc"/>
+                                    <constraint firstItem="UIw-fd-XbU" firstAttribute="top" secondItem="4yH-j1-3N8" secondAttribute="bottom" constant="20" id="w4P-4W-GaR"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -71,6 +131,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Stop Service" id="Sho-ZH-N9F"/>
+                    <connections>
+                        <outlet property="estimatedTimeLabel" destination="UIw-fd-XbU" id="3v6-zD-KSQ"/>
+                        <outlet property="headerMessageLabel" destination="4yH-j1-3N8" id="pyO-85-QiN"/>
+                        <outlet property="stopDateMessagingLabel" destination="Bos-z5-vz8" id="gtC-tj-Qhc"/>
+                        <outlet property="youWillNeedLabel" destination="RBp-Kv-10K" id="kDO-z4-dRK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -96,6 +162,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_isum_list_date" width="36" height="36"/>
         <image name="ic_isum_stop_large_bge" width="125" height="126"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
