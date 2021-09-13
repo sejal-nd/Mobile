@@ -86,6 +86,7 @@ class AccountSheetViewController: UIViewController {
     }
     
     private var accounts = AccountsStore.shared.accounts ?? [Account]()
+    var hasCalledStopService: Bool = false
     
     
     // MARK: - View Life Cycle
@@ -354,7 +355,7 @@ extension AccountSheetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AccountListRow.className, for: indexPath) as! AccountListRow
         let account = accounts[indexPath.row]
-        cell.configure(withAccount: account, indexPath: indexPath, selectedIndexPath: selectedIndexPath, delegate: self)
+        cell.configure(withAccount: account, indexPath: indexPath, selectedIndexPath: selectedIndexPath, delegate: self, hasCalledStopService: hasCalledStopService)
         return cell
     }
 }

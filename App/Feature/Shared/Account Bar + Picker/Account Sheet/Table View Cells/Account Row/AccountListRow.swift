@@ -96,7 +96,7 @@ class AccountListRow: UITableViewCell {
     func configure(withAccount account: Account,
                    indexPath: IndexPath,
                    selectedIndexPath: IndexPath?,
-                   delegate: PremiseSelectDelegate) {
+                   delegate: PremiseSelectDelegate, hasCalledStopService: Bool = false) {
         self.account = account
         self.delegate = delegate
         self.parentIndexPath = indexPath
@@ -163,11 +163,11 @@ class AccountListRow: UITableViewCell {
                 status = "(Inactive)"
             }
             accountNumberText = "\(account.displayName) \(status)"
-            if Configuration.shared.opco.rawValue == "BGE" {
+            if Configuration.shared.opco.rawValue == "BGE" && hasCalledStopService {
                 addressLabel.text = ""
                 accountNumber.textColor = UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5)
                 accountImageView.image = UIImage(named: "ic_residential_mini_1")
-                self.isUserInteractionEnabled = false;
+                self.isUserInteractionEnabled = false
             } else {
                 accountNumber.textColor = .middleGray
                 self.isUserInteractionEnabled = true;
@@ -178,9 +178,11 @@ class AccountListRow: UITableViewCell {
             if Configuration.shared.opco.rawValue == "BGE", let accountStatusCode = account.accountStatusCode, accountStatusCode == "Inactive" {
                 accountNumberText = "\(account.displayName) (\(accountStatusCode))"
                 addressLabel.text = ""
-                accountNumber.textColor = UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5)
-                accountImageView.image = UIImage(named: "ic_residential_mini_1")
-                self.isUserInteractionEnabled = false;
+                if hasCalledStopService {
+                    accountNumber.textColor = UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5)
+                    accountImageView.image = UIImage(named: "ic_residential_mini_1")
+                }
+                self.isUserInteractionEnabled = hasCalledStopService ? false : true;
             } else {
                 accountNumber.textColor = .middleGray
                 self.isUserInteractionEnabled = true;

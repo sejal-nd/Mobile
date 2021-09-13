@@ -114,6 +114,7 @@ class StopServiceViewController: UIViewController {
                 guard self.accounts.count > 1 || self.isMultiPremise,
                       let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() as? AccountSheetViewController else { return }
                 vc.delegate = self
+                vc.hasCalledStopService = true
                 vc.modalPresentationStyle = .overCurrentContext
                 self.present(vc, animated: false, completion: nil)
             }).disposed(by: disposeBag)
