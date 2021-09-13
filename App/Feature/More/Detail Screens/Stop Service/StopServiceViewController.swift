@@ -39,6 +39,7 @@ class StopServiceViewController: UIViewController {
     var disposeBag = DisposeBag()
     let viewModel = StopServiceViewModel()
     var hasChangedData = false
+    var isFirstLoad = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,10 @@ class StopServiceViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        viewModel.getAccountListSubject.onNext(())
+        if isFirstLoad {
+            isFirstLoad = false
+            viewModel.getAccountListSubject.onNext(())
+        }
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

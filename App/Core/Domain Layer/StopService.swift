@@ -9,14 +9,12 @@
 import Foundation
 enum StopService {
     
-    static func fetchWorkdays(completion: @escaping (Result<[String], NetworkingError>) -> ()) {
-        NetworkingLayer.request(router: .workDays) { (result: Result<[String], NetworkingError>) in
-            switch result {
-            case .success(let accounts):
-                completion(.success(accounts))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+    static func fetchWorkdays(addressMrID: String = AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "",
+                              isGasOff: Bool = false,
+                              premiseOperationCenter: String = "",
+                              isStart: Bool = false,
+                              completion: @escaping (Result<WorkdaysResponse, NetworkingError>) -> ()) {
+        let workdaysRequest = WorkdaysRequest(addressMrID: addressMrID, isGasOff: isGasOff, premiseOperationCenter: premiseOperationCenter, isStart: isStart)
+        NetworkingLayer.request(router: .workDays(request: workdaysRequest), completion: completion)
     }
 }

@@ -14,7 +14,7 @@ class StopServiceViewModel {
 
     var getAccountDetailSubject = PublishSubject<Void>()
     var getAccountListSubject = PublishSubject<Void>()
-    var workDays = BehaviorRelay<[String]>(value: [])
+    var workDays = BehaviorRelay<[WorkdaysResponse.WorkDay]>(value: [])
     var selectedDate = BehaviorRelay<Date?>(value: nil)
     var accountDetailEvents: Observable<AccountDetail?> { return currentAccountDetails.asObservable() }
     private var currentAccountDetails = BehaviorRelay<AccountDetail?>(value: nil)
@@ -22,12 +22,14 @@ class StopServiceViewModel {
     var invalidDateAMI = [String]()
     private (set) lazy var showLoadingState: Observable<Bool> = isLoading.asObservable()
     private let isLoading = BehaviorRelay(value: true)
+    private var getWorkdays = PublishSubject<Void>()
 
     init() {
         
         getAccountListSubject
             .toAsyncRequest { AccountService.rx.fetchAccounts() } .subscribe(onNext: { [weak self]_ in
                 self?.getAccountDetailSubject.onNext(())
+                self?.getWorkdays.onNext(())
             }).disposed(by: disposeBag)
 
             
@@ -46,28 +48,32 @@ class StopServiceViewModel {
             }).disposed(by: disposeBag)
 
         
-        StopService.fetchWorkdays { (result: Result<[String], NetworkingError>) in
-            switch result {
-            case .success(let workDays):
-                self.workDays.accept(workDays)
-            case .failure:
-                break
-            }
-        }
+        getWorkdays
+            .toAsyncRequest { [weak self] _ -> Observable<WorkdaysResponse> in
+                
+                guard let `self` = self else { return Observable.empty() }
+                if !self.isLoading.value {
+                    self.isLoading.accept(true)
+                }
+                return StopService.rx.fetchWorkdays()
+            }.subscribe(onNext: { [weak self] result in
+                guard let `self` = self, let workdaysResponse = result.element else {return }
+                self.workDays.accept(workdaysResponse.list)
+            }).disposed(by: disposeBag)
     }
     
     func isValidDate(_ date: Date)-> Bool {
         
         guard let accountDetails = self.currentAccountDetails.value else { return false }
-        let calendarDate = DateFormatter.yyyyMMddFormatter.string(from: date)
+        let calendarDate = DateFormatter.mmDdYyyyFormatter.string(from: date)
         if !accountDetails.isAMIAccount {
-            let firstDay = DateFormatter.yyyyMMddFormatter.string(from: Date())
-            let secondDay = DateFormatter.yyyyMMddFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date())!)
-            let thirdDay = DateFormatter.yyyyMMddFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date())!)
+            let firstDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date())!)
+            let secondDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 2, to: Date())!)
+            let thirdDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 3, to: Date())!)
             if calendarDate == firstDay || calendarDate == secondDay || calendarDate == thirdDay {
                 return false
             }
         }
-        return self.workDays.value.contains("\(calendarDate)T00:00:00.000Z")
+        return self.workDays.value.contains { $0.value == calendarDate}
     }
 }
