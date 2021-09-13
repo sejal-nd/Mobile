@@ -7558,7 +7558,7 @@
 			baseConfigurationReference = 697855185BBFD538A59DA8A8 /* Pods-EUMobile-Watch Extension.bge-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.bge.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.testing.watchkitapp;
@@ -7641,7 +7641,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7644963F9069C1C33201ABD2 /* Pods-EUMobile-Watch Extension.bge-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.bge.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.bge.staging.watchkitapp;
@@ -7767,7 +7767,7 @@
 			baseConfigurationReference = 1B711F2A3540AD1315F0A0DC /* Pods-EUMobile-Watch.bge-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.bge.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.bge.testing;
@@ -7852,7 +7852,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE60CB34CA163B81BF311DAF /* Pods-EUMobile-Watch.bge-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.bge.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7985,7 +7985,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.peco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "5396a42c-0b16-4984-af32-ee9957764960";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
 				BASE_URL = "xze-e-n-eudapi-peco-t-ams-01.azure-api.net";
@@ -8075,7 +8075,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DBE229F6DAA0D7263F768A37 /* Pods-EUMobile.peco-aut.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.peco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -8222,7 +8222,7 @@
 			baseConfigurationReference = F12094DBCBD76241DA6E3231 /* Pods-EUMobile-Watch.peco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.peco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.peco.testing;
@@ -8308,7 +8308,7 @@
 			baseConfigurationReference = ED993B1244451389181057C4 /* Pods-EUMobile-Watch Extension.peco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.peco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.peco.testing.watchkitapp;
@@ -8393,7 +8393,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.peco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.peco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "432a1a21-ccbb-4ee9-b3e3-2480090618f5";
 				ASSOCIATED_DOMAIN = "azstg-secure.peco.com";
 				BASE_URL = mcsstg.mobileenv.peco.com;
@@ -8485,7 +8485,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C9EF509CB69C6BD8BC4BCC3 /* Pods-EUMobile.peco-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.peco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				APP_CENTER_ID = "263b80d6-242b-4962-9a64-01731f98056b";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -8594,7 +8594,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 94D56EE8642BE663AD7AA9EC /* Pods-EUMobile-Watch.peco-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.peco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8636,7 +8636,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9E19773DC10424A6ED7D58B3 /* Pods-EUMobile-Watch Extension.peco-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.peco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.peco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.peco.staging.watchkitapp;
@@ -9247,7 +9247,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.atlanticcityelectric.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "57d12f65-bf2b-40b5-b707-dd8ebe73edfb";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
 				BASE_URL = "xze-e-n-eudapi-ace-t-ams-01.azure-api.net";
@@ -9337,7 +9337,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30FA80756A48AB9DC1934F7A /* Pods-EUMobile.ace-aut.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.atlanticcityelectric.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -9484,7 +9484,7 @@
 			baseConfigurationReference = 7262164C734E2BAB5F8870AF /* Pods-EUMobile-Watch.ace-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.atlanticcityelectric.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.ace.testing;
@@ -9570,7 +9570,7 @@
 			baseConfigurationReference = 82D413914DDDEE3845AF6B48 /* Pods-EUMobile-Watch Extension.ace-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.atlanticcityelectric.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.ace.testing.watchkitapp;
@@ -9655,7 +9655,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.atlanticcityelectric.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.atlanticcityelectric.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "95dc785e-3617-4005-81f4-42ae3e25d65d";
 				ASSOCIATED_DOMAIN = "azstg-secure.atlanticcityelectric.com";
 				BASE_URL = mcsstg.mobileenv.atlanticcityelectric.com;
@@ -9747,7 +9747,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24A26F01575E0A81574F9B67 /* Pods-EUMobile.ace-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.atlanticcityelectric.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				APP_CENTER_ID = "236e33d9-c10a-4dae-92d8-75c3f0b41450";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -9857,7 +9857,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2970025E51E4A6B5E1D1ED99 /* Pods-EUMobile-Watch.ace-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.atlanticcityelectric.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9899,7 +9899,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 850912589FDDEB8CCDC52095 /* Pods-EUMobile-Watch Extension.ace-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.atlanticcityelectric.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.atlanticcityelectric.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.ace.staging.watchkitapp;
@@ -10512,7 +10512,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.delmarva.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "6180db89-0219-4878-98c5-51f0e334f8fe";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
 				BASE_URL = "xze-e-n-eudapi-dpl-t-ams-01.azure-api.net";
@@ -10602,7 +10602,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8601B9200263DE0DFF4528CC /* Pods-EUMobile.delmarva-aut.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.delmarva.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -10749,7 +10749,7 @@
 			baseConfigurationReference = 9FF2F983CC65F2076F1692C5 /* Pods-EUMobile-Watch.delmarva-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.delmarva.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing;
@@ -10835,7 +10835,7 @@
 			baseConfigurationReference = 7D11661D59DF180131F2A40A /* Pods-EUMobile-Watch Extension.delmarva-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.delmarva.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.delmarva.testing.watchkitapp;
@@ -10920,7 +10920,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.delmarva.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.delmarva.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "8b361cdc-3267-42de-91d0-b1bae6342067";
 				ASSOCIATED_DOMAIN = "azstg-secure.delmarva.com";
 				BASE_URL = mcsstg.mobileenv.delmarva.com;
@@ -11012,7 +11012,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EC7969E0A5F7924698395552 /* Pods-EUMobile.delmarva-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.delmarva.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				APP_CENTER_ID = "ee9f1ca8-fe59-4c5f-80d3-ebcef6ae7168";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -11122,7 +11122,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34D5D8773E8D72600EFCF9F9 /* Pods-EUMobile-Watch.delmarva-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.delmarva.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -11164,7 +11164,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B0127D91530943199AC1B6B /* Pods-EUMobile-Watch Extension.delmarva-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.delmarva.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.delmarva.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.delmarva.staging.watchkitapp;
@@ -11777,7 +11777,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.pepco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "0962af30-9abf-4ac5-92fa-358fbbe101af";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
 				BASE_URL = "xze-e-n-eudapi-pepco-t-ams-01.azure-api.net";
@@ -11867,7 +11867,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 76268D74E667D234121B2A16 /* Pods-EUMobile.pepco-aut.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.pepco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -12014,7 +12014,7 @@
 			baseConfigurationReference = 00EEF1DB7F3DD4C93D1C8532 /* Pods-EUMobile-Watch.pepco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.pepco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing;
@@ -12100,7 +12100,7 @@
 			baseConfigurationReference = A41C34AF96B6708AB6F0BF98 /* Pods-EUMobile-Watch Extension.pepco-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.pepco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.pepco.testing.watchkitapp;
@@ -12185,7 +12185,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.pepco.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.pepco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "48d86d61-5d68-4757-92db-9c3996f5bc18";
 				ASSOCIATED_DOMAIN = "azstg-secure.pepco.com";
 				BASE_URL = mcsstg.mobileenv.pepco.com;
@@ -12277,7 +12277,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5EAD472E49BC6B15EA1BB719 /* Pods-EUMobile.pepco-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.pepco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				APP_CENTER_ID = "7f015d81-de56-4f18-a90d-d17a93ee65d4";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -12387,7 +12387,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB7CA6327A54535477F5B485 /* Pods-EUMobile-Watch.pepco-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.pepco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -12429,7 +12429,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2FA4E3C94BF52FE7EEB2C520 /* Pods-EUMobile-Watch Extension.pepco-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.pepco.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.pepco.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.pepco.staging.watchkitapp;
@@ -13042,7 +13042,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.comed.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "10cbbd03-c59b-4a65-ad28-bd1f289cd329";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
 				BASE_URL = "xze-e-n-eudapi-comed-t-ams-01.azure-api.net";
@@ -13132,7 +13132,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE2CD0FB94EBF7FB32F742B0 /* Pods-EUMobile.comed-aut.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.comed.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -13279,7 +13279,7 @@
 			baseConfigurationReference = 16663E1A946C593658B029ED /* Pods-EUMobile-Watch.comed-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.comed.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID = com.exelon.mobile.comed.testing;
@@ -13365,7 +13365,7 @@
 			baseConfigurationReference = 385CB5E1682E397F6854E3B4 /* Pods-EUMobile-Watch Extension.comed-aut.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.comed.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.testing.watchkitapp;
@@ -13450,7 +13450,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.comed.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.comed.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "bf4bfe55-3dfd-423b-acfa-32ef84b3776c";
 				ASSOCIATED_DOMAIN = "azstg-secure.comed.com";
 				BASE_URL = mcsstg.mobileenv.comed.com;
@@ -13542,7 +13542,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F6937A8758EFD1E596A9A04F /* Pods-EUMobile.comed-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.comed.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				APP_CENTER_ID = "3c531e04-e7cc-44c0-96e3-5a67f815484a";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -13651,7 +13651,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 431E8E7552EFD5BBEC6673DC /* Pods-EUMobile-Watch.comed-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.comed.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -13693,7 +13693,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F4B8009FB41AC05E0B70C86 /* Pods-EUMobile-Watch Extension.comed-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.comed.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.comed.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				BUNDLE_ID = com.exelon.mobile.comed.staging.watchkitapp;
@@ -14304,7 +14304,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.bge.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "5555b456-47b1-4288-b4d4-c6cf44b15fb9";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
 				BASE_URL = "xze-e-n-eudapi-bge-t-ams-01.azure-api.net";
@@ -14394,7 +14394,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F11238B3B4D3CC678A7812DA /* Pods-EUMobile.bge-aut.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.bge.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
@@ -14673,7 +14673,7 @@
 			buildSettings = {
 				ACCOUNT_URL = "https://azstage.bge.com/MyAccount";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANON_ASSOCIATED_DOMAIN = azstg.bge.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "3bf3242e-af11-4b1e-9242-99dce77bbbc8";
 				ASSOCIATED_DOMAIN = "azstg-secure.bge.com";
 				BASE_URL = mcsstg.mobileenv.bge.com;
@@ -14765,7 +14765,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0BA01FDC771112716F0452A5 /* Pods-EUMobile.bge-beta.xcconfig */;
 			buildSettings = {
-				ANON_ASSOCIATED_DOMAIN = azstg.bge.com;
+				ANON_ASSOCIATED_DOMAIN = azstage.bge.com;
 				APP_CENTER_ID = "d63492ab-45ec-4d90-9e5a-963fa127e697";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-$(ENVIRONMENT_TIER)";
 				CODE_SIGN_ENTITLEMENTS = "App/Supporting Files/entitlements.entitlements";
