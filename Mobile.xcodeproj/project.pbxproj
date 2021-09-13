@@ -30,6 +30,10 @@
 		22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
 		22EF55982170507700070C13 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF55962170507700070C13 /* AppointmentDetailViewController.swift */; };
 		22EF559B2170507700070C13 /* AppointmentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22EF55972170507700070C13 /* AppointmentDetailViewController.xib */; };
+		282B4F7326E7469500ACD33C /* StopLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282B4F7226E7469500ACD33C /* StopLandingViewController.swift */; };
+		282B4F7626E7488200ACD33C /* MoveLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282B4F7526E7488200ACD33C /* MoveLandingViewController.swift */; };
+		282B4F7A26E7490400ACD33C /* ISUMStop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 282B4F7926E7490400ACD33C /* ISUMStop.storyboard */; };
+		282B4F7C26E7817F00ACD33C /* ISUMMove.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */; };
 		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		2FA5D85F1F17D2A300A8B16B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D8631F17D88500A8B16B /* HomeViewController.swift */; };
@@ -1325,6 +1329,10 @@
 		26237AD67F36995251A3B14F /* Pods-EUMobile.prod-ace.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prod-ace.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prod-ace.xcconfig"; sourceTree = "<group>"; };
 		2686E2F920A0417F76329129 /* Pods-EUMobileUITests.production-pepco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobileUITests.production-pepco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobileUITests/Pods-EUMobileUITests.production-pepco.xcconfig"; sourceTree = "<group>"; };
 		277650B6F85C6AC146C5F8C2 /* Pods_EUMobile_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EUMobile_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		282B4F7226E7469500ACD33C /* StopLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLandingViewController.swift; sourceTree = "<group>"; };
+		282B4F7526E7488200ACD33C /* MoveLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLandingViewController.swift; sourceTree = "<group>"; };
+		282B4F7926E7490400ACD33C /* ISUMStop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ISUMStop.storyboard; sourceTree = "<group>"; };
+		282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ISUMMove.storyboard; sourceTree = "<group>"; };
 		2887DEDAAA436EDBF2C6824D /* Pods-EUMobile.testing-comed.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.testing-comed.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.testing-comed.xcconfig"; sourceTree = "<group>"; };
 		2927C28A32D9774AEE49E95B /* Pods-EUMobile.prod-peco.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile.prod-peco.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile/Pods-EUMobile.prod-peco.xcconfig"; sourceTree = "<group>"; };
 		2970025E51E4A6B5E1D1ED99 /* Pods-EUMobile-Watch.ace-beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EUMobile-Watch.ace-beta.xcconfig"; path = "Pods/Target Support Files/Pods-EUMobile-Watch/Pods-EUMobile-Watch.ace-beta.xcconfig"; sourceTree = "<group>"; };
@@ -3009,6 +3017,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		282B4F7426E746A500ACD33C /* StartStopMove */ = {
+			isa = PBXGroup;
+			children = (
+				282B4F7726E7489200ACD33C /* Stop */,
+				282B4F7826E7489D00ACD33C /* Move */,
+			);
+			path = StartStopMove;
+			sourceTree = "<group>";
+		};
+		282B4F7726E7489200ACD33C /* Stop */ = {
+			isa = PBXGroup;
+			children = (
+				282B4F7926E7490400ACD33C /* ISUMStop.storyboard */,
+				282B4F7226E7469500ACD33C /* StopLandingViewController.swift */,
+			);
+			path = Stop;
+			sourceTree = "<group>";
+		};
+		282B4F7826E7489D00ACD33C /* Move */ = {
+			isa = PBXGroup;
+			children = (
+				282B4F7526E7488200ACD33C /* MoveLandingViewController.swift */,
+				282B4F7B26E7817F00ACD33C /* ISUMMove.storyboard */,
+			);
+			path = Move;
+			sourceTree = "<group>";
+		};
 		30636F0624C82EBD00CCBFAE /* OpcoIdentityCardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3142,6 +3177,7 @@
 				352B8D73230D70CF007F8CEE /* Contact Us */,
 				E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */,
 				9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */,
+				282B4F7426E746A500ACD33C /* StartStopMove */,
 			);
 			path = "Detail Screens";
 			sourceTree = "<group>";
@@ -5921,6 +5957,7 @@
 				C3381A062424064100EA7062 /* PTRWidget.html in Resources */,
 				67A986E024FD41A100BD46E7 /* Assets-FlavorPEPCO.xcassets in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
+				282B4F7A26E7490400ACD33C /* ISUMStop.storyboard in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				679CC72E2500041F00A46BBE /* landing_video-FlavorDPL.mp4 in Resources */,
 				C338282724E30B0600F133C5 /* PeakRewardsSummaryMock.json in Resources */,
@@ -5953,6 +5990,7 @@
 				35C9139F22E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
 				674A113B25223E1000AF0D38 /* LaunchScreen-FlavorPECO.storyboard in Resources */,
 				301DE1F624BF0A7300992CA4 /* Assets.xcassets in Resources */,
+				282B4F7C26E7817F00ACD33C /* ISUMMove.storyboard in Resources */,
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				E8B8C8481F9E358F005828B0 /* SERPTSGraphView.xib in Resources */,
 				67A986A624F9693300BD46E7 /* Appt_Inprogress-FlavorPECO.json in Resources */,
@@ -6909,6 +6947,7 @@
 				675F4CD224AB828200A828F9 /* BillingHistoryResult.swift in Sources */,
 				35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */,
 				67893BC724E318D1000143D6 /* String+DateParser.swift in Sources */,
+				282B4F7626E7488200ACD33C /* MoveLandingViewController.swift in Sources */,
 				675F4CC024AB828200A828F9 /* HomeProfile.swift in Sources */,
 				675F4B6424AB828100A828F9 /* AnonymousService.swift in Sources */,
 				E873DA751EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
@@ -6920,6 +6959,7 @@
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				B05E9D13217F688A0003FAB8 /* Application.swift in Sources */,
 				67F950FE24BCA111009B5F07 /* RegistrationSecurityQuestionsViewControllerNew.swift in Sources */,
+				282B4F7326E7469500ACD33C /* StopLandingViewController.swift in Sources */,
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				3559C8BA23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
