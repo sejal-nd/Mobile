@@ -22,7 +22,7 @@ def iOS_pods
 end
 
 def iOS_UnitTestPods
-  pod 'RxTest', '5.1.0'
+
 end
 
 def iOS_UITestPods
@@ -30,22 +30,22 @@ def iOS_UITestPods
 end
 
 target 'EUMobile' do
-  platform :ios, '12.0'
+  platform :ios, '14.1'
   use_frameworks!
   iOS_pods
   shared_pods
 end
 
-target 'EUMobileUnitTests' do
-  platform :ios, '12.0'
+target 'UnitTests' do
+  platform :ios, '14.1'
   use_frameworks!
     iOS_UnitTestPods
     iOS_pods
     shared_pods
 end
 
-target 'EUMobileUITests' do
-  platform :ios, '12.0'
+target 'UITests' do
+  platform :ios, '14.1'
   use_frameworks!
     iOS_UITestPods
     iOS_pods
@@ -53,12 +53,12 @@ target 'EUMobileUITests' do
 end
 
 target 'EUMobile-Watch' do
-  platform :watchos, '4.0'
+  platform :watchos, '7.0'
   use_frameworks!
 end
 
 target 'EUMobile-Watch Extension' do
-  platform :watchos, '4.0'
+  platform :watchos, '7.0'
   use_frameworks!
 
   shared_pods
