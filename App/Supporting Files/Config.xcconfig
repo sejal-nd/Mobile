@@ -1,0 +1,22 @@
+//
+//  Config.xcconfig
+//  Mobile
+//
+//  Created by Joseph Erlandson on 9/10/21.
+//  Copyright © 2021 Exelon Corporation. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+
+// App Version Number - This will need to manually be changed each release
+
+BGE_VERSION = 2.14.1
+PECO_VERSION = 2.14.1
+COMED_VERSION = 10.14.1
+ACE_VERSION = 5.14.1
+DPL_VERSION = 5.14.1
+PEPCO_VERSION = 5.14.1
+
+APP_VERSION = $($(BUILD_FLAVOR)_VERSION)
