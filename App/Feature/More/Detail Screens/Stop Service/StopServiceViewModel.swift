@@ -23,11 +23,14 @@ class StopServiceViewModel {
     private (set) lazy var showLoadingState: Observable<Bool> = isLoading.asObservable()
     private let isLoading = BehaviorRelay(value: true)
     private var getWorkdays = PublishSubject<Void>()
+    private var currentAccountIndex = 0
 
     init() {
         
+        currentAccountIndex = AccountsStore.shared.currentIndex
         getAccountListSubject
-            .toAsyncRequest { AccountService.rx.fetchAccounts() } .subscribe(onNext: { [weak self]_ in
+            .toAsyncRequest { AccountService.rx.fetchAccounts() } .subscribe(onNext: { [weak self] _ in
+                AccountsStore.shared.currentIndex = self?.currentAccountIndex ?? 0
                 self?.getAccountDetailSubject.onNext(())
                 self?.getWorkdays.onNext(())
             }).disposed(by: disposeBag)

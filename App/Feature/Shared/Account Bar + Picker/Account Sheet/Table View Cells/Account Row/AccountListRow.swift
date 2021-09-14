@@ -102,6 +102,7 @@ class AccountListRow: UITableViewCell {
         self.parentIndexPath = indexPath
         
         // Mutli Premise
+        accountNumber.textColor = .blackText
         if account.isMultipremise {
             configureTableView()
             
@@ -159,9 +160,6 @@ class AccountListRow: UITableViewCell {
             accountNumberText = "\(account.displayName) (Default)"
         } else if account.isFinaled {
             var status = Configuration.shared.opco.isPHI ? "(Inactive)" : "(Finaled)"
-            if Configuration.shared.opco.rawValue == "BGE", let accountStatusCode = account.accountStatusCode, accountStatusCode == "Inactive" {
-                status = "(Inactive)"
-            }
             accountNumberText = "\(account.displayName) \(status)"
             if Configuration.shared.opco.rawValue == "BGE" && hasCalledStopService {
                 addressLabel.text = ""
@@ -169,7 +167,6 @@ class AccountListRow: UITableViewCell {
                 accountImageView.image = UIImage(named: "ic_residential_mini_1")
                 self.isUserInteractionEnabled = false
             } else {
-                accountNumber.textColor = .middleGray
                 self.isUserInteractionEnabled = true;
             }
         } else if account.isLinked {
@@ -184,7 +181,6 @@ class AccountListRow: UITableViewCell {
                 }
                 self.isUserInteractionEnabled = hasCalledStopService ? false : true;
             } else {
-                accountNumber.textColor = .middleGray
                 self.isUserInteractionEnabled = true;
                 accountNumberText = account.displayName
             }

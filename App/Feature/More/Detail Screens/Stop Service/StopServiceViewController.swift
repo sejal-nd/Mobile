@@ -123,11 +123,11 @@ class StopServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 if self.billAddressSegmentControl.selectedIndex.value == 0 {
-                    let storyboard = UIStoryboard(name: "More", bundle: nil)
+                    let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                     let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewStopServiceViewController") as! ReviewStopServiceViewController
                     self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
                 } else {
-                    let storyboard = UIStoryboard(name: "More", bundle: nil)
+                    let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                     let finalMailingAddressViewController = storyboard.instantiateViewController(withIdentifier: "FinalMailingAddressViewController") as! FinalMailingAddressViewController
                     self.navigationController?.pushViewController(finalMailingAddressViewController, animated: true)
 
@@ -139,10 +139,18 @@ class StopServiceViewController: UIViewController {
             .compactMap { $0 }
             .subscribe(onNext: { [weak self] accountDetails in
                 LoadingView.hide()
-                self?.currentServiceAddressLabel.text = accountDetails.address
                 self?.electricStackView.isHidden = !(accountDetails.serviceType?.contains("ELECTRIC") ?? false)
                 self?.gasStackView.isHidden = !(accountDetails.serviceType?.contains("GAS") ?? false)
                 self?.finalBillStackView.isHidden = accountDetails.isEBillEnrollment
+                self?.currentAccount = AccountsStore.shared.currentAccount
+                if let currPremise = self?.currentAccount?.currentPremise, let address = currPremise.addressGeneral {
+                    self?.currentServiceAddressLabel.text = address
+                } else if let address = self?.currentAccount?.address {
+                    self?.currentServiceAddressLabel.text = address
+                } else {
+                    self?.currentServiceAddressLabel.text = ""
+                }
+
             })
             .disposed(by: disposeBag)
         
