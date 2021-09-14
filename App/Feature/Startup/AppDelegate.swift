@@ -375,11 +375,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if topmostVC is MaintenanceModeViewController { return } // Don't present again
                 
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
-                let vc = maintenanceStoryboard.instantiateInitialViewController() as! MaintenanceModeViewController
-                vc.maintenance = maintenanceInfo
-                vc.modalPresentationStyle = .fullScreen
+                let navVC = maintenanceStoryboard.instantiateInitialViewController() as! UINavigationController
+                let mmVC = navVC.viewControllers.first as! MaintenanceModeViewController
+                mmVC.maintenance = maintenanceInfo
+                mmVC.modalPresentationStyle = .fullScreen
                 
-                topmostVC.present(vc, animated: true, completion: nil)
+                topmostVC.present(navVC, animated: true, completion: nil)
             }
         }
     }
