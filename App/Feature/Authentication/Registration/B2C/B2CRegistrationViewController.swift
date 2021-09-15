@@ -13,7 +13,10 @@ class B2CRegistrationViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var errorImage: UIImageView!
+    @IBOutlet weak var errorTitle: UILabel!
+    @IBOutlet weak var errorDescription: UILabel!
     
     weak var delegate: RegistrationViewControllerDelegate?
     
@@ -29,9 +32,12 @@ class B2CRegistrationViewController: UIViewController {
         webView.navigationDelegate = self
         webView.isHidden = true
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .blackText
-        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorImage.tintColor = .attentionOrange
+        errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
+        errorTitle.textColor = .deepGray
+        errorDescription.font = SystemFont.regular.of(textStyle: .footnote)
+        errorDescription.textColor = .deepGray
+        errorView.isHidden = true
         
         fetchJWT()
     }
@@ -47,12 +53,12 @@ class B2CRegistrationViewController: UIViewController {
             switch result {
             case .success(let token):
                 guard let self = self else { return }
-                self.errorLabel.isHidden = true
+                self.errorView.isHidden = true
                 
                 self.loadWebView(token: token)
             case .failure:
                 guard let self = self else { return }
-                self.errorLabel.isHidden = false
+                self.errorView.isHidden = false
                 self.loadingIndicator.isHidden = true
             }
         }
@@ -78,7 +84,7 @@ extension B2CRegistrationViewController: WKNavigationDelegate {
             success()
         } else if let urlString = webView.url?.absoluteString,
                   urlString.contains("SelfAsserted/error") {
-            self.errorLabel.isHidden = false
+            self.errorView.isHidden = false
             self.loadingIndicator.isHidden = true
             self.webView.isHidden = true
         }
@@ -90,7 +96,7 @@ extension B2CRegistrationViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        errorLabel.isHidden = false
+        errorView.isHidden = false
         loadingIndicator.isHidden = true
         webView.isHidden = true
     }
