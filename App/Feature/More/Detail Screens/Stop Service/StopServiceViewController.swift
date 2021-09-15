@@ -57,8 +57,9 @@ class StopServiceViewController: UIViewController {
     
     func intialUIBiding() {
         
+        addCloseButton()
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_back"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(StopServiceViewController.back(sender:)))
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "ic_close"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(StopServiceViewController.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
         self.scrollView.isHidden = true
         
@@ -92,13 +93,18 @@ class StopServiceViewController: UIViewController {
                 self.view.endEditing(true)
                 
                 let calendarVC = PDTSimpleCalendarViewController()
-                calendarVC.extendedLayoutIncludesOpaqueBars = true
                 calendarVC.calendar = .opCo
                 calendarVC.delegate = self
                 calendarVC.firstDate = Calendar.current.date(byAdding: .month, value: 0, to: Calendar.current.startOfDay(for: .now))
                 calendarVC.lastDate = Calendar.current.date(byAdding: .month, value: 1, to: Calendar.current.startOfDay(for: .now))
                 calendarVC.scroll(toSelectedDate: true)
-                
+                calendarVC.weekdayHeaderEnabled = true
+                calendarVC.weekdayTextType = PDTSimpleCalendarViewWeekdayTextType.veryShort
+
+                if let selectedDate = self.viewModel.selectedDate.value {
+                    calendarVC.selectedDate = Calendar.opCo.startOfDay(for: selectedDate)
+                }
+
                 let navigationController = LargeTitleNavigationController(rootViewController: calendarVC)
                 navigationController.setNavigationBarHidden(false, animated: false)
                 calendarVC.navigationItem.title = "Select Stop Date"
@@ -155,16 +161,20 @@ class StopServiceViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.selectedDate
-            .filter { $0 != nil }
-            .compactMap { $0 }
+//            .filter { $0 != nil }
+//            .compactMap { $0 }
             .subscribe(onNext: { [weak self] date in
-                self?.selectedDateLabel.text = DateFormatter.MMddyyyyFormatter.string(from: date)
-                self?.dateStackView.isHidden = false
-                self?.stopDateLabel.isHidden = true
+                var hasSelectedDate = date == nil ? false : true
+                self?.dateStackView.isHidden = !hasSelectedDate
+                self?.stopDateLabel.isHidden = hasSelectedDate
                 
-                self?.continueButton.isUserInteractionEnabled = true
-                self?.continueButton.backgroundColor = UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0)
-                self?.continueButton.setTitleColor(UIColor.white, for: .normal)
+                self?.continueButton.isUserInteractionEnabled = hasSelectedDate
+                self?.continueButton.backgroundColor = hasSelectedDate ? UIColor(red: 0, green: 89.0/255.0, blue: 164.0/255.0, alpha: 1.0) : UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
+                self?.continueButton.setTitleColor(hasSelectedDate ? UIColor.white : UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 0.5), for: .normal)
+
+                if let selectedDate = date {
+                    self?.selectedDateLabel.text = DateFormatter.MMddyyyyFormatter.string(from: selectedDate)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -175,12 +185,7 @@ class StopServiceViewController: UIViewController {
             let exitAction = UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default)
             { [weak self] _ in
                 guard let `self` = self else { return }
-                for controller in self.navigationController!.viewControllers as Array {
-                    if controller.isKind(of: MoreViewController.self) {
-                        self.navigationController!.popToViewController(controller, animated: true)
-                        break
-                    }
-                }
+                self.dismiss(animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
             presentAlert(title: NSLocalizedString("Do you want to exit?", comment: ""),
@@ -188,7 +193,7 @@ class StopServiceViewController: UIViewController {
                          style: .alert,
                          actions: [cancelAction, exitAction])
         } else {
-            self.navigationController?.popViewController(animated: true)
+            dismiss(animated: true, completion: nil)
         }
     }
 }
@@ -208,6 +213,7 @@ extension StopServiceViewController: AccountSelectDelegate {
             AccountsStore.shared.accounts[selectedAccountIndex].currentPremise = AccountsStore.shared.currentAccount.premises[premiseIndexPath.row]
         }
         viewModel.getAccountDetailSubject.onNext(())
+        viewModel.selectedDate.accept(nil)
     }
 }
 

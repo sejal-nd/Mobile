@@ -27,10 +27,14 @@ class StopServiceViewModel {
 
     init() {
         
-        currentAccountIndex = AccountsStore.shared.currentIndex
+        if AccountsStore.shared.currentIndex != nil {
+            currentAccountIndex = AccountsStore.shared.currentIndex
+        }
         getAccountListSubject
-            .toAsyncRequest { AccountService.rx.fetchAccounts() } .subscribe(onNext: { [weak self] _ in
-                AccountsStore.shared.currentIndex = self?.currentAccountIndex ?? 0
+            .toAsyncRequest { AccountService.rx.fetchAccounts() } .subscribe(onNext: { [weak self] result in
+                if AccountsStore.shared.accounts != nil {
+                    AccountsStore.shared.currentIndex = self?.currentAccountIndex ?? 0
+                }
                 self?.getAccountDetailSubject.onNext(())
                 self?.getWorkdays.onNext(())
             }).disposed(by: disposeBag)
@@ -43,7 +47,10 @@ class StopServiceViewModel {
                 if !self.isLoading.value {
                     self.isLoading.accept(true)
                 }
-                return AccountService.rx.fetchAccountDetails()
+                if AccountsStore.shared.accounts != nil {
+                    return AccountService.rx.fetchAccountDetails()
+                }
+                return Observable.empty()
             }.subscribe(onNext: { [weak self] result in
                 guard let `self` = self, let accountDetails = result.element else {return }
                 self.currentAccountDetails.accept(accountDetails)
@@ -70,9 +77,9 @@ class StopServiceViewModel {
         guard let accountDetails = self.currentAccountDetails.value else { return false }
         let calendarDate = DateFormatter.mmDdYyyyFormatter.string(from: date)
         if !accountDetails.isAMIAccount {
-            let firstDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date())!)
-            let secondDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 2, to: Date())!)
-            let thirdDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 3, to: Date())!)
+            let firstDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 0, to: Date())!)
+            let secondDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 1, to: Date())!)
+            let thirdDay = DateFormatter.mmDdYyyyFormatter.string(from: Calendar.opCo.date(byAdding: .day, value: 2, to: Date())!)
             if calendarDate == firstDay || calendarDate == secondDay || calendarDate == thirdDay {
                 return false
             }
