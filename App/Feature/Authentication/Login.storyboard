@@ -4392,7 +4392,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <segue reference="k3X-XL-dO6"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="error" width="98" height="98"/>
+        <image name="error" width="120" height="120"/>
         <image name="ic_check" width="13" height="10"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_eyeball_disabled" width="24" height="24"/>

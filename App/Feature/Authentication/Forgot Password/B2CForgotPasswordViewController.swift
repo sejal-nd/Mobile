@@ -30,10 +30,10 @@ class B2CForgotPasswordViewController: UIViewController {
         webView.isHidden = true
         
         errorImage.tintColor = .attentionOrange
-        errorTitle.font = SystemFont.regular.of(textStyle: .title2)
-        errorTitle.textColor = .darkText
+        errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
+        errorTitle.textColor = .deepGray
         errorDescription.font = SystemFont.regular.of(textStyle: .footnote)
-        errorDescription.textColor = .darkText
+        errorDescription.textColor = .deepGray
         errorView.isHidden = true
         
         loadWebView()
