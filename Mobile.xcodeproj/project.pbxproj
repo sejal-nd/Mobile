@@ -3013,6 +3013,10 @@
 		282B4F7726E7489200ACD33C /* Stop */ = {
 			isa = PBXGroup;
 			children = (
+				4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */,
+				4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */,
+				4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */,
+				4AE3467D26E8C78200F4155C /* ReviewStopServiceViewController.swift */,
 				282B4F7926E7490400ACD33C /* ISUMStop.storyboard */,
 				282B4F7226E7469500ACD33C /* StopLandingViewController.swift */,
 			);
@@ -3149,7 +3153,6 @@
 		352B8D72230D70BD007F8CEE /* Detail Screens */ = {
 			isa = PBXGroup;
 			children = (
-				4A631A8326E11A5B006C3ACA /* Stop Service */,
 				3090A63D247F8EAF00815EA1 /* EditAccountNickName */,
 				3559C89A22F9C54000481A87 /* Appointments */,
 				352B8D71230D70B5007F8CEE /* Alerts */,
@@ -4082,17 +4085,6 @@
 				6724801E25D44A380024467D /* PreviewData.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		4A631A8326E11A5B006C3ACA /* Stop Service */ = {
-			isa = PBXGroup;
-			children = (
-				4A631A8426E11A84006C3ACA /* StopServiceViewController.swift */,
-				4A631A8626E11AA0006C3ACA /* StopServiceViewModel.swift */,
-				4AE3467B26E8C76900F4155C /* FinalMailingAddressViewController.swift */,
-				4AE3467D26E8C78200F4155C /* ReviewStopServiceViewController.swift */,
-			);
-			path = "Stop Service";
 			sourceTree = "<group>";
 		};
 		67247F0025D2D71E0024467D /* Controllers */ = {
