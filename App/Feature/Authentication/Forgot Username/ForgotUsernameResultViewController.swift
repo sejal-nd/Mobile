@@ -84,6 +84,14 @@ class ForgotUsernameResultViewController: UIViewController {
         }
         
         answerSecurityQuestionButton.setTitle(FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) ? "Done" : "Answer Security Question", for: .normal)
+        
+        if FeatureFlagUtility.shared.bool(forKey: .isAzureAuthentication) {
+            selectLabel.text = ""
+            topLabel1.text = ""
+            topLabel2.text = ""
+            topLabel3.text = NSLocalizedString("We found multiple accounts based on the information you gave us.", comment: "")
+            signInButton.isHidden = true
+        }
     }
     
     func styleTopLabels() {
