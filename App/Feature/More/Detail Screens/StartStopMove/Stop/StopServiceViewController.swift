@@ -36,6 +36,7 @@ class StopServiceViewController: UIViewController {
         return accounts.contains { $0.isMultipremise }
     }
     var currentAccount: Account?
+    var currentAccountDeatil: AccountDetail?
     var disposeBag = DisposeBag()
     let viewModel = StopServiceViewModel()
     var hasChangedData = false
@@ -129,8 +130,11 @@ class StopServiceViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 if self.billAddressSegmentControl.selectedIndex.value == 0 {
+                    guard let selectedDate = self.viewModel.selectedDate.value, let currentPremise = AccountsStore.shared.currentAccount.currentPremise, let accountDetails = self.currentAccountDeatil else { return }
+                    let stopFlowData = StopServiceFlowData(workDays: self.viewModel.workDays.value, selectedDate: selectedDate, currentPremise: currentPremise, currentAccount: AccountsStore.shared.currentAccount, currentAccountDetail: accountDetails, hasCurrentServiceAddressForEbill: self.billAddressSegmentControl.selectedIndex.value == 0)
                     let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
                     let reviewStopServiceViewController = storyboard.instantiateViewController(withIdentifier: "ReviewStopServiceViewController") as! ReviewStopServiceViewController
+                    reviewStopServiceViewController.stopFlowData = stopFlowData
                     self.navigationController?.pushViewController(reviewStopServiceViewController, animated: true)
                 } else {
                     let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
@@ -145,6 +149,7 @@ class StopServiceViewController: UIViewController {
             .compactMap { $0 }
             .subscribe(onNext: { [weak self] accountDetails in
                 LoadingView.hide()
+                self?.currentAccountDeatil = accountDetails
                 self?.electricStackView.isHidden = !(accountDetails.serviceType?.contains("ELECTRIC") ?? false)
                 self?.gasStackView.isHidden = !(accountDetails.serviceType?.contains("GAS") ?? false)
                 self?.finalBillStackView.isHidden = accountDetails.isEBillEnrollment
