@@ -72,6 +72,8 @@ class B2CRegistrationViewController: UIViewController {
     }
     
     private func success() {
+        GoogleAnalytics.log(event: .registerAccountComplete)
+        
         delegate?.registrationViewControllerDidRegister(self)
         dismiss(animated: true, completion: nil)
     }

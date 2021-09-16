@@ -28,6 +28,8 @@ class B2CForgotPasswordViewController: UIViewController {
         
         webView.navigationDelegate = self
         webView.isHidden = true
+        // Observe JS for analytics
+        webView.configuration.userContentController.add(self, name: "firebase")
         
         errorImage.tintColor = .attentionOrange
         errorTitle.font = SystemFont.semibold.of(textStyle: .title3)
@@ -75,5 +77,21 @@ extension B2CForgotPasswordViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.loadingIndicator.isHidden = true
         webView.isHidden = false
+    }
+}
+
+// MARK: Analytics
+
+extension B2CForgotPasswordViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController,
+                               didReceive message: WKScriptMessage) {
+        guard let body = message.body as? [String: Any],
+              let command = body["command"] as? String,
+              let name = body["name"] as? String else { return }
+        
+        if command == "logEvent",
+           name == "ForgotPWDComplete" {
+            GoogleAnalytics.log(event: .forgotPasswordComplete)
+        }
     }
 }
