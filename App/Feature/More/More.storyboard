@@ -103,7 +103,7 @@
                         <segue destination="Z3X-lP-vFg" kind="show" identifier="appointmentsSegue" id="0RI-Jn-6zB"/>
                         <segue destination="UIb-7z-3ok" kind="show" identifier="energyBuddySegue" id="Vcb-HZ-KXB"/>
                         <segue destination="eT5-Kx-SqK" kind="show" identifier="editAccountNicknameSegue" id="mIW-jA-D3y"/>
-                        <segue destination="lLF-sC-Dqz" kind="show" identifier="stopServiceSegue" id="bh0-Uq-aCg"/>
+                        <segue destination="lLF-sC-Dqz" kind="presentation" identifier="stopServiceSegue" modalPresentationStyle="fullScreen" id="bh0-Uq-aCg"/>
                         <segue destination="cnK-aM-W1s" kind="show" identifier="moveServiceSegue" id="d44-fv-cIx"/>
                     </connections>
                 </viewController>
