@@ -463,10 +463,6 @@ class RegistrationViewModel {
     private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
         let driverArray: [Driver<String>]
         let count: Int
-<<<<<<< HEAD
-=======
-        
->>>>>>> release
         driverArray = [self.securityAnswer1.asDriver(),
                        self.securityAnswer2.asDriver()]
         count = 2
