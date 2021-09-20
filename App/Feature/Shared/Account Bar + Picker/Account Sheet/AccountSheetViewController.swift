@@ -355,7 +355,7 @@ extension AccountSheetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AccountListRow.className, for: indexPath) as! AccountListRow
         let account = accounts[indexPath.row]
-        cell.configure(withAccount: account, indexPath: indexPath, selectedIndexPath: selectedIndexPath, delegate: self, hasCalledStopService: hasCalledStopService)
+        cell.configure(withAccount: account, indexPath: indexPath, selectedIndexPath: selectedIndexPath, delegate: self, hasCalledStopService: FeatureFlagUtility.shared.bool(forKey: .hasAuthenticatedISUM) ? hasCalledStopService : false)
         return cell
     }
 }
