@@ -480,8 +480,8 @@ class HomeBillCardViewModel {
     
     // MARK: - Assistance View States
     private(set) lazy var paymentAssistanceValues: Driver<(title: String, description: String, ctaType: String, ctaURL: String)?> =
-        Driver.combineLatest(billState, accountDetailDriver, showBgeDdeDpaEligibility.asDriver())
-        { (billState, accountDetail, bgeDdeDpaEligibilityChecked) in
+        Driver.combineLatest(accountDetailDriver, showBgeDdeDpaEligibility.asDriver())
+        { (accountDetail, bgeDdeDpaEligibilityChecked) in
             let isAccountTypeEligible = accountDetail.isResidential || accountDetail.isSmallCommercialCustomer
             if isAccountTypeEligible &&
                 FeatureFlagUtility.shared.bool(forKey: .paymentProgramAds) {

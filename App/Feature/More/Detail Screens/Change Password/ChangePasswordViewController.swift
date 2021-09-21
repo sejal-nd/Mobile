@@ -210,7 +210,6 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
             GoogleAnalytics.log(event: .changePasswordDone)
                                                                         
             FirebaseUtility.logEvent(.more(parameters: [.change_password_complete]))
-
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }

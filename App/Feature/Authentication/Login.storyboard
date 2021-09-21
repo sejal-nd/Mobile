@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RbL-iO-8ib">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -4194,39 +4193,76 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0za-z1-wLT">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N92-hD-RT6">
+                                        <rect key="frame" x="26" y="334.5" width="362" height="173.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="qBz-Dv-ZDh">
+                                                <rect key="frame" x="131" y="0.0" width="100" height="100"/>
+                                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="3Cs-S3-GSu"/>
+                                                    <constraint firstAttribute="height" constant="100" id="gGD-yL-gAN"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to Process Your Request" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhq-bM-IKP">
+                                                <rect key="frame" x="59" y="108" width="244.5" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="Z5d-pu-DXI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occured and we weren't able to process your request. Please try again later" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5f-Lx-A0N">
+                                                <rect key="frame" x="6" y="140" width="350" height="33.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="d1k-j4-Czc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="N92-hD-RT6" firstAttribute="centerX" secondItem="0za-z1-wLT" secondAttribute="centerX" id="0b1-UU-lTb"/>
+                                    <constraint firstItem="N92-hD-RT6" firstAttribute="centerY" secondItem="0za-z1-wLT" secondAttribute="centerY" id="PZ0-jx-eRb"/>
+                                    <constraint firstItem="N92-hD-RT6" firstAttribute="leading" secondItem="0za-z1-wLT" secondAttribute="leading" constant="26" id="XWf-ik-6Ib"/>
+                                    <constraint firstAttribute="trailing" secondItem="N92-hD-RT6" secondAttribute="trailing" constant="26" id="e6g-r4-3tX"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="bGD-3A-79r" customClass="LoadingIndicator" customModule="EUMobile" customModuleProvider="target">
                                 <rect key="frame" x="177" y="415" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvd-B1-4LO">
-                                <rect key="frame" x="29" y="411" width="356" height="20.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="u3c-e5-kCz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KUb-xe-cWG"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="dvd-B1-4LO" firstAttribute="centerY" secondItem="Zwu-tv-p0S" secondAttribute="centerY" id="0R6-qw-HXu"/>
+                            <constraint firstItem="0za-z1-wLT" firstAttribute="trailing" secondItem="KUb-xe-cWG" secondAttribute="trailing" id="1XF-BK-6FP"/>
                             <constraint firstItem="KUb-xe-cWG" firstAttribute="trailing" secondItem="pXo-ee-ekH" secondAttribute="trailing" id="2IP-8w-yVy"/>
                             <constraint firstItem="pXo-ee-ekH" firstAttribute="top" secondItem="Zwu-tv-p0S" secondAttribute="top" id="6Np-3w-6s7"/>
-                            <constraint firstItem="KUb-xe-cWG" firstAttribute="trailing" secondItem="dvd-B1-4LO" secondAttribute="trailing" priority="999" constant="29" id="F7R-Ip-18y"/>
-                            <constraint firstItem="dvd-B1-4LO" firstAttribute="leading" secondItem="KUb-xe-cWG" secondAttribute="leading" priority="999" constant="29" id="PR7-dG-cnY"/>
+                            <constraint firstAttribute="bottom" secondItem="0za-z1-wLT" secondAttribute="bottom" id="Nec-M1-xbo"/>
                             <constraint firstItem="bGD-3A-79r" firstAttribute="centerX" secondItem="KUb-xe-cWG" secondAttribute="centerX" id="PUR-Wl-hLN"/>
+                            <constraint firstItem="0za-z1-wLT" firstAttribute="top" secondItem="Zwu-tv-p0S" secondAttribute="top" id="SMd-sq-Ig8"/>
                             <constraint firstItem="bGD-3A-79r" firstAttribute="centerY" secondItem="Zwu-tv-p0S" secondAttribute="centerY" id="XFJ-L3-z1R"/>
+                            <constraint firstItem="0za-z1-wLT" firstAttribute="leading" secondItem="KUb-xe-cWG" secondAttribute="leading" id="YDf-lE-NgK"/>
                             <constraint firstAttribute="bottom" secondItem="pXo-ee-ekH" secondAttribute="bottom" id="b0p-v2-zAj"/>
                             <constraint firstItem="pXo-ee-ekH" firstAttribute="leading" secondItem="KUb-xe-cWG" secondAttribute="leading" id="dsi-vg-mKH"/>
-                            <constraint firstItem="dvd-B1-4LO" firstAttribute="centerX" secondItem="KUb-xe-cWG" secondAttribute="centerX" id="oAr-k6-0DB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reset Password" id="Cdi-aQ-PEj"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="errorLabel" destination="dvd-B1-4LO" id="gJt-c6-pBC"/>
+                        <outlet property="errorDescription" destination="u5f-Lx-A0N" id="md3-Wa-BfQ"/>
+                        <outlet property="errorImage" destination="qBz-Dv-ZDh" id="Hor-Y4-re3"/>
+                        <outlet property="errorTitle" destination="Nhq-bM-IKP" id="TG9-g4-qdP"/>
+                        <outlet property="errorView" destination="0za-z1-wLT" id="wUM-cm-KUn"/>
                         <outlet property="loadingIndicator" destination="bGD-3A-79r" id="EgQ-ZC-RFW"/>
                         <outlet property="webView" destination="pXo-ee-ekH" id="euC-Rv-JDA"/>
                         <segue destination="sVW-aP-hfQ" kind="presentation" identifier="forgotUsernameB2cSegue" id="k3X-XL-dO6"/>
@@ -4250,7 +4286,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghR-Uq-oma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="514" y="2250"/>
+            <point key="canvasLocation" x="319" y="2269"/>
         </scene>
         <!--Usage Web View-->
         <scene sceneID="mkE-2G-lwm">
@@ -4272,42 +4308,79 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="177" y="415" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJQ-y4-8vS">
-                                <rect key="frame" x="29" y="411" width="356" height="20.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYU-Hg-RfZ">
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="viy-pf-a3s">
+                                        <rect key="frame" x="26" y="306.5" width="362" height="173.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="7hc-K6-qhK">
+                                                <rect key="frame" x="131" y="0.0" width="100" height="100"/>
+                                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="krw-Dw-fYf"/>
+                                                    <constraint firstAttribute="height" constant="100" id="w96-iV-H6N"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to Process Your Request" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJQ-y4-8vS">
+                                                <rect key="frame" x="59" y="108" width="244.5" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="opJ-bd-g2v"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occured and we weren't able to process your request. Please try again later" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLm-bs-MM3">
+                                                <rect key="frame" x="6" y="140" width="350" height="33.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="AEH-E2-zTc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="GRs-xt-94J"/>
+                                    <constraint firstItem="viy-pf-a3s" firstAttribute="centerX" secondItem="KYU-Hg-RfZ" secondAttribute="centerX" id="BfJ-Fa-SLU"/>
+                                    <constraint firstAttribute="trailing" secondItem="viy-pf-a3s" secondAttribute="trailing" constant="26" id="KhK-sQ-d9J"/>
+                                    <constraint firstItem="viy-pf-a3s" firstAttribute="leading" secondItem="KYU-Hg-RfZ" secondAttribute="leading" constant="26" id="UgW-Cr-xnx"/>
+                                    <constraint firstItem="viy-pf-a3s" firstAttribute="centerY" secondItem="KYU-Hg-RfZ" secondAttribute="centerY" id="fID-RO-Rss"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nw8-IA-2Y0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="HOV-l8-X3C" secondAttribute="bottom" id="4kG-ZO-yhh"/>
+                            <constraint firstAttribute="bottom" secondItem="KYU-Hg-RfZ" secondAttribute="bottom" id="5ms-96-ojI"/>
                             <constraint firstItem="4DK-dK-INJ" firstAttribute="centerX" secondItem="Nw8-IA-2Y0" secondAttribute="centerX" id="C8G-4e-yN4"/>
                             <constraint firstItem="Nw8-IA-2Y0" firstAttribute="trailing" secondItem="HOV-l8-X3C" secondAttribute="trailing" id="Fve-ux-m0l"/>
                             <constraint firstItem="4DK-dK-INJ" firstAttribute="centerY" secondItem="ygF-Qj-roA" secondAttribute="centerY" id="Gz3-oK-i5w"/>
-                            <constraint firstItem="UJQ-y4-8vS" firstAttribute="leading" secondItem="Nw8-IA-2Y0" secondAttribute="leading" priority="999" constant="29" id="PmO-cm-Dxn"/>
+                            <constraint firstItem="KYU-Hg-RfZ" firstAttribute="trailing" secondItem="Nw8-IA-2Y0" secondAttribute="trailing" id="Q1t-YH-Rpf"/>
+                            <constraint firstItem="KYU-Hg-RfZ" firstAttribute="top" secondItem="Nw8-IA-2Y0" secondAttribute="top" id="TAJ-lf-U3A"/>
                             <constraint firstItem="HOV-l8-X3C" firstAttribute="top" secondItem="ygF-Qj-roA" secondAttribute="top" id="bms-zc-khq"/>
-                            <constraint firstItem="UJQ-y4-8vS" firstAttribute="centerY" secondItem="ygF-Qj-roA" secondAttribute="centerY" id="i8G-Iy-x5V"/>
-                            <constraint firstItem="UJQ-y4-8vS" firstAttribute="centerX" secondItem="Nw8-IA-2Y0" secondAttribute="centerX" id="j3e-tS-3nR"/>
                             <constraint firstItem="HOV-l8-X3C" firstAttribute="leading" secondItem="Nw8-IA-2Y0" secondAttribute="leading" id="jIG-ZQ-1d0"/>
-                            <constraint firstItem="Nw8-IA-2Y0" firstAttribute="trailing" secondItem="UJQ-y4-8vS" secondAttribute="trailing" priority="999" constant="29" id="tyL-KB-XOM"/>
+                            <constraint firstItem="KYU-Hg-RfZ" firstAttribute="leading" secondItem="Nw8-IA-2Y0" secondAttribute="leading" id="xd0-WU-gGQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="A5B-BA-wz8"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="errorLabel" destination="UJQ-y4-8vS" id="jyY-vi-JAl"/>
+                        <outlet property="errorDescription" destination="PLm-bs-MM3" id="v2M-X9-u8G"/>
+                        <outlet property="errorImage" destination="7hc-K6-qhK" id="XIf-N5-Ter"/>
+                        <outlet property="errorTitle" destination="UJQ-y4-8vS" id="IVg-IT-gIV"/>
+                        <outlet property="errorView" destination="KYU-Hg-RfZ" id="m37-Xs-K4l"/>
                         <outlet property="loadingIndicator" destination="4DK-dK-INJ" id="QCg-Nj-hQg"/>
                         <outlet property="webView" destination="HOV-l8-X3C" id="7mD-Es-8Ty"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6F-fa-lzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2736" y="2458"/>
+            <point key="canvasLocation" x="2734.7826086956525" y="2457.5892857142858"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -4315,10 +4388,11 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <segue reference="PqP-gN-czM"/>
         <segue reference="BgF-Jk-rXb"/>
         <segue reference="9by-S4-ujE"/>
-        <segue reference="m8m-Zs-f6g"/>
+        <segue reference="6eI-mv-PAf"/>
         <segue reference="k3X-XL-dO6"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="error" width="120" height="120"/>
         <image name="ic_check" width="13" height="10"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_eyeball_disabled" width="24" height="24"/>
@@ -4334,6 +4408,9 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
