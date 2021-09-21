@@ -42,6 +42,10 @@ class StopLandingViewController: UIViewController {
     
     @IBAction func BeginTapped(_ sender: UIButton) {
         ///TODO:  Navigate to the first screen of the Stop Service Flow.
+        let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
+        let stopServiceViewController = storyboard.instantiateViewController(withIdentifier: "StopServiceViewController") as! StopServiceViewController
+        self.navigationController?.pushViewController(stopServiceViewController, animated: true)
+
     }
     
     override func viewDidLoad() {
