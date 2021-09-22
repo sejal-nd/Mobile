@@ -14,7 +14,7 @@ class StopLandingViewController: UIViewController {
         didSet {
             headerMessageLabel.textColor = .deepGray
             headerMessageLabel.font = SystemFont.semibold.of(textStyle: .title3)
-            headerMessageLabel.text = NSLocalizedString("Permanently stop your service", comment: "")
+            headerMessageLabel.text = NSLocalizedString("Permanently stop your current service", comment: "")
         }
     }
     @IBOutlet weak var estimatedTimeLabel: UILabel! {
@@ -36,12 +36,16 @@ class StopLandingViewController: UIViewController {
         didSet {
             stopDateMessagingLabel.textColor = .deepGray
             stopDateMessagingLabel.font = SystemFont.regular.of(textStyle: .body)
-            stopDateMessagingLabel.text = NSLocalizedString("Date to stop your service within the 30 days, excluding holidays and Sundays.", comment: "")
+            stopDateMessagingLabel.text = NSLocalizedString("Date to stop your service within 30 days, excluding holidays and Sundays.", comment: "")
         }
     }
     
     @IBAction func BeginTapped(_ sender: UIButton) {
         ///TODO:  Navigate to the first screen of the Stop Service Flow.
+        let storyboard = UIStoryboard(name: "ISUMStop", bundle: nil)
+        let stopServiceViewController = storyboard.instantiateViewController(withIdentifier: "StopServiceViewController") as! StopServiceViewController
+        self.navigationController?.pushViewController(stopServiceViewController, animated: true)
+
     }
     
     override func viewDidLoad() {
