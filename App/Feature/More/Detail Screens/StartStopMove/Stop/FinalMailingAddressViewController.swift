@@ -48,15 +48,21 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     private func configureComponentBehavior() {
         
         streetAddressTextField.textField.returnKeyType = .done
+        streetAddressTextField.textField.autocorrectionType = .no
         streetAddressTextField.textField.delegate = self
         
-        cityTextField.textField.delegate = self
         cityTextField.textField.returnKeyType = .done
+        cityTextField.textField.autocorrectionType = .no
+        cityTextField.textField.delegate = self
         
         zipTextField.textField.delegate = self
         zipTextField.textField.keyboardType = .numberPad
-        cityTextField.textField.returnKeyType = .done
+        zipTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(zipCodeDonePressed))
         
+    }
+    
+    @objc func zipCodeDonePressed() {
+        zipTextField.textField.resignFirstResponder()
     }
 }
 
