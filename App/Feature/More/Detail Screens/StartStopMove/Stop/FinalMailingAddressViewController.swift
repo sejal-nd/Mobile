@@ -28,6 +28,22 @@ class FinalMailingAddressViewController: KeyboardAvoidingStickyFooterViewControl
     
     @IBAction func stateButtonTapped(_ sender: UIButton) {
         print("State Button Tapped")
+        PickerView.showStringPicker(withTitle: NSLocalizedString("Select State", comment: ""),
+                                    data: USState.allCases.map { $0.rawValue },
+                                    selectedIndex: viewModel.stateSelectedIndex,
+                                    onDone: { [weak self] value, index in
+                                        DispatchQueue.main.async { [weak self] in
+                                            guard let self = self else { return }
+                                            self.viewModel.stateSelectedIndex = index
+                                            self.viewModel.state = value
+                                            self.selectedStateLabel.text = value
+                                            self.stateFloatingLabel.isHidden = false
+                                            self.selectedStateStackView.isHidden = false
+                                            self.statePlaceHolderLabel.isHidden = true
+                                            self.selectedStateLabel.textColor = .middleGray
+                                        }
+                                    },
+                                    onCancel: nil)
     }
     
     override func viewDidLoad() {

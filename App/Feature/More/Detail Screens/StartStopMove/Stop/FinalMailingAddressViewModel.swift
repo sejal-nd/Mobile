@@ -23,6 +23,7 @@ class FinalMailingAddressViewModel {
     var city: String?
     var zipCode: String?
     var state: String?
+    var stateSelectedIndex = 0
     
     var isStreetAddressValid: Bool {
         guard let address = streetAddress, !address.isEmpty else { return false}
